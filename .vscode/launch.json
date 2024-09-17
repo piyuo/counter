@@ -25,70 +25,11 @@
             "program": "${workspaceFolder}/lib/index/example/index_example.dart"
         },
         {
-            "name": "signin_example",
+            "name": "dashboard_example",
             "request": "launch",
             "type": "dart",
-            "program": "${workspaceFolder}/lib/signin/example/signin_example.dart"
+            "program": "${workspaceFolder}/lib/dashboard/example/main.dart"
         },
-        {
-            "name": "signin_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/signin_html.dart"
-        },
-        {
-            "name": "book_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/book/example/book_example.dart"
-        },
-        {
-            "name": "summary_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/summary/example/summary_example.dart"
-        },
-        {
-            "name": "confirm_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/confirm/example/main.dart"
-        },
-        {
-            "name": "home_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/home/example/home_example.dart"
-        },
-        {
-            "name": "index_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/index_html.dart"
-        },
-        {
-            "name": "book_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/book_html.dart"
-        },
-        {
-            "name": "summary_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/summary_html.dart"
-        },
-        {
-            "name": "confirm_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/confirm_html.dart"
-        },
-        {
-            "name": "home_html",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/html/home_html.dart"
-        },
+
     ]
 }

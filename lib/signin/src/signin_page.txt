@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:counter/src/signin/signin_view.dart';
+//import 'package:counter/src/layout/page/verify_view.dart';
+import 'package:counter/src/signin/signin_provider.dart.bak';
+
+import 'package:provider/provider.dart';
+import 'package:sample_lib/module.dart';
+import 'package:sample_lib/i18n.dart';
+
+class SigninPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<I18nProvider>(
+          create: (context) => I18nProvider('signin'),
+        ),
+        ChangeNotifierProvider<SigninProvider>(
+          create: (context) => SigninProvider(),
+        )
+      ],
+      child: Consumer2<I18nProvider, SigninProvider>(
+          builder: (context, i18n, about, child) => Await(
+                list: [i18n, about],
+                //child: VerifyView(),
+                child: SigninView(),
+              )),
+    );
+  }
+}
