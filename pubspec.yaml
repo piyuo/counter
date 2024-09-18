@@ -42,6 +42,7 @@ dependencies:
   cupertino_listview: ^2.0.0
   cross_file: ^0.3.4+2
   auto_animated: ^3.2.0
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

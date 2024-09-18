@@ -40,6 +40,12 @@
             "**/node_modules": true,
             "**/_samples": true
         },
-        "cSpell.words": ["Cupertino", "icondata", "textsms", "webp"]
+        "cSpell.words": [
+            "Cupertino",
+            "icondata",
+            "RTSP",
+            "textsms",
+            "webp"
+        ]
     }
 }

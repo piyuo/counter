@@ -45,9 +45,9 @@ class AppScaffold extends StatelessWidget {
                 ]
               : [],
           child: TextButton.icon(
-            style: TextButton.styleFrom().copyWith(
-              overlayColor: MaterialStateColor.resolveWith((states) => Colors.transparent),
-            ),
+            //style: TextButton.styleFrom().copyWith(
+            // overlayColor: MaterialStateColor.resolveWith((states) => Colors.transparent),
+            //),
             icon: hasSession
                 ? SizedBox(
                     width: 22,
@@ -56,7 +56,7 @@ class AppScaffold extends StatelessWidget {
                       imageUrl: session[apollo.kSessionUserPhotoKey],
                       name: session[apollo.kSessionUserNameKey] ?? 'N/A',
                     ))
-                : const SizedBox(),
+                : const SizedBox.shrink(),
             label: Text(
               hasSession ? session[apollo.kSessionUserNameKey] : 'Sign in',
               style: appBarTheme.titleTextStyle,
@@ -97,13 +97,7 @@ class AppScaffold extends StatelessWidget {
             slivers: <Widget>[
               apollo.SliverBar(
                 spacing: 5,
-                home: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const SizedBox(width: 20),
-                    Text('Piyuo Counter', style: appBarTheme.toolbarTextStyle),
-                  ],
-                ),
+                home: Text('Piyuo Counter', style: appBarTheme.toolbarTextStyle),
                 items: [
                   apollo.BarItemButton(text: 'Technology', onPressed: () => debugPrint('Technology pressed')),
                   apollo.BarItemButton(text: 'Pricing', onPressed: () => debugPrint('Pricing pressed')),
