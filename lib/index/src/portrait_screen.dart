@@ -77,7 +77,8 @@ class PortraitScreen extends StatelessWidget {
 
     return SlidingUpPanel(
       minHeight: 74,
-      maxHeight: 390, //340,
+      maxHeight: 390,
+      defaultPanelState: PanelState.OPEN,
       borderRadius: _slidingRadius,
       collapsed: Container(
         decoration: const BoxDecoration(
