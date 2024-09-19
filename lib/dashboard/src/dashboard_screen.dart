@@ -1,7 +1,7 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:flutter/material.dart';
+import 'package:libcli/delta/delta.dart' as delta;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/delta/delta.dart' as delta;
 
 import 'accept_order.dart';
 import 'dashboard_screen_provider.dart';

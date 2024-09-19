@@ -1,6 +1,6 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:flutter/material.dart';
-import 'package:sample_lib/testing/testing.dart' as testing;
+import 'package:libcli/testing/testing.dart' as testing;
 
 main() => app.start(
       {

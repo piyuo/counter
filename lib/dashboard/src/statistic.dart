@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_lib/charts/charts.dart' as charts;
+import 'package:libcli/charts/charts.dart' as charts;
 
 class Statistic extends StatelessWidget {
   const Statistic({

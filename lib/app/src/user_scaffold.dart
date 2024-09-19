@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:libcli/apollo/apollo.dart' as apollo;
+import 'package:libcli/delta/delta.dart' as delta;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/apollo/apollo.dart' as apollo;
-import 'package:sample_lib/delta/delta.dart' as delta;
 
 import 'menu.dart';
 import 'user_scaffold_model.dart';

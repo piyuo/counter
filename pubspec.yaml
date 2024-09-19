@@ -26,9 +26,9 @@ dependencies:
       sdk: flutter
   flutter_localizations:
       sdk: flutter
-  sample_lib:
+  libcli:
       git:
-            url: git@github.com:piyuo/sample-lib.git
+            url: git@github.com:piyuo/libcli.git
   universal_platform: ^1.1.0
   nested: ^1.0.0
   protobuf: ^3.1.0

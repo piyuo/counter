@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:libcli/delta/delta.dart' as delta;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/delta/delta.dart' as delta;
 
 import 'logo.dart';
 

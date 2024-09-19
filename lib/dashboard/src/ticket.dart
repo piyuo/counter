@@ -1,7 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:sample_lib/delta/delta.dart' as delta;
+import 'package:libcli/delta/delta.dart' as delta;
 
 class Ticket extends StatelessWidget {
   const Ticket({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:libcli/apollo/apollo.dart' as apollo;
+import 'package:libcli/auth/auth.dart' as auth;
+import 'package:libcli/net/net.dart' as net;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/apollo/apollo.dart' as apollo;
-import 'package:sample_lib/auth/auth.dart' as auth;
-import 'package:sample_lib/net/net.dart' as net;
 
 import 'theme.dart';
 

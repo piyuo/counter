@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:libcli/delta/delta.dart' as delta;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/delta/delta.dart' as delta;
 
 import 'index_screen_provider.dart';
+import 'landscape_screen.dart';
 import 'portrait_screen.dart';
 
 const kMaxContentWidth = 1024.0;
@@ -33,21 +34,20 @@ class IndexScreen extends StatelessWidget {
         ],
         child: Consumer<IndexScreenProvider>(
           builder: (context, indexScreenProvider, _) {
-            Widget restraintWidth(Widget child) {
-              return Center(
-                child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: kMaxContentWidth),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-                      child: child,
-                    )),
-              );
-            }
-
-            return PortraitScreen(
-              loader: loader,
-              indexScreenProvider: indexScreenProvider,
-            );
+            return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+              final isLandscape = constraints.maxWidth > 744; // 744 is ipad mini portrait width
+              return isLandscape
+                  ? LandscapeScreen(
+                      loader: loader,
+                      indexScreenProvider: indexScreenProvider,
+                      maxHeight: constraints.maxHeight,
+                    )
+                  : PortraitScreen(
+                      loader: loader,
+                      indexScreenProvider: indexScreenProvider,
+                      maxHeight: constraints.maxHeight,
+                    );
+            });
           },
         ));
   }

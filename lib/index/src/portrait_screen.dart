@@ -13,6 +13,7 @@ class PortraitScreen extends StatelessWidget {
   const PortraitScreen({
     required this.loader,
     required this.indexScreenProvider,
+    required this.maxHeight,
     super.key,
   });
 
@@ -20,6 +21,8 @@ class PortraitScreen extends StatelessWidget {
   final Future<void> Function(BuildContext) loader;
 
   final IndexScreenProvider indexScreenProvider;
+
+  final double maxHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +63,7 @@ class PortraitScreen extends StatelessWidget {
       required void Function()? onPressed,
     }) {
       return SizedBox(
+          width: 220,
           height: 42, // Set a fixed height for each button
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -71,56 +75,55 @@ class PortraitScreen extends StatelessWidget {
           ));
     }
 
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-      return SlidingUpPanel(
-        minHeight: 74,
-        maxHeight: 390, //340,
-        borderRadius: _slidingRadius,
-        collapsed: Container(
-          decoration: const BoxDecoration(
-            borderRadius: _slidingRadius, // Add rounded corners here
-          ),
-          child: Column(
-            children: buildSlidingHeader(),
-          ),
+    return SlidingUpPanel(
+      minHeight: 74,
+      maxHeight: 390, //340,
+      borderRadius: _slidingRadius,
+      collapsed: Container(
+        decoration: const BoxDecoration(
+          borderRadius: _slidingRadius, // Add rounded corners here
         ),
-        panel: Container(
-          decoration: const BoxDecoration(
-            borderRadius: _slidingRadius, // Add rounded corners here
-          ),
-          child: Column(
-            children: [
-              ...buildSlidingHeader(),
-              const SizedBox(height: 8),
-              buildSlidingButton(
-                onPressed: () {},
-                title: 'Count from camera',
-              ),
-              const SizedBox(height: 24),
-              buildSlidingButton(
-                onPressed: () {},
-                title: 'Count from video file',
-              ),
-              const SizedBox(height: 24),
-              buildSlidingButton(
-                onPressed: () {},
-                title: 'Count from RTSP stream',
-              ),
-              const SizedBox(height: 16),
-              const Divider(),
-              const SizedBox(height: 16),
-              buildSlidingButton(
-                onPressed: () {},
-                title: 'Count from existing project',
-              ),
-            ],
-          ),
+        child: Column(
+          children: buildSlidingHeader(),
         ),
-        body: app.AppScaffold(
-          loader: () async {},
-          builder: (isReady) => buildEmptyArea(constraints.maxHeight), //buildGrid(),
+      ),
+      panel: Container(
+        decoration: const BoxDecoration(
+          borderRadius: _slidingRadius, // Add rounded corners here
         ),
-      );
-    });
+        child: Column(
+          children: [
+            ...buildSlidingHeader(),
+            const SizedBox(height: 8),
+            buildSlidingButton(
+              onPressed: () {},
+              title: 'Count from camera',
+            ),
+            const SizedBox(height: 24),
+            buildSlidingButton(
+              onPressed: () {},
+              title: 'Count from video file',
+            ),
+            const SizedBox(height: 24),
+            buildSlidingButton(
+              onPressed: () {},
+              title: 'Count from RTSP stream',
+            ),
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 16),
+            buildSlidingButton(
+              onPressed: () {},
+              title: 'Continue existing project',
+            ),
+          ],
+        ),
+      ),
+      body: app.AppScaffold(
+        title: 'Piyuo People Counter',
+        loader: () async {},
+        builder: (isReady) => buildEmptyArea(maxHeight), //buildGrid(),
+      ),
+    );
   }
 }

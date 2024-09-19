@@ -1,7 +1,7 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:flutter/material.dart';
+import 'package:libcli/testing/testing.dart' as testing;
 import 'package:provider/provider.dart';
-import 'package:sample_lib/testing/testing.dart' as testing;
 
 import '../dashboard.dart';
 

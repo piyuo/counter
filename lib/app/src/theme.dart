@@ -25,8 +25,8 @@ get themeLight {
       onSurface: Color(0xFF515151),
       onSurfaceVariant: Color(0xFF44474E),
       outline: Color(0xFF74777F),
-      onInverseSurface: Color(0xFFF2F0F4),
       inverseSurface: Color(0xFF2F3033),
+      onInverseSurface: Color(0xFFF2F0F4),
       inversePrimary: Color(0xFFABC7FF),
       shadow: Color(0xFF000000),
       surfaceTint: Color(0xFF005CBB),
@@ -46,7 +46,6 @@ get themeLight {
         color: Color(0xFF515151),
       ),
       surfaceTintColor: Color(0xFF1A1B1F),
-      
     ),
   );
 }
