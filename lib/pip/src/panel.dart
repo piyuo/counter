@@ -303,7 +303,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
                           ? Positioned(
                               top: widget.slideDirection == SlideDirection.up ? 0.0 : null,
                               bottom: widget.slideDirection == SlideDirection.down ? 0.0 : null,
-                              child: widget.header ?? SizedBox(),
+                              child: widget.header ?? const SizedBox(),
                             )
                           : Container(),
 
@@ -312,7 +312,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
                           ? Positioned(
                               top: widget.slideDirection == SlideDirection.up ? null : 0.0,
                               bottom: widget.slideDirection == SlideDirection.down ? null : 0.0,
-                              child: widget.footer ?? SizedBox())
+                              child: widget.footer ?? const SizedBox())
                           : Container(),
 
                       // collapsed panel
@@ -443,7 +443,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
       } else {
         _ac.animateTo(
           _ac.value + visualVelocity * 0.16,
-          duration: Duration(milliseconds: 410),
+          duration: const Duration(milliseconds: 410),
           curve: Curves.decelerate,
         );
       }

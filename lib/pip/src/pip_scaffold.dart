@@ -42,7 +42,7 @@ class PipScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     final vl = VisionLocalization.of(context);
     return CupertinoTheme(
-      data: CupertinoThemeData(
+      data: const CupertinoThemeData(
         brightness: Brightness.dark,
       ),
       child: Scaffold(

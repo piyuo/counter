@@ -1,0 +1,128 @@
+import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:vision/vision.dart' as vision;
+
+import 'zone_editor_controller.dart';
+
+// This class is responsible for rendering the zone objects and allowing the user to interact with it
+// The user can select a polygon, drag the points of the polygon, and create new polygons
+// ZoneEditor handles the view logic including scaling
+class ZoneEditor extends StatefulWidget {
+  final ZoneEditorController controller;
+
+  const ZoneEditor({
+    required this.controller,
+    super.key,
+  });
+
+  @override
+  State<ZoneEditor> createState() => _ZoneEditorState();
+}
+
+class _ZoneEditorState extends State<ZoneEditor> {
+  // Scale factors managed by the view
+  double getScaleFactorX(double width) => width / widget.controller.mediaWidth;
+  double getScaleFactorY(double height) => height / widget.controller.mediaHeight;
+
+  // Convert screen coordinates to model coordinates
+  Offset _screenToModel(double width, double height, Offset screenPoint) {
+    return Offset(
+      screenPoint.dx / getScaleFactorX(width),
+      screenPoint.dy / getScaleFactorY(height),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return GestureDetector(
+          onTapDown: (details) => widget.controller
+              .selectPolygon(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
+          onPanStart: (details) => widget.controller
+              .selectPolygon(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
+          onPanUpdate: (details) => widget.controller
+              .updatePointPosition(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
+          onPanEnd: (details) => widget.controller.endDragging(),
+          onPanCancel: () => widget.controller.endDragging(),
+          child: ChangeNotifierProvider<ZoneEditorController>.value(
+            value: widget.controller,
+            child: Consumer<ZoneEditorController>(
+              builder: (context, controller, child) {
+                return CustomPaint(
+                  painter: _PolygonPainter(
+                    zones: controller.zones,
+                    selectedZone: controller.selectedZone,
+                    selectedPointColor: CupertinoColors.activeBlue.resolveFrom(context),
+                    unselectedPointColor: CupertinoColors.label.resolveFrom(context),
+                    borderColor: CupertinoColors.label.resolveFrom(context),
+                    shadowColor: CupertinoColors.inactiveGray.resolveFrom(context),
+                    scaleFactorX: getScaleFactorX(constraints.maxWidth),
+                    scaleFactorY: getScaleFactorY(constraints.maxHeight),
+                  ),
+                  child: const SizedBox.expand(),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _PolygonPainter extends CustomPainter {
+  final List<vision.VideoZone> zones;
+  final vision.VideoZone? selectedZone;
+  final Color selectedPointColor;
+  final Color unselectedPointColor;
+  final Color borderColor;
+  final Color shadowColor;
+  final double scaleFactorX;
+  final double scaleFactorY;
+
+  const _PolygonPainter({
+    required this.zones,
+    required this.selectedZone,
+    required this.selectedPointColor,
+    required this.unselectedPointColor,
+    required this.borderColor,
+    required this.shadowColor,
+    required this.scaleFactorX,
+    required this.scaleFactorY,
+  });
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (int i = zones.length - 1; i >= 0; i--) {
+      final polygon = zones[i];
+      final paint = Paint()
+        ..color = polygon.color.withValues(alpha: (polygon == selectedZone) ? 0.7 : 0.5)
+        ..style = PaintingStyle.fill;
+
+      final borderPaint = Paint()
+        ..color = borderColor
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2;
+
+      final scaledPoints = polygon.points.map((p) => Offset(p.dx * scaleFactorX, p.dy * scaleFactorY)).toList();
+
+      final path = Path()..addPolygon(scaledPoints, true);
+
+      canvas.drawShadow(path, shadowColor, 5.0, true);
+      canvas.drawPath(path, paint);
+      canvas.drawPath(path, borderPaint);
+
+      if (polygon == selectedZone) {
+        for (var i = 0; i < scaledPoints.length; i++) {
+          final pointPaint = Paint()
+            ..color = (polygon.selectedPointIndex == i) ? selectedPointColor : unselectedPointColor;
+          canvas.drawCircle(scaledPoints[i], 10, pointPaint);
+        }
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}

@@ -61,7 +61,7 @@ class PipScreen extends StatelessWidget {
             }
 
             buildPortraitSliding() {
-              final top = 70.0;
+              const top = 70.0;
               return AnimatedPositioned(
                 duration: _animationDuration,
                 top: top,
@@ -77,7 +77,7 @@ class PipScreen extends StatelessWidget {
             }
 
             buildLandscapeSliding() {
-              final top = 10.0;
+              const top = 10.0;
               return AnimatedPositioned(
                 duration: _animationDuration,
                 top: top + safePadding.top,
@@ -94,7 +94,7 @@ class PipScreen extends StatelessWidget {
             }
 
             buildSliding0() {
-              final top = 70.0;
+              const top = 70.0;
 
               return AnimatedPositioned(
                 duration: _animationDuration,
