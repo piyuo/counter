@@ -30,6 +30,7 @@ dependencies:
     path: ../vision
   universal_platform: ^1.1.0
   nested: ^1.0.0
+  path: ^1.9.0
   protobuf: ^3.1.0
   provider: ^6.1.2
   carousel_slider: ^4.1.1
@@ -58,6 +59,7 @@ dependencies:
   fl_chart: ^0.70.2
   image_picker: ^1.1.2
   input_quantity: ^2.5.1
+  drift: ^2.25.1
 
 dev_dependencies:
   flutter_test:
