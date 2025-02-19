@@ -346,7 +346,7 @@ packages:
     source: hosted
     version: "1.1.1"
   fl_chart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: fl_chart
       sha256: "5276944c6ffc975ae796569a826c38a62d2abcf264e26b88fa6f482e107f4237"
@@ -359,7 +359,7 @@ packages:
     source: sdk
     version: "0.0.0"
   flutter_colorpicker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flutter_colorpicker
       sha256: "969de5f6f9e2a570ac660fb7b501551451ea2a1ab9e2097e89475f60e07816ea"
@@ -454,7 +454,7 @@ packages:
     source: hosted
     version: "4.5.2"
   image_picker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: "021834d9c0c3de46bf0fe40341fa07168407f694d9b2bb18d532dc1261867f7a"
@@ -518,7 +518,7 @@ packages:
     source: hosted
     version: "0.2.1+1"
   input_quantity:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: input_quantity
       sha256: "18a0785ad7b5e081ef05d585f2ff7a31512ba29637efa38048281d5d0512e0ff"
@@ -670,7 +670,7 @@ packages:
     source: hosted
     version: "2.1.1"
   package_info_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info_plus
       sha256: "67eae327b1b0faf761964a1d2e5d323c797f3799db0e85aa232db8d9e922bc35"

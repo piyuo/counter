@@ -53,6 +53,11 @@ dependencies:
   wakelock_plus: ^1.2.10
   sensors_plus: ^6.1.1
   super_cupertino_navigation_bar: ^2.1.2
+  package_info_plus: ^8.2.1
+  flutter_colorpicker: ^1.1.0
+  fl_chart: ^0.70.2
+  image_picker: ^1.1.2
+  input_quantity: ^2.5.1
 
 dev_dependencies:
   flutter_test:
