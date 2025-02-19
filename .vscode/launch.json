@@ -19,12 +19,6 @@
             "program": "${workspaceFolder}/lib/app/example/app_example.dart"
         },
         {
-            "name": "index_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/index/example/index_example.dart"
-        },
-        {
             "name": "dashboard_example",
             "request": "launch",
             "type": "dart",
