@@ -1,4 +1,3 @@
-/*
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -44,4 +43,3 @@ class AppDatabase extends _$AppDatabase {
     return select(todoItems).get();
   }
 }
-*/
