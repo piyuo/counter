@@ -1,10 +1,10 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:input_quantity/input_quantity.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({
@@ -25,7 +25,6 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     return ChangeNotifierProvider(
       create: (_) => TallyScreenProvider(videoProvider, annotation),
       child: Consumer<TallyScreenProvider>(
@@ -46,11 +45,11 @@ class CounterScreen extends StatelessWidget {
                 ),
               ),
               CupertinoListSection(
-                header: Text(l.counter_screen_show_on),
+                header: Text(context.l.counter_screen_show_on),
                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                 children: [
                   CupertinoListTile(
-                    title: Text(l.counter_screen_enabled),
+                    title: Text(context.l.counter_screen_enabled),
                     trailing: CupertinoSwitch(
                       // This bool value toggles the switch.
                       value: annotation.enabled,
@@ -83,13 +82,13 @@ class CounterScreen extends StatelessWidget {
               if (annotation.type == clib.TallyType.reentered)
                 CupertinoListSection(
                   backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(l.counter_screen_reentry_threshold),
-                  footer: Text(l.counter_screen_reentry_desc
+                  header: Text(context.l.counter_screen_reentry_threshold),
+                  footer: Text(context.l.counter_screen_reentry_desc
                       .replaceAll('#0', '${videoZone.reenteredThreshold}')
                       .replaceAll('#1', '${videoZone.cooldownThreshold}')),
                   children: [
                     CupertinoListTile(
-                      title: Text(l.counter_screen_reentry_title),
+                      title: Text(context.l.counter_screen_reentry_title),
                       trailing: InputQty(
                         initVal: videoZone.reenteredThreshold,
                         onQtyChanged: (v) {
@@ -108,12 +107,13 @@ class CounterScreen extends StatelessWidget {
               if (annotation.type == clib.TallyType.reentered)
                 CupertinoListSection(
                   backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(l.counter_screen_cooldown_threshold),
-                  footer: Text(l.counter_screen_cooldown_desc.replaceAll('#0', '${videoZone.cooldownThreshold}')),
+                  header: Text(context.l.counter_screen_cooldown_threshold),
+                  footer:
+                      Text(context.l.counter_screen_cooldown_desc.replaceAll('#0', '${videoZone.cooldownThreshold}')),
                   children: [
                     CupertinoListTile(
-                      title: Text(l.counter_screen_cooldown_time),
-                      subtitle: Text(l.counter_screen_cooldown_in_seconds),
+                      title: Text(context.l.counter_screen_cooldown_time),
+                      subtitle: Text(context.l.counter_screen_cooldown_in_seconds),
                       trailing: InputQty(
                         initVal: videoZone.cooldownThreshold,
                         onQtyChanged: (v) {
@@ -132,14 +132,14 @@ class CounterScreen extends StatelessWidget {
               if (annotation.type == clib.TallyType.stagnant)
                 CupertinoListSection(
                   backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(l.counter_screen_stagnant_threshold),
+                  header: Text(context.l.counter_screen_stagnant_threshold),
                   footer: Text(
-                    l.counter_screen_stagnant_desc.replaceAll('#0', '${videoZone.stagnantThreshold}'),
+                    context.l.counter_screen_stagnant_desc.replaceAll('#0', '${videoZone.stagnantThreshold}'),
                   ),
                   children: [
                     CupertinoListTile(
-                      title: Text(l.counter_screen_stagnant_consider),
-                      subtitle: Text(l.counter_screen_stagnant_in_seconds),
+                      title: Text(context.l.counter_screen_stagnant_consider),
+                      subtitle: Text(context.l.counter_screen_stagnant_in_seconds),
                       trailing: InputQty(
                         initVal: videoZone.stagnantThreshold,
                         onQtyChanged: (v) {
@@ -157,7 +157,7 @@ class CounterScreen extends StatelessWidget {
                 ),
               CupertinoListSection(
                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                header: Text(l.counter_screen_stagnant_desc_prefix),
+                header: Text(context.l.counter_screen_stagnant_desc_prefix),
                 children: [
                   CupertinoTextField(
                     decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
@@ -170,7 +170,7 @@ class CounterScreen extends StatelessWidget {
               ),
               CupertinoListSection(
                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                header: Text(l.counter_screen_stagnant_desc_suffix),
+                header: Text(context.l.counter_screen_stagnant_desc_suffix),
                 children: [
                   CupertinoTextField(
                     decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
@@ -226,8 +226,7 @@ class TallyScreenProvider with ChangeNotifier {
   /// set title
   void setTitle(BuildContext context, String text) {
     if (text.isEmpty) {
-      final l = VisionLocalization.of(context);
-      _titleErrorMessage = l.counter_screen_name_error;
+      _titleErrorMessage = context.l.counter_screen_name_error;
     } else {
       _titleErrorMessage = '';
       annotation.title = text;
@@ -256,7 +255,6 @@ class TallyScreenProvider with ChangeNotifier {
     clib.TallyAnnotation annotation,
   ) {
     final projectProvider = app.ProjectProvider.of(context);
-    final l = VisionLocalization.of(context);
 
     final ok = videoProvider.toggleZoneTollyAnnotation(videoZone, annotation);
     if (!ok) {
@@ -265,12 +263,12 @@ class TallyScreenProvider with ChangeNotifier {
       showCupertinoDialog(
         context: context,
         builder: (context) => CupertinoAlertDialog(
-          title: Text(l.counter_screen_enabled_error),
-          content: Text(l.counter_screen_enabled_error_content),
+          title: Text(context.l.counter_screen_enabled_error),
+          content: Text(context.l.counter_screen_enabled_error_content),
           actions: [
             CupertinoDialogAction(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(l.ok),
+              child: Text(context.l.ok),
             ),
           ],
         ),

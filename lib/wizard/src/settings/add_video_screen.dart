@@ -1,8 +1,8 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 import '../home/video_starter.dart';
 
@@ -18,8 +18,7 @@ class AddVideoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final pageTitle = l.add_video_screen_title;
+    final pageTitle = context.l.add_video_screen_title;
     final projectProvider = app.ProjectProvider.of(context);
     return pip.PipScaffold(
       previousPageTitle: previousPageTitle,
@@ -35,7 +34,7 @@ class AddVideoScreen extends StatelessWidget {
                   child: Consumer<VideoStarterProvider>(
                     builder: (context, videoStarterProvider, child) => CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.add_video_screen_from),
+                      header: Text(context.l.add_video_screen_from),
                       children: buildVideoStarter(
                         context,
                         videoStarterProvider: videoStarterProvider,

@@ -1,4 +1,5 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/app_localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
@@ -111,6 +112,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               locale: languageProvider.locale,
               localizationsDelegates: const [
+                AppLocalization.delegate,
                 vision.VisionLocalization.delegate,
                 GlobalMaterialLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,

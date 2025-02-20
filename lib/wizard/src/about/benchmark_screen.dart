@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 import 'package:vision/vision.dart' as vision;
 
 class BenchmarkScreen extends StatelessWidget {
@@ -14,7 +14,6 @@ class BenchmarkScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     return ChangeNotifierProvider<BenchmarkScreenProvider>(
       create: (_) {
         final projectProvider = app.ProjectProvider.of(context);
@@ -24,7 +23,7 @@ class BenchmarkScreen extends StatelessWidget {
         builder: (context, benchmarkScreenProvider, child) {
           return pip.PipScaffold(
             action: CupertinoButton(
-              child: Text(l.benchmark_screen_start_button),
+              child: Text(context.l.benchmark_screen_start_button),
               onPressed: () async {
                 final errorCode = await benchmarkScreenProvider.doBenchmark();
                 if (errorCode != 0 && context.mounted) {
@@ -32,10 +31,10 @@ class BenchmarkScreen extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return CupertinoAlertDialog(
-                        content: Text('${l.benchmark_screen_start_failed} $errorCode.'),
+                        content: Text('${context.l.benchmark_screen_start_failed} $errorCode.'),
                         actions: [
                           CupertinoDialogAction(
-                            child: Text(l.close),
+                            child: Text(context.l.close),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -63,7 +62,7 @@ class BenchmarkScreen extends StatelessWidget {
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
-                        title: Text(l.benchmark_screen_recommended),
+                        title: Text(context.l.benchmark_screen_recommended),
                         additionalInfo: Text(vision.getModelName(benchmarkScreenProvider.recommendedModel)),
                       )
                     ],
@@ -74,7 +73,7 @@ class BenchmarkScreen extends StatelessWidget {
                       children: benchmarkScreenProvider.benchmarks.map((benchmark) {
                         return CupertinoListTile(
                           title: Text(vision.getModelName(benchmark.model)),
-                          additionalInfo: Text('${benchmark.fps} ${l.benchmark_screen_fps}'),
+                          additionalInfo: Text('${benchmark.fps} ${context.l.benchmark_screen_fps}'),
                         );
                       }).toList(),
                     ),

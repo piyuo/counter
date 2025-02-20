@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 import '../wizard_navigator.dart';
 import 'gauge_view.dart';
@@ -18,8 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final String pageTitle = l.home_screen_title;
+    final String pageTitle = context.l.home_screen_title;
 
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<HomeScreenProvider>(
@@ -167,19 +166,19 @@ class HomeScreen extends StatelessWidget {
                   final bool shouldPop = await showCupertinoDialog<bool?>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
-                          title: Text(l.home_screen_exit_confirm_title),
-                          content: Text(l.home_screen_exit_confirm_content),
+                          title: Text(context.l.home_screen_exit_confirm_title),
+                          content: Text(context.l.home_screen_exit_confirm_content),
                           actions: <CupertinoDialogAction>[
                             CupertinoDialogAction(
                               isDefaultAction: true,
                               textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
                               onPressed: () => Navigator.pop(context),
-                              child: Text(l.no),
+                              child: Text(context.l.no),
                             ),
                             CupertinoDialogAction(
                               isDestructiveAction: true,
                               onPressed: () => Navigator.pop(context, true),
-                              child: Text(l.yes),
+                              child: Text(context.l.yes),
                             ),
                           ],
                         ),
@@ -192,9 +191,9 @@ class HomeScreen extends StatelessWidget {
                   }
                 },
                 child: pip.PipScaffold(
-                  previousPageTitle: l.home_screen_exit_button,
+                  previousPageTitle: context.l.home_screen_exit_button,
                   action: CupertinoButton(
-                    child: Text(l.home_screen_add_video_button),
+                    child: Text(context.l.home_screen_add_video_button),
                     onPressed: () {
                       Navigator.of(context).pushNamed(addVideoRoute, arguments: {
                         'previousPageTitle': pageTitle,
@@ -238,7 +237,7 @@ class HomeScreen extends StatelessWidget {
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                           children: [
                             CupertinoListTile(
-                              title: Text(l.home_screen_report_from,
+                              title: Text(context.l.home_screen_report_from,
                                   style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                               additionalInfo: Text(projectProvider.project!.filter.formattedString(context)),
                               trailing: const CupertinoListTileChevron(),
@@ -254,11 +253,11 @@ class HomeScreen extends StatelessWidget {
                         // no need to show gauge if zone editor is enabled
                         if (!projectProvider.isZoneEditorEnabled) ...buildVideoView(),
                         CupertinoListSection(
-                          header: Text(l.home_screen_title),
+                          header: Text(context.l.home_screen_title),
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                           children: [
                             CupertinoListTile(
-                              title: Text(l.home_screen_report_settings),
+                              title: Text(context.l.home_screen_report_settings),
                               leading: const Icon(CupertinoIcons.settings),
                               trailing: const CupertinoListTileChevron(),
                               onTap: () async {

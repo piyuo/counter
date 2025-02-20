@@ -1,8 +1,8 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 /// Camera screen to choose camera
 class CameraScreen extends StatelessWidget {
@@ -26,10 +26,9 @@ class CameraScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
     final cameraManager = projectProvider.cameraManager;
-    final l = VisionLocalization.of(context);
 
     return pip.PipScaffold(
-      title: isAddMode ? l.camera_screen_add_title : l.camera_screen_edit_title,
+      title: isAddMode ? context.l.camera_screen_add_title : context.l.camera_screen_edit_title,
       previousPageTitle: previousPageTitle,
       child: SingleChildScrollView(
           child: ChangeNotifierProvider(
@@ -49,7 +48,7 @@ class CameraScreen extends StatelessWidget {
                             ? const Icon(CupertinoIcons.check_mark)
                             : const SizedBox.shrink(),
                         title: Text(
-                            '${cameraDefine.isFrontCamera ? l.camera_screen_front_camera : l.camera_screen_back_camera} ${cameraDefine.title}'),
+                            '${cameraDefine.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${cameraDefine.title}'),
                         onTap: () async {
                           videoProvider.video.camera = cameraDefine;
                           await videoProvider.reload(context, projectProvider.project!, false);
@@ -64,7 +63,7 @@ class CameraScreen extends StatelessWidget {
                 /// camera zoom
                 if (videoProvider.isZoomToolEnabled)
                   CupertinoListSection(
-                    header: Text(l.camera_screen_zoom_level),
+                    header: Text(context.l.camera_screen_zoom_level),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(

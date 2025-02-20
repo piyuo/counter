@@ -1,7 +1,7 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 import 'language.dart';
 
@@ -12,7 +12,6 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     final languageProvider = app.LanguageProvider.of(context);
     final languages = [
       Language(null, 'System'),
@@ -27,7 +26,7 @@ class LanguageScreen extends StatelessWidget {
                 children: [
                   Icon(CupertinoIcons.globe, size: 44),
                   const SizedBox(height: 8.0),
-                  Text(l.language_screen_language, style: const TextStyle(fontSize: 20.0)),
+                  Text(context.l.language_screen_language, style: const TextStyle(fontSize: 20.0)),
                 ],
               ),
             ),

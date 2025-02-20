@@ -1,8 +1,8 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 class WebcamScreen extends StatelessWidget {
   const WebcamScreen({
@@ -23,8 +23,7 @@ class WebcamScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final pageTitle = isAddMode ? l.webcam_screen_add_title : l.webcam_screen_edit_title;
+    final pageTitle = isAddMode ? context.l.webcam_screen_add_title : context.l.webcam_screen_edit_title;
     final projectProvider = app.ProjectProvider.of(context);
     final webcamManager = projectProvider.webcamManager;
     return pip.PipScaffold(

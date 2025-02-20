@@ -1,8 +1,8 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 import 'package:vision/vision.dart' as vision;
 
 class DetectionScreen extends StatelessWidget {
@@ -16,8 +16,7 @@ class DetectionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final pageTitle = l.detection_screen_title;
+    final pageTitle = context.l.detection_screen_title;
 
     final projectProvider = app.ProjectProvider.of(context);
     final project = projectProvider.project;
@@ -41,7 +40,7 @@ class DetectionScreen extends StatelessWidget {
                   children: [
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_models),
+                      header: Text(context.l.detection_screen_models),
                       children: List.generate(
                         vision.Models.values.length,
                         (index) {
@@ -61,15 +60,15 @@ class DetectionScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_confidence),
+                      header: Text(context.l.detection_screen_confidence),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(l.detection_screen_confidence_desc.replaceAll('#0', classPercentage)),
+                        child: Text(context.l.detection_screen_confidence_desc.replaceAll('#0', classPercentage)),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(l.detection_screen_low),
-                            trailing: Text(l.detection_screen_high),
+                            leading: Text(context.l.detection_screen_low),
+                            trailing: Text(context.l.detection_screen_high),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -88,18 +87,18 @@ class DetectionScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_nms),
+                      header: Text(context.l.detection_screen_nms),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: Text(
                           maxLines: 4,
-                          l.detection_screen_nms_desc.replaceAll('#0', nmsPercentage),
+                          context.l.detection_screen_nms_desc.replaceAll('#0', nmsPercentage),
                         ),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(l.detection_screen_low),
-                            trailing: Text(l.detection_screen_high),
+                            leading: Text(context.l.detection_screen_low),
+                            trailing: Text(context.l.detection_screen_high),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -118,15 +117,16 @@ class DetectionScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_match),
+                      header: Text(context.l.detection_screen_match),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(maxLines: 3, l.detection_screen_match_desc.replaceAll('#0', matchPercentage)),
+                        child:
+                            Text(maxLines: 3, context.l.detection_screen_match_desc.replaceAll('#0', matchPercentage)),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(l.detection_screen_low),
-                            trailing: Text(l.detection_screen_high),
+                            leading: Text(context.l.detection_screen_low),
+                            trailing: Text(context.l.detection_screen_high),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -145,15 +145,15 @@ class DetectionScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_lost),
+                      header: Text(context.l.detection_screen_lost),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(maxLines: 3, l.detection_screen_lost_desc.replaceAll('#0', maxLostSeconds)),
+                        child: Text(maxLines: 3, context.l.detection_screen_lost_desc.replaceAll('#0', maxLostSeconds)),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(l.detection_screen_1),
-                            trailing: Text(l.detection_screen_30),
+                            leading: Text(context.l.detection_screen_1),
+                            trailing: Text(context.l.detection_screen_30),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -172,16 +172,17 @@ class DetectionScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(l.detection_screen_consider_valid),
+                      header: Text(context.l.detection_screen_consider_valid),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child:
-                            Text(maxLines: 3, l.detection_screen_consider_valid_desc.replaceAll('#0', validThreshold)),
+                        child: Text(
+                            maxLines: 3,
+                            context.l.detection_screen_consider_valid_desc.replaceAll('#0', validThreshold)),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(l.detection_screen_1),
-                            trailing: Text(l.detection_screen_30),
+                            leading: Text(context.l.detection_screen_1),
+                            trailing: Text(context.l.detection_screen_30),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -203,25 +204,25 @@ class DetectionScreen extends StatelessWidget {
                       children: [
                         CupertinoListTile(
                           title: Center(
-                              child:
-                                  Text(l.detection_screen_reset, style: TextStyle(color: CupertinoColors.systemRed))),
+                              child: Text(context.l.detection_screen_reset,
+                                  style: TextStyle(color: CupertinoColors.systemRed))),
                           onTap: () async {
                             final bool okToReset = await showCupertinoDialog<bool?>(
                                   context: context,
                                   builder: (BuildContext context) => CupertinoAlertDialog(
-                                    title: Text(l.detection_screen_reset),
-                                    content: Text(l.detection_screen_reset_content),
+                                    title: Text(context.l.detection_screen_reset),
+                                    content: Text(context.l.detection_screen_reset_content),
                                     actions: <CupertinoDialogAction>[
                                       CupertinoDialogAction(
                                         isDefaultAction: true,
                                         textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
                                         onPressed: () => Navigator.pop(context),
-                                        child: Text(l.no),
+                                        child: Text(context.l.no),
                                       ),
                                       CupertinoDialogAction(
                                         isDestructiveAction: true,
                                         onPressed: () => Navigator.pop(context, true),
-                                        child: Text(l.yes),
+                                        child: Text(context.l.yes),
                                       ),
                                     ],
                                   ),

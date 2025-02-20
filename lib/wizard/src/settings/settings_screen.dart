@@ -1,8 +1,8 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 import '../wizard_navigator.dart';
 
@@ -18,8 +18,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final String pageTitle = l.settings_screen_title;
+    final String pageTitle = context.l.settings_screen_title;
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<SettingsScreenProvider>(
       create: (_) => SettingsScreenProvider(projectProvider),
@@ -33,7 +32,7 @@ class SettingsScreen extends StatelessWidget {
                 children: [
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(l.settings_screen_project_name),
+                    header: Text(context.l.settings_screen_project_name),
                     footer: settingsScreenProvider._projectNameErrorMessage.isNotEmpty
                         ? Text(
                             settingsScreenProvider._projectNameErrorMessage,
@@ -44,7 +43,7 @@ class SettingsScreen extends StatelessWidget {
                       CupertinoTextField(
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
-                        placeholder: l.settings_screen_project_name_place_holder,
+                        placeholder: context.l.settings_screen_project_name_place_holder,
                         padding: const EdgeInsets.all(16),
                         controller: settingsScreenProvider.projectNameController,
                         onChanged: (text) => settingsScreenProvider.setProjectName(context, text),
@@ -55,7 +54,7 @@ class SettingsScreen extends StatelessWidget {
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
-                        title: Text(l.settings_screen_detection),
+                        title: Text(context.l.settings_screen_detection),
                         leading: const Icon(CupertinoIcons.eye),
                         trailing: const CupertinoListTileChevron(),
                         additionalInfo: Text(projectProvider.project!.model.name),
@@ -99,8 +98,7 @@ class SettingsScreenProvider with ChangeNotifier {
   /// set project name
   void setProjectName(BuildContext context, String text) {
     if (text.isEmpty) {
-      final l = VisionLocalization.of(context);
-      _projectNameErrorMessage = l.settings_screen_project_error;
+      _projectNameErrorMessage = context.l.settings_screen_project_error;
     } else {
       _projectNameErrorMessage = '';
       projectProvider.setProjectName(text);

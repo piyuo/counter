@@ -1,7 +1,7 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 import '../wizard_navigator.dart';
 import 'pick_video.dart';
@@ -14,12 +14,11 @@ List<Widget> buildVideoStarter(
   required bool isAddMode,
   String? previousPageTitle,
 }) {
-  final l = VisionLocalization.of(context);
   return [
     if (projectProvider.hasWebcam)
       CupertinoListTile(
           leading: videoStarterProvider.isLoadingWebcam ? CupertinoActivityIndicator() : Icon(CupertinoIcons.videocam),
-          title: Text(l.video_starter_webcam),
+          title: Text(context.l.video_starter_webcam),
           trailing: CupertinoListTileChevron(),
           onTap: () async {
             videoStarterProvider.setLoadingWebcam(true);
@@ -51,7 +50,7 @@ List<Widget> buildVideoStarter(
     if (projectProvider.hasCamera && projectProvider.isAddCameraAllowed)
       CupertinoListTile(
         leading: videoStarterProvider.isLoadingCamera ? CupertinoActivityIndicator() : Icon(CupertinoIcons.camera),
-        title: Text(l.video_starter_camera),
+        title: Text(context.l.video_starter_camera),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoStarterProvider.setLoadingCamera(true);
@@ -83,7 +82,7 @@ List<Widget> buildVideoStarter(
     if (projectProvider.isLiveStreamAllowed)
       CupertinoListTile(
         leading: videoStarterProvider.isLoadingLiveStream ? CupertinoActivityIndicator() : Icon(CupertinoIcons.cloud),
-        title: Text(l.video_starter_live_stream),
+        title: Text(context.l.video_starter_live_stream),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoStarterProvider.setLoadingLiveStream(true);
@@ -113,7 +112,7 @@ List<Widget> buildVideoStarter(
       ),
     CupertinoListTile(
         leading: videoStarterProvider.isLoadingFile ? CupertinoActivityIndicator() : Icon(CupertinoIcons.folder),
-        title: Text(l.video_starter_file),
+        title: Text(context.l.video_starter_file),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoStarterProvider.setLoadingFile(true);

@@ -1,10 +1,10 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 class UrlScreen extends StatefulWidget {
   const UrlScreen({
@@ -35,7 +35,6 @@ class UrlScreen extends StatefulWidget {
 class UrlScreenState extends State<UrlScreen> {
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     return ChangeNotifierProvider<UrlScreenProvider>(
       create: (_) => UrlScreenProvider(widget.initialUrl),
       child: Consumer<UrlScreenProvider>(
@@ -66,20 +65,20 @@ class UrlScreenState extends State<UrlScreen> {
                       children: [
                         Icon(CupertinoIcons.cloud, size: 44),
                         const SizedBox(height: 8.0),
-                        Text(l.url_screen_title, style: const TextStyle(fontSize: 20.0)),
-                        Text(l.url_screen_desc,
+                        Text(context.l.url_screen_title, style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.url_screen_desc,
                             style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                       ],
                     ),
                   ),
                   CupertinoListSection(
-                    header: Text(l.url_screen_url),
+                    header: Text(context.l.url_screen_url),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoTextField(
                         maxLines: 3,
                         clearButtonMode: OverlayVisibilityMode.editing,
-                        placeholder: l.url_screen_url_placeholder,
+                        placeholder: context.l.url_screen_url_placeholder,
                         padding: const EdgeInsets.all(16),
                         controller: urlScreenProvider.urlFieldController,
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
@@ -114,7 +113,7 @@ class UrlScreenState extends State<UrlScreen> {
                             }
                           }
                         },
-                        child: Text(l.submit, style: TextStyle(color: CupertinoColors.activeBlue)),
+                        child: Text(context.l.submit, style: TextStyle(color: CupertinoColors.activeBlue)),
                       ))),
                     ],
                   ),
@@ -128,8 +127,8 @@ class UrlScreenState extends State<UrlScreen> {
                           onPressed: () async {
                             Navigator.of(context).pop(widget.initialUrl);
                           },
-                          child:
-                              Text(l.cancel, style: TextStyle(color: CupertinoColors.systemRed.resolveFrom(context))),
+                          child: Text(context.l.cancel,
+                              style: TextStyle(color: CupertinoColors.systemRed.resolveFrom(context))),
                         ))),
                       ],
                     ),

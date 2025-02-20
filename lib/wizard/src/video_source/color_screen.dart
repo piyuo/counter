@@ -1,10 +1,10 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 /// The color screen for editing the color.
 class ColorScreen extends StatelessWidget {
@@ -26,8 +26,7 @@ class ColorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final pageTitle = l.color_screen_title;
+    final pageTitle = context.l.color_screen_title;
     return ChangeNotifierProvider<ColorScreenProvider>(
         create: (_) => ColorScreenProvider(videoProvider),
         child: Consumer<ColorScreenProvider>(

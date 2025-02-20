@@ -1,9 +1,9 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/l10n/vision_localization.dart';
 import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
@@ -15,7 +15,6 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     return ChangeNotifierProvider<AboutScreenProvider>(
       create: (_) => AboutScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
@@ -29,7 +28,7 @@ class AboutScreen extends StatelessWidget {
                       children: [
                         Icon(CupertinoIcons.info, size: 44),
                         const SizedBox(height: 8.0),
-                        Text(l.about_screen_about, style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.about_screen_about, style: const TextStyle(fontSize: 20.0)),
                       ],
                     ),
                   ),
@@ -38,22 +37,22 @@ class AboutScreen extends StatelessWidget {
                     children: [
                       CupertinoListTile(
                         additionalInfo: Text(aboutScreenProvider.platform),
-                        title: Text(l.about_screen_platform),
+                        title: Text(context.l.about_screen_platform),
                       ),
                       CupertinoListTile(
                         additionalInfo: Text(aboutScreenProvider.appVersion),
-                        title: Text(l.about_screen_app_version),
+                        title: Text(context.l.about_screen_app_version),
                         onTap: () => aboutScreenProvider.onTapVersion(),
                       ),
                     ],
                   ),
                   CupertinoListSection(
-                    header: Text(l.about_screen_models),
+                    header: Text(context.l.about_screen_models),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         trailing: CupertinoListTileChevron(),
-                        title: Text(l.about_screen_benchmark),
+                        title: Text(context.l.about_screen_benchmark),
                         onTap: () {
                           Navigator.of(context).pushNamed(benchmarkRoute);
                         },
@@ -65,7 +64,7 @@ class AboutScreen extends StatelessWidget {
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
-                          title: Text(l.about_screen_opencv_build_info),
+                          title: Text(context.l.about_screen_opencv_build_info),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
                             Navigator.of(context).pushNamed(opencvRoute);

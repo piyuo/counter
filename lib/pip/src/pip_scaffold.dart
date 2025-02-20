@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:super_cupertino_navigation_bar/super_cupertino_navigation_bar.dart';
-import 'package:vision/l10n/vision_localization.dart';
 
 /// Picture in Picture screen
 class PipScaffold extends StatelessWidget {
@@ -40,7 +40,6 @@ class PipScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vl = VisionLocalization.of(context);
     return CupertinoTheme(
       data: const CupertinoThemeData(
         brightness: Brightness.dark,
@@ -50,7 +49,7 @@ class PipScaffold extends StatelessWidget {
         backgroundColor: getCupertinoListSectionBackgroundColor(context),
         body: SuperScaffold(
           appBar: SuperAppBar(
-            previousPageTitle: previousPageTitle ?? vl.back,
+            previousPageTitle: previousPageTitle ?? context.l.back,
             backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.5),
             title: title != null ? AutoSizeText(title!) : null,
             largeTitle: SuperLargeTitle(

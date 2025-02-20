@@ -1,9 +1,9 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 import '../wizard_navigator.dart';
 
@@ -27,7 +27,6 @@ class ZoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
     final projectProvider = app.ProjectProvider.of(context);
     return MultiProvider(
         providers: [
@@ -51,7 +50,7 @@ class ZoneScreen extends StatelessWidget {
                       children: [
                         Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
-                          l.zone_screen_desc,
+                          context.l.zone_screen_desc,
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -70,7 +69,7 @@ class ZoneScreen extends StatelessWidget {
                       CupertinoTextField(
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
-                        placeholder: l.zone_screen_name_placeholder,
+                        placeholder: context.l.zone_screen_name_placeholder,
                         padding: EdgeInsets.all(16),
                         controller: zoneScreenProvider.zoneNameFieldController,
                         onChanged: (text) => zoneScreenProvider.setZoneName(context, text),
@@ -81,10 +80,10 @@ class ZoneScreen extends StatelessWidget {
                   // color picker
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(l.zone_screen_zone_color),
+                    header: Text(context.l.zone_screen_zone_color),
                     children: [
                       CupertinoListTile(
-                        title: Text(l.zone_screen_color),
+                        title: Text(context.l.zone_screen_color),
                         leading: Container(
                           width: 20,
                           height: 20,
@@ -110,10 +109,10 @@ class ZoneScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(l.zone_screen_detect_desc),
+                    header: Text(context.l.zone_screen_detect_desc),
                     children: [
                       CupertinoListTile(
-                        title: Text(l.zone_screen_detection),
+                        title: Text(context.l.zone_screen_detection),
                         leading: const Icon(CupertinoIcons.person),
                         trailing: const CupertinoListTileChevron(),
                         additionalInfo: Text(videoZone.getSelectedObjectClassNames(context)),
@@ -180,7 +179,7 @@ class ZoneScreen extends StatelessWidget {
 */
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(l.zone_screen_remove_desc),
+                    header: Text(context.l.zone_screen_remove_desc),
                     children: [
                       CupertinoListTile(
                         title: Center(
@@ -190,8 +189,8 @@ class ZoneScreen extends StatelessWidget {
                               await showCupertinoDialog(
                                 context: context,
                                 builder: (context) => CupertinoAlertDialog(
-                                  title: Text(l.zone_screen_remove_title),
-                                  content: Text(l.zone_screen_remove_content),
+                                  title: Text(context.l.zone_screen_remove_title),
+                                  content: Text(context.l.zone_screen_remove_content),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       onPressed: () {
@@ -209,7 +208,7 @@ class ZoneScreen extends StatelessWidget {
                             projectProvider.notifyProjectChanged(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
-                          child: Text(l.zone_screen_remove, style: TextStyle(color: CupertinoColors.systemRed)),
+                          child: Text(context.l.zone_screen_remove, style: TextStyle(color: CupertinoColors.systemRed)),
                         )),
                       )
                     ],
@@ -251,10 +250,8 @@ class ZoneScreenProvider with ChangeNotifier {
 
   /// set zone name
   void setZoneName(BuildContext context, String text) {
-    final l = VisionLocalization.of(context);
-
     if (text.isEmpty) {
-      _zoneNameErrorMessage = l.zone_screen_remove_error;
+      _zoneNameErrorMessage = context.l.zone_screen_remove_error;
     } else {
       _zoneNameErrorMessage = '';
       videoProvider.setZoneName(videoZone, zoneNameFieldController.text);

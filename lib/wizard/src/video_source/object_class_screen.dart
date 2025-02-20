@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 class ObjectClassScreen extends StatelessWidget {
   const ObjectClassScreen({
@@ -23,8 +23,7 @@ class ObjectClassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
-    final l = VisionLocalization.of(context);
-    final pageTitle = l.object_class_screen_title;
+    final pageTitle = context.l.object_class_screen_title;
     return pip.PipScaffold(
       title: pageTitle,
       child: ChangeNotifierProvider(

@@ -1,10 +1,10 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
-import 'package:vision/l10n/vision_localization.dart';
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({
@@ -17,8 +17,7 @@ class FilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l = VisionLocalization.of(context);
-    final String pageTitle = l.filter_screen_title;
+    final String pageTitle = context.l.filter_screen_title;
 
     return Consumer<app.ProjectProvider>(
       builder: (context, projectProvider, child) => ChangeNotifierProvider(
@@ -60,11 +59,11 @@ class FilterScreen extends StatelessWidget {
                     showCupertinoDialog(
                       context: context,
                       builder: (context) => CupertinoAlertDialog(
-                        title: Text(l.filter_screen_error_title),
-                        content: Text(l.filter_screen_error_content),
+                        title: Text(context.l.filter_screen_error_title),
+                        content: Text(context.l.filter_screen_error_content),
                         actions: [
                           CupertinoDialogAction(
-                            child: Text(l.ok),
+                            child: Text(context.l.ok),
                             onPressed: () => Navigator.pop(context),
                           ),
                         ],
@@ -80,7 +79,7 @@ class FilterScreen extends StatelessWidget {
                       CupertinoListSection(
                           topMargin: 0,
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                          header: Text(l.filter_screen_select_range),
+                          header: Text(context.l.filter_screen_select_range),
                           children: List.generate(clib.FilterType.values.length, (index) {
                             final availableFilter = clib.FilterType.values[index];
                             return CupertinoListTile(
@@ -94,11 +93,11 @@ class FilterScreen extends StatelessWidget {
                             );
                           })),
                       CupertinoListSection(
-                        header: Text(l.filter_screen_error_custom),
+                        header: Text(context.l.filter_screen_error_custom),
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                         children: [
                           CupertinoListTile(
-                            title: Text(l.filter_screen_error_start),
+                            title: Text(context.l.filter_screen_error_start),
                             leading: const Icon(CupertinoIcons.alarm),
                             additionalInfo: Text(filterScreenProvider.start.format(context)),
                             onTap: () => filterScreenProvider.showStartTimePicker(),
@@ -114,7 +113,7 @@ class FilterScreen extends StatelessWidget {
                                 },
                               )),
                           CupertinoListTile(
-                            title: Text(l.filter_screen_error_end),
+                            title: Text(context.l.filter_screen_error_end),
                             leading: const Icon(CupertinoIcons.alarm_fill),
                             additionalInfo: Text(filterScreenProvider.end.format(context)),
                             onTap: () => filterScreenProvider.showEndTimePicker(),

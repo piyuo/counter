@@ -6,7 +6,6 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/l10n/vision_localization.dart';
 import 'package:vision/vision.dart' as vision;
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -286,7 +285,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// create a video name by given index
   String _createVideoNameByIndex(BuildContext context, vision.MediaType type, int index) {
-    String typeName = mediaTypeToString(context, type);
+    String typeName = vision.mediaTypeToString(context, type);
     return 'Video$index ($typeName)';
   }
 
@@ -595,21 +594,5 @@ class ProjectProvider with ChangeNotifier {
   /// notify the tally annotations are changed
   void notifyTallyAnnotationsChanged() {
     notifyProjectChanged(null);
-  }
-
-  /// Convert media type to string
-  String mediaTypeToString(BuildContext context, vision.MediaType type) {
-    final l = VisionLocalization.of(context);
-
-    switch (type) {
-      case vision.MediaType.file:
-        return l.media_type_file;
-      case vision.MediaType.live:
-        return l.media_type_live;
-      case vision.MediaType.camera:
-        return l.media_type_camera;
-      case vision.MediaType.webcam:
-        return l.media_type_webcam;
-    }
   }
 }
