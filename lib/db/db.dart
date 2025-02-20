@@ -1,0 +1,1 @@
+export 'src/person.dart';

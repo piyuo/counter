@@ -1,3 +1,4 @@
+/*
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -6,13 +7,6 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
 part 'database.g.dart';
-
-class Projects extends Table {
-  IntColumn get id => integer()();
-  TextColumn get title => text().withLength(min: 6, max: 32)();
-  DateTimeColumn get createdAt => dateTime().nullable()();
-  BlobColumn get content => blob()();
-}
 
 class TodoItems extends Table {
   TextColumn get title => text().withLength(min: 6, max: 32)();
@@ -50,3 +44,4 @@ class AppDatabase extends _$AppDatabase {
     return select(todoItems).get();
   }
 }
+*/

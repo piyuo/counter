@@ -60,6 +60,10 @@ dependencies:
   image_picker: ^1.1.2
   input_quantity: ^2.5.1
   drift: ^2.25.1
+  freezed: ^2.5.8
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  sqlite3_flutter_libs: ^0.5.30
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +71,8 @@ dev_dependencies:
   mockito: ^5.4.4
   flutter_lints: ^5.0.0
   analyzer: ^6.11.0
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.4
 
 dependency_overrides:
   analyzer: ^7.1.0

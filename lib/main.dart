@@ -8,8 +8,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import 'database.dart';
-
 main() {
   runApp(const MyApp());
 }
@@ -23,7 +21,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   _MyAppState();
-  final AppDatabase appDatabase = AppDatabase();
+//  final AppDatabase appDatabase = AppDatabase();
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +69,7 @@ class _MyAppState extends State<MyApp> {
                       color: CupertinoColors.tertiarySystemBackground.resolveFrom(context),
                       alignment: Alignment.center,
                       child: Column(children: [
-                        SizedBox(
+                        /*SizedBox(
                           height: 300,
                           child: FutureBuilder<List<TodoItem>>(
                             future: appDatabase.getAllItems(),
@@ -90,7 +88,7 @@ class _MyAppState extends State<MyApp> {
                               );
                             },
                           ),
-                        ),
+                        ),*/
                         const SizedBox(height: 10),
                         Container(
                           height: 800,
@@ -100,7 +98,7 @@ class _MyAppState extends State<MyApp> {
                 floatingActionButton: FloatingActionButton(
                   child: Icon(Icons.add),
                   onPressed: () async {
-                    await appDatabase.insertItem('hello ${DateTime.now().millisecondsSinceEpoch}');
+                    // await appDatabase.insertItem('hello ${DateTime.now().millisecondsSinceEpoch}');
                     // redraw
                     setState(() {});
                   },
