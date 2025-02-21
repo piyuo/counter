@@ -8,8 +8,10 @@ part 'annotation.g.dart'; // JSON support
 class Annotation with _$Annotation {
   const factory Annotation({
     required TallyType type,
-    required String lastName,
-    required int age,
+    required bool enabled,
+    required String title,
+    required String prefix,
+    required String suffix,
   }) = _Annotation;
 
   factory Annotation.fromJson(Map<String, Object?> json) => _$AnnotationFromJson(json);

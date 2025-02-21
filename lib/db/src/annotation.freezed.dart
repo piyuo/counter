@@ -21,8 +21,10 @@ Annotation _$AnnotationFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Annotation {
   TallyType get type => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
-  int get age => throw _privateConstructorUsedError;
+  bool get enabled => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String get prefix => throw _privateConstructorUsedError;
+  String get suffix => throw _privateConstructorUsedError;
 
   /// Serializes this Annotation to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +42,12 @@ abstract class $AnnotationCopyWith<$Res> {
           Annotation value, $Res Function(Annotation) then) =
       _$AnnotationCopyWithImpl<$Res, Annotation>;
   @useResult
-  $Res call({TallyType type, String lastName, int age});
+  $Res call(
+      {TallyType type,
+      bool enabled,
+      String title,
+      String prefix,
+      String suffix});
 }
 
 /// @nodoc
@@ -59,22 +66,32 @@ class _$AnnotationCopyWithImpl<$Res, $Val extends Annotation>
   @override
   $Res call({
     Object? type = null,
-    Object? lastName = null,
-    Object? age = null,
+    Object? enabled = null,
+    Object? title = null,
+    Object? prefix = null,
+    Object? suffix = null,
   }) {
     return _then(_value.copyWith(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TallyType,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
+      prefix: null == prefix
+          ? _value.prefix
+          : prefix // ignore: cast_nullable_to_non_nullable
+              as String,
+      suffix: null == suffix
+          ? _value.suffix
+          : suffix // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -87,7 +104,12 @@ abstract class _$$AnnotationImplCopyWith<$Res>
       __$$AnnotationImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TallyType type, String lastName, int age});
+  $Res call(
+      {TallyType type,
+      bool enabled,
+      String title,
+      String prefix,
+      String suffix});
 }
 
 /// @nodoc
@@ -104,22 +126,32 @@ class __$$AnnotationImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? lastName = null,
-    Object? age = null,
+    Object? enabled = null,
+    Object? title = null,
+    Object? prefix = null,
+    Object? suffix = null,
   }) {
     return _then(_$AnnotationImpl(
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TallyType,
-      lastName: null == lastName
-          ? _value.lastName
-          : lastName // ignore: cast_nullable_to_non_nullable
+      enabled: null == enabled
+          ? _value.enabled
+          : enabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String,
-      age: null == age
-          ? _value.age
-          : age // ignore: cast_nullable_to_non_nullable
-              as int,
+      prefix: null == prefix
+          ? _value.prefix
+          : prefix // ignore: cast_nullable_to_non_nullable
+              as String,
+      suffix: null == suffix
+          ? _value.suffix
+          : suffix // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -128,7 +160,11 @@ class __$$AnnotationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AnnotationImpl implements _Annotation {
   const _$AnnotationImpl(
-      {required this.type, required this.lastName, required this.age});
+      {required this.type,
+      required this.enabled,
+      required this.title,
+      required this.prefix,
+      required this.suffix});
 
   factory _$AnnotationImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnnotationImplFromJson(json);
@@ -136,13 +172,17 @@ class _$AnnotationImpl implements _Annotation {
   @override
   final TallyType type;
   @override
-  final String lastName;
+  final bool enabled;
   @override
-  final int age;
+  final String title;
+  @override
+  final String prefix;
+  @override
+  final String suffix;
 
   @override
   String toString() {
-    return 'Annotation(type: $type, lastName: $lastName, age: $age)';
+    return 'Annotation(type: $type, enabled: $enabled, title: $title, prefix: $prefix, suffix: $suffix)';
   }
 
   @override
@@ -151,14 +191,16 @@ class _$AnnotationImpl implements _Annotation {
         (other.runtimeType == runtimeType &&
             other is _$AnnotationImpl &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.lastName, lastName) ||
-                other.lastName == lastName) &&
-            (identical(other.age, age) || other.age == age));
+            (identical(other.enabled, enabled) || other.enabled == enabled) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.prefix, prefix) || other.prefix == prefix) &&
+            (identical(other.suffix, suffix) || other.suffix == suffix));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, lastName, age);
+  int get hashCode =>
+      Object.hash(runtimeType, type, enabled, title, prefix, suffix);
 
   /// Create a copy of Annotation
   /// with the given fields replaced by the non-null parameter values.
@@ -179,8 +221,10 @@ class _$AnnotationImpl implements _Annotation {
 abstract class _Annotation implements Annotation {
   const factory _Annotation(
       {required final TallyType type,
-      required final String lastName,
-      required final int age}) = _$AnnotationImpl;
+      required final bool enabled,
+      required final String title,
+      required final String prefix,
+      required final String suffix}) = _$AnnotationImpl;
 
   factory _Annotation.fromJson(Map<String, dynamic> json) =
       _$AnnotationImpl.fromJson;
@@ -188,9 +232,13 @@ abstract class _Annotation implements Annotation {
   @override
   TallyType get type;
   @override
-  String get lastName;
+  bool get enabled;
   @override
-  int get age;
+  String get title;
+  @override
+  String get prefix;
+  @override
+  String get suffix;
 
   /// Create a copy of Annotation
   /// with the given fields replaced by the non-null parameter values.

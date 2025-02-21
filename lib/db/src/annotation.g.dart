@@ -9,15 +9,19 @@ part of 'annotation.dart';
 _$AnnotationImpl _$$AnnotationImplFromJson(Map<String, dynamic> json) =>
     _$AnnotationImpl(
       type: $enumDecode(_$TallyTypeEnumMap, json['type']),
-      lastName: json['lastName'] as String,
-      age: (json['age'] as num).toInt(),
+      enabled: json['enabled'] as bool,
+      title: json['title'] as String,
+      prefix: json['prefix'] as String,
+      suffix: json['suffix'] as String,
     );
 
 Map<String, dynamic> _$$AnnotationImplToJson(_$AnnotationImpl instance) =>
     <String, dynamic>{
       'type': _$TallyTypeEnumMap[instance.type]!,
-      'lastName': instance.lastName,
-      'age': instance.age,
+      'enabled': instance.enabled,
+      'title': instance.title,
+      'prefix': instance.prefix,
+      'suffix': instance.suffix,
     };
 
 const _$TallyTypeEnumMap = {
