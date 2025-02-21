@@ -10,8 +10,7 @@ import 'language/language_screen.dart';
 import 'settings/add_video_screen.dart';
 import 'settings/camera_screen.dart';
 import 'settings/detection_screen.dart';
-import 'settings/schedule_detail_screen.dart';
-import 'settings/schedule_screen.dart';
+import 'settings/schedule_screen.txt';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
 import 'settings/webcam_screen.dart';
@@ -179,12 +178,6 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 );
               case scheduleRoute:
                 return ScheduleScreen();
-              case scheduleDetailRoute:
-                return ScheduleDetailScreen(
-                  schedulePeriod: args!['schedulePeriod'],
-                  projectSchedule: args['projectSchedule'],
-                  scheduleScreenProvider: args['scheduleScreenProvider'],
-                );
               case urlRoute:
                 return UrlScreen(
                   initialUrl: args?['url'] ?? '',

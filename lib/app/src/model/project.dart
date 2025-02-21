@@ -1,6 +1,5 @@
 import 'package:vision/vision.dart' as vision;
 
-import 'schedule.dart';
 import 'uuid.dart';
 import 'video.dart';
 
@@ -50,9 +49,6 @@ class Project {
     }
     return false;
   }
-
-  /// Schedule
-  final Schedule schedule = Schedule();
 
   /// confidence threshold
   double confidenceThreshold = 0;

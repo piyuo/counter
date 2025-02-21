@@ -576,7 +576,8 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// return selected class names
-  String get timeRangesNames {
+  /*String get timeRangesNames {
+    return '';
     final nameList = project!.schedule.schedulePeriods.map((e) => e.label).toList();
     String name = nameList.join(', ');
     // truncate the name if it is longer than 16 characters
@@ -584,7 +585,7 @@ class ProjectProvider with ChangeNotifier {
       name = '${name.substring(0, 16)}...';
     }
     return name;
-  }
+  }*/
 
   /// called when the time ranges changed
   void notifyTimeRangesChanged() {
