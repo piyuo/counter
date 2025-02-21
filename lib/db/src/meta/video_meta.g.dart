@@ -8,9 +8,9 @@ part of 'video_meta.dart';
 
 _$VideoMetaImpl _$$VideoMetaImplFromJson(Map<String, dynamic> json) =>
     _$VideoMetaImpl(
-      id: (json['id'] as num).toInt(),
-      type: $enumDecode(_$MediaTypeEnumMap, json['type']),
-      name: json['name'] as String,
+      videoId: (json['videoId'] as num).toInt(),
+      mediaType: $enumDecode(_$MediaTypeEnumMap, json['mediaType']),
+      videoName: json['videoName'] as String,
       path: json['path'] as String?,
       camera: json['camera'] == null
           ? null
@@ -26,9 +26,9 @@ _$VideoMetaImpl _$$VideoMetaImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$VideoMetaImplToJson(_$VideoMetaImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'type': _$MediaTypeEnumMap[instance.type]!,
-      'name': instance.name,
+      'videoId': instance.videoId,
+      'mediaType': _$MediaTypeEnumMap[instance.mediaType]!,
+      'videoName': instance.videoName,
       'path': instance.path,
       'camera': instance.camera?.toJson(),
       'webcam': instance.webcam?.toJson(),

@@ -20,8 +20,8 @@ PointMeta _$PointMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PointMeta {
-  int get x => throw _privateConstructorUsedError;
-  int get y => throw _privateConstructorUsedError;
+  double get x => throw _privateConstructorUsedError;
+  double get y => throw _privateConstructorUsedError;
 
   /// Serializes this PointMeta to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $PointMetaCopyWith<$Res> {
   factory $PointMetaCopyWith(PointMeta value, $Res Function(PointMeta) then) =
       _$PointMetaCopyWithImpl<$Res, PointMeta>;
   @useResult
-  $Res call({int x, int y});
+  $Res call({double x, double y});
 }
 
 /// @nodoc
@@ -63,11 +63,11 @@ class _$PointMetaCopyWithImpl<$Res, $Val extends PointMeta>
       x: null == x
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       y: null == y
           ? _value.y
           : y // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -80,7 +80,7 @@ abstract class _$$PointMetaImplCopyWith<$Res>
       __$$PointMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int x, int y});
+  $Res call({double x, double y});
 }
 
 /// @nodoc
@@ -103,11 +103,11 @@ class __$$PointMetaImplCopyWithImpl<$Res>
       x: null == x
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       y: null == y
           ? _value.y
           : y // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -121,9 +121,9 @@ class _$PointMetaImpl implements _PointMeta {
       _$$PointMetaImplFromJson(json);
 
   @override
-  final int x;
+  final double x;
   @override
-  final int y;
+  final double y;
 
   @override
   String toString() {
@@ -160,16 +160,16 @@ class _$PointMetaImpl implements _PointMeta {
 }
 
 abstract class _PointMeta implements PointMeta {
-  const factory _PointMeta({required final int x, required final int y}) =
+  const factory _PointMeta({required final double x, required final double y}) =
       _$PointMetaImpl;
 
   factory _PointMeta.fromJson(Map<String, dynamic> json) =
       _$PointMetaImpl.fromJson;
 
   @override
-  int get x;
+  double get x;
   @override
-  int get y;
+  double get y;
 
   /// Create a copy of PointMeta
   /// with the given fields replaced by the non-null parameter values.

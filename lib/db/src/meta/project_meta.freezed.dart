@@ -20,8 +20,8 @@ ProjectMeta _$ProjectMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProjectMeta {
-  String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get projectId => throw _privateConstructorUsedError;
+  String get projectName => throw _privateConstructorUsedError;
   List<VideoMeta> get videos => throw _privateConstructorUsedError;
   FilterMeta get filter => throw _privateConstructorUsedError;
   double get confidence => throw _privateConstructorUsedError;
@@ -49,8 +49,8 @@ abstract class $ProjectMetaCopyWith<$Res> {
       _$ProjectMetaCopyWithImpl<$Res, ProjectMeta>;
   @useResult
   $Res call(
-      {String id,
-      String name,
+      {String projectId,
+      String projectName,
       List<VideoMeta> videos,
       FilterMeta filter,
       double confidence,
@@ -79,8 +79,8 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? projectId = null,
+    Object? projectName = null,
     Object? videos = null,
     Object? filter = null,
     Object? confidence = null,
@@ -92,13 +92,13 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
     Object? model = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      projectName: null == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
               as String,
       videos: null == videos
           ? _value.videos
@@ -159,8 +159,8 @@ abstract class _$$ProjectMetaImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
+      {String projectId,
+      String projectName,
       List<VideoMeta> videos,
       FilterMeta filter,
       double confidence,
@@ -188,8 +188,8 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? name = null,
+    Object? projectId = null,
+    Object? projectName = null,
     Object? videos = null,
     Object? filter = null,
     Object? confidence = null,
@@ -201,13 +201,13 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
     Object? model = null,
   }) {
     return _then(_$ProjectMetaImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      projectId: null == projectId
+          ? _value.projectId
+          : projectId // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      projectName: null == projectName
+          ? _value.projectName
+          : projectName // ignore: cast_nullable_to_non_nullable
               as String,
       videos: null == videos
           ? _value._videos
@@ -254,8 +254,8 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$ProjectMetaImpl implements _ProjectMeta {
   const _$ProjectMetaImpl(
-      {required this.id,
-      required this.name,
+      {required this.projectId,
+      required this.projectName,
       required final List<VideoMeta> videos,
       required this.filter,
       required this.confidence,
@@ -271,9 +271,9 @@ class _$ProjectMetaImpl implements _ProjectMeta {
       _$$ProjectMetaImplFromJson(json);
 
   @override
-  final String id;
+  final String projectId;
   @override
-  final String name;
+  final String projectName;
   final List<VideoMeta> _videos;
   @override
   List<VideoMeta> get videos {
@@ -301,7 +301,7 @@ class _$ProjectMetaImpl implements _ProjectMeta {
 
   @override
   String toString() {
-    return 'ProjectMeta(id: $id, name: $name, videos: $videos, filter: $filter, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model)';
+    return 'ProjectMeta(projectId: $projectId, projectName: $projectName, videos: $videos, filter: $filter, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model)';
   }
 
   @override
@@ -309,8 +309,10 @@ class _$ProjectMetaImpl implements _ProjectMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProjectMetaImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.projectId, projectId) ||
+                other.projectId == projectId) &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName) &&
             const DeepCollectionEquality().equals(other._videos, _videos) &&
             (identical(other.filter, filter) || other.filter == filter) &&
             (identical(other.confidence, confidence) ||
@@ -329,8 +331,8 @@ class _$ProjectMetaImpl implements _ProjectMeta {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      name,
+      projectId,
+      projectName,
       const DeepCollectionEquality().hash(_videos),
       filter,
       confidence,
@@ -359,8 +361,8 @@ class _$ProjectMetaImpl implements _ProjectMeta {
 
 abstract class _ProjectMeta implements ProjectMeta {
   const factory _ProjectMeta(
-      {required final String id,
-      required final String name,
+      {required final String projectId,
+      required final String projectName,
       required final List<VideoMeta> videos,
       required final FilterMeta filter,
       required final double confidence,
@@ -375,9 +377,9 @@ abstract class _ProjectMeta implements ProjectMeta {
       _$ProjectMetaImpl.fromJson;
 
   @override
-  String get id;
+  String get projectId;
   @override
-  String get name;
+  String get projectName;
   @override
   List<VideoMeta> get videos;
   @override

@@ -133,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                         CupertinoListTile(
                           leading:
                               Icon(videoProvider.getIcon(), color: CupertinoColors.inactiveGray.resolveFrom(context)),
-                          title: Text(videoProvider.video.name,
+                          title: Text(videoProvider.video.videoName,
                               style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                           trailing: const CupertinoListTileChevron(),
                           onTap: () {
@@ -222,7 +222,8 @@ class HomeScreen extends StatelessWidget {
                                             : CupertinoColors.inactiveGray.resolveFrom(context)),
                               ),
                               SizedBox(height: 10),
-                              Text(project.name, style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                              Text(project.projectName,
+                                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
                               Consumer<TimeTagProvider>(
                                 builder: (context, timeTagProvider, child) => Text(
                                   buildTimeTagString(),

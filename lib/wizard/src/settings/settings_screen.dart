@@ -77,7 +77,7 @@ class SettingsScreen extends StatelessWidget {
 /// Provide settings screen support
 class SettingsScreenProvider with ChangeNotifier {
   SettingsScreenProvider(this.projectProvider) {
-    projectNameController.text = projectProvider.project!.name;
+    projectNameController.text = projectProvider.project!.projectName;
   }
 
   /// the project provider

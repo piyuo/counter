@@ -11,8 +11,8 @@ part 'project_meta.g.dart'; // JSON support
 class ProjectMeta with _$ProjectMeta {
   @JsonSerializable(explicitToJson: true)
   const factory ProjectMeta({
-    required String id,
-    required String name,
+    required String projectId,
+    required String projectName,
     required List<VideoMeta> videos,
     required FilterMeta filter,
     required double confidence,

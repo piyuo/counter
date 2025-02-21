@@ -20,9 +20,9 @@ VideoMeta _$VideoMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$VideoMeta {
-  int get id => throw _privateConstructorUsedError;
-  MediaType get type => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  int get videoId => throw _privateConstructorUsedError;
+  MediaType get mediaType => throw _privateConstructorUsedError;
+  String get videoName => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
   CameraMeta? get camera => throw _privateConstructorUsedError;
   WebcamMeta? get webcam => throw _privateConstructorUsedError;
@@ -45,9 +45,9 @@ abstract class $VideoMetaCopyWith<$Res> {
       _$VideoMetaCopyWithImpl<$Res, VideoMeta>;
   @useResult
   $Res call(
-      {int id,
-      MediaType type,
-      String name,
+      {int videoId,
+      MediaType mediaType,
+      String videoName,
       String? path,
       CameraMeta? camera,
       WebcamMeta? webcam,
@@ -73,9 +73,9 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? type = null,
-    Object? name = null,
+    Object? videoId = null,
+    Object? mediaType = null,
+    Object? videoName = null,
     Object? path = freezed,
     Object? camera = freezed,
     Object? webcam = freezed,
@@ -83,17 +83,17 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
     Object? zones = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
               as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
               as MediaType,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      videoName: null == videoName
+          ? _value.videoName
+          : videoName // ignore: cast_nullable_to_non_nullable
               as String,
       path: freezed == path
           ? _value.path
@@ -156,9 +156,9 @@ abstract class _$$VideoMetaImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      MediaType type,
-      String name,
+      {int videoId,
+      MediaType mediaType,
+      String videoName,
       String? path,
       CameraMeta? camera,
       WebcamMeta? webcam,
@@ -184,9 +184,9 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? type = null,
-    Object? name = null,
+    Object? videoId = null,
+    Object? mediaType = null,
+    Object? videoName = null,
     Object? path = freezed,
     Object? camera = freezed,
     Object? webcam = freezed,
@@ -194,17 +194,17 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
     Object? zones = null,
   }) {
     return _then(_$VideoMetaImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
               as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      mediaType: null == mediaType
+          ? _value.mediaType
+          : mediaType // ignore: cast_nullable_to_non_nullable
               as MediaType,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      videoName: null == videoName
+          ? _value.videoName
+          : videoName // ignore: cast_nullable_to_non_nullable
               as String,
       path: freezed == path
           ? _value.path
@@ -235,9 +235,9 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$VideoMetaImpl implements _VideoMeta {
   const _$VideoMetaImpl(
-      {required this.id,
-      required this.type,
-      required this.name,
+      {required this.videoId,
+      required this.mediaType,
+      required this.videoName,
       required this.path,
       required this.camera,
       required this.webcam,
@@ -249,11 +249,11 @@ class _$VideoMetaImpl implements _VideoMeta {
       _$$VideoMetaImplFromJson(json);
 
   @override
-  final int id;
+  final int videoId;
   @override
-  final MediaType type;
+  final MediaType mediaType;
   @override
-  final String name;
+  final String videoName;
   @override
   final String? path;
   @override
@@ -272,7 +272,7 @@ class _$VideoMetaImpl implements _VideoMeta {
 
   @override
   String toString() {
-    return 'VideoMeta(id: $id, type: $type, name: $name, path: $path, camera: $camera, webcam: $webcam, zoom: $zoom, zones: $zones)';
+    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, zoom: $zoom, zones: $zones)';
   }
 
   @override
@@ -280,9 +280,11 @@ class _$VideoMetaImpl implements _VideoMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$VideoMetaImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.videoId, videoId) || other.videoId == videoId) &&
+            (identical(other.mediaType, mediaType) ||
+                other.mediaType == mediaType) &&
+            (identical(other.videoName, videoName) ||
+                other.videoName == videoName) &&
             (identical(other.path, path) || other.path == path) &&
             (identical(other.camera, camera) || other.camera == camera) &&
             (identical(other.webcam, webcam) || other.webcam == webcam) &&
@@ -292,8 +294,8 @@ class _$VideoMetaImpl implements _VideoMeta {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, type, name, path, camera,
-      webcam, zoom, const DeepCollectionEquality().hash(_zones));
+  int get hashCode => Object.hash(runtimeType, videoId, mediaType, videoName,
+      path, camera, webcam, zoom, const DeepCollectionEquality().hash(_zones));
 
   /// Create a copy of VideoMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -313,9 +315,9 @@ class _$VideoMetaImpl implements _VideoMeta {
 
 abstract class _VideoMeta implements VideoMeta {
   const factory _VideoMeta(
-      {required final int id,
-      required final MediaType type,
-      required final String name,
+      {required final int videoId,
+      required final MediaType mediaType,
+      required final String videoName,
       required final String? path,
       required final CameraMeta? camera,
       required final WebcamMeta? webcam,
@@ -326,11 +328,11 @@ abstract class _VideoMeta implements VideoMeta {
       _$VideoMetaImpl.fromJson;
 
   @override
-  int get id;
+  int get videoId;
   @override
-  MediaType get type;
+  MediaType get mediaType;
   @override
-  String get name;
+  String get videoName;
   @override
   String? get path;
   @override

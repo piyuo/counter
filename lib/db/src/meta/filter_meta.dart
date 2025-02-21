@@ -10,7 +10,7 @@ part 'filter_meta.g.dart'; // JSON support
 class FilterMeta with _$FilterMeta {
   @JsonSerializable(explicitToJson: true)
   const factory FilterMeta({
-    required FilterType type,
+    required FilterType filterType,
     required TimeOfDayMeta start,
     required TimeOfDayMeta end,
   }) = _FilterMeta;

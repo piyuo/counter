@@ -27,9 +27,9 @@ void main() {
         name: 'Webcam1',
       );
       final videoMeta = VideoMeta(
-        id: 101,
-        type: MediaType.file, // or suitable MediaType from your definitions
-        name: 'Test Video',
+        videoId: 101,
+        mediaType: MediaType.file, // or suitable MediaType from your definitions
+        videoName: 'Test Video',
         path: 'video.mp4',
         camera: cameraMeta,
         webcam: webcamMeta,
@@ -37,15 +37,15 @@ void main() {
         zones: [],
       );
       final filter = FilterMeta(
-        type: FilterType.pass1Hour, // adjust if needed based on your FilterType enum
+        filterType: FilterType.pass1Hour, // adjust if needed based on your FilterType enum
         start: TimeOfDayMeta(hour: 8, minute: 0),
         end: TimeOfDayMeta(hour: 17, minute: 0),
       );
 
       // Create a ProjectMeta instance
       final project = ProjectMeta(
-        id: 'proj1',
-        name: 'Test Project',
+        projectId: 'proj1',
+        projectName: 'Test Project',
         videos: [videoMeta],
         filter: filter,
         confidence: 0.85,

@@ -14,7 +14,7 @@ void main() {
     test('should convert to string', () async {
       // Use an appropriate FilterType, e.g., FilterType.range
       final filter = FilterMeta(
-        type: FilterType.pass1Hour, // adjust according to your FilterType definition
+        filterType: FilterType.pass1Hour, // adjust according to your FilterType definition
         start: TimeOfDayMeta(hour: 8, minute: 0),
         end: TimeOfDayMeta(hour: 17, minute: 0),
       );

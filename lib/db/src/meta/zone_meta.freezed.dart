@@ -20,11 +20,10 @@ ZoneMeta _$ZoneMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ZoneMeta {
-  int get id => throw _privateConstructorUsedError;
-  List<Annotation> get annotations => throw _privateConstructorUsedError;
-  List<TallyType> get types => throw _privateConstructorUsedError;
+  int get zoneId => throw _privateConstructorUsedError;
+  List<AnnotationMeta> get annotations => throw _privateConstructorUsedError;
   List<int> get classes => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get zoneName => throw _privateConstructorUsedError;
   List<PointMeta> get points => throw _privateConstructorUsedError;
   int get pointIndex => throw _privateConstructorUsedError;
   @ColorConverter()
@@ -51,11 +50,10 @@ abstract class $ZoneMetaCopyWith<$Res> {
       _$ZoneMetaCopyWithImpl<$Res, ZoneMeta>;
   @useResult
   $Res call(
-      {int id,
-      List<Annotation> annotations,
-      List<TallyType> types,
+      {int zoneId,
+      List<AnnotationMeta> annotations,
       List<int> classes,
-      String name,
+      String zoneName,
       List<PointMeta> points,
       int pointIndex,
       @ColorConverter() Color color,
@@ -81,11 +79,10 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? zoneId = null,
     Object? annotations = null,
-    Object? types = null,
     Object? classes = null,
-    Object? name = null,
+    Object? zoneName = null,
     Object? points = null,
     Object? pointIndex = null,
     Object? color = null,
@@ -96,25 +93,21 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
     Object? ignoreIfCounted = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      zoneId: null == zoneId
+          ? _value.zoneId
+          : zoneId // ignore: cast_nullable_to_non_nullable
               as int,
       annotations: null == annotations
           ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
-              as List<Annotation>,
-      types: null == types
-          ? _value.types
-          : types // ignore: cast_nullable_to_non_nullable
-              as List<TallyType>,
+              as List<AnnotationMeta>,
       classes: null == classes
           ? _value.classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      zoneName: null == zoneName
+          ? _value.zoneName
+          : zoneName // ignore: cast_nullable_to_non_nullable
               as String,
       points: null == points
           ? _value.points
@@ -161,11 +154,10 @@ abstract class _$$ZoneMetaImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      List<Annotation> annotations,
-      List<TallyType> types,
+      {int zoneId,
+      List<AnnotationMeta> annotations,
       List<int> classes,
-      String name,
+      String zoneName,
       List<PointMeta> points,
       int pointIndex,
       @ColorConverter() Color color,
@@ -189,11 +181,10 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? zoneId = null,
     Object? annotations = null,
-    Object? types = null,
     Object? classes = null,
-    Object? name = null,
+    Object? zoneName = null,
     Object? points = null,
     Object? pointIndex = null,
     Object? color = null,
@@ -204,25 +195,21 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
     Object? ignoreIfCounted = null,
   }) {
     return _then(_$ZoneMetaImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      zoneId: null == zoneId
+          ? _value.zoneId
+          : zoneId // ignore: cast_nullable_to_non_nullable
               as int,
       annotations: null == annotations
           ? _value._annotations
           : annotations // ignore: cast_nullable_to_non_nullable
-              as List<Annotation>,
-      types: null == types
-          ? _value._types
-          : types // ignore: cast_nullable_to_non_nullable
-              as List<TallyType>,
+              as List<AnnotationMeta>,
       classes: null == classes
           ? _value._classes
           : classes // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      zoneName: null == zoneName
+          ? _value.zoneName
+          : zoneName // ignore: cast_nullable_to_non_nullable
               as String,
       points: null == points
           ? _value._points
@@ -265,11 +252,10 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$ZoneMetaImpl implements _ZoneMeta {
   const _$ZoneMetaImpl(
-      {required this.id,
-      required final List<Annotation> annotations,
-      required final List<TallyType> types,
+      {required this.zoneId,
+      required final List<AnnotationMeta> annotations,
       required final List<int> classes,
-      required this.name,
+      required this.zoneName,
       required final List<PointMeta> points,
       required this.pointIndex,
       @ColorConverter() required this.color,
@@ -279,7 +265,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
       required this.cooldown,
       required this.ignoreIfCounted})
       : _annotations = annotations,
-        _types = types,
         _classes = classes,
         _points = points;
 
@@ -287,21 +272,13 @@ class _$ZoneMetaImpl implements _ZoneMeta {
       _$$ZoneMetaImplFromJson(json);
 
   @override
-  final int id;
-  final List<Annotation> _annotations;
+  final int zoneId;
+  final List<AnnotationMeta> _annotations;
   @override
-  List<Annotation> get annotations {
+  List<AnnotationMeta> get annotations {
     if (_annotations is EqualUnmodifiableListView) return _annotations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_annotations);
-  }
-
-  final List<TallyType> _types;
-  @override
-  List<TallyType> get types {
-    if (_types is EqualUnmodifiableListView) return _types;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_types);
   }
 
   final List<int> _classes;
@@ -313,7 +290,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
   }
 
   @override
-  final String name;
+  final String zoneName;
   final List<PointMeta> _points;
   @override
   List<PointMeta> get points {
@@ -340,7 +317,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
   @override
   String toString() {
-    return 'ZoneMeta(id: $id, annotations: $annotations, types: $types, classes: $classes, name: $name, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
+    return 'ZoneMeta(zoneId: $zoneId, annotations: $annotations, classes: $classes, zoneName: $zoneName, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
   }
 
   @override
@@ -348,12 +325,12 @@ class _$ZoneMetaImpl implements _ZoneMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ZoneMetaImpl &&
-            (identical(other.id, id) || other.id == id) &&
+            (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             const DeepCollectionEquality()
                 .equals(other._annotations, _annotations) &&
-            const DeepCollectionEquality().equals(other._types, _types) &&
             const DeepCollectionEquality().equals(other._classes, _classes) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.zoneName, zoneName) ||
+                other.zoneName == zoneName) &&
             const DeepCollectionEquality().equals(other._points, _points) &&
             (identical(other.pointIndex, pointIndex) ||
                 other.pointIndex == pointIndex) &&
@@ -374,11 +351,10 @@ class _$ZoneMetaImpl implements _ZoneMeta {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
+      zoneId,
       const DeepCollectionEquality().hash(_annotations),
-      const DeepCollectionEquality().hash(_types),
       const DeepCollectionEquality().hash(_classes),
-      name,
+      zoneName,
       const DeepCollectionEquality().hash(_points),
       pointIndex,
       color,
@@ -406,11 +382,10 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
 abstract class _ZoneMeta implements ZoneMeta {
   const factory _ZoneMeta(
-      {required final int id,
-      required final List<Annotation> annotations,
-      required final List<TallyType> types,
+      {required final int zoneId,
+      required final List<AnnotationMeta> annotations,
       required final List<int> classes,
-      required final String name,
+      required final String zoneName,
       required final List<PointMeta> points,
       required final int pointIndex,
       @ColorConverter() required final Color color,
@@ -424,15 +399,13 @@ abstract class _ZoneMeta implements ZoneMeta {
       _$ZoneMetaImpl.fromJson;
 
   @override
-  int get id;
+  int get zoneId;
   @override
-  List<Annotation> get annotations;
-  @override
-  List<TallyType> get types;
+  List<AnnotationMeta> get annotations;
   @override
   List<int> get classes;
   @override
-  String get name;
+  String get zoneName;
   @override
   List<PointMeta> get points;
   @override

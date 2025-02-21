@@ -8,8 +8,8 @@ part of 'point_meta.dart';
 
 _$PointMetaImpl _$$PointMetaImplFromJson(Map<String, dynamic> json) =>
     _$PointMetaImpl(
-      x: (json['x'] as num).toInt(),
-      y: (json['y'] as num).toInt(),
+      x: (json['x'] as num).toDouble(),
+      y: (json['y'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$PointMetaImplToJson(_$PointMetaImpl instance) =>

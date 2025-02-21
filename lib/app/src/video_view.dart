@@ -47,7 +47,7 @@ class VideoView extends StatelessWidget {
                     filter: filter,
                   )
                 : vision.Player(
-                    heroAnimationId: videoProvider.video.id,
+                    heroAnimationId: videoProvider.video.videoId,
                     playerController: videoProvider.playerController,
                     filter: filter,
                     zoneEditor: zoneEditor,

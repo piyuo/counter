@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vision/vision.dart';
 
-import 'annotation.dart';
+import 'annotation_meta.dart';
 import 'camera_meta.dart';
 import 'point_meta.dart'; // assume PointMeta takes x and y
 import 'video_meta.dart';
@@ -27,7 +27,7 @@ void main() {
         index: 0,
         name: 'Test Webcam',
       );
-      final annotation = Annotation(
+      final annotation = AnnotationMeta(
         type: TallyType.detected,
         enabled: true,
         title: 'Test Title',
@@ -35,11 +35,10 @@ void main() {
         suffix: 'Jr.',
       );
       final zone = ZoneMeta(
-        id: 1,
+        zoneId: 1,
         annotations: [annotation],
-        types: [TallyType.detected],
         classes: [1, 2, 3],
-        name: 'Test Zone',
+        zoneName: 'Test Zone',
         points: [PointMeta(x: 0, y: 0)],
         pointIndex: 0,
         color: Colors.blue.shade500,
@@ -50,9 +49,9 @@ void main() {
         ignoreIfCounted: false,
       );
       final videoMeta = VideoMeta(
-        id: 101,
-        type: MediaType.file,
-        name: 'Test Video',
+        videoId: 101,
+        mediaType: MediaType.file,
+        videoName: 'Test Video',
         path: 'test/path.mp4',
         camera: cameraMeta,
         webcam: webcamMeta,

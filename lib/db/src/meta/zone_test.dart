@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vision/vision.dart';
 
-import 'annotation.dart';
+import 'annotation_meta.dart';
 import 'point_meta.dart';
 import 'zone_meta.dart';
 
@@ -14,7 +14,7 @@ void main() {
 
   group('[zone.test]', () {
     test('should convert to string', () async {
-      final annotation = Annotation(
+      final annotation = AnnotationMeta(
         type: TallyType.detected,
         enabled: true,
         title: 'Test Title',
@@ -22,11 +22,10 @@ void main() {
         suffix: 'Jr.',
       );
       final zone = ZoneMeta(
-        id: 1,
+        zoneId: 1,
         annotations: [annotation],
-        types: [TallyType.detected],
         classes: [1, 2, 3],
-        name: 'Test Zone',
+        zoneName: 'Test Zone',
         points: [PointMeta(x: 0, y: 0)],
         pointIndex: 0,
         color: Colors.blue.shade500,

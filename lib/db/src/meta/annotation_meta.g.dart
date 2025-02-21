@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'annotation.dart';
+part of 'annotation_meta.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AnnotationImpl _$$AnnotationImplFromJson(Map<String, dynamic> json) =>
-    _$AnnotationImpl(
+_$AnnotationMetaImpl _$$AnnotationMetaImplFromJson(Map<String, dynamic> json) =>
+    _$AnnotationMetaImpl(
       type: $enumDecode(_$TallyTypeEnumMap, json['type']),
       enabled: json['enabled'] as bool,
       title: json['title'] as String,
@@ -15,7 +15,8 @@ _$AnnotationImpl _$$AnnotationImplFromJson(Map<String, dynamic> json) =>
       suffix: json['suffix'] as String,
     );
 
-Map<String, dynamic> _$$AnnotationImplToJson(_$AnnotationImpl instance) =>
+Map<String, dynamic> _$$AnnotationMetaImplToJson(
+        _$AnnotationMetaImpl instance) =>
     <String, dynamic>{
       'type': _$TallyTypeEnumMap[instance.type]!,
       'enabled': instance.enabled,

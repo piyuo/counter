@@ -12,9 +12,9 @@ part 'video_meta.g.dart'; // JSON support
 class VideoMeta with _$VideoMeta {
   @JsonSerializable(explicitToJson: true)
   const factory VideoMeta({
-    required int id,
-    required MediaType type,
-    required String name,
+    required int videoId,
+    required MediaType mediaType,
+    required String videoName,
     required String? path,
     required CameraMeta? camera,
     required WebcamMeta? webcam,

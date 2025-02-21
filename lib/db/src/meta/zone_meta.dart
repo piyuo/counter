@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:vision/vision.dart';
 
-import 'annotation.dart';
+import 'annotation_meta.dart';
 import 'color_converter.dart';
 import 'point_meta.dart';
 
@@ -13,11 +12,10 @@ part 'zone_meta.g.dart'; // JSON support
 class ZoneMeta with _$ZoneMeta {
   @JsonSerializable(explicitToJson: true)
   const factory ZoneMeta({
-    required int id,
-    required List<Annotation> annotations,
-    required List<TallyType> types,
+    required int zoneId,
+    required List<AnnotationMeta> annotations,
     required List<int> classes,
-    required String name,
+    required String zoneName,
     required List<PointMeta> points,
     required int pointIndex,
     @ColorConverter() required Color color,

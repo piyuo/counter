@@ -311,8 +311,8 @@ class ProjectProvider with ChangeNotifier {
 
     int maxId = 0;
     for (final video in project!.videos) {
-      if (video.id > maxId) {
-        maxId = video.id;
+      if (video.videoId > maxId) {
+        maxId = video.videoId;
       }
     }
     return maxId + 1;
@@ -350,14 +350,14 @@ class ProjectProvider with ChangeNotifier {
 
     // create project with a video source
     final defaultVideo = Video(
-      id: getNextVideoId(),
-      type: type,
-      name: 'prepare ...',
+      videoId: getNextVideoId(),
+      mediaType: type,
+      videoName: 'prepare ...',
       path: path,
     );
     project = Project(
-      name: _createProjectName(type, path),
-      video: defaultVideo,
+      projectName: _createProjectName(type, path),
+      videos: [defaultVideo],
       model: benchmarkLocalStorage.recommendedModel,
     );
     sampler.reset(project!.filter);
@@ -376,9 +376,9 @@ class ProjectProvider with ChangeNotifier {
   Future<VideoProvider?> newVideoToProject(BuildContext context, {required vision.MediaType type, String? path}) async {
     assert(project != null, 'Project must be opened');
     final video = Video(
-      id: getNextVideoId(),
-      type: type,
-      name: 'prepare ...',
+      videoId: getNextVideoId(),
+      mediaType: type,
+      videoName: 'prepare ...',
       path: path,
     );
     project!.videos.add(video);
@@ -389,11 +389,11 @@ class ProjectProvider with ChangeNotifier {
   /// every video source must have a video provider to manage the video source.
   Future<VideoProvider> _createVideoProvider(BuildContext context, Video video) async {
     // make sure the video source has a camera or webcam
-    if (video.type == vision.MediaType.camera && video.camera == null) {
+    if (video.mediaType == vision.MediaType.camera && video.camera == null) {
       if (cameraManager.cameraDefines.isNotEmpty) {
         video.camera = cameraManager.cameraDefines.first;
       }
-    } else if (video.type == vision.MediaType.webcam && video.webcam == null) {
+    } else if (video.mediaType == vision.MediaType.webcam && video.webcam == null) {
       if (webcamManager.webcamDefines.isNotEmpty) {
         for (final webcam in webcamManager.webcamDefines) {
           if (!project!.isWebcamDefineExists(webcam)) {
@@ -404,7 +404,7 @@ class ProjectProvider with ChangeNotifier {
       }
     }
 
-    video.name = _createVideoName(context, video.type);
+    video.videoName = _createVideoName(context, video.mediaType);
     final videoProvider = VideoProvider(
       video: video,
       projectProvider: this,
@@ -459,7 +459,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// set project name
   void setProjectName(String name) {
-    project?.name = name;
+    project?.projectName = name;
     notifyProjectChanged(null);
   }
 

@@ -6,19 +6,34 @@ import 'video.dart';
 /// Project for object detection, support multiple video sources, and settings.
 class Project {
   Project({
-    required Video video,
-    required this.name,
+    required this.projectName,
     required this.model,
-  }) : projectId = uuid() {
+    this.projectId = '',
+    this.filter = const vision.Filter(vision.FilterType.pass1Hour),
+    required List<Video> videos,
+    this.confidenceThreshold = 0.35,
+    this.nmsThreshold = 0.65,
+    this.matchThreshold = 0.55,
+    this.maxLostSeconds = 1,
+    this.validThreshold = 2,
+    this.trackingThreshold = 0.7,
+  }) {
+    // if projectId is empty, generate a new one
+    if (projectId.isEmpty) {
+      projectId = uuid();
+    }
+    // if videos is not empty, add them to the project
+    if (videos.isNotEmpty) {
+      _videos.addAll(videos);
+    }
     resetDetectionSettings();
-    addVideoSource(video);
   }
 
   /// the unique identifier of the project.
   String projectId;
 
   /// the project name
-  String name;
+  String projectName;
 
   /// this video sources that can be used in the project
   final List<Video> _videos = [];
@@ -27,12 +42,7 @@ class Project {
   List<Video> get videos => _videos;
 
   /// current filter
-  vision.Filter filter = const vision.Filter(vision.FilterType.pass1Hour);
-
-  /// add video source
-  void addVideoSource(Video media) {
-    _videos.add(media);
-  }
+  vision.Filter filter;
 
   /// get first video source, null if no video source
   Video get firstVideo {
@@ -43,7 +53,7 @@ class Project {
   /// check if video name exists
   bool isVideoNameExists(String newName) {
     for (final video in _videos) {
-      if (video.name == newName) {
+      if (video.videoName == newName) {
         return true;
       }
     }
@@ -51,22 +61,22 @@ class Project {
   }
 
   /// confidence threshold
-  double confidenceThreshold = 0;
+  double confidenceThreshold;
 
   /// nms threshold
-  double nmsThreshold = 0;
+  double nmsThreshold;
 
   /// match threshold
-  double matchThreshold = 0;
+  double matchThreshold;
 
   /// max allowed lost frames
-  int maxLostSeconds = 0;
+  int maxLostSeconds;
 
   /// valid threshold
-  int validThreshold = 0;
+  int validThreshold;
 
   /// tracking threshold
-  double trackingThreshold = 0;
+  double trackingThreshold;
 
   /// the current model used by the controller
   vision.Models model;
@@ -84,7 +94,7 @@ class Project {
   /// check if project contain a camera video source
   bool get hasCameraInVideos {
     for (final video in _videos) {
-      if (video.type == vision.MediaType.camera) {
+      if (video.mediaType == vision.MediaType.camera) {
         return true;
       }
     }
@@ -96,11 +106,11 @@ class Project {
     if (_videos.length != 1) {
       return false;
     }
-    return _videos[0].type == vision.MediaType.camera;
+    return _videos[0].mediaType == vision.MediaType.camera;
   }
 
   /// return current webcam video source count
-  int get webcamsCount => _videos.where((video) => video.type == vision.MediaType.webcam).length;
+  int get webcamsCount => _videos.where((video) => video.mediaType == vision.MediaType.webcam).length;
 
   /// check to see if a webcam define is used in the project
   bool isWebcamDefineExists(WebcamDefine webcamDefine) {

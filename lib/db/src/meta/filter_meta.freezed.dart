@@ -20,7 +20,7 @@ FilterMeta _$FilterMetaFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$FilterMeta {
-  FilterType get type => throw _privateConstructorUsedError;
+  FilterType get filterType => throw _privateConstructorUsedError;
   TimeOfDayMeta get start => throw _privateConstructorUsedError;
   TimeOfDayMeta get end => throw _privateConstructorUsedError;
 
@@ -40,7 +40,7 @@ abstract class $FilterMetaCopyWith<$Res> {
           FilterMeta value, $Res Function(FilterMeta) then) =
       _$FilterMetaCopyWithImpl<$Res, FilterMeta>;
   @useResult
-  $Res call({FilterType type, TimeOfDayMeta start, TimeOfDayMeta end});
+  $Res call({FilterType filterType, TimeOfDayMeta start, TimeOfDayMeta end});
 
   $TimeOfDayMetaCopyWith<$Res> get start;
   $TimeOfDayMetaCopyWith<$Res> get end;
@@ -61,14 +61,14 @@ class _$FilterMetaCopyWithImpl<$Res, $Val extends FilterMeta>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? filterType = null,
     Object? start = null,
     Object? end = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
               as FilterType,
       start: null == start
           ? _value.start
@@ -110,7 +110,7 @@ abstract class _$$FilterMetaImplCopyWith<$Res>
       __$$FilterMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({FilterType type, TimeOfDayMeta start, TimeOfDayMeta end});
+  $Res call({FilterType filterType, TimeOfDayMeta start, TimeOfDayMeta end});
 
   @override
   $TimeOfDayMetaCopyWith<$Res> get start;
@@ -131,14 +131,14 @@ class __$$FilterMetaImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? filterType = null,
     Object? start = null,
     Object? end = null,
   }) {
     return _then(_$FilterMetaImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
               as FilterType,
       start: null == start
           ? _value.start
@@ -157,13 +157,13 @@ class __$$FilterMetaImplCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$FilterMetaImpl implements _FilterMeta {
   const _$FilterMetaImpl(
-      {required this.type, required this.start, required this.end});
+      {required this.filterType, required this.start, required this.end});
 
   factory _$FilterMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$FilterMetaImplFromJson(json);
 
   @override
-  final FilterType type;
+  final FilterType filterType;
   @override
   final TimeOfDayMeta start;
   @override
@@ -171,7 +171,7 @@ class _$FilterMetaImpl implements _FilterMeta {
 
   @override
   String toString() {
-    return 'FilterMeta(type: $type, start: $start, end: $end)';
+    return 'FilterMeta(filterType: $filterType, start: $start, end: $end)';
   }
 
   @override
@@ -179,14 +179,15 @@ class _$FilterMetaImpl implements _FilterMeta {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterMetaImpl &&
-            (identical(other.type, type) || other.type == type) &&
+            (identical(other.filterType, filterType) ||
+                other.filterType == filterType) &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.end, end) || other.end == end));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, type, start, end);
+  int get hashCode => Object.hash(runtimeType, filterType, start, end);
 
   /// Create a copy of FilterMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -206,7 +207,7 @@ class _$FilterMetaImpl implements _FilterMeta {
 
 abstract class _FilterMeta implements FilterMeta {
   const factory _FilterMeta(
-      {required final FilterType type,
+      {required final FilterType filterType,
       required final TimeOfDayMeta start,
       required final TimeOfDayMeta end}) = _$FilterMetaImpl;
 
@@ -214,7 +215,7 @@ abstract class _FilterMeta implements FilterMeta {
       _$FilterMetaImpl.fromJson;
 
   @override
-  FilterType get type;
+  FilterType get filterType;
   @override
   TimeOfDayMeta get start;
   @override

@@ -8,17 +8,14 @@ part of 'zone_meta.dart';
 
 _$ZoneMetaImpl _$$ZoneMetaImplFromJson(Map<String, dynamic> json) =>
     _$ZoneMetaImpl(
-      id: (json['id'] as num).toInt(),
+      zoneId: (json['zoneId'] as num).toInt(),
       annotations: (json['annotations'] as List<dynamic>)
-          .map((e) => Annotation.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      types: (json['types'] as List<dynamic>)
-          .map((e) => $enumDecode(_$TallyTypeEnumMap, e))
+          .map((e) => AnnotationMeta.fromJson(e as Map<String, dynamic>))
           .toList(),
       classes: (json['classes'] as List<dynamic>)
           .map((e) => (e as num).toInt())
           .toList(),
-      name: json['name'] as String,
+      zoneName: json['zoneName'] as String,
       points: (json['points'] as List<dynamic>)
           .map((e) => PointMeta.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -33,11 +30,10 @@ _$ZoneMetaImpl _$$ZoneMetaImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ZoneMetaImplToJson(_$ZoneMetaImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'zoneId': instance.zoneId,
       'annotations': instance.annotations.map((e) => e.toJson()).toList(),
-      'types': instance.types.map((e) => _$TallyTypeEnumMap[e]!).toList(),
       'classes': instance.classes,
-      'name': instance.name,
+      'zoneName': instance.zoneName,
       'points': instance.points.map((e) => e.toJson()).toList(),
       'pointIndex': instance.pointIndex,
       'color': const ColorConverter().toJson(instance.color),
@@ -47,15 +43,3 @@ Map<String, dynamic> _$$ZoneMetaImplToJson(_$ZoneMetaImpl instance) =>
       'cooldown': instance.cooldown,
       'ignoreIfCounted': instance.ignoreIfCounted,
     };
-
-const _$TallyTypeEnumMap = {
-  TallyType.detected: 'detected',
-  TallyType.spawned: 'spawned',
-  TallyType.vanished: 'vanished',
-  TallyType.entered: 'entered',
-  TallyType.exited: 'exited',
-  TallyType.stagnant: 'stagnant',
-  TallyType.reentered: 'reentered',
-  TallyType.occupied: 'occupied',
-  TallyType.stayDuration: 'stayDuration',
-};

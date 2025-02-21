@@ -8,8 +8,8 @@ part of 'project_meta.dart';
 
 _$ProjectMetaImpl _$$ProjectMetaImplFromJson(Map<String, dynamic> json) =>
     _$ProjectMetaImpl(
-      id: json['id'] as String,
-      name: json['name'] as String,
+      projectId: json['projectId'] as String,
+      projectName: json['projectName'] as String,
       videos: (json['videos'] as List<dynamic>)
           .map((e) => VideoMeta.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -25,8 +25,8 @@ _$ProjectMetaImpl _$$ProjectMetaImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ProjectMetaImplToJson(_$ProjectMetaImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
+      'projectId': instance.projectId,
+      'projectName': instance.projectName,
       'videos': instance.videos.map((e) => e.toJson()).toList(),
       'filter': instance.filter.toJson(),
       'confidence': instance.confidence,

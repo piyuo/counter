@@ -8,14 +8,14 @@ part of 'filter_meta.dart';
 
 _$FilterMetaImpl _$$FilterMetaImplFromJson(Map<String, dynamic> json) =>
     _$FilterMetaImpl(
-      type: $enumDecode(_$FilterTypeEnumMap, json['type']),
+      filterType: $enumDecode(_$FilterTypeEnumMap, json['filterType']),
       start: TimeOfDayMeta.fromJson(json['start'] as Map<String, dynamic>),
       end: TimeOfDayMeta.fromJson(json['end'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$FilterMetaImplToJson(_$FilterMetaImpl instance) =>
     <String, dynamic>{
-      'type': _$FilterTypeEnumMap[instance.type]!,
+      'filterType': _$FilterTypeEnumMap[instance.filterType]!,
       'start': instance.start.toJson(),
       'end': instance.end.toJson(),
     };

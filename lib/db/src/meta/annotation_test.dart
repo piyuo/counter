@@ -4,14 +4,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:vision/vision.dart';
 
-import 'annotation.dart';
+import 'annotation_meta.dart';
 
 void main() {
   setUp(() async {});
 
   group('[annotation.test]', () {
     test('should convert to string', () async {
-      final annotation = Annotation(
+      final annotation = AnnotationMeta(
         type: TallyType.detected,
         enabled: true,
         title: 'Test Title',
@@ -32,8 +32,8 @@ void main() {
         'prefix': 'Mr.',
         'suffix': 'Jr.',
       });
-      final annotationFromJson = Annotation.fromJson(json);
-      expect(annotationFromJson, isA<Annotation>());
+      final annotationFromJson = AnnotationMeta.fromJson(json);
+      expect(annotationFromJson, isA<AnnotationMeta>());
       expect(annotationFromJson.type, TallyType.detected);
       expect(annotationFromJson.enabled, true);
       expect(annotationFromJson.title, 'Test Title');

@@ -22,7 +22,7 @@ class VideoProvider with ChangeNotifier {
     visionController = vision.Controller(sampler: sampler);
     playerController = vision.PlayerController(
       visionController: visionController,
-      title: video.name,
+      title: video.videoName,
     );
   }
 
@@ -110,7 +110,7 @@ class VideoProvider with ChangeNotifier {
 
   /// Return the icon of the video source
   getIcon() {
-    switch (video.type) {
+    switch (video.mediaType) {
       case vision.MediaType.webcam:
         return CupertinoIcons.videocam;
       case vision.MediaType.camera:
@@ -157,7 +157,7 @@ class VideoProvider with ChangeNotifier {
     int errorCode = vision.errorOK;
     video.zoom = 1;
     await visionController.close();
-    switch (video.type) {
+    switch (video.mediaType) {
       case vision.MediaType.file:
         assert(video.path != null && video.path!.isNotEmpty, 'file path is empty');
         errorCode = await visionController.openFile(video.path!);
@@ -203,7 +203,7 @@ class VideoProvider with ChangeNotifier {
       ); // disabled this line will enter preview mode
     }
 
-    if (video.type == vision.MediaType.camera) {
+    if (video.mediaType == vision.MediaType.camera) {
       // other types will start automatically in Server
       await visionController.play();
     }
@@ -218,7 +218,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// get the video type
-  vision.MediaType get type => video.type;
+  vision.MediaType get type => video.mediaType;
 
   /// is video is playing
   bool get isPlaying => visionController.isPlaying;
@@ -340,7 +340,7 @@ class VideoProvider with ChangeNotifier {
 
   /// set video name
   void setVideoName(String name) {
-    video.name = name;
+    video.videoName = name;
     playerController.title = name;
     notifyListeners();
   }

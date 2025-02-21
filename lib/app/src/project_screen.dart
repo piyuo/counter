@@ -98,10 +98,10 @@ class ProjectScreen extends StatelessWidget {
                   animationCurve: Curves.fastOutSlowIn,
                   previews: projectProvider.videoProviders.map((videoProvider) {
                     return CameraPreviewHolder(
-                      id: videoProvider.video.id,
+                      id: videoProvider.video.videoId,
                       preview: VideoView(
                         videoProvider: videoProvider,
-                        title: videoProvider.video.name, // only show title when there are multiple sources
+                        title: videoProvider.video.videoName, // only show title when there are multiple sources
                         filter: projectProvider.project!.filter,
                       ),
                       width: videoProvider.mediaWidth,

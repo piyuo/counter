@@ -3,20 +3,29 @@ import 'package:vision/vision.dart' as vision;
 /// video define the video source for the project, a project can have multiple video sources. like camera, video file, live stream.
 class Video {
   Video({
-    required this.id,
-    required this.type,
-    required this.name,
+    required this.videoId,
+    required this.mediaType,
+    required this.videoName,
+    this.camera,
+    this.webcam,
+    this.zoom = 1,
     this.path,
-  });
+    List<vision.VideoZone> zones = const [],
+  }) {
+    // if zones is not empty, add them to the video
+    if (zones.isNotEmpty) {
+      this.zones.addAll(zones);
+    }
+  }
 
   /// the video id
-  final int id;
+  final int videoId;
 
   /// the project type
-  final vision.MediaType type;
+  final vision.MediaType mediaType;
 
   /// the project source name
-  String name;
+  String videoName;
 
   /// the file path or live url
   String? path;

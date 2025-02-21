@@ -38,17 +38,17 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
                     onProjectOpened: (app.Project project) {
-                      print('project ${project.name} opened');
+                      print('project ${project.projectName} opened');
                     },
                     onProjectClosed: (app.Project project) {
-                      print('project ${project.name} opened');
+                      print('project ${project.projectName} opened');
                     },
                     onProjectChanged: (app.Project project, app.Video? video) {
                       String videoChanged = '';
                       if (video != null) {
-                        videoChanged = ' from ${video.name}';
+                        videoChanged = ' from ${video.videoName}';
                       }
-                      print('project ${project.name} changed$videoChanged');
+                      print('project ${project.projectName} changed$videoChanged');
                     },
                   )..init(context)),
           ChangeNotifierProvider<pip.PipProvider>(

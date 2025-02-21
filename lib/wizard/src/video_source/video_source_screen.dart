@@ -26,7 +26,7 @@ class VideoSourceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
     final video = videoProvider.video;
-    final pageTitle = video.name;
+    final pageTitle = video.videoName;
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<VideoSourceScreenProvider>(
@@ -81,7 +81,7 @@ class VideoSourceScreen extends StatelessWidget {
                   ),
 
                   // live stream
-                  if (video.type == clib.MediaType.live)
+                  if (video.mediaType == clib.MediaType.live)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_source_screen_url),
@@ -109,7 +109,7 @@ class VideoSourceScreen extends StatelessWidget {
                       ],
                     ),
                   // file
-                  if (video.type == clib.MediaType.file)
+                  if (video.mediaType == clib.MediaType.file)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_source_screen_opened_file),
@@ -130,7 +130,7 @@ class VideoSourceScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (video.type == clib.MediaType.camera)
+                  if (video.mediaType == clib.MediaType.camera)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_source_screen_camera),
@@ -162,7 +162,7 @@ class VideoSourceScreen extends StatelessWidget {
                       ],
                     ),
 
-                  if (video.type == clib.MediaType.webcam)
+                  if (video.mediaType == clib.MediaType.webcam)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_source_screen_webcam),
@@ -243,7 +243,7 @@ class VideoSourceScreen extends StatelessWidget {
                   ),
 
                   // playback speed
-                  if (video.type == clib.MediaType.file)
+                  if (video.mediaType == clib.MediaType.file)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_source_screen_playback_speed),
@@ -302,7 +302,7 @@ class VideoSourceScreenProvider with ChangeNotifier {
     required this.projectProvider,
     required this.videoProvider,
   }) {
-    videoNameController.text = videoProvider.video.name;
+    videoNameController.text = videoProvider.video.videoName;
   }
 
   /// the project provider
