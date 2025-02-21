@@ -1,1 +1,1 @@
-export 'src/zone_meta.dart';
+export 'src/meta/zone_meta.dart';
