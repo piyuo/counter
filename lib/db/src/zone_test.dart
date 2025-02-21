@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:vision/vision.dart';
 
 import 'annotation.dart';
-import 'point_meta.dart'; // assume PointMeta has a constructor taking x and y
+import 'point_meta.dart';
 import 'zone_meta.dart';
 
 void main() {
@@ -27,7 +27,7 @@ void main() {
         types: [TallyType.detected],
         classes: [1, 2, 3],
         name: 'Test Zone',
-        points: [PointMeta(x: 0, y: 0)], // ...assuming PointMeta(x, y)...
+        points: [PointMeta(x: 0, y: 0)],
         pointIndex: 0,
         color: Colors.blue.shade500,
         stagnant: 5,
