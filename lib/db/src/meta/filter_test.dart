@@ -20,7 +20,7 @@ void main() {
       );
       final json = filter.toJson();
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['type'], 'pass1Hour');
+      expect(json['filterType'], 'pass1Hour');
       expect(json['start'], filter.start.toJson());
       expect(json['end'], filter.end.toJson());
 

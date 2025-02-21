@@ -61,9 +61,9 @@ void main() {
 
       final json = videoMeta.toJson();
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['id'], 101);
-      expect(json['type'], 'file');
-      expect(json['name'], 'Test Video');
+      expect(json['videoId'], 101);
+      expect(json['mediaType'], 'file');
+      expect(json['videoName'], 'Test Video');
       expect(json['path'], 'test/path.mp4');
       expect(json['zoom'], 1.5);
       // Check nested objects by their JSON conversion

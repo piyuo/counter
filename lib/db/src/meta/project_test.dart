@@ -59,8 +59,8 @@ void main() {
 
       final json = project.toJson();
       expect(json, isA<Map<String, dynamic>>());
-      expect(json['id'], 'proj1');
-      expect(json['name'], 'Test Project');
+      expect(json['projectId'], 'proj1');
+      expect(json['projectName'], 'Test Project');
       expect(json['confidence'], 0.85);
       expect(json['nms'], 0.5);
       expect(json['match'], 0.9);

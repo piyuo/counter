@@ -48,9 +48,9 @@ void main() {
       });
       expect(annotationFromJson, annotation);
       expect(annotationFromJson.toString(),
-          'Annotation(type: TallyType.detected, enabled: true, title: Test Title, prefix: Mr., suffix: Jr.)');
+          'AnnotationMeta(type: TallyType.detected, enabled: true, title: Test Title, prefix: Mr., suffix: Jr.)');
       expect(annotation.toString(),
-          'Annotation(type: TallyType.detected, enabled: true, title: Test Title, prefix: Mr., suffix: Jr.)');
+          'AnnotationMeta(type: TallyType.detected, enabled: true, title: Test Title, prefix: Mr., suffix: Jr.)');
       expect(annotationFromJson.hashCode, annotation.hashCode);
       expect(annotationFromJson.runtimeType, annotation.runtimeType);
     });
