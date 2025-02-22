@@ -1,4 +1,5 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/db/db.dart' as db;
 import 'package:counter/l10n/app_localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
@@ -7,8 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
-
-import 'db/src/database.dart';
 
 main() {
   runApp(const MyApp());
@@ -23,7 +22,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   _MyAppState();
-  final AppDatabase appDatabase = AppDatabase();
+  final db.DataManager dataManager = db.DataManager();
+//  final AppDatabase appDatabase = AppDatabase();
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +37,9 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => app.LanguageProvider()..loadLocale()),
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
-                    onProjectOpened: (app.Project project) {
-                      print('project ${project.projectName} opened');
-                    },
-                    onProjectClosed: (app.Project project) {
-                      print('project ${project.projectName} opened');
-                    },
-                    onProjectChanged: (app.Project project, app.Video? video) {
-                      String videoChanged = '';
-                      if (video != null) {
-                        videoChanged = ' from ${video.videoName}';
-                      }
-                      print('project ${project.projectName} changed$videoChanged');
+                    onProjectChanged: (app.Project project, app.Video? video) async {
+                      await dataManager.setProject(project);
+                      print('project ${project.projectName}');
                     },
                   )..init(context)),
           ChangeNotifierProvider<pip.PipProvider>(
@@ -135,8 +126,7 @@ floatingActionButton: FloatingActionButton(
                   },
                 ),
 
-
- SizedBox(
+                        SizedBox(
                           height: 300,
                           child: FutureBuilder<List<TodoItem>>(
                             future: appDatabase.getAllItems(),
@@ -156,4 +146,5 @@ floatingActionButton: FloatingActionButton(
                             },
                           ),
                         ),
+
  */

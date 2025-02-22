@@ -10,7 +10,6 @@ import 'language/language_screen.dart';
 import 'settings/add_video_screen.dart';
 import 'settings/camera_screen.dart';
 import 'settings/detection_screen.dart';
-import 'settings/schedule_screen.txt';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
 import 'settings/webcam_screen.dart';
@@ -62,12 +61,6 @@ const startRoute = '/start';
 
 /// The settings route
 const settingsRoute = '/settings';
-
-/// The schedule route
-const scheduleRoute = '/schedule';
-
-/// The schedule detail route
-const scheduleDetailRoute = '/scheduleDetail';
 
 /// The tally route
 const tallyRoute = '/tally';
@@ -176,8 +169,6 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return DetectionScreen(
                   previousPageTitle: args!['previousPageTitle'],
                 );
-              case scheduleRoute:
-                return ScheduleScreen();
               case urlRoute:
                 return UrlScreen(
                   initialUrl: args?['url'] ?? '',

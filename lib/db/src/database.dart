@@ -21,10 +21,11 @@ class AppDatabase extends _$AppDatabase {
   int get schemaVersion => 1;
 
   static QueryExecutor _openConnection() {
+    print('hello');
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
       String dbPath = path.join(dbFolder.path, 'db.sqlite');
-      //print('Opening database at $dbPath');
+      print('Opening database at $dbPath');
       final file = File(dbPath);
       return NativeDatabase.createInBackground(file);
     });
@@ -38,6 +39,7 @@ class AppDatabase extends _$AppDatabase {
       if (existingProject != null) {
         return (update(projects)..where((p) => p.projectId.equals(id))).write(ProjectsCompanion(
           data: Value(bytes),
+          projectName: Value(name),
           updatedAt: Value(DateTime.now()),
         ));
       } else {

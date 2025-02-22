@@ -368,6 +368,7 @@ class ProjectProvider with ChangeNotifier {
     }
     onProjectOpened?.call(project!);
     _onProjectOpened();
+    onProjectChanged?.call(project!, null);
     notifyListeners();
     return true;
   }
