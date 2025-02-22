@@ -11,7 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized(); // Initialize bindings
 
-  // Replace deprecated setMockMethodCallHandler with:
+  // Set up the mock for getApplicationDocumentsDirectory.
   const MethodChannel channel = MethodChannel('plugins.flutter.io/path_provider');
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel,
       (MethodCall call) async {
@@ -27,35 +27,41 @@ void main() {
     test('should save, retrieve, and delete a project', () async {
       final db = AppDatabase();
 
-      // Create dummy project id and JSON string.
+      // Dummy project data.
       const String projectId = 'proj_test1';
       const String projectName = 'Test Project';
       const String jsonString =
           '{"projectId": "proj_test1", "projectName": "Test Project", "dummyField": "dummyValue"}';
 
       // Save the project.
-      await db.saveProject(projectId, projectName, jsonString);
+      await db.setProject(projectId, projectName, jsonString);
 
-      // Retrieve all project rows.
-      final rows = await db.getAllProjects();
-      expect(rows, isNotEmpty);
+      // Retrieve single project using getProject.
+      final savedProject = await db.getProject(projectId);
+      expect(savedProject, isNotNull);
 
-      // Locate saved row.
-      final savedRow = rows.where((row) => row.projectId == projectId).first;
-      expect(savedRow, isNotNull);
-
-      // Decode stored data.
-      final decodedJson = jsonDecode(utf8.decode(savedRow.data));
+      final decodedJson = jsonDecode(utf8.decode(savedProject!.data));
       expect(decodedJson['projectId'], projectId);
-      expect(decodedJson['projectName'], 'Test Project');
+      expect(decodedJson['projectName'], projectName);
+
+      // Retrieve project summaries (without the blob column).
+      final summaries = await db.getAllProjectRows();
+      expect(summaries, isNotEmpty);
+      final summary = summaries.where((row) => row.projectId == projectId).first;
+      expect(summary, isNotNull);
+      expect(summary.projectName, projectName);
 
       // Delete the project.
       await db.deleteProject(projectId);
 
-      // Verify deletion.
-      final remainingRows = await db.getAllProjects();
-      final deleted = remainingRows.where((row) => row.projectId == projectId);
-      expect(deleted, isEmpty);
+      // Verify deletion via getProject.
+      final deletedProject = await db.getProject(projectId);
+      expect(deletedProject, isNull);
+
+      // Verify deletion via summaries.
+      final remainingSummaries = await db.getAllProjectRows();
+      final deletedSummary = remainingSummaries.where((row) => row.projectId == projectId);
+      expect(deletedSummary, isEmpty);
 
       await db.close();
     });

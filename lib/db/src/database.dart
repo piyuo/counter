@@ -31,7 +31,7 @@ class AppDatabase extends _$AppDatabase {
   }
 
   /// add project to database
-  Future<void> saveProject(String id, String name, String data) async {
+  Future<void> setProject(String id, String name, String data) async {
     Uint8List bytes = Uint8List.fromList(utf8.encode(data));
     await transaction(() async {
       final existingProject = await (select(projects)..where((p) => p.projectId.equals(id))).getSingleOrNull();
@@ -52,35 +52,35 @@ class AppDatabase extends _$AppDatabase {
     });
   }
 
-  /// get all project from database
-  Future<List<Project>> getAllProjects() async {
-    return await select(projects).get();
+  /// get project by it's id
+  Future<Project?> getProject(String projectId) async {
+    final query = select(projects)..where((p) => p.projectId.equals(projectId));
+    final rows = await query.get();
+    return rows.isNotEmpty ? rows.first : null;
   }
 
   /// delete project from database
   Future<void> deleteProject(String projectId) async {
     await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
   }
-}
 
-//final jsonMap = projectMeta.toJson();
-//final jsonString = jsonEncode(jsonMap);
-/*
-, TodoItems
-class TodoItems extends Table {
-  TextColumn get title => text().withLength(min: 6, max: 32)();
-  DateTimeColumn get createdAt => dateTime().nullable()();
-}
-
-  Future<int> insertItem(String title) {
-    return into(todoItems).insert(TodoItem(
-      title: title,
-      createdAt: DateTime.now(),
-    ));
+  /// Get project summaries without the data blob.
+  Future<List<ProjectRow>> getAllProjectRows() async {
+    final query = selectOnly(projects)
+      ..addColumns([
+        projects.projectId,
+        projects.projectName,
+        projects.createdAt,
+        projects.updatedAt,
+      ]);
+    final rows = await query.get();
+    return rows
+        .map((row) => ProjectRow(
+              projectId: row.read(projects.projectId)!,
+              projectName: row.read(projects.projectName)!,
+              createdAt: row.read(projects.createdAt)!,
+              updatedAt: row.read(projects.updatedAt)!,
+            ))
+        .toList();
   }
-
-  Future<List<TodoItem>> getAllItems() {
-    return select(todoItems).get();
-  }
-
- */
+}

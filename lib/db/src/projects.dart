@@ -8,19 +8,15 @@ class Projects extends Table {
   DateTimeColumn get updatedAt => dateTime()();
 }
 
-/*
-class ProjectItem {
-  ProjectItem({
+class ProjectRow {
+  ProjectRow({
     required this.projectId,
     required this.projectName,
-    required this.data,
     required this.createdAt,
     required this.updatedAt,
   });
   String projectId;
   String projectName;
-  String data;
   DateTime createdAt;
   DateTime updatedAt;
 }
-*/
