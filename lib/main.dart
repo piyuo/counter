@@ -8,7 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import 'database.dart';
+import 'db/src/database.dart';
 
 main() {
   runApp(const MyApp());
@@ -71,39 +71,11 @@ class _MyAppState extends State<MyApp> {
                       color: CupertinoColors.tertiarySystemBackground.resolveFrom(context),
                       alignment: Alignment.center,
                       child: Column(children: [
-                        SizedBox(
-                          height: 300,
-                          child: FutureBuilder<List<TodoItem>>(
-                            future: appDatabase.getAllItems(),
-                            builder: (context, snapshot) {
-                              if (!snapshot.hasData) return Text('Loading ...');
-                              final counts = snapshot.data!;
-                              return ListView.builder(
-                                itemCount: counts.length,
-                                itemBuilder: (context, index) {
-                                  final pedestrian = counts[index];
-                                  return ListTile(
-                                    title: Text("Count: ${pedestrian.title}"),
-                                    subtitle: Text("Timestamp: ${pedestrian.createdAt}"),
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ),
                         const SizedBox(height: 10),
                         Container(
                           height: 800,
                         ),
                       ])),
-                ),
-                floatingActionButton: FloatingActionButton(
-                  child: Icon(Icons.add),
-                  onPressed: () async {
-                    await appDatabase.insertItem('hello ${DateTime.now().millisecondsSinceEpoch}');
-                    // redraw
-                    setState(() {});
-                  },
                 ),
               );
             }
@@ -149,3 +121,39 @@ class _MyAppState extends State<MyApp> {
         ));
   }
 }
+
+
+/*
+
+
+floatingActionButton: FloatingActionButton(
+                  child: Icon(Icons.add),
+                  onPressed: () async {
+                    await appDatabase.insertItem('hello ${DateTime.now().millisecondsSinceEpoch}');
+                    // redraw
+                    setState(() {});
+                  },
+                ),
+
+
+ SizedBox(
+                          height: 300,
+                          child: FutureBuilder<List<TodoItem>>(
+                            future: appDatabase.getAllItems(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) return Text('Loading ...');
+                              final counts = snapshot.data!;
+                              return ListView.builder(
+                                itemCount: counts.length,
+                                itemBuilder: (context, index) {
+                                  final pedestrian = counts[index];
+                                  return ListTile(
+                                    title: Text("Count: ${pedestrian.title}"),
+                                    subtitle: Text("Timestamp: ${pedestrian.createdAt}"),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ),
+ */
