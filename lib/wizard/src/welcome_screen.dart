@@ -33,6 +33,19 @@ class WelcomeScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  CupertinoListSection(
+                    header: Text(context.l.welcome_screen_open_projects_tip),
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    children: [
+                      CupertinoListTile(
+                          leading: Icon(CupertinoIcons.archivebox),
+                          title: Text(context.l.welcome_screen_open_projects),
+                          trailing: CupertinoListTileChevron(),
+                          onTap: () {
+                            Navigator.of(context).pushNamed(openProjectRoute);
+                          }),
+                    ],
+                  ),
                   ChangeNotifierProvider<VideoStarterProvider>(
                       create: (_) => VideoStarterProvider(),
                       child: Consumer<VideoStarterProvider>(

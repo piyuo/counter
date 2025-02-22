@@ -5,7 +5,6 @@ import 'package:counter/app/app.dart' as app;
 import 'database.dart';
 import 'meta.dart';
 import 'meta/project_meta.dart';
-import 'projects.dart';
 
 class DataManager {
   final AppDatabase appDatabase = AppDatabase();
@@ -19,13 +18,14 @@ class DataManager {
     await appDatabase.setProject(project.projectId, project.projectName, jsonString);
   }
 
-  /// Retrieve all projects from the database.
-  Future<List<ProjectRow>> getAllProjectRows() async {
-    return await appDatabase.getAllProjectRows();
+  /// get project summaries without the data blob.
+  Future<List<app.ProjectSummary>> getProjectSummaries() async {
+    return await appDatabase.getProjectSummaries();
   }
 
-  Future<app.Project?> getProject(String projectId) async {
-    final project = await appDatabase.getProject(projectId);
+  /// Get project by its ID.
+  Future<app.Project?> getProjectById(String projectId) async {
+    final project = await appDatabase.getProjectById(projectId);
     if (project == null) {
       return null;
     }

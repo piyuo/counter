@@ -36,6 +36,12 @@ class AppLocalizationEn extends AppLocalization {
   String get welcome_screen_about => 'About';
 
   @override
+  String get welcome_screen_open_projects_tip => 'All project will save to local automatically';
+
+  @override
+  String get welcome_screen_open_projects => 'Open existing project';
+
+  @override
   String get language_screen_language => 'Language';
 
   @override
@@ -367,6 +373,15 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get object_class_screen_title => 'Detected Objects';
+
+  @override
+  String get open_project_screen_title => 'Open Project';
+
+  @override
+  String get open_project_screen_desc => 'Select a project to open';
+
+  @override
+  String get open_project_screen_no_project => 'No project found';
 
   @override
   String get submit => 'Submit';

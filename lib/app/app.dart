@@ -1,6 +1,7 @@
 export 'src/benchmark.dart';
 export 'src/language_provider.dart';
 export 'src/model/project.dart';
+export 'src/model/project_summary.dart';
 export 'src/model/schedule.dart';
 export 'src/model/uuid.dart';
 export 'src/model/video.dart';

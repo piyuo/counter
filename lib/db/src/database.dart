@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:counter/app/app.dart' as app;
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as path;
@@ -21,7 +22,6 @@ class AppDatabase extends _$AppDatabase {
   int get schemaVersion => 1;
 
   static QueryExecutor _openConnection() {
-    print('hello');
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
       String dbPath = path.join(dbFolder.path, 'db.sqlite');
@@ -55,7 +55,7 @@ class AppDatabase extends _$AppDatabase {
   }
 
   /// get project by it's id
-  Future<Project?> getProject(String projectId) async {
+  Future<Project?> getProjectById(String projectId) async {
     final query = select(projects)..where((p) => p.projectId.equals(projectId));
     final rows = await query.get();
     return rows.isNotEmpty ? rows.first : null;
@@ -66,8 +66,8 @@ class AppDatabase extends _$AppDatabase {
     await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
   }
 
-  /// Get project summaries without the data blob.
-  Future<List<ProjectRow>> getAllProjectRows() async {
+  /// get project summaries without the data blob.
+  Future<List<app.ProjectSummary>> getProjectSummaries() async {
     final query = selectOnly(projects)
       ..addColumns([
         projects.projectId,
@@ -77,7 +77,7 @@ class AppDatabase extends _$AppDatabase {
       ]);
     final rows = await query.get();
     return rows
-        .map((row) => ProjectRow(
+        .map((row) => app.ProjectSummary(
               projectId: row.read(projects.projectId)!,
               projectName: row.read(projects.projectName)!,
               createdAt: row.read(projects.createdAt)!,

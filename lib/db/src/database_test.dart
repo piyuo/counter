@@ -37,7 +37,7 @@ void main() {
       await db.setProject(projectId, projectName, jsonString);
 
       // Retrieve single project using getProject.
-      final savedProject = await db.getProject(projectId);
+      final savedProject = await db.getProjectById(projectId);
       expect(savedProject, isNotNull);
 
       final decodedJson = jsonDecode(utf8.decode(savedProject!.data));
@@ -45,7 +45,7 @@ void main() {
       expect(decodedJson['projectName'], projectName);
 
       // Retrieve project summaries (without the blob column).
-      final summaries = await db.getAllProjectRows();
+      final summaries = await db.getProjectSummaries();
       expect(summaries, isNotEmpty);
       final summary = summaries.where((row) => row.projectId == projectId).first;
       expect(summary, isNotNull);
@@ -55,11 +55,11 @@ void main() {
       await db.deleteProject(projectId);
 
       // Verify deletion via getProject.
-      final deletedProject = await db.getProject(projectId);
+      final deletedProject = await db.getProjectById(projectId);
       expect(deletedProject, isNull);
 
       // Verify deletion via summaries.
-      final remainingSummaries = await db.getAllProjectRows();
+      final remainingSummaries = await db.getProjectSummaries();
       final deletedSummary = remainingSummaries.where((row) => row.projectId == projectId);
       expect(deletedSummary, isEmpty);
 

@@ -9,6 +9,8 @@
     "welcome_screen_new_project_from":"New Project from",
     "welcome_screen_language":"Language",
     "welcome_screen_about":"About",
+    "welcome_screen_open_projects_tip":"All project will save to local automatically",
+    "welcome_screen_open_projects":"Open existing project",
     "language_screen_language":"Language",
     "about_screen_about":"About",
     "about_screen_platform":"Platform",
@@ -120,6 +122,9 @@
     "counter_screen_enabled_error":"Error",
     "counter_screen_enabled_error_content":"You need to enable other counter first, then you can disable this counter",
     "object_class_screen_title":"Detected Objects",
+    "open_project_screen_title":"Open Project",
+    "open_project_screen_desc":"Select a project to open",
+    "open_project_screen_no_project":"No project found",
 
     "submit":"Submit",
     "ok":"OK",

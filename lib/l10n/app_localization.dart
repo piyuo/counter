@@ -147,6 +147,18 @@ abstract class AppLocalization {
   /// **'About'**
   String get welcome_screen_about;
 
+  /// No description provided for @welcome_screen_open_projects_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'All project will save to local automatically'**
+  String get welcome_screen_open_projects_tip;
+
+  /// No description provided for @welcome_screen_open_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Open existing project'**
+  String get welcome_screen_open_projects;
+
   /// No description provided for @language_screen_language.
   ///
   /// In en, this message translates to:
@@ -812,6 +824,24 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'Detected Objects'**
   String get object_class_screen_title;
+
+  /// No description provided for @open_project_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Project'**
+  String get open_project_screen_title;
+
+  /// No description provided for @open_project_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a project to open'**
+  String get open_project_screen_desc;
+
+  /// No description provided for @open_project_screen_no_project.
+  ///
+  /// In en, this message translates to:
+  /// **'No project found'**
+  String get open_project_screen_no_project;
 
   /// No description provided for @submit.
   ///

@@ -41,6 +41,12 @@ class _MyAppState extends State<MyApp> {
                       await dataManager.setProject(project);
                       print('project ${project.projectName}');
                     },
+                    onGetProjectSummaries: () async {
+                      return await dataManager.getProjectSummaries();
+                    },
+                    onGetProjectById: (String projectId) async {
+                      return await dataManager.getProjectById(projectId);
+                    },
                   )..init(context)),
           ChangeNotifierProvider<pip.PipProvider>(
               create: (_) => pip.PipProvider()..init(const Duration(seconds: 2), getPanelPositionWhenProjectOpened())),

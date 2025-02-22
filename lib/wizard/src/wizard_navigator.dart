@@ -6,6 +6,7 @@ import 'about/benchmark_screen.dart';
 import 'about/opencv_screen.dart';
 import 'home/filter_screen.dart';
 import 'home/home_screen.dart';
+import 'home/open_project_screen.dart';
 import 'language/language_screen.dart';
 import 'settings/add_video_screen.dart';
 import 'settings/camera_screen.dart';
@@ -56,8 +57,11 @@ const languageRoute = '/language';
 /// The object class route
 const objectClassRoute = '/class';
 
-/// The start route
-const startRoute = '/start';
+/// The home route
+const homeRoute = '/home';
+
+/// The open project route
+const openProjectRoute = '/openProject';
 
 /// The settings route
 const settingsRoute = '/settings';
@@ -121,8 +125,10 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return BenchmarkScreen();
               case opencvRoute:
                 return OpencvScreen();
-              case startRoute:
+              case homeRoute:
                 return HomeScreen();
+              case openProjectRoute:
+                return OpenProjectScreen();
               case languageRoute:
                 return LanguageScreen();
               case filterRoute:

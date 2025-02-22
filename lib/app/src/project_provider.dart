@@ -12,6 +12,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import 'benchmark.dart';
 import 'camera_manager.dart';
 import 'model/project.dart';
+import 'model/project_summary.dart';
 import 'model/video.dart';
 import 'util/orientation_provider.dart';
 import 'video_provider.dart';
@@ -28,6 +29,8 @@ class ProjectProvider with ChangeNotifier {
     this.onProjectOpened,
     this.onProjectClosed,
     this.onProjectChanged,
+    this.onGetProjectSummaries,
+    this.onGetProjectById,
   });
 
   /// keep the benchmark result to use in the create project screen choose default model
@@ -57,14 +60,36 @@ class ProjectProvider with ChangeNotifier {
   /// is project opened
   bool get isProjectOpened => project != null;
 
+  /// called when project opened
+  final void Function(Project project)? onProjectOpened;
+
+  /// called when project closed
+  final void Function(Project project)? onProjectClosed;
+
   /// called when project settings changed, videoSource not null mean change is from one of the video source
   final void Function(Project, Video?)? onProjectChanged;
 
-  /// called when project opened
-  void Function(Project project)? onProjectOpened;
+  /// called by open project screen to get the project summaries
+  final Future<List<ProjectSummary>> Function()? onGetProjectSummaries;
 
-  /// called when project closed
-  void Function(Project project)? onProjectClosed;
+  /// called by open project screen to get the project summaries
+  final Future<Project?> Function(String)? onGetProjectById;
+
+  /// get the project summaries
+  Future<List<ProjectSummary>> getProjectSummaries() async {
+    if (onGetProjectSummaries != null) {
+      return await onGetProjectSummaries!();
+    }
+    return [];
+  }
+
+  /// get the project by its id
+  Future<Project?> getProjectById(String projectId) async {
+    if (onGetProjectById != null) {
+      return await onGetProjectById!(projectId);
+    }
+    return null;
+  }
 
   /// the camera manager
   CameraManager cameraManager = CameraManager();
@@ -335,8 +360,12 @@ class ProjectProvider with ChangeNotifier {
     return maxId + 1;
   }
 
-  /// load a project
-  Future<bool> loadProject(Project project) async {
+  /// open a existing project
+  Future<bool> openProject(String projectId) async {
+    final project = await getProjectById(projectId);
+    if (project == null) {
+      return false;
+    }
     // reset zone global id first to avoid id conflict
     final nextZoneId = getNextZoneId();
     setNextZoneColorIndex(nextZoneId);

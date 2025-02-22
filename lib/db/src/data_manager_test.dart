@@ -41,13 +41,13 @@ void main() {
       await dataManager.setProject(dummyProject);
 
       // Retrieve the project.
-      final retrievedProject = await dataManager.getProject('dm_test_1');
+      final retrievedProject = await dataManager.getProjectById('dm_test_1');
       expect(retrievedProject, isNotNull);
       expect(retrievedProject!.projectId, dummyProject.projectId);
       expect(retrievedProject.projectName, dummyProject.projectName);
 
       // Retrieve project summaries.
-      final summaries = await dataManager.getAllProjectRows();
+      final summaries = await dataManager.getProjectSummaries();
       final summary = summaries.where((row) => row.projectId == 'dm_test_1').first;
       expect(summary, isNotNull);
       expect(summary.projectName, dummyProject.projectName);
@@ -56,10 +56,10 @@ void main() {
       await dataManager.deleteProject('dm_test_1');
 
       // Verify deletion.
-      final deletedProject = await dataManager.getProject('dm_test_1');
+      final deletedProject = await dataManager.getProjectById('dm_test_1');
       expect(deletedProject, isNull);
 
-      final remainingSummaries = await dataManager.getAllProjectRows();
+      final remainingSummaries = await dataManager.getProjectSummaries();
       final deletedSummary = remainingSummaries.where((row) => row.projectId == 'dm_test_1');
       expect(deletedSummary, isEmpty);
 

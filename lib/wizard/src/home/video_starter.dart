@@ -41,7 +41,7 @@ List<Widget> buildVideoStarter(
               // create project with webcam
               await projectProvider.newProject(context, type: clib.MediaType.webcam);
               if (context.mounted) {
-                Navigator.of(context).pushNamed(startRoute);
+                Navigator.of(context).pushNamed(homeRoute);
               }
             } finally {
               videoStarterProvider.setLoadingWebcam(false);
@@ -72,7 +72,7 @@ List<Widget> buildVideoStarter(
             await projectProvider.newProject(context, type: clib.MediaType.camera);
             if (context.mounted) {
               // first goto start screen then camera screen immediately
-              Navigator.of(context).pushNamed(startRoute);
+              Navigator.of(context).pushNamed(homeRoute);
             }
           } finally {
             videoStarterProvider.setLoadingCamera(false);
@@ -92,7 +92,7 @@ List<Widget> buildVideoStarter(
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
                   await projectProvider.newVideoToProject(context, type: clib.MediaType.live, path: url);
-                  return startRoute;
+                  return homeRoute;
                 }
               });
               return;
@@ -102,7 +102,7 @@ List<Widget> buildVideoStarter(
             Navigator.of(context).pushNamed(urlRoute, arguments: {
               'nextRouteBuilder': (url) async {
                 projectProvider.newProject(context, type: clib.MediaType.live, path: url);
-                return startRoute;
+                return homeRoute;
               }
             });
           } finally {
@@ -132,7 +132,7 @@ List<Widget> buildVideoStarter(
             // create project with file
             await projectProvider.newProject(context, type: clib.MediaType.file, path: filePath);
             if (context.mounted) {
-              Navigator.of(context).pushNamed(startRoute);
+              Navigator.of(context).pushNamed(homeRoute);
             }
           } finally {
             videoStarterProvider.setLoadingFile(false);
