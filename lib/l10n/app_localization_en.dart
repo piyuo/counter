@@ -135,6 +135,15 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_detection => 'Detection';
 
   @override
+  String get settings_screen_delete_header => 'Delete this project';
+
+  @override
+  String get settings_screen_delete_content => 'Are you sure you want to delete this project?';
+
+  @override
+  String get settings_screen_delete_button => 'Delete';
+
+  @override
   String get detection_screen_title => 'Detection';
 
   @override

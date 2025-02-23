@@ -97,10 +97,10 @@ class ProjectProvider with ChangeNotifier {
 
   /// delete the project
   Future<void> deleteProject(String projectId) async {
+    closeProject();
     if (onDeleteProject != null) {
       await onDeleteProject!(projectId);
     }
-    notifyListeners();
   }
 
   /// the camera manager

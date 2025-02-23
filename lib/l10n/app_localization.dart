@@ -345,6 +345,24 @@ abstract class AppLocalization {
   /// **'Detection'**
   String get settings_screen_detection;
 
+  /// No description provided for @settings_screen_delete_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this project'**
+  String get settings_screen_delete_header;
+
+  /// No description provided for @settings_screen_delete_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this project?'**
+  String get settings_screen_delete_content;
+
+  /// No description provided for @settings_screen_delete_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get settings_screen_delete_button;
+
   /// No description provided for @detection_screen_title.
   ///
   /// In en, this message translates to:

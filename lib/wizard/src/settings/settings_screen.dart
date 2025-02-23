@@ -57,11 +57,53 @@ class SettingsScreen extends StatelessWidget {
                         title: Text(context.l.settings_screen_detection),
                         leading: const Icon(CupertinoIcons.eye),
                         trailing: const CupertinoListTileChevron(),
-                        additionalInfo: Text(projectProvider.project!.model.name),
+                        additionalInfo:
+                            projectProvider.project != null ? Text(projectProvider.project!.model.name) : null,
                         onTap: () => Navigator.of(context).pushNamed(detectionRoute, arguments: {
                           'previousPageTitle': pageTitle,
                         }),
                       ),
+                    ],
+                  ),
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.settings_screen_delete_header),
+                    children: [
+                      CupertinoListTile(
+                        title: Center(
+                            child: CupertinoButton(
+                          onPressed: () async {
+                            final navigator = Navigator.of(context);
+                            // show confirmation dialog
+                            final bool? result = await showCupertinoDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return CupertinoAlertDialog(
+                                  title: Text(context.l.settings_screen_delete_header),
+                                  content: Text(context.l.settings_screen_delete_content),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, false),
+                                      child: Text(context.l.cancel),
+                                    ),
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, true),
+                                      child: Text(context.l.settings_screen_delete_button,
+                                          style: TextStyle(color: CupertinoColors.systemRed)),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            if (result == null || !result) return;
+                            navigator.pushReplacementNamed(initialRoute);
+                            await Future.delayed(const Duration(milliseconds: 500));
+                            projectProvider.deleteProject(projectProvider.project!.projectId);
+                          },
+                          child: Text(context.l.settings_screen_delete_button,
+                              style: TextStyle(color: CupertinoColors.systemRed)),
+                        )),
+                      )
                     ],
                   ),
                 ],
