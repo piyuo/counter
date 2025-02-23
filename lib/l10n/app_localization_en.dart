@@ -288,7 +288,13 @@ class AppLocalizationEn extends AppLocalization {
   String get video_source_screen_playback_2x => '2x';
 
   @override
-  String get video_source_screen_Remove => 'Remove';
+  String get video_screen_delete_header => 'Delete this video';
+
+  @override
+  String get video_screen_delete_content => 'Are you sure you want to delete this video?';
+
+  @override
+  String get video_screen_delete_button => 'Delete';
 
   @override
   String get color_screen_title => 'Pick a color';

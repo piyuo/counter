@@ -272,15 +272,39 @@ class VideoSourceScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.video_screen_delete_header),
                     children: [
                       CupertinoListTile(
                         title: Center(
                             child: CupertinoButton(
                           onPressed: () async {
+                            // show confirmation dialog
+                            final bool? result = await showCupertinoDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return CupertinoAlertDialog(
+                                  title: Text(context.l.video_screen_delete_header),
+                                  content: Text(context.l.video_screen_delete_content),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, false),
+                                      child: Text(context.l.cancel),
+                                    ),
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, true),
+                                      child: Text(context.l.video_screen_delete_button,
+                                          style: TextStyle(color: CupertinoColors.systemRed)),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            if (result == null || !result) return;
+
                             await projectProvider.removeVideo(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
-                          child: Text(context.l.video_source_screen_Remove,
+                          child: Text(context.l.video_screen_delete_button,
                               style: TextStyle(color: CupertinoColors.systemRed)),
                         )),
                       )

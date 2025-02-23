@@ -651,11 +651,23 @@ abstract class AppLocalization {
   /// **'2x'**
   String get video_source_screen_playback_2x;
 
-  /// No description provided for @video_source_screen_Remove.
+  /// No description provided for @video_screen_delete_header.
   ///
   /// In en, this message translates to:
-  /// **'Remove'**
-  String get video_source_screen_Remove;
+  /// **'Delete this video'**
+  String get video_screen_delete_header;
+
+  /// No description provided for @video_screen_delete_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this video?'**
+  String get video_screen_delete_content;
+
+  /// No description provided for @video_screen_delete_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get video_screen_delete_button;
 
   /// No description provided for @color_screen_title.
   ///
