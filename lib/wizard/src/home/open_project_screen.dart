@@ -49,7 +49,7 @@ class OpenProjectScreen extends StatelessWidget {
                                   title: Text(project.projectName),
                                   trailing: CupertinoListTileChevron(),
                                   onTap: () async {
-                                    final ok = await projectProvider.openProject(project.projectId);
+                                    final ok = await projectProvider.openProject(context, project.projectId);
                                     if (ok && context.mounted) {
                                       Navigator.of(context).pushReplacementNamed(homeRoute);
                                     }

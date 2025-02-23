@@ -361,15 +361,21 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// open a existing project
-  Future<bool> openProject(String projectId) async {
-    final project = await getProjectById(projectId);
+  Future<bool> openProject(BuildContext context, String projectId) async {
+    project = await getProjectById(projectId);
     if (project == null) {
       return false;
     }
+    sampler.reset(project!.filter);
     // reset zone global id first to avoid id conflict
     final nextZoneId = getNextZoneId();
     setNextZoneColorIndex(nextZoneId);
-    return true;
+    if (context.mounted) {
+      await _makeProjectOpened(context);
+      notifyListeners();
+      return true;
+    }
+    return false;
   }
 
   /// start a new project with a video source, return tru e if success
@@ -378,52 +384,44 @@ class ProjectProvider with ChangeNotifier {
     setNextZoneColorIndex(0);
 
     // create project with a video source
-    final defaultVideo = Video(
-      videoId: getNextVideoId(),
-      mediaType: type,
-      videoName: 'prepare ...',
-      path: path,
-    );
     project = Project(
       projectName: _createProjectName(type, path),
-      videos: [defaultVideo],
+      videos: [],
       model: benchmarkLocalStorage.recommendedModel,
     );
     sampler.reset(project!.filter);
-    await _createVideoProvider(context, defaultVideo);
-
-    if (UniversalPlatform.isMobile && project!.isCameraOnly) {
-      await lockToPortrait();
-    }
-    onProjectOpened?.call(project!);
-    _onProjectOpened();
+    _addVideoToProject(context, type, path);
+    await _makeProjectOpened(context);
     onProjectChanged?.call(project!, null);
     notifyListeners();
     return true;
   }
 
-  /// add a new video source to the project
-  Future<VideoProvider?> newVideoToProject(BuildContext context, {required vision.MediaType type, String? path}) async {
-    assert(project != null, 'Project must be opened');
-    final video = Video(
-      videoId: getNextVideoId(),
-      mediaType: type,
-      videoName: 'prepare ...',
-      path: path,
-    );
-    project!.videos.add(video);
-    final videoProvider = await _createVideoProvider(context, video);
-    return videoProvider;
+  /// prepare the project to be ready, this function will be called when the project is opened
+  Future<void> _makeProjectOpened(BuildContext context) async {
+    await _prepareVideoProviders(context);
+    if (UniversalPlatform.isMobile && project!.isCameraOnly) {
+      await lockToPortrait();
+    }
+    onProjectOpened?.call(project!);
+    _onProjectOpened();
   }
 
-  /// every video source must have a video provider to manage the video source.
-  Future<VideoProvider> _createVideoProvider(BuildContext context, Video video) async {
+  /// add a new video to project
+  Video _addVideoToProject(BuildContext context, vision.MediaType mediaType, String? path) {
+    final video = Video(
+      videoId: getNextVideoId(),
+      mediaType: mediaType,
+      videoName: _createVideoName(context, mediaType),
+      path: path,
+    );
+
     // make sure the video source has a camera or webcam
-    if (video.mediaType == vision.MediaType.camera && video.camera == null) {
+    if (mediaType == vision.MediaType.camera && video.camera == null) {
       if (cameraManager.cameraDefines.isNotEmpty) {
         video.camera = cameraManager.cameraDefines.first;
       }
-    } else if (video.mediaType == vision.MediaType.webcam && video.webcam == null) {
+    } else if (mediaType == vision.MediaType.webcam && video.webcam == null) {
       if (webcamManager.webcamDefines.isNotEmpty) {
         for (final webcam in webcamManager.webcamDefines) {
           if (!project!.isWebcamDefineExists(webcam)) {
@@ -433,16 +431,45 @@ class ProjectProvider with ChangeNotifier {
         }
       }
     }
+    project!.videos.add(video);
+    return video;
+  }
 
-    video.videoName = _createVideoName(context, video.mediaType);
-    final videoProvider = VideoProvider(
-      video: video,
-      projectProvider: this,
-      sampler: sampler,
-    );
-    videoProviders.add(videoProvider);
-    await videoProvider.init(context, project!);
-    notifyListeners();
+  /// check if the video source already has a provider
+  bool isVideoAlreadyHasProvider(Video video) {
+    for (final videoProvider in videoProviders) {
+      if (videoProvider.video == video) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /// every video source must have a video provider to manage the video source.
+
+  Future<VideoProvider?> _prepareVideoProviders(BuildContext context) async {
+    VideoProvider? videoProvider;
+    for (final video in project!.videos) {
+      if (isVideoAlreadyHasProvider(video)) {
+        continue;
+      }
+      videoProvider = VideoProvider(
+        video: video,
+        projectProvider: this,
+        sampler: sampler,
+      );
+
+      videoProviders.add(videoProvider);
+      await videoProvider.init(context, project!);
+    }
+    return videoProvider;
+  }
+
+  /// add a new video source to the project
+  Future<VideoProvider?> newVideoToProject(BuildContext context, {required vision.MediaType type, String? path}) async {
+    assert(project != null, 'Project must be opened');
+    _addVideoToProject(context, type, path);
+    final videoProvider = await _prepareVideoProviders(context);
     return videoProvider;
   }
 
