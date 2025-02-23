@@ -176,6 +176,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoProvider: args!['videoProvider'],
                   videoZone: args['videoZone'],
                   annotation: args['annotation'],
+                  previousPageTitle: args['previousPageTitle'],
                 );
               case detectionRoute:
                 return DetectionScreen(

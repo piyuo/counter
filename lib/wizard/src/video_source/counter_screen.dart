@@ -11,8 +11,12 @@ class CounterScreen extends StatelessWidget {
     required this.videoProvider,
     required this.videoZone,
     required this.annotation,
+    this.previousPageTitle,
     super.key,
   });
+
+  /// The title of the previous page.
+  final String? previousPageTitle;
 
   /// the video provider this settings is working on
   final app.VideoProvider videoProvider;
@@ -30,159 +34,160 @@ class CounterScreen extends StatelessWidget {
       child: Consumer<TallyScreenProvider>(
         builder: (context, tallyScreenProvider, child) {
           return pip.PipScaffold(
+              previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-            child: Column(children: [
-              pip.PipHeader(
-                child: Column(
-                  children: [
-                    Text(clib.tallyTypeToString(context, annotation.type),
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                    Text(
-                      clib.tallyTypeToDescription(context, annotation.type),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-              CupertinoListSection(
-                header: Text(context.l.counter_screen_show_on),
-                backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                children: [
-                  CupertinoListTile(
-                    title: Text(context.l.counter_screen_enabled),
-                    trailing: CupertinoSwitch(
-                      // This bool value toggles the switch.
-                      value: annotation.enabled,
-                      onChanged: (bool? value) {
-                        tallyScreenProvider.toggleEnabled(context, videoProvider, videoZone, annotation);
-                      },
+                child: Column(children: [
+                  pip.PipHeader(
+                    child: Column(
+                      children: [
+                        Text(clib.tallyTypeToString(context, annotation.type),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        Text(
+                          clib.tallyTypeToDescription(context, annotation.type),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-              CupertinoListSection(
-                header: const Text('Title'),
-                backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                footer: tallyScreenProvider._titleErrorMessage.isNotEmpty
-                    ? Text(
-                        tallyScreenProvider._titleErrorMessage,
-                        style: TextStyle(color: CupertinoColors.systemRed),
+                  CupertinoListSection(
+                    header: Text(context.l.counter_screen_show_on),
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    children: [
+                      CupertinoListTile(
+                        title: Text(context.l.counter_screen_enabled),
+                        trailing: CupertinoSwitch(
+                          // This bool value toggles the switch.
+                          value: annotation.enabled,
+                          onChanged: (bool? value) {
+                            tallyScreenProvider.toggleEnabled(context, videoProvider, videoZone, annotation);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  CupertinoListSection(
+                    header: const Text('Title'),
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    footer: tallyScreenProvider._titleErrorMessage.isNotEmpty
+                        ? Text(
+                            tallyScreenProvider._titleErrorMessage,
+                            style: TextStyle(color: CupertinoColors.systemRed),
+                          )
+                        : null,
+                    children: [
+                      CupertinoTextField(
+                        decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
+                        clearButtonMode: OverlayVisibilityMode.editing,
+                        padding: const EdgeInsets.all(16),
+                        controller: tallyScreenProvider.titleController,
+                        onChanged: (text) => tallyScreenProvider.setTitle(context, text),
                       )
-                    : null,
-                children: [
-                  CupertinoTextField(
-                    decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
-                    clearButtonMode: OverlayVisibilityMode.editing,
-                    padding: const EdgeInsets.all(16),
-                    controller: tallyScreenProvider.titleController,
-                    onChanged: (text) => tallyScreenProvider.setTitle(context, text),
-                  )
-                ],
-              ),
-              if (annotation.type == clib.TallyType.reentered)
-                CupertinoListSection(
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(context.l.counter_screen_reentry_threshold),
-                  footer: Text(context.l.counter_screen_reentry_desc
-                      .replaceAll('#0', '${videoZone.reenteredThreshold}')
-                      .replaceAll('#1', '${videoZone.cooldownThreshold}')),
-                  children: [
-                    CupertinoListTile(
-                      title: Text(context.l.counter_screen_reentry_title),
-                      trailing: InputQty(
-                        initVal: videoZone.reenteredThreshold,
-                        onQtyChanged: (v) {
-                          tallyScreenProvider.setReenteredThreshold(videoZone, v.toInt());
-                        },
-                        decoration: QtyDecorationProps(
-                          isBordered: false,
-                          borderShape: BorderShapeBtn.circle,
-                          btnColor: CupertinoColors.activeBlue,
-                          width: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              if (annotation.type == clib.TallyType.reentered)
-                CupertinoListSection(
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(context.l.counter_screen_cooldown_threshold),
-                  footer:
-                      Text(context.l.counter_screen_cooldown_desc.replaceAll('#0', '${videoZone.cooldownThreshold}')),
-                  children: [
-                    CupertinoListTile(
-                      title: Text(context.l.counter_screen_cooldown_time),
-                      subtitle: Text(context.l.counter_screen_cooldown_in_seconds),
-                      trailing: InputQty(
-                        initVal: videoZone.cooldownThreshold,
-                        onQtyChanged: (v) {
-                          tallyScreenProvider.setCooldownThreshold(videoZone, v.toInt());
-                        },
-                        decoration: QtyDecorationProps(
-                          isBordered: false,
-                          borderShape: BorderShapeBtn.circle,
-                          btnColor: CupertinoColors.activeBlue,
-                          width: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              if (annotation.type == clib.TallyType.stagnant)
-                CupertinoListSection(
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  header: Text(context.l.counter_screen_stagnant_threshold),
-                  footer: Text(
-                    context.l.counter_screen_stagnant_desc.replaceAll('#0', '${videoZone.stagnantThreshold}'),
+                    ],
                   ),
-                  children: [
-                    CupertinoListTile(
-                      title: Text(context.l.counter_screen_stagnant_consider),
-                      subtitle: Text(context.l.counter_screen_stagnant_in_seconds),
-                      trailing: InputQty(
-                        initVal: videoZone.stagnantThreshold,
-                        onQtyChanged: (v) {
-                          tallyScreenProvider.setStagnantThreshold(videoZone, v.toInt());
-                        },
-                        decoration: QtyDecorationProps(
-                          isBordered: false,
-                          borderShape: BorderShapeBtn.circle,
-                          btnColor: CupertinoColors.activeBlue,
-                          width: 12,
+                  if (annotation.type == clib.TallyType.reentered)
+                    CupertinoListSection(
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      header: Text(context.l.counter_screen_reentry_threshold),
+                      footer: Text(context.l.counter_screen_reentry_desc
+                          .replaceAll('#0', '${videoZone.reenteredThreshold}')
+                          .replaceAll('#1', '${videoZone.cooldownThreshold}')),
+                      children: [
+                        CupertinoListTile(
+                          title: Text(context.l.counter_screen_reentry_title),
+                          trailing: InputQty(
+                            initVal: videoZone.reenteredThreshold,
+                            onQtyChanged: (v) {
+                              tallyScreenProvider.setReenteredThreshold(videoZone, v.toInt());
+                            },
+                            decoration: QtyDecorationProps(
+                              isBordered: false,
+                              borderShape: BorderShapeBtn.circle,
+                              btnColor: CupertinoColors.activeBlue,
+                              width: 12,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
-              CupertinoListSection(
-                backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                header: Text(context.l.counter_screen_stagnant_desc_prefix),
-                children: [
-                  CupertinoTextField(
-                    decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
-                    clearButtonMode: OverlayVisibilityMode.editing,
-                    padding: const EdgeInsets.all(16),
-                    controller: tallyScreenProvider.prefixController,
-                    onChanged: (text) => tallyScreenProvider.setPrefix(text),
-                  )
-                ],
-              ),
-              CupertinoListSection(
-                backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                header: Text(context.l.counter_screen_stagnant_desc_suffix),
-                children: [
-                  CupertinoTextField(
-                    decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
-                    clearButtonMode: OverlayVisibilityMode.editing,
-                    padding: const EdgeInsets.all(16),
-                    controller: tallyScreenProvider.suffixController,
-                    onChanged: (text) => tallyScreenProvider.setSuffix(text),
-                  )
-                ],
-              ),
-            ]),
-          ));
+                  if (annotation.type == clib.TallyType.reentered)
+                    CupertinoListSection(
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      header: Text(context.l.counter_screen_cooldown_threshold),
+                      footer: Text(
+                          context.l.counter_screen_cooldown_desc.replaceAll('#0', '${videoZone.cooldownThreshold}')),
+                      children: [
+                        CupertinoListTile(
+                          title: Text(context.l.counter_screen_cooldown_time),
+                          subtitle: Text(context.l.counter_screen_cooldown_in_seconds),
+                          trailing: InputQty(
+                            initVal: videoZone.cooldownThreshold,
+                            onQtyChanged: (v) {
+                              tallyScreenProvider.setCooldownThreshold(videoZone, v.toInt());
+                            },
+                            decoration: QtyDecorationProps(
+                              isBordered: false,
+                              borderShape: BorderShapeBtn.circle,
+                              btnColor: CupertinoColors.activeBlue,
+                              width: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  if (annotation.type == clib.TallyType.stagnant)
+                    CupertinoListSection(
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      header: Text(context.l.counter_screen_stagnant_threshold),
+                      footer: Text(
+                        context.l.counter_screen_stagnant_desc.replaceAll('#0', '${videoZone.stagnantThreshold}'),
+                      ),
+                      children: [
+                        CupertinoListTile(
+                          title: Text(context.l.counter_screen_stagnant_consider),
+                          subtitle: Text(context.l.counter_screen_stagnant_in_seconds),
+                          trailing: InputQty(
+                            initVal: videoZone.stagnantThreshold,
+                            onQtyChanged: (v) {
+                              tallyScreenProvider.setStagnantThreshold(videoZone, v.toInt());
+                            },
+                            decoration: QtyDecorationProps(
+                              isBordered: false,
+                              borderShape: BorderShapeBtn.circle,
+                              btnColor: CupertinoColors.activeBlue,
+                              width: 12,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.counter_screen_stagnant_desc_prefix),
+                    children: [
+                      CupertinoTextField(
+                        decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
+                        clearButtonMode: OverlayVisibilityMode.editing,
+                        padding: const EdgeInsets.all(16),
+                        controller: tallyScreenProvider.prefixController,
+                        onChanged: (text) => tallyScreenProvider.setPrefix(text),
+                      )
+                    ],
+                  ),
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.counter_screen_stagnant_desc_suffix),
+                    children: [
+                      CupertinoTextField(
+                        decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
+                        clearButtonMode: OverlayVisibilityMode.editing,
+                        padding: const EdgeInsets.all(16),
+                        controller: tallyScreenProvider.suffixController,
+                        onChanged: (text) => tallyScreenProvider.setSuffix(text),
+                      )
+                    ],
+                  ),
+                ]),
+              ));
         },
       ),
     );
