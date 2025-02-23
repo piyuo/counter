@@ -47,6 +47,9 @@ class _MyAppState extends State<MyApp> {
                     onGetProjectById: (String projectId) async {
                       return await dataManager.getProjectById(projectId);
                     },
+                    onDeleteProject: (String projectId) async {
+                      await dataManager.deleteProject(projectId);
+                    },
                   )..init(context)),
           ChangeNotifierProvider<pip.PipProvider>(
               create: (_) => pip.PipProvider()..init(const Duration(seconds: 2), getPanelPositionWhenProjectOpened())),

@@ -31,6 +31,7 @@ class ProjectProvider with ChangeNotifier {
     this.onProjectChanged,
     this.onGetProjectSummaries,
     this.onGetProjectById,
+    this.onDeleteProject,
   });
 
   /// keep the benchmark result to use in the create project screen choose default model
@@ -75,6 +76,9 @@ class ProjectProvider with ChangeNotifier {
   /// called by open project screen to get the project summaries
   final Future<Project?> Function(String)? onGetProjectById;
 
+  /// called by open project screen to delete the project
+  final Future<void> Function(String)? onDeleteProject;
+
   /// get the project summaries
   Future<List<ProjectSummary>> getProjectSummaries() async {
     if (onGetProjectSummaries != null) {
@@ -89,6 +93,14 @@ class ProjectProvider with ChangeNotifier {
       return await onGetProjectById!(projectId);
     }
     return null;
+  }
+
+  /// delete the project
+  Future<void> deleteProject(String projectId) async {
+    if (onDeleteProject != null) {
+      await onDeleteProject!(projectId);
+    }
+    notifyListeners();
   }
 
   /// the camera manager

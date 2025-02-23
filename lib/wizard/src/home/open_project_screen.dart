@@ -2,6 +2,7 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../wizard_navigator.dart';
@@ -51,7 +52,25 @@ class OpenProjectScreen extends StatelessWidget {
                       return CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                         children: projects
-                            .map((project) => CupertinoListTile(
+                            .map((project) => Slidable(
+                                startActionPane: ActionPane(
+                                  motion: const ScrollMotion(),
+                                  children: [
+                                    SlidableAction(
+                                      // An action can be bigger than the others.
+                                      onPressed: (_) {
+                                        projectProvider.deleteProject(project.projectId);
+                                        openProjectScreenProvider.onProjectDeleted();
+                                      },
+                                      flex: 2,
+                                      backgroundColor: CupertinoColors.systemRed,
+                                      foregroundColor: CupertinoColors.white,
+                                      icon: CupertinoIcons.delete,
+                                      label: 'Remove',
+                                    ),
+                                  ],
+                                ),
+                                child: CupertinoListTile(
                                   leading: Icon(CupertinoIcons.archivebox),
                                   title: Text(project.projectName),
                                   trailing: CupertinoListTileChevron(),
@@ -61,7 +80,7 @@ class OpenProjectScreen extends StatelessWidget {
                                       Navigator.of(context).pushReplacementNamed(homeRoute);
                                     }
                                   },
-                                ))
+                                )))
                             .toList(),
                       );
                     }
@@ -79,4 +98,9 @@ class OpenProjectScreen extends StatelessWidget {
 /// provide open project screen support.
 class OpenProjectScreenProvider with ChangeNotifier {
   OpenProjectScreenProvider();
+
+  /// called when the project is deleted.
+  void onProjectDeleted() {
+    notifyListeners();
+  }
 }
