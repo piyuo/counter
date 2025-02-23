@@ -2,7 +2,6 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../wizard_navigator.dart';
@@ -20,6 +19,14 @@ class OpenProjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final String pageTitle = context.l.open_project_screen_title;
     final projectProvider = app.ProjectProvider.of(context);
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    buildMaxHeight(child) {
+      return ConstrainedBox(
+        constraints: BoxConstraints(minHeight: screenHeight),
+        child: Center(child: child),
+      );
+    }
 
     return ChangeNotifierProvider(
       create: (_) => OpenProjectScreenProvider(),
@@ -34,11 +41,11 @@ class OpenProjectScreen extends StatelessWidget {
                   future: projectProvider.getProjectSummaries(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
+                      return buildMaxHeight(CupertinoActivityIndicator(radius: 28));
                     } else if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
+                      return buildMaxHeight(Text('Error: ${snapshot.error}'));
                     } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Center(child: Text(context.l.open_project_screen_no_project));
+                      return buildMaxHeight(Text(context.l.open_project_screen_no_project));
                     } else {
                       final projects = snapshot.data!;
                       return CupertinoListSection(

@@ -840,7 +840,7 @@ abstract class AppLocalization {
   /// No description provided for @open_project_screen_no_project.
   ///
   /// In en, this message translates to:
-  /// **'No project found'**
+  /// **'No project found.'**
   String get open_project_screen_no_project;
 
   /// No description provided for @submit.

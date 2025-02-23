@@ -381,7 +381,7 @@ class AppLocalizationEn extends AppLocalization {
   String get open_project_screen_desc => 'Select a project to open';
 
   @override
-  String get open_project_screen_no_project => 'No project found';
+  String get open_project_screen_no_project => 'No project found.';
 
   @override
   String get submit => 'Submit';

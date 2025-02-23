@@ -124,8 +124,7 @@
     "object_class_screen_title":"Detected Objects",
     "open_project_screen_title":"Open Project",
     "open_project_screen_desc":"Select a project to open",
-    "open_project_screen_no_project":"No project found",
-
+    "open_project_screen_no_project":"No project found.",
     "submit":"Submit",
     "ok":"OK",
     "cancel":"Cancel",
