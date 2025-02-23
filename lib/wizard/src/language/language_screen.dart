@@ -1,7 +1,7 @@
-import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:vision/vision.dart' as vision;
 
 import 'language.dart';
 
@@ -16,7 +16,7 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final languageProvider = app.LanguageProvider.of(context);
+    final languageProvider = vision.LanguageProvider.of(context);
     final languages = [
       Language(null, 'System'),
       ...Language.fromSupportedLocales(context),

@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
 
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => app.LanguageProvider()..loadLocale()),
+          ChangeNotifierProvider(create: (_) => vision.LanguageProvider()..loadLocale()),
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
                     onProjectChanged: (app.Project project, app.Video? video) async {
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           data: CupertinoThemeData(
             brightness: Brightness.dark,
           ),
-          child: Consumer2<app.LanguageProvider, app.ProjectProvider>(
+          child: Consumer2<vision.LanguageProvider, app.ProjectProvider>(
               builder: (context, languageProvider, projectProvider, child) {
             buildMainScreen() {
               return Scaffold(
@@ -67,7 +67,6 @@ class _MyAppState extends State<MyApp> {
                 ),
                 body: SingleChildScrollView(
                   child: Container(
-//                      color: CupertinoColors.systemBackground.resolveFrom(context),
                       color: CupertinoColors.tertiarySystemBackground.resolveFrom(context),
                       alignment: Alignment.center,
                       child: Column(children: [

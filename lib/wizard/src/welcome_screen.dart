@@ -4,6 +4,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:vision/vision.dart' as vision;
 
 import 'home/video_starter.dart';
 import 'wizard_navigator.dart';
@@ -69,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                       CupertinoListTile(
                           leading: Icon(CupertinoIcons.globe),
                           title: Text(context.l.welcome_screen_language),
-                          additionalInfo: Text(app.LanguageProvider.of(context).getLanguage(context)),
+                          additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context)),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
                             Navigator.of(context).pushNamed(languageRoute, arguments: {

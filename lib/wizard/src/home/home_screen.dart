@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 import 'gauge_view.dart';
@@ -153,7 +154,7 @@ class HomeScreen extends StatelessWidget {
             ).toList();
           }
 
-          final languageProvider = app.LanguageProvider.of(context);
+          final languageProvider = vision.LanguageProvider.of(context);
           buildTimeTagString() {
             final now = DateTime.now();
             return '${DateFormat.yMMMMEEEEd(languageProvider.locale).format(now)} ${DateFormat.jm(languageProvider.locale).format(now)}';
