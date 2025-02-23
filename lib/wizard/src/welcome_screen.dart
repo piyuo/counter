@@ -15,9 +15,9 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<HomeScreenProvider>(
-      create: (_) => HomeScreenProvider()..init(),
-      child: Consumer2<app.ProjectProvider, HomeScreenProvider>(
+    return ChangeNotifierProvider<WelcomeScreenProvider>(
+      create: (_) => WelcomeScreenProvider()..init(),
+      child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
             title: context.l.welcome_screen_title,
@@ -91,8 +91,8 @@ class WelcomeScreen extends StatelessWidget {
   }
 }
 
-/// provide home screen support
-class HomeScreenProvider with ChangeNotifier {
+/// provide welcome screen support
+class WelcomeScreenProvider with ChangeNotifier {
   /// The version of vision app used.
   String appVersion = '';
 
