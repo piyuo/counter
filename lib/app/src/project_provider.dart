@@ -29,7 +29,6 @@ class ProjectProvider with ChangeNotifier {
     this.onProjectOpened,
     this.onProjectClosed,
     this.onProjectChanged,
-    this.onWatchProjectSummaries,
     this.onGetProjectSummaries,
     this.onGetProjectById,
     this.onDeleteProject,
@@ -74,9 +73,6 @@ class ProjectProvider with ChangeNotifier {
   /// called by open project screen to get the project summaries
   final Future<List<ProjectSummary>> Function()? onGetProjectSummaries;
 
-  // Returns a stream of project summaries that updates whenever the projects table changes.
-  final Stream<List<ProjectSummary>> Function()? onWatchProjectSummaries;
-
   /// called by open project screen to get the project summaries
   final Future<Project?> Function(String)? onGetProjectById;
 
@@ -89,14 +85,6 @@ class ProjectProvider with ChangeNotifier {
       return await onGetProjectSummaries!();
     }
     return [];
-  }
-
-  /// watch the project summaries
-  Stream<List<ProjectSummary>> watchProjectSummaries() {
-    if (onWatchProjectSummaries != null) {
-      return onWatchProjectSummaries!();
-    }
-    return Stream.empty();
   }
 
   /// get the project by its id
