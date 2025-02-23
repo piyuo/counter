@@ -15,12 +15,13 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageTitle = context.l.welcome_screen_title;
     return ChangeNotifierProvider<WelcomeScreenProvider>(
       create: (_) => WelcomeScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
-            title: context.l.welcome_screen_title,
+            title: pageTitle,
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -55,7 +56,9 @@ class WelcomeScreen extends StatelessWidget {
                           title: Text(context.l.welcome_screen_open_projects),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
-                            Navigator.of(context).pushNamed(openProjectRoute);
+                            Navigator.of(context).pushNamed(openProjectRoute, arguments: {
+                              'previousPageTitle': pageTitle,
+                            });
                           }),
                     ],
                   ),
@@ -69,7 +72,9 @@ class WelcomeScreen extends StatelessWidget {
                           additionalInfo: Text(app.LanguageProvider.of(context).getLanguage(context)),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
-                            Navigator.of(context).pushNamed(languageRoute);
+                            Navigator.of(context).pushNamed(languageRoute, arguments: {
+                              'previousPageTitle': pageTitle,
+                            });
                           }),
                       CupertinoListTile(
                           leading: Icon(CupertinoIcons.info),
@@ -77,7 +82,9 @@ class WelcomeScreen extends StatelessWidget {
                           title: Text(context.l.welcome_screen_about),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
-                            Navigator.of(context).pushNamed(aboutRoute);
+                            Navigator.of(context).pushNamed(aboutRoute, arguments: {
+                              'previousPageTitle': pageTitle,
+                            });
                           }),
                     ],
                   ),

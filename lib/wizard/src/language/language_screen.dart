@@ -7,8 +7,12 @@ import 'language.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({
+    this.previousPageTitle,
     super.key,
   });
+
+  /// The title of the previous page.
+  final String? previousPageTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +22,7 @@ class LanguageScreen extends StatelessWidget {
       ...Language.fromSupportedLocales(context),
     ];
     return pip.PipScaffold(
+      previousPageTitle: previousPageTitle,
       child: SingleChildScrollView(
         child: Column(
           children: [

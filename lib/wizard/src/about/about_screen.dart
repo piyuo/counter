@@ -10,8 +10,12 @@ import '../wizard_navigator.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({
+    this.previousPageTitle,
     super.key,
   });
+
+  /// The title of the previous page.
+  final String? previousPageTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +24,7 @@ class AboutScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
+            previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
               child: Column(
                 children: [

@@ -120,7 +120,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case '/':
                 return WelcomeScreen();
               case aboutRoute:
-                return AboutScreen();
+                return AboutScreen(
+                  previousPageTitle: args!['previousPageTitle'],
+                );
               case benchmarkRoute:
                 return BenchmarkScreen();
               case opencvRoute:
@@ -128,9 +130,13 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case homeRoute:
                 return HomeScreen();
               case openProjectRoute:
-                return OpenProjectScreen();
+                return OpenProjectScreen(
+                  previousPageTitle: args!['previousPageTitle'],
+                );
               case languageRoute:
-                return LanguageScreen();
+                return LanguageScreen(
+                  previousPageTitle: args!['previousPageTitle'],
+                );
               case filterRoute:
                 return FilterScreen(
                   previousPageTitle: args!['previousPageTitle'],

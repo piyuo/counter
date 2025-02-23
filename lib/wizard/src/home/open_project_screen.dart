@@ -11,6 +11,7 @@ class OpenProjectScreen extends StatefulWidget {
     super.key,
   });
 
+  /// The title of the previous page.
   final String? previousPageTitle;
 
   @override
