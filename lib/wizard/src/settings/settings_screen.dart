@@ -96,7 +96,10 @@ class SettingsScreen extends StatelessWidget {
                               },
                             );
                             if (result == null || !result) return;
-                            navigator.pushReplacementNamed(initialRoute);
+                            navigator.pushNamedAndRemoveUntil(
+                              initialRoute,
+                              (Route<dynamic> route) => false,
+                            );
                             await Future.delayed(const Duration(milliseconds: 500));
                             projectProvider.deleteProject(projectProvider.project!.projectId);
                           },
