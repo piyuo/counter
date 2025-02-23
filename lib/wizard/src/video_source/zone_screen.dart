@@ -179,7 +179,7 @@ class ZoneScreen extends StatelessWidget {
 */
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.zone_screen_remove_desc),
+                    header: Text(context.l.zone_screen_delete_header),
                     children: [
                       CupertinoListTile(
                         title: Center(
@@ -189,14 +189,14 @@ class ZoneScreen extends StatelessWidget {
                               await showCupertinoDialog(
                                 context: context,
                                 builder: (context) => CupertinoAlertDialog(
-                                  title: Text(context.l.zone_screen_remove_title),
-                                  content: Text(context.l.zone_screen_remove_content),
+                                  title: Text(context.l.zone_screen_can_not_delete),
+                                  content: Text(context.l.zone_screen_one_zone_required),
                                   actions: <Widget>[
                                     CupertinoDialogAction(
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
-                                      child: const Text('OK'),
+                                      child: Text(context.l.close),
                                     ),
                                   ],
                                 ),
@@ -204,11 +204,34 @@ class ZoneScreen extends StatelessWidget {
                               return;
                             }
 
+                            // show confirmation dialog
+                            final bool? result = await showCupertinoDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return CupertinoAlertDialog(
+                                  title: Text(context.l.zone_screen_delete_header),
+                                  content: Text(context.l.zone_screen_delete_content),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, false),
+                                      child: Text(context.l.cancel),
+                                    ),
+                                    CupertinoDialogAction(
+                                      onPressed: () => Navigator.pop(context, true),
+                                      child: Text(context.l.zone_screen_delete_button),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            if (result == null || !result) return;
+
                             videoProvider.removeZone(videoZone);
                             projectProvider.notifyProjectChanged(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
-                          child: Text(context.l.zone_screen_remove, style: TextStyle(color: CupertinoColors.systemRed)),
+                          child: Text(context.l.zone_screen_delete_button,
+                              style: TextStyle(color: CupertinoColors.systemRed)),
                         )),
                       )
                     ],
@@ -251,7 +274,7 @@ class ZoneScreenProvider with ChangeNotifier {
   /// set zone name
   void setZoneName(BuildContext context, String text) {
     if (text.isEmpty) {
-      _zoneNameErrorMessage = context.l.zone_screen_remove_error;
+      _zoneNameErrorMessage = context.l.zone_screen_zone_name_required;
     } else {
       _zoneNameErrorMessage = '';
       videoProvider.setZoneName(videoZone, zoneNameFieldController.text);

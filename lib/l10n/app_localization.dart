@@ -711,35 +711,41 @@ abstract class AppLocalization {
   /// **'Detection'**
   String get zone_screen_detection;
 
-  /// No description provided for @zone_screen_remove.
+  /// No description provided for @zone_screen_delete_header.
   ///
   /// In en, this message translates to:
-  /// **'Remove'**
-  String get zone_screen_remove;
+  /// **'Delete this zone'**
+  String get zone_screen_delete_header;
 
-  /// No description provided for @zone_screen_remove_desc.
+  /// No description provided for @zone_screen_delete_content.
   ///
   /// In en, this message translates to:
-  /// **'Remove this zone'**
-  String get zone_screen_remove_desc;
+  /// **'Are you sure you want to delete this zone?'**
+  String get zone_screen_delete_content;
 
-  /// No description provided for @zone_screen_remove_title.
+  /// No description provided for @zone_screen_delete_button.
   ///
   /// In en, this message translates to:
-  /// **'Cannot remove zone'**
-  String get zone_screen_remove_title;
+  /// **'Delete'**
+  String get zone_screen_delete_button;
 
-  /// No description provided for @zone_screen_remove_content.
+  /// No description provided for @zone_screen_can_not_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot delete zone'**
+  String get zone_screen_can_not_delete;
+
+  /// No description provided for @zone_screen_one_zone_required.
   ///
   /// In en, this message translates to:
   /// **'At least one zone is required.'**
-  String get zone_screen_remove_content;
+  String get zone_screen_one_zone_required;
 
-  /// No description provided for @zone_screen_remove_error.
+  /// No description provided for @zone_screen_zone_name_required.
   ///
   /// In en, this message translates to:
   /// **'The zone name cannot be empty'**
-  String get zone_screen_remove_error;
+  String get zone_screen_zone_name_required;
 
   /// No description provided for @counter_screen_show_on.
   ///

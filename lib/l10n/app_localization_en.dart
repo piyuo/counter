@@ -318,19 +318,22 @@ class AppLocalizationEn extends AppLocalization {
   String get zone_screen_detection => 'Detection';
 
   @override
-  String get zone_screen_remove => 'Remove';
+  String get zone_screen_delete_header => 'Delete this zone';
 
   @override
-  String get zone_screen_remove_desc => 'Remove this zone';
+  String get zone_screen_delete_content => 'Are you sure you want to delete this zone?';
 
   @override
-  String get zone_screen_remove_title => 'Cannot remove zone';
+  String get zone_screen_delete_button => 'Delete';
 
   @override
-  String get zone_screen_remove_content => 'At least one zone is required.';
+  String get zone_screen_can_not_delete => 'Cannot delete zone';
 
   @override
-  String get zone_screen_remove_error => 'The zone name cannot be empty';
+  String get zone_screen_one_zone_required => 'At least one zone is required.';
+
+  @override
+  String get zone_screen_zone_name_required => 'The zone name cannot be empty';
 
   @override
   String get counter_screen_show_on => 'Show on screen';
