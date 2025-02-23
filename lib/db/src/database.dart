@@ -66,6 +66,27 @@ class AppDatabase extends _$AppDatabase {
     await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
   }
 
+  // Returns a stream of project summaries that updates whenever the projects table changes.
+  Stream<List<app.ProjectSummary>> watchProjectSummaries() {
+    final query = selectOnly(projects)
+      ..addColumns([
+        projects.projectId,
+        projects.projectName,
+        projects.createdAt,
+        projects.updatedAt,
+      ]);
+
+    // Convert the query to a stream that watches for changes
+    return query.watch().map((rows) => rows
+        .map((row) => app.ProjectSummary(
+              projectId: row.read(projects.projectId)!,
+              projectName: row.read(projects.projectName)!,
+              createdAt: row.read(projects.createdAt)!,
+              updatedAt: row.read(projects.updatedAt)!,
+            ))
+        .toList());
+  }
+
   /// get project summaries without the data blob.
   Future<List<app.ProjectSummary>> getProjectSummaries() async {
     final query = selectOnly(projects)

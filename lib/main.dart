@@ -41,6 +41,9 @@ class _MyAppState extends State<MyApp> {
                       await dataManager.setProject(project);
                       print('project ${project.projectName}');
                     },
+                    onWatchProjectSummaries: () {
+                      return dataManager.watchProjectSummaries();
+                    },
                     onGetProjectSummaries: () async {
                       return await dataManager.getProjectSummaries();
                     },

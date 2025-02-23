@@ -2,7 +2,6 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
 import '../wizard_navigator.dart';
@@ -13,7 +12,6 @@ class OpenProjectScreen extends StatelessWidget {
     super.key,
   });
 
-  /// the previous page title
   final String? previousPageTitle;
 
   @override
@@ -38,8 +36,9 @@ class OpenProjectScreen extends StatelessWidget {
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
               child: Column(children: [
-                FutureBuilder<List<app.ProjectSummary>>(
-                  future: projectProvider.getProjectSummaries(),
+                StreamBuilder<List<app.ProjectSummary>>(
+                  // Changed to StreamBuilder
+                  stream: projectProvider.watchProjectSummaries(), // Assuming you add this method
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return buildMaxHeight(CupertinoActivityIndicator(radius: 28));
@@ -51,37 +50,37 @@ class OpenProjectScreen extends StatelessWidget {
                       final projects = snapshot.data!;
                       return CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                        children: projects
-                            .map((project) => Slidable(
-                                startActionPane: ActionPane(
-                                  motion: const ScrollMotion(),
-                                  children: [
-                                    SlidableAction(
-                                      // An action can be bigger than the others.
-                                      onPressed: (_) {
-                                        projectProvider.deleteProject(project.projectId);
-                                        openProjectScreenProvider.onProjectDeleted();
-                                      },
-                                      flex: 2,
-                                      backgroundColor: CupertinoColors.systemRed,
-                                      foregroundColor: CupertinoColors.white,
-                                      icon: CupertinoIcons.delete,
-                                      label: 'Remove',
-                                    ),
-                                  ],
-                                ),
-                                child: CupertinoListTile(
-                                  leading: Icon(CupertinoIcons.archivebox),
-                                  title: Text(project.projectName),
-                                  trailing: CupertinoListTileChevron(),
-                                  onTap: () async {
-                                    final ok = await projectProvider.openProject(context, project.projectId);
-                                    if (ok && context.mounted) {
-                                      Navigator.of(context).pushReplacementNamed(homeRoute);
-                                    }
-                                  },
-                                )))
-                            .toList(),
+                        children: projects.map((project) {
+                          return Dismissible(
+                            // Changed to Dismissible for smoother animations
+                            key: Key(project.projectId),
+                            background: Container(
+                              color: CupertinoColors.systemRed,
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.symmetric(horizontal: 20),
+                              child: Icon(
+                                CupertinoIcons.delete,
+                                color: CupertinoColors.white,
+                              ),
+                            ),
+                            direction: DismissDirection.startToEnd,
+                            onDismissed: (direction) async {
+                              // Delete without triggering a rebuild
+                              await projectProvider.deleteProject(project.projectId);
+                            },
+                            child: CupertinoListTile(
+                              leading: Icon(CupertinoIcons.archivebox),
+                              title: Text(project.projectName),
+                              trailing: CupertinoListTileChevron(),
+                              onTap: () async {
+                                final ok = await projectProvider.openProject(context, project.projectId);
+                                if (ok && context.mounted) {
+                                  Navigator.of(context).pushReplacementNamed(homeRoute);
+                                }
+                              },
+                            ),
+                          );
+                        }).toList(),
                       );
                     }
                   },
@@ -95,12 +94,7 @@ class OpenProjectScreen extends StatelessWidget {
   }
 }
 
-/// provide open project screen support.
+// Updated Provider
 class OpenProjectScreenProvider with ChangeNotifier {
   OpenProjectScreenProvider();
-
-  /// called when the project is deleted.
-  void onProjectDeleted() {
-    notifyListeners();
-  }
 }

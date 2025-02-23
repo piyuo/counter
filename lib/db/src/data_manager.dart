@@ -23,6 +23,11 @@ class DataManager {
     return await appDatabase.getProjectSummaries();
   }
 
+  // Returns a stream of project summaries that updates whenever the projects table changes.
+  Stream<List<app.ProjectSummary>> watchProjectSummaries() {
+    return appDatabase.watchProjectSummaries();
+  }
+
   /// Get project by its ID.
   Future<app.Project?> getProjectById(String projectId) async {
     final project = await appDatabase.getProjectById(projectId);
