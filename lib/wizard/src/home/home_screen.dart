@@ -137,7 +137,11 @@ class HomeScreen extends StatelessWidget {
                               style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                           trailing: const CupertinoListTileChevron(),
                           onTap: () {
-                            gotoVideoSourceRoute(projectProvider, videoProvider);
+                            gotoVideoSourceRoute(
+                              projectProvider: projectProvider,
+                              videoProvider: videoProvider,
+                              previousPageTitle: pageTitle,
+                            );
                           },
                         ),
                         ...buildGauges(),

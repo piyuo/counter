@@ -99,7 +99,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
       switch (command.wizardCommands) {
         case app.WizardCommands.showVideoSettings:
           if (context.mounted) {
-            gotoVideoSourceRoute(projectProvider, command.arguments);
+            gotoVideoSourceRoute(projectProvider: projectProvider, videoProvider: command.arguments);
           }
           break;
       }
@@ -204,7 +204,11 @@ class _WizardNavigatorState extends State<WizardNavigator> {
 }
 
 ///  Navigate to the video source route
-void gotoVideoSourceRoute(app.ProjectProvider projectProvider, videoProvider) async {
+void gotoVideoSourceRoute({
+  required app.ProjectProvider projectProvider,
+  required videoProvider,
+  String? previousPageTitle,
+}) async {
   await projectProvider.enterVideoScreen(videoProvider);
   try {
     await projectProvider.navigatorKey.currentState!.pushNamedAndRemoveUntil(
@@ -215,6 +219,7 @@ void gotoVideoSourceRoute(app.ProjectProvider projectProvider, videoProvider) as
           route.settings.name == '/',
       arguments: {
         'videoProvider': videoProvider,
+        'previousPageTitle': previousPageTitle,
       },
     );
   } finally {
