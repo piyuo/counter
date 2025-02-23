@@ -45,7 +45,7 @@ class AppLocalizationEn extends AppLocalization {
   String get language_screen_language => 'Language';
 
   @override
-  String get about_screen_about => 'About';
+  String get about_screen_title => 'About';
 
   @override
   String get about_screen_platform => 'Platform';

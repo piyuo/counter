@@ -12,7 +12,7 @@
     "welcome_screen_open_projects_tip":"All project will save to local automatically",
     "welcome_screen_open_projects":"Open existing project",
     "language_screen_language":"Language",
-    "about_screen_about":"About",
+    "about_screen_title":"About",
     "about_screen_platform":"Platform",
     "about_screen_app_version":"App Version",
     "about_screen_models":"Models",

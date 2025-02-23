@@ -19,6 +19,7 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageTitle = context.l.about_screen_title;
     return ChangeNotifierProvider<AboutScreenProvider>(
       create: (_) => AboutScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
@@ -33,7 +34,7 @@ class AboutScreen extends StatelessWidget {
                       children: [
                         Icon(CupertinoIcons.info, size: 44),
                         const SizedBox(height: 8.0),
-                        Text(context.l.about_screen_about, style: const TextStyle(fontSize: 20.0)),
+                        Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
                       ],
                     ),
                   ),
@@ -59,7 +60,9 @@ class AboutScreen extends StatelessWidget {
                         trailing: CupertinoListTileChevron(),
                         title: Text(context.l.about_screen_benchmark),
                         onTap: () {
-                          Navigator.of(context).pushNamed(benchmarkRoute);
+                          Navigator.of(context).pushNamed(benchmarkRoute, arguments: {
+                            'previousPageTitle': pageTitle,
+                          });
                         },
                       ),
                     ],

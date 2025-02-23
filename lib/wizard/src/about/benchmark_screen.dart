@@ -9,8 +9,12 @@ import 'package:vision/vision.dart' as vision;
 
 class BenchmarkScreen extends StatelessWidget {
   const BenchmarkScreen({
+    this.previousPageTitle,
     super.key,
   });
+
+  /// The title of the previous page.
+  final String? previousPageTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,7 @@ class BenchmarkScreen extends StatelessWidget {
       child: Consumer<BenchmarkScreenProvider>(
         builder: (context, benchmarkScreenProvider, child) {
           return pip.PipScaffold(
+            previousPageTitle: previousPageTitle,
             action: CupertinoButton(
               child: Text(context.l.benchmark_screen_start_button),
               onPressed: () async {

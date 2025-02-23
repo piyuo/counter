@@ -165,11 +165,11 @@ abstract class AppLocalization {
   /// **'Language'**
   String get language_screen_language;
 
-  /// No description provided for @about_screen_about.
+  /// No description provided for @about_screen_title.
   ///
   /// In en, this message translates to:
   /// **'About'**
-  String get about_screen_about;
+  String get about_screen_title;
 
   /// No description provided for @about_screen_platform.
   ///
