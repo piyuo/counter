@@ -51,9 +51,6 @@ class ProjectProvider with ChangeNotifier {
   /// the wizard stream controller, used to send command to the wizard screen
   StreamController<WizardCommand> wizardStreamController = StreamController<WizardCommand>.broadcast();
 
-  /// true if the project is in preview mode
-  final bool isPreview = false;
-
   /// the video source providers for each video source and controller.
   final List<VideoProvider> videoProviders = [];
 
