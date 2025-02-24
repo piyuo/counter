@@ -328,6 +328,15 @@ class $ActivitiesTable extends Activities
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $ActivitiesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
   static const VerificationMeta _projectIdMeta =
       const VerificationMeta('projectId');
   @override
@@ -403,6 +412,7 @@ class $ActivitiesTable extends Activities
       type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [
+        id,
         projectId,
         videoId,
         zoneId,
@@ -426,6 +436,9 @@ class $ActivitiesTable extends Activities
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
     if (data.containsKey('project_id')) {
       context.handle(_projectIdMeta,
           projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta));
@@ -504,11 +517,13 @@ class $ActivitiesTable extends Activities
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => const {};
+  Set<GeneratedColumn> get $primaryKey => {id};
   @override
   Activity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Activity(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       projectId: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}project_id'])!,
       videoId: attachedDatabase.typeMapping
@@ -543,6 +558,7 @@ class $ActivitiesTable extends Activities
 }
 
 class Activity extends DataClass implements Insertable<Activity> {
+  final int id;
   final String projectId;
   final int videoId;
   final int zoneId;
@@ -556,7 +572,8 @@ class Activity extends DataClass implements Insertable<Activity> {
   final int occupied;
   final int stayDuration;
   const Activity(
-      {required this.projectId,
+      {required this.id,
+      required this.projectId,
       required this.videoId,
       required this.zoneId,
       required this.createdAt,
@@ -571,6 +588,7 @@ class Activity extends DataClass implements Insertable<Activity> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
     map['project_id'] = Variable<String>(projectId);
     map['video_id'] = Variable<int>(videoId);
     map['zone_id'] = Variable<int>(zoneId);
@@ -588,6 +606,7 @@ class Activity extends DataClass implements Insertable<Activity> {
 
   ActivitiesCompanion toCompanion(bool nullToAbsent) {
     return ActivitiesCompanion(
+      id: Value(id),
       projectId: Value(projectId),
       videoId: Value(videoId),
       zoneId: Value(zoneId),
@@ -607,6 +626,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Activity(
+      id: serializer.fromJson<int>(json['id']),
       projectId: serializer.fromJson<String>(json['projectId']),
       videoId: serializer.fromJson<int>(json['videoId']),
       zoneId: serializer.fromJson<int>(json['zoneId']),
@@ -625,6 +645,7 @@ class Activity extends DataClass implements Insertable<Activity> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
       'projectId': serializer.toJson<String>(projectId),
       'videoId': serializer.toJson<int>(videoId),
       'zoneId': serializer.toJson<int>(zoneId),
@@ -641,7 +662,8 @@ class Activity extends DataClass implements Insertable<Activity> {
   }
 
   Activity copyWith(
-          {String? projectId,
+          {int? id,
+          String? projectId,
           int? videoId,
           int? zoneId,
           DateTime? createdAt,
@@ -654,6 +676,7 @@ class Activity extends DataClass implements Insertable<Activity> {
           int? occupied,
           int? stayDuration}) =>
       Activity(
+        id: id ?? this.id,
         projectId: projectId ?? this.projectId,
         videoId: videoId ?? this.videoId,
         zoneId: zoneId ?? this.zoneId,
@@ -669,6 +692,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       );
   Activity copyWithCompanion(ActivitiesCompanion data) {
     return Activity(
+      id: data.id.present ? data.id.value : this.id,
       projectId: data.projectId.present ? data.projectId.value : this.projectId,
       videoId: data.videoId.present ? data.videoId.value : this.videoId,
       zoneId: data.zoneId.present ? data.zoneId.value : this.zoneId,
@@ -689,6 +713,7 @@ class Activity extends DataClass implements Insertable<Activity> {
   @override
   String toString() {
     return (StringBuffer('Activity(')
+          ..write('id: $id, ')
           ..write('projectId: $projectId, ')
           ..write('videoId: $videoId, ')
           ..write('zoneId: $zoneId, ')
@@ -707,6 +732,7 @@ class Activity extends DataClass implements Insertable<Activity> {
 
   @override
   int get hashCode => Object.hash(
+      id,
       projectId,
       videoId,
       zoneId,
@@ -723,6 +749,7 @@ class Activity extends DataClass implements Insertable<Activity> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Activity &&
+          other.id == this.id &&
           other.projectId == this.projectId &&
           other.videoId == this.videoId &&
           other.zoneId == this.zoneId &&
@@ -738,6 +765,7 @@ class Activity extends DataClass implements Insertable<Activity> {
 }
 
 class ActivitiesCompanion extends UpdateCompanion<Activity> {
+  final Value<int> id;
   final Value<String> projectId;
   final Value<int> videoId;
   final Value<int> zoneId;
@@ -750,8 +778,8 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
   final Value<int> reentered;
   final Value<int> occupied;
   final Value<int> stayDuration;
-  final Value<int> rowid;
   const ActivitiesCompanion({
+    this.id = const Value.absent(),
     this.projectId = const Value.absent(),
     this.videoId = const Value.absent(),
     this.zoneId = const Value.absent(),
@@ -764,9 +792,9 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     this.reentered = const Value.absent(),
     this.occupied = const Value.absent(),
     this.stayDuration = const Value.absent(),
-    this.rowid = const Value.absent(),
   });
   ActivitiesCompanion.insert({
+    this.id = const Value.absent(),
     required String projectId,
     required int videoId,
     required int zoneId,
@@ -779,7 +807,6 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     required int reentered,
     required int occupied,
     required int stayDuration,
-    this.rowid = const Value.absent(),
   })  : projectId = Value(projectId),
         videoId = Value(videoId),
         zoneId = Value(zoneId),
@@ -793,6 +820,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
         occupied = Value(occupied),
         stayDuration = Value(stayDuration);
   static Insertable<Activity> custom({
+    Expression<int>? id,
     Expression<String>? projectId,
     Expression<int>? videoId,
     Expression<int>? zoneId,
@@ -805,9 +833,9 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     Expression<int>? reentered,
     Expression<int>? occupied,
     Expression<int>? stayDuration,
-    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
+      if (id != null) 'id': id,
       if (projectId != null) 'project_id': projectId,
       if (videoId != null) 'video_id': videoId,
       if (zoneId != null) 'zone_id': zoneId,
@@ -820,12 +848,12 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       if (reentered != null) 'reentered': reentered,
       if (occupied != null) 'occupied': occupied,
       if (stayDuration != null) 'stay_duration': stayDuration,
-      if (rowid != null) 'rowid': rowid,
     });
   }
 
   ActivitiesCompanion copyWith(
-      {Value<String>? projectId,
+      {Value<int>? id,
+      Value<String>? projectId,
       Value<int>? videoId,
       Value<int>? zoneId,
       Value<DateTime>? createdAt,
@@ -836,9 +864,9 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       Value<int>? stagnant,
       Value<int>? reentered,
       Value<int>? occupied,
-      Value<int>? stayDuration,
-      Value<int>? rowid}) {
+      Value<int>? stayDuration}) {
     return ActivitiesCompanion(
+      id: id ?? this.id,
       projectId: projectId ?? this.projectId,
       videoId: videoId ?? this.videoId,
       zoneId: zoneId ?? this.zoneId,
@@ -851,13 +879,15 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       reentered: reentered ?? this.reentered,
       occupied: occupied ?? this.occupied,
       stayDuration: stayDuration ?? this.stayDuration,
-      rowid: rowid ?? this.rowid,
     );
   }
 
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
     if (projectId.present) {
       map['project_id'] = Variable<String>(projectId.value);
     }
@@ -894,15 +924,13 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     if (stayDuration.present) {
       map['stay_duration'] = Variable<int>(stayDuration.value);
     }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
-    }
     return map;
   }
 
   @override
   String toString() {
     return (StringBuffer('ActivitiesCompanion(')
+          ..write('id: $id, ')
           ..write('projectId: $projectId, ')
           ..write('videoId: $videoId, ')
           ..write('zoneId: $zoneId, ')
@@ -914,8 +942,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
           ..write('stagnant: $stagnant, ')
           ..write('reentered: $reentered, ')
           ..write('occupied: $occupied, ')
-          ..write('stayDuration: $stayDuration, ')
-          ..write('rowid: $rowid')
+          ..write('stayDuration: $stayDuration')
           ..write(')'))
         .toString();
   }
@@ -1115,6 +1142,7 @@ typedef $$ProjectsTableProcessedTableManager = ProcessedTableManager<
     Project,
     PrefetchHooks Function()>;
 typedef $$ActivitiesTableCreateCompanionBuilder = ActivitiesCompanion Function({
+  Value<int> id,
   required String projectId,
   required int videoId,
   required int zoneId,
@@ -1127,9 +1155,9 @@ typedef $$ActivitiesTableCreateCompanionBuilder = ActivitiesCompanion Function({
   required int reentered,
   required int occupied,
   required int stayDuration,
-  Value<int> rowid,
 });
 typedef $$ActivitiesTableUpdateCompanionBuilder = ActivitiesCompanion Function({
+  Value<int> id,
   Value<String> projectId,
   Value<int> videoId,
   Value<int> zoneId,
@@ -1142,7 +1170,6 @@ typedef $$ActivitiesTableUpdateCompanionBuilder = ActivitiesCompanion Function({
   Value<int> reentered,
   Value<int> occupied,
   Value<int> stayDuration,
-  Value<int> rowid,
 });
 
 class $$ActivitiesTableFilterComposer
@@ -1154,6 +1181,9 @@ class $$ActivitiesTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
   ColumnFilters<String> get projectId => $composableBuilder(
       column: $table.projectId, builder: (column) => ColumnFilters(column));
 
@@ -1200,6 +1230,9 @@ class $$ActivitiesTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<String> get projectId => $composableBuilder(
       column: $table.projectId, builder: (column) => ColumnOrderings(column));
 
@@ -1247,6 +1280,9 @@ class $$ActivitiesTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
   GeneratedColumn<String> get projectId =>
       $composableBuilder(column: $table.projectId, builder: (column) => column);
 
@@ -1307,6 +1343,7 @@ class $$ActivitiesTableTableManager extends RootTableManager<
           createComputedFieldComposer: () =>
               $$ActivitiesTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
             Value<String> projectId = const Value.absent(),
             Value<int> videoId = const Value.absent(),
             Value<int> zoneId = const Value.absent(),
@@ -1319,9 +1356,9 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             Value<int> reentered = const Value.absent(),
             Value<int> occupied = const Value.absent(),
             Value<int> stayDuration = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
           }) =>
               ActivitiesCompanion(
+            id: id,
             projectId: projectId,
             videoId: videoId,
             zoneId: zoneId,
@@ -1334,9 +1371,9 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             reentered: reentered,
             occupied: occupied,
             stayDuration: stayDuration,
-            rowid: rowid,
           ),
           createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
             required String projectId,
             required int videoId,
             required int zoneId,
@@ -1349,9 +1386,9 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             required int reentered,
             required int occupied,
             required int stayDuration,
-            Value<int> rowid = const Value.absent(),
           }) =>
               ActivitiesCompanion.insert(
+            id: id,
             projectId: projectId,
             videoId: videoId,
             zoneId: zoneId,
@@ -1364,7 +1401,6 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             reentered: reentered,
             occupied: occupied,
             stayDuration: stayDuration,
-            rowid: rowid,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))

@@ -18,6 +18,7 @@ class Projects extends Table {
 @TableIndex(name: 'idx_activities_project_created_at', columns: {#projectId, #createdAt})
 @TableIndex(name: 'idx_activities_created_at', columns: {#createdAt})
 class Activities extends Table {
+  IntColumn get id => integer().autoIncrement()();
   TextColumn get projectId => text().withLength(min: 1, max: 22)();
   IntColumn get videoId => integer()();
   IntColumn get zoneId => integer()();

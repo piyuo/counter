@@ -20,7 +20,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   static QueryExecutor _openConnection() {
     return LazyDatabase(() async {
@@ -51,10 +51,20 @@ class AppDatabase extends _$AppDatabase {
 
   /// delete activities older than the given date
   Future<void> deleteActivitiesOlderThan(DateTime date) async {
-    await customStatement(
-      'DELETE FROM activities WHERE createdAt < ? LIMIT 100',
-      [date.toIso8601String()],
-    );
+    // Query the records that should be deleted first.
+    final recordsToDelete = await (select(activities)
+          ..where((a) => a.createdAt.isSmallerThanValue(date))
+          ..limit(100))
+        .get();
+
+    // If there are records to delete...
+    if (recordsToDelete.isNotEmpty) {
+      // Extract the IDs of these records.
+      final idsToDelete = recordsToDelete.map((a) => a.id).toList();
+
+      // Delete these records by their IDs.
+      await (delete(activities)..where((a) => a.id.isIn(idsToDelete))).go();
+    }
   }
 
   /// add project to database

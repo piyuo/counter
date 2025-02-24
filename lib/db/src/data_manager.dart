@@ -18,7 +18,7 @@ class DataManager {
     await appDatabase.addActivity(projectId, videoId, zoneId, activity);
     _addActivityCount++;
     // if new activities are added more than 120 times (2 hours)
-    if (_addActivityCount > 120) {
+    if (_addActivityCount > 0) {
       _addActivityCount = 0;
 
       /// delete activities older than 1 day
