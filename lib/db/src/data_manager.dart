@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:counter/app/app.dart' as app;
+import 'package:vision/vision.dart' as vision;
 
 import 'database.dart';
 import 'meta.dart';
@@ -8,6 +9,26 @@ import 'meta/project_meta.dart';
 
 class DataManager {
   final AppDatabase appDatabase = AppDatabase();
+
+  /// the add activity count, used to delete old activities
+  int _addActivityCount = 0;
+
+  /// Add activity to database.
+  Future<void> addActivity(String projectId, int videoId, int zoneId, vision.Activity activity) async {
+    await appDatabase.addActivity(projectId, videoId, zoneId, activity);
+    _addActivityCount++;
+    // if new activities are added more than 120 times (2 hours)
+    if (_addActivityCount > 120) {
+      _addActivityCount = 0;
+
+      /// delete activities older than 1 day
+      await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)).toUtc());
+    }
+  }
+
+  Future<void> deleteActivitiesOlderThan(DateTime date) async {
+    await appDatabase.deleteActivitiesOlderThan(date);
+  }
 
   /// Save project to database, replacing existing project if it exists.
   Future<void> setProject(app.Project project) async {

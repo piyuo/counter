@@ -62,7 +62,7 @@ class ProjectProvider with ChangeNotifier {
   bool get isProjectOpened => project != null;
 
   /// Callback function that is called when a new activity is added.
-  final void Function(vision.Activity)? onActivityAdded;
+  final void Function(String projectId, int videoId, int zoneId, vision.Activity)? onActivityAdded;
 
   /// called when project opened
   final void Function(Project project)? onProjectOpened;
@@ -81,6 +81,11 @@ class ProjectProvider with ChangeNotifier {
 
   /// called by open project screen to delete the project
   final Future<void> Function(String)? onDeleteProject;
+
+  /// called when a new activity is added
+  void notifyActivityAdded(int videoId, int zoneId, vision.Activity activity) {
+    onActivityAdded?.call(project!.projectId, videoId, zoneId, activity);
+  }
 
   /// get the project summaries
   Future<List<ProjectSummary>> getProjectSummaries() async {
@@ -173,9 +178,6 @@ class ProjectProvider with ChangeNotifier {
   /// used to delay the model setting
   Timer? _modelChangedTimer;
 
-  /// the sampler for visionController
-  late final vision.Sampler sampler;
-
   /// true if the zone editor is enabled
   bool get isZoneEditorEnabled => fullscreenVideoProvider != null;
 
@@ -186,7 +188,6 @@ class ProjectProvider with ChangeNotifier {
 
   /// init the project provider
   Future<void> init(BuildContext context) async {
-    sampler = vision.Sampler(onActivityAdded: onActivityAdded);
     await initializeDateFormatting();
     benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
     await cameraManager.init();
@@ -385,7 +386,10 @@ class ProjectProvider with ChangeNotifier {
     if (project == null) {
       return false;
     }
-    sampler.reset(project!.filter);
+    for (final videoProvider in videoProviders) {
+      videoProvider.resetSamplerFilter(project!.filter);
+    }
+
     // reset zone global id first to avoid id conflict
     final nextZoneId = getNextZoneId();
     setNextZoneColorIndex(nextZoneId);
@@ -415,7 +419,9 @@ class ProjectProvider with ChangeNotifier {
       videos: [],
       model: benchmarkLocalStorage.recommendedModel,
     );
-    sampler.reset(project!.filter);
+    for (final videoProvider in videoProviders) {
+      videoProvider.resetSamplerFilter(project!.filter);
+    }
     _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     await _makeProjectOpened(context);
     onProjectChanged?.call(project!, null);
@@ -487,7 +493,6 @@ class ProjectProvider with ChangeNotifier {
       videoProvider = VideoProvider(
         video: video,
         projectProvider: this,
-        sampler: sampler,
       );
 
       videoProviders.add(videoProvider);

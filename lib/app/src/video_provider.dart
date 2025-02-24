@@ -16,8 +16,10 @@ class VideoProvider with ChangeNotifier {
   VideoProvider({
     required this.video,
     required ProjectProvider projectProvider,
-    required vision.Sampler sampler,
   }) : _projectProvider = projectProvider {
+    sampler = vision.Sampler(onActivityAdded: (zoneId, activity) {
+      _projectProvider?.notifyActivityAdded(video.videoId, zoneId, activity);
+    });
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
     visionController = vision.Controller(sampler: sampler);
     playerController = vision.PlayerController(
@@ -25,6 +27,9 @@ class VideoProvider with ChangeNotifier {
       title: video.videoName,
     );
   }
+
+  /// the sampler for visionController
+  late final vision.Sampler sampler;
 
   /// project provider for notify the project change. don't dispose it.
   ProjectProvider? _projectProvider;
@@ -106,6 +111,11 @@ class VideoProvider with ChangeNotifier {
     zoneEditorController?.dispose();
     zoneEditorController = null;
     super.dispose();
+  }
+
+  /// reset sampler filter
+  void resetSamplerFilter(vision.Filter filter) {
+    sampler.reset(filter);
   }
 
   /// Return the icon of the video source

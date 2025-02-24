@@ -20,7 +20,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   static QueryExecutor _openConnection() {
     return LazyDatabase(() async {
@@ -30,8 +30,6 @@ class AppDatabase extends _$AppDatabase {
       return NativeDatabase.createInBackground(file);
     });
   }
-
-  int addActivityCount = 0;
 
   /// add activity to database
   Future<void> addActivity(String projectId, int videoId, int zoneId, vision.Activity activity) async {
@@ -49,14 +47,6 @@ class AppDatabase extends _$AppDatabase {
       occupied: Value(activity.occupied),
       stayDuration: Value(activity.stayDuration),
     ));
-
-    addActivityCount++;
-    if (addActivityCount > 60) {
-      addActivityCount = 0;
-
-      /// delete activities older than 1 day
-      await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)).toUtc());
-    }
   }
 
   /// delete activities older than the given date

@@ -15,7 +15,7 @@ class Projects extends Table {
 }
 
 /// This is the table that stores activity data.
-@TableIndex(name: 'idx_activities_project_video_zone', columns: {#projectId, #videoId, #zoneId})
+@TableIndex(name: 'idx_activities_project_created_at', columns: {#projectId, #createdAt})
 @TableIndex(name: 'idx_activities_created_at', columns: {#createdAt})
 class Activities extends Table {
   TextColumn get projectId => text().withLength(min: 1, max: 22)();

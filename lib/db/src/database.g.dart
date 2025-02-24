@@ -930,9 +930,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       'CREATE INDEX idx_projects_project_id ON projects (project_id)');
   late final Index idxProjectsCreatedAt = Index('idx_projects_created_at',
       'CREATE INDEX idx_projects_created_at ON projects (created_at)');
-  late final Index idxActivitiesProjectVideoZone = Index(
-      'idx_activities_project_video_zone',
-      'CREATE INDEX idx_activities_project_video_zone ON activities (project_id, video_id, zone_id)');
+  late final Index idxActivitiesProjectCreatedAt = Index(
+      'idx_activities_project_created_at',
+      'CREATE INDEX idx_activities_project_created_at ON activities (project_id, created_at)');
   late final Index idxActivitiesCreatedAt = Index('idx_activities_created_at',
       'CREATE INDEX idx_activities_created_at ON activities (created_at)');
   @override
@@ -944,7 +944,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         activities,
         idxProjectsProjectId,
         idxProjectsCreatedAt,
-        idxActivitiesProjectVideoZone,
+        idxActivitiesProjectCreatedAt,
         idxActivitiesCreatedAt
       ];
 }
