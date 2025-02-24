@@ -36,8 +36,15 @@ Future<String> saveFileToAppDirectory(String originalPath, String projectId, int
   // Get the original file extension (includes the dot, e.g., ".mp4").
   final ext = path.extension(originalPath);
 
-  // Build the new path using the new fileName and original extension.
+  // Build the new path using the new videoId and original extension.
   final newPath = '${projectDir.path}/$videoId$ext';
+  final newFile = File(newPath);
+
+  // If a file already exists at the destination, delete it.
+  if (await newFile.exists()) {
+    await newFile.delete();
+  }
+
   final file = File(originalPath);
   await file.copy(newPath);
   return newPath;

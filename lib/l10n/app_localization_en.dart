@@ -249,7 +249,10 @@ class AppLocalizationEn extends AppLocalization {
   String get video_source_screen_url => 'Current URL';
 
   @override
-  String get video_source_screen_opened_file => 'Currently opened file';
+  String get video_source_screen_change_file => 'Change File';
+
+  @override
+  String get video_source_screen_file => 'File';
 
   @override
   String get video_source_screen_camera => 'Camera';

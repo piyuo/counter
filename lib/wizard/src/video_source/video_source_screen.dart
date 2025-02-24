@@ -112,20 +112,28 @@ class VideoSourceScreen extends StatelessWidget {
                   if (video.mediaType == clib.MediaType.file)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.video_source_screen_opened_file),
+                      header: Text(context.l.video_source_screen_file),
                       children: [
                         CupertinoListTile(
-                          title: Text(video.path!.split('/').last),
+                          title: Text(context.l.video_source_screen_change_file),
                           leading: const Icon(CupertinoIcons.folder),
                           trailing: const CupertinoListTileChevron(),
                           onTap: () async {
                             final videoPath = await pickVideo();
-                            if (videoPath != null && videoPath != video.path) {
-                              if (context.mounted) {
-                                videoProvider.setVideoPath(context, projectProvider.project!, videoPath);
-                              }
-                              projectProvider.notifyProjectChanged(videoProvider);
+                            if (!context.mounted || videoPath == null) {
+                              return;
                             }
+                            final newFilePath = await saveFileToAppDirectory(
+                              videoPath,
+                              projectProvider.project!.projectId,
+                              video.videoId,
+                            );
+                            if (!context.mounted) {
+                              return;
+                            }
+
+                            videoProvider.setVideoPath(context, projectProvider.project!, newFilePath);
+                            projectProvider.notifyProjectChanged(videoProvider);
                           },
                         ),
                       ],

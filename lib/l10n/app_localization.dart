@@ -573,11 +573,17 @@ abstract class AppLocalization {
   /// **'Current URL'**
   String get video_source_screen_url;
 
-  /// No description provided for @video_source_screen_opened_file.
+  /// No description provided for @video_source_screen_change_file.
   ///
   /// In en, this message translates to:
-  /// **'Currently opened file'**
-  String get video_source_screen_opened_file;
+  /// **'Change File'**
+  String get video_source_screen_change_file;
+
+  /// No description provided for @video_source_screen_file.
+  ///
+  /// In en, this message translates to:
+  /// **'File'**
+  String get video_source_screen_file;
 
   /// No description provided for @video_source_screen_camera.
   ///
