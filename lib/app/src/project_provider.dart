@@ -11,10 +11,10 @@ import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import '../../db/src/project_summary.dart';
 import 'benchmark.dart';
 import 'camera_manager.dart';
 import 'model/project.dart';
-import 'model/project_summary.dart';
 import 'model/video.dart';
 import 'util/orientation_provider.dart';
 import 'video_provider.dart';
