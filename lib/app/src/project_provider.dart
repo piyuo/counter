@@ -28,6 +28,7 @@ enum VideoPlayingState { allPlay, somePlay, allPause }
 /// Project provider can create, open, and manage the project. wizard package will find the project provider from context to work with.
 class ProjectProvider with ChangeNotifier {
   ProjectProvider({
+    this.onActivityAdded,
     this.onProjectOpened,
     this.onProjectClosed,
     this.onProjectChanged,
@@ -59,6 +60,9 @@ class ProjectProvider with ChangeNotifier {
 
   /// is project opened
   bool get isProjectOpened => project != null;
+
+  /// Callback function that is called when a new activity is added.
+  final void Function(vision.Activity)? onActivityAdded;
 
   /// called when project opened
   final void Function(Project project)? onProjectOpened;
@@ -182,11 +186,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// init the project provider
   Future<void> init(BuildContext context) async {
-    sampler = vision.Sampler(
-      onActivityAdded: (activity) {
-        print('activity added, createdAt: ${activity.createdAt}');
-      },
-    );
+    sampler = vision.Sampler(onActivityAdded: onActivityAdded);
     await initializeDateFormatting();
     benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
     await cameraManager.init();

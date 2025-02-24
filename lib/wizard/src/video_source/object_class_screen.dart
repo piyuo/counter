@@ -5,7 +5,7 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 class ObjectClassScreen extends StatelessWidget {
   const ObjectClassScreen({
@@ -18,7 +18,7 @@ class ObjectClassScreen extends StatelessWidget {
   final app.VideoProvider videoProvider;
 
   /// the video zone to be edited
-  final clib.VideoZone videoZone;
+  final vision.VideoZone videoZone;
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +33,16 @@ class ObjectClassScreen extends StatelessWidget {
                 child: CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(
-                      clib.ObjectClass.values.length,
+                      vision.ObjectClass.values.length,
                       (classId) {
                         return CupertinoListTile(
                             leading: videoZone.selectedClasses.contains(classId)
                                 ? Icon(CupertinoIcons.check_mark)
                                 : const SizedBox.shrink(),
                             title: Text(
-                              clib.classTitleById(context, classId),
+                              vision.classTitleById(context, classId),
                             ),
-                            trailing: Icon(clib.classIconById(classId), color: CupertinoColors.opaqueSeparator),
+                            trailing: Icon(vision.classIconById(classId), color: CupertinoColors.opaqueSeparator),
                             onTap: () {
                               objectClassScreenProvider.selectClass(projectProvider, videoProvider, videoZone, classId);
                             });
@@ -71,7 +71,7 @@ class ObjectClassScreenProvider with ChangeNotifier {
   void selectClass(
     app.ProjectProvider projectProvider,
     app.VideoProvider videoProvider,
-    clib.VideoZone videoZone,
+    vision.VideoZone videoZone,
     int classId,
   ) {
     videoProvider.toggleZoneSelectedClasses(videoZone, classId);

@@ -2,7 +2,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 class OpencvScreen extends StatelessWidget {
   const OpencvScreen({
@@ -47,7 +47,7 @@ class OpencvScreenProvider with ChangeNotifier {
   String buildInfo = '';
 
   /// _cLib is the C++ library interface.
-  final clib.Clib _clib = clib.Clib();
+  final vision.Clib _clib = vision.Clib();
 
   Future<void> init() async {
     buildInfo = _clib.getBuildInfo();

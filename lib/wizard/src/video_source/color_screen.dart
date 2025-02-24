@@ -4,7 +4,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 /// The color screen for editing the color.
 class ColorScreen extends StatelessWidget {
@@ -22,7 +22,7 @@ class ColorScreen extends StatelessWidget {
   final app.VideoProvider videoProvider;
 
   /// the video zone to be edited
-  final clib.VideoZone videoZone;
+  final vision.VideoZone videoZone;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class ColorScreenProvider with ChangeNotifier {
   final app.VideoProvider videoProvider;
 
   /// set the color of the video zone
-  void setVideoZoneColor(clib.VideoZone videoZone, Color color) {
+  void setVideoZoneColor(vision.VideoZone videoZone, Color color) {
     videoProvider.setZoneColor(videoZone, color);
     notifyListeners();
   }

@@ -6,7 +6,6 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
 import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
@@ -33,14 +32,14 @@ class HomeScreen extends StatelessWidget {
           final project = projectProvider.project!;
           Widget buildZoneGauge(
             app.VideoProvider videoProvider,
-            clib.VideoZone videoZone,
-            clib.Count count,
-            List<clib.TallyCounter> tallyCounters,
-            List<clib.TallyAnnotation> tallyAnnotations,
+            vision.VideoZone videoZone,
+            vision.Count count,
+            List<vision.TallyCounter> tallyCounters,
+            List<vision.TallyAnnotation> tallyAnnotations,
           ) {
-            return ChangeNotifierProvider<clib.Sampling>.value(
+            return ChangeNotifierProvider<vision.Sampling>.value(
               value: count.sampling!,
-              child: Consumer<clib.Sampling>(
+              child: Consumer<vision.Sampling>(
                 builder: (context, profilesController, child) {
                   buildZoneGauges() {
                     List<Widget> gauges = [];

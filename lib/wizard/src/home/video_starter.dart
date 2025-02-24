@@ -1,7 +1,7 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 import 'pick_video.dart';
@@ -26,7 +26,7 @@ List<Widget> buildVideoStarter(
               // add webcam to project
               if (isAddMode) {
                 final videoProvider =
-                    await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.webcam);
+                    await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.webcam);
                 if (context.mounted && videoProvider != null) {
                   Navigator.of(context).pushReplacementNamed(
                     webcamRoute,
@@ -42,7 +42,7 @@ List<Widget> buildVideoStarter(
               // create project with webcam
               await projectProvider.newProject(
                 context,
-                mediaType: clib.MediaType.webcam,
+                mediaType: vision.MediaType.webcam,
                 projectId: app.uuid(),
               );
               if (context.mounted) {
@@ -62,7 +62,8 @@ List<Widget> buildVideoStarter(
           try {
             // add camera to project
             if (isAddMode) {
-              final videoProvider = await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.camera);
+              final videoProvider =
+                  await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.camera);
               if (context.mounted && videoProvider != null) {
                 Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
                   'videoProvider': videoProvider,
@@ -76,7 +77,7 @@ List<Widget> buildVideoStarter(
             // create project with camera
             await projectProvider.newProject(
               context,
-              mediaType: clib.MediaType.camera,
+              mediaType: vision.MediaType.camera,
               projectId: app.uuid(),
             );
             if (context.mounted) {
@@ -100,7 +101,7 @@ List<Widget> buildVideoStarter(
             if (isAddMode) {
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
-                  await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.live, path: url);
+                  await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.live, path: url);
                   return homeRoute;
                 }
               });
@@ -112,7 +113,7 @@ List<Widget> buildVideoStarter(
               'nextRouteBuilder': (url) async {
                 projectProvider.newProject(
                   context,
-                  mediaType: clib.MediaType.live,
+                  mediaType: vision.MediaType.live,
                   path: url,
                   projectId: app.uuid(),
                 );
@@ -150,7 +151,7 @@ List<Widget> buildVideoStarter(
                 return;
               }
 
-              await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.file, path: newFilePath);
+              await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.file, path: newFilePath);
               if (context.mounted) Navigator.of(context).pop();
               return;
             }
@@ -165,7 +166,7 @@ List<Widget> buildVideoStarter(
             // create project with file
             await projectProvider.newProject(
               context,
-              mediaType: clib.MediaType.file,
+              mediaType: vision.MediaType.file,
               path: newFilePath,
               projectId: projectId,
               videoId: videoId,

@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 List<Color> gradientColors = [
   CupertinoColors.lightBackgroundGray,
@@ -32,13 +32,13 @@ class GaugeView extends StatelessWidget {
   final int classId;
 
   /// The counter to be displayed.
-  final clib.TallyCounter tallyCounter;
+  final vision.TallyCounter tallyCounter;
 
   /// The annotation for display counter.
-  final clib.TallyAnnotation tallyAnnotation;
+  final vision.TallyAnnotation tallyAnnotation;
 
   /// The filter to get sampler count.
-  final clib.Filter filter;
+  final vision.Filter filter;
 
   /// The current time to get the current sample.
   final DateTime now;
@@ -55,10 +55,10 @@ class GaugeView extends StatelessWidget {
     int stepMinutes;
     (startTime, stepMinutes) = getStartTimeAndStep(filter, now);
 
-    final startTimeToMinute = filter.filterType == clib.FilterType.custom
+    final startTimeToMinute = filter.filterType == vision.FilterType.custom
         ? DateTime(now.year, now.month, now.day, filter.start.hour, filter.start.minute)
         : DateTime(startTime.year, startTime.month, startTime.day, startTime.hour, startTime.minute);
-    final endTimeToMinute = filter.filterType == clib.FilterType.custom
+    final endTimeToMinute = filter.filterType == vision.FilterType.custom
         ? DateTime(now.year, now.month, now.day, filter.end.hour, filter.end.minute)
         : DateTime(now.year, now.month, now.day, now.hour, now.minute);
     Duration difference = endTimeToMinute.difference(startTimeToMinute);
@@ -166,7 +166,7 @@ class GaugeView extends StatelessWidget {
     return Column(children: [
       CupertinoListTile(
         title: Text(tallyAnnotation.title, style: TextStyle(color: chartColor)),
-        leading: Icon(clib.classIconById(classId), color: chartColor),
+        leading: Icon(vision.classIconById(classId), color: chartColor),
         trailing: const CupertinoListTileChevron(),
         additionalInfo: Text(
           textAlign: TextAlign.end,
@@ -189,7 +189,7 @@ class GaugeView extends StatelessWidget {
   }
 }
 
-List<clib.Activity> mockDataForPast1Hour(DateTime now) {
+List<vision.Activity> mockDataForPast1Hour(DateTime now) {
   final rand = Random(); // Instance to generate random numbers in range 0 to 2.
   final startTime = DateTime(now.year, now.month, now.day, now.hour - 1, now.minute);
 
@@ -197,7 +197,7 @@ List<clib.Activity> mockDataForPast1Hour(DateTime now) {
     final createdAt = startTime.add(Duration(minutes: index));
     //print('createdAt: ${createdAt.millisecondsSinceEpoch}');
 
-    return clib.Activity(
+    return vision.Activity(
       createdAt: createdAt,
       spawned: rand.nextInt(2), // Random value from 0 to 21
       vanished: rand.nextInt(2),
@@ -236,11 +236,11 @@ List<clib.Activity> mockDataForPast1Hour(DateTime now) {
 }
 
 /// Get the start time and step interval based on the filter
-(DateTime, int) getStartTimeAndStep(clib.Filter filter, DateTime now) {
+(DateTime, int) getStartTimeAndStep(vision.Filter filter, DateTime now) {
   const int kIntervalCount = 5;
   const int kMinStepMinutes = 1;
 
-  if (filter.filterType == clib.FilterType.custom) {
+  if (filter.filterType == vision.FilterType.custom) {
     // Use custom filter's start and end times
     DateTime startTime = DateTime(now.year, now.month, now.day, filter.start.hour, filter.start.minute);
 
@@ -256,13 +256,13 @@ List<clib.Activity> mockDataForPast1Hour(DateTime now) {
     return (startTime, stepMinutes);
   } else {
     final totalMinutes = switch (filter.filterType) {
-      clib.FilterType.pass1Hour => 60,
-      clib.FilterType.pass2Hour => 120,
-      clib.FilterType.pass4Hour => 240,
-      clib.FilterType.pass8Hour => 480,
-      clib.FilterType.past12Hour => 720,
-      clib.FilterType.past24Hour => 1440,
-      clib.FilterType.custom => 0, // never reach here
+      vision.FilterType.pass1Hour => 60,
+      vision.FilterType.pass2Hour => 120,
+      vision.FilterType.pass4Hour => 240,
+      vision.FilterType.pass8Hour => 480,
+      vision.FilterType.past12Hour => 720,
+      vision.FilterType.past24Hour => 1440,
+      vision.FilterType.custom => 0, // never reach here
     };
 
     final stepMinutes = totalMinutes ~/ kIntervalCount;
@@ -275,7 +275,7 @@ List<clib.Activity> mockDataForPast1Hour(DateTime now) {
 ///
 /// [activities] List of activities, already sorted by time (newest last) and filtered
 /// Returns a sampled list of activities, ensuring no isolated data points are skipped
-List<clib.Activity> makeChartActivities(List<clib.Activity> activities) {
+List<vision.Activity> makeChartActivities(List<vision.Activity> activities) {
   if (activities.isEmpty) return [];
 
   final targetPoints = 12;
@@ -289,7 +289,7 @@ List<clib.Activity> makeChartActivities(List<clib.Activity> activities) {
   final timeSpan = activities.last.createdAt.difference(activities.first.createdAt);
   final minutesPerPoint = timeSpan.inMinutes / targetPoints;
 
-  final result = <clib.Activity>[];
+  final result = <vision.Activity>[];
   var lastIncludedTime = activities.first.createdAt;
 
   // Always include the first point

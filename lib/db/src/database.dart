@@ -6,16 +6,33 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:vision/vision.dart' as vision;
 
 part 'database.g.dart';
 
 /// This is the table that stores project data.
 class Projects extends Table {
-  TextColumn get projectId => text().withLength(min: 1, max: 32)();
+  TextColumn get projectId => text().withLength(min: 1, max: 22)();
   TextColumn get projectName => text().withLength(min: 1, max: 256)();
   BlobColumn get data => blob()();
   DateTimeColumn get createdAt => dateTime()();
   DateTimeColumn get updatedAt => dateTime()();
+}
+
+/// This is the table that stores activity data.
+class Activities extends Table {
+  TextColumn get projectId => text().withLength(min: 1, max: 22)();
+  IntColumn get videoId => integer()();
+  IntColumn get zoneId => integer()();
+  DateTimeColumn get createdAt => dateTime()();
+  IntColumn get spawned => integer()();
+  IntColumn get vanished => integer()();
+  IntColumn get entered => integer()();
+  IntColumn get exited => integer()();
+  IntColumn get stagnant => integer()();
+  IntColumn get reentered => integer()();
+  IntColumn get occupied => integer()();
+  IntColumn get stayDuration => integer()();
 }
 
 @DriftDatabase(tables: [Projects])
@@ -36,6 +53,8 @@ class AppDatabase extends _$AppDatabase {
       return NativeDatabase.createInBackground(file);
     });
   }
+
+  Future<void> addActivity(vision.Activity activity) async {}
 
   /// add project to database
   Future<void> setProject(String id, String name, String data) async {

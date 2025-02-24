@@ -4,7 +4,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({
@@ -47,7 +47,7 @@ class FilterScreen extends StatelessWidget {
                   );
 
                   if (shouldPop) {
-                    final newFilter = clib.Filter(
+                    final newFilter = vision.Filter(
                       filterScreenProvider.filterType,
                       start: filterScreenProvider.start,
                       end: filterScreenProvider.end,
@@ -80,13 +80,13 @@ class FilterScreen extends StatelessWidget {
                           topMargin: 0,
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                           header: Text(context.l.filter_screen_select_range),
-                          children: List.generate(clib.FilterType.values.length, (index) {
-                            final availableFilter = clib.FilterType.values[index];
+                          children: List.generate(vision.FilterType.values.length, (index) {
+                            final availableFilter = vision.FilterType.values[index];
                             return CupertinoListTile(
                               leading: availableFilter == filterScreenProvider.filterType
                                   ? const Icon(CupertinoIcons.check_mark)
                                   : SizedBox.shrink(),
-                              title: Text(clib.formattedStringForFilterType(context, availableFilter)),
+                              title: Text(vision.formattedStringForFilterType(context, availableFilter)),
                               onTap: () {
                                 filterScreenProvider.setFilterType(availableFilter);
                               },
@@ -149,7 +149,7 @@ class FilterScreenProvider with ChangeNotifier {
   });
 
   /// the filter type
-  clib.FilterType filterType;
+  vision.FilterType filterType;
 
   /// the start time
   TimeOfDay start;
@@ -202,7 +202,7 @@ class FilterScreenProvider with ChangeNotifier {
   }
 
   /// set the filter type
-  void setFilterType(clib.FilterType value) {
+  void setFilterType(vision.FilterType value) {
     filterType = value;
     notifyListeners();
   }

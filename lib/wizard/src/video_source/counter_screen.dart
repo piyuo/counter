@@ -4,7 +4,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:input_quantity/input_quantity.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({
@@ -22,10 +22,10 @@ class CounterScreen extends StatelessWidget {
   final app.VideoProvider videoProvider;
 
   /// the video zone to be edited
-  final clib.VideoZone videoZone;
+  final vision.VideoZone videoZone;
 
   /// the annotation to edit
-  final clib.TallyAnnotation annotation;
+  final vision.TallyAnnotation annotation;
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,10 @@ class CounterScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Text(clib.tallyTypeToString(context, annotation.type),
+                        Text(vision.tallyTypeToString(context, annotation.type),
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
-                          clib.tallyTypeToDescription(context, annotation.type),
+                          vision.tallyTypeToDescription(context, annotation.type),
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -84,7 +84,7 @@ class CounterScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  if (annotation.type == clib.TallyType.reentered)
+                  if (annotation.type == vision.TallyType.reentered)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.counter_screen_reentry_threshold),
@@ -109,7 +109,7 @@ class CounterScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (annotation.type == clib.TallyType.reentered)
+                  if (annotation.type == vision.TallyType.reentered)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.counter_screen_cooldown_threshold),
@@ -134,7 +134,7 @@ class CounterScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  if (annotation.type == clib.TallyType.stagnant)
+                  if (annotation.type == vision.TallyType.stagnant)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.counter_screen_stagnant_threshold),
@@ -206,7 +206,7 @@ class TallyScreenProvider with ChangeNotifier {
   final app.VideoProvider videoProvider;
 
   /// the annotation to edit
-  final clib.TallyAnnotation annotation;
+  final vision.TallyAnnotation annotation;
 
   /// the title field controller
   TextEditingController titleController = TextEditingController();
@@ -256,8 +256,8 @@ class TallyScreenProvider with ChangeNotifier {
   void toggleEnabled(
     BuildContext context,
     app.VideoProvider videoProvider,
-    clib.VideoZone videoZone,
-    clib.TallyAnnotation annotation,
+    vision.VideoZone videoZone,
+    vision.TallyAnnotation annotation,
   ) {
     final projectProvider = app.ProjectProvider.of(context);
 
@@ -286,19 +286,19 @@ class TallyScreenProvider with ChangeNotifier {
   }
 
   /// set the stagnant threshold
-  void setStagnantThreshold(clib.VideoZone videoZone, int value) {
+  void setStagnantThreshold(vision.VideoZone videoZone, int value) {
     videoProvider.setZoneStagnantThreshold(videoZone, value);
     notifyListeners();
   }
 
   /// set the reentered threshold
-  void setReenteredThreshold(clib.VideoZone videoZone, int value) {
+  void setReenteredThreshold(vision.VideoZone videoZone, int value) {
     videoProvider.setZoneReenteredThreshold(videoZone, value);
     notifyListeners();
   }
 
   /// set the cooldown threshold
-  void setCooldownThreshold(clib.VideoZone videoZone, int value) {
+  void setCooldownThreshold(vision.VideoZone videoZone, int value) {
     videoProvider.setZoneCooldownThreshold(videoZone, value);
     notifyListeners();
   }

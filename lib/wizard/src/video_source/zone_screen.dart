@@ -3,7 +3,7 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/clib/clib.dart' as clib;
+import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 
@@ -20,7 +20,7 @@ class ZoneScreen extends StatelessWidget {
   final app.VideoProvider videoProvider;
 
   /// the video zone to be edited
-  final clib.VideoZone videoZone;
+  final vision.VideoZone videoZone;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -134,7 +134,7 @@ class ZoneScreen extends StatelessWidget {
                     header: const Text('Counter'),
                     children: videoZone.tallyAnnotations
                         .map((annotation) => CupertinoListTile(
-                              title: Text(clib.tallyTypeToString(context, annotation.type)),
+                              title: Text(vision.tallyTypeToString(context, annotation.type)),
                               leading: annotation.enabled
                                   ? Icon(
                                       CupertinoIcons.check_mark,
@@ -254,7 +254,7 @@ class ZoneScreenProvider with ChangeNotifier {
   }
 
   /// the video zone
-  final clib.VideoZone videoZone;
+  final vision.VideoZone videoZone;
 
   /// the video provider
   final app.VideoProvider videoProvider;
