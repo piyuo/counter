@@ -7,9 +7,16 @@ import 'package:drift/native.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
-import 'projects.dart';
-
 part 'database.g.dart';
+
+/// This is the table that stores project data.
+class Projects extends Table {
+  TextColumn get projectId => text().withLength(min: 1, max: 32)();
+  TextColumn get projectName => text().withLength(min: 1, max: 256)();
+  BlobColumn get data => blob()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get updatedAt => dateTime()();
+}
 
 @DriftDatabase(tables: [Projects])
 class AppDatabase extends _$AppDatabase {
@@ -25,7 +32,6 @@ class AppDatabase extends _$AppDatabase {
     return LazyDatabase(() async {
       final dbFolder = await getApplicationDocumentsDirectory();
       String dbPath = path.join(dbFolder.path, 'db.sqlite');
-      print('Opening database at $dbPath');
       final file = File(dbPath);
       return NativeDatabase.createInBackground(file);
     });
