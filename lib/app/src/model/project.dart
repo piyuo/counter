@@ -8,7 +8,7 @@ class Project {
   Project({
     required this.projectName,
     required this.model,
-    this.projectId = '',
+    required this.projectId,
     this.filter = const vision.Filter(vision.FilterType.pass1Hour),
     required List<Video> videos,
     this.confidenceThreshold = 0.35,

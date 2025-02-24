@@ -30,6 +30,7 @@ void main() {
 
       // Create a dummy project.
       final dummyProject = app.Project(
+        projectId: app.uuid(),
         projectName: 'DataManager Test Project',
         model: vision.Models.onnx_640,
         videos: [], // empty videos list

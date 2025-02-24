@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
@@ -98,8 +100,18 @@ class ProjectProvider with ChangeNotifier {
   /// delete the project
   Future<void> deleteProject(String projectId) async {
     closeProject();
+    await deleteProjectInAppDirectory(projectId);
     if (onDeleteProject != null) {
       await onDeleteProject!(projectId);
+    }
+  }
+
+  /// delete the project temp media file in app directory, save by [saveFileToAppDirectory]
+  Future<void> deleteProjectInAppDirectory(String projectId) async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final projectDir = Directory('${appDir.path}/$projectId');
+    if (await projectDir.exists()) {
+      await projectDir.delete(recursive: true);
     }
   }
 
@@ -314,8 +326,7 @@ class ProjectProvider with ChangeNotifier {
     int index = project!.videos.length;
     String name;
     do {
-      name = _createVideoNameByIndex(context, type, index);
-      index++;
+      name = _createVideoNameByIndex(context, type, ++index);
     } while (project!.isVideoNameExists(name));
     return name;
   }
@@ -391,18 +402,25 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// start a new project with a video source, return tru e if success
-  Future<bool> newProject(BuildContext context, {required vision.MediaType type, String? path}) async {
+  Future<bool> newProject(
+    BuildContext context, {
+    required String projectId,
+    required vision.MediaType mediaType,
+    String? path,
+    int? videoId,
+  }) async {
     _onProjectClosed();
     setNextZoneColorIndex(0);
 
     // create project with a video source
     project = Project(
-      projectName: _createProjectName(type, path),
+      projectId: projectId,
+      projectName: _createProjectName(mediaType, path),
       videos: [],
       model: benchmarkLocalStorage.recommendedModel,
     );
     sampler.reset(project!.filter);
-    _addVideoToProject(context, type, path);
+    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     await _makeProjectOpened(context);
     onProjectChanged?.call(project!, null);
     notifyListeners();
@@ -420,9 +438,14 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// add a new video to project
-  Video _addVideoToProject(BuildContext context, vision.MediaType mediaType, String? path) {
+  Video _addVideoToProject(
+    BuildContext context, {
+    required vision.MediaType mediaType,
+    required String? path,
+    int? videoId,
+  }) {
     final video = Video(
-      videoId: getNextVideoId(),
+      videoId: videoId ?? getNextVideoId(),
       mediaType: mediaType,
       videoName: _createVideoName(context, mediaType),
       path: path,
@@ -478,15 +501,28 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// add a new video source to the project
-  Future<VideoProvider?> newVideoToProject(BuildContext context, {required vision.MediaType type, String? path}) async {
+  Future<VideoProvider?> newVideoToProject(
+    BuildContext context, {
+    required vision.MediaType mediaType,
+    String? path,
+    int? videoId,
+  }) async {
     assert(project != null, 'Project must be opened');
-    _addVideoToProject(context, type, path);
+    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     final videoProvider = await _prepareVideoProviders(context);
     return videoProvider;
   }
 
   /// Remove a video source
-  Future<void> removeVideo(VideoProvider videoProvider) async {
+  Future<void> deleteVideo(VideoProvider videoProvider) async {
+    if (videoProvider.video.mediaType == vision.MediaType.file) {
+      // delete the video file
+      final file = File(videoProvider.video.path!);
+      if (await file.exists()) {
+        await file.delete();
+      }
+    }
+
     await exitVideoScreen(videoProvider);
     project?.videos.remove(videoProvider.video);
     videoProviders.remove(videoProvider);

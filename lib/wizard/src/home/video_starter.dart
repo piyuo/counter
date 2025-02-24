@@ -25,7 +25,8 @@ List<Widget> buildVideoStarter(
             try {
               // add webcam to project
               if (isAddMode) {
-                final videoProvider = await projectProvider.newVideoToProject(context, type: clib.MediaType.webcam);
+                final videoProvider =
+                    await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.webcam);
                 if (context.mounted && videoProvider != null) {
                   Navigator.of(context).pushReplacementNamed(
                     webcamRoute,
@@ -39,7 +40,11 @@ List<Widget> buildVideoStarter(
                 return;
               }
               // create project with webcam
-              await projectProvider.newProject(context, type: clib.MediaType.webcam);
+              await projectProvider.newProject(
+                context,
+                mediaType: clib.MediaType.webcam,
+                projectId: app.uuid(),
+              );
               if (context.mounted) {
                 Navigator.of(context).pushNamed(homeRoute);
               }
@@ -57,7 +62,7 @@ List<Widget> buildVideoStarter(
           try {
             // add camera to project
             if (isAddMode) {
-              final videoProvider = await projectProvider.newVideoToProject(context, type: clib.MediaType.camera);
+              final videoProvider = await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.camera);
               if (context.mounted && videoProvider != null) {
                 Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
                   'videoProvider': videoProvider,
@@ -69,7 +74,11 @@ List<Widget> buildVideoStarter(
             }
 
             // create project with camera
-            await projectProvider.newProject(context, type: clib.MediaType.camera);
+            await projectProvider.newProject(
+              context,
+              mediaType: clib.MediaType.camera,
+              projectId: app.uuid(),
+            );
             if (context.mounted) {
               // first goto start screen then camera screen immediately
               Navigator.of(context).pushNamed(homeRoute);
@@ -91,7 +100,7 @@ List<Widget> buildVideoStarter(
             if (isAddMode) {
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
-                  await projectProvider.newVideoToProject(context, type: clib.MediaType.live, path: url);
+                  await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.live, path: url);
                   return homeRoute;
                 }
               });
@@ -101,7 +110,12 @@ List<Widget> buildVideoStarter(
             // create project with live stream
             Navigator.of(context).pushNamed(urlRoute, arguments: {
               'nextRouteBuilder': (url) async {
-                projectProvider.newProject(context, type: clib.MediaType.live, path: url);
+                projectProvider.newProject(
+                  context,
+                  mediaType: clib.MediaType.live,
+                  path: url,
+                  projectId: app.uuid(),
+                );
                 return homeRoute;
               }
             });
@@ -117,6 +131,8 @@ List<Widget> buildVideoStarter(
         onTap: () async {
           videoStarterProvider.setLoadingFile(true);
           try {
+            final projectId = app.uuid();
+
             final filePath = await pickVideo();
             if (!context.mounted || filePath == null) {
               return;
@@ -124,13 +140,36 @@ List<Widget> buildVideoStarter(
 
             // add file to project
             if (isAddMode) {
-              await projectProvider.newVideoToProject(context, type: clib.MediaType.file, path: filePath);
+              final videoId = projectProvider.getNextVideoId();
+              final newFilePath = await saveFileToAppDirectory(
+                filePath,
+                projectProvider.project!.projectId,
+                videoId,
+              );
+              if (!context.mounted) {
+                return;
+              }
+
+              await projectProvider.newVideoToProject(context, mediaType: clib.MediaType.file, path: newFilePath);
               if (context.mounted) Navigator.of(context).pop();
               return;
             }
 
+            // for sandbox safety
+            final videoId = 1;
+            final newFilePath = await saveFileToAppDirectory(filePath, projectId, videoId);
+            if (!context.mounted) {
+              return;
+            }
+
             // create project with file
-            await projectProvider.newProject(context, type: clib.MediaType.file, path: filePath);
+            await projectProvider.newProject(
+              context,
+              mediaType: clib.MediaType.file,
+              path: newFilePath,
+              projectId: projectId,
+              videoId: videoId,
+            );
             if (context.mounted) {
               Navigator.of(context).pushNamed(homeRoute);
             }

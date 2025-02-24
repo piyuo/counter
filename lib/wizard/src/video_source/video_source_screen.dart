@@ -301,7 +301,7 @@ class VideoSourceScreen extends StatelessWidget {
                             );
                             if (result == null || !result) return;
 
-                            await projectProvider.removeVideo(videoProvider);
+                            await projectProvider.deleteVideo(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
                           child: Text(context.l.video_screen_delete_button,
