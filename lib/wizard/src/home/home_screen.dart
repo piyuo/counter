@@ -87,6 +87,7 @@ class HomeScreen extends StatelessWidget {
                   for (final zone in videoProvider.visionController.zones) {
                     gauges.add(
                       CupertinoListTile(
+                        leading: Icon(CupertinoIcons.square_stack, color: zone.videoZone.color),
                         title: Text(zone.videoZone.name, style: TextStyle(color: zone.videoZone.color)),
                         trailing: const CupertinoListTileChevron(),
                         onTap: () async {
@@ -137,6 +138,8 @@ class HomeScreen extends StatelessWidget {
                           title: Text(videoProvider.video.videoName,
                               style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                           trailing: const CupertinoListTileChevron(),
+                          additionalInfo: Text(vision.mediaTypeToString(context, videoProvider.video.mediaType),
+                              style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
                           onTap: () {
                             gotoVideoSourceRoute(
                               projectProvider: projectProvider,

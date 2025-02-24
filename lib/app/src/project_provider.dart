@@ -333,8 +333,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// create a video name by given index
   String _createVideoNameByIndex(BuildContext context, vision.MediaType type, int index) {
-    String typeName = vision.mediaTypeToString(context, type);
-    return 'Video$index ($typeName)';
+    return 'Video$index';
   }
 
   /// set the filter
