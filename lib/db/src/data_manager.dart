@@ -26,12 +26,16 @@ class DataManager {
     // if new activities are added more than 120 times (2 hours)
     if (_addActivityCount > 120) {
       _addActivityCount = 0;
-
-      /// delete activities older than 1 day
-      await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)));
+      await deleteActivitiesOlderThanOneDay();
     }
   }
 
+  /// delete activities older than 1 day
+  Future<void> deleteActivitiesOlderThanOneDay() async {
+    await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)));
+  }
+
+  /// delete activities older than 1 day
   Future<void> deleteActivitiesOlderThan(DateTime date) async {
     await appDatabase.deleteActivitiesOlderThan(date);
   }

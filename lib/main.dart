@@ -38,17 +38,17 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
                     onGetRecentProjectActivities: (String projectId) async {
-                      print('get recent project activities');
                       return await dataManager.getRecentProjectActivities(projectId);
                     },
                     onActivityAdded:
                         (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
-                      print('projectId:$projectId, videoId:$videoId,zoneId:$zoneId, classId:$classId activity added');
                       await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
+                    },
+                    onProjectOpened: (_) async {
+                      dataManager.deleteActivitiesOlderThanOneDay();
                     },
                     onProjectChanged: (app.Project project, app.Video? video) async {
                       await dataManager.setProject(project);
-//                      print('project ${project.projectName}');
                     },
                     onGetProjectSummaries: () async {
                       return await dataManager.getProjectSummaries();
