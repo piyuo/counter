@@ -289,7 +289,7 @@ class VideoProvider with ChangeNotifier {
     await visionController.enableDetection(true);
     zoneEditorController?.dispose();
     zoneEditorController = null;
-    notifyListeners();
+    _projectProvider?.saveProject(this);
   }
 
   /// set the current zoom
@@ -299,7 +299,6 @@ class VideoProvider with ChangeNotifier {
       video.zones.addAll(zones);
     }
     await visionController.setRecognition(newVideoZones: video.zones);
-    notifyListeners();
   }
 
   /// return the current zones and counts
@@ -310,7 +309,7 @@ class VideoProvider with ChangeNotifier {
     assert(zoneEditorController != null, 'zoneEditorController is null');
     vision.VideoZone zone = zoneEditorController!.addZone(context);
     video.zones.add(zone);
-    notifyListeners();
+    _projectProvider?.saveProject(this);
     return zone;
   }
 
@@ -362,26 +361,26 @@ class VideoProvider with ChangeNotifier {
   void setVideoName(String name) {
     video.videoName = name;
     playerController.title = name;
-    notifyListeners();
+    _projectProvider?.saveProject(this);
   }
 
   /// set the zone name
   void setZoneName(vision.VideoZone videoZone, String name) {
     videoZone.name = name;
-    notifyListeners();
+    _projectProvider?.saveProject(this);
   }
 
   /// set the zone name
   void setZoneColor(vision.VideoZone videoZone, Color color) {
     videoZone.color = color;
-    notifyListeners();
+    _projectProvider?.saveProject(this);
   }
 
   /// set the zone stagnant threshold
   void setZoneStagnantThreshold(vision.VideoZone videoZone, int stagnantThreshold) {
     videoZone.stagnantThreshold = stagnantThreshold;
     visionController.setStagnantThreshold(videoZone.zoneId, videoZone.stagnantThreshold);
-    notifyListeners();
+    _projectProvider?.saveProject(this);
   }
 
   /// set the zone reentered threshold
@@ -414,7 +413,7 @@ class VideoProvider with ChangeNotifier {
     } else {
       videoZone.selectedClasses.add(classId);
     }
-    _projectProvider?.notifyProjectChanged(this);
+    _projectProvider?.saveProject(this);
   }
 
   /// remove a zone from the video source

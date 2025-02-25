@@ -227,7 +227,7 @@ class ZoneScreen extends StatelessWidget {
                             if (result == null || !result) return;
 
                             videoProvider.removeZone(videoZone);
-                            projectProvider.notifyProjectChanged(videoProvider);
+                            projectProvider.saveProject(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
                           child: Text(context.l.zone_screen_delete_button,

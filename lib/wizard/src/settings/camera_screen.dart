@@ -52,7 +52,7 @@ class CameraScreen extends StatelessWidget {
                         onTap: () async {
                           videoProvider.video.camera = cameraDefine;
                           await videoProvider.reload(context, projectProvider.project!, false);
-                          projectProvider.notifyProjectChanged(videoProvider);
+                          projectProvider.saveProject(videoProvider);
                           cameraScreenProvider.redraw();
                         },
                       );
@@ -78,7 +78,7 @@ class CameraScreen extends StatelessWidget {
                               divisions: videoProvider.maxZoom.toInt(),
                               onChanged: (double value) async {
                                 await videoProvider.setCameraZoom(value);
-                                projectProvider.notifyProjectChanged(videoProvider);
+                                projectProvider.saveProject(videoProvider);
                                 cameraScreenProvider.redraw();
                               },
                             ),

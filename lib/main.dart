@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
                     onProjectOpened: (_) async {
                       dataManager.deleteActivitiesOlderThanOneDay();
                     },
-                    onProjectChanged: (app.Project project, app.Video? video) async {
+                    onProjectSave: (app.Project project, app.Video? video) async {
                       await dataManager.setProject(project);
                       print('--------------- project changed!!!----------------');
                     },

@@ -33,7 +33,7 @@ class ProjectProvider with ChangeNotifier {
     this.onActivityAdded,
     this.onProjectOpened,
     this.onProjectClosed,
-    this.onProjectChanged,
+    this.onProjectSave,
     this.onGetProjectSummaries,
     this.onGetProjectById,
     this.onDeleteProject,
@@ -75,8 +75,8 @@ class ProjectProvider with ChangeNotifier {
   /// called when project closed
   final void Function(Project project)? onProjectClosed;
 
-  /// called when project settings changed, videoSource not null mean change is from one of the video source
-  final void Function(Project, Video?)? onProjectChanged;
+  /// called when project need to save, video not null mean change is from one of the video source
+  final void Function(Project, Video?)? onProjectSave;
 
   /// called by open project screen to get the project summaries
   final Future<List<ProjectSummary>> Function()? onGetProjectSummaries;
@@ -165,6 +165,9 @@ class ProjectProvider with ChangeNotifier {
     return hasCamera && !project!.hasCameraInVideos;
   }
 
+  /// used to delay the save project setting
+  Timer? _saveProjectTimer;
+
   /// used to delay the detection threshold setting
   Timer? _detectionThresholdTimer;
 
@@ -213,6 +216,13 @@ class ProjectProvider with ChangeNotifier {
   /// dispose multi view provider
   @override
   void dispose() {
+    _saveProjectTimer?.cancel();
+    _detectionThresholdTimer?.cancel();
+    _nmsThresholdTimer?.cancel();
+    _matchThresholdTimer?.cancel();
+    _maxLostSecondsTimer?.cancel();
+    _validThresholdTimer?.cancel();
+    _modelChangedTimer?.cancel();
     _onProjectClosed();
     wizardStreamController.close();
     orientationProvider?.dispose();
@@ -350,7 +360,7 @@ class ProjectProvider with ChangeNotifier {
     for (final videoProvider in videoProviders) {
       videoProvider.updateSamplingOnFilterChange(now, filter);
     }
-    notifyProjectChanged(null);
+    saveProject(null);
   }
 
   /// get next video id that available to use
@@ -457,7 +467,7 @@ class ProjectProvider with ChangeNotifier {
     }
     _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     await _makeProjectOpened(context);
-    onProjectChanged?.call(project!, null);
+    onProjectSave?.call(project!, null);
     notifyListeners();
     return true;
   }
@@ -544,7 +554,7 @@ class ProjectProvider with ChangeNotifier {
     assert(project != null, 'Project must be opened');
     _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     final videoProvider = await _prepareVideoProviders(context);
-    notifyProjectChanged(videoProvider);
+    saveProject(videoProvider);
     return videoProvider;
   }
 
@@ -565,9 +575,13 @@ class ProjectProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  /// notify listeners and [onProjectChanged] callback, if videoProvider is not null, it means the change is from the video source
-  void notifyProjectChanged(VideoProvider? videoProvider) {
-    onProjectChanged?.call(project!, videoProvider?.video);
+  /// notify listeners and [onProjectSave] callback, if videoProvider is not null, it means the change is from the video source
+  void saveProject(VideoProvider? videoProvider) {
+    _saveProjectTimer?.cancel();
+    _saveProjectTimer = Timer(const Duration(seconds: 2), () async {
+      onProjectSave?.call(project!, videoProvider?.video);
+      _saveProjectTimer = null;
+    });
     notifyListeners();
   }
 
@@ -600,7 +614,7 @@ class ProjectProvider with ChangeNotifier {
   /// set project name
   void setProjectName(String name) {
     project?.projectName = name;
-    notifyProjectChanged(null);
+    saveProject(null);
   }
 
   /// change the model used by the controller
@@ -614,7 +628,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setModel(model);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _modelChangedTimer = null;
     });
   }
@@ -627,7 +641,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setRecognition(detectionThreshold: value);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _detectionThresholdTimer = null;
     });
   }
@@ -640,7 +654,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setRecognition(nmsThreshold: value);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _nmsThresholdTimer = null;
     });
   }
@@ -653,7 +667,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setRecognition(matchThreshold: value);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _matchThresholdTimer = null;
     });
   }
@@ -666,7 +680,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setRecognition(maxLostSeconds: value);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _maxLostSecondsTimer = null;
     });
   }
@@ -679,7 +693,7 @@ class ProjectProvider with ChangeNotifier {
       for (final videoProvider in videoProviders) {
         await videoProvider.setRecognition(validThreshold: value);
       }
-      notifyProjectChanged(null);
+      saveProject(null);
       _validThresholdTimer = null;
     });
   }
@@ -701,7 +715,7 @@ class ProjectProvider with ChangeNotifier {
         maxLostSeconds: project!.maxLostSeconds,
       );
     }
-    notifyProjectChanged(null);
+    saveProject(null);
   }
 
   /// called when the camera changed
@@ -734,6 +748,6 @@ class ProjectProvider with ChangeNotifier {
 
   /// notify the tally annotations are changed
   void notifyTallyAnnotationsChanged() {
-    notifyProjectChanged(null);
+    saveProject(null);
   }
 }

@@ -99,7 +99,7 @@ class SourceScreen extends StatelessWidget {
                                 if (context.mounted) {
                                   await videoProvider.setVideoPath(context, projectProvider.project!, url);
                                 }
-                                projectProvider.notifyProjectChanged(videoProvider);
+                                projectProvider.saveProject(videoProvider);
                               }
                             } finally {
                               projectProvider.enterVideoScreen(videoProvider);
@@ -133,7 +133,7 @@ class SourceScreen extends StatelessWidget {
                             }
 
                             videoProvider.setVideoPath(context, projectProvider.project!, newFilePath);
-                            projectProvider.notifyProjectChanged(videoProvider);
+                            projectProvider.saveProject(videoProvider);
                           },
                         ),
                       ],
