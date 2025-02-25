@@ -62,7 +62,7 @@ dependencies:
   freezed: ^2.5.8
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  sqlite3_flutter_libs: 0.5.29
+  sqlite3_flutter_libs: ^0.5.31
 
 dev_dependencies:
   flutter_test:

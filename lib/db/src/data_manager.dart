@@ -15,7 +15,7 @@ class DataManager {
 
   /// get recent activities for a project that in the last 24 hours
   Future<List<Activity>> getRecentProjectActivities(String projectId) async {
-    final cutOffTime = DateTime.now().subtract(const Duration(days: 1)).toUtc();
+    final cutOffTime = DateTime.now().subtract(const Duration(days: 1));
     return await appDatabase.getProjectActivities(projectId, cutOffTime);
   }
 
@@ -24,11 +24,11 @@ class DataManager {
     await appDatabase.addActivity(projectId, videoId, zoneId, classId, activity);
     _addActivityCount++;
     // if new activities are added more than 120 times (2 hours)
-    if (_addActivityCount > 0) {
+    if (_addActivityCount > 120) {
       _addActivityCount = 0;
 
       /// delete activities older than 1 day
-      await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)).toUtc());
+      await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)));
     }
   }
 

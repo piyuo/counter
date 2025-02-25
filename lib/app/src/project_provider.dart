@@ -405,26 +405,23 @@ class ProjectProvider with ChangeNotifier {
     await _makeProjectOpened(context);
     // load recent activities
     final recentActivities = await onGetRecentProjectActivities!(projectId);
+    final videoProviderMap = {for (var vp in videoProviders) vp.video.videoId: vp};
     for (final dbActivity in recentActivities) {
-      int videoId = dbActivity.videoId;
-      int zoneId = dbActivity.zoneId;
-      final activity = vision.Activity(
-        createdAt: dbActivity.createdAt.toLocal(),
-        spawned: dbActivity.spawned,
-        vanished: dbActivity.vanished,
-        entered: dbActivity.entered,
-        exited: dbActivity.exited,
-        stagnant: dbActivity.stagnant,
-        reentered: dbActivity.reentered,
-        occupied: dbActivity.occupied,
-        stayDuration: dbActivity.stayDuration,
-      );
+      final videoProvider = videoProviderMap[dbActivity.videoId];
+      if (videoProvider != null) {
+        final activity = vision.Activity(
+          createdAt: dbActivity.createdAt,
+          spawned: dbActivity.spawned,
+          vanished: dbActivity.vanished,
+          entered: dbActivity.entered,
+          exited: dbActivity.exited,
+          stagnant: dbActivity.stagnant,
+          reentered: dbActivity.reentered,
+          occupied: dbActivity.occupied,
+          stayDuration: dbActivity.stayDuration,
+        );
 
-      for (final videoProvider in videoProviders) {
-        if (videoProvider.video.videoId == videoId) {
-          videoProvider.loadRecentActivity(zoneId, activity);
-          break;
-        }
+        videoProvider.loadRecentActivity(dbActivity.zoneId, dbActivity.classId, activity);
       }
     }
 

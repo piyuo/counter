@@ -114,7 +114,9 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// load recent activity when project is opened
-  void loadRecentActivity(int zoneId, vision.Activity activity) {}
+  void loadRecentActivity(int zoneId, int classId, vision.Activity activity) {
+    visionController.loadRecentActivity(zoneId, classId, activity);
+  }
 
   /// reset sampler filter
   void resetSamplerFilter(vision.Filter filter) {
