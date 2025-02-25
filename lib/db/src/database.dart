@@ -20,7 +20,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   static QueryExecutor _openConnection() {
     return LazyDatabase(() async {
@@ -31,12 +31,20 @@ class AppDatabase extends _$AppDatabase {
     });
   }
 
+  /// get all activities for a project that are older than the given date
+  Future<List<Activity>> getProjectActivities(String projectId, DateTime cutOffTime) async {
+    final query = select(activities)
+      ..where((a) => a.projectId.equals(projectId) & a.createdAt.isBiggerOrEqualValue(cutOffTime));
+    return query.get();
+  }
+
   /// add activity to database
-  Future<void> addActivity(String projectId, int videoId, int zoneId, vision.Activity activity) async {
+  Future<void> addActivity(String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
     await into(activities).insert(ActivitiesCompanion(
       projectId: Value(projectId),
       videoId: Value(videoId),
       zoneId: Value(zoneId),
+      classId: Value(classId),
       createdAt: Value(DateTime.now().toUtc()),
       spawned: Value(activity.spawned),
       vanished: Value(activity.vanished),

@@ -37,9 +37,14 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => vision.LanguageProvider()..loadLocale()),
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
-                    onActivityAdded: (String projectId, int videoId, int zoneId, vision.Activity activity) async {
-                      print('projectId:$projectId, videoId:$videoId,zoneId:$zoneId activity added');
-                      await dataManager.addActivity(projectId, videoId, zoneId, activity);
+                    onGetRecentProjectActivities: (String projectId) async {
+                      print('get recent project activities');
+                      return await dataManager.getRecentProjectActivities(projectId);
+                    },
+                    onActivityAdded:
+                        (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
+                      print('projectId:$projectId, videoId:$videoId,zoneId:$zoneId, classId:$classId activity added');
+                      await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
                     },
                     onProjectChanged: (app.Project project, app.Video? video) async {
                       await dataManager.setProject(project);

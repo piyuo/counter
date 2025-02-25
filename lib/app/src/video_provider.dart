@@ -17,8 +17,8 @@ class VideoProvider with ChangeNotifier {
     required this.video,
     required ProjectProvider projectProvider,
   }) : _projectProvider = projectProvider {
-    sampler = vision.Sampler(onActivityAdded: (zoneId, activity) {
-      _projectProvider?.notifyActivityAdded(video.videoId, zoneId, activity);
+    sampler = vision.Sampler(onActivityAdded: (zoneId, classId, activity) {
+      _projectProvider?.notifyActivityAdded(video.videoId, zoneId, classId, activity);
     });
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
     visionController = vision.Controller(sampler: sampler);
@@ -112,6 +112,9 @@ class VideoProvider with ChangeNotifier {
     zoneEditorController = null;
     super.dispose();
   }
+
+  /// load recent activity when project is opened
+  void loadRecentActivity(int zoneId, vision.Activity activity) {}
 
   /// reset sampler filter
   void resetSamplerFilter(vision.Filter filter) {

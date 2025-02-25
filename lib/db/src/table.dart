@@ -22,6 +22,7 @@ class Activities extends Table {
   TextColumn get projectId => text().withLength(min: 1, max: 22)();
   IntColumn get videoId => integer()();
   IntColumn get zoneId => integer()();
+  IntColumn get classId => integer()();
   DateTimeColumn get createdAt => dateTime()();
   IntColumn get spawned => integer()();
   IntColumn get vanished => integer()();

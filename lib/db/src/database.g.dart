@@ -357,6 +357,12 @@ class $ActivitiesTable extends Activities
   late final GeneratedColumn<int> zoneId = GeneratedColumn<int>(
       'zone_id', aliasedName, false,
       type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _classIdMeta =
+      const VerificationMeta('classId');
+  @override
+  late final GeneratedColumn<int> classId = GeneratedColumn<int>(
+      'class_id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
   static const VerificationMeta _createdAtMeta =
       const VerificationMeta('createdAt');
   @override
@@ -416,6 +422,7 @@ class $ActivitiesTable extends Activities
         projectId,
         videoId,
         zoneId,
+        classId,
         createdAt,
         spawned,
         vanished,
@@ -456,6 +463,12 @@ class $ActivitiesTable extends Activities
           zoneId.isAcceptableOrUnknown(data['zone_id']!, _zoneIdMeta));
     } else if (isInserting) {
       context.missing(_zoneIdMeta);
+    }
+    if (data.containsKey('class_id')) {
+      context.handle(_classIdMeta,
+          classId.isAcceptableOrUnknown(data['class_id']!, _classIdMeta));
+    } else if (isInserting) {
+      context.missing(_classIdMeta);
     }
     if (data.containsKey('created_at')) {
       context.handle(_createdAtMeta,
@@ -530,6 +543,8 @@ class $ActivitiesTable extends Activities
           .read(DriftSqlType.int, data['${effectivePrefix}video_id'])!,
       zoneId: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}zone_id'])!,
+      classId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}class_id'])!,
       createdAt: attachedDatabase.typeMapping
           .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
       spawned: attachedDatabase.typeMapping
@@ -562,6 +577,7 @@ class Activity extends DataClass implements Insertable<Activity> {
   final String projectId;
   final int videoId;
   final int zoneId;
+  final int classId;
   final DateTime createdAt;
   final int spawned;
   final int vanished;
@@ -576,6 +592,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       required this.projectId,
       required this.videoId,
       required this.zoneId,
+      required this.classId,
       required this.createdAt,
       required this.spawned,
       required this.vanished,
@@ -592,6 +609,7 @@ class Activity extends DataClass implements Insertable<Activity> {
     map['project_id'] = Variable<String>(projectId);
     map['video_id'] = Variable<int>(videoId);
     map['zone_id'] = Variable<int>(zoneId);
+    map['class_id'] = Variable<int>(classId);
     map['created_at'] = Variable<DateTime>(createdAt);
     map['spawned'] = Variable<int>(spawned);
     map['vanished'] = Variable<int>(vanished);
@@ -610,6 +628,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       projectId: Value(projectId),
       videoId: Value(videoId),
       zoneId: Value(zoneId),
+      classId: Value(classId),
       createdAt: Value(createdAt),
       spawned: Value(spawned),
       vanished: Value(vanished),
@@ -630,6 +649,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       projectId: serializer.fromJson<String>(json['projectId']),
       videoId: serializer.fromJson<int>(json['videoId']),
       zoneId: serializer.fromJson<int>(json['zoneId']),
+      classId: serializer.fromJson<int>(json['classId']),
       createdAt: serializer.fromJson<DateTime>(json['createdAt']),
       spawned: serializer.fromJson<int>(json['spawned']),
       vanished: serializer.fromJson<int>(json['vanished']),
@@ -649,6 +669,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       'projectId': serializer.toJson<String>(projectId),
       'videoId': serializer.toJson<int>(videoId),
       'zoneId': serializer.toJson<int>(zoneId),
+      'classId': serializer.toJson<int>(classId),
       'createdAt': serializer.toJson<DateTime>(createdAt),
       'spawned': serializer.toJson<int>(spawned),
       'vanished': serializer.toJson<int>(vanished),
@@ -666,6 +687,7 @@ class Activity extends DataClass implements Insertable<Activity> {
           String? projectId,
           int? videoId,
           int? zoneId,
+          int? classId,
           DateTime? createdAt,
           int? spawned,
           int? vanished,
@@ -680,6 +702,7 @@ class Activity extends DataClass implements Insertable<Activity> {
         projectId: projectId ?? this.projectId,
         videoId: videoId ?? this.videoId,
         zoneId: zoneId ?? this.zoneId,
+        classId: classId ?? this.classId,
         createdAt: createdAt ?? this.createdAt,
         spawned: spawned ?? this.spawned,
         vanished: vanished ?? this.vanished,
@@ -696,6 +719,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       projectId: data.projectId.present ? data.projectId.value : this.projectId,
       videoId: data.videoId.present ? data.videoId.value : this.videoId,
       zoneId: data.zoneId.present ? data.zoneId.value : this.zoneId,
+      classId: data.classId.present ? data.classId.value : this.classId,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       spawned: data.spawned.present ? data.spawned.value : this.spawned,
       vanished: data.vanished.present ? data.vanished.value : this.vanished,
@@ -717,6 +741,7 @@ class Activity extends DataClass implements Insertable<Activity> {
           ..write('projectId: $projectId, ')
           ..write('videoId: $videoId, ')
           ..write('zoneId: $zoneId, ')
+          ..write('classId: $classId, ')
           ..write('createdAt: $createdAt, ')
           ..write('spawned: $spawned, ')
           ..write('vanished: $vanished, ')
@@ -736,6 +761,7 @@ class Activity extends DataClass implements Insertable<Activity> {
       projectId,
       videoId,
       zoneId,
+      classId,
       createdAt,
       spawned,
       vanished,
@@ -753,6 +779,7 @@ class Activity extends DataClass implements Insertable<Activity> {
           other.projectId == this.projectId &&
           other.videoId == this.videoId &&
           other.zoneId == this.zoneId &&
+          other.classId == this.classId &&
           other.createdAt == this.createdAt &&
           other.spawned == this.spawned &&
           other.vanished == this.vanished &&
@@ -769,6 +796,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
   final Value<String> projectId;
   final Value<int> videoId;
   final Value<int> zoneId;
+  final Value<int> classId;
   final Value<DateTime> createdAt;
   final Value<int> spawned;
   final Value<int> vanished;
@@ -783,6 +811,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     this.projectId = const Value.absent(),
     this.videoId = const Value.absent(),
     this.zoneId = const Value.absent(),
+    this.classId = const Value.absent(),
     this.createdAt = const Value.absent(),
     this.spawned = const Value.absent(),
     this.vanished = const Value.absent(),
@@ -798,6 +827,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     required String projectId,
     required int videoId,
     required int zoneId,
+    required int classId,
     required DateTime createdAt,
     required int spawned,
     required int vanished,
@@ -810,6 +840,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
   })  : projectId = Value(projectId),
         videoId = Value(videoId),
         zoneId = Value(zoneId),
+        classId = Value(classId),
         createdAt = Value(createdAt),
         spawned = Value(spawned),
         vanished = Value(vanished),
@@ -824,6 +855,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     Expression<String>? projectId,
     Expression<int>? videoId,
     Expression<int>? zoneId,
+    Expression<int>? classId,
     Expression<DateTime>? createdAt,
     Expression<int>? spawned,
     Expression<int>? vanished,
@@ -839,6 +871,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       if (projectId != null) 'project_id': projectId,
       if (videoId != null) 'video_id': videoId,
       if (zoneId != null) 'zone_id': zoneId,
+      if (classId != null) 'class_id': classId,
       if (createdAt != null) 'created_at': createdAt,
       if (spawned != null) 'spawned': spawned,
       if (vanished != null) 'vanished': vanished,
@@ -856,6 +889,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       Value<String>? projectId,
       Value<int>? videoId,
       Value<int>? zoneId,
+      Value<int>? classId,
       Value<DateTime>? createdAt,
       Value<int>? spawned,
       Value<int>? vanished,
@@ -870,6 +904,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
       projectId: projectId ?? this.projectId,
       videoId: videoId ?? this.videoId,
       zoneId: zoneId ?? this.zoneId,
+      classId: classId ?? this.classId,
       createdAt: createdAt ?? this.createdAt,
       spawned: spawned ?? this.spawned,
       vanished: vanished ?? this.vanished,
@@ -896,6 +931,9 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     }
     if (zoneId.present) {
       map['zone_id'] = Variable<int>(zoneId.value);
+    }
+    if (classId.present) {
+      map['class_id'] = Variable<int>(classId.value);
     }
     if (createdAt.present) {
       map['created_at'] = Variable<DateTime>(createdAt.value);
@@ -934,6 +972,7 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
           ..write('projectId: $projectId, ')
           ..write('videoId: $videoId, ')
           ..write('zoneId: $zoneId, ')
+          ..write('classId: $classId, ')
           ..write('createdAt: $createdAt, ')
           ..write('spawned: $spawned, ')
           ..write('vanished: $vanished, ')
@@ -1146,6 +1185,7 @@ typedef $$ActivitiesTableCreateCompanionBuilder = ActivitiesCompanion Function({
   required String projectId,
   required int videoId,
   required int zoneId,
+  required int classId,
   required DateTime createdAt,
   required int spawned,
   required int vanished,
@@ -1161,6 +1201,7 @@ typedef $$ActivitiesTableUpdateCompanionBuilder = ActivitiesCompanion Function({
   Value<String> projectId,
   Value<int> videoId,
   Value<int> zoneId,
+  Value<int> classId,
   Value<DateTime> createdAt,
   Value<int> spawned,
   Value<int> vanished,
@@ -1192,6 +1233,9 @@ class $$ActivitiesTableFilterComposer
 
   ColumnFilters<int> get zoneId => $composableBuilder(
       column: $table.zoneId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get classId => $composableBuilder(
+      column: $table.classId, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
       column: $table.createdAt, builder: (column) => ColumnFilters(column));
@@ -1242,6 +1286,9 @@ class $$ActivitiesTableOrderingComposer
   ColumnOrderings<int> get zoneId => $composableBuilder(
       column: $table.zoneId, builder: (column) => ColumnOrderings(column));
 
+  ColumnOrderings<int> get classId => $composableBuilder(
+      column: $table.classId, builder: (column) => ColumnOrderings(column));
+
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
       column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 
@@ -1291,6 +1338,9 @@ class $$ActivitiesTableAnnotationComposer
 
   GeneratedColumn<int> get zoneId =>
       $composableBuilder(column: $table.zoneId, builder: (column) => column);
+
+  GeneratedColumn<int> get classId =>
+      $composableBuilder(column: $table.classId, builder: (column) => column);
 
   GeneratedColumn<DateTime> get createdAt =>
       $composableBuilder(column: $table.createdAt, builder: (column) => column);
@@ -1347,6 +1397,7 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             Value<String> projectId = const Value.absent(),
             Value<int> videoId = const Value.absent(),
             Value<int> zoneId = const Value.absent(),
+            Value<int> classId = const Value.absent(),
             Value<DateTime> createdAt = const Value.absent(),
             Value<int> spawned = const Value.absent(),
             Value<int> vanished = const Value.absent(),
@@ -1362,6 +1413,7 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             projectId: projectId,
             videoId: videoId,
             zoneId: zoneId,
+            classId: classId,
             createdAt: createdAt,
             spawned: spawned,
             vanished: vanished,
@@ -1377,6 +1429,7 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             required String projectId,
             required int videoId,
             required int zoneId,
+            required int classId,
             required DateTime createdAt,
             required int spawned,
             required int vanished,
@@ -1392,6 +1445,7 @@ class $$ActivitiesTableTableManager extends RootTableManager<
             projectId: projectId,
             videoId: videoId,
             zoneId: zoneId,
+            classId: classId,
             createdAt: createdAt,
             spawned: spawned,
             vanished: vanished,

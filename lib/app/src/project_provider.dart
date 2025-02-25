@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:counter/db/db.dart' as db;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -28,6 +29,7 @@ enum VideoPlayingState { allPlay, somePlay, allPause }
 /// Project provider can create, open, and manage the project. wizard package will find the project provider from context to work with.
 class ProjectProvider with ChangeNotifier {
   ProjectProvider({
+    this.onGetRecentProjectActivities,
     this.onActivityAdded,
     this.onProjectOpened,
     this.onProjectClosed,
@@ -61,8 +63,11 @@ class ProjectProvider with ChangeNotifier {
   /// is project opened
   bool get isProjectOpened => project != null;
 
+  /// get recent activities when project opened
+  final Future<List<db.Activity>> Function(String projectId)? onGetRecentProjectActivities;
+
   /// Callback function that is called when a new activity is added.
-  final void Function(String projectId, int videoId, int zoneId, vision.Activity)? onActivityAdded;
+  final void Function(String projectId, int videoId, int zoneId, int classId, vision.Activity)? onActivityAdded;
 
   /// called when project opened
   final void Function(Project project)? onProjectOpened;
@@ -83,8 +88,8 @@ class ProjectProvider with ChangeNotifier {
   final Future<void> Function(String)? onDeleteProject;
 
   /// called when a new activity is added
-  void notifyActivityAdded(int videoId, int zoneId, vision.Activity activity) {
-    onActivityAdded?.call(project!.projectId, videoId, zoneId, activity);
+  void notifyActivityAdded(int videoId, int zoneId, int classId, vision.Activity activity) {
+    onActivityAdded?.call(project!.projectId, videoId, zoneId, classId, activity);
   }
 
   /// get the project summaries
@@ -393,12 +398,38 @@ class ProjectProvider with ChangeNotifier {
     // reset zone global id first to avoid id conflict
     final nextZoneId = getNextZoneId();
     setNextZoneColorIndex(nextZoneId);
-    if (context.mounted) {
-      await _makeProjectOpened(context);
-      notifyListeners();
-      return true;
+    if (!context.mounted) {
+      return false;
     }
-    return false;
+
+    await _makeProjectOpened(context);
+    // load recent activities
+    final recentActivities = await onGetRecentProjectActivities!(projectId);
+    for (final dbActivity in recentActivities) {
+      int videoId = dbActivity.videoId;
+      int zoneId = dbActivity.zoneId;
+      final activity = vision.Activity(
+        createdAt: dbActivity.createdAt.toLocal(),
+        spawned: dbActivity.spawned,
+        vanished: dbActivity.vanished,
+        entered: dbActivity.entered,
+        exited: dbActivity.exited,
+        stagnant: dbActivity.stagnant,
+        reentered: dbActivity.reentered,
+        occupied: dbActivity.occupied,
+        stayDuration: dbActivity.stayDuration,
+      );
+
+      for (final videoProvider in videoProviders) {
+        if (videoProvider.video.videoId == videoId) {
+          videoProvider.loadRecentActivity(zoneId, activity);
+          break;
+        }
+      }
+    }
+
+    notifyListeners();
+    return true;
   }
 
   /// start a new project with a video source, return tru e if success
