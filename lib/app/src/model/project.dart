@@ -3,6 +3,13 @@ import 'package:vision/vision.dart' as vision;
 import 'uuid.dart';
 import 'video.dart';
 
+const _confidenceThreshold = 0.35; // pick object as many as possible
+const _trackingThreshold = 0.7; // byte track will filter object by
+const _nmsThreshold = 0.65;
+const _matchThreshold = 0.55;
+const _maxLostSeconds = 1;
+const _validThreshold = 2;
+
 /// Project for object detection, support multiple video sources, and settings.
 class Project {
   Project({
@@ -11,12 +18,12 @@ class Project {
     required this.projectId,
     this.filter = const vision.Filter(vision.FilterType.pass1Hour),
     required List<Video> videos,
-    this.confidenceThreshold = 0.35,
-    this.nmsThreshold = 0.65,
-    this.matchThreshold = 0.55,
-    this.maxLostSeconds = 1,
-    this.validThreshold = 2,
-    this.trackingThreshold = 0.7,
+    this.confidenceThreshold = _confidenceThreshold,
+    this.nmsThreshold = _nmsThreshold,
+    this.matchThreshold = _matchThreshold,
+    this.maxLostSeconds = _maxLostSeconds,
+    this.validThreshold = _validThreshold,
+    this.trackingThreshold = _trackingThreshold,
   }) {
     // if projectId is empty, generate a new one
     if (projectId.isEmpty) {
@@ -26,7 +33,6 @@ class Project {
     if (videos.isNotEmpty) {
       _videos.addAll(videos);
     }
-    resetDetectionSettings();
   }
 
   /// the unique identifier of the project.
@@ -83,12 +89,12 @@ class Project {
 
   /// reset the detection settings
   void resetDetectionSettings() {
-    confidenceThreshold = 0.35; // pick object as many as possible
-    trackingThreshold = 0.7; // byte track will filter object by
-    nmsThreshold = 0.65;
-    matchThreshold = 0.55;
-    maxLostSeconds = 1;
-    validThreshold = 2;
+    confidenceThreshold = _confidenceThreshold; // pick object as many as possible
+    trackingThreshold = _trackingThreshold; // byte track will filter object by
+    nmsThreshold = _nmsThreshold;
+    matchThreshold = _matchThreshold;
+    maxLostSeconds = _maxLostSeconds;
+    validThreshold = _validThreshold;
   }
 
   /// check if project contain a camera video source
