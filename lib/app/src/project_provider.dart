@@ -391,6 +391,10 @@ class ProjectProvider with ChangeNotifier {
     if (project == null) {
       return false;
     }
+    if (!context.mounted) {
+      return false;
+    }
+    await _makeProjectOpened(context);
     for (final videoProvider in videoProviders) {
       videoProvider.resetSamplerFilter(project!.filter);
     }
@@ -398,11 +402,7 @@ class ProjectProvider with ChangeNotifier {
     // reset zone global id first to avoid id conflict
     final nextZoneId = getNextZoneId();
     setNextZoneColorIndex(nextZoneId);
-    if (!context.mounted) {
-      return false;
-    }
 
-    await _makeProjectOpened(context);
     // load recent activities
     final recentActivities = await onGetRecentProjectActivities!(projectId);
     final videoProviderMap = {for (var vp in videoProviders) vp.video.videoId: vp};
@@ -423,6 +423,11 @@ class ProjectProvider with ChangeNotifier {
 
         videoProvider.loadRecentActivity(dbActivity.zoneId, dbActivity.classId, activity);
       }
+    }
+
+    DateTime now = DateTime.now();
+    for (final videoProvider in videoProviders) {
+      videoProvider.updateSample(now);
     }
 
     notifyListeners();

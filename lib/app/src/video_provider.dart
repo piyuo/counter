@@ -118,6 +118,11 @@ class VideoProvider with ChangeNotifier {
     visionController.loadRecentActivity(zoneId, classId, activity);
   }
 
+  /// update the sampling
+  void updateSample(DateTime now) {
+    visionController.updateSample(now);
+  }
+
   /// reset sampler filter
   void resetSamplerFilter(vision.Filter filter) {
     sampler.reset(filter);
