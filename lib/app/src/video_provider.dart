@@ -251,6 +251,7 @@ class VideoProvider with ChangeNotifier {
     if (isPlaying) {
       await visionController.play();
     }
+    _projectProvider?.saveProject(this);
     return errorCode;
   }
 
