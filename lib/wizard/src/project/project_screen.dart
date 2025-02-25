@@ -202,7 +202,7 @@ class ProjectScreen extends StatelessWidget {
                   action: CupertinoButton(
                     child: Text(context.l.home_screen_add_video_button),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(addVideoRoute, arguments: {
+                      Navigator.of(context).pushNamed(addSourceRoute, arguments: {
                         'previousPageTitle': pageTitle,
                       });
                     },

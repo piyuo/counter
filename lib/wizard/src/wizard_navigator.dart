@@ -33,8 +33,8 @@ const benchmarkRoute = '/benchmark';
 /// The opencv route
 const opencvRoute = '/opencv';
 
-/// The add video route
-const addVideoRoute = '/addVideo';
+/// The add video source route
+const addSourceRoute = '/addSource';
 
 /// The video source route
 const sourceRoute = '/source';
@@ -143,7 +143,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return FilterScreen(
                   previousPageTitle: args!['previousPageTitle'],
                 );
-              case addVideoRoute:
+              case addSourceRoute:
                 return AddVideoScreen(
                   previousPageTitle: args!['previousPageTitle'],
                 );
