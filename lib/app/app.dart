@@ -5,7 +5,7 @@ export 'src/model/schedule.dart';
 export 'src/model/uuid.dart';
 export 'src/model/video.dart';
 export 'src/project_provider.dart';
-export 'src/project_screen.dart';
+export 'src/project_view.dart';
 export 'src/video_provider.dart';
 export 'src/video_view.dart';
 export 'src/wizard_commands.dart';
