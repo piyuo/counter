@@ -14,11 +14,11 @@ import 'settings/detection_screen.dart';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
 import 'settings/webcam_screen.dart';
-import 'video_source/color_screen.dart';
-import 'video_source/counter_screen.dart';
-import 'video_source/object_class_screen.dart';
-import 'video_source/video_source_screen.dart';
-import 'video_source/zone_screen.dart';
+import 'source/color_screen.dart';
+import 'source/counter_screen.dart';
+import 'source/object_class_screen.dart';
+import 'source/source_screen.dart';
+import 'source/zone_screen.dart';
 import 'welcome_screen.dart';
 
 /// The initial route
@@ -37,7 +37,7 @@ const opencvRoute = '/opencv';
 const addVideoRoute = '/addVideo';
 
 /// The video source route
-const videoSourceRoute = '/videoSource';
+const sourceRoute = '/source';
 
 /// The camera route
 const cameraRoute = '/camera';
@@ -99,7 +99,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
       switch (command.wizardCommands) {
         case app.WizardCommands.showVideoSettings:
           if (context.mounted) {
-            gotoVideoSourceRoute(projectProvider: projectProvider, videoProvider: command.arguments);
+            gotoSourceRoute(projectProvider: projectProvider, videoProvider: command.arguments);
           }
           break;
       }
@@ -147,8 +147,8 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return AddVideoScreen(
                   previousPageTitle: args!['previousPageTitle'],
                 );
-              case videoSourceRoute:
-                return VideoSourceScreen(
+              case sourceRoute:
+                return SourceScreen(
                   previousPageTitle: args!['previousPageTitle'],
                   videoProvider: args['videoProvider'],
                 );
@@ -213,7 +213,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
 }
 
 ///  Navigate to the video source route
-void gotoVideoSourceRoute({
+void gotoSourceRoute({
   required app.ProjectProvider projectProvider,
   required videoProvider,
   String? previousPageTitle,
@@ -221,9 +221,9 @@ void gotoVideoSourceRoute({
   await projectProvider.enterVideoScreen(videoProvider);
   try {
     await projectProvider.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      videoSourceRoute,
+      sourceRoute,
       (route) =>
-          (route.isCurrent && route.settings.name == videoSourceRoute) ||
+          (route.isCurrent && route.settings.name == sourceRoute) ||
           route.settings.name == null ||
           route.settings.name == '/',
       arguments: {

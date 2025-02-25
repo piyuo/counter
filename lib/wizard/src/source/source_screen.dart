@@ -8,9 +8,9 @@ import 'package:vision/vision.dart' as vision;
 import '../project/pick_video.dart';
 import '../wizard_navigator.dart';
 
-/// The video source screen for detail and zone editing.
-class VideoSourceScreen extends StatelessWidget {
-  const VideoSourceScreen({
+/// The source screen for detail and zone editing.
+class SourceScreen extends StatelessWidget {
+  const SourceScreen({
     required this.videoProvider,
     this.previousPageTitle,
     super.key,

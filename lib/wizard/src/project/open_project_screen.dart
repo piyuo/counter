@@ -98,7 +98,6 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                 projectProvider.deleteProject(project.projectId);
               },
               child: CupertinoListTile(
-                leading: Icon(CupertinoIcons.archivebox),
                 title: Text(project.projectName),
                 trailing: CupertinoListTileChevron(),
                 subtitle: Text(timeago.format(project.updatedAt, locale: languageProvider.locale.toString())),

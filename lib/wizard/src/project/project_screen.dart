@@ -140,7 +140,7 @@ class ProjectScreen extends StatelessWidget {
                           additionalInfo: Text(vision.mediaTypeToString(context, videoProvider.video.mediaType),
                               style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
                           onTap: () {
-                            gotoVideoSourceRoute(
+                            gotoSourceRoute(
                               projectProvider: projectProvider,
                               videoProvider: videoProvider,
                               previousPageTitle: pageTitle,
