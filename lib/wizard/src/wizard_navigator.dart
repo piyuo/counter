@@ -19,7 +19,7 @@ import 'source/counter_screen.dart';
 import 'source/object_class_screen.dart';
 import 'source/source_screen.dart';
 import 'source/zone_screen.dart';
-import 'welcome_screen.dart';
+import 'wizard_screen.dart';
 
 /// The initial route
 const initialRoute = '/';
@@ -118,7 +118,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           builder: (context) {
             switch (routeSettings.name) {
               case '/':
-                return WelcomeScreen();
+                return WizardScreen();
               case aboutRoute:
                 return AboutScreen(
                   previousPageTitle: args!['previousPageTitle'],
@@ -203,7 +203,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoZone: args['videoZone'],
                 );
               default:
-                return WelcomeScreen();
+                return WizardScreen();
             }
           },
         );

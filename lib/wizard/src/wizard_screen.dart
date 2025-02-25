@@ -9,8 +9,8 @@ import 'package:vision/vision.dart' as vision;
 import 'project/video_starter.dart';
 import 'wizard_navigator.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({
+class WizardScreen extends StatelessWidget {
+  const WizardScreen({
     super.key,
   });
 
