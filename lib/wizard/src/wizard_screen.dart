@@ -6,7 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import 'project/video_starter.dart';
+import 'project/video_sources.dart';
 import 'wizard_navigator.dart';
 
 class WizardScreen extends StatelessWidget {
@@ -41,7 +41,7 @@ class WizardScreen extends StatelessWidget {
                           builder: (context, videoStarterProvider, child) => CupertinoListSection(
                                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                                 header: Text(context.l.welcome_screen_new_project_from),
-                                children: buildVideoStarter(
+                                children: buildVideoSources(
                                   context,
                                   videoStarterProvider: videoStarterProvider,
                                   projectProvider: projectProvider,

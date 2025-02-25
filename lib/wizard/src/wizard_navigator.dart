@@ -144,7 +144,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   previousPageTitle: args!['previousPageTitle'],
                 );
               case addSourceRoute:
-                return AddVideoScreen(
+                return AddSourceScreen(
                   previousPageTitle: args!['previousPageTitle'],
                 );
               case sourceRoute:

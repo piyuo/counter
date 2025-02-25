@@ -4,11 +4,11 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import '../project/video_starter.dart';
+import '../project/video_sources.dart';
 
 /// Add new video screen
-class AddVideoScreen extends StatelessWidget {
-  const AddVideoScreen({
+class AddSourceScreen extends StatelessWidget {
+  const AddSourceScreen({
     this.previousPageTitle,
     super.key,
   });
@@ -23,9 +23,9 @@ class AddVideoScreen extends StatelessWidget {
     return pip.PipScaffold(
       previousPageTitle: previousPageTitle,
       title: pageTitle,
-      child: ChangeNotifierProvider<AddVideoScreenProvider>(
-        create: (_) => AddVideoScreenProvider(),
-        child: Consumer<AddVideoScreenProvider>(builder: (context, aiProvider, child) {
+      child: ChangeNotifierProvider<AddSourceScreenProvider>(
+        create: (_) => AddSourceScreenProvider(),
+        child: Consumer<AddSourceScreenProvider>(builder: (context, aiProvider, child) {
           return SingleChildScrollView(
               child: Column(
             children: [
@@ -35,7 +35,7 @@ class AddVideoScreen extends StatelessWidget {
                     builder: (context, videoStarterProvider, child) => CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.add_video_screen_from),
-                      children: buildVideoStarter(
+                      children: buildVideoSources(
                         context,
                         videoStarterProvider: videoStarterProvider,
                         projectProvider: projectProvider,
@@ -53,8 +53,8 @@ class AddVideoScreen extends StatelessWidget {
 }
 
 /// provider for add video screen
-class AddVideoScreenProvider with ChangeNotifier {
-  AddVideoScreenProvider();
+class AddSourceScreenProvider with ChangeNotifier {
+  AddSourceScreenProvider();
 
   void redraw() {
     notifyListeners();

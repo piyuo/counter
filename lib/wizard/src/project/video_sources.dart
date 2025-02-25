@@ -6,12 +6,12 @@ import 'package:vision/vision.dart' as vision;
 import '../wizard_navigator.dart';
 import 'pick_video.dart';
 
-/// the video starter list,like camera, webcam, live stream, file
-List<Widget> buildVideoStarter(
+/// the video sources, like camera, webcam, live stream, file
+List<Widget> buildVideoSources(
   BuildContext context, {
   required app.ProjectProvider projectProvider,
   required VideoStarterProvider videoStarterProvider,
-  required bool isAddMode,
+  required bool isAddMode, // is add another video to project
   String? previousPageTitle,
 }) {
   return [

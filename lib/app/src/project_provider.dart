@@ -544,6 +544,7 @@ class ProjectProvider with ChangeNotifier {
     assert(project != null, 'Project must be opened');
     _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
     final videoProvider = await _prepareVideoProviders(context);
+    notifyProjectChanged(videoProvider);
     return videoProvider;
   }
 
