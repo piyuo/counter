@@ -119,7 +119,7 @@ class _MyAppState extends State<MyApp> {
                 sideLayoutWidthThreshold: projectProvider.sideLayoutWidthThreshold,
                 deviceOrientation: projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
                 sliding: wizard.WizardNavigator(),
-                builder: (isSideLayout) => app.ProjectScreen(
+                builder: (isSideLayout) => app.ProjectView(
                   noProjectScreen: buildMainScreen(),
                   isSideLayout: isSideLayout,
                 ),

@@ -7,9 +7,9 @@ import 'model/video.dart';
 import 'project_provider.dart';
 import 'video_view.dart';
 
-/// Project screen show multiple video sources from project
-class ProjectScreen extends StatelessWidget {
-  const ProjectScreen({
+/// Project view show multiple video sources from project
+class ProjectView extends StatelessWidget {
+  const ProjectView({
     this.onProjectChanged,
     this.noProjectScreen,
     this.isSideLayout = false,
