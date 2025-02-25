@@ -139,7 +139,8 @@ class AppDatabase extends _$AppDatabase {
         projects.projectName,
         projects.createdAt,
         projects.updatedAt,
-      ]);
+      ])
+      ..orderBy([OrderingTerm.desc(projects.updatedAt)]);
     final rows = await query.get();
     return rows
         .map((row) => ProjectSummary(

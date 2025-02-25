@@ -2,6 +2,8 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
+import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 
@@ -66,6 +68,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
         child: buildMaxHeight(Text(context.l.open_project_screen_no_project)),
       );
     }
+    final languageProvider = vision.LanguageProvider.of(context);
 
     return pip.PipScaffold(
       title: pageTitle,
@@ -98,6 +101,8 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                 leading: Icon(CupertinoIcons.archivebox),
                 title: Text(project.projectName),
                 trailing: CupertinoListTileChevron(),
+                subtitle: Text(
+                    '${DateFormat.yMMMMEEEEd(languageProvider.locale).format(project.updatedAt)} ${DateFormat.jm(languageProvider.locale).format(project.updatedAt)}'),
                 onTap: () async {
                   final ok = await projectProvider.openProject(context, project.projectId);
                   if (ok && context.mounted) {
