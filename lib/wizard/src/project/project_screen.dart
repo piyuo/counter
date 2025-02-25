@@ -11,8 +11,8 @@ import 'package:vision/vision.dart' as vision;
 import '../wizard_navigator.dart';
 import 'gauge_view.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({
+class ProjectScreen extends StatelessWidget {
+  const ProjectScreen({
     super.key,
   });
 

@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'about/about_screen.dart';
 import 'about/benchmark_screen.dart';
 import 'about/opencv_screen.dart';
-import 'home/filter_screen.dart';
-import 'home/home_screen.dart';
-import 'home/open_project_screen.dart';
 import 'language/language_screen.dart';
+import 'project/filter_screen.dart';
+import 'project/open_project_screen.dart';
+import 'project/project_screen.dart';
 import 'settings/add_video_screen.dart';
 import 'settings/camera_screen.dart';
 import 'settings/detection_screen.dart';
@@ -57,8 +57,8 @@ const languageRoute = '/language';
 /// The object class route
 const objectClassRoute = '/class';
 
-/// The home route
-const homeRoute = '/home';
+/// The project route
+const projectRoute = '/project';
 
 /// The open project route
 const openProjectRoute = '/openProject';
@@ -129,8 +129,8 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 );
               case opencvRoute:
                 return OpencvScreen();
-              case homeRoute:
-                return HomeScreen();
+              case projectRoute:
+                return ProjectScreen();
               case openProjectRoute:
                 return OpenProjectScreen(
                   previousPageTitle: args!['previousPageTitle'],

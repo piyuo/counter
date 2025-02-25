@@ -4,7 +4,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import '../home/video_starter.dart';
+import '../project/video_starter.dart';
 
 /// Add new video screen
 class AddVideoScreen extends StatelessWidget {

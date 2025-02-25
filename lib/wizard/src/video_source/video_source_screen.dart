@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import '../home/pick_video.dart';
+import '../project/pick_video.dart';
 import '../wizard_navigator.dart';
 
 /// The video source screen for detail and zone editing.

@@ -101,7 +101,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                 onTap: () async {
                   final ok = await projectProvider.openProject(context, project.projectId);
                   if (ok && context.mounted) {
-                    Navigator.of(context).pushReplacementNamed(homeRoute);
+                    Navigator.of(context).pushReplacementNamed(projectRoute);
                   }
                 },
               ),

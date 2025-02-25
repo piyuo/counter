@@ -46,7 +46,7 @@ List<Widget> buildVideoStarter(
                 projectId: app.uuid(),
               );
               if (context.mounted) {
-                Navigator.of(context).pushNamed(homeRoute);
+                Navigator.of(context).pushNamed(projectRoute);
               }
             } finally {
               videoStarterProvider.setLoadingWebcam(false);
@@ -82,7 +82,7 @@ List<Widget> buildVideoStarter(
             );
             if (context.mounted) {
               // first goto start screen then camera screen immediately
-              Navigator.of(context).pushNamed(homeRoute);
+              Navigator.of(context).pushNamed(projectRoute);
             }
           } finally {
             videoStarterProvider.setLoadingCamera(false);
@@ -102,7 +102,7 @@ List<Widget> buildVideoStarter(
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
                   await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.live, path: url);
-                  return homeRoute;
+                  return projectRoute;
                 }
               });
               return;
@@ -117,7 +117,7 @@ List<Widget> buildVideoStarter(
                   path: url,
                   projectId: app.uuid(),
                 );
-                return homeRoute;
+                return projectRoute;
               }
             });
           } finally {
@@ -172,7 +172,7 @@ List<Widget> buildVideoStarter(
               videoId: videoId,
             );
             if (context.mounted) {
-              Navigator.of(context).pushNamed(homeRoute);
+              Navigator.of(context).pushNamed(projectRoute);
             }
           } finally {
             videoStarterProvider.setLoadingFile(false);
