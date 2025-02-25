@@ -276,7 +276,7 @@ abstract class AppLocalization {
   /// No description provided for @filter_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'Filter'**
   String get filter_screen_title;
 
   /// No description provided for @filter_screen_select_range.
@@ -288,13 +288,13 @@ abstract class AppLocalization {
   /// No description provided for @filter_screen_error_title.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'Filter'**
   String get filter_screen_error_title;
 
   /// No description provided for @filter_screen_error_content.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
+  /// **'End time must be greater than start time'**
   String get filter_screen_error_content;
 
   /// No description provided for @filter_screen_error_custom.

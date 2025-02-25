@@ -99,16 +99,16 @@ class AppLocalizationEn extends AppLocalization {
   String get home_screen_report_settings => 'Settings';
 
   @override
-  String get filter_screen_title => 'Settings';
+  String get filter_screen_title => 'Filter';
 
   @override
   String get filter_screen_select_range => 'Select report range from the list below';
 
   @override
-  String get filter_screen_error_title => 'Settings';
+  String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Settings';
+  String get filter_screen_error_content => 'End time must be greater than start time';
 
   @override
   String get filter_screen_error_custom => 'Custom';

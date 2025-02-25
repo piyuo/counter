@@ -192,11 +192,13 @@ class FilterScreenProvider with ChangeNotifier {
   /// set the start time
   void setStartTime(DateTime time) {
     start = TimeOfDay(hour: time.hour, minute: time.minute);
+    filterType = vision.FilterType.custom;
     notifyListeners();
   }
 
   /// set the end time
   void setEndTime(DateTime time) {
+    filterType = vision.FilterType.custom;
     end = TimeOfDay(hour: time.hour, minute: time.minute);
     notifyListeners();
   }
