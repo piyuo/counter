@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 
 /// color table for zone
-const List<Color> zoneColorTable = [
-  CupertinoColors.systemBlue,
-  CupertinoColors.systemGreen,
-  CupertinoColors.systemOrange,
-  CupertinoColors.systemPurple,
-  CupertinoColors.systemTeal,
-  CupertinoColors.systemBrown,
-  CupertinoColors.systemCyan,
-  CupertinoColors.systemIndigo,
-  CupertinoColors.systemMint,
-  CupertinoColors.systemPink,
+List<Color> zoneColorTable = [
+  CupertinoColors.systemBlue.withValues(alpha: 0.85),
+  CupertinoColors.systemGreen.withValues(alpha: 0.85),
+  CupertinoColors.systemOrange.withValues(alpha: 0.85),
+  CupertinoColors.systemPurple.withValues(alpha: 0.85),
+  CupertinoColors.systemTeal.withValues(alpha: 0.85),
+  CupertinoColors.systemBrown.withValues(alpha: 0.85),
+  CupertinoColors.systemCyan.withValues(alpha: 0.85),
+  CupertinoColors.systemIndigo.withValues(alpha: 0.85),
+  CupertinoColors.systemMint.withValues(alpha: 0.85),
+  CupertinoColors.systemPink.withValues(alpha: 0.85),
 ];
 
 /// zone color is better to be different from each other, it will be easy read on the report
