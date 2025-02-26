@@ -319,6 +319,7 @@ class SourceScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

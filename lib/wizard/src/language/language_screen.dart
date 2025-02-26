@@ -48,6 +48,7 @@ class LanguageScreen extends StatelessWidget {
                       ))
                   .toList(),
             ),
+            pip.PipFooter(),
           ],
         ),
       ),

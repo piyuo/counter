@@ -130,6 +130,7 @@ class FilterScreen extends StatelessWidget {
                               )),
                         ],
                       ),
+                      pip.PipFooter(),
                     ]),
                   ),
                 ));

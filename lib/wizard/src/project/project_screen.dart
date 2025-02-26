@@ -277,6 +277,7 @@ class ProjectScreen extends StatelessWidget {
                             ),
                           ],
                         ),
+                        pip.PipFooter(),
                       ],
                     ),
                   ),

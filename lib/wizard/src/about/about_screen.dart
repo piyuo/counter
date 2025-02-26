@@ -80,6 +80,7 @@ class AboutScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

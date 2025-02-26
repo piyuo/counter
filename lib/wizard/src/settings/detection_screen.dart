@@ -235,6 +235,7 @@ class DetectionScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    pip.PipFooter(),
                   ],
                 ));
           })),

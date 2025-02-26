@@ -31,6 +31,7 @@ class OpencvScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

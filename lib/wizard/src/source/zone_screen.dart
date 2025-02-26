@@ -236,6 +236,7 @@ class ZoneScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  pip.PipFooter(),
                 ],
               )),
             );

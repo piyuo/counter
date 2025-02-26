@@ -34,13 +34,18 @@ class ColorScreen extends StatelessWidget {
                   title: pageTitle,
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
-                    child: HueRingPicker(
-                      portraitOnly: true,
-                      pickerColor: videoZone.color,
-                      enableAlpha: true,
-                      onColorChanged: (color) {
-                        colorScreenProvider.setVideoZoneColor(videoZone, color);
-                      },
+                    child: Column(
+                      children: [
+                        HueRingPicker(
+                          portraitOnly: true,
+                          pickerColor: videoZone.color,
+                          enableAlpha: true,
+                          onColorChanged: (color) {
+                            colorScreenProvider.setVideoZoneColor(videoZone, color);
+                          },
+                        ),
+                        pip.PipFooter(),
+                      ],
                     ),
                   ),
                 )));

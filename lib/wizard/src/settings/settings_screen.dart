@@ -109,6 +109,7 @@ class SettingsScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

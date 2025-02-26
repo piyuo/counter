@@ -57,6 +57,7 @@ class WebcamScreen extends StatelessWidget {
                     },
                   ),
                 ),
+                pip.PipFooter(),
               ],
             );
           },

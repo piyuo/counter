@@ -89,6 +89,7 @@ class WizardScreen extends StatelessWidget {
                           }),
                     ],
                   ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

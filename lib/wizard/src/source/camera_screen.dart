@@ -82,6 +82,7 @@ class CameraScreen extends StatelessWidget {
                           )),
                     ],
                   ),
+                pip.PipFooter(),
               ],
             );
           },

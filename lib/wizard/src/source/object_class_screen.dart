@@ -30,7 +30,8 @@ class ObjectClassScreen extends StatelessWidget {
           create: (_) => ObjectClassScreenProvider(),
           child: Consumer<ObjectClassScreenProvider>(builder: (context, objectClassScreenProvider, child) {
             return SingleChildScrollView(
-                child: CupertinoListSection(
+              child: Column(children: [
+                CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(
                       vision.ObjectClass.values.length,
@@ -47,7 +48,10 @@ class ObjectClassScreen extends StatelessWidget {
                               objectClassScreenProvider.selectClass(projectProvider, videoProvider, videoZone, classId);
                             });
                       },
-                    )));
+                    )),
+                pip.PipFooter(),
+              ]),
+            );
           })),
     );
   }

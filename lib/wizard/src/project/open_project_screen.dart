@@ -74,9 +74,8 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
       title: pageTitle,
       previousPageTitle: widget.previousPageTitle,
       child: SingleChildScrollView(
-        child: CupertinoListSection(
-          backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-          children: _projects.map((project) {
+        child: CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [
+          ..._projects.map((project) {
             return Dismissible(
               key: ValueKey(project.projectId),
               background: Container(
@@ -109,8 +108,9 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                 },
               ),
             );
-          }).toList(),
-        ),
+          }),
+          pip.PipFooter(),
+        ]),
       ),
     );
   }

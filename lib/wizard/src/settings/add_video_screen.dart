@@ -44,6 +44,7 @@ class AddSourceScreen extends StatelessWidget {
                       ),
                     ),
                   )),
+              pip.PipFooter(),
             ],
           ));
         }),

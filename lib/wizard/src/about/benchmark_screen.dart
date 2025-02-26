@@ -87,6 +87,7 @@ class BenchmarkScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: CupertinoActivityIndicator(),
                     ),
+                  pip.PipFooter(),
                 ],
               ),
             ),

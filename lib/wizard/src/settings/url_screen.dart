@@ -132,6 +132,7 @@ class UrlScreenState extends State<UrlScreen> {
                         ))),
                       ],
                     ),
+                  pip.PipFooter(),
                 ],
               )),
             ),
