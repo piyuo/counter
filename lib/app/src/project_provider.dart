@@ -585,7 +585,13 @@ class ProjectProvider with ChangeNotifier {
     await exitVideoScreen(videoProvider);
     project?.videos.remove(videoProvider.video);
     videoProviders.remove(videoProvider);
-    videoProvider.remove();
+    videoProvider.delete();
+    saveProject(videoProvider);
+  }
+
+  /// delete a zone from the video source
+  Future<void> deleteZone(VideoProvider videoProvider, vision.VideoZone videoZone) async {
+    videoProvider.deleteZone(videoZone);
     saveProject(videoProvider);
   }
 

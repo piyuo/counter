@@ -25,6 +25,9 @@ class ZoneEditorController with ChangeNotifier {
   int get mediaHeight => _mediaHeight;
   bool get isEmpty => zones.isEmpty;
 
+  /// called when zone is changed
+  VoidCallback? onZoneChanged;
+
   void setMediaSize(int width, int height) {
     _mediaWidth = width;
     _mediaHeight = height;
@@ -86,6 +89,7 @@ class ZoneEditorController with ChangeNotifier {
       dragStartPosition = modelPoint;
       notifyListeners();
     }
+    onZoneChanged?.call();
   }
 
   // End the dragging operation
@@ -93,8 +97,9 @@ class ZoneEditorController with ChangeNotifier {
     isDraggingPolygon = false;
     isDraggingPoint = false;
     dragStartPosition = null;
-    isChanged = true;
     notifyListeners();
+    isChanged = true;
+    onZoneChanged?.call();
   }
 
   // Check if a point is inside a polygon
@@ -117,13 +122,14 @@ class ZoneEditorController with ChangeNotifier {
   // This method brings the specified polygon to the front of the list.
   // This is typically used to ensure that the selected polygon is drawn last and therefore appears on top of the others.
   void moveZoneToFront(vision.VideoZone videoZone) {
-    isChanged = true;
     // Remove the polygon from the list
     zones.remove(videoZone);
     // Add the polygon back to the end of the list
     zones.insert(0, videoZone);
     // Notify listeners that a change has occurred
     notifyListeners();
+    isChanged = true;
+    onZoneChanged?.call();
   }
 
   /// Sets the selected zone.
@@ -136,10 +142,11 @@ class ZoneEditorController with ChangeNotifier {
   /// Moves the selected polygon to the bottom of the stack.
   void moveZoneToBottom() {
     if (selectedZone != null) {
-      isChanged = true;
       zones.remove(selectedZone);
       zones.add(selectedZone!);
       notifyListeners();
+      isChanged = true;
+      onZoneChanged?.call();
     }
   }
 
@@ -183,6 +190,7 @@ class ZoneEditorController with ChangeNotifier {
       // Notify listeners that a change has occurred
       notifyListeners();
       isChanged = true;
+      onZoneChanged?.call();
     }
   }
 
@@ -193,8 +201,9 @@ class ZoneEditorController with ChangeNotifier {
       if (selectedZone!.points.length > 3) {
         selectedZone!.points.removeAt(selectedZone!.selectedPointIndex);
         selectedZone!.selectedPointIndex = 0;
-        isChanged = true;
         notifyListeners();
+        isChanged = true;
+        onZoneChanged?.call();
       }
     }
   }
@@ -235,8 +244,9 @@ class ZoneEditorController with ChangeNotifier {
     );
     selectedZone = polygon;
     zones.insert(0, polygon);
-    isChanged = true;
     notifyListeners();
+    isChanged = true;
+    onZoneChanged?.call();
     return polygon;
   }
 
@@ -262,8 +272,9 @@ class ZoneEditorController with ChangeNotifier {
     } else {
       selectedZone = null;
     }
-    isChanged = true;
     notifyListeners();
+    isChanged = true;
+    onZoneChanged?.call();
   }
 
   List<vision.VideoZone> getProjectZones() {
@@ -289,5 +300,6 @@ class ZoneEditorController with ChangeNotifier {
     selectedZone = null;
     notifyListeners();
     isChanged = true;
+    onZoneChanged?.call();
   }
 }

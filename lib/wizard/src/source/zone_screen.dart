@@ -48,7 +48,7 @@ class ZoneScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Icon(CupertinoIcons.square_stack, size: 44),
+                        Icon(CupertinoIcons.square_stack, size: 44, color: videoZone.color),
                         const SizedBox(height: 8.0),
                         Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
@@ -220,7 +220,8 @@ class ZoneScreen extends StatelessWidget {
                                     ),
                                     CupertinoDialogAction(
                                       onPressed: () => Navigator.pop(context, true),
-                                      child: Text(context.l.zone_screen_delete_button),
+                                      child: Text(context.l.zone_screen_delete_button,
+                                          style: TextStyle(color: CupertinoColors.systemRed)),
                                     ),
                                   ],
                                 );
@@ -228,8 +229,7 @@ class ZoneScreen extends StatelessWidget {
                             );
                             if (result == null || !result) return;
 
-                            videoProvider.removeZone(videoZone);
-                            projectProvider.saveProject(videoProvider);
+                            projectProvider.deleteZone(videoProvider, videoZone);
                             if (context.mounted) Navigator.pop(context);
                           },
                           child: Text(context.l.zone_screen_delete_button,
@@ -251,9 +251,6 @@ class ZoneScreen extends StatelessWidget {
 class ZoneScreenProvider with ChangeNotifier {
   ZoneScreenProvider(this.videoZone, this.videoProvider) {
     zoneNameFieldController.text = videoZone.name;
-    zoneNameFieldController.addListener(() {
-      videoProvider.setZoneName(videoZone, zoneNameFieldController.text);
-    });
   }
 
   /// the video zone

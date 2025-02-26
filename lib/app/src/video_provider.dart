@@ -246,7 +246,7 @@ class VideoProvider with ChangeNotifier {
     if (isPlaying) {
       await visionController.play();
     }
-    saveProject();
+    _saveProject();
     return errorCode;
   }
 
@@ -254,18 +254,18 @@ class VideoProvider with ChangeNotifier {
   Future<void> setCamera(BuildContext context, CameraDefine cameraDefine) async {
     video.camera = cameraDefine;
     await reload(context, _projectProvider!.project!, false);
-    saveProject();
+    _saveProject();
   }
 
   /// set the current zoom level
   Future<void> setCameraZoom(double value) async {
     video.zoom = value;
     await visionController.setCameraZoom(value);
-    saveProject();
+    _saveProject();
   }
 
   /// save the project and notify the listeners
-  void saveProject() {
+  void _saveProject() {
     _projectProvider?.saveProject(this);
     notifyListeners();
   }
@@ -280,6 +280,9 @@ class VideoProvider with ChangeNotifier {
     zoneEditorController = ZoneEditorController();
     zoneEditorController!.setMediaSize(visionController.mediaWidth!, visionController.mediaHeight!);
     zoneEditorController!.setZones(video.zones);
+    zoneEditorController!.onZoneChanged = () {
+      _saveProject();
+    };
 
     notifyListeners();
     return true;
@@ -296,9 +299,9 @@ class VideoProvider with ChangeNotifier {
     }
 
     await visionController.enableDetection(true);
+    zoneEditorController?.onZoneChanged = null;
     zoneEditorController?.dispose();
     zoneEditorController = null;
-    _projectProvider?.saveProject(this);
   }
 
   /// set the current zoom
@@ -318,7 +321,6 @@ class VideoProvider with ChangeNotifier {
     assert(zoneEditorController != null, 'zoneEditorController is null');
     vision.VideoZone zone = zoneEditorController!.addZone(context);
     video.zones.add(zone);
-    _projectProvider?.saveProject(this);
     return zone;
   }
 
@@ -358,9 +360,8 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// remove the video source
-  Future<void> remove() async {
+  Future<void> delete() async {
     await visionController.close();
-
     //sleep for 3 second to wait the video source screen to be removed
     await Future.delayed(const Duration(seconds: 3));
     dispose();
@@ -370,40 +371,40 @@ class VideoProvider with ChangeNotifier {
   void setVideoName(String name) {
     video.videoName = name;
     playerController.title = name;
-    _projectProvider?.saveProject(this);
+    _saveProject();
   }
 
   /// set the zone name
   void setZoneName(vision.VideoZone videoZone, String name) {
     videoZone.name = name;
-    _projectProvider?.saveProject(this);
+    _saveProject();
   }
 
   /// set the zone name
   void setZoneColor(vision.VideoZone videoZone, Color color) {
     videoZone.color = color;
-    _projectProvider?.saveProject(this);
+    _saveProject();
   }
 
   /// set the zone stagnant threshold
   void setZoneStagnantThreshold(vision.VideoZone videoZone, int stagnantThreshold) {
     videoZone.stagnantThreshold = stagnantThreshold;
     visionController.setStagnantThreshold(videoZone.zoneId, videoZone.stagnantThreshold);
-    _projectProvider?.saveProject(this);
+    _saveProject();
   }
 
   /// set the zone reentered threshold
   void setZoneReenteredThreshold(vision.VideoZone videoZone, int reenteredThreshold) {
     videoZone.reenteredThreshold = reenteredThreshold;
     visionController.setReenteredThreshold(videoZone.zoneId, videoZone.reenteredThreshold);
-    notifyListeners();
+    _saveProject();
   }
 
   /// set the zone cooldown threshold
   void setZoneCooldownThreshold(vision.VideoZone videoZone, int cooldownThreshold) {
     videoZone.cooldownThreshold = cooldownThreshold;
     visionController.setCooldownThreshold(videoZone.zoneId, videoZone.cooldownThreshold);
-    notifyListeners();
+    _saveProject();
   }
 
   /// update the tally annotation
@@ -422,11 +423,11 @@ class VideoProvider with ChangeNotifier {
     } else {
       videoZone.selectedClasses.add(classId);
     }
-    _projectProvider?.saveProject(this);
+    _saveProject();
   }
 
   /// remove a zone from the video source
-  void removeZone(vision.VideoZone zone) {
+  void deleteZone(vision.VideoZone zone) {
     assert(zoneEditorController != null, 'zoneEditorController is null');
     zoneEditorController!.removeZone(zone);
     video.zones.remove(zone);
