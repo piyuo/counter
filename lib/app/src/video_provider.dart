@@ -412,20 +412,6 @@ class VideoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  /// toggle zone selected classes
-  void toggleZoneSelectedClasses(vision.VideoZone videoZone, int classId) {
-    if (videoZone.selectedClasses.contains(classId)) {
-      if (videoZone.selectedClasses.length == 1) {
-        // at least one class should be selected
-        return;
-      }
-      videoZone.selectedClasses.remove(classId);
-    } else {
-      videoZone.selectedClasses.add(classId);
-    }
-    _saveProject();
-  }
-
   /// remove a zone from the video source
   void deleteZone(vision.VideoZone zone) {
     assert(zoneEditorController != null, 'zoneEditorController is null');
@@ -453,6 +439,20 @@ class VideoProvider with ChangeNotifier {
     tallyAnnotation.enabled = !tallyAnnotation.enabled;
     _saveProject();
     return true;
+  }
+
+  /// toggle zone selected classes
+  void toggleZoneSelectedClasses(vision.VideoZone videoZone, int classId) {
+    if (videoZone.selectedClasses.contains(classId)) {
+      if (videoZone.selectedClasses.length == 1) {
+        // at least one class should be selected
+        return;
+      }
+      videoZone.selectedClasses.remove(classId);
+    } else {
+      videoZone.selectedClasses.add(classId);
+    }
+    _saveProject();
   }
 
   /// get all selected object classes
