@@ -21,8 +21,14 @@ class OpenProjectScreen extends StatefulWidget {
 }
 
 class _OpenProjectScreenState extends State<OpenProjectScreen> {
+  /// The list of projects to display.
   final List<app.ProjectSummary> _projects = [];
+
+  /// Whether the projects are still loading.
   bool _isLoading = true;
+
+  /// which project is loading
+  String _loadingProject = '';
 
   @override
   void initState() {
@@ -110,17 +116,24 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                   projectProvider.deleteProject(project.projectId);
                 },
                 child: CupertinoListTile(
-                  leading: Text((index++).toString(),
-                      style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
+                  leading: _loadingProject == project.projectId
+                      ? CupertinoActivityIndicator()
+                      : Text((index++).toString(),
+                          style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
                   title: Text(project.projectName),
                   trailing: CupertinoListTileChevron(),
                   subtitle: Text(timeago.format(project.updatedAt, locale: languageProvider.locale.toString())),
-                  onTap: () async {
-                    final ok = await projectProvider.openProject(context, project.projectId);
-                    if (ok && context.mounted) {
-                      Navigator.of(context).pushReplacementNamed(projectRoute);
-                    }
-                  },
+                  onTap: _loadingProject.isEmpty
+                      ? () async {
+                          setState(() {
+                            _loadingProject = project.projectId;
+                          });
+                          final ok = await projectProvider.openProject(context, project.projectId);
+                          if (ok && context.mounted) {
+                            Navigator.of(context).pushReplacementNamed(projectRoute);
+                          }
+                        }
+                      : null,
                 ),
               );
             }),
