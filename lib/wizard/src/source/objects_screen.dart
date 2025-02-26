@@ -93,7 +93,7 @@ class ObjectClassScreenProvider with ChangeNotifier {
     videoProvider.toggleZoneSelectedClasses(videoZone, classId);
     notifyListeners();
     _classChangedTimer?.cancel();
-    _classChangedTimer = Timer(const Duration(seconds: 2), () async {
+    _classChangedTimer = Timer(const Duration(milliseconds: 900), () async {
       await videoProvider.rebuildRecognitionClasses();
       notifyListeners();
       _classChangedTimer = null;
