@@ -876,7 +876,7 @@ abstract class AppLocalization {
   /// No description provided for @open_project_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'Select a project to open'**
+  /// **'Open previously created projects, keeping only the most recent 20.'**
   String get open_project_screen_desc;
 
   /// No description provided for @open_project_screen_no_project.

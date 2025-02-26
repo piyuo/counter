@@ -69,47 +69,63 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
       );
     }
     final languageProvider = vision.LanguageProvider.of(context);
-
+    int index = 1;
     return pip.PipScaffold(
-      title: pageTitle,
       previousPageTitle: widget.previousPageTitle,
       child: SingleChildScrollView(
-        child: CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [
-          ..._projects.map((project) {
-            return Dismissible(
-              key: ValueKey(project.projectId),
-              background: Container(
-                color: CupertinoColors.systemRed,
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Icon(
-                  CupertinoIcons.delete,
-                  color: CupertinoColors.white,
+        child: Column(children: [
+          pip.PipHeader(
+            child: Column(
+              children: [
+                Icon(CupertinoIcons.archivebox, size: 44),
+                const SizedBox(height: 8.0),
+                Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                Text(
+                  context.l.open_project_screen_desc,
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              direction: DismissDirection.startToEnd,
-              onDismissed: (direction) {
-                // Remove the project from the local list first.
-                setState(() {
-                  _projects.removeWhere((p) => p.projectId == project.projectId);
-                });
-                // Then perform the actual deletion operation in the background.
-                projectProvider.deleteProject(project.projectId);
-              },
-              child: CupertinoListTile(
-                title: Text(project.projectName),
-                trailing: CupertinoListTileChevron(),
-                subtitle: Text(timeago.format(project.updatedAt, locale: languageProvider.locale.toString())),
-                onTap: () async {
-                  final ok = await projectProvider.openProject(context, project.projectId);
-                  if (ok && context.mounted) {
-                    Navigator.of(context).pushReplacementNamed(projectRoute);
-                  }
+              ],
+            ),
+          ),
+          CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [
+            ..._projects.map((project) {
+              return Dismissible(
+                key: ValueKey(project.projectId),
+                background: Container(
+                  color: CupertinoColors.systemRed,
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Icon(
+                    CupertinoIcons.delete,
+                    color: CupertinoColors.white,
+                  ),
+                ),
+                direction: DismissDirection.startToEnd,
+                onDismissed: (direction) {
+                  // Remove the project from the local list first.
+                  setState(() {
+                    _projects.removeWhere((p) => p.projectId == project.projectId);
+                  });
+                  // Then perform the actual deletion operation in the background.
+                  projectProvider.deleteProject(project.projectId);
                 },
-              ),
-            );
-          }),
-          pip.PipFooter(),
+                child: CupertinoListTile(
+                  leading: Text((index++).toString(),
+                      style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
+                  title: Text(project.projectName),
+                  trailing: CupertinoListTileChevron(),
+                  subtitle: Text(timeago.format(project.updatedAt, locale: languageProvider.locale.toString())),
+                  onTap: () async {
+                    final ok = await projectProvider.openProject(context, project.projectId);
+                    if (ok && context.mounted) {
+                      Navigator.of(context).pushReplacementNamed(projectRoute);
+                    }
+                  },
+                ),
+              );
+            }),
+            pip.PipFooter(),
+          ]),
         ]),
       ),
     );

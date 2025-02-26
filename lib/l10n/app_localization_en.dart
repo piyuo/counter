@@ -399,7 +399,7 @@ class AppLocalizationEn extends AppLocalization {
   String get open_project_screen_title => 'Open Project';
 
   @override
-  String get open_project_screen_desc => 'Select a project to open';
+  String get open_project_screen_desc => 'Open previously created projects, keeping only the most recent 20.';
 
   @override
   String get open_project_screen_no_project => 'No project found.';
