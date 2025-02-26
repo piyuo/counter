@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-class ObjectClassScreen extends StatelessWidget {
-  const ObjectClassScreen({
+class ObjectsScreen extends StatelessWidget {
+  const ObjectsScreen({
     required this.videoProvider,
     required this.videoZone,
     super.key,
@@ -23,14 +23,26 @@ class ObjectClassScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
-    final pageTitle = context.l.object_class_screen_title;
+    final pageTitle = context.l.objects_screen_title;
     return pip.PipScaffold(
-      title: pageTitle,
       child: ChangeNotifierProvider(
           create: (_) => ObjectClassScreenProvider(),
           child: Consumer<ObjectClassScreenProvider>(builder: (context, objectClassScreenProvider, child) {
             return SingleChildScrollView(
               child: Column(children: [
+                pip.PipHeader(
+                  child: Column(
+                    children: [
+                      Icon(CupertinoIcons.list_bullet, size: 44, color: videoZone.color),
+                      const SizedBox(height: 8.0),
+                      Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                      Text(
+                        context.l.objects_screen_desc,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
                 CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(

@@ -318,10 +318,10 @@ class AppLocalizationEn extends AppLocalization {
   String get zone_screen_color => 'Color';
 
   @override
-  String get zone_screen_detect_desc => 'Detects objects such as people, vehicles, dogs.';
+  String get zone_screen_objects_header => 'Detects objects such as people, vehicles, dogs.';
 
   @override
-  String get zone_screen_detection => 'Detection';
+  String get zone_screen_objects => 'Objects';
 
   @override
   String get zone_screen_delete_header => 'Delete this zone';
@@ -396,7 +396,10 @@ class AppLocalizationEn extends AppLocalization {
   String get counter_screen_enabled_error_content => 'You need to enable other counter first, then you can disable this counter';
 
   @override
-  String get object_class_screen_title => 'Detected Objects';
+  String get objects_screen_title => 'Objects';
+
+  @override
+  String get objects_screen_desc => 'Choose detection targets like person, car, bus, etc.';
 
   @override
   String get open_project_screen_title => 'Open Project';

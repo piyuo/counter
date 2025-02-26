@@ -16,7 +16,7 @@ import 'settings/webcam_screen.dart';
 import 'source/camera_screen.dart';
 import 'source/color_screen.dart';
 import 'source/counter_screen.dart';
-import 'source/object_class_screen.dart';
+import 'source/objects_screen.dart';
 import 'source/source_screen.dart';
 import 'source/zone_screen.dart';
 import 'wizard_screen.dart';
@@ -54,8 +54,8 @@ const filterRoute = '/filter';
 /// The language route
 const languageRoute = '/language';
 
-/// The object class route
-const objectClassRoute = '/class';
+/// The objects route
+const objectsRoute = '/objects';
 
 /// The project route
 const projectRoute = '/project';
@@ -168,8 +168,8 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   isAddMode: args['isAddMode'],
                   previousPageTitle: args['previousPageTitle'],
                 );
-              case objectClassRoute:
-                return ObjectClassScreen(
+              case objectsRoute:
+                return ObjectsScreen(
                   videoProvider: args!['videoProvider'],
                   videoZone: args['videoZone'],
                 );

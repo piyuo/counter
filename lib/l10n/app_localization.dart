@@ -711,17 +711,17 @@ abstract class AppLocalization {
   /// **'Color'**
   String get zone_screen_color;
 
-  /// No description provided for @zone_screen_detect_desc.
+  /// No description provided for @zone_screen_objects_header.
   ///
   /// In en, this message translates to:
   /// **'Detects objects such as people, vehicles, dogs.'**
-  String get zone_screen_detect_desc;
+  String get zone_screen_objects_header;
 
-  /// No description provided for @zone_screen_detection.
+  /// No description provided for @zone_screen_objects.
   ///
   /// In en, this message translates to:
-  /// **'Detection'**
-  String get zone_screen_detection;
+  /// **'Objects'**
+  String get zone_screen_objects;
 
   /// No description provided for @zone_screen_delete_header.
   ///
@@ -867,11 +867,17 @@ abstract class AppLocalization {
   /// **'You need to enable other counter first, then you can disable this counter'**
   String get counter_screen_enabled_error_content;
 
-  /// No description provided for @object_class_screen_title.
+  /// No description provided for @objects_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Detected Objects'**
-  String get object_class_screen_title;
+  /// **'Objects'**
+  String get objects_screen_title;
+
+  /// No description provided for @objects_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose detection targets like person, car, bus, etc.'**
+  String get objects_screen_desc;
 
   /// No description provided for @open_project_screen_title.
   ///
