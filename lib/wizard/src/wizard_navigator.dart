@@ -8,7 +8,7 @@ import 'language/language_screen.dart';
 import 'project/filter_screen.dart';
 import 'project/open_project_screen.dart';
 import 'project/project_screen.dart';
-import 'settings/add_video_screen.dart';
+import 'settings/add_source_screen.dart';
 import 'settings/detection_screen.dart';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
