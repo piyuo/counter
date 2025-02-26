@@ -279,11 +279,11 @@ abstract class AppLocalization {
   /// **'Filter'**
   String get filter_screen_title;
 
-  /// No description provided for @filter_screen_select_range.
+  /// No description provided for @filter_screen_desc.
   ///
   /// In en, this message translates to:
   /// **'Select report range from the list below'**
-  String get filter_screen_select_range;
+  String get filter_screen_desc;
 
   /// No description provided for @filter_screen_error_title.
   ///

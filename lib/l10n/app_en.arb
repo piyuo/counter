@@ -31,7 +31,7 @@
     "home_screen_report_from":"Report from",
     "home_screen_report_settings":"Settings",
     "filter_screen_title":"Filter",
-    "filter_screen_select_range":"Select report range from the list below",
+    "filter_screen_desc":"Select report range from the list below",
     "filter_screen_error_title":"Filter",
     "filter_screen_error_content":"End time must be greater than start time",
     "filter_screen_error_custom":"Custom",

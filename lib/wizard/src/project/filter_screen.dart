@@ -72,14 +72,19 @@ class FilterScreen extends StatelessWidget {
                   }
                 },
                 child: pip.PipScaffold(
-                  title: pageTitle,
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
                     child: Column(children: [
+                      pip.PipHeader(
+                        child: Column(
+                          children: [
+                            Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                            Text(context.l.filter_screen_desc, textAlign: TextAlign.center),
+                          ],
+                        ),
+                      ),
                       CupertinoListSection(
-                          topMargin: 0,
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                          header: Text(context.l.filter_screen_select_range),
                           children: List.generate(vision.FilterType.values.length, (index) {
                             final availableFilter = vision.FilterType.values[index];
                             return CupertinoListTile(

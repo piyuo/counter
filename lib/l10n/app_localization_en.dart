@@ -102,7 +102,7 @@ class AppLocalizationEn extends AppLocalization {
   String get filter_screen_title => 'Filter';
 
   @override
-  String get filter_screen_select_range => 'Select report range from the list below';
+  String get filter_screen_desc => 'Select report range from the list below';
 
   @override
   String get filter_screen_error_title => 'Filter';
