@@ -451,7 +451,7 @@ class VideoProvider with ChangeNotifier {
     }
 
     tallyAnnotation.enabled = !tallyAnnotation.enabled;
-    notifyListeners();
+    _saveProject();
     return true;
   }
 

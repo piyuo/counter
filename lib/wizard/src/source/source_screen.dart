@@ -311,13 +311,15 @@ class SourceScreen extends StatelessWidget {
                                   content: Text(context.l.source_screen_delete_content),
                                   actions: [
                                     CupertinoDialogAction(
+                                      isDefaultAction: true,
+                                      textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
                                       onPressed: () => Navigator.pop(context, false),
                                       child: Text(context.l.cancel),
                                     ),
                                     CupertinoDialogAction(
+                                      isDestructiveAction: true,
                                       onPressed: () => Navigator.pop(context, true),
-                                      child: Text(context.l.source_screen_delete_button,
-                                          style: TextStyle(color: CupertinoColors.systemRed)),
+                                      child: Text(context.l.source_screen_delete_button),
                                     ),
                                   ],
                                 );

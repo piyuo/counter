@@ -272,6 +272,7 @@ class TallyScreenProvider with ChangeNotifier {
           content: Text(context.l.counter_screen_enabled_error_content),
           actions: [
             CupertinoDialogAction(
+              isDefaultAction: true,
               onPressed: () => Navigator.of(context).pop(),
               child: Text(context.l.ok),
             ),
