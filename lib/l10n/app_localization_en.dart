@@ -240,64 +240,67 @@ class AppLocalizationEn extends AppLocalization {
   String get camera_screen_zoom_level => 'Zoom Level';
 
   @override
-  String get video_source_screen_video_name => 'Video Name';
+  String get source_screen_desc => 'Manage video sources, add or modify detection zones.';
 
   @override
-  String get video_source_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
+  String get source_screen_video_name => 'Video Name';
 
   @override
-  String get video_source_screen_url => 'Current URL';
+  String get source_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
 
   @override
-  String get video_source_screen_change_file => 'Change File';
+  String get source_screen_url => 'Current URL';
 
   @override
-  String get video_source_screen_file => 'File';
+  String get source_screen_change_file => 'Change File';
 
   @override
-  String get video_source_screen_camera => 'Camera';
+  String get source_screen_file => 'File';
 
   @override
-  String get video_source_screen_webcam => 'Webcam';
+  String get source_screen_camera => 'Camera';
 
   @override
-  String get video_source_screen_zones => 'Zones';
+  String get source_screen_webcam => 'Webcam';
 
   @override
-  String get video_source_screen_zones_desc => 'Use drag and drop to adjust zones';
+  String get source_screen_zones => 'Zones';
 
   @override
-  String get video_source_screen_tools => 'Tools';
+  String get source_screen_zones_desc => 'Use drag and drop to adjust zones';
 
   @override
-  String get video_source_screen_move_bottom => 'Move current zone to bottom';
+  String get source_screen_tools => 'Tools';
 
   @override
-  String get video_source_screen_add_point => 'Add point to current zone';
+  String get source_screen_move_bottom => 'Move current zone to bottom';
 
   @override
-  String get video_source_screen_remove_point => 'Remove point from current zone';
+  String get source_screen_add_point => 'Add point to current zone';
 
   @override
-  String get video_source_screen_playback_speed => 'Playback Speed';
+  String get source_screen_remove_point => 'Remove point from current zone';
 
   @override
-  String get video_source_screen_playback_current => 'current: ';
+  String get source_screen_playback_speed => 'Playback Speed';
 
   @override
-  String get video_source_screen_playback_14x => '1/4x';
+  String get source_screen_playback_current => 'current: ';
 
   @override
-  String get video_source_screen_playback_2x => '2x';
+  String get source_screen_playback_14x => '1/4x';
 
   @override
-  String get video_screen_delete_header => 'Delete this video';
+  String get source_screen_playback_2x => '2x';
 
   @override
-  String get video_screen_delete_content => 'Are you sure you want to delete this video?';
+  String get source_screen_delete_header => 'Delete this video';
 
   @override
-  String get video_screen_delete_button => 'Delete';
+  String get source_screen_delete_content => 'Are you sure you want to delete this video?';
+
+  @override
+  String get source_screen_delete_button => 'Delete';
 
   @override
   String get color_screen_title => 'Pick a color';

@@ -555,125 +555,131 @@ abstract class AppLocalization {
   /// **'Zoom Level'**
   String get camera_screen_zoom_level;
 
-  /// No description provided for @video_source_screen_video_name.
+  /// No description provided for @source_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage video sources, add or modify detection zones.'**
+  String get source_screen_desc;
+
+  /// No description provided for @source_screen_video_name.
   ///
   /// In en, this message translates to:
   /// **'Video Name'**
-  String get video_source_screen_video_name;
+  String get source_screen_video_name;
 
-  /// No description provided for @video_source_screen_edit_placeholder.
+  /// No description provided for @source_screen_edit_placeholder.
   ///
   /// In en, this message translates to:
   /// **'Front Door Cam or Parking Lot Cam'**
-  String get video_source_screen_edit_placeholder;
+  String get source_screen_edit_placeholder;
 
-  /// No description provided for @video_source_screen_url.
+  /// No description provided for @source_screen_url.
   ///
   /// In en, this message translates to:
   /// **'Current URL'**
-  String get video_source_screen_url;
+  String get source_screen_url;
 
-  /// No description provided for @video_source_screen_change_file.
+  /// No description provided for @source_screen_change_file.
   ///
   /// In en, this message translates to:
   /// **'Change File'**
-  String get video_source_screen_change_file;
+  String get source_screen_change_file;
 
-  /// No description provided for @video_source_screen_file.
+  /// No description provided for @source_screen_file.
   ///
   /// In en, this message translates to:
   /// **'File'**
-  String get video_source_screen_file;
+  String get source_screen_file;
 
-  /// No description provided for @video_source_screen_camera.
+  /// No description provided for @source_screen_camera.
   ///
   /// In en, this message translates to:
   /// **'Camera'**
-  String get video_source_screen_camera;
+  String get source_screen_camera;
 
-  /// No description provided for @video_source_screen_webcam.
+  /// No description provided for @source_screen_webcam.
   ///
   /// In en, this message translates to:
   /// **'Webcam'**
-  String get video_source_screen_webcam;
+  String get source_screen_webcam;
 
-  /// No description provided for @video_source_screen_zones.
+  /// No description provided for @source_screen_zones.
   ///
   /// In en, this message translates to:
   /// **'Zones'**
-  String get video_source_screen_zones;
+  String get source_screen_zones;
 
-  /// No description provided for @video_source_screen_zones_desc.
+  /// No description provided for @source_screen_zones_desc.
   ///
   /// In en, this message translates to:
   /// **'Use drag and drop to adjust zones'**
-  String get video_source_screen_zones_desc;
+  String get source_screen_zones_desc;
 
-  /// No description provided for @video_source_screen_tools.
+  /// No description provided for @source_screen_tools.
   ///
   /// In en, this message translates to:
   /// **'Tools'**
-  String get video_source_screen_tools;
+  String get source_screen_tools;
 
-  /// No description provided for @video_source_screen_move_bottom.
+  /// No description provided for @source_screen_move_bottom.
   ///
   /// In en, this message translates to:
   /// **'Move current zone to bottom'**
-  String get video_source_screen_move_bottom;
+  String get source_screen_move_bottom;
 
-  /// No description provided for @video_source_screen_add_point.
+  /// No description provided for @source_screen_add_point.
   ///
   /// In en, this message translates to:
   /// **'Add point to current zone'**
-  String get video_source_screen_add_point;
+  String get source_screen_add_point;
 
-  /// No description provided for @video_source_screen_remove_point.
+  /// No description provided for @source_screen_remove_point.
   ///
   /// In en, this message translates to:
   /// **'Remove point from current zone'**
-  String get video_source_screen_remove_point;
+  String get source_screen_remove_point;
 
-  /// No description provided for @video_source_screen_playback_speed.
+  /// No description provided for @source_screen_playback_speed.
   ///
   /// In en, this message translates to:
   /// **'Playback Speed'**
-  String get video_source_screen_playback_speed;
+  String get source_screen_playback_speed;
 
-  /// No description provided for @video_source_screen_playback_current.
+  /// No description provided for @source_screen_playback_current.
   ///
   /// In en, this message translates to:
   /// **'current: '**
-  String get video_source_screen_playback_current;
+  String get source_screen_playback_current;
 
-  /// No description provided for @video_source_screen_playback_14x.
+  /// No description provided for @source_screen_playback_14x.
   ///
   /// In en, this message translates to:
   /// **'1/4x'**
-  String get video_source_screen_playback_14x;
+  String get source_screen_playback_14x;
 
-  /// No description provided for @video_source_screen_playback_2x.
+  /// No description provided for @source_screen_playback_2x.
   ///
   /// In en, this message translates to:
   /// **'2x'**
-  String get video_source_screen_playback_2x;
+  String get source_screen_playback_2x;
 
-  /// No description provided for @video_screen_delete_header.
+  /// No description provided for @source_screen_delete_header.
   ///
   /// In en, this message translates to:
   /// **'Delete this video'**
-  String get video_screen_delete_header;
+  String get source_screen_delete_header;
 
-  /// No description provided for @video_screen_delete_content.
+  /// No description provided for @source_screen_delete_content.
   ///
   /// In en, this message translates to:
   /// **'Are you sure you want to delete this video?'**
-  String get video_screen_delete_content;
+  String get source_screen_delete_content;
 
-  /// No description provided for @video_screen_delete_button.
+  /// No description provided for @source_screen_delete_button.
   ///
   /// In en, this message translates to:
   /// **'Delete'**
-  String get video_screen_delete_button;
+  String get source_screen_delete_button;
 
   /// No description provided for @color_screen_title.
   ///

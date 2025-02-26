@@ -48,6 +48,8 @@ class ZoneScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
+                        Icon(CupertinoIcons.square_stack, size: 44),
+                        const SizedBox(height: 8.0),
                         Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
                           context.l.zone_screen_desc,
