@@ -181,7 +181,7 @@ class DetectionScreen extends StatelessWidget {
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(context.l.detection_screen_1),
+                            leading: Text(context.l.detection_screen_0),
                             trailing: Text(context.l.detection_screen_30),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
@@ -189,7 +189,7 @@ class DetectionScreen extends StatelessWidget {
                               child: CupertinoSlider(
                                 value: project.validThreshold.toDouble(),
                                 max: 30,
-                                min: 1,
+                                min: 0,
                                 divisions: 100,
                                 onChanged: (double value) async {
                                   await projectProvider.setSettingsValidThreshold(value.toInt());

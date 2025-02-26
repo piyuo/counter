@@ -180,6 +180,9 @@ class AppLocalizationEn extends AppLocalization {
   String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0 seconds';
 
   @override
+  String get detection_screen_0 => '0';
+
+  @override
   String get detection_screen_1 => '1';
 
   @override

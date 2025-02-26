@@ -435,6 +435,12 @@ abstract class AppLocalization {
   /// **'Track object will be removed if it is lost for #0 seconds'**
   String get detection_screen_lost_desc;
 
+  /// No description provided for @detection_screen_0.
+  ///
+  /// In en, this message translates to:
+  /// **'0'**
+  String get detection_screen_0;
+
   /// No description provided for @detection_screen_1.
   ///
   /// In en, this message translates to:

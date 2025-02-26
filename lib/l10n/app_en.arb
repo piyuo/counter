@@ -57,6 +57,7 @@
     "detection_screen_match_desc":"Match over #0 is considered to be the same object.",
     "detection_screen_lost":"Lost",
     "detection_screen_lost_desc":"Track object will be removed if it is lost for #0 seconds",
+    "detection_screen_0":"0",
     "detection_screen_1":"1",
     "detection_screen_30":"30 seconds",
     "detection_screen_consider_valid":"Consider valid after",
