@@ -28,19 +28,6 @@ class SourceScreen extends StatelessWidget {
     final video = videoProvider.video;
     final pageTitle = video.videoName;
 
-    IconData buildMediaIcon() {
-      switch (video.mediaType) {
-        case vision.MediaType.camera:
-          return CupertinoIcons.camera;
-        case vision.MediaType.webcam:
-          return CupertinoIcons.videocam;
-        case vision.MediaType.live:
-          return CupertinoIcons.cloud;
-        case vision.MediaType.file:
-          return CupertinoIcons.folder;
-      }
-    }
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<VideoSourceScreenProvider>(
@@ -75,7 +62,7 @@ class SourceScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Icon(buildMediaIcon(), size: 44),
+                        Icon(videoProvider.getMediaTypeIcon(), size: 44),
                         const SizedBox(height: 8.0),
                         Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(

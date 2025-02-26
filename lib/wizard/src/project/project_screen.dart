@@ -132,8 +132,8 @@ class ProjectScreen extends StatelessWidget {
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
-                          leading:
-                              Icon(videoProvider.getIcon(), color: CupertinoColors.inactiveGray.resolveFrom(context)),
+                          leading: Icon(videoProvider.getMediaTypeIcon(),
+                              color: CupertinoColors.inactiveGray.resolveFrom(context)),
                           title: Text(videoProvider.video.videoName,
                               style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                           trailing: const CupertinoListTileChevron(),

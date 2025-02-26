@@ -128,15 +128,15 @@ class VideoProvider with ChangeNotifier {
     sampler.reset(filter);
   }
 
-  /// Return the icon of the video source
-  getIcon() {
+  /// Return the icon of the video source media type
+  IconData getMediaTypeIcon() {
     switch (video.mediaType) {
       case vision.MediaType.webcam:
         return CupertinoIcons.videocam;
       case vision.MediaType.camera:
         return CupertinoIcons.camera;
       case vision.MediaType.live:
-        return Icons.live_tv;
+        return Icons.cloud;
       case vision.MediaType.file:
         return CupertinoIcons.folder;
     }
