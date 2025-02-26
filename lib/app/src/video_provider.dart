@@ -255,6 +255,13 @@ class VideoProvider with ChangeNotifier {
     return errorCode;
   }
 
+  /// set new camera
+  Future<void> setCamera(BuildContext context, CameraDefine cameraDefine) async {
+    video.camera = cameraDefine;
+    await reload(context, _projectProvider!.project!, false);
+    saveProject();
+  }
+
   /// set the current zoom level
   Future<void> setCameraZoom(double value) async {
     video.zoom = value;
