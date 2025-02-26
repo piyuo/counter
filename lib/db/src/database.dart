@@ -31,6 +31,15 @@ class AppDatabase extends _$AppDatabase {
     });
   }
 
+  /// delete the project temp media file in app directory, save by [saveFileToAppDirectory]
+  Future<void> deleteProjectInAppDirectory(String projectId) async {
+    final appDir = await getApplicationDocumentsDirectory();
+    final projectDir = Directory('${appDir.path}/$projectId');
+    if (await projectDir.exists()) {
+      await projectDir.delete(recursive: true);
+    }
+  }
+
   /// get all activities for a project that are older than the given date
   Future<List<Activity>> getProjectActivities(String projectId, DateTime cutOffTime) async {
     final query = select(activities)
@@ -112,8 +121,11 @@ class AppDatabase extends _$AppDatabase {
 
   /// delete project from database
   Future<void> deleteProject(String projectId) async {
-    await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
-    await deleteActivities(projectId);
+    await transaction(() async {
+      await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
+      await deleteActivities(projectId);
+    });
+    await deleteProjectInAppDirectory(projectId);
   }
 
   /// Enforces a project limit to prevent exceeding system capacity.
@@ -164,7 +176,7 @@ class AppDatabase extends _$AppDatabase {
         projects.createdAt,
         projects.updatedAt,
       ])
-      ..orderBy([OrderingTerm.desc(projects.updatedAt)]);
+      ..orderBy([OrderingTerm(expression: projects.updatedAt, mode: OrderingMode.desc)]);
     final rows = await query.get();
     return rows
         .map((row) => ProjectSummary(
