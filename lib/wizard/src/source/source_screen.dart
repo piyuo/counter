@@ -144,7 +144,8 @@ class SourceScreen extends StatelessWidget {
                       header: Text(context.l.video_source_screen_camera),
                       children: [
                         CupertinoListTile(
-                          title: Text(videoProvider.video.camera!.title),
+                          title: Text(
+                              '${videoProvider.video.camera!.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${videoProvider.video.camera!.title}'),
                           leading: const Icon(CupertinoIcons.camera),
                           trailing: projectProvider.cameraManager.cameraDefines.length > 1
                               ? const CupertinoListTileChevron()

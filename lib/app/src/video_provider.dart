@@ -251,7 +251,7 @@ class VideoProvider with ChangeNotifier {
     if (isPlaying) {
       await visionController.play();
     }
-    _projectProvider?.saveProject(this);
+    saveProject();
     return errorCode;
   }
 
@@ -259,7 +259,13 @@ class VideoProvider with ChangeNotifier {
   Future<void> setCameraZoom(double value) async {
     video.zoom = value;
     await visionController.setCameraZoom(value);
+    saveProject();
+  }
+
+  /// save the project and notify the listeners
+  void saveProject() {
     _projectProvider?.saveProject(this);
+    notifyListeners();
   }
 
   /// enable zone editor, return true if success

@@ -78,7 +78,6 @@ class CameraScreen extends StatelessWidget {
                               divisions: videoProvider.maxZoom.toInt(),
                               onChanged: (double value) async {
                                 await videoProvider.setCameraZoom(value);
-                                projectProvider.saveProject(videoProvider);
                                 cameraScreenProvider.redraw();
                               },
                             ),
