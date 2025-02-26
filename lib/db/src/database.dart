@@ -75,6 +75,11 @@ class AppDatabase extends _$AppDatabase {
     }
   }
 
+  /// delete all activities for a project
+  Future<void> deleteActivities(String projectId) {
+    return (delete(activities)..where((a) => a.projectId.equals(projectId))).go();
+  }
+
   /// add project to database
   Future<void> setProject(String id, String name, String data) async {
     Uint8List bytes = Uint8List.fromList(utf8.encode(data));
@@ -108,9 +113,28 @@ class AppDatabase extends _$AppDatabase {
   /// delete project from database
   Future<void> deleteProject(String projectId) async {
     await (delete(projects)..where((p) => p.projectId.equals(projectId))).go();
+    await deleteActivities(projectId);
   }
 
-  // Returns a stream of project summaries that updates whenever the projects table changes.
+  /// Enforces a project limit to prevent exceeding system capacity.
+  ///
+  /// When the total number of projects exceeds [maxCount],
+  /// only the oldest project is deleted to ensure efficient operation and fast startup.
+  Future<void> enforceProjectLimit(int maxCount) async {
+    // Fetch all projects and sort them by updatedAt in ascending order (oldest first).
+    final query = select(projects)..orderBy([(t) => OrderingTerm(expression: t.updatedAt, mode: OrderingMode.asc)]);
+
+    final allProjects = await query.get();
+
+    // If the number of projects exceeds the limit, delete the oldest project.
+    if (allProjects.length > maxCount) {
+      // Get the oldest project (the first one in the list).
+      final oldestProject = allProjects.first;
+      // Delete this oldest project.
+      await deleteProject(oldestProject.projectId);
+    }
+  }
+
   Stream<List<ProjectSummary>> watchProjectSummaries() {
     final query = selectOnly(projects)
       ..addColumns([

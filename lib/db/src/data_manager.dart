@@ -7,11 +7,20 @@ import 'database.dart';
 import 'meta.dart';
 import 'meta/project_meta.dart';
 
+/// The maximum number of projects allowed in the database.
+const _maxAllowedProjectCount = 20;
+
 class DataManager {
   final AppDatabase appDatabase = AppDatabase();
 
   /// the add activity count, used to delete old activities
   int _addActivityCount = 0;
+
+  /// maintain the database, delete old data
+  Future<void> maintainDatabase() async {
+    // keep projects count to 20;
+    await appDatabase.enforceProjectLimit(_maxAllowedProjectCount);
+  }
 
   /// get recent activities for a project that in the last 24 hours
   Future<List<Activity>> getRecentProjectActivities(String projectId) async {

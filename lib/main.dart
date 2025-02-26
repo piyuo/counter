@@ -37,6 +37,9 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider(create: (_) => vision.LanguageProvider()..loadLocale()),
           ChangeNotifierProvider<app.ProjectProvider>(
               create: (context) => app.ProjectProvider(
+                    onDatabaseMaintain: () {
+                      dataManager.maintainDatabase();
+                    },
                     onGetRecentProjectActivities: (String projectId) async {
                       return await dataManager.getRecentProjectActivities(projectId);
                     },

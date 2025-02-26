@@ -29,6 +29,7 @@ enum VideoPlayingState { allPlay, somePlay, allPause }
 /// Project provider can create, open, and manage the project. wizard package will find the project provider from context to work with.
 class ProjectProvider with ChangeNotifier {
   ProjectProvider({
+    this.onDatabaseMaintain,
     this.onGetRecentProjectActivities,
     this.onActivityAdded,
     this.onProjectOpened,
@@ -62,6 +63,9 @@ class ProjectProvider with ChangeNotifier {
 
   /// is project opened
   bool get isProjectOpened => project != null;
+
+  /// get recent activities when project opened
+  final VoidCallback? onDatabaseMaintain;
 
   /// get recent activities when project opened
   final Future<List<db.Activity>> Function(String projectId)? onGetRecentProjectActivities;
@@ -196,6 +200,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// init the project provider
   Future<void> init(BuildContext context) async {
+    onDatabaseMaintain?.call();
     await initializeDateFormatting();
     benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
     await cameraManager.init();
