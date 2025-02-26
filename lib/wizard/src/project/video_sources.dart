@@ -10,18 +10,18 @@ import 'pick_video.dart';
 List<Widget> buildVideoSources(
   BuildContext context, {
   required app.ProjectProvider projectProvider,
-  required VideoStarterProvider videoStarterProvider,
+  required VideoSourcesProvider videoSourcesProvider,
   required bool isAddMode, // is add another video to project
   String? previousPageTitle,
 }) {
   return [
     if (projectProvider.hasWebcam)
       CupertinoListTile(
-          leading: videoStarterProvider.isLoadingWebcam ? CupertinoActivityIndicator() : Icon(CupertinoIcons.videocam),
+          leading: videoSourcesProvider.isLoadingWebcam ? CupertinoActivityIndicator() : Icon(CupertinoIcons.videocam),
           title: Text(context.l.video_starter_webcam),
           trailing: CupertinoListTileChevron(),
           onTap: () async {
-            videoStarterProvider.setLoadingWebcam(true);
+            videoSourcesProvider.setLoadingWebcam(true);
             try {
               // add webcam to project
               if (isAddMode) {
@@ -46,19 +46,23 @@ List<Widget> buildVideoSources(
                 projectId: app.uuid(),
               );
               if (context.mounted) {
-                Navigator.of(context).pushNamed(projectRoute);
+                // wait 1 second for webcam to start. webcam tends to return before it's ready
+                await Future.delayed(const Duration(seconds: 1));
+                if (context.mounted) {
+                  Navigator.of(context).pushNamed(projectRoute);
+                }
               }
             } finally {
-              videoStarterProvider.setLoadingWebcam(false);
+              videoSourcesProvider.setLoadingWebcam(false);
             }
           }),
     if (projectProvider.hasCamera && projectProvider.isAddCameraAllowed)
       CupertinoListTile(
-        leading: videoStarterProvider.isLoadingCamera ? CupertinoActivityIndicator() : Icon(CupertinoIcons.camera),
+        leading: videoSourcesProvider.isLoadingCamera ? CupertinoActivityIndicator() : Icon(CupertinoIcons.camera),
         title: Text(context.l.video_starter_camera),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
-          videoStarterProvider.setLoadingCamera(true);
+          videoSourcesProvider.setLoadingCamera(true);
           try {
             // add camera to project
             if (isAddMode) {
@@ -85,17 +89,17 @@ List<Widget> buildVideoSources(
               Navigator.of(context).pushNamed(projectRoute);
             }
           } finally {
-            videoStarterProvider.setLoadingCamera(false);
+            videoSourcesProvider.setLoadingCamera(false);
           }
         },
       ),
     if (projectProvider.isLiveStreamAllowed)
       CupertinoListTile(
-        leading: videoStarterProvider.isLoadingLiveStream ? CupertinoActivityIndicator() : Icon(CupertinoIcons.cloud),
+        leading: videoSourcesProvider.isLoadingLiveStream ? CupertinoActivityIndicator() : Icon(CupertinoIcons.cloud),
         title: Text(context.l.video_starter_live_stream),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
-          videoStarterProvider.setLoadingLiveStream(true);
+          videoSourcesProvider.setLoadingLiveStream(true);
           try {
             // add live stream to project
             if (isAddMode) {
@@ -121,16 +125,16 @@ List<Widget> buildVideoSources(
               }
             });
           } finally {
-            videoStarterProvider.setLoadingLiveStream(false);
+            videoSourcesProvider.setLoadingLiveStream(false);
           }
         },
       ),
     CupertinoListTile(
-        leading: videoStarterProvider.isLoadingFile ? CupertinoActivityIndicator() : Icon(CupertinoIcons.folder),
+        leading: videoSourcesProvider.isLoadingFile ? CupertinoActivityIndicator() : Icon(CupertinoIcons.folder),
         title: Text(context.l.video_starter_file),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
-          videoStarterProvider.setLoadingFile(true);
+          videoSourcesProvider.setLoadingFile(true);
           try {
             final projectId = app.uuid();
 
@@ -175,14 +179,14 @@ List<Widget> buildVideoSources(
               Navigator.of(context).pushNamed(projectRoute);
             }
           } finally {
-            videoStarterProvider.setLoadingFile(false);
+            videoSourcesProvider.setLoadingFile(false);
           }
         }),
   ];
 }
 
 /// provide video starter support.
-class VideoStarterProvider with ChangeNotifier {
+class VideoSourcesProvider with ChangeNotifier {
   /// is loading camera
   bool isLoadingCamera = false;
 

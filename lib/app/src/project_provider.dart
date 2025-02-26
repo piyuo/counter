@@ -462,11 +462,11 @@ class ProjectProvider with ChangeNotifier {
       videos: [],
       model: benchmarkLocalStorage.recommendedModel,
     );
+    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+    await _makeProjectOpened(context);
     for (final videoProvider in videoProviders) {
       videoProvider.resetSamplerFilter(project!.filter);
     }
-    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
-    await _makeProjectOpened(context);
     onProjectSave?.call(project!, null);
     notifyListeners();
     return true;

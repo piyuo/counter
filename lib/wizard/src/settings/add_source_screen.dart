@@ -29,15 +29,15 @@ class AddSourceScreen extends StatelessWidget {
           return SingleChildScrollView(
               child: Column(
             children: [
-              ChangeNotifierProvider<VideoStarterProvider>(
-                  create: (_) => VideoStarterProvider(),
-                  child: Consumer<VideoStarterProvider>(
+              ChangeNotifierProvider<VideoSourcesProvider>(
+                  create: (_) => VideoSourcesProvider(),
+                  child: Consumer<VideoSourcesProvider>(
                     builder: (context, videoStarterProvider, child) => CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.add_video_screen_from),
                       children: buildVideoSources(
                         context,
-                        videoStarterProvider: videoStarterProvider,
+                        videoSourcesProvider: videoStarterProvider,
                         projectProvider: projectProvider,
                         isAddMode: true,
                         previousPageTitle: previousPageTitle,

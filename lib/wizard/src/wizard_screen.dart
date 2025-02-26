@@ -35,15 +35,15 @@ class WizardScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  ChangeNotifierProvider<VideoStarterProvider>(
-                      create: (_) => VideoStarterProvider(),
-                      child: Consumer<VideoStarterProvider>(
+                  ChangeNotifierProvider<VideoSourcesProvider>(
+                      create: (_) => VideoSourcesProvider(),
+                      child: Consumer<VideoSourcesProvider>(
                           builder: (context, videoStarterProvider, child) => CupertinoListSection(
                                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                                 header: Text(context.l.welcome_screen_new_project_from),
                                 children: buildVideoSources(
                                   context,
-                                  videoStarterProvider: videoStarterProvider,
+                                  videoSourcesProvider: videoStarterProvider,
                                   projectProvider: projectProvider,
                                   isAddMode: false,
                                 ),
