@@ -232,11 +232,6 @@ class VideoProvider with ChangeNotifier {
     return errorCode;
   }
 
-  /// change the model used by the controller
-  Future<void> setModel(vision.Models model) async {
-    visionController.setRecognition(model: model);
-  }
-
   /// get the video type
   vision.MediaType get type => video.mediaType;
 

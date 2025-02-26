@@ -449,6 +449,16 @@ class ProjectProvider with ChangeNotifier {
     return true;
   }
 
+  /// notify listeners and [onProjectSave] callback, if videoProvider is not null, it means the change is from the video source
+  void saveProject(VideoProvider? videoProvider) {
+    _saveProjectTimer?.cancel();
+    _saveProjectTimer = Timer(const Duration(seconds: 2), () async {
+      onProjectSave?.call(project!, videoProvider?.video);
+      _saveProjectTimer = null;
+    });
+    notifyListeners();
+  }
+
   /// start a new project with a video source, return tru e if success
   Future<bool> newProject(
     BuildContext context, {
@@ -472,8 +482,7 @@ class ProjectProvider with ChangeNotifier {
     for (final videoProvider in videoProviders) {
       videoProvider.resetSamplerFilter(project!.filter);
     }
-    onProjectSave?.call(project!, null);
-    notifyListeners();
+    saveProject(null);
     return true;
   }
 
@@ -577,17 +586,7 @@ class ProjectProvider with ChangeNotifier {
     project?.videos.remove(videoProvider.video);
     videoProviders.remove(videoProvider);
     videoProvider.remove();
-    notifyListeners();
-  }
-
-  /// notify listeners and [onProjectSave] callback, if videoProvider is not null, it means the change is from the video source
-  void saveProject(VideoProvider? videoProvider) {
-    _saveProjectTimer?.cancel();
-    _saveProjectTimer = Timer(const Duration(seconds: 2), () async {
-      onProjectSave?.call(project!, videoProvider?.video);
-      _saveProjectTimer = null;
-    });
-    notifyListeners();
+    saveProject(videoProvider);
   }
 
   /// enter video screen, need show the zone editor on wizard screen
@@ -631,7 +630,7 @@ class ProjectProvider with ChangeNotifier {
     _modelChangedTimer?.cancel();
     _modelChangedTimer = Timer(const Duration(seconds: 2), () async {
       for (final videoProvider in videoProviders) {
-        await videoProvider.setModel(model);
+        await videoProvider.setRecognition(model: model);
       }
       saveProject(null);
       _modelChangedTimer = null;
@@ -721,17 +720,6 @@ class ProjectProvider with ChangeNotifier {
       );
     }
     saveProject(null);
-  }
-
-  /// called when the camera changed
-  Future<void> onVideoCameraChanged() async {
-    // = cameraProvider!.getCameraDefine();
-    notifyListeners();
-  }
-
-  /// called when camera or webcam changed
-  Future<void> onVideoWebcamChanged(int index) async {
-    //project.webcam = webcamProvider!.selectedWebcam;
   }
 
   /// return selected class names
