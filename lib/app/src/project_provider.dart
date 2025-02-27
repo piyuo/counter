@@ -588,6 +588,14 @@ class ProjectProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /// develop mode, add random counts to the project
+  Future<void> addRandomCounts() async {
+    for (final videoProvider in videoProviders) {
+      videoProvider.addRandomCounts();
+    }
+    notifyListeners();
+  }
+
   /// Remove a video source
   Future<void> deleteVideo(VideoProvider videoProvider) async {
     if (videoProvider.video.mediaType == vision.MediaType.file) {

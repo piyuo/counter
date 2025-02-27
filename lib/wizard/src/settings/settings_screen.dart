@@ -99,16 +99,18 @@ class SettingsScreen extends StatelessWidget {
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_reset_count_header),
                     children: [
-                      if (projectProvider.developMode)
-                        CupertinoListTile(
-                          title: Center(
-                              child: CupertinoButton(
-                            onPressed: () async {},
-                            child: Text(
-                              context.l.settings_screen_random_count_button,
-                            ),
-                          )),
-                        ),
+//                      if (projectProvider.developMode)
+                      CupertinoListTile(
+                        title: Center(
+                            child: CupertinoButton(
+                          onPressed: () async {
+                            projectProvider.addRandomCounts();
+                          },
+                          child: Text(
+                            context.l.settings_screen_random_count_button,
+                          ),
+                        )),
+                      ),
                       CupertinoListTile(
                         title: Center(
                             child: CupertinoButton(

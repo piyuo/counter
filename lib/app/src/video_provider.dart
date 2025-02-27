@@ -484,4 +484,33 @@ class VideoProvider with ChangeNotifier {
     visionController.resetCounts();
     notifyListeners();
   }
+
+  /// develop mode, add random counts to the project
+  Future<void> addRandomCounts() async {
+    DateTime now = DateTime.now().subtract(Duration(minutes: 1));
+    var begin = DateTime(now.year, now.month, now.day, now.hour, now.minute);
+    for (final zone in video.zones) {
+      for (final classId in zone.selectedClasses) {
+        // add 24 hours activity
+        for (int i = 1440; i >= 0; i--) {
+          //add from 2 hours ago to now, latest is always the last
+          final activity = vision.Activity(
+            createdAt: begin.subtract(Duration(minutes: i)),
+            spawned: Random().nextInt(9),
+            vanished: Random().nextInt(9),
+            entered: Random().nextInt(9),
+            exited: Random().nextInt(9),
+            stagnant: Random().nextInt(9),
+            reentered: Random().nextInt(9),
+            occupied: Random().nextInt(9),
+            stayDuration: Random().nextInt(9),
+          );
+          loadRecentActivity(zone.zoneId, classId, activity);
+          _projectProvider?.notifyActivityAdded(video.videoId, zone.zoneId, classId, activity);
+        }
+      }
+    }
+    updateSample(now);
+    notifyListeners();
+  }
 }

@@ -43,7 +43,8 @@ class AppDatabase extends _$AppDatabase {
   /// get all activities for a project that are older than the given date
   Future<List<Activity>> getProjectActivities(String projectId, DateTime cutOffTime) async {
     final query = select(activities)
-      ..where((a) => a.projectId.equals(projectId) & a.createdAt.isBiggerOrEqualValue(cutOffTime));
+      ..where((a) => a.projectId.equals(projectId) & a.createdAt.isBiggerOrEqualValue(cutOffTime))
+      ..orderBy([(a) => OrderingTerm(expression: a.createdAt)]);
     return query.get();
   }
 
