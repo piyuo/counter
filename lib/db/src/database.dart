@@ -84,6 +84,11 @@ class AppDatabase extends _$AppDatabase {
     }
   }
 
+  /// delete activities in a project
+  Future<void> deleteActivitiesInProject(String projectId) async {
+    await (delete(activities)..where((a) => a.projectId.equals(projectId))).go();
+  }
+
   /// delete all activities for a project
   Future<void> deleteActivities(String projectId) {
     return (delete(activities)..where((a) => a.projectId.equals(projectId))).go();

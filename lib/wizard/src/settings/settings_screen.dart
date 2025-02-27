@@ -2,6 +2,7 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../wizard_navigator.dart';
@@ -25,11 +26,23 @@ class SettingsScreen extends StatelessWidget {
       child: Consumer<SettingsScreenProvider>(
         builder: (context, settingsScreenProvider, child) {
           return pip.PipScaffold(
-            title: pageTitle,
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  pip.PipHeader(
+                    child: Column(
+                      children: [
+                        Icon(CupertinoIcons.settings, size: 44),
+                        const SizedBox(height: 8.0),
+                        Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        Text(
+                          context.l.settings_screen_desc,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_project_name),
@@ -52,6 +65,21 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.settings_screen_project_id),
+                    children: [
+                      Row(children: [
+                        const SizedBox(width: 16),
+                        SelectableText(projectProvider.project!.projectId,
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                            ))
+                      ]),
+                    ],
+                  ),
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         title: Text(context.l.settings_screen_detection),
@@ -63,6 +91,56 @@ class SettingsScreen extends StatelessWidget {
                           'previousPageTitle': pageTitle,
                         }),
                       ),
+                    ],
+                  ),
+                  CupertinoListSection(
+                    dividerMargin: 0,
+                    hasLeading: false,
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.settings_screen_reset_count_header),
+                    children: [
+                      CupertinoListTile(
+                        title: Center(
+                            child: CupertinoButton(
+                          onPressed: () async {},
+                          child: Text(
+                            context.l.settings_screen_random_count_button,
+                          ),
+                        )),
+                      ),
+                      CupertinoListTile(
+                        title: Center(
+                            child: CupertinoButton(
+                          onPressed: () async {
+                            final bool? result = await showCupertinoDialog<bool>(
+                              context: context,
+                              builder: (context) {
+                                return CupertinoAlertDialog(
+                                  title: Text(context.l.settings_screen_reset_count_button),
+                                  content: Text(context.l.settings_screen_reset_count_content),
+                                  actions: [
+                                    CupertinoDialogAction(
+                                      isDefaultAction: true,
+                                      textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
+                                      onPressed: () => Navigator.pop(context, false),
+                                      child: Text(context.l.cancel),
+                                    ),
+                                    CupertinoDialogAction(
+                                      isDestructiveAction: true,
+                                      onPressed: () => Navigator.pop(context, true),
+                                      child: Text(context.l.settings_screen_reset_count_button),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                            if (result == null || !result) return;
+                            projectProvider.resetCounts();
+                          },
+                          child: Text(context.l.settings_screen_reset_count_button,
+                              style: TextStyle(color: CupertinoColors.systemRed)),
+                        )),
+                      )
                     ],
                   ),
                   CupertinoListSection(

@@ -321,6 +321,18 @@ abstract class AppLocalization {
   /// **'Settings'**
   String get settings_screen_title;
 
+  /// No description provided for @settings_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Project name, detection parameters, count clearing.'**
+  String get settings_screen_desc;
+
+  /// No description provided for @settings_screen_project_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Id'**
+  String get settings_screen_project_id;
+
   /// No description provided for @settings_screen_project_name.
   ///
   /// In en, this message translates to:
@@ -344,6 +356,30 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'Detection'**
   String get settings_screen_detection;
+
+  /// No description provided for @settings_screen_random_count_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add random counts'**
+  String get settings_screen_random_count_button;
+
+  /// No description provided for @settings_screen_reset_count_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all counts in this project'**
+  String get settings_screen_reset_count_header;
+
+  /// No description provided for @settings_screen_reset_count_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset counts'**
+  String get settings_screen_reset_count_button;
+
+  /// No description provided for @settings_screen_reset_count_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset all counts?'**
+  String get settings_screen_reset_count_content;
 
   /// No description provided for @settings_screen_delete_header.
   ///

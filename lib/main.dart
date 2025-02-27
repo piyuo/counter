@@ -43,6 +43,9 @@ class _MyAppState extends State<MyApp> {
                     onGetRecentProjectActivities: (String projectId) async {
                       return await dataManager.getRecentProjectActivities(projectId);
                     },
+                    onClearActivities: (String projectId) async {
+                      await dataManager.deleteActivitiesInProject(projectId);
+                    },
                     onActivityAdded:
                         (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
                       await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);

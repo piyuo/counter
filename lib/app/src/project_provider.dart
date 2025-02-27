@@ -29,6 +29,7 @@ enum VideoPlayingState { allPlay, somePlay, allPause }
 /// Project provider can create, open, and manage the project. wizard package will find the project provider from context to work with.
 class ProjectProvider with ChangeNotifier {
   ProjectProvider({
+    this.onClearActivities,
     this.onDatabaseMaintain,
     this.onGetRecentProjectActivities,
     this.onActivityAdded,
@@ -72,6 +73,9 @@ class ProjectProvider with ChangeNotifier {
 
   /// Callback function that is called when a new activity is added.
   final void Function(String projectId, int videoId, int zoneId, int classId, vision.Activity)? onActivityAdded;
+
+  /// Callback function that is called when activities need to be cleared.
+  final Future<void> Function(String projectId)? onClearActivities;
 
   /// called when project opened
   final void Function(Project project)? onProjectOpened;
@@ -570,6 +574,11 @@ class ProjectProvider with ChangeNotifier {
     final videoProvider = await _prepareVideoProviders(context);
     saveProject(videoProvider);
     return videoProvider;
+  }
+
+  /// reset all counts in project
+  Future<void> resetCounts() async {
+    await onClearActivities?.call(project!.projectId);
   }
 
   /// Remove a video source

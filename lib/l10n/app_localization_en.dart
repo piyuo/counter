@@ -123,6 +123,12 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_title => 'Settings';
 
   @override
+  String get settings_screen_desc => 'Set Project name, detection parameters, count clearing.';
+
+  @override
+  String get settings_screen_project_id => 'Project Id';
+
+  @override
   String get settings_screen_project_name => 'Project Name';
 
   @override
@@ -133,6 +139,18 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get settings_screen_detection => 'Detection';
+
+  @override
+  String get settings_screen_random_count_button => 'Add random counts';
+
+  @override
+  String get settings_screen_reset_count_header => 'Reset all counts in this project';
+
+  @override
+  String get settings_screen_reset_count_button => 'Reset counts';
+
+  @override
+  String get settings_screen_reset_count_content => 'Are you sure you want to reset all counts?';
 
   @override
   String get settings_screen_delete_header => 'Delete this project';

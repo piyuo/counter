@@ -39,6 +39,11 @@ class DataManager {
     }
   }
 
+  /// delete activities in a project
+  Future<void> deleteActivitiesInProject(String projectId) async {
+    await appDatabase.deleteActivitiesInProject(projectId);
+  }
+
   /// delete activities older than 1 day
   Future<void> deleteActivitiesOlderThanOneDay() async {
     await deleteActivitiesOlderThan(DateTime.now().subtract(const Duration(days: 1)));
