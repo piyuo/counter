@@ -116,6 +116,10 @@ class _MyAppState extends State<MyApp> {
                 return supportedLocales.first;
               },
               theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(
+                  brightness: Brightness.dark,
+                  seedColor: CupertinoColors.activeBlue,
+                ),
                 brightness: Brightness.dark,
                 cupertinoOverrideTheme: const CupertinoThemeData(
                   brightness: Brightness.dark,
