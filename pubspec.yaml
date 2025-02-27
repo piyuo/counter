@@ -65,6 +65,7 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.31
   locale_names: ^1.1.1
   timeago: ^3.7.0
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
@@ -88,7 +89,4 @@ flutter:
   uses-material-design: true
   assets:
       # rename assets/ to asset/ ,this can avoid ci mis-replace "assets/" string in main.dart.js
-      - asset/docs/
-      - asset/i18n/
-      - asset/data/
-      - asset/images/
+      - assets/icon/

@@ -1,0 +1,2 @@
+/Users/cc/Dropbox/counter/android/app/.cxx/Debug/6d68413x/x86/CMakeFiles/edit_cache.dir
+/Users/cc/Dropbox/counter/android/app/.cxx/Debug/6d68413x/x86/CMakeFiles/rebuild_cache.dir
