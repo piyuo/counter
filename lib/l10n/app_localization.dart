@@ -93,6 +93,24 @@ abstract class AppLocalization {
     Locale('en')
   ];
 
+  /// No description provided for @product_domain.
+  ///
+  /// In en, this message translates to:
+  /// **'piyuo.com'**
+  String get product_domain;
+
+  /// No description provided for @product_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Vision Counter by AI'**
+  String get product_name;
+
+  /// No description provided for @product_copyright.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright © 2025'**
+  String get product_copyright;
+
   /// No description provided for @video_starter_webcam.
   ///
   /// In en, this message translates to:
@@ -117,47 +135,41 @@ abstract class AppLocalization {
   /// **'File'**
   String get video_starter_file;
 
-  /// No description provided for @welcome_screen_title.
+  /// No description provided for @wizard_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'piyuo.com'**
-  String get welcome_screen_title;
+  /// **'Home'**
+  String get wizard_screen_title;
 
-  /// No description provided for @welcome_screen_people_counting.
-  ///
-  /// In en, this message translates to:
-  /// **'People Counting'**
-  String get welcome_screen_people_counting;
-
-  /// No description provided for @welcome_screen_new_project_from.
+  /// No description provided for @wizard_screen_new_project_from.
   ///
   /// In en, this message translates to:
   /// **'New Project from'**
-  String get welcome_screen_new_project_from;
+  String get wizard_screen_new_project_from;
 
-  /// No description provided for @welcome_screen_language.
+  /// No description provided for @wizard_screen_language.
   ///
   /// In en, this message translates to:
   /// **'Language'**
-  String get welcome_screen_language;
+  String get wizard_screen_language;
 
-  /// No description provided for @welcome_screen_about.
+  /// No description provided for @wizard_screen_about.
   ///
   /// In en, this message translates to:
   /// **'About'**
-  String get welcome_screen_about;
+  String get wizard_screen_about;
 
-  /// No description provided for @welcome_screen_open_projects_tip.
+  /// No description provided for @wizard_screen_open_projects_tip.
   ///
   /// In en, this message translates to:
   /// **'All project will save to local automatically'**
-  String get welcome_screen_open_projects_tip;
+  String get wizard_screen_open_projects_tip;
 
-  /// No description provided for @welcome_screen_open_projects.
+  /// No description provided for @wizard_screen_open_projects.
   ///
   /// In en, this message translates to:
   /// **'Open existing project'**
-  String get welcome_screen_open_projects;
+  String get wizard_screen_open_projects;
 
   /// No description provided for @language_screen_language.
   ///

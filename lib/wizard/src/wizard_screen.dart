@@ -16,22 +16,23 @@ class WizardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageTitle = context.l.welcome_screen_title;
+    final pageTitle = context.l.wizard_screen_title;
     return ChangeNotifierProvider<WelcomeScreenProvider>(
       create: (_) => WelcomeScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
-            title: pageTitle,
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Icon(CupertinoIcons.person_3, size: 44),
+                        Icon(CupertinoIcons.eye, size: 44),
                         const SizedBox(height: 8.0),
-                        Text(context.l.welcome_screen_people_counting, style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.product_name, style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.product_domain,
+                            style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                       ],
                     ),
                   ),
@@ -40,7 +41,7 @@ class WizardScreen extends StatelessWidget {
                       child: Consumer<VideoSourcesProvider>(
                           builder: (context, videoStarterProvider, child) => CupertinoListSection(
                                 backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                                header: Text(context.l.welcome_screen_new_project_from),
+                                header: Text(context.l.wizard_screen_new_project_from),
                                 children: buildVideoSources(
                                   context,
                                   videoSourcesProvider: videoStarterProvider,
@@ -49,12 +50,12 @@ class WizardScreen extends StatelessWidget {
                                 ),
                               ))),
                   CupertinoListSection(
-                    header: Text(context.l.welcome_screen_open_projects_tip),
+                    header: Text(context.l.wizard_screen_open_projects_tip),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                           leading: Icon(CupertinoIcons.archivebox),
-                          title: Text(context.l.welcome_screen_open_projects),
+                          title: Text(context.l.wizard_screen_open_projects),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
                             Navigator.of(context).pushNamed(openProjectRoute, arguments: {
@@ -64,26 +65,26 @@ class WizardScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    header: Text(context.l.welcome_screen_title),
+                    header: Text(context.l.product_domain),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
-                          leading: Icon(CupertinoIcons.globe),
-                          title: Text(context.l.welcome_screen_language),
-                          additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context)),
+                          leading: Icon(CupertinoIcons.info),
+                          additionalInfo: Text(homeScreenProvider.appVersion),
+                          title: Text(context.l.wizard_screen_about),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
-                            Navigator.of(context).pushNamed(languageRoute, arguments: {
+                            Navigator.of(context).pushNamed(aboutRoute, arguments: {
                               'previousPageTitle': pageTitle,
                             });
                           }),
                       CupertinoListTile(
-                          leading: Icon(CupertinoIcons.info),
-                          additionalInfo: Text(homeScreenProvider.appVersion),
-                          title: Text(context.l.welcome_screen_about),
+                          leading: Icon(CupertinoIcons.globe),
+                          title: Text(context.l.wizard_screen_language),
+                          additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context)),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
-                            Navigator.of(context).pushNamed(aboutRoute, arguments: {
+                            Navigator.of(context).pushNamed(languageRoute, arguments: {
                               'previousPageTitle': pageTitle,
                             });
                           }),

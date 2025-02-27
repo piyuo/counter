@@ -9,6 +9,15 @@ class AppLocalizationEn extends AppLocalization {
   AppLocalizationEn([String locale = 'en']) : super(locale);
 
   @override
+  String get product_domain => 'piyuo.com';
+
+  @override
+  String get product_name => 'Vision Counter by AI';
+
+  @override
+  String get product_copyright => 'Copyright © 2025';
+
+  @override
   String get video_starter_webcam => 'Webcam';
 
   @override
@@ -21,25 +30,22 @@ class AppLocalizationEn extends AppLocalization {
   String get video_starter_file => 'File';
 
   @override
-  String get welcome_screen_title => 'piyuo.com';
+  String get wizard_screen_title => 'Home';
 
   @override
-  String get welcome_screen_people_counting => 'People Counting';
+  String get wizard_screen_new_project_from => 'New Project from';
 
   @override
-  String get welcome_screen_new_project_from => 'New Project from';
+  String get wizard_screen_language => 'Language';
 
   @override
-  String get welcome_screen_language => 'Language';
+  String get wizard_screen_about => 'About';
 
   @override
-  String get welcome_screen_about => 'About';
+  String get wizard_screen_open_projects_tip => 'All project will save to local automatically';
 
   @override
-  String get welcome_screen_open_projects_tip => 'All project will save to local automatically';
-
-  @override
-  String get welcome_screen_open_projects => 'Open existing project';
+  String get wizard_screen_open_projects => 'Open existing project';
 
   @override
   String get language_screen_language => 'Language';
