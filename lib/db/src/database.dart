@@ -55,7 +55,7 @@ class AppDatabase extends _$AppDatabase {
       videoId: Value(videoId),
       zoneId: Value(zoneId),
       classId: Value(classId),
-      createdAt: Value(DateTime.now()),
+      createdAt: Value(activity.createdAt),
       spawned: Value(activity.spawned),
       vanished: Value(activity.vanished),
       entered: Value(activity.entered),

@@ -137,8 +137,8 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                 ),
               );
             }),
-            pip.PipFooter(),
           ]),
+          pip.PipFooter(),
         ]),
       ),
     );
