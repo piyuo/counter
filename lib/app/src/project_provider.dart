@@ -62,6 +62,9 @@ class ProjectProvider with ChangeNotifier {
   /// the fullscreen video source, set video source to full screen allow user easy to set zone and zoom level
   VideoProvider? fullscreenVideoProvider;
 
+  /// click App Version in About screen 10 times to enable develop mode
+  bool developMode = false;
+
   /// is project opened
   bool get isProjectOpened => project != null;
 

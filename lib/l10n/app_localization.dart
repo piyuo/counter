@@ -243,47 +243,47 @@ abstract class AppLocalization {
   /// **'Failed to start benchmark, the error code is'**
   String get benchmark_screen_start_failed;
 
-  /// No description provided for @home_screen_title.
+  /// No description provided for @project_screen_title.
   ///
   /// In en, this message translates to:
   /// **'Project'**
-  String get home_screen_title;
+  String get project_screen_title;
 
-  /// No description provided for @home_screen_exit_confirm_title.
+  /// No description provided for @project_screen_exit_confirm_title.
   ///
   /// In en, this message translates to:
   /// **'Confirm exit the project'**
-  String get home_screen_exit_confirm_title;
+  String get project_screen_exit_confirm_title;
 
-  /// No description provided for @home_screen_exit_confirm_content.
+  /// No description provided for @project_screen_exit_confirm_content.
   ///
   /// In en, this message translates to:
   /// **'Leaving the project will stop Counting. Are you sure you want to continue?'**
-  String get home_screen_exit_confirm_content;
+  String get project_screen_exit_confirm_content;
 
-  /// No description provided for @home_screen_exit_button.
+  /// No description provided for @project_screen_exit_button.
   ///
   /// In en, this message translates to:
   /// **'Exit'**
-  String get home_screen_exit_button;
+  String get project_screen_exit_button;
 
-  /// No description provided for @home_screen_add_video_button.
+  /// No description provided for @project_screen_add_video_button.
   ///
   /// In en, this message translates to:
   /// **'Add video'**
-  String get home_screen_add_video_button;
+  String get project_screen_add_video_button;
 
-  /// No description provided for @home_screen_report_from.
+  /// No description provided for @project_screen_report_from.
   ///
   /// In en, this message translates to:
   /// **'Report from'**
-  String get home_screen_report_from;
+  String get project_screen_report_from;
 
-  /// No description provided for @home_screen_report_settings.
+  /// No description provided for @project_screen_report_settings.
   ///
   /// In en, this message translates to:
   /// **'Settings'**
-  String get home_screen_report_settings;
+  String get project_screen_report_settings;
 
   /// No description provided for @filter_screen_title.
   ///

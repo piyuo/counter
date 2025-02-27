@@ -18,7 +18,7 @@ class ProjectScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String pageTitle = context.l.home_screen_title;
+    final String pageTitle = context.l.project_screen_title;
 
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<HomeScreenProvider>(
@@ -173,8 +173,8 @@ class ProjectScreen extends StatelessWidget {
                   final bool shouldPop = await showCupertinoDialog<bool?>(
                         context: context,
                         builder: (BuildContext context) => CupertinoAlertDialog(
-                          title: Text(context.l.home_screen_exit_confirm_title),
-                          content: Text(context.l.home_screen_exit_confirm_content),
+                          title: Text(context.l.project_screen_exit_confirm_title),
+                          content: Text(context.l.project_screen_exit_confirm_content),
                           actions: <CupertinoDialogAction>[
                             CupertinoDialogAction(
                               isDefaultAction: true,
@@ -198,9 +198,9 @@ class ProjectScreen extends StatelessWidget {
                   }
                 },
                 child: pip.PipScaffold(
-                  previousPageTitle: context.l.home_screen_exit_button,
+                  previousPageTitle: context.l.project_screen_exit_button,
                   action: CupertinoButton(
-                    child: Text(context.l.home_screen_add_video_button),
+                    child: Text(context.l.project_screen_add_video_button),
                     onPressed: () {
                       Navigator.of(context).pushNamed(addSourceRoute, arguments: {
                         'previousPageTitle': pageTitle,
@@ -245,7 +245,7 @@ class ProjectScreen extends StatelessWidget {
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                           children: [
                             CupertinoListTile(
-                              title: Text(context.l.home_screen_report_from,
+                              title: Text(context.l.project_screen_report_from,
                                   style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                               additionalInfo: Text(projectProvider.project!.filter.formattedString(context)),
                               trailing: const CupertinoListTileChevron(),
@@ -261,11 +261,11 @@ class ProjectScreen extends StatelessWidget {
                         // no need to show gauge if zone editor is enabled
                         if (!projectProvider.isZoneEditorEnabled) ...buildVideoView(),
                         CupertinoListSection(
-                          header: Text(context.l.home_screen_title),
+                          header: Text(context.l.project_screen_title),
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                           children: [
                             CupertinoListTile(
-                              title: Text(context.l.home_screen_report_settings),
+                              title: Text(context.l.project_screen_report_settings),
                               leading: const Icon(CupertinoIcons.settings),
                               trailing: const CupertinoListTileChevron(),
                               onTap: () async {

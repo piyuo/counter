@@ -84,25 +84,25 @@ class AppLocalizationEn extends AppLocalization {
   String get benchmark_screen_start_failed => 'Failed to start benchmark, the error code is';
 
   @override
-  String get home_screen_title => 'Project';
+  String get project_screen_title => 'Project';
 
   @override
-  String get home_screen_exit_confirm_title => 'Confirm exit the project';
+  String get project_screen_exit_confirm_title => 'Confirm exit the project';
 
   @override
-  String get home_screen_exit_confirm_content => 'Leaving the project will stop Counting. Are you sure you want to continue?';
+  String get project_screen_exit_confirm_content => 'Leaving the project will stop Counting. Are you sure you want to continue?';
 
   @override
-  String get home_screen_exit_button => 'Exit';
+  String get project_screen_exit_button => 'Exit';
 
   @override
-  String get home_screen_add_video_button => 'Add video';
+  String get project_screen_add_video_button => 'Add video';
 
   @override
-  String get home_screen_report_from => 'Report from';
+  String get project_screen_report_from => 'Report from';
 
   @override
-  String get home_screen_report_settings => 'Settings';
+  String get project_screen_report_settings => 'Settings';
 
   @override
   String get filter_screen_title => 'Filter';

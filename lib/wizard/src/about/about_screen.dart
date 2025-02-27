@@ -52,7 +52,7 @@ class AboutScreen extends StatelessWidget {
                       CupertinoListTile(
                         additionalInfo: Text(aboutScreenProvider.appVersion),
                         title: Text(context.l.about_screen_app_version),
-                        onTap: () => aboutScreenProvider.onTapVersion(),
+                        onTap: () => aboutScreenProvider.onTapVersion(projectProvider),
                       ),
                     ],
                   ),
@@ -121,9 +121,10 @@ class AboutScreenProvider with ChangeNotifier {
   }
 
   /// tap version 10 times to enable build info
-  void onTapVersion() {
+  void onTapVersion(app.ProjectProvider provider) {
     _versionTapCount++;
     if (_versionTapCount >= 10) {
+      provider.developMode = true;
       notifyListeners();
     }
   }
