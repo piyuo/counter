@@ -579,6 +579,10 @@ class ProjectProvider with ChangeNotifier {
   /// reset all counts in project
   Future<void> resetCounts() async {
     await onClearActivities?.call(project!.projectId);
+    for (final videoProvider in videoProviders) {
+      videoProvider.resetCounts();
+    }
+    notifyListeners();
   }
 
   /// Remove a video source

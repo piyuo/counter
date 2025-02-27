@@ -478,4 +478,10 @@ class VideoProvider with ChangeNotifier {
   void noActivityCheck(DateTime now) {
     visionController.noActivityCheck(now);
   }
+
+  /// reset all counts in project
+  void resetCounts() async {
+    visionController.resetCounts();
+    notifyListeners();
+  }
 }
