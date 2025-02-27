@@ -443,7 +443,7 @@ class ProjectProvider with ChangeNotifier {
           stayDuration: dbActivity.stayDuration,
         );
 
-        videoProvider.loadRecentActivity(dbActivity.zoneId, dbActivity.classId, activity);
+        videoProvider.addActivity(dbActivity.zoneId, dbActivity.classId, activity);
       }
     }
 

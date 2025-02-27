@@ -113,9 +113,9 @@ class VideoProvider with ChangeNotifier {
     super.dispose();
   }
 
-  /// load recent activity when project is opened
-  void loadRecentActivity(int zoneId, int classId, vision.Activity activity) {
-    visionController.loadRecentActivity(zoneId, classId, activity);
+  /// add activity when project is opened or add test data
+  void addActivity(int zoneId, int classId, vision.Activity activity) {
+    visionController.addActivity(zoneId, classId, activity);
   }
 
   /// update the sampling
@@ -505,7 +505,7 @@ class VideoProvider with ChangeNotifier {
             occupied: Random().nextInt(9),
             stayDuration: Random().nextInt(9),
           );
-          loadRecentActivity(zone.zoneId, classId, activity);
+          addActivity(zone.zoneId, classId, activity);
           _projectProvider?.notifyActivityAdded(video.videoId, zone.zoneId, classId, activity);
         }
       }
