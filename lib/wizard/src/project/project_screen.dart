@@ -214,23 +214,22 @@ class ProjectScreen extends StatelessWidget {
                           showBottomBorder: false,
                           child: Column(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-                                decoration: BoxDecoration(
-                                  color: CupertinoColors.quaternarySystemFill.resolveFrom(context),
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                child: Icon(CupertinoIcons.play_fill,
-                                    size: 48.0,
-                                    color: projectProvider.videoPlayingState == app.VideoPlayingState.allPlay
-                                        ? CupertinoColors.systemRed.resolveFrom(context)
-                                        : projectProvider.videoPlayingState == app.VideoPlayingState.somePlay
-                                            ? CupertinoColors.activeOrange.resolveFrom(context)
-                                            : CupertinoColors.inactiveGray.resolveFrom(context)),
-                              ),
+                              AnimatedOpacity(
+                                  opacity: projectProvider.videoPlayingState == app.VideoPlayingState.allPlay
+                                      ? 1
+                                      : projectProvider.videoPlayingState == app.VideoPlayingState.somePlay
+                                          ? 0.6
+                                          : 0.1,
+                                  duration: Duration(milliseconds: 300),
+                                  child: Image(
+                                    image: AssetImage('assets/images/project.png'),
+                                    width: 120,
+                                    height: 120,
+                                  )),
                               SizedBox(height: 10),
                               Text(project.projectName,
-                                  style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold)),
+                                  style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                              SizedBox(height: 10),
                               Consumer<TimeTagProvider>(
                                 builder: (context, timeTagProvider, child) => Text(
                                   buildTimeTagString(),

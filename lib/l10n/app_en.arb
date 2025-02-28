@@ -1,5 +1,4 @@
 {
-    "product_domain":"piyuo.com",
     "product_name":"Vision Counter",
     "product_copyright":"Copyright © 2025",
     "video_starter_webcam":"Webcam",
@@ -7,7 +6,6 @@
     "video_starter_live_stream":"Live stream URL",
     "video_starter_file":"File",
     "video_starter_camera":"Camera",
-    "wizard_screen_title":"Home",
     "wizard_screen_new_project_from":"New Project from",
     "wizard_screen_language":"Language",
     "wizard_screen_about":"About",

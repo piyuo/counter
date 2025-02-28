@@ -9,9 +9,6 @@ class AppLocalizationEn extends AppLocalization {
   AppLocalizationEn([String locale = 'en']) : super(locale);
 
   @override
-  String get product_domain => 'piyuo.com';
-
-  @override
   String get product_name => 'Vision Counter';
 
   @override
@@ -28,9 +25,6 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get video_starter_file => 'File';
-
-  @override
-  String get wizard_screen_title => 'Home';
 
   @override
   String get wizard_screen_new_project_from => 'New Project from';

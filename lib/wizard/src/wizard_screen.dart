@@ -16,7 +16,7 @@ class WizardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageTitle = context.l.wizard_screen_title;
+    final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WelcomeScreenProvider>(
       create: (_) => WelcomeScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
@@ -31,8 +31,7 @@ class WizardScreen extends StatelessWidget {
                   height: 32,
                 ),
                 const SizedBox(width: 16.0),
-                Text(context.l.product_domain,
-                    style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
               ],
             ),
             child: SingleChildScrollView(
@@ -41,7 +40,9 @@ class WizardScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Text(context.l.product_name, style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.product_name,
+                            style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 8.0),
                         Text('using computer vision to count objects',
                             style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
                       ],
@@ -76,7 +77,7 @@ class WizardScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    header: Text(context.l.product_domain),
+                    header: Text(pageTitle),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(

@@ -34,15 +34,13 @@ class AboutScreen extends StatelessWidget {
                       children: [
                         Image(
                           image: AssetImage('assets/icon/icon.png'),
-                          width: 137 * 1.2,
-                          height: 134 * 1.2,
+                          width: 145,
+                          height: 140,
                         ),
                         const SizedBox(height: 8.0),
                         Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
                         Text(context.l.product_name,
                             style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                        Text(context.l.product_domain,
-                            style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
                       ],
                     ),
                   ),

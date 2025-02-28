@@ -93,12 +93,6 @@ abstract class AppLocalization {
     Locale('en')
   ];
 
-  /// No description provided for @product_domain.
-  ///
-  /// In en, this message translates to:
-  /// **'piyuo.com'**
-  String get product_domain;
-
   /// No description provided for @product_name.
   ///
   /// In en, this message translates to:
@@ -134,12 +128,6 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'File'**
   String get video_starter_file;
-
-  /// No description provided for @wizard_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Home'**
-  String get wizard_screen_title;
 
   /// No description provided for @wizard_screen_new_project_from.
   ///
