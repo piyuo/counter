@@ -102,7 +102,7 @@ abstract class AppLocalization {
   /// No description provided for @product_name.
   ///
   /// In en, this message translates to:
-  /// **'Vision Counter by AI'**
+  /// **'Vision Counter'**
   String get product_name;
 
   /// No description provided for @product_copyright.

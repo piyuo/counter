@@ -12,7 +12,7 @@ class AppLocalizationEn extends AppLocalization {
   String get product_domain => 'piyuo.com';
 
   @override
-  String get product_name => 'Vision Counter by AI';
+  String get product_name => 'Vision Counter';
 
   @override
   String get product_copyright => 'Copyright © 2025';

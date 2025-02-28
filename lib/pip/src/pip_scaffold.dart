@@ -9,6 +9,7 @@ class PipScaffold extends StatelessWidget {
   const PipScaffold({
     required this.child,
     this.action,
+    this.titleWidget,
     this.title,
     this.largeTitle,
     this.onSearch,
@@ -25,6 +26,9 @@ class PipScaffold extends StatelessWidget {
 
   /// the title on the top
   final String? title;
+
+  /// the title widget on the top
+  final Widget? titleWidget;
 
   /// the large title on the top
   final String? largeTitle;
@@ -51,7 +55,7 @@ class PipScaffold extends StatelessWidget {
           appBar: SuperAppBar(
             previousPageTitle: previousPageTitle ?? context.l.back,
             backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.5),
-            title: title != null ? AutoSizeText(title!) : null,
+            title: titleWidget ?? (title != null ? AutoSizeText(title!) : null),
             largeTitle: SuperLargeTitle(
               enabled: largeTitle != null,
               largeTitle: largeTitle ?? '',

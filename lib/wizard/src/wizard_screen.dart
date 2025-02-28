@@ -22,21 +22,28 @@ class WizardScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
+            titleWidget: Row(
+              children: [
+                const SizedBox(width: 16),
+                Image(
+                  image: AssetImage('assets/icon/icon.png'),
+                  width: 32,
+                  height: 32,
+                ),
+                const SizedBox(width: 16.0),
+                Text(context.l.product_domain,
+                    style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+              ],
+            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Image(
-                          image: AssetImage('assets/images/logo.png'),
-                          width: 137 * 1.2,
-                          height: 134 * 1.2,
-                        ),
-                        const SizedBox(height: 8.0),
                         Text(context.l.product_name, style: const TextStyle(fontSize: 20.0)),
-                        Text(context.l.product_domain,
-                            style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                        Text('using computer vision to count objects',
+                            style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
                       ],
                     ),
                   ),
