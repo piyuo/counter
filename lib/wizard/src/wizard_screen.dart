@@ -28,7 +28,11 @@ class WizardScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Icon(CupertinoIcons.eye, size: 44),
+                        Image(
+                          image: AssetImage('assets/images/logo.png'),
+                          width: 137 * 1.2,
+                          height: 134 * 1.2,
+                        ),
                         const SizedBox(height: 8.0),
                         Text(context.l.product_name, style: const TextStyle(fontSize: 20.0)),
                         Text(context.l.product_domain,

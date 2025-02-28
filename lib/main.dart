@@ -78,19 +78,13 @@ class _MyAppState extends State<MyApp> {
               builder: (context, languageProvider, projectProvider, child) {
             buildMainScreen() {
               return Scaffold(
-                appBar: AppBar(
-                  title: const Text('Vision Example'),
-                ),
-                body: SingleChildScrollView(
-                  child: Container(
-                      color: CupertinoColors.tertiarySystemBackground.resolveFrom(context),
-                      alignment: Alignment.center,
-                      child: Column(children: [
-                        const SizedBox(height: 10),
-                        Container(
-                          height: 800,
-                        ),
-                      ])),
+                body: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/images/background.jpg"),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               );
             }

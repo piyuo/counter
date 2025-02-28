@@ -32,7 +32,11 @@ class AboutScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
-                        Icon(CupertinoIcons.info, size: 44),
+                        Image(
+                          image: AssetImage('assets/icon/icon.png'),
+                          width: 137 * 1.2,
+                          height: 134 * 1.2,
+                        ),
                         const SizedBox(height: 8.0),
                         Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
                         Text(context.l.product_name,
