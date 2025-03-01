@@ -133,7 +133,7 @@ class ProjectView extends StatelessWidget {
 
       return projectProvider.isProjectOpened
           ? Container(
-              color: const Color.fromARGB(255, 24, 24, 24),
+              color: const Color.fromARGB(255, 12, 12, 14),
               key: const ValueKey<int>(1),
               child: buildProjectOpened(projectProvider.project!),
             )
