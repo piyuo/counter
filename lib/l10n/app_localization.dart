@@ -129,6 +129,12 @@ abstract class AppLocalization {
   /// **'File'**
   String get video_starter_file;
 
+  /// No description provided for @wizard_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new project below to start counting.'**
+  String get wizard_screen_desc;
+
   /// No description provided for @wizard_screen_new_project_from.
   ///
   /// In en, this message translates to:

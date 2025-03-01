@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ class PipScreen extends StatelessWidget {
                 duration: _animationDuration,
                 left: 0,
                 width: _slidingPanelWidth,
-                top: 0,
+                top: 28, // 28 is height for close/minimize button bar
                 bottom: 0,
                 child: sliding,
               );
@@ -80,9 +81,9 @@ class PipScreen extends StatelessWidget {
               const top = 10.0;
               return AnimatedPositioned(
                 duration: _animationDuration,
-                top: top + safePadding.top,
+                top: top + safePadding.top + 28, // 28 is height for close/minimize button bar
                 height: constraints.maxHeight - top,
-                left: 10 + safePadding.left,
+                left: 20 + safePadding.left,
                 width: _slidingPanelWidth,
                 child: PipSliding(
                   pipProvider: pipProvider,
@@ -176,19 +177,20 @@ class PipScreen extends StatelessWidget {
             }
 
             return Material(
+                color: CupertinoColors.systemBackground.resolveFrom(context),
                 child: Stack(
-              children: [
-                AnimatedPositioned(
-                  duration: _animationDuration,
-                  left: isSideLayout ? _slidingPanelWidth : 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: builder(isSideLayout),
-                ),
-                determineSlidingLayout()
-              ],
-            ));
+                  children: [
+                    AnimatedPositioned(
+                      duration: _animationDuration,
+                      left: isSideLayout ? _slidingPanelWidth : 0,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: builder(isSideLayout),
+                    ),
+                    determineSlidingLayout()
+                  ],
+                ));
           },
         ),
       ),

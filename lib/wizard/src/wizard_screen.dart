@@ -22,17 +22,9 @@ class WizardScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
-            titleWidget: Row(
-              children: [
-                const SizedBox(width: 16),
-                Image(
-                  image: AssetImage('assets/icon/icon.png'),
-                  width: 32,
-                  height: 32,
-                ),
-                const SizedBox(width: 16.0),
-                Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-              ],
+            titleWidget: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
             ),
             child: SingleChildScrollView(
               child: Column(
@@ -40,11 +32,17 @@ class WizardScreen extends StatelessWidget {
                   pip.PipHeader(
                     child: Column(
                       children: [
+                        Image(
+                          image: AssetImage('assets/icon/icon.png'),
+                          width: 55,
+                          height: 55,
+                        ),
+                        const SizedBox(height: 8.0),
                         Text(context.l.product_name,
                             style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8.0),
-                        Text('using computer vision to count objects',
-                            style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
+                        Text(context.l.wizard_screen_desc,
+                            style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                       ],
                     ),
                   ),

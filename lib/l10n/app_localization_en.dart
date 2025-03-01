@@ -27,6 +27,9 @@ class AppLocalizationEn extends AppLocalization {
   String get video_starter_file => 'File';
 
   @override
+  String get wizard_screen_desc => 'Create a new project below to start counting.';
+
+  @override
   String get wizard_screen_new_project_from => 'New Project from';
 
   @override
