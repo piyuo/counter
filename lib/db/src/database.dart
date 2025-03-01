@@ -50,6 +50,7 @@ class AppDatabase extends _$AppDatabase {
 
   /// add activity to database
   /// add activity to database
+  /// add activity to database
   Future<void> addActivity(String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
     await transaction(() async {
       // Check for an existing record with the same identifiers and createdAt timestamp.
@@ -63,15 +64,15 @@ class AppDatabase extends _$AppDatabase {
           .getSingleOrNull();
 
       if (existingActivity != null) {
-        // If record exists, update the existing record with new values.
+        // If record exists, update the existing record by summing the counts.
         await (update(activities)..where((a) => a.id.equals(existingActivity.id))).write(
           ActivitiesCompanion(
-            spawned: Value(activity.spawned),
-            vanished: Value(activity.vanished),
-            entered: Value(activity.entered),
-            exited: Value(activity.exited),
-            stagnant: Value(activity.stagnant),
-            reentered: Value(activity.reentered),
+            spawned: Value(existingActivity.spawned + activity.spawned),
+            vanished: Value(existingActivity.vanished + activity.vanished),
+            entered: Value(existingActivity.entered + activity.entered),
+            exited: Value(existingActivity.exited + activity.exited),
+            stagnant: Value(existingActivity.stagnant + activity.stagnant),
+            reentered: Value(existingActivity.reentered + activity.reentered),
             occupied: Value(activity.occupied),
             stayDuration: Value(activity.stayDuration),
           ),
