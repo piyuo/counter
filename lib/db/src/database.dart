@@ -49,22 +49,52 @@ class AppDatabase extends _$AppDatabase {
   }
 
   /// add activity to database
+  /// add activity to database
   Future<void> addActivity(String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
-    await into(activities).insert(ActivitiesCompanion(
-      projectId: Value(projectId),
-      videoId: Value(videoId),
-      zoneId: Value(zoneId),
-      classId: Value(classId),
-      createdAt: Value(activity.createdAt),
-      spawned: Value(activity.spawned),
-      vanished: Value(activity.vanished),
-      entered: Value(activity.entered),
-      exited: Value(activity.exited),
-      stagnant: Value(activity.stagnant),
-      reentered: Value(activity.reentered),
-      occupied: Value(activity.occupied),
-      stayDuration: Value(activity.stayDuration),
-    ));
+    await transaction(() async {
+      // Check for an existing record with the same identifiers and createdAt timestamp.
+      final existingActivity = await (select(activities)
+            ..where((a) =>
+                a.projectId.equals(projectId) &
+                a.videoId.equals(videoId) &
+                a.zoneId.equals(zoneId) &
+                a.classId.equals(classId) &
+                a.createdAt.equals(activity.createdAt)))
+          .getSingleOrNull();
+
+      if (existingActivity != null) {
+        // If record exists, update the existing record with new values.
+        await (update(activities)..where((a) => a.id.equals(existingActivity.id))).write(
+          ActivitiesCompanion(
+            spawned: Value(activity.spawned),
+            vanished: Value(activity.vanished),
+            entered: Value(activity.entered),
+            exited: Value(activity.exited),
+            stagnant: Value(activity.stagnant),
+            reentered: Value(activity.reentered),
+            occupied: Value(activity.occupied),
+            stayDuration: Value(activity.stayDuration),
+          ),
+        );
+      } else {
+        // If no existing record is found, insert a new activity.
+        await into(activities).insert(ActivitiesCompanion(
+          projectId: Value(projectId),
+          videoId: Value(videoId),
+          zoneId: Value(zoneId),
+          classId: Value(classId),
+          createdAt: Value(activity.createdAt),
+          spawned: Value(activity.spawned),
+          vanished: Value(activity.vanished),
+          entered: Value(activity.entered),
+          exited: Value(activity.exited),
+          stagnant: Value(activity.stagnant),
+          reentered: Value(activity.reentered),
+          occupied: Value(activity.occupied),
+          stayDuration: Value(activity.stayDuration),
+        ));
+      }
+    });
   }
 
   /// delete activities older than the given date
