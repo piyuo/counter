@@ -513,4 +513,9 @@ class VideoProvider with ChangeNotifier {
     updateSample(now);
     notifyListeners();
   }
+
+  /// save current count, the project is about to close
+  void saveCurrentCount(DateTime now) {
+    visionController.makeCurrentSample(now);
+  }
 }

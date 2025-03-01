@@ -259,7 +259,9 @@ class ProjectProvider with ChangeNotifier {
       unlockFromPortrait();
       WakelockPlus.disable();
     }
+    DateTime now = DateTime.now();
     for (final videoProvider in videoProviders) {
+      videoProvider.saveCurrentCount(now);
       videoProvider.dispose();
     }
     videoProviders.clear();
