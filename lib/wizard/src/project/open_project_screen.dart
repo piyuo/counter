@@ -59,12 +59,30 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
       );
     }
 
+    buildHeader() {
+      return pip.PipHeader(
+        child: Column(
+          children: [
+            Icon(CupertinoIcons.archivebox, size: 44),
+            const SizedBox(height: 8.0),
+            Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            Text(
+              context.l.open_project_screen_desc,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      );
+    }
+
     if (_isLoading) {
       return pip.PipScaffold(
-        title: pageTitle,
-        previousPageTitle: widget.previousPageTitle,
-        child: buildMaxHeight(CupertinoActivityIndicator(radius: 28)),
-      );
+          title: pageTitle,
+          previousPageTitle: widget.previousPageTitle,
+          child: Column(children: [
+            buildHeader(),
+            buildMaxHeight(CupertinoActivityIndicator(radius: 28)),
+          ]));
     }
 
     if (_projects.isEmpty) {
@@ -80,19 +98,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
       previousPageTitle: widget.previousPageTitle,
       child: SingleChildScrollView(
         child: Column(children: [
-          pip.PipHeader(
-            child: Column(
-              children: [
-                Icon(CupertinoIcons.archivebox, size: 44),
-                const SizedBox(height: 8.0),
-                Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                Text(
-                  context.l.open_project_screen_desc,
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
+          buildHeader(),
           CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [
             ..._projects.map((project) {
               return Dismissible(
