@@ -153,7 +153,7 @@ class ProjectProvider with ChangeNotifier {
   OrientationProvider? orientationProvider;
 
   /// true if live stream is allowed
-  bool get isLiveStreamAllowed => UniversalPlatform.isMobile ? true : true;
+  bool get isLiveStreamAllowed => UniversalPlatform.isMobile ? false : true;
 
   /// have webcam on device
   bool get hasWebcam => webcamManager.hasWebcam;
