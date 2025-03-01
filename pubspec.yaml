@@ -65,7 +65,6 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.31
   locale_names: ^1.1.1
   timeago: ^3.7.0
-  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
@@ -79,6 +78,8 @@ dev_dependencies:
 
 dependency_overrides:
   analyzer: ^7.1.0
+  flutter_launcher_icons: ^0.14.3
+  rename_app: ^1.6.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

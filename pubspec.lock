@@ -447,7 +447,7 @@ packages:
     source: hosted
     version: "1.1.0"
   flutter_launcher_icons:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       name: flutter_launcher_icons
       sha256: bfa04787c85d80ecb3f8777bde5fc10c3de809240c48fa061a2c2bf15ea5211c
@@ -997,6 +997,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  rename_app:
+    dependency: "direct overridden"
+    description:
+      name: rename_app
+      sha256: "7cb304cea0b3cbcc332eab80b21df3c168f25ee47e59e22f88c52476e8ae3e97"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.2"
   sensors_plus:
     dependency: "direct main"
     description:
