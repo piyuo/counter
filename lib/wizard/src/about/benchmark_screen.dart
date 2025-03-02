@@ -59,7 +59,7 @@ class BenchmarkScreen extends StatelessWidget {
                       children: [
                         Icon(CupertinoIcons.chart_bar, size: 44),
                         const SizedBox(height: 8.0),
-                        Text('Benchmarks', style: const TextStyle(fontSize: 20.0)),
+                        Text(context.l.benchmark_screen_title, style: const TextStyle(fontSize: 20.0)),
                       ],
                     ),
                   ),
