@@ -211,7 +211,7 @@ class ProjectScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                padding: const EdgeInsets.symmetric(vertical: 5),
                                 child: ChangeNotifierProvider<IndicatorRedrawProvider>.value(
                                   value: homeScreenProvider.indicatorRedrawProvider,
                                   child: Consumer<IndicatorRedrawProvider>(
@@ -224,25 +224,27 @@ class ProjectScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 10),
                               Text(project.projectName,
-                                  style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
-                              SizedBox(height: 10),
-                              Consumer<GaugeViewRedrawProvider>(
-                                builder: (context, timeTagProvider, child) => Text(
-                                  buildTimeTagString(),
-                                  style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-                                ),
-                              ),
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                  )),
                             ],
                           ),
                         ),
                         CupertinoListSection(
                           topMargin: 0,
                           backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                          footer: Text(context.l.project_screen_from_desc),
                           children: [
                             CupertinoListTile(
-                              title: Text(context.l.project_screen_report_from,
-                                  style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                              additionalInfo: Text(projectProvider.project!.filter.formattedString(context)),
+                              title: Text(projectProvider.project!.filter.formattedString(context)),
+                              additionalInfo: Consumer<GaugeViewRedrawProvider>(
+                                builder: (context, timeTagProvider, child) => Text(
+                                  buildTimeTagString(),
+                                  style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+                                ),
+                              ),
                               trailing: const CupertinoListTileChevron(),
                               onTap: () async {
                                 Navigator.of(context).pushNamed(filterRoute, arguments: {

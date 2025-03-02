@@ -267,11 +267,11 @@ abstract class AppLocalization {
   /// **'Add video'**
   String get project_screen_add_video_button;
 
-  /// No description provided for @project_screen_report_from.
+  /// No description provided for @project_screen_from_desc.
   ///
   /// In en, this message translates to:
-  /// **'Report from'**
-  String get project_screen_report_from;
+  /// **'We keep a rolling 24-hour record, so you can view any time slice you need.'**
+  String get project_screen_from_desc;
 
   /// No description provided for @project_screen_report_settings.
   ///

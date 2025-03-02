@@ -29,7 +29,7 @@
     "project_screen_exit_confirm_content":"Leaving the project will stop Counting. Are you sure you want to continue?",
     "project_screen_exit_button":"Exit",
     "project_screen_add_video_button":"Add video",
-    "project_screen_report_from":"Report from",
+    "project_screen_from_desc":"We keep a rolling 24-hour record, so you can view any time slice you need.",
     "project_screen_report_settings":"Settings",
     "filter_screen_title":"Filter",
     "filter_screen_desc":"Select report range from the list below",

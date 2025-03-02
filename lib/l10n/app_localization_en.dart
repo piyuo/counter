@@ -96,7 +96,7 @@ class AppLocalizationEn extends AppLocalization {
   String get project_screen_add_video_button => 'Add video';
 
   @override
-  String get project_screen_report_from => 'Report from';
+  String get project_screen_from_desc => 'We keep a rolling 24-hour record, so you can view any time slice you need.';
 
   @override
   String get project_screen_report_settings => 'Settings';
