@@ -1,5 +1,6 @@
 {
     "product_name":"影像計數器",
+    "product_desc":"Using computer vision and ai to count people, vehicles, pets, and more.",
     "product_copyright":"版權所有 © 2025",
     "video_starter_webcam":"網路攝影機",
     "video_starter_camera":"相機",
@@ -24,6 +25,7 @@
     "benchmark_screen_fps":"每秒畫面數",
     "benchmark_screen_start_button":"開始效能測試",
     "benchmark_screen_start_failed":"啟動效能測試失敗，錯誤代碼為",
+    "benchmark_screen_models":"物件偵測模型",
     "project_screen_title":"專案",
     "project_screen_exit_confirm_title":"確認離開專案",
     "project_screen_exit_confirm_content":"離開專案將停止計數。您確定要繼續嗎？",

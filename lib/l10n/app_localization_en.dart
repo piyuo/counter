@@ -12,6 +12,9 @@ class AppLocalizationEn extends AppLocalization {
   String get product_name => 'Vision Counter';
 
   @override
+  String get product_desc => 'Using computer vision and ai to count people, vehicles, pets, and more.';
+
+  @override
   String get product_copyright => 'Copyright © 2025';
 
   @override
@@ -57,7 +60,7 @@ class AppLocalizationEn extends AppLocalization {
   String get about_screen_app_version => 'App Version';
 
   @override
-  String get about_screen_models => 'Models';
+  String get about_screen_models => 'Object detection models';
 
   @override
   String get about_screen_benchmark => 'Benchmark';
@@ -66,10 +69,10 @@ class AppLocalizationEn extends AppLocalization {
   String get about_screen_opencv_build_info => 'OpenCV Build Info';
 
   @override
-  String get benchmark_screen_title => 'Benchmarks';
+  String get benchmark_screen_title => 'Models Benchmarks';
 
   @override
-  String get benchmark_screen_recommended => 'Recommended';
+  String get benchmark_screen_recommended => 'Recommended Model';
 
   @override
   String get benchmark_screen_fps => 'FPS';
@@ -79,6 +82,9 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get benchmark_screen_start_failed => 'Failed to start benchmark, the error code is';
+
+  @override
+  String get benchmark_screen_models => 'Object detection models';
 
   @override
   String get project_screen_title => 'Project';

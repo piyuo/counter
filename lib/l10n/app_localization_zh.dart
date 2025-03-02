@@ -12,6 +12,9 @@ class AppLocalizationZh extends AppLocalization {
   String get product_name => '影像計數器';
 
   @override
+  String get product_desc => 'Using computer vision and ai to count people, vehicles, pets, and more.';
+
+  @override
   String get product_copyright => '版權所有 © 2025';
 
   @override
@@ -79,6 +82,9 @@ class AppLocalizationZh extends AppLocalization {
 
   @override
   String get benchmark_screen_start_failed => '啟動效能測試失敗，錯誤代碼為';
+
+  @override
+  String get benchmark_screen_models => '物件偵測模型';
 
   @override
   String get project_screen_title => '專案';

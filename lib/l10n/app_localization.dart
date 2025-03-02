@@ -101,6 +101,12 @@ abstract class AppLocalization {
   /// **'Vision Counter'**
   String get product_name;
 
+  /// No description provided for @product_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Using computer vision and ai to count people, vehicles, pets, and more.'**
+  String get product_desc;
+
   /// No description provided for @product_copyright.
   ///
   /// In en, this message translates to:
@@ -194,7 +200,7 @@ abstract class AppLocalization {
   /// No description provided for @about_screen_models.
   ///
   /// In en, this message translates to:
-  /// **'Models'**
+  /// **'Object detection models'**
   String get about_screen_models;
 
   /// No description provided for @about_screen_benchmark.
@@ -212,13 +218,13 @@ abstract class AppLocalization {
   /// No description provided for @benchmark_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Benchmarks'**
+  /// **'Models Benchmarks'**
   String get benchmark_screen_title;
 
   /// No description provided for @benchmark_screen_recommended.
   ///
   /// In en, this message translates to:
-  /// **'Recommended'**
+  /// **'Recommended Model'**
   String get benchmark_screen_recommended;
 
   /// No description provided for @benchmark_screen_fps.
@@ -238,6 +244,12 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'Failed to start benchmark, the error code is'**
   String get benchmark_screen_start_failed;
+
+  /// No description provided for @benchmark_screen_models.
+  ///
+  /// In en, this message translates to:
+  /// **'Object detection models'**
+  String get benchmark_screen_models;
 
   /// No description provided for @project_screen_title.
   ///

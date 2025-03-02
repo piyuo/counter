@@ -74,6 +74,7 @@ class BenchmarkScreen extends StatelessWidget {
                   ),
                   if (benchmarkScreenProvider.benchmarks.isNotEmpty)
                     CupertinoListSection(
+                      header: Text(context.l.benchmark_screen_models),
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       children: benchmarkScreenProvider.benchmarks.map((benchmark) {
                         return CupertinoListTile(
