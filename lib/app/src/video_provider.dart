@@ -518,4 +518,9 @@ class VideoProvider with ChangeNotifier {
   void saveCurrentCount(DateTime now) {
     visionController.makeCurrentSample(now);
   }
+
+  /// Gets the current occupied count.
+  int get currentOccupiedCount {
+    return visionController.currentOccupiedCount;
+  }
 }

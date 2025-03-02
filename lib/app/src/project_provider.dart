@@ -598,6 +598,15 @@ class ProjectProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Gets the current occupied count.
+  int get currentOccupiedCount {
+    int count = 0;
+    for (final videoProvider in videoProviders) {
+      count += videoProvider.currentOccupiedCount;
+    }
+    return count;
+  }
+
   /// Remove a video source
   Future<void> deleteVideo(VideoProvider videoProvider) async {
     if (videoProvider.video.mediaType == vision.MediaType.file) {

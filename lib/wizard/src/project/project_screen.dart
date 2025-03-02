@@ -10,6 +10,7 @@ import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 import 'gauge_view.dart';
+import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
   const ProjectScreen({
@@ -21,16 +22,16 @@ class ProjectScreen extends StatelessWidget {
     final String pageTitle = context.l.project_screen_title;
 
     final projectProvider = app.ProjectProvider.of(context);
-    return ChangeNotifierProvider<HomeScreenProvider>(
-      create: (_) => HomeScreenProvider(projectProvider),
-      child: Consumer2<app.ProjectProvider, HomeScreenProvider>(
+    return ChangeNotifierProvider<ProjectScreenProvider>(
+      create: (_) => ProjectScreenProvider(projectProvider),
+      child: Consumer2<app.ProjectProvider, ProjectScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           if (projectProvider.project == null) {
             // project may not open in time, just return empty. project init is fast so no need to show progress.
             return const SizedBox();
           }
           final project = projectProvider.project!;
-          Widget buildZoneGauge(
+          Widget buildZone(
             app.VideoProvider videoProvider,
             vision.VideoZone videoZone,
             vision.Count count,
@@ -109,13 +110,8 @@ class ProjectScreen extends StatelessWidget {
                       final selectedTallyAnnotations =
                           zone.videoZone.getTallyAnnotationsByCounters(selectedTallyCounters);
                       gauges.add(
-                        buildZoneGauge(
-                          videoProvider,
-                          zone.videoZone,
-                          count,
-                          selectedTallyCounters,
-                          selectedTallyAnnotations,
-                        ),
+                        buildZone(
+                            videoProvider, zone.videoZone, count, selectedTallyCounters, selectedTallyAnnotations),
                       );
                     }
                   }
@@ -162,8 +158,8 @@ class ProjectScreen extends StatelessWidget {
             return '${DateFormat.yMMMMEEEEd(languageProvider.locale).format(now)} ${DateFormat.jm(languageProvider.locale).format(now)}';
           }
 
-          return ChangeNotifierProvider<TimeTagProvider>.value(
-              value: homeScreenProvider.timeTagProvider,
+          return ChangeNotifierProvider<GaugeViewRedrawProvider>.value(
+              value: homeScreenProvider.gaugeViewRedrawProvider,
               child: PopScope(
                 canPop: false,
                 onPopInvokedWithResult: (bool didPop, result) async {
@@ -214,23 +210,23 @@ class ProjectScreen extends StatelessWidget {
                           showBottomBorder: false,
                           child: Column(
                             children: [
-                              AnimatedOpacity(
-                                  opacity: projectProvider.videoPlayingState == app.VideoPlayingState.allPlay
-                                      ? 1
-                                      : projectProvider.videoPlayingState == app.VideoPlayingState.somePlay
-                                          ? 0.6
-                                          : 0.1,
-                                  duration: Duration(milliseconds: 300),
-                                  child: Image(
-                                    image: AssetImage('assets/images/project.png'),
-                                    width: 120,
-                                    height: 120,
-                                  )),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                child: ChangeNotifierProvider<IndicatorRedrawProvider>.value(
+                                  value: homeScreenProvider.indicatorRedrawProvider,
+                                  child: Consumer<IndicatorRedrawProvider>(
+                                    builder: (context, indicatorProvider, child) => IndicatorView(
+                                      value: indicatorProvider.value.toDouble(),
+                                      maxValue: indicatorProvider.maxValue.toDouble(),
+                                    ),
+                                  ),
+                                ),
+                              ),
                               SizedBox(height: 10),
                               Text(project.projectName,
                                   style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                               SizedBox(height: 10),
-                              Consumer<TimeTagProvider>(
+                              Consumer<GaugeViewRedrawProvider>(
                                 builder: (context, timeTagProvider, child) => Text(
                                   buildTimeTagString(),
                                   style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
@@ -288,35 +284,69 @@ class ProjectScreen extends StatelessWidget {
   }
 }
 
-/// provide home screen support.
-class HomeScreenProvider with ChangeNotifier {
-  HomeScreenProvider(app.ProjectProvider projectProvider) {
+/// provide project screen support.
+class ProjectScreenProvider with ChangeNotifier {
+  ProjectScreenProvider(app.ProjectProvider projectProvider) {
     _gaugeViewRefreshTimer = Timer.periodic(const Duration(minutes: 1), (timer) {
       if (projectProvider.videoPlayingState != app.VideoPlayingState.allPlay) {
         // some video is not playing, need to refresh their gauge count
         projectProvider.noActivityCheck(DateTime.now());
       }
-      timeTagProvider.redraw();
+      gaugeViewRedrawProvider.redraw();
+    });
+
+    _indicatorRefreshTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      final value = projectProvider.currentOccupiedCount;
+      indicatorRedrawProvider.setValue(value);
     });
   }
 
   /// Timer to refresh the gauge view every minute where some video player stop counting.
   Timer? _gaugeViewRefreshTimer;
 
-  /// Time tag provider.
-  final TimeTagProvider timeTagProvider = TimeTagProvider();
+  /// Timer to refresh the indicator view every 1 seconds.
+  Timer? _indicatorRefreshTimer;
+
+  /// Gauge view redraw provider.
+  final GaugeViewRedrawProvider gaugeViewRedrawProvider = GaugeViewRedrawProvider();
+
+  /// Indicator redraw provider.
+  final IndicatorRedrawProvider indicatorRedrawProvider = IndicatorRedrawProvider();
 
   @override
   dispose() {
     _gaugeViewRefreshTimer?.cancel();
-    timeTagProvider.dispose();
+    _indicatorRefreshTimer?.cancel();
+    gaugeViewRedrawProvider.dispose();
     super.dispose();
   }
 }
 
-/// provide time tag support.
-class TimeTagProvider with ChangeNotifier {
+/// provide gauge view redraw support.
+class GaugeViewRedrawProvider with ChangeNotifier {
   void redraw() {
+    notifyListeners();
+  }
+}
+
+/// provide indicator redraw support.
+class IndicatorRedrawProvider with ChangeNotifier {
+  /// The value to be displayed.
+  int value = 0;
+
+  /// The maximum value.
+  int maxValue = 0;
+
+  /// set value and update max value.
+  void setValue(int value) {
+    if (value == this.value) {
+      return;
+    }
+
+    this.value = value;
+    if (value > maxValue) {
+      maxValue = value;
+    }
     notifyListeners();
   }
 }
