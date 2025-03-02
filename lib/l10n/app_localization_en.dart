@@ -18,13 +18,13 @@ class AppLocalizationEn extends AppLocalization {
   String get video_starter_webcam => 'Webcam';
 
   @override
-  String get video_starter_camera => 'Camera';
-
-  @override
   String get video_starter_live_stream => 'Live stream URL';
 
   @override
   String get video_starter_file => 'File';
+
+  @override
+  String get video_starter_camera => 'Camera';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';
@@ -39,7 +39,7 @@ class AppLocalizationEn extends AppLocalization {
   String get wizard_screen_about => 'About';
 
   @override
-  String get wizard_screen_open_projects_tip => 'All project will save to local automatically';
+  String get wizard_screen_open_projects_tip => 'All projects will be saved locally automatically';
 
   @override
   String get wizard_screen_open_projects => 'Open existing project';
@@ -105,7 +105,7 @@ class AppLocalizationEn extends AppLocalization {
   String get filter_screen_title => 'Filter';
 
   @override
-  String get filter_screen_desc => 'Select report range from the list below';
+  String get filter_screen_desc => 'Select a filter range from the list below';
 
   @override
   String get filter_screen_error_title => 'Filter';

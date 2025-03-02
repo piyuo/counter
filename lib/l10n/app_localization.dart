@@ -113,12 +113,6 @@ abstract class AppLocalization {
   /// **'Webcam'**
   String get video_starter_webcam;
 
-  /// No description provided for @video_starter_camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera'**
-  String get video_starter_camera;
-
   /// No description provided for @video_starter_live_stream.
   ///
   /// In en, this message translates to:
@@ -130,6 +124,12 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'File'**
   String get video_starter_file;
+
+  /// No description provided for @video_starter_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get video_starter_camera;
 
   /// No description provided for @wizard_screen_desc.
   ///
@@ -158,7 +158,7 @@ abstract class AppLocalization {
   /// No description provided for @wizard_screen_open_projects_tip.
   ///
   /// In en, this message translates to:
-  /// **'All project will save to local automatically'**
+  /// **'All projects will be saved locally automatically'**
   String get wizard_screen_open_projects_tip;
 
   /// No description provided for @wizard_screen_open_projects.
@@ -290,7 +290,7 @@ abstract class AppLocalization {
   /// No description provided for @filter_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'Select report range from the list below'**
+  /// **'Select a filter range from the list below'**
   String get filter_screen_desc;
 
   /// No description provided for @filter_screen_error_title.

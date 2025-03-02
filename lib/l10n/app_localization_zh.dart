@@ -18,13 +18,13 @@ class AppLocalizationZh extends AppLocalization {
   String get video_starter_webcam => '網路攝影機';
 
   @override
-  String get video_starter_camera => '相機';
-
-  @override
   String get video_starter_live_stream => '直播串流網址';
 
   @override
   String get video_starter_file => '檔案';
+
+  @override
+  String get video_starter_camera => '相機';
 
   @override
   String get wizard_screen_desc => '建立新專案以開始計數。';
@@ -105,7 +105,7 @@ class AppLocalizationZh extends AppLocalization {
   String get filter_screen_title => '篩選';
 
   @override
-  String get filter_screen_desc => '從下方列表選擇報告範圍';
+  String get filter_screen_desc => '從下方列表選擇篩選範圍';
 
   @override
   String get filter_screen_error_title => '篩選';

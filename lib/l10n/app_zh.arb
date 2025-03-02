@@ -32,7 +32,7 @@
     "project_screen_from_desc":"我們保留24小時的滾動記錄，因此您可以查看任何需要的時間片段。",
     "project_screen_report_settings":"設定",
     "filter_screen_title":"篩選",
-    "filter_screen_desc":"從下方列表選擇報告範圍",
+    "filter_screen_desc":"從下方列表選擇篩選範圍",
     "filter_screen_error_title":"篩選",
     "filter_screen_error_content":"結束時間必須晚於開始時間",
     "filter_screen_error_custom":"自訂",
