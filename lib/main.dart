@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
                 GlobalCupertinoLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
               ],
-              supportedLocales: vision.VisionLocalization.supportedLocales,
+              supportedLocales: AppLocalization.supportedLocales,
               localeResolutionCallback: (locale, supportedLocales) {
                 for (var supportedLocale in supportedLocales) {
                   if (supportedLocale.languageCode == locale?.languageCode &&
