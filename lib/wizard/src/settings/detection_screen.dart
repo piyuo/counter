@@ -29,7 +29,7 @@ class DetectionScreen extends StatelessWidget {
             final classPercentage = '${(project!.confidenceThreshold * 100).toStringAsFixed(0)}%';
             final nmsPercentage = '${(project.nmsThreshold * 100).toStringAsFixed(0)}%';
             // no tracking setting for now, it just a priority setting not that easy to explain to user
-            final validThreshold = '${project.validThreshold}';
+            final validThreshold = '${project.validThreshold / 1000}';
             final matchPercentage = '${(project.matchThreshold * 100).toStringAsFixed(0)}%';
             final maxLostSeconds = '${project.maxLostSeconds}';
 
@@ -187,12 +187,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.validThreshold.toDouble(),
+                                value: project.validThreshold / 1000,
                                 max: 30,
                                 min: 0,
-                                divisions: 100,
+                                divisions: 150,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsValidThreshold(value.toInt());
+                                  await projectProvider.setSettingsValidThreshold((value * 1000).toInt());
                                   detectionScreenProvider.onValidThresholdChanged();
                                 },
                               ),
