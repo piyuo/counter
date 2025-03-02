@@ -21,17 +21,8 @@ class IndicatorView extends StatelessWidget {
     return AnimatedRadialGauge(
       /// The animation duration.
       duration: const Duration(seconds: 1),
-      // curve: Curves.easeInOut,
-
-      /// Define the radius.
-      /// If you omit this value, the parent size will be used, if possible.
       radius: 120,
-
-      /// Gauge value.
       value: value,
-
-      /// Optionally, you can configure your gauge, providing additional
-      /// styles and transformers.
       axis: GaugeAxis(
         /// Provide the [min] and [max] value for the [value] argument.
         min: 0,
@@ -44,7 +35,6 @@ class IndicatorView extends StatelessWidget {
         style: const GaugeAxisStyle(
           thickness: 20,
           background: Color(0xFFDFE2EC),
-          segmentSpacing: 4,
         ),
 
         /// Define the pointer that will indicate the progress (optional).
@@ -59,28 +49,6 @@ class IndicatorView extends StatelessWidget {
         progressBar: const GaugeProgressBar.rounded(
           color: CupertinoColors.activeGreen,
         ),
-
-        /// Define axis segments (optional).
-        /*segments: [
-            const GaugeSegment(
-              from: 0,
-              to: 33.3,
-              color: Color(0xFFD9DEEB),
-              cornerRadius: Radius.zero,
-            ),
-            const GaugeSegment(
-              from: 33.3,
-              to: 66.6,
-              color: Color(0xFFD9DEEB),
-              cornerRadius: Radius.zero,
-            ),
-            const GaugeSegment(
-              from: 66.6,
-              to: 100,
-              color: Color(0xFFD9DEEB),
-              cornerRadius: Radius.zero,
-            ),
-          ],*/
       ),
 
       builder: (context, child, value) => RadialGaugeLabel(
@@ -92,20 +60,5 @@ class IndicatorView extends StatelessWidget {
         ),
       ),
     );
-
-    /// You can also, define the child builder.
-    /// You will build a value label in the following way, but you can use the widget of your choice.
-    ///
-    /// For non-value related widgets, take a look at the [child] parameter.
-    /// ```
-    /// builder: (context, child, value) => RadialGaugeLabel(
-    ///  value: value,
-    ///  style: const TextStyle(
-    ///    color: Colors.black,
-    ///    fontSize: 46,
-    ///    fontWeight: FontWeight.bold,
-    ///  ),
-    /// ),
-    /// ```}
   }
 }

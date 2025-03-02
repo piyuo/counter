@@ -8,7 +8,7 @@ const _trackingThreshold = 0.7; // byte track will filter object by
 const _nmsThreshold = 0.65;
 const _matchThreshold = 0.55;
 const _maxLostSeconds = 1;
-const _validThreshold = 2;
+const _validThreshold = 1;
 
 /// Project for object detection, support multiple video sources, and settings.
 class Project {
