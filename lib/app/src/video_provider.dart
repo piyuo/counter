@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vision/vision.dart' as vision;
@@ -339,7 +340,7 @@ class VideoProvider with ChangeNotifier {
     final zone = vision.VideoZone(
       tallyAnnotations: vision.defaultTallyAnnotation(context),
       zoneId: zoneId,
-      name: 'Zone $zoneId',
+      name: '${context.l.default_zone_name} $zoneId',
       color: getNextZoneColor(),
       points: [
         Offset(offsetX, offsetY),

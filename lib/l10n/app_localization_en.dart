@@ -435,6 +435,15 @@ class AppLocalizationEn extends AppLocalization {
   String get open_project_screen_no_project => 'No project found.';
 
   @override
+  String get default_project_name => 'Project';
+
+  @override
+  String get default_video_name => 'Video source';
+
+  @override
+  String get default_zone_name => 'zone';
+
+  @override
   String get submit => 'Submit';
 
   @override

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:counter/db/db.dart' as db;
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -343,9 +344,8 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// create a project name
-  String _createProjectName(vision.MediaType type, String? path) {
-//    String name = mediaTypeToString(type);
-    return 'Project ${_crateFormattedTimestamp()}';
+  String _createProjectName(BuildContext context, vision.MediaType type, String? path) {
+    return '${context.l.default_project_name} ${_crateFormattedTimestamp()}';
   }
 
   /// create a video name
@@ -353,14 +353,9 @@ class ProjectProvider with ChangeNotifier {
     int index = project!.videos.length;
     String name;
     do {
-      name = _createVideoNameByIndex(context, type, ++index);
+      name = '${context.l.default_video_name} ${++index}';
     } while (project!.isVideoNameExists(name));
     return name;
-  }
-
-  /// create a video name by given index
-  String _createVideoNameByIndex(BuildContext context, vision.MediaType type, int index) {
-    return 'Video$index';
   }
 
   /// set the filter
@@ -482,7 +477,7 @@ class ProjectProvider with ChangeNotifier {
     // create project with a video source
     project = Project(
       projectId: projectId,
-      projectName: _createProjectName(mediaType, path),
+      projectName: _createProjectName(context, mediaType, path),
       videos: [],
       model: benchmarkLocalStorage.recommendedModel,
     );

@@ -947,6 +947,24 @@ abstract class AppLocalization {
   /// **'No project found.'**
   String get open_project_screen_no_project;
 
+  /// No description provided for @default_project_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Project'**
+  String get default_project_name;
+
+  /// No description provided for @default_video_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Video source'**
+  String get default_video_name;
+
+  /// No description provided for @default_zone_name.
+  ///
+  /// In en, this message translates to:
+  /// **'zone'**
+  String get default_zone_name;
+
   /// No description provided for @submit.
   ///
   /// In en, this message translates to:

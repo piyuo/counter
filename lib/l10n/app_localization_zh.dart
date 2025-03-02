@@ -435,6 +435,15 @@ class AppLocalizationZh extends AppLocalization {
   String get open_project_screen_no_project => '找不到專案。';
 
   @override
+  String get default_project_name => '專案';
+
+  @override
+  String get default_video_name => '影像來源';
+
+  @override
+  String get default_zone_name => '區域';
+
+  @override
   String get submit => '提交';
 
   @override

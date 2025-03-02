@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
@@ -238,7 +239,7 @@ class ZoneEditorController with ChangeNotifier {
     final polygon = vision.VideoZone(
       tallyAnnotations: vision.defaultTallyAnnotation(context),
       zoneId: nextZoneId,
-      name: 'Zone $nextZoneId',
+      name: '${context.l.default_zone_name} $nextZoneId',
       points: scaledPoints,
       color: getNextZoneColor(),
     );

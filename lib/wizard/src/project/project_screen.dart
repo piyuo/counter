@@ -155,7 +155,7 @@ class ProjectScreen extends StatelessWidget {
           final languageProvider = vision.LanguageProvider.of(context);
           buildTimeTagString() {
             final now = DateTime.now();
-            return '${DateFormat.yMMMMEEEEd(languageProvider.locale).format(now)} ${DateFormat.jm(languageProvider.locale).format(now)}';
+            return '${DateFormat.yMMMMEEEEd(languageProvider.locale.toString()).format(now)} ${DateFormat.jm(languageProvider.locale.toString()).format(now)}';
           }
 
           return ChangeNotifierProvider<GaugeViewRedrawProvider>.value(
@@ -239,7 +239,7 @@ class ProjectScreen extends StatelessWidget {
                           children: [
                             CupertinoListTile(
                               title: Text(projectProvider.project!.filter.formattedString(context)),
-                              additionalInfo: Consumer<GaugeViewRedrawProvider>(
+                              subtitle: Consumer<GaugeViewRedrawProvider>(
                                 builder: (context, timeTagProvider, child) => Text(
                                   buildTimeTagString(),
                                   style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
