@@ -26,7 +26,7 @@ class IndicatorView extends StatelessWidget {
       axis: GaugeAxis(
         /// Provide the [min] and [max] value for the [value] argument.
         min: 0,
-        max: maxValue,
+        max: maxValue + 1,
 
         /// Render the gauge as a 180-degree arc.
         degrees: 180,

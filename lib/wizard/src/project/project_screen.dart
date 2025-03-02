@@ -340,12 +340,12 @@ class IndicatorRedrawProvider with ChangeNotifier {
   int maxValue = 0;
 
   /// set value and update max value.
-  void setValue(int value) {
-    if (value == this.value) {
+  void setValue(int newValue) {
+    if (value == newValue) {
       return;
     }
 
-    this.value = value;
+    value = newValue;
     if (value > maxValue) {
       maxValue = value;
     }
