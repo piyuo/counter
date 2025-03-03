@@ -410,7 +410,7 @@ class VideoProvider with ChangeNotifier {
 
   /// update the tally annotation
   void updateTallyAnnotation(vision.TallyAnnotation tallyAnnotation) {
-    notifyListeners();
+    _saveProject();
   }
 
   /// remove a zone from the video source
