@@ -9,6 +9,9 @@ import 'package:vision/vision.dart' as vision;
 import 'project/video_sources.dart';
 import 'wizard_navigator.dart';
 
+/// if the screen height is less than this value, use compact header
+const double _headerHeightThreshold = 600;
+
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
     super.key,
@@ -16,6 +19,10 @@ class WizardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // get screen height
+    final screenHeight = MediaQuery.of(context).size.height;
+    final isCompactHeader = screenHeight < _headerHeightThreshold;
+
     final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WelcomeScreenProvider>(
       create: (_) => WelcomeScreenProvider()..init(),
@@ -31,21 +38,46 @@ class WizardScreen extends StatelessWidget {
               child: Column(
                 children: [
                   pip.PipHeader(
-                    child: Column(
-                      children: [
-                        Image(
-                          image: AssetImage('assets/icon/icon.png'),
-                          width: 55,
-                          height: 55,
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(context.l.product_name,
-                            style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
-                        const SizedBox(height: 8.0),
-                        Text(context.l.wizard_screen_desc,
-                            style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                      ],
-                    ),
+                    padding: const EdgeInsets.all(10),
+                    child: isCompactHeader
+                        ? Row(children: [
+                            Image(
+                              image: AssetImage('assets/icon/icon.png'),
+                              width: 55,
+                              height: 55,
+                            ),
+                            const SizedBox(width: 16.0),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(context.l.product_name,
+                                      style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+                                  const SizedBox(height: 8.0),
+                                  Text(context.l.wizard_screen_desc,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 14.0,
+                                        color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                      )),
+                                ],
+                              ),
+                            )
+                          ])
+                        : Column(
+                            children: [
+                              Image(
+                                image: AssetImage('assets/icon/icon.png'),
+                                width: 55,
+                                height: 55,
+                              ),
+                              const SizedBox(height: 8.0),
+                              Text(context.l.product_name,
+                                  style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 8.0),
+                              Text(context.l.wizard_screen_desc,
+                                  style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                            ],
+                          ),
                   ),
                   ChangeNotifierProvider<VideoSourcesProvider>(
                       create: (_) => VideoSourcesProvider(),
