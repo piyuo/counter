@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                     },
                     onProjectSave: (app.Project project, app.Video? video) async {
                       await dataManager.setProject(project);
-                      print('--------------- project changed!!!----------------');
+//                      print('--------------- project changed!!!----------------');
                     },
                     onGetProjectSummaries: () async {
                       return await dataManager.getProjectSummaries();
