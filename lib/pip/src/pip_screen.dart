@@ -27,7 +27,7 @@ class PipScreen extends StatelessWidget {
   const PipScreen({
     required this.builder,
     required this.sliding,
-    this.deviceOrientation,
+    this.deviceOrientationForPortrait,
     super.key,
   });
 
@@ -37,8 +37,8 @@ class PipScreen extends StatelessWidget {
   /// the sliding screen
   final Widget sliding;
 
-  /// the device orientation for mobile device
-  final DeviceOrientation? deviceOrientation;
+  /// the device orientation for locked portrait orientation
+  final DeviceOrientation? deviceOrientationForPortrait;
 
   @override
   Widget build(BuildContext context) {
@@ -155,12 +155,15 @@ class PipScreen extends StatelessWidget {
               );
             }
 
-            determineSlidingLayout() {
+            Widget determineSlidingLayout() {
+              // screen is big enough, use sidebar layout
               if (isSidebarLayout) {
                 return buildSidebar();
               }
-              if (deviceOrientation != null) {
-                switch (deviceOrientation) {
+
+              // mobile device in locked portrait mode
+              if (deviceOrientationForPortrait != null) {
+                switch (deviceOrientationForPortrait) {
                   case DeviceOrientation.portraitUp:
                     return buildSliding0();
                   case DeviceOrientation.landscapeRight:
@@ -171,6 +174,8 @@ class PipScreen extends StatelessWidget {
                     return buildSliding0();
                 }
               }
+
+              // any other cases, use auto layout
               return orientation == Orientation.landscape ? buildLandscapeSliding() : buildPortraitSliding();
             }
 

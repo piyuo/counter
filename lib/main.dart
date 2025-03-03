@@ -124,7 +124,8 @@ class _MyAppState extends State<MyApp> {
                 useMaterial3: true,
               ),
               home: pip.PipScreen(
-                deviceOrientation: projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
+                deviceOrientationForPortrait:
+                    projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
                 sliding: wizard.WizardNavigator(),
                 builder: (isSideLayout) => app.ProjectView(
                   noProjectScreen: buildMainScreen(),
