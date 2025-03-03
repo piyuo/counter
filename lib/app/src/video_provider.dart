@@ -24,8 +24,8 @@ class VideoProvider with ChangeNotifier {
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
     visionController = vision.Controller(
       sampler: sampler,
-      isShowCenterRedDotOnTarget: _projectProvider!.isShowCenterRedDotOnTarget,
-      isShowGhostTarget: _projectProvider!.isShowGhostTarget,
+      isShowCenterRedDotOnTarget: _projectProvider!.project!.isShowCenterRedDotOnTarget,
+      isShowGhostTarget: _projectProvider!.project!.isShowGhostTarget,
     );
     playerController = vision.PlayerController(
       visionController: visionController,

@@ -55,6 +55,8 @@ void main() {
         valid: 1,
         tracking: 0.75,
         model: Models.onnx_640, // adjust according to your Models enum
+        isShowCenterRedDotOnTarget: false,
+        isShowGhostTarget: false,
       );
 
       final json = project.toJson();
@@ -72,6 +74,8 @@ void main() {
       expect((json['videos'] as List).first, videoMeta.toJson());
       expect(json['filter'], filter.toJson());
       expect(json['model'], 'onnx_640'); // assuming Models enum is serialized using its name
+      expect(json['isShowCenterRedDotOnTarget'], false); // assuming Models enum is serialized using its name
+      expect(json['isShowGhostTarget'], false); // assuming Models enum is serialized using its name
 
       final projectFromJson = ProjectMeta.fromJson(json);
       expect(projectFromJson, isA<ProjectMeta>());

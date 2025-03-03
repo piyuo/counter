@@ -22,6 +22,8 @@ class ProjectMeta with _$ProjectMeta {
     required int valid,
     required double tracking,
     required Models model,
+    required bool isShowCenterRedDotOnTarget,
+    required bool isShowGhostTarget,
   }) = _ProjectMeta;
 
   factory ProjectMeta.fromJson(Map<String, Object?> json) => _$ProjectMetaFromJson(json);

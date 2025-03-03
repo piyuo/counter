@@ -174,6 +174,24 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_delete_button => 'Delete';
 
   @override
+  String get settings_screen_center_point_title => 'Center Point on Target';
+
+  @override
+  String get settings_screen_center_point_desc => 'The center point helps determine whether the target is within the hit zone.';
+
+  @override
+  String get settings_screen_center_point_button => 'Show Center Point on Target';
+
+  @override
+  String get settings_screen_lost_target_title => 'Lost Target';
+
+  @override
+  String get settings_screen_lost_target_desc => 'When object tracking loses a target, this option makes it visible. By default, lost targets are not shown.';
+
+  @override
+  String get settings_screen_lost_target_button => 'Show Lost Target';
+
+  @override
   String get detection_screen_title => 'Detection Settings';
 
   @override

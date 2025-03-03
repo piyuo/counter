@@ -174,6 +174,24 @@ class AppLocalizationZh extends AppLocalization {
   String get settings_screen_delete_button => '刪除';
 
   @override
+  String get settings_screen_center_point_title => '目標中心點';
+
+  @override
+  String get settings_screen_center_point_desc => '中心點可幫助判斷目標是否位於命中區域內。';
+
+  @override
+  String get settings_screen_center_point_button => '顯示目標中心點';
+
+  @override
+  String get settings_screen_lost_target_title => '遺失目標';
+
+  @override
+  String get settings_screen_lost_target_desc => '當物件追蹤遺失目標時，啟用此選項可顯示遺失的目標。預設情況下，遺失目標不會顯示。';
+
+  @override
+  String get settings_screen_lost_target_button => '顯示遺失目標';
+
+  @override
   String get detection_screen_title => '偵測設定';
 
   @override

@@ -70,6 +70,8 @@ ProjectMeta projectToMeta(app.Project project) {
     valid: project.validThreshold,
     tracking: project.trackingThreshold,
     model: project.model,
+    isShowCenterRedDotOnTarget: project.isShowCenterRedDotOnTarget,
+    isShowGhostTarget: project.isShowGhostTarget,
   );
 }
 
@@ -134,5 +136,7 @@ app.Project metaToProject(ProjectMeta meta) {
     validThreshold: meta.valid,
     trackingThreshold: meta.tracking,
     model: meta.model,
+    isShowCenterRedDotOnTarget: meta.isShowCenterRedDotOnTarget,
+    isShowGhostTarget: meta.isShowGhostTarget,
   );
 }

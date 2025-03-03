@@ -31,6 +31,8 @@ mixin _$ProjectMeta {
   int get valid => throw _privateConstructorUsedError;
   double get tracking => throw _privateConstructorUsedError;
   Models get model => throw _privateConstructorUsedError;
+  bool get isShowCenterRedDotOnTarget => throw _privateConstructorUsedError;
+  bool get isShowGhostTarget => throw _privateConstructorUsedError;
 
   /// Serializes this ProjectMeta to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,7 +61,9 @@ abstract class $ProjectMetaCopyWith<$Res> {
       int maxLostSeconds,
       int valid,
       double tracking,
-      Models model});
+      Models model,
+      bool isShowCenterRedDotOnTarget,
+      bool isShowGhostTarget});
 
   $FilterMetaCopyWith<$Res> get filter;
 }
@@ -90,6 +94,8 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
     Object? valid = null,
     Object? tracking = null,
     Object? model = null,
+    Object? isShowCenterRedDotOnTarget = null,
+    Object? isShowGhostTarget = null,
   }) {
     return _then(_value.copyWith(
       projectId: null == projectId
@@ -136,6 +142,14 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as Models,
+      isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
+          ? _value.isShowCenterRedDotOnTarget
+          : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isShowGhostTarget: null == isShowGhostTarget
+          ? _value.isShowGhostTarget
+          : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -169,7 +183,9 @@ abstract class _$$ProjectMetaImplCopyWith<$Res>
       int maxLostSeconds,
       int valid,
       double tracking,
-      Models model});
+      Models model,
+      bool isShowCenterRedDotOnTarget,
+      bool isShowGhostTarget});
 
   @override
   $FilterMetaCopyWith<$Res> get filter;
@@ -199,6 +215,8 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
     Object? valid = null,
     Object? tracking = null,
     Object? model = null,
+    Object? isShowCenterRedDotOnTarget = null,
+    Object? isShowGhostTarget = null,
   }) {
     return _then(_$ProjectMetaImpl(
       projectId: null == projectId
@@ -245,6 +263,14 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as Models,
+      isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
+          ? _value.isShowCenterRedDotOnTarget
+          : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isShowGhostTarget: null == isShowGhostTarget
+          ? _value.isShowGhostTarget
+          : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -264,7 +290,9 @@ class _$ProjectMetaImpl implements _ProjectMeta {
       required this.maxLostSeconds,
       required this.valid,
       required this.tracking,
-      required this.model})
+      required this.model,
+      required this.isShowCenterRedDotOnTarget,
+      required this.isShowGhostTarget})
       : _videos = videos;
 
   factory _$ProjectMetaImpl.fromJson(Map<String, dynamic> json) =>
@@ -298,10 +326,14 @@ class _$ProjectMetaImpl implements _ProjectMeta {
   final double tracking;
   @override
   final Models model;
+  @override
+  final bool isShowCenterRedDotOnTarget;
+  @override
+  final bool isShowGhostTarget;
 
   @override
   String toString() {
-    return 'ProjectMeta(projectId: $projectId, projectName: $projectName, videos: $videos, filter: $filter, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model)';
+    return 'ProjectMeta(projectId: $projectId, projectName: $projectName, videos: $videos, filter: $filter, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, isShowCenterRedDotOnTarget: $isShowCenterRedDotOnTarget, isShowGhostTarget: $isShowGhostTarget)';
   }
 
   @override
@@ -324,7 +356,13 @@ class _$ProjectMetaImpl implements _ProjectMeta {
             (identical(other.valid, valid) || other.valid == valid) &&
             (identical(other.tracking, tracking) ||
                 other.tracking == tracking) &&
-            (identical(other.model, model) || other.model == model));
+            (identical(other.model, model) || other.model == model) &&
+            (identical(other.isShowCenterRedDotOnTarget,
+                    isShowCenterRedDotOnTarget) ||
+                other.isShowCenterRedDotOnTarget ==
+                    isShowCenterRedDotOnTarget) &&
+            (identical(other.isShowGhostTarget, isShowGhostTarget) ||
+                other.isShowGhostTarget == isShowGhostTarget));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -341,7 +379,9 @@ class _$ProjectMetaImpl implements _ProjectMeta {
       maxLostSeconds,
       valid,
       tracking,
-      model);
+      model,
+      isShowCenterRedDotOnTarget,
+      isShowGhostTarget);
 
   /// Create a copy of ProjectMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -371,7 +411,9 @@ abstract class _ProjectMeta implements ProjectMeta {
       required final int maxLostSeconds,
       required final int valid,
       required final double tracking,
-      required final Models model}) = _$ProjectMetaImpl;
+      required final Models model,
+      required final bool isShowCenterRedDotOnTarget,
+      required final bool isShowGhostTarget}) = _$ProjectMetaImpl;
 
   factory _ProjectMeta.fromJson(Map<String, dynamic> json) =
       _$ProjectMetaImpl.fromJson;
@@ -398,6 +440,10 @@ abstract class _ProjectMeta implements ProjectMeta {
   double get tracking;
   @override
   Models get model;
+  @override
+  bool get isShowCenterRedDotOnTarget;
+  @override
+  bool get isShowGhostTarget;
 
   /// Create a copy of ProjectMeta
   /// with the given fields replaced by the non-null parameter values.

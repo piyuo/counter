@@ -21,6 +21,8 @@ _$ProjectMetaImpl _$$ProjectMetaImplFromJson(Map<String, dynamic> json) =>
       valid: (json['valid'] as num).toInt(),
       tracking: (json['tracking'] as num).toDouble(),
       model: $enumDecode(_$ModelsEnumMap, json['model']),
+      isShowCenterRedDotOnTarget: json['isShowCenterRedDotOnTarget'] as bool,
+      isShowGhostTarget: json['isShowGhostTarget'] as bool,
     );
 
 Map<String, dynamic> _$$ProjectMetaImplToJson(_$ProjectMetaImpl instance) =>
@@ -36,6 +38,8 @@ Map<String, dynamic> _$$ProjectMetaImplToJson(_$ProjectMetaImpl instance) =>
       'valid': instance.valid,
       'tracking': instance.tracking,
       'model': _$ModelsEnumMap[instance.model]!,
+      'isShowCenterRedDotOnTarget': instance.isShowCenterRedDotOnTarget,
+      'isShowGhostTarget': instance.isShowGhostTarget,
     };
 
 const _$ModelsEnumMap = {

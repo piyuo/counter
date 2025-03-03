@@ -95,6 +95,40 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
+                    header: Text(context.l.settings_screen_center_point_title),
+                    footer: Text(context.l.settings_screen_center_point_desc),
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    children: [
+                      CupertinoListTile(
+                        title: Text(context.l.settings_screen_center_point_button),
+                        trailing: CupertinoSwitch(
+                          // This bool value toggles the switch.
+                          value: projectProvider.project!.isShowCenterRedDotOnTarget,
+                          onChanged: (bool? value) {
+                            projectProvider.setShowCenterRedDotOnTarget(value!);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  CupertinoListSection(
+                    header: Text(context.l.settings_screen_lost_target_title),
+                    footer: Text(context.l.settings_screen_lost_target_desc),
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    children: [
+                      CupertinoListTile(
+                        title: Text(context.l.settings_screen_lost_target_button),
+                        trailing: CupertinoSwitch(
+                          // This bool value toggles the switch.
+                          value: projectProvider.project!.isShowGhostTarget,
+                          onChanged: (bool? value) {
+                            projectProvider.setShowGhostTarget(value!);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  CupertinoListSection(
                     dividerMargin: 0,
                     hasLeading: false,
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),

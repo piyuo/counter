@@ -425,6 +425,42 @@ abstract class AppLocalization {
   /// **'Delete'**
   String get settings_screen_delete_button;
 
+  /// No description provided for @settings_screen_center_point_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Center Point on Target'**
+  String get settings_screen_center_point_title;
+
+  /// No description provided for @settings_screen_center_point_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The center point helps determine whether the target is within the hit zone.'**
+  String get settings_screen_center_point_desc;
+
+  /// No description provided for @settings_screen_center_point_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Center Point on Target'**
+  String get settings_screen_center_point_button;
+
+  /// No description provided for @settings_screen_lost_target_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost Target'**
+  String get settings_screen_lost_target_title;
+
+  /// No description provided for @settings_screen_lost_target_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'When object tracking loses a target, this option makes it visible. By default, lost targets are not shown.'**
+  String get settings_screen_lost_target_desc;
+
+  /// No description provided for @settings_screen_lost_target_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Lost Target'**
+  String get settings_screen_lost_target_button;
+
   /// No description provided for @detection_screen_title.
   ///
   /// In en, this message translates to:

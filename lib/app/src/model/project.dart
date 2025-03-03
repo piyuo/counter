@@ -24,6 +24,8 @@ class Project {
     this.maxLostSeconds = _maxLostSeconds,
     this.validThreshold = _validThreshold,
     this.trackingThreshold = _trackingThreshold,
+    this.isShowCenterRedDotOnTarget = false,
+    this.isShowGhostTarget = false,
   }) {
     // if projectId is empty, generate a new one
     if (projectId.isEmpty) {
@@ -86,6 +88,12 @@ class Project {
 
   /// the current model used by the controller
   vision.Models model;
+
+  /// show red dot in the center of the target
+  bool isShowCenterRedDotOnTarget;
+
+  /// ghost target is a target we lost track
+  bool isShowGhostTarget;
 
   /// reset the detection settings
   void resetDetectionSettings() {
