@@ -782,13 +782,13 @@ abstract class AppLocalization {
   /// No description provided for @zone_screen_objects_header.
   ///
   /// In en, this message translates to:
-  /// **'Detects objects such as people, vehicles, dogs.'**
+  /// **'Detect objects such as people, vehicles, and dogs.'**
   String get zone_screen_objects_header;
 
   /// No description provided for @zone_screen_objects.
   ///
   /// In en, this message translates to:
-  /// **'Objects'**
+  /// **'Select Objects to Detect'**
   String get zone_screen_objects;
 
   /// No description provided for @zone_screen_delete_header.

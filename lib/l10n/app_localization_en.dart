@@ -351,10 +351,10 @@ class AppLocalizationEn extends AppLocalization {
   String get zone_screen_color => 'Color';
 
   @override
-  String get zone_screen_objects_header => 'Detects objects such as people, vehicles, dogs.';
+  String get zone_screen_objects_header => 'Detect objects such as people, vehicles, and dogs.';
 
   @override
-  String get zone_screen_objects => 'Objects';
+  String get zone_screen_objects => 'Select Objects to Detect';
 
   @override
   String get zone_screen_delete_header => 'Delete this zone';
