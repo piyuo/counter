@@ -17,7 +17,12 @@ const double _slidingPanelWidth = 360;
 /// the minimum height of the sliding panel
 const double _slidingPanelMinHeight = 250;
 
+/// the width threshold for sidebar layout
 const double _sidebarLayoutWidthThreshold = 1350;
+
+/// if the width of the screen is more than this value, use fixed sliding layout, if not use expanded
+/// iphone pro max is 440
+const double _slidingLayoutWidthThreshold = 500;
 
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 300);
@@ -48,7 +53,8 @@ class PipScreen extends StatelessWidget {
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
             bool isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
-            buildSidebar() {
+            // screen is big enough, use sidebar layout
+            buildSidebarLayout() {
               return AnimatedPositioned(
                 duration: _animationDuration,
                 left: 0,
@@ -59,42 +65,41 @@ class PipScreen extends StatelessWidget {
               );
             }
 
-            buildPortraitSliding() {
-              const top = 70.0;
-              return AnimatedPositioned(
-                duration: _animationDuration,
-                top: top,
-                height: constraints.maxHeight - top,
-                left: 0,
-                right: 0,
-                child: PipSliding(
-                  pipProvider: pipProvider,
-                  minHeight: _slidingPanelMinHeight + safePadding.bottom,
-                  child: sliding,
-                ),
-              );
-            }
-
-            buildLandscapeSliding() {
-              const top = 10.0;
-              return AnimatedPositioned(
-                duration: _animationDuration,
-                top: top + safePadding.top + 28, // 28 is height for close/minimize button bar
-                height: constraints.maxHeight - top,
-                left: 20 + safePadding.left,
-                width: _slidingPanelWidth,
-                child: PipSliding(
-                  pipProvider: pipProvider,
-                  width: _slidingPanelWidth,
-                  minHeight: _slidingPanelMinHeight,
-                  child: sliding,
-                ),
-              );
+            // screen is not big, use sliding
+            buildSlidingLayout() {
+              const top = 28.0 + 10; // 28 is height for close/minimize button bar, 10 is padding
+              return constraints.maxWidth > _slidingLayoutWidthThreshold
+                  // fixed width
+                  ? AnimatedPositioned(
+                      duration: _animationDuration,
+                      top: safePadding.top + top, // 28 is height for close/minimize button bar
+                      height: constraints.maxHeight - top,
+                      left: 20 + safePadding.left,
+                      width: _slidingPanelWidth,
+                      child: PipSliding(
+                        pipProvider: pipProvider,
+                        width: _slidingPanelWidth,
+                        minHeight: _slidingPanelMinHeight,
+                        child: sliding,
+                      ),
+                    )
+                  // fill the screen width
+                  : AnimatedPositioned(
+                      duration: _animationDuration,
+                      top: top,
+                      height: constraints.maxHeight - top,
+                      left: 0,
+                      right: 0,
+                      child: PipSliding(
+                        pipProvider: pipProvider,
+                        minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                        child: sliding,
+                      ),
+                    );
             }
 
             buildSliding0() {
               const top = 70.0;
-
               return AnimatedPositioned(
                 duration: _animationDuration,
                 top: top,
@@ -158,7 +163,7 @@ class PipScreen extends StatelessWidget {
             Widget determineSlidingLayout() {
               // screen is big enough, use sidebar layout
               if (isSidebarLayout) {
-                return buildSidebar();
+                return buildSidebarLayout();
               }
 
               // mobile device in locked portrait mode
@@ -175,8 +180,8 @@ class PipScreen extends StatelessWidget {
                 }
               }
 
-              // any other cases, use auto layout
-              return orientation == Orientation.landscape ? buildLandscapeSliding() : buildPortraitSliding();
+              // any other cases, use sliding layout
+              return buildSlidingLayout();
             }
 
             return Material(
