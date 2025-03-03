@@ -130,8 +130,7 @@ class ProjectScreen extends StatelessWidget {
                         CupertinoListTile(
                           leading: Icon(videoProvider.getMediaTypeIcon(),
                               color: CupertinoColors.inactiveGray.resolveFrom(context)),
-                          title: Text(videoProvider.video.videoName,
-                              style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                          title: Text(videoProvider.video.videoName),
                           trailing: const CupertinoListTileChevron(),
                           additionalInfo: Text(vision.mediaTypeToString(context, videoProvider.video.mediaType),
                               style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
