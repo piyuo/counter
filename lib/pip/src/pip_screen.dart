@@ -65,7 +65,18 @@ class PipScreen extends StatelessWidget {
                 width: _slidingPanelWidth,
                 top: 28, // 28 is height for close/minimize button bar
                 bottom: 0,
-                child: sliding,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: CupertinoColors.black.withValues(alpha: 0.65),
+                        offset: const Offset(0, 2),
+                        blurRadius: 10,
+                      ),
+                    ],
+                  ),
+                  child: sliding,
+                ),
               );
             }
 
