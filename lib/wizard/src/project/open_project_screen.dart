@@ -50,14 +50,6 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
   Widget build(BuildContext context) {
     final String pageTitle = context.l.open_project_screen_title;
     final projectProvider = app.ProjectProvider.of(context);
-    final screenHeight = MediaQuery.of(context).size.height;
-
-    buildMaxHeight(child) {
-      return ConstrainedBox(
-        constraints: BoxConstraints(minHeight: screenHeight),
-        child: Center(child: child),
-      );
-    }
 
     buildHeader() {
       return pip.PipHeader(
@@ -77,20 +69,23 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
 
     if (_isLoading) {
       return pip.PipScaffold(
-          title: pageTitle,
           previousPageTitle: widget.previousPageTitle,
           child: Column(children: [
             buildHeader(),
-            buildMaxHeight(CupertinoActivityIndicator(radius: 28)),
+            Expanded(
+                child: Center(
+              child: CupertinoActivityIndicator(radius: 28),
+            ))
           ]));
     }
 
     if (_projects.isEmpty) {
       return pip.PipScaffold(
-        title: pageTitle,
-        previousPageTitle: widget.previousPageTitle,
-        child: buildMaxHeight(Text(context.l.open_project_screen_no_project)),
-      );
+          previousPageTitle: widget.previousPageTitle,
+          child: Column(children: [
+            buildHeader(),
+            Expanded(child: Center(child: Text(context.l.open_project_screen_no_project)))
+          ]));
     }
     int index = 1;
     return pip.PipScaffold(
