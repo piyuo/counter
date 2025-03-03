@@ -45,9 +45,6 @@ class ProjectProvider with ChangeNotifier {
   /// keep the benchmark result to use in the create project screen choose default model
   BenchmarkLocalStorage benchmarkLocalStorage = BenchmarkLocalStorage();
 
-  /// the width threshold for using side layout
-  double sideLayoutWidthThreshold = 1350;
-
   /// the navigator key to keep the navigator state from switch between side and floating layout
   final navigatorKey = GlobalKey<NavigatorState>();
 

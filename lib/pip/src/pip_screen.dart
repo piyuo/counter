@@ -17,6 +17,8 @@ const double _slidingPanelWidth = 360;
 /// the minimum height of the sliding panel
 const double _slidingPanelMinHeight = 250;
 
+const double _sidebarLayoutWidthThreshold = 1350;
+
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 300);
 
@@ -26,7 +28,6 @@ class PipScreen extends StatelessWidget {
     required this.builder,
     required this.sliding,
     this.deviceOrientation,
-    this.sidebarLayoutWidthThreshold = 1350,
     super.key,
   });
 
@@ -39,9 +40,6 @@ class PipScreen extends StatelessWidget {
   /// the device orientation for mobile device
   final DeviceOrientation? deviceOrientation;
 
-  /// the width threshold for using sidebar layout
-  final double sidebarLayoutWidthThreshold;
-
   @override
   Widget build(BuildContext context) {
     final safePadding = MediaQuery.of(context).padding;
@@ -49,7 +47,7 @@ class PipScreen extends StatelessWidget {
       builder: (context, orientation) => LayoutBuilder(
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
-            bool isSidebarLayout = constraints.maxWidth > sidebarLayoutWidthThreshold;
+            bool isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
             buildSidebar() {
               return AnimatedPositioned(
                 duration: _animationDuration,

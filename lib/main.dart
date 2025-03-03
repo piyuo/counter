@@ -124,7 +124,6 @@ class _MyAppState extends State<MyApp> {
                 useMaterial3: true,
               ),
               home: pip.PipScreen(
-                sidebarLayoutWidthThreshold: projectProvider.sideLayoutWidthThreshold,
                 deviceOrientation: projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
                 sliding: wizard.WizardNavigator(),
                 builder: (isSideLayout) => app.ProjectView(
