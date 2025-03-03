@@ -147,7 +147,10 @@ class AppLocalizationZh extends AppLocalization {
   String get settings_screen_project_error => '專案名稱不能為空';
 
   @override
-  String get settings_screen_detection => '偵測';
+  String get settings_screen_detection => '偵測設定';
+
+  @override
+  String get settings_screen_detection_parameters => '物體偵測參數例如置信度、NMS 等。';
 
   @override
   String get settings_screen_random_count_button => '新增隨機計數';
@@ -171,7 +174,7 @@ class AppLocalizationZh extends AppLocalization {
   String get settings_screen_delete_button => '刪除';
 
   @override
-  String get detection_screen_title => '偵測';
+  String get detection_screen_title => '偵測設定';
 
   @override
   String get detection_screen_models => '模型';

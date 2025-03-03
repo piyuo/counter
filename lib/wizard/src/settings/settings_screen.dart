@@ -79,6 +79,7 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
+                    header: Text(context.l.settings_screen_detection_parameters),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(

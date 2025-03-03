@@ -147,7 +147,10 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_project_error => 'The project name cannot be empty';
 
   @override
-  String get settings_screen_detection => 'Detection';
+  String get settings_screen_detection => 'Detection Settings';
+
+  @override
+  String get settings_screen_detection_parameters => 'Object Detection Parameters lie confidence, NMS, etc.';
 
   @override
   String get settings_screen_random_count_button => 'Add random counts';
@@ -171,7 +174,7 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_delete_button => 'Delete';
 
   @override
-  String get detection_screen_title => 'Detection';
+  String get detection_screen_title => 'Detection Settings';
 
   @override
   String get detection_screen_models => 'Models';

@@ -374,8 +374,14 @@ abstract class AppLocalization {
   /// No description provided for @settings_screen_detection.
   ///
   /// In en, this message translates to:
-  /// **'Detection'**
+  /// **'Detection Settings'**
   String get settings_screen_detection;
+
+  /// No description provided for @settings_screen_detection_parameters.
+  ///
+  /// In en, this message translates to:
+  /// **'Object Detection Parameters lie confidence, NMS, etc.'**
+  String get settings_screen_detection_parameters;
 
   /// No description provided for @settings_screen_random_count_button.
   ///
@@ -422,7 +428,7 @@ abstract class AppLocalization {
   /// No description provided for @detection_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Detection'**
+  /// **'Detection Settings'**
   String get detection_screen_title;
 
   /// No description provided for @detection_screen_models.
