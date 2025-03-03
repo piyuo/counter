@@ -36,11 +36,17 @@ class _ZoneEditorState extends State<ZoneEditor> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        double getScaleFactor() {
+          final scaleFactorX = getScaleFactorX(constraints.maxWidth);
+          final scaleFactorY = getScaleFactorY(constraints.maxHeight);
+          return scaleFactorX < scaleFactorY ? scaleFactorX : scaleFactorY;
+        }
+
         return GestureDetector(
-          onTapDown: (details) => widget.controller
-              .selectPolygon(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
-          onPanStart: (details) => widget.controller
-              .selectPolygon(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
+          onTapDown: (details) => widget.controller.selectPolygon(
+              _screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition), getScaleFactor()),
+          onPanStart: (details) => widget.controller.selectPolygon(
+              _screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition), getScaleFactor()),
           onPanUpdate: (details) => widget.controller
               .updatePointPosition(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
           onPanEnd: (details) => widget.controller.endDragging(),

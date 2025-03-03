@@ -35,12 +35,12 @@ class ZoneEditorController with ChangeNotifier {
     notifyListeners();
   }
 
-  void selectPolygon(Offset modelPoint) {
+  void selectPolygon(Offset modelPoint, double scaleFactor) {
     // First try to select a point
     for (var polygon in zones) {
       for (var i = 0; i < polygon.points.length; i++) {
         final d = (polygon.points[i] - modelPoint).distance;
-        if (d < _pointDetectRadius) {
+        if (d < (_pointDetectRadius / scaleFactor)) {
           selectedZone = polygon;
           selectedZone!.selectedPointIndex = i;
           isDraggingPolygon = false;

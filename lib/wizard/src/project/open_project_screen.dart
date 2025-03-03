@@ -4,7 +4,6 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 
@@ -93,7 +92,6 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
         child: buildMaxHeight(Text(context.l.open_project_screen_no_project)),
       );
     }
-    final languageProvider = vision.LanguageProvider.of(context);
     int index = 1;
     return pip.PipScaffold(
       previousPageTitle: widget.previousPageTitle,
