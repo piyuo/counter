@@ -54,7 +54,7 @@ class SourceScreen extends StatelessWidget {
                   'videoZone': videoZone,
                 });
               },
-              child: const Text('Add Zone'),
+              child: Text(context.l.source_screen_add_zone),
             ),
             child: SingleChildScrollView(
               child: Column(

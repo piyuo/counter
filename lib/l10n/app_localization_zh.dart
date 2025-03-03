@@ -294,6 +294,9 @@ class AppLocalizationZh extends AppLocalization {
   String get source_screen_webcam => '網路攝影機';
 
   @override
+  String get source_screen_add_zone => '新增區域';
+
+  @override
   String get source_screen_zones => '區域';
 
   @override

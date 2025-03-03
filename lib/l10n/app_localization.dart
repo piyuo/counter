@@ -665,6 +665,12 @@ abstract class AppLocalization {
   /// **'Webcam'**
   String get source_screen_webcam;
 
+  /// No description provided for @source_screen_add_zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Zone'**
+  String get source_screen_add_zone;
+
   /// No description provided for @source_screen_zones.
   ///
   /// In en, this message translates to:

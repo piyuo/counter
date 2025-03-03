@@ -94,6 +94,7 @@
     "source_screen_file":"File",
     "source_screen_camera":"Camera",
     "source_screen_webcam":"Webcam",
+    "source_screen_add_zone":"Add Zone",
     "source_screen_zones":"Zones",
     "source_screen_zones_desc":"Use drag and drop to adjust zones",
     "source_screen_tools":"Tools",

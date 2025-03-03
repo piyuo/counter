@@ -294,6 +294,9 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_webcam => 'Webcam';
 
   @override
+  String get source_screen_add_zone => 'Add Zone';
+
+  @override
   String get source_screen_zones => 'Zones';
 
   @override

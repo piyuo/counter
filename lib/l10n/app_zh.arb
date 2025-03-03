@@ -95,6 +95,7 @@
     "source_screen_file":"檔案",
     "source_screen_camera":"相機",
     "source_screen_webcam":"網路攝影機",
+    "source_screen_add_zone":"新增區域",
     "source_screen_zones":"區域",
     "source_screen_zones_desc":"使用拖放來調整區域",
     "source_screen_tools":"工具",
