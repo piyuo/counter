@@ -24,6 +24,9 @@ const double _sidebarLayoutWidthThreshold = 1350;
 /// iphone pro max is 440
 const double _slidingLayoutWidthThreshold = 500;
 
+/// if the screen height is less than this value, use compact layout
+const double _compactHeightThreshold = 600;
+
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 300);
 
@@ -53,6 +56,7 @@ class PipScreen extends StatelessWidget {
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
             bool isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
+            bool isCompactLayout = constraints.maxHeight < _compactHeightThreshold;
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
               return AnimatedPositioned(
@@ -67,7 +71,8 @@ class PipScreen extends StatelessWidget {
 
             // screen is not big, use sliding
             buildSlidingLayout() {
-              const top = 28.0 + 10; // 28 is height for close/minimize button bar, 10 is padding
+              // 28 is height for close/minimize button bar, 10 is padding
+              double top = 28.0 + (isCompactLayout ? 0 : 10);
               return constraints.maxWidth > _slidingLayoutWidthThreshold
                   // fixed width
                   ? AnimatedPositioned(
