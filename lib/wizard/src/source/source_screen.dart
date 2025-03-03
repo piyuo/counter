@@ -275,6 +275,7 @@ class SourceScreen extends StatelessWidget {
                           '${context.l.source_screen_playback_current}${videoProvider.visionController.playbackSpeed}x'),
                       children: [
                         CupertinoListTile(
+                            leadingSize: 52,
                             leading: Text(context.l.source_screen_playback_14x),
                             trailing: Text(context.l.source_screen_playback_2x),
                             additionalInfo: SizedBox.shrink(),
