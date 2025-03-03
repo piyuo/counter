@@ -99,6 +99,30 @@ class ProjectProvider with ChangeNotifier {
   /// called by open project screen to delete the project
   final Future<void> Function(String)? onDeleteProject;
 
+  /// show red dot in the center of the target
+  bool isShowCenterRedDotOnTarget = false;
+
+  /// ghost target is a target we lost track
+  bool isShowGhostTarget = false;
+
+  /// set the show center red dot on target
+  void setShowCenterRedDotOnTarget(bool value) {
+    isShowCenterRedDotOnTarget = value;
+    for (final videoProvider in videoProviders) {
+      videoProvider.setShowCenterRedDotOnTarget(value);
+    }
+    saveProject(null);
+  }
+
+  /// set the show ghost target
+  void setShowGhostTarget(bool value) {
+    isShowGhostTarget = value;
+    for (final videoProvider in videoProviders) {
+      videoProvider.setShowGhostTarget(value);
+    }
+    saveProject(null);
+  }
+
   /// called when a new activity is added
   void notifyActivityAdded(int videoId, int zoneId, int classId, vision.Activity activity) {
     onActivityAdded?.call(project!.projectId, videoId, zoneId, classId, activity);

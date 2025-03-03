@@ -22,7 +22,11 @@ class VideoProvider with ChangeNotifier {
       _projectProvider?.notifyActivityAdded(video.videoId, zoneId, classId, activity);
     });
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
-    visionController = vision.Controller(sampler: sampler);
+    visionController = vision.Controller(
+      sampler: sampler,
+      isShowCenterRedDotOnTarget: _projectProvider!.isShowCenterRedDotOnTarget,
+      isShowGhostTarget: _projectProvider!.isShowGhostTarget,
+    );
     playerController = vision.PlayerController(
       visionController: visionController,
       title: video.videoName,
@@ -112,6 +116,16 @@ class VideoProvider with ChangeNotifier {
     zoneEditorController?.dispose();
     zoneEditorController = null;
     super.dispose();
+  }
+
+  /// set the show center red dot on target
+  void setShowCenterRedDotOnTarget(bool value) {
+    visionController.setShowCenterRedDotOnTarget(value);
+  }
+
+  /// set the show ghost target
+  void setShowGhostTarget(bool value) {
+    visionController.setShowGhostTarget(value);
   }
 
   /// add activity when project is opened or add test data
