@@ -12,10 +12,10 @@ import 'pip_sliding.dart';
 enum SlidingLayout { portrait, landscape, landscape90, landscape270 }
 
 /// the width of the sliding panel
-const double _slidingPanelWidth = 330;
+const double _slidingPanelWidth = 360;
 
 /// the minimum height of the sliding panel
-const double _slidingPanelMinHeight = 48;
+const double _slidingPanelMinHeight = 250;
 
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 300);
@@ -26,7 +26,7 @@ class PipScreen extends StatelessWidget {
     required this.builder,
     required this.sliding,
     this.deviceOrientation,
-    this.sideLayoutWidthThreshold = 1024,
+    this.sidebarLayoutWidthThreshold = 1350,
     super.key,
   });
 
@@ -39,8 +39,8 @@ class PipScreen extends StatelessWidget {
   /// the device orientation for mobile device
   final DeviceOrientation? deviceOrientation;
 
-  /// the width threshold for using side layout
-  final double sideLayoutWidthThreshold;
+  /// the width threshold for using sidebar layout
+  final double sidebarLayoutWidthThreshold;
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +49,8 @@ class PipScreen extends StatelessWidget {
       builder: (context, orientation) => LayoutBuilder(
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
-            bool isSideLayout = constraints.maxWidth > sideLayoutWidthThreshold;
-            buildSideSliding() {
+            bool isSidebarLayout = constraints.maxWidth > sidebarLayoutWidthThreshold;
+            buildSidebar() {
               return AnimatedPositioned(
                 duration: _animationDuration,
                 left: 0,
@@ -158,8 +158,8 @@ class PipScreen extends StatelessWidget {
             }
 
             determineSlidingLayout() {
-              if (isSideLayout) {
-                return buildSideSliding();
+              if (isSidebarLayout) {
+                return buildSidebar();
               }
               if (deviceOrientation != null) {
                 switch (deviceOrientation) {
@@ -182,11 +182,11 @@ class PipScreen extends StatelessWidget {
                   children: [
                     AnimatedPositioned(
                       duration: _animationDuration,
-                      left: isSideLayout ? _slidingPanelWidth : 0,
+                      left: isSidebarLayout ? _slidingPanelWidth : 0,
                       right: 0,
                       top: 0,
                       bottom: 0,
-                      child: builder(isSideLayout),
+                      child: builder(isSidebarLayout),
                     ),
                     determineSlidingLayout()
                   ],
