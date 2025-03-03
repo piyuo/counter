@@ -331,7 +331,7 @@ class ProjectProvider with ChangeNotifier {
   /// create a formatted timestamp
   String _crateFormattedTimestamp() {
     final now = DateTime.now();
-    final formatter = DateFormat('MMddHHmm');
+    final formatter = DateFormat('yy-MMdd-HHmm');
     return formatter.format(now);
   }
 
