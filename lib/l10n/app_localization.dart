@@ -278,7 +278,7 @@ abstract class AppLocalization {
   /// No description provided for @project_screen_add_video_button.
   ///
   /// In en, this message translates to:
-  /// **'Add video'**
+  /// **'Add video source'**
   String get project_screen_add_video_button;
 
   /// No description provided for @project_screen_from_desc.
@@ -560,13 +560,13 @@ abstract class AppLocalization {
   /// No description provided for @add_video_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Add Video'**
+  /// **'Add Video source'**
   String get add_video_screen_title;
 
   /// No description provided for @add_video_screen_from.
   ///
   /// In en, this message translates to:
-  /// **'Add video from'**
+  /// **'Add video source from'**
   String get add_video_screen_from;
 
   /// No description provided for @webcam_screen_add_title.
@@ -626,7 +626,7 @@ abstract class AppLocalization {
   /// No description provided for @source_screen_video_name.
   ///
   /// In en, this message translates to:
-  /// **'Video Name'**
+  /// **'Video source name'**
   String get source_screen_video_name;
 
   /// No description provided for @source_screen_edit_placeholder.
@@ -668,13 +668,13 @@ abstract class AppLocalization {
   /// No description provided for @source_screen_add_zone.
   ///
   /// In en, this message translates to:
-  /// **'Add Zone'**
+  /// **'Add detection zone'**
   String get source_screen_add_zone;
 
   /// No description provided for @source_screen_zones.
   ///
   /// In en, this message translates to:
-  /// **'Zones'**
+  /// **'Detection zones'**
   String get source_screen_zones;
 
   /// No description provided for @source_screen_zones_desc.
@@ -734,13 +734,13 @@ abstract class AppLocalization {
   /// No description provided for @source_screen_delete_header.
   ///
   /// In en, this message translates to:
-  /// **'Delete this video'**
+  /// **'Delete this video source'**
   String get source_screen_delete_header;
 
   /// No description provided for @source_screen_delete_content.
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to delete this video?'**
+  /// **'Are you sure you want to delete this video source?'**
   String get source_screen_delete_content;
 
   /// No description provided for @source_screen_delete_button.
@@ -758,7 +758,7 @@ abstract class AppLocalization {
   /// No description provided for @zone_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'The zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.'**
+  /// **'The detection zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.'**
   String get zone_screen_desc;
 
   /// No description provided for @zone_screen_name_placeholder.
@@ -980,7 +980,7 @@ abstract class AppLocalization {
   /// No description provided for @default_zone_name.
   ///
   /// In en, this message translates to:
-  /// **'zone'**
+  /// **'Detection zone'**
   String get default_zone_name;
 
   /// No description provided for @submit.

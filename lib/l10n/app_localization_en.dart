@@ -99,7 +99,7 @@ class AppLocalizationEn extends AppLocalization {
   String get project_screen_exit_button => 'Exit';
 
   @override
-  String get project_screen_add_video_button => 'Add video';
+  String get project_screen_add_video_button => 'Add video source';
 
   @override
   String get project_screen_from_desc => 'We keep a rolling 24-hour record, so you can view any time slice you need.';
@@ -240,10 +240,10 @@ class AppLocalizationEn extends AppLocalization {
   String get url_screen_url_placeholder => 'http://example.com/stream or rtsp://example.com/stream';
 
   @override
-  String get add_video_screen_title => 'Add Video';
+  String get add_video_screen_title => 'Add Video source';
 
   @override
-  String get add_video_screen_from => 'Add video from';
+  String get add_video_screen_from => 'Add video source from';
 
   @override
   String get webcam_screen_add_title => 'Add Webcam';
@@ -273,7 +273,7 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_desc => 'Manage video sources, add or modify detection zones.';
 
   @override
-  String get source_screen_video_name => 'Video Name';
+  String get source_screen_video_name => 'Video source name';
 
   @override
   String get source_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
@@ -294,10 +294,10 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_webcam => 'Webcam';
 
   @override
-  String get source_screen_add_zone => 'Add Zone';
+  String get source_screen_add_zone => 'Add detection zone';
 
   @override
-  String get source_screen_zones => 'Zones';
+  String get source_screen_zones => 'Detection zones';
 
   @override
   String get source_screen_zones_desc => 'Use drag and drop to adjust zones';
@@ -327,10 +327,10 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_playback_2x => '2x';
 
   @override
-  String get source_screen_delete_header => 'Delete this video';
+  String get source_screen_delete_header => 'Delete this video source';
 
   @override
-  String get source_screen_delete_content => 'Are you sure you want to delete this video?';
+  String get source_screen_delete_content => 'Are you sure you want to delete this video source?';
 
   @override
   String get source_screen_delete_button => 'Delete';
@@ -339,7 +339,7 @@ class AppLocalizationEn extends AppLocalization {
   String get color_screen_title => 'Pick a color';
 
   @override
-  String get zone_screen_desc => 'The zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.';
+  String get zone_screen_desc => 'The detection zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.';
 
   @override
   String get zone_screen_name_placeholder => 'The name of the zone, like Sidewalk or Parking Lot';
@@ -450,7 +450,7 @@ class AppLocalizationEn extends AppLocalization {
   String get default_video_name => 'Video source';
 
   @override
-  String get default_zone_name => 'zone';
+  String get default_zone_name => 'Detection zone';
 
   @override
   String get submit => 'Submit';

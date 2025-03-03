@@ -6,6 +6,7 @@ import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:vision/vision.dart' as vision;
@@ -93,7 +94,7 @@ class _MyAppState extends State<MyApp> {
 
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              locale: languageProvider.locale,
+              locale: Intl.defaultLocale == null ? null : Locale(Intl.defaultLocale!),
               localizationsDelegates: const [
                 AppLocalization.delegate,
                 vision.VisionLocalization.delegate,

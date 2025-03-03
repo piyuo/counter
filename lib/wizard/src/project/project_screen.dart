@@ -152,10 +152,9 @@ class ProjectScreen extends StatelessWidget {
             ).toList();
           }
 
-          final languageProvider = vision.LanguageProvider.of(context);
           buildTimeTagString() {
             final now = DateTime.now();
-            return '${DateFormat.yMMMMEEEEd(languageProvider.locale.toString()).format(now)} ${DateFormat.jm(languageProvider.locale.toString()).format(now)}';
+            return '${DateFormat.yMMMMEEEEd(Intl.getCurrentLocale()).format(now)} ${DateFormat.jm(Intl.getCurrentLocale()).format(now)}';
           }
 
           return ChangeNotifierProvider<GaugeViewRedrawProvider>.value(

@@ -2,6 +2,7 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:vision/vision.dart' as vision;
 
@@ -128,7 +129,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
                           style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
                   title: Text(project.projectName),
                   trailing: CupertinoListTileChevron(),
-                  subtitle: Text(timeago.format(project.updatedAt, locale: languageProvider.locale.toString())),
+                  subtitle: Text(timeago.format(project.updatedAt, locale: Intl.getCurrentLocale())),
                   onTap: _loadingProject.isEmpty
                       ? () async {
                           setState(() {

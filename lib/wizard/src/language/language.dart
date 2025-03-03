@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:locale_names/locale_names.dart';
 
 class Language {
-  final Locale? locale;
+  final Locale locale;
   final String name;
 
   Language(this.locale, this.name);

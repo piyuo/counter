@@ -92,7 +92,8 @@ class WizardScreen extends StatelessWidget {
                       CupertinoListTile(
                           leading: Icon(CupertinoIcons.globe),
                           title: Text(context.l.wizard_screen_language),
-                          additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context)),
+                          additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context),
+                              style: TextStyle(fontSize: 12.0)),
                           trailing: CupertinoListTileChevron(),
                           onTap: () {
                             Navigator.of(context).pushNamed(languageRoute, arguments: {

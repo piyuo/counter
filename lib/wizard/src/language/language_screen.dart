@@ -1,6 +1,7 @@
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:vision/vision.dart' as vision;
 
 import 'language.dart';
@@ -17,10 +18,7 @@ class LanguageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageProvider = vision.LanguageProvider.of(context);
-    final languages = [
-      Language(null, 'System'),
-      ...Language.fromSupportedLocales(context),
-    ];
+    final languages = Language.fromSupportedLocales(context);
     return pip.PipScaffold(
       previousPageTitle: previousPageTitle,
       child: SingleChildScrollView(
@@ -39,7 +37,7 @@ class LanguageScreen extends StatelessWidget {
               children: languages
                   .map((language) => CupertinoListTile(
                         title: Text(language.name),
-                        leading: language.locale == languageProvider.locale
+                        leading: language.locale.toString() == Intl.getCurrentLocale()
                             ? Icon(CupertinoIcons.checkmark)
                             : SizedBox.shrink(),
                         onTap: () async {
