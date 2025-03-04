@@ -38,7 +38,7 @@ class WizardScreen extends StatelessWidget {
               child: Column(
                 children: [
                   pip.PipHeader(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(isCompactHeader ? 10 : 20),
                     child: isCompactHeader
                         ? Row(children: [
                             Image(
@@ -51,7 +51,7 @@ class WizardScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Text(context.l.product_name,
-                                      style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
+                                      style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
                                   const SizedBox(height: 8.0),
                                   Text(context.l.wizard_screen_desc,
                                       textAlign: TextAlign.center,
@@ -75,6 +75,7 @@ class WizardScreen extends StatelessWidget {
                                   style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
                               const SizedBox(height: 8.0),
                               Text(context.l.wizard_screen_desc,
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                             ],
                           ),
