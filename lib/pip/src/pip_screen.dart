@@ -11,9 +11,6 @@ import 'pip_sliding.dart';
 /// the sliding layout
 enum SlidingLayout { portrait, landscape, landscape90, landscape270 }
 
-/// the width of the sliding panel
-const double _slidingPanelWidth = 360;
-
 /// the minimum height of the sliding panel
 const double _slidingPanelMinHeight = 250;
 
@@ -51,18 +48,23 @@ class PipScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final safePadding = MediaQuery.of(context).padding;
+
     return OrientationBuilder(
       builder: (context, orientation) => LayoutBuilder(
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
             bool isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
             bool isCompactLayout = constraints.maxHeight < _compactHeightThreshold;
+
+            /// the width of the sliding panel
+            double slidingPanelWidth = isCompactLayout ? 320 : 360;
+
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
               return AnimatedPositioned(
                 duration: _animationDuration,
                 left: 0,
-                width: _slidingPanelWidth,
+                width: slidingPanelWidth,
                 top: 28, // 28 is height for close/minimize button bar
                 bottom: 0,
                 child: Container(
@@ -90,11 +92,11 @@ class PipScreen extends StatelessWidget {
                       duration: _animationDuration,
                       top: safePadding.top + top, // 28 is height for close/minimize button bar
                       height: constraints.maxHeight - top,
-                      left: 20 + safePadding.left,
-                      width: _slidingPanelWidth,
+                      left: 30, // no safePadding.left need more space to show preview,
+                      width: slidingPanelWidth,
                       child: PipSliding(
                         pipProvider: pipProvider,
-                        width: _slidingPanelWidth,
+                        width: slidingPanelWidth,
                         minHeight: _slidingPanelMinHeight,
                         child: sliding,
                       ),
@@ -135,18 +137,18 @@ class PipScreen extends StatelessWidget {
               final top = constraints.maxHeight / 2 - (cWidth / 2);
               return AnimatedPositioned(
                 duration: _animationDuration,
-                left: cWidth / 2 - (_slidingPanelWidth / 2),
+                left: cWidth / 2 - (slidingPanelWidth / 2),
                 // keep the sliding panel to the right
-                top: top + (constraints.maxHeight / 2 - (_slidingPanelWidth / 2)) - safePadding.bottom,
+                top: top + (constraints.maxHeight / 2 - (slidingPanelWidth / 2)) - safePadding.bottom,
                 // keep the sliding panel to the left, not for now. to keep camera preview smoothly
                 // - (constraints.maxHeight / 2 - (_slidingPanelWidth / 2)) + safePadding.top,
                 height: cWidth,
-                width: _slidingPanelWidth,
+                width: slidingPanelWidth,
                 child: Transform.rotate(
                     angle: 90 * (pi / 180),
                     child: PipSliding(
                       pipProvider: pipProvider,
-                      width: _slidingPanelWidth,
+                      width: slidingPanelWidth,
                       minHeight: _slidingPanelMinHeight,
                       child: sliding,
                     )),
@@ -157,19 +159,19 @@ class PipScreen extends StatelessWidget {
               final cWidth = constraints.maxWidth - 10;
               return AnimatedPositioned(
                 duration: _animationDuration,
-                left: cWidth / 2 - (_slidingPanelWidth / 2) + 10,
+                left: cWidth / 2 - (slidingPanelWidth / 2) + 10,
                 top: constraints.maxHeight / 2 -
                     (cWidth / 2) +
-                    (constraints.maxHeight / 2 - (_slidingPanelWidth / 2)) -
+                    (constraints.maxHeight / 2 - (slidingPanelWidth / 2)) -
                     10 -
                     safePadding.bottom,
                 height: cWidth,
-                width: _slidingPanelWidth,
+                width: slidingPanelWidth,
                 child: Transform.rotate(
                     angle: 270 * (pi / 180),
                     child: PipSliding(
                       pipProvider: pipProvider,
-                      width: _slidingPanelWidth,
+                      width: slidingPanelWidth,
                       minHeight: _slidingPanelMinHeight,
                       child: sliding,
                     )),
@@ -206,7 +208,7 @@ class PipScreen extends StatelessWidget {
                   children: [
                     AnimatedPositioned(
                       duration: _animationDuration,
-                      left: isSidebarLayout ? _slidingPanelWidth : 0,
+                      left: isSidebarLayout ? slidingPanelWidth : 0,
                       right: 0,
                       top: 0,
                       bottom: 0,
