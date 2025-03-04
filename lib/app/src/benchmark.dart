@@ -55,8 +55,8 @@ class BenchmarkController {
     benchmarks.sort((a, b) => a.fps.compareTo(b.fps));
     final recommendedModel = benchmarks
         .firstWhere(
-          (element) => element.fps >= acceptableFPS,
-          orElse: () => benchmarks.first,
+          (element) => element.fps >= acceptableFPS, // fps just greater than acceptableFPS will get better result
+          orElse: () => benchmarks.last, // if no model is found, return the last one which is fastest model
         )
         .model;
     return recommendedModel;
@@ -80,9 +80,9 @@ class BenchmarkController {
       // Run the benchmark on all models
       for (var model in vision.Models.values) {
         final benchmark = await runModel(model);
-        //await Future.delayed(Duration(seconds: 5));
         benchmarks.add(benchmark);
         onSingleBenchmarkDone?.call(benchmarks);
+        await Future.delayed(Duration(seconds: 1)); // cooldown to get more accurate fps
       }
       return vision.errorOK;
     } finally {
@@ -211,18 +211,18 @@ class BenchmarkLocalStorage {
 
   /// Resets the benchmarks to current state
   Future<int> doBenchmark({Function(List<Benchmark>)? onSingleBenchmarkDone}) async {
-    BenchmarkController controller = BenchmarkController(onSingleBenchmarkDone: onSingleBenchmarkDone);
+    BenchmarkController benchmarkController = BenchmarkController(onSingleBenchmarkDone: onSingleBenchmarkDone);
     try {
-      final errorCode = await controller.run();
+      final errorCode = await benchmarkController.run();
       if (errorCode == vision.errorOK) {
         benchmarks.clear();
-        benchmarks.addAll(controller.benchmarks);
-        _recommendedModel = controller.getRecommendedModel();
+        benchmarks.addAll(benchmarkController.benchmarks);
+        _recommendedModel = benchmarkController.getRecommendedModel();
         await save();
       }
       return errorCode;
     } finally {
-      controller.dispose();
+      benchmarkController.dispose();
     }
   }
 }
