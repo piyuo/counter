@@ -43,7 +43,7 @@ class VideoView extends StatelessWidget {
                 ? vision.Preview(
                     controller: videoProvider.visionController,
                     zoneEditorWidget: zoneEditor,
-                    alignmentGeometry: previewAlignment,
+                    previewAlignment: previewAlignment,
                     filter: filter,
                   )
                 : vision.Player(
