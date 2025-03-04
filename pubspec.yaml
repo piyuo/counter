@@ -66,6 +66,7 @@ dependencies:
   locale_names: ^1.1.1
   timeago: ^3.7.0
   gauge_indicator: ^0.4.3
+  flutter_native_splash: ^2.4.5
 
 dev_dependencies:
   flutter_test:
@@ -93,3 +94,10 @@ flutter:
       # rename assets/ to asset/ ,this can avoid ci mis-replace "assets/" string in main.dart.js
       - assets/icon/
       - assets/images/
+
+flutter_native_splash:
+  color: "#181743"
+  image: "assets/images/background.jpg"
+  ios_content_mode: scaleAspectFill
+  android_12:
+   image: "assets/images/background.jpg"
