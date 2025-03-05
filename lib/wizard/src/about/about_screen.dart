@@ -26,7 +26,8 @@ class AboutScreen extends StatelessWidget {
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: Column(
+            child: SingleChildScrollView(
+                child: Column(
               children: [
                 pip.PipHeader(
                   child: Column(
@@ -87,7 +88,7 @@ class AboutScreen extends StatelessWidget {
                   ),
                 pip.PipFooter(),
               ],
-            ),
+            )),
           );
         },
       ),

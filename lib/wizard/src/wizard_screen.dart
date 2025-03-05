@@ -29,119 +29,120 @@ class WizardScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
         builder: (context, projectProvider, homeScreenProvider, child) {
           return pip.PipScaffold(
-            titleWidget: Container(
-              padding: const EdgeInsets.only(left: 16.0),
-              alignment: Alignment.centerLeft,
-              child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-            ),
-            child: Column(
-              children: [
-                pip.PipHeader(
-                  padding: EdgeInsets.all(10),
-                  child: isCompactHeader
-                      ? Row(children: [
-                          const SizedBox(width: 8.0),
-                          Image(
-                            image: AssetImage('assets/icon/icon.png'),
-                            width: 48,
-                            height: 48,
-                          ),
-                          const SizedBox(width: 8.0),
-                          Expanded(
-                            child: Column(
+              titleWidget: Container(
+                padding: const EdgeInsets.only(left: 16.0),
+                alignment: Alignment.centerLeft,
+                child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    pip.PipHeader(
+                      padding: EdgeInsets.all(10),
+                      child: isCompactHeader
+                          ? Row(children: [
+                              const SizedBox(width: 8.0),
+                              Image(
+                                image: AssetImage('assets/icon/icon.png'),
+                                width: 48,
+                                height: 48,
+                              ),
+                              const SizedBox(width: 8.0),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Text(context.l.product_name,
+                                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                    const SizedBox(height: 8.0),
+                                    Text(context.l.wizard_screen_desc,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                        )),
+                                  ],
+                                ),
+                              )
+                            ])
+                          : Column(
                               children: [
-                                Text(context.l.product_name,
-                                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                                Image(
+                                  image: AssetImage('assets/icon/icon.png'),
+                                  width: 52,
+                                  height: 52,
+                                ),
                                 const SizedBox(height: 8.0),
+                                Text(context.l.product_name,
+                                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                                const SizedBox(height: 4.0),
                                 Text(context.l.wizard_screen_desc,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                      fontSize: 14.0,
-                                      color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                                    )),
+                                        fontSize: 12.0, color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                               ],
                             ),
-                          )
-                        ])
-                      : Column(
-                          children: [
-                            Image(
-                              image: AssetImage('assets/icon/icon.png'),
-                              width: 52,
-                              height: 52,
-                            ),
-                            const SizedBox(height: 8.0),
-                            Text(context.l.product_name,
-                                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
-                            const SizedBox(height: 4.0),
-                            Text(context.l.wizard_screen_desc,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    fontSize: 12.0, color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                          ],
-                        ),
-                ),
-                ChangeNotifierProvider<VideoSourcesProvider>(
-                    create: (_) => VideoSourcesProvider(),
-                    child: Consumer<VideoSourcesProvider>(
-                        builder: (context, videoStarterProvider, child) => CupertinoListSection(
-                              backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                              header: Text(context.l.wizard_screen_new_project_from),
-                              children: buildVideoSources(
-                                context,
-                                videoSourcesProvider: videoStarterProvider,
-                                projectProvider: projectProvider,
-                                isAddMode: false,
-                              ),
-                            ))),
-                CupertinoListSection(
-                  header: Text(context.l.wizard_screen_open_projects_tip),
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  children: [
-                    CupertinoListTile(
-                        leading: Icon(CupertinoIcons.archivebox),
-                        title: Text(context.l.wizard_screen_open_projects),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(openProjectRoute, arguments: {
-                            'previousPageTitle': pageTitle,
-                          });
-                        }),
+                    ),
+                    ChangeNotifierProvider<VideoSourcesProvider>(
+                        create: (_) => VideoSourcesProvider(),
+                        child: Consumer<VideoSourcesProvider>(
+                            builder: (context, videoStarterProvider, child) => CupertinoListSection(
+                                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                                  header: Text(context.l.wizard_screen_new_project_from),
+                                  children: buildVideoSources(
+                                    context,
+                                    videoSourcesProvider: videoStarterProvider,
+                                    projectProvider: projectProvider,
+                                    isAddMode: false,
+                                  ),
+                                ))),
+                    CupertinoListSection(
+                      header: Text(context.l.wizard_screen_open_projects_tip),
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                            leading: Icon(CupertinoIcons.archivebox),
+                            title: Text(context.l.wizard_screen_open_projects),
+                            trailing: CupertinoListTileChevron(),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(openProjectRoute, arguments: {
+                                'previousPageTitle': pageTitle,
+                              });
+                            }),
+                      ],
+                    ),
+                    CupertinoListSection(
+                      header: Text(pageTitle),
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                            leading: Icon(CupertinoIcons.info),
+                            additionalInfo: Text(homeScreenProvider.appVersion),
+                            title: Text(context.l.wizard_screen_about),
+                            trailing: CupertinoListTileChevron(),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(aboutRoute, arguments: {
+                                'previousPageTitle': pageTitle,
+                              });
+                            }),
+                        CupertinoListTile(
+                            leading: Icon(CupertinoIcons.globe),
+                            title: Text(context.l.wizard_screen_language),
+                            additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context),
+                                style: TextStyle(fontSize: 12.0)),
+                            trailing: CupertinoListTileChevron(),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(languageRoute, arguments: {
+                                'previousPageTitle': pageTitle,
+                              });
+                            }),
+                      ],
+                    ),
+                    // Container(height: 500, color: CupertinoColors.activeBlue),
+                    // Container(height: 500, color: CupertinoColors.activeOrange),
+                    pip.PipFooter(),
                   ],
                 ),
-                CupertinoListSection(
-                  header: Text(pageTitle),
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  children: [
-                    CupertinoListTile(
-                        leading: Icon(CupertinoIcons.info),
-                        additionalInfo: Text(homeScreenProvider.appVersion),
-                        title: Text(context.l.wizard_screen_about),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(aboutRoute, arguments: {
-                            'previousPageTitle': pageTitle,
-                          });
-                        }),
-                    CupertinoListTile(
-                        leading: Icon(CupertinoIcons.globe),
-                        title: Text(context.l.wizard_screen_language),
-                        additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context),
-                            style: TextStyle(fontSize: 12.0)),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(languageRoute, arguments: {
-                            'previousPageTitle': pageTitle,
-                          });
-                        }),
-                  ],
-                ),
-                // Container(height: 500, color: CupertinoColors.activeBlue),
-                // Container(height: 500, color: CupertinoColors.activeOrange),
-                pip.PipFooter(),
-              ],
-            ),
-          );
+              ));
         },
       ),
     );

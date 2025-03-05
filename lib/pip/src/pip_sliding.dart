@@ -37,43 +37,42 @@ class PipSliding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OrientationBuilder(builder: (context, orientation) {
-      return MediaQuery.removePadding(
-          context: context,
-          removeTop: true,
-          removeLeft: true,
-          removeBottom: true,
-          removeRight: true,
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              return SlidingUpPanel(
-                color: CupertinoColors.transparent,
-                defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,
-                snapPoint: 0.5,
-                onPanelOpened: () {
-                  pipProvider.isPanelOpened = true;
-                },
-                onPanelClosed: () {
-                  pipProvider.isPanelOpened = false;
-                },
-                controller: pipProvider.panelController,
-                minHeight: minHeight,
-                maxHeight: constraints.maxHeight,
-                borderRadius: _slidingPanelRadius,
-                panelBuilder: (scrollController) {
-                  return Align(
-                    alignment: Alignment.topLeft,
-                    child: SizedBox(
-                        width: width,
-                        child: ClipRRect(
-                          borderRadius: _slidingPanelRadius,
-                          child: isShowDragHeader
-                              ? _DragHeader(child: builder(scrollController))
-                              : builder(scrollController),
-                        )),
-                  );
-                },
-                /*panel: Align(
+    return MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        removeLeft: true,
+        removeBottom: true,
+        removeRight: true,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SlidingUpPanel(
+              color: CupertinoColors.transparent,
+              defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,
+              snapPoint: 0.5,
+              onPanelOpened: () {
+                pipProvider.isPanelOpened = true;
+              },
+              onPanelClosed: () {
+                pipProvider.isPanelOpened = false;
+              },
+              controller: pipProvider.panelController,
+              minHeight: minHeight,
+              maxHeight: constraints.maxHeight,
+              borderRadius: _slidingPanelRadius,
+              panelBuilder: (scrollController) {
+                return Align(
+                  alignment: Alignment.topLeft,
+                  child: SizedBox(
+                      width: width,
+                      child: ClipRRect(
+                        borderRadius: _slidingPanelRadius,
+                        child: isShowDragHeader
+                            ? _DragHeader(child: builder(scrollController))
+                            : builder(scrollController),
+                      )),
+                );
+              },
+              /*panel: Align(
                   alignment: Alignment.topLeft,
                   child: SizedBox(
                       width: width,
@@ -84,10 +83,9 @@ class PipSliding extends StatelessWidget {
                             : builder(ScrollController()),
                       )),
                 ),*/
-              );
-            },
-          ));
-    });
+            );
+          },
+        ));
   }
 }
 
