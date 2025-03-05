@@ -80,11 +80,15 @@ const zoneRoute = '/zone';
 
 class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
+    this.scrollController,
     this.initialRoute,
     super.key,
   });
 
   final String? initialRoute;
+
+  /// the scroll controller from pip screen
+  final ScrollController? scrollController;
 
   @override
   State<WizardNavigator> createState() => _WizardNavigatorState();
@@ -118,7 +122,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           builder: (context) {
             switch (routeSettings.name) {
               case '/':
-                return WizardScreen();
+                return WizardScreen(
+                  scrollController: widget.scrollController,
+                );
               case aboutRoute:
                 return AboutScreen(
                   previousPageTitle: args!['previousPageTitle'],
@@ -203,7 +209,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoZone: args['videoZone'],
                 );
               default:
-                return WizardScreen();
+                return WizardScreen(
+                  scrollController: widget.scrollController,
+                );
             }
           },
         );

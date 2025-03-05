@@ -14,8 +14,12 @@ const double _headerHeightThreshold = 600;
 
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
+    this.scrollController,
     super.key,
   });
+
+  /// the scroll controller from pip screen
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +39,7 @@ class WizardScreen extends StatelessWidget {
               child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
             ),
             child: SingleChildScrollView(
+              controller: scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -137,6 +142,8 @@ class WizardScreen extends StatelessWidget {
                           }),
                     ],
                   ),
+                  // Container(height: 500, color: CupertinoColors.activeBlue),
+                  // Container(height: 500, color: CupertinoColors.activeOrange),
                   pip.PipFooter(),
                 ],
               ),

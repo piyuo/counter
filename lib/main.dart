@@ -126,7 +126,9 @@ class _MyAppState extends State<MyApp> {
               home: pip.PipScreen(
                 deviceOrientationForPortrait:
                     projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
-                sliding: wizard.WizardNavigator(),
+                slidingBuilder: (scrollController) => wizard.WizardNavigator(
+                  scrollController: scrollController,
+                ),
                 builder: (isSideLayout) => app.ProjectView(
                   noProjectScreen: buildMainScreen(),
                   isSideLayout: isSideLayout,

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'pip_provider.dart';
 import 'pip_sliding.dart';
@@ -28,7 +29,7 @@ const _animationDuration = Duration(milliseconds: 300);
 class PipScreen extends StatelessWidget {
   const PipScreen({
     required this.builder,
-    required this.sliding,
+    required this.slidingBuilder,
     this.deviceOrientationForPortrait,
     super.key,
   });
@@ -36,8 +37,8 @@ class PipScreen extends StatelessWidget {
   /// the main screen builder
   final Widget Function(bool isSideLayout) builder;
 
-  /// the sliding screen
-  final Widget sliding;
+  /// the sliding builder
+  final Widget Function(ScrollController?) slidingBuilder;
 
   /// the device orientation for locked portrait orientation
   final DeviceOrientation? deviceOrientationForPortrait;
@@ -57,6 +58,9 @@ class PipScreen extends StatelessWidget {
             double slidingPanelWidth = isCompactLayout ? 320 : 360;
             double slidingPanelMinHeight = isCompactLayout ? 52 : 150;
 
+            // pass the scroll controller to the sliding builder if needed. no need for desktop
+            scrollbarHandler(scrollController) => slidingBuilder(UniversalPlatform.isDesktop ? null : scrollController);
+
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
               return AnimatedPositioned(
@@ -75,7 +79,7 @@ class PipScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: sliding,
+                  child: slidingBuilder(null),
                 ),
               );
             }
@@ -96,7 +100,7 @@ class PipScreen extends StatelessWidget {
                         pipProvider: pipProvider,
                         width: slidingPanelWidth,
                         minHeight: slidingPanelMinHeight,
-                        child: sliding,
+                        builder: scrollbarHandler,
                       ),
                     )
                   // fill the screen width
@@ -107,10 +111,9 @@ class PipScreen extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: PipSliding(
-                        pipProvider: pipProvider,
-                        minHeight: slidingPanelMinHeight + safePadding.bottom,
-                        child: sliding,
-                      ),
+                          pipProvider: pipProvider,
+                          minHeight: slidingPanelMinHeight + safePadding.bottom,
+                          builder: scrollbarHandler),
                     );
             }
 
@@ -125,7 +128,7 @@ class PipScreen extends StatelessWidget {
                 child: PipSliding(
                   pipProvider: pipProvider,
                   minHeight: slidingPanelMinHeight + safePadding.bottom,
-                  child: sliding,
+                  builder: scrollbarHandler,
                 ),
               );
             }
@@ -148,7 +151,7 @@ class PipScreen extends StatelessWidget {
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
                       minHeight: slidingPanelMinHeight,
-                      child: sliding,
+                      builder: scrollbarHandler,
                     )),
               );
             }
@@ -171,7 +174,7 @@ class PipScreen extends StatelessWidget {
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
                       minHeight: slidingPanelMinHeight,
-                      child: sliding,
+                      builder: scrollbarHandler,
                     )),
               );
             }

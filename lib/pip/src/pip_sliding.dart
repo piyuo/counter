@@ -12,7 +12,7 @@ const BorderRadiusGeometry _slidingPanelRadius = BorderRadius.only(
 /// SlidingPanel show project settings or runtime information
 class PipSliding extends StatelessWidget {
   const PipSliding({
-    required this.child,
+    required this.builder,
     required this.pipProvider,
     required this.minHeight,
     this.isShowDragHeader = true,
@@ -20,8 +20,8 @@ class PipSliding extends StatelessWidget {
     super.key,
   });
 
-  /// the child widget
-  final Widget child;
+  /// the builder function
+  final Widget Function(ScrollController sc) builder;
 
   /// the pip provider
   final PipProvider pipProvider;
@@ -60,15 +60,30 @@ class PipSliding extends StatelessWidget {
                 minHeight: minHeight,
                 maxHeight: constraints.maxHeight,
                 borderRadius: _slidingPanelRadius,
-                panel: Align(
+                panelBuilder: (scrollController) {
+                  return Align(
+                    alignment: Alignment.topLeft,
+                    child: SizedBox(
+                        width: width,
+                        child: ClipRRect(
+                          borderRadius: _slidingPanelRadius,
+                          child: isShowDragHeader
+                              ? _DragHeader(child: builder(scrollController))
+                              : builder(scrollController),
+                        )),
+                  );
+                },
+                /*panel: Align(
                   alignment: Alignment.topLeft,
                   child: SizedBox(
                       width: width,
                       child: ClipRRect(
                         borderRadius: _slidingPanelRadius,
-                        child: isShowDragHeader ? _DragHeader(child: child) : child,
+                        child: isShowDragHeader
+                            ? _DragHeader(child: builder(ScrollController()))
+                            : builder(ScrollController()),
                       )),
-                ),
+                ),*/
               );
             },
           ));
