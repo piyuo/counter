@@ -52,7 +52,6 @@ class PipScaffold extends StatelessWidget {
         bottomNavigationBar: bottomNavigationBar,
         backgroundColor: getCupertinoListSectionBackgroundColor(context),
         body: SuperScaffold(
-//          stretch: false,
           appBar: SuperAppBar(
             previousPageTitle: previousPageTitle ?? context.l.back,
             backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.5),

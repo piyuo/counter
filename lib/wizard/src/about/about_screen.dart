@@ -26,69 +26,67 @@ class AboutScreen extends StatelessWidget {
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  pip.PipHeader(
-                    child: Column(
-                      children: [
-                        Image(
-                          image: AssetImage('assets/icon/icon.png'),
-                          width: 145,
-                          height: 140,
-                        ),
-                        const SizedBox(height: 8.0),
-                        Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
-                        Text(context.l.product_name,
-                            style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                      ],
-                    ),
-                  ),
-                  CupertinoListSection(
-                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+            child: Column(
+              children: [
+                pip.PipHeader(
+                  child: Column(
                     children: [
-                      CupertinoListTile(
-                        additionalInfo: Text(aboutScreenProvider.platform),
-                        title: Text(context.l.about_screen_platform),
+                      Image(
+                        image: AssetImage('assets/icon/icon.png'),
+                        width: 145,
+                        height: 140,
                       ),
-                      CupertinoListTile(
-                        additionalInfo: Text(aboutScreenProvider.appVersion),
-                        title: Text(context.l.about_screen_app_version),
-                        onTap: () => aboutScreenProvider.onTapVersion(projectProvider),
-                      ),
+                      const SizedBox(height: 8.0),
+                      Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
+                      Text(context.l.product_name,
+                          style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
                     ],
                   ),
+                ),
+                CupertinoListSection(
+                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                  children: [
+                    CupertinoListTile(
+                      additionalInfo: Text(aboutScreenProvider.platform),
+                      title: Text(context.l.about_screen_platform),
+                    ),
+                    CupertinoListTile(
+                      additionalInfo: Text(aboutScreenProvider.appVersion),
+                      title: Text(context.l.about_screen_app_version),
+                      onTap: () => aboutScreenProvider.onTapVersion(projectProvider),
+                    ),
+                  ],
+                ),
+                CupertinoListSection(
+                  header: Text(context.l.about_screen_models),
+                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                  children: [
+                    CupertinoListTile(
+                      trailing: CupertinoListTileChevron(),
+                      title: Text(context.l.about_screen_benchmark),
+                      onTap: () {
+                        Navigator.of(context).pushNamed(benchmarkRoute, arguments: {
+                          'previousPageTitle': pageTitle,
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                if (aboutScreenProvider._versionTapCount >= 10)
                   CupertinoListSection(
-                    header: Text(context.l.about_screen_models),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
+                        title: Text(context.l.about_screen_opencv_build_info),
                         trailing: CupertinoListTileChevron(),
-                        title: Text(context.l.about_screen_benchmark),
                         onTap: () {
-                          Navigator.of(context).pushNamed(benchmarkRoute, arguments: {
-                            'previousPageTitle': pageTitle,
-                          });
+                          Navigator.of(context).pushNamed(opencvRoute);
                         },
                       ),
                     ],
                   ),
-                  if (aboutScreenProvider._versionTapCount >= 10)
-                    CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      children: [
-                        CupertinoListTile(
-                          title: Text(context.l.about_screen_opencv_build_info),
-                          trailing: CupertinoListTileChevron(),
-                          onTap: () {
-                            Navigator.of(context).pushNamed(opencvRoute);
-                          },
-                        ),
-                      ],
-                    ),
-                  pip.PipFooter(),
-                ],
-              ),
+                pip.PipFooter(),
+              ],
             ),
           );
         },
