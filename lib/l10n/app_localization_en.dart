@@ -51,6 +51,9 @@ class AppLocalizationEn extends AppLocalization {
   String get language_screen_language => 'Language';
 
   @override
+  String get project_view_no_videos => 'No video source available.';
+
+  @override
   String get about_screen_title => 'About';
 
   @override

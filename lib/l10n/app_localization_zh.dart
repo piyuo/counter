@@ -51,6 +51,9 @@ class AppLocalizationZh extends AppLocalization {
   String get language_screen_language => '語言';
 
   @override
+  String get project_view_no_videos => '沒有影像來源。';
+
+  @override
   String get about_screen_title => '關於';
 
   @override

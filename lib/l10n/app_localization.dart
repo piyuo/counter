@@ -179,6 +179,12 @@ abstract class AppLocalization {
   /// **'Language'**
   String get language_screen_language;
 
+  /// No description provided for @project_view_no_videos.
+  ///
+  /// In en, this message translates to:
+  /// **'No video source available.'**
+  String get project_view_no_videos;
+
   /// No description provided for @about_screen_title.
   ///
   /// In en, this message translates to:

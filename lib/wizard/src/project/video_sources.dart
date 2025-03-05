@@ -47,7 +47,7 @@ List<Widget> buildVideoSources(
               );
               if (context.mounted) {
                 // wait 1 second for webcam to start. webcam tends to return before it's ready
-                await Future.delayed(const Duration(seconds: 1));
+                await Future.delayed(const Duration(milliseconds: 300));
                 if (context.mounted) {
                   Navigator.of(context).pushNamed(projectRoute);
                 }

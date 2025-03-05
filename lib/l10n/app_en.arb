@@ -13,6 +13,7 @@
     "wizard_screen_open_projects_tip":"All projects will be saved locally automatically",
     "wizard_screen_open_projects":"Open existing project",
     "language_screen_language":"Language",
+    "project_view_no_videos":"No video source available.",
     "about_screen_title":"About",
     "about_screen_platform":"Platform",
     "about_screen_app_version":"App Version",

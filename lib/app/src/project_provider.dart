@@ -42,6 +42,9 @@ class ProjectProvider with ChangeNotifier {
     this.onDeleteProject,
   });
 
+  /// is project loading, this used to new project or loading project
+  bool isLoading = false;
+
   /// keep the benchmark result to use in the create project screen choose default model
   BenchmarkLocalStorage benchmarkLocalStorage = BenchmarkLocalStorage();
 
@@ -185,7 +188,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// true if use are allowed to add camera
   bool get isAddCameraAllowed {
-    if (project == null) {
+    if (project == null || isLoading) {
       return hasCamera;
     }
     // camera must be supported and no camera exists in the project
@@ -421,51 +424,56 @@ class ProjectProvider with ChangeNotifier {
 
   /// open a existing project
   Future<bool> openProject(BuildContext context, String projectId) async {
-    project = await getProjectById(projectId);
-    if (project == null) {
-      return false;
-    }
-    if (!context.mounted) {
-      return false;
-    }
-    await _makeProjectOpened(context);
-    for (final videoProvider in videoProviders) {
-      videoProvider.resetSamplerFilter(project!.filter);
-    }
-
-    // reset zone global id first to avoid id conflict
-    final nextZoneId = getNextZoneId();
-    setNextZoneColorIndex(nextZoneId);
-
-    // load recent activities
-    final recentActivities = await onGetRecentProjectActivities!(projectId);
-    final videoProviderMap = {for (var vp in videoProviders) vp.video.videoId: vp};
-    for (final dbActivity in recentActivities) {
-      final videoProvider = videoProviderMap[dbActivity.videoId];
-      if (videoProvider != null) {
-        final activity = vision.Activity(
-          createdAt: dbActivity.createdAt,
-          spawned: dbActivity.spawned,
-          vanished: dbActivity.vanished,
-          entered: dbActivity.entered,
-          exited: dbActivity.exited,
-          stagnant: dbActivity.stagnant,
-          reentered: dbActivity.reentered,
-          occupied: dbActivity.occupied,
-          stayDuration: dbActivity.stayDuration,
-        );
-
-        videoProvider.addActivity(dbActivity.zoneId, dbActivity.classId, activity);
+    setLoading(true);
+    try {
+      project = await getProjectById(projectId);
+      if (project == null) {
+        return false;
       }
-    }
+      if (!context.mounted) {
+        return false;
+      }
+      await _makeProjectOpened(context);
+      for (final videoProvider in videoProviders) {
+        videoProvider.resetSamplerFilter(project!.filter);
+      }
 
-    DateTime now = DateTime.now();
-    for (final videoProvider in videoProviders) {
-      videoProvider.updateSample(now);
-    }
+      // reset zone global id first to avoid id conflict
+      final nextZoneId = getNextZoneId();
+      setNextZoneColorIndex(nextZoneId);
 
-    notifyListeners();
-    return true;
+      // load recent activities
+      final recentActivities = await onGetRecentProjectActivities!(projectId);
+      final videoProviderMap = {for (var vp in videoProviders) vp.video.videoId: vp};
+      for (final dbActivity in recentActivities) {
+        final videoProvider = videoProviderMap[dbActivity.videoId];
+        if (videoProvider != null) {
+          final activity = vision.Activity(
+            createdAt: dbActivity.createdAt,
+            spawned: dbActivity.spawned,
+            vanished: dbActivity.vanished,
+            entered: dbActivity.entered,
+            exited: dbActivity.exited,
+            stagnant: dbActivity.stagnant,
+            reentered: dbActivity.reentered,
+            occupied: dbActivity.occupied,
+            stayDuration: dbActivity.stayDuration,
+          );
+
+          videoProvider.addActivity(dbActivity.zoneId, dbActivity.classId, activity);
+        }
+      }
+
+      DateTime now = DateTime.now();
+      for (final videoProvider in videoProviders) {
+        videoProvider.updateSample(now);
+      }
+
+      notifyListeners();
+      return true;
+    } finally {
+      setLoading(false);
+    }
   }
 
   /// notify listeners and [onProjectSave] callback, if videoProvider is not null, it means the change is from the video source
@@ -486,23 +494,34 @@ class ProjectProvider with ChangeNotifier {
     String? path,
     int? videoId,
   }) async {
-    _onProjectClosed();
-    setNextZoneColorIndex(0);
+    setLoading(true);
+    try {
+      _onProjectClosed();
+      setNextZoneColorIndex(0);
 
-    // create project with a video source
-    project = Project(
-      projectId: projectId,
-      projectName: _createProjectName(context, mediaType, path),
-      videos: [],
-      model: benchmarkLocalStorage.recommendedModel,
-    );
-    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
-    await _makeProjectOpened(context);
-    for (final videoProvider in videoProviders) {
-      videoProvider.resetSamplerFilter(project!.filter);
+      // create project with a video source
+      project = Project(
+        projectId: projectId,
+        projectName: _createProjectName(context, mediaType, path),
+        videos: [],
+        model: benchmarkLocalStorage.recommendedModel,
+      );
+      _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+      await _makeProjectOpened(context);
+      for (final videoProvider in videoProviders) {
+        videoProvider.resetSamplerFilter(project!.filter);
+      }
+      saveProject(null);
+      return true;
+    } finally {
+      setLoading(false);
     }
-    saveProject(null);
-    return true;
+  }
+
+  /// set loading state
+  void setLoading(bool value) {
+    isLoading = value;
+    notifyListeners();
   }
 
   /// prepare the project to be ready, this function will be called when the project is opened

@@ -1,3 +1,4 @@
+import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -78,8 +79,13 @@ class ProjectView extends StatelessWidget {
             builder: (context, constraints) {
               // Choose the video view based on the state.
               Widget videoContent;
-              if (projectProvider.videoProviders.isEmpty) {
-                videoContent = const Center(child: Text('No video source available'));
+              if (projectProvider.isLoading) {
+                videoContent = Center(
+                    child: CupertinoActivityIndicator(
+                  radius: 48,
+                ));
+              } else if (projectProvider.videoProviders.isEmpty) {
+                videoContent = Center(child: Text(context.l.project_view_no_videos));
               } else if (projectProvider.fullscreenVideoProvider != null) {
                 videoContent = VideoView(
                   previewAlignment: getPreviewAlignment(context, constraints.maxWidth),
