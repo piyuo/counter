@@ -11,9 +11,6 @@ import 'pip_sliding.dart';
 /// the sliding layout
 enum SlidingLayout { portrait, landscape, landscape90, landscape270 }
 
-/// the minimum height of the sliding panel
-const double _slidingPanelMinHeight = 250;
-
 /// the width threshold for sidebar layout
 const double _sidebarLayoutWidthThreshold = 1350;
 
@@ -58,6 +55,7 @@ class PipScreen extends StatelessWidget {
 
             /// the width of the sliding panel
             double slidingPanelWidth = isCompactLayout ? 320 : 360;
+            double slidingPanelMinHeight = isCompactLayout ? 52 : 250;
 
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
@@ -97,7 +95,7 @@ class PipScreen extends StatelessWidget {
                       child: PipSliding(
                         pipProvider: pipProvider,
                         width: slidingPanelWidth,
-                        minHeight: _slidingPanelMinHeight,
+                        minHeight: slidingPanelMinHeight,
                         child: sliding,
                       ),
                     )
@@ -110,7 +108,7 @@ class PipScreen extends StatelessWidget {
                       right: 0,
                       child: PipSliding(
                         pipProvider: pipProvider,
-                        minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                        minHeight: slidingPanelMinHeight + safePadding.bottom,
                         child: sliding,
                       ),
                     );
@@ -126,7 +124,7 @@ class PipScreen extends StatelessWidget {
                 right: 0,
                 child: PipSliding(
                   pipProvider: pipProvider,
-                  minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                  minHeight: slidingPanelMinHeight + safePadding.bottom,
                   child: sliding,
                 ),
               );
@@ -149,7 +147,7 @@ class PipScreen extends StatelessWidget {
                     child: PipSliding(
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
-                      minHeight: _slidingPanelMinHeight,
+                      minHeight: slidingPanelMinHeight,
                       child: sliding,
                     )),
               );
@@ -172,7 +170,7 @@ class PipScreen extends StatelessWidget {
                     child: PipSliding(
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
-                      minHeight: _slidingPanelMinHeight,
+                      minHeight: slidingPanelMinHeight,
                       child: sliding,
                     )),
               );
