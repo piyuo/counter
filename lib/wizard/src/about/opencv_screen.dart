@@ -6,18 +6,23 @@ import 'package:vision/vision.dart' as vision;
 
 class OpencvScreen extends StatelessWidget {
   const OpencvScreen({
+    required this.onScroll,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<OpencvScreenProvider>(
-      create: (_) => OpencvScreenProvider()..init(),
+      create: (_) => OpencvScreenProvider()..init(onScroll),
       child: Consumer<OpencvScreenProvider>(
         builder: (context, opencvScreenProvider, child) {
           return pip.PipScaffold(
             title: 'OpenCV',
             child: SingleChildScrollView(
+              controller: opencvScreenProvider.scrollController,
               child: Column(
                 children: [
                   Container(
@@ -50,14 +55,21 @@ class OpencvScreenProvider with ChangeNotifier {
   /// _cLib is the C++ library interface.
   final vision.Clib _clib = vision.Clib();
 
-  Future<void> init() async {
+  /// The scroll controller
+  ScrollController scrollController = ScrollController();
+
+  Future<void> init(pip.ScrollCallback onScroll) async {
     buildInfo = _clib.getBuildInfo();
+    scrollController.addListener(() {
+      onScroll(scrollController);
+    });
     notifyListeners();
   }
 
   @override
   void dispose() {
     _clib.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 }
