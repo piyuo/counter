@@ -29,7 +29,7 @@ class WizardScreen extends StatelessWidget {
 
     final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WizardScreenProvider>(
-      create: (_) => WizardScreenProvider()..init(onScroll),
+      create: (_) => WizardScreenProvider(onScroll)..init(),
       child: Consumer2<app.ProjectProvider, WizardScreenProvider>(
         builder: (context, projectProvider, wizardScreenProvider, child) {
           return pip.PipScaffold(
@@ -39,7 +39,7 @@ class WizardScreen extends StatelessWidget {
                 child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
               ),
               child: SingleChildScrollView(
-                controller: wizardScreenProvider.scrollController,
+                controller: wizardScreenProvider._scrollController,
                 child: Column(
                   children: [
                     pip.PipHeader(
@@ -157,22 +157,25 @@ class WizardScreen extends StatelessWidget {
 
 /// provide welcome screen support
 class WizardScreenProvider with ChangeNotifier {
+  WizardScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
+
   /// The version of vision app used.
   String appVersion = '';
 
   /// The scroll controller
-  ScrollController scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  Future<void> init(pip.ScrollCallback onScroll) async {
+  Future<void> init() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
-    scrollController.addListener(() => onScroll(scrollController));
     notifyListeners();
   }
 
   @override
   void dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 }

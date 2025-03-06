@@ -25,7 +25,7 @@ class BenchmarkScreen extends StatelessWidget {
     return ChangeNotifierProvider<BenchmarkScreenProvider>(
       create: (_) {
         final projectProvider = app.ProjectProvider.of(context);
-        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage)..init(onScroll);
+        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage, onScroll);
       },
       child: Consumer<BenchmarkScreenProvider>(
         builder: (context, benchmarkScreenProvider, child) {
@@ -56,7 +56,7 @@ class BenchmarkScreen extends StatelessWidget {
               },
             ),
             child: SingleChildScrollView(
-              controller: benchmarkScreenProvider.scrollController,
+              controller: benchmarkScreenProvider._scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -106,12 +106,12 @@ class BenchmarkScreen extends StatelessWidget {
 
 /// provide benchmark screen support
 class BenchmarkScreenProvider with ChangeNotifier {
-  BenchmarkScreenProvider(
-    this.benchmarkLocalStorage,
-  );
+  BenchmarkScreenProvider(this.benchmarkLocalStorage, pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
 
   /// The scroll controller
-  ScrollController scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   /// benchmark local storage
   final app.BenchmarkLocalStorage benchmarkLocalStorage;
@@ -150,16 +150,9 @@ class BenchmarkScreenProvider with ChangeNotifier {
     return errorCode;
   }
 
-  /// Initialize the provider
-  Future<void> init(pip.ScrollCallback onScroll) async {
-    scrollController.addListener(() {
-      onScroll(scrollController);
-    });
-  }
-
   @override
   void dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 }

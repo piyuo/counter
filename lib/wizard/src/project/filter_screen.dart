@@ -78,7 +78,7 @@ class FilterScreen extends StatelessWidget {
                 child: pip.PipScaffold(
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
-                    controller: filterScreenProvider.scrollController,
+                    controller: filterScreenProvider._scrollController,
                     child: Column(children: [
                       pip.PipHeader(
                         child: Column(
@@ -162,11 +162,11 @@ class FilterScreenProvider with ChangeNotifier {
     required this.end,
     required pip.ScrollCallback onScroll,
   }) {
-    scrollController.addListener(() => onScroll(scrollController));
+    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// The scroll controller
-  ScrollController scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   /// the filter type
   vision.FilterType filterType;
@@ -185,7 +185,7 @@ class FilterScreenProvider with ChangeNotifier {
 
   @override
   dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 

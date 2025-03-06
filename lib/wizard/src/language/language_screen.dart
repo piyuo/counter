@@ -26,12 +26,12 @@ class LanguageScreen extends StatelessWidget {
     final languages = Language.fromSupportedLocales(context);
 
     return ChangeNotifierProvider<LanguageScreenProvider>(
-        create: (_) => LanguageScreenProvider()..init(onScroll),
+        create: (_) => LanguageScreenProvider(onScroll),
         child: Consumer<LanguageScreenProvider>(builder: (context, languageScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-              controller: languageScreenProvider.scrollController,
+              controller: languageScreenProvider._scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -67,16 +67,16 @@ class LanguageScreen extends StatelessWidget {
 
 /// provide language screen support
 class LanguageScreenProvider with ChangeNotifier {
-  /// The scroll controller.
-  final ScrollController scrollController = ScrollController();
-
-  Future<void> init(pip.ScrollCallback onScroll) async {
-    scrollController.addListener(() => onScroll(scrollController));
+  LanguageScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
   }
+
+  /// The scroll controller.
+  final _scrollController = ScrollController();
 
   @override
   dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 }

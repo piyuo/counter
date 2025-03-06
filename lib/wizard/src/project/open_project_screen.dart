@@ -35,18 +35,18 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
   String _loadingProject = '';
 
   /// The scroll controller.
-  final ScrollController scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     _initializeProjects();
-    scrollController.addListener(() => widget.onScroll(scrollController));
+    _scrollController.addListener(() => widget.onScroll(_scrollController));
   }
 
   @override
   void dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -105,7 +105,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
     return pip.PipScaffold(
       previousPageTitle: widget.previousPageTitle,
       child: SingleChildScrollView(
-        controller: scrollController,
+        controller: _scrollController,
         child: Column(children: [
           buildHeader(),
           CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [

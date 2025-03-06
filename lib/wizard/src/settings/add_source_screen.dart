@@ -9,9 +9,13 @@ import '../project/video_sources.dart';
 /// Add new video screen
 class AddSourceScreen extends StatelessWidget {
   const AddSourceScreen({
+    required this.onScroll,
     this.previousPageTitle,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -24,29 +28,30 @@ class AddSourceScreen extends StatelessWidget {
       previousPageTitle: previousPageTitle,
       title: pageTitle,
       child: ChangeNotifierProvider<AddSourceScreenProvider>(
-        create: (_) => AddSourceScreenProvider(),
-        child: Consumer<AddSourceScreenProvider>(builder: (context, aiProvider, child) {
+        create: (_) => AddSourceScreenProvider(onScroll),
+        child: Consumer<AddSourceScreenProvider>(builder: (context, addSourceScreenProvider, child) {
           return SingleChildScrollView(
+              controller: addSourceScreenProvider._scrollController,
               child: Column(
-            children: [
-              ChangeNotifierProvider<VideoSourcesProvider>(
-                  create: (_) => VideoSourcesProvider(),
-                  child: Consumer<VideoSourcesProvider>(
-                    builder: (context, videoStarterProvider, child) => CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.add_video_screen_from),
-                      children: buildVideoSources(
-                        context,
-                        videoSourcesProvider: videoStarterProvider,
-                        projectProvider: projectProvider,
-                        isAddMode: true,
-                        previousPageTitle: previousPageTitle,
-                      ),
-                    ),
-                  )),
-              pip.PipFooter(),
-            ],
-          ));
+                children: [
+                  ChangeNotifierProvider<VideoSourcesProvider>(
+                      create: (_) => VideoSourcesProvider(),
+                      child: Consumer<VideoSourcesProvider>(
+                        builder: (context, videoStarterProvider, child) => CupertinoListSection(
+                          backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                          header: Text(context.l.add_video_screen_from),
+                          children: buildVideoSources(
+                            context,
+                            videoSourcesProvider: videoStarterProvider,
+                            projectProvider: projectProvider,
+                            isAddMode: true,
+                            previousPageTitle: previousPageTitle,
+                          ),
+                        ),
+                      )),
+                  pip.PipFooter(),
+                ],
+              ));
         }),
       ),
     );
@@ -55,9 +60,20 @@ class AddSourceScreen extends StatelessWidget {
 
 /// provider for add video screen
 class AddSourceScreenProvider with ChangeNotifier {
-  AddSourceScreenProvider();
+  AddSourceScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
+
+  /// The scroll controller
+  final ScrollController _scrollController = ScrollController();
 
   void redraw() {
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }

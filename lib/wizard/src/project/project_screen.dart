@@ -206,7 +206,7 @@ class ProjectScreen extends StatelessWidget {
                     },
                   ),
                   child: SingleChildScrollView(
-                    controller: projectScreenProvider.scrollController,
+                    controller: projectScreenProvider._scrollController,
                     child: Column(
                       children: [
                         pip.PipHeader(
@@ -292,7 +292,7 @@ class ProjectScreen extends StatelessWidget {
 /// provide project screen support.
 class ProjectScreenProvider with ChangeNotifier {
   ProjectScreenProvider(app.ProjectProvider projectProvider, pip.ScrollCallback onScroll) {
-    scrollController.addListener(() => onScroll(scrollController));
+    _scrollController.addListener(() => onScroll(_scrollController));
     _gaugeViewRefreshTimer = Timer.periodic(const Duration(minutes: 1), (timer) {
       if (projectProvider.videoPlayingState != app.VideoPlayingState.allPlay) {
         // some video is not playing, need to refresh their gauge count
@@ -308,7 +308,7 @@ class ProjectScreenProvider with ChangeNotifier {
   }
 
   /// The scroll controller
-  ScrollController scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   /// Timer to refresh the gauge view every minute where some video player stop counting.
   Timer? _gaugeViewRefreshTimer;
@@ -324,7 +324,7 @@ class ProjectScreenProvider with ChangeNotifier {
 
   @override
   dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     _gaugeViewRefreshTimer?.cancel();
     _indicatorRefreshTimer?.cancel();
     gaugeViewRedrawProvider.dispose();

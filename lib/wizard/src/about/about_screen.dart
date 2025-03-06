@@ -25,13 +25,13 @@ class AboutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageTitle = context.l.about_screen_title;
     return ChangeNotifierProvider<AboutScreenProvider>(
-      create: (_) => AboutScreenProvider()..init(onScroll),
+      create: (_) => AboutScreenProvider(onScroll)..init(),
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-                controller: aboutScreenProvider.scrollController,
+                controller: aboutScreenProvider._scrollController,
                 child: Column(
                   children: [
                     pip.PipHeader(
@@ -103,6 +103,10 @@ class AboutScreen extends StatelessWidget {
 
 /// provide about screen support
 class AboutScreenProvider with ChangeNotifier {
+  AboutScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
+
   /// The platform the system is running on.
   String platform = '';
 
@@ -113,20 +117,19 @@ class AboutScreenProvider with ChangeNotifier {
   int _versionTapCount = 0;
 
   /// The scroll controller.
-  final ScrollController scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  Future<void> init(pip.ScrollCallback onScroll) async {
+  Future<void> init() async {
     platform = await vision.getPlatformVersion() ?? '?';
     platform = getShortPlatformName(platform);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
-    scrollController.addListener(() => onScroll(scrollController));
     notifyListeners();
   }
 
   @override
   dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
