@@ -168,9 +168,7 @@ class WizardScreenProvider with ChangeNotifier {
   Future<void> init(pip.ScrollCallback onScroll) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
-    scrollController.addListener(() {
-      onScroll(scrollController);
-    });
+    scrollController.addListener(() => onScroll(scrollController));
     notifyListeners();
   }
 

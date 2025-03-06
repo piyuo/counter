@@ -136,11 +136,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   previousPageTitle: args!['previousPageTitle'],
                 );
               case opencvRoute:
-                return OpencvScreen(
-                  onScroll: widget.onScroll,
-                );
+                return OpencvScreen(onScroll: widget.onScroll);
               case projectRoute:
-                return ProjectScreen();
+                return ProjectScreen(onScroll: widget.onScroll);
               case openProjectRoute:
                 return OpenProjectScreen(
                   previousPageTitle: args!['previousPageTitle'],

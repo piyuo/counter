@@ -14,8 +14,12 @@ import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
   const ProjectScreen({
+    required this.onScroll,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +27,9 @@ class ProjectScreen extends StatelessWidget {
 
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<ProjectScreenProvider>(
-      create: (_) => ProjectScreenProvider(projectProvider),
+      create: (_) => ProjectScreenProvider(projectProvider, onScroll),
       child: Consumer2<app.ProjectProvider, ProjectScreenProvider>(
-        builder: (context, projectProvider, homeScreenProvider, child) {
+        builder: (context, projectProvider, projectScreenProvider, child) {
           if (projectProvider.project == null) {
             // project may not open in time, just return empty. project init is fast so no need to show progress.
             return const SizedBox();
@@ -157,7 +161,7 @@ class ProjectScreen extends StatelessWidget {
           }
 
           return ChangeNotifierProvider<GaugeViewRedrawProvider>.value(
-              value: homeScreenProvider.gaugeViewRedrawProvider,
+              value: projectScreenProvider.gaugeViewRedrawProvider,
               child: PopScope(
                 canPop: false,
                 onPopInvokedWithResult: (bool didPop, result) async {
@@ -202,6 +206,7 @@ class ProjectScreen extends StatelessWidget {
                     },
                   ),
                   child: SingleChildScrollView(
+                    controller: projectScreenProvider.scrollController,
                     child: Column(
                       children: [
                         pip.PipHeader(
@@ -211,7 +216,7 @@ class ProjectScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 5),
                                 child: ChangeNotifierProvider<IndicatorRedrawProvider>.value(
-                                  value: homeScreenProvider.indicatorRedrawProvider,
+                                  value: projectScreenProvider.indicatorRedrawProvider,
                                   child: Consumer<IndicatorRedrawProvider>(
                                     builder: (context, indicatorProvider, child) => IndicatorView(
                                       value: indicatorProvider.value.toDouble(),
@@ -286,7 +291,8 @@ class ProjectScreen extends StatelessWidget {
 
 /// provide project screen support.
 class ProjectScreenProvider with ChangeNotifier {
-  ProjectScreenProvider(app.ProjectProvider projectProvider) {
+  ProjectScreenProvider(app.ProjectProvider projectProvider, pip.ScrollCallback onScroll) {
+    scrollController.addListener(() => onScroll(scrollController));
     _gaugeViewRefreshTimer = Timer.periodic(const Duration(minutes: 1), (timer) {
       if (projectProvider.videoPlayingState != app.VideoPlayingState.allPlay) {
         // some video is not playing, need to refresh their gauge count
@@ -300,6 +306,9 @@ class ProjectScreenProvider with ChangeNotifier {
       indicatorRedrawProvider.setValue(value);
     });
   }
+
+  /// The scroll controller
+  ScrollController scrollController = ScrollController();
 
   /// Timer to refresh the gauge view every minute where some video player stop counting.
   Timer? _gaugeViewRefreshTimer;
@@ -315,6 +324,7 @@ class ProjectScreenProvider with ChangeNotifier {
 
   @override
   dispose() {
+    scrollController.dispose();
     _gaugeViewRefreshTimer?.cancel();
     _indicatorRefreshTimer?.cancel();
     gaugeViewRedrawProvider.dispose();
