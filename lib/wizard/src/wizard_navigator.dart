@@ -138,9 +138,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case languageRoute:
                 return LanguageScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case filterRoute:
-                return FilterScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return FilterScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case addSourceRoute:
                 return AddSourceScreen(
                   previousPageTitle: args!['previousPageTitle'],

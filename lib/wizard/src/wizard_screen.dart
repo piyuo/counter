@@ -145,8 +145,6 @@ class WizardScreen extends StatelessWidget {
                             }),
                       ],
                     ),
-                    // Container(height: 500, color: CupertinoColors.activeBlue),
-                    // Container(height: 500, color: CupertinoColors.activeOrange),
                     pip.PipFooter(),
                   ],
                 ),

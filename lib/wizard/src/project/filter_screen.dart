@@ -8,12 +8,16 @@ import 'package:vision/vision.dart' as vision;
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({
+    required this.onScroll,
     this.previousPageTitle,
     super.key,
   });
 
   /// the previous page title
   final String? previousPageTitle;
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +26,10 @@ class FilterScreen extends StatelessWidget {
     return Consumer<app.ProjectProvider>(
       builder: (context, projectProvider, child) => ChangeNotifierProvider(
         create: (_) => FilterScreenProvider(
-          filterType: projectProvider.project!.filter.filterType,
-          start: projectProvider.project!.filter.start,
-          end: projectProvider.project!.filter.end,
-        ),
+            filterType: projectProvider.project!.filter.filterType,
+            start: projectProvider.project!.filter.start,
+            end: projectProvider.project!.filter.end,
+            onScroll: onScroll),
         child: Consumer<FilterScreenProvider>(
           builder: (context, filterScreenProvider, child) {
             bool checkStartBeforeEnd({TimeOfDay? start, TimeOfDay? end}) {
@@ -74,6 +78,7 @@ class FilterScreen extends StatelessWidget {
                 child: pip.PipScaffold(
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
+                    controller: filterScreenProvider.scrollController,
                     child: Column(children: [
                       pip.PipHeader(
                         child: Column(
@@ -110,12 +115,14 @@ class FilterScreen extends StatelessWidget {
                           AnimatedContainer(
                               duration: const Duration(milliseconds: 200),
                               height: filterScreenProvider.isStartTimePickerVisible ? 120 : 0,
-                              child: CupertinoDatePicker(
-                                initialDateTime: filterScreenProvider.startTime,
-                                mode: CupertinoDatePickerMode.time,
-                                onDateTimeChanged: (DateTime datetime) {
-                                  filterScreenProvider.setStartTime(datetime);
-                                },
+                              child: pip.AbsorbSliding(
+                                child: CupertinoDatePicker(
+                                  initialDateTime: filterScreenProvider.startTime,
+                                  mode: CupertinoDatePickerMode.time,
+                                  onDateTimeChanged: (DateTime datetime) async {
+                                    filterScreenProvider.setStartTime(datetime);
+                                  },
+                                ),
                               )),
                           CupertinoListTile(
                             title: Text(context.l.filter_screen_error_end),
@@ -126,13 +133,14 @@ class FilterScreen extends StatelessWidget {
                           AnimatedContainer(
                               duration: const Duration(milliseconds: 200),
                               height: filterScreenProvider.isEndTimePickerVisible ? 120 : 0,
-                              child: CupertinoDatePicker(
+                              child: pip.AbsorbSliding(
+                                  child: CupertinoDatePicker(
                                 initialDateTime: filterScreenProvider.endTime,
                                 mode: CupertinoDatePickerMode.time,
                                 onDateTimeChanged: (DateTime datetime) {
                                   filterScreenProvider.setEndTime(datetime);
                                 },
-                              )),
+                              ))),
                         ],
                       ),
                       pip.PipFooter(),
@@ -152,7 +160,13 @@ class FilterScreenProvider with ChangeNotifier {
     required this.filterType,
     required this.start,
     required this.end,
-  });
+    required pip.ScrollCallback onScroll,
+  }) {
+    scrollController.addListener(() => onScroll(scrollController));
+  }
+
+  /// The scroll controller
+  ScrollController scrollController = ScrollController();
 
   /// the filter type
   vision.FilterType filterType;
@@ -168,6 +182,12 @@ class FilterScreenProvider with ChangeNotifier {
 
   /// the end time picker is visible or not
   bool isEndTimePickerVisible = false;
+
+  @override
+  dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   /// show start time picker
   void showStartTimePicker() {

@@ -4,6 +4,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
 
+import 'absorb_sliding.dart';
+
 enum SlideDirection { up, down }
 
 enum PanelState { open, closed }
@@ -362,12 +364,25 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     }
 
     return Listener(
-      onPointerDown: (PointerDownEvent p) => _vt.addPosition(p.timeStamp, p.position),
+      onPointerDown: (PointerDownEvent p) {
+        if (pipAbsorbSliding) {
+          return;
+        }
+        _vt.addPosition(p.timeStamp, p.position);
+      },
       onPointerMove: (PointerMoveEvent p) {
+        if (pipAbsorbSliding) {
+          return;
+        }
         _vt.addPosition(p.timeStamp, p.position); // add current position for velocity tracking
         _onGestureSlide(p.delta.dy);
       },
-      onPointerUp: (PointerUpEvent p) => _onGestureEnd(_vt.getVelocity()),
+      onPointerUp: (PointerUpEvent p) {
+        if (pipAbsorbSliding) {
+          return;
+        }
+        _onGestureEnd(_vt.getVelocity());
+      },
       child: child,
     );
   }
