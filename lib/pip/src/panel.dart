@@ -405,7 +405,6 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     // begin to close the panel if the user swipes down
 //    if (_isPanelOpen && _sc.hasClients && _sc.offset <= 0) {
     if (_isPanelOpen && currentScrollOffset <= 0) {
-      print('child scroll offset: $currentScrollOffset');
       setState(() {
         if (dy < 0) {
           _scrollingEnabled = true;

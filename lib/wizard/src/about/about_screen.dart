@@ -10,6 +10,7 @@ import '../wizard_navigator.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({
+    required this.onScroll,
     this.previousPageTitle,
     super.key,
   });
@@ -17,78 +18,82 @@ class AboutScreen extends StatelessWidget {
   /// The title of the previous page.
   final String? previousPageTitle;
 
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
+
   @override
   Widget build(BuildContext context) {
     final pageTitle = context.l.about_screen_title;
     return ChangeNotifierProvider<AboutScreenProvider>(
-      create: (_) => AboutScreenProvider()..init(),
+      create: (_) => AboutScreenProvider()..init(onScroll),
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
+                controller: aboutScreenProvider.scrollController,
                 child: Column(
-              children: [
-                pip.PipHeader(
-                  child: Column(
-                    children: [
-                      Image(
-                        image: AssetImage('assets/icon/icon.png'),
-                        width: 145,
-                        height: 140,
-                      ),
-                      const SizedBox(height: 8.0),
-                      Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
-                      Text(context.l.product_name,
-                          style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-                    ],
-                  ),
-                ),
-                CupertinoListSection(
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                   children: [
-                    CupertinoListTile(
-                      additionalInfo: Text(aboutScreenProvider.platform),
-                      title: Text(context.l.about_screen_platform),
-                    ),
-                    CupertinoListTile(
-                      additionalInfo: Text(aboutScreenProvider.appVersion),
-                      title: Text(context.l.about_screen_app_version),
-                      onTap: () => aboutScreenProvider.onTapVersion(projectProvider),
-                    ),
-                  ],
-                ),
-                CupertinoListSection(
-                  header: Text(context.l.about_screen_models),
-                  backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                  children: [
-                    CupertinoListTile(
-                      trailing: CupertinoListTileChevron(),
-                      title: Text(context.l.about_screen_benchmark),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(benchmarkRoute, arguments: {
-                          'previousPageTitle': pageTitle,
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                if (aboutScreenProvider._versionTapCount >= 10)
-                  CupertinoListSection(
-                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [
-                      CupertinoListTile(
-                        title: Text(context.l.about_screen_opencv_build_info),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(opencvRoute);
-                        },
+                    pip.PipHeader(
+                      child: Column(
+                        children: [
+                          Image(
+                            image: AssetImage('assets/icon/icon.png'),
+                            width: 145,
+                            height: 140,
+                          ),
+                          const SizedBox(height: 8.0),
+                          Text(pageTitle, style: const TextStyle(fontSize: 20.0)),
+                          Text(context.l.product_name,
+                              style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                        ],
                       ),
-                    ],
-                  ),
-                pip.PipFooter(),
-              ],
-            )),
+                    ),
+                    CupertinoListSection(
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                          additionalInfo: Text(aboutScreenProvider.platform),
+                          title: Text(context.l.about_screen_platform),
+                        ),
+                        CupertinoListTile(
+                          additionalInfo: Text(aboutScreenProvider.appVersion),
+                          title: Text(context.l.about_screen_app_version),
+                          onTap: () => aboutScreenProvider.onTapVersion(projectProvider),
+                        ),
+                      ],
+                    ),
+                    CupertinoListSection(
+                      header: Text(context.l.about_screen_models),
+                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                          trailing: CupertinoListTileChevron(),
+                          title: Text(context.l.about_screen_benchmark),
+                          onTap: () {
+                            Navigator.of(context).pushNamed(benchmarkRoute, arguments: {
+                              'previousPageTitle': pageTitle,
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    if (aboutScreenProvider._versionTapCount >= 10)
+                      CupertinoListSection(
+                        backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                        children: [
+                          CupertinoListTile(
+                            title: Text(context.l.about_screen_opencv_build_info),
+                            trailing: CupertinoListTileChevron(),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(opencvRoute);
+                            },
+                          ),
+                        ],
+                      ),
+                    pip.PipFooter(),
+                  ],
+                )),
           );
         },
       ),
@@ -107,14 +112,26 @@ class AboutScreenProvider with ChangeNotifier {
   /// The version tap count.
   int _versionTapCount = 0;
 
-  Future<void> init() async {
+  /// The scroll controller.
+  final ScrollController scrollController = ScrollController();
+
+  Future<void> init(pip.ScrollCallback onScroll) async {
     platform = await vision.getPlatformVersion() ?? '?';
     platform = getShortPlatformName(platform);
 
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
+    scrollController.addListener(() {
+      onScroll(scrollController);
+    });
 
     notifyListeners();
+  }
+
+  @override
+  dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   String getShortPlatformName(String platform) {
