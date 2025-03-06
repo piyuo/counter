@@ -8,12 +8,16 @@ import 'package:vision/vision.dart' as vision;
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({
+    required this.onScroll,
     required this.videoProvider,
     required this.videoZone,
     required this.annotation,
     this.previousPageTitle,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -30,12 +34,13 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TallyScreenProvider(videoProvider, annotation),
+      create: (_) => TallyScreenProvider(videoProvider, annotation, onScroll),
       child: Consumer<TallyScreenProvider>(
-        builder: (context, tallyScreenProvider, child) {
+        builder: (context, counterScreenProvider, child) {
           return pip.PipScaffold(
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
+                controller: counterScreenProvider._scrollController,
                 child: Column(children: [
                   pip.PipHeader(
                     child: Column(
@@ -59,7 +64,7 @@ class CounterScreen extends StatelessWidget {
                           // This bool value toggles the switch.
                           value: annotation.enabled,
                           onChanged: (bool? value) {
-                            tallyScreenProvider.toggleEnabled(context, videoProvider, videoZone, annotation);
+                            counterScreenProvider.toggleEnabled(context, videoProvider, videoZone, annotation);
                           },
                         ),
                       ),
@@ -68,9 +73,9 @@ class CounterScreen extends StatelessWidget {
                   CupertinoListSection(
                     header: const Text('Title'),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    footer: tallyScreenProvider._titleErrorMessage.isNotEmpty
+                    footer: counterScreenProvider._titleErrorMessage.isNotEmpty
                         ? Text(
-                            tallyScreenProvider._titleErrorMessage,
+                            counterScreenProvider._titleErrorMessage,
                             style: TextStyle(color: CupertinoColors.systemRed),
                           )
                         : null,
@@ -79,8 +84,8 @@ class CounterScreen extends StatelessWidget {
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
                         padding: const EdgeInsets.all(16),
-                        controller: tallyScreenProvider.titleController,
-                        onChanged: (text) => tallyScreenProvider.setTitle(context, text),
+                        controller: counterScreenProvider.titleController,
+                        onChanged: (text) => counterScreenProvider.setTitle(context, text),
                       )
                     ],
                   ),
@@ -97,7 +102,7 @@ class CounterScreen extends StatelessWidget {
                           trailing: InputQty(
                             initVal: videoZone.reenteredThreshold,
                             onQtyChanged: (v) {
-                              tallyScreenProvider.setReenteredThreshold(videoZone, v.toInt());
+                              counterScreenProvider.setReenteredThreshold(videoZone, v.toInt());
                             },
                             decoration: QtyDecorationProps(
                               isBordered: false,
@@ -122,7 +127,7 @@ class CounterScreen extends StatelessWidget {
                           trailing: InputQty(
                             initVal: videoZone.cooldownThreshold,
                             onQtyChanged: (v) {
-                              tallyScreenProvider.setCooldownThreshold(videoZone, v.toInt());
+                              counterScreenProvider.setCooldownThreshold(videoZone, v.toInt());
                             },
                             decoration: QtyDecorationProps(
                               isBordered: false,
@@ -148,7 +153,7 @@ class CounterScreen extends StatelessWidget {
                           trailing: InputQty(
                             initVal: videoZone.stagnantThreshold,
                             onQtyChanged: (v) {
-                              tallyScreenProvider.setStagnantThreshold(videoZone, v.toInt());
+                              counterScreenProvider.setStagnantThreshold(videoZone, v.toInt());
                             },
                             decoration: QtyDecorationProps(
                               isBordered: false,
@@ -168,8 +173,8 @@ class CounterScreen extends StatelessWidget {
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
                         padding: const EdgeInsets.all(16),
-                        controller: tallyScreenProvider.prefixController,
-                        onChanged: (text) => tallyScreenProvider.setPrefix(text),
+                        controller: counterScreenProvider.prefixController,
+                        onChanged: (text) => counterScreenProvider.setPrefix(text),
                       )
                     ],
                   ),
@@ -181,8 +186,8 @@ class CounterScreen extends StatelessWidget {
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
                         padding: const EdgeInsets.all(16),
-                        controller: tallyScreenProvider.suffixController,
-                        onChanged: (text) => tallyScreenProvider.setSuffix(text),
+                        controller: counterScreenProvider.suffixController,
+                        onChanged: (text) => counterScreenProvider.setSuffix(text),
                       )
                     ],
                   ),
@@ -196,10 +201,11 @@ class CounterScreen extends StatelessWidget {
 
 /// provide tally screen support.
 class TallyScreenProvider with ChangeNotifier {
-  TallyScreenProvider(this.videoProvider, this.annotation) {
+  TallyScreenProvider(this.videoProvider, this.annotation, pip.ScrollCallback onScroll) {
     titleController.text = annotation.title;
     prefixController.text = annotation.prefix;
     suffixController.text = annotation.suffix;
+    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the video provider
@@ -220,8 +226,12 @@ class TallyScreenProvider with ChangeNotifier {
   /// the error message for title
   String _titleErrorMessage = '';
 
+  /// The scroll controller
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void dispose() {
+    _scrollController.dispose();
     titleController.dispose();
     prefixController.dispose();
     suffixController.dispose();

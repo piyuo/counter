@@ -156,26 +156,22 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                     previousPageTitle: args['previousPageTitle']);
               case webcamRoute:
                 return WebcamScreen(
-                  videoProvider: args!['videoProvider'],
-                  isAddMode: args['isAddMode'],
-                  previousPageTitle: args['previousPageTitle'],
-                );
+                    onScroll: widget.onScroll,
+                    videoProvider: args!['videoProvider'],
+                    isAddMode: args['isAddMode'],
+                    previousPageTitle: args['previousPageTitle']);
               case objectsRoute:
                 return ObjectsScreen(
-                  videoProvider: args!['videoProvider'],
-                  videoZone: args['videoZone'],
-                );
+                    onScroll: widget.onScroll, videoProvider: args!['videoProvider'], videoZone: args['videoZone']);
               case tallyRoute:
                 return CounterScreen(
-                  videoProvider: args!['videoProvider'],
-                  videoZone: args['videoZone'],
-                  annotation: args['annotation'],
-                  previousPageTitle: args['previousPageTitle'],
-                );
+                    onScroll: widget.onScroll,
+                    videoProvider: args!['videoProvider'],
+                    videoZone: args['videoZone'],
+                    annotation: args['annotation'],
+                    previousPageTitle: args['previousPageTitle']);
               case detectionRoute:
-                return DetectionScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return DetectionScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case urlRoute:
                 return UrlScreen(
                   initialUrl: args?['url'] ?? '',

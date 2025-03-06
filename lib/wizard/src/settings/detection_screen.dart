@@ -8,11 +8,15 @@ import 'package:vision/vision.dart' as vision;
 class DetectionScreen extends StatelessWidget {
   const DetectionScreen({
     required this.previousPageTitle,
+    required this.onScroll,
     super.key,
   });
 
   /// the previous page title
   final String? previousPageTitle;
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class DetectionScreen extends StatelessWidget {
       title: pageTitle,
       previousPageTitle: previousPageTitle,
       child: ChangeNotifierProvider<DetectionScreenProvider>(
-          create: (_) => DetectionScreenProvider(),
+          create: (_) => DetectionScreenProvider(onScroll),
           child: Consumer<DetectionScreenProvider>(builder: (context, detectionScreenProvider, child) {
             final classPercentage = '${(project!.confidenceThreshold * 100).toStringAsFixed(0)}%';
             final nmsPercentage = '${(project.nmsThreshold * 100).toStringAsFixed(0)}%';
@@ -34,7 +38,7 @@ class DetectionScreen extends StatelessWidget {
             final maxLostSeconds = '${project.maxLostSeconds}';
 
             return SingleChildScrollView(
-                controller: detectionScreenProvider.scrollController,
+                controller: detectionScreenProvider._scrollController,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -245,14 +249,16 @@ class DetectionScreen extends StatelessWidget {
 
 /// ai screen provider
 class DetectionScreenProvider with ChangeNotifier {
-  DetectionScreenProvider();
+  DetectionScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
 
   /// scroll controller
-  ScrollController scrollController = ScrollController();
+  final _scrollController = ScrollController();
 
   @override
   void dispose() {
-    scrollController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
