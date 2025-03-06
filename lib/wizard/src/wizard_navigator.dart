@@ -120,6 +120,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
       onGenerateRoute: (routeSettings) {
         final args = routeSettings.arguments as Map?;
         return CupertinoPageRoute(
+          fullscreenDialog: false,
           builder: (context) {
             switch (routeSettings.name) {
               case '/':

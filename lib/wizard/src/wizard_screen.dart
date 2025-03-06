@@ -125,9 +125,12 @@ class WizardScreen extends StatelessWidget {
                             title: Text(context.l.wizard_screen_about),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
-                              Navigator.of(context).pushNamed(aboutRoute, arguments: {
-                                'previousPageTitle': pageTitle,
-                              });
+                              Navigator.of(context).pushNamed(
+                                aboutRoute,
+                                arguments: {
+                                  'previousPageTitle': pageTitle,
+                                },
+                              );
                             }),
                         CupertinoListTile(
                             leading: Icon(CupertinoIcons.globe),
