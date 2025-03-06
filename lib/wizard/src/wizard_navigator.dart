@@ -132,6 +132,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 );
               case benchmarkRoute:
                 return BenchmarkScreen(
+                  onScroll: widget.onScroll,
                   previousPageTitle: args!['previousPageTitle'],
                 );
               case opencvRoute:

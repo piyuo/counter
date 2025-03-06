@@ -162,6 +162,7 @@ class WizardScreenProvider with ChangeNotifier {
   /// The version of vision app used.
   String appVersion = '';
 
+  /// The scroll controller
   ScrollController scrollController = ScrollController();
 
   Future<void> init(pip.ScrollCallback onScroll) async {

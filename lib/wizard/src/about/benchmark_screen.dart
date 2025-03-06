@@ -9,6 +9,7 @@ import 'package:vision/vision.dart' as vision;
 
 class BenchmarkScreen extends StatelessWidget {
   const BenchmarkScreen({
+    required this.onScroll,
     this.previousPageTitle,
     super.key,
   });
@@ -16,12 +17,15 @@ class BenchmarkScreen extends StatelessWidget {
   /// The title of the previous page.
   final String? previousPageTitle;
 
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BenchmarkScreenProvider>(
       create: (_) {
         final projectProvider = app.ProjectProvider.of(context);
-        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage);
+        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage)..init(onScroll);
       },
       child: Consumer<BenchmarkScreenProvider>(
         builder: (context, benchmarkScreenProvider, child) {
@@ -52,6 +56,7 @@ class BenchmarkScreen extends StatelessWidget {
               },
             ),
             child: SingleChildScrollView(
+              controller: benchmarkScreenProvider.scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -105,6 +110,9 @@ class BenchmarkScreenProvider with ChangeNotifier {
     this.benchmarkLocalStorage,
   );
 
+  /// The scroll controller
+  ScrollController scrollController = ScrollController();
+
   /// benchmark local storage
   final app.BenchmarkLocalStorage benchmarkLocalStorage;
 
@@ -140,5 +148,18 @@ class BenchmarkScreenProvider with ChangeNotifier {
     benchmarkInRunning = null;
     notifyListeners();
     return errorCode;
+  }
+
+  /// Initialize the provider
+  Future<void> init(pip.ScrollCallback onScroll) async {
+    scrollController.addListener(() {
+      onScroll(scrollController);
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }
