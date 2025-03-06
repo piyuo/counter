@@ -9,9 +9,13 @@ import '../wizard_navigator.dart';
 
 class OpenProjectScreen extends StatefulWidget {
   const OpenProjectScreen({
+    required this.onScroll,
     this.previousPageTitle,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -30,10 +34,20 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
   /// which project is loading
   String _loadingProject = '';
 
+  /// The scroll controller.
+  final ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
     _initializeProjects();
+    scrollController.addListener(() => widget.onScroll(scrollController));
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   Future<void> _initializeProjects() async {
@@ -91,6 +105,7 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
     return pip.PipScaffold(
       previousPageTitle: widget.previousPageTitle,
       child: SingleChildScrollView(
+        controller: scrollController,
         child: Column(children: [
           buildHeader(),
           CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [

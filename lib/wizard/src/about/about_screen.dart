@@ -118,13 +118,9 @@ class AboutScreenProvider with ChangeNotifier {
   Future<void> init(pip.ScrollCallback onScroll) async {
     platform = await vision.getPlatformVersion() ?? '?';
     platform = getShortPlatformName(platform);
-
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
-    scrollController.addListener(() {
-      onScroll(scrollController);
-    });
-
+    scrollController.addListener(() => onScroll(scrollController));
     notifyListeners();
   }
 

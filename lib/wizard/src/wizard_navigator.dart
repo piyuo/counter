@@ -140,9 +140,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case projectRoute:
                 return ProjectScreen(onScroll: widget.onScroll);
               case openProjectRoute:
-                return OpenProjectScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return OpenProjectScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case languageRoute:
                 return LanguageScreen(
                   previousPageTitle: args!['previousPageTitle'],
