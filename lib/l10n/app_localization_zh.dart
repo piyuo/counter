@@ -279,10 +279,10 @@ class AppLocalizationZh extends AppLocalization {
   String get webcam_manager_webcam => '網路攝影機';
 
   @override
-  String get camera_screen_front_camera => '後置相機';
+  String get camera_screen_front_camera => '前置相機';
 
   @override
-  String get camera_screen_back_camera => '前置相機';
+  String get camera_screen_back_camera => '後置相機';
 
   @override
   String get camera_screen_add_title => '新增相機';

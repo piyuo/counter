@@ -638,13 +638,13 @@ abstract class AppLocalization {
   /// No description provided for @camera_screen_front_camera.
   ///
   /// In en, this message translates to:
-  /// **'Back Camera'**
+  /// **'Front Camera'**
   String get camera_screen_front_camera;
 
   /// No description provided for @camera_screen_back_camera.
   ///
   /// In en, this message translates to:
-  /// **'Front Camera'**
+  /// **'Back Camera'**
   String get camera_screen_back_camera;
 
   /// No description provided for @camera_screen_add_title.

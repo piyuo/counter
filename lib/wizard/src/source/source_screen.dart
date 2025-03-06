@@ -11,10 +11,14 @@ import '../wizard_navigator.dart';
 /// The source screen for detail and zone editing.
 class SourceScreen extends StatelessWidget {
   const SourceScreen({
+    required this.onScroll,
     required this.videoProvider,
     this.previousPageTitle,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -30,8 +34,9 @@ class SourceScreen extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<VideoSourceScreenProvider>(
-          create: (_) => VideoSourceScreenProvider(
+        ChangeNotifierProvider<SourceScreenProvider>(
+          create: (_) => SourceScreenProvider(
+            onScroll: onScroll,
             projectProvider: projectProvider,
             videoProvider: videoProvider,
           ),
@@ -40,14 +45,14 @@ class SourceScreen extends StatelessWidget {
           value: videoProvider,
         ),
       ],
-      child: Consumer2<VideoSourceScreenProvider, app.VideoProvider>(
-        builder: (context, videoSourceScreenProvider, videoProvider, child) {
+      child: Consumer2<SourceScreenProvider, app.VideoProvider>(
+        builder: (context, sourceScreenProvider, videoProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             action: CupertinoButton(
               onPressed: () {
                 final videoZone = videoProvider.addZone(context);
-                videoSourceScreenProvider.zoneAdded();
+                sourceScreenProvider.zoneAdded();
                 Navigator.of(context).pushNamed(zoneRoute, arguments: {
                   'previousPageTitle': pageTitle,
                   'videoProvider': videoProvider,
@@ -57,6 +62,7 @@ class SourceScreen extends StatelessWidget {
               child: Text(context.l.source_screen_add_zone),
             ),
             child: SingleChildScrollView(
+              controller: sourceScreenProvider._scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -76,9 +82,9 @@ class SourceScreen extends StatelessWidget {
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.source_screen_video_name),
-                    footer: videoSourceScreenProvider._videoNameErrorMessage.isNotEmpty
+                    footer: sourceScreenProvider._videoNameErrorMessage.isNotEmpty
                         ? Text(
-                            videoSourceScreenProvider._videoNameErrorMessage,
+                            sourceScreenProvider._videoNameErrorMessage,
                             style: TextStyle(color: CupertinoColors.systemRed),
                           )
                         : null,
@@ -89,8 +95,8 @@ class SourceScreen extends StatelessWidget {
                         placeholder: context.l.source_screen_edit_placeholder,
                         padding: const EdgeInsets.all(16),
                         maxLength: 128,
-                        controller: videoSourceScreenProvider.videoNameController,
-                        onChanged: (text) => videoSourceScreenProvider.setVideoName(text),
+                        controller: sourceScreenProvider.videoNameController,
+                        onChanged: (text) => sourceScreenProvider.setVideoName(text),
                       ),
                     ],
                   ),
@@ -233,7 +239,7 @@ class SourceScreen extends StatelessWidget {
                                 Navigator.of(context).pushNamed(
                                   zoneRoute,
                                   arguments: {
-                                    'editVideoScreenProvider': videoSourceScreenProvider,
+                                    'editVideoScreenProvider': sourceScreenProvider,
                                     'previousPageTitle': pageTitle,
                                     'videoProvider': videoProvider,
                                     'videoZone': zone,
@@ -288,7 +294,7 @@ class SourceScreen extends StatelessWidget {
                                 divisions: 4,
                                 onChanged: (double value) async {
                                   await videoProvider.visionController.setPlaybackSpeed(value);
-                                  videoSourceScreenProvider.playbackSpeedChanged();
+                                  sourceScreenProvider.playbackSpeedChanged();
                                 },
                               ),
                             )),
@@ -348,13 +354,15 @@ class SourceScreen extends StatelessWidget {
   }
 }
 
-/// Provide video source screen support
-class VideoSourceScreenProvider with ChangeNotifier {
-  VideoSourceScreenProvider({
+/// Provide source screen support
+class SourceScreenProvider with ChangeNotifier {
+  SourceScreenProvider({
     required this.projectProvider,
     required this.videoProvider,
+    required pip.ScrollCallback onScroll,
   }) {
     videoNameController.text = videoProvider.video.videoName;
+    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the project provider
@@ -369,9 +377,13 @@ class VideoSourceScreenProvider with ChangeNotifier {
   /// the error message for video name
   String _videoNameErrorMessage = '';
 
+  /// The scroll controller
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void dispose() {
     videoNameController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 

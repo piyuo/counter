@@ -143,19 +143,17 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return AddSourceScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case sourceRoute:
                 return SourceScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                  videoProvider: args['videoProvider'],
-                );
+                    onScroll: widget.onScroll,
+                    previousPageTitle: args!['previousPageTitle'],
+                    videoProvider: args['videoProvider']);
               case settingsRoute:
-                return SettingsScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return SettingsScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case cameraRoute:
                 return CameraScreen(
-                  videoProvider: args!['videoProvider'],
-                  isAddMode: args['isAddMode'],
-                  previousPageTitle: args['previousPageTitle'],
-                );
+                    onScroll: widget.onScroll,
+                    videoProvider: args!['videoProvider'],
+                    isAddMode: args['isAddMode'],
+                    previousPageTitle: args['previousPageTitle']);
               case webcamRoute:
                 return WebcamScreen(
                   videoProvider: args!['videoProvider'],

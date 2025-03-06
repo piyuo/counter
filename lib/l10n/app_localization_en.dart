@@ -279,10 +279,10 @@ class AppLocalizationEn extends AppLocalization {
   String get webcam_manager_webcam => 'Webcam';
 
   @override
-  String get camera_screen_front_camera => 'Back Camera';
+  String get camera_screen_front_camera => 'Front Camera';
 
   @override
-  String get camera_screen_back_camera => 'Front Camera';
+  String get camera_screen_back_camera => 'Back Camera';
 
   @override
   String get camera_screen_add_title => 'Add Camera';
