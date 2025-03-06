@@ -196,6 +196,17 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   bool _isPanelVisible = true;
 
+  /// The current scroll offset of the panel
+  double currentScrollOffset = 0;
+
+  /// onScroll event called by the parent widget scroll controller
+  void onScroll(ScrollController scrollController) {
+    currentScrollOffset = scrollController.offset;
+    if (widget.isDraggable && !_scrollingEnabled) {
+      scrollController.jumpTo(0);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -219,7 +230,10 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     // draggable and panel scrolling is enabled
     _sc = ScrollController();
     _sc.addListener(() {
-      if (widget.isDraggable && !_scrollingEnabled) _sc.jumpTo(0);
+      if (widget.isDraggable && !_scrollingEnabled) {
+        print('scroll controller jump to 0');
+        _sc.jumpTo(0);
+      }
     });
 
     widget.controller?._addState(this);
@@ -389,7 +403,9 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     // if the panel is open and the user hasn't scrolled, we need to determine
     // whether to enable scrolling if the user swipes up, or disable closing and
     // begin to close the panel if the user swipes down
-    if (_isPanelOpen && _sc.hasClients && _sc.offset <= 0) {
+//    if (_isPanelOpen && _sc.hasClients && _sc.offset <= 0) {
+    if (_isPanelOpen && currentScrollOffset <= 0) {
+      print('child scroll offset: $currentScrollOffset');
       setState(() {
         if (dy < 0) {
           _scrollingEnabled = true;

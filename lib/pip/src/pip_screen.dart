@@ -9,6 +9,9 @@ import 'package:universal_platform/universal_platform.dart';
 import 'pip_provider.dart';
 import 'pip_sliding.dart';
 
+/// the scroll event handler
+typedef ScrollCallback = void Function(ScrollController scrollController);
+
 /// the sliding layout
 enum SlidingLayout { portrait, landscape, landscape90, landscape270 }
 

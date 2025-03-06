@@ -77,8 +77,8 @@ class _MyAppState extends State<MyApp> {
           data: CupertinoThemeData(
             brightness: Brightness.dark,
           ),
-          child: Consumer2<vision.LanguageProvider, app.ProjectProvider>(
-              builder: (context, languageProvider, projectProvider, child) {
+          child: Consumer3<vision.LanguageProvider, app.ProjectProvider, pip.PipProvider>(
+              builder: (context, languageProvider, projectProvider, pipProvider, child) {
             buildMainScreen() {
               return Scaffold(
                 body: Container(
@@ -127,7 +127,7 @@ class _MyAppState extends State<MyApp> {
                 deviceOrientationForPortrait:
                     projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
                 slidingBuilder: (scrollController) => wizard.WizardNavigator(
-                  scrollController: scrollController,
+                  onScroll: (scrollController) => pipProvider.onScroll(scrollController),
                 ),
                 builder: (isSideLayout) => app.ProjectView(
                   noProjectScreen: buildMainScreen(),

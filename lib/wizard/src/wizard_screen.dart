@@ -14,8 +14,12 @@ const double _headerHeightThreshold = 600;
 
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
+    required this.onScroll,
     super.key,
   });
+
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +28,10 @@ class WizardScreen extends StatelessWidget {
     final isCompactHeader = screenHeight < _headerHeightThreshold;
 
     final pageTitle = 'piyuo.com';
-    return ChangeNotifierProvider<WelcomeScreenProvider>(
-      create: (_) => WelcomeScreenProvider()..init(),
-      child: Consumer2<app.ProjectProvider, WelcomeScreenProvider>(
-        builder: (context, projectProvider, homeScreenProvider, child) {
+    return ChangeNotifierProvider<WizardScreenProvider>(
+      create: (_) => WizardScreenProvider()..init(onScroll),
+      child: Consumer2<app.ProjectProvider, WizardScreenProvider>(
+        builder: (context, projectProvider, wizardScreenProvider, child) {
           return pip.PipScaffold(
               titleWidget: Container(
                 padding: const EdgeInsets.only(left: 16.0),
@@ -35,6 +39,7 @@ class WizardScreen extends StatelessWidget {
                 child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
               ),
               child: SingleChildScrollView(
+                controller: wizardScreenProvider.scrollController,
                 child: Column(
                   children: [
                     pip.PipHeader(
@@ -116,7 +121,7 @@ class WizardScreen extends StatelessWidget {
                       children: [
                         CupertinoListTile(
                             leading: Icon(CupertinoIcons.info),
-                            additionalInfo: Text(homeScreenProvider.appVersion),
+                            additionalInfo: Text(wizardScreenProvider.appVersion),
                             title: Text(context.l.wizard_screen_about),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
@@ -150,14 +155,24 @@ class WizardScreen extends StatelessWidget {
 }
 
 /// provide welcome screen support
-class WelcomeScreenProvider with ChangeNotifier {
+class WizardScreenProvider with ChangeNotifier {
   /// The version of vision app used.
   String appVersion = '';
 
-  Future<void> init() async {
+  ScrollController scrollController = ScrollController();
+
+  Future<void> init(pip.ScrollCallback onScroll) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
-
+    scrollController.addListener(() {
+      onScroll(scrollController);
+    });
     notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 }

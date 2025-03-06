@@ -1,4 +1,5 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 
 import 'about/about_screen.dart';
@@ -80,15 +81,15 @@ const zoneRoute = '/zone';
 
 class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
-    this.scrollController,
+    required this.onScroll,
     this.initialRoute,
     super.key,
   });
 
   final String? initialRoute;
 
-  /// the scroll controller from pip screen
-  final ScrollController? scrollController;
+  /// the scroll event handler need by pip screen
+  final pip.ScrollCallback onScroll;
 
   @override
   State<WizardNavigator> createState() => _WizardNavigatorState();
@@ -113,10 +114,17 @@ class _WizardNavigatorState extends State<WizardNavigator> {
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
-    return NestedScrollView(
-        controller: widget.scrollController,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) => const [],
-        body: Navigator(
+    return NotificationListener<ScrollNotification>(
+        onNotification: (notification) {
+          //projectProvider.currentWizardRouteScrollOffset = notification.metrics.pixels;
+
+          // 当子 widget 滚动时，更新父 widget 的滚动位置
+          //if (notification.depth == 0) {
+          //  widget.scrollController!.jumpTo(notification.metrics.pixels);
+          // }
+          return false; // 允许通知继续冒泡
+        },
+        child: Navigator(
           key: projectProvider.navigatorKey,
           initialRoute: '/',
           onGenerateRoute: (routeSettings) {
@@ -125,7 +133,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               builder: (context) {
                 switch (routeSettings.name) {
                   case '/':
-                    return WizardScreen();
+                    return WizardScreen(onScroll: widget.onScroll);
                   case aboutRoute:
                     return AboutScreen(
                       previousPageTitle: args!['previousPageTitle'],
@@ -210,7 +218,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                       videoZone: args['videoZone'],
                     );
                   default:
-                    return WizardScreen();
+                    return WizardScreen(onScroll: widget.onScroll);
                 }
               },
             );

@@ -24,6 +24,9 @@ class PipProvider with ChangeNotifier {
   /// is the sliding panel opened?
   bool isPanelOpened = false;
 
+  /// the key for the sliding panel
+  final GlobalKey<SlidingUpPanelState> panelKey = GlobalKey<SlidingUpPanelState>();
+
   static PipProvider of(BuildContext context) {
     return Provider.of<PipProvider>(context, listen: false);
   }
@@ -52,6 +55,13 @@ class PipProvider with ChangeNotifier {
           await panelController.animatePanelToPosition(0);
           break;
       }
+    }
+  }
+
+  /// called by parent to notify their scroll position
+  void onScroll(ScrollController scrollController) {
+    if (panelKey.currentState != null) {
+      panelKey.currentState!.onScroll(scrollController);
     }
   }
 }
