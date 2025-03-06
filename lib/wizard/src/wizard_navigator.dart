@@ -126,15 +126,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case '/':
                 return WizardScreen(onScroll: widget.onScroll);
               case aboutRoute:
-                return AboutScreen(
-                  onScroll: widget.onScroll,
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return AboutScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
-                return BenchmarkScreen(
-                  onScroll: widget.onScroll,
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return BenchmarkScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case opencvRoute:
                 return OpencvScreen(onScroll: widget.onScroll);
               case projectRoute:
@@ -142,9 +136,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case openProjectRoute:
                 return OpenProjectScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case languageRoute:
-                return LanguageScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                );
+                return LanguageScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case filterRoute:
                 return FilterScreen(
                   previousPageTitle: args!['previousPageTitle'],
