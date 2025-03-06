@@ -21,7 +21,7 @@ class PipSliding extends StatelessWidget {
   });
 
   /// the builder function
-  final Widget Function(ScrollController sc) builder;
+  final Widget Function() builder;
 
   /// the pip provider
   final PipProvider pipProvider;
@@ -60,30 +60,17 @@ class PipSliding extends StatelessWidget {
               minHeight: minHeight,
               maxHeight: constraints.maxHeight,
               borderRadius: _slidingPanelRadius,
-              panelBuilder: (scrollController) {
+              panelBuilder: () {
                 return Align(
                   alignment: Alignment.topLeft,
                   child: SizedBox(
                       width: width,
                       child: ClipRRect(
                         borderRadius: _slidingPanelRadius,
-                        child: isShowDragHeader
-                            ? _DragHeader(child: builder(scrollController))
-                            : builder(scrollController),
+                        child: isShowDragHeader ? _DragHeader(child: builder()) : builder(),
                       )),
                 );
               },
-              /*panel: Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
-                      width: width,
-                      child: ClipRRect(
-                        borderRadius: _slidingPanelRadius,
-                        child: isShowDragHeader
-                            ? _DragHeader(child: builder(ScrollController()))
-                            : builder(ScrollController()),
-                      )),
-                ),*/
             );
           },
         ));
