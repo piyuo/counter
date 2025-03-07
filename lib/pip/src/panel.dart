@@ -139,8 +139,12 @@ class SlidingUpPanel extends StatefulWidget {
   /// by default the Panel is open and must be swiped closed by the user.
   final PanelState defaultPanelState;
 
+  /// callback to get the current scroll offset
+  final double Function() getCurrentScrollOffset;
+
   const SlidingUpPanel(
       {super.key,
+      required this.getCurrentScrollOffset,
       this.panel,
       this.panelBuilder,
       this.collapsed,
@@ -191,18 +195,13 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   bool _isPanelVisible = true;
 
-  /// The current scroll offset of the panel
-  double currentScrollOffset = 0;
-
-  /// reset the current state
+  /// reset the scrolling state
   void resetScroll() {
-    currentScrollOffset = 0;
     _scrollingEnabled = true;
   }
 
   /// onScroll event called by the parent widget scroll controller
   void onScroll(ScrollController scrollController) {
-    currentScrollOffset = scrollController.offset;
     if (widget.isDraggable && !_scrollingEnabled) {
       scrollController.jumpTo(0);
     }
@@ -407,7 +406,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     // if the panel is open and the user hasn't scrolled, we need to determine
     // whether to enable scrolling if the user swipes up, or disable closing and
     // begin to close the panel if the user swipes down
-    if (_isPanelOpen && currentScrollOffset <= 0) {
+    if (_isPanelOpen && widget.getCurrentScrollOffset() <= 0) {
       setState(() {
         if (dy < 0) {
           _scrollingEnabled = true;

@@ -127,6 +127,7 @@ class _MyAppState extends State<MyApp> {
                     projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
                 slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
                   isPanelOpened: isPanelOpened,
+                  pipProvider: pipProvider,
                   onScroll: (scrollController) => pipProvider.onScroll(scrollController),
                 ),
                 builder: (isSideLayout) => app.ProjectView(

@@ -10,7 +10,7 @@ import '../wizard_navigator.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
@@ -18,20 +18,20 @@ class AboutScreen extends StatelessWidget {
   /// The title of the previous page.
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     final pageTitle = context.l.about_screen_title;
     return ChangeNotifierProvider<AboutScreenProvider>(
-      create: (_) => AboutScreenProvider(onScroll)..init(),
+      create: (_) => AboutScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, AboutScreenProvider>(
         builder: (context, projectProvider, aboutScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-                controller: aboutScreenProvider._scrollController,
+                controller: scrollController,
                 child: Column(
                   children: [
                     pip.PipHeader(
@@ -103,9 +103,7 @@ class AboutScreen extends StatelessWidget {
 
 /// provide about screen support
 class AboutScreenProvider with ChangeNotifier {
-  AboutScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
+  AboutScreenProvider();
 
   /// The platform the system is running on.
   String platform = '';

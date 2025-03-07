@@ -15,15 +15,15 @@ const double _headerHeightThreshold = 600;
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
     required this.isPanelOpened,
-    required this.onScroll,
+    required this.scrollController,
     super.key,
   });
 
   /// is the sliding panel opened?
   final bool isPanelOpened;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class WizardScreen extends StatelessWidget {
 
     final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WizardScreenProvider>(
-      create: (_) => WizardScreenProvider(onScroll)..init(),
+      create: (_) => WizardScreenProvider()..init(),
       child: Consumer2<app.ProjectProvider, WizardScreenProvider>(
         builder: (context, projectProvider, wizardScreenProvider, child) {
           return pip.PipScaffold(
@@ -56,7 +56,7 @@ class WizardScreen extends StatelessWidget {
                       ),
               ),
               child: SingleChildScrollView(
-                controller: wizardScreenProvider._scrollController,
+                controller: scrollController,
                 child: Column(
                   children: [
                     pip.PipHeader(
@@ -174,9 +174,7 @@ class WizardScreen extends StatelessWidget {
 
 /// provide wizard screen support
 class WizardScreenProvider with ChangeNotifier {
-  WizardScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
+  WizardScreenProvider();
 
   /// The version of vision app used.
   String appVersion = '';

@@ -47,6 +47,7 @@ class PipSliding extends StatelessWidget {
           builder: (context, constraints) {
             return SlidingUpPanel(
               key: pipProvider.panelKey,
+              getCurrentScrollOffset: () => pipProvider.getCurrentScrollOffset(),
               color: CupertinoColors.transparent,
               defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,
               snapPoint: 0.5,

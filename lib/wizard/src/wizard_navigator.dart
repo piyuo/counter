@@ -81,6 +81,7 @@ const zoneRoute = '/zone';
 
 class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
+    required this.pipProvider,
     required this.isPanelOpened,
     required this.onScroll,
     this.initialRoute,
@@ -95,6 +96,9 @@ class WizardNavigator extends StatefulWidget {
 
   /// the scroll event handler need by pip screen
   final pip.ScrollCallback onScroll;
+
+  /// the pip provider
+  final pip.PipProvider pipProvider;
 
   @override
   State<WizardNavigator> createState() => _WizardNavigatorState();
@@ -121,17 +125,20 @@ class _WizardNavigatorState extends State<WizardNavigator> {
     final projectProvider = app.ProjectProvider.of(context);
     return Navigator(
       key: projectProvider.navigatorKey,
+      observers: [widget.pipProvider.scrollObserver],
       initialRoute: '/',
       onGenerateRoute: (routeSettings) {
         final args = routeSettings.arguments as Map?;
+        final scrollController = widget.pipProvider.getScrollController(routeSettings.name!);
         return CupertinoPageRoute(
+          settings: routeSettings,
           fullscreenDialog: false,
           builder: (context) {
             switch (routeSettings.name) {
               case '/':
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
+                return WizardScreen(isPanelOpened: widget.isPanelOpened, scrollController: scrollController);
               case aboutRoute:
-                return AboutScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return AboutScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
                 return BenchmarkScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case opencvRoute:
@@ -197,7 +204,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoZone: args['videoZone'],
                 );
               default:
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
+                return WizardScreen(isPanelOpened: widget.isPanelOpened, scrollController: scrollController);
             }
           },
         );
