@@ -10,6 +10,7 @@ import '../wizard_navigator.dart';
 
 class OpenProjectScreen extends StatelessWidget {
   const OpenProjectScreen({
+    required this.resetScroll,
     required this.onScroll,
     this.previousPageTitle,
     super.key,
@@ -17,6 +18,9 @@ class OpenProjectScreen extends StatelessWidget {
 
   /// the scroll event handler need by pip screen
   final pip.ScrollCallback onScroll;
+
+  /// the reset scroll event handler need by pip screen
+  final VoidCallback resetScroll;
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -27,7 +31,7 @@ class OpenProjectScreen extends StatelessWidget {
     final projectProvider = app.ProjectProvider.of(context);
 
     return ChangeNotifierProvider<OpenProjectScreenProvider>(
-        create: (_) => OpenProjectScreenProvider(onScroll)..init(projectProvider),
+        create: (_) => OpenProjectScreenProvider(onScroll, resetScroll)..init(projectProvider),
         child: Consumer2<app.ProjectProvider, OpenProjectScreenProvider>(
             builder: (context, projectProvider, openProjectScreenProvider, child) {
           buildHeader() {
@@ -118,7 +122,8 @@ class OpenProjectScreen extends StatelessWidget {
 
 /// provide open project screen support
 class OpenProjectScreenProvider with ChangeNotifier {
-  OpenProjectScreenProvider(pip.ScrollCallback onScroll) {
+  OpenProjectScreenProvider(pip.ScrollCallback onScroll, VoidCallback resetScroll) {
+    resetScroll();
     _scrollController.addListener(() => onScroll(_scrollController));
   }
 

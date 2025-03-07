@@ -83,6 +83,7 @@ class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
     required this.isPanelOpened,
     required this.onScroll,
+    required this.resetScroll,
     this.initialRoute,
     super.key,
   });
@@ -95,6 +96,9 @@ class WizardNavigator extends StatefulWidget {
 
   /// the scroll event handler need by pip screen
   final pip.ScrollCallback onScroll;
+
+  /// the reset scroll event handler need by pip screen
+  final VoidCallback resetScroll;
 
   @override
   State<WizardNavigator> createState() => _WizardNavigatorState();
@@ -129,7 +133,8 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           builder: (context) {
             switch (routeSettings.name) {
               case '/':
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
+                return WizardScreen(
+                    isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll, resetScroll: widget.resetScroll);
               case aboutRoute:
                 return AboutScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
@@ -139,7 +144,10 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case projectRoute:
                 return ProjectScreen(onScroll: widget.onScroll);
               case openProjectRoute:
-                return OpenProjectScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return OpenProjectScreen(
+                    onScroll: widget.onScroll,
+                    resetScroll: widget.resetScroll,
+                    previousPageTitle: args!['previousPageTitle']);
               case languageRoute:
                 return LanguageScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case filterRoute:
@@ -197,7 +205,8 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoZone: args['videoZone'],
                 );
               default:
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
+                return WizardScreen(
+                    isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll, resetScroll: widget.resetScroll);
             }
           },
         );

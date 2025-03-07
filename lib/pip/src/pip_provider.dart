@@ -73,4 +73,11 @@ class PipProvider with ChangeNotifier {
       panelKey.currentState!.onScroll(scrollController);
     }
   }
+
+  /// called by parent to notify entered new route and need reset scroll state
+  void resetScroll() {
+    if (panelKey.currentState != null) {
+      panelKey.currentState!.resetScroll();
+    }
+  }
 }

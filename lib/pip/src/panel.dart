@@ -194,6 +194,12 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
   /// The current scroll offset of the panel
   double currentScrollOffset = 0;
 
+  /// reset the current state
+  void resetScroll() {
+    currentScrollOffset = 0;
+    _scrollingEnabled = true;
+  }
+
   /// onScroll event called by the parent widget scroll controller
   void onScroll(ScrollController scrollController) {
     currentScrollOffset = scrollController.offset;
