@@ -172,7 +172,7 @@ class WizardScreen extends StatelessWidget {
   }
 }
 
-/// provide welcome screen support
+/// provide wizard screen support
 class WizardScreenProvider with ChangeNotifier {
   WizardScreenProvider(pip.ScrollCallback onScroll) {
     _scrollController.addListener(() => onScroll(_scrollController));

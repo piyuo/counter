@@ -3,11 +3,12 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../wizard_navigator.dart';
 
-class OpenProjectScreen extends StatefulWidget {
+class OpenProjectScreen extends StatelessWidget {
   const OpenProjectScreen({
     required this.onScroll,
     this.previousPageTitle,
@@ -21,10 +22,106 @@ class OpenProjectScreen extends StatefulWidget {
   final String? previousPageTitle;
 
   @override
-  State<OpenProjectScreen> createState() => _OpenProjectScreenState();
+  Widget build(BuildContext context) {
+    final String pageTitle = context.l.open_project_screen_title;
+    final projectProvider = app.ProjectProvider.of(context);
+
+    return ChangeNotifierProvider<OpenProjectScreenProvider>(
+        create: (_) => OpenProjectScreenProvider(onScroll)..init(projectProvider),
+        child: Consumer2<app.ProjectProvider, OpenProjectScreenProvider>(
+            builder: (context, projectProvider, openProjectScreenProvider, child) {
+          buildHeader() {
+            return pip.PipHeader(
+              child: Column(
+                children: [
+                  Icon(CupertinoIcons.archivebox, size: 44),
+                  const SizedBox(height: 8.0),
+                  Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  Text(
+                    context.l.open_project_screen_desc,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            );
+          }
+
+          int index = 1;
+          return pip.PipScaffold(
+            previousPageTitle: previousPageTitle,
+            child: SingleChildScrollView(
+              controller: openProjectScreenProvider._scrollController,
+              child: Column(
+                  children: openProjectScreenProvider._isLoading
+                      ? [
+                          buildHeader(),
+                          SizedBox(
+                              height: 200,
+                              child: Center(
+                                child: CupertinoActivityIndicator(radius: 28),
+                              ))
+                        ]
+                      : [
+                          buildHeader(),
+                          if (openProjectScreenProvider._projects.isEmpty)
+                            SizedBox(height: 200, child: Center(child: Text(context.l.open_project_screen_no_project))),
+                          if (openProjectScreenProvider._projects.isNotEmpty)
+                            CupertinoListSection(
+                                backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                                children: [
+                                  ...openProjectScreenProvider._projects.map((project) {
+                                    return Dismissible(
+                                      key: ValueKey(project.projectId),
+                                      background: Container(
+                                        color: CupertinoColors.systemRed,
+                                        alignment: Alignment.centerLeft,
+                                        padding: EdgeInsets.symmetric(horizontal: 20),
+                                        child: Icon(
+                                          CupertinoIcons.delete,
+                                          color: CupertinoColors.white,
+                                        ),
+                                      ),
+                                      direction: DismissDirection.startToEnd,
+                                      onDismissed: (direction) {
+                                        openProjectScreenProvider.deleteProject(projectProvider, project.projectId);
+                                      },
+                                      child: CupertinoListTile(
+                                        leading: openProjectScreenProvider._loadingProject == project.projectId
+                                            ? CupertinoActivityIndicator()
+                                            : Text((index++).toString(),
+                                                style: TextStyle(
+                                                    color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
+                                        title: Text(project.projectName),
+                                        trailing: CupertinoListTileChevron(),
+                                        subtitle:
+                                            Text(timeago.format(project.updatedAt, locale: Intl.getCurrentLocale())),
+                                        onTap: openProjectScreenProvider._loadingProject.isEmpty
+                                            ? () async {
+                                                final ok = await openProjectScreenProvider.openProject(
+                                                    context, projectProvider, project.projectId);
+                                                if (ok && context.mounted) {
+                                                  Navigator.of(context).pushReplacementNamed(projectRoute);
+                                                }
+                                              }
+                                            : null,
+                                      ),
+                                    );
+                                  }),
+                                ]),
+                          pip.PipFooter(),
+                        ]),
+            ),
+          );
+        }));
+  }
 }
 
-class _OpenProjectScreenState extends State<OpenProjectScreen> {
+/// provide open project screen support
+class OpenProjectScreenProvider with ChangeNotifier {
+  OpenProjectScreenProvider(pip.ScrollCallback onScroll) {
+    _scrollController.addListener(() => onScroll(_scrollController));
+  }
+
   /// The list of projects to display.
   final List<app.ProjectSummary> _projects = [];
 
@@ -34,128 +131,38 @@ class _OpenProjectScreenState extends State<OpenProjectScreen> {
   /// which project is loading
   String _loadingProject = '';
 
-  /// The scroll controller.
-  final _scrollController = ScrollController();
+  /// The scroll controller
+  final ScrollController _scrollController = ScrollController();
 
-  @override
-  void initState() {
-    super.initState();
-    _initializeProjects();
-    _scrollController.addListener(() => widget.onScroll(_scrollController));
+  /// Get the list of projects.
+  Future<void> init(app.ProjectProvider projectProvider) async {
+    final initialProjects = await projectProvider.getProjectSummaries();
+    _projects.clear();
+    _projects.addAll(initialProjects);
+    _isLoading = false;
+    notifyListeners();
+  }
+
+  /// delete the project
+  void deleteProject(app.ProjectProvider projectProvider, String projectId) {
+    // Remove the project from the local list first.
+    _projects.removeWhere((p) => p.projectId == projectId);
+    notifyListeners();
+    // Then perform the actual deletion operation in the background.
+    projectProvider.deleteProject(projectId);
+  }
+
+  /// open the project
+  Future<bool> openProject(BuildContext context, app.ProjectProvider projectProvider, String projectId) async {
+    _loadingProject = projectId;
+    notifyListeners();
+    final ok = await projectProvider.openProject(context, projectId);
+    return ok;
   }
 
   @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-
-  Future<void> _initializeProjects() async {
-    final projectProvider = app.ProjectProvider.of(context);
-    final initialProjects = await projectProvider.getProjectSummaries();
-    setState(() {
-      _projects.clear();
-      _projects.addAll(initialProjects);
-      _isLoading = false;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final String pageTitle = context.l.open_project_screen_title;
-    final projectProvider = app.ProjectProvider.of(context);
-
-    buildHeader() {
-      return pip.PipHeader(
-        child: Column(
-          children: [
-            Icon(CupertinoIcons.archivebox, size: 44),
-            const SizedBox(height: 8.0),
-            Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-            Text(
-              context.l.open_project_screen_desc,
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      );
-    }
-
-    if (_isLoading) {
-      return pip.PipScaffold(
-          previousPageTitle: widget.previousPageTitle,
-          child: Column(children: [
-            buildHeader(),
-            Expanded(
-                child: Center(
-              child: CupertinoActivityIndicator(radius: 28),
-            ))
-          ]));
-    }
-
-    if (_projects.isEmpty) {
-      return pip.PipScaffold(
-          previousPageTitle: widget.previousPageTitle,
-          child: Column(children: [
-            buildHeader(),
-            Expanded(child: Center(child: Text(context.l.open_project_screen_no_project)))
-          ]));
-    }
-    int index = 1;
-    return pip.PipScaffold(
-      previousPageTitle: widget.previousPageTitle,
-      child: SingleChildScrollView(
-        controller: _scrollController,
-        child: Column(children: [
-          buildHeader(),
-          CupertinoListSection(backgroundColor: pip.getCupertinoListSectionBackgroundColor(context), children: [
-            ..._projects.map((project) {
-              return Dismissible(
-                key: ValueKey(project.projectId),
-                background: Container(
-                  color: CupertinoColors.systemRed,
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Icon(
-                    CupertinoIcons.delete,
-                    color: CupertinoColors.white,
-                  ),
-                ),
-                direction: DismissDirection.startToEnd,
-                onDismissed: (direction) {
-                  // Remove the project from the local list first.
-                  setState(() {
-                    _projects.removeWhere((p) => p.projectId == project.projectId);
-                  });
-                  // Then perform the actual deletion operation in the background.
-                  projectProvider.deleteProject(project.projectId);
-                },
-                child: CupertinoListTile(
-                  leading: _loadingProject == project.projectId
-                      ? CupertinoActivityIndicator()
-                      : Text((index++).toString(),
-                          style: TextStyle(color: CupertinoColors.tertiaryLabel.resolveFrom(context))),
-                  title: Text(project.projectName),
-                  trailing: CupertinoListTileChevron(),
-                  subtitle: Text(timeago.format(project.updatedAt, locale: Intl.getCurrentLocale())),
-                  onTap: _loadingProject.isEmpty
-                      ? () async {
-                          setState(() {
-                            _loadingProject = project.projectId;
-                          });
-                          final ok = await projectProvider.openProject(context, project.projectId);
-                          if (ok && context.mounted) {
-                            Navigator.of(context).pushReplacementNamed(projectRoute);
-                          }
-                        }
-                      : null,
-                ),
-              );
-            }),
-          ]),
-          pip.PipFooter(),
-        ]),
-      ),
-    );
   }
 }
