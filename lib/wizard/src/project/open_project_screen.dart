@@ -10,13 +10,13 @@ import '../wizard_navigator.dart';
 
 class OpenProjectScreen extends StatelessWidget {
   const OpenProjectScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -27,7 +27,7 @@ class OpenProjectScreen extends StatelessWidget {
     final projectProvider = app.ProjectProvider.of(context);
 
     return ChangeNotifierProvider<OpenProjectScreenProvider>(
-        create: (_) => OpenProjectScreenProvider(onScroll)..init(projectProvider),
+        create: (_) => OpenProjectScreenProvider()..init(projectProvider),
         child: Consumer2<app.ProjectProvider, OpenProjectScreenProvider>(
             builder: (context, projectProvider, openProjectScreenProvider, child) {
           buildHeader() {
@@ -50,7 +50,7 @@ class OpenProjectScreen extends StatelessWidget {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-              controller: openProjectScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                   children: openProjectScreenProvider._isLoading
                       ? [
@@ -118,9 +118,7 @@ class OpenProjectScreen extends StatelessWidget {
 
 /// provide open project screen support
 class OpenProjectScreenProvider with ChangeNotifier {
-  OpenProjectScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
+  OpenProjectScreenProvider();
 
   /// The list of projects to display.
   final List<app.ProjectSummary> _projects = [];
@@ -130,9 +128,6 @@ class OpenProjectScreenProvider with ChangeNotifier {
 
   /// which project is loading
   String _loadingProject = '';
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
 
   /// Get the list of projects.
   Future<void> init(app.ProjectProvider projectProvider) async {
@@ -158,11 +153,5 @@ class OpenProjectScreenProvider with ChangeNotifier {
     notifyListeners();
     final ok = await projectProvider.openProject(context, projectId);
     return ok;
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

@@ -10,7 +10,7 @@ import '../wizard_navigator.dart';
 /// The zone screen for editing the video zone.
 class ZoneScreen extends StatelessWidget {
   const ZoneScreen({
-    required this.onScroll,
+    required this.scrollController,
     required this.videoProvider,
     required this.videoZone,
     this.previousPageTitle,
@@ -26,8 +26,8 @@ class ZoneScreen extends StatelessWidget {
   /// the previous page title
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class ZoneScreen extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<ZoneScreenProvider>(
-            create: (_) => ZoneScreenProvider(videoZone, videoProvider, onScroll),
+            create: (_) => ZoneScreenProvider(videoZone, videoProvider),
           ),
           ChangeNotifierProvider<app.VideoProvider>.value(
             value: videoProvider,
@@ -47,7 +47,7 @@ class ZoneScreen extends StatelessWidget {
             return pip.PipScaffold(
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-                  controller: zoneScreenProvider._scrollController,
+                  controller: scrollController,
                   child: Column(
                     children: [
                       pip.PipHeader(
@@ -256,9 +256,8 @@ class ZoneScreen extends StatelessWidget {
 
 /// provide zone screen support
 class ZoneScreenProvider with ChangeNotifier {
-  ZoneScreenProvider(this.videoZone, this.videoProvider, pip.ScrollCallback onScroll) {
+  ZoneScreenProvider(this.videoZone, this.videoProvider) {
     zoneNameFieldController.text = videoZone.name;
-    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the video zone
@@ -273,12 +272,8 @@ class ZoneScreenProvider with ChangeNotifier {
   /// the error message for video name
   String _zoneNameErrorMessage = '';
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
-    _scrollController.dispose();
     zoneNameFieldController.dispose();
     super.dispose();
   }

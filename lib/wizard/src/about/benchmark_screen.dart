@@ -9,7 +9,7 @@ import 'package:vision/vision.dart' as vision;
 
 class BenchmarkScreen extends StatelessWidget {
   const BenchmarkScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
@@ -17,15 +17,15 @@ class BenchmarkScreen extends StatelessWidget {
   /// The title of the previous page.
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<BenchmarkScreenProvider>(
       create: (_) {
         final projectProvider = app.ProjectProvider.of(context);
-        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage, onScroll);
+        return BenchmarkScreenProvider(projectProvider.benchmarkLocalStorage);
       },
       child: Consumer<BenchmarkScreenProvider>(
         builder: (context, benchmarkScreenProvider, child) {
@@ -56,7 +56,7 @@ class BenchmarkScreen extends StatelessWidget {
               },
             ),
             child: SingleChildScrollView(
-              controller: benchmarkScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -106,12 +106,7 @@ class BenchmarkScreen extends StatelessWidget {
 
 /// provide benchmark screen support
 class BenchmarkScreenProvider with ChangeNotifier {
-  BenchmarkScreenProvider(this.benchmarkLocalStorage, pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final _scrollController = ScrollController();
+  BenchmarkScreenProvider(this.benchmarkLocalStorage);
 
   /// benchmark local storage
   final app.BenchmarkLocalStorage benchmarkLocalStorage;
@@ -148,11 +143,5 @@ class BenchmarkScreenProvider with ChangeNotifier {
     benchmarkInRunning = null;
     notifyListeners();
     return errorCode;
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

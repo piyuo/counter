@@ -11,7 +11,7 @@ class ObjectsScreen extends StatelessWidget {
   const ObjectsScreen({
     required this.videoProvider,
     required this.videoZone,
-    required this.onScroll,
+    required this.scrollController,
     super.key,
   });
 
@@ -21,8 +21,8 @@ class ObjectsScreen extends StatelessWidget {
   /// the video zone to be edited
   final vision.VideoZone videoZone;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,10 @@ class ObjectsScreen extends StatelessWidget {
     final pageTitle = context.l.objects_screen_title;
     return pip.PipScaffold(
       child: ChangeNotifierProvider(
-          create: (_) => ObjectScreenProvider(onScroll),
+          create: (_) => ObjectScreenProvider(),
           child: Consumer<ObjectScreenProvider>(builder: (context, objectScreenProvider, child) {
             return SingleChildScrollView(
-              controller: objectScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(children: [
                 pip.PipHeader(
                   child: Column(
@@ -76,16 +76,10 @@ class ObjectsScreen extends StatelessWidget {
 
 /// provide object class screen support.
 class ObjectScreenProvider with ChangeNotifier {
-  ObjectScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
+  ObjectScreenProvider();
 
   @override
   void dispose() {
-    _scrollController.dispose();
     _classChangedTimer?.cancel();
     _classChangedTimer = null;
     super.dispose();

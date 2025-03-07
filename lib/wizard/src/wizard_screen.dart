@@ -179,18 +179,9 @@ class WizardScreenProvider with ChangeNotifier {
   /// The version of vision app used.
   String appVersion = '';
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   Future<void> init() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
     notifyListeners();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

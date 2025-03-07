@@ -10,13 +10,13 @@ import '../wizard_navigator.dart';
 /// provide settings screen for the project
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -26,13 +26,13 @@ class SettingsScreen extends StatelessWidget {
     final String pageTitle = context.l.settings_screen_title;
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<SettingsScreenProvider>(
-      create: (_) => SettingsScreenProvider(projectProvider, onScroll),
+      create: (_) => SettingsScreenProvider(projectProvider),
       child: Consumer<SettingsScreenProvider>(
         builder: (context, settingsScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-              controller: settingsScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -245,9 +245,8 @@ class SettingsScreen extends StatelessWidget {
 
 /// Provide settings screen support
 class SettingsScreenProvider with ChangeNotifier {
-  SettingsScreenProvider(this.projectProvider, pip.ScrollCallback onScroll) {
+  SettingsScreenProvider(this.projectProvider) {
     projectNameController.text = projectProvider.project!.projectName;
-    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the project provider
@@ -256,12 +255,8 @@ class SettingsScreenProvider with ChangeNotifier {
   /// the project name controller
   TextEditingController projectNameController = TextEditingController();
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
-    _scrollController.dispose();
     projectNameController.dispose();
     super.dispose();
   }

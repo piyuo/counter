@@ -9,7 +9,7 @@ import 'language.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
@@ -17,8 +17,8 @@ class LanguageScreen extends StatelessWidget {
   /// The title of the previous page.
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +26,12 @@ class LanguageScreen extends StatelessWidget {
     final languages = Language.fromSupportedLocales(context);
 
     return ChangeNotifierProvider<LanguageScreenProvider>(
-        create: (_) => LanguageScreenProvider(onScroll),
+        create: (_) => LanguageScreenProvider(),
         child: Consumer<LanguageScreenProvider>(builder: (context, languageScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
-              controller: languageScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -67,16 +67,5 @@ class LanguageScreen extends StatelessWidget {
 
 /// provide language screen support
 class LanguageScreenProvider with ChangeNotifier {
-  LanguageScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller.
-  final _scrollController = ScrollController();
-
-  @override
-  dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+  LanguageScreenProvider();
 }

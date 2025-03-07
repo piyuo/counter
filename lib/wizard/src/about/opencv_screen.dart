@@ -6,23 +6,23 @@ import 'package:vision/vision.dart' as vision;
 
 class OpencvScreen extends StatelessWidget {
   const OpencvScreen({
-    required this.onScroll,
+    required this.scrollController,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<OpencvScreenProvider>(
-      create: (_) => OpencvScreenProvider(onScroll)..init(),
+      create: (_) => OpencvScreenProvider()..init(),
       child: Consumer<OpencvScreenProvider>(
         builder: (context, opencvScreenProvider, child) {
           return pip.PipScaffold(
             title: 'OpenCV',
             child: SingleChildScrollView(
-              controller: opencvScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   Container(
@@ -49,18 +49,13 @@ class OpencvScreen extends StatelessWidget {
 
 /// provide opencv screen support
 class OpencvScreenProvider with ChangeNotifier {
-  OpencvScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
+  OpencvScreenProvider();
 
   /// The build information.
   String buildInfo = '';
 
   /// _cLib is the C++ library interface.
   final vision.Clib _clib = vision.Clib();
-
-  /// The scroll controller
-  final _scrollController = ScrollController();
 
   /// Initialize the provider
   Future<void> init() async {
@@ -71,7 +66,6 @@ class OpencvScreenProvider with ChangeNotifier {
   @override
   void dispose() {
     _clib.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 }

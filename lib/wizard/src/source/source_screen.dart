@@ -11,14 +11,14 @@ import '../wizard_navigator.dart';
 /// The source screen for detail and zone editing.
 class SourceScreen extends StatelessWidget {
   const SourceScreen({
-    required this.onScroll,
+    required this.scrollController,
     required this.videoProvider,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -36,7 +36,6 @@ class SourceScreen extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<SourceScreenProvider>(
           create: (_) => SourceScreenProvider(
-            onScroll: onScroll,
             projectProvider: projectProvider,
             videoProvider: videoProvider,
           ),
@@ -62,7 +61,7 @@ class SourceScreen extends StatelessWidget {
               child: Text(context.l.source_screen_add_zone),
             ),
             child: SingleChildScrollView(
-              controller: sourceScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   pip.PipHeader(
@@ -355,10 +354,8 @@ class SourceScreenProvider with ChangeNotifier {
   SourceScreenProvider({
     required this.projectProvider,
     required this.videoProvider,
-    required pip.ScrollCallback onScroll,
   }) {
     videoNameController.text = videoProvider.video.videoName;
-    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the project provider
@@ -373,13 +370,9 @@ class SourceScreenProvider with ChangeNotifier {
   /// the error message for video name
   String _videoNameErrorMessage = '';
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
     videoNameController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 

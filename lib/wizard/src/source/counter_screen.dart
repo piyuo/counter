@@ -8,7 +8,7 @@ import 'package:vision/vision.dart' as vision;
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({
-    required this.onScroll,
+    required this.scrollController,
     required this.videoProvider,
     required this.videoZone,
     required this.annotation,
@@ -16,8 +16,8 @@ class CounterScreen extends StatelessWidget {
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -34,13 +34,13 @@ class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => TallyScreenProvider(videoProvider, annotation, onScroll),
+      create: (_) => TallyScreenProvider(videoProvider, annotation),
       child: Consumer<TallyScreenProvider>(
         builder: (context, counterScreenProvider, child) {
           return pip.PipScaffold(
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-                controller: counterScreenProvider._scrollController,
+                controller: scrollController,
                 child: Column(children: [
                   pip.PipHeader(
                     child: Column(
@@ -201,11 +201,10 @@ class CounterScreen extends StatelessWidget {
 
 /// provide tally screen support.
 class TallyScreenProvider with ChangeNotifier {
-  TallyScreenProvider(this.videoProvider, this.annotation, pip.ScrollCallback onScroll) {
+  TallyScreenProvider(this.videoProvider, this.annotation) {
     titleController.text = annotation.title;
     prefixController.text = annotation.prefix;
     suffixController.text = annotation.suffix;
-    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// the video provider
@@ -226,12 +225,8 @@ class TallyScreenProvider with ChangeNotifier {
   /// the error message for title
   String _titleErrorMessage = '';
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
-    _scrollController.dispose();
     titleController.dispose();
     prefixController.dispose();
     suffixController.dispose();

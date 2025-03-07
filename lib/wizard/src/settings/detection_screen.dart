@@ -8,15 +8,15 @@ import 'package:vision/vision.dart' as vision;
 class DetectionScreen extends StatelessWidget {
   const DetectionScreen({
     required this.previousPageTitle,
-    required this.onScroll,
+    required this.scrollController,
     super.key,
   });
 
   /// the previous page title
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class DetectionScreen extends StatelessWidget {
       title: pageTitle,
       previousPageTitle: previousPageTitle,
       child: ChangeNotifierProvider<DetectionScreenProvider>(
-          create: (_) => DetectionScreenProvider(onScroll),
+          create: (_) => DetectionScreenProvider(),
           child: Consumer<DetectionScreenProvider>(builder: (context, detectionScreenProvider, child) {
             final classPercentage = '${(project!.confidenceThreshold * 100).toStringAsFixed(0)}%';
             final nmsPercentage = '${(project.nmsThreshold * 100).toStringAsFixed(0)}%';
@@ -38,7 +38,7 @@ class DetectionScreen extends StatelessWidget {
             final maxLostSeconds = '${project.maxLostSeconds}';
 
             return SingleChildScrollView(
-                controller: detectionScreenProvider._scrollController,
+                controller: scrollController,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -249,18 +249,7 @@ class DetectionScreen extends StatelessWidget {
 
 /// ai screen provider
 class DetectionScreenProvider with ChangeNotifier {
-  DetectionScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// scroll controller
-  final _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+  DetectionScreenProvider();
 
   /// redraw the screen when model changed
   void onModelChanged() {

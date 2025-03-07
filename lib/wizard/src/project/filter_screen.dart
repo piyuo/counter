@@ -8,7 +8,7 @@ import 'package:vision/vision.dart' as vision;
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
@@ -16,8 +16,8 @@ class FilterScreen extends StatelessWidget {
   /// the previous page title
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class FilterScreen extends StatelessWidget {
     return Consumer<app.ProjectProvider>(
       builder: (context, projectProvider, child) => ChangeNotifierProvider(
         create: (_) => FilterScreenProvider(
-            filterType: projectProvider.project!.filter.filterType,
-            start: projectProvider.project!.filter.start,
-            end: projectProvider.project!.filter.end,
-            onScroll: onScroll),
+          filterType: projectProvider.project!.filter.filterType,
+          start: projectProvider.project!.filter.start,
+          end: projectProvider.project!.filter.end,
+        ),
         child: Consumer<FilterScreenProvider>(
           builder: (context, filterScreenProvider, child) {
             bool checkStartBeforeEnd({TimeOfDay? start, TimeOfDay? end}) {
@@ -78,7 +78,7 @@ class FilterScreen extends StatelessWidget {
                 child: pip.PipScaffold(
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
-                    controller: filterScreenProvider._scrollController,
+                    controller: scrollController,
                     child: Column(children: [
                       pip.PipHeader(
                         child: Column(
@@ -160,13 +160,7 @@ class FilterScreenProvider with ChangeNotifier {
     required this.filterType,
     required this.start,
     required this.end,
-    required pip.ScrollCallback onScroll,
-  }) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final _scrollController = ScrollController();
+  });
 
   /// the filter type
   vision.FilterType filterType;
@@ -182,12 +176,6 @@ class FilterScreenProvider with ChangeNotifier {
 
   /// the end time picker is visible or not
   bool isEndTimePickerVisible = false;
-
-  @override
-  dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
 
   /// show start time picker
   void showStartTimePicker() {

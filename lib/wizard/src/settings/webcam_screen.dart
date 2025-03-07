@@ -6,15 +6,15 @@ import 'package:provider/provider.dart';
 
 class WebcamScreen extends StatelessWidget {
   const WebcamScreen({
-    required this.onScroll,
+    required this.scrollController,
     required this.videoProvider,
     required this.isAddMode,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the video provider this settings provider is working on
   final app.VideoProvider videoProvider;
@@ -30,14 +30,14 @@ class WebcamScreen extends StatelessWidget {
     final pageTitle = isAddMode ? context.l.webcam_screen_add_title : context.l.webcam_screen_edit_title;
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider(
-      create: (_) => WebcamScreenProvider(onScroll),
+      create: (_) => WebcamScreenProvider(),
       child: Consumer<WebcamScreenProvider>(
         builder: (context, webcamScreenProvider, child) {
           return pip.PipScaffold(
               title: pageTitle,
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-                  controller: webcamScreenProvider._scrollController,
+                  controller: scrollController,
                   child: Column(
                     children: [
                       CupertinoListSection(
@@ -74,17 +74,7 @@ class WebcamScreen extends StatelessWidget {
 
 /// webcam provide webcam related settings
 class WebcamScreenProvider with ChangeNotifier {
-  WebcamScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+  WebcamScreenProvider();
 
   /// redraw webcam setting screen
   void redraw() {

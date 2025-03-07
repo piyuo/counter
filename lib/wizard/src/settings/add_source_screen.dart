@@ -9,13 +9,13 @@ import '../project/video_sources.dart';
 /// Add new video screen
 class AddSourceScreen extends StatelessWidget {
   const AddSourceScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -28,10 +28,10 @@ class AddSourceScreen extends StatelessWidget {
       previousPageTitle: previousPageTitle,
       title: pageTitle,
       child: ChangeNotifierProvider<AddSourceScreenProvider>(
-        create: (_) => AddSourceScreenProvider(onScroll),
+        create: (_) => AddSourceScreenProvider(),
         child: Consumer<AddSourceScreenProvider>(builder: (context, addSourceScreenProvider, child) {
           return SingleChildScrollView(
-              controller: addSourceScreenProvider._scrollController,
+              controller: scrollController,
               child: Column(
                 children: [
                   ChangeNotifierProvider<VideoSourcesProvider>(
@@ -60,20 +60,9 @@ class AddSourceScreen extends StatelessWidget {
 
 /// provider for add video screen
 class AddSourceScreenProvider with ChangeNotifier {
-  AddSourceScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
+  AddSourceScreenProvider();
 
   void redraw() {
     notifyListeners();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

@@ -83,7 +83,6 @@ class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
     required this.pipProvider,
     required this.isPanelOpened,
-    required this.onScroll,
     this.initialRoute,
     super.key,
   });
@@ -93,9 +92,6 @@ class WizardNavigator extends StatefulWidget {
 
   /// the initial route
   final String? initialRoute;
-
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
 
   /// the pip provider
   final pip.PipProvider pipProvider;
@@ -140,65 +136,73 @@ class _WizardNavigatorState extends State<WizardNavigator> {
               case aboutRoute:
                 return AboutScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
-                return BenchmarkScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return BenchmarkScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case opencvRoute:
-                return OpencvScreen(onScroll: widget.onScroll);
+                return OpencvScreen(scrollController: scrollController);
               case projectRoute:
-                return ProjectScreen(onScroll: widget.onScroll);
+                return ProjectScreen(scrollController: scrollController);
               case openProjectRoute:
-                return OpenProjectScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return OpenProjectScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case languageRoute:
-                return LanguageScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return LanguageScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case filterRoute:
-                return FilterScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return FilterScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case addSourceRoute:
-                return AddSourceScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return AddSourceScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case sourceRoute:
                 return SourceScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     previousPageTitle: args!['previousPageTitle'],
                     videoProvider: args['videoProvider']);
               case settingsRoute:
-                return SettingsScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return SettingsScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case cameraRoute:
                 return CameraScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     videoProvider: args!['videoProvider'],
                     isAddMode: args['isAddMode'],
                     previousPageTitle: args['previousPageTitle']);
               case webcamRoute:
                 return WebcamScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     videoProvider: args!['videoProvider'],
                     isAddMode: args['isAddMode'],
                     previousPageTitle: args['previousPageTitle']);
               case objectsRoute:
                 return ObjectsScreen(
-                    onScroll: widget.onScroll, videoProvider: args!['videoProvider'], videoZone: args['videoZone']);
+                    scrollController: scrollController,
+                    videoProvider: args!['videoProvider'],
+                    videoZone: args['videoZone']);
               case tallyRoute:
                 return CounterScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     videoProvider: args!['videoProvider'],
                     videoZone: args['videoZone'],
                     annotation: args['annotation'],
                     previousPageTitle: args['previousPageTitle']);
               case detectionRoute:
-                return DetectionScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
+                return DetectionScreen(
+                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case urlRoute:
                 return UrlScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     initialUrl: args?['url'] ?? '',
                     nextRouteBuilder: args?['nextRouteBuilder'],
                     previousPageTitle: args?['previousPageTitle']);
               case colorRoute:
                 return ColorScreen(
-                    onScroll: widget.onScroll,
+                    scrollController: scrollController,
                     previousPageTitle: args!['previousPageTitle'],
                     videoProvider: args['videoProvider'],
                     videoZone: args['videoZone']);
               case zoneRoute:
                 return ZoneScreen(
-                  onScroll: widget.onScroll,
+                  scrollController: scrollController,
                   previousPageTitle: args!['previousPageTitle'],
                   videoProvider: args['videoProvider'],
                   videoZone: args['videoZone'],

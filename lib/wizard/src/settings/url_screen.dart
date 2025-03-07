@@ -14,14 +14,14 @@ import 'package:provider/provider.dart';
 class UrlScreen extends StatelessWidget {
   const UrlScreen({
     required this.initialUrl,
-    required this.onScroll,
+    required this.scrollController,
     this.nextRouteBuilder,
     this.previousPageTitle,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the initial url
   final String initialUrl;
@@ -35,7 +35,7 @@ class UrlScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<UrlScreenProvider>(
-      create: (_) => UrlScreenProvider(initialUrl, onScroll),
+      create: (_) => UrlScreenProvider(initialUrl),
       child: Consumer<UrlScreenProvider>(
         builder: (context, urlScreenProvider, child) {
           return PopScope(
@@ -57,7 +57,7 @@ class UrlScreen extends StatelessWidget {
             child: pip.PipScaffold(
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-                  controller: urlScreenProvider._scrollController,
+                  controller: scrollController,
                   child: Column(
                     children: [
                       pip.PipHeader(
@@ -145,9 +145,8 @@ class UrlScreen extends StatelessWidget {
 
 /// provide url screen support
 class UrlScreenProvider with ChangeNotifier {
-  UrlScreenProvider(String url, pip.ScrollCallback onScroll) {
+  UrlScreenProvider(String url) {
     urlFieldController.text = url;
-    _scrollController.addListener(() => onScroll(_scrollController));
   }
 
   /// provide url field support
@@ -159,12 +158,8 @@ class UrlScreenProvider with ChangeNotifier {
   /// the error message
   String? errorMessage;
 
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void dispose() {
-    _scrollController.dispose();
     urlFieldController.dispose();
     httpClient.close(force: true);
     super.dispose();

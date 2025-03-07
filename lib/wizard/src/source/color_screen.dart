@@ -9,15 +9,15 @@ import 'package:vision/vision.dart' as vision;
 /// The color screen for editing the color.
 class ColorScreen extends StatelessWidget {
   const ColorScreen({
-    required this.onScroll,
+    required this.scrollController,
     this.previousPageTitle,
     required this.videoProvider,
     required this.videoZone,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -32,13 +32,13 @@ class ColorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageTitle = context.l.color_screen_title;
     return ChangeNotifierProvider<ColorScreenProvider>(
-        create: (_) => ColorScreenProvider(videoProvider, onScroll),
+        create: (_) => ColorScreenProvider(videoProvider),
         child: Consumer<ColorScreenProvider>(
             builder: (context, colorScreenProvider, child) => pip.PipScaffold(
                   title: pageTitle,
                   previousPageTitle: previousPageTitle,
                   child: SingleChildScrollView(
-                    controller: colorScreenProvider._scrollController,
+                    controller: scrollController,
                     child: Column(
                       children: [
                         HueRingPicker(
@@ -58,25 +58,14 @@ class ColorScreen extends StatelessWidget {
 }
 
 class ColorScreenProvider with ChangeNotifier {
-  ColorScreenProvider(this.videoProvider, pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
+  ColorScreenProvider(this.videoProvider);
 
   /// the video zone editor controller
   final app.VideoProvider videoProvider;
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
 
   /// set the color of the video zone
   void setVideoZoneColor(vision.VideoZone videoZone, Color color) {
     videoProvider.setZoneColor(videoZone, color);
     notifyListeners();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }

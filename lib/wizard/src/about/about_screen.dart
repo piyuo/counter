@@ -114,21 +114,12 @@ class AboutScreenProvider with ChangeNotifier {
   /// The version tap count.
   int _versionTapCount = 0;
 
-  /// The scroll controller.
-  final ScrollController _scrollController = ScrollController();
-
   Future<void> init() async {
     platform = await vision.getPlatformVersion() ?? '?';
     platform = getShortPlatformName(platform);
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     appVersion = packageInfo.version;
     notifyListeners();
-  }
-
-  @override
-  dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 
   String getShortPlatformName(String platform) {

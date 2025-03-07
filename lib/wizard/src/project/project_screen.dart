@@ -14,12 +14,12 @@ import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
   const ProjectScreen({
-    required this.onScroll,
+    required this.scrollController,
     super.key,
   });
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ProjectScreen extends StatelessWidget {
 
     final projectProvider = app.ProjectProvider.of(context);
     return ChangeNotifierProvider<ProjectScreenProvider>(
-      create: (_) => ProjectScreenProvider(projectProvider, onScroll),
+      create: (_) => ProjectScreenProvider(projectProvider),
       child: Consumer2<app.ProjectProvider, ProjectScreenProvider>(
         builder: (context, projectProvider, projectScreenProvider, child) {
           if (projectProvider.project == null) {
@@ -206,7 +206,7 @@ class ProjectScreen extends StatelessWidget {
                     },
                   ),
                   child: SingleChildScrollView(
-                    controller: projectScreenProvider._scrollController,
+                    controller: scrollController,
                     child: Column(
                       children: [
                         pip.PipHeader(
@@ -291,8 +291,7 @@ class ProjectScreen extends StatelessWidget {
 
 /// provide project screen support.
 class ProjectScreenProvider with ChangeNotifier {
-  ProjectScreenProvider(app.ProjectProvider projectProvider, pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
+  ProjectScreenProvider(app.ProjectProvider projectProvider) {
     _gaugeViewRefreshTimer = Timer.periodic(const Duration(minutes: 1), (timer) {
       if (projectProvider.videoPlayingState != app.VideoPlayingState.allPlay) {
         // some video is not playing, need to refresh their gauge count
@@ -306,9 +305,6 @@ class ProjectScreenProvider with ChangeNotifier {
       indicatorRedrawProvider.setValue(value);
     });
   }
-
-  /// The scroll controller
-  final _scrollController = ScrollController();
 
   /// Timer to refresh the gauge view every minute where some video player stop counting.
   Timer? _gaugeViewRefreshTimer;
@@ -324,7 +320,6 @@ class ProjectScreenProvider with ChangeNotifier {
 
   @override
   dispose() {
-    _scrollController.dispose();
     _gaugeViewRefreshTimer?.cancel();
     _indicatorRefreshTimer?.cancel();
     gaugeViewRedrawProvider.dispose();

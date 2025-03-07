@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 /// Camera screen to choose camera
 class CameraScreen extends StatelessWidget {
   const CameraScreen({
-    required this.onScroll,
+    required this.scrollController,
     required this.videoProvider,
     required this.isAddMode,
     this.previousPageTitle,
@@ -23,22 +23,22 @@ class CameraScreen extends StatelessWidget {
   /// the previous page title
   final String? previousPageTitle;
 
-  /// the scroll event handler need by pip screen
-  final pip.ScrollCallback onScroll;
+  /// the scroll controller
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
 
     return ChangeNotifierProvider(
-      create: (_) => CameraScreenProvider(onScroll),
+      create: (_) => CameraScreenProvider(),
       child: Consumer<CameraScreenProvider>(
         builder: (context, cameraScreenProvider, child) {
           return pip.PipScaffold(
               title: isAddMode ? context.l.camera_screen_add_title : context.l.camera_screen_edit_title,
               previousPageTitle: previousPageTitle,
               child: SingleChildScrollView(
-                  controller: cameraScreenProvider._scrollController,
+                  controller: scrollController,
                   child: Column(
                     children: [
                       CupertinoListSection(
@@ -98,21 +98,10 @@ class CameraScreen extends StatelessWidget {
 }
 
 class CameraScreenProvider with ChangeNotifier {
-  CameraScreenProvider(pip.ScrollCallback onScroll) {
-    _scrollController.addListener(() => onScroll(_scrollController));
-  }
-
-  /// The scroll controller
-  final ScrollController _scrollController = ScrollController();
+  CameraScreenProvider();
 
   /// redraw camera setting screen
   void redraw() {
     notifyListeners();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
   }
 }
