@@ -57,8 +57,8 @@ class PipScreen extends StatelessWidget {
             bool isCompactLayout = constraints.maxHeight < _compactHeightThreshold;
 
             /// the width of the sliding panel
-            double slidingPanelWidth = isCompactLayout ? 320 : 360;
-            double slidingPanelMinHeight = isCompactLayout ? 52 : 150;
+            double slidingPanelWidth = isCompactLayout ? 330 : 360;
+            double slidingPanelMinHeight = 52;
 
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {

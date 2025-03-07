@@ -180,12 +180,13 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                     previousPageTitle: args?['previousPageTitle']);
               case colorRoute:
                 return ColorScreen(
-                  previousPageTitle: args!['previousPageTitle'],
-                  videoProvider: args['videoProvider'],
-                  videoZone: args['videoZone'],
-                );
+                    onScroll: widget.onScroll,
+                    previousPageTitle: args!['previousPageTitle'],
+                    videoProvider: args['videoProvider'],
+                    videoZone: args['videoZone']);
               case zoneRoute:
                 return ZoneScreen(
+                  onScroll: widget.onScroll,
                   previousPageTitle: args!['previousPageTitle'],
                   videoProvider: args['videoProvider'],
                   videoZone: args['videoZone'],
