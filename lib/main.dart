@@ -159,6 +159,7 @@ void registerTimeagoLocales() async {
   timeago.setLocaleMessages('dv', timeago.DvMessages());
   timeago.setLocaleMessages('dv_short', timeago.DvShortMessages());
   timeago.setLocaleMessages('en', timeago.EnMessages());
+  timeago.setLocaleMessages('en_US', timeago.EnMessages());
   timeago.setLocaleMessages('en_short', timeago.EnShortMessages());
   timeago.setLocaleMessages('es', timeago.EsMessages());
   timeago.setLocaleMessages('es_short', timeago.EsShortMessages());
