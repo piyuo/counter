@@ -128,7 +128,6 @@ class _MyAppState extends State<MyApp> {
                 slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
                   isPanelOpened: isPanelOpened,
                   onScroll: (scrollController) => pipProvider.onScroll(scrollController),
-                  resetScroll: () => pipProvider.resetScroll(),
                 ),
                 builder: (isSideLayout) => app.ProjectView(
                   noProjectScreen: buildMainScreen(),

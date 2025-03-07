@@ -16,7 +16,6 @@ class WizardScreen extends StatelessWidget {
   const WizardScreen({
     required this.isPanelOpened,
     required this.onScroll,
-    required this.resetScroll,
     super.key,
   });
 
@@ -26,9 +25,6 @@ class WizardScreen extends StatelessWidget {
   /// the scroll event handler need by pip screen
   final pip.ScrollCallback onScroll;
 
-  /// the reset scroll event handler need by pip screen
-  final VoidCallback resetScroll;
-
   @override
   Widget build(BuildContext context) {
     // get screen height
@@ -37,7 +33,7 @@ class WizardScreen extends StatelessWidget {
 
     final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WizardScreenProvider>(
-      create: (_) => WizardScreenProvider(onScroll, resetScroll)..init(),
+      create: (_) => WizardScreenProvider(onScroll)..init(),
       child: Consumer2<app.ProjectProvider, WizardScreenProvider>(
         builder: (context, projectProvider, wizardScreenProvider, child) {
           return pip.PipScaffold(
@@ -178,8 +174,7 @@ class WizardScreen extends StatelessWidget {
 
 /// provide wizard screen support
 class WizardScreenProvider with ChangeNotifier {
-  WizardScreenProvider(pip.ScrollCallback onScroll, VoidCallback resetScroll) {
-    resetScroll();
+  WizardScreenProvider(pip.ScrollCallback onScroll) {
     _scrollController.addListener(() => onScroll(_scrollController));
   }
 
