@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,9 +69,33 @@ class BenchmarkController {
     _recognition.dispose();
   }
 
+  void initRecognition() async {
+    final mediaWidth = 100;
+    final mediaHeight = 100;
+    final double reductionValue = min(mediaWidth * 0.1, mediaHeight * 0.1);
+
+    final offsetX = reductionValue / 2;
+    final offsetY = reductionValue / 2;
+    final zoneId = 1;
+    final zone = vision.VideoZone(
+      tallyAnnotations: [],
+      zoneId: zoneId,
+      name: 'Zone1',
+      color: Colors.blue,
+      objectClasses: const [0, 1, 2],
+      points: [
+        Offset(offsetX, offsetY),
+        Offset(mediaWidth - offsetX, offsetY),
+        Offset(mediaWidth - offsetX, mediaHeight - offsetY),
+        Offset(offsetX, mediaHeight - offsetY),
+      ],
+    );
+    _recognition.setVideoZones([zone]);
+  }
+
   /// Runs the benchmark on all models based on the image path
   Future<int> run() async {
-    _recognition.classes = [0];
+    initRecognition();
     try {
       final imageFilePath = await writeFileFromAssets(benchmarkImagePath);
       final media = _cLib.openFile(imageFilePath);

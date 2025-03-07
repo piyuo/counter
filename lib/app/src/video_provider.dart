@@ -172,7 +172,6 @@ class VideoProvider with ChangeNotifier {
     double? matchThreshold,
     int? validThreshold,
     int? maxLostSeconds,
-    List<int>? classes,
   }) async {
     await visionController.setRecognition(
       model: model,
@@ -183,7 +182,6 @@ class VideoProvider with ChangeNotifier {
       trackingThreshold: trackingThreshold,
       detectionThreshold: detectionThreshold,
       maxLostSeconds: maxLostSeconds,
-      classes: classes,
     );
   }
 
@@ -234,7 +232,6 @@ class VideoProvider with ChangeNotifier {
         trackingThreshold: project.trackingThreshold,
         detectionThreshold: project.confidenceThreshold,
         maxLostSeconds: project.maxLostSeconds,
-        classes: selectedObjectClassesInAllZone,
       ); // disabled this line will enter preview mode
     }
 
@@ -470,23 +467,9 @@ class VideoProvider with ChangeNotifier {
     _saveProject();
   }
 
-  /// get all selected object classes
-  List<int> get selectedObjectClassesInAllZone {
-    List<int> classes = [];
-    for (final zone in video.zones) {
-      for (final classId in zone.selectedClasses) {
-        if (!classes.contains(classId)) {
-          classes.add(classId);
-        }
-      }
-    }
-    return classes;
-  }
-
-  /// add all object class from each zone into recognition classes
-  Future<void> rebuildRecognitionClasses() async {
-    await visionController.setRecognition(classes: selectedObjectClassesInAllZone);
-    notifyListeners();
+  /// set zone classes to recognition
+  Future<void> setZoneClassesToRecognition() async {
+    await visionController.setRecognition(newVideoZones: video.zones);
   }
 
   /// check if there is no activity, this function called on every minute to keep counter fresh

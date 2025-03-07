@@ -34,7 +34,7 @@ class BenchmarkScreen extends StatelessWidget {
             action: CupertinoButton(
               child: Text(context.l.benchmark_screen_start_button),
               onPressed: () async {
-                final errorCode = await benchmarkScreenProvider.doBenchmark();
+                final errorCode = await benchmarkScreenProvider.doBenchmark(context);
                 if (errorCode != 0 && context.mounted) {
                   showCupertinoDialog(
                     context: context,
@@ -135,7 +135,7 @@ class BenchmarkScreenProvider with ChangeNotifier {
   vision.Models get recommendedModel => benchmarkLocalStorage.recommendedModel;
 
   /// Starts the benchmark process
-  Future<int> doBenchmark() async {
+  Future<int> doBenchmark(BuildContext context) async {
     isBenchmarkRunning = true;
     notifyListeners();
     final errorCode = await benchmarkLocalStorage.doBenchmark(

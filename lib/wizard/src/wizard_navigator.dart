@@ -174,10 +174,10 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                 return DetectionScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case urlRoute:
                 return UrlScreen(
-                  initialUrl: args?['url'] ?? '',
-                  nextRouteBuilder: args?['nextRouteBuilder'],
-                  previousPageTitle: args?['previousPageTitle'],
-                );
+                    onScroll: widget.onScroll,
+                    initialUrl: args?['url'] ?? '',
+                    nextRouteBuilder: args?['nextRouteBuilder'],
+                    previousPageTitle: args?['previousPageTitle']);
               case colorRoute:
                 return ColorScreen(
                   previousPageTitle: args!['previousPageTitle'],
