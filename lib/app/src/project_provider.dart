@@ -157,10 +157,48 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// the camera manager
-  CameraManager cameraManager = CameraManager();
+  CameraManager? _cameraManager;
 
   /// the webcam manager
-  WebcamManager webcamManager = WebcamManager();
+  WebcamManager? _webcamManager;
+
+  /// get the camera manager and initialize it if not yet
+  Future<CameraManager> getCameraManager() async {
+    if (_cameraManager == null) {
+      _cameraManager = CameraManager();
+      await _cameraManager!.init();
+    }
+    return _cameraManager!;
+  }
+
+  /// get the webcam manager and initialize it if not yet
+  Future<WebcamManager> getWebcamManager() async {
+    if (_webcamManager == null) {
+      _webcamManager = WebcamManager();
+      await _webcamManager!.init();
+    }
+    return _webcamManager!;
+  }
+
+  /// get the camera count
+  int get cameraCount {
+    return _cameraManager?.cameraDefines.length ?? 0;
+  }
+
+  /// get the webcam count
+  int get webcamCount {
+    return _webcamManager?.webcamDefines.length ?? 0;
+  }
+
+  /// get the camera define by index
+  CameraDefine? getCameraDefine(int index) {
+    return _cameraManager?.cameraDefines[index];
+  }
+
+  /// get the webcam define by index
+  WebcamDefine? getWebcamDefine(int index) {
+    return _webcamManager?.webcamDefines[index];
+  }
 
   /// is lock to portrait mode?
   bool isLockToPortrait = false;
@@ -173,27 +211,6 @@ class ProjectProvider with ChangeNotifier {
 
   /// true if live stream is allowed
   bool get isLiveStreamAllowed => UniversalPlatform.isMobile ? false : true;
-
-  /// have webcam on device
-  bool get hasWebcam => webcamManager.hasWebcam;
-
-  /// true if use are allowed to add webcam
-  bool get isAddWebcamAllowed {
-    /// must have webcam and not all webcams are used
-    return webcamManager.webcamDefines.length > project!.webcamsCount;
-  }
-
-  /// have camera on device
-  bool get hasCamera => cameraManager.hasCamera;
-
-  /// true if use are allowed to add camera
-  bool get isAddCameraAllowed {
-    if (project == null || isLoading) {
-      return hasCamera;
-    }
-    // camera must be supported and no camera exists in the project
-    return hasCamera && !project!.hasCameraInVideos;
-  }
 
   /// used to delay the save project setting
   Timer? _saveProjectTimer;
@@ -227,10 +244,8 @@ class ProjectProvider with ChangeNotifier {
   /// init the project provider
   Future<void> init(BuildContext context) async {
     onDatabaseMaintain?.call();
-    await initializeDateFormatting();
     benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
-    await cameraManager.init();
-    await webcamManager.init();
+    await initializeDateFormatting();
     if (UniversalPlatform.isMobile) {
       orientationProvider ??= OrientationProvider(
         onOrientationChanged: (DeviceOrientation orientation) {
@@ -506,7 +521,10 @@ class ProjectProvider with ChangeNotifier {
         videos: [],
         model: benchmarkLocalStorage.recommendedModel,
       );
-      _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+      await _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+      if (!context.mounted) {
+        return false;
+      }
       await _makeProjectOpened(context);
       for (final videoProvider in videoProviders) {
         videoProvider.resetSamplerFilter(project!.filter);
@@ -535,12 +553,8 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// add a new video to project
-  Video _addVideoToProject(
-    BuildContext context, {
-    required vision.MediaType mediaType,
-    required String? path,
-    int? videoId,
-  }) {
+  Future<Video> _addVideoToProject(BuildContext context,
+      {required vision.MediaType mediaType, required String? path, int? videoId}) async {
     final video = Video(
       videoId: videoId ?? getNextVideoId(),
       mediaType: mediaType,
@@ -550,10 +564,12 @@ class ProjectProvider with ChangeNotifier {
 
     // make sure the video source has a camera or webcam
     if (mediaType == vision.MediaType.camera && video.camera == null) {
+      final cameraManager = await getCameraManager();
       if (cameraManager.cameraDefines.isNotEmpty) {
         video.camera = cameraManager.cameraDefines.first;
       }
     } else if (mediaType == vision.MediaType.webcam && video.webcam == null) {
+      final webcamManager = await getWebcamManager();
       if (webcamManager.webcamDefines.isNotEmpty) {
         for (final webcam in webcamManager.webcamDefines) {
           if (!project!.isWebcamDefineExists(webcam)) {
@@ -604,7 +620,10 @@ class ProjectProvider with ChangeNotifier {
     int? videoId,
   }) async {
     assert(project != null, 'Project must be opened');
-    _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+    await _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
+    if (!context.mounted) {
+      return null;
+    }
     final videoProvider = await _prepareVideoProviders(context);
     saveProject(videoProvider);
     return videoProvider;

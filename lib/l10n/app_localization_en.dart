@@ -18,16 +18,28 @@ class AppLocalizationEn extends AppLocalization {
   String get product_copyright => 'Copyright © 2025';
 
   @override
-  String get video_starter_webcam => 'Webcam';
+  String get video_sources_webcam => 'Webcam';
 
   @override
-  String get video_starter_live_stream => 'Live stream URL';
+  String get video_sources_live_stream => 'Live stream URL';
 
   @override
-  String get video_starter_file => 'File';
+  String get video_sources_file => 'File';
 
   @override
-  String get video_starter_camera => 'Camera';
+  String get video_sources_camera => 'Camera';
+
+  @override
+  String get video_sources_camera_not_found_title => 'Camera not found';
+
+  @override
+  String get video_sources_camera_not_found_message => 'Need grant camera permission to use camera';
+
+  @override
+  String get video_sources_webcam_not_found_title => 'Webcam not found';
+
+  @override
+  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';

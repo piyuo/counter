@@ -18,16 +18,28 @@ class AppLocalizationZh extends AppLocalization {
   String get product_copyright => '版權所有 © 2025';
 
   @override
-  String get video_starter_webcam => '網路攝影機';
+  String get video_sources_webcam => '網路攝影機';
 
   @override
-  String get video_starter_live_stream => '即時串流網址';
+  String get video_sources_live_stream => '直播串流網址';
 
   @override
-  String get video_starter_file => '檔案';
+  String get video_sources_file => '檔案';
 
   @override
-  String get video_starter_camera => '相機';
+  String get video_sources_camera => '相機';
+
+  @override
+  String get video_sources_camera_not_found_title => '找不到相機';
+
+  @override
+  String get video_sources_camera_not_found_message => '使用此功能需要相機權限。';
+
+  @override
+  String get video_sources_webcam_not_found_title => '找不到網路攝影機';
+
+  @override
+  String get video_sources_webcam_not_found_message => '請確認網路攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新專案以開始計數。';

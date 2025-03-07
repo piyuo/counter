@@ -29,7 +29,6 @@ class WebcamScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageTitle = isAddMode ? context.l.webcam_screen_add_title : context.l.webcam_screen_edit_title;
     final projectProvider = app.ProjectProvider.of(context);
-    final webcamManager = projectProvider.webcamManager;
     return ChangeNotifierProvider(
       create: (_) => WebcamScreenProvider(onScroll),
       child: Consumer<WebcamScreenProvider>(
@@ -44,21 +43,23 @@ class WebcamScreen extends StatelessWidget {
                       CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                         children: List.generate(
-                          webcamManager.webcamDefines.length,
+                          projectProvider.webcamCount,
                           (index) {
-                            final webcamDefine = webcamManager.webcamDefines[index];
-                            return CupertinoListTile(
-                              leading: videoProvider.video.webcam == webcamDefine
-                                  ? const Icon(CupertinoIcons.check_mark)
-                                  : const SizedBox.shrink(),
-                              title: Text(webcamDefine.name),
-                              onTap: () async {
-                                videoProvider.video.webcam = webcamDefine;
-                                await videoProvider.reload(context, projectProvider.project!, false);
-                                projectProvider.saveProject(videoProvider);
-                                webcamScreenProvider.redraw();
-                              },
-                            );
+                            final webcamDefine = projectProvider.getWebcamDefine(index);
+                            return webcamDefine != null
+                                ? CupertinoListTile(
+                                    leading: videoProvider.video.webcam == webcamDefine
+                                        ? const Icon(CupertinoIcons.check_mark)
+                                        : const SizedBox.shrink(),
+                                    title: Text(webcamDefine.name),
+                                    onTap: () async {
+                                      videoProvider.video.webcam = webcamDefine;
+                                      await videoProvider.reload(context, projectProvider.project!, false);
+                                      projectProvider.saveProject(videoProvider);
+                                      webcamScreenProvider.redraw();
+                                    },
+                                  )
+                                : const SizedBox.shrink();
                           },
                         ),
                       ),

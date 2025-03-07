@@ -1,10 +1,75 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 
 import '../wizard_navigator.dart';
 import 'pick_video.dart';
+
+/// check if camera exists, check when user click on camera is much better than check on start, cause check camera on start will slow down the app start
+Future<bool> isCameraExists(BuildContext context, app.ProjectProvider projectProvider) async {
+  final cameraManager = await projectProvider.getCameraManager();
+  if (cameraManager.hasCamera) {
+    return true;
+  }
+
+  if (!context.mounted) {
+    return false;
+  }
+
+  await showCupertinoDialog(
+    context: context,
+    builder: (context) {
+      return CupertinoAlertDialog(
+        title: Text(context.l.video_sources_camera_not_found_title),
+        content: Text(context.l.video_sources_camera_not_found_message),
+        actions: [
+          CupertinoDialogAction(
+            child: Text(context.l.ok),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+
+  return false;
+}
+
+/// check if webcam exists, check when user click on webcam is much better than check on start, cause check webcam on start will slow down the app start
+Future<bool> isWebcamExists(BuildContext context, app.ProjectProvider projectProvider) async {
+  final webcamManager = await projectProvider.getWebcamManager();
+  if (webcamManager.hasWebcam) {
+    return true;
+  }
+
+  if (!context.mounted) {
+    return false;
+  }
+
+  // show dialog to say camera not found
+  await showCupertinoDialog(
+    context: context,
+    builder: (context) {
+      return CupertinoAlertDialog(
+        title: Text(context.l.video_sources_webcam_not_found_title),
+        content: Text(context.l.video_sources_webcam_not_found_message),
+        actions: [
+          CupertinoDialogAction(
+            child: Text(context.l.ok),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+  return false;
+}
 
 /// the video sources, like camera, webcam, live stream, file
 List<Widget> buildVideoSources(
@@ -15,13 +80,19 @@ List<Widget> buildVideoSources(
   String? previousPageTitle,
 }) {
   return [
-    if (projectProvider.hasWebcam)
+    // Webcam
+    if (UniversalPlatform.isDesktop)
       CupertinoListTile(
           leading: videoSourcesProvider.isLoadingWebcam ? CupertinoActivityIndicator() : Icon(CupertinoIcons.videocam),
-          title: Text(context.l.video_starter_webcam),
+          title: Text(context.l.video_sources_webcam),
           trailing: CupertinoListTileChevron(),
           onTap: () async {
             videoSourcesProvider.setLoadingWebcam(true);
+            if (!await isWebcamExists(context, projectProvider) || !context.mounted) {
+              videoSourcesProvider.setLoadingWebcam(false);
+              return;
+            }
+
             try {
               // add webcam to project
               if (isAddMode) {
@@ -39,6 +110,7 @@ List<Widget> buildVideoSources(
                 }
                 return;
               }
+
               // create project with webcam
               await projectProvider.newProject(
                 context,
@@ -56,13 +128,18 @@ List<Widget> buildVideoSources(
               videoSourcesProvider.setLoadingWebcam(false);
             }
           }),
-    if (projectProvider.hasCamera && projectProvider.isAddCameraAllowed)
+    // Camera
+    if (UniversalPlatform.isMobile)
       CupertinoListTile(
         leading: videoSourcesProvider.isLoadingCamera ? CupertinoActivityIndicator() : Icon(CupertinoIcons.camera),
-        title: Text(context.l.video_starter_camera),
+        title: Text(context.l.video_sources_camera),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoSourcesProvider.setLoadingCamera(true);
+          if (!await isCameraExists(context, projectProvider) || !context.mounted) {
+            videoSourcesProvider.setLoadingCamera(false);
+            return;
+          }
           try {
             // add camera to project
             if (isAddMode) {
@@ -96,7 +173,7 @@ List<Widget> buildVideoSources(
     if (projectProvider.isLiveStreamAllowed)
       CupertinoListTile(
         leading: videoSourcesProvider.isLoadingLiveStream ? CupertinoActivityIndicator() : Icon(CupertinoIcons.cloud),
-        title: Text(context.l.video_starter_live_stream),
+        title: Text(context.l.video_sources_live_stream),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoSourcesProvider.setLoadingLiveStream(true);
@@ -131,7 +208,7 @@ List<Widget> buildVideoSources(
       ),
     CupertinoListTile(
         leading: videoSourcesProvider.isLoadingFile ? CupertinoActivityIndicator() : Icon(CupertinoIcons.folder),
-        title: Text(context.l.video_starter_file),
+        title: Text(context.l.video_sources_file),
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoSourcesProvider.setLoadingFile(true);

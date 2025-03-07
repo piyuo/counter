@@ -168,10 +168,8 @@ class SourceScreen extends StatelessWidget {
                           title: Text(
                               '${videoProvider.video.camera!.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${videoProvider.video.camera!.title}'),
                           leading: const Icon(CupertinoIcons.camera),
-                          trailing: projectProvider.cameraManager.cameraDefines.length > 1
-                              ? const CupertinoListTileChevron()
-                              : null,
-                          onTap: projectProvider.cameraManager.cameraDefines.length > 1
+                          trailing: projectProvider.cameraCount > 1 ? const CupertinoListTileChevron() : null,
+                          onTap: projectProvider.cameraCount > 1
                               ? () async {
                                   projectProvider.exitVideoScreen(videoProvider);
                                   try {
@@ -200,10 +198,8 @@ class SourceScreen extends StatelessWidget {
                         CupertinoListTile(
                           title: Text(videoProvider.video.webcam!.name),
                           leading: const Icon(CupertinoIcons.videocam),
-                          trailing: projectProvider.webcamManager.webcamDefines.length > 1
-                              ? const CupertinoListTileChevron()
-                              : null,
-                          onTap: projectProvider.webcamManager.webcamDefines.length > 1
+                          trailing: projectProvider.webcamCount > 1 ? const CupertinoListTileChevron() : null,
+                          onTap: projectProvider.webcamCount > 1
                               ? () async {
                                   projectProvider.exitVideoScreen(videoProvider);
                                   try {

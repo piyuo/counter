@@ -29,7 +29,6 @@ class CameraScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
-    final cameraManager = projectProvider.cameraManager;
 
     return ChangeNotifierProvider(
       create: (_) => CameraScreenProvider(onScroll),
@@ -45,20 +44,22 @@ class CameraScreen extends StatelessWidget {
                       CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                         children: List.generate(
-                          cameraManager.cameraDefines.length,
+                          projectProvider.cameraCount,
                           (index) {
-                            final cameraDefine = cameraManager.cameraDefines[index];
-                            return CupertinoListTile(
-                              leading: videoProvider.video.camera == cameraDefine
-                                  ? const Icon(CupertinoIcons.check_mark)
-                                  : const SizedBox.shrink(),
-                              title: Text(
-                                  '${cameraDefine.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${cameraDefine.title}'),
-                              onTap: () async {
-                                videoProvider.setCamera(context, cameraDefine);
-                                cameraScreenProvider.redraw();
-                              },
-                            );
+                            final cameraDefine = projectProvider.getCameraDefine(index);
+                            return cameraDefine != null
+                                ? CupertinoListTile(
+                                    leading: videoProvider.video.camera == cameraDefine
+                                        ? const Icon(CupertinoIcons.check_mark)
+                                        : const SizedBox.shrink(),
+                                    title: Text(
+                                        '${cameraDefine.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${cameraDefine.title}'),
+                                    onTap: () async {
+                                      videoProvider.setCamera(context, cameraDefine);
+                                      cameraScreenProvider.redraw();
+                                    },
+                                  )
+                                : const SizedBox.shrink();
                           },
                         ),
                       ),

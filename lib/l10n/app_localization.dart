@@ -113,29 +113,53 @@ abstract class AppLocalization {
   /// **'Copyright © 2025'**
   String get product_copyright;
 
-  /// No description provided for @video_starter_webcam.
+  /// No description provided for @video_sources_webcam.
   ///
   /// In en, this message translates to:
   /// **'Webcam'**
-  String get video_starter_webcam;
+  String get video_sources_webcam;
 
-  /// No description provided for @video_starter_live_stream.
+  /// No description provided for @video_sources_live_stream.
   ///
   /// In en, this message translates to:
   /// **'Live stream URL'**
-  String get video_starter_live_stream;
+  String get video_sources_live_stream;
 
-  /// No description provided for @video_starter_file.
+  /// No description provided for @video_sources_file.
   ///
   /// In en, this message translates to:
   /// **'File'**
-  String get video_starter_file;
+  String get video_sources_file;
 
-  /// No description provided for @video_starter_camera.
+  /// No description provided for @video_sources_camera.
   ///
   /// In en, this message translates to:
   /// **'Camera'**
-  String get video_starter_camera;
+  String get video_sources_camera;
+
+  /// No description provided for @video_sources_camera_not_found_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera not found'**
+  String get video_sources_camera_not_found_title;
+
+  /// No description provided for @video_sources_camera_not_found_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Need grant camera permission to use camera'**
+  String get video_sources_camera_not_found_message;
+
+  /// No description provided for @video_sources_webcam_not_found_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Webcam not found'**
+  String get video_sources_webcam_not_found_title;
+
+  /// No description provided for @video_sources_webcam_not_found_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check if any webcam is connected'**
+  String get video_sources_webcam_not_found_message;
 
   /// No description provided for @wizard_screen_desc.
   ///

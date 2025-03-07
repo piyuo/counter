@@ -18,6 +18,9 @@ class DataManager {
 
   /// maintain the database, delete old data
   Future<void> maintainDatabase() async {
+    // wait for 5 seconds for app to start
+    await Future.delayed(const Duration(seconds: 5));
+
     // keep projects count to 20;
     await appDatabase.enforceProjectLimit(_maxAllowedProjectCount);
   }
