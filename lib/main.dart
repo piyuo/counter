@@ -26,7 +26,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   _MyAppState();
   final db.DataManager dataManager = db.DataManager();
-//  final AppDatabase appDatabase = AppDatabase();
 
   @override
   Widget build(BuildContext context) {
