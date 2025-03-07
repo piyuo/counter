@@ -24,6 +24,15 @@ class PipProvider with ChangeNotifier {
   /// is the sliding panel opened?
   bool isPanelOpened = false;
 
+  /// set the sliding panel opened
+  void setIsPanelOpened(bool value) {
+    if (isPanelOpened == value) {
+      return;
+    }
+    isPanelOpened = value;
+    notifyListeners();
+  }
+
   /// the key for the sliding panel
   final GlobalKey<SlidingUpPanelState> panelKey = GlobalKey<SlidingUpPanelState>();
 

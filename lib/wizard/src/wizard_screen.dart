@@ -14,9 +14,13 @@ const double _headerHeightThreshold = 600;
 
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
+    required this.isPanelOpened,
     required this.onScroll,
     super.key,
   });
+
+  /// is the sliding panel opened?
+  final bool isPanelOpened;
 
   /// the scroll event handler need by pip screen
   final pip.ScrollCallback onScroll;
@@ -36,7 +40,20 @@ class WizardScreen extends StatelessWidget {
               titleWidget: Container(
                 padding: const EdgeInsets.only(left: 16.0),
                 alignment: Alignment.centerLeft,
-                child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+                child: isPanelOpened
+                    ? Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)))
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(
+                            image: AssetImage('assets/icon/icon.png'),
+                            width: 24,
+                            height: 24,
+                          ),
+                          const SizedBox(width: 10.0),
+                          Expanded(child: Text(context.l.product_name))
+                        ],
+                      ),
               ),
               child: SingleChildScrollView(
                 controller: wizardScreenProvider._scrollController,

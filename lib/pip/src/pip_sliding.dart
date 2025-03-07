@@ -21,7 +21,7 @@ class PipSliding extends StatelessWidget {
   });
 
   /// the builder function
-  final Widget Function() builder;
+  final Widget Function(bool) builder;
 
   /// the pip provider
   final PipProvider pipProvider;
@@ -51,10 +51,17 @@ class PipSliding extends StatelessWidget {
               defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,
               snapPoint: 0.5,
               onPanelOpened: () {
-                pipProvider.isPanelOpened = true;
+                pipProvider.setIsPanelOpened(true);
               },
               onPanelClosed: () {
-                pipProvider.isPanelOpened = false;
+                pipProvider.setIsPanelOpened(false);
+              },
+              onPanelSlide: (value) {
+                if (value == 0) {
+                  pipProvider.setIsPanelOpened(false);
+                } else {
+                  pipProvider.setIsPanelOpened(true);
+                }
               },
               controller: pipProvider.panelController,
               minHeight: minHeight,
@@ -67,7 +74,9 @@ class PipSliding extends StatelessWidget {
                       width: width,
                       child: ClipRRect(
                         borderRadius: _slidingPanelRadius,
-                        child: isShowDragHeader ? _DragHeader(child: builder()) : builder(),
+                        child: isShowDragHeader
+                            ? _DragHeader(child: builder(pipProvider.isPanelOpened))
+                            : builder(pipProvider.isPanelOpened),
                       )),
                 );
               },

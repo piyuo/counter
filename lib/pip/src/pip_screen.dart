@@ -40,7 +40,7 @@ class PipScreen extends StatelessWidget {
   final Widget Function(bool isSideLayout) builder;
 
   /// the sliding builder
-  final Widget Function() slidingBuilder;
+  final Widget Function(bool) slidingBuilder;
 
   /// the device orientation for locked portrait orientation
   final DeviceOrientation? deviceOrientationForPortrait;
@@ -78,7 +78,7 @@ class PipScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: slidingBuilder(),
+                  child: slidingBuilder(false),
                 ),
               );
             }

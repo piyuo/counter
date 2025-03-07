@@ -81,11 +81,16 @@ const zoneRoute = '/zone';
 
 class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
+    required this.isPanelOpened,
     required this.onScroll,
     this.initialRoute,
     super.key,
   });
 
+  /// is the sliding panel opened?
+  final bool isPanelOpened;
+
+  /// the initial route
   final String? initialRoute;
 
   /// the scroll event handler need by pip screen
@@ -124,7 +129,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           builder: (context) {
             switch (routeSettings.name) {
               case '/':
-                return WizardScreen(onScroll: widget.onScroll);
+                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
               case aboutRoute:
                 return AboutScreen(onScroll: widget.onScroll, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
@@ -192,7 +197,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoZone: args['videoZone'],
                 );
               default:
-                return WizardScreen(onScroll: widget.onScroll);
+                return WizardScreen(isPanelOpened: widget.isPanelOpened, onScroll: widget.onScroll);
             }
           },
         );
