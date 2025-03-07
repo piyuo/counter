@@ -153,6 +153,14 @@ class AppDatabase extends _$AppDatabase {
   Future<Project?> getProjectById(String projectId) async {
     final query = select(projects)..where((p) => p.projectId.equals(projectId));
     final rows = await query.get();
+
+    // before return data, update updatedAt
+    if (rows.isNotEmpty) {
+      await (update(projects)..where((p) => p.projectId.equals(projectId))).write(ProjectsCompanion(
+        updatedAt: Value(DateTime.now()),
+      ));
+    }
+
     return rows.isNotEmpty ? rows.first : null;
   }
 
