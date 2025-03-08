@@ -91,50 +91,51 @@ class _MyAppState extends State<MyApp> {
               );
             }
 
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              locale: Intl.defaultLocale == null ? null : Locale(Intl.defaultLocale!),
-              localizationsDelegates: const [
-                AppLocalization.delegate,
-                vision.VisionLocalization.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalCupertinoLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              supportedLocales: AppLocalization.supportedLocales,
-              localeResolutionCallback: (locale, supportedLocales) {
-                for (var supportedLocale in supportedLocales) {
-                  if (supportedLocale.languageCode == locale?.languageCode &&
-                      supportedLocale.countryCode == locale?.countryCode) {
-                    return supportedLocale;
-                  }
-                }
-                return supportedLocales.first;
-              },
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  brightness: Brightness.dark,
-                  seedColor: CupertinoColors.activeBlue,
-                ),
-                brightness: Brightness.dark,
-                cupertinoOverrideTheme: const CupertinoThemeData(
-                  brightness: Brightness.dark,
-                ),
-                useMaterial3: true,
-              ),
-              home: pip.PipScreen(
-                deviceOrientationForPortrait:
-                    projectProvider.isLockToPortrait ? projectProvider.deviceOrientation : null,
-                slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
-                  isPanelOpened: isPanelOpened,
-                  pipProvider: pipProvider,
-                ),
-                builder: (isSideLayout) => app.ProjectView(
-                  noProjectScreen: buildMainScreen(),
-                  isSideLayout: isSideLayout,
-                ),
-              ),
-            );
+            return ChangeNotifierProvider<vision.OrientationProvider>.value(
+                value: projectProvider.orientationProvider,
+                child: MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  locale: Intl.defaultLocale == null ? null : Locale(Intl.defaultLocale!),
+                  localizationsDelegates: const [
+                    AppLocalization.delegate,
+                    vision.VisionLocalization.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                  ],
+                  supportedLocales: AppLocalization.supportedLocales,
+                  localeResolutionCallback: (locale, supportedLocales) {
+                    for (var supportedLocale in supportedLocales) {
+                      if (supportedLocale.languageCode == locale?.languageCode &&
+                          supportedLocale.countryCode == locale?.countryCode) {
+                        return supportedLocale;
+                      }
+                    }
+                    return supportedLocales.first;
+                  },
+                  theme: ThemeData(
+                    colorScheme: ColorScheme.fromSeed(
+                      brightness: Brightness.dark,
+                      seedColor: CupertinoColors.activeBlue,
+                    ),
+                    brightness: Brightness.dark,
+                    cupertinoOverrideTheme: const CupertinoThemeData(
+                      brightness: Brightness.dark,
+                    ),
+                    useMaterial3: true,
+                  ),
+                  home: pip.PipScreen(
+                    isLockToPortrait: projectProvider.isLockToPortrait,
+                    slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
+                      isPanelOpened: isPanelOpened,
+                      pipProvider: pipProvider,
+                    ),
+                    builder: (isSideLayout) => app.ProjectView(
+                      noProjectScreen: buildMainScreen(),
+                      isSideLayout: isSideLayout,
+                    ),
+                  ),
+                ));
           }),
         ));
   }

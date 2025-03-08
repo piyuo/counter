@@ -18,7 +18,6 @@ import 'benchmark.dart';
 import 'camera_manager.dart';
 import 'model/project.dart';
 import 'model/video.dart';
-import 'util/orientation_provider.dart';
 import 'video_provider.dart';
 import 'webcam_manager.dart';
 import 'wizard_commands.dart';
@@ -203,12 +202,6 @@ class ProjectProvider with ChangeNotifier {
   /// is lock to portrait mode?
   bool isLockToPortrait = false;
 
-  /// the device orientation for mobile device
-  DeviceOrientation? deviceOrientation;
-
-  /// the orientation provider for locked portrait mode
-  OrientationProvider? orientationProvider;
-
   /// true if live stream is allowed
   bool get isLiveStreamAllowed => UniversalPlatform.isMobile ? false : true;
 
@@ -236,6 +229,9 @@ class ProjectProvider with ChangeNotifier {
   /// true if the zone editor is enabled
   bool get isZoneEditorEnabled => fullscreenVideoProvider != null;
 
+  /// orientation provider for camera
+  final vision.OrientationProvider orientationProvider = vision.OrientationProvider();
+
   /// get the project provider
   static ProjectProvider of(BuildContext context) {
     return Provider.of<ProjectProvider>(context, listen: false);
@@ -246,16 +242,6 @@ class ProjectProvider with ChangeNotifier {
     onDatabaseMaintain?.call();
     benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
     await initializeDateFormatting();
-    if (UniversalPlatform.isMobile) {
-      orientationProvider ??= OrientationProvider(
-        onOrientationChanged: (DeviceOrientation orientation) {
-          deviceOrientation = orientation;
-
-          notifyListeners();
-        },
-      );
-      await orientationProvider!.start();
-    }
     notifyListeners();
   }
 
@@ -271,7 +257,7 @@ class ProjectProvider with ChangeNotifier {
     _modelChangedTimer?.cancel();
     _onProjectClosed();
     wizardStreamController.close();
-    orientationProvider?.dispose();
+    orientationProvider.dispose();
     super.dispose();
   }
 
@@ -602,6 +588,7 @@ class ProjectProvider with ChangeNotifier {
         continue;
       }
       videoProvider = VideoProvider(
+        orientationProvider: orientationProvider,
         video: video,
         projectProvider: this,
       );

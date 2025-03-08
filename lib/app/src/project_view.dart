@@ -2,6 +2,8 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_platform/universal_platform.dart';
+import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
 import 'model/video.dart';
@@ -34,8 +36,8 @@ class ProjectView extends StatelessWidget {
       }
 
       /// calculate the preview alignment based on the device orientation and screen width
-      AlignmentGeometry getPreviewAlignment(BuildContext context, double maxWidth) {
-        if (projectProvider.deviceOrientation == null) {
+      AlignmentGeometry getPreviewAlignment(vision.OrientationProvider orientationProvider, double maxWidth) {
+        if (UniversalPlatform.isDesktop) {
           if (isSideLayout) {
             return Alignment.center;
           }
@@ -49,7 +51,7 @@ class ProjectView extends StatelessWidget {
 
         // if project is camera video source , orientation is locked to portrait
         if (projectProvider.isLockToPortrait) {
-          switch (projectProvider.deviceOrientation) {
+          switch (orientationProvider.orientation) {
             case DeviceOrientation.portraitUp:
               return Alignment.topCenter;
             case DeviceOrientation.landscapeLeft:
@@ -61,7 +63,7 @@ class ProjectView extends StatelessWidget {
           }
         }
 
-        switch (projectProvider.deviceOrientation) {
+        switch (orientationProvider.orientation) {
           case DeviceOrientation.portraitUp:
             return Alignment.topCenter;
           case DeviceOrientation.landscapeLeft:
@@ -87,17 +89,19 @@ class ProjectView extends StatelessWidget {
               } else if (projectProvider.videoProviders.isEmpty) {
                 videoContent = Center(child: Text(context.l.project_view_no_videos));
               } else if (projectProvider.fullscreenVideoProvider != null) {
-                videoContent = VideoView(
-                  previewAlignment: getPreviewAlignment(context, constraints.maxWidth),
-                  videoProvider: projectProvider.fullscreenVideoProvider!,
-                  filter: projectProvider.project!.filter,
-                );
+                videoContent = Consumer<vision.OrientationProvider>(
+                    builder: (context, orientationProvider, child) => VideoView(
+                          previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
+                          videoProvider: projectProvider.fullscreenVideoProvider!,
+                          filter: projectProvider.project!.filter,
+                        ));
               } else if (projectProvider.videoProviders.length == 1) {
-                videoContent = VideoView(
-                  previewAlignment: getPreviewAlignment(context, constraints.maxWidth),
-                  videoProvider: projectProvider.videoProviders.first,
-                  filter: projectProvider.project!.filter,
-                );
+                videoContent = Consumer<vision.OrientationProvider>(
+                    builder: (context, orientationProvider, child) => VideoView(
+                          previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
+                          videoProvider: projectProvider.videoProviders.first,
+                          filter: projectProvider.project!.filter,
+                        ));
               } else {
                 videoContent = AdaptiveCameraPreviewGrid(
                   animationDuration: const Duration(milliseconds: 500),

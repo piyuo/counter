@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:vision/vision.dart' as vision;
 
 import 'pip_provider.dart';
 import 'pip_sliding.dart';
@@ -32,7 +33,7 @@ class PipScreen extends StatelessWidget {
   const PipScreen({
     required this.builder,
     required this.slidingBuilder,
-    this.deviceOrientationForPortrait,
+    required this.isLockToPortrait,
     super.key,
   });
 
@@ -42,8 +43,8 @@ class PipScreen extends StatelessWidget {
   /// the sliding builder
   final Widget Function(bool) slidingBuilder;
 
-  /// the device orientation for locked portrait orientation
-  final DeviceOrientation? deviceOrientationForPortrait;
+  /// is the device orientation locked to portrait
+  final bool isLockToPortrait;
 
   @override
   Widget build(BuildContext context) {
@@ -178,15 +179,15 @@ class PipScreen extends StatelessWidget {
               );
             }
 
-            Widget determineSlidingLayout() {
+            Widget determineSlidingLayout(orientationProvider) {
               // screen is big enough, use sidebar layout
               if (isSidebarLayout) {
                 return buildSidebarLayout();
               }
 
               // mobile device in locked portrait mode
-              if (deviceOrientationForPortrait != null) {
-                switch (deviceOrientationForPortrait) {
+              if (isLockToPortrait) {
+                switch (orientationProvider.orientation) {
                   case DeviceOrientation.portraitUp:
                     return buildSliding0();
                   case DeviceOrientation.landscapeRight:
@@ -214,7 +215,8 @@ class PipScreen extends StatelessWidget {
                       bottom: 0,
                       child: builder(isSidebarLayout),
                     ),
-                    determineSlidingLayout()
+                    Consumer<vision.OrientationProvider>(
+                        builder: (context, orientationProvider, child) => determineSlidingLayout(orientationProvider))
                   ],
                 ));
           },

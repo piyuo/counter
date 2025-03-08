@@ -15,6 +15,7 @@ import 'zone_editor_controller.dart';
 /// Video provider for manage video source and controller.
 class VideoProvider with ChangeNotifier {
   VideoProvider({
+    required vision.OrientationProvider orientationProvider,
     required this.video,
     required ProjectProvider projectProvider,
   }) : _projectProvider = projectProvider {
@@ -23,6 +24,7 @@ class VideoProvider with ChangeNotifier {
     });
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
     visionController = vision.Controller(
+      orientationProvider: orientationProvider,
       sampler: sampler,
       isShowCenterRedDotOnTarget: _projectProvider!.project!.isShowCenterRedDotOnTarget,
       isShowGhostTarget: _projectProvider!.project!.isShowGhostTarget,
