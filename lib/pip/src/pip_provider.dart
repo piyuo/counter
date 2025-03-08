@@ -136,7 +136,7 @@ class PipProvider with ChangeNotifier {
   /// get the current route's scroll offset
   double getCurrentScrollOffset() {
     final scrollController = _scrollControllers[_currentRoute];
-    if (scrollController != null) {
+    if (scrollController != null && scrollController.hasClients) {
       return scrollController.offset;
     }
     return 0.0;

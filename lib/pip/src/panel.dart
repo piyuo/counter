@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'absorb_sliding.dart';
 
@@ -201,7 +202,14 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   /// reset the scrolling state
   void resetScroll() {
-    _scrollingEnabled = true;
+    if (UniversalPlatform.isDesktop) {
+      _scrollingEnabled = true;
+      return;
+    }
+
+    if (_isPanelOpen && widget.getCurrentScrollOffset() <= 0) {
+      _scrollingEnabled = true;
+    }
   }
 
   /// onScroll event called by the parent widget scroll controller

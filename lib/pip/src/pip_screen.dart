@@ -25,8 +25,11 @@ const double _slidingLayoutWidthThreshold = 500;
 /// if the screen height is less than this value, use compact layout
 const double _compactHeightThreshold = 600;
 
+/// the min height for sliding panel
+const double _slidingPanelMinHeight = 68;
+
 /// the animation duration for sliding panel change position
-const _animationDuration = Duration(milliseconds: 300);
+const _animationDuration = Duration(milliseconds: 100);
 
 /// Picture in Picture screen
 class PipScreen extends StatelessWidget {
@@ -59,7 +62,6 @@ class PipScreen extends StatelessWidget {
 
             /// the width of the sliding panel
             double slidingPanelWidth = isCompactLayout ? 330 : 360;
-            double slidingPanelMinHeight = 52;
 
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
@@ -99,7 +101,7 @@ class PipScreen extends StatelessWidget {
                       child: PipSliding(
                         pipProvider: pipProvider,
                         width: slidingPanelWidth,
-                        minHeight: slidingPanelMinHeight,
+                        minHeight: _slidingPanelMinHeight,
                         builder: slidingBuilder,
                       ),
                     )
@@ -112,7 +114,7 @@ class PipScreen extends StatelessWidget {
                       right: 0,
                       child: PipSliding(
                           pipProvider: pipProvider,
-                          minHeight: slidingPanelMinHeight + safePadding.bottom,
+                          minHeight: _slidingPanelMinHeight + safePadding.bottom,
                           builder: slidingBuilder),
                     );
             }
@@ -127,7 +129,7 @@ class PipScreen extends StatelessWidget {
                 right: 0,
                 child: PipSliding(
                   pipProvider: pipProvider,
-                  minHeight: slidingPanelMinHeight + safePadding.bottom,
+                  minHeight: _slidingPanelMinHeight + safePadding.bottom,
                   builder: slidingBuilder,
                 ),
               );
@@ -151,7 +153,7 @@ class PipScreen extends StatelessWidget {
                       transformRotation: 90,
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
-                      minHeight: slidingPanelMinHeight,
+                      minHeight: _slidingPanelMinHeight,
                       builder: slidingBuilder,
                     )),
               );
@@ -175,7 +177,7 @@ class PipScreen extends StatelessWidget {
                       transformRotation: 270,
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
-                      minHeight: slidingPanelMinHeight,
+                      minHeight: _slidingPanelMinHeight,
                       builder: slidingBuilder,
                     )),
               );

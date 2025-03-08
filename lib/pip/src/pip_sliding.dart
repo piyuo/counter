@@ -55,7 +55,7 @@ class PipSliding extends StatelessWidget {
               getCurrentScrollOffset: () => pipProvider.getCurrentScrollOffset(),
               color: CupertinoColors.transparent,
               defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,
-              snapPoint: 0.5,
+              snapPoint: 0.4,
               onPanelOpened: () {
                 pipProvider.setIsPanelOpened(true);
               },
