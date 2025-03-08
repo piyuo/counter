@@ -15,6 +15,7 @@ class PipSliding extends StatelessWidget {
     required this.builder,
     required this.pipProvider,
     required this.minHeight,
+    this.transformRotation = 0,
     this.isShowDragHeader = true,
     this.width,
     super.key,
@@ -35,6 +36,9 @@ class PipSliding extends StatelessWidget {
   /// whether to show the drag header
   final bool isShowDragHeader;
 
+  /// if outside use the transform widget, the rotation of the sliding panel
+  final int transformRotation;
+
   @override
   Widget build(BuildContext context) {
     return MediaQuery.removePadding(
@@ -47,6 +51,7 @@ class PipSliding extends StatelessWidget {
           builder: (context, constraints) {
             return SlidingUpPanel(
               key: pipProvider.panelKey,
+              transformRotation: transformRotation,
               getCurrentScrollOffset: () => pipProvider.getCurrentScrollOffset(),
               color: CupertinoColors.transparent,
               defaultPanelState: pipProvider.isPanelOpened ? PanelState.open : PanelState.closed,

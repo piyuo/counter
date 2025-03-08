@@ -148,6 +148,7 @@ class PipScreen extends StatelessWidget {
                 child: Transform.rotate(
                     angle: 90 * (pi / 180),
                     child: PipSliding(
+                      transformRotation: 90,
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
                       minHeight: slidingPanelMinHeight,
@@ -171,6 +172,7 @@ class PipScreen extends StatelessWidget {
                 child: Transform.rotate(
                     angle: 270 * (pi / 180),
                     child: PipSliding(
+                      transformRotation: 270,
                       pipProvider: pipProvider,
                       width: slidingPanelWidth,
                       minHeight: slidingPanelMinHeight,

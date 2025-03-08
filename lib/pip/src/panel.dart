@@ -142,9 +142,13 @@ class SlidingUpPanel extends StatefulWidget {
   /// callback to get the current scroll offset
   final double Function() getCurrentScrollOffset;
 
+  /// if outside use the transform widget, the rotation of the sliding panel
+  final int transformRotation;
+
   const SlidingUpPanel(
       {super.key,
       required this.getCurrentScrollOffset,
+      this.transformRotation = 0,
       this.panel,
       this.panelBuilder,
       this.collapsed,
@@ -368,6 +372,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
       );
     }
 
+    final transformRotation = widget.transformRotation; // or 90 if rotate 90 degree, or 270 if rotate 270 degree
     return Listener(
       onPointerDown: (PointerDownEvent p) {
         if (pipAbsorbSliding) {
@@ -380,13 +385,53 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
           return;
         }
         _vt.addPosition(p.timeStamp, p.position); // add current position for velocity tracking
-        _onGestureSlide(p.delta.dy);
+
+        // 根据旋转角度调整滑动方向
+        double adjustedDelta;
+        if (transformRotation == 0) {
+          adjustedDelta = p.delta.dy; // 没有旋转，使用原始dy
+        } else if (transformRotation == 90) {
+          adjustedDelta = -p.delta.dx; // 顺时针旋转90度，使用-dx
+        } else if (transformRotation == 270) {
+          adjustedDelta = p.delta.dx; // 顺时针旋转270度(逆时针90度)，使用dx
+        } else {
+          adjustedDelta = p.delta.dy; // 默认使用原始dy
+        }
+
+        _onGestureSlide(adjustedDelta);
       },
       onPointerUp: (PointerUpEvent p) {
         if (pipAbsorbSliding) {
           return;
         }
-        _onGestureEnd(_vt.getVelocity());
+
+        // Get the original velocity
+        final Velocity originalVelocity = _vt.getVelocity();
+
+        // Adjust the velocity vector based on the rotation angle
+        Velocity adjustedVelocity;
+        if (transformRotation == 0) {
+          // No rotation, use the original velocity
+          adjustedVelocity = originalVelocity;
+        } else if (transformRotation == 90) {
+          // Rotate 90 degrees clockwise
+          adjustedVelocity = Velocity(
+              pixelsPerSecond: Offset(
+                  -originalVelocity.pixelsPerSecond.dy, // y becomes -x
+                  originalVelocity.pixelsPerSecond.dx // x becomes y
+                  ));
+        } else if (transformRotation == 270) {
+          // Rotate 270 degrees clockwise (or 90 degrees counter-clockwise)
+          adjustedVelocity = Velocity(
+              pixelsPerSecond: Offset(
+                  originalVelocity.pixelsPerSecond.dy, // y becomes x
+                  -originalVelocity.pixelsPerSecond.dx // x becomes -y
+                  ));
+        } else {
+          // By default, use the original velocity
+          adjustedVelocity = originalVelocity;
+        }
+        _onGestureEnd(adjustedVelocity);
       },
       child: child,
     );
