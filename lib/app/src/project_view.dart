@@ -76,69 +76,68 @@ class ProjectView extends StatelessWidget {
       }
 
       buildProjectOpened(Project project) {
-        return OrientationBuilder(
-          builder: (context, orientation) => LayoutBuilder(
-            builder: (context, constraints) {
-              // Choose the video view based on the state.
-              Widget videoContent;
-              if (projectProvider.isLoading) {
-                videoContent = Center(
-                    child: CupertinoActivityIndicator(
-                  radius: 48,
-                ));
-              } else if (projectProvider.videoProviders.isEmpty) {
-                videoContent = Center(child: Text(context.l.project_view_no_videos));
-              } else if (projectProvider.fullscreenVideoProvider != null) {
-                videoContent = Consumer<vision.OrientationProvider>(
-                    builder: (context, orientationProvider, child) => VideoView(
+        return Consumer<vision.OrientationProvider>(
+            builder: (context, orientationProvider, child) => OrientationBuilder(
+                  builder: (context, orientation) => LayoutBuilder(
+                    builder: (context, constraints) {
+                      // Choose the video view based on the state.
+                      Widget videoContent;
+                      if (projectProvider.isLoading) {
+                        videoContent = Center(
+                            child: CupertinoActivityIndicator(
+                          radius: 48,
+                        ));
+                      } else if (projectProvider.videoProviders.isEmpty) {
+                        videoContent = Center(child: Text(context.l.project_view_no_videos));
+                      } else if (projectProvider.fullscreenVideoProvider != null) {
+                        videoContent = VideoView(
                           previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
                           videoProvider: projectProvider.fullscreenVideoProvider!,
                           filter: projectProvider.project!.filter,
-                        ));
-              } else if (projectProvider.videoProviders.length == 1) {
-                videoContent = Consumer<vision.OrientationProvider>(
-                    builder: (context, orientationProvider, child) => VideoView(
+                        );
+                      } else if (projectProvider.videoProviders.length == 1) {
+                        videoContent = VideoView(
                           previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
                           videoProvider: projectProvider.videoProviders.first,
                           filter: projectProvider.project!.filter,
-                        ));
-              } else {
-                videoContent = AdaptiveCameraPreviewGrid(
-                  animationDuration: const Duration(milliseconds: 500),
-                  animationCurve: Curves.fastOutSlowIn,
-                  previews: projectProvider.videoProviders.map((videoProvider) {
-                    return CameraPreviewHolder(
-                      id: videoProvider.video.videoId,
-                      preview: VideoView(
-                        videoProvider: videoProvider,
-                        title: videoProvider.video.videoName, // only show title when there are multiple sources
-                        filter: projectProvider.project!.filter,
-                      ),
-                      width: videoProvider.mediaWidth,
-                      height: videoProvider.mediaHeight,
-                    );
-                  }).toList(),
-                );
-              }
+                        );
+                      } else {
+                        videoContent = AdaptiveCameraPreviewGrid(
+                          animationDuration: const Duration(milliseconds: 500),
+                          animationCurve: Curves.fastOutSlowIn,
+                          previews: projectProvider.videoProviders.map((videoProvider) {
+                            return CameraPreviewHolder(
+                              id: videoProvider.video.videoId,
+                              preview: VideoView(
+                                videoProvider: videoProvider,
+                                title: videoProvider.video.videoName, // only show title when there are multiple sources
+                                filter: projectProvider.project!.filter,
+                              ),
+                              width: videoProvider.mediaWidth,
+                              height: videoProvider.mediaHeight,
+                            );
+                          }).toList(),
+                        );
+                      }
 
-              // AnimatedSwitcher always exists to smoothly transition between states.
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 300),
-                transitionBuilder: (child, animation) {
-                  return EnhancedScaleTransition(
-                    animation: animation,
-                    child: child,
-                  );
-                },
-                // Use a key that changes with state to trigger the transition.
-                child: Container(
-                  key: ValueKey(projectProvider.fullscreenVideoProvider != null ? 'fullscreen' : 'normal'),
-                  child: videoContent,
-                ),
-              );
-            },
-          ),
-        );
+                      // AnimatedSwitcher always exists to smoothly transition between states.
+                      return AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 300),
+                        transitionBuilder: (child, animation) {
+                          return EnhancedScaleTransition(
+                            animation: animation,
+                            child: child,
+                          );
+                        },
+                        // Use a key that changes with state to trigger the transition.
+                        child: Container(
+                          key: ValueKey(projectProvider.fullscreenVideoProvider != null ? 'fullscreen' : 'normal'),
+                          child: videoContent,
+                        ),
+                      );
+                    },
+                  ),
+                ));
       }
 
       return projectProvider.isProjectOpened
