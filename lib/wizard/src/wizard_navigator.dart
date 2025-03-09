@@ -13,12 +13,12 @@ import 'settings/add_source_screen.dart';
 import 'settings/detection_screen.dart';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
-import 'settings/webcam_screen.dart';
 import 'source/camera_screen.dart';
 import 'source/color_screen.dart';
 import 'source/counter_screen.dart';
 import 'source/objects_screen.dart';
 import 'source/source_screen.dart';
+import 'source/webcam_screen.dart';
 import 'source/zone_screen.dart';
 import 'wizard_screen.dart';
 
