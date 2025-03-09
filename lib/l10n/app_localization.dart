@@ -560,26 +560,8 @@ abstract class AppLocalization {
   /// No description provided for @detection_screen_lost_desc.
   ///
   /// In en, this message translates to:
-  /// **'Track object will be removed if it is lost for #0 seconds'**
+  /// **'Track object will be removed if it is lost for #0'**
   String get detection_screen_lost_desc;
-
-  /// No description provided for @detection_screen_0.
-  ///
-  /// In en, this message translates to:
-  /// **'0'**
-  String get detection_screen_0;
-
-  /// No description provided for @detection_screen_1.
-  ///
-  /// In en, this message translates to:
-  /// **'1'**
-  String get detection_screen_1;
-
-  /// No description provided for @detection_screen_30.
-  ///
-  /// In en, this message translates to:
-  /// **'30 seconds'**
-  String get detection_screen_30;
 
   /// No description provided for @detection_screen_consider_valid.
   ///
@@ -590,7 +572,7 @@ abstract class AppLocalization {
   /// No description provided for @detection_screen_consider_valid_desc.
   ///
   /// In en, this message translates to:
-  /// **'Track object will be consider valid after #0 seconds'**
+  /// **'Track object will be consider valid after #0'**
   String get detection_screen_consider_valid_desc;
 
   /// No description provided for @detection_screen_reset.

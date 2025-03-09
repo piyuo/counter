@@ -240,22 +240,13 @@ class AppLocalizationZh extends AppLocalization {
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '如果物體丟失 #0 秒，追蹤物體將被移除';
-
-  @override
-  String get detection_screen_0 => '0';
-
-  @override
-  String get detection_screen_1 => '1';
-
-  @override
-  String get detection_screen_30 => '30 秒';
+  String get detection_screen_lost_desc => '如果物體丟失 #0，追蹤物體將被移除';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
 
   @override
-  String get detection_screen_consider_valid_desc => '追蹤物體在 #0 秒後視為有效';
+  String get detection_screen_consider_valid_desc => '追蹤物體在 #0 後視為有效';
 
   @override
   String get detection_screen_reset => '重置';

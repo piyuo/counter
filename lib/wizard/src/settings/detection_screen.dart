@@ -33,9 +33,7 @@ class DetectionScreen extends StatelessWidget {
             final classPercentage = '${(project!.confidenceThreshold * 100).toStringAsFixed(0)}%';
             final nmsPercentage = '${(project.nmsThreshold * 100).toStringAsFixed(0)}%';
             // no tracking setting for now, it just a priority setting not that easy to explain to user
-            final validThreshold = '${project.validThreshold / 1000}';
             final matchPercentage = '${(project.matchThreshold * 100).toStringAsFixed(0)}%';
-            final maxLostSeconds = '${project.maxLostSeconds}';
 
             return SingleChildScrollView(
                 controller: scrollController,
@@ -152,20 +150,23 @@ class DetectionScreen extends StatelessWidget {
                       header: Text(context.l.detection_screen_lost),
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
-                        child: Text(maxLines: 3, context.l.detection_screen_lost_desc.replaceAll('#0', maxLostSeconds)),
+                        child: Text(
+                            maxLines: 3,
+                            context.l.detection_screen_lost_desc.replaceAll(
+                                '#0', vision.formatDuration(context, Duration(seconds: project.maxLostSeconds)))),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(context.l.detection_screen_1),
-                            trailing: Text(context.l.detection_screen_30),
+                            leading: Text(vision.formatDuration(context, const Duration(seconds: 1))),
+                            trailing: Text(vision.formatDuration(context, const Duration(seconds: 600))),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
                                 value: project.maxLostSeconds.toDouble(),
-                                max: 30,
                                 min: 1,
-                                divisions: 100,
+                                max: 600,
+                                divisions: 150,
                                 onChanged: (double value) async {
                                   await projectProvider.setSettingsMaxLostSeconds(value.toInt());
                                   detectionScreenProvider.onMaxLostSecondsChanged();
@@ -181,19 +182,22 @@ class DetectionScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: Text(
                             maxLines: 3,
-                            context.l.detection_screen_consider_valid_desc.replaceAll('#0', validThreshold)),
+                            context.l.detection_screen_consider_valid_desc.replaceAll(
+                                '#0',
+                                vision.formatDuration(
+                                    context, Duration(seconds: (project.validThreshold / 1000).toInt())))),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(context.l.detection_screen_0),
-                            trailing: Text(context.l.detection_screen_30),
+                            leading: Text(vision.formatDuration(context, const Duration(seconds: 0))),
+                            trailing: Text(vision.formatDuration(context, const Duration(seconds: 60))),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
                                 value: project.validThreshold / 1000,
-                                max: 30,
                                 min: 0,
+                                max: 60,
                                 divisions: 150,
                                 onChanged: (double value) async {
                                   await projectProvider.setSettingsValidThreshold((value * 1000).toInt());

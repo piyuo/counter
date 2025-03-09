@@ -240,22 +240,13 @@ class AppLocalizationEn extends AppLocalization {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0 seconds';
-
-  @override
-  String get detection_screen_0 => '0';
-
-  @override
-  String get detection_screen_1 => '1';
-
-  @override
-  String get detection_screen_30 => '30 seconds';
+  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Track object will be consider valid after #0 seconds';
+  String get detection_screen_consider_valid_desc => 'Track object will be consider valid after #0';
 
   @override
   String get detection_screen_reset => 'Reset';
