@@ -97,24 +97,32 @@ class UrlScreen extends StatelessWidget {
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                         children: [
                           CupertinoListTile(
+                              trailing: urlScreenProvider._isSubmitButtonPressed ? CupertinoActivityIndicator() : null,
                               title: Center(
                                   child: CupertinoButton(
-                            onPressed: () async {
-                              final url = urlScreenProvider.urlFieldController.text;
-                              final ok = await urlScreenProvider.pingUrl(url);
-                              if (context.mounted && ok) {
-                                if (nextRouteBuilder != null) {
-                                  String nextRoute = await nextRouteBuilder!(url);
-                                  if (context.mounted) {
-                                    Navigator.of(context).pushReplacementNamed(nextRoute);
-                                  }
-                                } else {
-                                  Navigator.of(context).pop(url);
-                                }
-                              }
-                            },
-                            child: Text(context.l.submit, style: TextStyle(color: CupertinoColors.activeBlue)),
-                          ))),
+                                onPressed: urlScreenProvider._isSubmitButtonPressed
+                                    ? null
+                                    : () async {
+                                        urlScreenProvider.setSubmitButtonPressed(true);
+                                        try {
+                                          final url = urlScreenProvider.urlFieldController.text;
+                                          final ok = await urlScreenProvider.pingUrl(url);
+                                          if (context.mounted && ok) {
+                                            if (nextRouteBuilder != null) {
+                                              String nextRoute = await nextRouteBuilder!(url);
+                                              if (context.mounted) {
+                                                Navigator.of(context).pushReplacementNamed(nextRoute);
+                                              }
+                                            } else {
+                                              Navigator.of(context).pop(url);
+                                            }
+                                          }
+                                        } finally {
+                                          urlScreenProvider.setSubmitButtonPressed(false);
+                                        }
+                                      },
+                                child: Text(context.l.submit, style: TextStyle(color: CupertinoColors.activeBlue)),
+                              ))),
                         ],
                       ),
                       if (initialUrl.isNotEmpty)
@@ -158,11 +166,20 @@ class UrlScreenProvider with ChangeNotifier {
   /// the error message
   String? errorMessage;
 
+  /// is submit button pressed
+  bool _isSubmitButtonPressed = false;
+
   @override
   void dispose() {
     urlFieldController.dispose();
     httpClient.close(force: true);
     super.dispose();
+  }
+
+  /// set submit button pressed
+  void setSubmitButtonPressed(bool value) {
+    _isSubmitButtonPressed = value;
+    notifyListeners();
   }
 
   /// test if the url is valid
