@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
@@ -153,7 +152,7 @@ class VideoProvider with ChangeNotifier {
       case vision.MediaType.camera:
         return CupertinoIcons.camera;
       case vision.MediaType.live:
-        return Icons.cloud;
+        return CupertinoIcons.cloud;
       case vision.MediaType.file:
         return CupertinoIcons.folder;
     }
