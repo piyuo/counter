@@ -138,12 +138,22 @@ class ProjectScreen extends StatelessWidget {
                           trailing: const CupertinoListTileChevron(),
                           additionalInfo: Text(vision.mediaTypeToString(context, videoProvider.video.mediaType),
                               style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
-                          onTap: () {
-                            gotoSourceRoute(
-                              projectProvider: projectProvider,
-                              videoProvider: videoProvider,
-                              previousPageTitle: pageTitle,
-                            );
+                          onTap: () async {
+                            await projectProvider.enterVideoScreen(videoProvider);
+                            if (!context.mounted) {
+                              return;
+                            }
+                            try {
+                              await Navigator.of(context).pushNamed(
+                                sourceRoute,
+                                arguments: {
+                                  'videoProvider': videoProvider,
+                                  'previousPageTitle': pageTitle,
+                                },
+                              );
+                            } finally {
+                              projectProvider.exitVideoScreen(videoProvider);
+                            }
                           },
                         ),
                         ...buildGauges(),
