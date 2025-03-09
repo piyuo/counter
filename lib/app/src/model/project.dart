@@ -7,7 +7,7 @@ const _confidenceThreshold = 0.35; // pick object as many as possible
 const _trackingThreshold = 0.7; // byte track will filter object by
 const _nmsThreshold = 0.65;
 const _matchThreshold = 0.55;
-const _maxLostSeconds = 1;
+const _maxLostSeconds = 30;
 const _validThreshold = 800; // 800ms to consider object is valid
 
 /// Project for object detection, support multiple video sources, and settings.
