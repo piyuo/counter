@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
 import '../project/pick_video.dart';
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 
 /// The source screen for detail and zone editing.
 class SourceScreen extends StatelessWidget {

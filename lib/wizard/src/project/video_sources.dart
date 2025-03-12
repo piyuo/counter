@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 import 'pick_video.dart';
 
 /// check if camera exists, check when user click on camera is much better than check on start, cause check camera on start will slow down the app start

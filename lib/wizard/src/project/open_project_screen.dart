@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 
 class OpenProjectScreen extends StatelessWidget {
   const OpenProjectScreen({

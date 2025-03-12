@@ -82,8 +82,8 @@ const webcamRoute = '/webcam';
 /// The zone route
 const zoneRoute = '/zone';
 
-class WizardNavigator extends StatefulWidget {
-  const WizardNavigator({
+class WizardApp extends StatefulWidget {
+  const WizardApp({
     required this.appLocale,
     required this.appLocaleDelegates,
     required this.pipProvider,
@@ -108,10 +108,10 @@ class WizardNavigator extends StatefulWidget {
   final List<LocalizationsDelegate<dynamic>> appLocaleDelegates;
 
   @override
-  State<WizardNavigator> createState() => _WizardNavigatorState();
+  State<WizardApp> createState() => _WizardAppState();
 }
 
-class _WizardNavigatorState extends State<WizardNavigator> {
+class _WizardAppState extends State<WizardApp> {
   @override
   void initState() {
     super.initState();

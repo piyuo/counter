@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 import 'gauge_view.dart';
 import 'indicator_view.dart';
 

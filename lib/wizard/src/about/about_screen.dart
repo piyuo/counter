@@ -6,7 +6,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({

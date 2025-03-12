@@ -134,7 +134,7 @@ class _MyAppState extends State<MyApp> {
                                   default:
                                     return pip.PipScreen(
                                       isLockToPortrait: projectProvider.isLockToPortrait,
-                                      slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
+                                      slidingBuilder: (isPanelOpened) => wizard.WizardApp(
                                         appLocale: appLocale,
                                         appLocaleDelegates: appLocaleDelegates,
                                         isPanelOpened: isPanelOpened,

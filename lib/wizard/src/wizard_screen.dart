@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
 import 'project/video_sources.dart';
-import 'wizard_navigator.dart';
+import 'wizard_app.dart';
 
 /// if the screen height is less than this value, use compact header
 const double _headerHeightThreshold = 600;

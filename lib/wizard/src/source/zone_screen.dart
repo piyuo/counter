@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 
 /// The zone screen for editing the video zone.
 class ZoneScreen extends StatelessWidget {

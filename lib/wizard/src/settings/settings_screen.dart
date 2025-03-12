@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../wizard_navigator.dart';
+import '../wizard_app.dart';
 
 /// provide settings screen for the project
 class SettingsScreen extends StatelessWidget {
