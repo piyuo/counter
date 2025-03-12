@@ -46,6 +46,7 @@ class ProjectScreen extends StatelessWidget {
               value: count.sampling!,
               child: Consumer<vision.Sampling>(
                 builder: (context, profilesController, child) {
+                  final zoneColor = videoZone.color.withValues(alpha: 1);
                   buildZoneGauges() {
                     List<Widget> gauges = [];
                     DateTime now = DateTime.now();
@@ -54,7 +55,7 @@ class ProjectScreen extends StatelessWidget {
                       final tallyAnnotation = tallyAnnotations[i];
                       gauges.add(
                         GaugeView(
-                          chartColor: videoZone.color,
+                          chartColor: zoneColor,
                           classId: count.classId,
                           tallyCounter: tallyCounter,
                           tallyAnnotation: tallyAnnotation,
@@ -89,10 +90,11 @@ class ProjectScreen extends StatelessWidget {
                 buildGauges() {
                   List<Widget> gauges = [];
                   for (final zone in videoProvider.visionController.zones) {
+                    final zoneColor = zone.videoZone.color.withValues(alpha: 1);
                     gauges.add(
                       CupertinoListTile(
-                        leading: Icon(CupertinoIcons.square_stack, color: zone.videoZone.color),
-                        title: Text(zone.videoZone.name, style: TextStyle(color: zone.videoZone.color)),
+                        leading: Icon(CupertinoIcons.square_stack, color: zoneColor),
+                        title: Text(zone.videoZone.name),
                         trailing: const CupertinoListTileChevron(),
                         onTap: () async {
                           Navigator.of(context).pushNamed(zoneRoute, arguments: {
