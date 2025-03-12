@@ -112,40 +112,12 @@ class SourceScreen extends StatelessWidget {
                     ],
                   ),
 
-                  // live stream
-                  if (video.mediaType == vision.MediaType.live)
-                    CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.source_screen_url),
-                      children: [
-                        CupertinoListTile(
-                          title: Text(videoProvider.video.path!),
-                          leading: const Icon(CupertinoIcons.cloud),
-                          trailing: const CupertinoListTileChevron(),
-                          onTap: () async {
-                            projectProvider.exitVideoScreen(videoProvider);
-                            try {
-                              dynamic url =
-                                  await Navigator.of(context).pushNamed(urlRoute, arguments: {'url': video.path});
-                              if (url != null && url != video.path) {
-                                if (context.mounted) {
-                                  await videoProvider.setVideoPath(context, projectProvider.project!, url);
-                                }
-                                projectProvider.saveProject(videoProvider);
-                              }
-                            } finally {
-                              projectProvider.enterVideoScreen(videoProvider);
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-                  // file
-                  if (video.mediaType == vision.MediaType.file)
-                    CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.source_screen_file),
-                      children: [
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.source_screen_sources),
+                    children: [
+                      // file
+                      if (video.mediaType == vision.MediaType.file)
                         CupertinoListTile(
                           title: Text(context.l.source_screen_change_file),
                           leading: const Icon(CupertinoIcons.folder),
@@ -168,13 +140,31 @@ class SourceScreen extends StatelessWidget {
                             projectProvider.saveProject(videoProvider);
                           },
                         ),
-                      ],
-                    ),
-                  if (video.mediaType == vision.MediaType.camera)
-                    CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.source_screen_camera),
-                      children: [
+                      // live stream
+                      if (video.mediaType == vision.MediaType.live)
+                        CupertinoListTile(
+                          title: Text(videoProvider.video.path!),
+                          leading: const Icon(CupertinoIcons.cloud),
+                          trailing: const CupertinoListTileChevron(),
+                          onTap: () async {
+                            projectProvider.exitVideoScreen(videoProvider);
+                            try {
+                              dynamic url =
+                                  await Navigator.of(context).pushNamed(urlRoute, arguments: {'url': video.path});
+                              if (url != null && url != video.path) {
+                                if (context.mounted) {
+                                  await videoProvider.setVideoPath(context, projectProvider.project!, url);
+                                }
+                                projectProvider.saveProject(videoProvider);
+                              }
+                            } finally {
+                              projectProvider.enterVideoScreen(videoProvider);
+                            }
+                          },
+                        ),
+
+                      // camera
+                      if (video.mediaType == vision.MediaType.camera)
                         CupertinoListTile(
                           title: Text(
                               '${videoProvider.video.camera!.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${videoProvider.video.camera!.title}'),
@@ -198,14 +188,9 @@ class SourceScreen extends StatelessWidget {
                                 }
                               : null,
                         ),
-                      ],
-                    ),
 
-                  if (video.mediaType == vision.MediaType.webcam)
-                    CupertinoListSection(
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.source_screen_webcam),
-                      children: [
+                      // webcam
+                      if (video.mediaType == vision.MediaType.webcam)
                         CupertinoListTile(
                           title: Text(videoProvider.video.webcam!.name),
                           leading: const Icon(CupertinoIcons.videocam),
@@ -228,16 +213,10 @@ class SourceScreen extends StatelessWidget {
                                 }
                               : null,
                         ),
-                      ],
-                    ),
 
-                  // object classes
-                  CupertinoListSection(
-                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_objects_header),
-                    children: [
+                      // object classes
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_objects),
+                        title: Text(context.l.source_screen_targets),
                         leading: const Icon(CupertinoIcons.list_bullet),
                         trailing: const CupertinoListTileChevron(),
                         additionalInfo: Text(getCurrentObjectClassNames(context)),
@@ -249,6 +228,17 @@ class SourceScreen extends StatelessWidget {
                           },
                         ),
                       ),
+                      // detection parameter
+                      CupertinoListTile(
+                        title: Text(context.l.source_screen_detection),
+                        leading: const Icon(CupertinoIcons.eye),
+                        trailing: const CupertinoListTileChevron(),
+                        additionalInfo:
+                            projectProvider.project != null ? Text(projectProvider.project!.model.name) : null,
+                        onTap: () => Navigator.of(context).pushNamed(detectionRoute, arguments: {
+                          'previousPageTitle': pageTitle,
+                        }),
+                      ),
                     ],
                   ),
 
@@ -259,7 +249,7 @@ class SourceScreen extends StatelessWidget {
                     children: video.zones
                         .map((zone) => CupertinoListTile(
                               title: Text(zone.name),
-                              leading: Icon(CupertinoIcons.square_stack, color: zone.color),
+                              leading: Icon(CupertinoIcons.square_stack, color: zone.color.withValues(alpha: 1)),
                               //  leading: const Icon(CupertinoIcons.dot_square),
                               trailing: const CupertinoListTileChevron(),
                               onTap: () {

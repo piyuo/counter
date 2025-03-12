@@ -84,22 +84,6 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    header: Text(context.l.settings_screen_detection_parameters),
-                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [
-                      CupertinoListTile(
-                        title: Text(context.l.settings_screen_detection),
-                        leading: const Icon(CupertinoIcons.eye),
-                        trailing: const CupertinoListTileChevron(),
-                        additionalInfo:
-                            projectProvider.project != null ? Text(projectProvider.project!.model.name) : null,
-                        onTap: () => Navigator.of(context).pushNamed(detectionRoute, arguments: {
-                          'previousPageTitle': pageTitle,
-                        }),
-                      ),
-                    ],
-                  ),
-                  CupertinoListSection(
                     header: Text(context.l.settings_screen_center_point_title),
                     footer: Text(context.l.settings_screen_center_point_desc),
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),

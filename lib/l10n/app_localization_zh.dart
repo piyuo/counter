@@ -162,12 +162,6 @@ class AppLocalizationZh extends AppLocalization {
   String get settings_screen_project_error => '專案名稱不能為空';
 
   @override
-  String get settings_screen_detection => '偵測設定';
-
-  @override
-  String get settings_screen_detection_parameters => '物體偵測參數例如置信度、NMS 等。';
-
-  @override
   String get settings_screen_random_count_button => '新增隨機計數';
 
   @override
@@ -306,19 +300,7 @@ class AppLocalizationZh extends AppLocalization {
   String get source_screen_edit_placeholder => '前門攝影機或停車場攝影機';
 
   @override
-  String get source_screen_url => '目前網址';
-
-  @override
   String get source_screen_change_file => '更改檔案';
-
-  @override
-  String get source_screen_file => '檔案';
-
-  @override
-  String get source_screen_camera => '相機';
-
-  @override
-  String get source_screen_webcam => '網路攝影機';
 
   @override
   String get source_screen_add_zone => '新增偵測區域';
@@ -363,10 +345,13 @@ class AppLocalizationZh extends AppLocalization {
   String get source_screen_delete_button => '刪除';
 
   @override
-  String get source_screen_objects_header => '偵測物件，例如人、車輛和狗。';
+  String get source_screen_sources => '設定影像來源、偵測目標及模型參數';
 
   @override
-  String get source_screen_objects => '選擇要偵測的物件';
+  String get source_screen_targets => '偵測目標';
+
+  @override
+  String get source_screen_detection => '模型參數';
 
   @override
   String get color_screen_title => '選擇顏色';

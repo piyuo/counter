@@ -162,12 +162,6 @@ class AppLocalizationEn extends AppLocalization {
   String get settings_screen_project_error => 'The project name cannot be empty';
 
   @override
-  String get settings_screen_detection => 'Detection Settings';
-
-  @override
-  String get settings_screen_detection_parameters => 'Object Detection Parameters lie confidence, NMS, etc.';
-
-  @override
   String get settings_screen_random_count_button => 'Add random counts';
 
   @override
@@ -306,19 +300,7 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
 
   @override
-  String get source_screen_url => 'Current URL';
-
-  @override
   String get source_screen_change_file => 'Change File';
-
-  @override
-  String get source_screen_file => 'File';
-
-  @override
-  String get source_screen_camera => 'Camera';
-
-  @override
-  String get source_screen_webcam => 'Webcam';
 
   @override
   String get source_screen_add_zone => 'Add detection zone';
@@ -363,10 +345,13 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_delete_button => 'Delete';
 
   @override
-  String get source_screen_objects_header => 'Detect objects such as people, vehicles, and dogs.';
+  String get source_screen_sources => 'Configure image source, detection targets, and model parameters.';
 
   @override
-  String get source_screen_objects => 'Select Objects to Detect';
+  String get source_screen_targets => 'Detection targets';
+
+  @override
+  String get source_screen_detection => 'Model parameters';
 
   @override
   String get color_screen_title => 'Pick a color';

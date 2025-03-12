@@ -401,18 +401,6 @@ abstract class AppLocalization {
   /// **'The project name cannot be empty'**
   String get settings_screen_project_error;
 
-  /// No description provided for @settings_screen_detection.
-  ///
-  /// In en, this message translates to:
-  /// **'Detection Settings'**
-  String get settings_screen_detection;
-
-  /// No description provided for @settings_screen_detection_parameters.
-  ///
-  /// In en, this message translates to:
-  /// **'Object Detection Parameters lie confidence, NMS, etc.'**
-  String get settings_screen_detection_parameters;
-
   /// No description provided for @settings_screen_random_count_button.
   ///
   /// In en, this message translates to:
@@ -689,35 +677,11 @@ abstract class AppLocalization {
   /// **'Front Door Cam or Parking Lot Cam'**
   String get source_screen_edit_placeholder;
 
-  /// No description provided for @source_screen_url.
-  ///
-  /// In en, this message translates to:
-  /// **'Current URL'**
-  String get source_screen_url;
-
   /// No description provided for @source_screen_change_file.
   ///
   /// In en, this message translates to:
   /// **'Change File'**
   String get source_screen_change_file;
-
-  /// No description provided for @source_screen_file.
-  ///
-  /// In en, this message translates to:
-  /// **'File'**
-  String get source_screen_file;
-
-  /// No description provided for @source_screen_camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera'**
-  String get source_screen_camera;
-
-  /// No description provided for @source_screen_webcam.
-  ///
-  /// In en, this message translates to:
-  /// **'Webcam'**
-  String get source_screen_webcam;
 
   /// No description provided for @source_screen_add_zone.
   ///
@@ -803,17 +767,23 @@ abstract class AppLocalization {
   /// **'Delete'**
   String get source_screen_delete_button;
 
-  /// No description provided for @source_screen_objects_header.
+  /// No description provided for @source_screen_sources.
   ///
   /// In en, this message translates to:
-  /// **'Detect objects such as people, vehicles, and dogs.'**
-  String get source_screen_objects_header;
+  /// **'Configure image source, detection targets, and model parameters.'**
+  String get source_screen_sources;
 
-  /// No description provided for @source_screen_objects.
+  /// No description provided for @source_screen_targets.
   ///
   /// In en, this message translates to:
-  /// **'Select Objects to Detect'**
-  String get source_screen_objects;
+  /// **'Detection targets'**
+  String get source_screen_targets;
+
+  /// No description provided for @source_screen_detection.
+  ///
+  /// In en, this message translates to:
+  /// **'Model parameters'**
+  String get source_screen_detection;
 
   /// No description provided for @color_screen_title.
   ///
