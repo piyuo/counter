@@ -1,6 +1,9 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/l10n/app_localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'about/about_screen.dart';
 import 'about/benchmark_screen.dart';
@@ -81,6 +84,8 @@ const zoneRoute = '/zone';
 
 class WizardNavigator extends StatefulWidget {
   const WizardNavigator({
+    required this.appLocale,
+    required this.appLocaleDelegates,
     required this.pipProvider,
     required this.isPanelOpened,
     this.initialRoute,
@@ -95,6 +100,12 @@ class WizardNavigator extends StatefulWidget {
 
   /// the pip provider
   final pip.PipProvider pipProvider;
+
+  /// the app locale
+  final Locale appLocale;
+
+  /// the localizations delegates
+  final List<LocalizationsDelegate<dynamic>> appLocaleDelegates;
 
   @override
   State<WizardNavigator> createState() => _WizardNavigatorState();
@@ -119,20 +130,50 @@ class _WizardNavigatorState extends State<WizardNavigator> {
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
-    return Navigator(
-      key: projectProvider.navigatorKey,
-      observers: [widget.pipProvider.scrollObserver],
+    buildRoute({
+      required RouteSettings settings,
+      required Widget Function(BuildContext) builder,
+    }) {
+      return UniversalPlatform.isAndroid
+          ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
+          : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
+    }
+
+    return MaterialApp(
+      navigatorKey: projectProvider.navigatorKey,
+      debugShowCheckedModeBanner: false,
+      locale: widget.appLocale,
+      localizationsDelegates: widget.appLocaleDelegates,
+      supportedLocales: AppLocalization.supportedLocales,
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale?.languageCode &&
+              supportedLocale.countryCode == locale?.countryCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: CupertinoColors.activeBlue,
+        ),
+        brightness: Brightness.dark,
+        cupertinoOverrideTheme: const CupertinoThemeData(
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+      navigatorObservers: [widget.pipProvider.scrollObserver],
       initialRoute: '/',
       onGenerateRoute: (routeSettings) {
         final args = routeSettings.arguments as Map?;
         final scrollController = widget.pipProvider.getScrollController(routeSettings.name!);
-        return CupertinoPageRoute(
+        return buildRoute(
           settings: routeSettings,
-          fullscreenDialog: false,
           builder: (context) {
             switch (routeSettings.name) {
-              case '/':
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, scrollController: scrollController);
               case aboutRoute:
                 return AboutScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case benchmarkRoute:
@@ -207,6 +248,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                   videoProvider: args['videoProvider'],
                   videoZone: args['videoZone'],
                 );
+              case '/':
               default:
                 return WizardScreen(isPanelOpened: widget.isPanelOpened, scrollController: scrollController);
             }

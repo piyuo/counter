@@ -49,6 +49,7 @@ class SourceScreen extends StatelessWidget {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             action: CupertinoButton(
+              sizeStyle: CupertinoButtonSize.medium,
               onPressed: () {
                 final videoZone = videoProvider.addZone(context);
                 sourceScreenProvider.zoneAdded();

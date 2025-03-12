@@ -151,8 +151,9 @@ class ScrollObserver extends NavigatorObserver {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    if (route.settings.name != null) {
-      pipProvider.setCurrentRoute(route.settings.name!);
+    final currentRouteName = route.settings.name;
+    if (currentRouteName != null) {
+      pipProvider.setCurrentRoute(currentRouteName);
       pipProvider.resetScroll();
     }
     super.didPush(route, previousRoute);
@@ -160,9 +161,13 @@ class ScrollObserver extends NavigatorObserver {
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    if (previousRoute?.settings.name != null) {
-      pipProvider.setCurrentRoute(previousRoute!.settings.name!);
-      pipProvider.removeScrollController(route.settings.name!);
+    final previousRouteName = previousRoute?.settings.name;
+    final currentRouteName = route.settings.name;
+    if (previousRouteName != null) {
+      pipProvider.setCurrentRoute(previousRouteName);
+      if (currentRouteName != null) {
+        pipProvider.removeScrollController(currentRouteName);
+      }
       pipProvider.resetScroll();
     }
     super.didPop(route, previousRoute);

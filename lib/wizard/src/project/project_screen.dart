@@ -208,6 +208,7 @@ class ProjectScreen extends StatelessWidget {
                 child: pip.PipScaffold(
                   previousPageTitle: context.l.project_screen_exit_button,
                   action: CupertinoButton(
+                    sizeStyle: CupertinoButtonSize.medium,
                     child: Text(context.l.project_screen_add_video_button),
                     onPressed: () {
                       Navigator.of(context).pushNamed(addSourceRoute, arguments: {

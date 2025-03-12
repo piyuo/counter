@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/db/db.dart' as db;
 import 'package:counter/l10n/app_localization.dart';
@@ -9,6 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 
 main() {
@@ -26,6 +29,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   _MyAppState();
   final db.DataManager dataManager = db.DataManager();
+
+  /// the default app locale
+  Locale get appLocale => Intl.defaultLocale == null ? Locale('en', 'US') : Locale(Intl.defaultLocale!);
+
+  /// the default app localizations delegates
+  static const appLocaleDelegates = [
+    AppLocalization.delegate,
+    vision.VisionLocalization.delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -91,50 +106,55 @@ class _MyAppState extends State<MyApp> {
               );
             }
 
+            buildRoute({
+              required RouteSettings settings,
+              required Widget Function(BuildContext) builder,
+            }) {
+              return UniversalPlatform.isAndroid
+                  ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
+                  : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
+            }
+
+            final isRTL = Bidi.isRtlLanguage(appLocale.toString());
             return ChangeNotifierProvider<vision.OrientationProvider>.value(
                 value: projectProvider.orientationProvider,
-                child: MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  locale: Intl.defaultLocale == null ? null : Locale(Intl.defaultLocale!),
-                  localizationsDelegates: const [
-                    AppLocalization.delegate,
-                    vision.VisionLocalization.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                  ],
-                  supportedLocales: AppLocalization.supportedLocales,
-                  localeResolutionCallback: (locale, supportedLocales) {
-                    for (var supportedLocale in supportedLocales) {
-                      if (supportedLocale.languageCode == locale?.languageCode &&
-                          supportedLocale.countryCode == locale?.countryCode) {
-                        return supportedLocale;
-                      }
-                    }
-                    return supportedLocales.first;
-                  },
-                  theme: ThemeData(
-                    colorScheme: ColorScheme.fromSeed(
-                      brightness: Brightness.dark,
-                      seedColor: CupertinoColors.activeBlue,
-                    ),
-                    brightness: Brightness.dark,
-                    cupertinoOverrideTheme: const CupertinoThemeData(
-                      brightness: Brightness.dark,
-                    ),
-                    useMaterial3: true,
-                  ),
-                  home: pip.PipScreen(
-                    isLockToPortrait: projectProvider.isLockToPortrait,
-                    slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
-                      isPanelOpened: isPanelOpened,
-                      pipProvider: pipProvider,
-                    ),
-                    builder: (isSideLayout) => app.ProjectView(
-                      noProjectScreen: buildMainScreen(),
-                      isSideLayout: isSideLayout,
-                    ),
-                  ),
+                child: Directionality(
+                  textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+                  child: Localizations(
+                      locale: appLocale,
+                      delegates: appLocaleDelegates,
+                      child: Navigator(
+                        initialRoute: '/',
+                        onGenerateRoute: (routeSettings) {
+                          return buildRoute(
+                              settings: routeSettings,
+                              builder: (context) {
+                                switch (routeSettings.name) {
+                                  case '/':
+                                  default:
+                                    return pip.PipScreen(
+                                      isLockToPortrait: projectProvider.isLockToPortrait,
+                                      slidingBuilder: (isPanelOpened) => wizard.WizardNavigator(
+                                        appLocale: appLocale,
+                                        appLocaleDelegates: appLocaleDelegates,
+                                        isPanelOpened: isPanelOpened,
+                                        pipProvider: pipProvider,
+                                      ),
+                                      builder: (isSideLayout) => Overlay(
+                                        initialEntries: [
+                                          OverlayEntry(
+                                            builder: (context) => app.ProjectView(
+                                              noProjectScreen: buildMainScreen(),
+                                              isSideLayout: isSideLayout,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                }
+                              });
+                        },
+                      )),
                 ));
           }),
         ));

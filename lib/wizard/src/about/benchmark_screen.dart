@@ -32,6 +32,7 @@ class BenchmarkScreen extends StatelessWidget {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             action: CupertinoButton(
+              sizeStyle: CupertinoButtonSize.medium,
               child: Text(context.l.benchmark_screen_start_button),
               onPressed: () async {
                 final errorCode = await benchmarkScreenProvider.doBenchmark(context);

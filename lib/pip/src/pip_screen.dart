@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:vision/vision.dart' as vision;
@@ -183,46 +182,41 @@ class PipScreen extends StatelessWidget {
               );
             }
 
-            Widget determineSlidingLayout(orientationProvider) {
-              // screen is big enough, use sidebar layout
-              if (isSidebarLayout) {
-                return buildSidebarLayout();
-              }
+            return Stack(
+              children: [
+                AnimatedPositioned(
+                  duration: _animationDuration,
+                  left: isSidebarLayout ? slidingPanelWidth : 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  child: builder(isSidebarLayout),
+                ),
+                Consumer<vision.OrientationProvider>(builder: (context, orientationProvider, child) {
+                  // screen is big enough, use sidebar layout
+                  if (isSidebarLayout) {
+                    return buildSidebarLayout();
+                  }
 
-              // mobile device in locked portrait mode
-              if (isLockToPortrait) {
-                switch (orientationProvider.orientation) {
-                  case DeviceOrientation.portraitUp:
-                    return buildSliding0();
-                  case DeviceOrientation.landscapeRight:
-                    return buildSliding90();
-                  case DeviceOrientation.landscapeLeft:
-                    return buildSliding270();
-                  default:
-                    return buildSliding0();
-                }
-              }
+                  // mobile device in locked portrait mode
+                  if (isLockToPortrait) {
+                    switch (orientationProvider.orientation) {
+                      case DeviceOrientation.portraitUp:
+                        return buildSliding0();
+                      case DeviceOrientation.landscapeRight:
+                        return buildSliding90();
+                      case DeviceOrientation.landscapeLeft:
+                        return buildSliding270();
+                      default:
+                        return buildSliding0();
+                    }
+                  }
 
-              // any other cases, use sliding layout
-              return buildSlidingLayout();
-            }
-
-            return Material(
-                color: CupertinoColors.systemBackground.resolveFrom(context),
-                child: Stack(
-                  children: [
-                    AnimatedPositioned(
-                      duration: _animationDuration,
-                      left: isSidebarLayout ? slidingPanelWidth : 0,
-                      right: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: builder(isSidebarLayout),
-                    ),
-                    Consumer<vision.OrientationProvider>(
-                        builder: (context, orientationProvider, child) => determineSlidingLayout(orientationProvider))
-                  ],
-                ));
+                  // any other cases, use sliding layout
+                  return buildSlidingLayout();
+                })
+              ],
+            );
           },
         ),
       ),
