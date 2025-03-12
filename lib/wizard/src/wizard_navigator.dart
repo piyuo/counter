@@ -139,7 +139,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
     }
 
-    return MaterialApp(
+    return ClipRect(
+        // clip rect is needed to prevent the navigator animation route from drawing outside the screen
+        child: MaterialApp(
       navigatorKey: projectProvider.navigatorKey,
       debugShowCheckedModeBanner: false,
       locale: widget.appLocale,
@@ -255,7 +257,7 @@ class _WizardNavigatorState extends State<WizardNavigator> {
           },
         );
       },
-    );
+    ));
   }
 }
 
