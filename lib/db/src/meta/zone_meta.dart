@@ -14,7 +14,6 @@ class ZoneMeta with _$ZoneMeta {
   const factory ZoneMeta({
     required int zoneId,
     required List<AnnotationMeta> annotations,
-    required List<int> classes,
     required String zoneName,
     required List<PointMeta> points,
     required int pointIndex,

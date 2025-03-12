@@ -105,9 +105,6 @@ class ProjectScreen extends StatelessWidget {
                     );
 
                     for (final count in zone.counts) {
-                      if (!zone.videoZone.selectedClasses.contains(count.classId)) {
-                        continue;
-                      }
                       final selectedTallyCounters = count.sampling!.tallyCounters
                           .where((element) => zone.videoZone.selectedTallyTypes.contains(element.type))
                           .toList();

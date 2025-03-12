@@ -32,6 +32,17 @@ class SourceScreen extends StatelessWidget {
     final video = videoProvider.video;
     final pageTitle = video.videoName;
 
+    String getCurrentObjectClassNames(BuildContext context) {
+      final nameList =
+          videoProvider.video.objectClasses.map((classId) => vision.objectClassToString(context, classId)).toList();
+      String name = nameList.join(', ');
+      // truncate the name if it is longer than 16 characters
+      if (name.length > 12) {
+        name = '${name.substring(0, 12)} ...';
+      }
+      return name;
+    }
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<SourceScreenProvider>(
@@ -219,6 +230,27 @@ class SourceScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
+                  // object classes
+                  CupertinoListSection(
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    header: Text(context.l.source_screen_objects_header),
+                    children: [
+                      CupertinoListTile(
+                        title: Text(context.l.source_screen_objects),
+                        leading: const Icon(CupertinoIcons.list_bullet),
+                        trailing: const CupertinoListTileChevron(),
+                        additionalInfo: Text(getCurrentObjectClassNames(context)),
+                        onTap: () => Navigator.of(context).pushNamed(
+                          objectsRoute,
+                          arguments: {
+                            'videoProvider': videoProvider,
+                            'previousPageTitle': pageTitle,
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),

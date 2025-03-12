@@ -803,6 +803,18 @@ abstract class AppLocalization {
   /// **'Delete'**
   String get source_screen_delete_button;
 
+  /// No description provided for @source_screen_objects_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Detect objects such as people, vehicles, and dogs.'**
+  String get source_screen_objects_header;
+
+  /// No description provided for @source_screen_objects.
+  ///
+  /// In en, this message translates to:
+  /// **'Select Objects to Detect'**
+  String get source_screen_objects;
+
   /// No description provided for @color_screen_title.
   ///
   /// In en, this message translates to:
@@ -832,18 +844,6 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'Color'**
   String get zone_screen_color;
-
-  /// No description provided for @zone_screen_objects_header.
-  ///
-  /// In en, this message translates to:
-  /// **'Detect objects such as people, vehicles, and dogs.'**
-  String get zone_screen_objects_header;
-
-  /// No description provided for @zone_screen_objects.
-  ///
-  /// In en, this message translates to:
-  /// **'Select Objects to Detect'**
-  String get zone_screen_objects;
 
   /// No description provided for @zone_screen_delete_header.
   ///

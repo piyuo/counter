@@ -363,6 +363,12 @@ class AppLocalizationZh extends AppLocalization {
   String get source_screen_delete_button => '刪除';
 
   @override
+  String get source_screen_objects_header => '偵測物件，例如人、車輛和狗。';
+
+  @override
+  String get source_screen_objects => '選擇要偵測的物件';
+
+  @override
   String get color_screen_title => '選擇顏色';
 
   @override
@@ -376,12 +382,6 @@ class AppLocalizationZh extends AppLocalization {
 
   @override
   String get zone_screen_color => '顏色';
-
-  @override
-  String get zone_screen_objects_header => '偵測物件，例如人、車輛和狗。';
-
-  @override
-  String get zone_screen_objects => '選擇要偵測的物件';
 
   @override
   String get zone_screen_delete_header => '刪除此區域';

@@ -10,16 +10,12 @@ import 'package:vision/vision.dart' as vision;
 class ObjectsScreen extends StatelessWidget {
   const ObjectsScreen({
     required this.videoProvider,
-    required this.videoZone,
     required this.scrollController,
     super.key,
   });
 
   /// the video provider this settings provider is working on
   final app.VideoProvider videoProvider;
-
-  /// the video zone to be edited
-  final vision.VideoZone videoZone;
 
   /// the scroll controller
   final ScrollController scrollController;
@@ -38,7 +34,7 @@ class ObjectsScreen extends StatelessWidget {
                 pip.PipHeader(
                   child: Column(
                     children: [
-                      Icon(CupertinoIcons.list_bullet, size: 44, color: videoZone.color),
+                      Icon(CupertinoIcons.list_bullet, size: 44),
                       const SizedBox(height: 8.0),
                       Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                       Text(
@@ -51,18 +47,18 @@ class ObjectsScreen extends StatelessWidget {
                 CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(
-                      vision.ObjectClass.values.length,
+                      vision.ObjectClasses.values.length,
                       (classId) {
                         return CupertinoListTile(
-                            leading: videoZone.selectedClasses.contains(classId)
+                            leading: videoProvider.video.objectClasses.contains(classId)
                                 ? Icon(CupertinoIcons.check_mark)
                                 : const SizedBox.shrink(),
                             title: Text(
-                              vision.classTitleById(context, classId),
+                              vision.objectClassToString(context, classId),
                             ),
-                            trailing: Icon(vision.classIconById(classId), color: CupertinoColors.opaqueSeparator),
+                            trailing: Icon(vision.objectClassToIcon(classId), color: CupertinoColors.opaqueSeparator),
                             onTap: () {
-                              objectScreenProvider.selectClass(projectProvider, videoProvider, videoZone, classId);
+                              objectScreenProvider.selectClass(projectProvider, videoProvider, classId);
                             });
                       },
                     )),
@@ -92,14 +88,13 @@ class ObjectScreenProvider with ChangeNotifier {
   void selectClass(
     app.ProjectProvider projectProvider,
     app.VideoProvider videoProvider,
-    vision.VideoZone videoZone,
     int classId,
   ) {
-    videoProvider.toggleZoneSelectedClasses(videoZone, classId);
+    videoProvider.toggleObjectClass(classId);
     notifyListeners();
     _classChangedTimer?.cancel();
     _classChangedTimer = Timer(const Duration(milliseconds: 900), () async {
-      await videoProvider.setZoneClassesToRecognition();
+      await videoProvider.setObjectClassesToRecognition();
       notifyListeners();
       _classChangedTimer = null;
     });

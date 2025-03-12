@@ -22,7 +22,6 @@ ZoneMeta _$ZoneMetaFromJson(Map<String, dynamic> json) {
 mixin _$ZoneMeta {
   int get zoneId => throw _privateConstructorUsedError;
   List<AnnotationMeta> get annotations => throw _privateConstructorUsedError;
-  List<int> get classes => throw _privateConstructorUsedError;
   String get zoneName => throw _privateConstructorUsedError;
   List<PointMeta> get points => throw _privateConstructorUsedError;
   int get pointIndex => throw _privateConstructorUsedError;
@@ -52,7 +51,6 @@ abstract class $ZoneMetaCopyWith<$Res> {
   $Res call(
       {int zoneId,
       List<AnnotationMeta> annotations,
-      List<int> classes,
       String zoneName,
       List<PointMeta> points,
       int pointIndex,
@@ -81,7 +79,6 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
   $Res call({
     Object? zoneId = null,
     Object? annotations = null,
-    Object? classes = null,
     Object? zoneName = null,
     Object? points = null,
     Object? pointIndex = null,
@@ -101,10 +98,6 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
           ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as List<AnnotationMeta>,
-      classes: null == classes
-          ? _value.classes
-          : classes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       zoneName: null == zoneName
           ? _value.zoneName
           : zoneName // ignore: cast_nullable_to_non_nullable
@@ -156,7 +149,6 @@ abstract class _$$ZoneMetaImplCopyWith<$Res>
   $Res call(
       {int zoneId,
       List<AnnotationMeta> annotations,
-      List<int> classes,
       String zoneName,
       List<PointMeta> points,
       int pointIndex,
@@ -183,7 +175,6 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
   $Res call({
     Object? zoneId = null,
     Object? annotations = null,
-    Object? classes = null,
     Object? zoneName = null,
     Object? points = null,
     Object? pointIndex = null,
@@ -203,10 +194,6 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
           ? _value._annotations
           : annotations // ignore: cast_nullable_to_non_nullable
               as List<AnnotationMeta>,
-      classes: null == classes
-          ? _value._classes
-          : classes // ignore: cast_nullable_to_non_nullable
-              as List<int>,
       zoneName: null == zoneName
           ? _value.zoneName
           : zoneName // ignore: cast_nullable_to_non_nullable
@@ -254,7 +241,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
   const _$ZoneMetaImpl(
       {required this.zoneId,
       required final List<AnnotationMeta> annotations,
-      required final List<int> classes,
       required this.zoneName,
       required final List<PointMeta> points,
       required this.pointIndex,
@@ -265,7 +251,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
       required this.cooldown,
       required this.ignoreIfCounted})
       : _annotations = annotations,
-        _classes = classes,
         _points = points;
 
   factory _$ZoneMetaImpl.fromJson(Map<String, dynamic> json) =>
@@ -279,14 +264,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
     if (_annotations is EqualUnmodifiableListView) return _annotations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_annotations);
-  }
-
-  final List<int> _classes;
-  @override
-  List<int> get classes {
-    if (_classes is EqualUnmodifiableListView) return _classes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_classes);
   }
 
   @override
@@ -317,7 +294,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
   @override
   String toString() {
-    return 'ZoneMeta(zoneId: $zoneId, annotations: $annotations, classes: $classes, zoneName: $zoneName, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
+    return 'ZoneMeta(zoneId: $zoneId, annotations: $annotations, zoneName: $zoneName, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
   }
 
   @override
@@ -328,7 +305,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             const DeepCollectionEquality()
                 .equals(other._annotations, _annotations) &&
-            const DeepCollectionEquality().equals(other._classes, _classes) &&
             (identical(other.zoneName, zoneName) ||
                 other.zoneName == zoneName) &&
             const DeepCollectionEquality().equals(other._points, _points) &&
@@ -353,7 +329,6 @@ class _$ZoneMetaImpl implements _ZoneMeta {
       runtimeType,
       zoneId,
       const DeepCollectionEquality().hash(_annotations),
-      const DeepCollectionEquality().hash(_classes),
       zoneName,
       const DeepCollectionEquality().hash(_points),
       pointIndex,
@@ -384,7 +359,6 @@ abstract class _ZoneMeta implements ZoneMeta {
   const factory _ZoneMeta(
       {required final int zoneId,
       required final List<AnnotationMeta> annotations,
-      required final List<int> classes,
       required final String zoneName,
       required final List<PointMeta> points,
       required final int pointIndex,
@@ -402,8 +376,6 @@ abstract class _ZoneMeta implements ZoneMeta {
   int get zoneId;
   @override
   List<AnnotationMeta> get annotations;
-  @override
-  List<int> get classes;
   @override
   String get zoneName;
   @override

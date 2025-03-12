@@ -163,9 +163,19 @@ class VideoProvider with ChangeNotifier {
     visionController.updateSamplingOnFilterChange(now, filter);
   }
 
+  /// set classes to recognition
+  Future<void> setObjectClassesToRecognition() async {
+    // change object classes must set zone also
+    await visionController.setRecognition(
+      objectClasses: video.objectClasses,
+      videoZones: video.zones,
+    );
+  }
+
   /// set the recognition for detection
   Future<void> setRecognition({
     vision.Models? model,
+    List<int>? objectClasses, // when set objectClasses must set videoZones
     List<vision.VideoZone>? videoZones,
     double? nmsThreshold,
     double? detectionThreshold,
@@ -176,7 +186,8 @@ class VideoProvider with ChangeNotifier {
   }) async {
     await visionController.setRecognition(
       model: model,
-      newVideoZones: videoZones,
+      objectClasses: objectClasses,
+      videoZones: videoZones,
       nmsThreshold: nmsThreshold,
       matchThreshold: matchThreshold,
       validThreshold: validThreshold,
@@ -226,6 +237,7 @@ class VideoProvider with ChangeNotifier {
     if (isSetRecognition) {
       await setRecognition(
         model: project.model,
+        objectClasses: video.objectClasses,
         videoZones: video.zones,
         nmsThreshold: project.nmsThreshold,
         matchThreshold: project.matchThreshold,
@@ -323,7 +335,7 @@ class VideoProvider with ChangeNotifier {
       video.zones.clear();
       video.zones.addAll(zones);
     }
-    await visionController.setRecognition(newVideoZones: video.zones);
+    await visionController.setRecognition(videoZones: video.zones);
   }
 
   /// return the current zones and counts
@@ -455,22 +467,17 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// toggle zone selected classes
-  void toggleZoneSelectedClasses(vision.VideoZone videoZone, int classId) {
-    if (videoZone.selectedClasses.contains(classId)) {
-      if (videoZone.selectedClasses.length == 1) {
+  void toggleObjectClass(int classId) {
+    if (video.objectClasses.contains(classId)) {
+      if (video.objectClasses.length == 1) {
         // at least one class should be selected
         return;
       }
-      videoZone.selectedClasses.remove(classId);
+      video.objectClasses.remove(classId);
     } else {
-      videoZone.selectedClasses.add(classId);
+      video.objectClasses.add(classId);
     }
     _saveProject();
-  }
-
-  /// set zone classes to recognition
-  Future<void> setZoneClassesToRecognition() async {
-    await visionController.setRecognition(newVideoZones: video.zones);
   }
 
   /// check if there is no activity, this function called on every minute to keep counter fresh
@@ -489,7 +496,7 @@ class VideoProvider with ChangeNotifier {
     DateTime now = DateTime.now().subtract(Duration(minutes: 1));
     var begin = DateTime(now.year, now.month, now.day, now.hour, now.minute);
     for (final zone in video.zones) {
-      for (final classId in zone.selectedClasses) {
+      for (final classId in video.objectClasses) {
         // add 24 hours activity
         for (int i = 1440; i >= 0; i--) {
           //add from 2 hours ago to now, latest is always the last

@@ -38,7 +38,6 @@ void main() {
       final zone = ZoneMeta(
         zoneId: 1,
         annotations: [annotation],
-        classes: [1, 2, 3],
         zoneName: 'Test Zone',
         points: [PointMeta(x: 0, y: 0)],
         pointIndex: 0,

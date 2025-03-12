@@ -363,6 +363,12 @@ class AppLocalizationEn extends AppLocalization {
   String get source_screen_delete_button => 'Delete';
 
   @override
+  String get source_screen_objects_header => 'Detect objects such as people, vehicles, and dogs.';
+
+  @override
+  String get source_screen_objects => 'Select Objects to Detect';
+
+  @override
   String get color_screen_title => 'Pick a color';
 
   @override
@@ -376,12 +382,6 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get zone_screen_color => 'Color';
-
-  @override
-  String get zone_screen_objects_header => 'Detect objects such as people, vehicles, and dogs.';
-
-  @override
-  String get zone_screen_objects => 'Select Objects to Detect';
 
   @override
   String get zone_screen_delete_header => 'Delete this zone';

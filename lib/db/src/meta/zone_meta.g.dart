@@ -12,9 +12,6 @@ _$ZoneMetaImpl _$$ZoneMetaImplFromJson(Map<String, dynamic> json) =>
       annotations: (json['annotations'] as List<dynamic>)
           .map((e) => AnnotationMeta.fromJson(e as Map<String, dynamic>))
           .toList(),
-      classes: (json['classes'] as List<dynamic>)
-          .map((e) => (e as num).toInt())
-          .toList(),
       zoneName: json['zoneName'] as String,
       points: (json['points'] as List<dynamic>)
           .map((e) => PointMeta.fromJson(e as Map<String, dynamic>))
@@ -32,7 +29,6 @@ Map<String, dynamic> _$$ZoneMetaImplToJson(_$ZoneMetaImpl instance) =>
     <String, dynamic>{
       'zoneId': instance.zoneId,
       'annotations': instance.annotations.map((e) => e.toJson()).toList(),
-      'classes': instance.classes,
       'zoneName': instance.zoneName,
       'points': instance.points.map((e) => e.toJson()).toList(),
       'pointIndex': instance.pointIndex,

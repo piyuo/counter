@@ -45,7 +45,6 @@ ProjectMeta projectToMeta(app.Project project) {
                                   suffix: annotation.suffix,
                                 ))
                             .toList(),
-                        classes: zone.selectedClasses,
                         points: zone.points.map((point) => PointMeta(x: point.dx, y: point.dy)).toList(),
                         pointIndex: zone.selectedPointIndex,
                         color: zone.color,
@@ -110,7 +109,6 @@ app.Project metaToProject(ProjectMeta meta) {
                                 suffix: annotation.suffix,
                               ))
                           .toList(),
-                      objectClasses: zone.classes,
                       points: zone.points.map((point) => Offset(point.x, point.y)).toList(),
                       selectedPointIndex: zone.pointIndex,
                       color: zone.color,

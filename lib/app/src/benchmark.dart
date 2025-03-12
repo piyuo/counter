@@ -82,7 +82,6 @@ class BenchmarkController {
       zoneId: zoneId,
       name: 'Zone1',
       color: Colors.blue,
-      objectClasses: const [0, 1, 2],
       points: [
         Offset(offsetX, offsetY),
         Offset(mediaWidth - offsetX, offsetY),
@@ -90,6 +89,7 @@ class BenchmarkController {
         Offset(offsetX, mediaHeight - offsetY),
       ],
     );
+    _recognition.setObjectClasses(const [0, 1, 2]);
     _recognition.setVideoZones([zone]);
   }
 

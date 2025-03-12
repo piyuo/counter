@@ -165,9 +165,9 @@ class GaugeView extends StatelessWidget {
     final chartData = buildChartData(context, chartColor);
     return Column(children: [
       CupertinoListTile(
-        title: Text('${vision.classTitleById(context, classId)} ${tallyAnnotation.title}',
+        title: Text('${vision.objectClassToString(context, classId)} ${tallyAnnotation.title}',
             style: TextStyle(color: chartColor)),
-        leading: Icon(vision.classIconById(classId), color: chartColor),
+        leading: Icon(vision.objectClassToIcon(classId), color: chartColor),
         trailing: const CupertinoListTileChevron(),
         additionalInfo: Text(
           textAlign: TextAlign.end,

@@ -10,6 +10,7 @@ import 'about/benchmark_screen.dart';
 import 'about/opencv_screen.dart';
 import 'language/language_screen.dart';
 import 'project/filter_screen.dart';
+import 'project/objects_screen.dart';
 import 'project/open_project_screen.dart';
 import 'project/project_screen.dart';
 import 'settings/add_source_screen.dart';
@@ -19,7 +20,6 @@ import 'settings/url_screen.dart';
 import 'source/camera_screen.dart';
 import 'source/color_screen.dart';
 import 'source/counter_screen.dart';
-import 'source/objects_screen.dart';
 import 'source/source_screen.dart';
 import 'source/webcam_screen.dart';
 import 'source/zone_screen.dart';
@@ -216,9 +216,9 @@ class _WizardNavigatorState extends State<WizardNavigator> {
                     previousPageTitle: args['previousPageTitle']);
               case objectsRoute:
                 return ObjectsScreen(
-                    scrollController: scrollController,
-                    videoProvider: args!['videoProvider'],
-                    videoZone: args['videoZone']);
+                  scrollController: scrollController,
+                  videoProvider: args!['videoProvider'],
+                );
               case tallyRoute:
                 return CounterScreen(
                     scrollController: scrollController,

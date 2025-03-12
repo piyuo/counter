@@ -114,27 +114,6 @@ class ZoneScreen extends StatelessWidget {
                         ],
                       ),
 
-                      CupertinoListSection(
-                        backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                        header: Text(context.l.zone_screen_objects_header),
-                        children: [
-                          CupertinoListTile(
-                            title: Text(context.l.zone_screen_objects),
-                            leading: const Icon(CupertinoIcons.list_bullet),
-                            trailing: const CupertinoListTileChevron(),
-                            additionalInfo: Text(videoZone.getSelectedObjectClassNames(context)),
-                            onTap: () => Navigator.of(context).pushNamed(
-                              objectsRoute,
-                              arguments: {
-                                'videoProvider': videoProvider,
-                                'videoZone': videoZone,
-                                'previousPageTitle': pageTitle,
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-
                       // set tally annotation for counter
                       CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),

@@ -18,7 +18,6 @@ void main() {
         zoneId: 1,
         name: 'Zone 1',
         tallyAnnotations: [],
-        objectClasses: [],
         points: [Offset(10, 10)],
         selectedPointIndex: 0,
         color: Colors.blue,

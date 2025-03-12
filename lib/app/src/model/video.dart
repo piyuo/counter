@@ -39,6 +39,9 @@ class Video {
   /// the zoom level for camera
   double zoom = 1;
 
+  /// the object classes want to detect for the video
+  final List<int> objectClasses = [0];
+
   /// zones
   final List<vision.VideoZone> zones = [];
 }
