@@ -85,6 +85,24 @@ class VideoProvider with ChangeNotifier {
   /// is video has error
   bool get hasError => visionController.hasError;
 
+  /// used to delay the detection threshold setting
+  Timer? _detectionThresholdTimer;
+
+  /// used to delay the NMS threshold setting
+  Timer? _nmsThresholdTimer;
+
+  /// used to delay the match threshold setting
+  Timer? _matchThresholdTimer;
+
+  /// used to delay the max lost seconds setting
+  Timer? _maxLostSecondsTimer;
+
+  /// used to delay the valid threshold setting
+  Timer? _validThresholdTimer;
+
+  /// used to delay the model setting
+  Timer? _modelChangedTimer;
+
   /// init the video provider and load initial video source
   Future<void> init(BuildContext context, Project project) async {
     isZoomToolEnabled = false;
@@ -116,6 +134,12 @@ class VideoProvider with ChangeNotifier {
     playerController.dispose();
     zoneEditorController?.dispose();
     zoneEditorController = null;
+    _detectionThresholdTimer?.cancel();
+    _nmsThresholdTimer?.cancel();
+    _matchThresholdTimer?.cancel();
+    _maxLostSecondsTimer?.cancel();
+    _validThresholdTimer?.cancel();
+    _modelChangedTimer?.cancel();
     super.dispose();
   }
 
@@ -236,15 +260,15 @@ class VideoProvider with ChangeNotifier {
     }
     if (isSetRecognition) {
       await setRecognition(
-        model: project.model,
+        model: video.model,
         objectClasses: video.objectClasses,
         videoZones: video.zones,
-        nmsThreshold: project.nmsThreshold,
-        matchThreshold: project.matchThreshold,
-        validThreshold: project.validThreshold,
-        trackingThreshold: project.trackingThreshold,
-        detectionThreshold: project.confidenceThreshold,
-        maxLostSeconds: project.maxLostSeconds,
+        nmsThreshold: video.nmsThreshold,
+        matchThreshold: video.matchThreshold,
+        validThreshold: video.validThreshold,
+        trackingThreshold: video.trackingThreshold,
+        detectionThreshold: video.confidenceThreshold,
+        maxLostSeconds: video.maxLostSeconds,
       ); // disabled this line will enter preview mode
     }
 
@@ -528,5 +552,89 @@ class VideoProvider with ChangeNotifier {
   /// Gets the current occupied count.
   int get currentOccupiedCount {
     return visionController.currentOccupiedCount;
+  }
+
+  /// change the model used by the controller
+  Future<void> setModel(vision.Models model) async {
+    if (video.model == model) {
+      return;
+    }
+    video.model = model;
+    _modelChangedTimer?.cancel();
+    _modelChangedTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(model: model);
+      _saveProject();
+      _modelChangedTimer = null;
+    });
+  }
+
+  /// set detection threshold
+  Future<void> setSettingsDetectionThreshold(double value) async {
+    video.confidenceThreshold = value;
+    _detectionThresholdTimer?.cancel();
+    _detectionThresholdTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(detectionThreshold: value);
+      _saveProject();
+      _detectionThresholdTimer = null;
+    });
+  }
+
+  /// set nms threshold
+  Future<void> setSettingsNmsThreshold(double value) async {
+    video.nmsThreshold = value;
+    _nmsThresholdTimer?.cancel();
+    _nmsThresholdTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(nmsThreshold: value);
+      _saveProject();
+      _nmsThresholdTimer = null;
+    });
+  }
+
+  /// set match threshold
+  Future<void> setSettingsMatchThreshold(double value) async {
+    video.matchThreshold = value;
+    _matchThresholdTimer?.cancel();
+    _matchThresholdTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(matchThreshold: value);
+      _saveProject();
+      _matchThresholdTimer = null;
+    });
+  }
+
+  /// set max allowed lost threshold
+  Future<void> setSettingsMaxLostSeconds(int value) async {
+    video.maxLostSeconds = value;
+    _maxLostSecondsTimer?.cancel();
+    _maxLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(maxLostSeconds: value);
+      _saveProject();
+      _maxLostSecondsTimer = null;
+    });
+  }
+
+  /// set max allowed lost threshold
+  Future<void> setSettingsValidThreshold(int value) async {
+    video.validThreshold = value;
+    _validThresholdTimer?.cancel();
+    _validThresholdTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(validThreshold: value);
+      _saveProject();
+      _validThresholdTimer = null;
+    });
+  }
+
+  /// reset the AI screen settings
+  Future<void> resetDetectionSettings() async {
+    video.resetDetectionSettings();
+    video.model = _projectProvider!.benchmarkLocalStorage.recommendedModel;
+    await setRecognition(
+      model: video.model,
+      nmsThreshold: video.nmsThreshold,
+      matchThreshold: video.matchThreshold,
+      trackingThreshold: video.trackingThreshold,
+      detectionThreshold: video.confidenceThreshold,
+      maxLostSeconds: video.maxLostSeconds,
+    );
+    _saveProject();
   }
 }

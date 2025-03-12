@@ -26,6 +26,13 @@ mixin _$VideoMeta {
   String? get path => throw _privateConstructorUsedError;
   CameraMeta? get camera => throw _privateConstructorUsedError;
   WebcamMeta? get webcam => throw _privateConstructorUsedError;
+  double get confidence => throw _privateConstructorUsedError;
+  double get nms => throw _privateConstructorUsedError;
+  double get match => throw _privateConstructorUsedError;
+  int get maxLostSeconds => throw _privateConstructorUsedError;
+  int get valid => throw _privateConstructorUsedError;
+  double get tracking => throw _privateConstructorUsedError;
+  Models get model => throw _privateConstructorUsedError;
   double get zoom => throw _privateConstructorUsedError;
   List<ZoneMeta> get zones => throw _privateConstructorUsedError;
 
@@ -51,6 +58,13 @@ abstract class $VideoMetaCopyWith<$Res> {
       String? path,
       CameraMeta? camera,
       WebcamMeta? webcam,
+      double confidence,
+      double nms,
+      double match,
+      int maxLostSeconds,
+      int valid,
+      double tracking,
+      Models model,
       double zoom,
       List<ZoneMeta> zones});
 
@@ -79,6 +93,13 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
     Object? path = freezed,
     Object? camera = freezed,
     Object? webcam = freezed,
+    Object? confidence = null,
+    Object? nms = null,
+    Object? match = null,
+    Object? maxLostSeconds = null,
+    Object? valid = null,
+    Object? tracking = null,
+    Object? model = null,
     Object? zoom = null,
     Object? zones = null,
   }) {
@@ -107,6 +128,34 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
           ? _value.webcam
           : webcam // ignore: cast_nullable_to_non_nullable
               as WebcamMeta?,
+      confidence: null == confidence
+          ? _value.confidence
+          : confidence // ignore: cast_nullable_to_non_nullable
+              as double,
+      nms: null == nms
+          ? _value.nms
+          : nms // ignore: cast_nullable_to_non_nullable
+              as double,
+      match: null == match
+          ? _value.match
+          : match // ignore: cast_nullable_to_non_nullable
+              as double,
+      maxLostSeconds: null == maxLostSeconds
+          ? _value.maxLostSeconds
+          : maxLostSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
+      valid: null == valid
+          ? _value.valid
+          : valid // ignore: cast_nullable_to_non_nullable
+              as int,
+      tracking: null == tracking
+          ? _value.tracking
+          : tracking // ignore: cast_nullable_to_non_nullable
+              as double,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as Models,
       zoom: null == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -162,6 +211,13 @@ abstract class _$$VideoMetaImplCopyWith<$Res>
       String? path,
       CameraMeta? camera,
       WebcamMeta? webcam,
+      double confidence,
+      double nms,
+      double match,
+      int maxLostSeconds,
+      int valid,
+      double tracking,
+      Models model,
       double zoom,
       List<ZoneMeta> zones});
 
@@ -190,6 +246,13 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
     Object? path = freezed,
     Object? camera = freezed,
     Object? webcam = freezed,
+    Object? confidence = null,
+    Object? nms = null,
+    Object? match = null,
+    Object? maxLostSeconds = null,
+    Object? valid = null,
+    Object? tracking = null,
+    Object? model = null,
     Object? zoom = null,
     Object? zones = null,
   }) {
@@ -218,6 +281,34 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
           ? _value.webcam
           : webcam // ignore: cast_nullable_to_non_nullable
               as WebcamMeta?,
+      confidence: null == confidence
+          ? _value.confidence
+          : confidence // ignore: cast_nullable_to_non_nullable
+              as double,
+      nms: null == nms
+          ? _value.nms
+          : nms // ignore: cast_nullable_to_non_nullable
+              as double,
+      match: null == match
+          ? _value.match
+          : match // ignore: cast_nullable_to_non_nullable
+              as double,
+      maxLostSeconds: null == maxLostSeconds
+          ? _value.maxLostSeconds
+          : maxLostSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
+      valid: null == valid
+          ? _value.valid
+          : valid // ignore: cast_nullable_to_non_nullable
+              as int,
+      tracking: null == tracking
+          ? _value.tracking
+          : tracking // ignore: cast_nullable_to_non_nullable
+              as double,
+      model: null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as Models,
       zoom: null == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -241,6 +332,13 @@ class _$VideoMetaImpl implements _VideoMeta {
       required this.path,
       required this.camera,
       required this.webcam,
+      required this.confidence,
+      required this.nms,
+      required this.match,
+      required this.maxLostSeconds,
+      required this.valid,
+      required this.tracking,
+      required this.model,
       required this.zoom,
       required final List<ZoneMeta> zones})
       : _zones = zones;
@@ -261,6 +359,20 @@ class _$VideoMetaImpl implements _VideoMeta {
   @override
   final WebcamMeta? webcam;
   @override
+  final double confidence;
+  @override
+  final double nms;
+  @override
+  final double match;
+  @override
+  final int maxLostSeconds;
+  @override
+  final int valid;
+  @override
+  final double tracking;
+  @override
+  final Models model;
+  @override
   final double zoom;
   final List<ZoneMeta> _zones;
   @override
@@ -272,7 +384,7 @@ class _$VideoMetaImpl implements _VideoMeta {
 
   @override
   String toString() {
-    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, zoom: $zoom, zones: $zones)';
+    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, zoom: $zoom, zones: $zones)';
   }
 
   @override
@@ -288,14 +400,39 @@ class _$VideoMetaImpl implements _VideoMeta {
             (identical(other.path, path) || other.path == path) &&
             (identical(other.camera, camera) || other.camera == camera) &&
             (identical(other.webcam, webcam) || other.webcam == webcam) &&
+            (identical(other.confidence, confidence) ||
+                other.confidence == confidence) &&
+            (identical(other.nms, nms) || other.nms == nms) &&
+            (identical(other.match, match) || other.match == match) &&
+            (identical(other.maxLostSeconds, maxLostSeconds) ||
+                other.maxLostSeconds == maxLostSeconds) &&
+            (identical(other.valid, valid) || other.valid == valid) &&
+            (identical(other.tracking, tracking) ||
+                other.tracking == tracking) &&
+            (identical(other.model, model) || other.model == model) &&
             (identical(other.zoom, zoom) || other.zoom == zoom) &&
             const DeepCollectionEquality().equals(other._zones, _zones));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, videoId, mediaType, videoName,
-      path, camera, webcam, zoom, const DeepCollectionEquality().hash(_zones));
+  int get hashCode => Object.hash(
+      runtimeType,
+      videoId,
+      mediaType,
+      videoName,
+      path,
+      camera,
+      webcam,
+      confidence,
+      nms,
+      match,
+      maxLostSeconds,
+      valid,
+      tracking,
+      model,
+      zoom,
+      const DeepCollectionEquality().hash(_zones));
 
   /// Create a copy of VideoMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -321,6 +458,13 @@ abstract class _VideoMeta implements VideoMeta {
       required final String? path,
       required final CameraMeta? camera,
       required final WebcamMeta? webcam,
+      required final double confidence,
+      required final double nms,
+      required final double match,
+      required final int maxLostSeconds,
+      required final int valid,
+      required final double tracking,
+      required final Models model,
       required final double zoom,
       required final List<ZoneMeta> zones}) = _$VideoMetaImpl;
 
@@ -339,6 +483,20 @@ abstract class _VideoMeta implements VideoMeta {
   CameraMeta? get camera;
   @override
   WebcamMeta? get webcam;
+  @override
+  double get confidence;
+  @override
+  double get nms;
+  @override
+  double get match;
+  @override
+  int get maxLostSeconds;
+  @override
+  int get valid;
+  @override
+  double get tracking;
+  @override
+  Models get model;
   @override
   double get zoom;
   @override

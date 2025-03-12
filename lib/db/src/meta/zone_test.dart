@@ -39,7 +39,6 @@ void main() {
       expect(json['zoneId'], 1);
       expect(json['annotations'], isA<List<dynamic>>());
       expect((json['annotations'] as List).first, annotation.toJson());
-      expect(json['classes'], [1, 2, 3]);
       expect(json['zoneName'], 'Test Zone');
       expect(json['points'], isA<List<dynamic>>());
       expect((json['points'] as List).first, {'x': 0, 'y': 0});

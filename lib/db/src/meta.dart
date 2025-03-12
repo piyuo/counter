@@ -31,6 +31,13 @@ ProjectMeta projectToMeta(app.Project project) {
                     )
                   : null,
               webcam: video.webcam != null ? WebcamMeta(index: video.webcam!.index, name: video.webcam!.name) : null,
+              confidence: video.confidenceThreshold,
+              nms: video.nmsThreshold,
+              match: video.matchThreshold,
+              maxLostSeconds: video.maxLostSeconds,
+              valid: video.validThreshold,
+              tracking: video.trackingThreshold,
+              model: video.model,
               zoom: video.zoom,
               zones: video.zones
                   .map((zone) => ZoneMeta(
@@ -62,13 +69,6 @@ ProjectMeta projectToMeta(app.Project project) {
       start: TimeOfDayMeta(hour: project.filter.start.hour, minute: project.filter.start.minute),
       end: TimeOfDayMeta(hour: project.filter.end.hour, minute: project.filter.end.minute),
     ),
-    confidence: project.confidenceThreshold,
-    nms: project.nmsThreshold,
-    match: project.matchThreshold,
-    maxLostSeconds: project.maxLostSeconds,
-    valid: project.validThreshold,
-    tracking: project.trackingThreshold,
-    model: project.model,
     isShowCenterRedDotOnTarget: project.isShowCenterRedDotOnTarget,
     isShowGhostTarget: project.isShowGhostTarget,
   );
@@ -95,6 +95,13 @@ app.Project metaToProject(ProjectMeta meta) {
                 : null,
             webcam:
                 video.webcam != null ? app.WebcamDefine(index: video.webcam!.index, name: video.webcam!.name) : null,
+            confidenceThreshold: video.confidence,
+            nmsThreshold: video.nms,
+            matchThreshold: video.match,
+            maxLostSeconds: video.maxLostSeconds,
+            validThreshold: video.valid,
+            trackingThreshold: video.tracking,
+            model: video.model,
             zoom: video.zoom,
             zones: video.zones
                 .map((zone) => vision.VideoZone(
@@ -127,13 +134,6 @@ app.Project metaToProject(ProjectMeta meta) {
       start: TimeOfDay(hour: meta.filter.start.hour, minute: meta.filter.start.minute),
       end: TimeOfDay(hour: meta.filter.end.hour, minute: meta.filter.end.minute),
     ),
-    confidenceThreshold: meta.confidence,
-    nmsThreshold: meta.nms,
-    matchThreshold: meta.match,
-    maxLostSeconds: meta.maxLostSeconds,
-    validThreshold: meta.valid,
-    trackingThreshold: meta.tracking,
-    model: meta.model,
     isShowCenterRedDotOnTarget: meta.isShowCenterRedDotOnTarget,
     isShowGhostTarget: meta.isShowGhostTarget,
   );

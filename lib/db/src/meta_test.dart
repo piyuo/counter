@@ -36,6 +36,13 @@ void main() {
         path: 'video1.mp4',
         camera: app.CameraDefine(name: 'Cam 1', title: 'Primary Cam', isFrontCamera: true),
         webcam: app.WebcamDefine(index: 0, name: 'Webcam 1'),
+        confidenceThreshold: 0.35,
+        nmsThreshold: 0.65,
+        matchThreshold: 0.55,
+        maxLostSeconds: 1,
+        validThreshold: 2,
+        trackingThreshold: 0.7,
+        model: vision.Models.onnx_640, // adjust as needed
         zoom: 1.0,
         zones: [zone],
       );
@@ -50,32 +57,26 @@ void main() {
           start: const TimeOfDay(hour: 8, minute: 0),
           end: const TimeOfDay(hour: 17, minute: 0),
         ),
-        confidenceThreshold: 0.35,
-        nmsThreshold: 0.65,
-        matchThreshold: 0.55,
-        maxLostSeconds: 1,
-        validThreshold: 2,
-        trackingThreshold: 0.7,
-        model: vision.Models.onnx_640, // adjust as needed
       );
 
       // Convert project to meta and back to project.
       final meta = projectToMeta(project);
       final projectFromMeta = metaToProject(meta);
 
+      final videoFromMeta = projectFromMeta.videos[0];
       // Validate key properties.
       expect(projectFromMeta.projectId, project.projectId);
       expect(projectFromMeta.projectName, project.projectName);
       expect(projectFromMeta.filter.filterType, project.filter.filterType);
       expect(projectFromMeta.filter.start.hour, project.filter.start.hour);
       expect(projectFromMeta.filter.end.minute, project.filter.end.minute);
-      expect(projectFromMeta.confidenceThreshold, project.confidenceThreshold);
-      expect(projectFromMeta.nmsThreshold, project.nmsThreshold);
-      expect(projectFromMeta.matchThreshold, project.matchThreshold);
-      expect(projectFromMeta.maxLostSeconds, project.maxLostSeconds);
-      expect(projectFromMeta.validThreshold, project.validThreshold);
-      expect(projectFromMeta.trackingThreshold, project.trackingThreshold);
-      expect(projectFromMeta.model, project.model);
+      expect(videoFromMeta.confidenceThreshold, video.confidenceThreshold);
+      expect(videoFromMeta.nmsThreshold, video.nmsThreshold);
+      expect(videoFromMeta.matchThreshold, video.matchThreshold);
+      expect(videoFromMeta.maxLostSeconds, video.maxLostSeconds);
+      expect(videoFromMeta.validThreshold, video.validThreshold);
+      expect(videoFromMeta.trackingThreshold, video.trackingThreshold);
+      expect(videoFromMeta.model, video.model);
 
       // Validate video and zone details.
       expect(projectFromMeta.videos.length, project.videos.length);

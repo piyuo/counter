@@ -7,7 +7,6 @@ import 'package:counter/db/src/data_manager.dart';
 import 'package:flutter/services.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vision/vision.dart' as vision;
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +31,6 @@ void main() {
       final dummyProject = app.Project(
         projectId: app.uuid(),
         projectName: 'DataManager Test Project',
-        model: vision.Models.onnx_640,
         videos: [], // empty videos list
       );
       // Force a known projectId.

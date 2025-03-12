@@ -24,13 +24,6 @@ mixin _$ProjectMeta {
   String get projectName => throw _privateConstructorUsedError;
   List<VideoMeta> get videos => throw _privateConstructorUsedError;
   FilterMeta get filter => throw _privateConstructorUsedError;
-  double get confidence => throw _privateConstructorUsedError;
-  double get nms => throw _privateConstructorUsedError;
-  double get match => throw _privateConstructorUsedError;
-  int get maxLostSeconds => throw _privateConstructorUsedError;
-  int get valid => throw _privateConstructorUsedError;
-  double get tracking => throw _privateConstructorUsedError;
-  Models get model => throw _privateConstructorUsedError;
   bool get isShowCenterRedDotOnTarget => throw _privateConstructorUsedError;
   bool get isShowGhostTarget => throw _privateConstructorUsedError;
 
@@ -55,13 +48,6 @@ abstract class $ProjectMetaCopyWith<$Res> {
       String projectName,
       List<VideoMeta> videos,
       FilterMeta filter,
-      double confidence,
-      double nms,
-      double match,
-      int maxLostSeconds,
-      int valid,
-      double tracking,
-      Models model,
       bool isShowCenterRedDotOnTarget,
       bool isShowGhostTarget});
 
@@ -87,13 +73,6 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
     Object? projectName = null,
     Object? videos = null,
     Object? filter = null,
-    Object? confidence = null,
-    Object? nms = null,
-    Object? match = null,
-    Object? maxLostSeconds = null,
-    Object? valid = null,
-    Object? tracking = null,
-    Object? model = null,
     Object? isShowCenterRedDotOnTarget = null,
     Object? isShowGhostTarget = null,
   }) {
@@ -114,34 +93,6 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as FilterMeta,
-      confidence: null == confidence
-          ? _value.confidence
-          : confidence // ignore: cast_nullable_to_non_nullable
-              as double,
-      nms: null == nms
-          ? _value.nms
-          : nms // ignore: cast_nullable_to_non_nullable
-              as double,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxLostSeconds: null == maxLostSeconds
-          ? _value.maxLostSeconds
-          : maxLostSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      valid: null == valid
-          ? _value.valid
-          : valid // ignore: cast_nullable_to_non_nullable
-              as int,
-      tracking: null == tracking
-          ? _value.tracking
-          : tracking // ignore: cast_nullable_to_non_nullable
-              as double,
-      model: null == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as Models,
       isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
           ? _value.isShowCenterRedDotOnTarget
           : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
@@ -177,13 +128,6 @@ abstract class _$$ProjectMetaImplCopyWith<$Res>
       String projectName,
       List<VideoMeta> videos,
       FilterMeta filter,
-      double confidence,
-      double nms,
-      double match,
-      int maxLostSeconds,
-      int valid,
-      double tracking,
-      Models model,
       bool isShowCenterRedDotOnTarget,
       bool isShowGhostTarget});
 
@@ -208,13 +152,6 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
     Object? projectName = null,
     Object? videos = null,
     Object? filter = null,
-    Object? confidence = null,
-    Object? nms = null,
-    Object? match = null,
-    Object? maxLostSeconds = null,
-    Object? valid = null,
-    Object? tracking = null,
-    Object? model = null,
     Object? isShowCenterRedDotOnTarget = null,
     Object? isShowGhostTarget = null,
   }) {
@@ -235,34 +172,6 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as FilterMeta,
-      confidence: null == confidence
-          ? _value.confidence
-          : confidence // ignore: cast_nullable_to_non_nullable
-              as double,
-      nms: null == nms
-          ? _value.nms
-          : nms // ignore: cast_nullable_to_non_nullable
-              as double,
-      match: null == match
-          ? _value.match
-          : match // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxLostSeconds: null == maxLostSeconds
-          ? _value.maxLostSeconds
-          : maxLostSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      valid: null == valid
-          ? _value.valid
-          : valid // ignore: cast_nullable_to_non_nullable
-              as int,
-      tracking: null == tracking
-          ? _value.tracking
-          : tracking // ignore: cast_nullable_to_non_nullable
-              as double,
-      model: null == model
-          ? _value.model
-          : model // ignore: cast_nullable_to_non_nullable
-              as Models,
       isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
           ? _value.isShowCenterRedDotOnTarget
           : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
@@ -284,13 +193,6 @@ class _$ProjectMetaImpl implements _ProjectMeta {
       required this.projectName,
       required final List<VideoMeta> videos,
       required this.filter,
-      required this.confidence,
-      required this.nms,
-      required this.match,
-      required this.maxLostSeconds,
-      required this.valid,
-      required this.tracking,
-      required this.model,
       required this.isShowCenterRedDotOnTarget,
       required this.isShowGhostTarget})
       : _videos = videos;
@@ -313,27 +215,13 @@ class _$ProjectMetaImpl implements _ProjectMeta {
   @override
   final FilterMeta filter;
   @override
-  final double confidence;
-  @override
-  final double nms;
-  @override
-  final double match;
-  @override
-  final int maxLostSeconds;
-  @override
-  final int valid;
-  @override
-  final double tracking;
-  @override
-  final Models model;
-  @override
   final bool isShowCenterRedDotOnTarget;
   @override
   final bool isShowGhostTarget;
 
   @override
   String toString() {
-    return 'ProjectMeta(projectId: $projectId, projectName: $projectName, videos: $videos, filter: $filter, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, isShowCenterRedDotOnTarget: $isShowCenterRedDotOnTarget, isShowGhostTarget: $isShowGhostTarget)';
+    return 'ProjectMeta(projectId: $projectId, projectName: $projectName, videos: $videos, filter: $filter, isShowCenterRedDotOnTarget: $isShowCenterRedDotOnTarget, isShowGhostTarget: $isShowGhostTarget)';
   }
 
   @override
@@ -347,16 +235,6 @@ class _$ProjectMetaImpl implements _ProjectMeta {
                 other.projectName == projectName) &&
             const DeepCollectionEquality().equals(other._videos, _videos) &&
             (identical(other.filter, filter) || other.filter == filter) &&
-            (identical(other.confidence, confidence) ||
-                other.confidence == confidence) &&
-            (identical(other.nms, nms) || other.nms == nms) &&
-            (identical(other.match, match) || other.match == match) &&
-            (identical(other.maxLostSeconds, maxLostSeconds) ||
-                other.maxLostSeconds == maxLostSeconds) &&
-            (identical(other.valid, valid) || other.valid == valid) &&
-            (identical(other.tracking, tracking) ||
-                other.tracking == tracking) &&
-            (identical(other.model, model) || other.model == model) &&
             (identical(other.isShowCenterRedDotOnTarget,
                     isShowCenterRedDotOnTarget) ||
                 other.isShowCenterRedDotOnTarget ==
@@ -373,13 +251,6 @@ class _$ProjectMetaImpl implements _ProjectMeta {
       projectName,
       const DeepCollectionEquality().hash(_videos),
       filter,
-      confidence,
-      nms,
-      match,
-      maxLostSeconds,
-      valid,
-      tracking,
-      model,
       isShowCenterRedDotOnTarget,
       isShowGhostTarget);
 
@@ -405,13 +276,6 @@ abstract class _ProjectMeta implements ProjectMeta {
       required final String projectName,
       required final List<VideoMeta> videos,
       required final FilterMeta filter,
-      required final double confidence,
-      required final double nms,
-      required final double match,
-      required final int maxLostSeconds,
-      required final int valid,
-      required final double tracking,
-      required final Models model,
       required final bool isShowCenterRedDotOnTarget,
       required final bool isShowGhostTarget}) = _$ProjectMetaImpl;
 
@@ -426,20 +290,6 @@ abstract class _ProjectMeta implements ProjectMeta {
   List<VideoMeta> get videos;
   @override
   FilterMeta get filter;
-  @override
-  double get confidence;
-  @override
-  double get nms;
-  @override
-  double get match;
-  @override
-  int get maxLostSeconds;
-  @override
-  int get valid;
-  @override
-  double get tracking;
-  @override
-  Models get model;
   @override
   bool get isShowCenterRedDotOnTarget;
   @override

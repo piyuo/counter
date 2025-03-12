@@ -18,6 +18,13 @@ class VideoMeta with _$VideoMeta {
     required String? path,
     required CameraMeta? camera,
     required WebcamMeta? webcam,
+    required double confidence,
+    required double nms,
+    required double match,
+    required int maxLostSeconds,
+    required int valid,
+    required double tracking,
+    required Models model,
     required double zoom,
     required List<ZoneMeta> zones,
   }) = _VideoMeta;

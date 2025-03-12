@@ -7,10 +7,14 @@ import 'package:vision/vision.dart' as vision;
 
 class DetectionScreen extends StatelessWidget {
   const DetectionScreen({
+    required this.videoProvider,
     required this.previousPageTitle,
     required this.scrollController,
     super.key,
   });
+
+  /// the video provider
+  final app.VideoProvider videoProvider;
 
   /// the previous page title
   final String? previousPageTitle;
@@ -21,19 +25,17 @@ class DetectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pageTitle = context.l.detection_screen_title;
-
-    final projectProvider = app.ProjectProvider.of(context);
-    final project = projectProvider.project;
+    final video = videoProvider.video;
     return pip.PipScaffold(
       title: pageTitle,
       previousPageTitle: previousPageTitle,
       child: ChangeNotifierProvider<DetectionScreenProvider>(
           create: (_) => DetectionScreenProvider(),
           child: Consumer<DetectionScreenProvider>(builder: (context, detectionScreenProvider, child) {
-            final classPercentage = '${(project!.confidenceThreshold * 100).toStringAsFixed(0)}%';
-            final nmsPercentage = '${(project.nmsThreshold * 100).toStringAsFixed(0)}%';
+            final classPercentage = '${(video.confidenceThreshold * 100).toStringAsFixed(0)}%';
+            final nmsPercentage = '${(video.nmsThreshold * 100).toStringAsFixed(0)}%';
             // no tracking setting for now, it just a priority setting not that easy to explain to user
-            final matchPercentage = '${(project.matchThreshold * 100).toStringAsFixed(0)}%';
+            final matchPercentage = '${(video.matchThreshold * 100).toStringAsFixed(0)}%';
 
             return SingleChildScrollView(
                 controller: scrollController,
@@ -48,12 +50,11 @@ class DetectionScreen extends StatelessWidget {
                         (index) {
                           final model = vision.Models.values[index];
                           return CupertinoListTile(
-                            leading: model == project.model
-                                ? const Icon(CupertinoIcons.check_mark)
-                                : const SizedBox.shrink(),
+                            leading:
+                                model == video.model ? const Icon(CupertinoIcons.check_mark) : const SizedBox.shrink(),
                             title: Text(vision.getModelName(model)),
                             onTap: () async {
-                              await projectProvider.setModel(model);
+                              await videoProvider.setModel(model);
                               detectionScreenProvider.onModelChanged();
                             },
                           );
@@ -75,12 +76,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.confidenceThreshold,
+                                value: video.confidenceThreshold,
                                 max: 1,
                                 min: 0.1,
                                 divisions: 100,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsDetectionThreshold(value);
+                                  await videoProvider.setSettingsDetectionThreshold(value);
                                   detectionScreenProvider.onDetectionThresholdChanged();
                                 },
                               ),
@@ -105,12 +106,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.nmsThreshold,
+                                value: video.nmsThreshold,
                                 max: 1,
                                 min: 0.1,
                                 divisions: 100,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsNmsThreshold(value);
+                                  await videoProvider.setSettingsNmsThreshold(value);
                                   detectionScreenProvider.onNmsThresholdChanged();
                                 },
                               ),
@@ -133,12 +134,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.matchThreshold,
+                                value: video.matchThreshold,
                                 max: 1,
                                 min: 0.1,
                                 divisions: 100,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsMatchThreshold(value);
+                                  await videoProvider.setSettingsMatchThreshold(value);
                                   detectionScreenProvider.onMatchThresholdChanged();
                                 },
                               ),
@@ -153,7 +154,7 @@ class DetectionScreen extends StatelessWidget {
                         child: Text(
                             maxLines: 3,
                             context.l.detection_screen_lost_desc.replaceAll(
-                                '#0', vision.formatDuration(context, Duration(seconds: project.maxLostSeconds)))),
+                                '#0', vision.formatDuration(context, Duration(seconds: video.maxLostSeconds)))),
                       ),
                       children: [
                         CupertinoListTile(
@@ -163,12 +164,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.maxLostSeconds.toDouble(),
+                                value: video.maxLostSeconds.toDouble(),
                                 min: 1,
                                 max: 600,
                                 divisions: 150,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsMaxLostSeconds(value.toInt());
+                                  await videoProvider.setSettingsMaxLostSeconds(value.toInt());
                                   detectionScreenProvider.onMaxLostSecondsChanged();
                                 },
                               ),
@@ -185,7 +186,7 @@ class DetectionScreen extends StatelessWidget {
                             context.l.detection_screen_consider_valid_desc.replaceAll(
                                 '#0',
                                 vision.formatDuration(
-                                    context, Duration(seconds: (project.validThreshold / 1000).toInt())))),
+                                    context, Duration(seconds: (video.validThreshold / 1000).toInt())))),
                       ),
                       children: [
                         CupertinoListTile(
@@ -195,12 +196,12 @@ class DetectionScreen extends StatelessWidget {
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
-                                value: project.validThreshold / 1000,
+                                value: video.validThreshold / 1000,
                                 min: 0,
                                 max: 60,
                                 divisions: 150,
                                 onChanged: (double value) async {
-                                  await projectProvider.setSettingsValidThreshold((value * 1000).toInt());
+                                  await videoProvider.setSettingsValidThreshold((value * 1000).toInt());
                                   detectionScreenProvider.onValidThresholdChanged();
                                 },
                               ),
@@ -237,7 +238,7 @@ class DetectionScreen extends StatelessWidget {
                                 ) ??
                                 false;
                             if (!okToReset) return;
-                            await projectProvider.resetDetectionSettings();
+                            await videoProvider.resetDetectionSettings();
                             detectionScreenProvider.onDetectionSettingsChanged();
                           },
                         ),

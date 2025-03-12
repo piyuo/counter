@@ -230,7 +230,9 @@ class _WizardAppState extends State<WizardApp> {
                     previousPageTitle: args['previousPageTitle']);
               case detectionRoute:
                 return DetectionScreen(
-                    scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
+                    scrollController: scrollController,
+                    videoProvider: args!['videoProvider'],
+                    previousPageTitle: args['previousPageTitle']);
               case urlRoute:
                 return UrlScreen(
                     scrollController: scrollController,

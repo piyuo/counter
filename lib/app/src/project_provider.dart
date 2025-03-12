@@ -208,24 +208,6 @@ class ProjectProvider with ChangeNotifier {
   /// used to delay the save project setting
   Timer? _saveProjectTimer;
 
-  /// used to delay the detection threshold setting
-  Timer? _detectionThresholdTimer;
-
-  /// used to delay the NMS threshold setting
-  Timer? _nmsThresholdTimer;
-
-  /// used to delay the match threshold setting
-  Timer? _matchThresholdTimer;
-
-  /// used to delay the max lost seconds setting
-  Timer? _maxLostSecondsTimer;
-
-  /// used to delay the valid threshold setting
-  Timer? _validThresholdTimer;
-
-  /// used to delay the model setting
-  Timer? _modelChangedTimer;
-
   /// true if the zone editor is enabled
   bool get isZoneEditorEnabled => fullscreenVideoProvider != null;
 
@@ -249,12 +231,6 @@ class ProjectProvider with ChangeNotifier {
   @override
   void dispose() {
     _saveProjectTimer?.cancel();
-    _detectionThresholdTimer?.cancel();
-    _nmsThresholdTimer?.cancel();
-    _matchThresholdTimer?.cancel();
-    _maxLostSecondsTimer?.cancel();
-    _validThresholdTimer?.cancel();
-    _modelChangedTimer?.cancel();
     _onProjectClosed();
     wizardStreamController.close();
     orientationProvider.dispose();
@@ -505,7 +481,6 @@ class ProjectProvider with ChangeNotifier {
         projectId: projectId,
         projectName: _createProjectName(context, mediaType, path),
         videos: [],
-        model: benchmarkLocalStorage.recommendedModel,
       );
       await _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
       if (!context.mounted) {
@@ -546,6 +521,7 @@ class ProjectProvider with ChangeNotifier {
       mediaType: mediaType,
       videoName: _createVideoName(context, mediaType),
       path: path,
+      model: benchmarkLocalStorage.recommendedModel,
     );
 
     // make sure the video source has a camera or webcam
@@ -694,107 +670,6 @@ class ProjectProvider with ChangeNotifier {
   /// set project name
   void setProjectName(String name) {
     project?.projectName = name;
-    saveProject(null);
-  }
-
-  /// change the model used by the controller
-  Future<void> setModel(vision.Models model) async {
-    if (project!.model == model) {
-      return;
-    }
-    project!.model = model;
-    _modelChangedTimer?.cancel();
-    _modelChangedTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(model: model);
-      }
-      saveProject(null);
-      _modelChangedTimer = null;
-    });
-  }
-
-  /// set detection threshold
-  Future<void> setSettingsDetectionThreshold(double value) async {
-    project?.confidenceThreshold = value;
-    _detectionThresholdTimer?.cancel();
-    _detectionThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(detectionThreshold: value);
-      }
-      saveProject(null);
-      _detectionThresholdTimer = null;
-    });
-  }
-
-  /// set nms threshold
-  Future<void> setSettingsNmsThreshold(double value) async {
-    project?.nmsThreshold = value;
-    _nmsThresholdTimer?.cancel();
-    _nmsThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(nmsThreshold: value);
-      }
-      saveProject(null);
-      _nmsThresholdTimer = null;
-    });
-  }
-
-  /// set match threshold
-  Future<void> setSettingsMatchThreshold(double value) async {
-    project?.matchThreshold = value;
-    _matchThresholdTimer?.cancel();
-    _matchThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(matchThreshold: value);
-      }
-      saveProject(null);
-      _matchThresholdTimer = null;
-    });
-  }
-
-  /// set max allowed lost threshold
-  Future<void> setSettingsMaxLostSeconds(int value) async {
-    project?.maxLostSeconds = value;
-    _maxLostSecondsTimer?.cancel();
-    _maxLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(maxLostSeconds: value);
-      }
-      saveProject(null);
-      _maxLostSecondsTimer = null;
-    });
-  }
-
-  /// set max allowed lost threshold
-  Future<void> setSettingsValidThreshold(int value) async {
-    project?.validThreshold = value;
-    _validThresholdTimer?.cancel();
-    _validThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      for (final videoProvider in videoProviders) {
-        await videoProvider.setRecognition(validThreshold: value);
-      }
-      saveProject(null);
-      _validThresholdTimer = null;
-    });
-  }
-
-  /// reset the AI screen settings
-  Future<void> resetDetectionSettings() async {
-    if (project == null) {
-      return;
-    }
-    project!.resetDetectionSettings();
-    project!.model = benchmarkLocalStorage.recommendedModel;
-    for (final videoProvider in videoProviders) {
-      await videoProvider.setRecognition(
-        model: project!.model,
-        nmsThreshold: project!.nmsThreshold,
-        matchThreshold: project!.matchThreshold,
-        trackingThreshold: project!.trackingThreshold,
-        detectionThreshold: project!.confidenceThreshold,
-        maxLostSeconds: project!.maxLostSeconds,
-      );
-    }
     saveProject(null);
   }
 

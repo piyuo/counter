@@ -33,6 +33,13 @@ void main() {
         path: 'video.mp4',
         camera: cameraMeta,
         webcam: webcamMeta,
+        confidence: 0.85,
+        nms: 0.5,
+        match: 0.9,
+        maxLostSeconds: 10,
+        valid: 1,
+        tracking: 0.75,
+        model: Models.onnx_640, // adjust according to your Models enum
         zoom: 1.0,
         zones: [],
       );
@@ -48,13 +55,6 @@ void main() {
         projectName: 'Test Project',
         videos: [videoMeta],
         filter: filter,
-        confidence: 0.85,
-        nms: 0.5,
-        match: 0.9,
-        maxLostSeconds: 10,
-        valid: 1,
-        tracking: 0.75,
-        model: Models.onnx_640, // adjust according to your Models enum
         isShowCenterRedDotOnTarget: false,
         isShowGhostTarget: false,
       );
@@ -63,17 +63,10 @@ void main() {
       expect(json, isA<Map<String, dynamic>>());
       expect(json['projectId'], 'proj1');
       expect(json['projectName'], 'Test Project');
-      expect(json['confidence'], 0.85);
-      expect(json['nms'], 0.5);
-      expect(json['match'], 0.9);
-      expect(json['maxLostSeconds'], 10);
-      expect(json['valid'], 1);
-      expect(json['tracking'], 0.75);
       // Check nested objects
       expect(json['videos'], isA<List<dynamic>>());
       expect((json['videos'] as List).first, videoMeta.toJson());
       expect(json['filter'], filter.toJson());
-      expect(json['model'], 'onnx_640'); // assuming Models enum is serialized using its name
       expect(json['isShowCenterRedDotOnTarget'], false); // assuming Models enum is serialized using its name
       expect(json['isShowGhostTarget'], false); // assuming Models enum is serialized using its name
 

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:vision/vision.dart';
 
 import 'filter_meta.dart';
 import 'video_meta.dart';
@@ -15,13 +14,6 @@ class ProjectMeta with _$ProjectMeta {
     required String projectName,
     required List<VideoMeta> videos,
     required FilterMeta filter,
-    required double confidence,
-    required double nms,
-    required double match,
-    required int maxLostSeconds,
-    required int valid,
-    required double tracking,
-    required Models model,
     required bool isShowCenterRedDotOnTarget,
     required bool isShowGhostTarget,
   }) = _ProjectMeta;

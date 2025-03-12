@@ -3,27 +3,13 @@ import 'package:vision/vision.dart' as vision;
 import 'uuid.dart';
 import 'video.dart';
 
-const _confidenceThreshold = 0.35; // pick object as many as possible
-const _trackingThreshold = 0.7; // byte track will filter object by
-const _nmsThreshold = 0.65;
-const _matchThreshold = 0.55;
-const _maxLostSeconds = 60;
-const _validThreshold = 800; // 800ms to consider object is valid
-
 /// Project for object detection, support multiple video sources, and settings.
 class Project {
   Project({
     required this.projectName,
-    required this.model,
     required this.projectId,
     this.filter = const vision.Filter(vision.FilterType.pass1Hour),
     required List<Video> videos,
-    this.confidenceThreshold = _confidenceThreshold,
-    this.nmsThreshold = _nmsThreshold,
-    this.matchThreshold = _matchThreshold,
-    this.maxLostSeconds = _maxLostSeconds,
-    this.validThreshold = _validThreshold,
-    this.trackingThreshold = _trackingThreshold,
     this.isShowCenterRedDotOnTarget = false,
     this.isShowGhostTarget = false,
   }) {
@@ -68,42 +54,11 @@ class Project {
     return false;
   }
 
-  /// confidence threshold
-  double confidenceThreshold;
-
-  /// nms threshold
-  double nmsThreshold;
-
-  /// match threshold
-  double matchThreshold;
-
-  /// max allowed lost frames
-  int maxLostSeconds;
-
-  /// valid threshold
-  int validThreshold;
-
-  /// tracking threshold
-  double trackingThreshold;
-
-  /// the current model used by the controller
-  vision.Models model;
-
   /// show red dot in the center of the target
   bool isShowCenterRedDotOnTarget;
 
   /// ghost target is a target we lost track
   bool isShowGhostTarget;
-
-  /// reset the detection settings
-  void resetDetectionSettings() {
-    confidenceThreshold = _confidenceThreshold; // pick object as many as possible
-    trackingThreshold = _trackingThreshold; // byte track will filter object by
-    nmsThreshold = _nmsThreshold;
-    matchThreshold = _matchThreshold;
-    maxLostSeconds = _maxLostSeconds;
-    validThreshold = _validThreshold;
-  }
 
   /// check if project contain a camera video source
   bool get hasCameraInVideos {

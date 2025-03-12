@@ -55,6 +55,13 @@ void main() {
         path: 'test/path.mp4',
         camera: cameraMeta,
         webcam: webcamMeta,
+        confidence: 0.85,
+        nms: 0.5,
+        match: 0.9,
+        maxLostSeconds: 10,
+        valid: 1,
+        tracking: 0.75,
+        model: Models.onnx_640, // adjust according to your Models enum
         zoom: 1.5,
         zones: [zone],
       );
@@ -71,6 +78,13 @@ void main() {
       expect(json['webcam'], webcamMeta.toJson());
       expect(json['zones'], isA<List<dynamic>>());
       expect((json['zones'] as List).first, zone.toJson());
+      expect(json['model'], 'onnx_640');
+      expect(json['confidence'], 0.85);
+      expect(json['nms'], 0.5);
+      expect(json['match'], 0.9);
+      expect(json['maxLostSeconds'], 10);
+      expect(json['valid'], 1);
+      expect(json['tracking'], 0.75);
 
       final videoMetaFromJson = VideoMeta.fromJson(json);
       expect(videoMetaFromJson, isA<VideoMeta>());

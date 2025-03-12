@@ -233,9 +233,9 @@ class SourceScreen extends StatelessWidget {
                         title: Text(context.l.source_screen_detection),
                         leading: const Icon(CupertinoIcons.eye),
                         trailing: const CupertinoListTileChevron(),
-                        additionalInfo:
-                            projectProvider.project != null ? Text(projectProvider.project!.model.name) : null,
+                        additionalInfo: projectProvider.project != null ? Text(videoProvider.video.model.name) : null,
                         onTap: () => Navigator.of(context).pushNamed(detectionRoute, arguments: {
+                          'videoProvider': videoProvider,
                           'previousPageTitle': pageTitle,
                         }),
                       ),

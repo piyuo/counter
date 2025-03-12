@@ -1,5 +1,12 @@
 import 'package:vision/vision.dart' as vision;
 
+const _confidenceThreshold = 0.35; // pick object as many as possible
+const _trackingThreshold = 0.7; // byte track will filter object by
+const _nmsThreshold = 0.65;
+const _matchThreshold = 0.55;
+const _maxLostSeconds = 60;
+const _validThreshold = 800; // 800ms to consider object is valid
+
 /// video define the video source for the project, a project can have multiple video sources. like camera, video file, live stream.
 class Video {
   Video({
@@ -11,6 +18,13 @@ class Video {
     this.zoom = 1,
     this.path,
     List<vision.VideoZone> zones = const [],
+    required this.model,
+    this.confidenceThreshold = _confidenceThreshold,
+    this.nmsThreshold = _nmsThreshold,
+    this.matchThreshold = _matchThreshold,
+    this.maxLostSeconds = _maxLostSeconds,
+    this.validThreshold = _validThreshold,
+    this.trackingThreshold = _trackingThreshold,
   }) {
     // if zones is not empty, add them to the video
     if (zones.isNotEmpty) {
@@ -44,6 +58,37 @@ class Video {
 
   /// zones
   final List<vision.VideoZone> zones = [];
+
+  /// the current model used by the controller
+  vision.Models model;
+
+  /// confidence threshold
+  double confidenceThreshold;
+
+  /// nms threshold
+  double nmsThreshold;
+
+  /// match threshold
+  double matchThreshold;
+
+  /// max allowed lost frames
+  int maxLostSeconds;
+
+  /// valid threshold
+  int validThreshold;
+
+  /// tracking threshold
+  double trackingThreshold;
+
+  /// reset the detection settings
+  void resetDetectionSettings() {
+    confidenceThreshold = _confidenceThreshold; // pick object as many as possible
+    trackingThreshold = _trackingThreshold; // byte track will filter object by
+    nmsThreshold = _nmsThreshold;
+    matchThreshold = _matchThreshold;
+    maxLostSeconds = _maxLostSeconds;
+    validThreshold = _validThreshold;
+  }
 }
 
 /// Define camera name and zoom level
