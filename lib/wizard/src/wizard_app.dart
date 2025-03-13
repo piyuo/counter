@@ -252,7 +252,10 @@ class _WizardAppState extends State<WizardApp> {
                 );
               case '/':
               default:
-                return WizardScreen(isPanelOpened: widget.isPanelOpened, scrollController: scrollController);
+                return WizardScreen(
+                  isPanelOpened: widget.isPanelOpened,
+                  scrollController: scrollController,
+                );
             }
           },
         );

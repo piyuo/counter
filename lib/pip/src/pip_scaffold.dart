@@ -66,12 +66,8 @@ class PipScaffold extends StatelessWidget {
               animationBehavior: SearchBarAnimationBehavior.steady,
             ),
           ),
-          body: Material(
-            // Wrap the child in Material to have a default background
-            color: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.5),
-            child: child,
-            // extra padding let user easy to tap button on the bottom
-          ),
+          body: child,
+          // extra padding let user easy to tap button on the bottom
         ),
       ),
     );
