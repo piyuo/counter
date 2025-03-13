@@ -203,7 +203,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
   /// reset the scrolling state
   void resetScroll() {
     if (UniversalPlatform.isDesktop) {
-      _scrollingEnabled = true;
+      //_scrollingEnabled = true;
       return;
     }
 
@@ -592,9 +592,10 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   //animate the panel position to the snap point
   //REQUIRES that widget.snapPoint != null
-  Future<void> _animatePanelToSnapPoint({Duration? duration, Curve curve = Curves.linear}) {
+  Future<void> _animatePanelToSnapPoint({Duration? duration, Curve curve = Curves.linear}) async {
     assert(widget.snapPoint != null);
-    return _ac.animateTo(widget.snapPoint!, duration: duration, curve: curve);
+    await _ac.animateTo(widget.snapPoint!, duration: duration, curve: curve);
+    _scrollingEnabled = false; // disable scrolling to prevent conflict
   }
 
   //set the panel position to value - must

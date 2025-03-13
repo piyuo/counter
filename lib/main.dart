@@ -68,6 +68,10 @@ class _MyAppState extends State<MyApp> {
                       await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
                     },
                     onProjectOpened: (context, _) async {
+                      final pipProvider = pip.PipProvider.of(context);
+                      await Future.delayed(
+                          const Duration(seconds: 2)); // 2 seconds wait to avoid busy state when open project
+                      pipProvider.animatePanelToSnapPoint();
                       dataManager.deleteActivitiesOlderThanOneDay();
                     },
                     onProjectSave: (app.Project project, app.Video? video) async {

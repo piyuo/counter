@@ -55,6 +55,11 @@ class PipProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /// animate the sliding panel to the snap point
+  void animatePanelToSnapPoint() {
+    panelController.animatePanelToSnapPoint();
+  }
+
   /// the key for the sliding panel
   final GlobalKey<SlidingUpPanelState> panelKey = GlobalKey<SlidingUpPanelState>();
 
