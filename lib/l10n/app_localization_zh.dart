@@ -291,67 +291,70 @@ class AppLocalizationZh extends AppLocalization {
   String get camera_screen_zoom_level => '縮放級別';
 
   @override
-  String get source_screen_desc => '管理影片來源，新增或修改偵測區域。';
+  String get video_screen_name_empty => '影片來源名稱不能為空。';
 
   @override
-  String get source_screen_video_name => '影片來源名稱';
+  String get video_screen_desc => '管理影片來源，新增或修改偵測區域。';
 
   @override
-  String get source_screen_edit_placeholder => '前門攝影機或停車場攝影機';
+  String get video_screen_video_name => '影片來源名稱';
 
   @override
-  String get source_screen_change_file => '更改檔案';
+  String get video_screen_edit_placeholder => '前門攝影機或停車場攝影機';
 
   @override
-  String get source_screen_add_zone => '新增偵測區域';
+  String get video_screen_change_file => '更改檔案';
 
   @override
-  String get source_screen_zones => '偵測區域';
+  String get video_screen_add_zone => '新增偵測區域';
 
   @override
-  String get source_screen_zones_desc => '使用拖放調整區域';
+  String get video_screen_zones => '偵測區域';
 
   @override
-  String get source_screen_tools => '工具';
+  String get video_screen_zones_desc => '使用拖放調整區域';
 
   @override
-  String get source_screen_move_bottom => '將目前區域移至底部';
+  String get video_screen_tools => '工具';
 
   @override
-  String get source_screen_add_point => '向目前區域新增點';
+  String get video_screen_move_bottom => '將目前區域移至底部';
 
   @override
-  String get source_screen_remove_point => '從目前區域移除點';
+  String get video_screen_add_point => '向目前區域新增點';
 
   @override
-  String get source_screen_playback_speed => '播放速度';
+  String get video_screen_remove_point => '從目前區域移除點';
 
   @override
-  String get source_screen_playback_current => '目前: ';
+  String get video_screen_playback_speed => '播放速度';
 
   @override
-  String get source_screen_playback_14x => '1/4倍速';
+  String get video_screen_playback_current => '目前: ';
 
   @override
-  String get source_screen_playback_2x => '2倍速';
+  String get video_screen_playback_14x => '1/4倍速';
 
   @override
-  String get source_screen_delete_header => '刪除此影片來源';
+  String get video_screen_playback_2x => '2倍速';
 
   @override
-  String get source_screen_delete_content => '您確定要刪除此影片來源嗎？';
+  String get video_screen_delete_header => '刪除此影片來源';
 
   @override
-  String get source_screen_delete_button => '刪除';
+  String get video_screen_delete_content => '您確定要刪除此影片來源嗎？';
 
   @override
-  String get source_screen_sources => '設定影像來源、偵測目標及模型參數';
+  String get video_screen_delete_button => '刪除';
 
   @override
-  String get source_screen_targets => '偵測目標';
+  String get video_screen_sources => '設定影像來源、偵測目標及模型參數';
 
   @override
-  String get source_screen_detection => '模型參數';
+  String get video_screen_targets => '偵測目標';
+
+  @override
+  String get video_screen_detection => '模型參數';
 
   @override
   String get color_screen_title => '選擇顏色';

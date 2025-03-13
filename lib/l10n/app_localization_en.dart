@@ -291,67 +291,70 @@ class AppLocalizationEn extends AppLocalization {
   String get camera_screen_zoom_level => 'Zoom Level';
 
   @override
-  String get source_screen_desc => 'Manage video sources, add or modify detection zones.';
+  String get video_screen_name_empty => 'The video name cannot be empty.';
 
   @override
-  String get source_screen_video_name => 'Video source name';
+  String get video_screen_desc => 'Manage video sources, add or modify detection zones.';
 
   @override
-  String get source_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
+  String get video_screen_video_name => 'Video source name';
 
   @override
-  String get source_screen_change_file => 'Change File';
+  String get video_screen_edit_placeholder => 'Front Door Cam or Parking Lot Cam';
 
   @override
-  String get source_screen_add_zone => 'Add detection zone';
+  String get video_screen_change_file => 'Change File';
 
   @override
-  String get source_screen_zones => 'Detection zones';
+  String get video_screen_add_zone => 'Add detection zone';
 
   @override
-  String get source_screen_zones_desc => 'Use drag and drop to adjust zones';
+  String get video_screen_zones => 'Detection zones';
 
   @override
-  String get source_screen_tools => 'Tools';
+  String get video_screen_zones_desc => 'Use drag and drop to adjust zones';
 
   @override
-  String get source_screen_move_bottom => 'Move current zone to bottom';
+  String get video_screen_tools => 'Tools';
 
   @override
-  String get source_screen_add_point => 'Add point to current zone';
+  String get video_screen_move_bottom => 'Move current zone to bottom';
 
   @override
-  String get source_screen_remove_point => 'Remove point from current zone';
+  String get video_screen_add_point => 'Add point to current zone';
 
   @override
-  String get source_screen_playback_speed => 'Playback Speed';
+  String get video_screen_remove_point => 'Remove point from current zone';
 
   @override
-  String get source_screen_playback_current => 'current: ';
+  String get video_screen_playback_speed => 'Playback Speed';
 
   @override
-  String get source_screen_playback_14x => '1/4x';
+  String get video_screen_playback_current => 'current: ';
 
   @override
-  String get source_screen_playback_2x => '2x';
+  String get video_screen_playback_14x => '1/4x';
 
   @override
-  String get source_screen_delete_header => 'Delete this video source';
+  String get video_screen_playback_2x => '2x';
 
   @override
-  String get source_screen_delete_content => 'Are you sure you want to delete this video source?';
+  String get video_screen_delete_header => 'Delete this video source';
 
   @override
-  String get source_screen_delete_button => 'Delete';
+  String get video_screen_delete_content => 'Are you sure you want to delete this video source?';
 
   @override
-  String get source_screen_sources => 'Configure image source, detection targets, and model parameters.';
+  String get video_screen_delete_button => 'Delete';
 
   @override
-  String get source_screen_targets => 'Detection targets';
+  String get video_screen_sources => 'Configure image source, detection targets, and model parameters.';
 
   @override
-  String get source_screen_detection => 'Model parameters';
+  String get video_screen_targets => 'Detection targets';
+
+  @override
+  String get video_screen_detection => 'Model parameters';
 
   @override
   String get color_screen_title => 'Pick a color';

@@ -14,15 +14,15 @@ import 'project/filter_screen.dart';
 import 'project/objects_screen.dart';
 import 'project/open_project_screen.dart';
 import 'project/project_screen.dart';
-import 'settings/add_source_screen.dart';
 import 'settings/settings_screen.dart';
 import 'settings/url_screen.dart';
-import 'source/camera_screen.dart';
-import 'source/color_screen.dart';
-import 'source/counter_screen.dart';
-import 'source/source_screen.dart';
-import 'source/webcam_screen.dart';
-import 'source/zone_screen.dart';
+import 'video/add_video_screen.dart';
+import 'video/camera_screen.dart';
+import 'video/color_screen.dart';
+import 'video/counter_screen.dart';
+import 'video/video_screen.dart';
+import 'video/webcam_screen.dart';
+import 'video/zone_screen.dart';
 import 'wizard_screen.dart';
 
 /// The initial route
@@ -38,10 +38,10 @@ const benchmarkRoute = '/benchmark';
 const opencvRoute = '/opencv';
 
 /// The add video source route
-const addSourceRoute = '/addSource';
+const addVideoRoute = '/addVideo';
 
 /// The video source route
-const sourceRoute = '/source';
+const videoRoute = '/video';
 
 /// The camera route
 const cameraRoute = '/camera';
@@ -119,9 +119,7 @@ class _WizardAppState extends State<WizardApp> {
     projectProvider.wizardStreamController.stream.listen((command) {
       switch (command.wizardCommands) {
         case app.WizardCommands.showVideoSettings:
-          if (context.mounted) {
-            _gotoSourceRoute(projectProvider: projectProvider, videoProvider: command.arguments);
-          }
+          _gotoVideoRoute(projectProvider: projectProvider, videoProvider: command.arguments);
           break;
       }
     });
@@ -193,11 +191,11 @@ class _WizardAppState extends State<WizardApp> {
                     scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case filterRoute:
                 return FilterScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
-              case addSourceRoute:
+              case addVideoRoute:
                 return AddSourceScreen(
                     scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
-              case sourceRoute:
-                return SourceScreen(
+              case videoRoute:
+                return VideoScreen(
                     scrollController: scrollController,
                     previousPageTitle: args!['previousPageTitle'],
                     videoProvider: args['videoProvider']);
@@ -264,7 +262,7 @@ class _WizardAppState extends State<WizardApp> {
 }
 
 ///  Navigate to the video source route
-void _gotoSourceRoute({
+void _gotoVideoRoute({
   required app.ProjectProvider projectProvider,
   required videoProvider,
   String? previousPageTitle,
@@ -272,9 +270,9 @@ void _gotoSourceRoute({
   await projectProvider.enterVideoScreen(videoProvider);
   try {
     await projectProvider.navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      sourceRoute,
+      videoRoute,
       (route) =>
-          (route.isCurrent && route.settings.name == sourceRoute) ||
+          (route.isCurrent && route.settings.name == videoRoute) ||
           route.settings.name == null ||
           route.settings.name == projectRoute,
       arguments: {

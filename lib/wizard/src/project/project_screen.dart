@@ -144,7 +144,7 @@ class ProjectScreen extends StatelessWidget {
                             }
                             try {
                               await Navigator.of(context).pushNamed(
-                                sourceRoute,
+                                videoRoute,
                                 arguments: {
                                   'videoProvider': videoProvider,
                                   'previousPageTitle': pageTitle,
@@ -210,7 +210,7 @@ class ProjectScreen extends StatelessWidget {
                     sizeStyle: CupertinoButtonSize.medium,
                     child: Text(context.l.project_screen_add_video_button),
                     onPressed: () {
-                      Navigator.of(context).pushNamed(addSourceRoute, arguments: {
+                      Navigator.of(context).pushNamed(addVideoRoute, arguments: {
                         'previousPageTitle': pageTitle,
                       });
                     },

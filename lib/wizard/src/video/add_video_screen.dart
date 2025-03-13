@@ -27,9 +27,9 @@ class AddSourceScreen extends StatelessWidget {
     return pip.PipScaffold(
       previousPageTitle: previousPageTitle,
       title: pageTitle,
-      child: ChangeNotifierProvider<AddSourceScreenProvider>(
-        create: (_) => AddSourceScreenProvider(),
-        child: Consumer<AddSourceScreenProvider>(builder: (context, addSourceScreenProvider, child) {
+      child: ChangeNotifierProvider<AddVideoScreenProvider>(
+        create: (_) => AddVideoScreenProvider(),
+        child: Consumer<AddVideoScreenProvider>(builder: (context, addSourceScreenProvider, child) {
           return SingleChildScrollView(
               controller: scrollController,
               child: Column(
@@ -59,8 +59,8 @@ class AddSourceScreen extends StatelessWidget {
 }
 
 /// provider for add video screen
-class AddSourceScreenProvider with ChangeNotifier {
-  AddSourceScreenProvider();
+class AddVideoScreenProvider with ChangeNotifier {
+  AddVideoScreenProvider();
 
   void redraw() {
     notifyListeners();

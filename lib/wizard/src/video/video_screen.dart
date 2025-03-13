@@ -8,9 +8,9 @@ import 'package:vision/vision.dart' as vision;
 import '../project/pick_video.dart';
 import '../wizard_app.dart';
 
-/// The source screen for detail and zone editing.
-class SourceScreen extends StatelessWidget {
-  const SourceScreen({
+/// The video screen for detail and zone editing.
+class VideoScreen extends StatelessWidget {
+  const VideoScreen({
     required this.scrollController,
     required this.videoProvider,
     this.previousPageTitle,
@@ -45,8 +45,8 @@ class SourceScreen extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SourceScreenProvider>(
-          create: (_) => SourceScreenProvider(
+        ChangeNotifierProvider<VideoScreenProvider>(
+          create: (_) => VideoScreenProvider(
             projectProvider: projectProvider,
             videoProvider: videoProvider,
           ),
@@ -55,7 +55,7 @@ class SourceScreen extends StatelessWidget {
           value: videoProvider,
         ),
       ],
-      child: Consumer2<SourceScreenProvider, app.VideoProvider>(
+      child: Consumer2<VideoScreenProvider, app.VideoProvider>(
         builder: (context, sourceScreenProvider, videoProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
@@ -70,7 +70,7 @@ class SourceScreen extends StatelessWidget {
                   'videoZone': videoZone,
                 });
               },
-              child: Text(context.l.source_screen_add_zone),
+              child: Text(context.l.video_screen_add_zone),
             ),
             child: SingleChildScrollView(
               controller: scrollController,
@@ -83,7 +83,7 @@ class SourceScreen extends StatelessWidget {
                         const SizedBox(height: 8.0),
                         Text(pageTitle, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                         Text(
-                          context.l.source_screen_desc,
+                          context.l.video_screen_desc,
                           textAlign: TextAlign.center,
                         ),
                       ],
@@ -92,7 +92,7 @@ class SourceScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_video_name),
+                    header: Text(context.l.video_screen_video_name),
                     footer: sourceScreenProvider._videoNameErrorMessage.isNotEmpty
                         ? Text(
                             sourceScreenProvider._videoNameErrorMessage,
@@ -103,23 +103,23 @@ class SourceScreen extends StatelessWidget {
                       CupertinoTextField(
                         decoration: BoxDecoration(color: CupertinoColors.systemGrey6.resolveFrom(context)),
                         clearButtonMode: OverlayVisibilityMode.editing,
-                        placeholder: context.l.source_screen_edit_placeholder,
+                        placeholder: context.l.video_screen_edit_placeholder,
                         padding: const EdgeInsets.all(16),
                         maxLength: 128,
                         controller: sourceScreenProvider.videoNameController,
-                        onChanged: (text) => sourceScreenProvider.setVideoName(text),
+                        onChanged: (text) => sourceScreenProvider.setVideoName(context, text),
                       ),
                     ],
                   ),
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_sources),
+                    header: Text(context.l.video_screen_sources),
                     children: [
                       // file
                       if (video.mediaType == vision.MediaType.file)
                         CupertinoListTile(
-                          title: Text(context.l.source_screen_change_file),
+                          title: Text(context.l.video_screen_change_file),
                           leading: const Icon(CupertinoIcons.folder),
                           trailing: const CupertinoListTileChevron(),
                           onTap: () async {
@@ -216,7 +216,7 @@ class SourceScreen extends StatelessWidget {
 
                       // object classes
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_targets),
+                        title: Text(context.l.video_screen_targets),
                         leading: const Icon(CupertinoIcons.list_bullet),
                         trailing: const CupertinoListTileChevron(),
                         additionalInfo: Text(getCurrentObjectClassNames(context)),
@@ -230,7 +230,7 @@ class SourceScreen extends StatelessWidget {
                       ),
                       // detection parameter
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_detection),
+                        title: Text(context.l.video_screen_detection),
                         leading: const Icon(CupertinoIcons.eye),
                         trailing: const CupertinoListTileChevron(),
                         additionalInfo: projectProvider.project != null ? Text(videoProvider.video.model.name) : null,
@@ -244,8 +244,8 @@ class SourceScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_zones),
-                    footer: Text(context.l.source_screen_zones_desc),
+                    header: Text(context.l.video_screen_zones),
+                    footer: Text(context.l.video_screen_zones_desc),
                     children: video.zones
                         .map((zone) => CupertinoListTile(
                               title: Text(zone.name),
@@ -270,20 +270,20 @@ class SourceScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_tools),
+                    header: Text(context.l.video_screen_tools),
                     children: [
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_move_bottom),
+                        title: Text(context.l.video_screen_move_bottom),
                         leading: const Icon(CupertinoIcons.down_arrow),
                         onTap: () => videoProvider.zoneEditorController!.moveZoneToBottom(),
                       ),
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_add_point),
+                        title: Text(context.l.video_screen_add_point),
                         leading: const Icon(CupertinoIcons.plus),
                         onTap: () => videoProvider.zoneEditorController!.addPoint(),
                       ),
                       CupertinoListTile(
-                        title: Text(context.l.source_screen_remove_point),
+                        title: Text(context.l.video_screen_remove_point),
                         leading: const Icon(CupertinoIcons.minus),
                         onTap: () => videoProvider.zoneEditorController!.removePoint(),
                       ),
@@ -294,14 +294,14 @@ class SourceScreen extends StatelessWidget {
                   if (video.mediaType == vision.MediaType.file)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      header: Text(context.l.source_screen_playback_speed),
+                      header: Text(context.l.video_screen_playback_speed),
                       footer: Text(
-                          '${context.l.source_screen_playback_current}${videoProvider.visionController.playbackSpeed}x'),
+                          '${context.l.video_screen_playback_current}${videoProvider.visionController.playbackSpeed}x'),
                       children: [
                         CupertinoListTile(
                             leadingSize: 52,
-                            leading: Text(context.l.source_screen_playback_14x),
-                            trailing: Text(context.l.source_screen_playback_2x),
+                            leading: Text(context.l.video_screen_playback_14x),
+                            trailing: Text(context.l.video_screen_playback_2x),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
@@ -321,7 +321,7 @@ class SourceScreen extends StatelessWidget {
 
                   CupertinoListSection(
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    header: Text(context.l.source_screen_delete_header),
+                    header: Text(context.l.video_screen_delete_header),
                     children: [
                       CupertinoListTile(
                         title: Center(
@@ -332,8 +332,8 @@ class SourceScreen extends StatelessWidget {
                               context: context,
                               builder: (context) {
                                 return CupertinoAlertDialog(
-                                  title: Text(context.l.source_screen_delete_header),
-                                  content: Text(context.l.source_screen_delete_content),
+                                  title: Text(context.l.video_screen_delete_header),
+                                  content: Text(context.l.video_screen_delete_content),
                                   actions: [
                                     CupertinoDialogAction(
                                       isDefaultAction: true,
@@ -344,7 +344,7 @@ class SourceScreen extends StatelessWidget {
                                     CupertinoDialogAction(
                                       isDestructiveAction: true,
                                       onPressed: () => Navigator.pop(context, true),
-                                      child: Text(context.l.source_screen_delete_button),
+                                      child: Text(context.l.video_screen_delete_button),
                                     ),
                                   ],
                                 );
@@ -355,7 +355,7 @@ class SourceScreen extends StatelessWidget {
                             await projectProvider.deleteVideo(videoProvider);
                             if (context.mounted) Navigator.pop(context);
                           },
-                          child: Text(context.l.source_screen_delete_button,
+                          child: Text(context.l.video_screen_delete_button,
                               style: TextStyle(color: CupertinoColors.systemRed)),
                         )),
                       )
@@ -372,9 +372,9 @@ class SourceScreen extends StatelessWidget {
   }
 }
 
-/// Provide source screen support
-class SourceScreenProvider with ChangeNotifier {
-  SourceScreenProvider({
+/// Provide video screen support
+class VideoScreenProvider with ChangeNotifier {
+  VideoScreenProvider({
     required this.projectProvider,
     required this.videoProvider,
   }) {
@@ -400,9 +400,9 @@ class SourceScreenProvider with ChangeNotifier {
   }
 
   /// set video name
-  void setVideoName(String text) {
+  void setVideoName(BuildContext context, String text) {
     if (text.isEmpty) {
-      _videoNameErrorMessage = "The video name cannot be empty";
+      _videoNameErrorMessage = context.l.video_screen_name_empty;
     } else {
       _videoNameErrorMessage = '';
       videoProvider.setVideoName(text);
