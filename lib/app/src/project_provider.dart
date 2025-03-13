@@ -81,7 +81,7 @@ class ProjectProvider with ChangeNotifier {
   final Future<void> Function(String projectId)? onClearActivities;
 
   /// called when project opened
-  final void Function(Project project)? onProjectOpened;
+  final void Function(BuildContext, Project project)? onProjectOpened;
 
   /// called when project closed
   final void Function(Project project)? onProjectClosed;
@@ -509,7 +509,11 @@ class ProjectProvider with ChangeNotifier {
     if (UniversalPlatform.isMobile && project!.isCameraOnly) {
       await lockToPortrait();
     }
-    onProjectOpened?.call(project!);
+    if (!context.mounted) {
+      return;
+    }
+
+    onProjectOpened?.call(context, project!);
     _onProjectOpened();
   }
 

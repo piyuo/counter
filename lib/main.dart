@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
                         (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
                       await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
                     },
-                    onProjectOpened: (_) async {
+                    onProjectOpened: (context, _) async {
                       dataManager.deleteActivitiesOlderThanOneDay();
                     },
                     onProjectSave: (app.Project project, app.Video? video) async {
