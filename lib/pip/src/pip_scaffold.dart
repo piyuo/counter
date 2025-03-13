@@ -76,6 +76,5 @@ class PipScaffold extends StatelessWidget {
 
 /// get Cupertino list section theme color
 Color getCupertinoListSectionBackgroundColor(BuildContext context) {
-//  return Colors.red;
   return CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.4);
 }
