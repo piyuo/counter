@@ -40,20 +40,7 @@ class WizardScreen extends StatelessWidget {
               titleWidget: Container(
                 padding: const EdgeInsets.only(left: 16.0),
                 alignment: Alignment.centerLeft,
-                child: isPanelOpened
-                    ? Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)))
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image(
-                            image: AssetImage('assets/icon/icon.png'),
-                            width: 24,
-                            height: 24,
-                          ),
-                          const SizedBox(width: 10.0),
-                          Expanded(child: Text(context.l.product_name))
-                        ],
-                      ),
+                child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
               ),
               child: SingleChildScrollView(
                 controller: scrollController,
