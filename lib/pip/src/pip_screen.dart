@@ -25,7 +25,7 @@ const double _slidingLayoutWidthThreshold = 500;
 const double _compactHeightThreshold = 600;
 
 /// the min height for sliding panel
-const double _slidingPanelMinHeight = 68;
+const double _slidingPanelMinHeight = 128;
 
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 100);
@@ -88,7 +88,7 @@ class PipScreen extends StatelessWidget {
             // screen is not big, use sliding
             buildSlidingLayout() {
               // 28 is height for close/minimize button bar, 10 is padding
-              double top = 28.0 + (isCompactLayout ? 0 : 10);
+              const top = 38.0;
               return constraints.maxWidth > _slidingLayoutWidthThreshold
                   // fixed width
                   ? AnimatedPositioned(
@@ -100,14 +100,14 @@ class PipScreen extends StatelessWidget {
                       child: PipSliding(
                         pipProvider: pipProvider,
                         width: slidingPanelWidth,
-                        minHeight: _slidingPanelMinHeight,
+                        minHeight: _slidingPanelMinHeight + safePadding.bottom,
                         builder: slidingBuilder,
                       ),
                     )
                   // fill the screen width
                   : AnimatedPositioned(
                       duration: _animationDuration,
-                      top: top,
+                      top: safePadding.top + top,
                       height: constraints.maxHeight - top,
                       left: 0,
                       right: 0,
