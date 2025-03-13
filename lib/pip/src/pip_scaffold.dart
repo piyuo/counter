@@ -54,7 +54,7 @@ class PipScaffold extends StatelessWidget {
         body: SuperScaffold(
           appBar: SuperAppBar(
             previousPageTitle: previousPageTitle ?? context.l.back,
-            backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.5),
+            backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.4),
             title: titleWidget ?? (title != null ? AutoSizeText(title!) : null),
             largeTitle: SuperLargeTitle(
               enabled: largeTitle != null,
@@ -76,5 +76,5 @@ class PipScaffold extends StatelessWidget {
 
 /// get Cupertino list section theme color
 Color getCupertinoListSectionBackgroundColor(BuildContext context) {
-  return CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.4);
+  return CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.92);
 }
