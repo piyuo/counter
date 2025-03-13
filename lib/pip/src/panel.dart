@@ -214,7 +214,11 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   /// onScroll event called by the parent widget scroll controller
   void onScroll(ScrollController scrollController) {
-    if (widget.isDraggable && !_scrollingEnabled) {
+    if (UniversalPlatform.isDesktop) {
+      return;
+    }
+
+    if (widget.isDraggable && !_scrollingEnabled && scrollController.hasClients) {
       scrollController.jumpTo(0);
     }
   }

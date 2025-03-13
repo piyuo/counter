@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'panel.dart';
 import 'pip_provider.dart';
@@ -49,6 +50,20 @@ class PipSliding extends StatelessWidget {
         removeRight: true,
         child: LayoutBuilder(
           builder: (context, constraints) {
+            buildContent() {
+              return Align(
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                    width: width,
+                    child: ClipRRect(
+                      borderRadius: _slidingPanelRadius,
+                      child: isShowDragHeader
+                          ? _DragHeader(child: builder(pipProvider.isPanelOpened))
+                          : builder(pipProvider.isPanelOpened),
+                    )),
+              );
+            }
+
             return SlidingUpPanel(
               key: pipProvider.panelKey,
               transformRotation: transformRotation,
@@ -73,19 +88,8 @@ class PipSliding extends StatelessWidget {
               minHeight: minHeight,
               maxHeight: constraints.maxHeight,
               borderRadius: _slidingPanelRadius,
-              panelBuilder: () {
-                return Align(
-                  alignment: Alignment.topLeft,
-                  child: SizedBox(
-                      width: width,
-                      child: ClipRRect(
-                        borderRadius: _slidingPanelRadius,
-                        child: isShowDragHeader
-                            ? _DragHeader(child: builder(pipProvider.isPanelOpened))
-                            : builder(pipProvider.isPanelOpened),
-                      )),
-                );
-              },
+              panel: UniversalPlatform.isDesktop ? buildContent() : null,
+              panelBuilder: UniversalPlatform.isDesktop ? null : buildContent,
             );
           },
         ));
