@@ -128,41 +128,50 @@ List<Widget> buildVideoSources(
     if (UniversalPlatform.isMobile)
       CupertinoListTile(
         leading: videoSourcesProvider.isLoadingCamera ? CupertinoActivityIndicator() : Icon(CupertinoIcons.camera),
-        title: Text(context.l.video_sources_camera),
-        trailing: CupertinoListTileChevron(),
-        onTap: () async {
-          videoSourcesProvider.setLoadingCamera(true);
-          if (!await isCameraExists(context, projectProvider)) {
-            videoSourcesProvider.setLoadingCamera(false);
-            return;
-          }
-          try {
-            // add camera to project
-            if (isAddMode) {
-              final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.camera);
-              if (context.mounted && videoProvider != null) {
-                Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
-                  'videoProvider': videoProvider,
-                  'isAddMode': isAddMode,
-                  'previousPageTitle': previousPageTitle,
-                });
-              }
-              return;
-            }
+        title: Text(context.l.video_sources_camera,
+            style: TextStyle(
+              color: projectProvider.project != null && projectProvider.project!.hasCameraInVideos
+                  ? CupertinoColors.systemGrey.resolveFrom(context)
+                  : CupertinoColors.label.resolveFrom(context),
+            )),
+        trailing: projectProvider.project != null && projectProvider.project!.hasCameraInVideos
+            ? null
+            : CupertinoListTileChevron(),
+        onTap: projectProvider.project != null && projectProvider.project!.hasCameraInVideos
+            ? null
+            : () async {
+                videoSourcesProvider.setLoadingCamera(true);
+                if (!await isCameraExists(context, projectProvider)) {
+                  videoSourcesProvider.setLoadingCamera(false);
+                  return;
+                }
+                try {
+                  // add camera to project
+                  if (isAddMode) {
+                    final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.camera);
+                    if (context.mounted && videoProvider != null) {
+                      Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
+                        'videoProvider': videoProvider,
+                        'isAddMode': isAddMode,
+                        'previousPageTitle': previousPageTitle,
+                      });
+                    }
+                    return;
+                  }
 
-            // create project with camera
-            await projectProvider.newProject(
-              mediaType: vision.MediaType.camera,
-              projectId: app.uuid(),
-            );
-            if (context.mounted) {
-              // first goto start screen then camera screen immediately
-              Navigator.of(context).pushNamed(projectRoute);
-            }
-          } finally {
-            videoSourcesProvider.setLoadingCamera(false);
-          }
-        },
+                  // create project with camera
+                  await projectProvider.newProject(
+                    mediaType: vision.MediaType.camera,
+                    projectId: app.uuid(),
+                  );
+                  if (context.mounted) {
+                    // first goto start screen then camera screen immediately
+                    Navigator.of(context).pushNamed(projectRoute);
+                  }
+                } finally {
+                  videoSourcesProvider.setLoadingCamera(false);
+                }
+              },
       ),
     if (projectProvider.isLiveStreamAllowed)
       CupertinoListTile(
