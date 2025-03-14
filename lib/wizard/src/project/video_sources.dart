@@ -88,7 +88,7 @@ List<Widget> buildVideoSources(
           trailing: CupertinoListTileChevron(),
           onTap: () async {
             videoSourcesProvider.setLoadingWebcam(true);
-            if (!await isWebcamExists(context, projectProvider) || !context.mounted) {
+            if (!await isWebcamExists(context, projectProvider)) {
               videoSourcesProvider.setLoadingWebcam(false);
               return;
             }
@@ -96,8 +96,7 @@ List<Widget> buildVideoSources(
             try {
               // add webcam to project
               if (isAddMode) {
-                final videoProvider =
-                    await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.webcam);
+                final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.webcam);
                 if (context.mounted && videoProvider != null) {
                   Navigator.of(context).pushReplacementNamed(
                     webcamRoute,
@@ -113,16 +112,13 @@ List<Widget> buildVideoSources(
 
               // create project with webcam
               await projectProvider.newProject(
-                context,
                 mediaType: vision.MediaType.webcam,
                 projectId: app.uuid(),
               );
+              // wait 1 second for webcam to start. webcam tends to return before it's ready
+              await Future.delayed(const Duration(milliseconds: 300));
               if (context.mounted) {
-                // wait 1 second for webcam to start. webcam tends to return before it's ready
-                await Future.delayed(const Duration(milliseconds: 300));
-                if (context.mounted) {
-                  Navigator.of(context).pushNamed(projectRoute);
-                }
+                Navigator.of(context).pushNamed(projectRoute);
               }
             } finally {
               videoSourcesProvider.setLoadingWebcam(false);
@@ -136,15 +132,14 @@ List<Widget> buildVideoSources(
         trailing: CupertinoListTileChevron(),
         onTap: () async {
           videoSourcesProvider.setLoadingCamera(true);
-          if (!await isCameraExists(context, projectProvider) || !context.mounted) {
+          if (!await isCameraExists(context, projectProvider)) {
             videoSourcesProvider.setLoadingCamera(false);
             return;
           }
           try {
             // add camera to project
             if (isAddMode) {
-              final videoProvider =
-                  await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.camera);
+              final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.camera);
               if (context.mounted && videoProvider != null) {
                 Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
                   'videoProvider': videoProvider,
@@ -157,7 +152,6 @@ List<Widget> buildVideoSources(
 
             // create project with camera
             await projectProvider.newProject(
-              context,
               mediaType: vision.MediaType.camera,
               projectId: app.uuid(),
             );
@@ -182,7 +176,7 @@ List<Widget> buildVideoSources(
             if (isAddMode) {
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
-                  await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.live, path: url);
+                  await projectProvider.newVideoToProject(mediaType: vision.MediaType.live, path: url);
                   return projectRoute;
                 }
               });
@@ -193,7 +187,6 @@ List<Widget> buildVideoSources(
             Navigator.of(context).pushNamed(urlRoute, arguments: {
               'nextRouteBuilder': (url) async {
                 projectProvider.newProject(
-                  context,
                   mediaType: vision.MediaType.live,
                   path: url,
                   projectId: app.uuid(),
@@ -216,7 +209,7 @@ List<Widget> buildVideoSources(
             final projectId = app.uuid();
 
             final filePath = await pickVideo();
-            if (!context.mounted || filePath == null) {
+            if (filePath == null) {
               return;
             }
 
@@ -228,11 +221,8 @@ List<Widget> buildVideoSources(
                 projectProvider.project!.projectId,
                 videoId,
               );
-              if (!context.mounted) {
-                return;
-              }
 
-              await projectProvider.newVideoToProject(context, mediaType: vision.MediaType.file, path: newFilePath);
+              await projectProvider.newVideoToProject(mediaType: vision.MediaType.file, path: newFilePath);
               if (context.mounted) Navigator.of(context).pop();
               return;
             }
@@ -240,13 +230,8 @@ List<Widget> buildVideoSources(
             // for sandbox safety
             final videoId = 1;
             final newFilePath = await saveFileToAppDirectory(filePath, projectId, videoId);
-            if (!context.mounted) {
-              return;
-            }
-
             // create project with file
             await projectProvider.newProject(
-              context,
               mediaType: vision.MediaType.file,
               path: newFilePath,
               projectId: projectId,

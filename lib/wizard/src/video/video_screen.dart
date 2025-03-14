@@ -124,7 +124,7 @@ class VideoScreen extends StatelessWidget {
                           trailing: const CupertinoListTileChevron(),
                           onTap: () async {
                             final videoPath = await pickVideo();
-                            if (!context.mounted || videoPath == null) {
+                            if (videoPath == null) {
                               return;
                             }
                             final newFilePath = await saveFileToAppDirectory(
@@ -132,11 +132,8 @@ class VideoScreen extends StatelessWidget {
                               projectProvider.project!.projectId,
                               video.videoId,
                             );
-                            if (!context.mounted) {
-                              return;
-                            }
 
-                            videoProvider.setVideoPath(context, projectProvider.project!, newFilePath);
+                            videoProvider.setVideoPath(projectProvider.project!, newFilePath);
                             projectProvider.saveProject(videoProvider);
                           },
                         ),
@@ -152,9 +149,7 @@ class VideoScreen extends StatelessWidget {
                               dynamic url =
                                   await Navigator.of(context).pushNamed(urlRoute, arguments: {'url': video.path});
                               if (url != null && url != video.path) {
-                                if (context.mounted) {
-                                  await videoProvider.setVideoPath(context, projectProvider.project!, url);
-                                }
+                                await videoProvider.setVideoPath(projectProvider.project!, url);
                                 projectProvider.saveProject(videoProvider);
                               }
                             } finally {

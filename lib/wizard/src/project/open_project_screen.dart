@@ -151,7 +151,7 @@ class OpenProjectScreenProvider with ChangeNotifier {
   Future<bool> openProject(BuildContext context, app.ProjectProvider projectProvider, String projectId) async {
     _loadingProject = projectId;
     notifyListeners();
-    final ok = await projectProvider.openProject(context, projectId);
+    final ok = await projectProvider.openProject(projectId);
     return ok;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:counter/db/db.dart' as db;
+import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -81,7 +82,7 @@ class ProjectProvider with ChangeNotifier {
   final Future<void> Function(String projectId)? onClearActivities;
 
   /// called when project opened
-  final void Function(BuildContext, Project project)? onProjectOpened;
+  final void Function(Project project)? onProjectOpened;
 
   /// called when project closed
   final void Function(Project project)? onProjectClosed;
@@ -339,16 +340,16 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// create a project name
-  String _createProjectName(BuildContext context, vision.MediaType type, String? path) {
-    return '${context.l.default_project_name} ${_crateFormattedTimestamp()}';
+  String _createProjectName(vision.MediaType type, String? path) {
+    return '${error.globalContext.l.default_project_name} ${_crateFormattedTimestamp()}';
   }
 
   /// create a video name
-  String _createVideoName(BuildContext context, vision.MediaType type) {
+  String _createVideoName(vision.MediaType type) {
     int index = project!.videos.length;
     String name;
     do {
-      name = '${context.l.default_video_name} ${++index}';
+      name = '${error.globalContext.l.default_video_name} ${++index}';
     } while (project!.isVideoNameExists(name));
     return name;
   }
@@ -400,17 +401,14 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// open a existing project
-  Future<bool> openProject(BuildContext context, String projectId) async {
+  Future<bool> openProject(String projectId) async {
     setLoading(true);
     try {
       project = await getProjectById(projectId);
       if (project == null) {
         return false;
       }
-      if (!context.mounted) {
-        return false;
-      }
-      await _makeProjectOpened(context);
+      await _makeProjectOpened();
       for (final videoProvider in videoProviders) {
         videoProvider.resetSamplerFilter(project!.filter);
       }
@@ -464,8 +462,7 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// start a new project with a video source, return tru e if success
-  Future<bool> newProject(
-    BuildContext context, {
+  Future<bool> newProject({
     required String projectId,
     required vision.MediaType mediaType,
     String? path,
@@ -479,14 +476,11 @@ class ProjectProvider with ChangeNotifier {
       // create project with a video source
       project = Project(
         projectId: projectId,
-        projectName: _createProjectName(context, mediaType, path),
+        projectName: _createProjectName(mediaType, path),
         videos: [],
       );
-      await _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
-      if (!context.mounted) {
-        return false;
-      }
-      await _makeProjectOpened(context);
+      await _addVideoToProject(mediaType: mediaType, path: path, videoId: videoId);
+      await _makeProjectOpened();
       for (final videoProvider in videoProviders) {
         videoProvider.resetSamplerFilter(project!.filter);
       }
@@ -504,26 +498,22 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// prepare the project to be ready, this function will be called when the project is opened
-  Future<void> _makeProjectOpened(BuildContext context) async {
-    await _prepareVideoProviders(context);
+  Future<void> _makeProjectOpened() async {
+    await _prepareVideoProviders();
     if (UniversalPlatform.isMobile && project!.isCameraOnly) {
       await lockToPortrait();
     }
-    if (!context.mounted) {
-      return;
-    }
 
-    onProjectOpened?.call(context, project!);
+    onProjectOpened?.call(project!);
     _onProjectOpened();
   }
 
   /// add a new video to project
-  Future<Video> _addVideoToProject(BuildContext context,
-      {required vision.MediaType mediaType, required String? path, int? videoId}) async {
+  Future<Video> _addVideoToProject({required vision.MediaType mediaType, required String? path, int? videoId}) async {
     final video = Video(
       videoId: videoId ?? getNextVideoId(),
       mediaType: mediaType,
-      videoName: _createVideoName(context, mediaType),
+      videoName: _createVideoName(mediaType),
       objectClasses: [0],
       path: path,
       model: benchmarkLocalStorage.recommendedModel,
@@ -562,7 +552,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// every video source must have a video provider to manage the video source.
 
-  Future<VideoProvider?> _prepareVideoProviders(BuildContext context) async {
+  Future<VideoProvider?> _prepareVideoProviders() async {
     VideoProvider? videoProvider;
     for (final video in project!.videos) {
       if (isVideoAlreadyHasProvider(video)) {
@@ -575,24 +565,20 @@ class ProjectProvider with ChangeNotifier {
       );
 
       videoProviders.add(videoProvider);
-      await videoProvider.init(context, project!);
+      await videoProvider.init(project!);
     }
     return videoProvider;
   }
 
   /// add a new video source to the project
-  Future<VideoProvider?> newVideoToProject(
-    BuildContext context, {
+  Future<VideoProvider?> newVideoToProject({
     required vision.MediaType mediaType,
     String? path,
     int? videoId,
   }) async {
     assert(project != null, 'Project must be opened');
-    await _addVideoToProject(context, mediaType: mediaType, path: path, videoId: videoId);
-    if (!context.mounted) {
-      return null;
-    }
-    final videoProvider = await _prepareVideoProviders(context);
+    await _addVideoToProject(mediaType: mediaType, path: path, videoId: videoId);
+    final videoProvider = await _prepareVideoProviders();
     saveProject(videoProvider);
     return videoProvider;
   }

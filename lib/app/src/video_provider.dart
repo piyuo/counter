@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vision/vision.dart' as vision;
@@ -104,12 +105,10 @@ class VideoProvider with ChangeNotifier {
   Timer? _modelChangedTimer;
 
   /// init the video provider and load initial video source
-  Future<void> init(BuildContext context, Project project) async {
+  Future<void> init(Project project) async {
     isZoomToolEnabled = false;
     await visionController.init();
-    if (context.mounted) {
-      await reload(context, project, true);
-    }
+    await reload(project, true);
 
     _visionStatusSubscription = visionController.statusController.stream.listen((status) {
       switch (status) {
@@ -222,7 +221,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// reload the video source, if project not null mean need setRecognition
-  Future<int> reload(BuildContext context, Project project, bool isSetRecognition) async {
+  Future<int> reload(Project project, bool isSetRecognition) async {
     int errorCode = vision.errorOK;
     video.zoom = 1;
     await visionController.close();
@@ -252,11 +251,8 @@ class VideoProvider with ChangeNotifier {
       return errorCode;
     }
 
-    if (video.zones.isEmpty && context.mounted) {
-      await _addDefaultZone(
-        context,
-        updateRecognition: !isSetRecognition,
-      );
+    if (video.zones.isEmpty) {
+      await _addDefaultZone(updateRecognition: !isSetRecognition);
     }
     if (isSetRecognition) {
       await setRecognition(
@@ -288,10 +284,10 @@ class VideoProvider with ChangeNotifier {
   bool get isPlaying => visionController.isPlaying;
 
   /// set the video path
-  Future<int> setVideoPath(BuildContext context, Project project, String newVideoPath) async {
+  Future<int> setVideoPath(Project project, String newVideoPath) async {
     video.path = newVideoPath;
     final isPlaying = visionController.isPlaying;
-    final errorCode = await reload(context, project, false);
+    final errorCode = await reload(project, false);
     if (isPlaying) {
       await visionController.play();
     }
@@ -300,9 +296,9 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// set new camera
-  Future<void> setCamera(BuildContext context, CameraDefine cameraDefine) async {
+  Future<void> setCamera(CameraDefine cameraDefine) async {
     video.camera = cameraDefine;
-    await reload(context, _projectProvider!.project!, false);
+    await reload(_projectProvider!.project!, false);
     _saveProject();
   }
 
@@ -374,8 +370,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// add default zone if the project is new
-  Future<void> _addDefaultZone(
-    BuildContext context, {
+  Future<void> _addDefaultZone({
     bool updateRecognition = true,
   }) async {
     final mediaWidth = visionController.mediaWidth!;
@@ -386,9 +381,9 @@ class VideoProvider with ChangeNotifier {
     final offsetY = reductionValue / 2;
     final zoneId = _projectProvider!.getNextZoneId();
     final zone = vision.VideoZone(
-      tallyAnnotations: vision.defaultTallyAnnotation(context),
+      tallyAnnotations: vision.defaultTallyAnnotation(error.globalContext),
       zoneId: zoneId,
-      name: '${context.l.default_zone_name} $zoneId',
+      name: '${error.globalContext.l.default_zone_name} $zoneId',
       color: getNextZoneColor(),
       points: [
         Offset(offsetX, offsetY),

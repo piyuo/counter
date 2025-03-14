@@ -69,8 +69,8 @@ class _MyAppState extends State<MyApp> {
                         (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
                       await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
                     },
-                    onProjectOpened: (context, _) async {
-                      final pipProvider = pip.PipProvider.of(context);
+                    onProjectOpened: (_) async {
+                      final pipProvider = pip.PipProvider.of(error.globalContext);
                       await Future.delayed(
                           const Duration(seconds: 2)); // 2 seconds wait to avoid busy state when open project
                       pipProvider.animatePanelToSnapPoint();

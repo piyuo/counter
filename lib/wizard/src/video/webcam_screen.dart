@@ -54,7 +54,7 @@ class WebcamScreen extends StatelessWidget {
                                     title: Text(webcamDefine.name),
                                     onTap: () async {
                                       videoProvider.video.webcam = webcamDefine;
-                                      await videoProvider.reload(context, projectProvider.project!, false);
+                                      await videoProvider.reload(projectProvider.project!, false);
                                       projectProvider.saveProject(videoProvider);
                                       webcamScreenProvider.redraw();
                                     },

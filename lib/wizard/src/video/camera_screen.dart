@@ -55,7 +55,7 @@ class CameraScreen extends StatelessWidget {
                                     title: Text(
                                         '${cameraDefine.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${cameraDefine.title}'),
                                     onTap: () async {
-                                      videoProvider.setCamera(context, cameraDefine);
+                                      videoProvider.setCamera(cameraDefine);
                                       cameraScreenProvider.redraw();
                                     },
                                   )
