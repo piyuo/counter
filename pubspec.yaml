@@ -66,6 +66,7 @@ dependencies:
   locale_names: ^1.1.1
   timeago: ^3.7.0
   flutter_native_splash: ^2.4.5
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
