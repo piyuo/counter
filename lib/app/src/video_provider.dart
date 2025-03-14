@@ -267,11 +267,8 @@ class VideoProvider with ChangeNotifier {
         maxLostSeconds: video.maxLostSeconds,
       ); // disabled this line will enter preview mode
     }
-
-    if (video.mediaType == vision.MediaType.camera) {
-      // other types will start automatically in Server
-      await visionController.play();
-    }
+    // auto play
+    await visionController.play();
 
     notifyListeners();
     return errorCode;
@@ -297,6 +294,10 @@ class VideoProvider with ChangeNotifier {
 
   /// set new camera
   Future<void> setCamera(CameraDefine cameraDefine) async {
+    if (visionController.currentCameraName == cameraDefine.name) {
+      return;
+    }
+
     video.camera = cameraDefine;
     await reload(_projectProvider!.project!, false);
     _saveProject();

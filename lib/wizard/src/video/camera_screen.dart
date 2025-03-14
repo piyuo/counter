@@ -54,9 +54,8 @@ class CameraScreen extends StatelessWidget {
                                         : const SizedBox.shrink(),
                                     title: Text(
                                         '${cameraDefine.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${cameraDefine.title}'),
-                                    onTap: () async {
-                                      videoProvider.setCamera(cameraDefine);
-                                      cameraScreenProvider.redraw();
+                                    onTap: () {
+                                      cameraScreenProvider.selectCamera(videoProvider, cameraDefine);
                                     },
                                   )
                                 : const SizedBox.shrink();
@@ -81,8 +80,7 @@ class CameraScreen extends StatelessWidget {
                                     min: videoProvider.minZoom,
                                     divisions: videoProvider.maxZoom.toInt(),
                                     onChanged: (double value) async {
-                                      await videoProvider.setCameraZoom(value);
-                                      cameraScreenProvider.redraw();
+                                      cameraScreenProvider.setCameraZoom(videoProvider, value);
                                     },
                                   ),
                                 )),
@@ -100,8 +98,15 @@ class CameraScreen extends StatelessWidget {
 class CameraScreenProvider with ChangeNotifier {
   CameraScreenProvider();
 
-  /// redraw camera setting screen
-  void redraw() {
+  /// select the camera
+  Future<void> selectCamera(app.VideoProvider videoProvider, cameraDefine) async {
+    await videoProvider.setCamera(cameraDefine);
+    notifyListeners();
+  }
+
+  /// set the camera zoom
+  Future<void> setCameraZoom(app.VideoProvider videoProvider, value) async {
+    await videoProvider.setCameraZoom(value);
     notifyListeners();
   }
 }
