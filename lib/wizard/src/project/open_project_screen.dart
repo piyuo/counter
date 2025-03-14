@@ -98,7 +98,7 @@ class OpenProjectScreen extends StatelessWidget {
                                         onTap: openProjectScreenProvider._loadingProject.isEmpty
                                             ? () async {
                                                 final ok = await openProjectScreenProvider.openProject(
-                                                    context, projectProvider, project.projectId);
+                                                    projectProvider, project.projectId);
                                                 if (ok && context.mounted) {
                                                   Navigator.of(context).pushReplacementNamed(projectRoute);
                                                 }
@@ -148,7 +148,7 @@ class OpenProjectScreenProvider with ChangeNotifier {
   }
 
   /// open the project
-  Future<bool> openProject(BuildContext context, app.ProjectProvider projectProvider, String projectId) async {
+  Future<bool> openProject(app.ProjectProvider projectProvider, String projectId) async {
     _loadingProject = projectId;
     notifyListeners();
     final ok = await projectProvider.openProject(projectId);

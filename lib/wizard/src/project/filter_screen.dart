@@ -58,7 +58,7 @@ class FilterScreen extends StatelessWidget {
                     );
 
                     projectProvider.setFilter(newFilter);
-                    if (context.mounted) Navigator.pop(context);
+                    Navigator.pop(context);
                   } else {
                     showCupertinoDialog(
                       context: context,
