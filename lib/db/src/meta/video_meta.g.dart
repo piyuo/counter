@@ -25,6 +25,9 @@ _$VideoMetaImpl _$$VideoMetaImplFromJson(Map<String, dynamic> json) =>
       valid: (json['valid'] as num).toInt(),
       tracking: (json['tracking'] as num).toDouble(),
       model: $enumDecode(_$ModelsEnumMap, json['model']),
+      objectClasses: (json['objectClasses'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
       zoom: (json['zoom'] as num).toDouble(),
       zones: (json['zones'] as List<dynamic>)
           .map((e) => ZoneMeta.fromJson(e as Map<String, dynamic>))
@@ -46,6 +49,7 @@ Map<String, dynamic> _$$VideoMetaImplToJson(_$VideoMetaImpl instance) =>
       'valid': instance.valid,
       'tracking': instance.tracking,
       'model': _$ModelsEnumMap[instance.model]!,
+      'objectClasses': instance.objectClasses,
       'zoom': instance.zoom,
       'zones': instance.zones.map((e) => e.toJson()).toList(),
     };

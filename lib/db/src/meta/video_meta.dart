@@ -25,6 +25,7 @@ class VideoMeta with _$VideoMeta {
     required int valid,
     required double tracking,
     required Models model,
+    required List<int> objectClasses,
     required double zoom,
     required List<ZoneMeta> zones,
   }) = _VideoMeta;

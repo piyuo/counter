@@ -40,6 +40,7 @@ void main() {
         valid: 1,
         tracking: 0.75,
         model: Models.onnx_640, // adjust according to your Models enum
+        objectClasses: [0, 1, 2], // example class IDs
         zoom: 1.0,
         zones: [],
       );
@@ -76,6 +77,7 @@ void main() {
       expect(projectFromJson.toString(), project.toString());
       expect(projectFromJson.hashCode, project.hashCode);
       expect(projectFromJson.runtimeType, project.runtimeType);
+      // Check if the project has the same properties
     });
   });
 }

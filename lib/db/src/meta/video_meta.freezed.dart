@@ -33,6 +33,7 @@ mixin _$VideoMeta {
   int get valid => throw _privateConstructorUsedError;
   double get tracking => throw _privateConstructorUsedError;
   Models get model => throw _privateConstructorUsedError;
+  List<int> get objectClasses => throw _privateConstructorUsedError;
   double get zoom => throw _privateConstructorUsedError;
   List<ZoneMeta> get zones => throw _privateConstructorUsedError;
 
@@ -65,6 +66,7 @@ abstract class $VideoMetaCopyWith<$Res> {
       int valid,
       double tracking,
       Models model,
+      List<int> objectClasses,
       double zoom,
       List<ZoneMeta> zones});
 
@@ -100,6 +102,7 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
     Object? valid = null,
     Object? tracking = null,
     Object? model = null,
+    Object? objectClasses = null,
     Object? zoom = null,
     Object? zones = null,
   }) {
@@ -156,6 +159,10 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as Models,
+      objectClasses: null == objectClasses
+          ? _value.objectClasses
+          : objectClasses // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       zoom: null == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -218,6 +225,7 @@ abstract class _$$VideoMetaImplCopyWith<$Res>
       int valid,
       double tracking,
       Models model,
+      List<int> objectClasses,
       double zoom,
       List<ZoneMeta> zones});
 
@@ -253,6 +261,7 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
     Object? valid = null,
     Object? tracking = null,
     Object? model = null,
+    Object? objectClasses = null,
     Object? zoom = null,
     Object? zones = null,
   }) {
@@ -309,6 +318,10 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
               as Models,
+      objectClasses: null == objectClasses
+          ? _value._objectClasses
+          : objectClasses // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       zoom: null == zoom
           ? _value.zoom
           : zoom // ignore: cast_nullable_to_non_nullable
@@ -339,9 +352,11 @@ class _$VideoMetaImpl implements _VideoMeta {
       required this.valid,
       required this.tracking,
       required this.model,
+      required final List<int> objectClasses,
       required this.zoom,
       required final List<ZoneMeta> zones})
-      : _zones = zones;
+      : _objectClasses = objectClasses,
+        _zones = zones;
 
   factory _$VideoMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$VideoMetaImplFromJson(json);
@@ -372,6 +387,14 @@ class _$VideoMetaImpl implements _VideoMeta {
   final double tracking;
   @override
   final Models model;
+  final List<int> _objectClasses;
+  @override
+  List<int> get objectClasses {
+    if (_objectClasses is EqualUnmodifiableListView) return _objectClasses;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_objectClasses);
+  }
+
   @override
   final double zoom;
   final List<ZoneMeta> _zones;
@@ -384,7 +407,7 @@ class _$VideoMetaImpl implements _VideoMeta {
 
   @override
   String toString() {
-    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, zoom: $zoom, zones: $zones)';
+    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, objectClasses: $objectClasses, zoom: $zoom, zones: $zones)';
   }
 
   @override
@@ -410,6 +433,8 @@ class _$VideoMetaImpl implements _VideoMeta {
             (identical(other.tracking, tracking) ||
                 other.tracking == tracking) &&
             (identical(other.model, model) || other.model == model) &&
+            const DeepCollectionEquality()
+                .equals(other._objectClasses, _objectClasses) &&
             (identical(other.zoom, zoom) || other.zoom == zoom) &&
             const DeepCollectionEquality().equals(other._zones, _zones));
   }
@@ -431,6 +456,7 @@ class _$VideoMetaImpl implements _VideoMeta {
       valid,
       tracking,
       model,
+      const DeepCollectionEquality().hash(_objectClasses),
       zoom,
       const DeepCollectionEquality().hash(_zones));
 
@@ -465,6 +491,7 @@ abstract class _VideoMeta implements VideoMeta {
       required final int valid,
       required final double tracking,
       required final Models model,
+      required final List<int> objectClasses,
       required final double zoom,
       required final List<ZoneMeta> zones}) = _$VideoMetaImpl;
 
@@ -497,6 +524,8 @@ abstract class _VideoMeta implements VideoMeta {
   double get tracking;
   @override
   Models get model;
+  @override
+  List<int> get objectClasses;
   @override
   double get zoom;
   @override

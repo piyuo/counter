@@ -38,6 +38,7 @@ ProjectMeta projectToMeta(app.Project project) {
               valid: video.validThreshold,
               tracking: video.trackingThreshold,
               model: video.model,
+              objectClasses: video.objectClasses,
               zoom: video.zoom,
               zones: video.zones
                   .map((zone) => ZoneMeta(
@@ -102,6 +103,7 @@ app.Project metaToProject(ProjectMeta meta) {
             validThreshold: video.valid,
             trackingThreshold: video.tracking,
             model: video.model,
+            objectClasses: video.objectClasses,
             zoom: video.zoom,
             zones: video.zones
                 .map((zone) => vision.VideoZone(

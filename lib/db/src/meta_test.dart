@@ -42,6 +42,7 @@ void main() {
         maxLostSeconds: 1,
         validThreshold: 2,
         trackingThreshold: 0.7,
+        objectClasses: [0],
         model: vision.Models.onnx_640, // adjust as needed
         zoom: 1.0,
         zones: [zone],
@@ -77,6 +78,7 @@ void main() {
       expect(videoFromMeta.validThreshold, video.validThreshold);
       expect(videoFromMeta.trackingThreshold, video.trackingThreshold);
       expect(videoFromMeta.model, video.model);
+      expect(videoFromMeta.objectClasses, video.objectClasses);
 
       // Validate video and zone details.
       expect(projectFromMeta.videos.length, project.videos.length);

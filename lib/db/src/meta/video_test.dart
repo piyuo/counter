@@ -62,6 +62,7 @@ void main() {
         valid: 1,
         tracking: 0.75,
         model: Models.onnx_640, // adjust according to your Models enum
+        objectClasses: [0],
         zoom: 1.5,
         zones: [zone],
       );
@@ -85,6 +86,8 @@ void main() {
       expect(json['maxLostSeconds'], 10);
       expect(json['valid'], 1);
       expect(json['tracking'], 0.75);
+      expect(json['objectClasses'], isA<List<int>>());
+      expect(json['objectClasses']!.first, 0);
 
       final videoMetaFromJson = VideoMeta.fromJson(json);
       expect(videoMetaFromJson, isA<VideoMeta>());

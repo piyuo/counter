@@ -19,6 +19,7 @@ class Video {
     this.path,
     List<vision.VideoZone> zones = const [],
     required this.model,
+    required this.objectClasses,
     this.confidenceThreshold = _confidenceThreshold,
     this.nmsThreshold = _nmsThreshold,
     this.matchThreshold = _matchThreshold,
@@ -54,7 +55,7 @@ class Video {
   double zoom = 1;
 
   /// the object classes want to detect for the video
-  final List<int> objectClasses = [0];
+  final List<int> objectClasses;
 
   /// zones
   final List<vision.VideoZone> zones = [];
