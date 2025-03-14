@@ -192,7 +192,7 @@ class _WizardAppState extends State<WizardApp> {
               case filterRoute:
                 return FilterScreen(scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case addVideoRoute:
-                return AddSourceScreen(
+                return AddVideoScreen(
                     scrollController: scrollController, previousPageTitle: args!['previousPageTitle']);
               case videoRoute:
                 return VideoScreen(

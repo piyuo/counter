@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import '../project/video_sources.dart';
 
 /// Add new video screen
-class AddSourceScreen extends StatelessWidget {
-  const AddSourceScreen({
+class AddVideoScreen extends StatelessWidget {
+  const AddVideoScreen({
     required this.scrollController,
     this.previousPageTitle,
     super.key,
