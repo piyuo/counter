@@ -197,6 +197,12 @@ abstract class AppLocalization {
   /// **'Open existing project'**
   String get wizard_screen_open_projects;
 
+  /// No description provided for @wizard_screen_email_us.
+  ///
+  /// In en, this message translates to:
+  /// **'Email us'**
+  String get wizard_screen_email_us;
+
   /// No description provided for @language_screen_language.
   ///
   /// In en, this message translates to:
@@ -1012,6 +1018,24 @@ abstract class AppLocalization {
   /// In en, this message translates to:
   /// **'Detection zone'**
   String get default_zone_name;
+
+  /// No description provided for @error_oops.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops, something went wrong'**
+  String get error_oops;
+
+  /// No description provided for @error_content.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Would you like to submit a email report?'**
+  String get error_content;
+
+  /// No description provided for @error_report.
+  ///
+  /// In en, this message translates to:
+  /// **'Email us'**
+  String get error_report;
 
   /// No description provided for @submit.
   ///

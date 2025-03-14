@@ -60,6 +60,9 @@ class AppLocalizationEn extends AppLocalization {
   String get wizard_screen_open_projects => 'Open existing project';
 
   @override
+  String get wizard_screen_email_us => 'Email us';
+
+  @override
   String get language_screen_language => 'Language';
 
   @override
@@ -466,6 +469,15 @@ class AppLocalizationEn extends AppLocalization {
 
   @override
   String get default_zone_name => 'Detection zone';
+
+  @override
+  String get error_oops => 'Oops, something went wrong';
+
+  @override
+  String get error_content => 'An unexpected error occurred. Would you like to submit a email report?';
+
+  @override
+  String get error_report => 'Email us';
 
   @override
   String get submit => 'Submit';

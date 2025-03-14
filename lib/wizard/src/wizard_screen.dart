@@ -1,4 +1,5 @@
 import 'package:counter/app/app.dart' as app;
+import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
@@ -146,6 +147,13 @@ class WizardScreen extends StatelessWidget {
                               Navigator.of(context).pushNamed(languageRoute, arguments: {
                                 'previousPageTitle': pageTitle,
                               });
+                            }),
+                        CupertinoListTile(
+                            leading: Icon(CupertinoIcons.mail),
+                            title: Text(context.l.wizard_screen_email_us),
+                            trailing: CupertinoListTileChevron(),
+                            onTap: () {
+                              error.openMailTo('service@piyuo.com', '', '');
                             }),
                       ],
                     ),

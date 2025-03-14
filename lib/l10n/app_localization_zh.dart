@@ -60,6 +60,9 @@ class AppLocalizationZh extends AppLocalization {
   String get wizard_screen_open_projects => '開啟現有專案';
 
   @override
+  String get wizard_screen_email_us => '寫信給我們';
+
+  @override
   String get language_screen_language => '語言';
 
   @override
@@ -466,6 +469,15 @@ class AppLocalizationZh extends AppLocalization {
 
   @override
   String get default_zone_name => '偵測區域';
+
+  @override
+  String get error_oops => '糟糕，出了點問題';
+
+  @override
+  String get error_content => '發生了意外錯誤。您要提交電子郵件報告嗎？';
+
+  @override
+  String get error_report => '寄信給我們';
 
   @override
   String get submit => '提交';

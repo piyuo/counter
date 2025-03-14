@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:counter/l10n/l10n.dart';
 import 'package:counter/log/log.dart' as log;
 import 'package:flutter/cupertino.dart';
 
@@ -48,16 +49,17 @@ Future<void> catched(dynamic e, StackTrace? stack) async {
     showCupertinoDialog(
       context: globalContext,
       builder: (context) => CupertinoAlertDialog(
-        title: const Text('Oops, something went wrong'),
-        content: const Text('An unexpected error occurred. Would you like to submit a email report?"'),
+        title: Text(context.l.error_oops, style: TextStyle(fontSize: 20.0)),
+        content: Text(context.l.error_content, style: TextStyle(fontSize: 16.0)),
         actions: [
           CupertinoDialogAction(
-            child: const Text('Cancel'),
+            isDefaultAction: true,
+            child: Text(context.l.cancel, style: TextStyle(color: CupertinoColors.label.resolveFrom(context))),
             onPressed: () => Navigator.of(context).pop(),
           ),
           CupertinoDialogAction(
-            isDefaultAction: true,
-            child: const Text('OK'),
+            isDestructiveAction: true,
+            child: Text(context.l.error_report),
             onPressed: () {
               final em = ErrorEmail();
               em.launchMailTo();

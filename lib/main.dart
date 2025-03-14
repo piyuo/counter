@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/db/db.dart' as db;
+import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/app_localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
@@ -16,7 +17,7 @@ import 'package:vision/vision.dart' as vision;
 
 main() {
   registerTimeagoLocales();
-  runApp(const MyApp());
+  error.watch(() => runApp(const MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -49,7 +50,8 @@ class _MyAppState extends State<MyApp> {
       return isPortrait ? pip.SlidingPanelState.halfOpen : pip.SlidingPanelState.open;
     }
 
-    return MultiProvider(
+    return error.GlobalContextSupport(
+      child: MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => vision.LanguageProvider()..loadLocale()),
           ChangeNotifierProvider<app.ProjectProvider>(
@@ -161,7 +163,9 @@ class _MyAppState extends State<MyApp> {
                       )),
                 ));
           }),
-        ));
+        ),
+      ),
+    );
   }
 }
 
