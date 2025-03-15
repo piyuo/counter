@@ -31,8 +31,18 @@ class _MyAppState extends State<MyApp> {
   _MyAppState();
   final db.DataManager dataManager = db.DataManager();
 
+  /// parse the locale string to a [Locale] object
+  Locale _parseLocale(String localeString) {
+    final parts = localeString.split('_');
+    if (parts.length == 2) {
+      return Locale(parts[0], parts[1]);
+    } else {
+      return Locale(localeString);
+    }
+  }
+
   /// the default app locale
-  Locale get appLocale => Intl.defaultLocale == null ? Locale('en') : Locale(Intl.defaultLocale!);
+  Locale get appLocale => Intl.defaultLocale == null ? Locale('en') : _parseLocale(Intl.defaultLocale!);
 
   /// the default app localizations delegates
   static const appLocaleDelegates = [
