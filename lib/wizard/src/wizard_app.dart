@@ -252,12 +252,10 @@ class _WizardAppState extends State<WizardApp> {
                 );
               case '/':
               default:
-                return Container(
-//                    color: CupertinoColors.activeOrange,
-                    child: WizardScreen(
+                return WizardScreen(
                   isPanelOpened: widget.isPanelOpened,
                   scrollController: scrollController,
-                ));
+                );
             }
           },
         );
