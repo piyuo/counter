@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
   final db.DataManager dataManager = db.DataManager();
 
   /// the default app locale
-  Locale get appLocale => Intl.defaultLocale == null ? Locale('en', 'US') : Locale(Intl.defaultLocale!);
+  Locale get appLocale => Intl.defaultLocale == null ? Locale('en') : Locale(Intl.defaultLocale!);
 
   /// the default app localizations delegates
   static const appLocaleDelegates = [
