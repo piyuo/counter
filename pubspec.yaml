@@ -92,7 +92,6 @@ flutter:
   generate: true
   uses-material-design: true
   assets:
-      # rename assets/ to asset/ ,this can avoid ci mis-replace "assets/" string in main.dart.js
       - assets/icon/
       - assets/images/
 
