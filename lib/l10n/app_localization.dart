@@ -5,7 +5,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localization_ar.dart';
+import 'app_localization_de.dart';
 import 'app_localization_en.dart';
+import 'app_localization_es.dart';
+import 'app_localization_fr.dart';
+import 'app_localization_it.dart';
+import 'app_localization_pt.dart';
+import 'app_localization_ru.dart';
 import 'app_localization_zh.dart';
 
 // ignore_for_file: type=lint
@@ -91,8 +98,34 @@ abstract class AppLocalization {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('de'),
+    Locale('de', 'AT'),
+    Locale('de', 'CH'),
     Locale('en'),
-    Locale('zh')
+    Locale('en', 'AU'),
+    Locale('en', 'CA'),
+    Locale('en', 'GB'),
+    Locale('en', 'IN'),
+    Locale('es'),
+    Locale('es', 'AR'),
+    Locale('es', 'CO'),
+    Locale('es', 'MX'),
+    Locale('fr'),
+    Locale('fr', 'BE'),
+    Locale('fr', 'CA'),
+    Locale('fr', 'CH'),
+    Locale('it'),
+    Locale('pt'),
+    Locale('pt', 'PT'),
+    Locale('ru'),
+    Locale('ru', 'KZ'),
+    Locale('ru', 'UA'),
+    Locale('zh'),
+    Locale('zh', 'CN'),
+    Locale('zh', 'HK'),
+    Locale('zh', 'MO'),
+    Locale('zh', 'SG')
   ];
 
   /// No description provided for @product_name.
@@ -1089,7 +1122,7 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'de', 'en', 'es', 'fr', 'it', 'pt', 'ru', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationDelegate old) => false;
@@ -1097,10 +1130,74 @@ class _AppLocalizationDelegate extends LocalizationsDelegate<AppLocalization> {
 
 AppLocalization lookupAppLocalization(Locale locale) {
 
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'de': {
+  switch (locale.countryCode) {
+    case 'AT': return AppLocalizationDeAt();
+case 'CH': return AppLocalizationDeCh();
+   }
+  break;
+   }
+    case 'en': {
+  switch (locale.countryCode) {
+    case 'AU': return AppLocalizationEnAu();
+case 'CA': return AppLocalizationEnCa();
+case 'GB': return AppLocalizationEnGb();
+case 'IN': return AppLocalizationEnIn();
+   }
+  break;
+   }
+    case 'es': {
+  switch (locale.countryCode) {
+    case 'AR': return AppLocalizationEsAr();
+case 'CO': return AppLocalizationEsCo();
+case 'MX': return AppLocalizationEsMx();
+   }
+  break;
+   }
+    case 'fr': {
+  switch (locale.countryCode) {
+    case 'BE': return AppLocalizationFrBe();
+case 'CA': return AppLocalizationFrCa();
+case 'CH': return AppLocalizationFrCh();
+   }
+  break;
+   }
+    case 'pt': {
+  switch (locale.countryCode) {
+    case 'PT': return AppLocalizationPtPt();
+   }
+  break;
+   }
+    case 'ru': {
+  switch (locale.countryCode) {
+    case 'KZ': return AppLocalizationRuKz();
+case 'UA': return AppLocalizationRuUa();
+   }
+  break;
+   }
+    case 'zh': {
+  switch (locale.countryCode) {
+    case 'CN': return AppLocalizationZhCn();
+case 'HK': return AppLocalizationZhHk();
+case 'MO': return AppLocalizationZhMo();
+case 'SG': return AppLocalizationZhSg();
+   }
+  break;
+   }
+  }
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar': return AppLocalizationAr();
+    case 'de': return AppLocalizationDe();
     case 'en': return AppLocalizationEn();
+    case 'es': return AppLocalizationEs();
+    case 'fr': return AppLocalizationFr();
+    case 'it': return AppLocalizationIt();
+    case 'pt': return AppLocalizationPt();
+    case 'ru': return AppLocalizationRu();
     case 'zh': return AppLocalizationZh();
   }
 
