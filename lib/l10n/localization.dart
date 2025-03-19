@@ -4,7 +4,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'localization_af.dart' deferred as localization_af;
+import 'localization_am.dart' deferred as localization_am;
 import 'localization_ar.dart' deferred as localization_ar;
+import 'localization_az.dart' deferred as localization_az;
 import 'localization_bg.dart' deferred as localization_bg;
 import 'localization_bn.dart' deferred as localization_bn;
 import 'localization_ca.dart' deferred as localization_ca;
@@ -35,6 +38,7 @@ import 'localization_ln.dart' deferred as localization_ln;
 import 'localization_lt.dart' deferred as localization_lt;
 import 'localization_lv.dart' deferred as localization_lv;
 import 'localization_ml.dart' deferred as localization_ml;
+import 'localization_mn.dart' deferred as localization_mn;
 import 'localization_mr.dart' deferred as localization_mr;
 import 'localization_ms.dart' deferred as localization_ms;
 import 'localization_my.dart' deferred as localization_my;
@@ -57,6 +61,7 @@ import 'localization_sw.dart' deferred as localization_sw;
 import 'localization_ta.dart' deferred as localization_ta;
 import 'localization_te.dart' deferred as localization_te;
 import 'localization_th.dart' deferred as localization_th;
+import 'localization_tl.dart' deferred as localization_tl;
 import 'localization_tr.dart' deferred as localization_tr;
 import 'localization_uk.dart' deferred as localization_uk;
 import 'localization_ur.dart' deferred as localization_ur;
@@ -147,10 +152,13 @@ abstract class Localization {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('af'),
+    Locale('am'),
     Locale('ar'),
     Locale('ar', 'AE'),
     Locale('ar', 'DZ'),
     Locale('ar', 'EG'),
+    Locale('az'),
     Locale('bg'),
     Locale('bn'),
     Locale('bn', 'IN'),
@@ -194,6 +202,7 @@ abstract class Localization {
     Locale('lt'),
     Locale('lv'),
     Locale('ml'),
+    Locale('mn'),
     Locale('mr'),
     Locale('ms'),
     Locale('ms', 'SG'),
@@ -221,6 +230,7 @@ abstract class Localization {
     Locale('ta'),
     Locale('te'),
     Locale('th'),
+    Locale('tl'),
     Locale('tr'),
     Locale('uk'),
     Locale('ur'),
@@ -1228,7 +1238,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'ha', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'lt', 'lv', 'ml', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sn', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['af', 'am', 'ar', 'az', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'ha', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'lt', 'lv', 'ml', 'mn', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sn', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LocalizationDelegate old) => false;
@@ -1328,7 +1338,10 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'af': return localization_af.loadLibrary().then((dynamic _) => localization_af.LocalizationAf());
+    case 'am': return localization_am.loadLibrary().then((dynamic _) => localization_am.LocalizationAm());
     case 'ar': return localization_ar.loadLibrary().then((dynamic _) => localization_ar.LocalizationAr());
+    case 'az': return localization_az.loadLibrary().then((dynamic _) => localization_az.LocalizationAz());
     case 'bg': return localization_bg.loadLibrary().then((dynamic _) => localization_bg.LocalizationBg());
     case 'bn': return localization_bn.loadLibrary().then((dynamic _) => localization_bn.LocalizationBn());
     case 'ca': return localization_ca.loadLibrary().then((dynamic _) => localization_ca.LocalizationCa());
@@ -1359,6 +1372,7 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
     case 'lt': return localization_lt.loadLibrary().then((dynamic _) => localization_lt.LocalizationLt());
     case 'lv': return localization_lv.loadLibrary().then((dynamic _) => localization_lv.LocalizationLv());
     case 'ml': return localization_ml.loadLibrary().then((dynamic _) => localization_ml.LocalizationMl());
+    case 'mn': return localization_mn.loadLibrary().then((dynamic _) => localization_mn.LocalizationMn());
     case 'mr': return localization_mr.loadLibrary().then((dynamic _) => localization_mr.LocalizationMr());
     case 'ms': return localization_ms.loadLibrary().then((dynamic _) => localization_ms.LocalizationMs());
     case 'my': return localization_my.loadLibrary().then((dynamic _) => localization_my.LocalizationMy());
@@ -1381,6 +1395,7 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
     case 'ta': return localization_ta.loadLibrary().then((dynamic _) => localization_ta.LocalizationTa());
     case 'te': return localization_te.loadLibrary().then((dynamic _) => localization_te.LocalizationTe());
     case 'th': return localization_th.loadLibrary().then((dynamic _) => localization_th.LocalizationTh());
+    case 'tl': return localization_tl.loadLibrary().then((dynamic _) => localization_tl.LocalizationTl());
     case 'tr': return localization_tr.loadLibrary().then((dynamic _) => localization_tr.LocalizationTr());
     case 'uk': return localization_uk.loadLibrary().then((dynamic _) => localization_uk.LocalizationUk());
     case 'ur': return localization_ur.loadLibrary().then((dynamic _) => localization_ur.LocalizationUr());
