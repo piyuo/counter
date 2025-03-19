@@ -32,6 +32,9 @@ import 'localization_kk.dart' deferred as localization_kk;
 import 'localization_ko.dart' deferred as localization_ko;
 import 'localization_ku.dart' deferred as localization_ku;
 import 'localization_ln.dart' deferred as localization_ln;
+import 'localization_lt.dart' deferred as localization_lt;
+import 'localization_lv.dart' deferred as localization_lv;
+import 'localization_ml.dart' deferred as localization_ml;
 import 'localization_mr.dart' deferred as localization_mr;
 import 'localization_ms.dart' deferred as localization_ms;
 import 'localization_my.dart' deferred as localization_my;
@@ -47,6 +50,7 @@ import 'localization_ru.dart' deferred as localization_ru;
 import 'localization_si.dart' deferred as localization_si;
 import 'localization_sk.dart' deferred as localization_sk;
 import 'localization_sl.dart' deferred as localization_sl;
+import 'localization_sn.dart' deferred as localization_sn;
 import 'localization_sr.dart' deferred as localization_sr;
 import 'localization_sv.dart' deferred as localization_sv;
 import 'localization_sw.dart' deferred as localization_sw;
@@ -187,6 +191,9 @@ abstract class Localization {
     Locale('ko'),
     Locale('ku'),
     Locale('ln'),
+    Locale('lt'),
+    Locale('lv'),
+    Locale('ml'),
     Locale('mr'),
     Locale('ms'),
     Locale('ms', 'SG'),
@@ -207,6 +214,7 @@ abstract class Localization {
     Locale('si'),
     Locale('sk'),
     Locale('sl'),
+    Locale('sn'),
     Locale('sr'),
     Locale('sv'),
     Locale('sw'),
@@ -1220,7 +1228,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'ha', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'ha', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'lt', 'lv', 'ml', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sn', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LocalizationDelegate old) => false;
@@ -1348,6 +1356,9 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
     case 'ko': return localization_ko.loadLibrary().then((dynamic _) => localization_ko.LocalizationKo());
     case 'ku': return localization_ku.loadLibrary().then((dynamic _) => localization_ku.LocalizationKu());
     case 'ln': return localization_ln.loadLibrary().then((dynamic _) => localization_ln.LocalizationLn());
+    case 'lt': return localization_lt.loadLibrary().then((dynamic _) => localization_lt.LocalizationLt());
+    case 'lv': return localization_lv.loadLibrary().then((dynamic _) => localization_lv.LocalizationLv());
+    case 'ml': return localization_ml.loadLibrary().then((dynamic _) => localization_ml.LocalizationMl());
     case 'mr': return localization_mr.loadLibrary().then((dynamic _) => localization_mr.LocalizationMr());
     case 'ms': return localization_ms.loadLibrary().then((dynamic _) => localization_ms.LocalizationMs());
     case 'my': return localization_my.loadLibrary().then((dynamic _) => localization_my.LocalizationMy());
@@ -1363,6 +1374,7 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
     case 'si': return localization_si.loadLibrary().then((dynamic _) => localization_si.LocalizationSi());
     case 'sk': return localization_sk.loadLibrary().then((dynamic _) => localization_sk.LocalizationSk());
     case 'sl': return localization_sl.loadLibrary().then((dynamic _) => localization_sl.LocalizationSl());
+    case 'sn': return localization_sn.loadLibrary().then((dynamic _) => localization_sn.LocalizationSn());
     case 'sr': return localization_sr.loadLibrary().then((dynamic _) => localization_sr.LocalizationSr());
     case 'sv': return localization_sv.loadLibrary().then((dynamic _) => localization_sv.LocalizationSv());
     case 'sw': return localization_sw.loadLibrary().then((dynamic _) => localization_sw.LocalizationSw());
