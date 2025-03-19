@@ -1,5 +1,5 @@
 import 'package:counter/app/app.dart' as app;
-import 'package:counter/l10n/app_localization.dart';
+import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +144,7 @@ class _WizardAppState extends State<WizardApp> {
       debugShowCheckedModeBanner: false,
       locale: widget.appLocale,
       localizationsDelegates: widget.appLocaleDelegates,
-      supportedLocales: AppLocalization.supportedLocales,
+      supportedLocales: Localization.supportedLocales,
       localeResolutionCallback: (locale, supportedLocales) {
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale?.languageCode &&

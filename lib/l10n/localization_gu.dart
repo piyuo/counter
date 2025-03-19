@@ -1,0 +1,502 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'localization.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Gujarati (`gu`).
+class LocalizationGu extends Localization {
+  LocalizationGu([String locale = 'gu']) : super(locale);
+
+  @override
+  String get product_name => 'વિઝન કાઉન્ટર';
+
+  @override
+  String get product_desc => 'કમ્પ્યુટર વિઝન અને AI નો ઉપયોગ કરીને લોકો, વાહનો, પાલતુ પ્રાણીઓ અને વધુની ગણતરી કરો.';
+
+  @override
+  String get product_copyright => 'કૉપિરાઇટ © 2025';
+
+  @override
+  String get video_sources_webcam => 'વેબકેમ';
+
+  @override
+  String get video_sources_live_stream => 'લાઇવ સ્ટ્રીમ URL';
+
+  @override
+  String get video_sources_file => 'ફાઇલ';
+
+  @override
+  String get video_sources_camera => 'કેમેરા';
+
+  @override
+  String get video_sources_camera_not_found_title => 'કેમેરા મળ્યો નથી';
+
+  @override
+  String get video_sources_camera_not_found_message => 'કેમેરાનો ઉપયોગ કરવા માટે કેમેરા પરમિશન આપવાની જરૂર છે';
+
+  @override
+  String get video_sources_webcam_not_found_title => 'વેબકેમ મળ્યો નથી';
+
+  @override
+  String get video_sources_webcam_not_found_message => 'કૃપા કરીને તપાસો કે કોઈ વેબકેમ કનેક્ટ કરેલ છે કે નહીં';
+
+  @override
+  String get wizard_screen_desc => 'ગણતરી શરૂ કરવા માટે નીચે નવો પ્રોજેક્ટ બનાવો.';
+
+  @override
+  String get wizard_screen_new_project_from => 'આમાંથી નવો પ્રોજેક્ટ';
+
+  @override
+  String get wizard_screen_language => 'ભાષા';
+
+  @override
+  String get wizard_screen_about => 'વિશે';
+
+  @override
+  String get wizard_screen_open_projects_tip => 'બધા પ્રોજેક્ટ્સ સ્થાનિક રીતે આપોઆપ સેવ થશે';
+
+  @override
+  String get wizard_screen_open_projects => 'હાલના પ્રોજેક્ટ ખોલો';
+
+  @override
+  String get wizard_screen_email_us => 'અમને ઇમેઇલ કરો';
+
+  @override
+  String get language_screen_language => 'ભાષા';
+
+  @override
+  String get project_view_no_videos => 'કોઈ વિડિઓ સ્ત્રોત ઉપલબ્ધ નથી.';
+
+  @override
+  String get about_screen_title => 'વિશે';
+
+  @override
+  String get about_screen_platform => 'પ્લેટફોર્મ';
+
+  @override
+  String get about_screen_app_version => 'એપ્લિકેશન વર્ઝન';
+
+  @override
+  String get about_screen_models => 'ઓબ્જેક્ટ ડિટેક્શન મોડેલ્સ';
+
+  @override
+  String get about_screen_benchmark => 'બેન્ચમાર્ક';
+
+  @override
+  String get about_screen_opencv_build_info => 'OpenCV બિલ્ડ માહિતી';
+
+  @override
+  String get benchmark_screen_title => 'મોડેલ્સ બેન્ચમાર્ક';
+
+  @override
+  String get benchmark_screen_recommended => 'ભલામણ કરેલ મોડેલ';
+
+  @override
+  String get benchmark_screen_fps => 'FPS';
+
+  @override
+  String get benchmark_screen_start_button => 'બેન્ચમાર્ક શરૂ કરો';
+
+  @override
+  String get benchmark_screen_start_failed => 'બેન્ચમાર્ક શરૂ કરવામાં નિષ્ફળ, એરર કોડ છે';
+
+  @override
+  String get benchmark_screen_models => 'ઓબ્જેક્ટ ડિટેક્શન મોડેલ્સ';
+
+  @override
+  String get project_screen_title => 'પ્રોજેક્ટ';
+
+  @override
+  String get project_screen_exit_confirm_title => 'પ્રોજેક્ટમાંથી બહાર નીકળવાની પુષ્ટિ કરો';
+
+  @override
+  String get project_screen_exit_confirm_content => 'પ્રોજેક્ટ છોડવાથી ગણતરી બંધ થઈ જશે. શું તમે ખરેખર આગળ વધવા માંગો છો?';
+
+  @override
+  String get project_screen_exit_button => 'બહાર નીકળો';
+
+  @override
+  String get project_screen_add_video_button => 'વિડિઓ સ્ત્રોત ઉમેરો';
+
+  @override
+  String get project_screen_from_desc => 'અમે 24 કલાકનો રેકોર્ડ રાખીએ છીએ, જેથી તમે જરૂરી કોઈપણ સમય જોઈ શકો છો.';
+
+  @override
+  String get project_screen_report_settings => 'સેટિંગ્સ';
+
+  @override
+  String get filter_screen_title => 'ફિલ્ટર';
+
+  @override
+  String get filter_screen_desc => 'નીચેની યાદીમાંથી ફિલ્ટર રેન્જ પસંદ કરો';
+
+  @override
+  String get filter_screen_error_title => 'ફિલ્ટર';
+
+  @override
+  String get filter_screen_error_content => 'સમાપ્તિ સમય શરૂઆત સમય કરતાં વધારે હોવો જોઈએ';
+
+  @override
+  String get filter_screen_error_custom => 'કસ્ટમ';
+
+  @override
+  String get filter_screen_error_start => 'શરૂ';
+
+  @override
+  String get filter_screen_error_end => 'અંત';
+
+  @override
+  String get settings_screen_title => 'સેટિંગ્સ';
+
+  @override
+  String get settings_screen_desc => 'પ્રોજેક્ટ નામ, ડિટેક્શન પેરામીટર્સ, કાઉન્ટ ક્લીયરિંગ સેટ કરો.';
+
+  @override
+  String get settings_screen_project_id => 'પ્રોજેક્ટ ID';
+
+  @override
+  String get settings_screen_project_name => 'પ્રોજેક્ટ નામ';
+
+  @override
+  String get settings_screen_project_name_place_holder => '123 મેઇન સ્ટ્રીટ અથવા પાર્ક એવન્યુ';
+
+  @override
+  String get settings_screen_project_error => 'પ્રોજેક્ટનું નામ ખાલી ન હોઈ શકે';
+
+  @override
+  String get settings_screen_random_count_button => 'રેન્ડમ કાઉન્ટ ઉમેરો';
+
+  @override
+  String get settings_screen_reset_count_header => 'આ પ્રોજેક્ટમાં બધા કાઉન્ટ રીસેટ કરો';
+
+  @override
+  String get settings_screen_reset_count_button => 'કાઉન્ટ રીસેટ કરો';
+
+  @override
+  String get settings_screen_reset_count_content => 'શું તમે ખરેખર બધા કાઉન્ટ રીસેટ કરવા માંગો છો?';
+
+  @override
+  String get settings_screen_delete_header => 'આ પ્રોજેક્ટ ડિલીટ કરો';
+
+  @override
+  String get settings_screen_delete_content => 'શું તમે ખરેખર આ પ્રોજેક્ટ ડિલીટ કરવા માંગો છો?';
+
+  @override
+  String get settings_screen_delete_button => 'ડિલીટ કરો';
+
+  @override
+  String get settings_screen_center_point_title => 'ટાર્ગેટ પર સેન્ટર પોઇન્ટ';
+
+  @override
+  String get settings_screen_center_point_desc => 'સેન્ટર પોઇન્ટ ટાર્ગેટ હિટ ઝોનમાં છે કે નહીં તે નક્કી કરવામાં મદદ કરે છે.';
+
+  @override
+  String get settings_screen_center_point_button => 'ટાર્ગેટ પર સેન્ટર પોઇન્ટ બતાવો';
+
+  @override
+  String get settings_screen_lost_target_title => 'ગુમ થયેલ ટાર્ગેટ';
+
+  @override
+  String get settings_screen_lost_target_desc => 'જ્યારે ઓબ્જેક્ટ ટ્રેકિંગ ટાર્ગેટ ગુમાવે છે, ત્યારે આ વિકલ્પ તેને દૃશ્યમાન બનાવે છે. ડિફૉલ્ટ રૂપે, ગુમ થયેલા ટાર્ગેટ્સ બતાવવામાં આવતા નથી.';
+
+  @override
+  String get settings_screen_lost_target_button => 'ગુમ થયેલ ટાર્ગેટ બતાવો';
+
+  @override
+  String get detection_screen_title => 'ડિટેક્શન સેટિંગ્સ';
+
+  @override
+  String get detection_screen_models => 'મોડેલ્સ';
+
+  @override
+  String get detection_screen_confidence => 'કોન્ફિડન્સ';
+
+  @override
+  String get detection_screen_confidence_desc => '#0 કરતાં વધુ કોન્ફિડન્સને માન્ય ડિટેક્શન તરીકે ગણવામાં આવે છે';
+
+  @override
+  String get detection_screen_low => 'નીચું';
+
+  @override
+  String get detection_screen_high => 'ઊંચું';
+
+  @override
+  String get detection_screen_nms => 'નોન-મેક્સિમમ સપ્રેશન';
+
+  @override
+  String get detection_screen_nms_desc => '#0 ઓછો NMS થ્રેશોલ્ડ (દા.ત., 30%) વધુ આક્રમક રીતે ઓવરલેપિંગ બાઉન્ડિંગ બોક્સ દૂર કરશે, જ્યારે ઉચ્ચ NMS થ્રેશોલ્ડ (દા.ત., 0.6) વધુ ઓવરલેપ મંજૂર કરશે';
+
+  @override
+  String get detection_screen_match => 'મેચ';
+
+  @override
+  String get detection_screen_match_desc => '#0 થી વધુ મેચને એક જ ઓબ્જેક્ટ તરીકે ગણવામાં આવે છે.';
+
+  @override
+  String get detection_screen_lost => 'ગુમ થયેલું';
+
+  @override
+  String get detection_screen_lost_desc => 'જો તે #0 માટે ગુમ થાય તો ટ્રેક ઓબ્જેક્ટ દૂર કરવામાં આવશે';
+
+  @override
+  String get detection_screen_consider_valid => 'પછી માન્ય ગણો';
+
+  @override
+  String get detection_screen_consider_valid_desc => 'ટ્રેક ઓબ્જેક્ટ #0 પછી માન્ય ગણવામાં આવશે';
+
+  @override
+  String get detection_screen_reset => 'રીસેટ';
+
+  @override
+  String get detection_screen_reset_content => 'શું તમે ખરેખર ડિટેક્શન સેટિંગ્સ રીસેટ કરવા માંગો છો?';
+
+  @override
+  String get url_screen_title => 'લાઇવ સ્ટ્રીમ URL';
+
+  @override
+  String get url_screen_desc => 'કૃપા કરીને લાઇવ સ્ટ્રીમ URL દાખલ કરો';
+
+  @override
+  String get url_screen_url => 'URL';
+
+  @override
+  String get url_screen_url_placeholder => 'http://example.com/stream અથવા rtsp://example.com/stream';
+
+  @override
+  String get add_video_screen_title => 'વિડિઓ સોર્સ ઉમેરો';
+
+  @override
+  String get add_video_screen_from => 'આમાંથી વિડિઓ સોર્સ ઉમેરો';
+
+  @override
+  String get webcam_screen_add_title => 'વેબકેમ ઉમેરો';
+
+  @override
+  String get webcam_screen_edit_title => 'વેબકેમ પસંદ કરો';
+
+  @override
+  String get webcam_manager_webcam => 'વેબકેમ';
+
+  @override
+  String get camera_screen_front_camera => 'ફ્રન્ટ કેમેરા';
+
+  @override
+  String get camera_screen_back_camera => 'બેક કેમેરા';
+
+  @override
+  String get camera_screen_add_title => 'કેમેરા ઉમેરો';
+
+  @override
+  String get camera_screen_edit_title => 'કેમેરા પસંદ કરો';
+
+  @override
+  String get camera_screen_zoom_level => 'ઝૂમ લેવલ';
+
+  @override
+  String get video_screen_name_empty => 'વિડિઓનું નામ ખાલી ન હોઈ શકે.';
+
+  @override
+  String get video_screen_desc => 'વિડિઓ સોર્સ મેનેજ કરો, ડિટેક્શન ઝોન ઉમેરો અથવા સુધારો.';
+
+  @override
+  String get video_screen_video_name => 'વિડિઓ સોર્સ નામ';
+
+  @override
+  String get video_screen_edit_placeholder => 'ફ્રન્ટ ડોર કેમ અથવા પાર્કિંગ લોટ કેમ';
+
+  @override
+  String get video_screen_change_file => 'ફાઇલ બદલો';
+
+  @override
+  String get video_screen_add_zone => 'ડિટેક્શન ઝોન ઉમેરો';
+
+  @override
+  String get video_screen_zones => 'ડિટેક્શન ઝોન';
+
+  @override
+  String get video_screen_zones_desc => 'ઝોન એડજસ્ટ કરવા માટે ડ્રેગ અને ડ્રોપનો ઉપયોગ કરો';
+
+  @override
+  String get video_screen_tools => 'ટૂલ્સ';
+
+  @override
+  String get video_screen_move_bottom => 'વર્તમાન ઝોનને નીચે ખસેડો';
+
+  @override
+  String get video_screen_add_point => 'વર્તમાન ઝોનમાં પોઇન્ટ ઉમેરો';
+
+  @override
+  String get video_screen_remove_point => 'વર્તમાન ઝોનમાંથી પોઇન્ટ દૂર કરો';
+
+  @override
+  String get video_screen_playback_speed => 'પ્લેબેક સ્પીડ';
+
+  @override
+  String get video_screen_playback_current => 'હાલનું: ';
+
+  @override
+  String get video_screen_playback_14x => '1/4x';
+
+  @override
+  String get video_screen_playback_2x => '2x';
+
+  @override
+  String get video_screen_delete_header => 'આ વિડિઓ સોર્સ ડિલીટ કરો';
+
+  @override
+  String get video_screen_delete_content => 'શું તમે ખરેખર આ વિડિઓ સોર્સ ડિલીટ કરવા માંગો છો?';
+
+  @override
+  String get video_screen_delete_button => 'ડિલીટ કરો';
+
+  @override
+  String get video_screen_sources => 'ઇમેજ સોર્સ, ડિટેક્શન ટાર્ગેટ અને મોડેલ પેરામીટર્સ કોન્ફિગર કરો.';
+
+  @override
+  String get video_screen_targets => 'ડિટેક્શન ટાર્ગેટ';
+
+  @override
+  String get video_screen_detection => 'મોડેલ પેરામીટર્સ';
+
+  @override
+  String get color_screen_title => 'કલર પસંદ કરો';
+
+  @override
+  String get zone_screen_desc => 'ડિટેક્શન ઝોન ડિટેક્ટ કરવા માટેના ઓબ્જેક્ટ્સના પ્રકારો સેટ કરી શકે છે અને કયા કાઉન્ટર્સ ડિસ્પ્લે કરવા તે પસંદ કરી શકે છે, જેવા કે ડિટેક્ટેડ, સ્પોન્ડ અને એન્ટર્ડ.';
+
+  @override
+  String get zone_screen_name_placeholder => 'ઝોનનું નામ, જેમ કે ફૂટપાથ અથવા પાર્કિંગ લોટ';
+
+  @override
+  String get zone_screen_zone_color => 'ઝોન કલર';
+
+  @override
+  String get zone_screen_color => 'કલર';
+
+  @override
+  String get zone_screen_delete_header => 'આ ઝોન ડિલીટ કરો';
+
+  @override
+  String get zone_screen_delete_content => 'શું તમે ખરેખર આ ઝોન ડિલીટ કરવા માંગો છો?';
+
+  @override
+  String get zone_screen_delete_button => 'ડિલીટ કરો';
+
+  @override
+  String get zone_screen_can_not_delete => 'ઝોન ડિલીટ કરી શકાતું નથી';
+
+  @override
+  String get zone_screen_one_zone_required => 'ઓછામાં ઓછું એક ઝોન જરૂરી છે.';
+
+  @override
+  String get zone_screen_zone_name_required => 'ઝોનનું નામ ખાલી ન હોઈ શકે';
+
+  @override
+  String get counter_screen_show_on => 'સ્ક્રીન પર બતાવો';
+
+  @override
+  String get counter_screen_enabled => 'સક્રિય';
+
+  @override
+  String get counter_screen_reentry_threshold => 'રી-એન્ટ્રી થ્રેશોલ્ડ';
+
+  @override
+  String get counter_screen_reentry_desc => 'ઓબ્જેક્ટ્સ #0 વખત પ્રવેશ કરવા જોઈએ, દરેક એક્ઝિટ અને રી-એન્ટ્રી વચ્ચે #1 સેકન્ડનો કૂલડાઉન, રી-એન્ટ્રી ટ્રિગર કરવા માટે';
+
+  @override
+  String get counter_screen_reentry_title => 'રી-એન્ટ્રી કાઉન્ટ';
+
+  @override
+  String get counter_screen_cooldown_threshold => 'કૂલડાઉન થ્રેશોલ્ડ';
+
+  @override
+  String get counter_screen_cooldown_desc => 'ડિટેક્શન ઝોનમાંથી બહાર નીકળ્યા પછી રી-એન્ટ્રી માટે #0 સેકન્ડનો કૂલડાઉન જરૂરી છે';
+
+  @override
+  String get counter_screen_cooldown_time => 'કૂલડાઉન સમય';
+
+  @override
+  String get counter_screen_cooldown_in_seconds => 'સેકન્ડમાં';
+
+  @override
+  String get counter_screen_stagnant_threshold => 'સ્ટેગનન્ટ થ્રેશોલ્ડ';
+
+  @override
+  String get counter_screen_stagnant_desc => '#0 સેકન્ડ કરતાં વધુ સમય સુધી સ્થિર રહેતા ઓબ્જેક્ટ્સને સ્ટેગનન્ટ ગણવામાં આવશે';
+
+  @override
+  String get counter_screen_stagnant_consider => 'સ્ટેગનન્ટ તરીકે ગણો';
+
+  @override
+  String get counter_screen_stagnant_in_seconds => 'સેકન્ડમાં';
+
+  @override
+  String get counter_screen_stagnant_desc_prefix => 'વર્ણન પ્રીફિક્સ';
+
+  @override
+  String get counter_screen_stagnant_desc_suffix => 'વર્ણન સફિક્સ';
+
+  @override
+  String get counter_screen_name_error => 'કાઉન્ટરનું નામ ખાલી ન હોઈ શકે';
+
+  @override
+  String get counter_screen_enabled_error => 'ભૂલ';
+
+  @override
+  String get counter_screen_enabled_error_content => 'તમારે પહેલા અન્ય કાઉન્ટર સક્રિય કરવાની જરૂર છે, પછી તમે આ કાઉન્ટર અસક્રિય કરી શકો છો';
+
+  @override
+  String get objects_screen_title => 'ઓબ્જેક્ટ્સ';
+
+  @override
+  String get objects_screen_desc => 'વ્યક્તિ, કાર, બસ વગેરે જેવા ડિટેક્શન ટાર્ગેટ્સ પસંદ કરો.';
+
+  @override
+  String get open_project_screen_title => 'પ્રોજેક્ટ ખોલો';
+
+  @override
+  String get open_project_screen_desc => 'અગાઉ બનાવેલા પ્રોજેક્ટ્સ ખોલો, માત્ર તાજેતરના 20 જ રાખો.';
+
+  @override
+  String get open_project_screen_no_project => 'કોઈ પ્રોજેક્ટ મળ્યો નથી.';
+
+  @override
+  String get default_project_name => 'પ્રોજેક્ટ';
+
+  @override
+  String get default_video_name => 'વિડિઓ સોર્સ';
+
+  @override
+  String get default_zone_name => 'ડિટેક્શન ઝોન';
+
+  @override
+  String get error_oops => 'અરે, કંઈક ખોટું થયું';
+
+  @override
+  String get error_content => 'અનપેક્ષિત ભૂલ આવી. શું તમે ઇમેઇલ રિપોર્ટ સબમિટ કરવા માંગો છો?';
+
+  @override
+  String get error_report => 'અમને ઇમેઇલ કરો';
+
+  @override
+  String get submit => 'સબમિટ કરો';
+
+  @override
+  String get ok => 'ઠીક છે';
+
+  @override
+  String get cancel => 'રદ કરો';
+
+  @override
+  String get yes => 'હા';
+
+  @override
+  String get no => 'ના';
+
+  @override
+  String get close => 'બંધ કરો';
+
+  @override
+  String get back => 'પાછળ';
+}

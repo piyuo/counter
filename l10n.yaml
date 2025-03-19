@@ -1,6 +1,7 @@
 arb-dir: lib/l10n
 template-arb-file: app_en.arb
-output-localization-file: app_localization.dart   # 修改產生檔案名稱
-output-class: AppLocalization                   # 修改類別名稱
+output-localization-file: localization.dart   # 修改產生檔案名稱
+output-class: Localization                   # 修改類別名稱
 synthetic-package: false
 nullable-getter: false
+use-deferred-loading: true

@@ -1,4 +1,4 @@
-import 'package:counter/l10n/app_localization.dart';
+import 'package:counter/l10n/localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:locale_names/locale_names.dart';
 
@@ -9,7 +9,7 @@ class Language {
   Language(this.locale, this.name);
 
   static List<Language> fromSupportedLocales(BuildContext context) {
-    return AppLocalization.supportedLocales.map((locale) {
+    return Localization.supportedLocales.map((locale) {
       String name = locale.nativeDisplayLanguage;
       if (locale.nativeDisplayCountry.isNotEmpty) {
         name += ' (${locale.nativeDisplayCountry})';

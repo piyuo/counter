@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/db/db.dart' as db;
 import 'package:counter/error/error.dart' as error;
-import 'package:counter/l10n/app_localization.dart';
+import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
@@ -46,8 +46,8 @@ class _MyAppState extends State<MyApp> {
 
   /// the default app localizations delegates
   static const appLocaleDelegates = [
-    AppLocalization.delegate,
-    vision.VisionLocalization.delegate,
+    Localization.delegate,
+    vision.Localization.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
