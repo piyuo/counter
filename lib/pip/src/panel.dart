@@ -193,12 +193,20 @@ class SlidingUpPanel extends StatefulWidget {
 }
 
 class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProviderStateMixin {
+  /// _ac is the animation controller that controls the
   late AnimationController _ac;
 
+  /// _scrollingEnabled is used to determine whether or not
   bool _scrollingEnabled = false;
+
+  /// _vt is used to track the velocity of the touch events
   final VelocityTracker _vt = VelocityTracker.withKind(PointerDeviceKind.touch);
 
+  /// if the panel is in a pip mode
   bool _isPanelVisible = true;
+
+  /// if panel is disposed
+  bool _isDisposed = false;
 
   /// reset the scrolling state
   void resetScroll() {
@@ -365,6 +373,7 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   @override
   void dispose() {
+    _isDisposed = true;
     _ac.dispose();
     super.dispose();
   }
@@ -681,6 +690,9 @@ class PanelController {
   /// (optional) duration specifies the time for the animation to complete
   /// (optional) curve specifies the easing behavior of the animation.
   Future<void> animatePanelToSnapPoint({Duration? duration, Curve curve = Curves.linear}) {
+    if (_panelState == null || _panelState!._isDisposed) {
+      return Future.value(null);
+    }
     assert(isAttached, "PanelController must be attached to a SlidingUpPanel");
     assert(_panelState!.widget.snapPoint != null, "SlidingUpPanel snapPoint property must not be null");
     return _panelState!._animatePanelToSnapPoint(duration: duration, curve: curve);
