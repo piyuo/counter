@@ -37,10 +37,9 @@ class WizardScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, WizardScreenProvider>(
         builder: (context, projectProvider, wizardScreenProvider, child) {
           return pip.PipScaffold(
-              titleWidget: Container(
-                padding: const EdgeInsets.only(left: 16.0),
-                alignment: Alignment.centerLeft,
-                child: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+              titleWidget: Text(
+                pageTitle,
+                style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
               ),
               child: SingleChildScrollView(
                 controller: scrollController,

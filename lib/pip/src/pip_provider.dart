@@ -57,7 +57,9 @@ class PipProvider with ChangeNotifier {
 
   /// animate the sliding panel to the snap point
   void animatePanelToSnapPoint() {
-    panelController.animatePanelToSnapPoint();
+    if (panelController.isAttached) {
+      panelController.animatePanelToSnapPoint();
+    }
   }
 
   /// the key for the sliding panel

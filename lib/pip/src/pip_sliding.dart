@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
+import 'package:libcli/cli/cli.dart' as cli;
 import 'package:universal_platform/universal_platform.dart';
 
 import 'panel.dart';
@@ -42,6 +44,7 @@ class PipSliding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isRTL = Bidi.isRtlLanguage(cli.defaultLocale.toString());
     return MediaQuery.removePadding(
         context: context,
         removeTop: true,
@@ -52,7 +55,7 @@ class PipSliding extends StatelessWidget {
           builder: (context, constraints) {
             buildContent() {
               return Align(
-                alignment: Alignment.topLeft,
+                alignment: isRTL ? Alignment.topRight : Alignment.topLeft,
                 child: SizedBox(
                     width: width,
                     child: ClipRRect(
