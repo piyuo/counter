@@ -16,6 +16,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 
+final GlobalKey<wizard.WizardAppState> wizardKey = GlobalKey<wizard.WizardAppState>();
+
 main() {
   registerTimeagoLocales();
   cli.run(() => const MyApp());
@@ -119,6 +121,7 @@ class _MyAppState extends State<MyApp> {
           }
 
           final isRTL = Bidi.isRtlLanguage(cli.defaultLocale.toString());
+
           return ChangeNotifierProvider<vision.OrientationProvider>.value(
               value: projectProvider.orientationProvider,
               child: Directionality(
@@ -138,9 +141,9 @@ class _MyAppState extends State<MyApp> {
                                   return pip.PipScreen(
                                     isLockToPortrait: projectProvider.isLockToPortrait,
                                     slidingBuilder: (isPanelOpened) => wizard.WizardApp(
+                                      key: wizardKey,
                                       appLocale: cli.defaultLocale,
                                       appLocaleDelegates: appLocaleDelegates,
-                                      isPanelOpened: isPanelOpened,
                                       pipProvider: pipProvider,
                                     ),
                                     builder: (isSideLayout) => Overlay(

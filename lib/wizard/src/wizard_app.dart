@@ -88,13 +88,9 @@ class WizardApp extends StatefulWidget {
     required this.appLocale,
     required this.appLocaleDelegates,
     required this.pipProvider,
-    required this.isPanelOpened,
     this.initialRoute,
     super.key,
   });
-
-  /// is the sliding panel opened?
-  final bool isPanelOpened;
 
   /// the initial route
   final String? initialRoute;
@@ -109,10 +105,10 @@ class WizardApp extends StatefulWidget {
   final List<LocalizationsDelegate<dynamic>> appLocaleDelegates;
 
   @override
-  State<WizardApp> createState() => _WizardAppState();
+  State<WizardApp> createState() => WizardAppState();
 }
 
-class _WizardAppState extends State<WizardApp> {
+class WizardAppState extends State<WizardApp> {
   @override
   void initState() {
     super.initState();
@@ -245,10 +241,7 @@ class _WizardAppState extends State<WizardApp> {
                 );
               case '/':
               default:
-                return WizardScreen(
-                  isPanelOpened: widget.isPanelOpened,
-                  scrollController: scrollController,
-                );
+                return WizardScreen(scrollController: scrollController);
             }
           },
         );

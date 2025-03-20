@@ -14,13 +14,9 @@ const double _headerHeightThreshold = 600;
 
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
-    required this.isPanelOpened,
     required this.scrollController,
     super.key,
   });
-
-  /// is the sliding panel opened?
-  final bool isPanelOpened;
 
   /// the scroll controller
   final ScrollController scrollController;
