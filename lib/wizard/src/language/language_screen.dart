@@ -1,11 +1,9 @@
 import 'package:counter/l10n/l10n.dart';
+import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
+import 'package:libcli/cli/cli.dart' as cli;
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
-
-import 'language.dart';
 
 class LanguageScreen extends StatelessWidget {
   const LanguageScreen({
@@ -22,8 +20,8 @@ class LanguageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final languageProvider = vision.LanguageProvider.of(context);
-    final languages = Language.fromSupportedLocales(context);
+    final languageProvider = cli.LanguageProvider.of(context);
+    final languages = cli.Language.fromSupportedLocales(Localization.supportedLocales);
 
     return ChangeNotifierProvider<LanguageScreenProvider>(
         create: (_) => LanguageScreenProvider(),
@@ -47,7 +45,8 @@ class LanguageScreen extends StatelessWidget {
                     children: languages
                         .map((language) => CupertinoListTile(
                               title: Text(language.name),
-                              leading: language.locale.toString() == Intl.getCurrentLocale()
+                              subtitle: Text(language.engName),
+                              leading: language.locale == cli.defaultLocale
                                   ? Icon(CupertinoIcons.checkmark)
                                   : SizedBox.shrink(),
                               onTap: () async {

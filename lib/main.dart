@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/db/db.dart' as db;
-import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
@@ -10,6 +9,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:libcli/cli/cli.dart' as cli;
+import 'package:libcli/l10n/localization.dart' as libcli_localization;
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:universal_platform/universal_platform.dart';
@@ -17,7 +18,7 @@ import 'package:vision/vision.dart' as vision;
 
 main() {
   registerTimeagoLocales();
-  error.watch(() => runApp(const MyApp()));
+  cli.run(() => const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -31,22 +32,10 @@ class _MyAppState extends State<MyApp> {
   _MyAppState();
   final db.DataManager dataManager = db.DataManager();
 
-  /// parse the locale string to a [Locale] object
-  Locale _parseLocale(String localeString) {
-    final parts = localeString.split('_');
-    if (parts.length == 2) {
-      return Locale(parts[0], parts[1]);
-    } else {
-      return Locale(localeString);
-    }
-  }
-
-  /// the default app locale
-  Locale get appLocale => Intl.defaultLocale == null ? Locale('en') : _parseLocale(Intl.defaultLocale!);
-
   /// the default app localizations delegates
   static const appLocaleDelegates = [
     Localization.delegate,
+    libcli_localization.Localization.delegate,
     vision.Localization.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -60,120 +49,117 @@ class _MyAppState extends State<MyApp> {
       return isPortrait ? pip.SlidingPanelState.halfOpen : pip.SlidingPanelState.open;
     }
 
-    return error.GlobalContextSupport(
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => vision.LanguageProvider()..loadLocale()),
-          ChangeNotifierProvider<app.ProjectProvider>(
-              create: (context) => app.ProjectProvider(
-                    onDatabaseMaintain: () {
-                      dataManager.maintainDatabase();
-                    },
-                    onGetRecentProjectActivities: (String projectId) async {
-                      return await dataManager.getRecentProjectActivities(projectId);
-                    },
-                    onClearActivities: (String projectId) async {
-                      await dataManager.deleteActivitiesInProject(projectId);
-                    },
-                    onActivityAdded:
-                        (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
-                      await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
-                    },
-                    onProjectOpened: (_) async {
-                      final pipProvider = pip.PipProvider.of(error.globalContext);
-                      await Future.delayed(
-                          const Duration(seconds: 2)); // 2 seconds wait to avoid busy state when open project
-                      pipProvider.animatePanelToSnapPoint();
-                      dataManager.deleteActivitiesOlderThanOneDay();
-                    },
-                    onProjectSave: (app.Project project, app.Video? video) async {
-                      await dataManager.setProject(project);
-//                      print('--------------- project changed!!!----------------');
-                    },
-                    onGetProjectSummaries: () async {
-                      return await dataManager.getProjectSummaries();
-                    },
-                    onGetProjectById: (String projectId) async {
-                      return await dataManager.getProjectById(projectId);
-                    },
-                    onDeleteProject: (String projectId) async {
-                      await dataManager.deleteProject(projectId);
-                    },
-                  )..init(context)),
-          ChangeNotifierProvider<pip.PipProvider>(
-              create: (_) => pip.PipProvider()..init(const Duration(seconds: 2), getPanelPositionWhenProjectOpened())),
-        ],
-        child: CupertinoTheme(
-          data: CupertinoThemeData(
-            brightness: Brightness.dark,
-          ),
-          child: Consumer3<vision.LanguageProvider, app.ProjectProvider, pip.PipProvider>(
-              builder: (context, languageProvider, projectProvider, pipProvider, child) {
-            buildMainScreen() {
-              return Scaffold(
-                body: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/background.jpg"),
-                      fit: BoxFit.cover,
-                    ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => cli.LanguageProvider()..loadLocale()),
+        ChangeNotifierProvider<app.ProjectProvider>(
+            create: (context) => app.ProjectProvider(
+                  onDatabaseMaintain: () {
+                    dataManager.maintainDatabase();
+                  },
+                  onGetRecentProjectActivities: (String projectId) async {
+                    return await dataManager.getRecentProjectActivities(projectId);
+                  },
+                  onClearActivities: (String projectId) async {
+                    await dataManager.deleteActivitiesInProject(projectId);
+                  },
+                  onActivityAdded:
+                      (String projectId, int videoId, int zoneId, int classId, vision.Activity activity) async {
+                    await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
+                  },
+                  onProjectOpened: (_) async {
+                    final pipProvider = pip.PipProvider.of(cli.globalContext);
+                    await Future.delayed(
+                        const Duration(seconds: 2)); // 2 seconds wait to avoid busy state when open project
+                    pipProvider.animatePanelToSnapPoint();
+                    dataManager.deleteActivitiesOlderThanOneDay();
+                  },
+                  onProjectSave: (app.Project project, app.Video? video) async {
+                    await dataManager.setProject(project);
+                  },
+                  onGetProjectSummaries: () async {
+                    return await dataManager.getProjectSummaries();
+                  },
+                  onGetProjectById: (String projectId) async {
+                    return await dataManager.getProjectById(projectId);
+                  },
+                  onDeleteProject: (String projectId) async {
+                    await dataManager.deleteProject(projectId);
+                  },
+                )..init(context)),
+        ChangeNotifierProvider<pip.PipProvider>(
+            create: (_) => pip.PipProvider()..init(const Duration(seconds: 2), getPanelPositionWhenProjectOpened())),
+      ],
+      child: CupertinoTheme(
+        data: CupertinoThemeData(
+          brightness: Brightness.dark,
+        ),
+        child: Consumer3<cli.LanguageProvider, app.ProjectProvider, pip.PipProvider>(
+            builder: (context, languageProvider, projectProvider, pipProvider, child) {
+          buildMainScreen() {
+            return Scaffold(
+              body: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background.jpg"),
+                    fit: BoxFit.cover,
                   ),
                 ),
-              );
-            }
+              ),
+            );
+          }
 
-            buildRoute({
-              required RouteSettings settings,
-              required Widget Function(BuildContext) builder,
-            }) {
-              return UniversalPlatform.isAndroid
-                  ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
-                  : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
-            }
+          buildRoute({
+            required RouteSettings settings,
+            required Widget Function(BuildContext) builder,
+          }) {
+            return UniversalPlatform.isAndroid
+                ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
+                : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
+          }
 
-            final isRTL = Bidi.isRtlLanguage(appLocale.toString());
-            return ChangeNotifierProvider<vision.OrientationProvider>.value(
-                value: projectProvider.orientationProvider,
-                child: Directionality(
-                  textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
-                  child: Localizations(
-                      locale: appLocale,
-                      delegates: appLocaleDelegates,
-                      child: Navigator(
-                        initialRoute: '/',
-                        onGenerateRoute: (routeSettings) {
-                          return buildRoute(
-                              settings: routeSettings,
-                              builder: (context) {
-                                switch (routeSettings.name) {
-                                  case '/':
-                                  default:
-                                    return pip.PipScreen(
-                                      isLockToPortrait: projectProvider.isLockToPortrait,
-                                      slidingBuilder: (isPanelOpened) => wizard.WizardApp(
-                                        appLocale: appLocale,
-                                        appLocaleDelegates: appLocaleDelegates,
-                                        isPanelOpened: isPanelOpened,
-                                        pipProvider: pipProvider,
-                                      ),
-                                      builder: (isSideLayout) => Overlay(
-                                        initialEntries: [
-                                          OverlayEntry(
-                                            builder: (context) => app.ProjectView(
-                                              noProjectScreen: buildMainScreen(),
-                                              isSideLayout: isSideLayout,
-                                            ),
+          final isRTL = Bidi.isRtlLanguage(cli.defaultLocale.toString());
+          return ChangeNotifierProvider<vision.OrientationProvider>.value(
+              value: projectProvider.orientationProvider,
+              child: Directionality(
+                textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+                child: Localizations(
+                    locale: cli.defaultLocale,
+                    delegates: appLocaleDelegates,
+                    child: Navigator(
+                      initialRoute: '/',
+                      onGenerateRoute: (routeSettings) {
+                        return buildRoute(
+                            settings: routeSettings,
+                            builder: (context) {
+                              switch (routeSettings.name) {
+                                case '/':
+                                default:
+                                  return pip.PipScreen(
+                                    isLockToPortrait: projectProvider.isLockToPortrait,
+                                    slidingBuilder: (isPanelOpened) => wizard.WizardApp(
+                                      appLocale: cli.defaultLocale,
+                                      appLocaleDelegates: appLocaleDelegates,
+                                      isPanelOpened: isPanelOpened,
+                                      pipProvider: pipProvider,
+                                    ),
+                                    builder: (isSideLayout) => Overlay(
+                                      initialEntries: [
+                                        OverlayEntry(
+                                          builder: (context) => app.ProjectView(
+                                            noProjectScreen: buildMainScreen(),
+                                            isSideLayout: isSideLayout,
                                           ),
-                                        ],
-                                      ),
-                                    );
-                                }
-                              });
-                        },
-                      )),
-                ));
-          }),
-        ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                              }
+                            });
+                      },
+                    )),
+              ));
+        }),
       ),
     );
   }

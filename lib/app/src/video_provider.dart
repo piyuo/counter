@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:libcli/cli/cli.dart' as cli;
 import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
@@ -382,9 +382,9 @@ class VideoProvider with ChangeNotifier {
     final offsetY = reductionValue / 2;
     final zoneId = _projectProvider!.getNextZoneId();
     final zone = vision.VideoZone(
-      tallyAnnotations: vision.defaultTallyAnnotation(error.globalContext),
+      tallyAnnotations: vision.defaultTallyAnnotation(cli.globalContext),
       zoneId: zoneId,
-      name: '${error.globalContext.l.default_zone_name} $zoneId',
+      name: '${cli.globalContext.l.default_zone_name} $zoneId',
       color: getNextZoneColor(),
       points: [
         Offset(offsetX, offsetY),

@@ -3,6 +3,7 @@ import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:libcli/cli/cli.dart' as cli;
 import 'package:universal_platform/universal_platform.dart';
 
 import 'about/about_screen.dart';
@@ -145,15 +146,7 @@ class _WizardAppState extends State<WizardApp> {
       locale: widget.appLocale,
       localizationsDelegates: widget.appLocaleDelegates,
       supportedLocales: Localization.supportedLocales,
-      localeResolutionCallback: (locale, supportedLocales) {
-        for (var supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale?.languageCode &&
-              supportedLocale.countryCode == locale?.countryCode) {
-            return supportedLocale;
-          }
-        }
-        return supportedLocales.first;
-      },
+      localeResolutionCallback: cli.localeResolutionCallback,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,

@@ -1,11 +1,10 @@
 import 'package:counter/app/app.dart' as app;
-import 'package:counter/error/error.dart' as error;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:libcli/cli/cli.dart' as cli;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'project/video_sources.dart';
 import 'wizard_app.dart';
@@ -140,7 +139,7 @@ class WizardScreen extends StatelessWidget {
                         CupertinoListTile(
                             leading: Icon(CupertinoIcons.globe),
                             title: Text(context.l.wizard_screen_language),
-                            additionalInfo: Text(vision.LanguageProvider.of(context).getLanguage(context),
+                            additionalInfo: Text(cli.LanguageProvider.of(context).getLanguage(context),
                                 style: TextStyle(fontSize: 12.0)),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
@@ -153,7 +152,7 @@ class WizardScreen extends StatelessWidget {
                             title: Text(context.l.wizard_screen_email_us),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
-                              error.openMailTo('service@piyuo.com', '', '');
+                              cli.openMailTo('service@piyuo.com', '', '');
                             }),
                       ],
                     ),
