@@ -1,11 +1,11 @@
 import 'package:vision/vision.dart' as vision;
 
-const _confidenceThreshold = 0.35; // pick object as many as possible
-const _trackingThreshold = 0.7; // byte track will filter object by
-const _nmsThreshold = 0.65;
-const _matchThreshold = 0.55;
-const _maxLostSeconds = 60;
-const _validThreshold = 800; // 800ms to consider object is valid
+const _confidenceThreshold = 0.1; // pick object as many as possible
+const _trackingThreshold = 0.5; // byte track will filter object by
+const _nmsThreshold = 0.30;
+const _matchThreshold = 0.8;
+const _maxLostSeconds = 5;
+const _validThreshold = 1800; // 1800ms to consider object is valid
 
 /// video define the video source for the project, a project can have multiple video sources. like camera, video file, live stream.
 class Video {
