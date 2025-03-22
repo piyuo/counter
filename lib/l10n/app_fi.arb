@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Laskuri",
   "product_desc": "Käyttää konenäköä ja tekoälyä laskemaan ihmisiä, ajoneuvoja, lemmikkejä ja muuta.",
   "product_copyright": "Tekijänoikeus © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Kyllä",
   "no": "Ei",
   "close": "Sulje",
-  "back": "Takaisin"
+  "back": "Takaisin",
+  "settings_screen_detection_button": "MISSING"
 }

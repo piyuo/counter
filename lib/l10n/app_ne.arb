@@ -1,5 +1,5 @@
 {
-  "product_name": "भिजन काउन्टर",
+  "product_name": "काउन्टर",
   "product_desc": "कम्प्युटर भिजन र एआई प्रयोग गरेर मानिसहरू, सवारी साधनहरू, पालतु जनावरहरू, र अन्य कुराहरू गन्ने।",
   "product_copyright": "प्रतिलिपि अधिकार © 2025",
   "video_sources_webcam": "वेबक्याम",
@@ -162,5 +162,6 @@
   "yes": "हो",
   "no": "होइन",
   "close": "बन्द गर्नुहोस्",
-  "back": "पछाडि"
+  "back": "पछाडि",
+  "settings_screen_detection_button": "MISSING"
 }

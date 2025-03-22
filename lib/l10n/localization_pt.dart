@@ -9,7 +9,7 @@ class LocalizationPt extends Localization {
   LocalizationPt([String locale = 'pt']) : super(locale);
 
   @override
-  String get product_name => 'Contador de Visão';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Use visão computacional e IA para contar pessoas, veículos, animais de estimação e muito mais.';
@@ -499,6 +499,9 @@ class LocalizationPt extends Localization {
 
   @override
   String get back => 'Voltar';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -506,7 +509,7 @@ class LocalizationPtPt extends LocalizationPt {
   LocalizationPtPt(): super('pt_PT');
 
   @override
-  String get product_name => 'Contador de Visão';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Utilização de visão computacional e IA para contar pessoas, veículos, animais de estimação e mais.';
@@ -996,4 +999,7 @@ class LocalizationPtPt extends LocalizationPt {
 
   @override
   String get back => 'Voltar';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

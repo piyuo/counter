@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "เครื่องนับ",
   "product_desc": "ใช้คอมพิวเตอร์วิชั่นและเอไอเพื่อนับคน ยานพาหนะ สัตว์เลี้ยง และอื่นๆ",
   "product_copyright": "ลิขสิทธิ์ © 2025",
   "video_sources_webcam": "เว็บแคม",
@@ -162,5 +162,6 @@
   "yes": "ใช่",
   "no": "ไม่",
   "close": "ปิด",
-  "back": "กลับ"
+  "back": "กลับ",
+  "settings_screen_detection_button": "MISSING"
 }

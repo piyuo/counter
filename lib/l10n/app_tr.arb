@@ -1,5 +1,5 @@
 {
-  "product_name": "Görüntü Sayacı",
+  "product_name": "Sayaç",
   "product_desc": "Bilgisayarlı görü ve yapay zeka kullanarak insan, araç, evcil hayvan ve daha fazlasını sayın.",
   "product_copyright": "Telif Hakkı © 2025",
   "video_sources_webcam": "Web Kamerası",
@@ -162,5 +162,6 @@
   "yes": "Evet",
   "no": "Hayır",
   "close": "Kapat",
-  "back": "Geri"
+  "back": "Geri",
+  "settings_screen_detection_button": "MISSING"
 }

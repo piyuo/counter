@@ -9,7 +9,7 @@ class LocalizationEt extends Localization {
   LocalizationEt([String locale = 'et']) : super(locale);
 
   @override
-  String get product_name => 'Visioonilugeja';
+  String get product_name => 'Loendur';
 
   @override
   String get product_desc => 'Arvutinägemise ja tehisintellekti abil inimeste, sõidukite, lemmikloomade ja muu loendamine.';
@@ -499,4 +499,7 @@ class LocalizationEt extends Localization {
 
   @override
   String get back => 'Tagasi';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -9,7 +9,7 @@ class LocalizationMn extends Localization {
   LocalizationMn([String locale = 'mn']) : super(locale);
 
   @override
-  String get product_name => 'Харааны Тоологч';
+  String get product_name => 'Тоологч';
 
   @override
   String get product_desc => 'Компьютер хараа ба хиймэл оюун ухааныг ашиглан хүмүүс, тээврийн хэрэгсэл, гэрийн тэжээвэр амьтад болон бусад зүйлсийг тоолох.';
@@ -499,4 +499,7 @@ class LocalizationMn extends Localization {
 
   @override
   String get back => 'Буцах';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

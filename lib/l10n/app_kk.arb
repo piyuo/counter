@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Санауыш",
   "product_desc": "Компьютерлік көру және жасанды интеллект арқылы адамдарды, көліктерді, үй жануарларын және т.б. санау.",
   "product_copyright": "Барлық құқықтар қорғалған © 2025",
   "video_sources_webcam": "Веб-камера",
@@ -162,5 +162,6 @@
   "yes": "Иә",
   "no": "Жоқ",
   "close": "Жабу",
-  "back": "Артқа"
+  "back": "Артқа",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Skaitītājs",
   "product_desc": "Izmanto datora redzi un mākslīgo intelektu, lai skaitītu cilvēkus, transportlīdzekļus, mājdzīvniekus un citus objektus.",
   "product_copyright": "Autortiesības © 2025",
   "video_sources_webcam": "Tīmekļa kamera",
@@ -162,5 +162,6 @@
   "yes": "Jā",
   "no": "Nē",
   "close": "Aizvērt",
-  "back": "Atpakaļ"
+  "back": "Atpakaļ",
+  "settings_screen_detection_button": "MISSING"
 }

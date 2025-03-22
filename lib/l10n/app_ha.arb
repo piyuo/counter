@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Maƙidaya",
   "product_desc": "Yana amfani da gani na kwamfuta da na'urar AI don ƙirga mutane, motoci, dabbobi, da ƙari.",
   "product_copyright": "Hakkin Mallaka © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Ee",
   "no": "A'a",
   "close": "Rufe",
-  "back": "Koma"
+  "back": "Koma",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Pengira Penglihatan",
+  "product_name": "Pengira",
   "product_desc": "Menggunakan penglihatan komputer dan AI untuk mengira orang, kenderaan, haiwan peliharaan, dan sebagainya.",
   "product_copyright": "Hak Cipta © 2025",
   "video_sources_webcam": "Kamera web",
@@ -162,5 +162,6 @@
   "yes": "Ya",
   "no": "Tidak",
   "close": "Tutup",
-  "back": "Kembali"
+  "back": "Kembali",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "شمارنده تصویری",
+  "product_name": "شمارنده",
   "product_desc": "با استفاده از بینایی کامپیوتری و هوش مصنوعی برای شمارش افراد، وسایل نقلیه، حیوانات خانگی و موارد دیگر.",
   "product_copyright": "حق نشر © ۲۰۲۵",
   "video_sources_webcam": "وب‌کم",
@@ -162,5 +162,6 @@
   "yes": "بله",
   "no": "خیر",
   "close": "بستن",
-  "back": "بازگشت"
+  "back": "بازگشت",
+  "settings_screen_detection_button": "MISSING"
 }

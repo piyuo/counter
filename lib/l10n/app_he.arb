@@ -1,5 +1,5 @@
 {
-  "product_name": "מונה חזותי",
+  "product_name": "מונה",
   "product_desc": "שימוש בראייה ממוחשבת ובינה מלאכותית לספירת אנשים, כלי רכב, חיות מחמד ועוד.",
   "product_copyright": "כל הזכויות שמורות © 2025",
   "video_sources_webcam": "מצלמת רשת",
@@ -162,5 +162,6 @@
   "yes": "כן",
   "no": "לא",
   "close": "סגור",
-  "back": "חזור"
+  "back": "חזור",
+  "settings_screen_detection_button": "MISSING"
 }

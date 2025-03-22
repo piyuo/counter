@@ -9,7 +9,7 @@ class LocalizationZh extends Localization {
   LocalizationZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get product_name => '影像計數器';
+  String get product_name => '計數器';
 
   @override
   String get product_desc => '使用電腦視覺和人工智慧來計數人員、車輛、寵物等。';
@@ -499,6 +499,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get back => '返回';
+
+  @override
+  String get settings_screen_detection_button => '刪除';
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
@@ -506,7 +509,7 @@ class LocalizationZhCn extends LocalizationZh {
   LocalizationZhCn(): super('zh_CN');
 
   @override
-  String get product_name => '影像计数器';
+  String get product_name => '计数器';
 
   @override
   String get product_desc => '使用计算机视觉和人工智能来计数人员、车辆、宠物等。';
@@ -996,6 +999,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get back => '返回';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
@@ -1003,7 +1009,7 @@ class LocalizationZhHk extends LocalizationZh {
   LocalizationZhHk(): super('zh_HK');
 
   @override
-  String get product_name => '影像計數器';
+  String get product_name => '計數器';
 
   @override
   String get product_desc => '使用電腦視覺和人工智能來計數人員、車輛、寵物等。';
@@ -1493,6 +1499,9 @@ class LocalizationZhHk extends LocalizationZh {
 
   @override
   String get back => '返回';
+
+  @override
+  String get settings_screen_detection_button => '刪除';
 }
 
 /// The translations for Chinese, as used in Macao (`zh_MO`).
@@ -1500,7 +1509,7 @@ class LocalizationZhMo extends LocalizationZh {
   LocalizationZhMo(): super('zh_MO');
 
   @override
-  String get product_name => '影像計數器';
+  String get product_name => '計數器';
 
   @override
   String get product_desc => '使用電腦視覺同人工智能來計數人員、車輛、寵物等。';
@@ -1990,6 +1999,9 @@ class LocalizationZhMo extends LocalizationZh {
 
   @override
   String get back => '返回';
+
+  @override
+  String get settings_screen_detection_button => '刪除';
 }
 
 /// The translations for Chinese, as used in Singapore (`zh_SG`).
@@ -1997,7 +2009,7 @@ class LocalizationZhSg extends LocalizationZh {
   LocalizationZhSg(): super('zh_SG');
 
   @override
-  String get product_name => '视觉计数器';
+  String get product_name => '计数器';
 
   @override
   String get product_desc => '使用计算机视觉和人工智能来计数人员、车辆、宠物等。';
@@ -2321,7 +2333,7 @@ class LocalizationZhSg extends LocalizationZh {
   String get video_screen_playback_speed => '播放速度';
 
   @override
-  String get video_screen_playback_current => '当前: ';
+  String get video_screen_playback_current => '当前:';
 
   @override
   String get video_screen_playback_14x => '1/4倍速';
@@ -2487,4 +2499,7 @@ class LocalizationZhSg extends LocalizationZh {
 
   @override
   String get back => '返回';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

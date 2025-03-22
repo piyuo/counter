@@ -1,5 +1,5 @@
 {
-  "product_name": "Penghitung Visi",
+  "product_name": "Penghitung",
   "product_desc": "Menggunakan visi komputer dan kecerdasan buatan untuk menghitung orang, kendaraan, hewan peliharaan, dan lainnya.",
   "product_copyright": "Hak Cipta © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Ya",
   "no": "Tidak",
   "close": "Tutup",
-  "back": "Kembali"
+  "back": "Kembali",
+  "settings_screen_detection_button": "MISSING"
 }

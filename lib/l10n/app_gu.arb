@@ -1,5 +1,5 @@
 {
-  "product_name": "વિઝન કાઉન્ટર",
+  "product_name": "કાઉન્ટર",
   "product_desc": "કમ્પ્યુટર વિઝન અને AI નો ઉપયોગ કરીને લોકો, વાહનો, પાલતુ પ્રાણીઓ અને વધુની ગણતરી કરો.",
   "product_copyright": "કૉપિરાઇટ © 2025",
   "video_sources_webcam": "વેબકેમ",
@@ -162,5 +162,6 @@
   "yes": "હા",
   "no": "ના",
   "close": "બંધ કરો",
-  "back": "પાછળ"
+  "back": "પાછળ",
+  "settings_screen_detection_button": "MISSING"
 }

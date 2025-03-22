@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Skaitiklis",
   "product_desc": "Naudojant kompiuterinę viziją ir dirbtinį intelektą skaičiuoti žmones, transporto priemones, gyvūnus ir daugiau.",
   "product_copyright": "Autorių teisės © 2025",
   "video_sources_webcam": "Internetinė kamera",
@@ -162,5 +162,6 @@
   "yes": "Taip",
   "no": "Ne",
   "close": "Uždaryti",
-  "back": "Atgal"
+  "back": "Atgal",
+  "settings_screen_detection_button": "MISSING"
 }

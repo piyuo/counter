@@ -9,7 +9,7 @@ class LocalizationHr extends Localization {
   LocalizationHr([String locale = 'hr']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Brojač';
 
   @override
   String get product_desc => 'Korištenje računalnog vida i umjetne inteligencije za brojanje ljudi, vozila, kućnih ljubimaca i više.';
@@ -499,4 +499,7 @@ class LocalizationHr extends Localization {
 
   @override
   String get back => 'Natrag';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -9,7 +9,7 @@ class LocalizationFi extends Localization {
   LocalizationFi([String locale = 'fi']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Laskuri';
 
   @override
   String get product_desc => 'Käyttää konenäköä ja tekoälyä laskemaan ihmisiä, ajoneuvoja, lemmikkejä ja muuta.';
@@ -499,4 +499,7 @@ class LocalizationFi extends Localization {
 
   @override
   String get back => 'Takaisin';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

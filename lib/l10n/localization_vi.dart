@@ -9,7 +9,7 @@ class LocalizationVi extends Localization {
   LocalizationVi([String locale = 'vi']) : super(locale);
 
   @override
-  String get product_name => 'Bộ Đếm Hình Ảnh';
+  String get product_name => 'Bộ Đếm';
 
   @override
   String get product_desc => 'Sử dụng thị giác máy tính và trí tuệ nhân tạo để đếm người, phương tiện, thú cưng và nhiều đối tượng khác.';
@@ -499,4 +499,7 @@ class LocalizationVi extends Localization {
 
   @override
   String get back => 'Quay lại';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

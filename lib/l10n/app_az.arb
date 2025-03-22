@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Sayğac",
   "product_desc": "Kompüter görmə və süni intellektdən istifadə edərək insanları, nəqliyyat vasitələrini, ev heyvanlarını və digərlərini saymaq üçün.",
   "product_copyright": "Müəllif hüququ © 2025",
   "video_sources_webcam": "Veb-kamera",
@@ -162,5 +162,6 @@
   "yes": "Bəli",
   "no": "Xeyr",
   "close": "Bağlayın",
-  "back": "Geri"
+  "back": "Geri",
+  "settings_screen_detection_button": "MISSING"
 }

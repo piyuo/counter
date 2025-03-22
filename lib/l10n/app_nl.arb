@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Teller",
   "product_desc": "Computer vision en AI gebruiken om mensen, voertuigen, huisdieren en meer te tellen.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nee",
   "close": "Sluiten",
-  "back": "Terug"
+  "back": "Terug",
+  "settings_screen_detection_button": "MISSING"
 }

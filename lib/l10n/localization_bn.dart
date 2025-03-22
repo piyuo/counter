@@ -9,7 +9,7 @@ class LocalizationBn extends Localization {
   LocalizationBn([String locale = 'bn']) : super(locale);
 
   @override
-  String get product_name => 'ভিশন কাউন্টার';
+  String get product_name => 'কাউন্টার';
 
   @override
   String get product_desc => 'কম্পিউটার ভিশন এবং এআই ব্যবহার করে মানুষ, যানবাহন, পোষা প্রাণী এবং আরও অনেক কিছু গণনা করুন।';
@@ -499,6 +499,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get back => 'পিছনে';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Bengali Bangla, as used in India (`bn_IN`).
@@ -506,7 +509,7 @@ class LocalizationBnIn extends LocalizationBn {
   LocalizationBnIn(): super('bn_IN');
 
   @override
-  String get product_name => 'ভিশন কাউন্টার';
+  String get product_name => 'কাউন্টার';
 
   @override
   String get product_desc => 'কম্পিউটার ভিশন এবং এআই ব্যবহার করে মানুষ, যানবাহন, পোষা প্রাণী এবং আরও অনেক কিছু গণনা করুন।';
@@ -996,4 +999,7 @@ class LocalizationBnIn extends LocalizationBn {
 
   @override
   String get back => 'পিছনে';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

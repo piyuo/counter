@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Počítadlo",
   "product_desc": "Využívá počítačové vidění a umělou inteligenci k počítání osob, vozidel, domácích mazlíčků a dalších objektů.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Ano",
   "no": "Ne",
   "close": "Zavřít",
-  "back": "Zpět"
+  "back": "Zpět",
+  "settings_screen_detection_button": "MISSING"
 }

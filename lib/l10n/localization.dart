@@ -247,7 +247,7 @@ abstract class Localization {
   /// No description provided for @product_name.
   ///
   /// In en, this message translates to:
-  /// **'Vision Counter'**
+  /// **'Counter'**
   String get product_name;
 
   /// No description provided for @product_desc.
@@ -1227,6 +1227,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Back'**
   String get back;
+
+  /// No description provided for @settings_screen_detection_button.
+  ///
+  /// In en, this message translates to:
+  /// **'MISSING'**
+  String get settings_screen_detection_button;
 }
 
 class _LocalizationDelegate extends LocalizationsDelegate<Localization> {

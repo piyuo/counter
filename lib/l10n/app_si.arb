@@ -1,5 +1,5 @@
 {
-  "product_name": "දර්ශන ගණක",
+  "product_name": "ගණකය",
   "product_desc": "පරිගණක දර්ශනය සහ කෘතිම බුද්ධිය භාවිතා කරමින් මිනිසුන්, වාහන, සුරතල් සතුන් සහ තවත් දේ ගණනය කිරීම.",
   "product_copyright": "ප්‍රකාශන හිමිකම © 2025",
   "video_sources_webcam": "වෙබ්කැමරාව",
@@ -162,5 +162,6 @@
   "yes": "ඔව්",
   "no": "නැත",
   "close": "වසන්න",
-  "back": "ආපසු"
+  "back": "ආපසු",
+  "settings_screen_detection_button": "MISSING"
 }

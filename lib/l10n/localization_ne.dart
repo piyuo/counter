@@ -9,7 +9,7 @@ class LocalizationNe extends Localization {
   LocalizationNe([String locale = 'ne']) : super(locale);
 
   @override
-  String get product_name => 'भिजन काउन्टर';
+  String get product_name => 'काउन्टर';
 
   @override
   String get product_desc => 'कम्प्युटर भिजन र एआई प्रयोग गरेर मानिसहरू, सवारी साधनहरू, पालतु जनावरहरू, र अन्य कुराहरू गन्ने।';
@@ -499,4 +499,7 @@ class LocalizationNe extends Localization {
 
   @override
   String get back => 'पछाडि';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

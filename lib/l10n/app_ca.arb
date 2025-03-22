@@ -1,5 +1,5 @@
 {
-  "product_name": "Comptador de Visió",
+  "product_name": "Comptador",
   "product_desc": "Utilitza visió per ordinador i intel·ligència artificial per comptar persones, vehicles, mascotes i més.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Càmera web",
@@ -162,5 +162,6 @@
   "yes": "Sí",
   "no": "No",
   "close": "Tancar",
-  "back": "Tornar"
+  "back": "Tornar",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -9,7 +9,7 @@ class LocalizationNl extends Localization {
   LocalizationNl([String locale = 'nl']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Teller';
 
   @override
   String get product_desc => 'Computer vision en AI gebruiken om mensen, voertuigen, huisdieren en meer te tellen.';
@@ -499,6 +499,9 @@ class LocalizationNl extends Localization {
 
   @override
   String get back => 'Terug';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Dutch Flemish, as used in Belgium (`nl_BE`).
@@ -506,7 +509,7 @@ class LocalizationNlBe extends LocalizationNl {
   LocalizationNlBe(): super('nl_BE');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Teller';
 
   @override
   String get product_desc => 'Gebruik computervision en AI om mensen, voertuigen, huisdieren en meer te tellen.';
@@ -996,4 +999,7 @@ class LocalizationNlBe extends LocalizationNl {
 
   @override
   String get back => 'Terug';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

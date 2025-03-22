@@ -9,7 +9,7 @@ class LocalizationTe extends Localization {
   LocalizationTe([String locale = 'te']) : super(locale);
 
   @override
-  String get product_name => 'విజన్ కౌంటర్';
+  String get product_name => 'కౌంటర్';
 
   @override
   String get product_desc => 'కంప్యూటర్ విజన్ మరియు ఏఐని ఉపయోగించి వ్యక్తులను, వాహనాలను, పెంపుడు జంతువులను మరియు మరిన్నింటిని లెక్కించడానికి.';
@@ -499,4 +499,7 @@ class LocalizationTe extends Localization {
 
   @override
   String get back => 'వెనుకకు';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

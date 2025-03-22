@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Брояч",
   "product_desc": "Използване на компютърно зрение и изкуствен интелект за броене на хора, превозни средства, домашни любимци и други.",
   "product_copyright": "Авторско право © 2025",
   "video_sources_webcam": "Уеб камера",
@@ -162,5 +162,6 @@
   "yes": "Да",
   "no": "Не",
   "close": "Затваряне",
-  "back": "Назад"
+  "back": "Назад",
+  "settings_screen_detection_button": "MISSING"
 }

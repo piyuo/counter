@@ -9,7 +9,7 @@ class LocalizationSr extends Localization {
   LocalizationSr([String locale = 'sr']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Бројач';
 
   @override
   String get product_desc => 'Korišćenje računarskog vida i veštačke inteligencije za brojanje ljudi, vozila, kućnih ljubimaca i više.';
@@ -499,4 +499,7 @@ class LocalizationSr extends Localization {
 
   @override
   String get back => 'Nazad';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

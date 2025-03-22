@@ -1,5 +1,5 @@
 {
-  "product_name": "ビジョンカウンター",
+  "product_name": "カウンター",
   "product_desc": "コンピュータービジョンとAIを使用して、人、車両、ペットなどをカウントします。",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "ウェブカメラ",
@@ -162,5 +162,6 @@
   "yes": "はい",
   "no": "いいえ",
   "close": "閉じる",
-  "back": "戻る"
+  "back": "戻る",
+  "settings_screen_detection_button": "MISSING"
 }

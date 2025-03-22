@@ -1,5 +1,5 @@
 {
-  "product_name": "Jimartina Dîmenê",
+  "product_name": "Jimartin",
   "product_desc": "Bi dîtina kompiyûterê û teknolojiya jîrî hejmarkirina mirovan, wesayîtan, heywanên malî û gelek tiştên din.",
   "product_copyright": "Mafê çapê © 2025",
   "video_sources_webcam": "Kameraya webê",
@@ -162,5 +162,6 @@
   "yes": "Erê",
   "no": "Na",
   "close": "Bigire",
-  "back": "Paş"
+  "back": "Paş",
+  "settings_screen_detection_button": "MISSING"
 }

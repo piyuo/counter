@@ -9,7 +9,7 @@ class LocalizationSw extends Localization {
   LocalizationSw([String locale = 'sw']) : super(locale);
 
   @override
-  String get product_name => 'Kihesabu cha Picha';
+  String get product_name => 'Kihesabu';
 
   @override
   String get product_desc => 'Kutumia maono ya kompyuta na akili bandia kuhesabu watu, magari, wanyama vipenzi, na zaidi.';
@@ -499,4 +499,7 @@ class LocalizationSw extends Localization {
 
   @override
   String get back => 'Rudi';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

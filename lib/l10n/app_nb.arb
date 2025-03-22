@@ -1,5 +1,5 @@
 {
-  "product_name": "Visjonsteller",
+  "product_name": "Teller",
   "product_desc": "Bruk datamaskinsyn og kunstig intelligens for å telle mennesker, kjøretøy, kjæledyr og mer.",
   "product_copyright": "Opphavsrett © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nei",
   "close": "Lukk",
-  "back": "Tilbake"
+  "back": "Tilbake",
+  "settings_screen_detection_button": "MISSING"
 }

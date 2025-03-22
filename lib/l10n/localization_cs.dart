@@ -9,7 +9,7 @@ class LocalizationCs extends Localization {
   LocalizationCs([String locale = 'cs']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Počítadlo';
 
   @override
   String get product_desc => 'Využívá počítačové vidění a umělou inteligenci k počítání osob, vozidel, domácích mazlíčků a dalších objektů.';
@@ -499,4 +499,7 @@ class LocalizationCs extends Localization {
 
   @override
   String get back => 'Zpět';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

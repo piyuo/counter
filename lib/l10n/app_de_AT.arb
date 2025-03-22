@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Zähler",
   "product_desc": "Nutzt Computervision und KI, um Personen, Fahrzeuge, Haustiere und mehr zu zählen.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nein",
   "close": "Schließen",
-  "back": "Zurück"
+  "back": "Zurück",
+  "settings_screen_detection_button": "MISSING"
 }

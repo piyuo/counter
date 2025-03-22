@@ -1,5 +1,5 @@
 {
-  "product_name": "Licznik Wizyjny",
+  "product_name": "Licznik",
   "product_desc": "Wykorzystuje widzenie komputerowe i sztuczną inteligencję do liczenia osób, pojazdów, zwierząt i nie tylko.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Kamera internetowa",
@@ -162,5 +162,6 @@
   "yes": "Tak",
   "no": "Nie",
   "close": "Zamknij",
-  "back": "Wstecz"
+  "back": "Wstecz",
+  "settings_screen_detection_button": "MISSING"
 }

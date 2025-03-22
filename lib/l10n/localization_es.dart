@@ -9,7 +9,7 @@ class LocalizationEs extends Localization {
   LocalizationEs([String locale = 'es']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Usando visión artificial e IA para contar personas, vehículos, mascotas y más.';
@@ -499,6 +499,9 @@ class LocalizationEs extends Localization {
 
   @override
   String get back => 'Volver';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Spanish Castilian, as used in Argentina (`es_AR`).
@@ -506,7 +509,7 @@ class LocalizationEsAr extends LocalizationEs {
   LocalizationEsAr(): super('es_AR');
 
   @override
-  String get product_name => 'Contador de Visión';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Usa visión por computadora e inteligencia artificial para contar personas, vehículos, mascotas y más.';
@@ -996,6 +999,9 @@ class LocalizationEsAr extends LocalizationEs {
 
   @override
   String get back => 'Volver';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Spanish Castilian, as used in Colombia (`es_CO`).
@@ -1003,7 +1009,7 @@ class LocalizationEsCo extends LocalizationEs {
   LocalizationEsCo(): super('es_CO');
 
   @override
-  String get product_name => 'Contador de Visión';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Utiliza visión por computadora e inteligencia artificial para contar personas, vehículos, mascotas y más.';
@@ -1493,6 +1499,9 @@ class LocalizationEsCo extends LocalizationEs {
 
   @override
   String get back => 'Atrás';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -1500,7 +1509,7 @@ class LocalizationEsMx extends LocalizationEs {
   LocalizationEsMx(): super('es_MX');
 
   @override
-  String get product_name => 'Contador de Visión';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Usa visión computacional e inteligencia artificial para contar personas, vehículos, mascotas y más.';
@@ -1990,4 +1999,7 @@ class LocalizationEsMx extends LocalizationEs {
 
   @override
   String get back => 'Regresar';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

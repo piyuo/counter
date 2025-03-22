@@ -9,7 +9,7 @@ class LocalizationPs extends Localization {
   LocalizationPs([String locale = 'ps']) : super(locale);
 
   @override
-  String get product_name => 'د لید شمیرونکی';
+  String get product_name => 'شمیرونکی';
 
   @override
   String get product_desc => 'د خلکو، موټرو، څارویو او نورو د شمېرلو لپاره د کمپیوټر لید او مصنوعي هوش کارول.';
@@ -499,4 +499,7 @@ class LocalizationPs extends Localization {
 
   @override
   String get back => 'شاته';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

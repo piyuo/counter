@@ -1,5 +1,5 @@
 {
-  "product_name": "विज़न काउंटर",
+  "product_name": "काउंटर",
   "product_desc": "कंप्यूटर विज़न और एआई का उपयोग करके लोगों, वाहनों, पालतू जानवरों और अन्य चीज़ों की गिनती करें।",
   "product_copyright": "कॉपीराइट © 2025",
   "video_sources_webcam": "वेबकैम",
@@ -162,5 +162,6 @@
   "yes": "हां",
   "no": "नहीं",
   "close": "बंद करें",
-  "back": "वापस"
+  "back": "वापस",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Visioonilugeja",
+  "product_name": "Loendur",
   "product_desc": "Arvutinägemise ja tehisintellekti abil inimeste, sõidukite, lemmikloomade ja muu loendamine.",
   "product_copyright": "Autoriõigus © 2025",
   "video_sources_webcam": "Veebikaamera",
@@ -162,5 +162,6 @@
   "yes": "Jah",
   "no": "Ei",
   "close": "Sulge",
-  "back": "Tagasi"
+  "back": "Tagasi",
+  "settings_screen_detection_button": "MISSING"
 }

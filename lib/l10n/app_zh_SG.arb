@@ -1,5 +1,5 @@
 {
-  "product_name": "视觉计数器",
+  "product_name": "计数器",
   "product_desc": "使用计算机视觉和人工智能来计数人员、车辆、宠物等。",
   "product_copyright": "版权所有 © 2025",
   "video_sources_webcam": "网络摄像头",
@@ -107,7 +107,7 @@
   "video_screen_add_point": "向当前区域添加点",
   "video_screen_remove_point": "从当前区域移除点",
   "video_screen_playback_speed": "播放速度",
-  "video_screen_playback_current": "当前: ",
+  "video_screen_playback_current": "当前:",
   "video_screen_playback_14x": "1/4倍速",
   "video_screen_playback_2x": "2倍速",
   "video_screen_delete_header": "删除此视频源",
@@ -162,5 +162,6 @@
   "yes": "是",
   "no": "否",
   "close": "关闭",
-  "back": "返回"
+  "back": "返回",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -9,7 +9,7 @@ class LocalizationAf extends Localization {
   LocalizationAf([String locale = 'af']) : super(locale);
 
   @override
-  String get product_name => 'Visie Teller';
+  String get product_name => 'Teller';
 
   @override
   String get product_desc => 'Gebruik rekenaarsigbaarheid en KI om mense, voertuie, troeteldiere en meer te tel.';
@@ -499,4 +499,7 @@ class LocalizationAf extends Localization {
 
   @override
   String get back => 'Terug';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

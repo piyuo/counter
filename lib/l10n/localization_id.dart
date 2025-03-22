@@ -9,7 +9,7 @@ class LocalizationId extends Localization {
   LocalizationId([String locale = 'id']) : super(locale);
 
   @override
-  String get product_name => 'Penghitung Visi';
+  String get product_name => 'Penghitung';
 
   @override
   String get product_desc => 'Menggunakan visi komputer dan kecerdasan buatan untuk menghitung orang, kendaraan, hewan peliharaan, dan lainnya.';
@@ -499,4 +499,7 @@ class LocalizationId extends Localization {
 
   @override
   String get back => 'Kembali';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

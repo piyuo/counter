@@ -9,7 +9,7 @@ class LocalizationKo extends Localization {
   LocalizationKo([String locale = 'ko']) : super(locale);
 
   @override
-  String get product_name => '비전 카운터';
+  String get product_name => '카운터';
 
   @override
   String get product_desc => '컴퓨터 비전과 AI를 사용하여 사람, 차량, 반려동물 등을 카운팅합니다.';
@@ -499,4 +499,7 @@ class LocalizationKo extends Localization {
 
   @override
   String get back => '뒤로';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

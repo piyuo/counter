@@ -9,7 +9,7 @@ class LocalizationHa extends Localization {
   LocalizationHa([String locale = 'ha']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Maƙidaya';
 
   @override
   String get product_desc => 'Yana amfani da gani na kwamfuta da na\'urar AI don ƙirga mutane, motoci, dabbobi, da ƙari.';
@@ -499,4 +499,7 @@ class LocalizationHa extends Localization {
 
   @override
   String get back => 'Koma';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

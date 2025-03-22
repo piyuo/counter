@@ -1,5 +1,5 @@
 {
-  "product_name": "د لید شمیرونکی",
+  "product_name": "شمیرونکی",
   "product_desc": "د خلکو، موټرو، څارویو او نورو د شمېرلو لپاره د کمپیوټر لید او مصنوعي هوش کارول.",
   "product_copyright": "د چاپ حق © ۲۰۲۵",
   "video_sources_webcam": "ویب کیمره",
@@ -162,5 +162,6 @@
   "yes": "هو",
   "no": "نه",
   "close": "تړل",
-  "back": "شاته"
+  "back": "شاته",
+  "settings_screen_detection_button": "MISSING"
 }

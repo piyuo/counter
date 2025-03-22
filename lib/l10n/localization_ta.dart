@@ -9,7 +9,7 @@ class LocalizationTa extends Localization {
   LocalizationTa([String locale = 'ta']) : super(locale);
 
   @override
-  String get product_name => 'காட்சி எண்ணிக்கை';
+  String get product_name => 'எண்ணிக்கை';
 
   @override
   String get product_desc => 'கணினி பார்வை மற்றும் செயற்கை நுண்ணறிவைப் பயன்படுத்தி மக்கள், வாகனங்கள், செல்லப்பிராணிகள் மற்றும் பலவற்றை எண்ணுதல்.';
@@ -499,4 +499,7 @@ class LocalizationTa extends Localization {
 
   @override
   String get back => 'பின்செல்';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

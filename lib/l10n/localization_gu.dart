@@ -9,7 +9,7 @@ class LocalizationGu extends Localization {
   LocalizationGu([String locale = 'gu']) : super(locale);
 
   @override
-  String get product_name => 'વિઝન કાઉન્ટર';
+  String get product_name => 'કાઉન્ટર';
 
   @override
   String get product_desc => 'કમ્પ્યુટર વિઝન અને AI નો ઉપયોગ કરીને લોકો, વાહનો, પાલતુ પ્રાણીઓ અને વધુની ગણતરી કરો.';
@@ -499,4 +499,7 @@ class LocalizationGu extends Localization {
 
   @override
   String get back => 'પાછળ';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Bộ Đếm Hình Ảnh",
+  "product_name": "Bộ Đếm",
   "product_desc": "Sử dụng thị giác máy tính và trí tuệ nhân tạo để đếm người, phương tiện, thú cưng và nhiều đối tượng khác.",
   "product_copyright": "Bản quyền © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Có",
   "no": "Không",
   "close": "Đóng",
-  "back": "Quay lại"
+  "back": "Quay lại",
+  "settings_screen_detection_button": "MISSING"
 }

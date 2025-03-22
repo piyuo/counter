@@ -9,7 +9,7 @@ class LocalizationTr extends Localization {
   LocalizationTr([String locale = 'tr']) : super(locale);
 
   @override
-  String get product_name => 'Görüntü Sayacı';
+  String get product_name => 'Sayaç';
 
   @override
   String get product_desc => 'Bilgisayarlı görü ve yapay zeka kullanarak insan, araç, evcil hayvan ve daha fazlasını sayın.';
@@ -499,4 +499,7 @@ class LocalizationTr extends Localization {
 
   @override
   String get back => 'Geri';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

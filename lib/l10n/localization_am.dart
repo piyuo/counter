@@ -9,7 +9,7 @@ class LocalizationAm extends Localization {
   LocalizationAm([String locale = 'am']) : super(locale);
 
   @override
-  String get product_name => 'Տեսողական Հաշվիչ';
+  String get product_name => 'ቆጣሪ';
 
   @override
   String get product_desc => 'Համակարգչային տեսողության և արհեստական բանականության միջոցով հաշվել մարդկանց, տրանսպորտային միջոցները, կենդանիներին և այլն։';
@@ -499,4 +499,7 @@ class LocalizationAm extends Localization {
 
   @override
   String get back => 'Հետ';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

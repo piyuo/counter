@@ -9,7 +9,7 @@ class LocalizationEl extends Localization {
   LocalizationEl([String locale = 'el']) : super(locale);
 
   @override
-  String get product_name => 'Μετρητής Όρασης';
+  String get product_name => 'Μετρητής';
 
   @override
   String get product_desc => 'Χρησιμοποιεί υπολογιστική όραση και τεχνητή νοημοσύνη για να μετρά ανθρώπους, οχήματα, κατοικίδια και άλλα.';
@@ -499,4 +499,7 @@ class LocalizationEl extends Localization {
 
   @override
   String get back => 'Πίσω';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

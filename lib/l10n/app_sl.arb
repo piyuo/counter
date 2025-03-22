@@ -1,5 +1,5 @@
 {
-  "product_name": "Števec vizij",
+  "product_name": "Števec",
   "product_desc": "Uporaba računalniškega vida in umetne inteligence za štetje ljudi, vozil, hišnih ljubljenčkov in več.",
   "product_copyright": "Avtorske pravice © 2025",
   "video_sources_webcam": "Spletna kamera",
@@ -162,5 +162,6 @@
   "yes": "Da",
   "no": "Ne",
   "close": "Zapri",
-  "back": "Nazaj"
+  "back": "Nazaj",
+  "settings_screen_detection_button": "MISSING"
 }

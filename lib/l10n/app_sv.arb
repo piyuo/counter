@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Räknare",
   "product_desc": "Använder datorseende och AI för att räkna personer, fordon, husdjur och mer.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webbkamera",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nej",
   "close": "Stäng",
-  "back": "Tillbaka"
+  "back": "Tillbaka",
+  "settings_screen_detection_button": "MISSING"
 }

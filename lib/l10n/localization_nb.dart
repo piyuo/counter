@@ -9,7 +9,7 @@ class LocalizationNb extends Localization {
   LocalizationNb([String locale = 'nb']) : super(locale);
 
   @override
-  String get product_name => 'Visjonsteller';
+  String get product_name => 'Teller';
 
   @override
   String get product_desc => 'Bruk datamaskinsyn og kunstig intelligens for å telle mennesker, kjøretøy, kjæledyr og mer.';
@@ -499,4 +499,7 @@ class LocalizationNb extends Localization {
 
   @override
   String get back => 'Tilbake';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

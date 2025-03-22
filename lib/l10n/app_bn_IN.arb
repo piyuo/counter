@@ -1,5 +1,5 @@
 {
-  "product_name": "ভিশন কাউন্টার",
+  "product_name": "কাউন্টার",
   "product_desc": "কম্পিউটার ভিশন এবং এআই ব্যবহার করে মানুষ, যানবাহন, পোষা প্রাণী এবং আরও অনেক কিছু গণনা করুন।",
   "product_copyright": "কপিরাইট © ২০২৫",
   "video_sources_webcam": "ওয়েবক্যাম",
@@ -162,5 +162,6 @@
   "yes": "হ্যাঁ",
   "no": "না",
   "close": "বন্ধ করুন",
-  "back": "পিছনে"
+  "back": "পিছনে",
+  "settings_screen_detection_button": "MISSING"
 }

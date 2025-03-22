@@ -9,7 +9,7 @@ class LocalizationDa extends Localization {
   LocalizationDa([String locale = 'da']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Tæller';
 
   @override
   String get product_desc => 'Bruger computer vision og AI til at tælle personer, køretøjer, kæledyr og mere.';
@@ -499,4 +499,7 @@ class LocalizationDa extends Localization {
 
   @override
   String get back => 'Tilbage';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

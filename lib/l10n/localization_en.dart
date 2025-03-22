@@ -9,7 +9,7 @@ class LocalizationEn extends Localization {
   LocalizationEn([String locale = 'en']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Counter';
 
   @override
   String get product_desc => 'Using computer vision and ai to count people, vehicles, pets, and more.';
@@ -499,6 +499,9 @@ class LocalizationEn extends Localization {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for English, as used in Australia (`en_AU`).
@@ -506,7 +509,7 @@ class LocalizationEnAu extends LocalizationEn {
   LocalizationEnAu(): super('en_AU');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Counter';
 
   @override
   String get product_desc => 'Using computer vision and AI to count people, vehicles, pets, and more.';
@@ -996,6 +999,9 @@ class LocalizationEnAu extends LocalizationEn {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for English, as used in Canada (`en_CA`).
@@ -1003,7 +1009,7 @@ class LocalizationEnCa extends LocalizationEn {
   LocalizationEnCa(): super('en_CA');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Counter';
 
   @override
   String get product_desc => 'Using computer vision and AI to count people, vehicles, pets, and more.';
@@ -1493,6 +1499,9 @@ class LocalizationEnCa extends LocalizationEn {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -1500,7 +1509,7 @@ class LocalizationEnGb extends LocalizationEn {
   LocalizationEnGb(): super('en_GB');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Counter';
 
   @override
   String get product_desc => 'Using computer vision and AI to count people, vehicles, pets, and more.';
@@ -1990,6 +1999,9 @@ class LocalizationEnGb extends LocalizationEn {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for English, as used in India (`en_IN`).
@@ -1997,7 +2009,7 @@ class LocalizationEnIn extends LocalizationEn {
   LocalizationEnIn(): super('en_IN');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Counter';
 
   @override
   String get product_desc => 'Using computer vision and AI to count people, vehicles, pets, and more.';
@@ -2487,4 +2499,7 @@ class LocalizationEnIn extends LocalizationEn {
 
   @override
   String get back => 'Back';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

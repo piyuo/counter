@@ -9,7 +9,7 @@ class LocalizationKk extends Localization {
   LocalizationKk([String locale = 'kk']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Санауыш';
 
   @override
   String get product_desc => 'Компьютерлік көру және жасанды интеллект арқылы адамдарды, көліктерді, үй жануарларын және т.б. санау.';
@@ -499,4 +499,7 @@ class LocalizationKk extends Localization {
 
   @override
   String get back => 'Артқа';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -9,7 +9,7 @@ class LocalizationAz extends Localization {
   LocalizationAz([String locale = 'az']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Sayğac';
 
   @override
   String get product_desc => 'Kompüter görmə və süni intellektdən istifadə edərək insanları, nəqliyyat vasitələrini, ev heyvanlarını və digərlərini saymaq üçün.';
@@ -499,4 +499,7 @@ class LocalizationAz extends Localization {
 
   @override
   String get back => 'Geri';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

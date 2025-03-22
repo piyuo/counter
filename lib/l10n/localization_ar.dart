@@ -9,7 +9,7 @@ class LocalizationAr extends Localization {
   LocalizationAr([String locale = 'ar']) : super(locale);
 
   @override
-  String get product_name => 'عداد الرؤية';
+  String get product_name => 'عداد';
 
   @override
   String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
@@ -499,6 +499,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get back => 'رجوع';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Arabic, as used in the United Arab Emirates (`ar_AE`).
@@ -506,7 +509,7 @@ class LocalizationArAe extends LocalizationAr {
   LocalizationArAe(): super('ar_AE');
 
   @override
-  String get product_name => 'عداد الرؤية';
+  String get product_name => 'عداد';
 
   @override
   String get product_desc => 'استخدام رؤية الكمبيوتر والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
@@ -996,6 +999,9 @@ class LocalizationArAe extends LocalizationAr {
 
   @override
   String get back => 'رجوع';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Arabic, as used in Algeria (`ar_DZ`).
@@ -1003,7 +1009,7 @@ class LocalizationArDz extends LocalizationAr {
   LocalizationArDz(): super('ar_DZ');
 
   @override
-  String get product_name => 'عداد الرؤية';
+  String get product_name => 'عداد';
 
   @override
   String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
@@ -1493,6 +1499,9 @@ class LocalizationArDz extends LocalizationAr {
 
   @override
   String get back => 'رجوع';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -1500,7 +1509,7 @@ class LocalizationArEg extends LocalizationAr {
   LocalizationArEg(): super('ar_EG');
 
   @override
-  String get product_name => 'عداد الرؤية';
+  String get product_name => 'عداد';
 
   @override
   String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
@@ -1990,4 +1999,7 @@ class LocalizationArEg extends LocalizationAr {
 
   @override
   String get back => 'رجوع';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

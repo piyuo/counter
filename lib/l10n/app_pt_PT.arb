@@ -1,5 +1,5 @@
 {
-  "product_name": "Contador de Visão",
+  "product_name": "Contador",
   "product_desc": "Utilização de visão computacional e IA para contar pessoas, veículos, animais de estimação e mais.",
   "product_copyright": "Direitos de Autor © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Sim",
   "no": "Não",
   "close": "Fechar",
-  "back": "Voltar"
+  "back": "Voltar",
+  "settings_screen_detection_button": "MISSING"
 }

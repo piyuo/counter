@@ -9,7 +9,7 @@ class LocalizationUz extends Localization {
   LocalizationUz([String locale = 'uz']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Hisoblagich';
 
   @override
   String get product_desc => 'Kompyuter ko\'rishi va sun\'iy intellekt yordamida odamlar, transport vositalari, uy hayvonlari va boshqalarni hisoblash.';
@@ -499,4 +499,7 @@ class LocalizationUz extends Localization {
 
   @override
   String get back => 'Orqaga';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Tæller",
   "product_desc": "Bruger computer vision og AI til at tælle personer, køretøjer, kæledyr og mere.",
   "product_copyright": "Ophavsret © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nej",
   "close": "Luk",
-  "back": "Tilbage"
+  "back": "Tilbage",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Motángi",
   "product_desc": "Kosalela vision ya ordinatɛrɛ ná AI mpo na kotánga bato, mituka, banyama ya ndako, ná bisusu.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Kamera ya internet",
@@ -162,5 +162,6 @@
   "yes": "Iyo",
   "no": "Te",
   "close": "Kanga",
-  "back": "Zonga"
+  "back": "Zonga",
+  "settings_screen_detection_button": "MISSING"
 }

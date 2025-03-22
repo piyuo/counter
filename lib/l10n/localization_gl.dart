@@ -9,7 +9,7 @@ class LocalizationGl extends Localization {
   LocalizationGl([String locale = 'gl']) : super(locale);
 
   @override
-  String get product_name => 'Contador de Visión';
+  String get product_name => 'Contador';
 
   @override
   String get product_desc => 'Usa visión por computador e intelixencia artificial para contar persoas, vehículos, mascotas e moito máis.';
@@ -499,4 +499,7 @@ class LocalizationGl extends Localization {
 
   @override
   String get back => 'Volver';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

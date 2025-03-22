@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Muverengeri",
   "product_desc": "Kushandisa maonero ekomupiyuta neAI kuverenga vanhu, mota, zvipfuwo, nezvimwe.",
   "product_copyright": "Kodzero © 2025",
   "video_sources_webcam": "Kamira yewebhu",
@@ -162,5 +162,6 @@
   "yes": "Hongu",
   "no": "Kwete",
   "close": "Vhara",
-  "back": "Dzokera"
+  "back": "Dzokera",
+  "settings_screen_detection_button": "MISSING"
 }

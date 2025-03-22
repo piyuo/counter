@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Brojač",
   "product_desc": "Korištenje računalnog vida i umjetne inteligencije za brojanje ljudi, vozila, kućnih ljubimaca i više.",
   "product_copyright": "Autorska prava © 2025",
   "video_sources_webcam": "Web kamera",
@@ -162,5 +162,6 @@
   "yes": "Da",
   "no": "Ne",
   "close": "Zatvori",
-  "back": "Natrag"
+  "back": "Natrag",
+  "settings_screen_detection_button": "MISSING"
 }

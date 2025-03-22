@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Hisoblagich",
   "product_desc": "Kompyuter ko'rishi va sun'iy intellekt yordamida odamlar, transport vositalari, uy hayvonlari va boshqalarni hisoblash.",
   "product_copyright": "Mualliflik huquqi © 2025",
   "video_sources_webcam": "Veb-kamera",
@@ -162,5 +162,6 @@
   "yes": "Ha",
   "no": "Yo'q",
   "close": "Yopish",
-  "back": "Orqaga"
+  "back": "Orqaga",
+  "settings_screen_detection_button": "MISSING"
 }

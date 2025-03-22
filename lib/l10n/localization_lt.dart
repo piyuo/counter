@@ -9,7 +9,7 @@ class LocalizationLt extends Localization {
   LocalizationLt([String locale = 'lt']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Skaitiklis';
 
   @override
   String get product_desc => 'Naudojant kompiuterinę viziją ir dirbtinį intelektą skaičiuoti žmones, transporto priemones, gyvūnus ir daugiau.';
@@ -499,4 +499,7 @@ class LocalizationLt extends Localization {
 
   @override
   String get back => 'Atgal';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

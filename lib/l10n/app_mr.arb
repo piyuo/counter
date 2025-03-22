@@ -1,5 +1,5 @@
 {
-  "product_name": "व्हिजन काउंटर",
+  "product_name": "काउंटर",
   "product_desc": "कंप्युटर व्हिजन आणि एआय वापरून लोक, वाहने, पाळीव प्राणी आणि इतर गोष्टींची मोजणी करा.",
   "product_copyright": "कॉपीराइट © 2025",
   "video_sources_webcam": "वेबकॅम",
@@ -162,5 +162,6 @@
   "yes": "होय",
   "no": "नाही",
   "close": "बंद करा",
-  "back": "मागे"
+  "back": "मागे",
+  "settings_screen_detection_button": "MISSING"
 }

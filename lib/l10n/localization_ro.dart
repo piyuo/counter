@@ -9,7 +9,7 @@ class LocalizationRo extends Localization {
   LocalizationRo([String locale = 'ro']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Contor';
 
   @override
   String get product_desc => 'Folosește viziunea computerizată și inteligența artificială pentru a număra persoane, vehicule, animale de companie și multe altele.';
@@ -499,4 +499,7 @@ class LocalizationRo extends Localization {
 
   @override
   String get back => 'Înapoi';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Visie Teller",
+  "product_name": "Teller",
   "product_desc": "Gebruik rekenaarsigbaarheid en KI om mense, voertuie, troeteldiere en meer te tel.",
   "product_copyright": "Kopiereg © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nee",
   "close": "Sluit",
-  "back": "Terug"
+  "back": "Terug",
+  "settings_screen_detection_button": "MISSING"
 }

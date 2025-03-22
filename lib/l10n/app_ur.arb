@@ -1,5 +1,5 @@
 {
-  "product_name": "وژن کاؤنٹر",
+  "product_name": "کاؤنٹر",
   "product_desc": "کمپیوٹر وژن اور مصنوعی ذہانت کا استعمال کرتے ہوئے لوگوں، گاڑیوں، پالتو جانوروں، اور مزید کو گنتی کرنا۔",
   "product_copyright": "کاپی رائٹ © 2025",
   "video_sources_webcam": "ویب کیم",
@@ -162,5 +162,6 @@
   "yes": "ہاں",
   "no": "نہیں",
   "close": "بند کریں",
-  "back": "واپس"
+  "back": "واپس",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -9,7 +9,7 @@ class LocalizationJa extends Localization {
   LocalizationJa([String locale = 'ja']) : super(locale);
 
   @override
-  String get product_name => 'ビジョンカウンター';
+  String get product_name => 'カウンター';
 
   @override
   String get product_desc => 'コンピュータービジョンとAIを使用して、人、車両、ペットなどをカウントします。';
@@ -499,4 +499,7 @@ class LocalizationJa extends Localization {
 
   @override
   String get back => '戻る';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

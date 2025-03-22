@@ -9,7 +9,7 @@ class LocalizationFa extends Localization {
   LocalizationFa([String locale = 'fa']) : super(locale);
 
   @override
-  String get product_name => 'شمارنده تصویری';
+  String get product_name => 'شمارنده';
 
   @override
   String get product_desc => 'با استفاده از بینایی کامپیوتری و هوش مصنوعی برای شمارش افراد، وسایل نقلیه، حیوانات خانگی و موارد دیگر.';
@@ -499,4 +499,7 @@ class LocalizationFa extends Localization {
 
   @override
   String get back => 'بازگشت';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

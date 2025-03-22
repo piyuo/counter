@@ -1,5 +1,5 @@
 {
-  "product_name": "Látásérzékelő Számláló",
+  "product_name": "Számláló",
   "product_desc": "Számoljon embereket, járműveket, háziállatokat és egyebeket számítógépes látás és mesterséges intelligencia segítségével.",
   "product_copyright": "Szerzői jog © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Igen",
   "no": "Nem",
   "close": "Bezárás",
-  "back": "Vissza"
+  "back": "Vissza",
+  "settings_screen_detection_button": "MISSING"
 }

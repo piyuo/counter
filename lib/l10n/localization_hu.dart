@@ -9,7 +9,7 @@ class LocalizationHu extends Localization {
   LocalizationHu([String locale = 'hu']) : super(locale);
 
   @override
-  String get product_name => 'Látásérzékelő Számláló';
+  String get product_name => 'Számláló';
 
   @override
   String get product_desc => 'Számoljon embereket, járműveket, háziállatokat és egyebeket számítógépes látás és mesterséges intelligencia segítségével.';
@@ -499,4 +499,7 @@ class LocalizationHu extends Localization {
 
   @override
   String get back => 'Vissza';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Μετρητής Όρασης",
+  "product_name": "Μετρητής",
   "product_desc": "Χρησιμοποιεί υπολογιστική όραση και τεχνητή νοημοσύνη για να μετρά ανθρώπους, οχήματα, κατοικίδια και άλλα.",
   "product_copyright": "Πνευματικά δικαιώματα © 2025",
   "video_sources_webcam": "Κάμερα web",
@@ -162,5 +162,6 @@
   "yes": "Ναι",
   "no": "Όχι",
   "close": "Κλείσιμο",
-  "back": "Πίσω"
+  "back": "Πίσω",
+  "settings_screen_detection_button": "MISSING"
 }

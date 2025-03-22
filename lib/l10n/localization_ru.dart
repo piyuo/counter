@@ -9,7 +9,7 @@ class LocalizationRu extends Localization {
   LocalizationRu([String locale = 'ru']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Счетчик';
 
   @override
   String get product_desc => 'Использование компьютерного зрения и ИИ для подсчета людей, транспортных средств, животных и многого другого.';
@@ -499,6 +499,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get back => 'Назад';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Russian, as used in Kazakhstan (`ru_KZ`).
@@ -506,7 +509,7 @@ class LocalizationRuKz extends LocalizationRu {
   LocalizationRuKz(): super('ru_KZ');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Счетчик';
 
   @override
   String get product_desc => 'Подсчет людей, транспортных средств, домашних животных и многого другого с помощью компьютерного зрения и искусственного интеллекта.';
@@ -996,6 +999,9 @@ class LocalizationRuKz extends LocalizationRu {
 
   @override
   String get back => 'Назад';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Russian, as used in Ukraine (`ru_UA`).
@@ -1003,7 +1009,7 @@ class LocalizationRuUa extends LocalizationRu {
   LocalizationRuUa(): super('ru_UA');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Лічильник';
 
   @override
   String get product_desc => 'Использование компьютерного зрения и ИИ для подсчета людей, транспортных средств, домашних животных и многого другого.';
@@ -1493,4 +1499,7 @@ class LocalizationRuUa extends LocalizationRu {
 
   @override
   String get back => 'Назад';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Счетчик",
   "product_desc": "Использование компьютерного зрения и ИИ для подсчета людей, транспортных средств, животных и многого другого.",
   "product_copyright": "Авторские права © 2025",
   "video_sources_webcam": "Веб-камера",
@@ -162,5 +162,6 @@
   "yes": "Да",
   "no": "Нет",
   "close": "Закрыть",
-  "back": "Назад"
+  "back": "Назад",
+  "settings_screen_detection_button": "MISSING"
 }

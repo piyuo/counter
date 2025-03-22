@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Counter",
   "product_desc": "Gumagamit ng computer vision at AI para mag-bilang ng tao, sasakyan, alagang hayop, at iba pa.",
   "product_copyright": "Karapatang-ari © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Oo",
   "no": "Hindi",
   "close": "Isara",
-  "back": "Bumalik"
+  "back": "Bumalik",
+  "settings_screen_detection_button": "MISSING"
 }

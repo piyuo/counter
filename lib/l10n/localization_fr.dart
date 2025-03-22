@@ -9,7 +9,7 @@ class LocalizationFr extends Localization {
   LocalizationFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Compteur';
 
   @override
   String get product_desc => 'Utilisation de la vision par ordinateur et de l\'IA pour compter les personnes, véhicules, animaux et plus encore.';
@@ -499,6 +499,9 @@ class LocalizationFr extends Localization {
 
   @override
   String get back => 'Retour';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for French, as used in Belgium (`fr_BE`).
@@ -506,7 +509,7 @@ class LocalizationFrBe extends LocalizationFr {
   LocalizationFrBe(): super('fr_BE');
 
   @override
-  String get product_name => 'Compteur de Vision';
+  String get product_name => 'Compteur';
 
   @override
   String get product_desc => 'Utilisez la vision par ordinateur et l\'IA pour compter les personnes, les véhicules, les animaux et plus encore.';
@@ -996,6 +999,9 @@ class LocalizationFrBe extends LocalizationFr {
 
   @override
   String get back => 'Retour';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for French, as used in Canada (`fr_CA`).
@@ -1003,7 +1009,7 @@ class LocalizationFrCa extends LocalizationFr {
   LocalizationFrCa(): super('fr_CA');
 
   @override
-  String get product_name => 'Compteur Vision';
+  String get product_name => 'Compteur';
 
   @override
   String get product_desc => 'Utilisez la vision par ordinateur et l\'IA pour compter les personnes, véhicules, animaux et plus encore.';
@@ -1493,6 +1499,9 @@ class LocalizationFrCa extends LocalizationFr {
 
   @override
   String get back => 'Retour';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for French, as used in Switzerland (`fr_CH`).
@@ -1500,7 +1509,7 @@ class LocalizationFrCh extends LocalizationFr {
   LocalizationFrCh(): super('fr_CH');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Compteur';
 
   @override
   String get product_desc => 'Utilise la vision par ordinateur et l\'IA pour compter les personnes, véhicules, animaux et plus encore.';
@@ -1990,4 +1999,7 @@ class LocalizationFrCh extends LocalizationFr {
 
   @override
   String get back => 'Retour';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

@@ -9,7 +9,7 @@ class LocalizationBg extends Localization {
   LocalizationBg([String locale = 'bg']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Брояч';
 
   @override
   String get product_desc => 'Използване на компютърно зрение и изкуствен интелект за броене на хора, превозни средства, домашни любимци и други.';
@@ -499,4 +499,7 @@ class LocalizationBg extends Localization {
 
   @override
   String get back => 'Назад';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

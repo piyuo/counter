@@ -1,5 +1,5 @@
 {
-  "product_name": "影像计数器",
+  "product_name": "计数器",
   "product_desc": "使用计算机视觉和人工智能来计数人员、车辆、宠物等。",
   "product_copyright": "版权所有 © 2025",
   "video_sources_webcam": "网络摄像头",
@@ -162,5 +162,6 @@
   "yes": "是",
   "no": "否",
   "close": "关闭",
-  "back": "返回"
+  "back": "返回",
+  "settings_screen_detection_button": "MISSING"
 }

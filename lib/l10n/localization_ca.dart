@@ -9,7 +9,7 @@ class LocalizationCa extends Localization {
   LocalizationCa([String locale = 'ca']) : super(locale);
 
   @override
-  String get product_name => 'Comptador de Visió';
+  String get product_name => 'Comptador';
 
   @override
   String get product_desc => 'Utilitza visió per ordinador i intel·ligència artificial per comptar persones, vehicles, mascotes i més.';
@@ -499,4 +499,7 @@ class LocalizationCa extends Localization {
 
   @override
   String get back => 'Tornar';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

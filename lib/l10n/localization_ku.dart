@@ -9,7 +9,7 @@ class LocalizationKu extends Localization {
   LocalizationKu([String locale = 'ku']) : super(locale);
 
   @override
-  String get product_name => 'Jimartina Dîmenê';
+  String get product_name => 'Jimartin';
 
   @override
   String get product_desc => 'Bi dîtina kompiyûterê û teknolojiya jîrî hejmarkirina mirovan, wesayîtan, heywanên malî û gelek tiştên din.';
@@ -499,4 +499,7 @@ class LocalizationKu extends Localization {
 
   @override
   String get back => 'Paş';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

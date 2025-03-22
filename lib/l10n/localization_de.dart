@@ -9,7 +9,7 @@ class LocalizationDe extends Localization {
   LocalizationDe([String locale = 'de']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Zähler';
 
   @override
   String get product_desc => 'Nutzung von Computer Vision und KI zum Zählen von Personen, Fahrzeugen, Haustieren und mehr.';
@@ -499,6 +499,9 @@ class LocalizationDe extends Localization {
 
   @override
   String get back => 'Zurück';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for German, as used in Austria (`de_AT`).
@@ -506,7 +509,7 @@ class LocalizationDeAt extends LocalizationDe {
   LocalizationDeAt(): super('de_AT');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Zähler';
 
   @override
   String get product_desc => 'Nutzt Computervision und KI, um Personen, Fahrzeuge, Haustiere und mehr zu zählen.';
@@ -996,6 +999,9 @@ class LocalizationDeAt extends LocalizationDe {
 
   @override
   String get back => 'Zurück';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for German, as used in Switzerland (`de_CH`).
@@ -1003,7 +1009,7 @@ class LocalizationDeCh extends LocalizationDe {
   LocalizationDeCh(): super('de_CH');
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Zähler';
 
   @override
   String get product_desc => 'Verwendet Computervision und KI, um Personen, Fahrzeuge, Haustiere und mehr zu zählen.';
@@ -1493,4 +1499,7 @@ class LocalizationDeCh extends LocalizationDe {
 
   @override
   String get back => 'Zurück';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

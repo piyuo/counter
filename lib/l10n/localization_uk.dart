@@ -9,7 +9,7 @@ class LocalizationUk extends Localization {
   LocalizationUk([String locale = 'uk']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Лічильник';
 
   @override
   String get product_desc => 'Використання комп\'ютерного зору та штучного інтелекту для підрахунку людей, транспортних засобів, домашніх тварин та іншого.';
@@ -499,4 +499,7 @@ class LocalizationUk extends Localization {
 
   @override
   String get back => 'Назад';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

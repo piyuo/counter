@@ -9,7 +9,7 @@ class LocalizationMs extends Localization {
   LocalizationMs([String locale = 'ms']) : super(locale);
 
   @override
-  String get product_name => 'Pengira Imej';
+  String get product_name => 'Pengira';
 
   @override
   String get product_desc => 'Menggunakan penglihatan komputer dan kecerdasan buatan untuk mengira orang, kenderaan, haiwan peliharaan, dan banyak lagi.';
@@ -499,6 +499,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get back => 'Kembali';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Malay, as used in Singapore (`ms_SG`).
@@ -506,7 +509,7 @@ class LocalizationMsSg extends LocalizationMs {
   LocalizationMsSg(): super('ms_SG');
 
   @override
-  String get product_name => 'Pengira Penglihatan';
+  String get product_name => 'Pengira';
 
   @override
   String get product_desc => 'Menggunakan penglihatan komputer dan AI untuk mengira orang, kenderaan, haiwan peliharaan, dan sebagainya.';
@@ -996,4 +999,7 @@ class LocalizationMsSg extends LocalizationMs {
 
   @override
   String get back => 'Kembali';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

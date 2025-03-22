@@ -1,5 +1,5 @@
 {
-  "product_name": "Contatore Visivo",
+  "product_name": "Contatore",
   "product_desc": "Utilizza la visione artificiale e l'IA per contare persone, veicoli, animali domestici e altro.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Sì",
   "no": "No",
   "close": "Chiudi",
-  "back": "Indietro"
+  "back": "Indietro",
+  "settings_screen_detection_button": "MISSING"
 }

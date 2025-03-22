@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Contor",
   "product_desc": "Folosește viziunea computerizată și inteligența artificială pentru a număra persoane, vehicule, animale de companie și multe altele.",
   "product_copyright": "Drepturi de autor © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Da",
   "no": "Nu",
   "close": "Închide",
-  "back": "Înapoi"
+  "back": "Înapoi",
+  "settings_screen_detection_button": "MISSING"
 }

@@ -1,5 +1,5 @@
 {
-  "product_name": "Synsteljar",
+  "product_name": "Teljar",
   "product_desc": "Bruk datasyn og kunstig intelligens for å telja personar, køyretøy, kjæledyr og meir.",
   "product_copyright": "Opphavsrett © 2025",
   "video_sources_webcam": "Webkamera",
@@ -162,5 +162,6 @@
   "yes": "Ja",
   "no": "Nei",
   "close": "Lukk",
-  "back": "Tilbake"
+  "back": "Tilbake",
+  "settings_screen_detection_button": "MISSING"
 }

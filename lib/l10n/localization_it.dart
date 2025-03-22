@@ -9,7 +9,7 @@ class LocalizationIt extends Localization {
   LocalizationIt([String locale = 'it']) : super(locale);
 
   @override
-  String get product_name => 'Contatore Visivo';
+  String get product_name => 'Contatore';
 
   @override
   String get product_desc => 'Utilizza la visione artificiale e l\'IA per contare persone, veicoli, animali domestici e altro.';
@@ -499,4 +499,7 @@ class LocalizationIt extends Localization {
 
   @override
   String get back => 'Indietro';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

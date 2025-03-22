@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Compteur",
   "product_desc": "Utilisation de la vision par ordinateur et de l'IA pour compter les personnes, véhicules, animaux et plus encore.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Oui",
   "no": "Non",
   "close": "Fermer",
-  "back": "Retour"
+  "back": "Retour",
+  "settings_screen_detection_button": "MISSING"
 }

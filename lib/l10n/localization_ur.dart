@@ -9,7 +9,7 @@ class LocalizationUr extends Localization {
   LocalizationUr([String locale = 'ur']) : super(locale);
 
   @override
-  String get product_name => 'وژن کاؤنٹر';
+  String get product_name => 'کاؤنٹر';
 
   @override
   String get product_desc => 'کمپیوٹر وژن اور مصنوعی ذہانت کا استعمال کرتے ہوئے لوگوں، گاڑیوں، پالتو جانوروں، اور مزید کو گنتی کرنا۔';
@@ -499,6 +499,9 @@ class LocalizationUr extends Localization {
 
   @override
   String get back => 'واپس';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }
 
 /// The translations for Urdu, as used in India (`ur_IN`).
@@ -506,7 +509,7 @@ class LocalizationUrIn extends LocalizationUr {
   LocalizationUrIn(): super('ur_IN');
 
   @override
-  String get product_name => 'وژن کاؤنٹر';
+  String get product_name => 'کاؤنٹر';
 
   @override
   String get product_desc => 'کمپیوٹر وژن اور مصنوعی ذہانت کا استعمال کرتے ہوئے لوگوں، گاڑیوں، پالتو جانوروں، اور مزید کی گنتی کریں۔';
@@ -996,4 +999,7 @@ class LocalizationUrIn extends LocalizationUr {
 
   @override
   String get back => 'واپس';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

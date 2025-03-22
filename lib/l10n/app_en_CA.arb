@@ -1,5 +1,5 @@
 {
-  "product_name": "Vision Counter",
+  "product_name": "Counter",
   "product_desc": "Using computer vision and AI to count people, vehicles, pets, and more.",
   "product_copyright": "Copyright © 2025",
   "video_sources_webcam": "Webcam",
@@ -162,5 +162,6 @@
   "yes": "Yes",
   "no": "No",
   "close": "Close",
-  "back": "Back"
+  "back": "Back",
+  "settings_screen_detection_button": "MISSING"
 }

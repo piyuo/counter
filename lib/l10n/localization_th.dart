@@ -9,7 +9,7 @@ class LocalizationTh extends Localization {
   LocalizationTh([String locale = 'th']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'เครื่องนับ';
 
   @override
   String get product_desc => 'ใช้คอมพิวเตอร์วิชั่นและเอไอเพื่อนับคน ยานพาหนะ สัตว์เลี้ยง และอื่นๆ';
@@ -499,4 +499,7 @@ class LocalizationTh extends Localization {
 
   @override
   String get back => 'กลับ';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

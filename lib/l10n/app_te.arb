@@ -1,5 +1,5 @@
 {
-  "product_name": "విజన్ కౌంటర్",
+  "product_name": "కౌంటర్",
   "product_desc": "కంప్యూటర్ విజన్ మరియు ఏఐని ఉపయోగించి వ్యక్తులను, వాహనాలను, పెంపుడు జంతువులను మరియు మరిన్నింటిని లెక్కించడానికి.",
   "product_copyright": "కాపీరైట్ © 2025",
   "video_sources_webcam": "వెబ్‌క్యామ్",
@@ -162,5 +162,6 @@
   "yes": "అవును",
   "no": "కాదు",
   "close": "మూసివేయి",
-  "back": "వెనుకకు"
+  "back": "వెనుకకు",
+  "settings_screen_detection_button": "MISSING"
 }

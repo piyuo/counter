@@ -1,5 +1,5 @@
 {
-  "product_name": "عداد الرؤية",
+  "product_name": "عداد",
   "product_desc": "استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.",
   "product_copyright": "حقوق النشر © 2025",
   "video_sources_webcam": "كاميرا الويب",
@@ -162,5 +162,6 @@
   "yes": "نعم",
   "no": "لا",
   "close": "إغلاق",
-  "back": "رجوع"
+  "back": "رجوع",
+  "settings_screen_detection_button": "MISSING"
 }

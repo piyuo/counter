@@ -9,7 +9,7 @@ class LocalizationLn extends Localization {
   LocalizationLn([String locale = 'ln']) : super(locale);
 
   @override
-  String get product_name => 'Vision Counter';
+  String get product_name => 'Motángi';
 
   @override
   String get product_desc => 'Kosalela vision ya ordinatɛrɛ ná AI mpo na kotánga bato, mituka, banyama ya ndako, ná bisusu.';
@@ -499,4 +499,7 @@ class LocalizationLn extends Localization {
 
   @override
   String get back => 'Zonga';
+
+  @override
+  String get settings_screen_detection_button => 'MISSING';
 }

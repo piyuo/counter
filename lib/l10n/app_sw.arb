@@ -1,5 +1,5 @@
 {
-  "product_name": "Kihesabu cha Picha",
+  "product_name": "Kihesabu",
   "product_desc": "Kutumia maono ya kompyuta na akili bandia kuhesabu watu, magari, wanyama vipenzi, na zaidi.",
   "product_copyright": "Hakimiliki © 2025",
   "video_sources_webcam": "Kamera ya wavuti",
@@ -162,5 +162,6 @@
   "yes": "Ndio",
   "no": "Hapana",
   "close": "Funga",
-  "back": "Rudi"
+  "back": "Rudi",
+  "settings_screen_detection_button": "MISSING"
 }
