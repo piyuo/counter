@@ -502,6 +502,12 @@ class LocalizationAr extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'منطقة';
+
+  @override
+  String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
 }
 
 /// The translations for Arabic, as used in the United Arab Emirates (`ar_AE`).
@@ -1002,6 +1008,12 @@ class LocalizationArAe extends LocalizationAr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'منطقة';
+
+  @override
+  String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
 }
 
 /// The translations for Arabic, as used in Algeria (`ar_DZ`).
@@ -1502,6 +1514,12 @@ class LocalizationArDz extends LocalizationAr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'منطقة';
+
+  @override
+  String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -2002,4 +2020,10 @@ class LocalizationArEg extends LocalizationAr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'منطقة';
+
+  @override
+  String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
 }

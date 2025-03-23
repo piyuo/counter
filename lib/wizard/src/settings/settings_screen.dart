@@ -91,7 +91,6 @@ class SettingsScreen extends StatelessWidget {
                       CupertinoListTile(
                         title: Text(context.l.settings_screen_center_point_button),
                         trailing: CupertinoSwitch(
-                          // This bool value toggles the switch.
                           value: projectProvider.project!.isShowCenterRedDotOnTarget,
                           onChanged: (bool? value) {
                             projectProvider.setShowCenterRedDotOnTarget(value!);

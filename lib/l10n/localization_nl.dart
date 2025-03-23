@@ -502,6 +502,12 @@ class LocalizationNl extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Toon samenvatting op scherm';
 }
 
 /// The translations for Dutch Flemish, as used in Belgium (`nl_BE`).
@@ -1002,4 +1008,10 @@ class LocalizationNlBe extends LocalizationNl {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Toon samenvatting op scherm';
 }

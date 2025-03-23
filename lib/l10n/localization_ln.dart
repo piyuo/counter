@@ -502,4 +502,10 @@ class LocalizationLn extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Onyesha muhtasari kwenye skrini';
 }

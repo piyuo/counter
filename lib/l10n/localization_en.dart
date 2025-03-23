@@ -502,6 +502,12 @@ class LocalizationEn extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Show summary on screen';
 }
 
 /// The translations for English, as used in Australia (`en_AU`).
@@ -1002,6 +1008,12 @@ class LocalizationEnAu extends LocalizationEn {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Show summary on screen';
 }
 
 /// The translations for English, as used in Canada (`en_CA`).
@@ -1502,6 +1514,12 @@ class LocalizationEnCa extends LocalizationEn {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Show summary on screen';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -2002,6 +2020,12 @@ class LocalizationEnGb extends LocalizationEn {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Show summary on screen';
 }
 
 /// The translations for English, as used in India (`en_IN`).
@@ -2502,4 +2526,10 @@ class LocalizationEnIn extends LocalizationEn {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Show summary on screen';
 }

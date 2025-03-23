@@ -163,5 +163,7 @@
   "no": "Hapana",
   "close": "Funga",
   "back": "Rudi",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Eneo",
+  "zone_screen_zone_show_summary": "Onyesha muhtasari kwenye skrini"
 }

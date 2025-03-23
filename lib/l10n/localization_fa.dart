@@ -502,4 +502,10 @@ class LocalizationFa extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'منطقه';
+
+  @override
+  String get zone_screen_zone_show_summary => 'نمایش خلاصه در صفحه';
 }

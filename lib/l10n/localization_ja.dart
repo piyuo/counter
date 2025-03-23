@@ -502,4 +502,10 @@ class LocalizationJa extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'ゾーン';
+
+  @override
+  String get zone_screen_zone_show_summary => '画面に概要を表示';
 }

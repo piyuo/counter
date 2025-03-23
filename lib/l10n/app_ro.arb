@@ -163,5 +163,7 @@
   "no": "Nu",
   "close": "Închide",
   "back": "Înapoi",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Zonă",
+  "zone_screen_zone_show_summary": "Afișează rezumat pe ecran"
 }

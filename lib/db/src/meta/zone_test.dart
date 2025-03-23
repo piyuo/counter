@@ -23,6 +23,7 @@ void main() {
       );
       final zone = ZoneMeta(
         zoneId: 1,
+        showSummaryOnScreen: false,
         annotations: [annotation],
         zoneName: 'Test Zone',
         points: [PointMeta(x: 0, y: 0)],
@@ -37,6 +38,7 @@ void main() {
       final json = zone.toJson();
       expect(json, isA<Map<String, dynamic>>());
       expect(json['zoneId'], 1);
+      expect(json['showSummaryOnScreen'], false);
       expect(json['annotations'], isA<List<dynamic>>());
       expect((json['annotations'] as List).first, annotation.toJson());
       expect(json['zoneName'], 'Test Zone');

@@ -163,5 +163,7 @@
   "no": "Nej",
   "close": "Luk",
   "back": "Tilbage",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Zone",
+  "zone_screen_zone_show_summary": "Vis oversigt på skærm"
 }

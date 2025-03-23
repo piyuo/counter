@@ -163,5 +163,7 @@
   "no": "नहीं",
   "close": "बंद करें",
   "back": "वापस",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "ज़ोन",
+  "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं"
 }

@@ -163,5 +163,7 @@
   "no": "Ei",
   "close": "Sulge",
   "back": "Tagasi",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Ala",
+  "zone_screen_zone_show_summary": "Näita kokkuvõtet ekraanil"
 }

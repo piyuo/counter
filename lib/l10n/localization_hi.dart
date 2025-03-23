@@ -502,4 +502,10 @@ class LocalizationHi extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'ज़ोन';
+
+  @override
+  String get zone_screen_zone_show_summary => 'स्क्रीन पर सारांश दिखाएं';
 }

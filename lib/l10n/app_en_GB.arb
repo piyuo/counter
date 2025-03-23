@@ -163,5 +163,7 @@
   "no": "No",
   "close": "Close",
   "back": "Back",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Zone",
+  "zone_screen_zone_show_summary": "Show summary on screen"
 }

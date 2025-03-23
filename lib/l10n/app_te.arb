@@ -163,5 +163,7 @@
   "no": "కాదు",
   "close": "మూసివేయి",
   "back": "వెనుకకు",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "జోన్",
+  "zone_screen_zone_show_summary": "స్క్రీన్‌పై సారాంశాన్ని చూపించు"
 }

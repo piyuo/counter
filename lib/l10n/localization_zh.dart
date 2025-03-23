@@ -502,6 +502,12 @@ class LocalizationZh extends Localization {
 
   @override
   String get settings_screen_detection_button => '刪除';
+
+  @override
+  String get zone_screen_zone => '區域';
+
+  @override
+  String get zone_screen_zone_show_summary => '在螢幕上顯示總結';
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
@@ -1002,6 +1008,12 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => '区域';
+
+  @override
+  String get zone_screen_zone_show_summary => '在屏幕上显示摘要';
 }
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
@@ -1502,6 +1514,12 @@ class LocalizationZhHk extends LocalizationZh {
 
   @override
   String get settings_screen_detection_button => '刪除';
+
+  @override
+  String get zone_screen_zone => '區域';
+
+  @override
+  String get zone_screen_zone_show_summary => '在螢幕上顯示摘要';
 }
 
 /// The translations for Chinese, as used in Macao (`zh_MO`).
@@ -2002,6 +2020,12 @@ class LocalizationZhMo extends LocalizationZh {
 
   @override
   String get settings_screen_detection_button => '刪除';
+
+  @override
+  String get zone_screen_zone => '區域';
+
+  @override
+  String get zone_screen_zone_show_summary => '在螢幕上顯示摘要';
 }
 
 /// The translations for Chinese, as used in Singapore (`zh_SG`).
@@ -2502,4 +2526,10 @@ class LocalizationZhSg extends LocalizationZh {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => '区域';
+
+  @override
+  String get zone_screen_zone_show_summary => '在屏幕上显示摘要';
 }

@@ -84,11 +84,12 @@ class ZoneScreen extends StatelessWidget {
                         ],
                       ),
 
-                      // color picker
+                      // zone's color and summary
                       CupertinoListSection(
                         backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                        header: Text(context.l.zone_screen_zone_color),
+                        header: Text(context.l.zone_screen_zone),
                         children: [
+                          // color
                           CupertinoListTile(
                             title: Text(context.l.zone_screen_color),
                             leading: Container(
@@ -110,6 +111,18 @@ class ZoneScreen extends StatelessWidget {
                                 },
                               );
                             },
+                          ),
+
+                          // summary
+                          CupertinoListTile(
+                            title: Text(context.l.zone_screen_zone_show_summary),
+                            leading: SizedBox.shrink(),
+                            trailing: CupertinoSwitch(
+                              value: videoZone.showSummaryOnScreen,
+                              onChanged: (bool value) {
+                                zoneScreenProvider.setZoneShowSummaryOnScreen(value);
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -265,6 +278,12 @@ class ZoneScreenProvider with ChangeNotifier {
       _zoneNameErrorMessage = '';
       videoProvider.setZoneName(videoZone, zoneNameFieldController.text);
     }
+    notifyListeners();
+  }
+
+  /// set show summary on screen
+  void setZoneShowSummaryOnScreen(bool value) {
+    videoProvider.setZoneShowSummaryOnScreen(videoZone, value);
     notifyListeners();
   }
 

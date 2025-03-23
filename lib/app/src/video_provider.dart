@@ -425,6 +425,12 @@ class VideoProvider with ChangeNotifier {
     _saveProject();
   }
 
+  /// set the zone show summary on screen
+  void setZoneShowSummaryOnScreen(vision.VideoZone videoZone, bool value) {
+    videoZone.showSummaryOnScreen = value;
+    _saveProject();
+  }
+
   /// set the zone name
   void setZoneColor(vision.VideoZone videoZone, Color color) {
     videoZone.color = color;

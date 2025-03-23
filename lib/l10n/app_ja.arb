@@ -163,5 +163,7 @@
   "no": "いいえ",
   "close": "閉じる",
   "back": "戻る",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "ゾーン",
+  "zone_screen_zone_show_summary": "画面に概要を表示"
 }

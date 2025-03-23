@@ -502,4 +502,10 @@ class LocalizationMy extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'ဇုန်';
+
+  @override
+  String get zone_screen_zone_show_summary => 'မျက်နှာပြင်တွင် အကျဉ်းချုပ် ပြရန်';
 }

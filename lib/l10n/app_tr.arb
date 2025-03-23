@@ -163,5 +163,7 @@
   "no": "Hayır",
   "close": "Kapat",
   "back": "Geri",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Bölge",
+  "zone_screen_zone_show_summary": "Ekranda özet göster"
 }

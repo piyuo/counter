@@ -1233,6 +1233,18 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'MISSING'**
   String get settings_screen_detection_button;
+
+  /// No description provided for @zone_screen_zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Zone'**
+  String get zone_screen_zone;
+
+  /// No description provided for @zone_screen_zone_show_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Show summary on screen'**
+  String get zone_screen_zone_show_summary;
 }
 
 class _LocalizationDelegate extends LocalizationsDelegate<Localization> {

@@ -502,6 +502,12 @@ class LocalizationBn extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'জোন';
+
+  @override
+  String get zone_screen_zone_show_summary => 'স্ক্রিনে সারসংক্ষেপ দেখান';
 }
 
 /// The translations for Bengali Bangla, as used in India (`bn_IN`).
@@ -1002,4 +1008,10 @@ class LocalizationBnIn extends LocalizationBn {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'জোন';
+
+  @override
+  String get zone_screen_zone_show_summary => 'स्क्रीन पर सारांश दिखाएं';
 }

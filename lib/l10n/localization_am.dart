@@ -502,4 +502,10 @@ class LocalizationAm extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Գոտի';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Ամփոփումը ցույց տալ էկրանին';
 }

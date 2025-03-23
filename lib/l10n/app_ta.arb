@@ -163,5 +163,7 @@
   "no": "இல்லை",
   "close": "மூடு",
   "back": "பின்செல்",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "மண்டலம்",
+  "zone_screen_zone_show_summary": "திரையில் சுருக்கத்தைக் காட்டு"
 }

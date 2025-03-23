@@ -163,5 +163,7 @@
   "no": "Nie",
   "close": "Zamknij",
   "back": "Wstecz",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Strefa",
+  "zone_screen_zone_show_summary": "Pokaż podsumowanie na ekranie"
 }

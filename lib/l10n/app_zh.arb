@@ -163,5 +163,7 @@
   "yes": "是",
   "no": "否",
   "close": "關閉",
-  "back": "返回"
+  "back": "返回",
+  "zone_screen_zone": "區域",
+  "zone_screen_zone_show_summary": "在螢幕上顯示總結"
 }

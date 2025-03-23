@@ -9,6 +9,7 @@ part of 'zone_meta.dart';
 _$ZoneMetaImpl _$$ZoneMetaImplFromJson(Map<String, dynamic> json) =>
     _$ZoneMetaImpl(
       zoneId: (json['zoneId'] as num).toInt(),
+      showSummaryOnScreen: json['showSummaryOnScreen'] as bool,
       annotations: (json['annotations'] as List<dynamic>)
           .map((e) => AnnotationMeta.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -28,6 +29,7 @@ _$ZoneMetaImpl _$$ZoneMetaImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ZoneMetaImplToJson(_$ZoneMetaImpl instance) =>
     <String, dynamic>{
       'zoneId': instance.zoneId,
+      'showSummaryOnScreen': instance.showSummaryOnScreen,
       'annotations': instance.annotations.map((e) => e.toJson()).toList(),
       'zoneName': instance.zoneName,
       'points': instance.points.map((e) => e.toJson()).toList(),

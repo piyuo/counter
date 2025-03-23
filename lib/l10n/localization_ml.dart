@@ -502,4 +502,10 @@ class LocalizationMl extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'സോൺ';
+
+  @override
+  String get zone_screen_zone_show_summary => 'സ്ക്രീനിൽ സംഗ്രഹം കാണിക്കുക';
 }

@@ -502,4 +502,10 @@ class LocalizationKo extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => '영역';
+
+  @override
+  String get zone_screen_zone_show_summary => '화면에 요약 표시';
 }

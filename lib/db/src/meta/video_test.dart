@@ -37,6 +37,7 @@ void main() {
       );
       final zone = ZoneMeta(
         zoneId: 1,
+        showSummaryOnScreen: false,
         annotations: [annotation],
         zoneName: 'Test Zone',
         points: [PointMeta(x: 0, y: 0)],

@@ -502,6 +502,12 @@ class LocalizationPt extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zona';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Mostrar resumo na tela';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -1002,4 +1008,10 @@ class LocalizationPtPt extends LocalizationPt {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zona';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Mostrar resumo no ecrã';
 }

@@ -163,5 +163,7 @@
   "no": "نہیں",
   "close": "بند کریں",
   "back": "واپس",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "زون",
+  "zone_screen_zone_show_summary": "اسکرین پر خلاصہ دکھائیں"
 }

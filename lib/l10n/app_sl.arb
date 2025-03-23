@@ -163,5 +163,7 @@
   "no": "Ne",
   "close": "Zapri",
   "back": "Nazaj",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Območje",
+  "zone_screen_zone_show_summary": "Prikaži povzetek na zaslonu"
 }

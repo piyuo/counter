@@ -13,6 +13,7 @@ class ZoneMeta with _$ZoneMeta {
   @JsonSerializable(explicitToJson: true)
   const factory ZoneMeta({
     required int zoneId,
+    required bool showSummaryOnScreen,
     required List<AnnotationMeta> annotations,
     required String zoneName,
     required List<PointMeta> points,

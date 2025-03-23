@@ -163,5 +163,7 @@
   "no": "Nie",
   "close": "Zavrieť",
   "back": "Späť",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Zóna",
+  "zone_screen_zone_show_summary": "Zobraziť súhrn na obrazovke"
 }

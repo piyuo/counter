@@ -21,6 +21,7 @@ ZoneMeta _$ZoneMetaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ZoneMeta {
   int get zoneId => throw _privateConstructorUsedError;
+  bool get showSummaryOnScreen => throw _privateConstructorUsedError;
   List<AnnotationMeta> get annotations => throw _privateConstructorUsedError;
   String get zoneName => throw _privateConstructorUsedError;
   List<PointMeta> get points => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $ZoneMetaCopyWith<$Res> {
   @useResult
   $Res call(
       {int zoneId,
+      bool showSummaryOnScreen,
       List<AnnotationMeta> annotations,
       String zoneName,
       List<PointMeta> points,
@@ -78,6 +80,7 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
   @override
   $Res call({
     Object? zoneId = null,
+    Object? showSummaryOnScreen = null,
     Object? annotations = null,
     Object? zoneName = null,
     Object? points = null,
@@ -94,6 +97,10 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int,
+      showSummaryOnScreen: null == showSummaryOnScreen
+          ? _value.showSummaryOnScreen
+          : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       annotations: null == annotations
           ? _value.annotations
           : annotations // ignore: cast_nullable_to_non_nullable
@@ -148,6 +155,7 @@ abstract class _$$ZoneMetaImplCopyWith<$Res>
   @useResult
   $Res call(
       {int zoneId,
+      bool showSummaryOnScreen,
       List<AnnotationMeta> annotations,
       String zoneName,
       List<PointMeta> points,
@@ -174,6 +182,7 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? zoneId = null,
+    Object? showSummaryOnScreen = null,
     Object? annotations = null,
     Object? zoneName = null,
     Object? points = null,
@@ -190,6 +199,10 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
           ? _value.zoneId
           : zoneId // ignore: cast_nullable_to_non_nullable
               as int,
+      showSummaryOnScreen: null == showSummaryOnScreen
+          ? _value.showSummaryOnScreen
+          : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
+              as bool,
       annotations: null == annotations
           ? _value._annotations
           : annotations // ignore: cast_nullable_to_non_nullable
@@ -240,6 +253,7 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
 class _$ZoneMetaImpl implements _ZoneMeta {
   const _$ZoneMetaImpl(
       {required this.zoneId,
+      required this.showSummaryOnScreen,
       required final List<AnnotationMeta> annotations,
       required this.zoneName,
       required final List<PointMeta> points,
@@ -258,6 +272,8 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
   @override
   final int zoneId;
+  @override
+  final bool showSummaryOnScreen;
   final List<AnnotationMeta> _annotations;
   @override
   List<AnnotationMeta> get annotations {
@@ -294,7 +310,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
   @override
   String toString() {
-    return 'ZoneMeta(zoneId: $zoneId, annotations: $annotations, zoneName: $zoneName, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
+    return 'ZoneMeta(zoneId: $zoneId, showSummaryOnScreen: $showSummaryOnScreen, annotations: $annotations, zoneName: $zoneName, points: $points, pointIndex: $pointIndex, color: $color, stagnant: $stagnant, reentered: $reentered, crossedZones: $crossedZones, cooldown: $cooldown, ignoreIfCounted: $ignoreIfCounted)';
   }
 
   @override
@@ -303,6 +319,8 @@ class _$ZoneMetaImpl implements _ZoneMeta {
         (other.runtimeType == runtimeType &&
             other is _$ZoneMetaImpl &&
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
+            (identical(other.showSummaryOnScreen, showSummaryOnScreen) ||
+                other.showSummaryOnScreen == showSummaryOnScreen) &&
             const DeepCollectionEquality()
                 .equals(other._annotations, _annotations) &&
             (identical(other.zoneName, zoneName) ||
@@ -328,6 +346,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
   int get hashCode => Object.hash(
       runtimeType,
       zoneId,
+      showSummaryOnScreen,
       const DeepCollectionEquality().hash(_annotations),
       zoneName,
       const DeepCollectionEquality().hash(_points),
@@ -358,6 +377,7 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 abstract class _ZoneMeta implements ZoneMeta {
   const factory _ZoneMeta(
       {required final int zoneId,
+      required final bool showSummaryOnScreen,
       required final List<AnnotationMeta> annotations,
       required final String zoneName,
       required final List<PointMeta> points,
@@ -374,6 +394,8 @@ abstract class _ZoneMeta implements ZoneMeta {
 
   @override
   int get zoneId;
+  @override
+  bool get showSummaryOnScreen;
   @override
   List<AnnotationMeta> get annotations;
   @override

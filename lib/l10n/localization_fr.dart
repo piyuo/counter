@@ -502,6 +502,12 @@ class LocalizationFr extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Afficher résumé à l\'écran';
 }
 
 /// The translations for French, as used in Belgium (`fr_BE`).
@@ -1002,6 +1008,12 @@ class LocalizationFrBe extends LocalizationFr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Afficher résumé à l\'écran';
 }
 
 /// The translations for French, as used in Canada (`fr_CA`).
@@ -1502,6 +1514,12 @@ class LocalizationFrCa extends LocalizationFr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Afficher résumé à l\'écran';
 }
 
 /// The translations for French, as used in Switzerland (`fr_CH`).
@@ -2002,4 +2020,10 @@ class LocalizationFrCh extends LocalizationFr {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Zone';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Afficher résumé à l\'écran';
 }

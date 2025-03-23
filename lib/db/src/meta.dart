@@ -43,6 +43,7 @@ ProjectMeta projectToMeta(app.Project project) {
               zones: video.zones
                   .map((zone) => ZoneMeta(
                         zoneId: zone.zoneId,
+                        showSummaryOnScreen: zone.showSummaryOnScreen,
                         zoneName: zone.name,
                         annotations: zone.tallyAnnotations
                             .map((annotation) => AnnotationMeta(
@@ -108,6 +109,7 @@ app.Project metaToProject(ProjectMeta meta) {
             zones: video.zones
                 .map((zone) => vision.VideoZone(
                       zoneId: zone.zoneId,
+                      showSummaryOnScreen: zone.showSummaryOnScreen,
                       name: zone.zoneName,
                       tallyAnnotations: zone.annotations
                           .map((annotation) => vision.TallyAnnotation(

@@ -502,4 +502,10 @@ class LocalizationVi extends Localization {
 
   @override
   String get settings_screen_detection_button => 'MISSING';
+
+  @override
+  String get zone_screen_zone => 'Vùng';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Hiển thị tóm tắt trên màn hình';
 }

@@ -163,5 +163,7 @@
   "no": "Kwete",
   "close": "Vhara",
   "back": "Dzokera",
-  "settings_screen_detection_button": "MISSING"
+  "settings_screen_detection_button": "MISSING",
+  "zone_screen_zone": "Nzvimbo",
+  "zone_screen_zone_show_summary": "Ratidza muchidimbu pashcreen"
 }
