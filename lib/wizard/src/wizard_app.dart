@@ -4,7 +4,6 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libcli/cli/cli.dart' as cli;
-import 'package:universal_platform/universal_platform.dart';
 
 import 'about/about_screen.dart';
 import 'about/benchmark_screen.dart';
@@ -129,9 +128,11 @@ class WizardAppState extends State<WizardApp> {
       required RouteSettings settings,
       required Widget Function(BuildContext) builder,
     }) {
-      return UniversalPlatform.isAndroid
-          ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
-          : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
+      return CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
+      // very strange , use MaterialPageRoute will cause the app to crash in android emulator
+//      return UniversalPlatform.isAndroid
+      //        ? MaterialPageRoute(settings: settings, fullscreenDialog: false, builder: builder)
+      //      : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
     }
 
     return ClipRect(
