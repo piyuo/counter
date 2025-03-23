@@ -61,17 +61,6 @@ class ProjectScreen extends StatelessWidget {
                           tallyAnnotation: tallyAnnotation,
                           filter: projectProvider.project!.filter,
                           now: now,
-                          onTapChart: () {
-                            Navigator.of(context).pushNamed(
-                              tallyRoute,
-                              arguments: {
-                                'videoProvider': videoProvider,
-                                'videoZone': videoZone,
-                                'annotation': tallyAnnotation,
-                                'previousPageTitle': pageTitle,
-                              },
-                            );
-                          },
                         ),
                       );
                     }
@@ -365,3 +354,20 @@ class IndicatorRedrawProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+
+/*
+                          onTapChart: () {
+                            Navigator.of(context).pushNamed(
+                              tallyRoute,
+                              arguments: {
+                                'videoProvider': videoProvider,
+                                'videoZone': videoZone,
+                                'annotation': tallyAnnotation,
+                                'previousPageTitle': pageTitle,
+                              },
+                            );
+                          },
+
+ */

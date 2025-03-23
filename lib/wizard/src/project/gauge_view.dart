@@ -13,7 +13,6 @@ List<Color> gradientColors = [
 class GaugeView extends StatelessWidget {
   const GaugeView({
     required this.chartColor,
-    required this.onTapChart,
     required this.classId,
     required this.tallyCounter,
     required this.tallyAnnotation,
@@ -24,9 +23,6 @@ class GaugeView extends StatelessWidget {
 
   /// The color to be displayed.
   final Color chartColor;
-
-  /// The callback function when the chart is tapped.
-  final VoidCallback onTapChart;
 
   /// The class id to be displayed.
   final int classId;
@@ -167,14 +163,12 @@ class GaugeView extends StatelessWidget {
       CupertinoListTile(
         title: Text('${vision.objectClassToString(context, classId)} ${tallyAnnotation.title}'),
         leading: Icon(vision.objectClassToIcon(classId), color: chartColor),
-        trailing: const CupertinoListTileChevron(),
         additionalInfo: Text(
           textAlign: TextAlign.end,
           tallyCounter.formattedValue(context),
           style:
               TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: CupertinoColors.label.resolveFrom(context)),
         ),
-        onTap: onTapChart,
       ),
       chartData != null
           ? Padding(
