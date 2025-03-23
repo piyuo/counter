@@ -26,6 +26,8 @@ PODS:
     - sqlite3/common
   - sqlite3/fts5 (3.49.1):
     - sqlite3/common
+  - sqlite3/math (3.49.1):
+    - sqlite3/common
   - sqlite3/perf-threadsafe (3.49.1):
     - sqlite3/common
   - sqlite3/rtree (3.49.1):
@@ -36,6 +38,7 @@ PODS:
     - sqlite3 (~> 3.49.1)
     - sqlite3/dbstatvtab
     - sqlite3/fts5
+    - sqlite3/math
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
   - url_launcher_ios (0.0.1):
@@ -106,7 +109,7 @@ SPEC CHECKSUMS:
   sensors_plus: 7229095999f30740798f0eeef5cd120357a8f4f2
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqlite3: fc1400008a9b3525f5914ed715a5d1af0b8f4983
-  sqlite3_flutter_libs: cc304edcb8e1d8c595d1b08c7aeb46a47691d9db
+  sqlite3_flutter_libs: 487032b9008b28de37c72a3aa66849ef3745f3e6
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   vision: f4cb9080b718fc9ec3732342a49236c4ed8e268a
   wakelock_plus: 373cfe59b235a6dd5837d0fb88791d2f13a90d56
