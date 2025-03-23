@@ -72,12 +72,12 @@ class WizardScreen extends StatelessWidget {
                               children: [
                                 Image(
                                   image: AssetImage('assets/icon/icon.png'),
-                                  width: 52,
-                                  height: 52,
+                                  width: 84,
+                                  height: 84,
                                 ),
                                 const SizedBox(height: 8.0),
                                 Text(context.l.product_name,
-                                    style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                                    style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 4.0),
                                 Text(context.l.wizard_screen_desc,
                                     textAlign: TextAlign.center,
