@@ -1,1 +1,1 @@
-dart run rename_app:main all="Vision Counter"
+dart run rename_app:main all="Piyuo Counter"
