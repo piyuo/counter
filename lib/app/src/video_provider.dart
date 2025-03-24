@@ -374,12 +374,13 @@ class VideoProvider with ChangeNotifier {
   Future<void> _addDefaultZone({
     bool updateRecognition = true,
   }) async {
+    final safePadding = MediaQuery.of(cli.globalContext).padding;
     final mediaWidth = visionController.mediaWidth!;
     final mediaHeight = visionController.mediaHeight!;
     final double reductionValue = min(mediaWidth * 0.1, mediaHeight * 0.1);
 
     final offsetX = reductionValue / 2;
-    final offsetY = reductionValue / 2;
+    final offsetY = (reductionValue / 2) + safePadding.top;
     final zoneId = _projectProvider!.getNextZoneId();
     final zone = vision.VideoZone(
       tallyAnnotations: vision.defaultTallyAnnotation(cli.globalContext),
