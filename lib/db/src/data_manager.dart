@@ -18,12 +18,6 @@ class DataManager {
 
   /// maintain the database, delete old data
   Future<void> maintainDatabase() async {
-    // add random to avoid check every time
-    final random = DateTime.now().millisecondsSinceEpoch % 100;
-    if (random > 30) {
-      return;
-    }
-
     // wait for 10 seconds for app to start
     await Future.delayed(const Duration(seconds: 10));
 

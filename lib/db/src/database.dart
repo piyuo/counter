@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
@@ -183,12 +184,18 @@ class AppDatabase extends _$AppDatabase {
 
     final allProjects = await query.get();
 
-    // If the number of projects exceeds the limit, delete the oldest project.
+    // If the number of projects exceeds the limit, delete up to 10 oldest projects.
     if (allProjects.length > maxCount) {
-      // Get the oldest project (the first one in the list).
-      final oldestProject = allProjects.first;
-      // Delete this oldest project.
-      await deleteProject(oldestProject.projectId);
+      // Calculate how many projects need to be deleted, up to a maximum of 10
+      final projectsToDeleteCount = min(allProjects.length - maxCount, 10);
+
+      // Get the oldest projects to delete
+      final projectsToDelete = allProjects.take(projectsToDeleteCount).toList();
+
+      // Delete each of the oldest projects
+      for (final project in projectsToDelete) {
+        await deleteProject(project.projectId);
+      }
     }
   }
 

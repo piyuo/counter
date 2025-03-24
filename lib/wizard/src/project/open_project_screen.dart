@@ -133,7 +133,7 @@ class OpenProjectScreenProvider with ChangeNotifier {
   Future<void> init(app.ProjectProvider projectProvider) async {
     final initialProjects = await projectProvider.getProjectSummaries();
     _projects.clear();
-    _projects.addAll(initialProjects);
+    _projects.addAll(initialProjects.take(20));
     _isLoading = false;
     notifyListeners();
   }
