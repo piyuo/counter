@@ -8,32 +8,51 @@ import 'package:vision/vision.dart' as vision;
 import 'project_provider.dart';
 import 'zone_color_table.dart';
 
+/// The radius of the point detection area.
 double _pointDetectRadius = UniversalPlatform.isAndroid || UniversalPlatform.isIOS ? 48.0 : 18.0;
 
 /// This class provides support for the [ZoneEditor].
 class ZoneEditorController with ChangeNotifier {
-  List<vision.VideoZone> zones = [];
-  bool isChanged = false;
-  vision.VideoZone? selectedZone;
-  Offset? dragStartPosition;
-  bool isDraggingPolygon = false;
-  bool isDraggingPoint = false;
+  ZoneEditorController({
+    required this.mediaWidth,
+    required this.mediaHeight,
+    required List<vision.VideoZone> newZones,
+    required this.onZoneChanged,
+  }) {
+    zones.clear();
+    zones.addAll(newZones);
+    selectedZone = null;
+    if (zones.isNotEmpty) {
+      selectedZone = zones[0];
+    }
+  }
 
-  int _mediaWidth = 500;
-  int _mediaHeight = 500;
+  /// The current media width.
+  final int mediaWidth;
 
-  int get mediaWidth => _mediaWidth;
-  int get mediaHeight => _mediaHeight;
-  bool get isEmpty => zones.isEmpty;
+  /// The current media height.
+  final int mediaHeight;
+
+  /// The all zones.
+  final List<vision.VideoZone> zones = [];
 
   /// called when zone is changed
-  VoidCallback? onZoneChanged;
+  final VoidCallback? onZoneChanged;
 
-  void setMediaSize(int width, int height) {
-    _mediaWidth = width;
-    _mediaHeight = height;
-    notifyListeners();
-  }
+  /// Is the zone changed
+  bool isChanged = false;
+
+  /// The selected zone.
+  vision.VideoZone? selectedZone;
+
+  /// The dragging start position
+  Offset? dragStartPosition;
+
+  /// Is dragging a polygon
+  bool isDraggingPolygon = false;
+
+  /// Is dragging a point
+  bool isDraggingPoint = false;
 
   void selectPolygon(Offset modelPoint, double scaleFactor) {
     // First try to select a point
@@ -213,8 +232,6 @@ class ZoneEditorController with ChangeNotifier {
   // The points of the new polygon are scaled according to the current scale factors.
   vision.VideoZone addZone(BuildContext context) {
     // Define the size of the image
-    final double mediaWidth = _mediaWidth.toDouble();
-    final double mediaHeight = _mediaHeight.toDouble();
 
     // Define the radius of the hexagon, ensuring it occupies about 1/4 of the image
     final double maxRadius = min(mediaWidth, mediaHeight) / 2;
@@ -280,17 +297,6 @@ class ZoneEditorController with ChangeNotifier {
 
   List<vision.VideoZone> getProjectZones() {
     return zones;
-  }
-
-  /// Updates the list of polygons in the zoning editor.
-  void setZones(List<vision.VideoZone> value) {
-    zones.clear();
-    zones.addAll(value);
-    selectedZone = null;
-    if (zones.isNotEmpty) {
-      selectedZone = zones[0];
-    }
-    notifyListeners();
   }
 
   // This method resets the state of the controller.

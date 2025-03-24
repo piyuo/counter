@@ -20,37 +20,29 @@ class ZoneEditor extends StatefulWidget {
 }
 
 class _ZoneEditorState extends State<ZoneEditor> {
-  // Scale factors managed by the view
-  double getScaleFactorX(double width) => width / widget.controller.mediaWidth;
-  double getScaleFactorY(double height) => height / widget.controller.mediaHeight;
-
-  // Convert screen coordinates to model coordinates
-  Offset _screenToModel(double width, double height, Offset screenPoint) {
-    return Offset(
-      screenPoint.dx / getScaleFactorX(width),
-      screenPoint.dy / getScaleFactorY(height),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double getScaleFactor() {
-          final scaleFactorX = getScaleFactorX(constraints.maxWidth);
-          final scaleFactorY = getScaleFactorY(constraints.maxHeight);
-          return scaleFactorX < scaleFactorY ? scaleFactorX : scaleFactorY;
+        // Scale factors managed by the view
+        final scaleFactorX = constraints.maxWidth / widget.controller.mediaWidth;
+        final scaleFactorY = constraints.maxHeight / widget.controller.mediaHeight;
+        final scaleFactor = scaleFactorX < scaleFactorY ? scaleFactorX : scaleFactorY;
+
+        // Convert screen coordinates to model coordinates
+        Offset screenToModel(double width, double height, Offset screenPoint) {
+          return Offset(
+            screenPoint.dx / scaleFactorX,
+            screenPoint.dy / scaleFactorY,
+          );
         }
 
-        return GestureDetector(
-          onTapDown: (details) => widget.controller.selectPolygon(
-              _screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition), getScaleFactor()),
-          onPanStart: (details) => widget.controller.selectPolygon(
-              _screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition), getScaleFactor()),
-          onPanUpdate: (details) => widget.controller
-              .updatePointPosition(_screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
-          onPanEnd: (details) => widget.controller.endDragging(),
-          onPanCancel: () => widget.controller.endDragging(),
+        return Listener(
+          onPointerDown: (details) => widget.controller.selectPolygon(
+              screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition), scaleFactor),
+          onPointerMove: (details) => widget.controller
+              .updatePointPosition(screenToModel(constraints.maxWidth, constraints.maxHeight, details.localPosition)),
+          onPointerUp: (details) => widget.controller.endDragging(),
           child: ChangeNotifierProvider<ZoneEditorController>.value(
             value: widget.controller,
             child: Consumer<ZoneEditorController>(
@@ -63,8 +55,8 @@ class _ZoneEditorState extends State<ZoneEditor> {
                     unselectedPointColor: CupertinoColors.label.resolveFrom(context),
                     borderColor: CupertinoColors.label.resolveFrom(context),
                     shadowColor: CupertinoColors.inactiveGray.resolveFrom(context),
-                    scaleFactorX: getScaleFactorX(constraints.maxWidth),
-                    scaleFactorY: getScaleFactorY(constraints.maxHeight),
+                    scaleFactorX: scaleFactorX,
+                    scaleFactorY: scaleFactorY,
                   ),
                   child: const SizedBox.expand(),
                 );

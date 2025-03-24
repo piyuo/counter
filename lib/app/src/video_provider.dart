@@ -323,13 +323,14 @@ class VideoProvider with ChangeNotifier {
     }
     await visionController.enableDetection(false);
 
-    zoneEditorController = ZoneEditorController();
-    zoneEditorController!.setMediaSize(visionController.mediaWidth!, visionController.mediaHeight!);
-    zoneEditorController!.setZones(video.zones);
-    zoneEditorController!.onZoneChanged = () {
-      _saveProject();
-    };
-
+    zoneEditorController = ZoneEditorController(
+      mediaWidth: visionController.mediaWidth!,
+      mediaHeight: visionController.mediaHeight!,
+      newZones: video.zones,
+      onZoneChanged: () {
+        _saveProject();
+      },
+    );
     notifyListeners();
     return true;
   }
@@ -345,7 +346,6 @@ class VideoProvider with ChangeNotifier {
     }
 
     await visionController.enableDetection(true);
-    zoneEditorController?.onZoneChanged = null;
     zoneEditorController?.dispose();
     zoneEditorController = null;
   }
