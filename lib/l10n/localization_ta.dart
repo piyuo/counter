@@ -505,4 +505,7 @@ class LocalizationTa extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'திரையில் சுருக்கத்தைக் காட்டு';
+
+  @override
+  String get video_sources_photos_denied => 'புகைப்படங்களுக்கான அணுகல் மறுக்கப்பட்டது';
 }

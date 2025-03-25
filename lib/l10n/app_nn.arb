@@ -164,5 +164,6 @@
   "close": "Lukk",
   "back": "Tilbake",
   "zone_screen_zone": "Sone",
-  "zone_screen_zone_show_summary": "Vis samandrag på skjerm"
+  "zone_screen_zone_show_summary": "Vis samandrag på skjerm",
+  "video_sources_photos_denied": "Tilgang til bilete avslått"
 }

@@ -164,5 +164,6 @@
   "close": "बंद करा",
   "back": "मागे",
   "zone_screen_zone": "झोन",
-  "zone_screen_zone_show_summary": "स्क्रीनवर सारांश दाखवा"
+  "zone_screen_zone_show_summary": "स्क्रीनवर सारांश दाखवा",
+  "video_sources_photos_denied": "फोटो अ‍ॅक्सेस नाकारले"
 }

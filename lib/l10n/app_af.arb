@@ -164,5 +164,6 @@
   "close": "Sluit",
   "back": "Terug",
   "zone_screen_zone": "Sone",
-  "zone_screen_zone_show_summary": "Wys opsomming op skerm"
+  "zone_screen_zone_show_summary": "Wys opsomming op skerm",
+  "video_sources_photos_denied": "Toegang tot foto's geweier"
 }

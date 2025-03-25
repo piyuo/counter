@@ -164,5 +164,6 @@
   "close": "Zatvori",
   "back": "Natrag",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Prikaži sažetak na zaslonu"
+  "zone_screen_zone_show_summary": "Prikaži sažetak na zaslonu",
+  "video_sources_photos_denied": "Pristup fotografijama odbijen"
 }

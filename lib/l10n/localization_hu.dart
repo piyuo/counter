@@ -505,4 +505,7 @@ class LocalizationHu extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Összegzés mutatása';
+
+  @override
+  String get video_sources_photos_denied => 'Fényképekhez való hozzáférés megtagadva';
 }

@@ -505,4 +505,7 @@ class LocalizationMl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'സ്ക്രീനിൽ സംഗ്രഹം കാണിക്കുക';
+
+  @override
+  String get video_sources_photos_denied => 'ഫോട്ടോകൾ കാണാൻ അനുമതിയില്ല';
 }

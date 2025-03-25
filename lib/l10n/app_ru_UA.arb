@@ -164,5 +164,6 @@
   "close": "Закрыть",
   "back": "Назад",
   "zone_screen_zone": "Зона",
-  "zone_screen_zone_show_summary": "Показати зведення на екрані"
+  "zone_screen_zone_show_summary": "Показати зведення на екрані",
+  "video_sources_photos_denied": "Доступ до фото заборонено"
 }

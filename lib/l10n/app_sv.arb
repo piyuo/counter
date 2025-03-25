@@ -164,5 +164,6 @@
   "close": "Stäng",
   "back": "Tillbaka",
   "zone_screen_zone": "Zon",
-  "zone_screen_zone_show_summary": "Visa sammanfattning på skärmen"
+  "zone_screen_zone_show_summary": "Visa sammanfattning på skärmen",
+  "video_sources_photos_denied": "Åtkomst till foton nekad"
 }

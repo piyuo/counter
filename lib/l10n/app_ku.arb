@@ -164,5 +164,6 @@
   "close": "Bigire",
   "back": "Paş",
   "zone_screen_zone": "Qad",
-  "zone_screen_zone_show_summary": "Kurte li ser ekranê nîşan bide"
+  "zone_screen_zone_show_summary": "Kurte li ser ekranê nîşan bide",
+  "video_sources_photos_denied": "Gihîştina wêneyan nehate qebûl kirin"
 }

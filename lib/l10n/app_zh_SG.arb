@@ -164,5 +164,6 @@
   "close": "关闭",
   "back": "返回",
   "zone_screen_zone": "区域",
-  "zone_screen_zone_show_summary": "在屏幕上显示摘要"
+  "zone_screen_zone_show_summary": "在屏幕上显示摘要",
+  "video_sources_photos_denied": "照片访问被拒绝"
 }

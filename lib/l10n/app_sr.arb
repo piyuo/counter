@@ -164,5 +164,6 @@
   "close": "Zatvori",
   "back": "Nazad",
   "zone_screen_zone": "Зона",
-  "zone_screen_zone_show_summary": "Прикажи резиме на екрану"
+  "zone_screen_zone_show_summary": "Прикажи резиме на екрану",
+  "video_sources_photos_denied": "Pristup fotografijama odbijen"
 }

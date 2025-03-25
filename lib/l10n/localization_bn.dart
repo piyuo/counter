@@ -505,6 +505,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'স্ক্রিনে সারসংক্ষেপ দেখান';
+
+  @override
+  String get video_sources_photos_denied => 'ছবিতে অ্যাক্সেস প্রত্যাখ্যাত';
 }
 
 /// The translations for Bengali Bangla, as used in India (`bn_IN`).
@@ -1008,4 +1011,7 @@ class LocalizationBnIn extends LocalizationBn {
 
   @override
   String get zone_screen_zone_show_summary => 'स्क्रीन पर सारांश दिखाएं';
+
+  @override
+  String get video_sources_photos_denied => 'ফটোতে অ্যাক্সেস প্রত্যাখ্যাত';
 }

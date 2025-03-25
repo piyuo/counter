@@ -505,4 +505,7 @@ class LocalizationCa extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resum a la pantalla';
+
+  @override
+  String get video_sources_photos_denied => 'Accés a fotos denegat';
 }

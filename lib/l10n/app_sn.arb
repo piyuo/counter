@@ -164,5 +164,6 @@
   "close": "Vhara",
   "back": "Dzokera",
   "zone_screen_zone": "Nzvimbo",
-  "zone_screen_zone_show_summary": "Ratidza muchidimbu pashcreen"
+  "zone_screen_zone_show_summary": "Ratidza muchidimbu pashcreen",
+  "video_sources_photos_denied": "Kukwanisa kuona mafoto kwarambwa"
 }

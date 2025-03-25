@@ -505,4 +505,7 @@ class LocalizationSk extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Zobraziť súhrn na obrazovke';
+
+  @override
+  String get video_sources_photos_denied => 'Prístup k fotografiám zamietnutý';
 }

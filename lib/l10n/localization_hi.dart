@@ -505,4 +505,7 @@ class LocalizationHi extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'स्क्रीन पर सारांश दिखाएं';
+
+  @override
+  String get video_sources_photos_denied => 'फ़ोटो तक पहुंच अस्वीकृत';
 }

@@ -505,4 +505,7 @@ class LocalizationGu extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'સ્ક્રીન પર સારાંશ બતાવો';
+
+  @override
+  String get video_sources_photos_denied => 'ફોટા ઍક્સેસ નકારાયું';
 }

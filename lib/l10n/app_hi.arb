@@ -164,5 +164,6 @@
   "close": "बंद करें",
   "back": "वापस",
   "zone_screen_zone": "ज़ोन",
-  "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं"
+  "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं",
+  "video_sources_photos_denied": "फ़ोटो तक पहुंच अस्वीकृत"
 }

@@ -164,5 +164,6 @@
   "close": "बन्द गर्नुहोस्",
   "back": "पछाडि",
   "zone_screen_zone": "क्षेत्र",
-  "zone_screen_zone_show_summary": "स्क्रिनमा सारांश देखाउनुहोस्"
+  "zone_screen_zone_show_summary": "स्क्रिनमा सारांश देखाउनुहोस्",
+  "video_sources_photos_denied": "फोटोहरूमा पहुँच अस्वीकृत"
 }

@@ -505,4 +505,7 @@ class LocalizationDa extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Vis oversigt på skærm';
+
+  @override
+  String get video_sources_photos_denied => 'Adgang til fotos nægtet';
 }

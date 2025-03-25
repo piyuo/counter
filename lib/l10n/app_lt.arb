@@ -164,5 +164,6 @@
   "close": "Uždaryti",
   "back": "Atgal",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Rodyti santrauką ekrane"
+  "zone_screen_zone_show_summary": "Rodyti santrauką ekrane",
+  "video_sources_photos_denied": "Prieiga prie nuotraukų atmesta"
 }

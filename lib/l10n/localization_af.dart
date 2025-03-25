@@ -505,4 +505,7 @@ class LocalizationAf extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Wys opsomming op skerm';
+
+  @override
+  String get video_sources_photos_denied => 'Toegang tot foto\'s geweier';
 }

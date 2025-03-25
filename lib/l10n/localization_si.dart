@@ -505,4 +505,7 @@ class LocalizationSi extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'තිරයේ සාරාංශය පෙන්වන්න';
+
+  @override
+  String get video_sources_photos_denied => 'ඡායාරූප වෙත ප්‍රවේශය අවහිර විය';
 }

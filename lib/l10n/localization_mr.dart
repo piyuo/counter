@@ -505,4 +505,7 @@ class LocalizationMr extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'स्क्रीनवर सारांश दाखवा';
+
+  @override
+  String get video_sources_photos_denied => 'फोटो अ‍ॅक्सेस नाकारले';
 }

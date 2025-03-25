@@ -164,5 +164,6 @@
   "close": "Хаах",
   "back": "Буцах",
   "zone_screen_zone": "Бүс",
-  "zone_screen_zone_show_summary": "Дэлгэцэд хураангуйг харуулах"
+  "zone_screen_zone_show_summary": "Дэлгэцэд хураангуйг харуулах",
+  "video_sources_photos_denied": "Зураг руу нэвтрэх эрхгүй"
 }

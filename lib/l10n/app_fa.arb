@@ -164,5 +164,6 @@
   "close": "بستن",
   "back": "بازگشت",
   "zone_screen_zone": "منطقه",
-  "zone_screen_zone_show_summary": "نمایش خلاصه در صفحه"
+  "zone_screen_zone_show_summary": "نمایش خلاصه در صفحه",
+  "video_sources_photos_denied": "دسترسی به تصاویر رد شد"
 }

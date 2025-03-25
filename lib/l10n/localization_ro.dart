@@ -505,4 +505,7 @@ class LocalizationRo extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Afișează rezumat pe ecran';
+
+  @override
+  String get video_sources_photos_denied => 'Acces la fotografii refuzat';
 }

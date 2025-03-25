@@ -505,4 +505,7 @@ class LocalizationEl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Εμφάνιση σύνοψης στην οθόνη';
+
+  @override
+  String get video_sources_photos_denied => 'Άρνηση πρόσβασης σε φωτογραφίες';
 }

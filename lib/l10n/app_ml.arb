@@ -164,5 +164,6 @@
   "close": "അടയ്ക്കുക",
   "back": "തിരികെ",
   "zone_screen_zone": "സോൺ",
-  "zone_screen_zone_show_summary": "സ്ക്രീനിൽ സംഗ്രഹം കാണിക്കുക"
+  "zone_screen_zone_show_summary": "സ്ക്രീനിൽ സംഗ്രഹം കാണിക്കുക",
+  "video_sources_photos_denied": "ഫോട്ടോകൾ കാണാൻ അനുമതിയില്ല"
 }

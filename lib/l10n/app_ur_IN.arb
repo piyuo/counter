@@ -164,5 +164,6 @@
   "close": "بند کریں",
   "back": "واپس",
   "zone_screen_zone": "زون",
-  "zone_screen_zone_show_summary": "اسکرین پر خلاصہ دکھائیں"
+  "zone_screen_zone_show_summary": "اسکرین پر خلاصہ دکھائیں",
+  "video_sources_photos_denied": "تصاویر تک رسائی مسترد کر دی گئی"
 }

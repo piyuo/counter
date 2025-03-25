@@ -164,5 +164,6 @@
   "close": "మూసివేయి",
   "back": "వెనుకకు",
   "zone_screen_zone": "జోన్",
-  "zone_screen_zone_show_summary": "స్క్రీన్‌పై సారాంశాన్ని చూపించు"
+  "zone_screen_zone_show_summary": "స్క్రీన్‌పై సారాంశాన్ని చూపించు",
+  "video_sources_photos_denied": "ఫొటోలకు యాక్సెస్ నిరాకరించబడింది"
 }

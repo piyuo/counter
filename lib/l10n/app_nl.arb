@@ -164,5 +164,6 @@
   "close": "Sluiten",
   "back": "Terug",
   "zone_screen_zone": "Zone",
-  "zone_screen_zone_show_summary": "Toon samenvatting op scherm"
+  "zone_screen_zone_show_summary": "Toon samenvatting op scherm",
+  "video_sources_photos_denied": "Toegang tot foto's geweigerd"
 }

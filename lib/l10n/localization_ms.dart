@@ -505,6 +505,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Papar ringkasan pada skrin';
+
+  @override
+  String get video_sources_photos_denied => 'Akses ke foto dinafikan';
 }
 
 /// The translations for Malay, as used in Singapore (`ms_SG`).
@@ -1008,4 +1011,7 @@ class LocalizationMsSg extends LocalizationMs {
 
   @override
   String get zone_screen_zone_show_summary => 'Papar ringkasan pada skrin';
+
+  @override
+  String get video_sources_photos_denied => 'Akses ke foto dinafikan';
 }

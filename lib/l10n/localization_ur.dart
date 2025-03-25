@@ -505,6 +505,9 @@ class LocalizationUr extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'اسکرین پر خلاصہ دکھائیں';
+
+  @override
+  String get video_sources_photos_denied => 'تصاویر تک رسائی مسترد کر دی گئی';
 }
 
 /// The translations for Urdu, as used in India (`ur_IN`).
@@ -1008,4 +1011,7 @@ class LocalizationUrIn extends LocalizationUr {
 
   @override
   String get zone_screen_zone_show_summary => 'اسکرین پر خلاصہ دکھائیں';
+
+  @override
+  String get video_sources_photos_denied => 'تصاویر تک رسائی مسترد کر دی گئی';
 }

@@ -505,4 +505,7 @@ class LocalizationSn extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Ratidza muchidimbu pashcreen';
+
+  @override
+  String get video_sources_photos_denied => 'Kukwanisa kuona mafoto kwarambwa';
 }

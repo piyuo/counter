@@ -505,4 +505,7 @@ class LocalizationEt extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Näita kokkuvõtet ekraanil';
+
+  @override
+  String get video_sources_photos_denied => 'Juurdepääs fotodele keelatud';
 }

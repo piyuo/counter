@@ -505,4 +505,7 @@ class LocalizationJa extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => '画面に概要を表示';
+
+  @override
+  String get video_sources_photos_denied => '写真へのアクセスが拒否されました';
 }

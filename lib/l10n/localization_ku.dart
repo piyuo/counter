@@ -505,4 +505,7 @@ class LocalizationKu extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Kurte li ser ekranê nîşan bide';
+
+  @override
+  String get video_sources_photos_denied => 'Gihîştina wêneyan nehate qebûl kirin';
 }

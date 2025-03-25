@@ -505,4 +505,7 @@ class LocalizationAm extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Ամփոփումը ցույց տալ էկրանին';
+
+  @override
+  String get video_sources_photos_denied => 'ፎቶዎችን ለማግኘት ተከልክሏል';
 }

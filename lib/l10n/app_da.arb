@@ -164,5 +164,6 @@
   "close": "Luk",
   "back": "Tilbage",
   "zone_screen_zone": "Zone",
-  "zone_screen_zone_show_summary": "Vis oversigt på skærm"
+  "zone_screen_zone_show_summary": "Vis oversigt på skærm",
+  "video_sources_photos_denied": "Adgang til fotos nægtet"
 }

@@ -164,5 +164,6 @@
   "close": "වසන්න",
   "back": "ආපසු",
   "zone_screen_zone": "කලාපය",
-  "zone_screen_zone_show_summary": "තිරයේ සාරාංශය පෙන්වන්න"
+  "zone_screen_zone_show_summary": "තිරයේ සාරාංශය පෙන්වන්න",
+  "video_sources_photos_denied": "ඡායාරූප වෙත ප්‍රවේශය අවහිර විය"
 }

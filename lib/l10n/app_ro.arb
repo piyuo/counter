@@ -164,5 +164,6 @@
   "close": "Închide",
   "back": "Înapoi",
   "zone_screen_zone": "Zonă",
-  "zone_screen_zone_show_summary": "Afișează rezumat pe ecran"
+  "zone_screen_zone_show_summary": "Afișează rezumat pe ecran",
+  "video_sources_photos_denied": "Acces la fotografii refuzat"
 }

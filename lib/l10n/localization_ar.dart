@@ -505,6 +505,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
+
+  @override
+  String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 }
 
 /// The translations for Arabic, as used in the United Arab Emirates (`ar_AE`).
@@ -1008,6 +1011,9 @@ class LocalizationArAe extends LocalizationAr {
 
   @override
   String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
+
+  @override
+  String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 }
 
 /// The translations for Arabic, as used in Algeria (`ar_DZ`).
@@ -1511,6 +1517,9 @@ class LocalizationArDz extends LocalizationAr {
 
   @override
   String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
+
+  @override
+  String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -2014,4 +2023,7 @@ class LocalizationArEg extends LocalizationAr {
 
   @override
   String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
+
+  @override
+  String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 }

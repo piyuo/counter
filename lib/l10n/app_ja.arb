@@ -164,5 +164,6 @@
   "close": "閉じる",
   "back": "戻る",
   "zone_screen_zone": "ゾーン",
-  "zone_screen_zone_show_summary": "画面に概要を表示"
+  "zone_screen_zone_show_summary": "画面に概要を表示",
+  "video_sources_photos_denied": "写真へのアクセスが拒否されました"
 }

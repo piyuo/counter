@@ -164,5 +164,6 @@
   "close": "Zapri",
   "back": "Nazaj",
   "zone_screen_zone": "Območje",
-  "zone_screen_zone_show_summary": "Prikaži povzetek na zaslonu"
+  "zone_screen_zone_show_summary": "Prikaži povzetek na zaslonu",
+  "video_sources_photos_denied": "Dostop do fotografij zavrnjen"
 }

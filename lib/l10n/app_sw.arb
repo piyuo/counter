@@ -164,5 +164,6 @@
   "close": "Funga",
   "back": "Rudi",
   "zone_screen_zone": "Eneo",
-  "zone_screen_zone_show_summary": "Onyesha muhtasari kwenye skrini"
+  "zone_screen_zone_show_summary": "Onyesha muhtasari kwenye skrini",
+  "video_sources_photos_denied": "Ruhusa ya picha imekataliwa"
 }

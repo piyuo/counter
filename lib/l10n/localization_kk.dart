@@ -505,4 +505,7 @@ class LocalizationKk extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Экранда қорытынды көрсету';
+
+  @override
+  String get video_sources_photos_denied => 'Фотосуреттерге қол жеткізу мүмкін емес';
 }

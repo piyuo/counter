@@ -505,6 +505,9 @@ class LocalizationEs extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumen en pantalla';
+
+  @override
+  String get video_sources_photos_denied => 'Acceso a fotos denegado';
 }
 
 /// The translations for Spanish Castilian, as used in Argentina (`es_AR`).
@@ -1008,6 +1011,9 @@ class LocalizationEsAr extends LocalizationEs {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumen en pantalla';
+
+  @override
+  String get video_sources_photos_denied => 'Acceso a fotos denegado';
 }
 
 /// The translations for Spanish Castilian, as used in Colombia (`es_CO`).
@@ -1511,6 +1517,9 @@ class LocalizationEsCo extends LocalizationEs {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumen en pantalla';
+
+  @override
+  String get video_sources_photos_denied => 'Acceso a fotos denegado';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -2014,4 +2023,7 @@ class LocalizationEsMx extends LocalizationEs {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumen en pantalla';
+
+  @override
+  String get video_sources_photos_denied => 'Acceso a fotos denegado';
 }

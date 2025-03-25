@@ -505,6 +505,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => '在螢幕上顯示總結';
+
+  @override
+  String get video_sources_photos_denied => '相片存取被拒';
 }
 
 /// The translations for Chinese, as used in China (`zh_CN`).
@@ -1008,6 +1011,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get zone_screen_zone_show_summary => '在屏幕上显示摘要';
+
+  @override
+  String get video_sources_photos_denied => '照片访问被拒绝';
 }
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
@@ -1511,6 +1517,9 @@ class LocalizationZhHk extends LocalizationZh {
 
   @override
   String get zone_screen_zone_show_summary => '在螢幕上顯示摘要';
+
+  @override
+  String get video_sources_photos_denied => '相片存取被拒';
 }
 
 /// The translations for Chinese, as used in Macao (`zh_MO`).
@@ -2014,6 +2023,9 @@ class LocalizationZhMo extends LocalizationZh {
 
   @override
   String get zone_screen_zone_show_summary => '在螢幕上顯示摘要';
+
+  @override
+  String get video_sources_photos_denied => '相片存取被拒';
 }
 
 /// The translations for Chinese, as used in Singapore (`zh_SG`).
@@ -2517,4 +2529,7 @@ class LocalizationZhSg extends LocalizationZh {
 
   @override
   String get zone_screen_zone_show_summary => '在屏幕上显示摘要';
+
+  @override
+  String get video_sources_photos_denied => '照片访问被拒绝';
 }

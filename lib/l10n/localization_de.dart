@@ -505,6 +505,9 @@ class LocalizationDe extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Zusammenfassung anzeigen';
+
+  @override
+  String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 }
 
 /// The translations for German, as used in Austria (`de_AT`).
@@ -1008,6 +1011,9 @@ class LocalizationDeAt extends LocalizationDe {
 
   @override
   String get zone_screen_zone_show_summary => 'Zusammenfassung anzeigen';
+
+  @override
+  String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 }
 
 /// The translations for German, as used in Switzerland (`de_CH`).
@@ -1511,4 +1517,7 @@ class LocalizationDeCh extends LocalizationDe {
 
   @override
   String get zone_screen_zone_show_summary => 'Zusammenfassung anzeigen';
+
+  @override
+  String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 }

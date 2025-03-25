@@ -164,5 +164,6 @@
   "close": "Đóng",
   "back": "Quay lại",
   "zone_screen_zone": "Vùng",
-  "zone_screen_zone_show_summary": "Hiển thị tóm tắt trên màn hình"
+  "zone_screen_zone_show_summary": "Hiển thị tóm tắt trên màn hình",
+  "video_sources_photos_denied": "Quyền truy cập ảnh bị từ chối"
 }

@@ -1239,6 +1239,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Show summary on screen'**
   String get zone_screen_zone_show_summary;
+
+  /// No description provided for @video_sources_photos_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Access to photos denied'**
+  String get video_sources_photos_denied;
 }
 
 class _LocalizationDelegate extends LocalizationsDelegate<Localization> {

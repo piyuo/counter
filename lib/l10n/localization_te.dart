@@ -505,4 +505,7 @@ class LocalizationTe extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'స్క్రీన్‌పై సారాంశాన్ని చూపించు';
+
+  @override
+  String get video_sources_photos_denied => 'ఫొటోలకు యాక్సెస్ నిరాకరించబడింది';
 }

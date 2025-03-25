@@ -164,5 +164,6 @@
   "close": "Kapat",
   "back": "Geri",
   "zone_screen_zone": "Bölge",
-  "zone_screen_zone_show_summary": "Ekranda özet göster"
+  "zone_screen_zone_show_summary": "Ekranda özet göster",
+  "video_sources_photos_denied": "Fotoğraflara erişim reddedildi"
 }

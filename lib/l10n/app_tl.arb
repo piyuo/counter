@@ -164,5 +164,6 @@
   "close": "Isara",
   "back": "Bumalik",
   "zone_screen_zone": "Zone",
-  "zone_screen_zone_show_summary": "Ipakita ang buod sa screen"
+  "zone_screen_zone_show_summary": "Ipakita ang buod sa screen",
+  "video_sources_photos_denied": "Hindi pinahintulutan ang access sa mga larawan"
 }

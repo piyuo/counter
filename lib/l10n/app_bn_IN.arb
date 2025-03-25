@@ -164,5 +164,6 @@
   "close": "বন্ধ করুন",
   "back": "পিছনে",
   "zone_screen_zone": "জোন",
-  "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं"
+  "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं",
+  "video_sources_photos_denied": "ফটোতে অ্যাক্সেস প্রত্যাখ্যাত"
 }

@@ -505,4 +505,7 @@ class LocalizationHa extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Nuna taƙaitawa a allo';
+
+  @override
+  String get video_sources_photos_denied => 'An ki ƙi samun damar hotuna';
 }

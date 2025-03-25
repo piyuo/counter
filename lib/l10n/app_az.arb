@@ -164,5 +164,6 @@
   "close": "Bağlayın",
   "back": "Geri",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Ekranda xülasə göstər"
+  "zone_screen_zone_show_summary": "Ekranda xülasə göstər",
+  "video_sources_photos_denied": "Fotolara giriş rədd edildi"
 }

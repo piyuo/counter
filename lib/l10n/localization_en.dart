@@ -505,6 +505,9 @@ class LocalizationEn extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Show summary on screen';
+
+  @override
+  String get video_sources_photos_denied => 'Access to photos denied';
 }
 
 /// The translations for English, as used in Australia (`en_AU`).
@@ -1008,6 +1011,9 @@ class LocalizationEnAu extends LocalizationEn {
 
   @override
   String get zone_screen_zone_show_summary => 'Show summary on screen';
+
+  @override
+  String get video_sources_photos_denied => 'Access to photos denied';
 }
 
 /// The translations for English, as used in Canada (`en_CA`).
@@ -1511,6 +1517,9 @@ class LocalizationEnCa extends LocalizationEn {
 
   @override
   String get zone_screen_zone_show_summary => 'Show summary on screen';
+
+  @override
+  String get video_sources_photos_denied => 'Access to photos denied';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -2014,6 +2023,9 @@ class LocalizationEnGb extends LocalizationEn {
 
   @override
   String get zone_screen_zone_show_summary => 'Show summary on screen';
+
+  @override
+  String get video_sources_photos_denied => 'Access to photos denied';
 }
 
 /// The translations for English, as used in India (`en_IN`).
@@ -2517,4 +2529,7 @@ class LocalizationEnIn extends LocalizationEn {
 
   @override
   String get zone_screen_zone_show_summary => 'Show summary on screen';
+
+  @override
+  String get video_sources_photos_denied => 'Access to photos denied';
 }

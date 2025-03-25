@@ -505,4 +505,7 @@ class LocalizationVi extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Hiển thị tóm tắt trên màn hình';
+
+  @override
+  String get video_sources_photos_denied => 'Quyền truy cập ảnh bị từ chối';
 }

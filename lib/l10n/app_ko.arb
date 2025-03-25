@@ -164,5 +164,6 @@
   "close": "닫기",
   "back": "뒤로",
   "zone_screen_zone": "영역",
-  "zone_screen_zone_show_summary": "화면에 요약 표시"
+  "zone_screen_zone_show_summary": "화면에 요약 표시",
+  "video_sources_photos_denied": "사진 접근이 거부됨"
 }

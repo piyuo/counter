@@ -164,5 +164,6 @@
   "close": "Close",
   "back": "Back",
   "zone_screen_zone": "Zone",
-  "zone_screen_zone_show_summary": "Show summary on screen"
+  "zone_screen_zone_show_summary": "Show summary on screen",
+  "video_sources_photos_denied": "Access to photos denied"
 }

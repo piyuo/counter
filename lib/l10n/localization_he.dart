@@ -505,4 +505,7 @@ class LocalizationHe extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'הצג סיכום על המסך';
+
+  @override
+  String get video_sources_photos_denied => 'גישה לתמונות נדחתה';
 }

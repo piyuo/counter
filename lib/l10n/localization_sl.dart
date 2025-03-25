@@ -505,4 +505,7 @@ class LocalizationSl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Prikaži povzetek na zaslonu';
+
+  @override
+  String get video_sources_photos_denied => 'Dostop do fotografij zavrnjen';
 }

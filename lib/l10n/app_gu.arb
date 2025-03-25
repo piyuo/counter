@@ -164,5 +164,6 @@
   "close": "બંધ કરો",
   "back": "પાછળ",
   "zone_screen_zone": "ઝોન",
-  "zone_screen_zone_show_summary": "સ્ક્રીન પર સારાંશ બતાવો"
+  "zone_screen_zone_show_summary": "સ્ક્રીન પર સારાંશ બતાવો",
+  "video_sources_photos_denied": "ફોટા ઍક્સેસ નકારાયું"
 }

@@ -505,4 +505,7 @@ class LocalizationMy extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'မျက်နှာပြင်တွင် အကျဉ်းချုပ် ပြရန်';
+
+  @override
+  String get video_sources_photos_denied => 'ဓာတ်ပုံများသို့ ဝင်ရောက်ခွင့် ငြင်းပယ်ခံရ';
 }

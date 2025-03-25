@@ -505,4 +505,7 @@ class LocalizationLt extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Rodyti santrauką ekrane';
+
+  @override
+  String get video_sources_photos_denied => 'Prieiga prie nuotraukų atmesta';
 }

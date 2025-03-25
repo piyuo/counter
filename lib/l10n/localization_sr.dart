@@ -505,4 +505,7 @@ class LocalizationSr extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Прикажи резиме на екрану';
+
+  @override
+  String get video_sources_photos_denied => 'Pristup fotografijama odbijen';
 }

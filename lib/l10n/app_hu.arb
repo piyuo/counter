@@ -164,5 +164,6 @@
   "close": "Bezárás",
   "back": "Vissza",
   "zone_screen_zone": "Zóna",
-  "zone_screen_zone_show_summary": "Összegzés mutatása"
+  "zone_screen_zone_show_summary": "Összegzés mutatása",
+  "video_sources_photos_denied": "Fényképekhez való hozzáférés megtagadva"
 }

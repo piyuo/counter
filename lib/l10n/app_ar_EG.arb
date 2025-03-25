@@ -164,5 +164,6 @@
   "close": "إغلاق",
   "back": "رجوع",
   "zone_screen_zone": "منطقة",
-  "zone_screen_zone_show_summary": "عرض الملخص على الشاشة"
+  "zone_screen_zone_show_summary": "عرض الملخص على الشاشة",
+  "video_sources_photos_denied": "تم رفض الوصول للصور"
 }

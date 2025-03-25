@@ -505,4 +505,7 @@ class LocalizationCs extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Zobrazit shrnutí na obrazovce';
+
+  @override
+  String get video_sources_photos_denied => 'Přístup k fotografiím odepřen';
 }

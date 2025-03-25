@@ -164,5 +164,6 @@
   "close": "Tutup",
   "back": "Kembali",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Tampilkan ringkasan di layar"
+  "zone_screen_zone_show_summary": "Tampilkan ringkasan di layar",
+  "video_sources_photos_denied": "Akses ke foto ditolak"
 }

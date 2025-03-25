@@ -505,4 +505,7 @@ class LocalizationNb extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Vis sammendrag på skjerm';
+
+  @override
+  String get video_sources_photos_denied => 'Tilgang til bilder avslått';
 }

@@ -505,4 +505,7 @@ class LocalizationNe extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'स्क्रिनमा सारांश देखाउनुहोस्';
+
+  @override
+  String get video_sources_photos_denied => 'फोटोहरूमा पहुँच अस्वीकृत';
 }

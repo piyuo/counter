@@ -505,4 +505,7 @@ class LocalizationSv extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Visa sammanfattning på skärmen';
+
+  @override
+  String get video_sources_photos_denied => 'Åtkomst till foton nekad';
 }

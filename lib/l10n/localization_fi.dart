@@ -505,4 +505,7 @@ class LocalizationFi extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Näytä yhteenveto ruudulla';
+
+  @override
+  String get video_sources_photos_denied => 'Pääsy valokuviin estetty';
 }

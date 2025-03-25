@@ -505,4 +505,7 @@ class LocalizationPs extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'په سکرین کې لنډیز ښودل';
+
+  @override
+  String get video_sources_photos_denied => 'د عکسونو لاسرسی رد شوی';
 }

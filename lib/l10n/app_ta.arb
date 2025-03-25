@@ -164,5 +164,6 @@
   "close": "மூடு",
   "back": "பின்செல்",
   "zone_screen_zone": "மண்டலம்",
-  "zone_screen_zone_show_summary": "திரையில் சுருக்கத்தைக் காட்டு"
+  "zone_screen_zone_show_summary": "திரையில் சுருக்கத்தைக் காட்டு",
+  "video_sources_photos_denied": "புகைப்படங்களுக்கான அணுகல் மறுக்கப்பட்டது"
 }

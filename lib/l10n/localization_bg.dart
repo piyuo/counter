@@ -505,4 +505,7 @@ class LocalizationBg extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Покажи обобщение на екрана';
+
+  @override
+  String get video_sources_photos_denied => 'Достъпът до снимки е отказан';
 }

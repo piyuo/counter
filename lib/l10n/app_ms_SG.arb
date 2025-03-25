@@ -164,5 +164,6 @@
   "close": "Tutup",
   "back": "Kembali",
   "zone_screen_zone": "Zon",
-  "zone_screen_zone_show_summary": "Papar ringkasan pada skrin"
+  "zone_screen_zone_show_summary": "Papar ringkasan pada skrin",
+  "video_sources_photos_denied": "Akses ke foto dinafikan"
 }

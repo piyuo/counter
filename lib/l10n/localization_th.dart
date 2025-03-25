@@ -505,4 +505,7 @@ class LocalizationTh extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'แสดงสรุปบนหน้าจอ';
+
+  @override
+  String get video_sources_photos_denied => 'ไม่อนุญาตให้เข้าถึงรูปภาพ';
 }

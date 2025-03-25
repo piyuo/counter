@@ -505,4 +505,7 @@ class LocalizationUz extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Ekranda xulosani ko\'rsatish';
+
+  @override
+  String get video_sources_photos_denied => 'Rasmlarga kirish rad etildi';
 }

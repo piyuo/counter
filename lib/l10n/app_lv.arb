@@ -164,5 +164,6 @@
   "close": "Aizvērt",
   "back": "Atpakaļ",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Rādīt kopsavilkumu ekrānā"
+  "zone_screen_zone_show_summary": "Rādīt kopsavilkumu ekrānā",
+  "video_sources_photos_denied": "Piekļuve fotoattēliem liegta"
 }

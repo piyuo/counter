@@ -164,5 +164,6 @@
   "close": "বন্ধ করুন",
   "back": "পিছনে",
   "zone_screen_zone": "জোন",
-  "zone_screen_zone_show_summary": "স্ক্রিনে সারসংক্ষেপ দেখান"
+  "zone_screen_zone_show_summary": "স্ক্রিনে সারসংক্ষেপ দেখান",
+  "video_sources_photos_denied": "ছবিতে অ্যাক্সেস প্রত্যাখ্যাত"
 }

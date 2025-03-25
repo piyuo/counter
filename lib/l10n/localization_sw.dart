@@ -505,4 +505,7 @@ class LocalizationSw extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Onyesha muhtasari kwenye skrini';
+
+  @override
+  String get video_sources_photos_denied => 'Ruhusa ya picha imekataliwa';
 }

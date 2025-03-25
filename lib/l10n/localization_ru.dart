@@ -505,6 +505,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Показать сводку на экране';
+
+  @override
+  String get video_sources_photos_denied => 'Доступ к фото запрещен';
 }
 
 /// The translations for Russian, as used in Kazakhstan (`ru_KZ`).
@@ -1008,6 +1011,9 @@ class LocalizationRuKz extends LocalizationRu {
 
   @override
   String get zone_screen_zone_show_summary => 'Показать сводку на экране';
+
+  @override
+  String get video_sources_photos_denied => 'Доступ к фото запрещен';
 }
 
 /// The translations for Russian, as used in Ukraine (`ru_UA`).
@@ -1511,4 +1517,7 @@ class LocalizationRuUa extends LocalizationRu {
 
   @override
   String get zone_screen_zone_show_summary => 'Показати зведення на екрані';
+
+  @override
+  String get video_sources_photos_denied => 'Доступ до фото заборонено';
 }

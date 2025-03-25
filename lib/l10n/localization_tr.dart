@@ -505,4 +505,7 @@ class LocalizationTr extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Ekranda özet göster';
+
+  @override
+  String get video_sources_photos_denied => 'Fotoğraflara erişim reddedildi';
 }

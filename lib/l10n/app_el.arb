@@ -164,5 +164,6 @@
   "close": "Κλείσιμο",
   "back": "Πίσω",
   "zone_screen_zone": "Ζώνη",
-  "zone_screen_zone_show_summary": "Εμφάνιση σύνοψης στην οθόνη"
+  "zone_screen_zone_show_summary": "Εμφάνιση σύνοψης στην οθόνη",
+  "video_sources_photos_denied": "Άρνηση πρόσβασης σε φωτογραφίες"
 }

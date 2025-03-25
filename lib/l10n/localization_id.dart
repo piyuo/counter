@@ -505,4 +505,7 @@ class LocalizationId extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Tampilkan ringkasan di layar';
+
+  @override
+  String get video_sources_photos_denied => 'Akses ke foto ditolak';
 }

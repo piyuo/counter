@@ -164,5 +164,6 @@
   "close": "Zamknij",
   "back": "Wstecz",
   "zone_screen_zone": "Strefa",
-  "zone_screen_zone_show_summary": "Pokaż podsumowanie na ekranie"
+  "zone_screen_zone_show_summary": "Pokaż podsumowanie na ekranie",
+  "video_sources_photos_denied": "Odmowa dostępu do zdjęć"
 }

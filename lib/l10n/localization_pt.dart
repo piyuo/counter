@@ -505,6 +505,9 @@ class LocalizationPt extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumo na tela';
+
+  @override
+  String get video_sources_photos_denied => 'Acesso a fotos negado';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -1008,4 +1011,7 @@ class LocalizationPtPt extends LocalizationPt {
 
   @override
   String get zone_screen_zone_show_summary => 'Mostrar resumo no ecrã';
+
+  @override
+  String get video_sources_photos_denied => 'Acesso a fotos negado';
 }

@@ -505,4 +505,7 @@ class LocalizationKo extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => '화면에 요약 표시';
+
+  @override
+  String get video_sources_photos_denied => '사진 접근이 거부됨';
 }

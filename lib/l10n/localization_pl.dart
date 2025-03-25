@@ -505,4 +505,7 @@ class LocalizationPl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Pokaż podsumowanie na ekranie';
+
+  @override
+  String get video_sources_photos_denied => 'Odmowa dostępu do zdjęć';
 }

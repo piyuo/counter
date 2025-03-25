@@ -164,5 +164,6 @@
   "close": "Sulge",
   "back": "Tagasi",
   "zone_screen_zone": "Ala",
-  "zone_screen_zone_show_summary": "Näita kokkuvõtet ekraanil"
+  "zone_screen_zone_show_summary": "Näita kokkuvõtet ekraanil",
+  "video_sources_photos_denied": "Juurdepääs fotodele keelatud"
 }

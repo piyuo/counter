@@ -505,4 +505,7 @@ class LocalizationMn extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Дэлгэцэд хураангуйг харуулах';
+
+  @override
+  String get video_sources_photos_denied => 'Зураг руу нэвтрэх эрхгүй';
 }

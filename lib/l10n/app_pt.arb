@@ -164,5 +164,6 @@
   "close": "Fechar",
   "back": "Voltar",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Mostrar resumo na tela"
+  "zone_screen_zone_show_summary": "Mostrar resumo na tela",
+  "video_sources_photos_denied": "Acesso a fotos negado"
 }

@@ -164,5 +164,6 @@
   "close": "Zavřít",
   "back": "Zpět",
   "zone_screen_zone": "Zóna",
-  "zone_screen_zone_show_summary": "Zobrazit shrnutí na obrazovce"
+  "zone_screen_zone_show_summary": "Zobrazit shrnutí na obrazovce",
+  "video_sources_photos_denied": "Přístup k fotografiím odepřen"
 }

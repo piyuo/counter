@@ -164,5 +164,6 @@
   "close": "Sulje",
   "back": "Takaisin",
   "zone_screen_zone": "Alue",
-  "zone_screen_zone_show_summary": "Näytä yhteenveto ruudulla"
+  "zone_screen_zone_show_summary": "Näytä yhteenveto ruudulla",
+  "video_sources_photos_denied": "Pääsy valokuviin estetty"
 }

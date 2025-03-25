@@ -164,5 +164,6 @@
   "close": "Tancar",
   "back": "Tornar",
   "zone_screen_zone": "Zona",
-  "zone_screen_zone_show_summary": "Mostrar resum a la pantalla"
+  "zone_screen_zone_show_summary": "Mostrar resum a la pantalla",
+  "video_sources_photos_denied": "Accés a fotos denegat"
 }

@@ -505,4 +505,7 @@ class LocalizationTl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Ipakita ang buod sa screen';
+
+  @override
+  String get video_sources_photos_denied => 'Hindi pinahintulutan ang access sa mga larawan';
 }

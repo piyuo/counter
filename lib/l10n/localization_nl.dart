@@ -505,6 +505,9 @@ class LocalizationNl extends Localization {
 
   @override
   String get zone_screen_zone_show_summary => 'Toon samenvatting op scherm';
+
+  @override
+  String get video_sources_photos_denied => 'Toegang tot foto\'s geweigerd';
 }
 
 /// The translations for Dutch Flemish, as used in Belgium (`nl_BE`).
@@ -1008,4 +1011,7 @@ class LocalizationNlBe extends LocalizationNl {
 
   @override
   String get zone_screen_zone_show_summary => 'Toon samenvatting op scherm';
+
+  @override
+  String get video_sources_photos_denied => 'Toegang tot foto\'s geweigerd';
 }
