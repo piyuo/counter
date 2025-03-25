@@ -501,9 +501,6 @@ class LocalizationDe extends Localization {
   String get back => 'Zurück';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -1007,9 +1004,6 @@ class LocalizationDeAt extends LocalizationDe {
   String get back => 'Zurück';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -1511,9 +1505,6 @@ class LocalizationDeCh extends LocalizationDe {
 
   @override
   String get back => 'Zurück';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zone';

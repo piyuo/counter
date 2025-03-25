@@ -51,7 +51,6 @@
   "settings_screen_project_name": "項目名稱",
   "settings_screen_project_name_place_holder": "123 新馬路 或 白鴿巢公園",
   "settings_screen_project_error": "項目名稱唔可以為空",
-  "settings_screen_detection_button": "刪除",
   "settings_screen_random_count_button": "新增隨機計數",
   "settings_screen_reset_count_header": "重置此項目中嘅所有計數",
   "settings_screen_reset_count_button": "重置計數",

@@ -501,9 +501,6 @@ class LocalizationEl extends Localization {
   String get back => 'Πίσω';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Ζώνη';
 
   @override

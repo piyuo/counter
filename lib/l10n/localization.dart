@@ -1228,12 +1228,6 @@ abstract class Localization {
   /// **'Back'**
   String get back;
 
-  /// No description provided for @settings_screen_detection_button.
-  ///
-  /// In en, this message translates to:
-  /// **'MISSING'**
-  String get settings_screen_detection_button;
-
   /// No description provided for @zone_screen_zone.
   ///
   /// In en, this message translates to:

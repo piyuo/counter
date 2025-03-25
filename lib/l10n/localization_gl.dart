@@ -501,9 +501,6 @@ class LocalizationGl extends Localization {
   String get back => 'Volver';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zona';
 
   @override

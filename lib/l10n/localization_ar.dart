@@ -501,9 +501,6 @@ class LocalizationAr extends Localization {
   String get back => 'رجوع';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'منطقة';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationArAe extends LocalizationAr {
 
   @override
   String get back => 'رجوع';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'منطقة';
@@ -1513,9 +1507,6 @@ class LocalizationArDz extends LocalizationAr {
   String get back => 'رجوع';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'منطقة';
 
   @override
@@ -2017,9 +2008,6 @@ class LocalizationArEg extends LocalizationAr {
 
   @override
   String get back => 'رجوع';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'منطقة';

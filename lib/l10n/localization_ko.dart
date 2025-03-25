@@ -501,9 +501,6 @@ class LocalizationKo extends Localization {
   String get back => '뒤로';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => '영역';
 
   @override

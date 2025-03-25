@@ -501,9 +501,6 @@ class LocalizationEs extends Localization {
   String get back => 'Volver';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zona';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationEsAr extends LocalizationEs {
 
   @override
   String get back => 'Volver';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zona';
@@ -1513,9 +1507,6 @@ class LocalizationEsCo extends LocalizationEs {
   String get back => 'Atrás';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zona';
 
   @override
@@ -2017,9 +2008,6 @@ class LocalizationEsMx extends LocalizationEs {
 
   @override
   String get back => 'Regresar';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zona';

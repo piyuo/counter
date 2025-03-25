@@ -501,9 +501,6 @@ class LocalizationMy extends Localization {
   String get back => 'နောက်သို့';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'ဇုန်';
 
   @override

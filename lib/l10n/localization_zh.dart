@@ -501,9 +501,6 @@ class LocalizationZh extends Localization {
   String get back => '返回';
 
   @override
-  String get settings_screen_detection_button => '刪除';
-
-  @override
   String get zone_screen_zone => '區域';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get back => '返回';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => '区域';
@@ -1513,9 +1507,6 @@ class LocalizationZhHk extends LocalizationZh {
   String get back => '返回';
 
   @override
-  String get settings_screen_detection_button => '刪除';
-
-  @override
   String get zone_screen_zone => '區域';
 
   @override
@@ -2019,9 +2010,6 @@ class LocalizationZhMo extends LocalizationZh {
   String get back => '返回';
 
   @override
-  String get settings_screen_detection_button => '刪除';
-
-  @override
   String get zone_screen_zone => '區域';
 
   @override
@@ -2523,9 +2511,6 @@ class LocalizationZhSg extends LocalizationZh {
 
   @override
   String get back => '返回';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => '区域';

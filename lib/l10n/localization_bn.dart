@@ -501,9 +501,6 @@ class LocalizationBn extends Localization {
   String get back => 'পিছনে';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'জোন';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationBnIn extends LocalizationBn {
 
   @override
   String get back => 'পিছনে';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'জোন';

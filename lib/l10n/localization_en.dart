@@ -501,9 +501,6 @@ class LocalizationEn extends Localization {
   String get back => 'Back';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationEnAu extends LocalizationEn {
 
   @override
   String get back => 'Back';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zone';
@@ -1513,9 +1507,6 @@ class LocalizationEnCa extends LocalizationEn {
   String get back => 'Back';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -2019,9 +2010,6 @@ class LocalizationEnGb extends LocalizationEn {
   String get back => 'Back';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -2523,9 +2511,6 @@ class LocalizationEnIn extends LocalizationEn {
 
   @override
   String get back => 'Back';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zone';

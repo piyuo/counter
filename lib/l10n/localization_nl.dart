@@ -501,9 +501,6 @@ class LocalizationNl extends Localization {
   String get back => 'Terug';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zone';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationNlBe extends LocalizationNl {
 
   @override
   String get back => 'Terug';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'Zone';

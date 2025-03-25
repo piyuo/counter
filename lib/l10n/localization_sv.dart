@@ -501,9 +501,6 @@ class LocalizationSv extends Localization {
   String get back => 'Tillbaka';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Zon';
 
   @override

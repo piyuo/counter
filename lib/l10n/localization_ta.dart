@@ -501,9 +501,6 @@ class LocalizationTa extends Localization {
   String get back => 'பின்செல்';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'மண்டலம்';
 
   @override

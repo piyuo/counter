@@ -501,9 +501,6 @@ class LocalizationKk extends Localization {
   String get back => 'Артқа';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Аймақ';
 
   @override

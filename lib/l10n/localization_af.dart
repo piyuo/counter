@@ -501,9 +501,6 @@ class LocalizationAf extends Localization {
   String get back => 'Terug';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'Sone';
 
   @override

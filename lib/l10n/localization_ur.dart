@@ -501,9 +501,6 @@ class LocalizationUr extends Localization {
   String get back => 'واپس';
 
   @override
-  String get settings_screen_detection_button => 'MISSING';
-
-  @override
   String get zone_screen_zone => 'زون';
 
   @override
@@ -1005,9 +1002,6 @@ class LocalizationUrIn extends LocalizationUr {
 
   @override
   String get back => 'واپس';
-
-  @override
-  String get settings_screen_detection_button => 'MISSING';
 
   @override
   String get zone_screen_zone => 'زون';
