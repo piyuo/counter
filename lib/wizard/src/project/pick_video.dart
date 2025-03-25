@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
@@ -13,13 +14,21 @@ import 'package:path_provider/path_provider.dart';
 /// return picked video file path or null if user cancel
 Future<String?> pickVideo() async {
   final picker = ImagePicker();
-  XFile? picked = await picker.pickVideo(
-    source: ImageSource.gallery,
-  );
-  if (picked == null) {
-    return null;
+  try {
+    XFile? picked = await picker.pickVideo(
+      source: ImageSource.gallery,
+    );
+    if (picked == null) {
+      return null;
+    }
+    return picked.path;
+  } catch (e) {
+    if (e.toString().contains('denied')) {
+      debugPrint('Permission denied: $e');
+      return 'denied';
+    }
+    rethrow;
   }
-  return picked.path;
 }
 
 /// save file to app directory, this make sure the file is accessible in the app sandbox.

@@ -1,6 +1,8 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:libcli/cli/cli.dart' as cli;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'package:vision/vision.dart' as vision;
 
@@ -216,8 +218,43 @@ List<Widget> buildVideoSources(
           videoSourcesProvider.setLoadingFile(true);
           try {
             final projectId = app.uuid();
-
             final filePath = await pickVideo();
+            if (filePath == 'denied') {
+              var status = await Permission.photos.status;
+              if (status.isPermanentlyDenied) {
+                await showCupertinoDialog(
+                  // ignore: use_build_context_synchronously
+                  context: cli.globalContext,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Text('Access to photos denied'),
+                      content: Text(
+                          'You need to allow permission to access the file. Please go to settings and allow photos permission on Piyuo Counter.'),
+                      actions: [
+                        CupertinoDialogAction(
+                          textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
+                          onPressed: () => Navigator.pop(context, false),
+                          child: Text(context.l.cancel),
+                        ),
+                        CupertinoDialogAction(
+                          isDefaultAction: true,
+                          child: Text("Go to settings"),
+                          onPressed: () async {
+                            openAppSettings();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+                // permanently denied, let user go to settings
+                return;
+              }
+              // temporarily denied , just let user to pick again
+              return;
+            }
+
             if (filePath == null) {
               return;
             }
