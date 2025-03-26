@@ -73,6 +73,40 @@ Future<bool> isWebcamExists(BuildContext context, app.ProjectProvider projectPro
   return false;
 }
 
+/// check if we have camera permission
+Future<bool> doWeHaveCameraPermission() async {
+  var status = await Permission.camera.status;
+  if (status.isPermanentlyDenied) {
+    await showCupertinoDialog(
+      // ignore: use_build_context_synchronously
+      context: cli.globalContext,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text(context.l.video_sources_camera_denied),
+          content: Text(context.l.video_sources_camera_denied_msg),
+          actions: [
+            CupertinoDialogAction(
+              textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(context.l.cancel),
+            ),
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              child: Text(context.l.video_sources_photos_goto_settings),
+              onPressed: () async {
+                openAppSettings();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+    return false;
+  }
+  return true;
+}
+
 /// the video sources, like camera, webcam, live stream, file
 List<Widget> buildVideoSources(
   BuildContext context, {
@@ -147,6 +181,12 @@ List<Widget> buildVideoSources(
                   videoSourcesProvider.setLoadingCamera(false);
                   return;
                 }
+
+                if (await doWeHaveCameraPermission() == false) {
+                  videoSourcesProvider.setLoadingCamera(false);
+                  return;
+                }
+
                 try {
                   // add camera to project
                   if (isAddMode) {
