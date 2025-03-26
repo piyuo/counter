@@ -510,13 +510,13 @@ class LocalizationSi extends Localization {
   String get video_sources_photos_denied => 'ඡායාරූප වෙත ප්‍රවේශය අවහිර විය';
 
   @override
-  String get video_sources_phtots_goto_settings => 'සැකසුම් වෙත යන්න';
+  String get video_sources_photos_goto_settings => 'සැකසුම් වෙත යන්න';
 
   @override
   String get video_sources_camera_denied => 'කැමරාවට ප්‍රවේශය අවහිර විය';
 
   @override
-  String get video_sources_phtots_denied_msg => 'කරුණාකර සැකසුම් වෙත ගොස් මෙම යෙදුම සඳහා ඡායාරූප ප්‍රවේශ අවසරය ලබා දෙන්න.';
+  String get video_sources_photos_denied_msg => 'කරුණාකර සැකසුම් වෙත ගොස් මෙම යෙදුම සඳහා ඡායාරූප ප්‍රවේශ අවසරය ලබා දෙන්න.';
 
   @override
   String get video_sources_camera_denied_msg => 'කරුණාකර සැකසුම් වෙත ගොස් මෙම යෙදුම සඳහා කැමරා ප්‍රවේශ අවසරය ලබා දෙන්න.';

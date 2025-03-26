@@ -166,8 +166,8 @@
   "zone_screen_zone": "Vùng",
   "zone_screen_zone_show_summary": "Hiển thị tóm tắt trên màn hình",
   "video_sources_photos_denied": "Quyền truy cập ảnh bị từ chối",
-  "video_sources_phtots_goto_settings": "Đi tới cài đặt",
+  "video_sources_photos_goto_settings": "Đi tới cài đặt",
   "video_sources_camera_denied": "Quyền truy cập camera bị từ chối",
-  "video_sources_phtots_denied_msg": "Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.",
+  "video_sources_photos_denied_msg": "Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.",
   "video_sources_camera_denied_msg": "Vui lòng đi tới cài đặt và cho phép quyền truy cập camera cho ứng dụng này."
 }

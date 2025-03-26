@@ -510,13 +510,13 @@ class LocalizationId extends Localization {
   String get video_sources_photos_denied => 'Akses ke foto ditolak';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Buka pengaturan';
+  String get video_sources_photos_goto_settings => 'Buka pengaturan';
 
   @override
   String get video_sources_camera_denied => 'Akses ke kamera ditolak';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Buka pengaturan dan izinkan akses foto untuk aplikasi ini.';
+  String get video_sources_photos_denied_msg => 'Buka pengaturan dan izinkan akses foto untuk aplikasi ini.';
 
   @override
   String get video_sources_camera_denied_msg => 'Buka pengaturan dan izinkan akses kamera untuk aplikasi ini.';

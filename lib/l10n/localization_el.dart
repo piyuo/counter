@@ -510,13 +510,13 @@ class LocalizationEl extends Localization {
   String get video_sources_photos_denied => 'Άρνηση πρόσβασης σε φωτογραφίες';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Μετάβαση στις ρυθμίσεις';
+  String get video_sources_photos_goto_settings => 'Μετάβαση στις ρυθμίσεις';
 
   @override
   String get video_sources_camera_denied => 'Άρνηση πρόσβασης στην κάμερα';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Μεταβείτε στις ρυθμίσεις και επιτρέψτε την πρόσβαση σε φωτογραφίες για αυτήν την εφαρμογή.';
+  String get video_sources_photos_denied_msg => 'Μεταβείτε στις ρυθμίσεις και επιτρέψτε την πρόσβαση σε φωτογραφίες για αυτήν την εφαρμογή.';
 
   @override
   String get video_sources_camera_denied_msg => 'Μεταβείτε στις ρυθμίσεις και επιτρέψτε την πρόσβαση κάμερας για αυτήν την εφαρμογή.';

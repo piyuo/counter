@@ -166,8 +166,8 @@
   "zone_screen_zone": "क्षेत्र",
   "zone_screen_zone_show_summary": "स्क्रिनमा सारांश देखाउनुहोस्",
   "video_sources_photos_denied": "फोटोहरूमा पहुँच अस्वीकृत",
-  "video_sources_phtots_goto_settings": "सेटिङमा जानुहोस्",
+  "video_sources_photos_goto_settings": "सेटिङमा जानुहोस्",
   "video_sources_camera_denied": "क्यामेरामा पहुँच अस्वीकृत",
-  "video_sources_phtots_denied_msg": "सेटिङमा जानुहोस् र यो अनुप्रयोगको लागि फोटो पहुँच अनुमति दिनुहोस्।",
+  "video_sources_photos_denied_msg": "सेटिङमा जानुहोस् र यो अनुप्रयोगको लागि फोटो पहुँच अनुमति दिनुहोस्।",
   "video_sources_camera_denied_msg": "सेटिङमा जानुहोस् र यो अनुप्रयोगको लागि क्यामेरा पहुँच अनुमति दिनुहोस्।"
 }

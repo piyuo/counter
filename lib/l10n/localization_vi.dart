@@ -510,13 +510,13 @@ class LocalizationVi extends Localization {
   String get video_sources_photos_denied => 'Quyền truy cập ảnh bị từ chối';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Đi tới cài đặt';
+  String get video_sources_photos_goto_settings => 'Đi tới cài đặt';
 
   @override
   String get video_sources_camera_denied => 'Quyền truy cập camera bị từ chối';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.';
+  String get video_sources_photos_denied_msg => 'Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.';
 
   @override
   String get video_sources_camera_denied_msg => 'Vui lòng đi tới cài đặt và cho phép quyền truy cập camera cho ứng dụng này.';

@@ -166,8 +166,8 @@
   "zone_screen_zone": "Գոտի",
   "zone_screen_zone_show_summary": "Ամփոփումը ցույց տալ էկրանին",
   "video_sources_photos_denied": "ፎቶዎችን ለማግኘት ተከልክሏል",
-  "video_sources_phtots_goto_settings": "ወደ ቅንብሮች ሂድ",
+  "video_sources_photos_goto_settings": "ወደ ቅንብሮች ሂድ",
   "video_sources_camera_denied": "ወደ ካሜራ መዳረሻ ተከልክሏል",
-  "video_sources_phtots_denied_msg": "ወደ ቅንብሮች ሂድና ለዚህ መተግበሪያ የፎቶ መዳረሻ ፍቃድ ይፍቀዱ።",
+  "video_sources_photos_denied_msg": "ወደ ቅንብሮች ሂድና ለዚህ መተግበሪያ የፎቶ መዳረሻ ፍቃድ ይፍቀዱ።",
   "video_sources_camera_denied_msg": "ወደ ቅንብሮች ሂድና ለዚህ መተግበሪያ የካሜራ መዳረሻ ፍቃድ ይፍቀዱ።"
 }

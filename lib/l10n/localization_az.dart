@@ -510,13 +510,13 @@ class LocalizationAz extends Localization {
   String get video_sources_photos_denied => 'Fotolara giriş rədd edildi';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Parametrlərə keçin';
+  String get video_sources_photos_goto_settings => 'Parametrlərə keçin';
 
   @override
   String get video_sources_camera_denied => 'Kameraya giriş rədd edildi';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Parametrlərə keçin və bu tətbiq üçün foto girişinə icazə verin.';
+  String get video_sources_photos_denied_msg => 'Parametrlərə keçin və bu tətbiq üçün foto girişinə icazə verin.';
 
   @override
   String get video_sources_camera_denied_msg => 'Parametrlərə keçin və bu tətbiq üçün kamera girişinə icazə verin.';

@@ -510,13 +510,13 @@ class LocalizationMl extends Localization {
   String get video_sources_photos_denied => 'ഫോട്ടോകൾ കാണാൻ അനുമതിയില്ല';
 
   @override
-  String get video_sources_phtots_goto_settings => 'ക്രമീകരണത്തിലേക്ക് പോകുക';
+  String get video_sources_photos_goto_settings => 'ക്രമീകരണത്തിലേക്ക് പോകുക';
 
   @override
   String get video_sources_camera_denied => 'ക്യാമറ ഉപയോഗിക്കാൻ അനുമതിയില്ല';
 
   @override
-  String get video_sources_phtots_denied_msg => 'ക്രമീകരണത്തിലേക്ക് പോയി ഈ ആപ്പിന് ഫോട്ടോകൾ ആക്സസ് ചെയ്യാൻ അനുമതി നൽകുക.';
+  String get video_sources_photos_denied_msg => 'ക്രമീകരണത്തിലേക്ക് പോയി ഈ ആപ്പിന് ഫോട്ടോകൾ ആക്സസ് ചെയ്യാൻ അനുമതി നൽകുക.';
 
   @override
   String get video_sources_camera_denied_msg => 'ക്രമീകരണത്തിലേക്ക് പോയി ഈ ആപ്പിന് ക്യാമറ ആക്സസ് ചെയ്യാൻ അനുമതി നൽകുക.';

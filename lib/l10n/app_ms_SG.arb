@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zon",
   "zone_screen_zone_show_summary": "Papar ringkasan pada skrin",
   "video_sources_photos_denied": "Akses ke foto dinafikan",
-  "video_sources_phtots_goto_settings": "Pergi ke tetapan",
+  "video_sources_photos_goto_settings": "Pergi ke tetapan",
   "video_sources_camera_denied": "Akses ke kamera dinafikan",
-  "video_sources_phtots_denied_msg": "Sila pergi ke tetapan dan benarkan kebenaran akses foto untuk aplikasi ini.",
+  "video_sources_photos_denied_msg": "Sila pergi ke tetapan dan benarkan kebenaran akses foto untuk aplikasi ini.",
   "video_sources_camera_denied_msg": "Sila pergi ke tetapan dan benarkan kebenaran akses kamera untuk aplikasi ini."
 }

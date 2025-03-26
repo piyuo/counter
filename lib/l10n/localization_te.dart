@@ -510,13 +510,13 @@ class LocalizationTe extends Localization {
   String get video_sources_photos_denied => 'ఫొటోలకు యాక్సెస్ నిరాకరించబడింది';
 
   @override
-  String get video_sources_phtots_goto_settings => 'సెట్టింగ్‌లకు వెళ్లు';
+  String get video_sources_photos_goto_settings => 'సెట్టింగ్‌లకు వెళ్లు';
 
   @override
   String get video_sources_camera_denied => 'కెమెరాకు యాక్సెస్ నిరాకరించబడింది';
 
   @override
-  String get video_sources_phtots_denied_msg => 'దయచేసి సెట్టింగ్‌లకు వెళ్లి ఈ యాప్ కోసం ఫోటోలను యాక్సెస్ చేయడానికి అనుమతి ఇవ్వండి.';
+  String get video_sources_photos_denied_msg => 'దయచేసి సెట్టింగ్‌లకు వెళ్లి ఈ యాప్ కోసం ఫోటోలను యాక్సెస్ చేయడానికి అనుమతి ఇవ్వండి.';
 
   @override
   String get video_sources_camera_denied_msg => 'దయచేసి సెట్టింగ్‌లకు వెళ్లి ఈ యాప్ కోసం కెమెరాను యాక్సెస్ చేయడానికి అనుమతి ఇవ్వండి.';

@@ -510,13 +510,13 @@ class LocalizationDe extends Localization {
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+  String get video_sources_photos_goto_settings => 'Zu Einstellungen';
 
   @override
   String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Bitte gehe zu den Einstellungen und erlaube den Fotozugriff für diese App.';
+  String get video_sources_photos_denied_msg => 'Bitte gehe zu den Einstellungen und erlaube den Fotozugriff für diese App.';
 
   @override
   String get video_sources_camera_denied_msg => 'Bitte gehe zu den Einstellungen und erlaube den Kamerazugriff für diese App.';
@@ -1028,13 +1028,13 @@ class LocalizationDeAt extends LocalizationDe {
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+  String get video_sources_photos_goto_settings => 'Zu Einstellungen';
 
   @override
   String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Bitte gehen Sie zu den Einstellungen und erlauben Sie den Fotozugriff für diese App.';
+  String get video_sources_photos_denied_msg => 'Bitte gehen Sie zu den Einstellungen und erlauben Sie den Fotozugriff für diese App.';
 
   @override
   String get video_sources_camera_denied_msg => 'Bitte gehen Sie zu den Einstellungen und erlauben Sie den Kamerazugriff für diese App.';
@@ -1546,13 +1546,13 @@ class LocalizationDeCh extends LocalizationDe {
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+  String get video_sources_photos_goto_settings => 'Zu Einstellungen';
 
   @override
   String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Bitte Einstellungen öffnen und Fotozugriff für diese App erlauben.';
+  String get video_sources_photos_denied_msg => 'Bitte Einstellungen öffnen und Fotozugriff für diese App erlauben.';
 
   @override
   String get video_sources_camera_denied_msg => 'Bitte Einstellungen öffnen und Kamerazugriff für diese App erlauben.';

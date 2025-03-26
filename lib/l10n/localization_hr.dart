@@ -510,13 +510,13 @@ class LocalizationHr extends Localization {
   String get video_sources_photos_denied => 'Pristup fotografijama odbijen';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Idi u postavke';
+  String get video_sources_photos_goto_settings => 'Idi u postavke';
 
   @override
   String get video_sources_camera_denied => 'Pristup kameri odbijen';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Idite u postavke i dozvolite pristup fotografijama za ovu aplikaciju.';
+  String get video_sources_photos_denied_msg => 'Idite u postavke i dozvolite pristup fotografijama za ovu aplikaciju.';
 
   @override
   String get video_sources_camera_denied_msg => 'Idite u postavke i dozvolite pristup kameri za ovu aplikaciju.';

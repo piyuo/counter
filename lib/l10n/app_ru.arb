@@ -166,8 +166,8 @@
   "zone_screen_zone": "Зона",
   "zone_screen_zone_show_summary": "Показать сводку на экране",
   "video_sources_photos_denied": "Доступ к фото запрещен",
-  "video_sources_phtots_goto_settings": "Перейти в настройки",
+  "video_sources_photos_goto_settings": "Перейти в настройки",
   "video_sources_camera_denied": "Доступ к камере запрещен",
-  "video_sources_phtots_denied_msg": "Перейдите в настройки и разрешите доступ к фото для этого приложения.",
+  "video_sources_photos_denied_msg": "Перейдите в настройки и разрешите доступ к фото для этого приложения.",
   "video_sources_camera_denied_msg": "Перейдите в настройки и разрешите доступ к камере для этого приложения."
 }

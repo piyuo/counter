@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Amosar resumo na pantalla",
   "video_sources_photos_denied": "Acceso a fotos denegado",
-  "video_sources_phtots_goto_settings": "Ir a axustes",
+  "video_sources_photos_goto_settings": "Ir a axustes",
   "video_sources_camera_denied": "Acceso á cámara denegado",
-  "video_sources_phtots_denied_msg": "Vaia a axustes e permita o acceso a fotos para esta aplicación.",
+  "video_sources_photos_denied_msg": "Vaia a axustes e permita o acceso a fotos para esta aplicación.",
   "video_sources_camera_denied_msg": "Vaia a axustes e permita o acceso á cámara para esta aplicación."
 }

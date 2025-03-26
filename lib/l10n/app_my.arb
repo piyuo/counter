@@ -166,8 +166,8 @@
   "zone_screen_zone": "ဇုန်",
   "zone_screen_zone_show_summary": "မျက်နှာပြင်တွင် အကျဉ်းချုပ် ပြရန်",
   "video_sources_photos_denied": "ဓာတ်ပုံများသို့ ဝင်ရောက်ခွင့် ငြင်းပယ်ခံရ",
-  "video_sources_phtots_goto_settings": "ဆက်တင်သို့သွားပါ",
+  "video_sources_photos_goto_settings": "ဆက်တင်သို့သွားပါ",
   "video_sources_camera_denied": "ကင်မရာသို့ ဝင်ရောက်ခွင့် ငြင်းပယ်ခံရ",
-  "video_sources_phtots_denied_msg": "ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ဓာတ်ပုံဝင်ရောက်ခွင့် ခွင့်ပြုပါ။",
+  "video_sources_photos_denied_msg": "ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ဓာတ်ပုံဝင်ရောက်ခွင့် ခွင့်ပြုပါ။",
   "video_sources_camera_denied_msg": "ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ကင်မရာဝင်ရောက်ခွင့် ခွင့်ပြုပါ။"
 }

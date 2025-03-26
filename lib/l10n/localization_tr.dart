@@ -510,13 +510,13 @@ class LocalizationTr extends Localization {
   String get video_sources_photos_denied => 'Fotoğraflara erişim reddedildi';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Ayarlara git';
+  String get video_sources_photos_goto_settings => 'Ayarlara git';
 
   @override
   String get video_sources_camera_denied => 'Kameraya erişim reddedildi';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Lütfen ayarlara gidin ve bu uygulama için fotoğraflara erişim izni verin.';
+  String get video_sources_photos_denied_msg => 'Lütfen ayarlara gidin ve bu uygulama için fotoğraflara erişim izni verin.';
 
   @override
   String get video_sources_camera_denied_msg => 'Lütfen ayarlara gidin ve bu uygulama için kamera erişim izni verin.';

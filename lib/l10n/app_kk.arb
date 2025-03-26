@@ -166,8 +166,8 @@
   "zone_screen_zone": "Аймақ",
   "zone_screen_zone_show_summary": "Экранда қорытынды көрсету",
   "video_sources_photos_denied": "Фотосуреттерге қол жеткізу мүмкін емес",
-  "video_sources_phtots_goto_settings": "Параметрлерге өту",
+  "video_sources_photos_goto_settings": "Параметрлерге өту",
   "video_sources_camera_denied": "Камераға қол жеткізу мүмкін емес",
-  "video_sources_phtots_denied_msg": "Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.",
+  "video_sources_photos_denied_msg": "Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.",
   "video_sources_camera_denied_msg": "Параметрлерге өтіп бұл қолданбаға камераға қол жеткізу рұқсатын беріңіз."
 }

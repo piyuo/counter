@@ -510,13 +510,13 @@ class LocalizationZh extends Localization {
   String get video_sources_photos_denied => '相片存取被拒';
 
   @override
-  String get video_sources_phtots_goto_settings => '前往設定';
+  String get video_sources_photos_goto_settings => '前往設定';
 
   @override
   String get video_sources_camera_denied => '相機存取被拒';
 
   @override
-  String get video_sources_phtots_denied_msg => '請前往設定並允許此應用程式的相片存取權限。';
+  String get video_sources_photos_denied_msg => '請前往設定並允許此應用程式的相片存取權限。';
 
   @override
   String get video_sources_camera_denied_msg => '請前往設定並允許此應用程式的相機存取權限。';
@@ -1028,13 +1028,13 @@ class LocalizationZhCn extends LocalizationZh {
   String get video_sources_photos_denied => '照片访问被拒绝';
 
   @override
-  String get video_sources_phtots_goto_settings => '前往设置';
+  String get video_sources_photos_goto_settings => '前往设置';
 
   @override
   String get video_sources_camera_denied => '摄像头访问被拒绝';
 
   @override
-  String get video_sources_phtots_denied_msg => '请前往设置并允许此应用的照片访问权限。';
+  String get video_sources_photos_denied_msg => '请前往设置并允许此应用的照片访问权限。';
 
   @override
   String get video_sources_camera_denied_msg => '请前往设置并允许此应用的相机访问权限。';
@@ -1546,13 +1546,13 @@ class LocalizationZhHk extends LocalizationZh {
   String get video_sources_photos_denied => '相片存取被拒';
 
   @override
-  String get video_sources_phtots_goto_settings => '前往設定';
+  String get video_sources_photos_goto_settings => '前往設定';
 
   @override
   String get video_sources_camera_denied => '相機存取被拒';
 
   @override
-  String get video_sources_phtots_denied_msg => '請前往設定並允許此應用程式的相片存取權限。';
+  String get video_sources_photos_denied_msg => '請前往設定並允許此應用程式的相片存取權限。';
 
   @override
   String get video_sources_camera_denied_msg => '請前往設定並允許此應用程式的相機存取權限。';
@@ -2064,13 +2064,13 @@ class LocalizationZhMo extends LocalizationZh {
   String get video_sources_photos_denied => '相片存取被拒';
 
   @override
-  String get video_sources_phtots_goto_settings => '前往設定';
+  String get video_sources_photos_goto_settings => '前往設定';
 
   @override
   String get video_sources_camera_denied => '相機存取被拒';
 
   @override
-  String get video_sources_phtots_denied_msg => '請前往設定並允許此應用程式嘅相片存取權限。';
+  String get video_sources_photos_denied_msg => '請前往設定並允許此應用程式嘅相片存取權限。';
 
   @override
   String get video_sources_camera_denied_msg => '請前往設定並允許此應用程式嘅相機存取權限。';
@@ -2582,13 +2582,13 @@ class LocalizationZhSg extends LocalizationZh {
   String get video_sources_photos_denied => '照片访问被拒绝';
 
   @override
-  String get video_sources_phtots_goto_settings => '前往设置';
+  String get video_sources_photos_goto_settings => '前往设置';
 
   @override
   String get video_sources_camera_denied => '摄像头访问被拒绝';
 
   @override
-  String get video_sources_phtots_denied_msg => '请前往设置并允许此应用的照片访问权限。';
+  String get video_sources_photos_denied_msg => '请前往设置并允许此应用的照片访问权限。';
 
   @override
   String get video_sources_camera_denied_msg => '请前往设置并允许此应用的相机访问权限。';

@@ -510,13 +510,13 @@ class LocalizationKk extends Localization {
   String get video_sources_photos_denied => 'Фотосуреттерге қол жеткізу мүмкін емес';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Параметрлерге өту';
+  String get video_sources_photos_goto_settings => 'Параметрлерге өту';
 
   @override
   String get video_sources_camera_denied => 'Камераға қол жеткізу мүмкін емес';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.';
+  String get video_sources_photos_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.';
 
   @override
   String get video_sources_camera_denied_msg => 'Параметрлерге өтіп бұл қолданбаға камераға қол жеткізу рұқсатын беріңіз.';

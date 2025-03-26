@@ -510,13 +510,13 @@ class LocalizationMn extends Localization {
   String get video_sources_photos_denied => 'Зураг руу нэвтрэх эрхгүй';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Тохиргоо руу орох';
+  String get video_sources_photos_goto_settings => 'Тохиргоо руу орох';
 
   @override
   String get video_sources_camera_denied => 'Камерт нэвтрэх эрхгүй';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Тохиргоо руу орж энэ аппд зураг үзэх зөвшөөрөл өгнө үү.';
+  String get video_sources_photos_denied_msg => 'Тохиргоо руу орж энэ аппд зураг үзэх зөвшөөрөл өгнө үү.';
 
   @override
   String get video_sources_camera_denied_msg => 'Тохиргоо руу орж энэ аппд камер хэрэглэх зөвшөөрөл өгнө үү.';

@@ -510,13 +510,13 @@ class LocalizationCs extends Localization {
   String get video_sources_photos_denied => 'Přístup k fotografiím odepřen';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Přejít do nastavení';
+  String get video_sources_photos_goto_settings => 'Přejít do nastavení';
 
   @override
   String get video_sources_camera_denied => 'Přístup ke kameře odepřen';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Přejděte do nastavení a povolte přístup k fotografiím pro tuto aplikaci.';
+  String get video_sources_photos_denied_msg => 'Přejděte do nastavení a povolte přístup k fotografiím pro tuto aplikaci.';
 
   @override
   String get video_sources_camera_denied_msg => 'Přejděte do nastavení a povolte přístup ke kameře pro tuto aplikaci.';

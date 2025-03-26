@@ -166,8 +166,8 @@
   "zone_screen_zone": "ゾーン",
   "zone_screen_zone_show_summary": "画面に概要を表示",
   "video_sources_photos_denied": "写真へのアクセスが拒否されました",
-  "video_sources_phtots_goto_settings": "設定に移動",
+  "video_sources_photos_goto_settings": "設定に移動",
   "video_sources_camera_denied": "カメラへのアクセスが拒否されました",
-  "video_sources_phtots_denied_msg": "設定に移動して、このアプリの写真へのアクセスを許可してください。",
+  "video_sources_photos_denied_msg": "設定に移動して、このアプリの写真へのアクセスを許可してください。",
   "video_sources_camera_denied_msg": "設定に移動して、このアプリのカメラへのアクセスを許可してください。"
 }

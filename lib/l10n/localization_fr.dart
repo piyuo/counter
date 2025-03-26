@@ -510,13 +510,13 @@ class LocalizationFr extends Localization {
   String get video_sources_photos_denied => 'Accès aux photos refusé';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+  String get video_sources_photos_goto_settings => 'Aller aux paramètres';
 
   @override
   String get video_sources_camera_denied => 'Accès à la caméra refusé';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+  String get video_sources_photos_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
 
   @override
   String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
@@ -1028,13 +1028,13 @@ class LocalizationFrBe extends LocalizationFr {
   String get video_sources_photos_denied => 'Accès aux photos refusé';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+  String get video_sources_photos_goto_settings => 'Aller aux paramètres';
 
   @override
   String get video_sources_camera_denied => 'Accès à la caméra refusé';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+  String get video_sources_photos_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
 
   @override
   String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
@@ -1546,13 +1546,13 @@ class LocalizationFrCa extends LocalizationFr {
   String get video_sources_photos_denied => 'Accès aux photos refusé';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+  String get video_sources_photos_goto_settings => 'Aller aux paramètres';
 
   @override
   String get video_sources_camera_denied => 'Accès à la caméra refusé';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+  String get video_sources_photos_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
 
   @override
   String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
@@ -2064,13 +2064,13 @@ class LocalizationFrCh extends LocalizationFr {
   String get video_sources_photos_denied => 'Accès aux photos refusé';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+  String get video_sources_photos_goto_settings => 'Aller aux paramètres';
 
   @override
   String get video_sources_camera_denied => 'Accès à la caméra refusé';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+  String get video_sources_photos_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
 
   @override
   String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';

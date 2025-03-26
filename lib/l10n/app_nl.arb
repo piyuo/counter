@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Toon samenvatting op scherm",
   "video_sources_photos_denied": "Toegang tot foto's geweigerd",
-  "video_sources_phtots_goto_settings": "Naar instellingen",
+  "video_sources_photos_goto_settings": "Naar instellingen",
   "video_sources_camera_denied": "Toegang tot camera geweigerd",
-  "video_sources_phtots_denied_msg": "Ga naar instellingen en geef toestemming voor fototoegang voor deze app.",
+  "video_sources_photos_denied_msg": "Ga naar instellingen en geef toestemming voor fototoegang voor deze app.",
   "video_sources_camera_denied_msg": "Ga naar instellingen en geef toestemming voor cameratoegang voor deze app."
 }

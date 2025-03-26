@@ -510,13 +510,13 @@ class LocalizationAr extends Localization {
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 
   @override
-  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+  String get video_sources_photos_goto_settings => 'اذهب إلى الإعدادات';
 
   @override
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
   String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
@@ -1028,13 +1028,13 @@ class LocalizationArAe extends LocalizationAr {
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 
   @override
-  String get video_sources_phtots_goto_settings => 'انتقل للإعدادات';
+  String get video_sources_photos_goto_settings => 'انتقل للإعدادات';
 
   @override
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_phtots_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
   String get video_sources_camera_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
@@ -1546,13 +1546,13 @@ class LocalizationArDz extends LocalizationAr {
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 
   @override
-  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+  String get video_sources_photos_goto_settings => 'اذهب إلى الإعدادات';
 
   @override
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
   String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
@@ -2064,13 +2064,13 @@ class LocalizationArEg extends LocalizationAr {
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
 
   @override
-  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+  String get video_sources_photos_goto_settings => 'اذهب إلى الإعدادات';
 
   @override
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
   String get video_sources_camera_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';

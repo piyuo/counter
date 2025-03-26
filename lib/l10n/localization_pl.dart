@@ -510,13 +510,13 @@ class LocalizationPl extends Localization {
   String get video_sources_photos_denied => 'Odmowa dostępu do zdjęć';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Przejdź do ustawień';
+  String get video_sources_photos_goto_settings => 'Przejdź do ustawień';
 
   @override
   String get video_sources_camera_denied => 'Odmowa dostępu do kamery';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Przejdź do ustawień i zezwól na dostęp do zdjęć dla tej aplikacji.';
+  String get video_sources_photos_denied_msg => 'Przejdź do ustawień i zezwól na dostęp do zdjęć dla tej aplikacji.';
 
   @override
   String get video_sources_camera_denied_msg => 'Przejdź do ustawień i zezwól na dostęp do kamery dla tej aplikacji.';

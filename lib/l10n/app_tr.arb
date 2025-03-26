@@ -166,8 +166,8 @@
   "zone_screen_zone": "Bölge",
   "zone_screen_zone_show_summary": "Ekranda özet göster",
   "video_sources_photos_denied": "Fotoğraflara erişim reddedildi",
-  "video_sources_phtots_goto_settings": "Ayarlara git",
+  "video_sources_photos_goto_settings": "Ayarlara git",
   "video_sources_camera_denied": "Kameraya erişim reddedildi",
-  "video_sources_phtots_denied_msg": "Lütfen ayarlara gidin ve bu uygulama için fotoğraflara erişim izni verin.",
+  "video_sources_photos_denied_msg": "Lütfen ayarlara gidin ve bu uygulama için fotoğraflara erişim izni verin.",
   "video_sources_camera_denied_msg": "Lütfen ayarlara gidin ve bu uygulama için kamera erişim izni verin."
 }

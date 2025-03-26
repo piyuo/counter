@@ -510,13 +510,13 @@ class LocalizationBn extends Localization {
   String get video_sources_photos_denied => 'ছবিতে অ্যাক্সেস প্রত্যাখ্যাত';
 
   @override
-  String get video_sources_phtots_goto_settings => 'সেটিংসে যান';
+  String get video_sources_photos_goto_settings => 'সেটিংসে যান';
 
   @override
   String get video_sources_camera_denied => 'ক্যামেরায় অ্যাক্সেস প্রত্যাখ্যাত';
 
   @override
-  String get video_sources_phtots_denied_msg => 'অনুগ্রহ করে সেটিংসে যান এবং এই অ্যাপটির জন্য ফটো অ্যাক্সেসের অনুমতি দিন।';
+  String get video_sources_photos_denied_msg => 'অনুগ্রহ করে সেটিংসে যান এবং এই অ্যাপটির জন্য ফটো অ্যাক্সেসের অনুমতি দিন।';
 
   @override
   String get video_sources_camera_denied_msg => 'অনুগ্রহ করে সেটিংসে যান এবং এই অ্যাপটির জন্য ক্যামেরা অ্যাক্সেসের অনুমতি দিন।';
@@ -1028,13 +1028,13 @@ class LocalizationBnIn extends LocalizationBn {
   String get video_sources_photos_denied => 'ফটোতে অ্যাক্সেস প্রত্যাখ্যাত';
 
   @override
-  String get video_sources_phtots_goto_settings => 'সেটিংসে যান';
+  String get video_sources_photos_goto_settings => 'সেটিংসে যান';
 
   @override
   String get video_sources_camera_denied => 'ক্যামেরা অ্যাক্সেস অস্বীকৃত';
 
   @override
-  String get video_sources_phtots_denied_msg => 'सेटिंग्स में जाएं और इस ऐप के लिए फोटो एक्सेस अनुमति दें।';
+  String get video_sources_photos_denied_msg => 'सेटिंग्स में जाएं और इस ऐप के लिए फोटो एक्सेस अनुमति दें।';
 
   @override
   String get video_sources_camera_denied_msg => 'सेटिंग्स में जाएं और इस ऐप के लिए कैमरा एक्सेस अनुमति दें।';

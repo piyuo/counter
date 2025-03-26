@@ -166,8 +166,8 @@
   "zone_screen_zone": "Qad",
   "zone_screen_zone_show_summary": "Kurte li ser ekranê nîşan bide",
   "video_sources_photos_denied": "Gihîştina wêneyan nehate qebûl kirin",
-  "video_sources_phtots_goto_settings": "Here sazkariyan",
+  "video_sources_photos_goto_settings": "Here sazkariyan",
   "video_sources_camera_denied": "Gihîştina kamerayê nehate qebûl kirin",
-  "video_sources_phtots_denied_msg": "Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje wêneyan.",
+  "video_sources_photos_denied_msg": "Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje wêneyan.",
   "video_sources_camera_denied_msg": "Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje kamerayê."
 }

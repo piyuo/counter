@@ -166,8 +166,8 @@
   "zone_screen_zone": "Yanki",
   "zone_screen_zone_show_summary": "Nuna taƙaitawa a allo",
   "video_sources_photos_denied": "An ki ƙi samun damar hotuna",
-  "video_sources_phtots_goto_settings": "Je tsarin",
+  "video_sources_photos_goto_settings": "Je tsarin",
   "video_sources_camera_denied": "An ki ƙi samun damar kyamara",
-  "video_sources_phtots_denied_msg": "Don je saita ka laminta damar samun hotuna don wannan aikene.",
+  "video_sources_photos_denied_msg": "Don je saita ka laminta damar samun hotuna don wannan aikene.",
   "video_sources_camera_denied_msg": "Don je saita ka laminta damar samun kyamara don wannan aikene."
 }

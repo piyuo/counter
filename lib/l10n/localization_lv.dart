@@ -510,13 +510,13 @@ class LocalizationLv extends Localization {
   String get video_sources_photos_denied => 'Piekļuve fotoattēliem liegta';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Doties uz iestatījumiem';
+  String get video_sources_photos_goto_settings => 'Doties uz iestatījumiem';
 
   @override
   String get video_sources_camera_denied => 'Piekļuve kamerai liegta';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.';
+  String get video_sources_photos_denied_msg => 'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.';
 
   @override
   String get video_sources_camera_denied_msg => 'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt kamerai.';

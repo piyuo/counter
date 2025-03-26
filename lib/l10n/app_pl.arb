@@ -166,8 +166,8 @@
   "zone_screen_zone": "Strefa",
   "zone_screen_zone_show_summary": "Pokaż podsumowanie na ekranie",
   "video_sources_photos_denied": "Odmowa dostępu do zdjęć",
-  "video_sources_phtots_goto_settings": "Przejdź do ustawień",
+  "video_sources_photos_goto_settings": "Przejdź do ustawień",
   "video_sources_camera_denied": "Odmowa dostępu do kamery",
-  "video_sources_phtots_denied_msg": "Przejdź do ustawień i zezwól na dostęp do zdjęć dla tej aplikacji.",
+  "video_sources_photos_denied_msg": "Przejdź do ustawień i zezwól na dostęp do zdjęć dla tej aplikacji.",
   "video_sources_camera_denied_msg": "Przejdź do ustawień i zezwól na dostęp do kamery dla tej aplikacji."
 }

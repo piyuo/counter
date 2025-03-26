@@ -510,13 +510,13 @@ class LocalizationEn extends Localization {
   String get video_sources_photos_denied => 'Access to photos denied';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Go to settings';
+  String get video_sources_photos_goto_settings => 'Go to settings';
 
   @override
   String get video_sources_camera_denied => 'Access to camera denied';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+  String get video_sources_photos_denied_msg => 'Please go to settings and allow photos access permission for this app.';
 
   @override
   String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
@@ -1028,13 +1028,13 @@ class LocalizationEnAu extends LocalizationEn {
   String get video_sources_photos_denied => 'Access to photos denied';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Go to settings';
+  String get video_sources_photos_goto_settings => 'Go to settings';
 
   @override
   String get video_sources_camera_denied => 'Access to camera denied';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+  String get video_sources_photos_denied_msg => 'Please go to settings and allow photos access permission for this app.';
 
   @override
   String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
@@ -1546,13 +1546,13 @@ class LocalizationEnCa extends LocalizationEn {
   String get video_sources_photos_denied => 'Access to photos denied';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Go to settings';
+  String get video_sources_photos_goto_settings => 'Go to settings';
 
   @override
   String get video_sources_camera_denied => 'Access to camera denied';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+  String get video_sources_photos_denied_msg => 'Please go to settings and allow photos access permission for this app.';
 
   @override
   String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
@@ -2064,13 +2064,13 @@ class LocalizationEnGb extends LocalizationEn {
   String get video_sources_photos_denied => 'Access to photos denied';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Go to settings';
+  String get video_sources_photos_goto_settings => 'Go to settings';
 
   @override
   String get video_sources_camera_denied => 'Access to camera denied';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+  String get video_sources_photos_denied_msg => 'Please go to settings and allow photos access permission for this app.';
 
   @override
   String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
@@ -2582,13 +2582,13 @@ class LocalizationEnIn extends LocalizationEn {
   String get video_sources_photos_denied => 'Access to photos denied';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Go to settings';
+  String get video_sources_photos_goto_settings => 'Go to settings';
 
   @override
   String get video_sources_camera_denied => 'Access to camera denied';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+  String get video_sources_photos_denied_msg => 'Please go to settings and allow photos access permission for this app.';
 
   @override
   String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';

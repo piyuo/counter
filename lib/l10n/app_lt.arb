@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Rodyti santrauką ekrane",
   "video_sources_photos_denied": "Prieiga prie nuotraukų atmesta",
-  "video_sources_phtots_goto_settings": "Eiti į nustatymus",
+  "video_sources_photos_goto_settings": "Eiti į nustatymus",
   "video_sources_camera_denied": "Prieiga prie kameros atmesta",
-  "video_sources_phtots_denied_msg": "Eikite į nustatymus ir leiskite šiai programėlei pasiekti nuotraukas.",
+  "video_sources_photos_denied_msg": "Eikite į nustatymus ir leiskite šiai programėlei pasiekti nuotraukas.",
   "video_sources_camera_denied_msg": "Eikite į nustatymus ir leiskite šiai programėlei pasiekti kamerą."
 }

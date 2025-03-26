@@ -166,8 +166,8 @@
   "zone_screen_zone": "زون",
   "zone_screen_zone_show_summary": "په سکرین کې لنډیز ښودل",
   "video_sources_photos_denied": "د عکسونو لاسرسی رد شوی",
-  "video_sources_phtots_goto_settings": "تنظیماتو ته لاړشئ",
+  "video_sources_photos_goto_settings": "تنظیماتو ته لاړشئ",
   "video_sources_camera_denied": "د کیمرې لاسرسی رد شوی",
-  "video_sources_phtots_denied_msg": "تنظیماتو ته لاړشئ او دا اپلیکیشن لپاره د عکسونو لاسرسي اجازه ورکړئ.",
+  "video_sources_photos_denied_msg": "تنظیماتو ته لاړشئ او دا اپلیکیشن لپاره د عکسونو لاسرسي اجازه ورکړئ.",
   "video_sources_camera_denied_msg": "تنظیماتو ته لاړشئ او دا اپلیکیشن لپاره د کیمرې لاسرسي اجازه ورکړئ."
 }

@@ -510,13 +510,13 @@ class LocalizationCa extends Localization {
   String get video_sources_photos_denied => 'Accés a fotos denegat';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Anar a configuració';
+  String get video_sources_photos_goto_settings => 'Anar a configuració';
 
   @override
   String get video_sources_camera_denied => 'Accés a la càmera denegat';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Aneu a configuració i permeteu l\'accés a les fotos per a aquesta aplicació.';
+  String get video_sources_photos_denied_msg => 'Aneu a configuració i permeteu l\'accés a les fotos per a aquesta aplicació.';
 
   @override
   String get video_sources_camera_denied_msg => 'Aneu a configuració i permeteu l\'accés a la càmera per a aquesta aplicació.';

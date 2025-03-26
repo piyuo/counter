@@ -166,8 +166,8 @@
   "zone_screen_zone": "منطقة",
   "zone_screen_zone_show_summary": "عرض الملخص على الشاشة",
   "video_sources_photos_denied": "تم رفض الوصول للصور",
-  "video_sources_phtots_goto_settings": "اذهب إلى الإعدادات",
+  "video_sources_photos_goto_settings": "اذهب إلى الإعدادات",
   "video_sources_camera_denied": "تم رفض الوصول للكاميرا",
-  "video_sources_phtots_denied_msg": "الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.",
+  "video_sources_photos_denied_msg": "الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.",
   "video_sources_camera_denied_msg": "الرجاء الذهاب للإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق."
 }

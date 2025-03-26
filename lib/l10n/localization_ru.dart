@@ -510,13 +510,13 @@ class LocalizationRu extends Localization {
   String get video_sources_photos_denied => 'Доступ к фото запрещен';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Перейти в настройки';
+  String get video_sources_photos_goto_settings => 'Перейти в настройки';
 
   @override
   String get video_sources_camera_denied => 'Доступ к камере запрещен';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Перейдите в настройки и разрешите доступ к фото для этого приложения.';
+  String get video_sources_photos_denied_msg => 'Перейдите в настройки и разрешите доступ к фото для этого приложения.';
 
   @override
   String get video_sources_camera_denied_msg => 'Перейдите в настройки и разрешите доступ к камере для этого приложения.';
@@ -1028,13 +1028,13 @@ class LocalizationRuKz extends LocalizationRu {
   String get video_sources_photos_denied => 'Доступ к фото запрещен';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Параметрлерге өту';
+  String get video_sources_photos_goto_settings => 'Параметрлерге өту';
 
   @override
   String get video_sources_camera_denied => 'Доступ к камере запрещен';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізуге рұқсат беріңіз.';
+  String get video_sources_photos_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізуге рұқсат беріңіз.';
 
   @override
   String get video_sources_camera_denied_msg => 'Параметрлерге өтіп бұл қолданбаға камераға қол жеткізуге рұқсат беріңіз.';
@@ -1546,13 +1546,13 @@ class LocalizationRuUa extends LocalizationRu {
   String get video_sources_photos_denied => 'Доступ до фото заборонено';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Перейти до налаштувань';
+  String get video_sources_photos_goto_settings => 'Перейти до налаштувань';
 
   @override
   String get video_sources_camera_denied => 'Доступ до камери заборонено';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Перейдіть до налаштувань та дозвольте доступ до фото для цього додатку.';
+  String get video_sources_photos_denied_msg => 'Перейдіть до налаштувань та дозвольте доступ до фото для цього додатку.';
 
   @override
   String get video_sources_camera_denied_msg => 'Перейдіть до налаштувань та дозвольте доступ до камери для цього додатку.';

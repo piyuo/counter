@@ -510,13 +510,13 @@ class LocalizationGl extends Localization {
   String get video_sources_photos_denied => 'Acceso a fotos denegado';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Ir a axustes';
+  String get video_sources_photos_goto_settings => 'Ir a axustes';
 
   @override
   String get video_sources_camera_denied => 'Acceso á cámara denegado';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Vaia a axustes e permita o acceso a fotos para esta aplicación.';
+  String get video_sources_photos_denied_msg => 'Vaia a axustes e permita o acceso a fotos para esta aplicación.';
 
   @override
   String get video_sources_camera_denied_msg => 'Vaia a axustes e permita o acceso á cámara para esta aplicación.';

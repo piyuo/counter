@@ -227,9 +227,8 @@ List<Widget> buildVideoSources(
                   context: cli.globalContext,
                   builder: (context) {
                     return CupertinoAlertDialog(
-                      title: Text('Access to photos denied'),
-                      content: Text(
-                          'You need to allow permission to access the file. Please go to settings and allow photos permission on Piyuo Counter.'),
+                      title: Text(context.l.video_sources_photos_denied),
+                      content: Text(context.l.video_sources_photos_denied_msg),
                       actions: [
                         CupertinoDialogAction(
                           textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
@@ -238,7 +237,7 @@ List<Widget> buildVideoSources(
                         ),
                         CupertinoDialogAction(
                           isDefaultAction: true,
-                          child: Text("Go to settings"),
+                          child: Text(context.l.video_sources_photos_goto_settings),
                           onPressed: () async {
                             openAppSettings();
                             Navigator.of(context).pop();

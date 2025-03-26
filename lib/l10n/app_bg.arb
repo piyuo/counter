@@ -166,8 +166,8 @@
   "zone_screen_zone": "Зона",
   "zone_screen_zone_show_summary": "Покажи обобщение на екрана",
   "video_sources_photos_denied": "Достъпът до снимки е отказан",
-  "video_sources_phtots_goto_settings": "Към настройките",
+  "video_sources_photos_goto_settings": "Към настройките",
   "video_sources_camera_denied": "Достъпът до камерата е отказан",
-  "video_sources_phtots_denied_msg": "Моля отидете в настройките и разрешете достъп до снимките за това приложение.",
+  "video_sources_photos_denied_msg": "Моля отидете в настройките и разрешете достъп до снимките за това приложение.",
   "video_sources_camera_denied_msg": "Моля отидете в настройките и разрешете достъп до камерата за това приложение."
 }

@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Mostrar resumo no ecrã",
   "video_sources_photos_denied": "Acesso a fotos negado",
-  "video_sources_phtots_goto_settings": "Ir para definições",
+  "video_sources_photos_goto_settings": "Ir para definições",
   "video_sources_camera_denied": "Acesso à câmara negado",
-  "video_sources_phtots_denied_msg": "Vá para definições e permita o acesso a fotografias para esta aplicação.",
+  "video_sources_photos_denied_msg": "Vá para definições e permita o acesso a fotografias para esta aplicação.",
   "video_sources_camera_denied_msg": "Vá para definições e permita o acesso à câmara para esta aplicação."
 }

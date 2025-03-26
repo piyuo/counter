@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Rādīt kopsavilkumu ekrānā",
   "video_sources_photos_denied": "Piekļuve fotoattēliem liegta",
-  "video_sources_phtots_goto_settings": "Doties uz iestatījumiem",
+  "video_sources_photos_goto_settings": "Doties uz iestatījumiem",
   "video_sources_camera_denied": "Piekļuve kamerai liegta",
-  "video_sources_phtots_denied_msg": "Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.",
+  "video_sources_photos_denied_msg": "Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.",
   "video_sources_camera_denied_msg": "Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt kamerai."
 }

@@ -510,13 +510,13 @@ class LocalizationJa extends Localization {
   String get video_sources_photos_denied => '写真へのアクセスが拒否されました';
 
   @override
-  String get video_sources_phtots_goto_settings => '設定に移動';
+  String get video_sources_photos_goto_settings => '設定に移動';
 
   @override
   String get video_sources_camera_denied => 'カメラへのアクセスが拒否されました';
 
   @override
-  String get video_sources_phtots_denied_msg => '設定に移動して、このアプリの写真へのアクセスを許可してください。';
+  String get video_sources_photos_denied_msg => '設定に移動して、このアプリの写真へのアクセスを許可してください。';
 
   @override
   String get video_sources_camera_denied_msg => '設定に移動して、このアプリのカメラへのアクセスを許可してください。';

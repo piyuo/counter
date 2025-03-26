@@ -510,13 +510,13 @@ class LocalizationKu extends Localization {
   String get video_sources_photos_denied => 'Gihîştina wêneyan nehate qebûl kirin';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Here sazkariyan';
+  String get video_sources_photos_goto_settings => 'Here sazkariyan';
 
   @override
   String get video_sources_camera_denied => 'Gihîştina kamerayê nehate qebûl kirin';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje wêneyan.';
+  String get video_sources_photos_denied_msg => 'Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje wêneyan.';
 
   @override
   String get video_sources_camera_denied_msg => 'Bikin here sazkariyan û destûrê bide vê sepanê ku bigihîje kamerayê.';

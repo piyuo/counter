@@ -510,13 +510,13 @@ class LocalizationHa extends Localization {
   String get video_sources_photos_denied => 'An ki ƙi samun damar hotuna';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Je tsarin';
+  String get video_sources_photos_goto_settings => 'Je tsarin';
 
   @override
   String get video_sources_camera_denied => 'An ki ƙi samun damar kyamara';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Don je saita ka laminta damar samun hotuna don wannan aikene.';
+  String get video_sources_photos_denied_msg => 'Don je saita ka laminta damar samun hotuna don wannan aikene.';
 
   @override
   String get video_sources_camera_denied_msg => 'Don je saita ka laminta damar samun kyamara don wannan aikene.';

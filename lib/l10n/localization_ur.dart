@@ -510,13 +510,13 @@ class LocalizationUr extends Localization {
   String get video_sources_photos_denied => 'تصاویر تک رسائی مسترد کر دی گئی';
 
   @override
-  String get video_sources_phtots_goto_settings => 'ترتیبات پر جائیں';
+  String get video_sources_photos_goto_settings => 'ترتیبات پر جائیں';
 
   @override
   String get video_sources_camera_denied => 'کیمرے تک رسائی مسترد کر دی گئی';
 
   @override
-  String get video_sources_phtots_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے تصاویر تک رسائی کی اجازت دیں۔';
+  String get video_sources_photos_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے تصاویر تک رسائی کی اجازت دیں۔';
 
   @override
   String get video_sources_camera_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے کیمرے تک رسائی کی اجازت دیں۔';
@@ -1028,13 +1028,13 @@ class LocalizationUrIn extends LocalizationUr {
   String get video_sources_photos_denied => 'تصاویر تک رسائی مسترد کر دی گئی';
 
   @override
-  String get video_sources_phtots_goto_settings => 'ترتیبات پر جائیں';
+  String get video_sources_photos_goto_settings => 'ترتیبات پر جائیں';
 
   @override
   String get video_sources_camera_denied => 'کیمرے تک رسائی مسترد کر دی گئی';
 
   @override
-  String get video_sources_phtots_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے تصاویر تک رسائی کی اجازت دیں۔';
+  String get video_sources_photos_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے تصاویر تک رسائی کی اجازت دیں۔';
 
   @override
   String get video_sources_camera_denied_msg => 'براہ کرم ترتیبات میں جائیں اور اس ایپ کے لیے کیمرے تک رسائی کی اجازت دیں۔';

@@ -510,13 +510,13 @@ class LocalizationMy extends Localization {
   String get video_sources_photos_denied => 'ဓာတ်ပုံများသို့ ဝင်ရောက်ခွင့် ငြင်းပယ်ခံရ';
 
   @override
-  String get video_sources_phtots_goto_settings => 'ဆက်တင်သို့သွားပါ';
+  String get video_sources_photos_goto_settings => 'ဆက်တင်သို့သွားပါ';
 
   @override
   String get video_sources_camera_denied => 'ကင်မရာသို့ ဝင်ရောက်ခွင့် ငြင်းပယ်ခံရ';
 
   @override
-  String get video_sources_phtots_denied_msg => 'ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ဓာတ်ပုံဝင်ရောက်ခွင့် ခွင့်ပြုပါ။';
+  String get video_sources_photos_denied_msg => 'ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ဓာတ်ပုံဝင်ရောက်ခွင့် ခွင့်ပြုပါ။';
 
   @override
   String get video_sources_camera_denied_msg => 'ဆက်တင်သို့သွားပြီး ဤအက်ပ်အတွက် ကင်မရာဝင်ရောက်ခွင့် ခွင့်ပြုပါ။';

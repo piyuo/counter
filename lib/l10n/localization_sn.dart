@@ -510,13 +510,13 @@ class LocalizationSn extends Localization {
   String get video_sources_photos_denied => 'Kukwanisa kuona mafoto kwarambwa';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Enda kumisikidziro';
+  String get video_sources_photos_goto_settings => 'Enda kumisikidziro';
 
   @override
   String get video_sources_camera_denied => 'Kukwanisa kuona kamera kwarambwa';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Enda kune zvimisikidzo ugovere kupinda mumafoto munemakomiyudha aya.';
+  String get video_sources_photos_denied_msg => 'Enda kune zvimisikidzo ugovere kupinda mumafoto munemakomiyudha aya.';
 
   @override
   String get video_sources_camera_denied_msg => 'Enda kune zvimisikidzo ugovere kupinda mukamera munemakomiyudha aya.';

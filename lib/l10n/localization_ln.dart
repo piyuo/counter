@@ -510,13 +510,13 @@ class LocalizationLn extends Localization {
   String get video_sources_photos_denied => 'Bondelo na bafoto eboyisami';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Kende na mabongisi';
+  String get video_sources_photos_goto_settings => 'Kende na mabongisi';
 
   @override
   String get video_sources_camera_denied => 'Bondelo na kamera eboyisami';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Kende na mabongisi pe pesa ndingisa ya bondelo na bafoto mpo na application eye.';
+  String get video_sources_photos_denied_msg => 'Kende na mabongisi pe pesa ndingisa ya bondelo na bafoto mpo na application eye.';
 
   @override
   String get video_sources_camera_denied_msg => 'Kende na mabongisi pe pesa ndingisa ya bondelo na kamera mpo na application eye.';

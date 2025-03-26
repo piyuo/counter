@@ -510,13 +510,13 @@ class LocalizationRo extends Localization {
   String get video_sources_photos_denied => 'Acces la fotografii refuzat';
 
   @override
-  String get video_sources_phtots_goto_settings => 'Mergi la setări';
+  String get video_sources_photos_goto_settings => 'Mergi la setări';
 
   @override
   String get video_sources_camera_denied => 'Acces la cameră refuzat';
 
   @override
-  String get video_sources_phtots_denied_msg => 'Mergeți la setări și permiteți accesul la fotografii pentru această aplicație.';
+  String get video_sources_photos_denied_msg => 'Mergeți la setări și permiteți accesul la fotografii pentru această aplicație.';
 
   @override
   String get video_sources_camera_denied_msg => 'Mergeți la setări și permiteți accesul la cameră pentru această aplicație.';

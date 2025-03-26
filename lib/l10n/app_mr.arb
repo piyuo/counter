@@ -166,8 +166,8 @@
   "zone_screen_zone": "झोन",
   "zone_screen_zone_show_summary": "स्क्रीनवर सारांश दाखवा",
   "video_sources_photos_denied": "फोटो अ‍ॅक्सेस नाकारले",
-  "video_sources_phtots_goto_settings": "सेटिंग्जमध्ये जा",
+  "video_sources_photos_goto_settings": "सेटिंग्जमध्ये जा",
   "video_sources_camera_denied": "कॅमेरा अ‍ॅक्सेस नाकारले",
-  "video_sources_phtots_denied_msg": "कृपया सेटिंग्जमध्ये जा आणि या अॅपला फोटो अ‍ॅक्सेस परवानगी द्या.",
+  "video_sources_photos_denied_msg": "कृपया सेटिंग्जमध्ये जा आणि या अॅपला फोटो अ‍ॅक्सेस परवानगी द्या.",
   "video_sources_camera_denied_msg": "कृपया सेटिंग्जमध्ये जा आणि या अॅपला कॅमेरा अ‍ॅक्सेस परवानगी द्या."
 }

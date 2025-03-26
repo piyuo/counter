@@ -510,13 +510,13 @@ class LocalizationFa extends Localization {
   String get video_sources_photos_denied => 'دسترسی به تصاویر رد شد';
 
   @override
-  String get video_sources_phtots_goto_settings => 'رفتن به تنظیمات';
+  String get video_sources_photos_goto_settings => 'رفتن به تنظیمات';
 
   @override
   String get video_sources_camera_denied => 'دسترسی به دوربین رد شد';
 
   @override
-  String get video_sources_phtots_denied_msg => 'لطفاً به تنظیمات بروید و دسترسی به تصاویر را برای این برنامه مجاز کنید.';
+  String get video_sources_photos_denied_msg => 'لطفاً به تنظیمات بروید و دسترسی به تصاویر را برای این برنامه مجاز کنید.';
 
   @override
   String get video_sources_camera_denied_msg => 'لطفاً به تنظیمات بروید و دسترسی به دوربین را برای این برنامه مجاز کنید.';

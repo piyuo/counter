@@ -510,13 +510,13 @@ class LocalizationTh extends Localization {
   String get video_sources_photos_denied => 'ไม่อนุญาตให้เข้าถึงรูปภาพ';
 
   @override
-  String get video_sources_phtots_goto_settings => 'ไปที่การตั้งค่า';
+  String get video_sources_photos_goto_settings => 'ไปที่การตั้งค่า';
 
   @override
   String get video_sources_camera_denied => 'ไม่อนุญาตให้เข้าถึงกล้อง';
 
   @override
-  String get video_sources_phtots_denied_msg => 'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงรูปภาพ';
+  String get video_sources_photos_denied_msg => 'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงรูปภาพ';
 
   @override
   String get video_sources_camera_denied_msg => 'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงกล้อง';

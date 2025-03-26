@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Mostra riepilogo sullo schermo",
   "video_sources_photos_denied": "Accesso alle foto negato",
-  "video_sources_phtots_goto_settings": "Vai a impostazioni",
+  "video_sources_photos_goto_settings": "Vai a impostazioni",
   "video_sources_camera_denied": "Accesso alla fotocamera negato",
-  "video_sources_phtots_denied_msg": "Vai su impostazioni e consenti l'accesso alle foto per questa app.",
+  "video_sources_photos_denied_msg": "Vai su impostazioni e consenti l'accesso alle foto per questa app.",
   "video_sources_camera_denied_msg": "Vai su impostazioni e consenti l'accesso alla fotocamera per questa app."
 }

@@ -1246,11 +1246,11 @@ abstract class Localization {
   /// **'Access to photos denied'**
   String get video_sources_photos_denied;
 
-  /// No description provided for @video_sources_phtots_goto_settings.
+  /// No description provided for @video_sources_photos_goto_settings.
   ///
   /// In en, this message translates to:
   /// **'Go to settings'**
-  String get video_sources_phtots_goto_settings;
+  String get video_sources_photos_goto_settings;
 
   /// No description provided for @video_sources_camera_denied.
   ///
@@ -1258,11 +1258,11 @@ abstract class Localization {
   /// **'Access to camera denied'**
   String get video_sources_camera_denied;
 
-  /// No description provided for @video_sources_phtots_denied_msg.
+  /// No description provided for @video_sources_photos_denied_msg.
   ///
   /// In en, this message translates to:
   /// **'Please go to settings and allow photos access permission for this app.'**
-  String get video_sources_phtots_denied_msg;
+  String get video_sources_photos_denied_msg;
 
   /// No description provided for @video_sources_camera_denied_msg.
   ///

@@ -166,8 +166,8 @@
   "zone_screen_zone": "Zóna",
   "zone_screen_zone_show_summary": "Zobraziť súhrn na obrazovke",
   "video_sources_photos_denied": "Prístup k fotografiám zamietnutý",
-  "video_sources_phtots_goto_settings": "Prejsť do nastavení",
+  "video_sources_photos_goto_settings": "Prejsť do nastavení",
   "video_sources_camera_denied": "Prístup ku kamere zamietnutý",
-  "video_sources_phtots_denied_msg": "Prejdite do nastavení a povoľte prístup k fotografiám pre túto aplikáciu.",
+  "video_sources_photos_denied_msg": "Prejdite do nastavení a povoľte prístup k fotografiám pre túto aplikáciu.",
   "video_sources_camera_denied_msg": "Prejdite do nastavení a povoľte prístup ku kamere pre túto aplikáciu."
 }
