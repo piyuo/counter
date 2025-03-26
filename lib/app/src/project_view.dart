@@ -37,11 +37,11 @@ class ProjectView extends StatelessWidget {
 
       /// calculate the preview alignment based on the device orientation and screen width
       AlignmentGeometry getPreviewAlignment(vision.OrientationProvider orientationProvider, double maxWidth) {
-        if (UniversalPlatform.isDesktop) {
-          if (isSideLayout) {
-            return Alignment.center;
-          }
+        if (isSideLayout) {
+          return Alignment.center;
+        }
 
+        if (UniversalPlatform.isDesktop) {
           Orientation orientation = MediaQuery.of(context).orientation;
           if (orientation == Orientation.portrait) {
             return Alignment.topCenter;
