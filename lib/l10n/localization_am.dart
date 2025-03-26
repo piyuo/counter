@@ -508,4 +508,16 @@ class LocalizationAm extends Localization {
 
   @override
   String get video_sources_photos_denied => 'ፎቶዎችን ለማግኘት ተከልክሏል';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'ወደ ቅንብሮች ሂድ';
+
+  @override
+  String get video_sources_camera_denied => 'ወደ ካሜራ መዳረሻ ተከልክሏል';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'ወደ ቅንብሮች ሂድና ለዚህ መተግበሪያ የፎቶ መዳረሻ ፍቃድ ይፍቀዱ።';
+
+  @override
+  String get video_sources_camera_denied_msg => 'ወደ ቅንብሮች ሂድና ለዚህ መተግበሪያ የካሜራ መዳረሻ ፍቃድ ይፍቀዱ።';
 }

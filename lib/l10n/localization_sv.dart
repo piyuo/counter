@@ -508,4 +508,16 @@ class LocalizationSv extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Åtkomst till foton nekad';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Gå till inställningar';
+
+  @override
+  String get video_sources_camera_denied => 'Åtkomst till kamera nekad';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Gå till inställningar och tillåt bildåtkomst för den här appen.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Gå till inställningar och tillåt kameraåtkomst för den här appen.';
 }

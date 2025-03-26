@@ -165,5 +165,9 @@
   "back": "חזור",
   "zone_screen_zone": "אזור",
   "zone_screen_zone_show_summary": "הצג סיכום על המסך",
-  "video_sources_photos_denied": "גישה לתמונות נדחתה"
+  "video_sources_photos_denied": "גישה לתמונות נדחתה",
+  "video_sources_phtots_goto_settings": "עבור להגדרות",
+  "video_sources_camera_denied": "גישה למצלמה נדחתה",
+  "video_sources_phtots_denied_msg": "אנא עבור להגדרות ואפשר גישה לתמונות עבור אפליקציה זו.",
+  "video_sources_camera_denied_msg": "אנא עבור להגדרות ואפשר גישה למצלמה עבור אפליקציה זו."
 }

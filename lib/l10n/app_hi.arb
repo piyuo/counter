@@ -165,5 +165,9 @@
   "back": "वापस",
   "zone_screen_zone": "ज़ोन",
   "zone_screen_zone_show_summary": "स्क्रीन पर सारांश दिखाएं",
-  "video_sources_photos_denied": "फ़ोटो तक पहुंच अस्वीकृत"
+  "video_sources_photos_denied": "फ़ोटो तक पहुंच अस्वीकृत",
+  "video_sources_phtots_goto_settings": "सेटिंग्स पर जाएं",
+  "video_sources_camera_denied": "कैमरे तक पहुंच अस्वीकृत",
+  "video_sources_phtots_denied_msg": "कृपया सेटिंग्स में जाएं और इस ऐप के लिए फ़ोटो एक्सेस अनुमति दें.",
+  "video_sources_camera_denied_msg": "कृपया सेटिंग्स में जाएं और इस ऐप के लिए कैमरा एक्सेस अनुमति दें."
 }

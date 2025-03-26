@@ -165,5 +165,9 @@
   "back": "Kembali",
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Tampilkan ringkasan di layar",
-  "video_sources_photos_denied": "Akses ke foto ditolak"
+  "video_sources_photos_denied": "Akses ke foto ditolak",
+  "video_sources_phtots_goto_settings": "Buka pengaturan",
+  "video_sources_camera_denied": "Akses ke kamera ditolak",
+  "video_sources_phtots_denied_msg": "Buka pengaturan dan izinkan akses foto untuk aplikasi ini.",
+  "video_sources_camera_denied_msg": "Buka pengaturan dan izinkan akses kamera untuk aplikasi ini."
 }

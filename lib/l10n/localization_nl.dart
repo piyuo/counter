@@ -508,6 +508,18 @@ class LocalizationNl extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Toegang tot foto\'s geweigerd';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Naar instellingen';
+
+  @override
+  String get video_sources_camera_denied => 'Toegang tot camera geweigerd';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Ga naar instellingen en geef toestemming voor fototoegang voor deze app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Ga naar instellingen en geef toestemming voor cameratoegang voor deze app.';
 }
 
 /// The translations for Dutch Flemish, as used in Belgium (`nl_BE`).
@@ -1014,4 +1026,16 @@ class LocalizationNlBe extends LocalizationNl {
 
   @override
   String get video_sources_photos_denied => 'Toegang tot foto\'s geweigerd';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Naar instellingen';
+
+  @override
+  String get video_sources_camera_denied => 'Toegang tot camera geweigerd';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Ga naar instellingen en geef toestemming voor fototoegang voor deze app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Ga naar instellingen en geef toestemming voor cameratoegang voor deze app.';
 }

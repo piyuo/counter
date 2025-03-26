@@ -165,5 +165,9 @@
   "back": "Dzokera",
   "zone_screen_zone": "Nzvimbo",
   "zone_screen_zone_show_summary": "Ratidza muchidimbu pashcreen",
-  "video_sources_photos_denied": "Kukwanisa kuona mafoto kwarambwa"
+  "video_sources_photos_denied": "Kukwanisa kuona mafoto kwarambwa",
+  "video_sources_phtots_goto_settings": "Enda kumisikidziro",
+  "video_sources_camera_denied": "Kukwanisa kuona kamera kwarambwa",
+  "video_sources_phtots_denied_msg": "Enda kune zvimisikidzo ugovere kupinda mumafoto munemakomiyudha aya.",
+  "video_sources_camera_denied_msg": "Enda kune zvimisikidzo ugovere kupinda mukamera munemakomiyudha aya."
 }

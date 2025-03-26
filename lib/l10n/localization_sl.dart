@@ -508,4 +508,16 @@ class LocalizationSl extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Dostop do fotografij zavrnjen';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Pojdi v nastavitve';
+
+  @override
+  String get video_sources_camera_denied => 'Dostop do kamere zavrnjen';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Pojdite v nastavitve in dovolite dostop do fotografij za to aplikacijo.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Pojdite v nastavitve in dovolite dostop do kamere za to aplikacijo.';
 }

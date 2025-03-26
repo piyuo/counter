@@ -165,5 +165,9 @@
   "back": "뒤로",
   "zone_screen_zone": "영역",
   "zone_screen_zone_show_summary": "화면에 요약 표시",
-  "video_sources_photos_denied": "사진 접근이 거부됨"
+  "video_sources_photos_denied": "사진 접근이 거부됨",
+  "video_sources_phtots_goto_settings": "설정으로 이동",
+  "video_sources_camera_denied": "카메라 접근이 거부됨",
+  "video_sources_phtots_denied_msg": "설정으로 이동하여 이 앱의 사진 접근 권한을 허용해 주세요.",
+  "video_sources_camera_denied_msg": "설정으로 이동하여 이 앱의 카메라 접근 권한을 허용해 주세요."
 }

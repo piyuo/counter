@@ -165,5 +165,9 @@
   "back": "بازگشت",
   "zone_screen_zone": "منطقه",
   "zone_screen_zone_show_summary": "نمایش خلاصه در صفحه",
-  "video_sources_photos_denied": "دسترسی به تصاویر رد شد"
+  "video_sources_photos_denied": "دسترسی به تصاویر رد شد",
+  "video_sources_phtots_goto_settings": "رفتن به تنظیمات",
+  "video_sources_camera_denied": "دسترسی به دوربین رد شد",
+  "video_sources_phtots_denied_msg": "لطفاً به تنظیمات بروید و دسترسی به تصاویر را برای این برنامه مجاز کنید.",
+  "video_sources_camera_denied_msg": "لطفاً به تنظیمات بروید و دسترسی به دوربین را برای این برنامه مجاز کنید."
 }

@@ -165,5 +165,9 @@
   "back": "Zurück",
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Zusammenfassung anzeigen",
-  "video_sources_photos_denied": "Zugriff auf Fotos verweigert"
+  "video_sources_photos_denied": "Zugriff auf Fotos verweigert",
+  "video_sources_phtots_goto_settings": "Zu Einstellungen",
+  "video_sources_camera_denied": "Zugriff auf Kamera verweigert",
+  "video_sources_phtots_denied_msg": "Bitte gehe zu den Einstellungen und erlaube den Fotozugriff für diese App.",
+  "video_sources_camera_denied_msg": "Bitte gehe zu den Einstellungen und erlaube den Kamerazugriff für diese App."
 }

@@ -508,6 +508,18 @@ class LocalizationEs extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Acceso a fotos denegado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir a ajustes';
+
+  @override
+  String get video_sources_camera_denied => 'Acceso a cámara denegado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Ve a ajustes y permite el acceso a fotos para esta aplicación.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Ve a ajustes y permite el acceso a la cámara para esta aplicación.';
 }
 
 /// The translations for Spanish Castilian, as used in Argentina (`es_AR`).
@@ -1014,6 +1026,18 @@ class LocalizationEsAr extends LocalizationEs {
 
   @override
   String get video_sources_photos_denied => 'Acceso a fotos denegado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir a ajustes';
+
+  @override
+  String get video_sources_camera_denied => 'Acceso a cámara denegado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Andá a configuración y permitile a la app acceder a tus fotos.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Andá a configuración y permitile a la app acceder a tu cámara.';
 }
 
 /// The translations for Spanish Castilian, as used in Colombia (`es_CO`).
@@ -1520,6 +1544,18 @@ class LocalizationEsCo extends LocalizationEs {
 
   @override
   String get video_sources_photos_denied => 'Acceso a fotos denegado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir a configuración';
+
+  @override
+  String get video_sources_camera_denied => 'Acceso a cámara denegado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Ve a configuración y permite el acceso a fotos para esta aplicación.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Ve a configuración y permite el acceso a la cámara para esta aplicación.';
 }
 
 /// The translations for Spanish Castilian, as used in Mexico (`es_MX`).
@@ -2026,4 +2062,16 @@ class LocalizationEsMx extends LocalizationEs {
 
   @override
   String get video_sources_photos_denied => 'Acceso a fotos denegado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir a configuración';
+
+  @override
+  String get video_sources_camera_denied => 'Acceso a cámara denegado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Ve a configuración y permite el acceso a fotos para esta aplicación.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Ve a configuración y permite el acceso a la cámara para esta aplicación.';
 }

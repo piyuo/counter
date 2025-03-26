@@ -508,4 +508,16 @@ class LocalizationUk extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Доступ до фото заборонено';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Перейти до налаштувань';
+
+  @override
+  String get video_sources_camera_denied => 'Доступ до камери заборонено';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Перейдіть до налаштувань і дозвольте доступ до фото для цього додатка.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Перейдіть до налаштувань і дозвольте доступ до камери для цього додатка.';
 }

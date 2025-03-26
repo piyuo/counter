@@ -508,4 +508,16 @@ class LocalizationFi extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Pääsy valokuviin estetty';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Siirry asetuksiin';
+
+  @override
+  String get video_sources_camera_denied => 'Pääsy kameraan estetty';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Siirry asetuksiin ja salli tämän sovelluksen käyttää valokuvia.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Siirry asetuksiin ja salli tämän sovelluksen käyttää kameraa.';
 }

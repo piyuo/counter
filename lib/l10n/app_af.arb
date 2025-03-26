@@ -165,5 +165,9 @@
   "back": "Terug",
   "zone_screen_zone": "Sone",
   "zone_screen_zone_show_summary": "Wys opsomming op skerm",
-  "video_sources_photos_denied": "Toegang tot foto's geweier"
+  "video_sources_photos_denied": "Toegang tot foto's geweier",
+  "video_sources_phtots_goto_settings": "Gaan na instellings",
+  "video_sources_camera_denied": "Toegang tot kamera geweier",
+  "video_sources_phtots_denied_msg": "Gaan na instellings en laat foto-toegangstoestemming toe vir hierdie app.",
+  "video_sources_camera_denied_msg": "Gaan na instellings en laat kamera-toegangstoestemming toe vir hierdie app."
 }

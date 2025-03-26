@@ -165,5 +165,9 @@
   "back": "Rudi",
   "zone_screen_zone": "Eneo",
   "zone_screen_zone_show_summary": "Onyesha muhtasari kwenye skrini",
-  "video_sources_photos_denied": "Ruhusa ya picha imekataliwa"
+  "video_sources_photos_denied": "Ruhusa ya picha imekataliwa",
+  "video_sources_phtots_goto_settings": "Nenda kwenye mipangilio",
+  "video_sources_camera_denied": "Ruhusa ya kamera imekataliwa",
+  "video_sources_phtots_denied_msg": "Nenda kwenye mipangilio na uruhusu idhini ya ufikiaji wa picha kwa programu hii.",
+  "video_sources_camera_denied_msg": "Nenda kwenye mipangilio na uruhusu idhini ya ufikiaji wa kamera kwa programu hii."
 }

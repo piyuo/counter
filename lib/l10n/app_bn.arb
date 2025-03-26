@@ -165,5 +165,9 @@
   "back": "পিছনে",
   "zone_screen_zone": "জোন",
   "zone_screen_zone_show_summary": "স্ক্রিনে সারসংক্ষেপ দেখান",
-  "video_sources_photos_denied": "ছবিতে অ্যাক্সেস প্রত্যাখ্যাত"
+  "video_sources_photos_denied": "ছবিতে অ্যাক্সেস প্রত্যাখ্যাত",
+  "video_sources_phtots_goto_settings": "সেটিংসে যান",
+  "video_sources_camera_denied": "ক্যামেরায় অ্যাক্সেস প্রত্যাখ্যাত",
+  "video_sources_phtots_denied_msg": "অনুগ্রহ করে সেটিংসে যান এবং এই অ্যাপটির জন্য ফটো অ্যাক্সেসের অনুমতি দিন।",
+  "video_sources_camera_denied_msg": "অনুগ্রহ করে সেটিংসে যান এবং এই অ্যাপটির জন্য ক্যামেরা অ্যাক্সেসের অনুমতি দিন।"
 }

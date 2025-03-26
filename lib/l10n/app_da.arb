@@ -165,5 +165,9 @@
   "back": "Tilbage",
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Vis oversigt på skærm",
-  "video_sources_photos_denied": "Adgang til fotos nægtet"
+  "video_sources_photos_denied": "Adgang til fotos nægtet",
+  "video_sources_phtots_goto_settings": "Gå til indstillinger",
+  "video_sources_camera_denied": "Adgang til kamera nægtet",
+  "video_sources_phtots_denied_msg": "Gå til indstillinger og tillad adgang til fotos for denne app.",
+  "video_sources_camera_denied_msg": "Gå til indstillinger og tillad adgang til kamera for denne app."
 }

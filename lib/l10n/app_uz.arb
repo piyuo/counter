@@ -165,5 +165,9 @@
   "back": "Orqaga",
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Ekranda xulosani ko'rsatish",
-  "video_sources_photos_denied": "Rasmlarga kirish rad etildi"
+  "video_sources_photos_denied": "Rasmlarga kirish rad etildi",
+  "video_sources_phtots_goto_settings": "Sozlamalarga o'tish",
+  "video_sources_camera_denied": "Kameraga kirish rad etildi",
+  "video_sources_phtots_denied_msg": "Sozlamalarga o'ting va bu ilova uchun rasmlarga kirish ruxsatini bering.",
+  "video_sources_camera_denied_msg": "Sozlamalarga o'ting va bu ilova uchun kameraga kirish ruxsatini bering."
 }

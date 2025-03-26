@@ -508,6 +508,18 @@ class LocalizationEn extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Access to photos denied';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Go to settings';
+
+  @override
+  String get video_sources_camera_denied => 'Access to camera denied';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
 }
 
 /// The translations for English, as used in Australia (`en_AU`).
@@ -1014,6 +1026,18 @@ class LocalizationEnAu extends LocalizationEn {
 
   @override
   String get video_sources_photos_denied => 'Access to photos denied';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Go to settings';
+
+  @override
+  String get video_sources_camera_denied => 'Access to camera denied';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
 }
 
 /// The translations for English, as used in Canada (`en_CA`).
@@ -1520,6 +1544,18 @@ class LocalizationEnCa extends LocalizationEn {
 
   @override
   String get video_sources_photos_denied => 'Access to photos denied';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Go to settings';
+
+  @override
+  String get video_sources_camera_denied => 'Access to camera denied';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
 }
 
 /// The translations for English, as used in the United Kingdom (`en_GB`).
@@ -2026,6 +2062,18 @@ class LocalizationEnGb extends LocalizationEn {
 
   @override
   String get video_sources_photos_denied => 'Access to photos denied';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Go to settings';
+
+  @override
+  String get video_sources_camera_denied => 'Access to camera denied';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
 }
 
 /// The translations for English, as used in India (`en_IN`).
@@ -2532,4 +2580,16 @@ class LocalizationEnIn extends LocalizationEn {
 
   @override
   String get video_sources_photos_denied => 'Access to photos denied';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Go to settings';
+
+  @override
+  String get video_sources_camera_denied => 'Access to camera denied';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Please go to settings and allow photos access permission for this app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Please go to settings and allow camera access permission for this app.';
 }

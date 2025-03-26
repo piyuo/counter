@@ -508,4 +508,16 @@ class LocalizationGu extends Localization {
 
   @override
   String get video_sources_photos_denied => 'ફોટા ઍક્સેસ નકારાયું';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'સેટિંગ્સમાં જાઓ';
+
+  @override
+  String get video_sources_camera_denied => 'કેમેરા ઍક્સેસ નકારી';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે ફોટો એક્સેસ પરવાનગી મંજૂર કરો.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે કેમેરા એક્સેસ પરવાનગી મંજૂર કરો.';
 }

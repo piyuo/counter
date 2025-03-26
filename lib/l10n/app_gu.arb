@@ -165,5 +165,9 @@
   "back": "પાછળ",
   "zone_screen_zone": "ઝોન",
   "zone_screen_zone_show_summary": "સ્ક્રીન પર સારાંશ બતાવો",
-  "video_sources_photos_denied": "ફોટા ઍક્સેસ નકારાયું"
+  "video_sources_photos_denied": "ફોટા ઍક્સેસ નકારાયું",
+  "video_sources_phtots_goto_settings": "સેટિંગ્સમાં જાઓ",
+  "video_sources_camera_denied": "કેમેરા ઍક્સેસ નકારી",
+  "video_sources_phtots_denied_msg": "કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે ફોટો એક્સેસ પરવાનગી મંજૂર કરો.",
+  "video_sources_camera_denied_msg": "કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે કેમેરા એક્સેસ પરવાનગી મંજૂર કરો."
 }

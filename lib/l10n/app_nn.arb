@@ -165,5 +165,9 @@
   "back": "Tilbake",
   "zone_screen_zone": "Sone",
   "zone_screen_zone_show_summary": "Vis samandrag på skjerm",
-  "video_sources_photos_denied": "Tilgang til bilete avslått"
+  "video_sources_photos_denied": "Tilgang til bilete avslått",
+  "video_sources_phtots_goto_settings": "Gå til innstillingar",
+  "video_sources_camera_denied": "Tilgang til kamera avslått",
+  "video_sources_phtots_denied_msg": "Gå til innstillingar og tillat tilgang til bilete for denne appen.",
+  "video_sources_camera_denied_msg": "Gå til innstillingar og tillat tilgang til kamera for denne appen."
 }

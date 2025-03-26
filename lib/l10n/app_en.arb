@@ -165,5 +165,9 @@
   "back": "Back",
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Show summary on screen",
-  "video_sources_photos_denied": "Access to photos denied"
+  "video_sources_photos_denied": "Access to photos denied",
+  "video_sources_phtots_goto_settings": "Go to settings",
+  "video_sources_camera_denied": "Access to camera denied",
+  "video_sources_phtots_denied_msg": "Please go to settings and allow photos access permission for this app.",
+  "video_sources_camera_denied_msg": "Please go to settings and allow camera access permission for this app."
 }

@@ -508,6 +508,18 @@ class LocalizationMs extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Akses ke foto dinafikan';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Pergi ke tetapan';
+
+  @override
+  String get video_sources_camera_denied => 'Akses ke kamera dinafikan';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Sila pergi ke tetapan dan benarkan kebenaran akses foto untuk aplikasi ini.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Sila pergi ke tetapan dan benarkan kebenaran akses kamera untuk aplikasi ini.';
 }
 
 /// The translations for Malay, as used in Singapore (`ms_SG`).
@@ -1014,4 +1026,16 @@ class LocalizationMsSg extends LocalizationMs {
 
   @override
   String get video_sources_photos_denied => 'Akses ke foto dinafikan';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Pergi ke tetapan';
+
+  @override
+  String get video_sources_camera_denied => 'Akses ke kamera dinafikan';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Sila pergi ke tetapan dan benarkan kebenaran akses foto untuk aplikasi ini.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Sila pergi ke tetapan dan benarkan kebenaran akses kamera untuk aplikasi ini.';
 }

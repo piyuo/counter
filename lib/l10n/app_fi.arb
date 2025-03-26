@@ -165,5 +165,9 @@
   "back": "Takaisin",
   "zone_screen_zone": "Alue",
   "zone_screen_zone_show_summary": "Näytä yhteenveto ruudulla",
-  "video_sources_photos_denied": "Pääsy valokuviin estetty"
+  "video_sources_photos_denied": "Pääsy valokuviin estetty",
+  "video_sources_phtots_goto_settings": "Siirry asetuksiin",
+  "video_sources_camera_denied": "Pääsy kameraan estetty",
+  "video_sources_phtots_denied_msg": "Siirry asetuksiin ja salli tämän sovelluksen käyttää valokuvia.",
+  "video_sources_camera_denied_msg": "Siirry asetuksiin ja salli tämän sovelluksen käyttää kameraa."
 }

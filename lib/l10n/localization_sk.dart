@@ -508,4 +508,16 @@ class LocalizationSk extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Prístup k fotografiám zamietnutý';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Prejsť do nastavení';
+
+  @override
+  String get video_sources_camera_denied => 'Prístup ku kamere zamietnutý';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Prejdite do nastavení a povoľte prístup k fotografiám pre túto aplikáciu.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Prejdite do nastavení a povoľte prístup ku kamere pre túto aplikáciu.';
 }

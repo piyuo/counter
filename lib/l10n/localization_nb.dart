@@ -508,4 +508,16 @@ class LocalizationNb extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Tilgang til bilder avslått';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Gå til innstillinger';
+
+  @override
+  String get video_sources_camera_denied => 'Tilgang til kamera avslått';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Gå til innstillinger og tillat fototilgang for denne appen.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Gå til innstillinger og tillat kameratilgang for denne appen.';
 }

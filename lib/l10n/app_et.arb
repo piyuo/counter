@@ -165,5 +165,9 @@
   "back": "Tagasi",
   "zone_screen_zone": "Ala",
   "zone_screen_zone_show_summary": "Näita kokkuvõtet ekraanil",
-  "video_sources_photos_denied": "Juurdepääs fotodele keelatud"
+  "video_sources_photos_denied": "Juurdepääs fotodele keelatud",
+  "video_sources_phtots_goto_settings": "Mine seadetesse",
+  "video_sources_camera_denied": "Juurdepääs kaamerale keelatud",
+  "video_sources_phtots_denied_msg": "Mine seadetesse ja luba sellele rakendusele juurdepääs fotodele.",
+  "video_sources_camera_denied_msg": "Mine seadetesse ja luba sellele rakendusele juurdepääs kaamerale."
 }

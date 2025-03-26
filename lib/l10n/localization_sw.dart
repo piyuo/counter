@@ -508,4 +508,16 @@ class LocalizationSw extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Ruhusa ya picha imekataliwa';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Nenda kwenye mipangilio';
+
+  @override
+  String get video_sources_camera_denied => 'Ruhusa ya kamera imekataliwa';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Nenda kwenye mipangilio na uruhusu idhini ya ufikiaji wa picha kwa programu hii.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Nenda kwenye mipangilio na uruhusu idhini ya ufikiaji wa kamera kwa programu hii.';
 }

@@ -165,5 +165,9 @@
   "back": "Retour",
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Afficher résumé à l'écran",
-  "video_sources_photos_denied": "Accès aux photos refusé"
+  "video_sources_photos_denied": "Accès aux photos refusé",
+  "video_sources_phtots_goto_settings": "Aller aux paramètres",
+  "video_sources_camera_denied": "Accès à la caméra refusé",
+  "video_sources_phtots_denied_msg": "Allez dans les paramètres et autorisez l'accès aux photos pour cette application.",
+  "video_sources_camera_denied_msg": "Allez dans les paramètres et autorisez l'accès à la caméra pour cette application."
 }

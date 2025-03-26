@@ -508,4 +508,16 @@ class LocalizationKo extends Localization {
 
   @override
   String get video_sources_photos_denied => '사진 접근이 거부됨';
+
+  @override
+  String get video_sources_phtots_goto_settings => '설정으로 이동';
+
+  @override
+  String get video_sources_camera_denied => '카메라 접근이 거부됨';
+
+  @override
+  String get video_sources_phtots_denied_msg => '설정으로 이동하여 이 앱의 사진 접근 권한을 허용해 주세요.';
+
+  @override
+  String get video_sources_camera_denied_msg => '설정으로 이동하여 이 앱의 카메라 접근 권한을 허용해 주세요.';
 }

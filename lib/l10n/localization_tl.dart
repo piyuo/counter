@@ -508,4 +508,16 @@ class LocalizationTl extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Hindi pinahintulutan ang access sa mga larawan';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Pumunta sa settings';
+
+  @override
+  String get video_sources_camera_denied => 'Hindi pinahintulutan ang access sa camera';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Pumunta sa settings at payagan ang pahintulot sa pag-access sa mga larawan para sa app na ito.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Pumunta sa settings at payagan ang pahintulot sa pag-access sa camera para sa app na ito.';
 }

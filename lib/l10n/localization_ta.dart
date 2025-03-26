@@ -508,4 +508,16 @@ class LocalizationTa extends Localization {
 
   @override
   String get video_sources_photos_denied => 'புகைப்படங்களுக்கான அணுகல் மறுக்கப்பட்டது';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'அமைப்புகளுக்குச் செல்';
+
+  @override
+  String get video_sources_camera_denied => 'கேமராவுக்கான அணுகல் மறுக்கப்பட்டது';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான புகைப்பட அணுகல் அனுமதியை அளிக்கவும்.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான கேமரா அணுகல் அனுமதியை அளிக்கவும்.';
 }

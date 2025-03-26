@@ -508,4 +508,16 @@ class LocalizationAf extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Toegang tot foto\'s geweier';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Gaan na instellings';
+
+  @override
+  String get video_sources_camera_denied => 'Toegang tot kamera geweier';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Gaan na instellings en laat foto-toegangstoestemming toe vir hierdie app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Gaan na instellings en laat kamera-toegangstoestemming toe vir hierdie app.';
 }

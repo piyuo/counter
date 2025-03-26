@@ -508,4 +508,16 @@ class LocalizationBg extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Достъпът до снимки е отказан';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Към настройките';
+
+  @override
+  String get video_sources_camera_denied => 'Достъпът до камерата е отказан';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Моля отидете в настройките и разрешете достъп до снимките за това приложение.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Моля отидете в настройките и разрешете достъп до камерата за това приложение.';
 }

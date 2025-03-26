@@ -508,4 +508,16 @@ class LocalizationMr extends Localization {
 
   @override
   String get video_sources_photos_denied => 'फोटो अ‍ॅक्सेस नाकारले';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'सेटिंग्जमध्ये जा';
+
+  @override
+  String get video_sources_camera_denied => 'कॅमेरा अ‍ॅक्सेस नाकारले';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'कृपया सेटिंग्जमध्ये जा आणि या अॅपला फोटो अ‍ॅक्सेस परवानगी द्या.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'कृपया सेटिंग्जमध्ये जा आणि या अॅपला कॅमेरा अ‍ॅक्सेस परवानगी द्या.';
 }

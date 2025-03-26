@@ -508,4 +508,16 @@ class LocalizationUz extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Rasmlarga kirish rad etildi';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Sozlamalarga o\'tish';
+
+  @override
+  String get video_sources_camera_denied => 'Kameraga kirish rad etildi';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Sozlamalarga o\'ting va bu ilova uchun rasmlarga kirish ruxsatini bering.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Sozlamalarga o\'ting va bu ilova uchun kameraga kirish ruxsatini bering.';
 }

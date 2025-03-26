@@ -508,6 +508,18 @@ class LocalizationDe extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+
+  @override
+  String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Bitte gehe zu den Einstellungen und erlaube den Fotozugriff für diese App.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Bitte gehe zu den Einstellungen und erlaube den Kamerazugriff für diese App.';
 }
 
 /// The translations for German, as used in Austria (`de_AT`).
@@ -1014,6 +1026,18 @@ class LocalizationDeAt extends LocalizationDe {
 
   @override
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+
+  @override
+  String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Bitte gehen Sie zu den Einstellungen und erlauben Sie den Fotozugriff für diese App.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Bitte gehen Sie zu den Einstellungen und erlauben Sie den Kamerazugriff für diese App.';
 }
 
 /// The translations for German, as used in Switzerland (`de_CH`).
@@ -1520,4 +1544,16 @@ class LocalizationDeCh extends LocalizationDe {
 
   @override
   String get video_sources_photos_denied => 'Zugriff auf Fotos verweigert';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Zu Einstellungen';
+
+  @override
+  String get video_sources_camera_denied => 'Zugriff auf Kamera verweigert';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Bitte Einstellungen öffnen und Fotozugriff für diese App erlauben.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Bitte Einstellungen öffnen und Kamerazugriff für diese App erlauben.';
 }

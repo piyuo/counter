@@ -508,6 +508,18 @@ class LocalizationAr extends Localization {
 
   @override
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+
+  @override
+  String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in the United Arab Emirates (`ar_AE`).
@@ -1014,6 +1026,18 @@ class LocalizationArAe extends LocalizationAr {
 
   @override
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'انتقل للإعدادات';
+
+  @override
+  String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in Algeria (`ar_DZ`).
@@ -1520,6 +1544,18 @@ class LocalizationArDz extends LocalizationAr {
 
   @override
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+
+  @override
+  String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
@@ -2026,4 +2062,16 @@ class LocalizationArEg extends LocalizationAr {
 
   @override
   String get video_sources_photos_denied => 'تم رفض الوصول للصور';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'اذهب إلى الإعدادات';
+
+  @override
+  String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }

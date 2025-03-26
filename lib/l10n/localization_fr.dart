@@ -508,6 +508,18 @@ class LocalizationFr extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Accès aux photos refusé';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+
+  @override
+  String get video_sources_camera_denied => 'Accès à la caméra refusé';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
 }
 
 /// The translations for French, as used in Belgium (`fr_BE`).
@@ -1014,6 +1026,18 @@ class LocalizationFrBe extends LocalizationFr {
 
   @override
   String get video_sources_photos_denied => 'Accès aux photos refusé';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+
+  @override
+  String get video_sources_camera_denied => 'Accès à la caméra refusé';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
 }
 
 /// The translations for French, as used in Canada (`fr_CA`).
@@ -1520,6 +1544,18 @@ class LocalizationFrCa extends LocalizationFr {
 
   @override
   String get video_sources_photos_denied => 'Accès aux photos refusé';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+
+  @override
+  String get video_sources_camera_denied => 'Accès à la caméra refusé';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
 }
 
 /// The translations for French, as used in Switzerland (`fr_CH`).
@@ -2026,4 +2062,16 @@ class LocalizationFrCh extends LocalizationFr {
 
   @override
   String get video_sources_photos_denied => 'Accès aux photos refusé';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Aller aux paramètres';
+
+  @override
+  String get video_sources_camera_denied => 'Accès à la caméra refusé';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Allez dans les paramètres et autorisez l\'accès aux photos pour cette application.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Allez dans les paramètres et autorisez l\'accès à la caméra pour cette application.';
 }

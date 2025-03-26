@@ -165,5 +165,9 @@
   "back": "返回",
   "zone_screen_zone": "區域",
   "zone_screen_zone_show_summary": "在螢幕上顯示摘要",
-  "video_sources_photos_denied": "相片存取被拒"
+  "video_sources_photos_denied": "相片存取被拒",
+  "video_sources_phtots_goto_settings": "前往設定",
+  "video_sources_camera_denied": "相機存取被拒",
+  "video_sources_phtots_denied_msg": "請前往設定並允許此應用程式的相片存取權限。",
+  "video_sources_camera_denied_msg": "請前往設定並允許此應用程式的相機存取權限。"
 }

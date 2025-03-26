@@ -165,5 +165,9 @@
   "back": "వెనుకకు",
   "zone_screen_zone": "జోన్",
   "zone_screen_zone_show_summary": "స్క్రీన్‌పై సారాంశాన్ని చూపించు",
-  "video_sources_photos_denied": "ఫొటోలకు యాక్సెస్ నిరాకరించబడింది"
+  "video_sources_photos_denied": "ఫొటోలకు యాక్సెస్ నిరాకరించబడింది",
+  "video_sources_phtots_goto_settings": "సెట్టింగ్‌లకు వెళ్లు",
+  "video_sources_camera_denied": "కెమెరాకు యాక్సెస్ నిరాకరించబడింది",
+  "video_sources_phtots_denied_msg": "దయచేసి సెట్టింగ్‌లకు వెళ్లి ఈ యాప్ కోసం ఫోటోలను యాక్సెస్ చేయడానికి అనుమతి ఇవ్వండి.",
+  "video_sources_camera_denied_msg": "దయచేసి సెట్టింగ్‌లకు వెళ్లి ఈ యాప్ కోసం కెమెరాను యాక్సెస్ చేయడానికి అనుమతి ఇవ్వండి."
 }

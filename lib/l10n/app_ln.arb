@@ -165,5 +165,9 @@
   "back": "Zonga",
   "zone_screen_zone": "Zone",
   "zone_screen_zone_show_summary": "Onyesha muhtasari kwenye skrini",
-  "video_sources_photos_denied": "Bondelo na bafoto eboyisami"
+  "video_sources_photos_denied": "Bondelo na bafoto eboyisami",
+  "video_sources_phtots_goto_settings": "Kende na mabongisi",
+  "video_sources_camera_denied": "Bondelo na kamera eboyisami",
+  "video_sources_phtots_denied_msg": "Kende na mabongisi pe pesa ndingisa ya bondelo na bafoto mpo na application eye.",
+  "video_sources_camera_denied_msg": "Kende na mabongisi pe pesa ndingisa ya bondelo na kamera mpo na application eye."
 }

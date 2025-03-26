@@ -508,4 +508,16 @@ class LocalizationDa extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Adgang til fotos nægtet';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Gå til indstillinger';
+
+  @override
+  String get video_sources_camera_denied => 'Adgang til kamera nægtet';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Gå til indstillinger og tillad adgang til fotos for denne app.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Gå til indstillinger og tillad adgang til kamera for denne app.';
 }

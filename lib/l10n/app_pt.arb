@@ -165,5 +165,9 @@
   "back": "Voltar",
   "zone_screen_zone": "Zona",
   "zone_screen_zone_show_summary": "Mostrar resumo na tela",
-  "video_sources_photos_denied": "Acesso a fotos negado"
+  "video_sources_photos_denied": "Acesso a fotos negado",
+  "video_sources_phtots_goto_settings": "Ir para configurações",
+  "video_sources_camera_denied": "Acesso à câmera negado",
+  "video_sources_phtots_denied_msg": "Vá para configurações e permita o acesso a fotos para este aplicativo.",
+  "video_sources_camera_denied_msg": "Vá para configurações e permita o acesso à câmera para este aplicativo."
 }

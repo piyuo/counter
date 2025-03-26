@@ -508,6 +508,18 @@ class LocalizationRu extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Доступ к фото запрещен';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Перейти в настройки';
+
+  @override
+  String get video_sources_camera_denied => 'Доступ к камере запрещен';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Перейдите в настройки и разрешите доступ к фото для этого приложения.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Перейдите в настройки и разрешите доступ к камере для этого приложения.';
 }
 
 /// The translations for Russian, as used in Kazakhstan (`ru_KZ`).
@@ -1014,6 +1026,18 @@ class LocalizationRuKz extends LocalizationRu {
 
   @override
   String get video_sources_photos_denied => 'Доступ к фото запрещен';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Параметрлерге өту';
+
+  @override
+  String get video_sources_camera_denied => 'Доступ к камере запрещен';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізуге рұқсат беріңіз.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Параметрлерге өтіп бұл қолданбаға камераға қол жеткізуге рұқсат беріңіз.';
 }
 
 /// The translations for Russian, as used in Ukraine (`ru_UA`).
@@ -1520,4 +1544,16 @@ class LocalizationRuUa extends LocalizationRu {
 
   @override
   String get video_sources_photos_denied => 'Доступ до фото заборонено';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Перейти до налаштувань';
+
+  @override
+  String get video_sources_camera_denied => 'Доступ до камери заборонено';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Перейдіть до налаштувань та дозвольте доступ до фото для цього додатку.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Перейдіть до налаштувань та дозвольте доступ до камери для цього додатку.';
 }

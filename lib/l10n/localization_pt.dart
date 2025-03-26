@@ -508,6 +508,18 @@ class LocalizationPt extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Acesso a fotos negado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir para configurações';
+
+  @override
+  String get video_sources_camera_denied => 'Acesso à câmera negado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Vá para configurações e permita o acesso a fotos para este aplicativo.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Vá para configurações e permita o acesso à câmera para este aplicativo.';
 }
 
 /// The translations for Portuguese, as used in Portugal (`pt_PT`).
@@ -1014,4 +1026,16 @@ class LocalizationPtPt extends LocalizationPt {
 
   @override
   String get video_sources_photos_denied => 'Acesso a fotos negado';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Ir para definições';
+
+  @override
+  String get video_sources_camera_denied => 'Acesso à câmara negado';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Vá para definições e permita o acesso a fotografias para esta aplicação.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Vá para definições e permita o acesso à câmara para esta aplicação.';
 }

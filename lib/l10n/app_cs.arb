@@ -165,5 +165,9 @@
   "back": "Zpět",
   "zone_screen_zone": "Zóna",
   "zone_screen_zone_show_summary": "Zobrazit shrnutí na obrazovce",
-  "video_sources_photos_denied": "Přístup k fotografiím odepřen"
+  "video_sources_photos_denied": "Přístup k fotografiím odepřen",
+  "video_sources_phtots_goto_settings": "Přejít do nastavení",
+  "video_sources_camera_denied": "Přístup ke kameře odepřen",
+  "video_sources_phtots_denied_msg": "Přejděte do nastavení a povolte přístup k fotografiím pro tuto aplikaci.",
+  "video_sources_camera_denied_msg": "Přejděte do nastavení a povolte přístup ke kameře pro tuto aplikaci."
 }

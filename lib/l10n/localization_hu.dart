@@ -508,4 +508,16 @@ class LocalizationHu extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Fényképekhez való hozzáférés megtagadva';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Beállítások';
+
+  @override
+  String get video_sources_camera_denied => 'Kamerához való hozzáférés megtagadva';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Menjen a beállításokhoz és engedélyezze a fényképekhez való hozzáférést ennek az alkalmazásnak.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Menjen a beállításokhoz és engedélyezze a kamerához való hozzáférést ennek az alkalmazásnak.';
 }

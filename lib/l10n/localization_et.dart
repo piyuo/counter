@@ -508,4 +508,16 @@ class LocalizationEt extends Localization {
 
   @override
   String get video_sources_photos_denied => 'Juurdepääs fotodele keelatud';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'Mine seadetesse';
+
+  @override
+  String get video_sources_camera_denied => 'Juurdepääs kaamerale keelatud';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'Mine seadetesse ja luba sellele rakendusele juurdepääs fotodele.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'Mine seadetesse ja luba sellele rakendusele juurdepääs kaamerale.';
 }

@@ -508,4 +508,16 @@ class LocalizationNe extends Localization {
 
   @override
   String get video_sources_photos_denied => 'फोटोहरूमा पहुँच अस्वीकृत';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'सेटिङमा जानुहोस्';
+
+  @override
+  String get video_sources_camera_denied => 'क्यामेरामा पहुँच अस्वीकृत';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'सेटिङमा जानुहोस् र यो अनुप्रयोगको लागि फोटो पहुँच अनुमति दिनुहोस्।';
+
+  @override
+  String get video_sources_camera_denied_msg => 'सेटिङमा जानुहोस् र यो अनुप्रयोगको लागि क्यामेरा पहुँच अनुमति दिनुहोस्।';
 }

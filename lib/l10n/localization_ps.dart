@@ -508,4 +508,16 @@ class LocalizationPs extends Localization {
 
   @override
   String get video_sources_photos_denied => 'د عکسونو لاسرسی رد شوی';
+
+  @override
+  String get video_sources_phtots_goto_settings => 'تنظیماتو ته لاړشئ';
+
+  @override
+  String get video_sources_camera_denied => 'د کیمرې لاسرسی رد شوی';
+
+  @override
+  String get video_sources_phtots_denied_msg => 'تنظیماتو ته لاړشئ او دا اپلیکیشن لپاره د عکسونو لاسرسي اجازه ورکړئ.';
+
+  @override
+  String get video_sources_camera_denied_msg => 'تنظیماتو ته لاړشئ او دا اپلیکیشن لپاره د کیمرې لاسرسي اجازه ورکړئ.';
 }

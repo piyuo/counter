@@ -165,5 +165,9 @@
   "back": "Tillbaka",
   "zone_screen_zone": "Zon",
   "zone_screen_zone_show_summary": "Visa sammanfattning på skärmen",
-  "video_sources_photos_denied": "Åtkomst till foton nekad"
+  "video_sources_photos_denied": "Åtkomst till foton nekad",
+  "video_sources_phtots_goto_settings": "Gå till inställningar",
+  "video_sources_camera_denied": "Åtkomst till kamera nekad",
+  "video_sources_phtots_denied_msg": "Gå till inställningar och tillåt bildåtkomst för den här appen.",
+  "video_sources_camera_denied_msg": "Gå till inställningar och tillåt kameraåtkomst för den här appen."
 }

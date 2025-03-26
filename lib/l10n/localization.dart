@@ -1245,6 +1245,30 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Access to photos denied'**
   String get video_sources_photos_denied;
+
+  /// No description provided for @video_sources_phtots_goto_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to settings'**
+  String get video_sources_phtots_goto_settings;
+
+  /// No description provided for @video_sources_camera_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Access to camera denied'**
+  String get video_sources_camera_denied;
+
+  /// No description provided for @video_sources_phtots_denied_msg.
+  ///
+  /// In en, this message translates to:
+  /// **'Please go to settings and allow photos access permission for this app.'**
+  String get video_sources_phtots_denied_msg;
+
+  /// No description provided for @video_sources_camera_denied_msg.
+  ///
+  /// In en, this message translates to:
+  /// **'Please go to settings and allow camera access permission for this app.'**
+  String get video_sources_camera_denied_msg;
 }
 
 class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
