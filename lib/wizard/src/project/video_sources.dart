@@ -250,6 +250,7 @@ List<Widget> buildVideoSources(
           }
         },
       ),
+    // pick video
     CupertinoListTile(
         leading: videoSourcesProvider.isLoadingFile ? CupertinoActivityIndicator() : Icon(CupertinoIcons.folder),
         title: Text(context.l.video_sources_file),

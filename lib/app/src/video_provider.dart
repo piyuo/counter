@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:libcli/cli/cli.dart' as cli;
+import 'package:path_provider/path_provider.dart';
 import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
@@ -228,7 +229,9 @@ class VideoProvider with ChangeNotifier {
     switch (video.mediaType) {
       case vision.MediaType.file:
         assert(video.path != null && video.path!.isNotEmpty, 'file path is empty');
-        errorCode = await visionController.openFile(video.path!);
+        final appDir = await getApplicationDocumentsDirectory();
+        final filePath = '${appDir.path}/${video.path}';
+        errorCode = await visionController.openFile(filePath);
       case vision.MediaType.camera:
         assert(video.camera != null, 'camera is null');
         errorCode = await visionController.openCamera(video.camera!.name);
