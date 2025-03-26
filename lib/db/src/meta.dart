@@ -78,7 +78,7 @@ ProjectMeta projectToMeta(app.Project project) {
 
 /// Converts a app project to meta object that can be stored in the database.
 app.Project metaToProject(ProjectMeta meta) {
-  return app.Project(
+  final project = app.Project(
     projectId: meta.projectId,
     projectName: meta.projectName,
     videos: meta.videos
@@ -104,7 +104,7 @@ app.Project metaToProject(ProjectMeta meta) {
             validThreshold: video.valid,
             trackingThreshold: video.tracking,
             model: video.model,
-            objectClasses: video.objectClasses,
+            objectClasses: List.from(video.objectClasses),
             zoom: video.zoom,
             zones: video.zones
                 .map((zone) => vision.VideoZone(
@@ -141,4 +141,5 @@ app.Project metaToProject(ProjectMeta meta) {
     isShowCenterRedDotOnTarget: meta.isShowCenterRedDotOnTarget,
     isShowGhostTarget: meta.isShowGhostTarget,
   );
+  return project;
 }
