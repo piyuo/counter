@@ -127,7 +127,7 @@ class _MyAppState extends State<MyApp> {
               child: Directionality(
                 textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
                 child: Localizations(
-                    locale: cli.defaultLocale,
+                    locale: cli.defaultLocale ?? cli.systemLocale,
                     delegates: appLocaleDelegates,
                     child: Navigator(
                       initialRoute: '/',

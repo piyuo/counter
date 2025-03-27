@@ -98,7 +98,7 @@ class WizardApp extends StatefulWidget {
   final pip.PipProvider pipProvider;
 
   /// the app locale
-  final Locale appLocale;
+  final Locale? appLocale;
 
   /// the localizations delegates
   final List<LocalizationsDelegate<dynamic>> appLocaleDelegates;
