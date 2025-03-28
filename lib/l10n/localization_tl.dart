@@ -231,7 +231,7 @@ class LocalizationTl extends Localization {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match na mahigit sa #0 ay itinuturing na parehong bagay.';
+  String get detection_screen_match_desc => '#0 matchThreshold ay isang mahalagang parameter sa pag-track ng object na sumusukat sa antas ng pagtutugma sa pagitan ng iba\'t ibang detection box. Ang mas mababang value ay nagpapadali sa pag-associate ng object ngunit nagdaragdag ng panganib ng maling association. Ang mas mataas na value ay mas mahigpit sa mga object association ngunit maaaring makaligtaan ang ilang tunay na pagtutugma.';
 
   @override
   String get detection_screen_lost => 'Nawala';

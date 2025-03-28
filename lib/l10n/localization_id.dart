@@ -231,7 +231,7 @@ class LocalizationId extends Localization {
   String get detection_screen_match => 'Kecocokan';
 
   @override
-  String get detection_screen_match_desc => 'Kecocokan di atas #0 dianggap sebagai objek yang sama.';
+  String get detection_screen_match_desc => '#0 matchThreshold adalah parameter kunci dalam pelacakan objek yang mengukur tingkat kecocokan antara kotak deteksi berbeda. Nilai lebih rendah mempermudah asosiasi objek tetapi meningkatkan risiko asosiasi yang salah. Nilai lebih tinggi lebih ketat pada asosiasi objek tetapi mungkin melewatkan beberapa kecocokan yang benar.';
 
   @override
   String get detection_screen_lost => 'Hilang';

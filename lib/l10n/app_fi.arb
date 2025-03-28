@@ -73,7 +73,7 @@
   "detection_screen_nms": "Ei-maksimaalinen suppressio",
   "detection_screen_nms_desc": "#0 Matalampi NMS-kynnysarvo (esim. 0.3-0.4) poistaa päällekkäiset laatikot tiukemmin ja vähentää vääriä positiivisia tuloksia mutta saattaa ohittaa päällekkäiset ihmiset. Korkeampi kynnysarvo (0.7-0.9) säilyttää enemmän laatikoita mikä voi lisätä vääriä positiivisia tuloksia mutta havaitsee päällekkäiset ihmiset paremmin.",
   "detection_screen_match": "Vastaavuus",
-  "detection_screen_match_desc": "Yli #0 vastaavuus katsotaan samaksi kohteeksi.",
+  "detection_screen_match_desc": "#0 matchThreshold on objektien seurannassa keskeinen parametri joka mittaa erilaisten havaintolaatikoiden välisen vastaavuuden astetta. Alempi arvo helpottaa objektien yhdistämistä mutta lisää väärien yhteyksien riskiä. Korkeampi arvo on tiukempi objektien yhdistämisessä mutta voi ohittaa joitain todellisia vastaavuuksia.",
   "detection_screen_lost": "Kadotettu",
   "detection_screen_lost_desc": "Seurattu kohde poistetaan, jos se on kadoksissa #0",
   "detection_screen_consider_valid": "Pidä kelvollisena",

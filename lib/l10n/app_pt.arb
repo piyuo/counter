@@ -73,7 +73,7 @@
   "detection_screen_nms": "Supressão Não-Máxima",
   "detection_screen_nms_desc": "#0 Um limiar NMS mais baixo (ex. 0.3-0.4) remove caixas sobrepostas de forma mais rigorosa e reduz falsos positivos mas pode perder pessoas sobrepostas. Um limiar mais alto (0.7-0.9) mantém mais caixas o que pode aumentar falsos positivos mas detecta melhor pessoas sobrepostas.",
   "detection_screen_match": "Correspondência",
-  "detection_screen_match_desc": "Correspondência acima de #0 é considerada o mesmo objeto.",
+  "detection_screen_match_desc": "#0 matchThreshold é um parâmetro chave no rastreamento de objetos que mede o grau de correspondência entre diferentes caixas de detecção. Valor mais baixo facilita a associação de objetos mas aumenta o risco de associações erradas. Valor mais alto é mais rigoroso nas associações de objetos mas pode perder algumas correspondências verdadeiras.",
   "detection_screen_lost": "Perdido",
   "detection_screen_lost_desc": "O objeto rastreado será removido se estiver perdido por #0",
   "detection_screen_consider_valid": "Considerar válido após",

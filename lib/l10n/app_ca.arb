@@ -73,7 +73,7 @@
   "detection_screen_nms": "Supressió no màxima",
   "detection_screen_nms_desc": "#0 Un llindar NMS més baix (p. ex. 0.3-0.4) elimina els quadres superposats de manera més estricta i redueix els falsos positius però pot passar per alt persones superposades. Un llindar més alt (0.7-0.9) conserva més quadres cosa que pot augmentar els falsos positius però detecta millor les persones superposades.",
   "detection_screen_match": "Coincidència",
-  "detection_screen_match_desc": "Coincidència superior a #0 es considera el mateix objecte.",
+  "detection_screen_match_desc": "#0 matchThreshold és un paràmetre clau en el seguiment d'objectes que mesura el grau de coincidència entre diferents requadres de detecció. Un valor més baix facilita l'associació d'objectes però augmenta el risc d'associacions incorrectes. Un valor més alt és més estricte amb les associacions però pot perdre algunes coincidències reals.",
   "detection_screen_lost": "Perdut",
   "detection_screen_lost_desc": "L'objecte en seguiment s'eliminarà si es perd durant #0",
   "detection_screen_consider_valid": "Considerar vàlid després de",

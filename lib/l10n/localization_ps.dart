@@ -231,7 +231,7 @@ class LocalizationPs extends Localization {
   String get detection_screen_match => 'برابرول';
 
   @override
-  String get detection_screen_match_desc => 'د #0 څخه پورته برابروالی د یو ورته شی په توګه ګڼل کیږي.';
+  String get detection_screen_match_desc => '#0 matchThreshold د شی تعقیب کې یو مهم پارامیټر دی چې د مختلفو موندنې بکسونو ترمنځ د تطابق درجه اندازه کوي. ټیټ ارزښت د شی تړاو اسانوي مګر د غلط تړاو خطر زیاتوي. لوړ ارزښت د شی تړاو لپاره سخت دی مګر ښایي ځینې ریښتیني تطابقونه له لاسه ورکړي.';
 
   @override
   String get detection_screen_lost => 'ورک';

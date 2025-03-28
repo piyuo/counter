@@ -691,7 +691,7 @@ abstract class Localization {
   /// No description provided for @detection_screen_match_desc.
   ///
   /// In en, this message translates to:
-  /// **'Match over #0 is considered to be the same object.'**
+  /// **'#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.'**
   String get detection_screen_match_desc;
 
   /// No description provided for @detection_screen_lost.

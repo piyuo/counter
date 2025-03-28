@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Matakaitace na ƙasa na NMS (misali 0.3-0.4) ya fi tsabtace akwatin da suka shafe junansu kuma ya rage ƙarin karya amma ya iya barke mutane masu shafe juna. Matakaitin da ta fi girma (0.7-0.9) zai kebe akwati masu yawa wanda zai iya ƙara ƙarin karya amma ya fi gano mutane masu shafe juna.",
   "detection_screen_match": "Daidaita",
-  "detection_screen_match_desc": "Daidaita sama da #0 ana ɗaukar su a matsayin abin da aka gano.",
+  "detection_screen_match_desc": "#0 matchThreshold shine ganawa ne muhimmiyar nazari a cikin bin abubuwa wanda ke awon matakin daidaito tsakanin akwatin gano daban-daban. Kasa ƙima yana sa haɗin abubuwa ya fi sauki amma yana ƙara haɗari na haɗin gurbata. Ƙima mai tsoka ta fi tsauri akan haɗin abubuwa amma tana iya rasa wasu haɗin gaskiya.",
   "detection_screen_lost": "Rasa",
   "detection_screen_lost_desc": "Za a cire abin da ake gano in an rasa shi tsawon #0",
   "detection_screen_consider_valid": "A ɗauka a matsayin ingantacce bayan",

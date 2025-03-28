@@ -73,7 +73,7 @@
   "detection_screen_nms": "Supresie non-maximă",
   "detection_screen_nms_desc": "#0 Un prag NMS mai scăzut (de ex. 0.3-0.4) elimină cutiile suprapuse mai strict și reduce rezultatele fals pozitive dar poate rata persoanele suprapuse. Un prag mai ridicat (0.7-0.9) păstrează mai multe cutii ceea ce poate crește rezultatele fals pozitive dar detectează mai bine persoanele suprapuse.",
   "detection_screen_match": "Potrivire",
-  "detection_screen_match_desc": "Potrivire peste #0 este considerată același obiect.",
+  "detection_screen_match_desc": "#0 matchThreshold este un parametru cheie în urmărirea obiectelor care măsoară gradul de potrivire între diferite casete de detectare. O valoare mai mică facilitează asocierea obiectelor dar crește riscul de asocieri greșite. O valoare mai mare este mai strictă cu asocierile de obiecte dar poate rata unele potriviri reale.",
   "detection_screen_lost": "Pierdut",
   "detection_screen_lost_desc": "Obiectul urmărit va fi eliminat dacă este pierdut pentru #0",
   "detection_screen_consider_valid": "Consideră valid după",

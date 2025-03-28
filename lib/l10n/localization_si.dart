@@ -231,7 +231,7 @@ class LocalizationSi extends Localization {
   String get detection_screen_match => 'ගැලපීම';
 
   @override
-  String get detection_screen_match_desc => '#0 ට වඩා ගැලපීම එකම වස්තුවක් ලෙස සලකනු ලැබේ.';
+  String get detection_screen_match_desc => '#0 matchThreshold යනු වස්තු ලුහුබැඳීමේදී වෙනස් හඳුනා ගැනීමේ කොටු අතර ගැලපීමේ ප්‍රමාණය මනින ප්‍රධාන පරාමිතියකි. අඩු අගයක් වස්තු සම්බන්ධතා පහසු කරයි නමුත් වැරදි සම්බන්ධතා අවදානම වැඩි කරයි. වැඩි අගයක් වස්තු සම්බන්ධතා සඳහා වඩාත් දැඩි වන නමුත් සමහර සැබෑ ගැලපීම් අතපසු විය හැක.';
 
   @override
   String get detection_screen_lost => 'අහිමි වීම';

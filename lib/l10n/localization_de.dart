@@ -231,7 +231,7 @@ class LocalizationDe extends Localization {
   String get detection_screen_match => 'Übereinstimmung';
 
   @override
-  String get detection_screen_match_desc => 'Übereinstimmung über #0 wird als dasselbe Objekt betrachtet.';
+  String get detection_screen_match_desc => '#0 matchThreshold ist ein wichtiger Parameter bei der Objektverfolgung der den Grad der Übereinstimmung zwischen verschiedenen Erkennungsrahmen misst. Ein niedrigerer Wert erleichtert die Objektverbindung erhöht aber das Risiko falscher Verbindungen. Ein höherer Wert ist bei Objektverbindungen strenger kann aber einige echte Übereinstimmungen verpassen.';
 
   @override
   String get detection_screen_lost => 'Verloren';
@@ -749,7 +749,7 @@ class LocalizationDeAt extends LocalizationDe {
   String get detection_screen_match => 'Übereinstimmung';
 
   @override
-  String get detection_screen_match_desc => 'Übereinstimmung über #0 wird als dasselbe Objekt betrachtet.';
+  String get detection_screen_match_desc => '#0 matchThreshold ist ein wichtiger Parameter bei der Objektverfolgung der den Grad der Übereinstimmung zwischen verschiedenen Erkennungsrahmen misst. Ein niedrigerer Wert erleichtert die Objektverbindung erhöht aber das Risiko falscher Verbindungen. Ein höherer Wert ist bei Objektverbindungen strenger kann aber einige echte Übereinstimmungen verpassen.';
 
   @override
   String get detection_screen_lost => 'Verloren';
@@ -1267,7 +1267,7 @@ class LocalizationDeCh extends LocalizationDe {
   String get detection_screen_match => 'Übereinstimmung';
 
   @override
-  String get detection_screen_match_desc => 'Übereinstimmung über #0 wird als dasselbe Objekt betrachtet.';
+  String get detection_screen_match_desc => '#0 matchThreshold ist ein wichtiger Parameter bei der Objektverfolgung der den Grad der Übereinstimmung zwischen verschiedenen Erkennungsrahmen misst. Ein niedrigerer Wert erleichtert die Objektverbindung erhöht aber das Risiko falscher Verbindungen. Ein höherer Wert ist bei Objektverbindungen strenger kann aber einige echte Übereinstimmungen verpassen.';
 
   @override
   String get detection_screen_lost => 'Verloren';

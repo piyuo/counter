@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Mas mababang threshold ng NMS (hal. 0.3-0.4) ay mas mahigpit na nag-aalis ng magkakapatong na kahon at binabawasan ang mga false positive ngunit maaaring makaligtaan ang magkakapatong na tao. Mas mataas na threshold (0.7-0.9) ay nagpapanatili ng mas maraming kahon na maaaring magpataas ng mga false positive ngunit mas mahusay na nakakakita ng magkakapatong na tao.",
   "detection_screen_match": "Match",
-  "detection_screen_match_desc": "Match na mahigit sa #0 ay itinuturing na parehong bagay.",
+  "detection_screen_match_desc": "#0 matchThreshold ay isang mahalagang parameter sa pag-track ng object na sumusukat sa antas ng pagtutugma sa pagitan ng iba't ibang detection box. Ang mas mababang value ay nagpapadali sa pag-associate ng object ngunit nagdaragdag ng panganib ng maling association. Ang mas mataas na value ay mas mahigpit sa mga object association ngunit maaaring makaligtaan ang ilang tunay na pagtutugma.",
   "detection_screen_lost": "Nawala",
   "detection_screen_lost_desc": "Ang naka-track na object ay aalisin kung ito ay nawala sa loob ng #0",
   "detection_screen_consider_valid": "Ituring na valid pagkatapos ng",

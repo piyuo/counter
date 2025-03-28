@@ -231,7 +231,7 @@ class LocalizationEs extends Localization {
   String get detection_screen_match => 'Coincidencia';
 
   @override
-  String get detection_screen_match_desc => 'Coincidencia superior a #0 se considera el mismo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold es un parámetro clave en el seguimiento de objetos que mide el grado de coincidencia entre diferentes cuadros de detección. Un valor más bajo facilita la asociación de objetos pero aumenta el riesgo de asociaciones incorrectas. Un valor más alto es más estricto con las asociaciones pero puede perder algunas coincidencias reales.';
 
   @override
   String get detection_screen_lost => 'Perdido';
@@ -749,7 +749,7 @@ class LocalizationEsAr extends LocalizationEs {
   String get detection_screen_match => 'Coincidencia';
 
   @override
-  String get detection_screen_match_desc => 'Coincidencia superior a #0 se considera el mismo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold es un parámetro clave en el seguimiento de objetos que mide el grado de coincidencia entre diferentes cuadros de detección. Un valor más bajo facilita la asociación de objetos pero aumenta el riesgo de asociaciones incorrectas. Un valor más alto es más estricto con las asociaciones pero puede perder algunas coincidencias reales.';
 
   @override
   String get detection_screen_lost => 'Perdido';
@@ -1267,7 +1267,7 @@ class LocalizationEsCo extends LocalizationEs {
   String get detection_screen_match => 'Coincidencia';
 
   @override
-  String get detection_screen_match_desc => 'Coincidencia superior a #0 se considera como el mismo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold es un parámetro clave en el seguimiento de objetos que mide el grado de coincidencia entre diferentes marcos de detección. Un valor más bajo facilita la asociación de objetos pero aumenta el riesgo de asociaciones incorrectas. Un valor más alto es más estricto con las asociaciones pero puede perder algunas coincidencias reales.';
 
   @override
   String get detection_screen_lost => 'Perdido';
@@ -1785,7 +1785,7 @@ class LocalizationEsMx extends LocalizationEs {
   String get detection_screen_match => 'Coincidencia';
 
   @override
-  String get detection_screen_match_desc => 'Coincidencia superior a #0 se considera el mismo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold es un parámetro clave en el seguimiento de objetos que mide el grado de coincidencia entre diferentes marcos de detección. Un valor más bajo facilita la asociación de objetos pero aumenta el riesgo de asociaciones incorrectas. Un valor más alto es más estricto pero puede perder algunas coincidencias reales.';
 
   @override
   String get detection_screen_lost => 'Perdido';

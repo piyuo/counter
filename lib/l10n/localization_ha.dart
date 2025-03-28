@@ -231,7 +231,7 @@ class LocalizationHa extends Localization {
   String get detection_screen_match => 'Daidaita';
 
   @override
-  String get detection_screen_match_desc => 'Daidaita sama da #0 ana ɗaukar su a matsayin abin da aka gano.';
+  String get detection_screen_match_desc => '#0 matchThreshold shine ganawa ne muhimmiyar nazari a cikin bin abubuwa wanda ke awon matakin daidaito tsakanin akwatin gano daban-daban. Kasa ƙima yana sa haɗin abubuwa ya fi sauki amma yana ƙara haɗari na haɗin gurbata. Ƙima mai tsoka ta fi tsauri akan haɗin abubuwa amma tana iya rasa wasu haɗin gaskiya.';
 
   @override
   String get detection_screen_lost => 'Rasa';

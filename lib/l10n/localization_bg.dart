@@ -231,7 +231,7 @@ class LocalizationBg extends Localization {
   String get detection_screen_match => 'Съвпадение';
 
   @override
-  String get detection_screen_match_desc => 'Съвпадение над #0 се счита за същия обект.';
+  String get detection_screen_match_desc => '#0 matchThreshold е ключов параметър в проследяването на обекти който измерва степента на съвпадение между различни рамки за разпознаване. По-ниската стойност улеснява свързването на обекти но увеличава риска от грешни връзки. По-високата стойност е по-строга при свързване на обекти но може да пропусне някои истински съвпадения.';
 
   @override
   String get detection_screen_lost => 'Изгубен';

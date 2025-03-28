@@ -231,7 +231,7 @@ class LocalizationUz extends Localization {
   String get detection_screen_match => 'Moslik';
 
   @override
-  String get detection_screen_match_desc => '#0 dan ortiq moslik bir xil obyekt deb hisoblanadi.';
+  String get detection_screen_match_desc => '#0 matchThreshold obyektlarni kuzatishdagi muhim parametr bo\'lib turli aniqlash ramkalari o\'rtasidagi moslik darajasini o\'lchaydi. Pastroq qiymat obyekt bog\'lanishini osonlashtiradi ammo noto\'g\'ri bog\'lanishlar xavfini oshiradi. Yuqoriroq qiymat obyekt bog\'lanishlarida qattiqroq bo\'ladi ammo ba\'zi haqiqiy mosliklarni o\'tkazib yuborishi mumkin.';
 
   @override
   String get detection_screen_lost => 'Yo\'qolish';

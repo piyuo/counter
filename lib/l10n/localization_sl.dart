@@ -231,7 +231,7 @@ class LocalizationSl extends Localization {
   String get detection_screen_match => 'Ujemanje';
 
   @override
-  String get detection_screen_match_desc => 'Ujemanje nad #0 se šteje za isti objekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold je ključni parameter pri sledenju objektov ki meri stopnjo ujemanja med različnimi zaznavnimi okvirji. Nižja vrednost olajša povezovanje objektov vendar poveča tveganje napačnih povezav. Višja vrednost je pri povezovanju objektov strožja vendar lahko spregleda nekatere resnične ujemanja.';
 
   @override
   String get detection_screen_lost => 'Izgubljeno';

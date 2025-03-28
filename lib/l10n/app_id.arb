@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Ambang NMS lebih rendah (mis. 0.3-0.4) menghapus kotak tumpang tindih lebih ketat dan mengurangi hasil positif palsu tetapi mungkin melewatkan orang-orang tumpang tindih. Ambang lebih tinggi (0.7-0.9) mempertahankan lebih banyak kotak yang dapat meningkatkan hasil positif palsu tetapi lebih baik mendeteksi orang-orang tumpang tindih.",
   "detection_screen_match": "Kecocokan",
-  "detection_screen_match_desc": "Kecocokan di atas #0 dianggap sebagai objek yang sama.",
+  "detection_screen_match_desc": "#0 matchThreshold adalah parameter kunci dalam pelacakan objek yang mengukur tingkat kecocokan antara kotak deteksi berbeda. Nilai lebih rendah mempermudah asosiasi objek tetapi meningkatkan risiko asosiasi yang salah. Nilai lebih tinggi lebih ketat pada asosiasi objek tetapi mungkin melewatkan beberapa kecocokan yang benar.",
   "detection_screen_lost": "Hilang",
   "detection_screen_lost_desc": "Objek yang dilacak akan dihapus jika hilang selama #0",
   "detection_screen_consider_valid": "Anggap valid setelah",

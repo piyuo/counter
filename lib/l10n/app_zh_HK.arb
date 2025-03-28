@@ -73,7 +73,7 @@
   "detection_screen_nms": "非極大值抑制",
   "detection_screen_nms_desc": "#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。",
   "detection_screen_match": "匹配",
-  "detection_screen_match_desc": "匹配度超過 #0 視為同一物體。",
+  "detection_screen_match_desc": "#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。",
   "detection_screen_lost": "丟失",
   "detection_screen_lost_desc": "如果物體丟失 #0，追蹤物體將被移除",
   "detection_screen_consider_valid": "視為有效時間",

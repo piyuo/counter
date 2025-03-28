@@ -231,7 +231,7 @@ class LocalizationHe extends Localization {
   String get detection_screen_match => 'התאמה';
 
   @override
-  String get detection_screen_match_desc => 'התאמה מעל #0 נחשבת לאותו אובייקט.';
+  String get detection_screen_match_desc => '#0 matchThreshold הוא פרמטר מפתח במעקב אחר אובייקטים המודד את מידת ההתאמה בין תיבות זיהוי שונות. ערך נמוך יותר מקל על שיוך אובייקטים אך מגביר את הסיכון לשיוכים שגויים. ערך גבוה יותר מחמיר יותר בשיוך אובייקטים אך עלול להחמיץ התאמות אמיתיות.';
 
   @override
   String get detection_screen_lost => 'אבוד';

@@ -73,7 +73,7 @@
   "detection_screen_nms": "Suppression-maximum te",
   "detection_screen_nms_desc": "#0 Seuil NMS ya se ekoki (ndakisa 0.3-0.4) elongolaka baboîtes oyo ezali kofuka na bosembo koleka mpe ekitisaka bilembo ya lokuta kasi ekoki kobosana bato oyo bazali kofukana. Seuil ya likolo (0.7-0.9) ebatelaka baboîtes mingi oyo ekoki kobakisa bilembo ya lokuta kasi emonaka malamu bato oyo bazali kofuka.",
   "detection_screen_match": "Kokokanisa",
-  "detection_screen_match_desc": "Kokokanisa eleki #0 etangami lokola eloko moko.",
+  "detection_screen_match_desc": "#0 matchThreshold ezali paramètre ya ntina na surveillance ya biloko oyo emonaka ndenge ya kokota na kati ya babox ya détection ndenge na ndenge. Valeur ya se ekoki kosala boyokani ya biloko pete kasi ekobakisa likama ya boyokani ya mabe. Valeur ya likolo ezali makasi na boyokani ya biloko kasi ekoki kobungisa mwa kokota ya solo.",
   "detection_screen_lost": "Ebungi",
   "detection_screen_lost_desc": "Esuivi ya eloko ekolongolama soki ebungi mpo na #0",
   "detection_screen_consider_valid": "Tanga valide sima ya",

@@ -73,7 +73,7 @@
   "detection_screen_nms": "Maksimal bo'lmagan bosish (NMS)",
   "detection_screen_nms_desc": "#0 Past NMS chegarasi (masalan 0.3-0.4) bir-biriga qoplanib qolgan ramkalarni qattiqroq olib tashlaydi va soxta ijobiy natijalarni kamaytiradi lekin qoplanib qolgan odamlarni o'tkazib yuborishi mumkin. Yuqori chegara (0.7-0.9) ko'proq ramkalarni saqlaydi bu soxta ijobiy natijalarni ko'paytirishi mumkin lekin qoplanib qolgan odamlarni yaxshiroq aniqlaydi.",
   "detection_screen_match": "Moslik",
-  "detection_screen_match_desc": "#0 dan ortiq moslik bir xil obyekt deb hisoblanadi.",
+  "detection_screen_match_desc": "#0 matchThreshold obyektlarni kuzatishdagi muhim parametr bo'lib turli aniqlash ramkalari o'rtasidagi moslik darajasini o'lchaydi. Pastroq qiymat obyekt bog'lanishini osonlashtiradi ammo noto'g'ri bog'lanishlar xavfini oshiradi. Yuqoriroq qiymat obyekt bog'lanishlarida qattiqroq bo'ladi ammo ba'zi haqiqiy mosliklarni o'tkazib yuborishi mumkin.",
   "detection_screen_lost": "Yo'qolish",
   "detection_screen_lost_desc": "Agar obyekt #0 davomida yo'qolsa, kuzatuv obyekti o'chiriladi",
   "detection_screen_consider_valid": "Amal qilishi uchun vaqt",

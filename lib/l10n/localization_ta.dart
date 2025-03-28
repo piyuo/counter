@@ -231,7 +231,7 @@ class LocalizationTa extends Localization {
   String get detection_screen_match => 'பொருத்தம்';
 
   @override
-  String get detection_screen_match_desc => '#0 க்கு மேல் பொருத்தம் அதே பொருளாகக் கருதப்படுகிறது.';
+  String get detection_screen_match_desc => '#0 மாச்தரஷோல்ட் என்பது பொருள் தடமறிதலில் ஒரு முக்கிய அளவுரு இது வெவ்வேறு கண்டறிதல் பெட்டிகளுக்கு இடையேயான பொருந்தும் அளவை அளவிடுகிறது. குறைந்த மதிப்பு பொருள் தொடர்புகளை எளிதாக்குகிறது ஆனால் தவறான தொடர்புகளின் அபாயத்தை அதிகரிக்கிறது. அதிக மதிப்பு பொருள் தொடர்புகளில் கடுமையானது ஆனால் சில உண்மையான பொருத்தங்களை இழக்கலாம்.';
 
   @override
   String get detection_screen_lost => 'இழந்தது';

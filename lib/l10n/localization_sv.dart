@@ -231,7 +231,7 @@ class LocalizationSv extends Localization {
   String get detection_screen_match => 'Matchning';
 
   @override
-  String get detection_screen_match_desc => 'Matchning över #0 anses vara samma objekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold är en nyckelparameter i objektspårning som mäter graden av matchning mellan olika detektionsrutor. Lägre värde gör objektkoppling enklare men ökar risken för felaktiga kopplingar. Högre värde är striktare på objektkopplingar men kan missa vissa sanna matchningar.';
 
   @override
   String get detection_screen_lost => 'Förlorad';

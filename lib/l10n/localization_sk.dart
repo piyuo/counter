@@ -231,7 +231,7 @@ class LocalizationSk extends Localization {
   String get detection_screen_match => 'Zhoda';
 
   @override
-  String get detection_screen_match_desc => 'Zhoda nad #0 sa považuje za ten istý objekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold je kľúčový parameter pri sledovaní objektov ktorý meria stupeň zhody medzi rôznymi detekčnými rámčekmi. Nižšia hodnota uľahčuje prepojenie objektov ale zvyšuje riziko nesprávnych prepojení. Vyššia hodnota je pri prepojeniach objektov prísnejšia ale môže prehliadnuť niektoré skutočné zhody.';
 
   @override
   String get detection_screen_lost => 'Stratený';

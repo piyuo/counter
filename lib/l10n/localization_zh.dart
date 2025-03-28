@@ -231,7 +231,7 @@ class LocalizationZh extends Localization {
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '匹配度超過 #0 視為同一物體。';
+  String get detection_screen_match_desc => '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
@@ -749,7 +749,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '匹配度超过 #0 视为同一物体。';
+  String get detection_screen_match_desc => '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
 
   @override
   String get detection_screen_lost => '丢失';
@@ -1267,7 +1267,7 @@ class LocalizationZhHk extends LocalizationZh {
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '匹配度超過 #0 視為同一物體。';
+  String get detection_screen_match_desc => '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
@@ -1785,7 +1785,7 @@ class LocalizationZhMo extends LocalizationZh {
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '匹配度超過 #0 視為同一物體。';
+  String get detection_screen_match_desc => '#0 matchThreshold 係物件追蹤中嘅關鍵參數 基於 IoU 距離衡量唔同偵測框之間嘅匹配程度。較低嘅值更容易將物件關聯 但都可能增加錯誤關聯嘅風險；較高嘅值對物件關聯更嚴格 可能會漏咗一啲真實嘅匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
@@ -2303,7 +2303,7 @@ class LocalizationZhSg extends LocalizationZh {
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '匹配度超过 #0 视为同一物体。';
+  String get detection_screen_match_desc => '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
 
   @override
   String get detection_screen_lost => '丢失';

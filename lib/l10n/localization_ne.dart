@@ -231,7 +231,7 @@ class LocalizationNe extends Localization {
   String get detection_screen_match => 'मिलान';
 
   @override
-  String get detection_screen_match_desc => '#0 भन्दा माथिको मिलान उही वस्तु मानिन्छ।';
+  String get detection_screen_match_desc => '#0 म्याचथ्रेसहोल्ड वस्तु ट्र्याकिङमा एक प्रमुख पारामिटर हो जसले विभिन्न डिटेक्सन बक्सहरू बीचको मिलान डिग्री मापन गर्दछ। कम मानले वस्तु सम्बन्ध सजिलो बनाउँछ तर गलत सम्बन्धहरूको जोखिम बढाउँछ। उच्च मान वस्तु सम्बन्धहरूमा कडा हुन्छ तर केही साँचो मिलानहरू छुट्न सक्छन्।';
 
   @override
   String get detection_screen_lost => 'हराएको';

@@ -231,7 +231,7 @@ class LocalizationSw extends Localization {
   String get detection_screen_match => 'Lingana';
 
   @override
-  String get detection_screen_match_desc => 'Kulingana zaidi ya #0 inachukuliwa kuwa kitu hicho hicho.';
+  String get detection_screen_match_desc => '#0 matchThreshold ni parameta muhimu katika ufuatiliaji wa vitu ambayo inapima kiwango cha kulingana kati ya kisanduku tofauti cha utambuzi. Thamani ya chini hufanya uhusiano wa vitu kuwa rahisi lakini huongeza hatari ya uhusiano mbaya. Thamani ya juu ni kali zaidi kwenye uhusiano wa vitu lakini inaweza kukosa baadhi ya mapambo ya kweli.';
 
   @override
   String get detection_screen_lost => 'Potea';

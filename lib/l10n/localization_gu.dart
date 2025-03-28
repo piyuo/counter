@@ -231,7 +231,7 @@ class LocalizationGu extends Localization {
   String get detection_screen_match => 'મેચ';
 
   @override
-  String get detection_screen_match_desc => '#0 થી વધુ મેચને એક જ ઓબ્જેક્ટ તરીકે ગણવામાં આવે છે.';
+  String get detection_screen_match_desc => '#0 મેચથ્રેશોલ્ડ ઓબ્જેક્ટ ટ્રેકિંગમાં એક મહત્વપૂર્ણ પરિમાણ છે જે વિવિધ ડિટેક્શન બોક્સ વચ્ચેના મેચિંગના સ્તરને માપે છે. ઓછી કિંમત ઓબ્જેક્ટ જોડાણને સરળ બનાવે છે પરંતુ ખોટા જોડાણોના જોખમને વધારે છે. ઉચ્ચ કિંમત ઓબ્જેક્ટ જોડાણ પર વધુ કડક છે પરંતુ કેટલાક સાચા મેચને ચૂકી શકે છે.';
 
   @override
   String get detection_screen_lost => 'ગુમ થયેલું';

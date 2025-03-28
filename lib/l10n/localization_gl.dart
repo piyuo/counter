@@ -231,7 +231,7 @@ class LocalizationGl extends Localization {
   String get detection_screen_match => 'Coincidencia';
 
   @override
-  String get detection_screen_match_desc => 'Coincidencia por riba de #0 considérase o mesmo obxecto.';
+  String get detection_screen_match_desc => '#0 matchThreshold é un parámetro clave no seguimento de obxectos que mide o grao de coincidencia entre diferentes caixas de detección. Un valor máis baixo facilita a asociación de obxectos pero aumenta o risco de asociacións incorrectas. Un valor máis alto é máis estrito coas asociacións pero pode perder algunhas coincidencias reais.';
 
   @override
   String get detection_screen_lost => 'Perdido';

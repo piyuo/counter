@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.",
   "detection_screen_match": "Match",
-  "detection_screen_match_desc": "Match over #0 is considered to be the same object.",
+  "detection_screen_match_desc": "#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.",
   "detection_screen_lost": "Lost",
   "detection_screen_lost_desc": "Track object will be removed if it is lost for #0",
   "detection_screen_consider_valid": "Consider valid after",

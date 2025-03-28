@@ -73,7 +73,7 @@
   "detection_screen_nms": "非最大値抑制",
   "detection_screen_nms_desc": "#0 低いNMSしきい値(例:0.3-0.4)は重複するボックスをより厳格に削除し偽陽性を減らしますが重複する人物を見逃す可能性があります。高いしきい値(0.7-0.9)はより多くのボックスを保持し偽陽性が増える可能性がありますが重複する人物をより良く検出します。",
   "detection_screen_match": "マッチ",
-  "detection_screen_match_desc": "#0 を超えるマッチは同じオブジェクトと見なされます。",
+  "detection_screen_match_desc": "#0 matchThresholdは物体追跡における重要なパラメータで異なる検出ボックス間の一致度を測定します。低い値は物体の関連付けを容易にしますが誤った関連付けのリスクが高まります。高い値は物体の関連付けにより厳格ですが一部の真の一致を見逃す可能性があります。",
   "detection_screen_lost": "ロスト",
   "detection_screen_lost_desc": "追跡対象が #0 間ロストすると削除されます",
   "detection_screen_consider_valid": "有効とみなす期間",

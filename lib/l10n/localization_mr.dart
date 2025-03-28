@@ -231,7 +231,7 @@ class LocalizationMr extends Localization {
   String get detection_screen_match => 'जुळणी';
 
   @override
-  String get detection_screen_match_desc => '#0 पेक्षा जास्त जुळणी त्याच वस्तू म्हणून मानली जाते.';
+  String get detection_screen_match_desc => '#0 मॅचथ्रेशोल्ड हा ऑब्जेक्ट ट्रॅकिंगमधील एक महत्वाचा पॅरामीटर आहे जो वेगवेगळ्या डिटेक्शन बॉक्समधील जुळणीची पातळी मोजतो. कमी मूल्य ऑब्जेक्ट असोसिएशन सोपे करते परंतु चुकीच्या असोसिएशनचा धोका वाढवते. उच्च मूल्य ऑब्जेक्ट असोसिएशनवर अधिक कठोर असते परंतु काही खरे जुळणी गमावू शकते.';
 
   @override
   String get detection_screen_lost => 'गमावलेले';

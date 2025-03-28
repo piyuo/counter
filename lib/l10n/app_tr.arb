@@ -73,7 +73,7 @@
   "detection_screen_nms": "Maksimum Olmayan Bastırma",
   "detection_screen_nms_desc": "#0 Daha düşük NMS eşiği (örn. 0.3-0.4) çakışan kutuları daha katı şekilde kaldırır ve yanlış pozitifleri azaltır ancak çakışan kişileri atlayabilir. Daha yüksek eşik (0.7-0.9) daha fazla kutu tutar bu da yanlış pozitifleri artırabilir ancak çakışan kişileri daha iyi algılar.",
   "detection_screen_match": "Eşleşme",
-  "detection_screen_match_desc": "#0 üzerinde eşleşme aynı nesne olarak kabul edilir.",
+  "detection_screen_match_desc": "#0 matchThreshold nesne takibinde farklı algılama kutuları arasındaki eşleşme derecesini ölçen önemli bir parametredir. Daha düşük değer nesne ilişkilendirmesini kolaylaştırır ancak yanlış ilişkilendirme riskini artırır. Daha yüksek değer nesne ilişkilendirmelerinde daha katıdır ancak bazı gerçek eşleşmeleri kaçırabilir.",
   "detection_screen_lost": "Kayıp",
   "detection_screen_lost_desc": "İzlenen nesne #0 süre kaybolduysa kaldırılır",
   "detection_screen_consider_valid": "Şu kadar sonra geçerli say",

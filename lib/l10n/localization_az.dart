@@ -231,7 +231,7 @@ class LocalizationAz extends Localization {
   String get detection_screen_match => 'Uyğunluq';
 
   @override
-  String get detection_screen_match_desc => 'Uyğunluq #0-dan çox olduqda eyni obyekt hesab edilir.';
+  String get detection_screen_match_desc => '#0 matchThreshold obyekt izləmədə müxtəlif aşkarlama qutuları arasındakı uyğunluq dərəcəsini ölçən əsas parametrdir. Aşağı dəyər obyektləri əlaqələndirməyi asanlaşdırır lakin yanlış əlaqələndirmə riskini artırır. Yüksək dəyər obyekt əlaqələndirməsində daha ciddidir lakin bəzi həqiqi uyğunluqları qaçıra bilər.';
 
   @override
   String get detection_screen_lost => 'İtirilmə';

@@ -231,7 +231,7 @@ class LocalizationCs extends Localization {
   String get detection_screen_match => 'Shoda';
 
   @override
-  String get detection_screen_match_desc => 'Shoda nad #0 je považována za stejný objekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold je klíčový parametr ve sledování objektů který měří míru shody mezi různými detekčními rámečky. Nižší hodnota usnadňuje propojení objektů ale zvyšuje riziko chybných propojení. Vyšší hodnota je při propojování objektů přísnější ale může přehlédnout některé skutečné shody.';
 
   @override
   String get detection_screen_lost => 'Ztráta';

@@ -231,7 +231,7 @@ class LocalizationKu extends Localization {
   String get detection_screen_match => 'Lihevhatin';
 
   @override
-  String get detection_screen_match_desc => 'Lihevhatina li ser #0 wek heman tiştî tê hesibandin.';
+  String get detection_screen_match_desc => '#0 matchThreshold di şopandina tiştan de parametreyeke sereke ye ku radeyê lihevkirina di navbera qutiyên naskirinê yên cûda de dipîve. Nirxa kêmtir pêwendiya tiştan hêsantir dike lê xetera pêwendiyên şaş zêde dike. Nirxa bilindtir li ser pêwendiyên tiştan tundtir e lê dibe ku hin lihevhatinên rastîn winda bike.';
 
   @override
   String get detection_screen_lost => 'Windakirî';

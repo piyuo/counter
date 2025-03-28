@@ -231,7 +231,7 @@ class LocalizationLt extends Localization {
   String get detection_screen_match => 'Atitikimas';
 
   @override
-  String get detection_screen_match_desc => 'Atitikimas virš #0 laikomas tuo pačiu objektu.';
+  String get detection_screen_match_desc => '#0 matchThreshold yra pagrindinis parametras objektų sekime kuris matuoja atitikimo laipsnį tarp skirtingų aptikimo laukelių. Mažesnė vertė palengvina objektų susiejimą bet padidina neteisingų susiejimų riziką. Didesnė vertė yra griežtesnė objektų susiejimams bet gali praleisti kai kuriuos tikrus atitikimus.';
 
   @override
   String get detection_screen_lost => 'Prarastas';

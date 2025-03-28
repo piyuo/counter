@@ -231,7 +231,7 @@ class LocalizationIt extends Localization {
   String get detection_screen_match => 'Corrispondenza';
 
   @override
-  String get detection_screen_match_desc => 'Corrispondenza superiore a #0 è considerata lo stesso oggetto.';
+  String get detection_screen_match_desc => '#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l\'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.';
 
   @override
   String get detection_screen_lost => 'Perso';

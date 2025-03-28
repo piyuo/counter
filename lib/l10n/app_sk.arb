@@ -73,7 +73,7 @@
   "detection_screen_nms": "Potlačenie nemaximálnych hodnôt",
   "detection_screen_nms_desc": "#0 Nižšia hranica NMS (napr. 0.3-0.4) prísnejšie odstraňuje prekrývajúce sa rámčeky a znižuje falošne pozitívne výsledky ale môže prehliadnuť prekrývajúce sa osoby. Vyššia hranica (0.7-0.9) zachováva viac rámčekov čo môže zvýšiť falošne pozitívne výsledky ale lepšie detekuje prekrývajúce sa osoby.",
   "detection_screen_match": "Zhoda",
-  "detection_screen_match_desc": "Zhoda nad #0 sa považuje za ten istý objekt.",
+  "detection_screen_match_desc": "#0 matchThreshold je kľúčový parameter pri sledovaní objektov ktorý meria stupeň zhody medzi rôznymi detekčnými rámčekmi. Nižšia hodnota uľahčuje prepojenie objektov ale zvyšuje riziko nesprávnych prepojení. Vyššia hodnota je pri prepojeniach objektov prísnejšia ale môže prehliadnuť niektoré skutočné zhody.",
   "detection_screen_lost": "Stratený",
   "detection_screen_lost_desc": "Sledovaný objekt bude odstránený, ak je stratený po dobu #0",
   "detection_screen_consider_valid": "Považovať za platný po",

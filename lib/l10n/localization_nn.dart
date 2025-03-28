@@ -231,7 +231,7 @@ class LocalizationNn extends Localization {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 vert rekna for å vera same objekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold er ein nøkkelparameter i objektsporing som måler graden av samsvar mellom ulike deteksjonsboksar. Lågare verdi gjer objekttilknyting enklare men aukar risikoen for feil tilknytingar. Høgare verdi er strengare på objekttilknytingar men kan gå glipp av nokre sanne samsvar.';
 
   @override
   String get detection_screen_lost => 'Tapt';

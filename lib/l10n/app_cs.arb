@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Nižší práh NMS (např. 0.3-0.4) přísněji odstraňuje překrývající se rámečky a snižuje falešně pozitivní výsledky ale může přehlédnout překrývající se osoby. Vyšší práh (0.7-0.9) zachovává více rámečků což může zvýšit falešně pozitivní výsledky ale lépe detekuje překrývající se osoby.",
   "detection_screen_match": "Shoda",
-  "detection_screen_match_desc": "Shoda nad #0 je považována za stejný objekt.",
+  "detection_screen_match_desc": "#0 matchThreshold je klíčový parametr ve sledování objektů který měří míru shody mezi různými detekčními rámečky. Nižší hodnota usnadňuje propojení objektů ale zvyšuje riziko chybných propojení. Vyšší hodnota je při propojování objektů přísnější ale může přehlédnout některé skutečné shody.",
   "detection_screen_lost": "Ztráta",
   "detection_screen_lost_desc": "Sledovaný objekt bude odstraněn, pokud je ztracen po dobu #0",
   "detection_screen_consider_valid": "Považovat za platný po",

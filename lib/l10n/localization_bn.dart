@@ -231,7 +231,7 @@ class LocalizationBn extends Localization {
   String get detection_screen_match => 'মিল';
 
   @override
-  String get detection_screen_match_desc => '#0 এর বেশি মিল একই অবজেক্ট হিসাবে বিবেচিত হবে।';
+  String get detection_screen_match_desc => '#0 ম্যাচথ্রেশহোল্ড অবজেক্ট ট্র্যাকিংয়ে একটি গুরুত্বপূর্ণ পরামিতি যা বিভিন্ন ডিটেকশন বক্সের মধ্যে মিলের মাত্রা পরিমাপ করে। কম মান অবজেক্ট সংযোগ সহজ করে তবে ভুল সংযোগের ঝুঁকি বাড়ায়। বেশি মান আরও কঠোর তবে কিছু সত্যিকারের মিল হারাতে পারে।';
 
   @override
   String get detection_screen_lost => 'হারিয়ে গেছে';
@@ -749,7 +749,7 @@ class LocalizationBnIn extends LocalizationBn {
   String get detection_screen_match => 'ম্যাচ';
 
   @override
-  String get detection_screen_match_desc => '#0 এর উপরে ম্যাচ একই অবজেক্ট হিসাবে বিবেচিত হয়।';
+  String get detection_screen_match_desc => '#0 ম্যাচথ্রেশহোল্ড একটি গুরুত্বপূর্ণ পরামিতি যা অবজেক্ট ট্র্যাকিংয়ে বিভিন্ন ডিটেকশন বাক্সের মধ্যে মিলের মাত্রা পরিমাপ করে। কম মান অবজেক্ট সংযোগ সহজ করে তবে ভুল সংযোগের ঝুঁকি বাড়ায়। বেশি মান আরও কঠোর তবে কিছু সত্যিকারের মিল হারাতে পারে।';
 
   @override
   String get detection_screen_lost => 'হারিয়েছে';

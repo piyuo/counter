@@ -73,7 +73,7 @@
   "detection_screen_nms": "Ikkje-maksimum suppresjon",
   "detection_screen_nms_desc": "#0 Ein lågare NMS-terskel (t.d. 0.3-0.4) fjerner overlappande boksar strengare og reduserer falske positive men kan oversjå overlappande personar. Høgare terskel (0.7-0.9) beheld fleire boksar som kan auka falske positive men oppdagar overlappande personar betre.",
   "detection_screen_match": "Match",
-  "detection_screen_match_desc": "Match over #0 vert rekna for å vera same objekt.",
+  "detection_screen_match_desc": "#0 matchThreshold er ein nøkkelparameter i objektsporing som måler graden av samsvar mellom ulike deteksjonsboksar. Lågare verdi gjer objekttilknyting enklare men aukar risikoen for feil tilknytingar. Høgare verdi er strengare på objekttilknytingar men kan gå glipp av nokre sanne samsvar.",
   "detection_screen_lost": "Tapt",
   "detection_screen_lost_desc": "Sporingsobjekt vil verta fjerna viss det er tapt i #0",
   "detection_screen_consider_valid": "Reknast som gyldig etter",

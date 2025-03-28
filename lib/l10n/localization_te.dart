@@ -231,7 +231,7 @@ class LocalizationTe extends Localization {
   String get detection_screen_match => 'మ్యాచ్';
 
   @override
-  String get detection_screen_match_desc => '#0 కంటే ఎక్కువ మ్యాచ్ అదే వస్తువుగా పరిగణించబడుతుంది.';
+  String get detection_screen_match_desc => '#0 మ్యాచ్‌థ్రెషోల్డ్ అనేది ఆబ్జెక్ట్ ట్రాకింగ్‌లో కీలక పారామీటర్ వివిధ డిటెక్షన్ బాక్స్‌ల మధ్య మ్యాచింగ్ డిగ్రీని కొలుస్తుంది. తక్కువ విలువ ఆబ్జెక్ట్ అసోసియేషన్‌ను సులభతరం చేస్తుంది కానీ తప్పుడు అసోసియేషన్‌ల ప్రమాదాన్ని పెంచుతుంది. ఎక్కువ విలువ ఆబ్జెక్ట్ అసోసియేషన్‌లపై కఠినంగా ఉంటుంది కానీ కొన్ని నిజమైన మ్యాచ్‌లను కోల్పోవచ్చు.';
 
   @override
   String get detection_screen_lost => 'కోల్పోయింది';

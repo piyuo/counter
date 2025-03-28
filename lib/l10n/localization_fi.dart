@@ -231,7 +231,7 @@ class LocalizationFi extends Localization {
   String get detection_screen_match => 'Vastaavuus';
 
   @override
-  String get detection_screen_match_desc => 'Yli #0 vastaavuus katsotaan samaksi kohteeksi.';
+  String get detection_screen_match_desc => '#0 matchThreshold on objektien seurannassa keskeinen parametri joka mittaa erilaisten havaintolaatikoiden välisen vastaavuuden astetta. Alempi arvo helpottaa objektien yhdistämistä mutta lisää väärien yhteyksien riskiä. Korkeampi arvo on tiukempi objektien yhdistämisessä mutta voi ohittaa joitain todellisia vastaavuuksia.';
 
   @override
   String get detection_screen_lost => 'Kadotettu';

@@ -231,7 +231,7 @@ class LocalizationUk extends Localization {
   String get detection_screen_match => 'Збіг';
 
   @override
-  String get detection_screen_match_desc => 'Збіг понад #0 вважається тим самим об\'єктом.';
+  String get detection_screen_match_desc => '#0 matchThreshold - ключовий параметр у відстеженні об\'єктів який вимірює ступінь відповідності між різними рамками виявлення. Нижче значення полегшує зв\'язування об\'єктів але збільшує ризик неправильних зв\'язків. Вище значення суворіше до зв\'язків об\'єктів але може пропустити деякі справжні збіги.';
 
   @override
   String get detection_screen_lost => 'Втрачено';

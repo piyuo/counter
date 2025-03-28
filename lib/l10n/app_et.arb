@@ -73,7 +73,7 @@
   "detection_screen_nms": "Mitte-maksimumide summutamine",
   "detection_screen_nms_desc": "#0 Madalam NMS lävi (nt 0.3-0.4) eemaldab kattuvaid kaste rangemalt ja vähendab valepositiivseid tulemusi kuid võib jätta märkamata kattuvad inimesed. Kõrgem lävi (0.7-0.9) säilitab rohkem kaste mis võib suurendada valepositiivseid tulemusi kuid tuvastab kattuvaid inimesi paremini.",
   "detection_screen_match": "Vaste",
-  "detection_screen_match_desc": "Vaste üle #0 loetakse samaks objektiks.",
+  "detection_screen_match_desc": "#0 matchThreshold on objekti jälgimisel oluline parameeter mis mõõdab erinevate tuvastuskastide vahelise sobivuse taset. Madalam väärtus lihtsustab objektide seostamist kuid suurendab valede ühenduste riski. Kõrgem väärtus on objektide seostamisel rangem kuid võib mõned tõelised vastavused maha jätta.",
   "detection_screen_lost": "Kadunud",
   "detection_screen_lost_desc": "Jälgitav objekt eemaldatakse, kui see on kadunud #0",
   "detection_screen_consider_valid": "Loe kehtivaks pärast",

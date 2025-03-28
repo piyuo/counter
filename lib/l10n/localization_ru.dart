@@ -231,7 +231,7 @@ class LocalizationRu extends Localization {
   String get detection_screen_match => 'Совпадение';
 
   @override
-  String get detection_screen_match_desc => 'Совпадение выше #0 считается одним и тем же объектом.';
+  String get detection_screen_match_desc => '#0 matchThreshold - ключевой параметр в отслеживании объектов который измеряет степень соответствия между различными рамками обнаружения. Более низкое значение облегчает связывание объектов но увеличивает риск неправильных связей. Более высокое значение строже к связям объектов но может пропустить некоторые истинные совпадения.';
 
   @override
   String get detection_screen_lost => 'Потеря';
@@ -749,7 +749,7 @@ class LocalizationRuKz extends LocalizationRu {
   String get detection_screen_match => 'Совпадение';
 
   @override
-  String get detection_screen_match_desc => 'Совпадение выше #0 считается одним и тем же объектом.';
+  String get detection_screen_match_desc => '#0 matchThreshold - ключевой параметр в отслеживании объектов который измеряет степень соответствия между различными рамками обнаружения. Более низкое значение облегчает связывание объектов но увеличивает риск неправильных связей. Более высокое значение строже к связям объектов но может пропустить некоторые истинные совпадения.';
 
   @override
   String get detection_screen_lost => 'Потеря';
@@ -1267,7 +1267,7 @@ class LocalizationRuUa extends LocalizationRu {
   String get detection_screen_match => 'Совпадение';
 
   @override
-  String get detection_screen_match_desc => 'Совпадение выше #0 считается тем же объектом.';
+  String get detection_screen_match_desc => '#0 matchThreshold - ключевой параметр в отслеживании объектов который измеряет степень соответствия между различными рамками обнаружения. Более низкое значение облегчает связывание объектов но увеличивает риск неправильных связей. Более высокое значение строже к связям объектов но может пропустить некоторые истинные совпадения.';
 
   @override
   String get detection_screen_lost => 'Потеря';

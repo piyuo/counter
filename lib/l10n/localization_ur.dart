@@ -231,7 +231,7 @@ class LocalizationUr extends Localization {
   String get detection_screen_match => 'میچ';
 
   @override
-  String get detection_screen_match_desc => '#0 سے زیادہ میچ کو ایک ہی آبجیکٹ کے طور پر سمجھا جاتا ہے۔';
+  String get detection_screen_match_desc => '#0 میچ تھریشولڈ آبجیکٹ ٹریکنگ میں ایک اہم پیرامیٹر ہے جو مختلف ڈیٹیکشن باکسز کے درمیان میچنگ کی ڈگری کو ناپتا ہے۔ کم ویلیو آبجیکٹ ایسوسی ایشن کو آسان بناتی ہے لیکن غلط ایسوسی ایشن کا خطرہ بڑھا دیتی ہے۔ زیادہ ویلیو آبجیکٹ ایسوسی ایشن پر سخت ہے لیکن کچھ صحیح میچز سے محروم کر سکتی ہے۔';
 
   @override
   String get detection_screen_lost => 'گم شدہ';
@@ -749,7 +749,7 @@ class LocalizationUrIn extends LocalizationUr {
   String get detection_screen_match => 'میچ';
 
   @override
-  String get detection_screen_match_desc => '#0 سے زیادہ میچ کو وہی آبجیکٹ مانا جاتا ہے۔';
+  String get detection_screen_match_desc => '#0 میچ تھریشولڈ آبجیکٹ ٹریکنگ میں ایک اہم پیرامیٹر ہے جو مختلف ڈیٹیکشن باکسز کے درمیان میچنگ کی ڈگری کو ناپتا ہے۔ کم ویلیو آبجیکٹ ایسوسی ایشن کو آسان بناتی ہے لیکن غلط ایسوسی ایشن کا خطرہ بڑھا دیتی ہے۔ زیادہ ویلیو آبجیکٹ ایسوسی ایشن پر سخت ہے لیکن کچھ صحیح میچز سے محروم کر سکتی ہے۔';
 
   @override
   String get detection_screen_lost => 'کھویا';

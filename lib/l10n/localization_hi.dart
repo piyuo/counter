@@ -231,7 +231,7 @@ class LocalizationHi extends Localization {
   String get detection_screen_match => 'मिलान';
 
   @override
-  String get detection_screen_match_desc => '#0 से अधिक मिलान को समान वस्तु माना जाता है।';
+  String get detection_screen_match_desc => '#0 मैचथ्रेशोल्ड ऑब्जेक्ट ट्रैकिंग में एक महत्वपूर्ण पैरामीटर है जो विभिन्न डिटेक्शन बॉक्स के बीच मिलान की डिग्री को मापता है। कम मान ऑब्जेक्ट एसोसिएशन को आसान बनाता है लेकिन गलत एसोसिएशन का जोखिम बढ़ाता है। उच्च मान ऑब्जेक्ट एसोसिएशन पर अधिक सख्त है लेकिन कुछ सच्चे मिलान छूट सकते हैं।';
 
   @override
   String get detection_screen_lost => 'खोया';

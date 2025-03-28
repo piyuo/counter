@@ -231,7 +231,7 @@ class LocalizationPt extends Localization {
   String get detection_screen_match => 'Correspondência';
 
   @override
-  String get detection_screen_match_desc => 'Correspondência acima de #0 é considerada o mesmo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold é um parâmetro chave no rastreamento de objetos que mede o grau de correspondência entre diferentes caixas de detecção. Valor mais baixo facilita a associação de objetos mas aumenta o risco de associações erradas. Valor mais alto é mais rigoroso nas associações de objetos mas pode perder algumas correspondências verdadeiras.';
 
   @override
   String get detection_screen_lost => 'Perdido';
@@ -749,7 +749,7 @@ class LocalizationPtPt extends LocalizationPt {
   String get detection_screen_match => 'Correspondência';
 
   @override
-  String get detection_screen_match_desc => 'Correspondência acima de #0 é considerada o mesmo objeto.';
+  String get detection_screen_match_desc => '#0 matchThreshold é um parâmetro chave no rastreamento de objetos que mede o grau de correspondência entre diferentes caixas de deteção. Valor mais baixo facilita a associação de objetos mas aumenta o risco de associações erradas. Valor mais alto é mais rigoroso nas associações de objetos mas pode perder algumas correspondências verdadeiras.';
 
   @override
   String get detection_screen_lost => 'Perdido';

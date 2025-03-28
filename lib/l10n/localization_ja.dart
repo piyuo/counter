@@ -231,7 +231,7 @@ class LocalizationJa extends Localization {
   String get detection_screen_match => 'マッチ';
 
   @override
-  String get detection_screen_match_desc => '#0 を超えるマッチは同じオブジェクトと見なされます。';
+  String get detection_screen_match_desc => '#0 matchThresholdは物体追跡における重要なパラメータで異なる検出ボックス間の一致度を測定します。低い値は物体の関連付けを容易にしますが誤った関連付けのリスクが高まります。高い値は物体の関連付けにより厳格ですが一部の真の一致を見逃す可能性があります。';
 
   @override
   String get detection_screen_lost => 'ロスト';

@@ -231,7 +231,7 @@ class LocalizationKk extends Localization {
   String get detection_screen_match => 'Сәйкестік';
 
   @override
-  String get detection_screen_match_desc => '#0 жоғары сәйкестік бір объект ретінде қарастырылады.';
+  String get detection_screen_match_desc => '#0 matchThreshold объектілерді бақылаудағы негізгі параметр ол әр түрлі анықтау жақтаулары арасындағы сәйкестік дәрежесін өлшейді. Төмен мән объектілерді байланыстыруды жеңілдетеді бірақ қате байланыстар қаупін арттырады. Жоғары мән объект байланыстарына қатаң болады бірақ кейбір шынайы сәйкестіктерді жіберіп алуы мүмкін.';
 
   @override
   String get detection_screen_lost => 'Жоғалту';

@@ -231,7 +231,7 @@ class LocalizationAm extends Localization {
   String get detection_screen_match => 'Համապատասխանություն';
 
   @override
-  String get detection_screen_match_desc => '#0-ից բարձր համապատասխանությունը համարվում է նույն օբյեկտը։';
+  String get detection_screen_match_desc => '#0 matchThreshold በነገሮች መከታተል ላይ ወሳኝ ፓራሜትር ሲሆን በተለያዩ መለያ ሳጥኖች መካከል ያለውን ተዛማጅነት ይለካል፡፡ ዝቅተኛ ዋጋ ነገሮችን ለማገናኘት ቀላል ያደርገዋል ነገር ግን የተሳሳተ ግንኙነት አደጋን ይጨምራል፤ ከፍተኛ ዋጋ ለነገሮች ግንኙነት የበለጠ ጥብቅ ነው ነገር ግን አንዳንድ እውነተኛ ግንኙነቶችን ሊ놓 ይችላል።';
 
   @override
   String get detection_screen_lost => 'Կորած';

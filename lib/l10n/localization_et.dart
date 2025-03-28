@@ -231,7 +231,7 @@ class LocalizationEt extends Localization {
   String get detection_screen_match => 'Vaste';
 
   @override
-  String get detection_screen_match_desc => 'Vaste üle #0 loetakse samaks objektiks.';
+  String get detection_screen_match_desc => '#0 matchThreshold on objekti jälgimisel oluline parameeter mis mõõdab erinevate tuvastuskastide vahelise sobivuse taset. Madalam väärtus lihtsustab objektide seostamist kuid suurendab valede ühenduste riski. Kõrgem väärtus on objektide seostamisel rangem kuid võib mõned tõelised vastavused maha jätta.';
 
   @override
   String get detection_screen_lost => 'Kadunud';

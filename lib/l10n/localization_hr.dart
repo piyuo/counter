@@ -231,7 +231,7 @@ class LocalizationHr extends Localization {
   String get detection_screen_match => 'Podudaranje';
 
   @override
-  String get detection_screen_match_desc => 'Podudaranje iznad #0 smatra se istim objektom.';
+  String get detection_screen_match_desc => '#0 matchThreshold je ključni parametar u praćenju objekata koji mjeri stupanj podudaranja između različitih okvira detekcije. Niža vrijednost olakšava povezivanje objekata ali povećava rizik od pogrešnih povezivanja. Viša vrijednost je stroža kod povezivanja objekata ali može propustiti neka stvarna podudaranja.';
 
   @override
   String get detection_screen_lost => 'Izgubljeno';

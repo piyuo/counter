@@ -231,7 +231,7 @@ class LocalizationRo extends Localization {
   String get detection_screen_match => 'Potrivire';
 
   @override
-  String get detection_screen_match_desc => 'Potrivire peste #0 este considerată același obiect.';
+  String get detection_screen_match_desc => '#0 matchThreshold este un parametru cheie în urmărirea obiectelor care măsoară gradul de potrivire între diferite casete de detectare. O valoare mai mică facilitează asocierea obiectelor dar crește riscul de asocieri greșite. O valoare mai mare este mai strictă cu asocierile de obiecte dar poate rata unele potriviri reale.';
 
   @override
   String get detection_screen_lost => 'Pierdut';

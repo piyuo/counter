@@ -231,7 +231,7 @@ class LocalizationMs extends Localization {
   String get detection_screen_match => 'Padanan';
 
   @override
-  String get detection_screen_match_desc => 'Padanan melebihi #0 dianggap sebagai objek yang sama.';
+  String get detection_screen_match_desc => '#0 matchThreshold ialah parameter utama dalam penjejakan objek yang mengukur tahap padanan antara kotak pengesanan berbeza. Nilai lebih rendah memudahkan pengaitan objek tetapi meningkatkan risiko pengaitan yang salah. Nilai lebih tinggi lebih ketat pada pengaitan objek tetapi mungkin terlepas beberapa padanan sebenar.';
 
   @override
   String get detection_screen_lost => 'Hilang';
@@ -749,7 +749,7 @@ class LocalizationMsSg extends LocalizationMs {
   String get detection_screen_match => 'Padanan';
 
   @override
-  String get detection_screen_match_desc => 'Padanan melebihi #0 dianggap sebagai objek yang sama.';
+  String get detection_screen_match_desc => '#0 matchThreshold ialah parameter utama dalam penjejakan objek yang mengukur tahap padanan antara kotak pengesanan berbeza. Nilai lebih rendah memudahkan pengaitan objek tetapi meningkatkan risiko pengaitan yang salah. Nilai lebih tinggi lebih ketat pada pengaitan objek tetapi mungkin terlepas beberapa padanan sebenar.';
 
   @override
   String get detection_screen_lost => 'Hilang';

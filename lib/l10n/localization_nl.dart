@@ -231,7 +231,7 @@ class LocalizationNl extends Localization {
   String get detection_screen_match => 'Overeenkomst';
 
   @override
-  String get detection_screen_match_desc => 'Overeenkomst boven #0 wordt beschouwd als hetzelfde object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is een belangrijke parameter bij objecttracking die de mate van overeenkomst tussen verschillende detectieboxen meet. Een lagere waarde maakt objectassociatie eenvoudiger maar verhoogt het risico op verkeerde associaties. Een hogere waarde is strenger bij objectassociaties maar kan sommige echte matches missen.';
 
   @override
   String get detection_screen_lost => 'Verloren';
@@ -749,7 +749,7 @@ class LocalizationNlBe extends LocalizationNl {
   String get detection_screen_match => 'Overeenkomst';
 
   @override
-  String get detection_screen_match_desc => 'Overeenkomst boven #0 wordt beschouwd als hetzelfde object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is een belangrijke parameter bij objecttracking die de mate van overeenkomst tussen verschillende detectiekaders meet. Een lagere waarde maakt objectkoppeling eenvoudiger maar verhoogt het risico op foute koppelingen. Een hogere waarde is strenger bij objectkoppelingen maar kan echte overeenkomsten missen.';
 
   @override
   String get detection_screen_lost => 'Verloren';

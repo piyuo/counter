@@ -73,7 +73,7 @@
   "detection_screen_nms": "Penindasan Non-Maximum",
   "detection_screen_nms_desc": "#0 Ambang NMS yang lebih rendah (cth. 0.3-0.4) membuang kotak bertindih dengan lebih ketat dan mengurangkan positif palsu tetapi mungkin terlepas pandang orang bertindih. Ambang yang lebih tinggi (0.7-0.9) mengekalkan lebih banyak kotak yang mungkin meningkatkan positif palsu tetapi mengesan orang bertindih dengan lebih baik.",
   "detection_screen_match": "Padanan",
-  "detection_screen_match_desc": "Padanan melebihi #0 dianggap sebagai objek yang sama.",
+  "detection_screen_match_desc": "#0 matchThreshold ialah parameter utama dalam penjejakan objek yang mengukur tahap padanan antara kotak pengesanan berbeza. Nilai lebih rendah memudahkan pengaitan objek tetapi meningkatkan risiko pengaitan yang salah. Nilai lebih tinggi lebih ketat pada pengaitan objek tetapi mungkin terlepas beberapa padanan sebenar.",
   "detection_screen_lost": "Hilang",
   "detection_screen_lost_desc": "Objek yang dijejak akan dikeluarkan jika ia hilang selama #0",
   "detection_screen_consider_valid": "Anggap sah selepas",

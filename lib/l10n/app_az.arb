@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Aşağı NMS hədd (0.3-0.4 kimi) üst-üstə düşən qutuları daha ciddi şəkildə aradan qaldırır və yanlış müsbətləri azaldır lakin üst-üstə düşən insanları qaçıra bilər. Yüksək hədd (0.7-0.9) daha çox qutu saxlayır ki bu da yanlış müsbətləri artıra bilər lakin üst-üstə düşən insanları daha yaxşı aşkar edir.",
   "detection_screen_match": "Uyğunluq",
-  "detection_screen_match_desc": "Uyğunluq #0-dan çox olduqda eyni obyekt hesab edilir.",
+  "detection_screen_match_desc": "#0 matchThreshold obyekt izləmədə müxtəlif aşkarlama qutuları arasındakı uyğunluq dərəcəsini ölçən əsas parametrdir. Aşağı dəyər obyektləri əlaqələndirməyi asanlaşdırır lakin yanlış əlaqələndirmə riskini artırır. Yüksək dəyər obyekt əlaqələndirməsində daha ciddidir lakin bəzi həqiqi uyğunluqları qaçıra bilər.",
   "detection_screen_lost": "İtirilmə",
   "detection_screen_lost_desc": "İzlənən obyekt #0 qədər itirildikdə silinəcək",
   "detection_screen_consider_valid": "Etibarlı hesab edilmə müddəti",

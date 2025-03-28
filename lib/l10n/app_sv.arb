@@ -73,7 +73,7 @@
   "detection_screen_nms": "Icke-maximal eliminering",
   "detection_screen_nms_desc": "#0 Ett lägre NMS-tröskelvärde (t.ex. 0.3-0.4) tar bort överlappande rutor mer strikt och minskar falska positiva men kan missa överlappande personer. Ett högre tröskelvärde (0.7-0.9) behåller fler rutor vilket kan öka falska positiva men upptäcker överlappande personer bättre.",
   "detection_screen_match": "Matchning",
-  "detection_screen_match_desc": "Matchning över #0 anses vara samma objekt.",
+  "detection_screen_match_desc": "#0 matchThreshold är en nyckelparameter i objektspårning som mäter graden av matchning mellan olika detektionsrutor. Lägre värde gör objektkoppling enklare men ökar risken för felaktiga kopplingar. Högre värde är striktare på objektkopplingar men kan missa vissa sanna matchningar.",
   "detection_screen_lost": "Förlorad",
   "detection_screen_lost_desc": "Spårat objekt tas bort om det har förlorats i #0",
   "detection_screen_consider_valid": "Betrakta som giltig efter",

@@ -231,7 +231,7 @@ class LocalizationMn extends Localization {
   String get detection_screen_match => 'Тохирол';
 
   @override
-  String get detection_screen_match_desc => '#0-с дээш тохирлыг ижил объект гэж үзнэ.';
+  String get detection_screen_match_desc => '#0 matchThreshold нь объект хянахад чухал параметр бөгөөд өөр өөр илрүүлэлтийн хайрцгуудын хоорондын таарцын түвшинг хэмждэг. Бага утга нь объектуудыг холбоход илүү хялбар болгодог боловч буруу холболтын эрсдэлийг нэмэгдүүлдэг. Өндөр утга нь объект холболтод илүү хатуу боловч зарим бодит таарцыг алдаж болно.';
 
   @override
   String get detection_screen_lost => 'Алдагдсан';

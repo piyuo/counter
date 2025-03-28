@@ -231,7 +231,7 @@ class LocalizationEl extends Localization {
   String get detection_screen_match => 'Αντιστοίχιση';
 
   @override
-  String get detection_screen_match_desc => 'Αντιστοίχιση πάνω από #0 θεωρείται ότι είναι το ίδιο αντικείμενο.';
+  String get detection_screen_match_desc => '#0 matchThreshold είναι μια βασική παράμετρος στην παρακολούθηση αντικειμένων που μετρά το βαθμό αντιστοίχισης μεταξύ διαφορετικών πλαισίων ανίχνευσης. Χαμηλότερη τιμή διευκολύνει τη σύνδεση αντικειμένων αλλά αυξάνει τον κίνδυνο εσφαλμένων συνδέσεων. Υψηλότερη τιμή είναι πιο αυστηρή αλλά μπορεί να χάσει κάποιες πραγματικές αντιστοιχίσεις.';
 
   @override
   String get detection_screen_lost => 'Χαμένο';

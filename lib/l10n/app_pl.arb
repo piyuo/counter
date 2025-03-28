@@ -73,7 +73,7 @@
   "detection_screen_nms": "Tłumienie nie-maksymalnych",
   "detection_screen_nms_desc": "#0 Niższy próg NMS (np. 0.3-0.4) usuwa nakładające się ramki bardziej rygorystycznie i zmniejsza fałszywie pozytywne wyniki ale może pomijać nakładające się osoby. Wyższy próg (0.7-0.9) zachowuje więcej ramek co może zwiększyć fałszywie pozytywne wyniki ale lepiej wykrywa nakładające się osoby.",
   "detection_screen_match": "Dopasowanie",
-  "detection_screen_match_desc": "Dopasowanie powyżej #0 jest uznawane za ten sam obiekt.",
+  "detection_screen_match_desc": "#0 matchThreshold to kluczowy parametr w śledzeniu obiektów który mierzy stopień dopasowania między różnymi ramkami detekcji. Niższa wartość ułatwia powiązanie obiektów ale zwiększa ryzyko błędnych powiązań. Wyższa wartość jest bardziej rygorystyczna przy powiązaniach obiektów ale może pominąć niektóre prawdziwe dopasowania.",
   "detection_screen_lost": "Zgubiony",
   "detection_screen_lost_desc": "Śledzony obiekt zostanie usunięty, jeśli będzie zgubiony przez #0",
   "detection_screen_consider_valid": "Uznaj za prawidłowy po",

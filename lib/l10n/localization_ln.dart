@@ -231,7 +231,7 @@ class LocalizationLn extends Localization {
   String get detection_screen_match => 'Kokokanisa';
 
   @override
-  String get detection_screen_match_desc => 'Kokokanisa eleki #0 etangami lokola eloko moko.';
+  String get detection_screen_match_desc => '#0 matchThreshold ezali paramètre ya ntina na surveillance ya biloko oyo emonaka ndenge ya kokota na kati ya babox ya détection ndenge na ndenge. Valeur ya se ekoki kosala boyokani ya biloko pete kasi ekobakisa likama ya boyokani ya mabe. Valeur ya likolo ezali makasi na boyokani ya biloko kasi ekoki kobungisa mwa kokota ya solo.';
 
   @override
   String get detection_screen_lost => 'Ebungi';

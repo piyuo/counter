@@ -124,7 +124,7 @@ class DetectionScreen extends StatelessWidget {
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child:
-                            Text(maxLines: 3, context.l.detection_screen_match_desc.replaceAll('#0', matchPercentage)),
+                            Text(maxLines: 8, context.l.detection_screen_match_desc.replaceAll('#0', matchPercentage)),
                       ),
                       children: [
                         CupertinoListTile(

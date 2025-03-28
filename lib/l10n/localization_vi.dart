@@ -231,7 +231,7 @@ class LocalizationVi extends Localization {
   String get detection_screen_match => 'Khớp';
 
   @override
-  String get detection_screen_match_desc => 'Khớp trên #0 được coi là cùng một đối tượng.';
+  String get detection_screen_match_desc => '#0 matchThreshold là tham số quan trọng trong theo dõi đối tượng đo lường mức độ khớp giữa các khung phát hiện khác nhau. Giá trị thấp hơn giúp liên kết đối tượng dễ dàng hơn nhưng tăng nguy cơ liên kết sai. Giá trị cao hơn nghiêm ngặt hơn đối với liên kết đối tượng nhưng có thể bỏ lỡ một số khớp thực.';
 
   @override
   String get detection_screen_lost => 'Mất';

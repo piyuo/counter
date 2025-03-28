@@ -231,7 +231,7 @@ class LocalizationTh extends Localization {
   String get detection_screen_match => 'การจับคู่';
 
   @override
-  String get detection_screen_match_desc => 'การจับคู่มากกว่า #0 จะถือว่าเป็นวัตถุเดียวกัน';
+  String get detection_screen_match_desc => '#0 matchThreshold คือพารามิเตอร์สำคัญในการติดตามวัตถุที่วัดระดับความสอดคล้องระหว่างกล่องตรวจจับต่างๆ ค่าที่ต่ำกว่าทำให้การเชื่อมโยงวัตถุง่ายขึ้นแต่เพิ่มความเสี่ยงของการเชื่อมโยงที่ผิด ค่าที่สูงกว่าจะเข้มงวดกับการเชื่อมโยงวัตถุมากขึ้นแต่อาจพลาดการจับคู่ที่ถูกต้องบางส่วน';
 
   @override
   String get detection_screen_lost => 'การสูญหาย';

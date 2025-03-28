@@ -231,7 +231,7 @@ class LocalizationLv extends Localization {
   String get detection_screen_match => 'Atbilstība';
 
   @override
-  String get detection_screen_match_desc => 'Atbilstība virs #0 tiek uzskatīta par to pašu objektu.';
+  String get detection_screen_match_desc => '#0 matchThreshold ir galvenais parametrs objektu izsekošanā kas mēra atbilstības pakāpi starp dažādiem noteikšanas rāmjiem. Zemāka vērtība atvieglo objektu sasaisti bet palielina nepareizu sasaišu risku. Augstāka vērtība ir stingrāka attiecībā uz objektu sasaistēm bet var nokavēt dažas patiesas atbilstības.';
 
   @override
   String get detection_screen_lost => 'Pazaudēts';

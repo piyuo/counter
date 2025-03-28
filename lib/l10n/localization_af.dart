@@ -231,7 +231,7 @@ class LocalizationAf extends Localization {
   String get detection_screen_match => 'Pas';
 
   @override
-  String get detection_screen_match_desc => 'Pas oor #0 word beskou as dieselfde objek.';
+  String get detection_screen_match_desc => '#0 matchThreshold is \'n kritieke parameter in objekopsporing wat die ooreenkomstigheid tussen verskillende opsporingsboxe meet. \'n Laer waarde maak dit makliker om objekte te koppel maar verhoog die risiko van verkeerde koppelings. \'n Hoër waarde is strenger maar kan ware koppelings mis.';
 
   @override
   String get detection_screen_lost => 'Verlore';

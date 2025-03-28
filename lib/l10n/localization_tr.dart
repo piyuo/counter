@@ -231,7 +231,7 @@ class LocalizationTr extends Localization {
   String get detection_screen_match => 'Eşleşme';
 
   @override
-  String get detection_screen_match_desc => '#0 üzerinde eşleşme aynı nesne olarak kabul edilir.';
+  String get detection_screen_match_desc => '#0 matchThreshold nesne takibinde farklı algılama kutuları arasındaki eşleşme derecesini ölçen önemli bir parametredir. Daha düşük değer nesne ilişkilendirmesini kolaylaştırır ancak yanlış ilişkilendirme riskini artırır. Daha yüksek değer nesne ilişkilendirmelerinde daha katıdır ancak bazı gerçek eşleşmeleri kaçırabilir.';
 
   @override
   String get detection_screen_lost => 'Kayıp';

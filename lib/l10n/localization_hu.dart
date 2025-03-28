@@ -231,7 +231,7 @@ class LocalizationHu extends Localization {
   String get detection_screen_match => 'Egyezés';
 
   @override
-  String get detection_screen_match_desc => '#0 feletti egyezés ugyanannak az objektumnak tekintendő.';
+  String get detection_screen_match_desc => '#0 matchThreshold egy kulcsfontosságú paraméter az objektumkövetésben amely méri a különböző felismerési keretek közötti egyezés mértékét. Alacsonyabb érték megkönnyíti az objektumok összekapcsolását de növeli a hibás kapcsolatok kockázatát. Magasabb érték szigorúbb az objektum-összekapcsolásoknál de néhány valódi egyezést elszalaszthat.';
 
   @override
   String get detection_screen_lost => 'Elveszett';

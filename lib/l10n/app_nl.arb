@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Een lagere NMS-drempel (bijv. 0.3-0.4) verwijdert overlappende boxen strenger en vermindert vals-positieven maar kan overlappende personen missen. Een hogere drempel (0.7-0.9) behoudt meer boxen wat vals-positieven kan verhogen maar overlappende personen beter detecteert.",
   "detection_screen_match": "Overeenkomst",
-  "detection_screen_match_desc": "Overeenkomst boven #0 wordt beschouwd als hetzelfde object.",
+  "detection_screen_match_desc": "#0 matchThreshold is een belangrijke parameter bij objecttracking die de mate van overeenkomst tussen verschillende detectieboxen meet. Een lagere waarde maakt objectassociatie eenvoudiger maar verhoogt het risico op verkeerde associaties. Een hogere waarde is strenger bij objectassociaties maar kan sommige echte matches missen.",
   "detection_screen_lost": "Verloren",
   "detection_screen_lost_desc": "Gevolgd object wordt verwijderd als het #0 lang verloren is",
   "detection_screen_consider_valid": "Als geldig beschouwen na",

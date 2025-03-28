@@ -231,7 +231,7 @@ class LocalizationCa extends Localization {
   String get detection_screen_match => 'Coincidència';
 
   @override
-  String get detection_screen_match_desc => 'Coincidència superior a #0 es considera el mateix objecte.';
+  String get detection_screen_match_desc => '#0 matchThreshold és un paràmetre clau en el seguiment d\'objectes que mesura el grau de coincidència entre diferents requadres de detecció. Un valor més baix facilita l\'associació d\'objectes però augmenta el risc d\'associacions incorrectes. Un valor més alt és més estricte amb les associacions però pot perdre algunes coincidències reals.';
 
   @override
   String get detection_screen_lost => 'Perdut';

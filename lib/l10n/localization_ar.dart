@@ -231,7 +231,7 @@ class LocalizationAr extends Localization {
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => 'التطابق أعلى من #0 يعتبر نفس الكائن.';
+  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس مدى التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تجعل ربط الكائنات أسهل لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة في ربط الكائنات لكنها قد تفقد بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';
@@ -749,7 +749,7 @@ class LocalizationArAe extends LocalizationAr {
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => 'تطابق أكثر من #0 يعتبر نفس الكائن.';
+  String get detection_screen_match_desc => '#0 matchThreshold هو معيار أساسي في تتبع الكائنات يقيس مدى التطابق بين صناديق الكشف المختلفة. القيمة المنخفضة تسهّل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الفعلية';
 
   @override
   String get detection_screen_lost => 'مفقود';
@@ -1267,7 +1267,7 @@ class LocalizationArDz extends LocalizationAr {
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => 'التطابق أكثر من #0 يعتبر نفس الكائن.';
+  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس درجة التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';
@@ -1785,7 +1785,7 @@ class LocalizationArEg extends LocalizationAr {
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => 'التطابق أعلى من #0 يعتبر نفس الجسم.';
+  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الأجسام تقيس التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الأجسام ولكن تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة ولكن قد تفوت بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';

@@ -231,7 +231,7 @@ class LocalizationEn extends Localization {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 is considered to be the same object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.';
 
   @override
   String get detection_screen_lost => 'Lost';
@@ -749,7 +749,7 @@ class LocalizationEnAu extends LocalizationEn {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 is considered to be the same object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.';
 
   @override
   String get detection_screen_lost => 'Lost';
@@ -1267,7 +1267,7 @@ class LocalizationEnCa extends LocalizationEn {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 is considered to be the same object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.';
 
   @override
   String get detection_screen_lost => 'Lost';
@@ -1785,7 +1785,7 @@ class LocalizationEnGb extends LocalizationEn {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 is considered to be the same object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.';
 
   @override
   String get detection_screen_lost => 'Lost';
@@ -2303,7 +2303,7 @@ class LocalizationEnIn extends LocalizationEn {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match over #0 is considered to be the same object.';
+  String get detection_screen_match_desc => '#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.';
 
   @override
   String get detection_screen_lost => 'Lost';

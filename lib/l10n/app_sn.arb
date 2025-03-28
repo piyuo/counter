@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Hwaro duku hweNMS (semuenzaniso 0.3-0.4) hunobvisa mabhokisi anopesana nenzira yakaoma uye hunoderedza zvakanaka zvenhema asi anogona kurovera vanhu vanopesana. Hwaro huri pamusoro (0.7-0.9) hunochengetedza mabhokisi mazhinji izvo zvinogona kuwedzera zvakanaka zvenhema asi hunoona vanhu vanopesana zvakanaka.",
   "detection_screen_match": "Match",
-  "detection_screen_match_desc": "Match pamusoro pe #0 inonzi chinhu chimwechete.",
+  "detection_screen_match_desc": "#0 matchThreshold iparamita inokosha pakutevera zvinhu iyo inoyera kukwirana pakati pemabhokisi ekuona akasiyana. Kuderera kwerdhindi kunoita kusangana kwezvinhu kwakareruka asi kunowedzera njodzi yekusangana kusiri iwo. Iparamita yakakwirira inenge inehanya pakusangana kwezvinhu asi inogona kushaya kukanganisa kumwe kwechokwadi.",
   "detection_screen_lost": "Rasikirwa",
   "detection_screen_lost_desc": "Kutevera chuma kuchabviswa kana karasika kwe #0",
   "detection_screen_consider_valid": "Onai sekwakasimba mushure",

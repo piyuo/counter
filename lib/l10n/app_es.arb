@@ -73,7 +73,7 @@
   "detection_screen_nms": "Supresión no máxima",
   "detection_screen_nms_desc": "#0 Un umbral NMS más bajo (ej. 0.3-0.4) elimina los recuadros superpuestos de manera más estricta y reduce los falsos positivos pero puede pasar por alto personas superpuestas. Un umbral más alto (0.7-0.9) conserva más recuadros lo que puede aumentar los falsos positivos pero detecta mejor a las personas superpuestas.",
   "detection_screen_match": "Coincidencia",
-  "detection_screen_match_desc": "Coincidencia superior a #0 se considera el mismo objeto.",
+  "detection_screen_match_desc": "#0 matchThreshold es un parámetro clave en el seguimiento de objetos que mide el grado de coincidencia entre diferentes cuadros de detección. Un valor más bajo facilita la asociación de objetos pero aumenta el riesgo de asociaciones incorrectas. Un valor más alto es más estricto con las asociaciones pero puede perder algunas coincidencias reales.",
   "detection_screen_lost": "Perdido",
   "detection_screen_lost_desc": "El seguimiento del objeto se eliminará si se pierde durante #0",
   "detection_screen_consider_valid": "Considerar válido después de",

@@ -231,7 +231,7 @@ class LocalizationSn extends Localization {
   String get detection_screen_match => 'Match';
 
   @override
-  String get detection_screen_match_desc => 'Match pamusoro pe #0 inonzi chinhu chimwechete.';
+  String get detection_screen_match_desc => '#0 matchThreshold iparamita inokosha pakutevera zvinhu iyo inoyera kukwirana pakati pemabhokisi ekuona akasiyana. Kuderera kwerdhindi kunoita kusangana kwezvinhu kwakareruka asi kunowedzera njodzi yekusangana kusiri iwo. Iparamita yakakwirira inenge inehanya pakusangana kwezvinhu asi inogona kushaya kukanganisa kumwe kwechokwadi.';
 
   @override
   String get detection_screen_lost => 'Rasikirwa';

@@ -231,7 +231,7 @@ class LocalizationKo extends Localization {
   String get detection_screen_match => '일치';
 
   @override
-  String get detection_screen_match_desc => '#0 이상 일치하면 동일한 객체로 간주됩니다.';
+  String get detection_screen_match_desc => '#0 matchThreshold는 객체 추적에서 서로 다른 감지 상자 간의 일치 정도를 측정하는 핵심 매개변수입니다. 낮은 값은 객체 연결을 쉽게 만들지만 잘못된 연결 위험을 증가시킵니다. 높은 값은 객체 연결에 더 엄격하지만 일부 실제 일치를 놓칠 수 있습니다.';
 
   @override
   String get detection_screen_lost => '손실';

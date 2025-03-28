@@ -231,7 +231,7 @@ class LocalizationFa extends Localization {
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => 'تطابق بیش از #0 به عنوان همان شیء در نظر گرفته می‌شود.';
+  String get detection_screen_match_desc => '#0 matchThreshold یک پارامتر کلیدی در ردیابی اشیاء است که میزان تطابق بین جعبه‌های تشخیص مختلف را اندازه‌گیری می‌کند. مقدار پایین‌تر ارتباط اشیاء را آسان‌تر می‌کند اما خطر ارتباطات اشتباه را افزایش می‌دهد. مقدار بالاتر در ارتباطات اشیاء سختگیرانه‌تر است اما ممکن است برخی تطابق‌های واقعی را از دست بدهد.';
 
   @override
   String get detection_screen_lost => 'از دست رفته';

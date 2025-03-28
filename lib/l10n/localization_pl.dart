@@ -231,7 +231,7 @@ class LocalizationPl extends Localization {
   String get detection_screen_match => 'Dopasowanie';
 
   @override
-  String get detection_screen_match_desc => 'Dopasowanie powyżej #0 jest uznawane za ten sam obiekt.';
+  String get detection_screen_match_desc => '#0 matchThreshold to kluczowy parametr w śledzeniu obiektów który mierzy stopień dopasowania między różnymi ramkami detekcji. Niższa wartość ułatwia powiązanie obiektów ale zwiększa ryzyko błędnych powiązań. Wyższa wartość jest bardziej rygorystyczna przy powiązaniach obiektów ale może pominąć niektóre prawdziwe dopasowania.';
 
   @override
   String get detection_screen_lost => 'Zgubiony';

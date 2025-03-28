@@ -73,7 +73,7 @@
   "detection_screen_nms": "Non-Maximum Suppression",
   "detection_screen_nms_desc": "#0 Una soglia NMS più bassa (es. 0.3-0.4) rimuove i riquadri sovrapposti in modo più rigoroso e riduce i falsi positivi ma potrebbe perdere persone sovrapposte. Una soglia più alta (0.7-0.9) mantiene più riquadri il che può aumentare i falsi positivi ma rileva meglio le persone sovrapposte.",
   "detection_screen_match": "Corrispondenza",
-  "detection_screen_match_desc": "Corrispondenza superiore a #0 è considerata lo stesso oggetto.",
+  "detection_screen_match_desc": "#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.",
   "detection_screen_lost": "Perso",
   "detection_screen_lost_desc": "L'oggetto tracciato verrà rimosso se viene perso per #0",
   "detection_screen_consider_valid": "Considera valido dopo",

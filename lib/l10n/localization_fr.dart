@@ -231,7 +231,7 @@ class LocalizationFr extends Localization {
   String get detection_screen_match => 'Correspondance';
 
   @override
-  String get detection_screen_match_desc => 'Correspondance supérieure à #0 est considérée comme le même objet.';
+  String get detection_screen_match_desc => '#0 matchThreshold est un paramètre clé dans le suivi d\'objets qui mesure le degré de correspondance entre différentes boîtes de détection. Une valeur plus basse facilite l\'association d\'objets mais augmente le risque d\'associations erronées. Une valeur plus élevée est plus stricte sur les associations mais peut manquer certaines correspondances réelles.';
 
   @override
   String get detection_screen_lost => 'Perdu';
@@ -749,7 +749,7 @@ class LocalizationFrBe extends LocalizationFr {
   String get detection_screen_match => 'Correspondance';
 
   @override
-  String get detection_screen_match_desc => 'Une correspondance supérieure à #0 est considérée comme le même objet.';
+  String get detection_screen_match_desc => '#0 matchThreshold est un paramètre clé dans le suivi d\'objets qui mesure le degré de correspondance entre différentes boîtes de détection. Une valeur plus basse facilite l\'association d\'objets mais augmente le risque d\'associations erronées. Une valeur plus élevée est plus stricte sur les associations mais peut manquer certaines correspondances réelles.';
 
   @override
   String get detection_screen_lost => 'Perdu';
@@ -1267,7 +1267,7 @@ class LocalizationFrCa extends LocalizationFr {
   String get detection_screen_match => 'Correspondance';
 
   @override
-  String get detection_screen_match_desc => 'Correspondance supérieure à #0 est considérée comme le même objet.';
+  String get detection_screen_match_desc => '#0 matchThreshold est un paramètre clé dans le suivi d\'objets qui mesure le degré de correspondance entre différentes boîtes de détection. Une valeur plus basse facilite l\'association d\'objets mais augmente le risque d\'associations erronées. Une valeur plus élevée est plus stricte sur les associations mais peut manquer certaines correspondances réelles.';
 
   @override
   String get detection_screen_lost => 'Perdu';
@@ -1785,7 +1785,7 @@ class LocalizationFrCh extends LocalizationFr {
   String get detection_screen_match => 'Correspondance';
 
   @override
-  String get detection_screen_match_desc => 'Correspondance supérieure à #0 est considérée comme le même objet.';
+  String get detection_screen_match_desc => '#0 matchThreshold est un paramètre clé dans le suivi d\'objets qui mesure le degré de correspondance entre différentes boîtes de détection. Une valeur plus basse facilite l\'association d\'objets mais augmente le risque d\'associations erronées. Une valeur plus élevée est plus stricte sur les associations mais peut manquer certaines correspondances réelles.';
 
   @override
   String get detection_screen_lost => 'Perdu';
