@@ -94,7 +94,7 @@ class DetectionScreen extends StatelessWidget {
                       footer: Padding(
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: Text(
-                          maxLines: 4,
+                          maxLines: 8,
                           context.l.detection_screen_nms_desc.replaceAll('#0', nmsPercentage),
                         ),
                       ),

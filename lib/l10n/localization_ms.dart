@@ -225,7 +225,7 @@ class LocalizationMs extends Localization {
   String get detection_screen_nms => 'Penindasan Bukan Maksimum';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ambang NMS yang lebih rendah (misalnya, 30%) akan lebih agresif menghapuskan kotak sempadan yang bertindih, sementara ambang NMS yang lebih tinggi (misalnya, 0.6) akan membenarkan lebih banyak pertindihan';
+  String get detection_screen_nms_desc => '#0 Ambang NMS yang lebih rendah (cth. 0.3-0.4) membuang kotak bertindih dengan lebih ketat dan mengurangkan positif palsu tetapi mungkin terlepas pandang orang bertindih. Ambang yang lebih tinggi (0.7-0.9) mengekalkan lebih banyak kotak yang mungkin meningkatkan positif palsu tetapi mengesan orang bertindih dengan lebih baik.';
 
   @override
   String get detection_screen_match => 'Padanan';
@@ -743,7 +743,7 @@ class LocalizationMsSg extends LocalizationMs {
   String get detection_screen_nms => 'Penindasan Non-Maximum';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ambang NMS yang lebih rendah (misalnya, 30%) akan lebih agresif menghapuskan kotak sempadan yang bertindih, manakala ambang NMS yang lebih tinggi (misalnya, 0.6) akan membenarkan lebih banyak pertindihan';
+  String get detection_screen_nms_desc => '#0 Ambang NMS yang lebih rendah (cth. 0.3-0.4) membuang kotak bertindih dengan lebih ketat dan mengurangkan positif palsu tetapi mungkin terlepas pandang orang bertindih. Ambang yang lebih tinggi (0.7-0.9) mengekalkan lebih banyak kotak yang mungkin meningkatkan positif palsu tetapi mengesan orang bertindih dengan lebih baik.';
 
   @override
   String get detection_screen_match => 'Padanan';

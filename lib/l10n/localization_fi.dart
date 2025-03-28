@@ -225,7 +225,7 @@ class LocalizationFi extends Localization {
   String get detection_screen_nms => 'Ei-maksimaalinen suppressio';
 
   @override
-  String get detection_screen_nms_desc => '#0 Matalampi NMS-kynnysarvo (esim. 30%) poistaa päällekkäiset rajauslaatikot aggressiivisemmin, kun taas korkeampi NMS-kynnysarvo (esim. 0,6) sallii enemmän päällekkäisyyttä';
+  String get detection_screen_nms_desc => '#0 Matalampi NMS-kynnysarvo (esim. 0.3-0.4) poistaa päällekkäiset laatikot tiukemmin ja vähentää vääriä positiivisia tuloksia mutta saattaa ohittaa päällekkäiset ihmiset. Korkeampi kynnysarvo (0.7-0.9) säilyttää enemmän laatikoita mikä voi lisätä vääriä positiivisia tuloksia mutta havaitsee päällekkäiset ihmiset paremmin.';
 
   @override
   String get detection_screen_match => 'Vastaavuus';

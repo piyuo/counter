@@ -225,7 +225,7 @@ class LocalizationDe extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 30%) entfernt überlappende Begrenzungsrahmen aggressiver, während ein höherer NMS-Schwellenwert (z.B. 0,6) mehr Überlappung zulässt';
+  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 0.3-0.4) entfernt überlappende Rahmen strenger und reduziert Falsch-Positive kann jedoch überlappende Personen verpassen. Ein höherer Schwellenwert (0.7-0.9) behält mehr Rahmen bei was Falsch-Positive erhöhen kann aber überlappende Personen besser erkennt.';
 
   @override
   String get detection_screen_match => 'Übereinstimmung';
@@ -743,7 +743,7 @@ class LocalizationDeAt extends LocalizationDe {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 30%) entfernt überlappende Begrenzungsrahmen aggressiver, während ein höherer NMS-Schwellenwert (z.B. 0,6) mehr Überlappung zulässt';
+  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 0.3-0.4) entfernt überlappende Rahmen strenger und reduziert Falsch-Positive kann jedoch überlappende Personen verpassen. Ein höherer Schwellenwert (0.7-0.9) behält mehr Rahmen bei was Falsch-Positive erhöhen kann aber überlappende Personen besser erkennt.';
 
   @override
   String get detection_screen_match => 'Übereinstimmung';
@@ -1261,7 +1261,7 @@ class LocalizationDeCh extends LocalizationDe {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 30%) entfernt überlappende Begrenzungsrahmen aggressiver, während ein höherer NMS-Schwellenwert (z.B. 0,6) mehr Überlappung zulässt';
+  String get detection_screen_nms_desc => '#0 Ein niedrigerer NMS-Schwellenwert (z.B. 0.3-0.4) entfernt überlappende Rahmen strenger und reduziert Falsch-Positive kann jedoch überlappende Personen verpassen. Ein höherer Schwellenwert (0.7-0.9) behält mehr Rahmen bei was Falsch-Positive erhöhen kann aber überlappende Personen besser erkennt.';
 
   @override
   String get detection_screen_match => 'Übereinstimmung';

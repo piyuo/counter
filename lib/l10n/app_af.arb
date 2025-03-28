@@ -71,7 +71,7 @@
   "detection_screen_low": "Laag",
   "detection_screen_high": "Hoog",
   "detection_screen_nms": "Nie-Maksimum Onderdrukking",
-  "detection_screen_nms_desc": "#0 'n Laer NMS drempel (bv. 30%) sal oorvleuelende grensraamwerke meer aggressief verwyder, terwyl 'n hoër NMS drempel (bv. 0.6) meer oorvleueling sal toelaat",
+  "detection_screen_nms_desc": "#0 'n Laer NMS drempel (bv. 0.3-0.4) verwyder oorvleuelende rame strenger en verminder vals positiewes maar kan oor oorvleuelende mense mis. 'n Hoër drempel (0.7-0.9) behou meer rame wat vals positiewes kan verhoog maar oorvleuelende mense beter opspoor.",
   "detection_screen_match": "Pas",
   "detection_screen_match_desc": "Pas oor #0 word beskou as dieselfde objek.",
   "detection_screen_lost": "Verlore",

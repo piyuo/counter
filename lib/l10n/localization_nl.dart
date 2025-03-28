@@ -225,7 +225,7 @@ class LocalizationNl extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Een lagere NMS-drempel (bijv. 30%) zal overlappende begrenzingsvakken agressiever verwijderen, terwijl een hogere NMS-drempel (bijv. 0,6) meer overlap toestaat';
+  String get detection_screen_nms_desc => '#0 Een lagere NMS-drempel (bijv. 0.3-0.4) verwijdert overlappende boxen strenger en vermindert vals-positieven maar kan overlappende personen missen. Een hogere drempel (0.7-0.9) behoudt meer boxen wat vals-positieven kan verhogen maar overlappende personen beter detecteert.';
 
   @override
   String get detection_screen_match => 'Overeenkomst';
@@ -743,7 +743,7 @@ class LocalizationNlBe extends LocalizationNl {
   String get detection_screen_nms => 'Non-Maximum Suppressie';
 
   @override
-  String get detection_screen_nms_desc => '#0 Een lagere NMS-drempel (bijv. 30%) zal overlappende begrenzingsvakken agressiever verwijderen, terwijl een hogere NMS-drempel (bijv. 0,6) meer overlap toestaat';
+  String get detection_screen_nms_desc => '#0 Een lagere NMS-drempel (bijv. 0.3-0.4) verwijdert overlappende kaders strenger en vermindert vals-positieven maar kan overlappende personen missen. Een hogere drempel (0.7-0.9) behoudt meer kaders wat vals-positieven kan verhogen maar overlappende personen beter detecteert.';
 
   @override
   String get detection_screen_match => 'Overeenkomst';

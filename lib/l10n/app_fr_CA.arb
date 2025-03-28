@@ -71,7 +71,7 @@
   "detection_screen_low": "Faible",
   "detection_screen_high": "Élevé",
   "detection_screen_nms": "Suppression non-maximale",
-  "detection_screen_nms_desc": "#0 Un seuil NMS plus bas (ex: 30%) supprimera plus agressivement les boîtes qui se chevauchent, tandis qu'un seuil NMS plus élevé (ex: 0,6) permettra plus de chevauchement",
+  "detection_screen_nms_desc": "#0 Un seuil NMS plus bas (ex. 0.3-0.4) supprime les boîtes qui se chevauchent plus strictement et réduit les faux positifs mais peut manquer des personnes qui se chevauchent. Un seuil plus élevé (0.7-0.9) conserve plus de boîtes ce qui peut augmenter les faux positifs mais détecte mieux les personnes qui se chevauchent.",
   "detection_screen_match": "Correspondance",
   "detection_screen_match_desc": "Correspondance supérieure à #0 est considérée comme le même objet.",
   "detection_screen_lost": "Perdu",

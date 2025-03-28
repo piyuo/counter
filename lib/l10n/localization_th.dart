@@ -225,7 +225,7 @@ class LocalizationTh extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 ค่า NMS ที่ต่ำกว่า (เช่น 30%) จะลบกรอบที่ซ้อนทับกันอย่างเข้มงวด ในขณะที่ค่า NMS ที่สูงกว่า (เช่น 0.6) จะอนุญาตให้มีการซ้อนทับมากขึ้น';
+  String get detection_screen_nms_desc => '#0 ค่าเทรชโฮลด์ NMS ที่ต่ำกว่า (เช่น 0.3-0.4) จะลบกรอบที่ซ้อนทับกันอย่างเข้มงวดมากขึ้นและลดผลบวกปลอมแต่อาจพลาดคนที่ซ้อนทับกัน ค่าเทรชโฮลด์ที่สูงกว่า (0.7-0.9) จะเก็บกรอบไว้มากขึ้นซึ่งอาจเพิ่มผลบวกปลอมแต่ตรวจจับคนที่ซ้อนทับกันได้ดีกว่า';
 
   @override
   String get detection_screen_match => 'การจับคู่';

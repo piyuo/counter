@@ -225,7 +225,7 @@ class LocalizationFr extends Localization {
   String get detection_screen_nms => 'Suppression non-maximum';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex. 30%) supprimera plus agressivement les boîtes qui se chevauchent, tandis qu\'un seuil NMS plus élevé (ex. 0,6) permettra plus de chevauchement';
+  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex. 0.3-0.4) supprime les boîtes qui se chevauchent plus strictement et réduit les faux positifs mais peut manquer des personnes qui se chevauchent. Un seuil plus élevé (0.7-0.9) conserve plus de boîtes ce qui peut augmenter les faux positifs mais détecte mieux les personnes qui se chevauchent.';
 
   @override
   String get detection_screen_match => 'Correspondance';
@@ -743,7 +743,7 @@ class LocalizationFrBe extends LocalizationFr {
   String get detection_screen_nms => 'Suppression des non-maximums';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (par ex. 30%) supprimera plus agressivement les boîtes englobantes qui se chevauchent, tandis qu\'un seuil NMS plus élevé (par ex. 0,6) permettra plus de chevauchement';
+  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex. 0.3-0.4) supprime les boîtes qui se chevauchent plus strictement et réduit les faux positifs mais peut manquer des personnes qui se chevauchent. Un seuil plus élevé (0.7-0.9) conserve plus de boîtes ce qui peut augmenter les faux positifs mais détecte mieux les personnes qui se chevauchent.';
 
   @override
   String get detection_screen_match => 'Correspondance';
@@ -1261,7 +1261,7 @@ class LocalizationFrCa extends LocalizationFr {
   String get detection_screen_nms => 'Suppression non-maximale';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex: 30%) supprimera plus agressivement les boîtes qui se chevauchent, tandis qu\'un seuil NMS plus élevé (ex: 0,6) permettra plus de chevauchement';
+  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex. 0.3-0.4) supprime les boîtes qui se chevauchent plus strictement et réduit les faux positifs mais peut manquer des personnes qui se chevauchent. Un seuil plus élevé (0.7-0.9) conserve plus de boîtes ce qui peut augmenter les faux positifs mais détecte mieux les personnes qui se chevauchent.';
 
   @override
   String get detection_screen_match => 'Correspondance';
@@ -1779,7 +1779,7 @@ class LocalizationFrCh extends LocalizationFr {
   String get detection_screen_nms => 'Suppression non-maximale';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (par ex. 30%) supprimera plus agressivement les boîtes englobantes qui se chevauchent, tandis qu\'un seuil NMS plus élevé (par ex. 0,6) permettra plus de chevauchement';
+  String get detection_screen_nms_desc => '#0 Un seuil NMS plus bas (ex. 0.3-0.4) supprime les boîtes qui se chevauchent plus strictement et réduit les faux positifs mais peut manquer des personnes qui se chevauchent. Un seuil plus élevé (0.7-0.9) conserve plus de boîtes ce qui peut augmenter les faux positifs mais détecte mieux les personnes qui se chevauchent.';
 
   @override
   String get detection_screen_match => 'Correspondance';

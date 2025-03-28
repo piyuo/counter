@@ -71,7 +71,7 @@
   "detection_screen_low": "Baixa",
   "detection_screen_high": "Alta",
   "detection_screen_nms": "Supresión non máxima",
-  "detection_screen_nms_desc": "#0 Un limiar NMS máis baixo (p.ex., 30%) eliminará máis agresivamente as caixas delimitadoras solapadas, mentres que un limiar NMS máis alto (p.ex., 0.6) permitirá máis solapamento",
+  "detection_screen_nms_desc": "#0 Un limiar NMS máis baixo (p.ex. 0.3-0.4) elimina as caixas superpostas máis estritamente e reduce os falsos positivos pero pode perder persoas superpostas. Un limiar máis alto (0.7-0.9) mantén máis caixas o que pode aumentar os falsos positivos pero detecta mellor as persoas superpostas.",
   "detection_screen_match": "Coincidencia",
   "detection_screen_match_desc": "Coincidencia por riba de #0 considérase o mesmo obxecto.",
   "detection_screen_lost": "Perdido",

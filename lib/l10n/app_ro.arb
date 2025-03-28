@@ -71,7 +71,7 @@
   "detection_screen_low": "Scăzut",
   "detection_screen_high": "Ridicat",
   "detection_screen_nms": "Supresie non-maximă",
-  "detection_screen_nms_desc": "#0 Un prag NMS mai scăzut (de ex., 30%) va elimina mai agresiv casetele de contur suprapuse, în timp ce un prag NMS mai ridicat (de ex., 0.6) va permite mai multă suprapunere",
+  "detection_screen_nms_desc": "#0 Un prag NMS mai scăzut (de ex. 0.3-0.4) elimină cutiile suprapuse mai strict și reduce rezultatele fals pozitive dar poate rata persoanele suprapuse. Un prag mai ridicat (0.7-0.9) păstrează mai multe cutii ceea ce poate crește rezultatele fals pozitive dar detectează mai bine persoanele suprapuse.",
   "detection_screen_match": "Potrivire",
   "detection_screen_match_desc": "Potrivire peste #0 este considerată același obiect.",
   "detection_screen_lost": "Pierdut",

@@ -71,7 +71,7 @@
   "detection_screen_low": "낮음",
   "detection_screen_high": "높음",
   "detection_screen_nms": "비최대 억제",
-  "detection_screen_nms_desc": "#0 낮은 NMS 임계값(예: 30%)은 겹치는 경계 상자를 더 적극적으로 제거하고, 높은 NMS 임계값(예: 0.6)은 더 많은 겹침을 허용합니다",
+  "detection_screen_nms_desc": "#0 낮은 NMS 임계값(예: 0.3-0.4)은 겹치는 상자를 더 엄격하게 제거하고 거짓 양성을 줄이지만 겹치는 사람들을 놓칠 수 있습니다. 높은 임계값(0.7-0.9)은 더 많은 상자를 유지하여 거짓 양성을 증가시킬 수 있지만 겹치는 사람들을 더 잘 감지합니다.",
   "detection_screen_match": "일치",
   "detection_screen_match_desc": "#0 이상 일치하면 동일한 객체로 간주됩니다.",
   "detection_screen_lost": "손실",

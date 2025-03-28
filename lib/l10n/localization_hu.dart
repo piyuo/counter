@@ -225,7 +225,7 @@ class LocalizationHu extends Localization {
   String get detection_screen_nms => 'Nem-maximum elnyomás';
 
   @override
-  String get detection_screen_nms_desc => '#0 Alacsonyabb NMS küszöbérték (pl. 30%) agresszívebben távolítja el az átfedő határolókereteket, míg a magasabb NMS küszöbérték (pl. 0,6) több átfedést engedélyez';
+  String get detection_screen_nms_desc => '#0 Alacsonyabb NMS küszöbérték (pl. 0.3-0.4) szigorúbban eltávolítja az átfedő dobozokat és csökkenti a hamis pozitívokat de kihagyhat átfedő embereket. Magasabb küszöbérték (0.7-0.9) több dobozt tart meg ami növelheti a hamis pozitívokat de jobban érzékeli az átfedő embereket.';
 
   @override
   String get detection_screen_match => 'Egyezés';

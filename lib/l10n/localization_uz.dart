@@ -225,7 +225,7 @@ class LocalizationUz extends Localization {
   String get detection_screen_nms => 'Maksimal bo\'lmagan bosish (NMS)';
 
   @override
-  String get detection_screen_nms_desc => '#0 Past NMS chegarasi (masalan, 30%) ustma-ust chegaralangan qutilarni faol olib tashlaydi, yuqori NMS chegarasi (masalan, 0.6) ko\'proq ustma-ustlikka yo\'l qo\'yadi';
+  String get detection_screen_nms_desc => '#0 Past NMS chegarasi (masalan 0.3-0.4) bir-biriga qoplanib qolgan ramkalarni qattiqroq olib tashlaydi va soxta ijobiy natijalarni kamaytiradi lekin qoplanib qolgan odamlarni o\'tkazib yuborishi mumkin. Yuqori chegara (0.7-0.9) ko\'proq ramkalarni saqlaydi bu soxta ijobiy natijalarni ko\'paytirishi mumkin lekin qoplanib qolgan odamlarni yaxshiroq aniqlaydi.';
 
   @override
   String get detection_screen_match => 'Moslik';

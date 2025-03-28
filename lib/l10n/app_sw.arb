@@ -71,7 +71,7 @@
   "detection_screen_low": "Chini",
   "detection_screen_high": "Juu",
   "detection_screen_nms": "Kutokomeza Yasiyo ya Juu Zaidi",
-  "detection_screen_nms_desc": "#0 Kizingiti cha NMS cha chini zaidi (k.m., 30%) kitaondoa kwa nguvu zaidi masanduku yanayoingiliana, wakati kizingiti cha NMS cha juu zaidi (k.m., 0.6) kitaruhusu kuingiliana zaidi",
+  "detection_screen_nms_desc": "#0 Kizingiti cha chini cha NMS (k.m. 0.3-0.4) huondoa masanduku yanayoingiliana kwa ukali zaidi na kupunguza chanya za uongo lakini inaweza kukosa watu wanaoingiliana. Kizingiti cha juu zaidi (0.7-0.9) huhifadhi masanduku zaidi ambayo yanaweza kuongeza chanya za uongo lakini hutambua watu wanaoingiliana vizuri zaidi.",
   "detection_screen_match": "Lingana",
   "detection_screen_match_desc": "Kulingana zaidi ya #0 inachukuliwa kuwa kitu hicho hicho.",
   "detection_screen_lost": "Potea",

@@ -225,7 +225,7 @@ class LocalizationGl extends Localization {
   String get detection_screen_nms => 'Supresión non máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un limiar NMS máis baixo (p.ex., 30%) eliminará máis agresivamente as caixas delimitadoras solapadas, mentres que un limiar NMS máis alto (p.ex., 0.6) permitirá máis solapamento';
+  String get detection_screen_nms_desc => '#0 Un limiar NMS máis baixo (p.ex. 0.3-0.4) elimina as caixas superpostas máis estritamente e reduce os falsos positivos pero pode perder persoas superpostas. Un limiar máis alto (0.7-0.9) mantén máis caixas o que pode aumentar os falsos positivos pero detecta mellor as persoas superpostas.';
 
   @override
   String get detection_screen_match => 'Coincidencia';

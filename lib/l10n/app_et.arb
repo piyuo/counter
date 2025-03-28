@@ -71,7 +71,7 @@
   "detection_screen_low": "Madal",
   "detection_screen_high": "Kõrge",
   "detection_screen_nms": "Mitte-maksimumide summutamine",
-  "detection_screen_nms_desc": "#0 Madalam NMS lävi (nt 30%) eemaldab kattuvad piiristikud agressiivsemalt, samas kui kõrgem NMS lävi (nt 0,6) lubab rohkem kattumist",
+  "detection_screen_nms_desc": "#0 Madalam NMS lävi (nt 0.3-0.4) eemaldab kattuvaid kaste rangemalt ja vähendab valepositiivseid tulemusi kuid võib jätta märkamata kattuvad inimesed. Kõrgem lävi (0.7-0.9) säilitab rohkem kaste mis võib suurendada valepositiivseid tulemusi kuid tuvastab kattuvaid inimesi paremini.",
   "detection_screen_match": "Vaste",
   "detection_screen_match_desc": "Vaste üle #0 loetakse samaks objektiks.",
   "detection_screen_lost": "Kadunud",

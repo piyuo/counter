@@ -225,7 +225,7 @@ class LocalizationCs extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Nižší práh NMS (např. 30 %) bude agresivněji odstraňovat překrývající se ohraničující rámečky, zatímco vyšší práh NMS (např. 0,6) umožní větší překrytí';
+  String get detection_screen_nms_desc => '#0 Nižší práh NMS (např. 0.3-0.4) přísněji odstraňuje překrývající se rámečky a snižuje falešně pozitivní výsledky ale může přehlédnout překrývající se osoby. Vyšší práh (0.7-0.9) zachovává více rámečků což může zvýšit falešně pozitivní výsledky ale lépe detekuje překrývající se osoby.';
 
   @override
   String get detection_screen_match => 'Shoda';

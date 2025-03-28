@@ -71,7 +71,7 @@
   "detection_screen_low": "Mababa",
   "detection_screen_high": "Mataas",
   "detection_screen_nms": "Non-Maximum Suppression",
-  "detection_screen_nms_desc": "#0 Ang mas mababang NMS threshold (hal., 30%) ay mas agresibong mag-aalis ng magkakapatong na bounding box, habang ang mas mataas na NMS threshold (hal., 0.6) ay magpapahintulot ng mas maraming overlap",
+  "detection_screen_nms_desc": "#0 Mas mababang threshold ng NMS (hal. 0.3-0.4) ay mas mahigpit na nag-aalis ng magkakapatong na kahon at binabawasan ang mga false positive ngunit maaaring makaligtaan ang magkakapatong na tao. Mas mataas na threshold (0.7-0.9) ay nagpapanatili ng mas maraming kahon na maaaring magpataas ng mga false positive ngunit mas mahusay na nakakakita ng magkakapatong na tao.",
   "detection_screen_match": "Match",
   "detection_screen_match_desc": "Match na mahigit sa #0 ay itinuturing na parehong bagay.",
   "detection_screen_lost": "Nawala",

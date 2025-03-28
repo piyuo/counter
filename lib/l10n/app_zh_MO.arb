@@ -71,7 +71,7 @@
   "detection_screen_low": "低",
   "detection_screen_high": "高",
   "detection_screen_nms": "非極大值抑制",
-  "detection_screen_nms_desc": "#0 較低嘅 NMS 閾值（例如 30%）會更積極咁移除重疊嘅邊界框，而較高嘅 NMS 閾值（例如 0.6）會允許更多重疊",
+  "detection_screen_nms_desc": "#0 較低嘅NMS閾值(如0.3-0.4)會更嚴格噉移除重疊嘅邊界框並減少誤報但可能漏掉重疊嘅人物。較高嘅閾值(0.7-0.9)會保留更多框呢可能增加誤報但能更好噉檢測重疊嘅人物。",
   "detection_screen_match": "匹配",
   "detection_screen_match_desc": "匹配度超過 #0 視為同一物體。",
   "detection_screen_lost": "丟失",

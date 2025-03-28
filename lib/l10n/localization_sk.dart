@@ -225,7 +225,7 @@ class LocalizationSk extends Localization {
   String get detection_screen_nms => 'Potlačenie nemaximálnych hodnôt';
 
   @override
-  String get detection_screen_nms_desc => '#0 Nižšia hranica NMS (napr. 30%) agresívnejšie odstráni prekrývajúce sa ohraničujúce rámčeky, zatiaľ čo vyššia hranica NMS (napr. 0,6) umožní väčšie prekrytie';
+  String get detection_screen_nms_desc => '#0 Nižšia hranica NMS (napr. 0.3-0.4) prísnejšie odstraňuje prekrývajúce sa rámčeky a znižuje falošne pozitívne výsledky ale môže prehliadnuť prekrývajúce sa osoby. Vyššia hranica (0.7-0.9) zachováva viac rámčekov čo môže zvýšiť falošne pozitívne výsledky ale lepšie detekuje prekrývajúce sa osoby.';
 
   @override
   String get detection_screen_match => 'Zhoda';

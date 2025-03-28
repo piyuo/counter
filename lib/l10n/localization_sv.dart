@@ -225,7 +225,7 @@ class LocalizationSv extends Localization {
   String get detection_screen_nms => 'Icke-maximal eliminering';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ett lägre NMS-tröskelvärde (t.ex. 30%) tar bort överlappande avgränsningsrutor mer aggressivt, medan ett högre NMS-tröskelvärde (t.ex. 0,6) tillåter mer överlappning';
+  String get detection_screen_nms_desc => '#0 Ett lägre NMS-tröskelvärde (t.ex. 0.3-0.4) tar bort överlappande rutor mer strikt och minskar falska positiva men kan missa överlappande personer. Ett högre tröskelvärde (0.7-0.9) behåller fler rutor vilket kan öka falska positiva men upptäcker överlappande personer bättre.';
 
   @override
   String get detection_screen_match => 'Matchning';

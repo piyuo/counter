@@ -71,7 +71,7 @@
   "detection_screen_low": "Moke",
   "detection_screen_high": "Makasi",
   "detection_screen_nms": "Suppression-maximum te",
-  "detection_screen_nms_desc": "#0 Seuil ya NMS ya moke (ndakisa 30%) ekolongola na nguya koleka baboîtes oyo ezali kofungana, kasi seuil ya NMS ya makasi (ndakisa 0.6) ekondima kofungana mingi",
+  "detection_screen_nms_desc": "#0 Seuil NMS ya se ekoki (ndakisa 0.3-0.4) elongolaka baboîtes oyo ezali kofuka na bosembo koleka mpe ekitisaka bilembo ya lokuta kasi ekoki kobosana bato oyo bazali kofukana. Seuil ya likolo (0.7-0.9) ebatelaka baboîtes mingi oyo ekoki kobakisa bilembo ya lokuta kasi emonaka malamu bato oyo bazali kofuka.",
   "detection_screen_match": "Kokokanisa",
   "detection_screen_match_desc": "Kokokanisa eleki #0 etangami lokola eloko moko.",
   "detection_screen_lost": "Ebungi",

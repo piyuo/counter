@@ -225,7 +225,7 @@ class LocalizationEn extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap';
+  String get detection_screen_nms_desc => '#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.';
 
   @override
   String get detection_screen_match => 'Match';
@@ -743,7 +743,7 @@ class LocalizationEnAu extends LocalizationEn {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap';
+  String get detection_screen_nms_desc => '#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.';
 
   @override
   String get detection_screen_match => 'Match';
@@ -1261,7 +1261,7 @@ class LocalizationEnCa extends LocalizationEn {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap';
+  String get detection_screen_nms_desc => '#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.';
 
   @override
   String get detection_screen_match => 'Match';
@@ -1779,7 +1779,7 @@ class LocalizationEnGb extends LocalizationEn {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap';
+  String get detection_screen_nms_desc => '#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.';
 
   @override
   String get detection_screen_match => 'Match';
@@ -2297,7 +2297,7 @@ class LocalizationEnIn extends LocalizationEn {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap';
+  String get detection_screen_nms_desc => '#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.';
 
   @override
   String get detection_screen_match => 'Match';

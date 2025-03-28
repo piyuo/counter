@@ -225,7 +225,7 @@ class LocalizationPs extends Localization {
   String get detection_screen_nms => 'غیر اعظمي ځبېښل';
 
   @override
-  String get detection_screen_nms_desc => '#0 یو ټیټ NMS حد (د بېلګې په توګه، ۳۰%) به په زیاته کچه د پوښښ محدودې صندقونه لرې کړي، په داسې حال کې چې یو لوړ NMS حد (د بېلګې په توګه، ۰.۶) به زیات پوښښ اجازه ورکړي';
+  String get detection_screen_nms_desc => '#0 ټیټ NMS حد (لکه 0.3-0.4) د غوښتنلیک باکسونه په سخت ډول لرې کوي او غلط مثبت کموي مګر ښایي د غوښتنلیک خلک له لاسه ورکړي. لوړ حد (0.7-0.9) نور باکسونه ساتي چې ښایي غلط مثبت زیات کړي مګر د غوښتنلیک خلک په ښه توګه موندلی شي.';
 
   @override
   String get detection_screen_match => 'برابرول';

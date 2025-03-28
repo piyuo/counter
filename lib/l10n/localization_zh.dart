@@ -225,7 +225,7 @@ class LocalizationZh extends Localization {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低的 NMS 閾值（例如 30%）將更積極地移除重疊的邊界框，而較高的 NMS 閾值（例如 0.6）將允許更多重疊';
+  String get detection_screen_nms_desc => '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
 
   @override
   String get detection_screen_match => '匹配';
@@ -743,7 +743,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_nms => '非极大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 较低的 NMS 阈值（例如 30%）将更积极地移除重叠的边界框，而较高的 NMS 阈值（例如 0.6）将允许更多重叠';
+  String get detection_screen_nms_desc => '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
 
   @override
   String get detection_screen_match => '匹配';
@@ -1261,7 +1261,7 @@ class LocalizationZhHk extends LocalizationZh {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低的 NMS 閾值（例如 30%）將更積極地移除重疊的邊界框，而較高的 NMS 閾值（例如 0.6）將允許更多重疊';
+  String get detection_screen_nms_desc => '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
 
   @override
   String get detection_screen_match => '匹配';
@@ -1779,7 +1779,7 @@ class LocalizationZhMo extends LocalizationZh {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低嘅 NMS 閾值（例如 30%）會更積極咁移除重疊嘅邊界框，而較高嘅 NMS 閾值（例如 0.6）會允許更多重疊';
+  String get detection_screen_nms_desc => '#0 較低嘅NMS閾值(如0.3-0.4)會更嚴格噉移除重疊嘅邊界框並減少誤報但可能漏掉重疊嘅人物。較高嘅閾值(0.7-0.9)會保留更多框呢可能增加誤報但能更好噉檢測重疊嘅人物。';
 
   @override
   String get detection_screen_match => '匹配';
@@ -2297,7 +2297,7 @@ class LocalizationZhSg extends LocalizationZh {
   String get detection_screen_nms => '非极大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 较低的 NMS 阈值（例如 30%）将更积极地移除重叠的边界框，而较高的 NMS 阈值（例如 0.6）将允许更多重叠';
+  String get detection_screen_nms_desc => '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
 
   @override
   String get detection_screen_match => '匹配';

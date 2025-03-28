@@ -225,7 +225,7 @@ class LocalizationEt extends Localization {
   String get detection_screen_nms => 'Mitte-maksimumide summutamine';
 
   @override
-  String get detection_screen_nms_desc => '#0 Madalam NMS lävi (nt 30%) eemaldab kattuvad piiristikud agressiivsemalt, samas kui kõrgem NMS lävi (nt 0,6) lubab rohkem kattumist';
+  String get detection_screen_nms_desc => '#0 Madalam NMS lävi (nt 0.3-0.4) eemaldab kattuvaid kaste rangemalt ja vähendab valepositiivseid tulemusi kuid võib jätta märkamata kattuvad inimesed. Kõrgem lävi (0.7-0.9) säilitab rohkem kaste mis võib suurendada valepositiivseid tulemusi kuid tuvastab kattuvaid inimesi paremini.';
 
   @override
   String get detection_screen_match => 'Vaste';

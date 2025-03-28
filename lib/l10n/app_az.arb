@@ -71,7 +71,7 @@
   "detection_screen_low": "Aşağı",
   "detection_screen_high": "Yüksək",
   "detection_screen_nms": "Non-Maximum Suppression",
-  "detection_screen_nms_desc": "#0 Daha aşağı NMS hədd (məs., 30%) üst-üstə düşən sərhəd qutularını daha aqressiv şəkildə siləcək, daha yüksək NMS hədd (məs., 0.6) daha çox üst-üstə düşməyə icazə verəcək",
+  "detection_screen_nms_desc": "#0 Aşağı NMS hədd (0.3-0.4 kimi) üst-üstə düşən qutuları daha ciddi şəkildə aradan qaldırır və yanlış müsbətləri azaldır lakin üst-üstə düşən insanları qaçıra bilər. Yüksək hədd (0.7-0.9) daha çox qutu saxlayır ki bu da yanlış müsbətləri artıra bilər lakin üst-üstə düşən insanları daha yaxşı aşkar edir.",
   "detection_screen_match": "Uyğunluq",
   "detection_screen_match_desc": "Uyğunluq #0-dan çox olduqda eyni obyekt hesab edilir.",
   "detection_screen_lost": "İtirilmə",

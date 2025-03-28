@@ -225,7 +225,7 @@ class LocalizationEs extends Localization {
   String get detection_screen_nms => 'Supresión no máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (p. ej., 30%) eliminará de forma más agresiva los cuadros delimitadores superpuestos, mientras que un umbral NMS más alto (p. ej., 0,6) permitirá más superposición';
+  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 0.3-0.4) elimina los recuadros superpuestos de manera más estricta y reduce los falsos positivos pero puede pasar por alto personas superpuestas. Un umbral más alto (0.7-0.9) conserva más recuadros lo que puede aumentar los falsos positivos pero detecta mejor a las personas superpuestas.';
 
   @override
   String get detection_screen_match => 'Coincidencia';
@@ -743,7 +743,7 @@ class LocalizationEsAr extends LocalizationEs {
   String get detection_screen_nms => 'Supresión no máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 30%) eliminará más agresivamente los recuadros superpuestos, mientras que un umbral más alto (ej. 0.6) permitirá más superposición';
+  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 0.3-0.4) elimina los recuadros superpuestos de manera más estricta y reduce los falsos positivos pero puede pasar por alto personas superpuestas. Un umbral más alto (0.7-0.9) conserva más recuadros lo que puede aumentar los falsos positivos pero detecta mejor a las personas superpuestas.';
 
   @override
   String get detection_screen_match => 'Coincidencia';
@@ -1261,7 +1261,7 @@ class LocalizationEsCo extends LocalizationEs {
   String get detection_screen_nms => 'Supresión no máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (p. ej., 30%) eliminará más agresivamente los cuadros delimitadores superpuestos, mientras que un umbral NMS más alto (p. ej., 0.6) permitirá más superposición';
+  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 0.3-0.4) elimina los recuadros superpuestos de manera más estricta y reduce los falsos positivos pero puede pasar por alto personas superpuestas. Un umbral más alto (0.7-0.9) conserva más recuadros lo que puede aumentar los falsos positivos pero detecta mejor a las personas superpuestas.';
 
   @override
   String get detection_screen_match => 'Coincidencia';
@@ -1779,7 +1779,7 @@ class LocalizationEsMx extends LocalizationEs {
   String get detection_screen_nms => 'Supresión no máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 30%) eliminará más agresivamente los recuadros superpuestos, mientras que un umbral NMS más alto (ej. 0.6) permitirá más superposición';
+  String get detection_screen_nms_desc => '#0 Un umbral NMS más bajo (ej. 0.3-0.4) elimina los recuadros superpuestos de manera más estricta y reduce los falsos positivos pero puede pasar por alto personas superpuestas. Un umbral más alto (0.7-0.9) conserva más recuadros lo que puede aumentar los falsos positivos pero detecta mejor a las personas superpuestas.';
 
   @override
   String get detection_screen_match => 'Coincidencia';

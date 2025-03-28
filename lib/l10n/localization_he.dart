@@ -225,7 +225,7 @@ class LocalizationHe extends Localization {
   String get detection_screen_nms => 'דיכוי לא-מקסימלי';
 
   @override
-  String get detection_screen_nms_desc => '#0 סף NMS נמוך יותר (למשל 30%) יסיר באופן אגרסיבי יותר תיבות חופפות, בעוד שסף NMS גבוה יותר (למשל 0.6) יאפשר יותר חפיפה';
+  String get detection_screen_nms_desc => '#0 סף NMS נמוך יותר (לדוגמה 0.3-0.4) מסיר תיבות חופפות באופן מחמיר יותר ומפחית זיהויים חיוביים שגויים אך עלול להחמיץ אנשים חופפים. סף גבוה יותר (0.7-0.9) שומר על יותר תיבות מה שעלול להגדיל זיהויים חיוביים שגויים אך מזהה טוב יותר אנשים חופפים.';
 
   @override
   String get detection_screen_match => 'התאמה';

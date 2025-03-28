@@ -225,7 +225,7 @@ class LocalizationIt extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Una soglia NMS più bassa (es. 30%) rimuoverà più aggressivamente i riquadri sovrapposti, mentre una soglia NMS più alta (es. 0.6) consentirà maggiore sovrapposizione';
+  String get detection_screen_nms_desc => '#0 Una soglia NMS più bassa (es. 0.3-0.4) rimuove i riquadri sovrapposti in modo più rigoroso e riduce i falsi positivi ma potrebbe perdere persone sovrapposte. Una soglia più alta (0.7-0.9) mantiene più riquadri il che può aumentare i falsi positivi ma rileva meglio le persone sovrapposte.';
 
   @override
   String get detection_screen_match => 'Corrispondenza';

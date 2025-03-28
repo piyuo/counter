@@ -225,7 +225,7 @@ class LocalizationSn extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Hwaro hweNMS hwekuderera (semuenzaniso, 30%) hunobvisa zvakawanda mabhokisi akafukidzana, pasinei nehwaro hweNMS hwekukwira (semuenzaniso, 0.6) huchatenderera zvizhinji fukidzana';
+  String get detection_screen_nms_desc => '#0 Hwaro duku hweNMS (semuenzaniso 0.3-0.4) hunobvisa mabhokisi anopesana nenzira yakaoma uye hunoderedza zvakanaka zvenhema asi anogona kurovera vanhu vanopesana. Hwaro huri pamusoro (0.7-0.9) hunochengetedza mabhokisi mazhinji izvo zvinogona kuwedzera zvakanaka zvenhema asi hunoona vanhu vanopesana zvakanaka.';
 
   @override
   String get detection_screen_match => 'Match';

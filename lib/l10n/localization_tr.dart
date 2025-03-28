@@ -225,7 +225,7 @@ class LocalizationTr extends Localization {
   String get detection_screen_nms => 'Maksimum Olmayan Bastırma';
 
   @override
-  String get detection_screen_nms_desc => '#0 Daha düşük NMS eşiği (örn. %30) örtüşen sınırlayıcı kutuları daha agresif şekilde kaldırırken, daha yüksek NMS eşiği (örn. 0.6) daha fazla örtüşmeye izin verir';
+  String get detection_screen_nms_desc => '#0 Daha düşük NMS eşiği (örn. 0.3-0.4) çakışan kutuları daha katı şekilde kaldırır ve yanlış pozitifleri azaltır ancak çakışan kişileri atlayabilir. Daha yüksek eşik (0.7-0.9) daha fazla kutu tutar bu da yanlış pozitifleri artırabilir ancak çakışan kişileri daha iyi algılar.';
 
   @override
   String get detection_screen_match => 'Eşleşme';

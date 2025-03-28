@@ -71,7 +71,7 @@
   "detection_screen_low": "Past",
   "detection_screen_high": "Yuqori",
   "detection_screen_nms": "Maksimal bo'lmagan bosish (NMS)",
-  "detection_screen_nms_desc": "#0 Past NMS chegarasi (masalan, 30%) ustma-ust chegaralangan qutilarni faol olib tashlaydi, yuqori NMS chegarasi (masalan, 0.6) ko'proq ustma-ustlikka yo'l qo'yadi",
+  "detection_screen_nms_desc": "#0 Past NMS chegarasi (masalan 0.3-0.4) bir-biriga qoplanib qolgan ramkalarni qattiqroq olib tashlaydi va soxta ijobiy natijalarni kamaytiradi lekin qoplanib qolgan odamlarni o'tkazib yuborishi mumkin. Yuqori chegara (0.7-0.9) ko'proq ramkalarni saqlaydi bu soxta ijobiy natijalarni ko'paytirishi mumkin lekin qoplanib qolgan odamlarni yaxshiroq aniqlaydi.",
   "detection_screen_match": "Moslik",
   "detection_screen_match_desc": "#0 dan ortiq moslik bir xil obyekt deb hisoblanadi.",
   "detection_screen_lost": "Yo'qolish",

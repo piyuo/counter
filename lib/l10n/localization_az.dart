@@ -225,7 +225,7 @@ class LocalizationAz extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Daha aşağı NMS hədd (məs., 30%) üst-üstə düşən sərhəd qutularını daha aqressiv şəkildə siləcək, daha yüksək NMS hədd (məs., 0.6) daha çox üst-üstə düşməyə icazə verəcək';
+  String get detection_screen_nms_desc => '#0 Aşağı NMS hədd (0.3-0.4 kimi) üst-üstə düşən qutuları daha ciddi şəkildə aradan qaldırır və yanlış müsbətləri azaldır lakin üst-üstə düşən insanları qaçıra bilər. Yüksək hədd (0.7-0.9) daha çox qutu saxlayır ki bu da yanlış müsbətləri artıra bilər lakin üst-üstə düşən insanları daha yaxşı aşkar edir.';
 
   @override
   String get detection_screen_match => 'Uyğunluq';

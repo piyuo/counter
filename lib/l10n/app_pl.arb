@@ -71,7 +71,7 @@
   "detection_screen_low": "Niska",
   "detection_screen_high": "Wysoka",
   "detection_screen_nms": "Tłumienie nie-maksymalnych",
-  "detection_screen_nms_desc": "#0 Niższy próg NMS (np. 30%) będzie bardziej agresywnie usuwał nakładające się ramki, podczas gdy wyższy próg NMS (np. 0,6) pozwoli na większe nakładanie się",
+  "detection_screen_nms_desc": "#0 Niższy próg NMS (np. 0.3-0.4) usuwa nakładające się ramki bardziej rygorystycznie i zmniejsza fałszywie pozytywne wyniki ale może pomijać nakładające się osoby. Wyższy próg (0.7-0.9) zachowuje więcej ramek co może zwiększyć fałszywie pozytywne wyniki ale lepiej wykrywa nakładające się osoby.",
   "detection_screen_match": "Dopasowanie",
   "detection_screen_match_desc": "Dopasowanie powyżej #0 jest uznawane za ten sam obiekt.",
   "detection_screen_lost": "Zgubiony",

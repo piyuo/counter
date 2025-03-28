@@ -71,7 +71,7 @@
   "detection_screen_low": "Matala",
   "detection_screen_high": "Korkea",
   "detection_screen_nms": "Ei-maksimaalinen suppressio",
-  "detection_screen_nms_desc": "#0 Matalampi NMS-kynnysarvo (esim. 30%) poistaa päällekkäiset rajauslaatikot aggressiivisemmin, kun taas korkeampi NMS-kynnysarvo (esim. 0,6) sallii enemmän päällekkäisyyttä",
+  "detection_screen_nms_desc": "#0 Matalampi NMS-kynnysarvo (esim. 0.3-0.4) poistaa päällekkäiset laatikot tiukemmin ja vähentää vääriä positiivisia tuloksia mutta saattaa ohittaa päällekkäiset ihmiset. Korkeampi kynnysarvo (0.7-0.9) säilyttää enemmän laatikoita mikä voi lisätä vääriä positiivisia tuloksia mutta havaitsee päällekkäiset ihmiset paremmin.",
   "detection_screen_match": "Vastaavuus",
   "detection_screen_match_desc": "Yli #0 vastaavuus katsotaan samaksi kohteeksi.",
   "detection_screen_lost": "Kadotettu",

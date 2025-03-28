@@ -679,7 +679,7 @@ abstract class Localization {
   /// No description provided for @detection_screen_nms_desc.
   ///
   /// In en, this message translates to:
-  /// **'#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap'**
+  /// **'#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.'**
   String get detection_screen_nms_desc;
 
   /// No description provided for @detection_screen_match.

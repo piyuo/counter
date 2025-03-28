@@ -225,7 +225,7 @@ class LocalizationAr extends Localization {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 30٪) ستزيل المربعات المحيطة المتداخلة بشكل أكثر فعالية، بينما عتبة NMS الأعلى (مثل 0.6) ستسمح بتداخل أكبر';
+  String get detection_screen_nms_desc => '#0 قيمة NMS المنخفضة (مثل 0.3-0.4) تزيل الإطارات المتداخلة بشكل أكثر صرامة وتقلل الإيجابيات الكاذبة لكنها قد تفوت الأشخاص المتداخلين. القيمة الأعلى (0.7-0.9) تحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الكاذبة لكنها تكشف الأشخاص المتداخلين بشكل أفضل.';
 
   @override
   String get detection_screen_match => 'تطابق';
@@ -743,7 +743,7 @@ class LocalizationArAe extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 حد أدنى أقل لـ NMS (مثل 30%) سيزيل المربعات المتداخلة بشكل أكثر صرامة، بينما حد أعلى (مثل 0.6) سيسمح بتداخل أكبر';
+  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل الصناديق المتداخلة بصرامة أكبر وتقلل الإيجابيات الخاطئة لكن قد تفوت الأشخاص المتداخلين. العتبة الأعلى (0.7-0.9) تحتفظ بمزيد من الصناديق مما قد يزيد الإيجابيات الخاطئة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';
@@ -1261,7 +1261,7 @@ class LocalizationArDz extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 30٪) ستزيل المربعات المتداخلة بشكل أكثر صرامة، بينما عتبة NMS الأعلى (مثل 0.6) ستسمح بمزيد من التداخل';
+  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل المربعات المتداخلة بشكل أكثر صرامة وتقلل من الإيجابيات الكاذبة لكن قد تفوت الأشخاص المتداخلين. العتبة العالية (0.7-0.9) تحتفظ بمزيد من المربعات مما قد يزيد الإيجابيات الكاذبة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';
@@ -1779,7 +1779,7 @@ class LocalizationArEg extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 حد NMS المنخفض (مثل 30٪) سيزيل المربعات المتداخلة بشكل أكثر حزمًا، بينما حد NMS الأعلى (مثل 0.6) سيسمح بتداخل أكبر';
+  String get detection_screen_nms_desc => '#0 حد NMS المنخفض (مثل 0.3-0.4) يزيل الإطارات المتداخلة بشكل أكثر صرامة ويقلل من الإيجابيات الخاطئة لكنه قد يفوت الأشخاص المتداخلين. الحد الأعلى (0.7-0.9) يحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الخاطئة لكنه أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';

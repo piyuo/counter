@@ -71,7 +71,7 @@
   "detection_screen_low": "Laag",
   "detection_screen_high": "Hoog",
   "detection_screen_nms": "Non-Maximum Suppressie",
-  "detection_screen_nms_desc": "#0 Een lagere NMS-drempel (bijv. 30%) zal overlappende begrenzingsvakken agressiever verwijderen, terwijl een hogere NMS-drempel (bijv. 0,6) meer overlap toestaat",
+  "detection_screen_nms_desc": "#0 Een lagere NMS-drempel (bijv. 0.3-0.4) verwijdert overlappende kaders strenger en vermindert vals-positieven maar kan overlappende personen missen. Een hogere drempel (0.7-0.9) behoudt meer kaders wat vals-positieven kan verhogen maar overlappende personen beter detecteert.",
   "detection_screen_match": "Overeenkomst",
   "detection_screen_match_desc": "Overeenkomst boven #0 wordt beschouwd als hetzelfde object.",
   "detection_screen_lost": "Verloren",

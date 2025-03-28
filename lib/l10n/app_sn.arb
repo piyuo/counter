@@ -71,7 +71,7 @@
   "detection_screen_low": "Pasi",
   "detection_screen_high": "Pamusoro",
   "detection_screen_nms": "Non-Maximum Suppression",
-  "detection_screen_nms_desc": "#0 Hwaro hweNMS hwekuderera (semuenzaniso, 30%) hunobvisa zvakawanda mabhokisi akafukidzana, pasinei nehwaro hweNMS hwekukwira (semuenzaniso, 0.6) huchatenderera zvizhinji fukidzana",
+  "detection_screen_nms_desc": "#0 Hwaro duku hweNMS (semuenzaniso 0.3-0.4) hunobvisa mabhokisi anopesana nenzira yakaoma uye hunoderedza zvakanaka zvenhema asi anogona kurovera vanhu vanopesana. Hwaro huri pamusoro (0.7-0.9) hunochengetedza mabhokisi mazhinji izvo zvinogona kuwedzera zvakanaka zvenhema asi hunoona vanhu vanopesana zvakanaka.",
   "detection_screen_match": "Match",
   "detection_screen_match_desc": "Match pamusoro pe #0 inonzi chinhu chimwechete.",
   "detection_screen_lost": "Rasikirwa",

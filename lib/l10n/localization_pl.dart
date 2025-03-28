@@ -225,7 +225,7 @@ class LocalizationPl extends Localization {
   String get detection_screen_nms => 'Tłumienie nie-maksymalnych';
 
   @override
-  String get detection_screen_nms_desc => '#0 Niższy próg NMS (np. 30%) będzie bardziej agresywnie usuwał nakładające się ramki, podczas gdy wyższy próg NMS (np. 0,6) pozwoli na większe nakładanie się';
+  String get detection_screen_nms_desc => '#0 Niższy próg NMS (np. 0.3-0.4) usuwa nakładające się ramki bardziej rygorystycznie i zmniejsza fałszywie pozytywne wyniki ale może pomijać nakładające się osoby. Wyższy próg (0.7-0.9) zachowuje więcej ramek co może zwiększyć fałszywie pozytywne wyniki ale lepiej wykrywa nakładające się osoby.';
 
   @override
   String get detection_screen_match => 'Dopasowanie';

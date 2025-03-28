@@ -225,7 +225,7 @@ class LocalizationSr extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Niži NMS prag (npr. 30%) će agresivnije uklanjati preklapajuće okvire, dok će viši NMS prag (npr. 0.6) dozvoliti više preklapanja';
+  String get detection_screen_nms_desc => '#0 Niži NMS prag (npr. 0.3-0.4) strože uklanja preklapajuće okvire i smanjuje lažno pozitivne rezultate ali može propustiti preklapajuće osobe. Viši prag (0.7-0.9) zadržava više okvira što može povećati lažno pozitivne rezultate ali bolje otkriva preklapajuće osobe.';
 
   @override
   String get detection_screen_match => 'Podudaranje';

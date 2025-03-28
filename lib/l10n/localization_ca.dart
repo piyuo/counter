@@ -225,7 +225,7 @@ class LocalizationCa extends Localization {
   String get detection_screen_nms => 'Supressió no màxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Un llindar NMS més baix (per exemple, 30%) eliminarà més agressivament les caixes delimitadores superposades, mentre que un llindar NMS més alt (per exemple, 0,6) permetrà més superposició';
+  String get detection_screen_nms_desc => '#0 Un llindar NMS més baix (p. ex. 0.3-0.4) elimina els quadres superposats de manera més estricta i redueix els falsos positius però pot passar per alt persones superposades. Un llindar més alt (0.7-0.9) conserva més quadres cosa que pot augmentar els falsos positius però detecta millor les persones superposades.';
 
   @override
   String get detection_screen_match => 'Coincidència';

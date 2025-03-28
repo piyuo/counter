@@ -225,7 +225,7 @@ class LocalizationId extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ambang NMS yang lebih rendah (misalnya 30%) akan lebih agresif menghapus kotak pembatas yang tumpang tindih, sementara ambang NMS yang lebih tinggi (misalnya 0,6) akan memungkinkan lebih banyak tumpang tindih';
+  String get detection_screen_nms_desc => '#0 Ambang NMS lebih rendah (mis. 0.3-0.4) menghapus kotak tumpang tindih lebih ketat dan mengurangi hasil positif palsu tetapi mungkin melewatkan orang-orang tumpang tindih. Ambang lebih tinggi (0.7-0.9) mempertahankan lebih banyak kotak yang dapat meningkatkan hasil positif palsu tetapi lebih baik mendeteksi orang-orang tumpang tindih.';
 
   @override
   String get detection_screen_match => 'Kecocokan';

@@ -71,7 +71,7 @@
   "detection_screen_low": "Rendah",
   "detection_screen_high": "Tinggi",
   "detection_screen_nms": "Penindasan Non-Maximum",
-  "detection_screen_nms_desc": "#0 Ambang NMS yang lebih rendah (misalnya, 30%) akan lebih agresif menghapuskan kotak sempadan yang bertindih, manakala ambang NMS yang lebih tinggi (misalnya, 0.6) akan membenarkan lebih banyak pertindihan",
+  "detection_screen_nms_desc": "#0 Ambang NMS yang lebih rendah (cth. 0.3-0.4) membuang kotak bertindih dengan lebih ketat dan mengurangkan positif palsu tetapi mungkin terlepas pandang orang bertindih. Ambang yang lebih tinggi (0.7-0.9) mengekalkan lebih banyak kotak yang mungkin meningkatkan positif palsu tetapi mengesan orang bertindih dengan lebih baik.",
   "detection_screen_match": "Padanan",
   "detection_screen_match_desc": "Padanan melebihi #0 dianggap sebagai objek yang sama.",
   "detection_screen_lost": "Hilang",

@@ -225,7 +225,7 @@ class LocalizationHi extends Localization {
   String get detection_screen_nms => 'नॉन-मैक्सिमम सप्रेशन';
 
   @override
-  String get detection_screen_nms_desc => '#0 एक कम NMS थ्रेशोल्ड (जैसे, 30%) अधिक आक्रामक रूप से ओवरलैपिंग बाउंडिंग बॉक्स को हटा देगा, जबकि एक उच्च NMS थ्रेशोल्ड (जैसे, 0.6) अधिक ओवरलैप की अनुमति देगा';
+  String get detection_screen_nms_desc => '#0 कम NMS थ्रेशोल्ड (जैसे 0.3-0.4) ओवरलैपिंग बॉक्स को अधिक सख्ती से हटाता है और फॉल्स पॉजिटिव को कम करता है लेकिन ओवरलैपिंग लोगों को छोड़ सकता है। उच्च थ्रेशोल्ड (0.7-0.9) अधिक बॉक्स रखता है जो फॉल्स पॉजिटिव बढ़ा सकता है लेकिन ओवरलैपिंग लोगों को बेहतर ढंग से पहचानता है।';
 
   @override
   String get detection_screen_match => 'मिलान';

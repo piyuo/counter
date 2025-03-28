@@ -71,7 +71,7 @@
   "detection_screen_low": "Baix",
   "detection_screen_high": "Alt",
   "detection_screen_nms": "Supressió no màxima",
-  "detection_screen_nms_desc": "#0 Un llindar NMS més baix (per exemple, 30%) eliminarà més agressivament les caixes delimitadores superposades, mentre que un llindar NMS més alt (per exemple, 0,6) permetrà més superposició",
+  "detection_screen_nms_desc": "#0 Un llindar NMS més baix (p. ex. 0.3-0.4) elimina els quadres superposats de manera més estricta i redueix els falsos positius però pot passar per alt persones superposades. Un llindar més alt (0.7-0.9) conserva més quadres cosa que pot augmentar els falsos positius però detecta millor les persones superposades.",
   "detection_screen_match": "Coincidència",
   "detection_screen_match_desc": "Coincidència superior a #0 es considera el mateix objecte.",
   "detection_screen_lost": "Perdut",

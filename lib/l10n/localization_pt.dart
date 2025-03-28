@@ -225,7 +225,7 @@ class LocalizationPt extends Localization {
   String get detection_screen_nms => 'Supressão Não-Máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Um limiar NMS mais baixo (ex.: 30%) removerá mais agressivamente caixas delimitadoras sobrepostas, enquanto um limiar NMS mais alto (ex.: 0.6) permitirá mais sobreposição';
+  String get detection_screen_nms_desc => '#0 Um limiar NMS mais baixo (ex. 0.3-0.4) remove caixas sobrepostas de forma mais rigorosa e reduz falsos positivos mas pode perder pessoas sobrepostas. Um limiar mais alto (0.7-0.9) mantém mais caixas o que pode aumentar falsos positivos mas detecta melhor pessoas sobrepostas.';
 
   @override
   String get detection_screen_match => 'Correspondência';
@@ -743,7 +743,7 @@ class LocalizationPtPt extends LocalizationPt {
   String get detection_screen_nms => 'Supressão Não-Máxima';
 
   @override
-  String get detection_screen_nms_desc => '#0 Um limiar NMS mais baixo (ex. 30%) irá remover mais agressivamente caixas delimitadoras sobrepostas, enquanto um limiar NMS mais alto (ex. 0,6) permitirá mais sobreposição';
+  String get detection_screen_nms_desc => '#0 Um limiar NMS mais baixo (ex. 0.3-0.4) remove caixas sobrepostas de forma mais rigorosa e reduz falsos positivos mas pode perder pessoas sobrepostas. Um limiar mais alto (0.7-0.9) mantém mais caixas o que pode aumentar falsos positivos mas deteta melhor pessoas sobrepostas.';
 
   @override
   String get detection_screen_match => 'Correspondência';

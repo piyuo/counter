@@ -225,7 +225,7 @@ class LocalizationTl extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ang mas mababang NMS threshold (hal., 30%) ay mas agresibong mag-aalis ng magkakapatong na bounding box, habang ang mas mataas na NMS threshold (hal., 0.6) ay magpapahintulot ng mas maraming overlap';
+  String get detection_screen_nms_desc => '#0 Mas mababang threshold ng NMS (hal. 0.3-0.4) ay mas mahigpit na nag-aalis ng magkakapatong na kahon at binabawasan ang mga false positive ngunit maaaring makaligtaan ang magkakapatong na tao. Mas mataas na threshold (0.7-0.9) ay nagpapanatili ng mas maraming kahon na maaaring magpataas ng mga false positive ngunit mas mahusay na nakakakita ng magkakapatong na tao.';
 
   @override
   String get detection_screen_match => 'Match';

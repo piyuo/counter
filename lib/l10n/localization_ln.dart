@@ -225,7 +225,7 @@ class LocalizationLn extends Localization {
   String get detection_screen_nms => 'Suppression-maximum te';
 
   @override
-  String get detection_screen_nms_desc => '#0 Seuil ya NMS ya moke (ndakisa 30%) ekolongola na nguya koleka baboîtes oyo ezali kofungana, kasi seuil ya NMS ya makasi (ndakisa 0.6) ekondima kofungana mingi';
+  String get detection_screen_nms_desc => '#0 Seuil NMS ya se ekoki (ndakisa 0.3-0.4) elongolaka baboîtes oyo ezali kofuka na bosembo koleka mpe ekitisaka bilembo ya lokuta kasi ekoki kobosana bato oyo bazali kofukana. Seuil ya likolo (0.7-0.9) ebatelaka baboîtes mingi oyo ekoki kobakisa bilembo ya lokuta kasi emonaka malamu bato oyo bazali kofuka.';
 
   @override
   String get detection_screen_match => 'Kokokanisa';

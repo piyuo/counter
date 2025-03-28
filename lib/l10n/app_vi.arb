@@ -71,7 +71,7 @@
   "detection_screen_low": "Thấp",
   "detection_screen_high": "Cao",
   "detection_screen_nms": "Triệt tiêu không cực đại",
-  "detection_screen_nms_desc": "#0 Ngưỡng NMS thấp hơn (ví dụ: 30%) sẽ loại bỏ các khung chồng chéo một cách triệt để hơn, trong khi ngưỡng NMS cao hơn (ví dụ: 0.6) sẽ cho phép nhiều chồng chéo hơn",
+  "detection_screen_nms_desc": "#0 Ngưỡng NMS thấp hơn (ví dụ: 0.3-0.4) loại bỏ các khung chồng chéo nghiêm ngặt hơn và giảm kết quả dương tính giả nhưng có thể bỏ sót người chồng chéo. Ngưỡng cao hơn (0.7-0.9) giữ nhiều khung hơn có thể tăng kết quả dương tính giả nhưng phát hiện người chồng chéo tốt hơn.",
   "detection_screen_match": "Khớp",
   "detection_screen_match_desc": "Khớp trên #0 được coi là cùng một đối tượng.",
   "detection_screen_lost": "Mất",

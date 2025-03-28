@@ -71,7 +71,7 @@
   "detection_screen_low": "Low",
   "detection_screen_high": "High",
   "detection_screen_nms": "Non-Maximum Suppression",
-  "detection_screen_nms_desc": "#0 A lower NMS threshold (e.g., 30%) will more aggressively remove overlapping bounding boxes, while a higher NMS threshold (e.g., 0.6) will allow more overlap",
+  "detection_screen_nms_desc": "#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.",
   "detection_screen_match": "Match",
   "detection_screen_match_desc": "Match over #0 is considered to be the same object.",
   "detection_screen_lost": "Lost",

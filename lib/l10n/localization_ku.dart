@@ -225,7 +225,7 @@ class LocalizationKu extends Localization {
   String get detection_screen_nms => 'Tepisandina Ne-Maksîmûm';
 
   @override
-  String get detection_screen_nms_desc => '#0 Sînorê NMS-a kêmtir (mînak, 30%) dê bi awayekî çalaktir qutiyên sînorê yên li hev tên rake, lê sînorê NMS-a zêdetir (mînak, 0.6) dê bêtir lihevketinê destûr bide';
+  String get detection_screen_nms_desc => '#0 Sînorê NMS ya nizimtir (wek 0.3-0.4) qutiyên ku li hev dikevin bi awayekî tundtir rakirîye û pozîtîvên şaş kêm dike lê dikare mirovên ku li hev dikevin jî jibîr bike. Sînorê bilindtir (0.7-0.9) qutiyên bêtir diparêze ku dikare pozîtîvên şaş zêde bike lê mirovên ku li hev dikevin çêtir têne dîtin.';
 
   @override
   String get detection_screen_match => 'Lihevhatin';

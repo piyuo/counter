@@ -225,7 +225,7 @@ class LocalizationAm extends Localization {
   String get detection_screen_nms => 'Ոչ առավելագույն ճնշում';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ավելի ցածր NMS շեմը (օր.՝ 30%) ավելի ագրեսիվ կհեռացնի վերադրվող սահմանաշրջանակները, մինչդեռ ավելի բարձր NMS շեմը (օր.՝ 0.6) կթույլատրի ավելի շատ վերադրում';
+  String get detection_screen_nms_desc => '#0 ዝቅተኛ NMS መጠን (ለምሳሌ 0.3-0.4) ተደራራቢ ሳጥኖችን በጥብቅ ያስወግዳል ግን ተደራራቢ ሰዎችን ሊ놓 ይችላል። ከፍተኛ መጠን (0.7-0.9) ተጨማሪ ሳጥኖችን ያስቀርል እንዲሁም ተደራራቢ ሰዎችን በተሻለ ሁኔታ ያገኛል.';
 
   @override
   String get detection_screen_match => 'Համապատասխանություն';

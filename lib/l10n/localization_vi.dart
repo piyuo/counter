@@ -225,7 +225,7 @@ class LocalizationVi extends Localization {
   String get detection_screen_nms => 'Triệt tiêu không cực đại';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ngưỡng NMS thấp hơn (ví dụ: 30%) sẽ loại bỏ các khung chồng chéo một cách triệt để hơn, trong khi ngưỡng NMS cao hơn (ví dụ: 0.6) sẽ cho phép nhiều chồng chéo hơn';
+  String get detection_screen_nms_desc => '#0 Ngưỡng NMS thấp hơn (ví dụ: 0.3-0.4) loại bỏ các khung chồng chéo nghiêm ngặt hơn và giảm kết quả dương tính giả nhưng có thể bỏ sót người chồng chéo. Ngưỡng cao hơn (0.7-0.9) giữ nhiều khung hơn có thể tăng kết quả dương tính giả nhưng phát hiện người chồng chéo tốt hơn.';
 
   @override
   String get detection_screen_match => 'Khớp';

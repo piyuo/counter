@@ -225,7 +225,7 @@ class LocalizationAf extends Localization {
   String get detection_screen_nms => 'Nie-Maksimum Onderdrukking';
 
   @override
-  String get detection_screen_nms_desc => '#0 \'n Laer NMS drempel (bv. 30%) sal oorvleuelende grensraamwerke meer aggressief verwyder, terwyl \'n hoër NMS drempel (bv. 0.6) meer oorvleueling sal toelaat';
+  String get detection_screen_nms_desc => '#0 \'n Laer NMS drempel (bv. 0.3-0.4) verwyder oorvleuelende rame strenger en verminder vals positiewes maar kan oor oorvleuelende mense mis. \'n Hoër drempel (0.7-0.9) behou meer rame wat vals positiewes kan verhoog maar oorvleuelende mense beter opspoor.';
 
   @override
   String get detection_screen_match => 'Pas';

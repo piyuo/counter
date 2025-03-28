@@ -225,7 +225,7 @@ class LocalizationHa extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ƙarancin gwaji na NMS (misali, 30%) zai rage adadin akwatin da suka shafe juna, yayin da mafi yawan NMS (misali, 0.6) zai yarda da ƙarin shafuwa';
+  String get detection_screen_nms_desc => '#0 Matakaitace na ƙasa na NMS (misali 0.3-0.4) ya fi tsabtace akwatin da suka shafe junansu kuma ya rage ƙarin karya amma ya iya barke mutane masu shafe juna. Matakaitin da ta fi girma (0.7-0.9) zai kebe akwati masu yawa wanda zai iya ƙara ƙarin karya amma ya fi gano mutane masu shafe juna.';
 
   @override
   String get detection_screen_match => 'Daidaita';

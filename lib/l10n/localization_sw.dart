@@ -225,7 +225,7 @@ class LocalizationSw extends Localization {
   String get detection_screen_nms => 'Kutokomeza Yasiyo ya Juu Zaidi';
 
   @override
-  String get detection_screen_nms_desc => '#0 Kizingiti cha NMS cha chini zaidi (k.m., 30%) kitaondoa kwa nguvu zaidi masanduku yanayoingiliana, wakati kizingiti cha NMS cha juu zaidi (k.m., 0.6) kitaruhusu kuingiliana zaidi';
+  String get detection_screen_nms_desc => '#0 Kizingiti cha chini cha NMS (k.m. 0.3-0.4) huondoa masanduku yanayoingiliana kwa ukali zaidi na kupunguza chanya za uongo lakini inaweza kukosa watu wanaoingiliana. Kizingiti cha juu zaidi (0.7-0.9) huhifadhi masanduku zaidi ambayo yanaweza kuongeza chanya za uongo lakini hutambua watu wanaoingiliana vizuri zaidi.';
 
   @override
   String get detection_screen_match => 'Lingana';

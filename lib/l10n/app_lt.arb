@@ -71,7 +71,7 @@
   "detection_screen_low": "Žemas",
   "detection_screen_high": "Aukštas",
   "detection_screen_nms": "Ne maksimalus slopinimas",
-  "detection_screen_nms_desc": "#0 Žemesnis NMS slenkstis (pvz., 30%) agresyviau pašalins persidengiančius aptikimo langelius, o aukštesnis NMS slenkstis (pvz., 0,6) leis daugiau persidengimo",
+  "detection_screen_nms_desc": "#0 Žemesnis NMS slenkstis (pvz. 0.3-0.4) griežčiau pašalina persidengiančius langelius ir sumažina klaidingai teigiamus rezultatus bet gali praleisti persidengiančius žmones. Aukštesnis slenkstis (0.7-0.9) išsaugo daugiau langelių kas gali padidinti klaidingai teigiamus rezultatus bet geriau aptinka persidengiančius žmones.",
   "detection_screen_match": "Atitikimas",
   "detection_screen_match_desc": "Atitikimas virš #0 laikomas tuo pačiu objektu.",
   "detection_screen_lost": "Prarastas",

@@ -225,7 +225,7 @@ class LocalizationJa extends Localization {
   String get detection_screen_nms => '非最大値抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 NMSしきい値が低い（例：30%）と、重複するバウンディングボックスをより積極的に削除し、高い（例：0.6）と、より多くの重複を許容します';
+  String get detection_screen_nms_desc => '#0 低いNMSしきい値(例:0.3-0.4)は重複するボックスをより厳格に削除し偽陽性を減らしますが重複する人物を見逃す可能性があります。高いしきい値(0.7-0.9)はより多くのボックスを保持し偽陽性が増える可能性がありますが重複する人物をより良く検出します。';
 
   @override
   String get detection_screen_match => 'マッチ';

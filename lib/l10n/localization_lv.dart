@@ -225,7 +225,7 @@ class LocalizationLv extends Localization {
   String get detection_screen_nms => 'Ne-maksimuma apspiešana';
 
   @override
-  String get detection_screen_nms_desc => '#0 Zemāks NMS slieksnis (piem., 30%) agresīvāk noņems pārklājošos robežrāmjus, kamēr augstāks NMS slieksnis (piem., 0,6) atļaus vairāk pārklāšanās';
+  String get detection_screen_nms_desc => '#0 Zemāks NMS slieksnis (piem. 0.3-0.4) stingrāk noņem pārklājošos kadrus un samazina viltus pozitīvos rezultātus bet var neatpazīt pārklājošos cilvēkus. Augstāks slieksnis (0.7-0.9) saglabā vairāk kadru kas var palielināt viltus pozitīvos rezultātus bet labāk atpazīst pārklājošos cilvēkus.';
 
   @override
   String get detection_screen_match => 'Atbilstība';

@@ -225,7 +225,7 @@ class LocalizationLt extends Localization {
   String get detection_screen_nms => 'Ne maksimalus slopinimas';
 
   @override
-  String get detection_screen_nms_desc => '#0 Žemesnis NMS slenkstis (pvz., 30%) agresyviau pašalins persidengiančius aptikimo langelius, o aukštesnis NMS slenkstis (pvz., 0,6) leis daugiau persidengimo';
+  String get detection_screen_nms_desc => '#0 Žemesnis NMS slenkstis (pvz. 0.3-0.4) griežčiau pašalina persidengiančius langelius ir sumažina klaidingai teigiamus rezultatus bet gali praleisti persidengiančius žmones. Aukštesnis slenkstis (0.7-0.9) išsaugo daugiau langelių kas gali padidinti klaidingai teigiamus rezultatus bet geriau aptinka persidengiančius žmones.';
 
   @override
   String get detection_screen_match => 'Atitikimas';

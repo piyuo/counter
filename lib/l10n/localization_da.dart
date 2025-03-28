@@ -225,7 +225,7 @@ class LocalizationDa extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 En lavere NMS-tærskel (f.eks. 30%) vil mere aggressivt fjerne overlappende afgrænsningsfelter, mens en højere NMS-tærskel (f.eks. 0,6) vil tillade mere overlap';
+  String get detection_screen_nms_desc => '#0 Lavere NMS-tærskel (fx 0.3-0.4) fjerner overlappende bokse mere strengt og reducerer falske positive men kan overse overlappende personer. Højere tærskel (0.7-0.9) bevarer flere bokse hvilket kan øge falske positive men er bedre til at registrere overlappende personer.';
 
   @override
   String get detection_screen_match => 'Match';
