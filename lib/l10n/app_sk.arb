@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera nenájdená",
   "video_sources_camera_not_found_message": "Na použitie kamery je potrebné udeliť povolenie",
   "video_sources_webcam_not_found_title": "Webkamera nenájdená",
-  "video_sources_webcam_not_found_message": "Skontrolujte, či je pripojená webkamera",
+  "video_sources_webcam_not_found_message": "Skontrolujte povolenie aplikácie a pripojenie webkamery",
   "wizard_screen_desc": "Vytvorte nový projekt nižšie pre začatie počítania.",
   "wizard_screen_new_project_from": "Nový projekt z",
   "wizard_screen_language": "Jazyk",

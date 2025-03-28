@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera nav atrasta",
   "video_sources_camera_not_found_message": "Lai izmantotu kameru, nepieciešama atļauja piekļūt kamerai",
   "video_sources_webcam_not_found_title": "Tīmekļa kamera nav atrasta",
-  "video_sources_webcam_not_found_message": "Lūdzu, pārbaudiet, vai tīmekļa kamera ir pievienota",
+  "video_sources_webcam_not_found_message": "Lūdzu pārbaudiet lietotnes atļauju un kameras savienojumu",
   "wizard_screen_desc": "Izveidojiet jaunu projektu, lai sāktu skaitīšanu.",
   "wizard_screen_new_project_from": "Jauns projekts no",
   "wizard_screen_language": "Valoda",

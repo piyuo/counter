@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera nije pronađena",
   "video_sources_camera_not_found_message": "Potrebno je odobriti dozvolu za kameru da biste je koristili",
   "video_sources_webcam_not_found_title": "Veb kamera nije pronađena",
-  "video_sources_webcam_not_found_message": "Proverite da li je veb kamera povezana",
+  "video_sources_webcam_not_found_message": "Proverite dozvolu aplikacije i konekciju veb kamere",
   "wizard_screen_desc": "Kreirajte novi projekat da biste počeli brojanje.",
   "wizard_screen_new_project_from": "Novi projekat iz",
   "wizard_screen_language": "Jezik",

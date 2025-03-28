@@ -39,7 +39,7 @@ class LocalizationGu extends Localization {
   String get video_sources_webcam_not_found_title => 'વેબકેમ મળ્યો નથી';
 
   @override
-  String get video_sources_webcam_not_found_message => 'કૃપા કરીને તપાસો કે કોઈ વેબકેમ કનેક્ટ કરેલ છે કે નહીં';
+  String get video_sources_webcam_not_found_message => 'કૃપા કરીને એપ્લિકેશન પરવાનગી અને વેબકેમ કનેક્શન તપાસો';
 
   @override
   String get wizard_screen_desc => 'ગણતરી શરૂ કરવા માટે નીચે નવો પ્રોજેક્ટ બનાવો.';

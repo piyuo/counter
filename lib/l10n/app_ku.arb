@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera nehat dîtin",
   "video_sources_camera_not_found_message": "Ji bo bikaranîna kamerayê divê destûra kamerayê bê dayîn",
   "video_sources_webcam_not_found_title": "Kameraya webê nehat dîtin",
-  "video_sources_webcam_not_found_message": "Ji kerema xwe kontrol bikin ku kameraya webê girêdayî ye",
+  "video_sources_webcam_not_found_message": "Ji kerema destûra sepanê û girêdana kamera kontrol bikin",
   "wizard_screen_desc": "Ji bo destpêkirina jimartinê li jêr projeyek nû biafirînin.",
   "wizard_screen_new_project_from": "Projeya nû ji",
   "wizard_screen_language": "Ziman",

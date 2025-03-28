@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "搵唔到相機",
   "video_sources_camera_not_found_message": "使用相機需要授權權限。",
   "video_sources_webcam_not_found_title": "搵唔到網絡攝影機",
-  "video_sources_webcam_not_found_message": "請確認網絡攝影機已正確連接。",
+  "video_sources_webcam_not_found_message": "請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。",
   "wizard_screen_desc": "建立新項目開始計數。",
   "wizard_screen_new_project_from": "由以下創建新項目",
   "wizard_screen_language": "語言",

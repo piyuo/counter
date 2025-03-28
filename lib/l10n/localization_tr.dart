@@ -39,7 +39,7 @@ class LocalizationTr extends Localization {
   String get video_sources_webcam_not_found_title => 'Web kamerası bulunamadı';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Lütfen herhangi bir web kamerasının bağlı olup olmadığını kontrol edin';
+  String get video_sources_webcam_not_found_message => 'Lütfen uygulama izni ve web kamerası bağlantısını kontrol edin';
 
   @override
   String get wizard_screen_desc => 'Saymaya başlamak için aşağıdan yeni bir proje oluşturun.';

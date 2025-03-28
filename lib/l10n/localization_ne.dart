@@ -39,7 +39,7 @@ class LocalizationNe extends Localization {
   String get video_sources_webcam_not_found_title => 'वेबक्याम फेला परेन';
 
   @override
-  String get video_sources_webcam_not_found_message => 'कृपया कुनै वेबक्याम जडान गरिएको छ कि जाँच गर्नुहोस्';
+  String get video_sources_webcam_not_found_message => 'कृपया एप अनुमति र वेबक्याम जडान जाँच गर्नुहोस्';
 
   @override
   String get wizard_screen_desc => 'गन्न सुरु गर्न तल नयाँ प्रोजेक्ट सिर्जना गर्नुहोस्।';

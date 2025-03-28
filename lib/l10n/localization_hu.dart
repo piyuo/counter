@@ -39,7 +39,7 @@ class LocalizationHu extends Localization {
   String get video_sources_webcam_not_found_title => 'Webkamera nem található';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Ellenőrizze, hogy csatlakoztatva van-e webkamera';
+  String get video_sources_webcam_not_found_message => 'Ellenőrizze az alkalmazás engedélyét és a kamera csatlakozását';
 
   @override
   String get wizard_screen_desc => 'Hozzon létre új projektet a számlálás megkezdéséhez.';

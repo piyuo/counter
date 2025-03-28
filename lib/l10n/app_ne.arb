@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "क्यामेरा फेला परेन",
   "video_sources_camera_not_found_message": "क्यामेरा प्रयोग गर्न क्यामेरा अनुमति दिनुपर्छ",
   "video_sources_webcam_not_found_title": "वेबक्याम फेला परेन",
-  "video_sources_webcam_not_found_message": "कृपया कुनै वेबक्याम जडान गरिएको छ कि जाँच गर्नुहोस्",
+  "video_sources_webcam_not_found_message": "कृपया एप अनुमति र वेबक्याम जडान जाँच गर्नुहोस्",
   "wizard_screen_desc": "गन्न सुरु गर्न तल नयाँ प्रोजेक्ट सिर्जना गर्नुहोस्।",
   "wizard_screen_new_project_from": "यहाँबाट नयाँ प्रोजेक्ट",
   "wizard_screen_language": "भाषा",

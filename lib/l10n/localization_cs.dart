@@ -39,7 +39,7 @@ class LocalizationCs extends Localization {
   String get video_sources_webcam_not_found_title => 'Webkamera nenalezena';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Zkontrolujte prosím, zda je webkamera připojena';
+  String get video_sources_webcam_not_found_message => 'Zkontrolujte povolení aplikace a připojení kamery';
 
   @override
   String get wizard_screen_desc => 'Vytvořte nový projekt a začněte počítat.';

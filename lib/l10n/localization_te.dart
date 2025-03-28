@@ -39,7 +39,7 @@ class LocalizationTe extends Localization {
   String get video_sources_webcam_not_found_title => 'వెబ్‌క్యామ్ కనబడలేదు';
 
   @override
-  String get video_sources_webcam_not_found_message => 'దయచేసి ఏదైనా వెబ్‌క్యామ్ కనెక్ట్ చేయబడిందో లేదో తనిఖీ చేయండి';
+  String get video_sources_webcam_not_found_message => 'దయచేసి అప్ అనుమతి మరియు వెబ్‌క్యామ్ కనెక్షన్ను తనిఖీ చేయండి';
 
   @override
   String get wizard_screen_desc => 'లెక్కించడం ప్రారంభించడానికి క్రింద కొత్త ప్రాజెక్ట్‌ను సృష్టించండి.';

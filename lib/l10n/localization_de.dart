@@ -39,7 +39,7 @@ class LocalizationDe extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam nicht gefunden';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Bitte überprüfen Sie, ob eine Webcam angeschlossen ist';
+  String get video_sources_webcam_not_found_message => 'Bitte überprüfen Sie die App-Berechtigung und Verbindung';
 
   @override
   String get wizard_screen_desc => 'Erstellen Sie unten ein neues Projekt, um mit dem Zählen zu beginnen.';
@@ -557,7 +557,7 @@ class LocalizationDeAt extends LocalizationDe {
   String get video_sources_webcam_not_found_title => 'Webcam nicht gefunden';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Bitte überprüfen Sie, ob eine Webcam angeschlossen ist';
+  String get video_sources_webcam_not_found_message => 'Bitte überprüfen Sie die App-Berechtigung und Verbindung';
 
   @override
   String get wizard_screen_desc => 'Erstellen Sie unten ein neues Projekt, um mit dem Zählen zu beginnen.';
@@ -1075,7 +1075,7 @@ class LocalizationDeCh extends LocalizationDe {
   String get video_sources_webcam_not_found_title => 'Webcam nicht gefunden';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Bitte prüfen Sie, ob eine Webcam angeschlossen ist';
+  String get video_sources_webcam_not_found_message => 'Bitte prüfen Sie die App-Berechtigung und Verbindung';
 
   @override
   String get wizard_screen_desc => 'Erstellen Sie ein neues Projekt, um mit dem Zählen zu beginnen.';

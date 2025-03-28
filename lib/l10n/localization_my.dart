@@ -39,7 +39,7 @@ class LocalizationMy extends Localization {
   String get video_sources_webcam_not_found_title => 'ဝက်ဘ်ကင်မရာမတွေ့ပါ';
 
   @override
-  String get video_sources_webcam_not_found_message => 'ဝက်ဘ်ကင်မရာ ချိတ်ဆက်ထားခြင်းရှိမရှိ စစ်ဆေးပါ';
+  String get video_sources_webcam_not_found_message => 'অ্যাপ অনুমতি এবং ওয়েবক্যাম সংযোগ যাচাই করুন';
 
   @override
   String get wizard_screen_desc => 'ရေတွက်စတင်ရန် အောက်တွင် စီမံကိန်းအသစ်တစ်ခု ဖန်တီးပါ။';

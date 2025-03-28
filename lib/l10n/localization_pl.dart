@@ -39,7 +39,7 @@ class LocalizationPl extends Localization {
   String get video_sources_webcam_not_found_title => 'Nie znaleziono kamery internetowej';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Sprawdź, czy kamera internetowa jest podłączona';
+  String get video_sources_webcam_not_found_message => 'Sprawdź uprawnienia aplikacji i połączenie kamery';
 
   @override
   String get wizard_screen_desc => 'Utwórz nowy projekt, aby rozpocząć liczenie.';

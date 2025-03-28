@@ -39,7 +39,7 @@ class LocalizationMn extends Localization {
   String get video_sources_webcam_not_found_title => 'Вэб камер олдсонгүй';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Вэб камер холбогдсон эсэхийг шалгана уу';
+  String get video_sources_webcam_not_found_message => 'Аппын зөвшөөрөл болон вэб камерын холболтыг шалгана уу';
 
   @override
   String get wizard_screen_desc => 'Тоололт эхлүүлэхийн тулд доорх шинэ төсөл үүсгэнэ үү.';

@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Không tìm thấy camera",
   "video_sources_camera_not_found_message": "Cần cấp quyền camera để sử dụng tính năng này",
   "video_sources_webcam_not_found_title": "Không tìm thấy webcam",
-  "video_sources_webcam_not_found_message": "Vui lòng kiểm tra xem có webcam nào được kết nối không",
+  "video_sources_webcam_not_found_message": "Vui lòng kiểm tra quyền truy cập ứng dụng và kết nối webcam",
   "wizard_screen_desc": "Tạo dự án mới bên dưới để bắt đầu đếm.",
   "wizard_screen_new_project_from": "Dự án mới từ",
   "wizard_screen_language": "Ngôn ngữ",

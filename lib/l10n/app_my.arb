@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "ကင်မရာမတွေ့ပါ",
   "video_sources_camera_not_found_message": "ကင်မရာကိုအသုံးပြုရန် ကင်မရာခွင့်ပြုချက်လိုအပ်သည်",
   "video_sources_webcam_not_found_title": "ဝက်ဘ်ကင်မရာမတွေ့ပါ",
-  "video_sources_webcam_not_found_message": "ဝက်ဘ်ကင်မရာ ချိတ်ဆက်ထားခြင်းရှိမရှိ စစ်ဆေးပါ",
+  "video_sources_webcam_not_found_message": "অ্যাপ অনুমতি এবং ওয়েবক্যাম সংযোগ যাচাই করুন",
   "wizard_screen_desc": "ရေတွက်စတင်ရန် အောက်တွင် စီမံကိန်းအသစ်တစ်ခု ဖန်တီးပါ။",
   "wizard_screen_new_project_from": "အောက်ပါမှ စီမံကိန်းအသစ်",
   "wizard_screen_language": "ဘာသာစကား",

@@ -39,7 +39,7 @@ class LocalizationUk extends Localization {
   String get video_sources_webcam_not_found_title => 'Веб-камеру не знайдено';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Перевірте, чи підключена веб-камера';
+  String get video_sources_webcam_not_found_message => 'Перевірте дозволи додатку та підключення веб-камери';
 
   @override
   String get wizard_screen_desc => 'Створіть новий проєкт нижче, щоб розпочати підрахунок.';

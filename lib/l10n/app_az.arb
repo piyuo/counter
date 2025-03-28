@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera tapılmadı",
   "video_sources_camera_not_found_message": "Kameradan istifadə etmək üçün kamera icazəsi tələb olunur",
   "video_sources_webcam_not_found_title": "Veb-kamera tapılmadı",
-  "video_sources_webcam_not_found_message": "Xahiş edirik hər hansı veb-kameranın qoşulu olduğunu yoxlayın",
+  "video_sources_webcam_not_found_message": "Tətbiqin kamera icazəsini və qoşulmasını yoxlayın",
   "wizard_screen_desc": "Saymağa başlamaq üçün aşağıda yeni layihə yaradın.",
   "wizard_screen_new_project_from": "Yeni Layihə mənbəyi",
   "wizard_screen_language": "Dil",

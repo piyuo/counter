@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera tidak ditemukan",
   "video_sources_camera_not_found_message": "Perlu memberikan izin kamera untuk menggunakan kamera",
   "video_sources_webcam_not_found_title": "Webcam tidak ditemukan",
-  "video_sources_webcam_not_found_message": "Silakan periksa apakah webcam sudah terhubung",
+  "video_sources_webcam_not_found_message": "Periksa izin aplikasi dan koneksi webcam",
   "wizard_screen_desc": "Buat proyek baru di bawah ini untuk mulai menghitung.",
   "wizard_screen_new_project_from": "Proyek Baru dari",
   "wizard_screen_language": "Bahasa",

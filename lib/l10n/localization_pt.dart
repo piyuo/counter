@@ -39,7 +39,7 @@ class LocalizationPt extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam não encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Verifique se há alguma webcam conectada';
+  String get video_sources_webcam_not_found_message => 'Verifique a permissão do app e a conexão da webcam';
 
   @override
   String get wizard_screen_desc => 'Crie um novo projeto abaixo para começar a contar.';
@@ -557,7 +557,7 @@ class LocalizationPtPt extends LocalizationPt {
   String get video_sources_webcam_not_found_title => 'Webcam não encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Por favor verifique se existe alguma webcam ligada';
+  String get video_sources_webcam_not_found_message => 'Por favor verifique a permissão do aplicativo e a conexão da webcam';
 
   @override
   String get wizard_screen_desc => 'Crie um novo projeto abaixo para começar a contar.';

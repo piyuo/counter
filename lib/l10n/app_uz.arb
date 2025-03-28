@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera topilmadi",
   "video_sources_camera_not_found_message": "Kameradan foydalanish uchun ruxsat berishingiz kerak",
   "video_sources_webcam_not_found_title": "Veb-kamera topilmadi",
-  "video_sources_webcam_not_found_message": "Iltimos, veb-kamera ulanganligini tekshiring",
+  "video_sources_webcam_not_found_message": "Iltimos, ilovaning ruxsatini va veb-kamera ulanishini tekshiring",
   "wizard_screen_desc": "Hisoblashni boshlash uchun quyida yangi loyiha yarating.",
   "wizard_screen_new_project_from": "Quyidagidan yangi loyiha yarating",
   "wizard_screen_language": "Til",

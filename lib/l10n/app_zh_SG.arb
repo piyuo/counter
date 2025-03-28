@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "找不到相机",
   "video_sources_camera_not_found_message": "使用此功能需要相机权限。",
   "video_sources_webcam_not_found_title": "找不到网络摄像头",
-  "video_sources_webcam_not_found_message": "请确认网络摄像头已正确连接。",
+  "video_sources_webcam_not_found_message": "请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。",
   "wizard_screen_desc": "创建新项目以开始计数。",
   "wizard_screen_new_project_from": "从以下创建新项目",
   "wizard_screen_language": "语言",

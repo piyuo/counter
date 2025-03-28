@@ -39,7 +39,7 @@ class LocalizationRo extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam-ul nu a fost găsit';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Vă rugăm să verificați dacă este conectat un webcam';
+  String get video_sources_webcam_not_found_message => 'Verificați permisiunea aplicației și conexiunea webcam';
 
   @override
   String get wizard_screen_desc => 'Creați un proiect nou mai jos pentru a începe numărarea.';

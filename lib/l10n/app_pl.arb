@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Nie znaleziono aparatu",
   "video_sources_camera_not_found_message": "Wymagane jest udzielenie uprawnień do korzystania z aparatu",
   "video_sources_webcam_not_found_title": "Nie znaleziono kamery internetowej",
-  "video_sources_webcam_not_found_message": "Sprawdź, czy kamera internetowa jest podłączona",
+  "video_sources_webcam_not_found_message": "Sprawdź uprawnienia aplikacji i połączenie kamery",
   "wizard_screen_desc": "Utwórz nowy projekt, aby rozpocząć liczenie.",
   "wizard_screen_new_project_from": "Nowy projekt z",
   "wizard_screen_language": "Język",

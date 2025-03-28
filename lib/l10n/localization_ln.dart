@@ -39,7 +39,7 @@ class LocalizationLn extends Localization {
   String get video_sources_webcam_not_found_title => 'Kamera ya internet ezwami te';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Tosengi otala soki kamera ya internet ekangami malamu';
+  String get video_sources_webcam_not_found_message => 'Koluka mabubu ya tolebeli na bosano ya kamera';
 
   @override
   String get wizard_screen_desc => 'Sala projet ya sika mpo na kobanda kotánga.';

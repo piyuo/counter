@@ -39,7 +39,7 @@ class LocalizationDa extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam ikke fundet';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Kontroller venligst om der er tilsluttet et webcam';
+  String get video_sources_webcam_not_found_message => 'Kontroller app-tilladelse og webkamera-forbindelse';
 
   @override
   String get wizard_screen_desc => 'Opret et nyt projekt nedenfor for at begynde optælling.';

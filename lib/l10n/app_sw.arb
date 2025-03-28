@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera haijapatikana",
   "video_sources_camera_not_found_message": "Unahitaji kutoa ruhusa ya kamera kutumia kamera",
   "video_sources_webcam_not_found_title": "Kamera ya wavuti haijapatikana",
-  "video_sources_webcam_not_found_message": "Tafadhali angalia kama kamera ya wavuti imeunganishwa",
+  "video_sources_webcam_not_found_message": "Tafadhali angalia idhini ya programu tumizi na muunganisho wa kamera ya wavuti",
   "wizard_screen_desc": "Unda mradi mpya hapa chini ili kuanza kuhesabu.",
   "wizard_screen_new_project_from": "Mradi Mpya kutoka",
   "wizard_screen_language": "Lugha",

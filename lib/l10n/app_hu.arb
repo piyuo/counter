@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera nem található",
   "video_sources_camera_not_found_message": "A kamera használatához engedélyezni kell a kamera hozzáférést",
   "video_sources_webcam_not_found_title": "Webkamera nem található",
-  "video_sources_webcam_not_found_message": "Ellenőrizze, hogy csatlakoztatva van-e webkamera",
+  "video_sources_webcam_not_found_message": "Ellenőrizze az alkalmazás engedélyét és a kamera csatlakozását",
   "wizard_screen_desc": "Hozzon létre új projektet a számlálás megkezdéséhez.",
   "wizard_screen_new_project_from": "Új projekt létrehozása innen",
   "wizard_screen_language": "Nyelv",

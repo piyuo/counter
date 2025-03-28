@@ -39,7 +39,7 @@ class LocalizationAf extends Localization {
   String get video_sources_webcam_not_found_title => 'Webkamera nie gevind nie';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Kontroleer asseblief of enige webkamera gekoppel is';
+  String get video_sources_webcam_not_found_message => 'Kontroleer of kamera toestemming is en of dit gekoppel is';
 
   @override
   String get wizard_screen_desc => 'Skep \'n nuwe projek hieronder om te begin tel.';

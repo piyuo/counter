@@ -39,7 +39,7 @@ class LocalizationAr extends Localization {
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من توصيل كاميرا الويب';
+  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'قم بإنشاء مشروع جديد أدناه للبدء في العد.';
@@ -557,7 +557,7 @@ class LocalizationArAe extends LocalizationAr {
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من توصيل كاميرا الويب';
+  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'قم بإنشاء مشروع جديد أدناه لبدء العد.';
@@ -1075,7 +1075,7 @@ class LocalizationArDz extends LocalizationAr {
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من توصيل كاميرا الويب';
+  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'أنشئ مشروعًا جديدًا أدناه لبدء العد.';
@@ -1593,7 +1593,7 @@ class LocalizationArEg extends LocalizationAr {
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التأكد من توصيل كاميرا الويب';
+  String get video_sources_webcam_not_found_message => 'تأكد من إعطاء التطبيق إذن الوصول للكاميرا والتوصيل الصحيح';
 
   @override
   String get wizard_screen_desc => 'أنشئ مشروعًا جديدًا أدناه لبدء العد.';

@@ -39,7 +39,7 @@ class LocalizationSk extends Localization {
   String get video_sources_webcam_not_found_title => 'Webkamera nenájdená';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Skontrolujte, či je pripojená webkamera';
+  String get video_sources_webcam_not_found_message => 'Skontrolujte povolenie aplikácie a pripojenie webkamery';
 
   @override
   String get wizard_screen_desc => 'Vytvorte nový projekt nižšie pre začatie počítania.';

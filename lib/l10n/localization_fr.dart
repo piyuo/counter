@@ -39,7 +39,7 @@ class LocalizationFr extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam introuvable';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Veuillez vérifier qu\'une webcam est bien connectée';
+  String get video_sources_webcam_not_found_message => 'Vérifiez les autorisations de l\'app et la connexion de la webcam';
 
   @override
   String get wizard_screen_desc => 'Créez un nouveau projet ci-dessous pour commencer à compter.';
@@ -557,7 +557,7 @@ class LocalizationFrBe extends LocalizationFr {
   String get video_sources_webcam_not_found_title => 'Webcam introuvable';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Veuillez vérifier si une webcam est connectée';
+  String get video_sources_webcam_not_found_message => 'Vérifiez les autorisations de l\'app et la connexion de la webcam';
 
   @override
   String get wizard_screen_desc => 'Créez un nouveau projet ci-dessous pour commencer à compter.';
@@ -1075,7 +1075,7 @@ class LocalizationFrCa extends LocalizationFr {
   String get video_sources_webcam_not_found_title => 'Webcam introuvable';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Veuillez vérifier si une webcam est connectée';
+  String get video_sources_webcam_not_found_message => 'Vérifiez les autorisations de l\'app et la connexion de la webcam';
 
   @override
   String get wizard_screen_desc => 'Créez un nouveau projet ci-dessous pour commencer à compter.';
@@ -1593,7 +1593,7 @@ class LocalizationFrCh extends LocalizationFr {
   String get video_sources_webcam_not_found_title => 'Webcam introuvable';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Veuillez vérifier si une webcam est connectée';
+  String get video_sources_webcam_not_found_message => 'Vérifiez les autorisations de l\'app et la connexion de la webcam';
 
   @override
   String get wizard_screen_desc => 'Créez un nouveau projet ci-dessous pour commencer le comptage.';

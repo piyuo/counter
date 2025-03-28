@@ -39,7 +39,7 @@ class LocalizationKu extends Localization {
   String get video_sources_webcam_not_found_title => 'Kameraya webê nehat dîtin';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Ji kerema xwe kontrol bikin ku kameraya webê girêdayî ye';
+  String get video_sources_webcam_not_found_message => 'Ji kerema destûra sepanê û girêdana kamera kontrol bikin';
 
   @override
   String get wizard_screen_desc => 'Ji bo destpêkirina jimartinê li jêr projeyek nû biafirînin.';

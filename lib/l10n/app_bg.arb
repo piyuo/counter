@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Камерата не е намерена",
   "video_sources_camera_not_found_message": "Необходимо е да дадете разрешение за достъп до камерата",
   "video_sources_webcam_not_found_title": "Уеб камерата не е намерена",
-  "video_sources_webcam_not_found_message": "Моля, проверете дали има свързана уеб камера",
+  "video_sources_webcam_not_found_message": "Моля проверете разрешението на приложението и свързването",
   "wizard_screen_desc": "Създайте нов проект по-долу, за да започнете броене.",
   "wizard_screen_new_project_from": "Нов проект от",
   "wizard_screen_language": "Език",

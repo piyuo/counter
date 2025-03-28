@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera ikkje funne",
   "video_sources_camera_not_found_message": "Treng løyve til kamera for å bruka kamera",
   "video_sources_webcam_not_found_title": "Webkamera ikkje funne",
-  "video_sources_webcam_not_found_message": "Ver vennleg og sjekk om webkamera er kopla til",
+  "video_sources_webcam_not_found_message": "Ver vennleg og sjekk appløyve og webkamera",
   "wizard_screen_desc": "Lag eit nytt prosjekt nedanfor for å starta teljing.",
   "wizard_screen_new_project_from": "Nytt prosjekt frå",
   "wizard_screen_language": "Språk",

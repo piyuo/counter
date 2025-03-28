@@ -39,7 +39,7 @@ class LocalizationIt extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam non trovata';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Verificare che una webcam sia collegata';
+  String get video_sources_webcam_not_found_message => 'Verificare l\'autorizzazione dell\'app e la connessione della webcam';
 
   @override
   String get wizard_screen_desc => 'Crea un nuovo progetto per iniziare a contare.';

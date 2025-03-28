@@ -39,7 +39,7 @@ class LocalizationVi extends Localization {
   String get video_sources_webcam_not_found_title => 'Không tìm thấy webcam';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Vui lòng kiểm tra xem có webcam nào được kết nối không';
+  String get video_sources_webcam_not_found_message => 'Vui lòng kiểm tra quyền truy cập ứng dụng và kết nối webcam';
 
   @override
   String get wizard_screen_desc => 'Tạo dự án mới bên dưới để bắt đầu đếm.';

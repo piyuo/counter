@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Camera not found",
   "video_sources_camera_not_found_message": "Camera permission needs to be granted to use this feature",
   "video_sources_webcam_not_found_title": "Webcam not found",
-  "video_sources_webcam_not_found_message": "Please check if any webcam is connected",
+  "video_sources_webcam_not_found_message": "Please check app permission and webcam connection",
   "wizard_screen_desc": "Create a new project below to start counting.",
   "wizard_screen_new_project_from": "New Project from",
   "wizard_screen_language": "Language",

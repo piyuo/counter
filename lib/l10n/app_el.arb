@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Η κάμερα δεν βρέθηκε",
   "video_sources_camera_not_found_message": "Χρειάζεται να παραχωρήσετε άδεια κάμερας για τη χρήση της",
   "video_sources_webcam_not_found_title": "Η κάμερα web δεν βρέθηκε",
-  "video_sources_webcam_not_found_message": "Παρακαλώ ελέγξτε αν είναι συνδεδεμένη κάποια κάμερα web",
+  "video_sources_webcam_not_found_message": "Ελέγξτε την άδεια της εφαρμογής και τη σύνδεση",
   "wizard_screen_desc": "Δημιουργήστε ένα νέο έργο παρακάτω για να ξεκινήσετε τη μέτρηση.",
   "wizard_screen_new_project_from": "Νέο Έργο από",
   "wizard_screen_language": "Γλώσσα",

@@ -39,7 +39,7 @@ class LocalizationGl extends Localization {
   String get video_sources_webcam_not_found_title => 'Cámara web non atopada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Comprobe se hai algunha cámara web conectada';
+  String get video_sources_webcam_not_found_message => 'Comprobe o permiso e conexión da aplicación';
 
   @override
   String get wizard_screen_desc => 'Cree un novo proxecto para comezar a contar.';

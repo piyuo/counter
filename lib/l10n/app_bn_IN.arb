@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "ক্যামেরা পাওয়া যায়নি",
   "video_sources_camera_not_found_message": "ক্যামেরা ব্যবহার করতে অনুমতি প্রদান করুন",
   "video_sources_webcam_not_found_title": "ওয়েবক্যাম পাওয়া যায়নি",
-  "video_sources_webcam_not_found_message": "অনুগ্রহ করে ওয়েবক্যাম সংযুক্ত আছে কিনা যাচাই করুন",
+  "video_sources_webcam_not_found_message": "অ্যাপ্লিকেশনের ক্যামেরা অনুমতি এবং সংযোগ যাচাই করুন",
   "wizard_screen_desc": "গণনা শুরু করতে নীচে একটি নতুন প্রজেক্ট তৈরি করুন।",
   "wizard_screen_new_project_from": "এখান থেকে নতুন প্রজেক্ট",
   "wizard_screen_language": "ভাষা",

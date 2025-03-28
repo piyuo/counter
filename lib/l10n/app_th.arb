@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "ไม่พบกล้อง",
   "video_sources_camera_not_found_message": "ต้องอนุญาตการเข้าถึงกล้องเพื่อใช้งาน",
   "video_sources_webcam_not_found_title": "ไม่พบเว็บแคม",
-  "video_sources_webcam_not_found_message": "กรุณาตรวจสอบว่ามีเว็บแคมเชื่อมต่ออยู่หรือไม่",
+  "video_sources_webcam_not_found_message": "กรุณาตรวจสอบสิทธิ์แอปและการเชื่อมต่อเว็บแคม",
   "wizard_screen_desc": "สร้างโปรเจกต์ใหม่ด้านล่างเพื่อเริ่มการนับ",
   "wizard_screen_new_project_from": "สร้างโปรเจกต์ใหม่จาก",
   "wizard_screen_language": "ภาษา",

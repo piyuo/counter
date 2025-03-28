@@ -39,7 +39,7 @@ class LocalizationRu extends Localization {
   String get video_sources_webcam_not_found_title => 'Веб-камера не найдена';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Пожалуйста, проверьте, подключена ли веб-камера';
+  String get video_sources_webcam_not_found_message => 'Проверьте разрешения приложения и подключение веб-камеры';
 
   @override
   String get wizard_screen_desc => 'Создайте новый проект ниже, чтобы начать подсчет.';
@@ -557,7 +557,7 @@ class LocalizationRuKz extends LocalizationRu {
   String get video_sources_webcam_not_found_title => 'Веб-камера не найдена';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Пожалуйста, проверьте, подключена ли веб-камера';
+  String get video_sources_webcam_not_found_message => 'Проверьте разрешения приложения и подключение веб-камеры';
 
   @override
   String get wizard_screen_desc => 'Создайте новый проект, чтобы начать подсчет.';
@@ -1075,7 +1075,7 @@ class LocalizationRuUa extends LocalizationRu {
   String get video_sources_webcam_not_found_title => 'Веб-камера не найдена';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Пожалуйста, проверьте подключение веб-камеры';
+  String get video_sources_webcam_not_found_message => 'Перевірте дозволи додатка та підключення веб-камери';
 
   @override
   String get wizard_screen_desc => 'Создайте новый проект ниже, чтобы начать подсчет.';

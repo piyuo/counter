@@ -39,7 +39,7 @@ class LocalizationUr extends Localization {
   String get video_sources_webcam_not_found_title => 'ویب کیم نہیں ملا';
 
   @override
-  String get video_sources_webcam_not_found_message => 'براہ کرم چیک کریں کہ کوئی ویب کیم منسلک ہے';
+  String get video_sources_webcam_not_found_message => 'براہ کرم ایپ کی اجازت اور ویب کیم کنکشن چیک کریں';
 
   @override
   String get wizard_screen_desc => 'گنتی شروع کرنے کے لیے نیچے نیا پروجیکٹ بنائیں۔';
@@ -557,7 +557,7 @@ class LocalizationUrIn extends LocalizationUr {
   String get video_sources_webcam_not_found_title => 'ویب کیم نہیں ملا';
 
   @override
-  String get video_sources_webcam_not_found_message => 'براہ کرم چیک کریں کہ کوئی ویب کیم منسلک ہے';
+  String get video_sources_webcam_not_found_message => 'براہ کرم ایپ کی اجازت اور ویب کیم کنکشن چیک کریں';
 
   @override
   String get wizard_screen_desc => 'گنتی شروع کرنے کے لیے نیچے ایک نیا پروجیکٹ بنائیں۔';

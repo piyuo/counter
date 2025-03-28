@@ -39,7 +39,7 @@ class LocalizationSl extends Localization {
   String get video_sources_webcam_not_found_title => 'Spletna kamera ni najdena';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Preverite, ali je spletna kamera priključena';
+  String get video_sources_webcam_not_found_message => 'Preverite dovoljenje aplikacije in povezavo spletne kamere';
 
   @override
   String get wizard_screen_desc => 'Ustvarite nov projekt za začetek štetja.';

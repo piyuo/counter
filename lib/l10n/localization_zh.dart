@@ -39,7 +39,7 @@ class LocalizationZh extends Localization {
   String get video_sources_webcam_not_found_title => '找不到網路攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認網路攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網路攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新專案以開始計數。';
@@ -557,7 +557,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到网络摄像头';
 
   @override
-  String get video_sources_webcam_not_found_message => '请确认网络摄像头已正确连接。';
+  String get video_sources_webcam_not_found_message => '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
 
   @override
   String get wizard_screen_desc => '创建新项目以开始计数。';
@@ -1075,7 +1075,7 @@ class LocalizationZhHk extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到網絡攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認網絡攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新項目以開始計數。';
@@ -1593,7 +1593,7 @@ class LocalizationZhMo extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '搵唔到網絡攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認網絡攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新項目開始計數。';
@@ -2111,7 +2111,7 @@ class LocalizationZhSg extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到网络摄像头';
 
   @override
-  String get video_sources_webcam_not_found_message => '请确认网络摄像头已正确连接。';
+  String get video_sources_webcam_not_found_message => '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
 
   @override
   String get wizard_screen_desc => '创建新项目以开始计数。';

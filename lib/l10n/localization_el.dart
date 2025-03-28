@@ -39,7 +39,7 @@ class LocalizationEl extends Localization {
   String get video_sources_webcam_not_found_title => 'Η κάμερα web δεν βρέθηκε';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Παρακαλώ ελέγξτε αν είναι συνδεδεμένη κάποια κάμερα web';
+  String get video_sources_webcam_not_found_message => 'Ελέγξτε την άδεια της εφαρμογής και τη σύνδεση';
 
   @override
   String get wizard_screen_desc => 'Δημιουργήστε ένα νέο έργο παρακάτω για να ξεκινήσετε τη μέτρηση.';

@@ -39,7 +39,7 @@ class LocalizationLt extends Localization {
   String get video_sources_webcam_not_found_title => 'Internetinė kamera nerasta';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Patikrinkite, ar prijungta kokia nors internetinė kamera';
+  String get video_sources_webcam_not_found_message => 'Patikrinkite programėlės leidimą ir kameros prisijungimą';
 
   @override
   String get wizard_screen_desc => 'Sukurkite naują projektą žemiau, kad pradėtumėte skaičiuoti.';

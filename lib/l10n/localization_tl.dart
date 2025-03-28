@@ -39,7 +39,7 @@ class LocalizationTl extends Localization {
   String get video_sources_webcam_not_found_title => 'Hindi nahanap ang webcam';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Pakisuri kung may nakakonektang webcam';
+  String get video_sources_webcam_not_found_message => 'Pakisuri ang pahintulot ng app at koneksyon ng webcam';
 
   @override
   String get wizard_screen_desc => 'Gumawa ng bagong proyekto sa ibaba para magsimulang mag-bilang.';

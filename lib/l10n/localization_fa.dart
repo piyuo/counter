@@ -39,7 +39,7 @@ class LocalizationFa extends Localization {
   String get video_sources_webcam_not_found_title => 'وب‌کم پیدا نشد';
 
   @override
-  String get video_sources_webcam_not_found_message => 'لطفاً بررسی کنید که وب‌کم متصل باشد';
+  String get video_sources_webcam_not_found_message => 'لطفاً مجوز اپلیکیشن و اتصال وب‌کم را بررسی کنید';
 
   @override
   String get wizard_screen_desc => 'برای شروع شمارش، یک پروژه جدید ایجاد کنید.';

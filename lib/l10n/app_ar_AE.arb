@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "الكاميرا غير موجودة",
   "video_sources_camera_not_found_message": "تحتاج إلى منح إذن الكاميرا لاستخدامها",
   "video_sources_webcam_not_found_title": "كاميرا الويب غير موجودة",
-  "video_sources_webcam_not_found_message": "يرجى التحقق من توصيل كاميرا الويب",
+  "video_sources_webcam_not_found_message": "يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا",
   "wizard_screen_desc": "قم بإنشاء مشروع جديد أدناه لبدء العد.",
   "wizard_screen_new_project_from": "مشروع جديد من",
   "wizard_screen_language": "اللغة",

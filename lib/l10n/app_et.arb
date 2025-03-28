@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kaamerat ei leitud",
   "video_sources_camera_not_found_message": "Kaamera kasutamiseks on vaja kaamerapääsu lubada",
   "video_sources_webcam_not_found_title": "Veebikaamerat ei leitud",
-  "video_sources_webcam_not_found_message": "Palun kontrollige, kas veebikaamera on ühendatud",
+  "video_sources_webcam_not_found_message": "Palun kontrollige rakenduse luba ja kaamera ühendust",
   "wizard_screen_desc": "Loendamise alustamiseks looge uus projekt.",
   "wizard_screen_new_project_from": "Uus projekt allikast",
   "wizard_screen_language": "Keel",

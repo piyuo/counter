@@ -39,7 +39,7 @@ class LocalizationKo extends Localization {
   String get video_sources_webcam_not_found_title => '웹캠을 찾을 수 없음';
 
   @override
-  String get video_sources_webcam_not_found_message => '웹캠이 연결되어 있는지 확인해 주세요';
+  String get video_sources_webcam_not_found_message => '앱 권한 및 웹캠 연결을 확인해 주세요';
 
   @override
   String get wizard_screen_desc => '아래에서 새 프로젝트를 만들어 카운팅을 시작하세요.';

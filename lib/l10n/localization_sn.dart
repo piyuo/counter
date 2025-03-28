@@ -39,7 +39,7 @@ class LocalizationSn extends Localization {
   String get video_sources_webcam_not_found_title => 'Kamira yewebhu haina kuwanikwa';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Ndapota taridza kana kamira yewebhu yakabatanidzwa';
+  String get video_sources_webcam_not_found_message => 'Ndapota tarisa mutsaro wemhinduro yerwendo nenyorova yekamira';
 
   @override
   String get wizard_screen_desc => 'Gadzira chirongwa chitsva pasi apa kuti utange kuverenga.';

@@ -39,7 +39,7 @@ class LocalizationId extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam tidak ditemukan';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Silakan periksa apakah webcam sudah terhubung';
+  String get video_sources_webcam_not_found_message => 'Periksa izin aplikasi dan koneksi webcam';
 
   @override
   String get wizard_screen_desc => 'Buat proyek baru di bawah ini untuk mulai menghitung.';

@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "کیمرہ نہیں ملا",
   "video_sources_camera_not_found_message": "کیمرہ استعمال کرنے کے لیے کیمرہ کی اجازت دینی ہوگی",
   "video_sources_webcam_not_found_title": "ویب کیم نہیں ملا",
-  "video_sources_webcam_not_found_message": "براہ کرم چیک کریں کہ کوئی ویب کیم منسلک ہے",
+  "video_sources_webcam_not_found_message": "براہ کرم ایپ کی اجازت اور ویب کیم کنکشن چیک کریں",
   "wizard_screen_desc": "گنتی شروع کرنے کے لیے نیچے نیا پروجیکٹ بنائیں۔",
   "wizard_screen_new_project_from": "نیا پروجیکٹ بنائیں",
   "wizard_screen_language": "زبان",

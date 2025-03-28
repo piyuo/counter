@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "కెమెరా కనబడలేదు",
   "video_sources_camera_not_found_message": "కెమెరాను ఉపయోగించడానికి కెమెరా అనుమతి అవసరం",
   "video_sources_webcam_not_found_title": "వెబ్‌క్యామ్ కనబడలేదు",
-  "video_sources_webcam_not_found_message": "దయచేసి ఏదైనా వెబ్‌క్యామ్ కనెక్ట్ చేయబడిందో లేదో తనిఖీ చేయండి",
+  "video_sources_webcam_not_found_message": "దయచేసి అప్ అనుమతి మరియు వెబ్‌క్యామ్ కనెక్షన్ను తనిఖీ చేయండి",
   "wizard_screen_desc": "లెక్కించడం ప్రారంభించడానికి క్రింద కొత్త ప్రాజెక్ట్‌ను సృష్టించండి.",
   "wizard_screen_new_project_from": "నుండి కొత్త ప్రాజెక్ట్",
   "wizard_screen_language": "భాష",

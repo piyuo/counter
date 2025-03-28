@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Камера табылмады",
   "video_sources_camera_not_found_message": "Камераны пайдалану үшін камера рұқсатын беру қажет",
   "video_sources_webcam_not_found_title": "Веб-камера табылмады",
-  "video_sources_webcam_not_found_message": "Веб-камераның қосылғанын тексеріңіз",
+  "video_sources_webcam_not_found_message": "Қолданбаның рұқсатын және веб-камераны қосуды тексеріңіз",
   "wizard_screen_desc": "Санауды бастау үшін төменде жаңа жоба жасаңыз.",
   "wizard_screen_new_project_from": "Жаңа жоба құру",
   "wizard_screen_language": "Тіл",

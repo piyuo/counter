@@ -39,7 +39,7 @@ class LocalizationJa extends Localization {
   String get video_sources_webcam_not_found_title => 'ウェブカメラが見つかりません';
 
   @override
-  String get video_sources_webcam_not_found_message => 'ウェブカメラが接続されているか確認してください';
+  String get video_sources_webcam_not_found_message => 'アプリの権限とウェブカメラの接続を確認してください';
 
   @override
   String get wizard_screen_desc => '以下から新しいプロジェクトを作成してカウントを開始します。';

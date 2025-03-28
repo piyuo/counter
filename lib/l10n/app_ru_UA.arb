@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Камера не найдена",
   "video_sources_camera_not_found_message": "Необходимо предоставить разрешение на использование камеры",
   "video_sources_webcam_not_found_title": "Веб-камера не найдена",
-  "video_sources_webcam_not_found_message": "Пожалуйста, проверьте подключение веб-камеры",
+  "video_sources_webcam_not_found_message": "Перевірте дозволи додатка та підключення веб-камери",
   "wizard_screen_desc": "Создайте новый проект ниже, чтобы начать подсчет.",
   "wizard_screen_new_project_from": "Новый проект из",
   "wizard_screen_language": "Язык",

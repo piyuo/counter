@@ -39,7 +39,7 @@ class LocalizationMs extends Localization {
   String get video_sources_webcam_not_found_title => 'Kamera web tidak dijumpai';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Sila periksa jika ada kamera web disambungkan';
+  String get video_sources_webcam_not_found_message => 'Semak izin aplikasi dan sambungan kamera web';
 
   @override
   String get wizard_screen_desc => 'Cipta projek baharu di bawah untuk mula mengira.';
@@ -557,7 +557,7 @@ class LocalizationMsSg extends LocalizationMs {
   String get video_sources_webcam_not_found_title => 'Kamera web tidak dijumpai';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Sila semak jika ada kamera web yang disambungkan';
+  String get video_sources_webcam_not_found_message => 'Sila semak keizinan apl dan sambungan kamera web';
 
   @override
   String get wizard_screen_desc => 'Cipta projek baru di bawah untuk mula mengira.';

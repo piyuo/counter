@@ -39,7 +39,7 @@ class LocalizationMl extends Localization {
   String get video_sources_webcam_not_found_title => 'വെബ്കാം കണ്ടെത്തിയില്ല';
 
   @override
-  String get video_sources_webcam_not_found_message => 'വെബ്കാം കണക്റ്റ് ചെയ്തിട്ടുണ്ടോയെന്ന് പരിശോധിക്കുക';
+  String get video_sources_webcam_not_found_message => 'വെബ്കാം അനുവാദവും കണക്ഷനും പരിശോധിക്കുക';
 
   @override
   String get wizard_screen_desc => 'എണ്ണൽ ആരംഭിക്കാൻ താഴെ ഒരു പുതിയ പ്രോജക്ട് സൃഷ്ടിക്കുക.';

@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "カメラが見つかりません",
   "video_sources_camera_not_found_message": "カメラを使用するには権限の許可が必要です",
   "video_sources_webcam_not_found_title": "ウェブカメラが見つかりません",
-  "video_sources_webcam_not_found_message": "ウェブカメラが接続されているか確認してください",
+  "video_sources_webcam_not_found_message": "アプリの権限とウェブカメラの接続を確認してください",
   "wizard_screen_desc": "以下から新しいプロジェクトを作成してカウントを開始します。",
   "wizard_screen_new_project_from": "以下から新規プロジェクト",
   "wizard_screen_language": "言語",

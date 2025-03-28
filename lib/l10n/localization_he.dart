@@ -39,7 +39,7 @@ class LocalizationHe extends Localization {
   String get video_sources_webcam_not_found_title => 'מצלמת רשת לא נמצאה';
 
   @override
-  String get video_sources_webcam_not_found_message => 'אנא בדוק אם יש מצלמת רשת מחוברת';
+  String get video_sources_webcam_not_found_message => 'אנא בדוק הרשאות אפליקציה וחיבור מצלמה';
 
   @override
   String get wizard_screen_desc => 'צור פרויקט חדש למטה כדי להתחיל בספירה.';

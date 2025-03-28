@@ -39,7 +39,7 @@ class LocalizationEt extends Localization {
   String get video_sources_webcam_not_found_title => 'Veebikaamerat ei leitud';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Palun kontrollige, kas veebikaamera on ühendatud';
+  String get video_sources_webcam_not_found_message => 'Palun kontrollige rakenduse luba ja kaamera ühendust';
 
   @override
   String get wizard_screen_desc => 'Loendamise alustamiseks looge uus projekt.';

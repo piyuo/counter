@@ -39,7 +39,7 @@ class LocalizationFi extends Localization {
   String get video_sources_webcam_not_found_title => 'Webkameraa ei löydy';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Tarkista, että webkamera on kytketty';
+  String get video_sources_webcam_not_found_message => 'Tarkista sovelluksen lupa ja webkameran yhteys';
 
   @override
   String get wizard_screen_desc => 'Luo uusi projekti aloittaaksesi laskemisen.';

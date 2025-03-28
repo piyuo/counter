@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera hittades inte",
   "video_sources_camera_not_found_message": "Du behöver ge kamerabehörighet för att använda kameran",
   "video_sources_webcam_not_found_title": "Webbkamera hittades inte",
-  "video_sources_webcam_not_found_message": "Kontrollera om någon webbkamera är ansluten",
+  "video_sources_webcam_not_found_message": "Kontrollera appbehörighet och webbkameraanslutning",
   "wizard_screen_desc": "Skapa ett nytt projekt nedan för att börja räkna.",
   "wizard_screen_new_project_from": "Nytt projekt från",
   "wizard_screen_language": "Språk",

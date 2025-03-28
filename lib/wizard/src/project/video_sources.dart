@@ -42,19 +42,16 @@ Future<bool> isCameraExists(BuildContext context, app.ProjectProvider projectPro
 }
 
 /// check if webcam exists, check when user click on webcam is much better than check on start, cause check webcam on start will slow down the app start
-Future<bool> isWebcamExists(BuildContext context, app.ProjectProvider projectProvider) async {
+Future<bool> isWebcamExists(app.ProjectProvider projectProvider) async {
   final webcamManager = await projectProvider.getWebcamManager();
   if (webcamManager.hasWebcam) {
     return true;
   }
 
-  if (!context.mounted) {
-    return false;
-  }
-
   // show dialog to say camera not found
   await showCupertinoDialog(
-    context: context,
+    // ignore: use_build_context_synchronously
+    context: cli.globalContext,
     builder: (context) {
       return CupertinoAlertDialog(
         title: Text(context.l.video_sources_webcam_not_found_title),
@@ -73,8 +70,8 @@ Future<bool> isWebcamExists(BuildContext context, app.ProjectProvider projectPro
   return false;
 }
 
-/// check if we have camera permission
-Future<bool> doWeHaveCameraPermission() async {
+/// check if we have phone camera permission, this function won't work on macos
+Future<bool> havePhoneCameraPermission() async {
   var status = await Permission.camera.status;
   if (status.isPermanentlyDenied) {
     await showCupertinoDialog(
@@ -124,12 +121,11 @@ List<Widget> buildVideoSources(
           trailing: CupertinoListTileChevron(),
           onTap: () async {
             videoSourcesProvider.setLoadingWebcam(true);
-            if (!await isWebcamExists(context, projectProvider)) {
-              videoSourcesProvider.setLoadingWebcam(false);
-              return;
-            }
-
             try {
+              if (!await isWebcamExists(projectProvider)) {
+                return;
+              }
+
               // add webcam to project
               if (isAddMode) {
                 final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.webcam);
@@ -182,7 +178,7 @@ List<Widget> buildVideoSources(
                   return;
                 }
 
-                if (await doWeHaveCameraPermission() == false) {
+                if (await havePhoneCameraPermission() == false) {
                   videoSourcesProvider.setLoadingCamera(false);
                   return;
                 }

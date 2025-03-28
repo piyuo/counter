@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Camera niet gevonden",
   "video_sources_camera_not_found_message": "Cameratoestemming is nodig om de camera te gebruiken",
   "video_sources_webcam_not_found_title": "Webcam niet gevonden",
-  "video_sources_webcam_not_found_message": "Controleer of er een webcam is aangesloten",
+  "video_sources_webcam_not_found_message": "Controleer app-toestemming en webcamverbinding",
   "wizard_screen_desc": "Maak een nieuw project hieronder om te beginnen met tellen.",
   "wizard_screen_new_project_from": "Nieuw project van",
   "wizard_screen_language": "Taal",

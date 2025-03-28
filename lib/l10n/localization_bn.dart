@@ -39,7 +39,7 @@ class LocalizationBn extends Localization {
   String get video_sources_webcam_not_found_title => 'ওয়েবক্যাম পাওয়া যায়নি';
 
   @override
-  String get video_sources_webcam_not_found_message => 'অনুগ্রহ করে কোনো ওয়েবক্যাম সংযুক্ত আছে কিনা তা যাচাই করুন';
+  String get video_sources_webcam_not_found_message => 'অ্যাপ্লিকেশনকে ক্যামেরা অনুমতি এবং সংযোগ যাচাই করুন';
 
   @override
   String get wizard_screen_desc => 'গণনা শুরু করতে নিচে একটি নতুন প্রজেক্ট তৈরি করুন।';
@@ -557,7 +557,7 @@ class LocalizationBnIn extends LocalizationBn {
   String get video_sources_webcam_not_found_title => 'ওয়েবক্যাম পাওয়া যায়নি';
 
   @override
-  String get video_sources_webcam_not_found_message => 'অনুগ্রহ করে ওয়েবক্যাম সংযুক্ত আছে কিনা যাচাই করুন';
+  String get video_sources_webcam_not_found_message => 'অ্যাপ্লিকেশনের ক্যামেরা অনুমতি এবং সংযোগ যাচাই করুন';
 
   @override
   String get wizard_screen_desc => 'গণনা শুরু করতে নীচে একটি নতুন প্রজেক্ট তৈরি করুন।';

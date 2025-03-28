@@ -39,7 +39,7 @@ class LocalizationSv extends Localization {
   String get video_sources_webcam_not_found_title => 'Webbkamera hittades inte';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Kontrollera om någon webbkamera är ansluten';
+  String get video_sources_webcam_not_found_message => 'Kontrollera appbehörighet och webbkameraanslutning';
 
   @override
   String get wizard_screen_desc => 'Skapa ett nytt projekt nedan för att börja räkna.';

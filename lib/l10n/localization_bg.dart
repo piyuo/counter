@@ -39,7 +39,7 @@ class LocalizationBg extends Localization {
   String get video_sources_webcam_not_found_title => 'Уеб камерата не е намерена';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Моля, проверете дали има свързана уеб камера';
+  String get video_sources_webcam_not_found_message => 'Моля проверете разрешението на приложението и свързването';
 
   @override
   String get wizard_screen_desc => 'Създайте нов проект по-долу, за да започнете броене.';

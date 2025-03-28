@@ -39,7 +39,7 @@ class LocalizationTh extends Localization {
   String get video_sources_webcam_not_found_title => 'ไม่พบเว็บแคม';
 
   @override
-  String get video_sources_webcam_not_found_message => 'กรุณาตรวจสอบว่ามีเว็บแคมเชื่อมต่ออยู่หรือไม่';
+  String get video_sources_webcam_not_found_message => 'กรุณาตรวจสอบสิทธิ์แอปและการเชื่อมต่อเว็บแคม';
 
   @override
   String get wizard_screen_desc => 'สร้างโปรเจกต์ใหม่ด้านล่างเพื่อเริ่มการนับ';

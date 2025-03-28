@@ -39,7 +39,7 @@ class LocalizationNl extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam niet gevonden';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Controleer of er een webcam is aangesloten';
+  String get video_sources_webcam_not_found_message => 'Controleer app-toestemming en webcamverbinding';
 
   @override
   String get wizard_screen_desc => 'Maak een nieuw project hieronder om te beginnen met tellen.';
@@ -557,7 +557,7 @@ class LocalizationNlBe extends LocalizationNl {
   String get video_sources_webcam_not_found_title => 'Webcam niet gevonden';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Controleer of er een webcam is aangesloten';
+  String get video_sources_webcam_not_found_message => 'Controleer app-toestemming en webcamverbinding';
 
   @override
   String get wizard_screen_desc => 'Maak hieronder een nieuw project aan om te beginnen met tellen.';

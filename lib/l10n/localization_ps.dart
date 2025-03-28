@@ -39,7 +39,7 @@ class LocalizationPs extends Localization {
   String get video_sources_webcam_not_found_title => 'ویب کیمره ونه موندل شوه';
 
   @override
-  String get video_sources_webcam_not_found_message => 'مهرباني وکړئ وګورئ چې ویب کیمره نښلول شوې ده';
+  String get video_sources_webcam_not_found_message => 'مهرباني وکړئ د اپلیکیشن اجازه او ویب کیمره تال چک کړئ';
 
   @override
   String get wizard_screen_desc => 'د شمېرلو پیل کولو لپاره لاندې نوی پروژه جوړه کړئ.';

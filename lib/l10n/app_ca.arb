@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Càmera no trobada",
   "video_sources_camera_not_found_message": "Cal concedir permís a la càmera per utilitzar-la",
   "video_sources_webcam_not_found_title": "Càmera web no trobada",
-  "video_sources_webcam_not_found_message": "Si us plau, comproveu si hi ha alguna càmera web connectada",
+  "video_sources_webcam_not_found_message": "Si us plau verificeu els permisos de l'aplicació i la connexió",
   "wizard_screen_desc": "Creeu un nou projecte a continuació per començar a comptar.",
   "wizard_screen_new_project_from": "Nou projecte des de",
   "wizard_screen_language": "Idioma",

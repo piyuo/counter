@@ -39,7 +39,7 @@ class LocalizationAm extends Localization {
   String get video_sources_webcam_not_found_title => 'Վեբ տեսախցիկը չի գտնվել';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Խնդրում ենք ստուգել արդյոք որևէ վեբ տեսախցիկ միացված է';
+  String get video_sources_webcam_not_found_message => 'Խնդրում ենք ստուգել հավելվածի թույլտվությունը և կապակցումը';
 
   @override
   String get wizard_screen_desc => 'Ստեղծեք նոր նախագիծ հաշվարկն սկսելու համար։';

@@ -39,7 +39,7 @@ class LocalizationEs extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam no encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Por favor, comprueba si hay alguna webcam conectada';
+  String get video_sources_webcam_not_found_message => 'Por favor compruebe el permiso de la aplicación y la conexión de la cámara';
 
   @override
   String get wizard_screen_desc => 'Crea un nuevo proyecto a continuación para empezar a contar.';
@@ -557,7 +557,7 @@ class LocalizationEsAr extends LocalizationEs {
   String get video_sources_webcam_not_found_title => 'Cámara web no encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Por favor, compruebe si hay alguna cámara web conectada';
+  String get video_sources_webcam_not_found_message => 'Por favor compruebe el permiso de la aplicación y la conexión de la cámara';
 
   @override
   String get wizard_screen_desc => 'Creá un nuevo proyecto para comenzar a contar.';
@@ -1075,7 +1075,7 @@ class LocalizationEsCo extends LocalizationEs {
   String get video_sources_webcam_not_found_title => 'Cámara web no encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Por favor verifica si hay alguna cámara web conectada';
+  String get video_sources_webcam_not_found_message => 'Verificar permiso de la app y conexión de cámara';
 
   @override
   String get wizard_screen_desc => 'Crea un nuevo proyecto para comenzar a contar.';
@@ -1593,7 +1593,7 @@ class LocalizationEsMx extends LocalizationEs {
   String get video_sources_webcam_not_found_title => 'Cámara web no encontrada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Por favor verifica si hay alguna cámara web conectada';
+  String get video_sources_webcam_not_found_message => 'Verificar permiso de la app y conexión de cámara';
 
   @override
   String get wizard_screen_desc => 'Crea un nuevo proyecto a continuación para comenzar a contar.';

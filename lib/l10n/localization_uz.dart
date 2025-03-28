@@ -39,7 +39,7 @@ class LocalizationUz extends Localization {
   String get video_sources_webcam_not_found_title => 'Veb-kamera topilmadi';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Iltimos, veb-kamera ulanganligini tekshiring';
+  String get video_sources_webcam_not_found_message => 'Iltimos, ilovaning ruxsatini va veb-kamera ulanishini tekshiring';
 
   @override
   String get wizard_screen_desc => 'Hisoblashni boshlash uchun quyida yangi loyiha yarating.';

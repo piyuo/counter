@@ -39,7 +39,7 @@ class LocalizationSi extends Localization {
   String get video_sources_webcam_not_found_title => 'වෙබ්කැමරාව හමු නොවීය';
 
   @override
-  String get video_sources_webcam_not_found_message => 'කරුණාකර වෙබ්කැමරාවක් සම්බන්ධ කර ඇත්දැයි පරීක්ෂා කරන්න';
+  String get video_sources_webcam_not_found_message => 'කරුණාකර යෙදුමේ අවසර සහ වෙබ්කැම් සම්බන්ධතාවය පරීක්ෂා කරන්න';
 
   @override
   String get wizard_screen_desc => 'ගණනය කිරීම ආරම්භ කිරීමට පහත නව ව්‍යාපෘතියක් සාදන්න.';

@@ -39,7 +39,7 @@ class LocalizationHa extends Localization {
   String get video_sources_webcam_not_found_title => 'Ba a sami webcam ba';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Don Allah ka tabbatar cewa webcam yana haɗe';
+  String get video_sources_webcam_not_found_message => 'Sawaboda izinin da haɗin zube';
 
   @override
   String get wizard_screen_desc => 'Ƙirƙiri sabon aiki don farawa ƙirga.';

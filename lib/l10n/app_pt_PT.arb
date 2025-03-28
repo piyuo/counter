@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Câmara não encontrada",
   "video_sources_camera_not_found_message": "É necessário conceder permissão para utilizar a câmara",
   "video_sources_webcam_not_found_title": "Webcam não encontrada",
-  "video_sources_webcam_not_found_message": "Por favor verifique se existe alguma webcam ligada",
+  "video_sources_webcam_not_found_message": "Por favor verifique a permissão do aplicativo e a conexão da webcam",
   "wizard_screen_desc": "Crie um novo projeto abaixo para começar a contar.",
   "wizard_screen_new_project_from": "Novo Projeto de",
   "wizard_screen_language": "Idioma",

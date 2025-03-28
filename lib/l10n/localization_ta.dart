@@ -39,7 +39,7 @@ class LocalizationTa extends Localization {
   String get video_sources_webcam_not_found_title => 'வெப்கேம் கண்டுபிடிக்கப்படவில்லை';
 
   @override
-  String get video_sources_webcam_not_found_message => 'ஏதேனும் வெப்கேம் இணைக்கப்பட்டுள்ளதா என்பதை சரிபார்க்கவும்';
+  String get video_sources_webcam_not_found_message => 'ஏப் அனுமதி மற்றும் வெப்கேம் இணைப்பைச் சரிபார்க்கவும்';
 
   @override
   String get wizard_screen_desc => 'எண்ணத் தொடங்க கீழே ஒரு புதிய திட்டத்தை உருவாக்கவும்.';

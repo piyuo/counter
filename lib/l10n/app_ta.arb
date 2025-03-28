@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "கேமரா கண்டுபிடிக்கப்படவில்லை",
   "video_sources_camera_not_found_message": "கேமராவைப் பயன்படுத்த அனுமதி வழங்க வேண்டும்",
   "video_sources_webcam_not_found_title": "வெப்கேம் கண்டுபிடிக்கப்படவில்லை",
-  "video_sources_webcam_not_found_message": "ஏதேனும் வெப்கேம் இணைக்கப்பட்டுள்ளதா என்பதை சரிபார்க்கவும்",
+  "video_sources_webcam_not_found_message": "ஏப் அனுமதி மற்றும் வெப்கேம் இணைப்பைச் சரிபார்க்கவும்",
   "wizard_screen_desc": "எண்ணத் தொடங்க கீழே ஒரு புதிய திட்டத்தை உருவாக்கவும்.",
   "wizard_screen_new_project_from": "இதிலிருந்து புதிய திட்டம்",
   "wizard_screen_language": "மொழி",

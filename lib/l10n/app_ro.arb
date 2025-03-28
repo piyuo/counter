@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Camera nu a fost găsită",
   "video_sources_camera_not_found_message": "Trebuie să acordați permisiunea pentru cameră pentru a o putea utiliza",
   "video_sources_webcam_not_found_title": "Webcam-ul nu a fost găsit",
-  "video_sources_webcam_not_found_message": "Vă rugăm să verificați dacă este conectat un webcam",
+  "video_sources_webcam_not_found_message": "Verificați permisiunea aplicației și conexiunea webcam",
   "wizard_screen_desc": "Creați un proiect nou mai jos pentru a începe numărarea.",
   "wizard_screen_new_project_from": "Proiect nou din",
   "wizard_screen_language": "Limbă",

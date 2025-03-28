@@ -39,7 +39,7 @@ class LocalizationSw extends Localization {
   String get video_sources_webcam_not_found_title => 'Kamera ya wavuti haijapatikana';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Tafadhali angalia kama kamera ya wavuti imeunganishwa';
+  String get video_sources_webcam_not_found_message => 'Tafadhali angalia idhini ya programu tumizi na muunganisho wa kamera ya wavuti';
 
   @override
   String get wizard_screen_desc => 'Unda mradi mpya hapa chini ili kuanza kuhesabu.';

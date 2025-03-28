@@ -39,7 +39,7 @@ class LocalizationLv extends Localization {
   String get video_sources_webcam_not_found_title => 'Tīmekļa kamera nav atrasta';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Lūdzu, pārbaudiet, vai tīmekļa kamera ir pievienota';
+  String get video_sources_webcam_not_found_message => 'Lūdzu pārbaudiet lietotnes atļauju un kameras savienojumu';
 
   @override
   String get wizard_screen_desc => 'Izveidojiet jaunu projektu, lai sāktu skaitīšanu.';

@@ -39,7 +39,7 @@ class LocalizationEn extends Localization {
   String get video_sources_webcam_not_found_title => 'Webcam not found';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
+  String get video_sources_webcam_not_found_message => 'Please check app permission and webcam connection';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';
@@ -557,7 +557,7 @@ class LocalizationEnAu extends LocalizationEn {
   String get video_sources_webcam_not_found_title => 'Webcam not found';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
+  String get video_sources_webcam_not_found_message => 'Please check app permission and webcam connection';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';
@@ -1075,7 +1075,7 @@ class LocalizationEnCa extends LocalizationEn {
   String get video_sources_webcam_not_found_title => 'Webcam not found';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
+  String get video_sources_webcam_not_found_message => 'Please check app permission and webcam connection';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';
@@ -1593,7 +1593,7 @@ class LocalizationEnGb extends LocalizationEn {
   String get video_sources_webcam_not_found_title => 'Webcam not found';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
+  String get video_sources_webcam_not_found_message => 'Please check app permission and webcam connection';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';
@@ -2111,7 +2111,7 @@ class LocalizationEnIn extends LocalizationEn {
   String get video_sources_webcam_not_found_title => 'Webcam not found';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Please check if any webcam is connected';
+  String get video_sources_webcam_not_found_message => 'Please check app permission and webcam connection';
 
   @override
   String get wizard_screen_desc => 'Create a new project below to start counting.';

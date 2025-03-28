@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Տեսախցիկը չի գտնվել",
   "video_sources_camera_not_found_message": "Տեսախցիկն օգտագործելու համար անհրաժեշտ է թույլտվություն տալ",
   "video_sources_webcam_not_found_title": "Վեբ տեսախցիկը չի գտնվել",
-  "video_sources_webcam_not_found_message": "Խնդրում ենք ստուգել արդյոք որևէ վեբ տեսախցիկ միացված է",
+  "video_sources_webcam_not_found_message": "Խնդրում ենք ստուգել հավելվածի թույլտվությունը և կապակցումը",
   "wizard_screen_desc": "Ստեղծեք նոր նախագիծ հաշվարկն սկսելու համար։",
   "wizard_screen_new_project_from": "Նոր նախագիծ՝ սկսած",
   "wizard_screen_language": "Լեզու",

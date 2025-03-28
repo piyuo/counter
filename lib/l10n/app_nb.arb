@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kamera ikke funnet",
   "video_sources_camera_not_found_message": "Trenger kameratillatelse for å bruke kamera",
   "video_sources_webcam_not_found_title": "Webkamera ikke funnet",
-  "video_sources_webcam_not_found_message": "Vennligst sjekk om webkamera er tilkoblet",
+  "video_sources_webcam_not_found_message": "Sjekk app-tillatelse og webkamera-tilkobling",
   "wizard_screen_desc": "Opprett et nytt prosjekt nedenfor for å begynne å telle.",
   "wizard_screen_new_project_from": "Nytt prosjekt fra",
   "wizard_screen_language": "Språk",

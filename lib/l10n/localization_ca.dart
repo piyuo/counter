@@ -39,7 +39,7 @@ class LocalizationCa extends Localization {
   String get video_sources_webcam_not_found_title => 'Càmera web no trobada';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Si us plau, comproveu si hi ha alguna càmera web connectada';
+  String get video_sources_webcam_not_found_message => 'Si us plau verificeu els permisos de l\'aplicació i la connexió';
 
   @override
   String get wizard_screen_desc => 'Creeu un nou projecte a continuació per començar a comptar.';

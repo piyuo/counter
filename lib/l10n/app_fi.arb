@@ -9,7 +9,7 @@
   "video_sources_camera_not_found_title": "Kameraa ei löydy",
   "video_sources_camera_not_found_message": "Kameran käyttö vaatii kameraoikeuksien hyväksymisen",
   "video_sources_webcam_not_found_title": "Webkameraa ei löydy",
-  "video_sources_webcam_not_found_message": "Tarkista, että webkamera on kytketty",
+  "video_sources_webcam_not_found_message": "Tarkista sovelluksen lupa ja webkameran yhteys",
   "wizard_screen_desc": "Luo uusi projekti aloittaaksesi laskemisen.",
   "wizard_screen_new_project_from": "Uusi projekti lähteestä",
   "wizard_screen_language": "Kieli",

@@ -307,7 +307,7 @@ abstract class Localization {
   /// No description provided for @video_sources_webcam_not_found_message.
   ///
   /// In en, this message translates to:
-  /// **'Please check if any webcam is connected'**
+  /// **'Please check app permission and webcam connection'**
   String get video_sources_webcam_not_found_message;
 
   /// No description provided for @wizard_screen_desc.

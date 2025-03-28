@@ -39,7 +39,7 @@ class LocalizationHr extends Localization {
   String get video_sources_webcam_not_found_title => 'Web kamera nije pronađena';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Provjerite je li web kamera priključena';
+  String get video_sources_webcam_not_found_message => 'Provjerite dozvolu aplikacije i povezivanje kamere';
 
   @override
   String get wizard_screen_desc => 'Izradite novi projekt u nastavku za početak brojanja.';
