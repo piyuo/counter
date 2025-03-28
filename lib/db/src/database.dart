@@ -4,6 +4,7 @@ import 'dart:math';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:vision/vision.dart' as vision;
@@ -25,7 +26,8 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return LazyDatabase(() async {
-      final dbFolder = await getApplicationDocumentsDirectory();
+      final dbFolder = await getApplicationSupportDirectory();
+      debugPrint('app data folder: ${dbFolder.path}');
       String dbPath = path.join(dbFolder.path, 'db.sqlite');
       final file = File(dbPath);
       return NativeDatabase.createInBackground(file);
@@ -34,7 +36,7 @@ class AppDatabase extends _$AppDatabase {
 
   /// delete the project temp media file in app directory, save by [saveFileToAppDirectory]
   Future<void> deleteProjectInAppDirectory(String projectId) async {
-    final appDir = await getApplicationDocumentsDirectory();
+    final appDir = await getApplicationSupportDirectory();
     final projectDir = Directory('${appDir.path}/$projectId');
     if (await projectDir.exists()) {
       await projectDir.delete(recursive: true);

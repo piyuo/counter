@@ -149,7 +149,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// delete the project temp media file in app directory, save by [saveFileToAppDirectory]
   Future<void> deleteProjectInAppDirectory(String projectId) async {
-    final appDir = await getApplicationDocumentsDirectory();
+    final appDir = await getApplicationSupportDirectory();
     final projectDir = Directory('${appDir.path}/$projectId');
     if (await projectDir.exists()) {
       await projectDir.delete(recursive: true);

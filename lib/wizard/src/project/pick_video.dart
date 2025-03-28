@@ -34,7 +34,7 @@ Future<String?> pickVideo() async {
 /// save file to app directory, this make sure the file is accessible in the app sandbox.
 /// beware that it is caller's responsibility to delete the file when it is no longer needed.
 Future<String> saveFileToAppDirectory(String originalPath, String projectId, int videoId) async {
-  final appDir = await getApplicationDocumentsDirectory();
+  final appDir = await getApplicationSupportDirectory();
   final projectDir = Directory('${appDir.path}/$projectId');
 
   // Create the project subdirectory if it doesn't exist.

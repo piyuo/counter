@@ -11,11 +11,11 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  // Set up the mock for getApplicationDocumentsDirectory.
+  // Set up the mock for getApplicationSupportDirectory.
   const MethodChannel channel = MethodChannel('plugins.flutter.io/path_provider');
   TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel,
       (MethodCall call) async {
-    if (call.method == 'getApplicationDocumentsDirectory') {
+    if (call.method == 'getApplicationSupportDirectory') {
       return Directory.systemTemp.path;
     }
     return null;

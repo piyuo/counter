@@ -229,7 +229,7 @@ class VideoProvider with ChangeNotifier {
     switch (video.mediaType) {
       case vision.MediaType.file:
         assert(video.path != null && video.path!.isNotEmpty, 'file path is empty');
-        final appDir = await getApplicationDocumentsDirectory();
+        final appDir = await getApplicationSupportDirectory();
         final filePath = '${appDir.path}/${video.path}';
         errorCode = await visionController.openFile(filePath);
       case vision.MediaType.camera:
