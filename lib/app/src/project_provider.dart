@@ -514,7 +514,7 @@ class ProjectProvider with ChangeNotifier {
       videoId: videoId ?? getNextVideoId(),
       mediaType: mediaType,
       videoName: _createVideoName(mediaType),
-      objectClasses: [0],
+      objectClasses: [0, 2],
       path: path,
       model: benchmarkLocalStorage.recommendedModel,
     );
