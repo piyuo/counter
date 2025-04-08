@@ -4,7 +4,7 @@ const _confidenceThreshold = 0.45; // pick object as many as possible
 const _trackingThreshold = 0.55; // byte track will filter object by
 const _nmsThreshold = 0.30;
 const _matchThreshold = 0.15;
-const _maxLostSeconds = 4;
+const _maxLostSeconds = 3; // 3 seconds to consider object is lost
 const _validThreshold = 900; // 900ms to consider object is valid
 
 /// video define the video source for the project, a project can have multiple video sources. like camera, video file, live stream.
