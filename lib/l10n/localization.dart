@@ -23,7 +23,6 @@ import 'localization_fi.dart' deferred as localization_fi;
 import 'localization_fr.dart' deferred as localization_fr;
 import 'localization_gl.dart' deferred as localization_gl;
 import 'localization_gu.dart' deferred as localization_gu;
-import 'localization_ha.dart' deferred as localization_ha;
 import 'localization_he.dart' deferred as localization_he;
 import 'localization_hi.dart' deferred as localization_hi;
 import 'localization_hr.dart' deferred as localization_hr;
@@ -187,7 +186,6 @@ abstract class Localization {
     Locale('fr', 'CH'),
     Locale('gl'),
     Locale('gu'),
-    Locale('ha'),
     Locale('he'),
     Locale('hi'),
     Locale('hr'),
@@ -1280,7 +1278,7 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['af', 'am', 'ar', 'az', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'ha', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'lt', 'lv', 'ml', 'mn', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sn', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['af', 'am', 'ar', 'az', 'bg', 'bn', 'ca', 'cs', 'da', 'de', 'el', 'en', 'es', 'et', 'fa', 'fi', 'fr', 'gl', 'gu', 'he', 'hi', 'hr', 'hu', 'id', 'it', 'ja', 'kk', 'ko', 'ku', 'ln', 'lt', 'lv', 'ml', 'mn', 'mr', 'ms', 'my', 'nb', 'ne', 'nl', 'nn', 'pl', 'ps', 'pt', 'ro', 'ru', 'si', 'sk', 'sl', 'sn', 'sr', 'sv', 'sw', 'ta', 'te', 'th', 'tl', 'tr', 'uk', 'ur', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LocalizationDelegate old) => false;
@@ -1399,7 +1397,6 @@ case 'SG': return localization_zh.loadLibrary().then((dynamic _) => localization
     case 'fr': return localization_fr.loadLibrary().then((dynamic _) => localization_fr.LocalizationFr());
     case 'gl': return localization_gl.loadLibrary().then((dynamic _) => localization_gl.LocalizationGl());
     case 'gu': return localization_gu.loadLibrary().then((dynamic _) => localization_gu.LocalizationGu());
-    case 'ha': return localization_ha.loadLibrary().then((dynamic _) => localization_ha.LocalizationHa());
     case 'he': return localization_he.loadLibrary().then((dynamic _) => localization_he.LocalizationHe());
     case 'hi': return localization_hi.loadLibrary().then((dynamic _) => localization_hi.LocalizationHi());
     case 'hr': return localization_hr.loadLibrary().then((dynamic _) => localization_hr.LocalizationHr());
