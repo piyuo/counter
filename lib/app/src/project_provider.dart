@@ -453,6 +453,9 @@ class ProjectProvider with ChangeNotifier {
 
   /// notify listeners and [onProjectSave] callback, if videoProvider is not null, it means the change is from the video source
   void saveProject(VideoProvider? videoProvider) {
+    if (project == null) {
+      return;
+    }
     _saveProjectTimer?.cancel();
     _saveProjectTimer = Timer(const Duration(seconds: 2), () async {
       onProjectSave?.call(project!, videoProvider?.video);
