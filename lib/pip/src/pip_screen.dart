@@ -56,7 +56,7 @@ class PipScreen extends StatelessWidget {
       builder: (context, orientation) => LayoutBuilder(
         builder: (context, constraints) => Consumer<PipProvider>(
           builder: (context, pipProvider, _) {
-            bool isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
+            pipProvider.isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
             bool isCompactLayout = constraints.maxHeight < _compactHeightThreshold;
 
             /// the width of the sliding panel
@@ -186,15 +186,15 @@ class PipScreen extends StatelessWidget {
               children: [
                 AnimatedPositioned(
                   duration: _animationDuration,
-                  left: isSidebarLayout ? slidingPanelWidth : 0,
+                  left: pipProvider.isSidebarLayout ? slidingPanelWidth : 0,
                   right: 0,
                   top: 0,
                   bottom: 0,
-                  child: builder(isSidebarLayout),
+                  child: builder(pipProvider.isSidebarLayout),
                 ),
                 Consumer<vision.OrientationProvider>(builder: (context, orientationProvider, child) {
                   // screen is big enough, use sidebar layout
-                  if (isSidebarLayout) {
+                  if (pipProvider.isSidebarLayout) {
                     return buildSidebarLayout();
                   }
 

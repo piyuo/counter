@@ -37,6 +37,9 @@ class PipProvider with ChangeNotifier {
   /// is the sliding panel opened?
   bool isPanelOpened = false;
 
+  /// is the sidebar layout?
+  bool isSidebarLayout = false;
+
   @override
   dispose() {
     for (final scrollController in _scrollControllers.values) {
@@ -81,6 +84,9 @@ class PipProvider with ChangeNotifier {
 
   /// full open the sliding panel
   Future<void> setSlidingPanelState(SlidingPanelState slidingPanelState) async {
+    if (isSidebarLayout) {
+      return;
+    }
     _slidingPanelState = slidingPanelState;
     if (panelController.isAttached) {
       switch (slidingPanelState) {
