@@ -65,6 +65,7 @@ class PipProvider with ChangeNotifier {
   /// the key for the sliding panel
   final GlobalKey<SlidingUpPanelState> panelKey = GlobalKey<SlidingUpPanelState>();
 
+  /// get the pip provider from the context
   static PipProvider of(BuildContext context) {
     return Provider.of<PipProvider>(context, listen: false);
   }

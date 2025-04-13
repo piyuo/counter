@@ -93,7 +93,7 @@ class PipScreen extends StatelessWidget {
                   // fixed width
                   ? AnimatedPositioned(
                       duration: _animationDuration,
-                      top: safePadding.top + top, // 28 is height for close/minimize button bar
+                      top: safePadding.top + top,
                       height: constraints.maxHeight - top,
                       left: 30, // no safePadding.left need more space to show preview,
                       width: slidingPanelWidth,
