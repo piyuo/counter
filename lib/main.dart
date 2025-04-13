@@ -7,6 +7,7 @@ import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:libcli/cli/cli.dart' as cli;
@@ -20,7 +21,12 @@ final GlobalKey<wizard.WizardAppState> wizardKey = GlobalKey<wizard.WizardAppSta
 
 main() {
   registerTimeagoLocales();
-  cli.run(() => const MyApp());
+  cli.run(() => const MyApp(), alertUser: (e) {
+    if (e is PlatformException) {
+      return false;
+    }
+    return true;
+  });
 }
 
 class MyApp extends StatefulWidget {
