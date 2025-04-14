@@ -22,7 +22,7 @@ final GlobalKey<wizard.WizardAppState> wizardKey = GlobalKey<wizard.WizardAppSta
 main() {
   registerTimeagoLocales();
   cli.run(() => const MyApp(), alertUser: (e) {
-    if (e is PlatformException) {
+    if (e is PlatformException || e is MissingPluginException) {
       return false;
     }
     return true;
