@@ -1,1 +1,1 @@
-flutter build macos --release
+flutter build macos --release --obfuscate --split-debug-info=debug_info
