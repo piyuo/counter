@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "歩行者検出用のビデオを選ぶため、写真ライブラリへのアクセスが必要です。選択されたビデオは端末内で処理され、外部に送信されることはありません。";
+"NSCameraUsageDescription" = "歩行者をリアルタイムで検出・カウントするため、カメラへのアクセスが必要です。映像は端末内で処理され、保存や送信は行われません。";
+"NSMotionUsageDescription" = "カメラ画像を正しく調整するため、デバイスの回転角度（例：0°や90°）を取得します。";

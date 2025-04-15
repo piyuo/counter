@@ -78,6 +78,9 @@
 		427B1E932DAEF29000E229D6 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Main.strings; sourceTree = "<group>"; };
 		427B1E942DAEF29000E229D6 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		427B1E952DAEF29000E229D6 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		427B1E962DAEF2DF00E229D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		427B1E972DAEF2E000E229D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		427B1E982DAEF2E000E229D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43A42A894B7DE94061D6D881 /* Pods-RunnerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.debug.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		450957D92148F424476C4421 /* Pods-CounterTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CounterTests.profile.xcconfig"; path = "Target Support Files/Pods-CounterTests/Pods-CounterTests.profile.xcconfig"; sourceTree = "<group>"; };
 		46A728F997EDA274D47817F2 /* Pods-CounterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CounterTests.debug.xcconfig"; path = "Target Support Files/Pods-CounterTests/Pods-CounterTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 				bg,
 				"zh-HK",
 				hr,
+				ja,
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			preferredProjectObjectVersion = 77;
@@ -478,6 +482,7 @@
 				427B1E8F2DAEF04500E229D6 /* bg */,
 				427B1E922DAEF08C00E229D6 /* zh-HK */,
 				427B1E952DAEF29000E229D6 /* hr */,
+				427B1E982DAEF2E000E229D6 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				427B1E8D2DAEF04500E229D6 /* bg */,
 				427B1E902DAEF08C00E229D6 /* zh-HK */,
 				427B1E932DAEF29000E229D6 /* hr */,
+				427B1E962DAEF2DF00E229D6 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -510,6 +516,7 @@
 				427B1E8E2DAEF04500E229D6 /* bg */,
 				427B1E912DAEF08C00E229D6 /* zh-HK */,
 				427B1E942DAEF29000E229D6 /* hr */,
+				427B1E972DAEF2E000E229D6 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
