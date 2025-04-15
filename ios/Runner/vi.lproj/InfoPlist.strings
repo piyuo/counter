@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Ứng dụng cần quyền truy cập thư viện ảnh để chọn video phục vụ việc phát hiện người đi bộ. Video sẽ được xử lý cục bộ và không bao giờ được tải lên hoặc chia sẻ.";
+"NSCameraUsageDescription" = "Ứng dụng cần quyền truy cập camera để ghi lại hình ảnh thời gian thực nhằm nhận diện và đếm người đi bộ. Video được xử lý cục bộ, không lưu hoặc tải lên.";
+"NSMotionUsageDescription" = "Ứng dụng sử dụng dữ liệu chuyển động để xác định góc xoay thiết bị, giúp điều chỉnh hình ảnh camera chính xác hơn trong việc phát hiện người đi bộ.";
