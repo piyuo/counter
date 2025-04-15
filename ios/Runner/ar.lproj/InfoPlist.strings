@@ -5,6 +5,6 @@
   Created by CHIEN CHIH LIU on 4/15/25.
 
 */
-"NSPhotoLibraryUsageDescription" = "This app requires access to your photo library so you can select a pre-recorded video for pedestrian detection. The selected video is processed locally to generate pedestrian count results and is never uploaded or transmitted off your device.";
-"NSCameraUsageDescription" = "This app needs access to your camera to capture real-time images for identifying and counting pedestrians. The captured video is processed locally to provide immediate statistics, and it is neither saved nor uploaded.";
-"NSMotionUsageDescription" = "This app uses motion data to determine the device's rotation angle (e.g., 0° or 90°) to adjust the camera image for accurate pedestrian detection.";
+"NSPhotoLibraryUsageDescription" = "يتطلب هذا التطبيق الوصول إلى مكتبة الصور الخاصة بك حتى تتمكن من تحديد فيديو مسجل مسبقًا للكشف عن المشاة. تتم معالجة الفيديو المحدد محليًا لإنشاء نتائج عد المشاة ولا يتم تحميله أو نقله خارج جهازك أبدًا.";
+"NSCameraUsageDescription" = "يحتاج هذا التطبيق إلى الوصول إلى الكاميرا الخاصة بك لالتقاط صور في الوقت الفعلي لتحديد وعد المشاة. تتم معالجة الفيديو الملتقط محليًا لتوفير إحصائيات فورية، ولا يتم حفظه أو تحميله.";
+"NSMotionUsageDescription" = "يستخدم هذا التطبيق بيانات الحركة لتحديد زاوية دوران الجهاز (مثل 0° أو 90°) لضبط صورة الكاميرا للكشف الدقيق عن المشاة.";

@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "此應用程式需要存取您的相簿，讓您選擇已儲存的影片進行行人偵測。所選影片僅在本機進行處理以產生行人計數結果，不會上傳或傳送至您的裝置以外的地方。";
+"NSCameraUsageDescription" = "此應用程式需要使用您的相機來實時捕捉影像，以識別及計算行人數量。拍攝的影片僅在本機處理以提供即時統計數據，不會被儲存或上傳。";
+"NSMotionUsageDescription" = "此應用程式使用動作感應數據來確定裝置的旋轉角度（例如 0° 或 90°），以調整相機影像以準確進行行人偵測。";
