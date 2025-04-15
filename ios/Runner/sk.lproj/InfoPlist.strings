@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Aplikácia potrebuje prístup k vašej fotoknižnici na výber vopred nahratého videa na detekciu chodcov. Video sa spracúva lokálne a nikdy sa neodosiela ani nezdieľa.";
+"NSCameraUsageDescription" = "Aplikácia potrebuje prístup ku kamere na snímanie obrazu v reálnom čase a počítanie chodcov. Video sa spracúva lokálne, neukladá sa ani neodosiela.";
+"NSMotionUsageDescription" = "Aplikácia používa údaje o pohybe na zistenie uhla natočenia zariadenia (napr. 0° alebo 90°) a úpravu obrazu kamery pre presnú detekciu chodcov.";
