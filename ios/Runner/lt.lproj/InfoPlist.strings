@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Kad galėtumėte pasirinkti iš anksto įrašytą vaizdo įrašą pėsčiųjų aptikimui, šiai programėlei reikalinga prieiga prie jūsų nuotraukų bibliotekos. Pasirinktas vaizdo įrašas apdorojamas tik jūsų įrenginyje skaičiavimo rezultatams gauti ir niekada nėra įkeliamas ar perduodamas iš įrenginio.";
+"NSCameraUsageDescription" = "Pėstiesiems identifikuoti ir skaičiuoti realiuoju laiku fiksuojant vaizdus, šiai programėlei reikalinga prieiga prie jūsų kameros. Užfiksuotas vaizdo įrašas apdorojamas tik jūsų įrenginyje tiesioginei statistikai gauti ir nėra nei išsaugomas, nei įkeliamas.";
+"NSMotionUsageDescription" = "Kad būtų galima pakoreguoti kameros vaizdą tiksliam pėsčiųjų aptikimui, ši programėlė naudoja judesio duomenis įrenginio pasukimo kampui (pvz., 0°, 90°) nustatyti.";
