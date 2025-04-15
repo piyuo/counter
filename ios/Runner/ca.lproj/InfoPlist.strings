@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Aquesta aplicació necessita accedir a la seva biblioteca de fotos perquè pugui seleccionar un vídeo pregravas per a la detecció de vianants. El vídeo seleccionat es processa localment per generar resultats de recompte de vianants i mai es carrega ni es transmet fora del seu dispositiu.";
+"NSCameraUsageDescription" = "Aquesta aplicació necessita accedir a la seva càmera per capturar imatges en temps real per identificar i comptar vianants. El vídeo capturat es processa localment per proporcionar estadístiques immediates, i no es desa ni es carrega.";
+"NSMotionUsageDescription" = "Aquesta aplicació utilitza dades de moviment per determinar l'angle de rotació del dispositiu (per exemple, 0° o 90°) per ajustar la imatge de la càmera per a una detecció precisa de vianants.";
