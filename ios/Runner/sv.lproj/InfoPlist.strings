@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Den här appen behöver åtkomst till ditt bildbibliotek för att du ska kunna välja en video för att räkna fotgängare. Videon behandlas lokalt och laddas aldrig upp eller delas.";
+"NSCameraUsageDescription" = "Den här appen behöver åtkomst till din kamera för att upptäcka och räkna fotgängare i realtid. Videon behandlas lokalt och sparas eller laddas inte upp.";
+"NSMotionUsageDescription" = "Den här appen använder rörelsedata för att justera kamerabilden efter enhetens rotation och förbättra fotgängardetektionen.";
