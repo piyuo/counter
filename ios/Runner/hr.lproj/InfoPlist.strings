@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Ova aplikacija zahtijeva pristup vašoj biblioteci fotografija kako biste mogli odabrati prethodno snimljeni video za detekciju pješaka. Odabrani video se obrađuje lokalno za generiranje rezultata brojanja pješaka i nikada se ne prenosi s vašeg uređaja.";
+"NSCameraUsageDescription" = "Ova aplikacija treba pristup vašoj kameri za snimanje slika u stvarnom vremenu za identifikaciju i brojanje pješaka. Snimljeni video se obrađuje lokalno kako bi pružio trenutne statistike, ne sprema se niti prenosi.";
+"NSMotionUsageDescription" = "Ova aplikacija koristi podatke o kretanju za određivanje kuta rotacije uređaja (npr. 0° ili 90°) kako bi prilagodila sliku kamere za preciznu detekciju pješaka.";
