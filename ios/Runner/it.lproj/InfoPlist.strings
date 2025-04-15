@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Questa app richiede l’accesso alla libreria foto per selezionare un video da analizzare e contare i pedoni. Il video scelto viene elaborato solo sul dispositivo e non viene mai caricato o trasmesso altrove.";
+"NSCameraUsageDescription" = "Questa app necessita dell’accesso alla fotocamera per rilevare e contare i pedoni in tempo reale. I video vengono elaborati solo localmente e non vengono salvati né caricati.";
+"NSMotionUsageDescription" = "Questa app utilizza i dati di movimento per rilevare l’orientamento del dispositivo e regolare l’immagine della fotocamera per un conteggio preciso dei pedoni.";
