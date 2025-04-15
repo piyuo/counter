@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Aplikacja potrzebuje dostępu do biblioteki zdjęć, aby wybrać wcześniej nagrany film do wykrywania pieszych. Wideo jest przetwarzane lokalnie i nie jest przesyłane ani udostępniane.";
+"NSCameraUsageDescription" = "Aplikacja potrzebuje dostępu do aparatu, aby nagrywać obraz na żywo do wykrywania i liczenia pieszych. Wideo jest przetwarzane lokalnie, nie jest zapisywane ani przesyłane.";
+"NSMotionUsageDescription" = "Aplikacja wykorzystuje dane ruchu do określenia kąta obrotu urządzenia (np. 0° lub 90°) i dostosowania obrazu z kamery do dokładnego wykrywania pieszych.";
