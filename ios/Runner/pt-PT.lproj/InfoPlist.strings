@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Esta app precisa de acesso à sua fototeca para escolher um vídeo gravado e detetar peões. O vídeo é processado localmente e nunca é enviado ou partilhado.";
+"NSCameraUsageDescription" = "Esta app precisa de acesso à câmara para captar imagens em tempo real e contar peões. O vídeo é processado localmente, não é guardado nem enviado.";
+"NSMotionUsageDescription" = "Esta app usa dados de movimento para identificar o ângulo de rotação do dispositivo (ex.: 0° ou 90°) e ajustar a imagem da câmara para uma deteção precisa de peões.";
