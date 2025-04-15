@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Cette application nécessite l'accès à votre bibliothèque de photos pour sélectionner une vidéo préenregistrée pour la détection de piétons. La vidéo sélectionnée est traitée localement pour générer des résultats de comptage de piétons et n'est jamais téléversée ni transmise hors de votre appareil.";
+"NSCameraUsageDescription" = "Cette application a besoin d'accéder à votre caméra pour capturer des images en temps réel afin d'identifier et de compter les piétons. La vidéo capturée est traitée localement pour fournir des statistiques immédiates, et elle n'est ni enregistrée ni téléversée.";
+"NSMotionUsageDescription" = "Cette application utilise les données de mouvement pour déterminer l'angle de rotation de l'appareil (par exemple, 0° ou 90°) afin d'ajuster l'image de la caméra pour une détection précise des piétons.";
