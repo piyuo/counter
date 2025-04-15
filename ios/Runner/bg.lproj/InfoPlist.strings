@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "This app requires access to your photo library so you can select a pre-recorded video for pedestrian detection. The selected video is processed locally to generate pedestrian count results and is never uploaded or transmitted off your device.";
+"NSCameraUsageDescription" = "This app needs access to your camera to capture real-time images for identifying and counting pedestrians. The captured video is processed locally to provide immediate statistics, and it is neither saved nor uploaded.";
+"NSMotionUsageDescription" = "This app uses motion data to determine the device's rotation angle (e.g., 0° or 90°) to adjust the camera image for accurate pedestrian detection.";
