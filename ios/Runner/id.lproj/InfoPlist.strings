@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Aplikasi ini memerlukan akses ke perpustakaan foto Anda agar Anda dapat memilih video yang telah direkam sebelumnya untuk deteksi pejalan kaki. Video yang dipilih diproses secara lokal untuk menghasilkan hasil jumlah pejalan kaki dan tidak pernah diunggah atau dikirim keluar dari perangkat Anda.";
+"NSCameraUsageDescription" = "Aplikasi ini memerlukan akses ke kamera Anda untuk menangkap gambar secara real-time guna mengidentifikasi dan menghitung pejalan kaki. Video yang direkam diproses secara lokal untuk memberikan statistik segera, dan tidak disimpan maupun diunggah.";
+"NSMotionUsageDescription" = "Aplikasi ini menggunakan data gerakan untuk menentukan sudut rotasi perangkat (misalnya, 0° atau 90°) guna menyesuaikan gambar kamera untuk deteksi pejalan kaki yang akurat.";
