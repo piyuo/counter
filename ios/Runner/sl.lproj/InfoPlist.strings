@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Aplikacija potrebuje dostop do vaše fototeke za izbiro vnaprej posnetega videa za zaznavanje pešcev. Video se obdeluje lokalno in se nikoli ne naloži ali pošlje z naprave.";
+"NSCameraUsageDescription" = "Aplikacija potrebuje dostop do kamere za zajem slike v realnem času in štetje pešcev. Video se obdeluje lokalno, ne shrani se in se ne naloži.";
+"NSMotionUsageDescription" = "Aplikacija uporablja podatke o gibanju za določanje kota rotacije naprave (npr. 0° ali 90°) in prilagajanje slike kamere za natančno zaznavanje pešcev.";
