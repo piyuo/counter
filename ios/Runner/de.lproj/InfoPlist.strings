@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Diese App benötigt Zugriff auf Ihre Fotobibliothek, um ein vorab aufgezeichnetes Video für die Fußgängererkennung auszuwählen. Das Video wird lokal verarbeitet, um Fußgängerzahlen zu generieren, und niemals hochgeladen oder übertragen.";
+"NSCameraUsageDescription" = "Diese App benötigt Zugriff auf Ihre Kamera, um Echtzeitbilder für die Erkennung und Zählung von Fußgängern aufzunehmen. Das aufgenommene Video wird lokal verarbeitet, um sofortige Statistiken zu liefern, und weder gespeichert noch hochgeladen.";
+"NSMotionUsageDescription" = "Diese App verwendet Bewegungsdaten, um den Drehwinkel des Geräts (z. B. 0° oder 90°) zu bestimmen und das Kamerabild für eine präzise Fußgängererkennung anzupassen.";
