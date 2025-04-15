@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Ez az alkalmazás hozzáférést kér a fotókönyvtárához, hogy kiválaszthasson egy előre rögzített videót gyalogosfelismeréshez. A kiválasztott videó helyben kerül feldolgozásra a gyalogosok számának meghatározásához, és soha nem kerül feltöltésre vagy továbbításra az eszközéről.";
+"NSCameraUsageDescription" = "Ez az alkalmazás hozzáférést kér a kamerához, hogy valós idejű képeket rögzítsen a gyalogosok azonosításához és számlálásához. A rögzített videó helyben kerül feldolgozásra azonnali statisztikák biztosításához, és nem kerül mentésre vagy feltöltésre.";
+"NSMotionUsageDescription" = "Ez az alkalmazás mozgási adatokat használ az eszköz elforgatási szögének (pl. 0° vagy 90°) meghatározására, hogy a kamera képét pontos gyalogosfelismeréshez igazítsa.";
