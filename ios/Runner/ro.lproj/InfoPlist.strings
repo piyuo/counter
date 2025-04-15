@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Această aplicație are nevoie de acces la biblioteca foto pentru a selecta un videoclip înregistrat pentru detectarea pietonilor. Videoclipul este procesat local și nu este niciodată încărcat sau transmis.";
+"NSCameraUsageDescription" = "Această aplicație are nevoie de acces la cameră pentru a capta imagini în timp real și a număra pietonii. Videoclipul este procesat local, nu este salvat sau încărcat.";
+"NSMotionUsageDescription" = "Aplicația folosește datele de mișcare pentru a detecta unghiul de rotație al dispozitivului (ex.: 0° sau 90°) și pentru a ajusta imaginea camerei pentru o detecție precisă a pietonilor.";
