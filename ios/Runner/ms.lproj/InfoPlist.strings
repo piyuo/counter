@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Akses ke pustaka foto anda diperlukan supaya anda boleh memilih video pra-rakam untuk pengesanan pejalan kaki. Video yang dipilih diproses secara setempat pada peranti anda untuk menjana hasil kiraan dan tidak pernah dimuat naik atau dihantar keluar.";
+"NSCameraUsageDescription" = "Akses ke kamera anda diperlukan untuk menangkap imej masa nyata bagi mengenal pasti dan mengira pejalan kaki. Video yang ditangkap diproses secara setempat pada peranti anda untuk statistik segera dan tidak disimpan atau dimuat naik.";
+"NSMotionUsageDescription" = "Untuk melaraskan imej kamera bagi pengesanan pejalan kaki yang tepat, aplikasi ini menggunakan data gerakan bagi menentukan sudut putaran peranti (cth., 0°, 90°).";
