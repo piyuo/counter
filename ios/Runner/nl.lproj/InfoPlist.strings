@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Deze app heeft toegang nodig tot je fotobibliotheek om een opgeslagen video te kiezen voor voetgangersdetectie. De video wordt alleen lokaal verwerkt en nooit geüpload of gedeeld.";
+"NSCameraUsageDescription" = "Deze app heeft toegang tot je camera nodig om livebeelden vast te leggen voor het detecteren en tellen van voetgangers. De beelden worden lokaal verwerkt en niet opgeslagen of geüpload.";
+"NSMotionUsageDescription" = "Deze app gebruikt bewegingsgegevens om de rotatiehoek van het apparaat (bijv. 0° of 90°) te bepalen voor een correcte camerabeeldweergave.";
