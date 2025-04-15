@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Sovellus tarvitsee pääsyn kuvakirjastoon, jotta voit valita valmiiksi tallennetun videon jalankulkijoiden laskentaa varten. Video käsitellään vain paikallisesti eikä sitä ladata laitteesta.";
+"NSCameraUsageDescription" = "Sovellus tarvitsee pääsyn kameraan reaaliaikaista jalankulkijoiden tunnistamista ja laskemista varten. Video käsitellään vain laitteella, eikä sitä tallenneta tai jaeta.";
+"NSMotionUsageDescription" = "Sovellus käyttää liiketietoja laitteen asennon (esim. 0° tai 90°) tunnistamiseen, jotta kamerakuva saadaan oikein jalankulkijoiden tunnistusta varten.";
