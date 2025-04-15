@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "We need access to your photo library so you can pick a saved video to analyse for pedestrian counting. The video stays on your device and is only used for local processing.";
+"NSCameraUsageDescription" = "We need access to your camera to detect and count people in real time. Everything is processed on your device — nothing’s saved or uploaded.";
+"NSMotionUsageDescription" = "Motion data helps us figure out your device’s angle (like upright or sideways) to keep the camera view correctly aligned for accurate pedestrian detection.";
