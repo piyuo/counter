@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Esta app necesita acceder a tu galería para que puedas elegir un video y contar peatones. El video se procesa localmente y nunca se sube ni se comparte.";
+"NSCameraUsageDescription" = "Esta app necesita usar la cámara para detectar y contar peatones en tiempo real. El video se procesa en el dispositivo y no se guarda ni se sube.";
+"NSMotionUsageDescription" = "Esta app usa datos de movimiento para ajustar la imagen según la rotación del dispositivo y mejorar la detección de peatones.";
