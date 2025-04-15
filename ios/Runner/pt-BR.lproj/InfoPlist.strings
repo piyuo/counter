@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Este app precisa acessar sua biblioteca de fotos para que você selecione um vídeo gravado usado na detecção de pedestres. O vídeo é processado localmente e nunca é enviado ou compartilhado.";
+"NSCameraUsageDescription" = "Este app precisa acessar sua câmera para capturar imagens em tempo real e contar pedestres. O vídeo é processado localmente e não é salvo nem enviado.";
+"NSMotionUsageDescription" = "Este app usa dados de movimento para identificar o ângulo de rotação do dispositivo (ex.: 0° ou 90°) e ajustar a imagem da câmera para detecção precisa de pedestres.";
