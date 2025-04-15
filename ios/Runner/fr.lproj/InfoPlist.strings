@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Cette app a besoin d’accéder à votre photothèque pour sélectionner une vidéo à analyser. La vidéo reste sur votre appareil et sert uniquement à compter les piétons.";
+"NSCameraUsageDescription" = "Cette app a besoin d’accéder à votre caméra pour détecter et compter les piétons en temps réel. Les images sont traitées localement et ne sont ni enregistrées ni partagées.";
+"NSMotionUsageDescription" = "Cette app utilise les données de mouvement pour ajuster l’angle de la caméra et améliorer la détection des piétons.";
