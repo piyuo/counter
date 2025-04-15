@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "For å velge en forhåndsinnspilt video for fotgjengergjenkjenning, trenger denne appen tilgang til bildebiblioteket ditt. Den valgte videoen behandles lokalt på enheten for å gi tellingsresultater, og blir aldri lastet opp eller overført fra enheten.";
+"NSCameraUsageDescription" = "For å identifisere og telle fotgjengere ved å ta sanntidsbilder, trenger denne appen tilgang til kameraet ditt. Den innspilte videoen behandles lokalt på enheten for umiddelbar statistikk, og blir verken lagret eller lastet opp.";
+"NSMotionUsageDescription" = "For å justere kamerabildet for nøyaktig fotgjengergjenkjenning, bruker denne appen bevegelsesdata til å bestemme enhetens rotasjonsvinkel (f.eks. 0°, 90°).";
