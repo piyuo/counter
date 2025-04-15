@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Appen skal bruge adgang til din fotobibliotek for at vælge en gemt video til fodgængerdetektion. Videoen behandles kun lokalt og bliver aldrig uploadet eller delt.";
+"NSCameraUsageDescription" = "Appen skal bruge adgang til dit kamera for at optage livebilleder til at identificere og tælle fodgængere. Videoen behandles lokalt og gemmes eller uploades ikke.";
+"NSMotionUsageDescription" = "Appen bruger bevægelsesdata til at afgøre enhedens rotation (f.eks. 0° eller 90°) for at justere kamerabilledet korrekt.";
