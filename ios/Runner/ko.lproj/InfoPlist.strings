@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "보행자 감지용으로 미리 녹화된 비디오를 선택하기 위해 사진 보관함 접근이 필요합니다. 선택된 비디오는 기기 내에서만 처리되어 수를 계산하며, 외부로 업로드하거나 전송하지 않습니다.";
+"NSCameraUsageDescription" = "보행자 식별 및 수 계산을 위해 실시간 이미지를 촬영하려면 카메라 접근이 필요합니다. 촬영된 영상은 즉각적인 통계 생성을 위해 기기 내에서만 처리되며, 저장되거나 외부로 전송되지 않습니다.";
+"NSMotionUsageDescription" = "정확한 보행자 감지를 위해 카메라 이미지를 조정할 목적으로, 기기의 회전 각도(예: 0°, 90°)를 파악하는 데 동작 데이터를 사용합니다.";
