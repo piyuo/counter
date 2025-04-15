@@ -1,0 +1,10 @@
+/*
+  InfoPlist.strings
+  Counter
+
+  Created by CHIEN CHIH LIU on 4/15/25.
+
+*/
+"NSPhotoLibraryUsageDescription" = "Yaya tespiti için bir video seçebilmeniz adına bu uygulamanın fotoğraf arşivinize erişimi gerekiyor. Video yalnızca cihazda işlenir, asla yüklenmez veya paylaşılmaz.";
+"NSCameraUsageDescription" = "Yayaları gerçek zamanlı tespit etmek ve saymak için bu uygulamanın kameranıza erişimi gerekir. Video yalnızca yerel olarak işlenir, kaydedilmez veya yüklenmez.";
+"NSMotionUsageDescription" = "Kamera görüntüsünü doğru şekilde ayarlamak için bu uygulama, cihazın dönme açısını belirlemek amacıyla hareket verilerini kullanır.";
