@@ -5,6 +5,13 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+println "Keystore path: " + keystorePropertiesFile.absolutePath
+
 android {
     namespace = "com.piyuo.counter"
     compileSdk = 35 // flutter.compileSdkVersion
@@ -29,11 +36,30 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        release {
+            if (keystoreProperties.getProperty('storeFile') != null) {
+                storeFile file(keystoreProperties.getProperty('storeFile'))
+                storePassword keystoreProperties.getProperty('storePassword')
+                keyAlias keystoreProperties.getProperty('keyAlias')
+                keyPassword keystoreProperties.getProperty('keyPassword')
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // Signing with the release keys configuration.
+            signingConfig signingConfigs.release // <-- 讓 release build 使用上面的簽署設定
+            // 其他 release 設定，例如 ProGuard/R8
+            minifyEnabled true  // 啟用程式碼壓縮/混淆
+            shrinkResources true // 移除未使用的資源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            //signingConfig = signingConfigs.debug
         }
     }
 }
