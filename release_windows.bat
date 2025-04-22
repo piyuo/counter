@@ -1,1 +1,1 @@
-flutter build windows --release
+dart run msix:create
