@@ -110,15 +110,3 @@ install(DIRECTORY "${PROJECT_BUILD_DIR}/${FLUTTER_ASSET_DIR_NAME}"
 install(FILES "${AOT_LIBRARY}" DESTINATION "${INSTALL_BUNDLE_DATA_DIR}"
   CONFIGURATIONS Profile;Release
   COMPONENT Runtime)
-
-# === Copy DLLs from vision package===
-if(DEFINED VISION_REQUIRED_DLLS)
-  foreach(dll ${VISION_REQUIRED_DLLS})
-    if(EXISTS "${dll}")
-      configure_file("${dll}" "${CMAKE_CURRENT_BINARY_DIR}/runner/Debug/" COPYONLY)
-      message("Copying DLL: ${dll} to ${CMAKE_CURRENT_BINARY_DIR}/runner/Debug/")
-    else()
-      message(WARNING "DLL not found: ${dll}")
-    endif()
-  endforeach()
-endif()

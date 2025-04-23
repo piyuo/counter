@@ -16,6 +16,24 @@ add_executable(${BINARY_NAME} WIN32
   "runner.exe.manifest"
 )
 
+# === Copy DLLs from vision package===
+if(DEFINED VISION_REQUIRED_DLLS)
+  foreach(dll ${VISION_REQUIRED_DLLS})
+    if(EXISTS "${dll}")
+      add_custom_command(
+        TARGET ${BINARY_NAME} # ✅ 用變數
+        POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${dll}"
+        "$<TARGET_FILE_DIR:${BINARY_NAME}>" # ✅ 也改這裡
+      )
+      message("Scheduled DLL copy: ${dll} to $<TARGET_FILE_DIR:${BINARY_NAME}>")
+    else()
+      message(WARNING "DLL not found: ${dll}")
+    endif()
+  endforeach()
+endif()
+
 # Apply the standard set of build settings. This can be removed for applications
 # that need different build settings.
 apply_standard_settings(${BINARY_NAME})

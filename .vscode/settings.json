@@ -64,5 +64,6 @@
         "unimported",
         "wrapf",
         "yourname"
-    ]
+    ],
+    "cmake.sourceDirectory": "C:/dropbox/counter/linux"
 }
