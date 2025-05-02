@@ -140,7 +140,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// delete the project
   Future<void> deleteProject(String projectId) async {
-    closeProject();
+    await closeProject();
     await deleteProjectInAppDirectory(projectId);
     if (onDeleteProject != null) {
       await onDeleteProject!(projectId);
@@ -244,7 +244,12 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// close the project
-  void closeProject() async {
+  Future<void> closeProject() async {
+    // shutdown all video providers before dispose it
+    for (final videoProvider in videoProviders) {
+      await videoProvider.shutdown();
+    }
+
     _onProjectClosed();
     notifyListeners();
   }

@@ -125,6 +125,11 @@ class VideoProvider with ChangeNotifier {
     });
   }
 
+  /// shutdown the server prepare for dispose.
+  Future<void> shutdown() async {
+    await visionController.shutdown();
+  }
+
   /// dispose multi view provider
   @override
   void dispose() {

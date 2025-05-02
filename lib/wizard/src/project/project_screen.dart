@@ -189,7 +189,7 @@ class ProjectScreen extends StatelessWidget {
                       false;
 
                   if (shouldPop) {
-                    projectProvider.closeProject();
+                    await projectProvider.closeProject();
                     if (context.mounted) {
                       pip.PipProvider.of(context).setSlidingPanelState(pip.SlidingPanelState.open);
                       Navigator.pop(context);
