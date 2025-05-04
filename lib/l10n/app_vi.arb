@@ -75,7 +75,7 @@
   "detection_screen_match": "Khớp",
   "detection_screen_match_desc": "#0 matchThreshold là tham số quan trọng trong theo dõi đối tượng đo lường mức độ khớp giữa các khung phát hiện khác nhau. Giá trị thấp hơn giúp liên kết đối tượng dễ dàng hơn nhưng tăng nguy cơ liên kết sai. Giá trị cao hơn nghiêm ngặt hơn đối với liên kết đối tượng nhưng có thể bỏ lỡ một số khớp thực.",
   "detection_screen_lost": "Mất",
-  "detection_screen_lost_desc": "Đối tượng theo dõi sẽ bị xóa nếu nó bị mất trong #0",
+  "detection_screen_lost_desc": "Xác định động thời gian xóa vật thể bị mất giữa #0 và #1 dựa trên tốc độ di chuyển",
   "detection_screen_consider_valid": "Coi là hợp lệ sau",
   "detection_screen_consider_valid_desc": "Đối tượng theo dõi sẽ được coi là hợp lệ sau #0",
   "detection_screen_reset": "Đặt lại",

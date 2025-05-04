@@ -75,7 +75,7 @@
   "detection_screen_match": "Match",
   "detection_screen_match_desc": "#0 matchThreshold er en central parameter i objektsporing der måler graden af match mellem forskellige detektionsbokse. Lavere værdi gør det lettere at forbinde objekter men øger risikoen for fejlagtige forbindelser. Højere værdi er strengere ved objektforbindelser men kan miste nogle sande match.",
   "detection_screen_lost": "Tabt",
-  "detection_screen_lost_desc": "Sporingsobjekt vil blive fjernet, hvis det er tabt i #0",
+  "detection_screen_lost_desc": "Bestemmer dynamisk tiden for fjernelse af tabte objekter mellem #0 og #1 baseret på bevægelseshastighed",
   "detection_screen_consider_valid": "Betragt som gyldig efter",
   "detection_screen_consider_valid_desc": "Sporingsobjekt vil blive betragtet som gyldigt efter #0",
   "detection_screen_reset": "Nulstil",

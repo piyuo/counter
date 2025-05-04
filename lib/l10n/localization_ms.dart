@@ -237,7 +237,7 @@ class LocalizationMs extends Localization {
   String get detection_screen_lost => 'Hilang';
 
   @override
-  String get detection_screen_lost_desc => 'Objek jejak akan dibuang jika ia hilang selama #0';
+  String get detection_screen_lost_desc => 'Menentukan masa penghapusan objek yang hilang secara dinamik antara #0 dan #1 berdasarkan kelajuan pergerakan';
 
   @override
   String get detection_screen_consider_valid => 'Anggap sah selepas';
@@ -755,7 +755,7 @@ class LocalizationMsSg extends LocalizationMs {
   String get detection_screen_lost => 'Hilang';
 
   @override
-  String get detection_screen_lost_desc => 'Objek yang dijejak akan dikeluarkan jika ia hilang selama #0';
+  String get detection_screen_lost_desc => 'Menentukan masa penghapusan objek yang hilang secara dinamik antara #0 dan #1 berdasarkan kelajuan pergerakan';
 
   @override
   String get detection_screen_consider_valid => 'Anggap sah selepas';

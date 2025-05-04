@@ -75,7 +75,7 @@
   "detection_screen_match": "התאמה",
   "detection_screen_match_desc": "#0 matchThreshold הוא פרמטר מפתח במעקב אחר אובייקטים המודד את מידת ההתאמה בין תיבות זיהוי שונות. ערך נמוך יותר מקל על שיוך אובייקטים אך מגביר את הסיכון לשיוכים שגויים. ערך גבוה יותר מחמיר יותר בשיוך אובייקטים אך עלול להחמיץ התאמות אמיתיות.",
   "detection_screen_lost": "אבוד",
-  "detection_screen_lost_desc": "מעקב אחר אובייקט יוסר אם הוא אבוד למשך #0",
+  "detection_screen_lost_desc": "קובע באופן דינמי את זמן הסרת האובייקטים האבודים בין #0 ל-#1 בהתאם למהירות התנועה",
   "detection_screen_consider_valid": "החשב כתקף אחרי",
   "detection_screen_consider_valid_desc": "מעקב אחר אובייקט ייחשב כתקף אחרי #0",
   "detection_screen_reset": "איפוס",

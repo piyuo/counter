@@ -237,7 +237,7 @@ class LocalizationAm extends Localization {
   String get detection_screen_lost => 'Կորած';
 
   @override
-  String get detection_screen_lost_desc => 'Հետևվող օբյեկտը կհեռացվի, եթե այն կորած է #0';
+  String get detection_screen_lost_desc => 'የዕቃዎችን እንቅስቃሴ መሰረት በማድረግ ከ#0 እስከ #1 ባለው ጊዜ ውስጥ የጠፉ ዕቃዎችን ለማስወገድ ዋጋ ይወስናል';
 
   @override
   String get detection_screen_consider_valid => 'Համարել վավեր հետո';

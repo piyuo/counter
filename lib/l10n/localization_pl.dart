@@ -237,7 +237,7 @@ class LocalizationPl extends Localization {
   String get detection_screen_lost => 'Zgubiony';
 
   @override
-  String get detection_screen_lost_desc => 'Śledzony obiekt zostanie usunięty, jeśli będzie zgubiony przez #0';
+  String get detection_screen_lost_desc => 'Dynamicznie określa czas usunięcia zgubionych obiektów między #0 a #1 na podstawie prędkości ruchu';
 
   @override
   String get detection_screen_consider_valid => 'Uznaj za prawidłowy po';

@@ -75,7 +75,7 @@
   "detection_screen_match": "匹配",
   "detection_screen_match_desc": "#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。",
   "detection_screen_lost": "丟失",
-  "detection_screen_lost_desc": "如果物體丟失 #0，追蹤物體將被移除",
+  "detection_screen_lost_desc": "根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體",
   "detection_screen_consider_valid": "視為有效時間",
   "detection_screen_consider_valid_desc": "追蹤物體在 #0 後視為有效",
   "detection_screen_reset": "重置",

@@ -75,7 +75,7 @@
   "detection_screen_match": "Lingana",
   "detection_screen_match_desc": "#0 matchThreshold ni parameta muhimu katika ufuatiliaji wa vitu ambayo inapima kiwango cha kulingana kati ya kisanduku tofauti cha utambuzi. Thamani ya chini hufanya uhusiano wa vitu kuwa rahisi lakini huongeza hatari ya uhusiano mbaya. Thamani ya juu ni kali zaidi kwenye uhusiano wa vitu lakini inaweza kukosa baadhi ya mapambo ya kweli.",
   "detection_screen_lost": "Potea",
-  "detection_screen_lost_desc": "Ufuatiliaji wa kitu utaondolewa ikiwa kimepotea kwa #0",
+  "detection_screen_lost_desc": "Huamua wakati wa kuondoa vitu vilivyopotea kati ya #0 na #1 kulingana na kasi ya mwendo",
   "detection_screen_consider_valid": "Chukulia kuwa halali baada ya",
   "detection_screen_consider_valid_desc": "Ufuatiliaji wa kitu utachukuliwa kuwa halali baada ya #0",
   "detection_screen_reset": "Weka upya",

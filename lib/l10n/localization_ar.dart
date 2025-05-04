@@ -237,7 +237,7 @@ class LocalizationAr extends Localization {
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'سيتم إزالة الكائن المتتبع إذا فُقد لمدة #0';
+  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتباره صالحًا بعد';
@@ -755,7 +755,7 @@ class LocalizationArAe extends LocalizationAr {
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'سيتم إزالة تتبع الكائن إذا فُقد لمدة #0';
+  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 بناءً على سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتباره صالحاً بعد';
@@ -1273,7 +1273,7 @@ class LocalizationArDz extends LocalizationAr {
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'سيتم إزالة الكائن المتتبع إذا فُقد لمدة #0';
+  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتبار صالح بعد';
@@ -1791,7 +1791,7 @@ class LocalizationArEg extends LocalizationAr {
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'سيتم إزالة الجسم المتتبع إذا فُقد لمدة #0';
+  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتبار صالح بعد';

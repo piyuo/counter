@@ -75,7 +75,7 @@
   "detection_screen_match": "Podudaranje",
   "detection_screen_match_desc": "#0 matchThreshold je ključni parametar u praćenju objekata koji mjeri stupanj podudaranja između različitih okvira detekcije. Niža vrijednost olakšava povezivanje objekata ali povećava rizik od pogrešnih povezivanja. Viša vrijednost je stroža kod povezivanja objekata ali može propustiti neka stvarna podudaranja.",
   "detection_screen_lost": "Izgubljeno",
-  "detection_screen_lost_desc": "Praćeni objekt bit će uklonjen ako je izgubljen za #0",
+  "detection_screen_lost_desc": "Dinamički određuje vrijeme uklanjanja izgubljenih objekata između #0 i #1 na temelju brzine kretanja",
   "detection_screen_consider_valid": "Smatraj valjanim nakon",
   "detection_screen_consider_valid_desc": "Praćeni objekt smatrat će se valjanim nakon #0",
   "detection_screen_reset": "Resetiraj",

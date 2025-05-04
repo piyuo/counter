@@ -691,7 +691,7 @@ abstract class Localization {
   /// No description provided for @detection_screen_lost_desc.
   ///
   /// In en, this message translates to:
-  /// **'Track object will be removed if it is lost for #0'**
+  /// **'Dynamically determines lost object removal time between #0 and #1 based on movement speed'**
   String get detection_screen_lost_desc;
 
   /// No description provided for @detection_screen_consider_valid.

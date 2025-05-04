@@ -237,7 +237,7 @@ class LocalizationIt extends Localization {
   String get detection_screen_lost => 'Perso';
 
   @override
-  String get detection_screen_lost_desc => 'L\'oggetto tracciato verrà rimosso se viene perso per #0';
+  String get detection_screen_lost_desc => 'Determina dinamicamente il tempo di rimozione degli oggetti persi tra #0 e #1 in base alla velocità di movimento';
 
   @override
   String get detection_screen_consider_valid => 'Considera valido dopo';

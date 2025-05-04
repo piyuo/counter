@@ -237,7 +237,7 @@ class LocalizationUk extends Localization {
   String get detection_screen_lost => 'Втрачено';
 
   @override
-  String get detection_screen_lost_desc => 'Відстежуваний об\'єкт буде видалено, якщо він втрачений протягом #0';
+  String get detection_screen_lost_desc => 'Динамічно визначає час видалення втрачених об\'єктів між #0 та #1 на основі швидкості руху';
 
   @override
   String get detection_screen_consider_valid => 'Вважати дійсним після';

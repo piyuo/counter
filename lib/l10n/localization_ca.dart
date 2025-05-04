@@ -237,7 +237,7 @@ class LocalizationCa extends Localization {
   String get detection_screen_lost => 'Perdut';
 
   @override
-  String get detection_screen_lost_desc => 'L\'objecte en seguiment s\'eliminarà si es perd durant #0';
+  String get detection_screen_lost_desc => 'Determina dinàmicament el temps d\'eliminació d\'objectes perduts entre #0 i #1 segons la velocitat de moviment';
 
   @override
   String get detection_screen_consider_valid => 'Considerar vàlid després de';

@@ -237,7 +237,7 @@ class LocalizationGu extends Localization {
   String get detection_screen_lost => 'ગુમ થયેલું';
 
   @override
-  String get detection_screen_lost_desc => 'જો તે #0 માટે ગુમ થાય તો ટ્રેક ઓબ્જેક્ટ દૂર કરવામાં આવશે';
+  String get detection_screen_lost_desc => 'ચલનની ગતિના આધારે #0 અને #1 વચ્ચે ખોવાયેલી વસ્તુઓને દૂર કરવાનો સમય ગતિશીલ રીતે નક્કી કરે છે';
 
   @override
   String get detection_screen_consider_valid => 'પછી માન્ય ગણો';

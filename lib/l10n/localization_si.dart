@@ -237,7 +237,7 @@ class LocalizationSi extends Localization {
   String get detection_screen_lost => 'අහිමි වීම';
 
   @override
-  String get detection_screen_lost_desc => '#0 සඳහා අහිමි වුවහොත් ලුහුබැඳීමේ වස්තුව ඉවත් කරනු ලැබේ';
+  String get detection_screen_lost_desc => 'චලනයේ වේගය මත පදනම්ව #0 සහ #1 අතර අහිමි වූ වස්තු ඉවත් කිරීමේ කාලය ගතික ලෙස තීරණය කරයි';
 
   @override
   String get detection_screen_consider_valid => 'වලංගු ලෙස සලකන්නේ';

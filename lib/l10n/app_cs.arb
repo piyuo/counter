@@ -75,7 +75,7 @@
   "detection_screen_match": "Shoda",
   "detection_screen_match_desc": "#0 matchThreshold je klíčový parametr ve sledování objektů který měří míru shody mezi různými detekčními rámečky. Nižší hodnota usnadňuje propojení objektů ale zvyšuje riziko chybných propojení. Vyšší hodnota je při propojování objektů přísnější ale může přehlédnout některé skutečné shody.",
   "detection_screen_lost": "Ztráta",
-  "detection_screen_lost_desc": "Sledovaný objekt bude odstraněn, pokud je ztracen po dobu #0",
+  "detection_screen_lost_desc": "Dynamicky určuje čas pro odstranění ztracených objektů mezi #0 a #1 podle rychlosti pohybu",
   "detection_screen_consider_valid": "Považovat za platný po",
   "detection_screen_consider_valid_desc": "Sledovaný objekt bude považován za platný po #0",
   "detection_screen_reset": "Resetovat",

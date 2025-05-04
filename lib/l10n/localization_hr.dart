@@ -237,7 +237,7 @@ class LocalizationHr extends Localization {
   String get detection_screen_lost => 'Izgubljeno';
 
   @override
-  String get detection_screen_lost_desc => 'Praćeni objekt bit će uklonjen ako je izgubljen za #0';
+  String get detection_screen_lost_desc => 'Dinamički određuje vrijeme uklanjanja izgubljenih objekata između #0 i #1 na temelju brzine kretanja';
 
   @override
   String get detection_screen_consider_valid => 'Smatraj valjanim nakon';

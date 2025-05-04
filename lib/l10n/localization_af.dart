@@ -237,7 +237,7 @@ class LocalizationAf extends Localization {
   String get detection_screen_lost => 'Verlore';
 
   @override
-  String get detection_screen_lost_desc => 'Opgespoorde objek sal verwyder word as dit verlore raak vir #0';
+  String get detection_screen_lost_desc => 'Bepaal dinamies die tyd om verlore objekte te verwyder tussen #0 en #1 volgens bewegingspoed';
 
   @override
   String get detection_screen_consider_valid => 'Beskou geldig na';

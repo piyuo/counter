@@ -237,7 +237,7 @@ class LocalizationVi extends Localization {
   String get detection_screen_lost => 'Mất';
 
   @override
-  String get detection_screen_lost_desc => 'Đối tượng theo dõi sẽ bị xóa nếu nó bị mất trong #0';
+  String get detection_screen_lost_desc => 'Xác định động thời gian xóa vật thể bị mất giữa #0 và #1 dựa trên tốc độ di chuyển';
 
   @override
   String get detection_screen_consider_valid => 'Coi là hợp lệ sau';

@@ -237,7 +237,7 @@ class LocalizationEl extends Localization {
   String get detection_screen_lost => 'Χαμένο';
 
   @override
-  String get detection_screen_lost_desc => 'Το αντικείμενο παρακολούθησης θα αφαιρεθεί εάν χαθεί για #0';
+  String get detection_screen_lost_desc => 'Καθορίζει δυναμικά τον χρόνο αφαίρεσης χαμένων αντικειμένων μεταξύ #0 και #1 με βάση την ταχύτητα κίνησης';
 
   @override
   String get detection_screen_consider_valid => 'Θεωρείται έγκυρο μετά από';

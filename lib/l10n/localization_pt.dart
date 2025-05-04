@@ -237,7 +237,7 @@ class LocalizationPt extends Localization {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'O objeto rastreado será removido se estiver perdido por #0';
+  String get detection_screen_lost_desc => 'Determina dinamicamente o tempo de remoção de objetos perdidos entre #0 e #1 com base na velocidade de movimento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido após';
@@ -755,7 +755,7 @@ class LocalizationPtPt extends LocalizationPt {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'O objeto rastreado será removido se estiver perdido durante #0';
+  String get detection_screen_lost_desc => 'Determina dinamicamente o tempo de remoção de objetos perdidos entre #0 e #1 com base na velocidade de movimento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido após';

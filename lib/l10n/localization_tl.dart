@@ -237,7 +237,7 @@ class LocalizationTl extends Localization {
   String get detection_screen_lost => 'Nawala';
 
   @override
-  String get detection_screen_lost_desc => 'Ang naka-track na object ay aalisin kung ito ay nawala sa loob ng #0';
+  String get detection_screen_lost_desc => 'Dinamikong tinutukoy ang oras ng pag-alis ng nawalang bagay sa pagitan ng #0 at #1 batay sa bilis ng paggalaw';
 
   @override
   String get detection_screen_consider_valid => 'Ituring na valid pagkatapos ng';

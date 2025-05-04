@@ -237,7 +237,7 @@ class LocalizationMl extends Localization {
   String get detection_screen_lost => 'നഷ്ടപ്പെട്ട';
 
   @override
-  String get detection_screen_lost_desc => '#0 നഷ്ടപ്പെട്ടാൽ ട്രാക്ക് ചെയ്യുന്ന വസ്തുക്കൾ നീക്കം ചെയ്യപ്പെടും';
+  String get detection_screen_lost_desc => 'ചലന വേഗതയുടെ അടിസ്ഥാനത്തിൽ #0 നും #1 നും ഇടയിൽ നഷ്ടപ്പെട്ട വസ്തുക്കൾ നീക്കം ചെയ്യുന്ന സമയം ഡൈനാമിക്കായി നിർണ്ണയിക്കുന്നു';
 
   @override
   String get detection_screen_consider_valid => 'ഇത്ര കഴിഞ്ഞ് സാധുവായി കണക്കാക്കുക';

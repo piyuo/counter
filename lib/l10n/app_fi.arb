@@ -75,7 +75,7 @@
   "detection_screen_match": "Vastaavuus",
   "detection_screen_match_desc": "#0 matchThreshold on objektien seurannassa keskeinen parametri joka mittaa erilaisten havaintolaatikoiden välisen vastaavuuden astetta. Alempi arvo helpottaa objektien yhdistämistä mutta lisää väärien yhteyksien riskiä. Korkeampi arvo on tiukempi objektien yhdistämisessä mutta voi ohittaa joitain todellisia vastaavuuksia.",
   "detection_screen_lost": "Kadotettu",
-  "detection_screen_lost_desc": "Seurattu kohde poistetaan, jos se on kadoksissa #0",
+  "detection_screen_lost_desc": "Määrittää dynaamisesti kadonneiden objektien poistoajan välillä #0 ja #1 liikkumisnopeuden perusteella",
   "detection_screen_consider_valid": "Pidä kelvollisena",
   "detection_screen_consider_valid_desc": "Seurattu kohde katsotaan kelvolliseksi #0 jälkeen",
   "detection_screen_reset": "Nollaa",

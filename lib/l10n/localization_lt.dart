@@ -237,7 +237,7 @@ class LocalizationLt extends Localization {
   String get detection_screen_lost => 'Prarastas';
 
   @override
-  String get detection_screen_lost_desc => 'Sekamas objektas bus pašalintas, jei jis bus prarastas #0';
+  String get detection_screen_lost_desc => 'Dinamiškai nustato prarastų objektų pašalinimo laiką nuo #0 iki #1 pagal judėjimo greitį';
 
   @override
   String get detection_screen_consider_valid => 'Laikyti galiojančiu po';

@@ -237,7 +237,7 @@ class LocalizationDa extends Localization {
   String get detection_screen_lost => 'Tabt';
 
   @override
-  String get detection_screen_lost_desc => 'Sporingsobjekt vil blive fjernet, hvis det er tabt i #0';
+  String get detection_screen_lost_desc => 'Bestemmer dynamisk tiden for fjernelse af tabte objekter mellem #0 og #1 baseret på bevægelseshastighed';
 
   @override
   String get detection_screen_consider_valid => 'Betragt som gyldig efter';

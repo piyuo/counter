@@ -237,7 +237,7 @@ class LocalizationUr extends Localization {
   String get detection_screen_lost => 'گم شدہ';
 
   @override
-  String get detection_screen_lost_desc => 'اگر آبجیکٹ #0 کے لیے گم ہو جاتا ہے تو ٹریک آبجیکٹ کو ہٹا دیا جائے گا';
+  String get detection_screen_lost_desc => 'حرکت کی رفتار کی بنیاد پر #0 اور #1 کے درمیان گم شدہ اشیاء کو ہٹانے کا وقت متحرک طور پر متعین کرتا ہے';
 
   @override
   String get detection_screen_consider_valid => 'موزوں سمجھیں اس کے بعد';
@@ -755,7 +755,7 @@ class LocalizationUrIn extends LocalizationUr {
   String get detection_screen_lost => 'کھویا';
 
   @override
-  String get detection_screen_lost_desc => 'اگر آبجیکٹ #0 کے لیے کھو جاتا ہے تو ٹریک آبجیکٹ کو ہٹا دیا جائے گا';
+  String get detection_screen_lost_desc => 'حرکت کی رفتار کی بنیاد پر #0 اور #1 کے درمیان گم شدہ اشیاء کو ہٹانے کا وقت متحرک طور پر متعین کرتا ہے';
 
   @override
   String get detection_screen_consider_valid => 'اس کے بعد درست مانیں';

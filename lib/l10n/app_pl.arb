@@ -75,7 +75,7 @@
   "detection_screen_match": "Dopasowanie",
   "detection_screen_match_desc": "#0 matchThreshold to kluczowy parametr w śledzeniu obiektów który mierzy stopień dopasowania między różnymi ramkami detekcji. Niższa wartość ułatwia powiązanie obiektów ale zwiększa ryzyko błędnych powiązań. Wyższa wartość jest bardziej rygorystyczna przy powiązaniach obiektów ale może pominąć niektóre prawdziwe dopasowania.",
   "detection_screen_lost": "Zgubiony",
-  "detection_screen_lost_desc": "Śledzony obiekt zostanie usunięty, jeśli będzie zgubiony przez #0",
+  "detection_screen_lost_desc": "Dynamicznie określa czas usunięcia zgubionych obiektów między #0 a #1 na podstawie prędkości ruchu",
   "detection_screen_consider_valid": "Uznaj za prawidłowy po",
   "detection_screen_consider_valid_desc": "Śledzony obiekt będzie uznany za prawidłowy po #0",
   "detection_screen_reset": "Reset",

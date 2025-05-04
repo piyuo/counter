@@ -237,7 +237,7 @@ class LocalizationCs extends Localization {
   String get detection_screen_lost => 'Ztráta';
 
   @override
-  String get detection_screen_lost_desc => 'Sledovaný objekt bude odstraněn, pokud je ztracen po dobu #0';
+  String get detection_screen_lost_desc => 'Dynamicky určuje čas pro odstranění ztracených objektů mezi #0 a #1 podle rychlosti pohybu';
 
   @override
   String get detection_screen_consider_valid => 'Považovat za platný po';

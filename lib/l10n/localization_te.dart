@@ -237,7 +237,7 @@ class LocalizationTe extends Localization {
   String get detection_screen_lost => 'కోల్పోయింది';
 
   @override
-  String get detection_screen_lost_desc => '#0 కాలం పాటు కోల్పోయిన వస్తువు ట్రాకింగ్ నుండి తొలగించబడుతుంది';
+  String get detection_screen_lost_desc => 'చలన వేగం ఆధారంగా #0 మరియు #1 మధ్య కోల్పోయిన వస్తువులను తొలగించే సమయాన్ని గతిశీలంగా నిర్ణయిస్తుంది';
 
   @override
   String get detection_screen_consider_valid => 'తరువాత చెల్లుబాటు అయ్యేలా పరిగణించండి';

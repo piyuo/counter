@@ -75,7 +75,7 @@
   "detection_screen_match": "Ujemanje",
   "detection_screen_match_desc": "#0 matchThreshold je ključni parameter pri sledenju objektov ki meri stopnjo ujemanja med različnimi zaznavnimi okvirji. Nižja vrednost olajša povezovanje objektov vendar poveča tveganje napačnih povezav. Višja vrednost je pri povezovanju objektov strožja vendar lahko spregleda nekatere resnične ujemanja.",
   "detection_screen_lost": "Izgubljeno",
-  "detection_screen_lost_desc": "Sledenje objekta bo odstranjeno, če je izgubljeno za #0",
+  "detection_screen_lost_desc": "Dinamično določa čas odstranitve izgubljenih predmetov med #0 in #1 glede na hitrost gibanja",
   "detection_screen_consider_valid": "Upoštevaj kot veljavno po",
   "detection_screen_consider_valid_desc": "Objekt sledenja bo veljal za veljavnega po #0",
   "detection_screen_reset": "Ponastavi",

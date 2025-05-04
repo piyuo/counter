@@ -75,7 +75,7 @@
   "detection_screen_match": "Atbilstība",
   "detection_screen_match_desc": "#0 matchThreshold ir galvenais parametrs objektu izsekošanā kas mēra atbilstības pakāpi starp dažādiem noteikšanas rāmjiem. Zemāka vērtība atvieglo objektu sasaisti bet palielina nepareizu sasaišu risku. Augstāka vērtība ir stingrāka attiecībā uz objektu sasaistēm bet var nokavēt dažas patiesas atbilstības.",
   "detection_screen_lost": "Pazaudēts",
-  "detection_screen_lost_desc": "Izsekojamais objekts tiks noņemts, ja tas tiks pazaudēts #0",
+  "detection_screen_lost_desc": "Dinamiski nosaka zaudēto objektu noņemšanas laiku starp #0 un #1 atkarībā no kustības ātruma",
   "detection_screen_consider_valid": "Uzskatīt par derīgu pēc",
   "detection_screen_consider_valid_desc": "Izsekojamais objekts tiks uzskatīts par derīgu pēc #0",
   "detection_screen_reset": "Atiestatīt",

@@ -237,7 +237,7 @@ class LocalizationNb extends Localization {
   String get detection_screen_lost => 'Tapt';
 
   @override
-  String get detection_screen_lost_desc => 'Sporingsobjekt vil bli fjernet hvis det er tapt i #0';
+  String get detection_screen_lost_desc => 'Bestemmer dynamisk fjerntid for tapte objekter mellom #0 og #1 basert på bevegelseshastighet';
 
   @override
   String get detection_screen_consider_valid => 'Anse som gyldig etter';

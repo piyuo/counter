@@ -237,7 +237,7 @@ class LocalizationGl extends Localization {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'O obxecto seguido eliminarase se se perde durante #0';
+  String get detection_screen_lost_desc => 'Determina dinamicamente o tempo de eliminación de obxectos perdidos entre #0 e #1 segundo a velocidade de movemento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido despois de';

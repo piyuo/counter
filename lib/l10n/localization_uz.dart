@@ -237,7 +237,7 @@ class LocalizationUz extends Localization {
   String get detection_screen_lost => 'Yo\'qolish';
 
   @override
-  String get detection_screen_lost_desc => 'Agar obyekt #0 davomida yo\'qolsa, kuzatuv obyekti o\'chiriladi';
+  String get detection_screen_lost_desc => 'Harakat tezligiga qarab #0 va #1 orasida yo\'qolgan ob\'ektlarni olib tashlash vaqtini dinamik aniqlaydi';
 
   @override
   String get detection_screen_consider_valid => 'Amal qilishi uchun vaqt';

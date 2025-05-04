@@ -237,7 +237,7 @@ class LocalizationEn extends Localization {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
+  String get detection_screen_lost_desc => 'Dynamically determines lost object removal time between #0 and #1 based on movement speed';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';
@@ -755,7 +755,7 @@ class LocalizationEnAu extends LocalizationEn {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
+  String get detection_screen_lost_desc => 'Dynamically determines lost object removal time between #0 and #1 based on movement speed';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';
@@ -1273,7 +1273,7 @@ class LocalizationEnCa extends LocalizationEn {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
+  String get detection_screen_lost_desc => 'Dynamically determines lost object removal time between #0 and #1 based on movement speed';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';
@@ -1791,7 +1791,7 @@ class LocalizationEnGb extends LocalizationEn {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
+  String get detection_screen_lost_desc => 'Dynamically determines lost object removal time between #0 and #1 based on movement speed';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';
@@ -2309,7 +2309,7 @@ class LocalizationEnIn extends LocalizationEn {
   String get detection_screen_lost => 'Lost';
 
   @override
-  String get detection_screen_lost_desc => 'Track object will be removed if it is lost for #0';
+  String get detection_screen_lost_desc => 'Dynamically determines lost object removal time between #0 and #1 based on movement speed';
 
   @override
   String get detection_screen_consider_valid => 'Consider valid after';

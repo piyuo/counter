@@ -75,7 +75,7 @@
   "detection_screen_match": "Match",
   "detection_screen_match_desc": "#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.",
   "detection_screen_lost": "Lost",
-  "detection_screen_lost_desc": "Track object will be removed if it is lost for #0",
+  "detection_screen_lost_desc": "Dynamically determines lost object removal time between #0 and #1 based on movement speed",
   "detection_screen_consider_valid": "Consider valid after",
   "detection_screen_consider_valid_desc": "Track object will be considered valid after #0",
   "detection_screen_reset": "Reset",

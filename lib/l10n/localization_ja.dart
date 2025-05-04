@@ -237,7 +237,7 @@ class LocalizationJa extends Localization {
   String get detection_screen_lost => 'ロスト';
 
   @override
-  String get detection_screen_lost_desc => '追跡対象が #0 間ロストすると削除されます';
+  String get detection_screen_lost_desc => '動きの速さに基づいて、失われたオブジェクトの削除時間を#0から#1の間で動的に決定します';
 
   @override
   String get detection_screen_consider_valid => '有効とみなす期間';

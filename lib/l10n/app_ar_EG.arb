@@ -75,7 +75,7 @@
   "detection_screen_match": "تطابق",
   "detection_screen_match_desc": "#0 matchThreshold هو معلمة أساسية في تتبع الأجسام تقيس التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الأجسام ولكن تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة ولكن قد تفوت بعض التطابقات الحقيقية",
   "detection_screen_lost": "مفقود",
-  "detection_screen_lost_desc": "سيتم إزالة الجسم المتتبع إذا فُقد لمدة #0",
+  "detection_screen_lost_desc": "تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة",
   "detection_screen_consider_valid": "اعتبار صالح بعد",
   "detection_screen_consider_valid_desc": "سيتم اعتبار الجسم المتتبع صالحًا بعد #0",
   "detection_screen_reset": "إعادة تعيين",

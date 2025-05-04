@@ -237,7 +237,7 @@ class LocalizationKk extends Localization {
   String get detection_screen_lost => 'Жоғалту';
 
   @override
-  String get detection_screen_lost_desc => 'Егер объект #0 жоғалса, бақылау объектісі жойылады';
+  String get detection_screen_lost_desc => 'Қозғалыс жылдамдығына байланысты #0 мен #1 арасында жоғалған нысандарды жою уақытын динамикалық түрде анықтайды';
 
   @override
   String get detection_screen_consider_valid => 'Жарамды деп санау';

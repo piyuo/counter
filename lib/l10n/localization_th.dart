@@ -237,7 +237,7 @@ class LocalizationTh extends Localization {
   String get detection_screen_lost => 'การสูญหาย';
 
   @override
-  String get detection_screen_lost_desc => 'การติดตามวัตถุจะถูกลบหากสูญหายเป็นเวลา #0';
+  String get detection_screen_lost_desc => 'กำหนดเวลาในการลบวัตถุที่สูญหายระหว่าง #0 ถึง #1 แบบไดนามิกตามความเร็วในการเคลื่อนที่';
 
   @override
   String get detection_screen_consider_valid => 'พิจารณาว่าถูกต้องหลังจาก';

@@ -237,7 +237,7 @@ class LocalizationRu extends Localization {
   String get detection_screen_lost => 'Потеря';
 
   @override
-  String get detection_screen_lost_desc => 'Отслеживаемый объект будет удален, если он потерян в течение #0';
+  String get detection_screen_lost_desc => 'Динамически определяет время удаления потерянных объектов между #0 и #1 на основе скорости движения';
 
   @override
   String get detection_screen_consider_valid => 'Считать действительным после';
@@ -755,7 +755,7 @@ class LocalizationRuKz extends LocalizationRu {
   String get detection_screen_lost => 'Потеря';
 
   @override
-  String get detection_screen_lost_desc => 'Отслеживаемый объект будет удален, если он потерян в течение #0';
+  String get detection_screen_lost_desc => 'Динамически определяет время удаления потерянных объектов между #0 и #1 на основе скорости движения';
 
   @override
   String get detection_screen_consider_valid => 'Считать действительным после';
@@ -1273,7 +1273,7 @@ class LocalizationRuUa extends LocalizationRu {
   String get detection_screen_lost => 'Потеря';
 
   @override
-  String get detection_screen_lost_desc => 'Отслеживаемый объект будет удален, если он потерян в течение #0';
+  String get detection_screen_lost_desc => 'Динамічно визначає час видалення втрачених об\'єктів між #0 та #1 на основі швидкості руху';
 
   @override
   String get detection_screen_consider_valid => 'Считать действительным после';

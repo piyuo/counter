@@ -75,7 +75,7 @@
   "detection_screen_match": "匹配",
   "detection_screen_match_desc": "#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。",
   "detection_screen_lost": "丢失",
-  "detection_screen_lost_desc": "如果物体丢失 #0，跟踪物体将被移除",
+  "detection_screen_lost_desc": "根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间",
   "detection_screen_consider_valid": "视为有效时间",
   "detection_screen_consider_valid_desc": "跟踪物体在 #0 后视为有效",
   "detection_screen_reset": "重置",

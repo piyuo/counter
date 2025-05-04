@@ -75,7 +75,7 @@
   "detection_screen_match": "Correspondência",
   "detection_screen_match_desc": "#0 matchThreshold é um parâmetro chave no rastreamento de objetos que mede o grau de correspondência entre diferentes caixas de deteção. Valor mais baixo facilita a associação de objetos mas aumenta o risco de associações erradas. Valor mais alto é mais rigoroso nas associações de objetos mas pode perder algumas correspondências verdadeiras.",
   "detection_screen_lost": "Perdido",
-  "detection_screen_lost_desc": "O objeto rastreado será removido se estiver perdido durante #0",
+  "detection_screen_lost_desc": "Determina dinamicamente o tempo de remoção de objetos perdidos entre #0 e #1 com base na velocidade de movimento",
   "detection_screen_consider_valid": "Considerar válido após",
   "detection_screen_consider_valid_desc": "O objeto rastreado será considerado válido após #0",
   "detection_screen_reset": "Repor",

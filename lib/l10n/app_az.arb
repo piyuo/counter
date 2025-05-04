@@ -75,7 +75,7 @@
   "detection_screen_match": "Uyğunluq",
   "detection_screen_match_desc": "#0 matchThreshold obyekt izləmədə müxtəlif aşkarlama qutuları arasındakı uyğunluq dərəcəsini ölçən əsas parametrdir. Aşağı dəyər obyektləri əlaqələndirməyi asanlaşdırır lakin yanlış əlaqələndirmə riskini artırır. Yüksək dəyər obyekt əlaqələndirməsində daha ciddidir lakin bəzi həqiqi uyğunluqları qaçıra bilər.",
   "detection_screen_lost": "İtirilmə",
-  "detection_screen_lost_desc": "İzlənən obyekt #0 qədər itirildikdə silinəcək",
+  "detection_screen_lost_desc": "Hərəkət sürətinə görə itmiş obyektlərin silinmə vaxtını #0 və #1 arasında dinamik təyin edir",
   "detection_screen_consider_valid": "Etibarlı hesab edilmə müddəti",
   "detection_screen_consider_valid_desc": "İzlənən obyekt #0 sonra etibarlı hesab ediləcək",
   "detection_screen_reset": "Sıfırla",

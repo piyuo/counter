@@ -237,7 +237,7 @@ class LocalizationId extends Localization {
   String get detection_screen_lost => 'Hilang';
 
   @override
-  String get detection_screen_lost_desc => 'Objek yang dilacak akan dihapus jika hilang selama #0';
+  String get detection_screen_lost_desc => 'Menentukan waktu penghapusan objek yang hilang secara dinamis antara #0 dan #1 berdasarkan kecepatan gerakan';
 
   @override
   String get detection_screen_consider_valid => 'Anggap valid setelah';

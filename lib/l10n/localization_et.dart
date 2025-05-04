@@ -237,7 +237,7 @@ class LocalizationEt extends Localization {
   String get detection_screen_lost => 'Kadunud';
 
   @override
-  String get detection_screen_lost_desc => 'Jälgitav objekt eemaldatakse, kui see on kadunud #0';
+  String get detection_screen_lost_desc => 'Määrab dünaamiliselt kadunud objektide eemaldamise aja vahemikus #0 kuni #1 liikumiskiiruse põhjal';
 
   @override
   String get detection_screen_consider_valid => 'Loe kehtivaks pärast';

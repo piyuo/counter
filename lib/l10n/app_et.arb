@@ -75,7 +75,7 @@
   "detection_screen_match": "Vaste",
   "detection_screen_match_desc": "#0 matchThreshold on objekti jälgimisel oluline parameeter mis mõõdab erinevate tuvastuskastide vahelise sobivuse taset. Madalam väärtus lihtsustab objektide seostamist kuid suurendab valede ühenduste riski. Kõrgem väärtus on objektide seostamisel rangem kuid võib mõned tõelised vastavused maha jätta.",
   "detection_screen_lost": "Kadunud",
-  "detection_screen_lost_desc": "Jälgitav objekt eemaldatakse, kui see on kadunud #0",
+  "detection_screen_lost_desc": "Määrab dünaamiliselt kadunud objektide eemaldamise aja vahemikus #0 kuni #1 liikumiskiiruse põhjal",
   "detection_screen_consider_valid": "Loe kehtivaks pärast",
   "detection_screen_consider_valid_desc": "Jälgitavat objekti loetakse kehtivaks pärast #0",
   "detection_screen_reset": "Lähtesta",

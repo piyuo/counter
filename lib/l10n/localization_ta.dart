@@ -237,7 +237,7 @@ class LocalizationTa extends Localization {
   String get detection_screen_lost => 'இழந்தது';
 
   @override
-  String get detection_screen_lost_desc => '#0 க்கு இழக்கப்பட்டால் தடமறியும் பொருள் அகற்றப்படும்';
+  String get detection_screen_lost_desc => 'நகர்வு வேகத்தின் அடிப்படையில் #0 மற்றும் #1 இடையே தொலைந்த பொருட்களை அகற்றும் நேரத்தை மாறும் தன்மையுடன் தீர்மானிக்கிறது';
 
   @override
   String get detection_screen_consider_valid => 'இதற்குப் பிறகு செல்லுபடியாகும்';

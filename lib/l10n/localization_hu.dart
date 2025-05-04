@@ -237,7 +237,7 @@ class LocalizationHu extends Localization {
   String get detection_screen_lost => 'Elveszett';
 
   @override
-  String get detection_screen_lost_desc => 'A követett objektum eltávolításra kerül, ha #0 ideig elveszett';
+  String get detection_screen_lost_desc => 'A mozgás sebessége alapján dinamikusan meghatározza az elveszett objektumok eltávolítási idejét #0 és #1 között';
 
   @override
   String get detection_screen_consider_valid => 'Érvényesnek tekintve ennyi után';

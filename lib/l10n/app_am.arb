@@ -75,7 +75,7 @@
   "detection_screen_match": "Համապատասխանություն",
   "detection_screen_match_desc": "#0 matchThreshold በነገሮች መከታተል ላይ ወሳኝ ፓራሜትር ሲሆን በተለያዩ መለያ ሳጥኖች መካከል ያለውን ተዛማጅነት ይለካል፡፡ ዝቅተኛ ዋጋ ነገሮችን ለማገናኘት ቀላል ያደርገዋል ነገር ግን የተሳሳተ ግንኙነት አደጋን ይጨምራል፤ ከፍተኛ ዋጋ ለነገሮች ግንኙነት የበለጠ ጥብቅ ነው ነገር ግን አንዳንድ እውነተኛ ግንኙነቶችን ሊ놓 ይችላል።",
   "detection_screen_lost": "Կորած",
-  "detection_screen_lost_desc": "Հետևվող օբյեկտը կհեռացվի, եթե այն կորած է #0",
+  "detection_screen_lost_desc": "የዕቃዎችን እንቅስቃሴ መሰረት በማድረግ ከ#0 እስከ #1 ባለው ጊዜ ውስጥ የጠፉ ዕቃዎችን ለማስወገድ ዋጋ ይወስናል",
   "detection_screen_consider_valid": "Համարել վավեր հետո",
   "detection_screen_consider_valid_desc": "Հետևվող օբյեկտը կհամարվի վավեր #0 հետո",
   "detection_screen_reset": "Վերականգնել",

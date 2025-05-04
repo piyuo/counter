@@ -237,7 +237,7 @@ class LocalizationTr extends Localization {
   String get detection_screen_lost => 'Kayıp';
 
   @override
-  String get detection_screen_lost_desc => 'İzlenen nesne #0 süre kaybolduysa kaldırılır';
+  String get detection_screen_lost_desc => 'Hareket hızına bağlı olarak #0 ile #1 arasında kaybolan nesnelerin kaldırılma süresini dinamik olarak belirler';
 
   @override
   String get detection_screen_consider_valid => 'Şu kadar sonra geçerli say';

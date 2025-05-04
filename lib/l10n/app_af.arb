@@ -75,7 +75,7 @@
   "detection_screen_match": "Pas",
   "detection_screen_match_desc": "#0 matchThreshold is 'n kritieke parameter in objekopsporing wat die ooreenkomstigheid tussen verskillende opsporingsboxe meet. 'n Laer waarde maak dit makliker om objekte te koppel maar verhoog die risiko van verkeerde koppelings. 'n Hoër waarde is strenger maar kan ware koppelings mis.",
   "detection_screen_lost": "Verlore",
-  "detection_screen_lost_desc": "Opgespoorde objek sal verwyder word as dit verlore raak vir #0",
+  "detection_screen_lost_desc": "Bepaal dinamies die tyd om verlore objekte te verwyder tussen #0 en #1 volgens bewegingspoed",
   "detection_screen_consider_valid": "Beskou geldig na",
   "detection_screen_consider_valid_desc": "Opgespoorde objek sal as geldig beskou word na #0",
   "detection_screen_reset": "Herstel",

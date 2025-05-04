@@ -237,7 +237,7 @@ class LocalizationFi extends Localization {
   String get detection_screen_lost => 'Kadotettu';
 
   @override
-  String get detection_screen_lost_desc => 'Seurattu kohde poistetaan, jos se on kadoksissa #0';
+  String get detection_screen_lost_desc => 'Määrittää dynaamisesti kadonneiden objektien poistoajan välillä #0 ja #1 liikkumisnopeuden perusteella';
 
   @override
   String get detection_screen_consider_valid => 'Pidä kelvollisena';

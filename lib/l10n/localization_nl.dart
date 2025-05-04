@@ -237,7 +237,7 @@ class LocalizationNl extends Localization {
   String get detection_screen_lost => 'Verloren';
 
   @override
-  String get detection_screen_lost_desc => 'Gevolgd object wordt verwijderd als het #0 lang verloren is';
+  String get detection_screen_lost_desc => 'Bepaalt dynamisch de verwijderingstijd voor verloren objecten tussen #0 en #1 op basis van bewegingssnelheid';
 
   @override
   String get detection_screen_consider_valid => 'Als geldig beschouwen na';
@@ -755,7 +755,7 @@ class LocalizationNlBe extends LocalizationNl {
   String get detection_screen_lost => 'Verloren';
 
   @override
-  String get detection_screen_lost_desc => 'Object wordt verwijderd als het verloren is voor #0';
+  String get detection_screen_lost_desc => 'Bepaalt dynamisch de verwijderingstijd voor verloren objecten tussen #0 en #1 op basis van bewegingssnelheid';
 
   @override
   String get detection_screen_consider_valid => 'Als geldig beschouwen na';

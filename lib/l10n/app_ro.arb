@@ -75,7 +75,7 @@
   "detection_screen_match": "Potrivire",
   "detection_screen_match_desc": "#0 matchThreshold este un parametru cheie în urmărirea obiectelor care măsoară gradul de potrivire între diferite casete de detectare. O valoare mai mică facilitează asocierea obiectelor dar crește riscul de asocieri greșite. O valoare mai mare este mai strictă cu asocierile de obiecte dar poate rata unele potriviri reale.",
   "detection_screen_lost": "Pierdut",
-  "detection_screen_lost_desc": "Obiectul urmărit va fi eliminat dacă este pierdut pentru #0",
+  "detection_screen_lost_desc": "Determină în mod dinamic timpul de eliminare a obiectelor pierdute între #0 și #1 în funcție de viteza de mișcare",
   "detection_screen_consider_valid": "Consideră valid după",
   "detection_screen_consider_valid_desc": "Obiectul urmărit va fi considerat valid după #0",
   "detection_screen_reset": "Resetare",

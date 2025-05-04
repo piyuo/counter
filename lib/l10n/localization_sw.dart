@@ -237,7 +237,7 @@ class LocalizationSw extends Localization {
   String get detection_screen_lost => 'Potea';
 
   @override
-  String get detection_screen_lost_desc => 'Ufuatiliaji wa kitu utaondolewa ikiwa kimepotea kwa #0';
+  String get detection_screen_lost_desc => 'Huamua wakati wa kuondoa vitu vilivyopotea kati ya #0 na #1 kulingana na kasi ya mwendo';
 
   @override
   String get detection_screen_consider_valid => 'Chukulia kuwa halali baada ya';

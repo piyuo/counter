@@ -75,7 +75,7 @@
   "detection_screen_match": "Kecocokan",
   "detection_screen_match_desc": "#0 matchThreshold adalah parameter kunci dalam pelacakan objek yang mengukur tingkat kecocokan antara kotak deteksi berbeda. Nilai lebih rendah mempermudah asosiasi objek tetapi meningkatkan risiko asosiasi yang salah. Nilai lebih tinggi lebih ketat pada asosiasi objek tetapi mungkin melewatkan beberapa kecocokan yang benar.",
   "detection_screen_lost": "Hilang",
-  "detection_screen_lost_desc": "Objek yang dilacak akan dihapus jika hilang selama #0",
+  "detection_screen_lost_desc": "Menentukan waktu penghapusan objek yang hilang secara dinamis antara #0 dan #1 berdasarkan kecepatan gerakan",
   "detection_screen_consider_valid": "Anggap valid setelah",
   "detection_screen_consider_valid_desc": "Objek yang dilacak akan dianggap valid setelah #0",
   "detection_screen_reset": "Reset",

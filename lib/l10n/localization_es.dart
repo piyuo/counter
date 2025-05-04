@@ -237,7 +237,7 @@ class LocalizationEs extends Localization {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'El seguimiento del objeto se eliminará si se pierde durante #0';
+  String get detection_screen_lost_desc => 'Determina dinámicamente el tiempo de eliminación de objetos perdidos entre #0 y #1 según la velocidad de movimiento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido después de';
@@ -755,7 +755,7 @@ class LocalizationEsAr extends LocalizationEs {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'El objeto en seguimiento se eliminará si se pierde durante #0';
+  String get detection_screen_lost_desc => 'Determina dinámicamente el tiempo de eliminación de objetos perdidos entre #0 y #1 según la velocidad de movimiento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido después de';
@@ -1273,7 +1273,7 @@ class LocalizationEsCo extends LocalizationEs {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'El objeto seguido se eliminará si se pierde durante #0';
+  String get detection_screen_lost_desc => 'Determina dinámicamente el tiempo de eliminación de objetos perdidos entre #0 y #1 según la velocidad de movimiento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido después de';
@@ -1791,7 +1791,7 @@ class LocalizationEsMx extends LocalizationEs {
   String get detection_screen_lost => 'Perdido';
 
   @override
-  String get detection_screen_lost_desc => 'El objeto rastreado será eliminado si se pierde durante #0';
+  String get detection_screen_lost_desc => 'Determina dinámicamente el tiempo de eliminación de objetos perdidos entre #0 y #1 según la velocidad de movimiento';
 
   @override
   String get detection_screen_consider_valid => 'Considerar válido después de';

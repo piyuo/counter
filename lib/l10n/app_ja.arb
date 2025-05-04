@@ -75,7 +75,7 @@
   "detection_screen_match": "マッチ",
   "detection_screen_match_desc": "#0 matchThresholdは物体追跡における重要なパラメータで異なる検出ボックス間の一致度を測定します。低い値は物体の関連付けを容易にしますが誤った関連付けのリスクが高まります。高い値は物体の関連付けにより厳格ですが一部の真の一致を見逃す可能性があります。",
   "detection_screen_lost": "ロスト",
-  "detection_screen_lost_desc": "追跡対象が #0 間ロストすると削除されます",
+  "detection_screen_lost_desc": "動きの速さに基づいて、失われたオブジェクトの削除時間を#0から#1の間で動的に決定します",
   "detection_screen_consider_valid": "有効とみなす期間",
   "detection_screen_consider_valid_desc": "追跡対象は #0 後に有効と見なされます",
   "detection_screen_reset": "リセット",

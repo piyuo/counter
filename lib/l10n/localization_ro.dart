@@ -237,7 +237,7 @@ class LocalizationRo extends Localization {
   String get detection_screen_lost => 'Pierdut';
 
   @override
-  String get detection_screen_lost_desc => 'Obiectul urmărit va fi eliminat dacă este pierdut pentru #0';
+  String get detection_screen_lost_desc => 'Determină în mod dinamic timpul de eliminare a obiectelor pierdute între #0 și #1 în funcție de viteza de mișcare';
 
   @override
   String get detection_screen_consider_valid => 'Consideră valid după';

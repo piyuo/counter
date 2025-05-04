@@ -237,7 +237,7 @@ class LocalizationFr extends Localization {
   String get detection_screen_lost => 'Perdu';
 
   @override
-  String get detection_screen_lost_desc => 'L\'objet suivi sera supprimé s\'il est perdu pendant #0';
+  String get detection_screen_lost_desc => 'Détermine dynamiquement le temps de suppression des objets perdus entre #0 et #1 selon la vitesse de mouvement';
 
   @override
   String get detection_screen_consider_valid => 'Considérer valide après';
@@ -755,7 +755,7 @@ class LocalizationFrBe extends LocalizationFr {
   String get detection_screen_lost => 'Perdu';
 
   @override
-  String get detection_screen_lost_desc => 'L\'objet suivi sera supprimé s\'il est perdu pendant #0';
+  String get detection_screen_lost_desc => 'Détermine dynamiquement le temps de suppression des objets perdus entre #0 et #1 selon la vitesse de mouvement';
 
   @override
   String get detection_screen_consider_valid => 'Considérer comme valide après';
@@ -1273,7 +1273,7 @@ class LocalizationFrCa extends LocalizationFr {
   String get detection_screen_lost => 'Perdu';
 
   @override
-  String get detection_screen_lost_desc => 'L\'objet suivi sera supprimé s\'il est perdu pendant #0';
+  String get detection_screen_lost_desc => 'Détermine dynamiquement le temps de suppression des objets perdus entre #0 et #1 selon la vitesse de mouvement';
 
   @override
   String get detection_screen_consider_valid => 'Considérer valide après';
@@ -1791,7 +1791,7 @@ class LocalizationFrCh extends LocalizationFr {
   String get detection_screen_lost => 'Perdu';
 
   @override
-  String get detection_screen_lost_desc => 'L\'objet suivi sera supprimé s\'il est perdu pendant #0';
+  String get detection_screen_lost_desc => 'Détermine dynamiquement le temps de suppression des objets perdus entre #0 et #1 selon la vitesse de mouvement';
 
   @override
   String get detection_screen_consider_valid => 'Considérer comme valide après';

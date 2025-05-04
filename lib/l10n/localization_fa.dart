@@ -237,7 +237,7 @@ class LocalizationFa extends Localization {
   String get detection_screen_lost => 'از دست رفته';
 
   @override
-  String get detection_screen_lost_desc => 'ردیابی شیء اگر برای #0 گم شود، حذف خواهد شد';
+  String get detection_screen_lost_desc => 'بر اساس سرعت حرکت، زمان حذف اشیای گم شده را بین #0 و #1 به صورت پویا تعیین می‌کند';
 
   @override
   String get detection_screen_consider_valid => 'در نظر گرفتن به عنوان معتبر پس از';

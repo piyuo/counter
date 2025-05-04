@@ -237,7 +237,7 @@ class LocalizationNe extends Localization {
   String get detection_screen_lost => 'हराएको';
 
   @override
-  String get detection_screen_lost_desc => '#0 को लागि हराएमा ट्र्याक वस्तु हटाइनेछ';
+  String get detection_screen_lost_desc => 'चालको गतिको आधारमा #0 र #1 बीचमा हराएका वस्तुहरू हटाउने समय गतिशील रूपमा निर्धारण गर्दछ';
 
   @override
   String get detection_screen_consider_valid => 'यस पछि मान्य मान्नुहोस्';

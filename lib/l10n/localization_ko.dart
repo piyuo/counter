@@ -237,7 +237,7 @@ class LocalizationKo extends Localization {
   String get detection_screen_lost => '손실';
 
   @override
-  String get detection_screen_lost_desc => '객체가 #0 동안 손실되면 추적 객체가 제거됩니다';
+  String get detection_screen_lost_desc => '이동 속도에 따라 #0에서 #1 사이의 분실 객체 제거 시간을 동적으로 결정합니다';
 
   @override
   String get detection_screen_consider_valid => '유효 간주 시간';

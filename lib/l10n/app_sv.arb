@@ -75,7 +75,7 @@
   "detection_screen_match": "Matchning",
   "detection_screen_match_desc": "#0 matchThreshold är en nyckelparameter i objektspårning som mäter graden av matchning mellan olika detektionsrutor. Lägre värde gör objektkoppling enklare men ökar risken för felaktiga kopplingar. Högre värde är striktare på objektkopplingar men kan missa vissa sanna matchningar.",
   "detection_screen_lost": "Förlorad",
-  "detection_screen_lost_desc": "Spårat objekt tas bort om det har förlorats i #0",
+  "detection_screen_lost_desc": "Bestämmer dynamiskt tiden för borttagning av förlorade objekt mellan #0 och #1 baserat på rörelsehastighet",
   "detection_screen_consider_valid": "Betrakta som giltig efter",
   "detection_screen_consider_valid_desc": "Spårat objekt betraktas som giltigt efter #0",
   "detection_screen_reset": "Återställ",

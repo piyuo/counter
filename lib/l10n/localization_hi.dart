@@ -237,7 +237,7 @@ class LocalizationHi extends Localization {
   String get detection_screen_lost => 'खोया';
 
   @override
-  String get detection_screen_lost_desc => 'यदि #0 के लिए वस्तु खो जाती है, तो ट्रैक ऑब्जेक्ट हटा दिया जाएगा';
+  String get detection_screen_lost_desc => 'गति के आधार पर #0 से #1 के बीच खोई वस्तुओं को हटाने का समय गतिशील रूप से निर्धारित करता है';
 
   @override
   String get detection_screen_consider_valid => 'इसके बाद वैध माना जाएगा';

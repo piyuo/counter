@@ -237,7 +237,7 @@ class LocalizationAz extends Localization {
   String get detection_screen_lost => 'İtirilmə';
 
   @override
-  String get detection_screen_lost_desc => 'İzlənən obyekt #0 qədər itirildikdə silinəcək';
+  String get detection_screen_lost_desc => 'Hərəkət sürətinə görə itmiş obyektlərin silinmə vaxtını #0 və #1 arasında dinamik təyin edir';
 
   @override
   String get detection_screen_consider_valid => 'Etibarlı hesab edilmə müddəti';

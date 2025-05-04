@@ -237,7 +237,7 @@ class LocalizationMy extends Localization {
   String get detection_screen_lost => 'ပျောက်ဆုံးသွားခြင်း';
 
   @override
-  String get detection_screen_lost_desc => 'အရာဝတ္ထုသည် #0 အတွက် ပျောက်ဆုံးနေလျှင် ခြေရာခံအရာဝတ္ထုကို ဖယ်ရှားပါမည်';
+  String get detection_screen_lost_desc => 'အရွေ့အလျင်အပေါ် အခြေခံ၍ #0 နှင့် #1 ကြား ပျောက်ဆုံးသွားသော အရာဝတ္ထုများကို ဖယ်ရှားရန် အချိန်ကို ပြောင်းလဲနိုင်စွမ်းရှိစွာ ဆုံးဖြတ်သည်';
 
   @override
   String get detection_screen_consider_valid => 'ခိုင်မာသည်ဟု သတ်မှတ်ချိန်';

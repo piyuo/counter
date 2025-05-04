@@ -237,7 +237,7 @@ class LocalizationBg extends Localization {
   String get detection_screen_lost => 'Изгубен';
 
   @override
-  String get detection_screen_lost_desc => 'Проследяваният обект ще бъде премахнат, ако е изгубен за #0';
+  String get detection_screen_lost_desc => 'Динамично определяне на времето за премахване на изгубени обекти между #0 и #1 според скоростта на движение';
 
   @override
   String get detection_screen_consider_valid => 'Считане за валиден след';

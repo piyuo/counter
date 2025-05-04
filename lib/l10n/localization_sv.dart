@@ -237,7 +237,7 @@ class LocalizationSv extends Localization {
   String get detection_screen_lost => 'Förlorad';
 
   @override
-  String get detection_screen_lost_desc => 'Spårat objekt tas bort om det har förlorats i #0';
+  String get detection_screen_lost_desc => 'Bestämmer dynamiskt tiden för borttagning av förlorade objekt mellan #0 och #1 baserat på rörelsehastighet';
 
   @override
   String get detection_screen_consider_valid => 'Betrakta som giltig efter';

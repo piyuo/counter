@@ -237,7 +237,7 @@ class LocalizationMn extends Localization {
   String get detection_screen_lost => 'Алдагдсан';
 
   @override
-  String get detection_screen_lost_desc => 'Хянаж буй объект #0 туршид алдагдвал устгагдана';
+  String get detection_screen_lost_desc => 'Хөдөлгөөний хурдаас хамааран #0-с #1 хүртэлх алдагдсан объектуудыг устгах хугацааг динамикаар тодорхойлно';
 
   @override
   String get detection_screen_consider_valid => 'Хүчинтэй гэж үзэх';

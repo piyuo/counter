@@ -75,7 +75,7 @@
   "detection_screen_match": "Correspondance",
   "detection_screen_match_desc": "#0 matchThreshold est un paramètre clé dans le suivi d'objets qui mesure le degré de correspondance entre différentes boîtes de détection. Une valeur plus basse facilite l'association d'objets mais augmente le risque d'associations erronées. Une valeur plus élevée est plus stricte sur les associations mais peut manquer certaines correspondances réelles.",
   "detection_screen_lost": "Perdu",
-  "detection_screen_lost_desc": "L'objet suivi sera supprimé s'il est perdu pendant #0",
+  "detection_screen_lost_desc": "Détermine dynamiquement le temps de suppression des objets perdus entre #0 et #1 selon la vitesse de mouvement",
   "detection_screen_consider_valid": "Considérer valide après",
   "detection_screen_consider_valid_desc": "L'objet suivi sera considéré valide après #0",
   "detection_screen_reset": "Réinitialiser",

@@ -237,7 +237,7 @@ class LocalizationZh extends Localization {
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '如果物體丟失 #0，追蹤物體將被移除';
+  String get detection_screen_lost_desc => '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -755,7 +755,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_lost => '丢失';
 
   @override
-  String get detection_screen_lost_desc => '如果物体丢失 #0，跟踪物体将被移除';
+  String get detection_screen_lost_desc => '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '视为有效时间';
@@ -1273,7 +1273,7 @@ class LocalizationZhHk extends LocalizationZh {
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '如果物體丟失 #0，追蹤物體將被移除';
+  String get detection_screen_lost_desc => '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -1791,7 +1791,7 @@ class LocalizationZhMo extends LocalizationZh {
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '如果物體丟失 #0，追蹤物體將被移除';
+  String get detection_screen_lost_desc => '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -2309,7 +2309,7 @@ class LocalizationZhSg extends LocalizationZh {
   String get detection_screen_lost => '丢失';
 
   @override
-  String get detection_screen_lost_desc => '如果物体丢失 #0，追踪物体将被移除';
+  String get detection_screen_lost_desc => '根据物体移动速度，动态决定该丢失物体的移除时间，范围介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '视为有效时间';

@@ -75,7 +75,7 @@
   "detection_screen_match": "Übereinstimmung",
   "detection_screen_match_desc": "#0 matchThreshold ist ein wichtiger Parameter bei der Objektverfolgung der den Grad der Übereinstimmung zwischen verschiedenen Erkennungsrahmen misst. Ein niedrigerer Wert erleichtert die Objektverbindung erhöht aber das Risiko falscher Verbindungen. Ein höherer Wert ist bei Objektverbindungen strenger kann aber einige echte Übereinstimmungen verpassen.",
   "detection_screen_lost": "Verloren",
-  "detection_screen_lost_desc": "Verfolgtes Objekt wird entfernt, wenn es für #0 verloren geht",
+  "detection_screen_lost_desc": "Bestimmt dynamisch die Zeit zum Entfernen verlorener Objekte zwischen #0 und #1 basierend auf der Bewegungsgeschwindigkeit",
   "detection_screen_consider_valid": "Als gültig betrachten nach",
   "detection_screen_consider_valid_desc": "Verfolgtes Objekt wird nach #0 als gültig betrachtet",
   "detection_screen_reset": "Zurücksetzen",

@@ -75,7 +75,7 @@
   "detection_screen_match": "تطابق",
   "detection_screen_match_desc": "#0 matchThreshold هو معيار أساسي في تتبع الكائنات يقيس مدى التطابق بين صناديق الكشف المختلفة. القيمة المنخفضة تسهّل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الفعلية",
   "detection_screen_lost": "مفقود",
-  "detection_screen_lost_desc": "سيتم إزالة تتبع الكائن إذا فُقد لمدة #0",
+  "detection_screen_lost_desc": "تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 بناءً على سرعة الحركة",
   "detection_screen_consider_valid": "اعتباره صالحاً بعد",
   "detection_screen_consider_valid_desc": "سيعتبر تتبع الكائن صالحاً بعد #0",
   "detection_screen_reset": "إعادة تعيين",

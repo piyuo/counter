@@ -237,7 +237,7 @@ class LocalizationLv extends Localization {
   String get detection_screen_lost => 'Pazaudēts';
 
   @override
-  String get detection_screen_lost_desc => 'Izsekojamais objekts tiks noņemts, ja tas tiks pazaudēts #0';
+  String get detection_screen_lost_desc => 'Dinamiski nosaka zaudēto objektu noņemšanas laiku starp #0 un #1 atkarībā no kustības ātruma';
 
   @override
   String get detection_screen_consider_valid => 'Uzskatīt par derīgu pēc';

@@ -75,7 +75,7 @@
   "detection_screen_match": "Corrispondenza",
   "detection_screen_match_desc": "#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.",
   "detection_screen_lost": "Perso",
-  "detection_screen_lost_desc": "L'oggetto tracciato verrà rimosso se viene perso per #0",
+  "detection_screen_lost_desc": "Determina dinamicamente il tempo di rimozione degli oggetti persi tra #0 e #1 in base alla velocità di movimento",
   "detection_screen_consider_valid": "Considera valido dopo",
   "detection_screen_consider_valid_desc": "L'oggetto tracciato sarà considerato valido dopo #0",
   "detection_screen_reset": "Ripristina",

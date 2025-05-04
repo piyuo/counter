@@ -75,7 +75,7 @@
   "detection_screen_match": "Padanan",
   "detection_screen_match_desc": "#0 matchThreshold ialah parameter utama dalam penjejakan objek yang mengukur tahap padanan antara kotak pengesanan berbeza. Nilai lebih rendah memudahkan pengaitan objek tetapi meningkatkan risiko pengaitan yang salah. Nilai lebih tinggi lebih ketat pada pengaitan objek tetapi mungkin terlepas beberapa padanan sebenar.",
   "detection_screen_lost": "Hilang",
-  "detection_screen_lost_desc": "Objek yang dijejak akan dikeluarkan jika ia hilang selama #0",
+  "detection_screen_lost_desc": "Menentukan masa penghapusan objek yang hilang secara dinamik antara #0 dan #1 berdasarkan kelajuan pergerakan",
   "detection_screen_consider_valid": "Anggap sah selepas",
   "detection_screen_consider_valid_desc": "Objek yang dijejak akan dianggap sah selepas #0",
   "detection_screen_reset": "Set semula",

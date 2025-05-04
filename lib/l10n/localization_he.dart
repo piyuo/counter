@@ -237,7 +237,7 @@ class LocalizationHe extends Localization {
   String get detection_screen_lost => 'אבוד';
 
   @override
-  String get detection_screen_lost_desc => 'מעקב אחר אובייקט יוסר אם הוא אבוד למשך #0';
+  String get detection_screen_lost_desc => 'קובע באופן דינמי את זמן הסרת האובייקטים האבודים בין #0 ל-#1 בהתאם למהירות התנועה';
 
   @override
   String get detection_screen_consider_valid => 'החשב כתקף אחרי';

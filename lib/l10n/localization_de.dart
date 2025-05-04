@@ -237,7 +237,7 @@ class LocalizationDe extends Localization {
   String get detection_screen_lost => 'Verloren';
 
   @override
-  String get detection_screen_lost_desc => 'Verfolgtes Objekt wird entfernt, wenn es für #0 verloren geht';
+  String get detection_screen_lost_desc => 'Bestimmt dynamisch die Zeit zum Entfernen verlorener Objekte zwischen #0 und #1 basierend auf der Bewegungsgeschwindigkeit';
 
   @override
   String get detection_screen_consider_valid => 'Als gültig betrachten nach';
@@ -755,7 +755,7 @@ class LocalizationDeAt extends LocalizationDe {
   String get detection_screen_lost => 'Verloren';
 
   @override
-  String get detection_screen_lost_desc => 'Verfolgtes Objekt wird entfernt, wenn es für #0 verloren geht';
+  String get detection_screen_lost_desc => 'Bestimmt dynamisch die Zeit zum Entfernen verlorener Objekte zwischen #0 und #1 basierend auf der Bewegungsgeschwindigkeit';
 
   @override
   String get detection_screen_consider_valid => 'Als gültig betrachten nach';
@@ -1273,7 +1273,7 @@ class LocalizationDeCh extends LocalizationDe {
   String get detection_screen_lost => 'Verloren';
 
   @override
-  String get detection_screen_lost_desc => 'Verfolgtes Objekt wird entfernt, wenn es für #0 verloren ist';
+  String get detection_screen_lost_desc => 'Bestimmt dynamisch die Zeit zum Entfernen verlorener Objekte zwischen #0 und #1 basierend auf der Bewegungsgeschwindigkeit';
 
   @override
   String get detection_screen_consider_valid => 'Als gültig betrachten nach';

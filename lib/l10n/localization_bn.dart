@@ -237,7 +237,7 @@ class LocalizationBn extends Localization {
   String get detection_screen_lost => 'হারিয়ে গেছে';
 
   @override
-  String get detection_screen_lost_desc => '#0 সময়ের জন্য হারিয়ে গেলে ট্র্যাক অবজেক্ট সরানো হবে';
+  String get detection_screen_lost_desc => 'গতির উপর ভিত্তি করে #0 থেকে #1 এর মধ্যে হারানো বস্তু অপসারণের সময় নির্ধারণ করে';
 
   @override
   String get detection_screen_consider_valid => 'বৈধ হিসাবে বিবেচনা করুন';
@@ -755,7 +755,7 @@ class LocalizationBnIn extends LocalizationBn {
   String get detection_screen_lost => 'হারিয়েছে';
 
   @override
-  String get detection_screen_lost_desc => '#0 সময়ের জন্য হারিয়ে গেলে ট্র্যাক করা অবজেক্ট সরানো হবে';
+  String get detection_screen_lost_desc => 'गति के आधार पर #0 से #1 के बीच खोई वस्तुओं को हटाने का समय गतिशील रूप से निर्धारित करता है';
 
   @override
   String get detection_screen_consider_valid => 'এর পরে বৈধ মনে করুন';

@@ -75,7 +75,7 @@
   "detection_screen_match": "Overeenkomst",
   "detection_screen_match_desc": "#0 matchThreshold is een belangrijke parameter bij objecttracking die de mate van overeenkomst tussen verschillende detectiekaders meet. Een lagere waarde maakt objectkoppeling eenvoudiger maar verhoogt het risico op foute koppelingen. Een hogere waarde is strenger bij objectkoppelingen maar kan echte overeenkomsten missen.",
   "detection_screen_lost": "Verloren",
-  "detection_screen_lost_desc": "Object wordt verwijderd als het verloren is voor #0",
+  "detection_screen_lost_desc": "Bepaalt dynamisch de verwijderingstijd voor verloren objecten tussen #0 en #1 op basis van bewegingssnelheid",
   "detection_screen_consider_valid": "Als geldig beschouwen na",
   "detection_screen_consider_valid_desc": "Object wordt als geldig beschouwd na #0",
   "detection_screen_reset": "Resetten",
