@@ -173,7 +173,7 @@ class DetectionScreen extends StatelessWidget {
                               child: CupertinoSlider(
                                 value: video.minLostSeconds.toDouble(),
                                 min: 0.5,
-                                max: 10,
+                                max: 5,
                                 divisions: 150,
                                 onChanged: (double value) async {
                                   await videoProvider.setSettingsMinLostSeconds(value);
@@ -189,7 +189,7 @@ class DetectionScreen extends StatelessWidget {
                               width: double.infinity,
                               child: CupertinoSlider(
                                 value: video.maxLostSeconds.toDouble(),
-                                min: 1,
+                                min: 5,
                                 max: 60,
                                 divisions: 150,
                                 onChanged: (double value) async {
