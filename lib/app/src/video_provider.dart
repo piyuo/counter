@@ -99,6 +99,9 @@ class VideoProvider with ChangeNotifier {
   /// used to delay the max lost seconds setting
   Timer? _maxLostSecondsTimer;
 
+  /// used to delay the min lost seconds setting
+  Timer? _minLostSecondsTimer;
+
   /// used to delay the valid threshold setting
   Timer? _validThresholdTimer;
 
@@ -143,6 +146,7 @@ class VideoProvider with ChangeNotifier {
     _nmsThresholdTimer?.cancel();
     _matchThresholdTimer?.cancel();
     _maxLostSecondsTimer?.cancel();
+    _minLostSecondsTimer?.cancel();
     _validThresholdTimer?.cancel();
     _modelChangedTimer?.cancel();
     super.dispose();
@@ -211,7 +215,8 @@ class VideoProvider with ChangeNotifier {
     double? trackingThreshold,
     double? matchThreshold,
     int? validThreshold,
-    int? maxLostSeconds,
+    double? maxLostSeconds,
+    double? minLostSeconds,
   }) async {
     await visionController.setRecognition(
       model: model,
@@ -223,6 +228,7 @@ class VideoProvider with ChangeNotifier {
       trackingThreshold: trackingThreshold,
       detectionThreshold: detectionThreshold,
       maxLostSeconds: maxLostSeconds,
+      minLostSeconds: minLostSeconds,
     );
   }
 
@@ -272,6 +278,7 @@ class VideoProvider with ChangeNotifier {
         validThreshold: video.validThreshold,
         trackingThreshold: video.trackingThreshold,
         detectionThreshold: video.confidenceThreshold,
+        minLostSeconds: video.minLostSeconds,
         maxLostSeconds: video.maxLostSeconds,
       ); // disabled this line will enter preview mode
     }
@@ -613,13 +620,24 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// set max allowed lost threshold
-  Future<void> setSettingsMaxLostSeconds(int value) async {
+  Future<void> setSettingsMaxLostSeconds(double value) async {
     video.maxLostSeconds = value;
     _maxLostSecondsTimer?.cancel();
     _maxLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
       await setRecognition(maxLostSeconds: value);
       _saveProject();
       _maxLostSecondsTimer = null;
+    });
+  }
+
+  /// set min allowed lost threshold
+  Future<void> setSettingsMinLostSeconds(double value) async {
+    video.minLostSeconds = value;
+    _minLostSecondsTimer?.cancel();
+    _minLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
+      await setRecognition(minLostSeconds: value);
+      _saveProject();
+      _minLostSecondsTimer = null;
     });
   }
 

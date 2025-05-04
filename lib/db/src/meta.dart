@@ -34,6 +34,7 @@ ProjectMeta projectToMeta(app.Project project) {
               confidence: video.confidenceThreshold,
               nms: video.nmsThreshold,
               match: video.matchThreshold,
+              minLostSeconds: video.minLostSeconds,
               maxLostSeconds: video.maxLostSeconds,
               valid: video.validThreshold,
               tracking: video.trackingThreshold,

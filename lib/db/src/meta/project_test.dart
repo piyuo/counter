@@ -36,6 +36,7 @@ void main() {
         confidence: 0.85,
         nms: 0.5,
         match: 0.9,
+        minLostSeconds: 0.5,
         maxLostSeconds: 10,
         valid: 1,
         tracking: 0.75,

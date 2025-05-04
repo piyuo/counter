@@ -153,23 +153,47 @@ class DetectionScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(bottom: 16.0),
                         child: Text(
                             maxLines: 3,
-                            context.l.detection_screen_lost_desc.replaceAll(
-                                '#0', vision.formatDuration(context, Duration(seconds: video.maxLostSeconds)))),
+                            context.l.detection_screen_lost_desc
+                                .replaceAll(
+                                    '#0',
+                                    vision.formatDuration(
+                                        context, Duration(milliseconds: (video.minLostSeconds * 1000).toInt())))
+                                .replaceAll(
+                                    '#1',
+                                    vision.formatDuration(
+                                        context, Duration(milliseconds: (video.maxLostSeconds * 1000).toInt())))),
                       ),
                       children: [
                         CupertinoListTile(
-                            leading: Text(vision.formatDuration(context, const Duration(seconds: 1))),
-                            trailing: Text(vision.formatDuration(context, const Duration(seconds: 600))),
+                            leadingSize: 40,
+                            leading: Text(context.l.detection_screen_low),
+                            additionalInfo: SizedBox.shrink(),
+                            title: SizedBox(
+                              width: double.infinity,
+                              child: CupertinoSlider(
+                                value: video.minLostSeconds.toDouble(),
+                                min: 0.5,
+                                max: 10,
+                                divisions: 150,
+                                onChanged: (double value) async {
+                                  await videoProvider.setSettingsMinLostSeconds(value);
+                                  detectionScreenProvider.onMinLostSecondsChanged();
+                                },
+                              ),
+                            )),
+                        CupertinoListTile(
+                            leadingSize: 40,
+                            leading: Text(context.l.detection_screen_high),
                             additionalInfo: SizedBox.shrink(),
                             title: SizedBox(
                               width: double.infinity,
                               child: CupertinoSlider(
                                 value: video.maxLostSeconds.toDouble(),
                                 min: 1,
-                                max: 600,
+                                max: 60,
                                 divisions: 150,
                                 onChanged: (double value) async {
-                                  await videoProvider.setSettingsMaxLostSeconds(value.toInt());
+                                  await videoProvider.setSettingsMaxLostSeconds(value);
                                   detectionScreenProvider.onMaxLostSecondsChanged();
                                 },
                               ),
@@ -283,6 +307,11 @@ class DetectionScreenProvider with ChangeNotifier {
 
   /// redraw the screen when settings changed
   void onMaxLostSecondsChanged() {
+    notifyListeners();
+  }
+
+  /// redraw the screen when settings changed
+  void onMinLostSecondsChanged() {
     notifyListeners();
   }
 

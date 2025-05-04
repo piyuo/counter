@@ -29,7 +29,8 @@ mixin _$VideoMeta {
   double get confidence => throw _privateConstructorUsedError;
   double get nms => throw _privateConstructorUsedError;
   double get match => throw _privateConstructorUsedError;
-  int get maxLostSeconds => throw _privateConstructorUsedError;
+  double get minLostSeconds => throw _privateConstructorUsedError;
+  double get maxLostSeconds => throw _privateConstructorUsedError;
   int get valid => throw _privateConstructorUsedError;
   double get tracking => throw _privateConstructorUsedError;
   Models get model => throw _privateConstructorUsedError;
@@ -62,7 +63,8 @@ abstract class $VideoMetaCopyWith<$Res> {
       double confidence,
       double nms,
       double match,
-      int maxLostSeconds,
+      double minLostSeconds,
+      double maxLostSeconds,
       int valid,
       double tracking,
       Models model,
@@ -98,6 +100,7 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
     Object? confidence = null,
     Object? nms = null,
     Object? match = null,
+    Object? minLostSeconds = null,
     Object? maxLostSeconds = null,
     Object? valid = null,
     Object? tracking = null,
@@ -143,10 +146,14 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as double,
+      minLostSeconds: null == minLostSeconds
+          ? _value.minLostSeconds
+          : minLostSeconds // ignore: cast_nullable_to_non_nullable
+              as double,
       maxLostSeconds: null == maxLostSeconds
           ? _value.maxLostSeconds
           : maxLostSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       valid: null == valid
           ? _value.valid
           : valid // ignore: cast_nullable_to_non_nullable
@@ -221,7 +228,8 @@ abstract class _$$VideoMetaImplCopyWith<$Res>
       double confidence,
       double nms,
       double match,
-      int maxLostSeconds,
+      double minLostSeconds,
+      double maxLostSeconds,
       int valid,
       double tracking,
       Models model,
@@ -257,6 +265,7 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
     Object? confidence = null,
     Object? nms = null,
     Object? match = null,
+    Object? minLostSeconds = null,
     Object? maxLostSeconds = null,
     Object? valid = null,
     Object? tracking = null,
@@ -302,10 +311,14 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
           ? _value.match
           : match // ignore: cast_nullable_to_non_nullable
               as double,
+      minLostSeconds: null == minLostSeconds
+          ? _value.minLostSeconds
+          : minLostSeconds // ignore: cast_nullable_to_non_nullable
+              as double,
       maxLostSeconds: null == maxLostSeconds
           ? _value.maxLostSeconds
           : maxLostSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
       valid: null == valid
           ? _value.valid
           : valid // ignore: cast_nullable_to_non_nullable
@@ -348,6 +361,7 @@ class _$VideoMetaImpl implements _VideoMeta {
       required this.confidence,
       required this.nms,
       required this.match,
+      this.minLostSeconds = 0.0,
       required this.maxLostSeconds,
       required this.valid,
       required this.tracking,
@@ -380,7 +394,10 @@ class _$VideoMetaImpl implements _VideoMeta {
   @override
   final double match;
   @override
-  final int maxLostSeconds;
+  @JsonKey()
+  final double minLostSeconds;
+  @override
+  final double maxLostSeconds;
   @override
   final int valid;
   @override
@@ -407,7 +424,7 @@ class _$VideoMetaImpl implements _VideoMeta {
 
   @override
   String toString() {
-    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, confidence: $confidence, nms: $nms, match: $match, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, objectClasses: $objectClasses, zoom: $zoom, zones: $zones)';
+    return 'VideoMeta(videoId: $videoId, mediaType: $mediaType, videoName: $videoName, path: $path, camera: $camera, webcam: $webcam, confidence: $confidence, nms: $nms, match: $match, minLostSeconds: $minLostSeconds, maxLostSeconds: $maxLostSeconds, valid: $valid, tracking: $tracking, model: $model, objectClasses: $objectClasses, zoom: $zoom, zones: $zones)';
   }
 
   @override
@@ -427,6 +444,8 @@ class _$VideoMetaImpl implements _VideoMeta {
                 other.confidence == confidence) &&
             (identical(other.nms, nms) || other.nms == nms) &&
             (identical(other.match, match) || other.match == match) &&
+            (identical(other.minLostSeconds, minLostSeconds) ||
+                other.minLostSeconds == minLostSeconds) &&
             (identical(other.maxLostSeconds, maxLostSeconds) ||
                 other.maxLostSeconds == maxLostSeconds) &&
             (identical(other.valid, valid) || other.valid == valid) &&
@@ -452,6 +471,7 @@ class _$VideoMetaImpl implements _VideoMeta {
       confidence,
       nms,
       match,
+      minLostSeconds,
       maxLostSeconds,
       valid,
       tracking,
@@ -487,7 +507,8 @@ abstract class _VideoMeta implements VideoMeta {
       required final double confidence,
       required final double nms,
       required final double match,
-      required final int maxLostSeconds,
+      final double minLostSeconds,
+      required final double maxLostSeconds,
       required final int valid,
       required final double tracking,
       required final Models model,
@@ -517,7 +538,9 @@ abstract class _VideoMeta implements VideoMeta {
   @override
   double get match;
   @override
-  int get maxLostSeconds;
+  double get minLostSeconds;
+  @override
+  double get maxLostSeconds;
   @override
   int get valid;
   @override

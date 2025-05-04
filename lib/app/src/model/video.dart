@@ -4,7 +4,8 @@ const _confidenceThreshold = 0.45; // pick object as many as possible
 const _trackingThreshold = 0.55; // byte track will filter object by
 const _nmsThreshold = 0.30;
 const _matchThreshold = 0.15;
-const _maxLostSeconds = 3; // 3 seconds to consider object is lost
+const _minLostSeconds = 0.5; // minium 0.5 seconds to consider object is lost
+const _maxLostSeconds = 5.0; // maximum 5 seconds to consider object is lost
 const _validThreshold = 900; // 900ms to consider object is valid
 
 /// video define the video source for the project, a project can have multiple video sources. like camera, video file, live stream.
@@ -23,6 +24,7 @@ class Video {
     this.confidenceThreshold = _confidenceThreshold,
     this.nmsThreshold = _nmsThreshold,
     this.matchThreshold = _matchThreshold,
+    this.minLostSeconds = _minLostSeconds,
     this.maxLostSeconds = _maxLostSeconds,
     this.validThreshold = _validThreshold,
     this.trackingThreshold = _trackingThreshold,
@@ -72,8 +74,11 @@ class Video {
   /// match threshold
   double matchThreshold;
 
-  /// max allowed lost frames
-  int maxLostSeconds;
+  /// min allowed lost seconds
+  double minLostSeconds;
+
+  /// max allowed lost seconds
+  double maxLostSeconds;
 
   /// valid threshold
   int validThreshold;
@@ -87,6 +92,7 @@ class Video {
     trackingThreshold = _trackingThreshold; // byte track will filter object by
     nmsThreshold = _nmsThreshold;
     matchThreshold = _matchThreshold;
+    minLostSeconds = _minLostSeconds;
     maxLostSeconds = _maxLostSeconds;
     validThreshold = _validThreshold;
   }

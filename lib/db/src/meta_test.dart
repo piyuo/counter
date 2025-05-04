@@ -39,6 +39,7 @@ void main() {
         confidenceThreshold: 0.35,
         nmsThreshold: 0.65,
         matchThreshold: 0.55,
+        minLostSeconds: 0.5,
         maxLostSeconds: 1,
         validThreshold: 2,
         trackingThreshold: 0.7,
@@ -74,6 +75,7 @@ void main() {
       expect(videoFromMeta.confidenceThreshold, video.confidenceThreshold);
       expect(videoFromMeta.nmsThreshold, video.nmsThreshold);
       expect(videoFromMeta.matchThreshold, video.matchThreshold);
+      expect(videoFromMeta.minLostSeconds, video.minLostSeconds);
       expect(videoFromMeta.maxLostSeconds, video.maxLostSeconds);
       expect(videoFromMeta.validThreshold, video.validThreshold);
       expect(videoFromMeta.trackingThreshold, video.trackingThreshold);
