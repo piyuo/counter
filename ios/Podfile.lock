@@ -98,7 +98,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/wakelock_plus/ios"
 
 SPEC CHECKSUMS:
-  camera_avfoundation: dd002b0330f4981e1bbcb46ae9b62829237459a4
+  camera_avfoundation: adb0207d868b2d873e895371d88448399ab78d87
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_native_splash: df59bb2e1421aa0282cb2e95618af4dcb0c56c29
@@ -111,8 +111,8 @@ SPEC CHECKSUMS:
   sqlite3: fc1400008a9b3525f5914ed715a5d1af0b8f4983
   sqlite3_flutter_libs: 487032b9008b28de37c72a3aa66849ef3745f3e6
   url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
-  vision: f4cb9080b718fc9ec3732342a49236c4ed8e268a
-  wakelock_plus: 373cfe59b235a6dd5837d0fb88791d2f13a90d56
+  vision: f792981a7c898321f7fbd8751aaaa8502e0d0cf7
+  wakelock_plus: 76957ab028e12bfa4e66813c99e46637f367fc7e
 
 PODFILE CHECKSUM: 0bfcf55e0997c21394d8996198f08ac696e3a59e
 
