@@ -63,7 +63,7 @@ class Project {
   /// check if project contain a camera video source
   bool get hasCameraInVideos {
     for (final video in _videos) {
-      if (video.mediaType == vision.MediaType.camera) {
+      if (video.sourceType == vision.SourceType.camera) {
         return true;
       }
     }
@@ -75,11 +75,11 @@ class Project {
     if (_videos.length != 1) {
       return false;
     }
-    return _videos[0].mediaType == vision.MediaType.camera;
+    return _videos[0].sourceType == vision.SourceType.camera;
   }
 
   /// return current webcam video source count
-  int get webcamsCount => _videos.where((video) => video.mediaType == vision.MediaType.webcam).length;
+  int get webcamsCount => _videos.where((video) => video.sourceType == vision.SourceType.webcam).length;
 
   /// check to see if a webcam define is used in the project
   bool isWebcamDefineExists(WebcamDefine webcamDefine) {

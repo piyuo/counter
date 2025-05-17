@@ -21,7 +21,7 @@ VideoMeta _$VideoMetaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$VideoMeta {
   int get videoId => throw _privateConstructorUsedError;
-  MediaType get mediaType => throw _privateConstructorUsedError;
+  SourceType get mediaType => throw _privateConstructorUsedError;
   String get videoName => throw _privateConstructorUsedError;
   String? get path => throw _privateConstructorUsedError;
   CameraMeta? get camera => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $VideoMetaCopyWith<$Res> {
   @useResult
   $Res call(
       {int videoId,
-      MediaType mediaType,
+      SourceType mediaType,
       String videoName,
       String? path,
       CameraMeta? camera,
@@ -117,7 +117,7 @@ class _$VideoMetaCopyWithImpl<$Res, $Val extends VideoMeta>
       mediaType: null == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
-              as MediaType,
+              as SourceType,
       videoName: null == videoName
           ? _value.videoName
           : videoName // ignore: cast_nullable_to_non_nullable
@@ -220,7 +220,7 @@ abstract class _$$VideoMetaImplCopyWith<$Res>
   @useResult
   $Res call(
       {int videoId,
-      MediaType mediaType,
+      SourceType mediaType,
       String videoName,
       String? path,
       CameraMeta? camera,
@@ -282,7 +282,7 @@ class __$$VideoMetaImplCopyWithImpl<$Res>
       mediaType: null == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
-              as MediaType,
+              as SourceType,
       videoName: null == videoName
           ? _value.videoName
           : videoName // ignore: cast_nullable_to_non_nullable
@@ -378,7 +378,7 @@ class _$VideoMetaImpl implements _VideoMeta {
   @override
   final int videoId;
   @override
-  final MediaType mediaType;
+  final SourceType mediaType;
   @override
   final String videoName;
   @override
@@ -499,7 +499,7 @@ class _$VideoMetaImpl implements _VideoMeta {
 abstract class _VideoMeta implements VideoMeta {
   const factory _VideoMeta(
       {required final int videoId,
-      required final MediaType mediaType,
+      required final SourceType mediaType,
       required final String videoName,
       required final String? path,
       required final CameraMeta? camera,
@@ -522,7 +522,7 @@ abstract class _VideoMeta implements VideoMeta {
   @override
   int get videoId;
   @override
-  MediaType get mediaType;
+  SourceType get mediaType;
   @override
   String get videoName;
   @override

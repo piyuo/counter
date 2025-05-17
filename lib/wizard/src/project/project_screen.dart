@@ -124,7 +124,7 @@ class ProjectScreen extends StatelessWidget {
                               color: CupertinoColors.inactiveGray.resolveFrom(context)),
                           title: Text(videoProvider.video.videoName),
                           trailing: const CupertinoListTileChevron(),
-                          additionalInfo: Text(vision.mediaTypeToString(context, videoProvider.video.mediaType),
+                          additionalInfo: Text(videoProvider.video.sourceType.localizedLabel(context),
                               style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
                           onTap: () async {
                             await projectProvider.enterVideoScreen(videoProvider);

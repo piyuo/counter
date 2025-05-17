@@ -20,7 +20,7 @@ ProjectMeta projectToMeta(app.Project project) {
     videos: project.videos
         .map((video) => VideoMeta(
               videoId: video.videoId,
-              mediaType: video.mediaType,
+              mediaType: video.sourceType,
               videoName: video.videoName,
               path: video.path,
               camera: video.camera != null
@@ -86,7 +86,7 @@ app.Project metaToProject(ProjectMeta meta) {
         .map(
           (video) => app.Video(
             videoId: video.videoId,
-            mediaType: video.mediaType,
+            sourceType: video.mediaType,
             videoName: video.videoName,
             path: video.path,
             camera: video.camera != null

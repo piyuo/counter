@@ -31,7 +31,7 @@ void main() {
       // Create a dummy video using app.Video
       final video = app.Video(
         videoId: 1,
-        mediaType: vision.MediaType.file,
+        sourceType: vision.SourceType.file,
         videoName: 'Video 1',
         path: 'video1.mp4',
         camera: app.CameraDefine(name: 'Cam 1', title: 'Primary Cam', isFrontCamera: true),

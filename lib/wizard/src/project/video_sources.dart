@@ -128,7 +128,7 @@ List<Widget> buildVideoSources(
 
               // add webcam to project
               if (isAddMode) {
-                final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.webcam);
+                final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.SourceType.webcam);
                 if (context.mounted && videoProvider != null) {
                   Navigator.of(context).pushReplacementNamed(
                     webcamRoute,
@@ -144,7 +144,7 @@ List<Widget> buildVideoSources(
 
               // create project with webcam
               await projectProvider.newProject(
-                mediaType: vision.MediaType.webcam,
+                mediaType: vision.SourceType.webcam,
                 projectId: app.uuid(),
               );
               // wait 1 second for webcam to start. webcam tends to return before it's ready
@@ -186,7 +186,7 @@ List<Widget> buildVideoSources(
                 try {
                   // add camera to project
                   if (isAddMode) {
-                    final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.MediaType.camera);
+                    final videoProvider = await projectProvider.newVideoToProject(mediaType: vision.SourceType.camera);
                     if (context.mounted && videoProvider != null) {
                       Navigator.of(context).pushReplacementNamed(cameraRoute, arguments: {
                         'videoProvider': videoProvider,
@@ -199,7 +199,7 @@ List<Widget> buildVideoSources(
 
                   // create project with camera
                   await projectProvider.newProject(
-                    mediaType: vision.MediaType.camera,
+                    mediaType: vision.SourceType.camera,
                     projectId: app.uuid(),
                   );
                   if (context.mounted) {
@@ -223,7 +223,7 @@ List<Widget> buildVideoSources(
             if (isAddMode) {
               await Navigator.of(context).pushNamed(urlRoute, arguments: {
                 'nextRouteBuilder': (url) async {
-                  await projectProvider.newVideoToProject(mediaType: vision.MediaType.live, path: url);
+                  await projectProvider.newVideoToProject(mediaType: vision.SourceType.liveStream, path: url);
                   return projectRoute;
                 }
               });
@@ -234,7 +234,7 @@ List<Widget> buildVideoSources(
             Navigator.of(context).pushNamed(urlRoute, arguments: {
               'nextRouteBuilder': (url) async {
                 projectProvider.newProject(
-                  mediaType: vision.MediaType.live,
+                  mediaType: vision.SourceType.liveStream,
                   path: url,
                   projectId: app.uuid(),
                 );
@@ -304,7 +304,7 @@ List<Widget> buildVideoSources(
                 videoId,
               );
 
-              await projectProvider.newVideoToProject(mediaType: vision.MediaType.file, path: newFilePath);
+              await projectProvider.newVideoToProject(mediaType: vision.SourceType.file, path: newFilePath);
               if (context.mounted) Navigator.of(context).pop();
               return;
             }
@@ -314,7 +314,7 @@ List<Widget> buildVideoSources(
             final newFilePath = await saveFileToAppDirectory(filePath, projectId, videoId);
             // create project with file
             await projectProvider.newProject(
-              mediaType: vision.MediaType.file,
+              mediaType: vision.SourceType.file,
               path: newFilePath,
               projectId: projectId,
               videoId: videoId,

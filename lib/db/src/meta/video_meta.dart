@@ -13,7 +13,7 @@ class VideoMeta with _$VideoMeta {
   @JsonSerializable(explicitToJson: true)
   const factory VideoMeta({
     required int videoId,
-    required MediaType mediaType,
+    required SourceType mediaType,
     required String videoName,
     required String? path,
     required CameraMeta? camera,

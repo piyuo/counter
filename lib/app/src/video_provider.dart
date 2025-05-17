@@ -179,14 +179,14 @@ class VideoProvider with ChangeNotifier {
 
   /// Return the icon of the video source media type
   IconData getMediaTypeIcon() {
-    switch (video.mediaType) {
-      case vision.MediaType.webcam:
+    switch (video.sourceType) {
+      case vision.SourceType.webcam:
         return CupertinoIcons.videocam;
-      case vision.MediaType.camera:
+      case vision.SourceType.camera:
         return CupertinoIcons.camera;
-      case vision.MediaType.live:
+      case vision.SourceType.liveStream:
         return CupertinoIcons.cloud;
-      case vision.MediaType.file:
+      case vision.SourceType.file:
         return CupertinoIcons.folder;
     }
   }
@@ -237,13 +237,13 @@ class VideoProvider with ChangeNotifier {
     int errorCode = vision.errorOK;
     video.zoom = 1;
     await visionController.close();
-    switch (video.mediaType) {
-      case vision.MediaType.file:
+    switch (video.sourceType) {
+      case vision.SourceType.file:
         assert(video.path != null && video.path!.isNotEmpty, 'file path is empty');
         final appDir = await getApplicationSupportDirectory();
         final filePath = '${appDir.path}/${video.path}';
         errorCode = await visionController.openFile(filePath);
-      case vision.MediaType.camera:
+      case vision.SourceType.camera:
         assert(video.camera != null, 'camera is null');
         errorCode = await visionController.openCamera(video.camera!.name);
         if (errorCode == vision.errorOK) {
@@ -253,10 +253,10 @@ class VideoProvider with ChangeNotifier {
           maxZoom = max;
           isZoomToolEnabled = min != max;
         }
-      case vision.MediaType.webcam:
+      case vision.SourceType.webcam:
         assert(video.webcam != null, 'webcam is null');
         errorCode = await visionController.openWebcam(video.webcam!.index);
-      case vision.MediaType.live:
+      case vision.SourceType.liveStream:
         assert(video.path != null && video.path!.isNotEmpty, 'live url path is empty');
         errorCode = await visionController.openLiveURL(video.path!);
     }
@@ -290,7 +290,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// get the video type
-  vision.MediaType get type => video.mediaType;
+  vision.SourceType get type => video.sourceType;
 
   /// is video is playing
   bool get isPlaying => visionController.isPlaying;

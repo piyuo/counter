@@ -345,12 +345,12 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// create a project name
-  String _createProjectName(vision.MediaType type, String? path) {
+  String _createProjectName(vision.SourceType type, String? path) {
     return '${cli.globalContext.l.default_project_name} ${_crateFormattedTimestamp()}';
   }
 
   /// create a video name
-  String _createVideoName(vision.MediaType type) {
+  String _createVideoName(vision.SourceType type) {
     int index = project!.videos.length;
     String name;
     do {
@@ -472,7 +472,7 @@ class ProjectProvider with ChangeNotifier {
   /// start a new project with a video source, return tru e if success
   Future<bool> newProject({
     required String projectId,
-    required vision.MediaType mediaType,
+    required vision.SourceType mediaType,
     String? path,
     int? videoId,
   }) async {
@@ -517,10 +517,10 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// add a new video to project
-  Future<Video> _addVideoToProject({required vision.MediaType mediaType, required String? path, int? videoId}) async {
+  Future<Video> _addVideoToProject({required vision.SourceType mediaType, required String? path, int? videoId}) async {
     final video = Video(
       videoId: videoId ?? getNextVideoId(),
-      mediaType: mediaType,
+      sourceType: mediaType,
       videoName: _createVideoName(mediaType),
       objectClasses: [0, 2],
       path: path,
@@ -528,12 +528,12 @@ class ProjectProvider with ChangeNotifier {
     );
 
     // make sure the video source has a camera or webcam
-    if (mediaType == vision.MediaType.camera && video.camera == null) {
+    if (mediaType == vision.SourceType.camera && video.camera == null) {
       final cameraManager = await getCameraManager();
       if (cameraManager.cameraDefines.isNotEmpty) {
         video.camera = cameraManager.cameraDefines.first;
       }
-    } else if (mediaType == vision.MediaType.webcam && video.webcam == null) {
+    } else if (mediaType == vision.SourceType.webcam && video.webcam == null) {
       final webcamManager = await getWebcamManager();
       if (webcamManager.webcamDefines.isNotEmpty) {
         for (final webcam in webcamManager.webcamDefines) {
@@ -580,7 +580,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// add a new video source to the project
   Future<VideoProvider?> newVideoToProject({
-    required vision.MediaType mediaType,
+    required vision.SourceType mediaType,
     String? path,
     int? videoId,
   }) async {
@@ -619,7 +619,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// Remove a video source
   Future<void> deleteVideo(VideoProvider videoProvider) async {
-    if (videoProvider.video.mediaType == vision.MediaType.file) {
+    if (videoProvider.video.sourceType == vision.SourceType.file) {
       // delete the video file
       final file = File(videoProvider.video.path!);
       if (await file.exists()) {

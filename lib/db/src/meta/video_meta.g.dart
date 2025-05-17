@@ -9,7 +9,7 @@ part of 'video_meta.dart';
 _$VideoMetaImpl _$$VideoMetaImplFromJson(Map<String, dynamic> json) =>
     _$VideoMetaImpl(
       videoId: (json['videoId'] as num).toInt(),
-      mediaType: $enumDecode(_$MediaTypeEnumMap, json['mediaType']),
+      mediaType: $enumDecode(_$SourceTypeEnumMap, json['mediaType']),
       videoName: json['videoName'] as String,
       path: json['path'] as String?,
       camera: json['camera'] == null
@@ -38,7 +38,7 @@ _$VideoMetaImpl _$$VideoMetaImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$VideoMetaImplToJson(_$VideoMetaImpl instance) =>
     <String, dynamic>{
       'videoId': instance.videoId,
-      'mediaType': _$MediaTypeEnumMap[instance.mediaType]!,
+      'mediaType': _$SourceTypeEnumMap[instance.mediaType]!,
       'videoName': instance.videoName,
       'path': instance.path,
       'camera': instance.camera?.toJson(),
@@ -56,11 +56,11 @@ Map<String, dynamic> _$$VideoMetaImplToJson(_$VideoMetaImpl instance) =>
       'zones': instance.zones.map((e) => e.toJson()).toList(),
     };
 
-const _$MediaTypeEnumMap = {
-  MediaType.file: 'file',
-  MediaType.live: 'live',
-  MediaType.camera: 'camera',
-  MediaType.webcam: 'webcam',
+const _$SourceTypeEnumMap = {
+  SourceType.file: 'file',
+  SourceType.liveStream: 'liveStream',
+  SourceType.camera: 'camera',
+  SourceType.webcam: 'webcam',
 };
 
 const _$ModelsEnumMap = {

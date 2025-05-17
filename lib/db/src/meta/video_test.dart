@@ -51,7 +51,7 @@ void main() {
       );
       final videoMeta = VideoMeta(
         videoId: 101,
-        mediaType: MediaType.file,
+        mediaType: SourceType.file,
         videoName: 'Test Video',
         path: 'test/path.mp4',
         camera: cameraMeta,

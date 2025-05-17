@@ -12,7 +12,7 @@ const _validThreshold = 900; // 900ms to consider object is valid
 class Video {
   Video({
     required this.videoId,
-    required this.mediaType,
+    required this.sourceType,
     required this.videoName,
     this.camera,
     this.webcam,
@@ -38,8 +38,8 @@ class Video {
   /// the video id
   final int videoId;
 
-  /// the project type
-  final vision.MediaType mediaType;
+  /// the video source type
+  final vision.SourceType sourceType;
 
   /// the project source name
   String videoName;

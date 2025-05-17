@@ -117,7 +117,7 @@ class VideoScreen extends StatelessWidget {
                     header: Text(context.l.video_screen_sources),
                     children: [
                       // file
-                      if (video.mediaType == vision.MediaType.file)
+                      if (video.sourceType == vision.SourceType.file)
                         CupertinoListTile(
                           title: Text(context.l.video_screen_change_file),
                           leading: const Icon(CupertinoIcons.folder),
@@ -138,7 +138,7 @@ class VideoScreen extends StatelessWidget {
                           },
                         ),
                       // live stream
-                      if (video.mediaType == vision.MediaType.live)
+                      if (video.sourceType == vision.SourceType.liveStream)
                         CupertinoListTile(
                           title: Text(videoProvider.video.path!),
                           leading: const Icon(CupertinoIcons.cloud),
@@ -159,7 +159,7 @@ class VideoScreen extends StatelessWidget {
                         ),
 
                       // camera
-                      if (video.mediaType == vision.MediaType.camera)
+                      if (video.sourceType == vision.SourceType.camera)
                         CupertinoListTile(
                           title: Text(
                               '${videoProvider.video.camera!.isFrontCamera ? context.l.camera_screen_front_camera : context.l.camera_screen_back_camera} ${videoProvider.video.camera!.title}'),
@@ -185,7 +185,7 @@ class VideoScreen extends StatelessWidget {
                         ),
 
                       // webcam
-                      if (video.mediaType == vision.MediaType.webcam)
+                      if (video.sourceType == vision.SourceType.webcam)
                         CupertinoListTile(
                           title: Text(videoProvider.video.webcam!.name),
                           leading: const Icon(CupertinoIcons.videocam),
@@ -286,7 +286,7 @@ class VideoScreen extends StatelessWidget {
                   ),
 
                   // playback speed
-                  if (video.mediaType == vision.MediaType.file)
+                  if (video.sourceType == vision.SourceType.file)
                     CupertinoListSection(
                       backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
                       header: Text(context.l.video_screen_playback_speed),
