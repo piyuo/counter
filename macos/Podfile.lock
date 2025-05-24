@@ -13,23 +13,23 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sqlite3 (3.49.1):
-    - sqlite3/common (= 3.49.1)
-  - sqlite3/common (3.49.1)
-  - sqlite3/dbstatvtab (3.49.1):
+  - sqlite3 (3.49.2):
+    - sqlite3/common (= 3.49.2)
+  - sqlite3/common (3.49.2)
+  - sqlite3/dbstatvtab (3.49.2):
     - sqlite3/common
-  - sqlite3/fts5 (3.49.1):
+  - sqlite3/fts5 (3.49.2):
     - sqlite3/common
-  - sqlite3/math (3.49.1):
+  - sqlite3/math (3.49.2):
     - sqlite3/common
-  - sqlite3/perf-threadsafe (3.49.1):
+  - sqlite3/perf-threadsafe (3.49.2):
     - sqlite3/common
-  - sqlite3/rtree (3.49.1):
+  - sqlite3/rtree (3.49.2):
     - sqlite3/common
   - sqlite3_flutter_libs (0.0.1):
     - Flutter
     - FlutterMacOS
-    - sqlite3 (~> 3.49.1)
+    - sqlite3 (~> 3.49.2)
     - sqlite3/dbstatvtab
     - sqlite3/fts5
     - sqlite3/math
@@ -90,8 +90,8 @@ SPEC CHECKSUMS:
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  sqlite3: fc1400008a9b3525f5914ed715a5d1af0b8f4983
-  sqlite3_flutter_libs: 487032b9008b28de37c72a3aa66849ef3745f3e6
+  sqlite3: 3c950dc86011117c307eb0b28c4a7bb449dce9f1
+  sqlite3_flutter_libs: e702a3214d49107c89b40bd2777c14057531d149
   url_launcher_macos: c82c93949963e55b228a30115bd219499a6fe404
   vision: 46cc170dffb09a3f45203caaf23ed023d63795e9
   wakelock_plus: 4783562c9a43d209c458cb9b30692134af456269

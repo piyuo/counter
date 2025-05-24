@@ -29,6 +29,27 @@ class VideoProvider with ChangeNotifier {
       sampler: sampler,
       isShowCenterRedDotOnTarget: _projectProvider!.project!.isShowCenterRedDotOnTarget,
       isShowGhostTarget: _projectProvider!.project!.isShowGhostTarget,
+      onSourceReady: (visionController) {
+        if (video.zones.isNotEmpty) {
+          // if zones are already set, no need to add default zone
+          return null;
+        }
+
+        final zone = _addDefaultZone();
+        video.zones.add(zone);
+        return vision.RecognitionDefinition(
+          model: video.model,
+          objectClasses: video.objectClasses,
+          videoZones: video.zones,
+          nmsThreshold: video.nmsThreshold,
+          matchThreshold: video.matchThreshold,
+          validThreshold: video.validThreshold,
+          trackingThreshold: video.trackingThreshold,
+          detectionThreshold: video.confidenceThreshold,
+          minLostSeconds: video.minLostSeconds,
+          maxLostSeconds: video.maxLostSeconds,
+        );
+      },
     );
     playerController = vision.PlayerController(
       visionController: visionController,
@@ -82,10 +103,7 @@ class VideoProvider with ChangeNotifier {
   int get mediaAspectRatio => mediaWidth ~/ mediaHeight;
 
   /// get last error code
-  vision.GeneralError? get lastError => visionController.lastError;
-
-  /// is video has error
-  bool get hasError => visionController.hasError;
+  vision.Error? get lastError => visionController.lastError;
 
   /// used to delay the detection threshold setting
   Timer? _detectionThresholdTimer;
@@ -112,7 +130,7 @@ class VideoProvider with ChangeNotifier {
   Future<void> init(Project project) async {
     isZoomToolEnabled = false;
     await visionController.init();
-    await reload(project, true);
+    await reload(project);
 
     _visionStatusSubscription = visionController.statusController.stream.listen((status) {
       switch (status) {
@@ -200,40 +218,20 @@ class VideoProvider with ChangeNotifier {
   Future<void> setObjectClassesToRecognition() async {
     // change object classes must set zone also
     await visionController.setRecognition(
-      objectClasses: video.objectClasses,
-      videoZones: video.zones,
+      vision.RecognitionDefinition(
+        objectClasses: video.objectClasses,
+        videoZones: video.zones,
+      ),
     );
   }
 
   /// set the recognition for detection
-  Future<void> setRecognition({
-    vision.Models? model,
-    List<int>? objectClasses, // when set objectClasses must set videoZones
-    List<vision.VideoZone>? videoZones,
-    double? nmsThreshold,
-    double? detectionThreshold,
-    double? trackingThreshold,
-    double? matchThreshold,
-    int? validThreshold,
-    double? maxLostSeconds,
-    double? minLostSeconds,
-  }) async {
-    await visionController.setRecognition(
-      model: model,
-      objectClasses: objectClasses,
-      videoZones: videoZones,
-      nmsThreshold: nmsThreshold,
-      matchThreshold: matchThreshold,
-      validThreshold: validThreshold,
-      trackingThreshold: trackingThreshold,
-      detectionThreshold: detectionThreshold,
-      maxLostSeconds: maxLostSeconds,
-      minLostSeconds: minLostSeconds,
-    );
+  Future<void> setRecognition(vision.RecognitionDefinition definition) async {
+    await visionController.setRecognition(definition);
   }
 
   /// reload the video source, if project not null mean need setRecognition
-  Future<int> reload(Project project, bool isSetRecognition) async {
+  Future<int> reload(Project project) async {
     int errorCode = vision.errorOK;
     video.zoom = 1;
     await visionController.close();
@@ -265,26 +263,6 @@ class VideoProvider with ChangeNotifier {
       return errorCode;
     }
 
-    if (video.zones.isEmpty) {
-      await _addDefaultZone(updateRecognition: !isSetRecognition);
-    }
-    if (isSetRecognition) {
-      await setRecognition(
-        model: video.model,
-        objectClasses: video.objectClasses,
-        videoZones: video.zones,
-        nmsThreshold: video.nmsThreshold,
-        matchThreshold: video.matchThreshold,
-        validThreshold: video.validThreshold,
-        trackingThreshold: video.trackingThreshold,
-        detectionThreshold: video.confidenceThreshold,
-        minLostSeconds: video.minLostSeconds,
-        maxLostSeconds: video.maxLostSeconds,
-      ); // disabled this line will enter preview mode
-    }
-    // auto play
-    await visionController.play();
-
     notifyListeners();
     return errorCode;
   }
@@ -293,16 +271,12 @@ class VideoProvider with ChangeNotifier {
   vision.SourceType get type => video.sourceType;
 
   /// is video is playing
-  bool get isPlaying => visionController.isPlaying;
+  bool get isNotFrozen => visionController.isNotFrozen;
 
   /// set the video path
   Future<int> setVideoPath(Project project, String newVideoPath) async {
     video.path = newVideoPath;
-    final isPlaying = visionController.isPlaying;
-    final errorCode = await reload(project, false);
-    if (isPlaying) {
-      await visionController.play();
-    }
+    final errorCode = await reload(project);
     _saveProject();
     return errorCode;
   }
@@ -314,7 +288,7 @@ class VideoProvider with ChangeNotifier {
     }
 
     video.camera = cameraDefine;
-    await reload(_projectProvider!.project!, false);
+    await reload(_projectProvider!.project!);
     _saveProject();
   }
 
@@ -333,7 +307,7 @@ class VideoProvider with ChangeNotifier {
 
   /// enable zone editor, return true if success
   Future<bool> enableZoneEditor() async {
-    if (!visionController.hasMedia) {
+    if (!visionController.isSourceReady) {
       return false;
     }
     await visionController.enableDetection(false);
@@ -371,7 +345,7 @@ class VideoProvider with ChangeNotifier {
       video.zones.clear();
       video.zones.addAll(zones);
     }
-    await visionController.setRecognition(videoZones: video.zones);
+    await visionController.setRecognition(vision.RecognitionDefinition(videoZones: video.zones));
   }
 
   /// return the current zones and counts
@@ -386,9 +360,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// add default zone if the project is new
-  Future<void> _addDefaultZone({
-    bool updateRecognition = true,
-  }) async {
+  vision.VideoZone _addDefaultZone() {
     final safePadding = MediaQuery.of(cli.globalContext).padding;
     final mediaWidth = visionController.mediaWidth!;
     final mediaHeight = visionController.mediaHeight!;
@@ -409,10 +381,7 @@ class VideoProvider with ChangeNotifier {
         Offset(offsetX, mediaHeight - offsetY),
       ],
     );
-    video.zones.add(zone);
-    if (updateRecognition) {
-      await _setZones(video.zones);
-    }
+    return zone;
   }
 
   /// check if the zone can be removed
@@ -580,7 +549,7 @@ class VideoProvider with ChangeNotifier {
     video.model = model;
     _modelChangedTimer?.cancel();
     _modelChangedTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(model: model);
+      await setRecognition(vision.RecognitionDefinition(model: model));
       _saveProject();
       _modelChangedTimer = null;
     });
@@ -591,7 +560,7 @@ class VideoProvider with ChangeNotifier {
     video.confidenceThreshold = value;
     _detectionThresholdTimer?.cancel();
     _detectionThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(detectionThreshold: value);
+      await setRecognition(vision.RecognitionDefinition(detectionThreshold: value));
       _saveProject();
       _detectionThresholdTimer = null;
     });
@@ -602,7 +571,7 @@ class VideoProvider with ChangeNotifier {
     video.nmsThreshold = value;
     _nmsThresholdTimer?.cancel();
     _nmsThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(nmsThreshold: value);
+      await setRecognition(vision.RecognitionDefinition(nmsThreshold: value));
       _saveProject();
       _nmsThresholdTimer = null;
     });
@@ -613,7 +582,7 @@ class VideoProvider with ChangeNotifier {
     video.matchThreshold = value;
     _matchThresholdTimer?.cancel();
     _matchThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(matchThreshold: value);
+      await setRecognition(vision.RecognitionDefinition(matchThreshold: value));
       _saveProject();
       _matchThresholdTimer = null;
     });
@@ -624,7 +593,7 @@ class VideoProvider with ChangeNotifier {
     video.maxLostSeconds = value;
     _maxLostSecondsTimer?.cancel();
     _maxLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(maxLostSeconds: value);
+      await setRecognition(vision.RecognitionDefinition(maxLostSeconds: value));
       _saveProject();
       _maxLostSecondsTimer = null;
     });
@@ -635,7 +604,7 @@ class VideoProvider with ChangeNotifier {
     video.minLostSeconds = value;
     _minLostSecondsTimer?.cancel();
     _minLostSecondsTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(minLostSeconds: value);
+      await setRecognition(vision.RecognitionDefinition(minLostSeconds: value));
       _saveProject();
       _minLostSecondsTimer = null;
     });
@@ -646,7 +615,7 @@ class VideoProvider with ChangeNotifier {
     video.validThreshold = value;
     _validThresholdTimer?.cancel();
     _validThresholdTimer = Timer(const Duration(seconds: 2), () async {
-      await setRecognition(validThreshold: value);
+      await setRecognition(vision.RecognitionDefinition(validThreshold: value));
       _saveProject();
       _validThresholdTimer = null;
     });
@@ -656,14 +625,14 @@ class VideoProvider with ChangeNotifier {
   Future<void> resetDetectionSettings() async {
     video.resetDetectionSettings();
     video.model = _projectProvider!.benchmarkLocalStorage.recommendedModel;
-    await setRecognition(
+    await setRecognition(vision.RecognitionDefinition(
       model: video.model,
       nmsThreshold: video.nmsThreshold,
       matchThreshold: video.matchThreshold,
       trackingThreshold: video.trackingThreshold,
       detectionThreshold: video.confidenceThreshold,
       maxLostSeconds: video.maxLostSeconds,
-    );
+    ));
     _saveProject();
   }
 }

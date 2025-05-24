@@ -286,7 +286,7 @@ class ProjectProvider with ChangeNotifier {
     bool allPlay = true;
     bool allPause = true;
     for (final videoProvider in videoProviders) {
-      if (videoProvider.isPlaying) {
+      if (videoProvider.isNotFrozen) {
         allPause = false;
       } else {
         allPlay = false;
