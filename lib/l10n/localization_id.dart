@@ -12,7 +12,8 @@ class LocalizationId extends Localization {
   String get product_name => 'Penghitung';
 
   @override
-  String get product_desc => 'Menggunakan visi komputer dan kecerdasan buatan untuk menghitung orang, kendaraan, hewan peliharaan, dan lainnya.';
+  String get product_desc =>
+      'Menggunakan visi komputer dan kecerdasan buatan untuk menghitung orang, kendaraan, hewan peliharaan, dan lainnya.';
 
   @override
   String get product_copyright => 'Hak Cipta © 2025';
@@ -33,16 +34,19 @@ class LocalizationId extends Localization {
   String get video_sources_camera_not_found_title => 'Kamera tidak ditemukan';
 
   @override
-  String get video_sources_camera_not_found_message => 'Perlu memberikan izin kamera untuk menggunakan kamera';
+  String get video_sources_camera_not_found_message =>
+      'Perlu memberikan izin kamera untuk menggunakan kamera';
 
   @override
   String get video_sources_webcam_not_found_title => 'Webcam tidak ditemukan';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Periksa izin aplikasi dan koneksi webcam';
+  String get video_sources_webcam_not_found_message =>
+      'Periksa izin aplikasi dan koneksi webcam';
 
   @override
-  String get wizard_screen_desc => 'Buat proyek baru di bawah ini untuk mulai menghitung.';
+  String get wizard_screen_desc =>
+      'Buat proyek baru di bawah ini untuk mulai menghitung.';
 
   @override
   String get wizard_screen_new_project_from => 'Proyek Baru dari';
@@ -54,7 +58,8 @@ class LocalizationId extends Localization {
   String get wizard_screen_about => 'Tentang';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Semua proyek akan disimpan secara otomatis di perangkat lokal';
+  String get wizard_screen_open_projects_tip =>
+      'Semua proyek akan disimpan secara otomatis di perangkat lokal';
 
   @override
   String get wizard_screen_open_projects => 'Buka proyek yang ada';
@@ -99,7 +104,8 @@ class LocalizationId extends Localization {
   String get benchmark_screen_start_button => 'Mulai Benchmark';
 
   @override
-  String get benchmark_screen_start_failed => 'Gagal memulai benchmark, kode error-nya adalah';
+  String get benchmark_screen_start_failed =>
+      'Gagal memulai benchmark, kode error-nya adalah';
 
   @override
   String get benchmark_screen_models => 'Model deteksi objek';
@@ -108,10 +114,12 @@ class LocalizationId extends Localization {
   String get project_screen_title => 'Proyek';
 
   @override
-  String get project_screen_exit_confirm_title => 'Konfirmasi keluar dari proyek';
+  String get project_screen_exit_confirm_title =>
+      'Konfirmasi keluar dari proyek';
 
   @override
-  String get project_screen_exit_confirm_content => 'Meninggalkan proyek akan menghentikan Penghitungan. Apakah Anda yakin ingin melanjutkan?';
+  String get project_screen_exit_confirm_content =>
+      'Meninggalkan proyek akan menghentikan Penghitungan. Apakah Anda yakin ingin melanjutkan?';
 
   @override
   String get project_screen_exit_button => 'Keluar';
@@ -120,7 +128,8 @@ class LocalizationId extends Localization {
   String get project_screen_add_video_button => 'Tambah sumber video';
 
   @override
-  String get project_screen_from_desc => 'Kami menyimpan catatan selama 24 jam, sehingga Anda dapat melihat bagian waktu yang Anda butuhkan.';
+  String get project_screen_from_desc =>
+      'Kami menyimpan catatan selama 24 jam, sehingga Anda dapat melihat bagian waktu yang Anda butuhkan.';
 
   @override
   String get project_screen_report_settings => 'Pengaturan';
@@ -129,13 +138,15 @@ class LocalizationId extends Localization {
   String get filter_screen_title => 'Filter';
 
   @override
-  String get filter_screen_desc => 'Pilih rentang filter dari daftar di bawah ini';
+  String get filter_screen_desc =>
+      'Pilih rentang filter dari daftar di bawah ini';
 
   @override
   String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Waktu akhir harus lebih besar dari waktu mulai';
+  String get filter_screen_error_content =>
+      'Waktu akhir harus lebih besar dari waktu mulai';
 
   @override
   String get filter_screen_error_custom => 'Kustom';
@@ -150,7 +161,8 @@ class LocalizationId extends Localization {
   String get settings_screen_title => 'Pengaturan';
 
   @override
-  String get settings_screen_desc => 'Atur nama Proyek, parameter deteksi, pengosongan hitungan.';
+  String get settings_screen_desc =>
+      'Atur nama Proyek, parameter deteksi, pengosongan hitungan.';
 
   @override
   String get settings_screen_project_id => 'ID Proyek';
@@ -159,7 +171,8 @@ class LocalizationId extends Localization {
   String get settings_screen_project_name => 'Nama Proyek';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Jl. Sudirman 123 atau Taman Menteng';
+  String get settings_screen_project_name_place_holder =>
+      'Jl. Sudirman 123 atau Taman Menteng';
 
   @override
   String get settings_screen_project_error => 'Nama proyek tidak boleh kosong';
@@ -168,19 +181,22 @@ class LocalizationId extends Localization {
   String get settings_screen_random_count_button => 'Tambah hitungan acak';
 
   @override
-  String get settings_screen_reset_count_header => 'Reset semua hitungan dalam proyek ini';
+  String get settings_screen_reset_count_header =>
+      'Reset semua hitungan dalam proyek ini';
 
   @override
   String get settings_screen_reset_count_button => 'Reset hitungan';
 
   @override
-  String get settings_screen_reset_count_content => 'Apakah Anda yakin ingin mereset semua hitungan?';
+  String get settings_screen_reset_count_content =>
+      'Apakah Anda yakin ingin mereset semua hitungan?';
 
   @override
   String get settings_screen_delete_header => 'Hapus proyek ini';
 
   @override
-  String get settings_screen_delete_content => 'Apakah Anda yakin ingin menghapus proyek ini?';
+  String get settings_screen_delete_content =>
+      'Apakah Anda yakin ingin menghapus proyek ini?';
 
   @override
   String get settings_screen_delete_button => 'Hapus';
@@ -189,16 +205,19 @@ class LocalizationId extends Localization {
   String get settings_screen_center_point_title => 'Titik Tengah pada Target';
 
   @override
-  String get settings_screen_center_point_desc => 'Titik tengah membantu menentukan apakah target berada dalam zona jangkauan.';
+  String get settings_screen_center_point_desc =>
+      'Titik tengah membantu menentukan apakah target berada dalam zona jangkauan.';
 
   @override
-  String get settings_screen_center_point_button => 'Tampilkan Titik Tengah pada Target';
+  String get settings_screen_center_point_button =>
+      'Tampilkan Titik Tengah pada Target';
 
   @override
   String get settings_screen_lost_target_title => 'Target Hilang';
 
   @override
-  String get settings_screen_lost_target_desc => 'Saat pelacakan objek kehilangan target, opsi ini membuatnya terlihat. Secara default, target yang hilang tidak ditampilkan.';
+  String get settings_screen_lost_target_desc =>
+      'Saat pelacakan objek kehilangan target, opsi ini membuatnya terlihat. Secara default, target yang hilang tidak ditampilkan.';
 
   @override
   String get settings_screen_lost_target_button => 'Tampilkan Target Hilang';
@@ -213,7 +232,8 @@ class LocalizationId extends Localization {
   String get detection_screen_confidence => 'Kepercayaan';
 
   @override
-  String get detection_screen_confidence_desc => 'kepercayaan di atas #0 dianggap sebagai deteksi yang valid';
+  String get detection_screen_confidence_desc =>
+      'kepercayaan di atas #0 dianggap sebagai deteksi yang valid';
 
   @override
   String get detection_screen_low => 'Rendah';
@@ -225,31 +245,36 @@ class LocalizationId extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ambang NMS lebih rendah (mis. 0.3-0.4) menghapus kotak tumpang tindih lebih ketat dan mengurangi hasil positif palsu tetapi mungkin melewatkan orang-orang tumpang tindih. Ambang lebih tinggi (0.7-0.9) mempertahankan lebih banyak kotak yang dapat meningkatkan hasil positif palsu tetapi lebih baik mendeteksi orang-orang tumpang tindih.';
+  String get detection_screen_nms_desc =>
+      '#0 Ambang NMS lebih rendah (mis. 0.3-0.4) menghapus kotak tumpang tindih lebih ketat dan mengurangi hasil positif palsu tetapi mungkin melewatkan orang-orang tumpang tindih. Ambang lebih tinggi (0.7-0.9) mempertahankan lebih banyak kotak yang dapat meningkatkan hasil positif palsu tetapi lebih baik mendeteksi orang-orang tumpang tindih.';
 
   @override
   String get detection_screen_match => 'Kecocokan';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold adalah parameter kunci dalam pelacakan objek yang mengukur tingkat kecocokan antara kotak deteksi berbeda. Nilai lebih rendah mempermudah asosiasi objek tetapi meningkatkan risiko asosiasi yang salah. Nilai lebih tinggi lebih ketat pada asosiasi objek tetapi mungkin melewatkan beberapa kecocokan yang benar.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold adalah parameter kunci dalam pelacakan objek yang mengukur tingkat kecocokan antara kotak deteksi berbeda. Nilai lebih rendah mempermudah asosiasi objek tetapi meningkatkan risiko asosiasi yang salah. Nilai lebih tinggi lebih ketat pada asosiasi objek tetapi mungkin melewatkan beberapa kecocokan yang benar.';
 
   @override
   String get detection_screen_lost => 'Hilang';
 
   @override
-  String get detection_screen_lost_desc => 'Menentukan waktu penghapusan objek yang hilang secara dinamis antara #0 dan #1 berdasarkan kecepatan gerakan';
+  String get detection_screen_lost_desc =>
+      'Menentukan waktu penghapusan objek yang hilang secara dinamis antara #0 dan #1 berdasarkan kecepatan gerakan';
 
   @override
   String get detection_screen_consider_valid => 'Anggap valid setelah';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Objek yang dilacak akan dianggap valid setelah #0';
+  String get detection_screen_consider_valid_desc =>
+      'Objek yang dilacak akan dianggap valid setelah #0';
 
   @override
   String get detection_screen_reset => 'Reset';
 
   @override
-  String get detection_screen_reset_content => 'Apakah Anda yakin ingin mereset pengaturan deteksi?';
+  String get detection_screen_reset_content =>
+      'Apakah Anda yakin ingin mereset pengaturan deteksi?';
 
   @override
   String get url_screen_title => 'URL siaran langsung';
@@ -261,7 +286,8 @@ class LocalizationId extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream atau rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream atau rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Tambah sumber Video';
@@ -297,13 +323,15 @@ class LocalizationId extends Localization {
   String get video_screen_name_empty => 'Nama video tidak boleh kosong.';
 
   @override
-  String get video_screen_desc => 'Kelola sumber video, tambah atau ubah zona deteksi.';
+  String get video_screen_desc =>
+      'Kelola sumber video, tambah atau ubah zona deteksi.';
 
   @override
   String get video_screen_video_name => 'Nama sumber video';
 
   @override
-  String get video_screen_edit_placeholder => 'Kamera Pintu Depan atau Kamera Tempat Parkir';
+  String get video_screen_edit_placeholder =>
+      'Kamera Pintu Depan atau Kamera Tempat Parkir';
 
   @override
   String get video_screen_change_file => 'Ganti File';
@@ -315,7 +343,8 @@ class LocalizationId extends Localization {
   String get video_screen_zones => 'Zona deteksi';
 
   @override
-  String get video_screen_zones_desc => 'Gunakan drag and drop untuk menyesuaikan zona';
+  String get video_screen_zones_desc =>
+      'Gunakan drag and drop untuk menyesuaikan zona';
 
   @override
   String get video_screen_tools => 'Alat';
@@ -345,13 +374,15 @@ class LocalizationId extends Localization {
   String get video_screen_delete_header => 'Hapus sumber video ini';
 
   @override
-  String get video_screen_delete_content => 'Apakah Anda yakin ingin menghapus sumber video ini?';
+  String get video_screen_delete_content =>
+      'Apakah Anda yakin ingin menghapus sumber video ini?';
 
   @override
   String get video_screen_delete_button => 'Hapus';
 
   @override
-  String get video_screen_sources => 'Konfigurasi sumber gambar, target deteksi, dan parameter model.';
+  String get video_screen_sources =>
+      'Konfigurasi sumber gambar, target deteksi, dan parameter model.';
 
   @override
   String get video_screen_targets => 'Target deteksi';
@@ -363,10 +394,12 @@ class LocalizationId extends Localization {
   String get color_screen_title => 'Pilih warna';
 
   @override
-  String get zone_screen_desc => 'Zona deteksi dapat mengatur jenis objek yang akan dideteksi dan memilih penghitung mana yang akan ditampilkan, seperti Terdeteksi, Muncul, dan Masuk.';
+  String get zone_screen_desc =>
+      'Zona deteksi dapat mengatur jenis objek yang akan dideteksi dan memilih penghitung mana yang akan ditampilkan, seperti Terdeteksi, Muncul, dan Masuk.';
 
   @override
-  String get zone_screen_name_placeholder => 'Nama zona, seperti Trotoar atau Tempat Parkir';
+  String get zone_screen_name_placeholder =>
+      'Nama zona, seperti Trotoar atau Tempat Parkir';
 
   @override
   String get zone_screen_zone_color => 'Warna zona';
@@ -378,7 +411,8 @@ class LocalizationId extends Localization {
   String get zone_screen_delete_header => 'Hapus zona ini';
 
   @override
-  String get zone_screen_delete_content => 'Apakah Anda yakin ingin menghapus zona ini?';
+  String get zone_screen_delete_content =>
+      'Apakah Anda yakin ingin menghapus zona ini?';
 
   @override
   String get zone_screen_delete_button => 'Hapus';
@@ -387,7 +421,8 @@ class LocalizationId extends Localization {
   String get zone_screen_can_not_delete => 'Tidak dapat menghapus zona';
 
   @override
-  String get zone_screen_one_zone_required => 'Setidaknya satu zona diperlukan.';
+  String get zone_screen_one_zone_required =>
+      'Setidaknya satu zona diperlukan.';
 
   @override
   String get zone_screen_zone_name_required => 'Nama zona tidak boleh kosong';
@@ -402,7 +437,8 @@ class LocalizationId extends Localization {
   String get counter_screen_reentry_threshold => 'Ambang Masuk Kembali';
 
   @override
-  String get counter_screen_reentry_desc => 'Objek harus masuk #0 kali, dengan pendinginan #1 detik antara setiap keluar dan masuk kembali, untuk memicu perhitungan masuk kembali';
+  String get counter_screen_reentry_desc =>
+      'Objek harus masuk #0 kali, dengan pendinginan #1 detik antara setiap keluar dan masuk kembali, untuk memicu perhitungan masuk kembali';
 
   @override
   String get counter_screen_reentry_title => 'Hitungan masuk kembali';
@@ -411,7 +447,8 @@ class LocalizationId extends Localization {
   String get counter_screen_cooldown_threshold => 'Ambang Pendinginan';
 
   @override
-  String get counter_screen_cooldown_desc => 'Masuk kembali membutuhkan pendinginan #0 detik setelah keluar dari zona deteksi';
+  String get counter_screen_cooldown_desc =>
+      'Masuk kembali membutuhkan pendinginan #0 detik setelah keluar dari zona deteksi';
 
   @override
   String get counter_screen_cooldown_time => 'Waktu Pendinginan';
@@ -423,7 +460,8 @@ class LocalizationId extends Localization {
   String get counter_screen_stagnant_threshold => 'Ambang Stagnasi';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objek yang tetap diam selama lebih dari #0 detik akan dianggap stagnasi';
+  String get counter_screen_stagnant_desc =>
+      'Objek yang tetap diam selama lebih dari #0 detik akan dianggap stagnasi';
 
   @override
   String get counter_screen_stagnant_consider => 'Anggap sebagai stagnasi';
@@ -444,19 +482,22 @@ class LocalizationId extends Localization {
   String get counter_screen_enabled_error => 'Error';
 
   @override
-  String get counter_screen_enabled_error_content => 'Anda perlu mengaktifkan penghitung lain terlebih dahulu, baru Anda dapat menonaktifkan penghitung ini';
+  String get counter_screen_enabled_error_content =>
+      'Anda perlu mengaktifkan penghitung lain terlebih dahulu, baru Anda dapat menonaktifkan penghitung ini';
 
   @override
   String get objects_screen_title => 'Objek';
 
   @override
-  String get objects_screen_desc => 'Pilih target deteksi seperti orang, mobil, bus, dll.';
+  String get objects_screen_desc =>
+      'Pilih target deteksi seperti orang, mobil, bus, dll.';
 
   @override
   String get open_project_screen_title => 'Buka Proyek';
 
   @override
-  String get open_project_screen_desc => 'Buka proyek yang dibuat sebelumnya, hanya menyimpan 20 proyek terbaru.';
+  String get open_project_screen_desc =>
+      'Buka proyek yang dibuat sebelumnya, hanya menyimpan 20 proyek terbaru.';
 
   @override
   String get open_project_screen_no_project => 'Tidak ada proyek ditemukan.';
@@ -474,7 +515,8 @@ class LocalizationId extends Localization {
   String get error_oops => 'Ups, ada yang salah';
 
   @override
-  String get error_content => 'Terjadi kesalahan yang tidak terduga. Apakah Anda ingin mengirimkan laporan email?';
+  String get error_content =>
+      'Terjadi kesalahan yang tidak terduga. Apakah Anda ingin mengirimkan laporan email?';
 
   @override
   String get error_report => 'Email kami';
@@ -516,8 +558,10 @@ class LocalizationId extends Localization {
   String get video_sources_camera_denied => 'Akses ke kamera ditolak';
 
   @override
-  String get video_sources_photos_denied_msg => 'Buka pengaturan dan izinkan akses foto untuk aplikasi ini.';
+  String get video_sources_photos_denied_msg =>
+      'Buka pengaturan dan izinkan akses foto untuk aplikasi ini.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Buka pengaturan dan izinkan akses kamera untuk aplikasi ini.';
+  String get video_sources_camera_denied_msg =>
+      'Buka pengaturan dan izinkan akses kamera untuk aplikasi ini.';
 }

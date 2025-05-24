@@ -12,7 +12,8 @@ class LocalizationIt extends Localization {
   String get product_name => 'Contatore';
 
   @override
-  String get product_desc => 'Utilizza la visione artificiale e l\'IA per contare persone, veicoli, animali domestici e altro.';
+  String get product_desc =>
+      'Utilizza la visione artificiale e l\'IA per contare persone, veicoli, animali domestici e altro.';
 
   @override
   String get product_copyright => 'Copyright © 2025';
@@ -33,16 +34,19 @@ class LocalizationIt extends Localization {
   String get video_sources_camera_not_found_title => 'Fotocamera non trovata';
 
   @override
-  String get video_sources_camera_not_found_message => 'È necessario concedere i permessi per utilizzare la fotocamera';
+  String get video_sources_camera_not_found_message =>
+      'È necessario concedere i permessi per utilizzare la fotocamera';
 
   @override
   String get video_sources_webcam_not_found_title => 'Webcam non trovata';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Verificare l\'autorizzazione dell\'app e la connessione della webcam';
+  String get video_sources_webcam_not_found_message =>
+      'Verificare l\'autorizzazione dell\'app e la connessione della webcam';
 
   @override
-  String get wizard_screen_desc => 'Crea un nuovo progetto per iniziare a contare.';
+  String get wizard_screen_desc =>
+      'Crea un nuovo progetto per iniziare a contare.';
 
   @override
   String get wizard_screen_new_project_from => 'Nuovo progetto da';
@@ -54,7 +58,8 @@ class LocalizationIt extends Localization {
   String get wizard_screen_about => 'Informazioni';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Tutti i progetti verranno salvati automaticamente in locale';
+  String get wizard_screen_open_projects_tip =>
+      'Tutti i progetti verranno salvati automaticamente in locale';
 
   @override
   String get wizard_screen_open_projects => 'Apri progetto esistente';
@@ -99,7 +104,8 @@ class LocalizationIt extends Localization {
   String get benchmark_screen_start_button => 'Avvia benchmark';
 
   @override
-  String get benchmark_screen_start_failed => 'Impossibile avviare il benchmark, il codice di errore è';
+  String get benchmark_screen_start_failed =>
+      'Impossibile avviare il benchmark, il codice di errore è';
 
   @override
   String get benchmark_screen_models => 'Modelli di rilevamento oggetti';
@@ -108,10 +114,12 @@ class LocalizationIt extends Localization {
   String get project_screen_title => 'Progetto';
 
   @override
-  String get project_screen_exit_confirm_title => 'Conferma uscita dal progetto';
+  String get project_screen_exit_confirm_title =>
+      'Conferma uscita dal progetto';
 
   @override
-  String get project_screen_exit_confirm_content => 'Lasciando il progetto il conteggio verrà interrotto. Sei sicuro di voler continuare?';
+  String get project_screen_exit_confirm_content =>
+      'Lasciando il progetto il conteggio verrà interrotto. Sei sicuro di voler continuare?';
 
   @override
   String get project_screen_exit_button => 'Esci';
@@ -120,7 +128,8 @@ class LocalizationIt extends Localization {
   String get project_screen_add_video_button => 'Aggiungi fonte video';
 
   @override
-  String get project_screen_from_desc => 'Conserviamo una registrazione delle ultime 24 ore, così puoi visualizzare qualsiasi periodo temporale necessario.';
+  String get project_screen_from_desc =>
+      'Conserviamo una registrazione delle ultime 24 ore, così puoi visualizzare qualsiasi periodo temporale necessario.';
 
   @override
   String get project_screen_report_settings => 'Impostazioni';
@@ -129,13 +138,15 @@ class LocalizationIt extends Localization {
   String get filter_screen_title => 'Filtro';
 
   @override
-  String get filter_screen_desc => 'Seleziona un intervallo di filtro dall\'elenco sottostante';
+  String get filter_screen_desc =>
+      'Seleziona un intervallo di filtro dall\'elenco sottostante';
 
   @override
   String get filter_screen_error_title => 'Filtro';
 
   @override
-  String get filter_screen_error_content => 'L\'ora di fine deve essere successiva all\'ora di inizio';
+  String get filter_screen_error_content =>
+      'L\'ora di fine deve essere successiva all\'ora di inizio';
 
   @override
   String get filter_screen_error_custom => 'Personalizzato';
@@ -150,7 +161,8 @@ class LocalizationIt extends Localization {
   String get settings_screen_title => 'Impostazioni';
 
   @override
-  String get settings_screen_desc => 'Imposta nome del progetto, parametri di rilevamento, azzeramento conteggi.';
+  String get settings_screen_desc =>
+      'Imposta nome del progetto, parametri di rilevamento, azzeramento conteggi.';
 
   @override
   String get settings_screen_project_id => 'ID Progetto';
@@ -159,46 +171,55 @@ class LocalizationIt extends Localization {
   String get settings_screen_project_name => 'Nome Progetto';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Via Roma 123 o Parco Centrale';
+  String get settings_screen_project_name_place_holder =>
+      'Via Roma 123 o Parco Centrale';
 
   @override
-  String get settings_screen_project_error => 'Il nome del progetto non può essere vuoto';
+  String get settings_screen_project_error =>
+      'Il nome del progetto non può essere vuoto';
 
   @override
   String get settings_screen_random_count_button => 'Aggiungi conteggi casuali';
 
   @override
-  String get settings_screen_reset_count_header => 'Azzera tutti i conteggi in questo progetto';
+  String get settings_screen_reset_count_header =>
+      'Azzera tutti i conteggi in questo progetto';
 
   @override
   String get settings_screen_reset_count_button => 'Azzera conteggi';
 
   @override
-  String get settings_screen_reset_count_content => 'Sei sicuro di voler azzerare tutti i conteggi?';
+  String get settings_screen_reset_count_content =>
+      'Sei sicuro di voler azzerare tutti i conteggi?';
 
   @override
   String get settings_screen_delete_header => 'Elimina questo progetto';
 
   @override
-  String get settings_screen_delete_content => 'Sei sicuro di voler eliminare questo progetto?';
+  String get settings_screen_delete_content =>
+      'Sei sicuro di voler eliminare questo progetto?';
 
   @override
   String get settings_screen_delete_button => 'Elimina';
 
   @override
-  String get settings_screen_center_point_title => 'Punto centrale sull\'obiettivo';
+  String get settings_screen_center_point_title =>
+      'Punto centrale sull\'obiettivo';
 
   @override
-  String get settings_screen_center_point_desc => 'Il punto centrale aiuta a determinare se l\'obiettivo si trova all\'interno della zona di rilevamento.';
+  String get settings_screen_center_point_desc =>
+      'Il punto centrale aiuta a determinare se l\'obiettivo si trova all\'interno della zona di rilevamento.';
 
   @override
-  String get settings_screen_center_point_button => 'Mostra punto centrale sull\'obiettivo';
+  String get settings_screen_center_point_button =>
+      'Mostra punto centrale sull\'obiettivo';
 
   @override
   String get settings_screen_lost_target_title => 'Obiettivo perso';
 
   @override
-  String get settings_screen_lost_target_desc => 'Quando il tracciamento perde un obiettivo, questa opzione lo rende visibile. Per impostazione predefinita, gli obiettivi persi non vengono mostrati.';
+  String get settings_screen_lost_target_desc =>
+      'Quando il tracciamento perde un obiettivo, questa opzione lo rende visibile. Per impostazione predefinita, gli obiettivi persi non vengono mostrati.';
 
   @override
   String get settings_screen_lost_target_button => 'Mostra obiettivo perso';
@@ -213,7 +234,8 @@ class LocalizationIt extends Localization {
   String get detection_screen_confidence => 'Confidenza';
 
   @override
-  String get detection_screen_confidence_desc => 'confidenza superiore a #0 considerata come rilevamento valido';
+  String get detection_screen_confidence_desc =>
+      'confidenza superiore a #0 considerata come rilevamento valido';
 
   @override
   String get detection_screen_low => 'Bassa';
@@ -225,31 +247,36 @@ class LocalizationIt extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 Una soglia NMS più bassa (es. 0.3-0.4) rimuove i riquadri sovrapposti in modo più rigoroso e riduce i falsi positivi ma potrebbe perdere persone sovrapposte. Una soglia più alta (0.7-0.9) mantiene più riquadri il che può aumentare i falsi positivi ma rileva meglio le persone sovrapposte.';
+  String get detection_screen_nms_desc =>
+      '#0 Una soglia NMS più bassa (es. 0.3-0.4) rimuove i riquadri sovrapposti in modo più rigoroso e riduce i falsi positivi ma potrebbe perdere persone sovrapposte. Una soglia più alta (0.7-0.9) mantiene più riquadri il che può aumentare i falsi positivi ma rileva meglio le persone sovrapposte.';
 
   @override
   String get detection_screen_match => 'Corrispondenza';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l\'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l\'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.';
 
   @override
   String get detection_screen_lost => 'Perso';
 
   @override
-  String get detection_screen_lost_desc => 'Determina dinamicamente il tempo di rimozione degli oggetti persi tra #0 e #1 in base alla velocità di movimento';
+  String get detection_screen_lost_desc =>
+      'Determina dinamicamente il tempo di rimozione degli oggetti persi tra #0 e #1 in base alla velocità di movimento';
 
   @override
   String get detection_screen_consider_valid => 'Considera valido dopo';
 
   @override
-  String get detection_screen_consider_valid_desc => 'L\'oggetto tracciato sarà considerato valido dopo #0';
+  String get detection_screen_consider_valid_desc =>
+      'L\'oggetto tracciato sarà considerato valido dopo #0';
 
   @override
   String get detection_screen_reset => 'Ripristina';
 
   @override
-  String get detection_screen_reset_content => 'Sei sicuro di voler ripristinare le impostazioni di rilevamento?';
+  String get detection_screen_reset_content =>
+      'Sei sicuro di voler ripristinare le impostazioni di rilevamento?';
 
   @override
   String get url_screen_title => 'URL streaming live';
@@ -261,7 +288,8 @@ class LocalizationIt extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://esempio.com/stream o rtsp://esempio.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://esempio.com/stream o rtsp://esempio.com/stream';
 
   @override
   String get add_video_screen_title => 'Aggiungi fonte video';
@@ -294,16 +322,19 @@ class LocalizationIt extends Localization {
   String get camera_screen_zoom_level => 'Livello zoom';
 
   @override
-  String get video_screen_name_empty => 'Il nome della fonte video non può essere vuoto.';
+  String get video_screen_name_empty =>
+      'Il nome della fonte video non può essere vuoto.';
 
   @override
-  String get video_screen_desc => 'Gestisci fonti video, aggiungi o modifica zone di rilevamento.';
+  String get video_screen_desc =>
+      'Gestisci fonti video, aggiungi o modifica zone di rilevamento.';
 
   @override
   String get video_screen_video_name => 'Nome fonte video';
 
   @override
-  String get video_screen_edit_placeholder => 'Telecamera ingresso o Telecamera parcheggio';
+  String get video_screen_edit_placeholder =>
+      'Telecamera ingresso o Telecamera parcheggio';
 
   @override
   String get video_screen_change_file => 'Cambia file';
@@ -315,7 +346,8 @@ class LocalizationIt extends Localization {
   String get video_screen_zones => 'Zone di rilevamento';
 
   @override
-  String get video_screen_zones_desc => 'Usa il drag and drop per regolare le zone';
+  String get video_screen_zones_desc =>
+      'Usa il drag and drop per regolare le zone';
 
   @override
   String get video_screen_tools => 'Strumenti';
@@ -345,13 +377,15 @@ class LocalizationIt extends Localization {
   String get video_screen_delete_header => 'Elimina questa fonte video';
 
   @override
-  String get video_screen_delete_content => 'Sei sicuro di voler eliminare questa fonte video?';
+  String get video_screen_delete_content =>
+      'Sei sicuro di voler eliminare questa fonte video?';
 
   @override
   String get video_screen_delete_button => 'Elimina';
 
   @override
-  String get video_screen_sources => 'Configura fonte immagine, obiettivi di rilevamento e parametri del modello.';
+  String get video_screen_sources =>
+      'Configura fonte immagine, obiettivi di rilevamento e parametri del modello.';
 
   @override
   String get video_screen_targets => 'Obiettivi di rilevamento';
@@ -363,10 +397,12 @@ class LocalizationIt extends Localization {
   String get color_screen_title => 'Scegli un colore';
 
   @override
-  String get zone_screen_desc => 'La zona di rilevamento può impostare i tipi di oggetti da rilevare e scegliere quali contatori visualizzare, come Rilevati, Generati e Entrati.';
+  String get zone_screen_desc =>
+      'La zona di rilevamento può impostare i tipi di oggetti da rilevare e scegliere quali contatori visualizzare, come Rilevati, Generati e Entrati.';
 
   @override
-  String get zone_screen_name_placeholder => 'Nome della zona, come Marciapiede o Parcheggio';
+  String get zone_screen_name_placeholder =>
+      'Nome della zona, come Marciapiede o Parcheggio';
 
   @override
   String get zone_screen_zone_color => 'Colore zona';
@@ -378,7 +414,8 @@ class LocalizationIt extends Localization {
   String get zone_screen_delete_header => 'Elimina questa zona';
 
   @override
-  String get zone_screen_delete_content => 'Sei sicuro di voler eliminare questa zona?';
+  String get zone_screen_delete_content =>
+      'Sei sicuro di voler eliminare questa zona?';
 
   @override
   String get zone_screen_delete_button => 'Elimina';
@@ -390,7 +427,8 @@ class LocalizationIt extends Localization {
   String get zone_screen_one_zone_required => 'È richiesta almeno una zona.';
 
   @override
-  String get zone_screen_zone_name_required => 'Il nome della zona non può essere vuoto';
+  String get zone_screen_zone_name_required =>
+      'Il nome della zona non può essere vuoto';
 
   @override
   String get counter_screen_show_on => 'Mostra sullo schermo';
@@ -402,7 +440,8 @@ class LocalizationIt extends Localization {
   String get counter_screen_reentry_threshold => 'Soglia di rientro';
 
   @override
-  String get counter_screen_reentry_desc => 'Gli oggetti devono entrare #0 volte, con un tempo di attesa di #1 secondi tra ogni uscita e rientro, per attivare il conteggio di rientro';
+  String get counter_screen_reentry_desc =>
+      'Gli oggetti devono entrare #0 volte, con un tempo di attesa di #1 secondi tra ogni uscita e rientro, per attivare il conteggio di rientro';
 
   @override
   String get counter_screen_reentry_title => 'Conteggio rientri';
@@ -411,7 +450,8 @@ class LocalizationIt extends Localization {
   String get counter_screen_cooldown_threshold => 'Soglia tempo di attesa';
 
   @override
-  String get counter_screen_cooldown_desc => 'Il rientro richiede un tempo di attesa di #0 secondi dopo l\'uscita dalla zona di rilevamento';
+  String get counter_screen_cooldown_desc =>
+      'Il rientro richiede un tempo di attesa di #0 secondi dopo l\'uscita dalla zona di rilevamento';
 
   @override
   String get counter_screen_cooldown_time => 'Tempo di attesa';
@@ -423,7 +463,8 @@ class LocalizationIt extends Localization {
   String get counter_screen_stagnant_threshold => 'Soglia di stazionamento';
 
   @override
-  String get counter_screen_stagnant_desc => 'Gli oggetti che rimangono fermi per più di #0 secondi saranno considerati stazionari';
+  String get counter_screen_stagnant_desc =>
+      'Gli oggetti che rimangono fermi per più di #0 secondi saranno considerati stazionari';
 
   @override
   String get counter_screen_stagnant_consider => 'Considera come stazionario';
@@ -438,25 +479,29 @@ class LocalizationIt extends Localization {
   String get counter_screen_stagnant_desc_suffix => 'Suffisso descrizione';
 
   @override
-  String get counter_screen_name_error => 'Il nome del contatore non può essere vuoto';
+  String get counter_screen_name_error =>
+      'Il nome del contatore non può essere vuoto';
 
   @override
   String get counter_screen_enabled_error => 'Errore';
 
   @override
-  String get counter_screen_enabled_error_content => 'Devi prima abilitare un altro contatore, poi potrai disabilitare questo';
+  String get counter_screen_enabled_error_content =>
+      'Devi prima abilitare un altro contatore, poi potrai disabilitare questo';
 
   @override
   String get objects_screen_title => 'Oggetti';
 
   @override
-  String get objects_screen_desc => 'Scegli obiettivi di rilevamento come persone, auto, autobus, ecc.';
+  String get objects_screen_desc =>
+      'Scegli obiettivi di rilevamento come persone, auto, autobus, ecc.';
 
   @override
   String get open_project_screen_title => 'Apri progetto';
 
   @override
-  String get open_project_screen_desc => 'Apri progetti creati in precedenza, mantenendo solo i 20 più recenti.';
+  String get open_project_screen_desc =>
+      'Apri progetti creati in precedenza, mantenendo solo i 20 più recenti.';
 
   @override
   String get open_project_screen_no_project => 'Nessun progetto trovato.';
@@ -474,7 +519,8 @@ class LocalizationIt extends Localization {
   String get error_oops => 'Ops, qualcosa è andato storto';
 
   @override
-  String get error_content => 'Si è verificato un errore imprevisto. Desideri inviare una segnalazione via email?';
+  String get error_content =>
+      'Si è verificato un errore imprevisto. Desideri inviare una segnalazione via email?';
 
   @override
   String get error_report => 'Contattaci';
@@ -516,8 +562,10 @@ class LocalizationIt extends Localization {
   String get video_sources_camera_denied => 'Accesso alla fotocamera negato';
 
   @override
-  String get video_sources_photos_denied_msg => 'Vai su impostazioni e consenti l\'accesso alle foto per questa app.';
+  String get video_sources_photos_denied_msg =>
+      'Vai su impostazioni e consenti l\'accesso alle foto per questa app.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Vai su impostazioni e consenti l\'accesso alla fotocamera per questa app.';
+  String get video_sources_camera_denied_msg =>
+      'Vai su impostazioni e consenti l\'accesso alla fotocamera per questa app.';
 }

@@ -12,7 +12,8 @@ class LocalizationGu extends Localization {
   String get product_name => 'કાઉન્ટર';
 
   @override
-  String get product_desc => 'કમ્પ્યુટર વિઝન અને AI નો ઉપયોગ કરીને લોકો, વાહનો, પાલતુ પ્રાણીઓ અને વધુની ગણતરી કરો.';
+  String get product_desc =>
+      'કમ્પ્યુટર વિઝન અને AI નો ઉપયોગ કરીને લોકો, વાહનો, પાલતુ પ્રાણીઓ અને વધુની ગણતરી કરો.';
 
   @override
   String get product_copyright => 'કૉપિરાઇટ © 2025';
@@ -33,16 +34,19 @@ class LocalizationGu extends Localization {
   String get video_sources_camera_not_found_title => 'કેમેરા મળ્યો નથી';
 
   @override
-  String get video_sources_camera_not_found_message => 'કેમેરાનો ઉપયોગ કરવા માટે કેમેરા પરમિશન આપવાની જરૂર છે';
+  String get video_sources_camera_not_found_message =>
+      'કેમેરાનો ઉપયોગ કરવા માટે કેમેરા પરમિશન આપવાની જરૂર છે';
 
   @override
   String get video_sources_webcam_not_found_title => 'વેબકેમ મળ્યો નથી';
 
   @override
-  String get video_sources_webcam_not_found_message => 'કૃપા કરીને એપ્લિકેશન પરવાનગી અને વેબકેમ કનેક્શન તપાસો';
+  String get video_sources_webcam_not_found_message =>
+      'કૃપા કરીને એપ્લિકેશન પરવાનગી અને વેબકેમ કનેક્શન તપાસો';
 
   @override
-  String get wizard_screen_desc => 'ગણતરી શરૂ કરવા માટે નીચે નવો પ્રોજેક્ટ બનાવો.';
+  String get wizard_screen_desc =>
+      'ગણતરી શરૂ કરવા માટે નીચે નવો પ્રોજેક્ટ બનાવો.';
 
   @override
   String get wizard_screen_new_project_from => 'આમાંથી નવો પ્રોજેક્ટ';
@@ -54,7 +58,8 @@ class LocalizationGu extends Localization {
   String get wizard_screen_about => 'વિશે';
 
   @override
-  String get wizard_screen_open_projects_tip => 'બધા પ્રોજેક્ટ્સ સ્થાનિક રીતે આપોઆપ સેવ થશે';
+  String get wizard_screen_open_projects_tip =>
+      'બધા પ્રોજેક્ટ્સ સ્થાનિક રીતે આપોઆપ સેવ થશે';
 
   @override
   String get wizard_screen_open_projects => 'હાલના પ્રોજેક્ટ ખોલો';
@@ -99,7 +104,8 @@ class LocalizationGu extends Localization {
   String get benchmark_screen_start_button => 'બેન્ચમાર્ક શરૂ કરો';
 
   @override
-  String get benchmark_screen_start_failed => 'બેન્ચમાર્ક શરૂ કરવામાં નિષ્ફળ, એરર કોડ છે';
+  String get benchmark_screen_start_failed =>
+      'બેન્ચમાર્ક શરૂ કરવામાં નિષ્ફળ, એરર કોડ છે';
 
   @override
   String get benchmark_screen_models => 'ઓબ્જેક્ટ ડિટેક્શન મોડેલ્સ';
@@ -108,10 +114,12 @@ class LocalizationGu extends Localization {
   String get project_screen_title => 'પ્રોજેક્ટ';
 
   @override
-  String get project_screen_exit_confirm_title => 'પ્રોજેક્ટમાંથી બહાર નીકળવાની પુષ્ટિ કરો';
+  String get project_screen_exit_confirm_title =>
+      'પ્રોજેક્ટમાંથી બહાર નીકળવાની પુષ્ટિ કરો';
 
   @override
-  String get project_screen_exit_confirm_content => 'પ્રોજેક્ટ છોડવાથી ગણતરી બંધ થઈ જશે. શું તમે ખરેખર આગળ વધવા માંગો છો?';
+  String get project_screen_exit_confirm_content =>
+      'પ્રોજેક્ટ છોડવાથી ગણતરી બંધ થઈ જશે. શું તમે ખરેખર આગળ વધવા માંગો છો?';
 
   @override
   String get project_screen_exit_button => 'બહાર નીકળો';
@@ -120,7 +128,8 @@ class LocalizationGu extends Localization {
   String get project_screen_add_video_button => 'વિડિઓ સ્ત્રોત ઉમેરો';
 
   @override
-  String get project_screen_from_desc => 'અમે 24 કલાકનો રેકોર્ડ રાખીએ છીએ, જેથી તમે જરૂરી કોઈપણ સમય જોઈ શકો છો.';
+  String get project_screen_from_desc =>
+      'અમે 24 કલાકનો રેકોર્ડ રાખીએ છીએ, જેથી તમે જરૂરી કોઈપણ સમય જોઈ શકો છો.';
 
   @override
   String get project_screen_report_settings => 'સેટિંગ્સ';
@@ -135,7 +144,8 @@ class LocalizationGu extends Localization {
   String get filter_screen_error_title => 'ફિલ્ટર';
 
   @override
-  String get filter_screen_error_content => 'સમાપ્તિ સમય શરૂઆત સમય કરતાં વધારે હોવો જોઈએ';
+  String get filter_screen_error_content =>
+      'સમાપ્તિ સમય શરૂઆત સમય કરતાં વધારે હોવો જોઈએ';
 
   @override
   String get filter_screen_error_custom => 'કસ્ટમ';
@@ -150,7 +160,8 @@ class LocalizationGu extends Localization {
   String get settings_screen_title => 'સેટિંગ્સ';
 
   @override
-  String get settings_screen_desc => 'પ્રોજેક્ટ નામ, ડિટેક્શન પેરામીટર્સ, કાઉન્ટ ક્લીયરિંગ સેટ કરો.';
+  String get settings_screen_desc =>
+      'પ્રોજેક્ટ નામ, ડિટેક્શન પેરામીટર્સ, કાઉન્ટ ક્લીયરિંગ સેટ કરો.';
 
   @override
   String get settings_screen_project_id => 'પ્રોજેક્ટ ID';
@@ -159,7 +170,8 @@ class LocalizationGu extends Localization {
   String get settings_screen_project_name => 'પ્રોજેક્ટ નામ';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 મેઇન સ્ટ્રીટ અથવા પાર્ક એવન્યુ';
+  String get settings_screen_project_name_place_holder =>
+      '123 મેઇન સ્ટ્રીટ અથવા પાર્ક એવન્યુ';
 
   @override
   String get settings_screen_project_error => 'પ્રોજેક્ટનું નામ ખાલી ન હોઈ શકે';
@@ -168,19 +180,22 @@ class LocalizationGu extends Localization {
   String get settings_screen_random_count_button => 'રેન્ડમ કાઉન્ટ ઉમેરો';
 
   @override
-  String get settings_screen_reset_count_header => 'આ પ્રોજેક્ટમાં બધા કાઉન્ટ રીસેટ કરો';
+  String get settings_screen_reset_count_header =>
+      'આ પ્રોજેક્ટમાં બધા કાઉન્ટ રીસેટ કરો';
 
   @override
   String get settings_screen_reset_count_button => 'કાઉન્ટ રીસેટ કરો';
 
   @override
-  String get settings_screen_reset_count_content => 'શું તમે ખરેખર બધા કાઉન્ટ રીસેટ કરવા માંગો છો?';
+  String get settings_screen_reset_count_content =>
+      'શું તમે ખરેખર બધા કાઉન્ટ રીસેટ કરવા માંગો છો?';
 
   @override
   String get settings_screen_delete_header => 'આ પ્રોજેક્ટ ડિલીટ કરો';
 
   @override
-  String get settings_screen_delete_content => 'શું તમે ખરેખર આ પ્રોજેક્ટ ડિલીટ કરવા માંગો છો?';
+  String get settings_screen_delete_content =>
+      'શું તમે ખરેખર આ પ્રોજેક્ટ ડિલીટ કરવા માંગો છો?';
 
   @override
   String get settings_screen_delete_button => 'ડિલીટ કરો';
@@ -189,16 +204,19 @@ class LocalizationGu extends Localization {
   String get settings_screen_center_point_title => 'ટાર્ગેટ પર સેન્ટર પોઇન્ટ';
 
   @override
-  String get settings_screen_center_point_desc => 'સેન્ટર પોઇન્ટ ટાર્ગેટ હિટ ઝોનમાં છે કે નહીં તે નક્કી કરવામાં મદદ કરે છે.';
+  String get settings_screen_center_point_desc =>
+      'સેન્ટર પોઇન્ટ ટાર્ગેટ હિટ ઝોનમાં છે કે નહીં તે નક્કી કરવામાં મદદ કરે છે.';
 
   @override
-  String get settings_screen_center_point_button => 'ટાર્ગેટ પર સેન્ટર પોઇન્ટ બતાવો';
+  String get settings_screen_center_point_button =>
+      'ટાર્ગેટ પર સેન્ટર પોઇન્ટ બતાવો';
 
   @override
   String get settings_screen_lost_target_title => 'ગુમ થયેલ ટાર્ગેટ';
 
   @override
-  String get settings_screen_lost_target_desc => 'જ્યારે ઓબ્જેક્ટ ટ્રેકિંગ ટાર્ગેટ ગુમાવે છે, ત્યારે આ વિકલ્પ તેને દૃશ્યમાન બનાવે છે. ડિફૉલ્ટ રૂપે, ગુમ થયેલા ટાર્ગેટ્સ બતાવવામાં આવતા નથી.';
+  String get settings_screen_lost_target_desc =>
+      'જ્યારે ઓબ્જેક્ટ ટ્રેકિંગ ટાર્ગેટ ગુમાવે છે, ત્યારે આ વિકલ્પ તેને દૃશ્યમાન બનાવે છે. ડિફૉલ્ટ રૂપે, ગુમ થયેલા ટાર્ગેટ્સ બતાવવામાં આવતા નથી.';
 
   @override
   String get settings_screen_lost_target_button => 'ગુમ થયેલ ટાર્ગેટ બતાવો';
@@ -213,7 +231,8 @@ class LocalizationGu extends Localization {
   String get detection_screen_confidence => 'કોન્ફિડન્સ';
 
   @override
-  String get detection_screen_confidence_desc => '#0 કરતાં વધુ કોન્ફિડન્સને માન્ય ડિટેક્શન તરીકે ગણવામાં આવે છે';
+  String get detection_screen_confidence_desc =>
+      '#0 કરતાં વધુ કોન્ફિડન્સને માન્ય ડિટેક્શન તરીકે ગણવામાં આવે છે';
 
   @override
   String get detection_screen_low => 'નીચું';
@@ -225,31 +244,36 @@ class LocalizationGu extends Localization {
   String get detection_screen_nms => 'નોન-મેક્સિમમ સપ્રેશન';
 
   @override
-  String get detection_screen_nms_desc => '#0 ઓછા NMS થ્રેશોલ્ડ (દા.ત. 0.3-0.4) ઓવરલેપિંગ બોક્સને વધુ કડક રીતે દૂર કરે છે અને ખોટા પોઝિટિવ્સ ઘટાડે છે પરંતુ ઓવરલેપિંગ લોકોને ચૂકી શકે છે. ઉચ્ચ થ્રેશોલ્ડ (0.7-0.9) વધુ બોક્સ રાખે છે જે ખોટા પોઝિટિવ્સ વધારી શકે છે પરંતુ ઓવરલેપિંગ લોકોને વધુ સારી રીતે શોધે છે.';
+  String get detection_screen_nms_desc =>
+      '#0 ઓછા NMS થ્રેશોલ્ડ (દા.ત. 0.3-0.4) ઓવરલેપિંગ બોક્સને વધુ કડક રીતે દૂર કરે છે અને ખોટા પોઝિટિવ્સ ઘટાડે છે પરંતુ ઓવરલેપિંગ લોકોને ચૂકી શકે છે. ઉચ્ચ થ્રેશોલ્ડ (0.7-0.9) વધુ બોક્સ રાખે છે જે ખોટા પોઝિટિવ્સ વધારી શકે છે પરંતુ ઓવરલેપિંગ લોકોને વધુ સારી રીતે શોધે છે.';
 
   @override
   String get detection_screen_match => 'મેચ';
 
   @override
-  String get detection_screen_match_desc => '#0 મેચથ્રેશોલ્ડ ઓબ્જેક્ટ ટ્રેકિંગમાં એક મહત્વપૂર્ણ પરિમાણ છે જે વિવિધ ડિટેક્શન બોક્સ વચ્ચેના મેચિંગના સ્તરને માપે છે. ઓછી કિંમત ઓબ્જેક્ટ જોડાણને સરળ બનાવે છે પરંતુ ખોટા જોડાણોના જોખમને વધારે છે. ઉચ્ચ કિંમત ઓબ્જેક્ટ જોડાણ પર વધુ કડક છે પરંતુ કેટલાક સાચા મેચને ચૂકી શકે છે.';
+  String get detection_screen_match_desc =>
+      '#0 મેચથ્રેશોલ્ડ ઓબ્જેક્ટ ટ્રેકિંગમાં એક મહત્વપૂર્ણ પરિમાણ છે જે વિવિધ ડિટેક્શન બોક્સ વચ્ચેના મેચિંગના સ્તરને માપે છે. ઓછી કિંમત ઓબ્જેક્ટ જોડાણને સરળ બનાવે છે પરંતુ ખોટા જોડાણોના જોખમને વધારે છે. ઉચ્ચ કિંમત ઓબ્જેક્ટ જોડાણ પર વધુ કડક છે પરંતુ કેટલાક સાચા મેચને ચૂકી શકે છે.';
 
   @override
   String get detection_screen_lost => 'ગુમ થયેલું';
 
   @override
-  String get detection_screen_lost_desc => 'ચલનની ગતિના આધારે #0 અને #1 વચ્ચે ખોવાયેલી વસ્તુઓને દૂર કરવાનો સમય ગતિશીલ રીતે નક્કી કરે છે';
+  String get detection_screen_lost_desc =>
+      'ચલનની ગતિના આધારે #0 અને #1 વચ્ચે ખોવાયેલી વસ્તુઓને દૂર કરવાનો સમય ગતિશીલ રીતે નક્કી કરે છે';
 
   @override
   String get detection_screen_consider_valid => 'પછી માન્ય ગણો';
 
   @override
-  String get detection_screen_consider_valid_desc => 'ટ્રેક ઓબ્જેક્ટ #0 પછી માન્ય ગણવામાં આવશે';
+  String get detection_screen_consider_valid_desc =>
+      'ટ્રેક ઓબ્જેક્ટ #0 પછી માન્ય ગણવામાં આવશે';
 
   @override
   String get detection_screen_reset => 'રીસેટ';
 
   @override
-  String get detection_screen_reset_content => 'શું તમે ખરેખર ડિટેક્શન સેટિંગ્સ રીસેટ કરવા માંગો છો?';
+  String get detection_screen_reset_content =>
+      'શું તમે ખરેખર ડિટેક્શન સેટિંગ્સ રીસેટ કરવા માંગો છો?';
 
   @override
   String get url_screen_title => 'લાઇવ સ્ટ્રીમ URL';
@@ -261,7 +285,8 @@ class LocalizationGu extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream અથવા rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream અથવા rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'વિડિઓ સોર્સ ઉમેરો';
@@ -297,13 +322,15 @@ class LocalizationGu extends Localization {
   String get video_screen_name_empty => 'વિડિઓનું નામ ખાલી ન હોઈ શકે.';
 
   @override
-  String get video_screen_desc => 'વિડિઓ સોર્સ મેનેજ કરો, ડિટેક્શન ઝોન ઉમેરો અથવા સુધારો.';
+  String get video_screen_desc =>
+      'વિડિઓ સોર્સ મેનેજ કરો, ડિટેક્શન ઝોન ઉમેરો અથવા સુધારો.';
 
   @override
   String get video_screen_video_name => 'વિડિઓ સોર્સ નામ';
 
   @override
-  String get video_screen_edit_placeholder => 'ફ્રન્ટ ડોર કેમ અથવા પાર્કિંગ લોટ કેમ';
+  String get video_screen_edit_placeholder =>
+      'ફ્રન્ટ ડોર કેમ અથવા પાર્કિંગ લોટ કેમ';
 
   @override
   String get video_screen_change_file => 'ફાઇલ બદલો';
@@ -315,7 +342,8 @@ class LocalizationGu extends Localization {
   String get video_screen_zones => 'ડિટેક્શન ઝોન';
 
   @override
-  String get video_screen_zones_desc => 'ઝોન એડજસ્ટ કરવા માટે ડ્રેગ અને ડ્રોપનો ઉપયોગ કરો';
+  String get video_screen_zones_desc =>
+      'ઝોન એડજસ્ટ કરવા માટે ડ્રેગ અને ડ્રોપનો ઉપયોગ કરો';
 
   @override
   String get video_screen_tools => 'ટૂલ્સ';
@@ -345,13 +373,15 @@ class LocalizationGu extends Localization {
   String get video_screen_delete_header => 'આ વિડિઓ સોર્સ ડિલીટ કરો';
 
   @override
-  String get video_screen_delete_content => 'શું તમે ખરેખર આ વિડિઓ સોર્સ ડિલીટ કરવા માંગો છો?';
+  String get video_screen_delete_content =>
+      'શું તમે ખરેખર આ વિડિઓ સોર્સ ડિલીટ કરવા માંગો છો?';
 
   @override
   String get video_screen_delete_button => 'ડિલીટ કરો';
 
   @override
-  String get video_screen_sources => 'ઇમેજ સોર્સ, ડિટેક્શન ટાર્ગેટ અને મોડેલ પેરામીટર્સ કોન્ફિગર કરો.';
+  String get video_screen_sources =>
+      'ઇમેજ સોર્સ, ડિટેક્શન ટાર્ગેટ અને મોડેલ પેરામીટર્સ કોન્ફિગર કરો.';
 
   @override
   String get video_screen_targets => 'ડિટેક્શન ટાર્ગેટ';
@@ -363,10 +393,12 @@ class LocalizationGu extends Localization {
   String get color_screen_title => 'કલર પસંદ કરો';
 
   @override
-  String get zone_screen_desc => 'ડિટેક્શન ઝોન ડિટેક્ટ કરવા માટેના ઓબ્જેક્ટ્સના પ્રકારો સેટ કરી શકે છે અને કયા કાઉન્ટર્સ ડિસ્પ્લે કરવા તે પસંદ કરી શકે છે, જેવા કે ડિટેક્ટેડ, સ્પોન્ડ અને એન્ટર્ડ.';
+  String get zone_screen_desc =>
+      'ડિટેક્શન ઝોન ડિટેક્ટ કરવા માટેના ઓબ્જેક્ટ્સના પ્રકારો સેટ કરી શકે છે અને કયા કાઉન્ટર્સ ડિસ્પ્લે કરવા તે પસંદ કરી શકે છે, જેવા કે ડિટેક્ટેડ, સ્પોન્ડ અને એન્ટર્ડ.';
 
   @override
-  String get zone_screen_name_placeholder => 'ઝોનનું નામ, જેમ કે ફૂટપાથ અથવા પાર્કિંગ લોટ';
+  String get zone_screen_name_placeholder =>
+      'ઝોનનું નામ, જેમ કે ફૂટપાથ અથવા પાર્કિંગ લોટ';
 
   @override
   String get zone_screen_zone_color => 'ઝોન કલર';
@@ -378,7 +410,8 @@ class LocalizationGu extends Localization {
   String get zone_screen_delete_header => 'આ ઝોન ડિલીટ કરો';
 
   @override
-  String get zone_screen_delete_content => 'શું તમે ખરેખર આ ઝોન ડિલીટ કરવા માંગો છો?';
+  String get zone_screen_delete_content =>
+      'શું તમે ખરેખર આ ઝોન ડિલીટ કરવા માંગો છો?';
 
   @override
   String get zone_screen_delete_button => 'ડિલીટ કરો';
@@ -402,7 +435,8 @@ class LocalizationGu extends Localization {
   String get counter_screen_reentry_threshold => 'રી-એન્ટ્રી થ્રેશોલ્ડ';
 
   @override
-  String get counter_screen_reentry_desc => 'ઓબ્જેક્ટ્સ #0 વખત પ્રવેશ કરવા જોઈએ, દરેક એક્ઝિટ અને રી-એન્ટ્રી વચ્ચે #1 સેકન્ડનો કૂલડાઉન, રી-એન્ટ્રી ટ્રિગર કરવા માટે';
+  String get counter_screen_reentry_desc =>
+      'ઓબ્જેક્ટ્સ #0 વખત પ્રવેશ કરવા જોઈએ, દરેક એક્ઝિટ અને રી-એન્ટ્રી વચ્ચે #1 સેકન્ડનો કૂલડાઉન, રી-એન્ટ્રી ટ્રિગર કરવા માટે';
 
   @override
   String get counter_screen_reentry_title => 'રી-એન્ટ્રી કાઉન્ટ';
@@ -411,7 +445,8 @@ class LocalizationGu extends Localization {
   String get counter_screen_cooldown_threshold => 'કૂલડાઉન થ્રેશોલ્ડ';
 
   @override
-  String get counter_screen_cooldown_desc => 'ડિટેક્શન ઝોનમાંથી બહાર નીકળ્યા પછી રી-એન્ટ્રી માટે #0 સેકન્ડનો કૂલડાઉન જરૂરી છે';
+  String get counter_screen_cooldown_desc =>
+      'ડિટેક્શન ઝોનમાંથી બહાર નીકળ્યા પછી રી-એન્ટ્રી માટે #0 સેકન્ડનો કૂલડાઉન જરૂરી છે';
 
   @override
   String get counter_screen_cooldown_time => 'કૂલડાઉન સમય';
@@ -423,7 +458,8 @@ class LocalizationGu extends Localization {
   String get counter_screen_stagnant_threshold => 'સ્ટેગનન્ટ થ્રેશોલ્ડ';
 
   @override
-  String get counter_screen_stagnant_desc => '#0 સેકન્ડ કરતાં વધુ સમય સુધી સ્થિર રહેતા ઓબ્જેક્ટ્સને સ્ટેગનન્ટ ગણવામાં આવશે';
+  String get counter_screen_stagnant_desc =>
+      '#0 સેકન્ડ કરતાં વધુ સમય સુધી સ્થિર રહેતા ઓબ્જેક્ટ્સને સ્ટેગનન્ટ ગણવામાં આવશે';
 
   @override
   String get counter_screen_stagnant_consider => 'સ્ટેગનન્ટ તરીકે ગણો';
@@ -444,19 +480,22 @@ class LocalizationGu extends Localization {
   String get counter_screen_enabled_error => 'ભૂલ';
 
   @override
-  String get counter_screen_enabled_error_content => 'તમારે પહેલા અન્ય કાઉન્ટર સક્રિય કરવાની જરૂર છે, પછી તમે આ કાઉન્ટર અસક્રિય કરી શકો છો';
+  String get counter_screen_enabled_error_content =>
+      'તમારે પહેલા અન્ય કાઉન્ટર સક્રિય કરવાની જરૂર છે, પછી તમે આ કાઉન્ટર અસક્રિય કરી શકો છો';
 
   @override
   String get objects_screen_title => 'ઓબ્જેક્ટ્સ';
 
   @override
-  String get objects_screen_desc => 'વ્યક્તિ, કાર, બસ વગેરે જેવા ડિટેક્શન ટાર્ગેટ્સ પસંદ કરો.';
+  String get objects_screen_desc =>
+      'વ્યક્તિ, કાર, બસ વગેરે જેવા ડિટેક્શન ટાર્ગેટ્સ પસંદ કરો.';
 
   @override
   String get open_project_screen_title => 'પ્રોજેક્ટ ખોલો';
 
   @override
-  String get open_project_screen_desc => 'અગાઉ બનાવેલા પ્રોજેક્ટ્સ ખોલો, માત્ર તાજેતરના 20 જ રાખો.';
+  String get open_project_screen_desc =>
+      'અગાઉ બનાવેલા પ્રોજેક્ટ્સ ખોલો, માત્ર તાજેતરના 20 જ રાખો.';
 
   @override
   String get open_project_screen_no_project => 'કોઈ પ્રોજેક્ટ મળ્યો નથી.';
@@ -474,7 +513,8 @@ class LocalizationGu extends Localization {
   String get error_oops => 'અરે, કંઈક ખોટું થયું';
 
   @override
-  String get error_content => 'અનપેક્ષિત ભૂલ આવી. શું તમે ઇમેઇલ રિપોર્ટ સબમિટ કરવા માંગો છો?';
+  String get error_content =>
+      'અનપેક્ષિત ભૂલ આવી. શું તમે ઇમેઇલ રિપોર્ટ સબમિટ કરવા માંગો છો?';
 
   @override
   String get error_report => 'અમને ઇમેઇલ કરો';
@@ -516,8 +556,10 @@ class LocalizationGu extends Localization {
   String get video_sources_camera_denied => 'કેમેરા ઍક્સેસ નકારી';
 
   @override
-  String get video_sources_photos_denied_msg => 'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે ફોટો એક્સેસ પરવાનગી મંજૂર કરો.';
+  String get video_sources_photos_denied_msg =>
+      'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે ફોટો એક્સેસ પરવાનગી મંજૂર કરો.';
 
   @override
-  String get video_sources_camera_denied_msg => 'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે કેમેરા એક્સેસ પરવાનગી મંજૂર કરો.';
+  String get video_sources_camera_denied_msg =>
+      'કૃપા કરીને સેટિંગ્સમાં જાઓ અને આ એપ માટે કેમેરા એક્સેસ પરવાનગી મંજૂર કરો.';
 }

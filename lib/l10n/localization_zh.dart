@@ -39,7 +39,8 @@ class LocalizationZh extends Localization {
   String get video_sources_webcam_not_found_title => '找不到網路攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網路攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message =>
+      '請確認已給予 App 存取攝影機的權限並確認網路攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新專案以開始計數。';
@@ -198,7 +199,8 @@ class LocalizationZh extends Localization {
   String get settings_screen_lost_target_title => '遺失目標';
 
   @override
-  String get settings_screen_lost_target_desc => '當物件追蹤遺失目標時，啟用此選項可顯示遺失的目標。預設情況下，遺失目標不會顯示。';
+  String get settings_screen_lost_target_desc =>
+      '當物件追蹤遺失目標時，啟用此選項可顯示遺失的目標。預設情況下，遺失目標不會顯示。';
 
   @override
   String get settings_screen_lost_target_button => '顯示遺失目標';
@@ -225,19 +227,22 @@ class LocalizationZh extends Localization {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
+  String get detection_screen_nms_desc =>
+      '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
 
   @override
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
+  String get detection_screen_lost_desc =>
+      '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -261,7 +266,8 @@ class LocalizationZh extends Localization {
   String get url_screen_url => '網址';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 或 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 或 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '新增影片來源';
@@ -402,7 +408,8 @@ class LocalizationZh extends Localization {
   String get counter_screen_reentry_threshold => '重新進入閾值';
 
   @override
-  String get counter_screen_reentry_desc => '物體必須進入 #0 次，每次退出和重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
+  String get counter_screen_reentry_desc =>
+      '物體必須進入 #0 次，每次退出和重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
 
   @override
   String get counter_screen_reentry_title => '重新進入計數';
@@ -524,7 +531,7 @@ class LocalizationZh extends Localization {
 
 /// The translations for Chinese, as used in China (`zh_CN`).
 class LocalizationZhCn extends LocalizationZh {
-  LocalizationZhCn(): super('zh_CN');
+  LocalizationZhCn() : super('zh_CN');
 
   @override
   String get product_name => '计数器';
@@ -557,7 +564,8 @@ class LocalizationZhCn extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到网络摄像头';
 
   @override
-  String get video_sources_webcam_not_found_message => '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
+  String get video_sources_webcam_not_found_message =>
+      '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
 
   @override
   String get wizard_screen_desc => '创建新项目以开始计数。';
@@ -716,7 +724,8 @@ class LocalizationZhCn extends LocalizationZh {
   String get settings_screen_lost_target_title => '丢失目标';
 
   @override
-  String get settings_screen_lost_target_desc => '当物体跟踪丢失目标时，启用此选项可显示丢失的目标。默认情况下，丢失目标不会显示。';
+  String get settings_screen_lost_target_desc =>
+      '当物体跟踪丢失目标时，启用此选项可显示丢失的目标。默认情况下，丢失目标不会显示。';
 
   @override
   String get settings_screen_lost_target_button => '显示丢失目标';
@@ -743,19 +752,22 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_nms => '非极大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
+  String get detection_screen_nms_desc =>
+      '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
 
   @override
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
 
   @override
   String get detection_screen_lost => '丢失';
 
   @override
-  String get detection_screen_lost_desc => '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
+  String get detection_screen_lost_desc =>
+      '根据物体移动速度，动态决定删除丢失物体的时间范围，介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '视为有效时间';
@@ -779,7 +791,8 @@ class LocalizationZhCn extends LocalizationZh {
   String get url_screen_url => '网址';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 或 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 或 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '添加视频源';
@@ -920,7 +933,8 @@ class LocalizationZhCn extends LocalizationZh {
   String get counter_screen_reentry_threshold => '重新进入阈值';
 
   @override
-  String get counter_screen_reentry_desc => '物体必须进入 #0 次，每次退出和重新进入之间有 #1 秒冷却时间，才能触发重新进入';
+  String get counter_screen_reentry_desc =>
+      '物体必须进入 #0 次，每次退出和重新进入之间有 #1 秒冷却时间，才能触发重新进入';
 
   @override
   String get counter_screen_reentry_title => '重新进入计数';
@@ -1042,7 +1056,7 @@ class LocalizationZhCn extends LocalizationZh {
 
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
 class LocalizationZhHk extends LocalizationZh {
-  LocalizationZhHk(): super('zh_HK');
+  LocalizationZhHk() : super('zh_HK');
 
   @override
   String get product_name => '計數器';
@@ -1075,7 +1089,8 @@ class LocalizationZhHk extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到網絡攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message =>
+      '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新項目以開始計數。';
@@ -1234,7 +1249,8 @@ class LocalizationZhHk extends LocalizationZh {
   String get settings_screen_lost_target_title => '遺失目標';
 
   @override
-  String get settings_screen_lost_target_desc => '當物件追蹤遺失目標時，啟用此選項可顯示遺失的目標。預設情況下，遺失目標不會顯示。';
+  String get settings_screen_lost_target_desc =>
+      '當物件追蹤遺失目標時，啟用此選項可顯示遺失的目標。預設情況下，遺失目標不會顯示。';
 
   @override
   String get settings_screen_lost_target_button => '顯示遺失目標';
@@ -1261,19 +1277,22 @@ class LocalizationZhHk extends LocalizationZh {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
+  String get detection_screen_nms_desc =>
+      '#0 較低的NMS閾值(如0.3-0.4)會更嚴格地移除重疊的邊界框並減少誤報但可能漏掉重疊的人物。較高的閾值(0.7-0.9)會保留更多框這可能增加誤報但能更好地檢測重疊的人物。';
 
   @override
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold 是物件追蹤中的關鍵參數 基於 IoU 距離衡量不同偵測框之間的匹配程度。較低的值更容易將物件關聯 但也可能增加錯誤關聯的風險；較高的值對物件關聯更嚴格 可能會漏掉一些真實的匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
+  String get detection_screen_lost_desc =>
+      '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -1297,7 +1316,8 @@ class LocalizationZhHk extends LocalizationZh {
   String get url_screen_url => '網址';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 或 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 或 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '新增影片來源';
@@ -1438,7 +1458,8 @@ class LocalizationZhHk extends LocalizationZh {
   String get counter_screen_reentry_threshold => '重新進入閾值';
 
   @override
-  String get counter_screen_reentry_desc => '物體必須進入 #0 次，每次退出和重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
+  String get counter_screen_reentry_desc =>
+      '物體必須進入 #0 次，每次退出和重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
 
   @override
   String get counter_screen_reentry_title => '重新進入計數';
@@ -1560,7 +1581,7 @@ class LocalizationZhHk extends LocalizationZh {
 
 /// The translations for Chinese, as used in Macao (`zh_MO`).
 class LocalizationZhMo extends LocalizationZh {
-  LocalizationZhMo(): super('zh_MO');
+  LocalizationZhMo() : super('zh_MO');
 
   @override
   String get product_name => '計數器';
@@ -1593,7 +1614,8 @@ class LocalizationZhMo extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '搵唔到網絡攝影機';
 
   @override
-  String get video_sources_webcam_not_found_message => '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
+  String get video_sources_webcam_not_found_message =>
+      '請確認已給予 App 存取攝影機的權限並確認網絡攝影機已正確連接。';
 
   @override
   String get wizard_screen_desc => '建立新項目開始計數。';
@@ -1752,7 +1774,8 @@ class LocalizationZhMo extends LocalizationZh {
   String get settings_screen_lost_target_title => '遺失目標';
 
   @override
-  String get settings_screen_lost_target_desc => '當物件追蹤遺失目標時，啟用此選項可顯示遺失嘅目標。預設情況下，遺失目標唔會顯示。';
+  String get settings_screen_lost_target_desc =>
+      '當物件追蹤遺失目標時，啟用此選項可顯示遺失嘅目標。預設情況下，遺失目標唔會顯示。';
 
   @override
   String get settings_screen_lost_target_button => '顯示遺失目標';
@@ -1779,19 +1802,22 @@ class LocalizationZhMo extends LocalizationZh {
   String get detection_screen_nms => '非極大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 較低嘅NMS閾值(如0.3-0.4)會更嚴格噉移除重疊嘅邊界框並減少誤報但可能漏掉重疊嘅人物。較高嘅閾值(0.7-0.9)會保留更多框呢可能增加誤報但能更好噉檢測重疊嘅人物。';
+  String get detection_screen_nms_desc =>
+      '#0 較低嘅NMS閾值(如0.3-0.4)會更嚴格噉移除重疊嘅邊界框並減少誤報但可能漏掉重疊嘅人物。較高嘅閾值(0.7-0.9)會保留更多框呢可能增加誤報但能更好噉檢測重疊嘅人物。';
 
   @override
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold 係物件追蹤中嘅關鍵參數 基於 IoU 距離衡量唔同偵測框之間嘅匹配程度。較低嘅值更容易將物件關聯 但都可能增加錯誤關聯嘅風險；較高嘅值對物件關聯更嚴格 可能會漏咗一啲真實嘅匹配。';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold 係物件追蹤中嘅關鍵參數 基於 IoU 距離衡量唔同偵測框之間嘅匹配程度。較低嘅值更容易將物件關聯 但都可能增加錯誤關聯嘅風險；較高嘅值對物件關聯更嚴格 可能會漏咗一啲真實嘅匹配。';
 
   @override
   String get detection_screen_lost => '丟失';
 
   @override
-  String get detection_screen_lost_desc => '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
+  String get detection_screen_lost_desc =>
+      '根據物體移動的速度，動態決定該丢失物體的移除時間，範圍介於 #0 到 #1 之間，超過時間會自動移除丟失物體';
 
   @override
   String get detection_screen_consider_valid => '視為有效時間';
@@ -1815,7 +1841,8 @@ class LocalizationZhMo extends LocalizationZh {
   String get url_screen_url => '網址';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 或 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 或 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '新增影片來源';
@@ -1956,7 +1983,8 @@ class LocalizationZhMo extends LocalizationZh {
   String get counter_screen_reentry_threshold => '重新進入閾值';
 
   @override
-  String get counter_screen_reentry_desc => '物體必須進入 #0 次，每次退出同重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
+  String get counter_screen_reentry_desc =>
+      '物體必須進入 #0 次，每次退出同重新進入之間有 #1 秒冷卻時間，才能觸發重新進入';
 
   @override
   String get counter_screen_reentry_title => '重新進入計數';
@@ -2078,7 +2106,7 @@ class LocalizationZhMo extends LocalizationZh {
 
 /// The translations for Chinese, as used in Singapore (`zh_SG`).
 class LocalizationZhSg extends LocalizationZh {
-  LocalizationZhSg(): super('zh_SG');
+  LocalizationZhSg() : super('zh_SG');
 
   @override
   String get product_name => '计数器';
@@ -2111,7 +2139,8 @@ class LocalizationZhSg extends LocalizationZh {
   String get video_sources_webcam_not_found_title => '找不到网络摄像头';
 
   @override
-  String get video_sources_webcam_not_found_message => '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
+  String get video_sources_webcam_not_found_message =>
+      '请确认已给予 App 访问摄像头的权限并确认网络摄像头已正确连接。';
 
   @override
   String get wizard_screen_desc => '创建新项目以开始计数。';
@@ -2270,7 +2299,8 @@ class LocalizationZhSg extends LocalizationZh {
   String get settings_screen_lost_target_title => '丢失目标';
 
   @override
-  String get settings_screen_lost_target_desc => '当物体跟踪丢失目标时，启用此选项可显示丢失的目标。默认情况下，丢失目标不会显示。';
+  String get settings_screen_lost_target_desc =>
+      '当物体跟踪丢失目标时，启用此选项可显示丢失的目标。默认情况下，丢失目标不会显示。';
 
   @override
   String get settings_screen_lost_target_button => '显示丢失目标';
@@ -2297,19 +2327,22 @@ class LocalizationZhSg extends LocalizationZh {
   String get detection_screen_nms => '非极大值抑制';
 
   @override
-  String get detection_screen_nms_desc => '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
+  String get detection_screen_nms_desc =>
+      '#0 较低的NMS阈值(如0.3-0.4)会更严格地移除重叠的边界框并减少误报但可能漏掉重叠的人物。较高的阈值(0.7-0.9)会保留更多框这可能增加误报但能更好地检测重叠的人物。';
 
   @override
   String get detection_screen_match => '匹配';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold 是物体跟踪中的关键参数 基于 IoU 距离衡量不同检测框之间的匹配程度。较低的值更容易将物体关联 但也可能增加错误关联的风险；较高的值对物体关联更严格 可能会漏掉一些真实的匹配。';
 
   @override
   String get detection_screen_lost => '丢失';
 
   @override
-  String get detection_screen_lost_desc => '根据物体移动速度，动态决定该丢失物体的移除时间，范围介于 #0 到 #1 之间';
+  String get detection_screen_lost_desc =>
+      '根据物体移动速度，动态决定该丢失物体的移除时间，范围介于 #0 到 #1 之间';
 
   @override
   String get detection_screen_consider_valid => '视为有效时间';
@@ -2333,7 +2366,8 @@ class LocalizationZhSg extends LocalizationZh {
   String get url_screen_url => '网址';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 或 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 或 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '添加视频源';
@@ -2474,7 +2508,8 @@ class LocalizationZhSg extends LocalizationZh {
   String get counter_screen_reentry_threshold => '重新进入阈值';
 
   @override
-  String get counter_screen_reentry_desc => '物体必须进入 #0 次，每次退出和重新进入之间有 #1 秒冷却时间，才能触发重新进入';
+  String get counter_screen_reentry_desc =>
+      '物体必须进入 #0 次，每次退出和重新进入之间有 #1 秒冷却时间，才能触发重新进入';
 
   @override
   String get counter_screen_reentry_title => '重新进入计数';

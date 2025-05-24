@@ -12,7 +12,8 @@ class LocalizationAf extends Localization {
   String get product_name => 'Teller';
 
   @override
-  String get product_desc => 'Gebruik rekenaarsigbaarheid en KI om mense, voertuie, troeteldiere en meer te tel.';
+  String get product_desc =>
+      'Gebruik rekenaarsigbaarheid en KI om mense, voertuie, troeteldiere en meer te tel.';
 
   @override
   String get product_copyright => 'Kopiereg © 2025';
@@ -33,16 +34,19 @@ class LocalizationAf extends Localization {
   String get video_sources_camera_not_found_title => 'Kamera nie gevind nie';
 
   @override
-  String get video_sources_camera_not_found_message => 'Moet kamera-toestemming verleen om kamera te gebruik';
+  String get video_sources_camera_not_found_message =>
+      'Moet kamera-toestemming verleen om kamera te gebruik';
 
   @override
   String get video_sources_webcam_not_found_title => 'Webkamera nie gevind nie';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Kontroleer of kamera toestemming is en of dit gekoppel is';
+  String get video_sources_webcam_not_found_message =>
+      'Kontroleer of kamera toestemming is en of dit gekoppel is';
 
   @override
-  String get wizard_screen_desc => 'Skep \'n nuwe projek hieronder om te begin tel.';
+  String get wizard_screen_desc =>
+      'Skep \'n nuwe projek hieronder om te begin tel.';
 
   @override
   String get wizard_screen_new_project_from => 'Nuwe Projek vanaf';
@@ -54,7 +58,8 @@ class LocalizationAf extends Localization {
   String get wizard_screen_about => 'Oor';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Alle projekte sal outomaties plaaslik gestoor word';
+  String get wizard_screen_open_projects_tip =>
+      'Alle projekte sal outomaties plaaslik gestoor word';
 
   @override
   String get wizard_screen_open_projects => 'Maak bestaande projek oop';
@@ -99,7 +104,8 @@ class LocalizationAf extends Localization {
   String get benchmark_screen_start_button => 'Begin Toetssteen';
 
   @override
-  String get benchmark_screen_start_failed => 'Kon nie die toetssteen begin nie, die foutkode is';
+  String get benchmark_screen_start_failed =>
+      'Kon nie die toetssteen begin nie, die foutkode is';
 
   @override
   String get benchmark_screen_models => 'Objekopsporing modelle';
@@ -108,10 +114,12 @@ class LocalizationAf extends Localization {
   String get project_screen_title => 'Projek';
 
   @override
-  String get project_screen_exit_confirm_title => 'Bevestig verlating van die projek';
+  String get project_screen_exit_confirm_title =>
+      'Bevestig verlating van die projek';
 
   @override
-  String get project_screen_exit_confirm_content => 'Die projek verlaat sal die tel stop. Is jy seker jy wil voortgaan?';
+  String get project_screen_exit_confirm_content =>
+      'Die projek verlaat sal die tel stop. Is jy seker jy wil voortgaan?';
 
   @override
   String get project_screen_exit_button => 'Verlaat';
@@ -120,7 +128,8 @@ class LocalizationAf extends Localization {
   String get project_screen_add_video_button => 'Voeg videobron by';
 
   @override
-  String get project_screen_from_desc => 'Ons hou \'n rollende 24-uur rekord, sodat jy enige tydsgleuf kan sien wat jy nodig het.';
+  String get project_screen_from_desc =>
+      'Ons hou \'n rollende 24-uur rekord, sodat jy enige tydsgleuf kan sien wat jy nodig het.';
 
   @override
   String get project_screen_report_settings => 'Instellings';
@@ -135,7 +144,8 @@ class LocalizationAf extends Localization {
   String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Eindtyd moet groter wees as begintyd';
+  String get filter_screen_error_content =>
+      'Eindtyd moet groter wees as begintyd';
 
   @override
   String get filter_screen_error_custom => 'Pasgemaak';
@@ -150,7 +160,8 @@ class LocalizationAf extends Localization {
   String get settings_screen_title => 'Instellings';
 
   @override
-  String get settings_screen_desc => 'Stel Projeknaam, opsporingsparameters, telklarings in.';
+  String get settings_screen_desc =>
+      'Stel Projeknaam, opsporingsparameters, telklarings in.';
 
   @override
   String get settings_screen_project_id => 'Projek ID';
@@ -159,28 +170,34 @@ class LocalizationAf extends Localization {
   String get settings_screen_project_name => 'Projeknaam';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 Hoofstraat of Parkweg';
+  String get settings_screen_project_name_place_holder =>
+      '123 Hoofstraat of Parkweg';
 
   @override
-  String get settings_screen_project_error => 'Die projeknaam kan nie leeg wees nie';
+  String get settings_screen_project_error =>
+      'Die projeknaam kan nie leeg wees nie';
 
   @override
-  String get settings_screen_random_count_button => 'Voeg ewekansige tellings by';
+  String get settings_screen_random_count_button =>
+      'Voeg ewekansige tellings by';
 
   @override
-  String get settings_screen_reset_count_header => 'Herstel alle tellings in hierdie projek';
+  String get settings_screen_reset_count_header =>
+      'Herstel alle tellings in hierdie projek';
 
   @override
   String get settings_screen_reset_count_button => 'Herstel tellings';
 
   @override
-  String get settings_screen_reset_count_content => 'Is jy seker jy wil alle tellings herstel?';
+  String get settings_screen_reset_count_content =>
+      'Is jy seker jy wil alle tellings herstel?';
 
   @override
   String get settings_screen_delete_header => 'Verwyder hierdie projek';
 
   @override
-  String get settings_screen_delete_content => 'Is jy seker jy wil hierdie projek verwyder?';
+  String get settings_screen_delete_content =>
+      'Is jy seker jy wil hierdie projek verwyder?';
 
   @override
   String get settings_screen_delete_button => 'Verwyder';
@@ -189,7 +206,8 @@ class LocalizationAf extends Localization {
   String get settings_screen_center_point_title => 'Middelpunt op Teiken';
 
   @override
-  String get settings_screen_center_point_desc => 'Die middelpunt help bepaal of die teiken binne die trefgebied is.';
+  String get settings_screen_center_point_desc =>
+      'Die middelpunt help bepaal of die teiken binne die trefgebied is.';
 
   @override
   String get settings_screen_center_point_button => 'Wys Middelpunt op Teiken';
@@ -198,7 +216,8 @@ class LocalizationAf extends Localization {
   String get settings_screen_lost_target_title => 'Verlore Teiken';
 
   @override
-  String get settings_screen_lost_target_desc => 'Wanneer objekopsporing \'n teiken verloor, maak hierdie opsie dit sigbaar. Verlore teikens word standaard nie gewys nie.';
+  String get settings_screen_lost_target_desc =>
+      'Wanneer objekopsporing \'n teiken verloor, maak hierdie opsie dit sigbaar. Verlore teikens word standaard nie gewys nie.';
 
   @override
   String get settings_screen_lost_target_button => 'Wys Verlore Teiken';
@@ -213,7 +232,8 @@ class LocalizationAf extends Localization {
   String get detection_screen_confidence => 'Vertroue';
 
   @override
-  String get detection_screen_confidence_desc => 'vertroue bo #0 word beskou as \'n geldige opsporing';
+  String get detection_screen_confidence_desc =>
+      'vertroue bo #0 word beskou as \'n geldige opsporing';
 
   @override
   String get detection_screen_low => 'Laag';
@@ -225,31 +245,36 @@ class LocalizationAf extends Localization {
   String get detection_screen_nms => 'Nie-Maksimum Onderdrukking';
 
   @override
-  String get detection_screen_nms_desc => '#0 \'n Laer NMS drempel (bv. 0.3-0.4) verwyder oorvleuelende rame strenger en verminder vals positiewes maar kan oor oorvleuelende mense mis. \'n Hoër drempel (0.7-0.9) behou meer rame wat vals positiewes kan verhoog maar oorvleuelende mense beter opspoor.';
+  String get detection_screen_nms_desc =>
+      '#0 \'n Laer NMS drempel (bv. 0.3-0.4) verwyder oorvleuelende rame strenger en verminder vals positiewes maar kan oor oorvleuelende mense mis. \'n Hoër drempel (0.7-0.9) behou meer rame wat vals positiewes kan verhoog maar oorvleuelende mense beter opspoor.';
 
   @override
   String get detection_screen_match => 'Pas';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold is \'n kritieke parameter in objekopsporing wat die ooreenkomstigheid tussen verskillende opsporingsboxe meet. \'n Laer waarde maak dit makliker om objekte te koppel maar verhoog die risiko van verkeerde koppelings. \'n Hoër waarde is strenger maar kan ware koppelings mis.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold is \'n kritieke parameter in objekopsporing wat die ooreenkomstigheid tussen verskillende opsporingsboxe meet. \'n Laer waarde maak dit makliker om objekte te koppel maar verhoog die risiko van verkeerde koppelings. \'n Hoër waarde is strenger maar kan ware koppelings mis.';
 
   @override
   String get detection_screen_lost => 'Verlore';
 
   @override
-  String get detection_screen_lost_desc => 'Bepaal dinamies die tyd om verlore objekte te verwyder tussen #0 en #1 volgens bewegingspoed';
+  String get detection_screen_lost_desc =>
+      'Bepaal dinamies die tyd om verlore objekte te verwyder tussen #0 en #1 volgens bewegingspoed';
 
   @override
   String get detection_screen_consider_valid => 'Beskou geldig na';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Opgespoorde objek sal as geldig beskou word na #0';
+  String get detection_screen_consider_valid_desc =>
+      'Opgespoorde objek sal as geldig beskou word na #0';
 
   @override
   String get detection_screen_reset => 'Herstel';
 
   @override
-  String get detection_screen_reset_content => 'Is jy seker jy wil die opsporingsinstellings herstel?';
+  String get detection_screen_reset_content =>
+      'Is jy seker jy wil die opsporingsinstellings herstel?';
 
   @override
   String get url_screen_title => 'Regstreekse stroom-URL';
@@ -261,7 +286,8 @@ class LocalizationAf extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://voorbeeld.com/stroom of rtsp://voorbeeld.com/stroom';
+  String get url_screen_url_placeholder =>
+      'http://voorbeeld.com/stroom of rtsp://voorbeeld.com/stroom';
 
   @override
   String get add_video_screen_title => 'Voeg Videobron by';
@@ -297,13 +323,15 @@ class LocalizationAf extends Localization {
   String get video_screen_name_empty => 'Die videonaam kan nie leeg wees nie.';
 
   @override
-  String get video_screen_desc => 'Bestuur videobronne, voeg by of wysig opsporingsones.';
+  String get video_screen_desc =>
+      'Bestuur videobronne, voeg by of wysig opsporingsones.';
 
   @override
   String get video_screen_video_name => 'Videobronnaam';
 
   @override
-  String get video_screen_edit_placeholder => 'Voordeurkamera of Parkeerterreinkamera';
+  String get video_screen_edit_placeholder =>
+      'Voordeurkamera of Parkeerterreinkamera';
 
   @override
   String get video_screen_change_file => 'Verander Lêer';
@@ -315,7 +343,8 @@ class LocalizationAf extends Localization {
   String get video_screen_zones => 'Opsporingsones';
 
   @override
-  String get video_screen_zones_desc => 'Gebruik sleep-en-los om sones aan te pas';
+  String get video_screen_zones_desc =>
+      'Gebruik sleep-en-los om sones aan te pas';
 
   @override
   String get video_screen_tools => 'Gereedskap';
@@ -345,13 +374,15 @@ class LocalizationAf extends Localization {
   String get video_screen_delete_header => 'Verwyder hierdie videobron';
 
   @override
-  String get video_screen_delete_content => 'Is jy seker jy wil hierdie videobron verwyder?';
+  String get video_screen_delete_content =>
+      'Is jy seker jy wil hierdie videobron verwyder?';
 
   @override
   String get video_screen_delete_button => 'Verwyder';
 
   @override
-  String get video_screen_sources => 'Stel beeldbron, opsporingsteikens, en model parameters op.';
+  String get video_screen_sources =>
+      'Stel beeldbron, opsporingsteikens, en model parameters op.';
 
   @override
   String get video_screen_targets => 'Opsporingsteikens';
@@ -363,10 +394,12 @@ class LocalizationAf extends Localization {
   String get color_screen_title => 'Kies \'n kleur';
 
   @override
-  String get zone_screen_desc => 'Die opsporingsone kan die tipes objekte wat opgespoor moet word instel en kies watter tellers om te vertoon, soos Opgespoor, Verskyn, en Binnegekom.';
+  String get zone_screen_desc =>
+      'Die opsporingsone kan die tipes objekte wat opgespoor moet word instel en kies watter tellers om te vertoon, soos Opgespoor, Verskyn, en Binnegekom.';
 
   @override
-  String get zone_screen_name_placeholder => 'Die naam van die sone, soos Sypaadjie of Parkeerterrein';
+  String get zone_screen_name_placeholder =>
+      'Die naam van die sone, soos Sypaadjie of Parkeerterrein';
 
   @override
   String get zone_screen_zone_color => 'Sonekleur';
@@ -378,7 +411,8 @@ class LocalizationAf extends Localization {
   String get zone_screen_delete_header => 'Verwyder hierdie sone';
 
   @override
-  String get zone_screen_delete_content => 'Is jy seker jy wil hierdie sone verwyder?';
+  String get zone_screen_delete_content =>
+      'Is jy seker jy wil hierdie sone verwyder?';
 
   @override
   String get zone_screen_delete_button => 'Verwyder';
@@ -387,10 +421,12 @@ class LocalizationAf extends Localization {
   String get zone_screen_can_not_delete => 'Kan nie sone verwyder nie';
 
   @override
-  String get zone_screen_one_zone_required => 'Ten minste een sone word benodig.';
+  String get zone_screen_one_zone_required =>
+      'Ten minste een sone word benodig.';
 
   @override
-  String get zone_screen_zone_name_required => 'Die sonenaam kan nie leeg wees nie';
+  String get zone_screen_zone_name_required =>
+      'Die sonenaam kan nie leeg wees nie';
 
   @override
   String get counter_screen_show_on => 'Wys op skerm';
@@ -402,7 +438,8 @@ class LocalizationAf extends Localization {
   String get counter_screen_reentry_threshold => 'Herbinnekoms Drempel';
 
   @override
-  String get counter_screen_reentry_desc => 'Objekte moet #0 keer binnekom, met \'n #1-sekonde afkoeltyd tussen elke uitgang en herbinnekoms, om herbinnekoms te aktiveer';
+  String get counter_screen_reentry_desc =>
+      'Objekte moet #0 keer binnekom, met \'n #1-sekonde afkoeltyd tussen elke uitgang en herbinnekoms, om herbinnekoms te aktiveer';
 
   @override
   String get counter_screen_reentry_title => 'Herbinnekoms telling';
@@ -411,7 +448,8 @@ class LocalizationAf extends Localization {
   String get counter_screen_cooldown_threshold => 'Afkoeldrempel';
 
   @override
-  String get counter_screen_cooldown_desc => 'Herbinnekoms vereis \'n #0-sekonde afkoeltyd na die verlating van die opsporingsone';
+  String get counter_screen_cooldown_desc =>
+      'Herbinnekoms vereis \'n #0-sekonde afkoeltyd na die verlating van die opsporingsone';
 
   @override
   String get counter_screen_cooldown_time => 'Afkoeltyd';
@@ -423,7 +461,8 @@ class LocalizationAf extends Localization {
   String get counter_screen_stagnant_threshold => 'Stilstaande Drempel';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objekte wat vir meer as #0 sekondes stilstaan, sal as stilstaande beskou word';
+  String get counter_screen_stagnant_desc =>
+      'Objekte wat vir meer as #0 sekondes stilstaan, sal as stilstaande beskou word';
 
   @override
   String get counter_screen_stagnant_consider => 'Beskou as stilstaande';
@@ -438,25 +477,29 @@ class LocalizationAf extends Localization {
   String get counter_screen_stagnant_desc_suffix => 'Beskrywing Agtervoegsel';
 
   @override
-  String get counter_screen_name_error => 'Die tellernaam kan nie leeg wees nie';
+  String get counter_screen_name_error =>
+      'Die tellernaam kan nie leeg wees nie';
 
   @override
   String get counter_screen_enabled_error => 'Fout';
 
   @override
-  String get counter_screen_enabled_error_content => 'Jy moet eers \'n ander teller aktiveer, dan kan jy hierdie teller deaktiveer';
+  String get counter_screen_enabled_error_content =>
+      'Jy moet eers \'n ander teller aktiveer, dan kan jy hierdie teller deaktiveer';
 
   @override
   String get objects_screen_title => 'Objekte';
 
   @override
-  String get objects_screen_desc => 'Kies opsporingsteikens soos persoon, motor, bus, ens.';
+  String get objects_screen_desc =>
+      'Kies opsporingsteikens soos persoon, motor, bus, ens.';
 
   @override
   String get open_project_screen_title => 'Maak Projek Oop';
 
   @override
-  String get open_project_screen_desc => 'Maak voorheen geskepte projekte oop, behou slegs die mees onlangse 20.';
+  String get open_project_screen_desc =>
+      'Maak voorheen geskepte projekte oop, behou slegs die mees onlangse 20.';
 
   @override
   String get open_project_screen_no_project => 'Geen projek gevind nie.';
@@ -474,7 +517,8 @@ class LocalizationAf extends Localization {
   String get error_oops => 'Oeps, iets het verkeerd gegaan';
 
   @override
-  String get error_content => '\'n Onverwagse fout het voorgekom. Wil jy \'n e-pos verslag indien?';
+  String get error_content =>
+      '\'n Onverwagse fout het voorgekom. Wil jy \'n e-pos verslag indien?';
 
   @override
   String get error_report => 'E-pos ons';
@@ -516,8 +560,10 @@ class LocalizationAf extends Localization {
   String get video_sources_camera_denied => 'Toegang tot kamera geweier';
 
   @override
-  String get video_sources_photos_denied_msg => 'Gaan na instellings en laat foto-toegangstoestemming toe vir hierdie app.';
+  String get video_sources_photos_denied_msg =>
+      'Gaan na instellings en laat foto-toegangstoestemming toe vir hierdie app.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Gaan na instellings en laat kamera-toegangstoestemming toe vir hierdie app.';
+  String get video_sources_camera_denied_msg =>
+      'Gaan na instellings en laat kamera-toegangstoestemming toe vir hierdie app.';
 }

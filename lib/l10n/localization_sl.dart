@@ -12,7 +12,8 @@ class LocalizationSl extends Localization {
   String get product_name => 'Števec';
 
   @override
-  String get product_desc => 'Uporaba računalniškega vida in umetne inteligence za štetje ljudi, vozil, hišnih ljubljenčkov in več.';
+  String get product_desc =>
+      'Uporaba računalniškega vida in umetne inteligence za štetje ljudi, vozil, hišnih ljubljenčkov in več.';
 
   @override
   String get product_copyright => 'Avtorske pravice © 2025';
@@ -33,13 +34,16 @@ class LocalizationSl extends Localization {
   String get video_sources_camera_not_found_title => 'Kamera ni najdena';
 
   @override
-  String get video_sources_camera_not_found_message => 'Za uporabo kamere potrebujete dovoljenje';
+  String get video_sources_camera_not_found_message =>
+      'Za uporabo kamere potrebujete dovoljenje';
 
   @override
-  String get video_sources_webcam_not_found_title => 'Spletna kamera ni najdena';
+  String get video_sources_webcam_not_found_title =>
+      'Spletna kamera ni najdena';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Preverite dovoljenje aplikacije in povezavo spletne kamere';
+  String get video_sources_webcam_not_found_message =>
+      'Preverite dovoljenje aplikacije in povezavo spletne kamere';
 
   @override
   String get wizard_screen_desc => 'Ustvarite nov projekt za začetek štetja.';
@@ -54,7 +58,8 @@ class LocalizationSl extends Localization {
   String get wizard_screen_about => 'O aplikaciji';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Vsi projekti se bodo samodejno shranili lokalno';
+  String get wizard_screen_open_projects_tip =>
+      'Vsi projekti se bodo samodejno shranili lokalno';
 
   @override
   String get wizard_screen_open_projects => 'Odpri obstoječi projekt';
@@ -99,7 +104,8 @@ class LocalizationSl extends Localization {
   String get benchmark_screen_start_button => 'Začni primerjalni test';
 
   @override
-  String get benchmark_screen_start_failed => 'Ni mogoče zagnati primerjalnega testa, koda napake je';
+  String get benchmark_screen_start_failed =>
+      'Ni mogoče zagnati primerjalnega testa, koda napake je';
 
   @override
   String get benchmark_screen_models => 'Modeli za zaznavanje objektov';
@@ -111,7 +117,8 @@ class LocalizationSl extends Localization {
   String get project_screen_exit_confirm_title => 'Potrdi izhod iz projekta';
 
   @override
-  String get project_screen_exit_confirm_content => 'Če zapustite projekt, se bo štetje ustavilo. Ali ste prepričani, da želite nadaljevati?';
+  String get project_screen_exit_confirm_content =>
+      'Če zapustite projekt, se bo štetje ustavilo. Ali ste prepričani, da želite nadaljevati?';
 
   @override
   String get project_screen_exit_button => 'Izhod';
@@ -120,7 +127,8 @@ class LocalizationSl extends Localization {
   String get project_screen_add_video_button => 'Dodaj vir videoposnetka';
 
   @override
-  String get project_screen_from_desc => 'Hranimo 24-urni zapis, zato si lahko ogledate katerikoli časovni odsek.';
+  String get project_screen_from_desc =>
+      'Hranimo 24-urni zapis, zato si lahko ogledate katerikoli časovni odsek.';
 
   @override
   String get project_screen_report_settings => 'Nastavitve';
@@ -135,7 +143,8 @@ class LocalizationSl extends Localization {
   String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Končni čas mora biti večji od začetnega časa';
+  String get filter_screen_error_content =>
+      'Končni čas mora biti večji od začetnega časa';
 
   @override
   String get filter_screen_error_custom => 'Po meri';
@@ -150,7 +159,8 @@ class LocalizationSl extends Localization {
   String get settings_screen_title => 'Nastavitve';
 
   @override
-  String get settings_screen_desc => 'Nastavite ime projekta, parametre zaznavanja, brisanje štetja.';
+  String get settings_screen_desc =>
+      'Nastavite ime projekta, parametre zaznavanja, brisanje štetja.';
 
   @override
   String get settings_screen_project_id => 'ID projekta';
@@ -159,7 +169,8 @@ class LocalizationSl extends Localization {
   String get settings_screen_project_name => 'Ime projekta';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Slovenska 123 ali Park Tivoli';
+  String get settings_screen_project_name_place_holder =>
+      'Slovenska 123 ali Park Tivoli';
 
   @override
   String get settings_screen_project_error => 'Ime projekta ne sme biti prazno';
@@ -168,19 +179,22 @@ class LocalizationSl extends Localization {
   String get settings_screen_random_count_button => 'Dodaj naključna štetja';
 
   @override
-  String get settings_screen_reset_count_header => 'Ponastavi vsa štetja v tem projektu';
+  String get settings_screen_reset_count_header =>
+      'Ponastavi vsa štetja v tem projektu';
 
   @override
   String get settings_screen_reset_count_button => 'Ponastavi štetja';
 
   @override
-  String get settings_screen_reset_count_content => 'Ali ste prepričani, da želite ponastaviti vsa štetja?';
+  String get settings_screen_reset_count_content =>
+      'Ali ste prepričani, da želite ponastaviti vsa štetja?';
 
   @override
   String get settings_screen_delete_header => 'Izbriši ta projekt';
 
   @override
-  String get settings_screen_delete_content => 'Ali ste prepričani, da želite izbrisati ta projekt?';
+  String get settings_screen_delete_content =>
+      'Ali ste prepričani, da želite izbrisati ta projekt?';
 
   @override
   String get settings_screen_delete_button => 'Izbriši';
@@ -189,16 +203,19 @@ class LocalizationSl extends Localization {
   String get settings_screen_center_point_title => 'Središčna točka na tarči';
 
   @override
-  String get settings_screen_center_point_desc => 'Središčna točka pomaga določiti, ali je tarča znotraj območja zadetka.';
+  String get settings_screen_center_point_desc =>
+      'Središčna točka pomaga določiti, ali je tarča znotraj območja zadetka.';
 
   @override
-  String get settings_screen_center_point_button => 'Prikaži središčno točko na tarči';
+  String get settings_screen_center_point_button =>
+      'Prikaži središčno točko na tarči';
 
   @override
   String get settings_screen_lost_target_title => 'Izgubljena tarča';
 
   @override
-  String get settings_screen_lost_target_desc => 'Ko sledenje objektov izgubi tarčo, ta možnost omogoči, da je vidna. Privzeto izgubljene tarče niso prikazane.';
+  String get settings_screen_lost_target_desc =>
+      'Ko sledenje objektov izgubi tarčo, ta možnost omogoči, da je vidna. Privzeto izgubljene tarče niso prikazane.';
 
   @override
   String get settings_screen_lost_target_button => 'Prikaži izgubljeno tarčo';
@@ -213,7 +230,8 @@ class LocalizationSl extends Localization {
   String get detection_screen_confidence => 'Zaupanje';
 
   @override
-  String get detection_screen_confidence_desc => 'zaupanje nad #0 se šteje kot veljavno zaznavanje';
+  String get detection_screen_confidence_desc =>
+      'zaupanje nad #0 se šteje kot veljavno zaznavanje';
 
   @override
   String get detection_screen_low => 'Nizko';
@@ -225,31 +243,36 @@ class LocalizationSl extends Localization {
   String get detection_screen_nms => 'Neprekosljivo zatiranje maksimumov';
 
   @override
-  String get detection_screen_nms_desc => '#0 Nižji prag NMS (npr. 0.3-0.4) strožje odstrani prekrivajoče se okvirje in zmanjša lažno pozitivne rezultate vendar lahko spregleda prekrivajoče se osebe. Višji prag (0.7-0.9) ohrani več okvirjev kar lahko poveča lažno pozitivne rezultate vendar bolje zazna prekrivajoče se osebe.';
+  String get detection_screen_nms_desc =>
+      '#0 Nižji prag NMS (npr. 0.3-0.4) strožje odstrani prekrivajoče se okvirje in zmanjša lažno pozitivne rezultate vendar lahko spregleda prekrivajoče se osebe. Višji prag (0.7-0.9) ohrani več okvirjev kar lahko poveča lažno pozitivne rezultate vendar bolje zazna prekrivajoče se osebe.';
 
   @override
   String get detection_screen_match => 'Ujemanje';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold je ključni parameter pri sledenju objektov ki meri stopnjo ujemanja med različnimi zaznavnimi okvirji. Nižja vrednost olajša povezovanje objektov vendar poveča tveganje napačnih povezav. Višja vrednost je pri povezovanju objektov strožja vendar lahko spregleda nekatere resnične ujemanja.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold je ključni parameter pri sledenju objektov ki meri stopnjo ujemanja med različnimi zaznavnimi okvirji. Nižja vrednost olajša povezovanje objektov vendar poveča tveganje napačnih povezav. Višja vrednost je pri povezovanju objektov strožja vendar lahko spregleda nekatere resnične ujemanja.';
 
   @override
   String get detection_screen_lost => 'Izgubljeno';
 
   @override
-  String get detection_screen_lost_desc => 'Dinamično določa čas odstranitve izgubljenih predmetov med #0 in #1 glede na hitrost gibanja';
+  String get detection_screen_lost_desc =>
+      'Dinamično določa čas odstranitve izgubljenih predmetov med #0 in #1 glede na hitrost gibanja';
 
   @override
   String get detection_screen_consider_valid => 'Upoštevaj kot veljavno po';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Objekt sledenja bo veljal za veljavnega po #0';
+  String get detection_screen_consider_valid_desc =>
+      'Objekt sledenja bo veljal za veljavnega po #0';
 
   @override
   String get detection_screen_reset => 'Ponastavi';
 
   @override
-  String get detection_screen_reset_content => 'Ali ste prepričani, da želite ponastaviti nastavitve zaznavanja?';
+  String get detection_screen_reset_content =>
+      'Ali ste prepričani, da želite ponastaviti nastavitve zaznavanja?';
 
   @override
   String get url_screen_title => 'URL naslov v živo';
@@ -261,7 +284,8 @@ class LocalizationSl extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream ali rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream ali rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Dodaj vir videoposnetka';
@@ -297,13 +321,15 @@ class LocalizationSl extends Localization {
   String get video_screen_name_empty => 'Ime videoposnetka ne sme biti prazno.';
 
   @override
-  String get video_screen_desc => 'Upravljanje virov videoposnetkov, dodajanje ali spreminjanje območij zaznavanja.';
+  String get video_screen_desc =>
+      'Upravljanje virov videoposnetkov, dodajanje ali spreminjanje območij zaznavanja.';
 
   @override
   String get video_screen_video_name => 'Ime vira videoposnetka';
 
   @override
-  String get video_screen_edit_placeholder => 'Kamera pri vhodnih vratih ali Kamera na parkirišču';
+  String get video_screen_edit_placeholder =>
+      'Kamera pri vhodnih vratih ali Kamera na parkirišču';
 
   @override
   String get video_screen_change_file => 'Spremeni datoteko';
@@ -315,7 +341,8 @@ class LocalizationSl extends Localization {
   String get video_screen_zones => 'Območja zaznavanja';
 
   @override
-  String get video_screen_zones_desc => 'Uporabite povleci in spusti za prilagoditev območij';
+  String get video_screen_zones_desc =>
+      'Uporabite povleci in spusti za prilagoditev območij';
 
   @override
   String get video_screen_tools => 'Orodja';
@@ -327,7 +354,8 @@ class LocalizationSl extends Localization {
   String get video_screen_add_point => 'Dodaj točko v trenutno območje';
 
   @override
-  String get video_screen_remove_point => 'Odstrani točko iz trenutnega območja';
+  String get video_screen_remove_point =>
+      'Odstrani točko iz trenutnega območja';
 
   @override
   String get video_screen_playback_speed => 'Hitrost predvajanja';
@@ -345,13 +373,15 @@ class LocalizationSl extends Localization {
   String get video_screen_delete_header => 'Izbriši ta vir videoposnetka';
 
   @override
-  String get video_screen_delete_content => 'Ali ste prepričani, da želite izbrisati ta vir videoposnetka?';
+  String get video_screen_delete_content =>
+      'Ali ste prepričani, da želite izbrisati ta vir videoposnetka?';
 
   @override
   String get video_screen_delete_button => 'Izbriši';
 
   @override
-  String get video_screen_sources => 'Konfigurirajte vir slike, tarče zaznavanja in parametre modela.';
+  String get video_screen_sources =>
+      'Konfigurirajte vir slike, tarče zaznavanja in parametre modela.';
 
   @override
   String get video_screen_targets => 'Tarče zaznavanja';
@@ -363,10 +393,12 @@ class LocalizationSl extends Localization {
   String get color_screen_title => 'Izberi barvo';
 
   @override
-  String get zone_screen_desc => 'Območje zaznavanja lahko nastavi vrste objektov za zaznavanje in izbere, kateri števci se prikažejo, kot so Zaznani, Nastali in Vstopili.';
+  String get zone_screen_desc =>
+      'Območje zaznavanja lahko nastavi vrste objektov za zaznavanje in izbere, kateri števci se prikažejo, kot so Zaznani, Nastali in Vstopili.';
 
   @override
-  String get zone_screen_name_placeholder => 'Ime območja, kot je Pločnik ali Parkirišče';
+  String get zone_screen_name_placeholder =>
+      'Ime območja, kot je Pločnik ali Parkirišče';
 
   @override
   String get zone_screen_zone_color => 'Barva območja';
@@ -378,7 +410,8 @@ class LocalizationSl extends Localization {
   String get zone_screen_delete_header => 'Izbriši to območje';
 
   @override
-  String get zone_screen_delete_content => 'Ali ste prepričani, da želite izbrisati to območje?';
+  String get zone_screen_delete_content =>
+      'Ali ste prepričani, da želite izbrisati to območje?';
 
   @override
   String get zone_screen_delete_button => 'Izbriši';
@@ -402,7 +435,8 @@ class LocalizationSl extends Localization {
   String get counter_screen_reentry_threshold => 'Prag ponovnega vstopa';
 
   @override
-  String get counter_screen_reentry_desc => 'Objekti morajo vstopiti #0 krat, z #1 sekundnim časom ohlajanja med vsakim izhodom in ponovnim vstopom, da sprožijo ponovni vstop';
+  String get counter_screen_reentry_desc =>
+      'Objekti morajo vstopiti #0 krat, z #1 sekundnim časom ohlajanja med vsakim izhodom in ponovnim vstopom, da sprožijo ponovni vstop';
 
   @override
   String get counter_screen_reentry_title => 'Štetje ponovnih vstopov';
@@ -411,7 +445,8 @@ class LocalizationSl extends Localization {
   String get counter_screen_cooldown_threshold => 'Prag ohlajanja';
 
   @override
-  String get counter_screen_cooldown_desc => 'Ponovni vstop zahteva #0 sekundno ohlajanje po izhodu iz območja zaznavanja';
+  String get counter_screen_cooldown_desc =>
+      'Ponovni vstop zahteva #0 sekundno ohlajanje po izhodu iz območja zaznavanja';
 
   @override
   String get counter_screen_cooldown_time => 'Čas ohlajanja';
@@ -423,7 +458,8 @@ class LocalizationSl extends Localization {
   String get counter_screen_stagnant_threshold => 'Prag mirovanja';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objekti, ki ostanejo na mestu več kot #0 sekund, bodo obravnavani kot mirujoči';
+  String get counter_screen_stagnant_desc =>
+      'Objekti, ki ostanejo na mestu več kot #0 sekund, bodo obravnavani kot mirujoči';
 
   @override
   String get counter_screen_stagnant_consider => 'Upoštevaj kot mirujoče';
@@ -444,19 +480,22 @@ class LocalizationSl extends Localization {
   String get counter_screen_enabled_error => 'Napaka';
 
   @override
-  String get counter_screen_enabled_error_content => 'Najprej morate omogočiti drug števec, nato lahko onemogočite ta števec';
+  String get counter_screen_enabled_error_content =>
+      'Najprej morate omogočiti drug števec, nato lahko onemogočite ta števec';
 
   @override
   String get objects_screen_title => 'Objekti';
 
   @override
-  String get objects_screen_desc => 'Izberite cilje zaznavanja, kot so oseba, avtomobil, avtobus itd.';
+  String get objects_screen_desc =>
+      'Izberite cilje zaznavanja, kot so oseba, avtomobil, avtobus itd.';
 
   @override
   String get open_project_screen_title => 'Odpri projekt';
 
   @override
-  String get open_project_screen_desc => 'Odprite prej ustvarjene projekte, obdržite le zadnjih 20.';
+  String get open_project_screen_desc =>
+      'Odprite prej ustvarjene projekte, obdržite le zadnjih 20.';
 
   @override
   String get open_project_screen_no_project => 'Ni najdenih projektov.';
@@ -474,7 +513,8 @@ class LocalizationSl extends Localization {
   String get error_oops => 'Ups, nekaj je šlo narobe';
 
   @override
-  String get error_content => 'Prišlo je do nepričakovane napake. Želite poslati poročilo po e-pošti?';
+  String get error_content =>
+      'Prišlo je do nepričakovane napake. Želite poslati poročilo po e-pošti?';
 
   @override
   String get error_report => 'Pišite nam';
@@ -516,8 +556,10 @@ class LocalizationSl extends Localization {
   String get video_sources_camera_denied => 'Dostop do kamere zavrnjen';
 
   @override
-  String get video_sources_photos_denied_msg => 'Pojdite v nastavitve in dovolite dostop do fotografij za to aplikacijo.';
+  String get video_sources_photos_denied_msg =>
+      'Pojdite v nastavitve in dovolite dostop do fotografij za to aplikacijo.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Pojdite v nastavitve in dovolite dostop do kamere za to aplikacijo.';
+  String get video_sources_camera_denied_msg =>
+      'Pojdite v nastavitve in dovolite dostop do kamere za to aplikacijo.';
 }

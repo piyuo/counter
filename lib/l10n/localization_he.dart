@@ -12,7 +12,8 @@ class LocalizationHe extends Localization {
   String get product_name => 'מונה';
 
   @override
-  String get product_desc => 'שימוש בראייה ממוחשבת ובינה מלאכותית לספירת אנשים, כלי רכב, חיות מחמד ועוד.';
+  String get product_desc =>
+      'שימוש בראייה ממוחשבת ובינה מלאכותית לספירת אנשים, כלי רכב, חיות מחמד ועוד.';
 
   @override
   String get product_copyright => 'כל הזכויות שמורות © 2025';
@@ -33,13 +34,15 @@ class LocalizationHe extends Localization {
   String get video_sources_camera_not_found_title => 'מצלמה לא נמצאה';
 
   @override
-  String get video_sources_camera_not_found_message => 'יש לאשר הרשאת מצלמה כדי להשתמש במצלמה';
+  String get video_sources_camera_not_found_message =>
+      'יש לאשר הרשאת מצלמה כדי להשתמש במצלמה';
 
   @override
   String get video_sources_webcam_not_found_title => 'מצלמת רשת לא נמצאה';
 
   @override
-  String get video_sources_webcam_not_found_message => 'אנא בדוק הרשאות אפליקציה וחיבור מצלמה';
+  String get video_sources_webcam_not_found_message =>
+      'אנא בדוק הרשאות אפליקציה וחיבור מצלמה';
 
   @override
   String get wizard_screen_desc => 'צור פרויקט חדש למטה כדי להתחיל בספירה.';
@@ -54,7 +57,8 @@ class LocalizationHe extends Localization {
   String get wizard_screen_about => 'אודות';
 
   @override
-  String get wizard_screen_open_projects_tip => 'כל הפרויקטים יישמרו מקומית באופן אוטומטי';
+  String get wizard_screen_open_projects_tip =>
+      'כל הפרויקטים יישמרו מקומית באופן אוטומטי';
 
   @override
   String get wizard_screen_open_projects => 'פתח פרויקט קיים';
@@ -99,7 +103,8 @@ class LocalizationHe extends Localization {
   String get benchmark_screen_start_button => 'התחל בדיקת ביצועים';
 
   @override
-  String get benchmark_screen_start_failed => 'נכשל בהפעלת בדיקת ביצועים, קוד השגיאה הוא';
+  String get benchmark_screen_start_failed =>
+      'נכשל בהפעלת בדיקת ביצועים, קוד השגיאה הוא';
 
   @override
   String get benchmark_screen_models => 'מודלים לזיהוי עצמים';
@@ -111,7 +116,8 @@ class LocalizationHe extends Localization {
   String get project_screen_exit_confirm_title => 'אשר יציאה מהפרויקט';
 
   @override
-  String get project_screen_exit_confirm_content => 'עזיבת הפרויקט תפסיק את הספירה. האם אתה בטוח שברצונך להמשיך?';
+  String get project_screen_exit_confirm_content =>
+      'עזיבת הפרויקט תפסיק את הספירה. האם אתה בטוח שברצונך להמשיך?';
 
   @override
   String get project_screen_exit_button => 'יציאה';
@@ -120,7 +126,8 @@ class LocalizationHe extends Localization {
   String get project_screen_add_video_button => 'הוסף מקור וידאו';
 
   @override
-  String get project_screen_from_desc => 'אנו שומרים רשומה מתגלגלת של 24 שעות, כך שתוכל לצפות בכל פרק זמן שתצטרך.';
+  String get project_screen_from_desc =>
+      'אנו שומרים רשומה מתגלגלת של 24 שעות, כך שתוכל לצפות בכל פרק זמן שתצטרך.';
 
   @override
   String get project_screen_report_settings => 'הגדרות';
@@ -135,7 +142,8 @@ class LocalizationHe extends Localization {
   String get filter_screen_error_title => 'סינון';
 
   @override
-  String get filter_screen_error_content => 'זמן הסיום חייב להיות גדול מזמן ההתחלה';
+  String get filter_screen_error_content =>
+      'זמן הסיום חייב להיות גדול מזמן ההתחלה';
 
   @override
   String get filter_screen_error_custom => 'מותאם אישית';
@@ -150,7 +158,8 @@ class LocalizationHe extends Localization {
   String get settings_screen_title => 'הגדרות';
 
   @override
-  String get settings_screen_desc => 'הגדר שם פרויקט, פרמטרים לזיהוי, איפוס ספירה.';
+  String get settings_screen_desc =>
+      'הגדר שם פרויקט, פרמטרים לזיהוי, איפוס ספירה.';
 
   @override
   String get settings_screen_project_id => 'מזהה פרויקט';
@@ -159,7 +168,8 @@ class LocalizationHe extends Localization {
   String get settings_screen_project_name => 'שם פרויקט';
 
   @override
-  String get settings_screen_project_name_place_holder => 'רחוב הרצל 123 או שדרות רוטשילד';
+  String get settings_screen_project_name_place_holder =>
+      'רחוב הרצל 123 או שדרות רוטשילד';
 
   @override
   String get settings_screen_project_error => 'שם הפרויקט אינו יכול להיות ריק';
@@ -168,19 +178,22 @@ class LocalizationHe extends Localization {
   String get settings_screen_random_count_button => 'הוסף ספירות אקראיות';
 
   @override
-  String get settings_screen_reset_count_header => 'אפס את כל הספירות בפרויקט זה';
+  String get settings_screen_reset_count_header =>
+      'אפס את כל הספירות בפרויקט זה';
 
   @override
   String get settings_screen_reset_count_button => 'אפס ספירות';
 
   @override
-  String get settings_screen_reset_count_content => 'האם אתה בטוח שברצונך לאפס את כל הספירות?';
+  String get settings_screen_reset_count_content =>
+      'האם אתה בטוח שברצונך לאפס את כל הספירות?';
 
   @override
   String get settings_screen_delete_header => 'מחק פרויקט זה';
 
   @override
-  String get settings_screen_delete_content => 'האם אתה בטוח שברצונך למחוק פרויקט זה?';
+  String get settings_screen_delete_content =>
+      'האם אתה בטוח שברצונך למחוק פרויקט זה?';
 
   @override
   String get settings_screen_delete_button => 'מחק';
@@ -189,7 +202,8 @@ class LocalizationHe extends Localization {
   String get settings_screen_center_point_title => 'נקודת מרכז על המטרה';
 
   @override
-  String get settings_screen_center_point_desc => 'נקודת המרכז עוזרת לקבוע אם המטרה נמצאת באזור הפגיעה.';
+  String get settings_screen_center_point_desc =>
+      'נקודת המרכז עוזרת לקבוע אם המטרה נמצאת באזור הפגיעה.';
 
   @override
   String get settings_screen_center_point_button => 'הצג נקודת מרכז על המטרה';
@@ -198,7 +212,8 @@ class LocalizationHe extends Localization {
   String get settings_screen_lost_target_title => 'מטרה אבודה';
 
   @override
-  String get settings_screen_lost_target_desc => 'כאשר מעקב אחר אובייקט מאבד מטרה, אפשרות זו הופכת אותה לגלויה. כברירת מחדל, מטרות אבודות אינן מוצגות.';
+  String get settings_screen_lost_target_desc =>
+      'כאשר מעקב אחר אובייקט מאבד מטרה, אפשרות זו הופכת אותה לגלויה. כברירת מחדל, מטרות אבודות אינן מוצגות.';
 
   @override
   String get settings_screen_lost_target_button => 'הצג מטרה אבודה';
@@ -213,7 +228,8 @@ class LocalizationHe extends Localization {
   String get detection_screen_confidence => 'רמת ביטחון';
 
   @override
-  String get detection_screen_confidence_desc => 'רמת ביטחון מעל #0 נחשבת כזיהוי תקין';
+  String get detection_screen_confidence_desc =>
+      'רמת ביטחון מעל #0 נחשבת כזיהוי תקין';
 
   @override
   String get detection_screen_low => 'נמוך';
@@ -225,31 +241,36 @@ class LocalizationHe extends Localization {
   String get detection_screen_nms => 'דיכוי לא-מקסימלי';
 
   @override
-  String get detection_screen_nms_desc => '#0 סף NMS נמוך יותר (לדוגמה 0.3-0.4) מסיר תיבות חופפות באופן מחמיר יותר ומפחית זיהויים חיוביים שגויים אך עלול להחמיץ אנשים חופפים. סף גבוה יותר (0.7-0.9) שומר על יותר תיבות מה שעלול להגדיל זיהויים חיוביים שגויים אך מזהה טוב יותר אנשים חופפים.';
+  String get detection_screen_nms_desc =>
+      '#0 סף NMS נמוך יותר (לדוגמה 0.3-0.4) מסיר תיבות חופפות באופן מחמיר יותר ומפחית זיהויים חיוביים שגויים אך עלול להחמיץ אנשים חופפים. סף גבוה יותר (0.7-0.9) שומר על יותר תיבות מה שעלול להגדיל זיהויים חיוביים שגויים אך מזהה טוב יותר אנשים חופפים.';
 
   @override
   String get detection_screen_match => 'התאמה';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold הוא פרמטר מפתח במעקב אחר אובייקטים המודד את מידת ההתאמה בין תיבות זיהוי שונות. ערך נמוך יותר מקל על שיוך אובייקטים אך מגביר את הסיכון לשיוכים שגויים. ערך גבוה יותר מחמיר יותר בשיוך אובייקטים אך עלול להחמיץ התאמות אמיתיות.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold הוא פרמטר מפתח במעקב אחר אובייקטים המודד את מידת ההתאמה בין תיבות זיהוי שונות. ערך נמוך יותר מקל על שיוך אובייקטים אך מגביר את הסיכון לשיוכים שגויים. ערך גבוה יותר מחמיר יותר בשיוך אובייקטים אך עלול להחמיץ התאמות אמיתיות.';
 
   @override
   String get detection_screen_lost => 'אבוד';
 
   @override
-  String get detection_screen_lost_desc => 'קובע באופן דינמי את זמן הסרת האובייקטים האבודים בין #0 ל-#1 בהתאם למהירות התנועה';
+  String get detection_screen_lost_desc =>
+      'קובע באופן דינמי את זמן הסרת האובייקטים האבודים בין #0 ל-#1 בהתאם למהירות התנועה';
 
   @override
   String get detection_screen_consider_valid => 'החשב כתקף אחרי';
 
   @override
-  String get detection_screen_consider_valid_desc => 'מעקב אחר אובייקט ייחשב כתקף אחרי #0';
+  String get detection_screen_consider_valid_desc =>
+      'מעקב אחר אובייקט ייחשב כתקף אחרי #0';
 
   @override
   String get detection_screen_reset => 'איפוס';
 
   @override
-  String get detection_screen_reset_content => 'האם אתה בטוח שברצונך לאפס את הגדרות הזיהוי?';
+  String get detection_screen_reset_content =>
+      'האם אתה בטוח שברצונך לאפס את הגדרות הזיהוי?';
 
   @override
   String get url_screen_title => 'כתובת שידור חי';
@@ -261,7 +282,8 @@ class LocalizationHe extends Localization {
   String get url_screen_url => 'כתובת URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream או rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream או rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'הוסף מקור וידאו';
@@ -345,13 +367,15 @@ class LocalizationHe extends Localization {
   String get video_screen_delete_header => 'מחק מקור וידאו זה';
 
   @override
-  String get video_screen_delete_content => 'האם אתה בטוח שברצונך למחוק מקור וידאו זה?';
+  String get video_screen_delete_content =>
+      'האם אתה בטוח שברצונך למחוק מקור וידאו זה?';
 
   @override
   String get video_screen_delete_button => 'מחק';
 
   @override
-  String get video_screen_sources => 'הגדר מקור תמונה, מטרות זיהוי ופרמטרים של מודל.';
+  String get video_screen_sources =>
+      'הגדר מקור תמונה, מטרות זיהוי ופרמטרים של מודל.';
 
   @override
   String get video_screen_targets => 'מטרות זיהוי';
@@ -363,7 +387,8 @@ class LocalizationHe extends Localization {
   String get color_screen_title => 'בחר צבע';
 
   @override
-  String get zone_screen_desc => 'אזור הזיהוי יכול להגדיר את סוגי האובייקטים לזיהוי ולבחור אילו מונים להציג, כגון זוהה, נוצר ונכנס.';
+  String get zone_screen_desc =>
+      'אזור הזיהוי יכול להגדיר את סוגי האובייקטים לזיהוי ולבחור אילו מונים להציג, כגון זוהה, נוצר ונכנס.';
 
   @override
   String get zone_screen_name_placeholder => 'שם האזור, כמו מדרכה או חניון';
@@ -378,7 +403,8 @@ class LocalizationHe extends Localization {
   String get zone_screen_delete_header => 'מחק אזור זה';
 
   @override
-  String get zone_screen_delete_content => 'האם אתה בטוח שברצונך למחוק אזור זה?';
+  String get zone_screen_delete_content =>
+      'האם אתה בטוח שברצונך למחוק אזור זה?';
 
   @override
   String get zone_screen_delete_button => 'מחק';
@@ -402,7 +428,8 @@ class LocalizationHe extends Localization {
   String get counter_screen_reentry_threshold => 'סף כניסה חוזרת';
 
   @override
-  String get counter_screen_reentry_desc => 'אובייקטים חייבים להיכנס #0 פעמים, עם זמן צינון של #1 שניות בין כל יציאה וכניסה מחודשת, כדי להפעיל כניסה חוזרת';
+  String get counter_screen_reentry_desc =>
+      'אובייקטים חייבים להיכנס #0 פעמים, עם זמן צינון של #1 שניות בין כל יציאה וכניסה מחודשת, כדי להפעיל כניסה חוזרת';
 
   @override
   String get counter_screen_reentry_title => 'ספירת כניסה חוזרת';
@@ -411,7 +438,8 @@ class LocalizationHe extends Localization {
   String get counter_screen_cooldown_threshold => 'סף צינון';
 
   @override
-  String get counter_screen_cooldown_desc => 'כניסה חוזרת דורשת זמן צינון של #0 שניות לאחר יציאה מאזור הזיהוי';
+  String get counter_screen_cooldown_desc =>
+      'כניסה חוזרת דורשת זמן צינון של #0 שניות לאחר יציאה מאזור הזיהוי';
 
   @override
   String get counter_screen_cooldown_time => 'זמן צינון';
@@ -423,7 +451,8 @@ class LocalizationHe extends Localization {
   String get counter_screen_stagnant_threshold => 'סף קיפאון';
 
   @override
-  String get counter_screen_stagnant_desc => 'אובייקטים שנשארים במקום למשך יותר מ-#0 שניות ייחשבו כקפואים';
+  String get counter_screen_stagnant_desc =>
+      'אובייקטים שנשארים במקום למשך יותר מ-#0 שניות ייחשבו כקפואים';
 
   @override
   String get counter_screen_stagnant_consider => 'החשב כקפוא';
@@ -444,19 +473,22 @@ class LocalizationHe extends Localization {
   String get counter_screen_enabled_error => 'שגיאה';
 
   @override
-  String get counter_screen_enabled_error_content => 'עליך להפעיל מונה אחר תחילה, ואז תוכל להשבית מונה זה';
+  String get counter_screen_enabled_error_content =>
+      'עליך להפעיל מונה אחר תחילה, ואז תוכל להשבית מונה זה';
 
   @override
   String get objects_screen_title => 'אובייקטים';
 
   @override
-  String get objects_screen_desc => 'בחר מטרות זיהוי כמו אדם, מכונית, אוטובוס וכו\'.';
+  String get objects_screen_desc =>
+      'בחר מטרות זיהוי כמו אדם, מכונית, אוטובוס וכו\'.';
 
   @override
   String get open_project_screen_title => 'פתח פרויקט';
 
   @override
-  String get open_project_screen_desc => 'פתח פרויקטים שנוצרו בעבר, שומר רק את 20 האחרונים.';
+  String get open_project_screen_desc =>
+      'פתח פרויקטים שנוצרו בעבר, שומר רק את 20 האחרונים.';
 
   @override
   String get open_project_screen_no_project => 'לא נמצא פרויקט.';
@@ -474,7 +506,8 @@ class LocalizationHe extends Localization {
   String get error_oops => 'אופס, משהו השתבש';
 
   @override
-  String get error_content => 'אירעה שגיאה בלתי צפויה. האם תרצה לשלוח דוח באימייל?';
+  String get error_content =>
+      'אירעה שגיאה בלתי צפויה. האם תרצה לשלוח דוח באימייל?';
 
   @override
   String get error_report => 'שלח לנו אימייל';
@@ -516,8 +549,10 @@ class LocalizationHe extends Localization {
   String get video_sources_camera_denied => 'גישה למצלמה נדחתה';
 
   @override
-  String get video_sources_photos_denied_msg => 'אנא עבור להגדרות ואפשר גישה לתמונות עבור אפליקציה זו.';
+  String get video_sources_photos_denied_msg =>
+      'אנא עבור להגדרות ואפשר גישה לתמונות עבור אפליקציה זו.';
 
   @override
-  String get video_sources_camera_denied_msg => 'אנא עבור להגדרות ואפשר גישה למצלמה עבור אפליקציה זו.';
+  String get video_sources_camera_denied_msg =>
+      'אנא עבור להגדרות ואפשר גישה למצלמה עבור אפליקציה זו.';
 }

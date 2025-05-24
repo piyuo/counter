@@ -12,7 +12,8 @@ class LocalizationUk extends Localization {
   String get product_name => 'Лічильник';
 
   @override
-  String get product_desc => 'Використання комп\'ютерного зору та штучного інтелекту для підрахунку людей, транспортних засобів, домашніх тварин та іншого.';
+  String get product_desc =>
+      'Використання комп\'ютерного зору та штучного інтелекту для підрахунку людей, транспортних засобів, домашніх тварин та іншого.';
 
   @override
   String get product_copyright => 'Авторське право © 2025';
@@ -33,16 +34,19 @@ class LocalizationUk extends Localization {
   String get video_sources_camera_not_found_title => 'Камеру не знайдено';
 
   @override
-  String get video_sources_camera_not_found_message => 'Потрібно надати дозвіл на використання камери';
+  String get video_sources_camera_not_found_message =>
+      'Потрібно надати дозвіл на використання камери';
 
   @override
   String get video_sources_webcam_not_found_title => 'Веб-камеру не знайдено';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Перевірте дозволи додатку та підключення веб-камери';
+  String get video_sources_webcam_not_found_message =>
+      'Перевірте дозволи додатку та підключення веб-камери';
 
   @override
-  String get wizard_screen_desc => 'Створіть новий проєкт нижче, щоб розпочати підрахунок.';
+  String get wizard_screen_desc =>
+      'Створіть новий проєкт нижче, щоб розпочати підрахунок.';
 
   @override
   String get wizard_screen_new_project_from => 'Новий проєкт з';
@@ -54,7 +58,8 @@ class LocalizationUk extends Localization {
   String get wizard_screen_about => 'Про програму';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Усі проєкти будуть автоматично збережені локально';
+  String get wizard_screen_open_projects_tip =>
+      'Усі проєкти будуть автоматично збережені локально';
 
   @override
   String get wizard_screen_open_projects => 'Відкрити наявний проєкт';
@@ -99,7 +104,8 @@ class LocalizationUk extends Localization {
   String get benchmark_screen_start_button => 'Почати тестування';
 
   @override
-  String get benchmark_screen_start_failed => 'Не вдалося запустити тестування, код помилки';
+  String get benchmark_screen_start_failed =>
+      'Не вдалося запустити тестування, код помилки';
 
   @override
   String get benchmark_screen_models => 'Моделі виявлення об\'єктів';
@@ -111,7 +117,8 @@ class LocalizationUk extends Localization {
   String get project_screen_exit_confirm_title => 'Підтвердити вихід з проєкту';
 
   @override
-  String get project_screen_exit_confirm_content => 'Вихід з проєкту зупинить підрахунок. Ви впевнені, що хочете продовжити?';
+  String get project_screen_exit_confirm_content =>
+      'Вихід з проєкту зупинить підрахунок. Ви впевнені, що хочете продовжити?';
 
   @override
   String get project_screen_exit_button => 'Вийти';
@@ -120,7 +127,8 @@ class LocalizationUk extends Localization {
   String get project_screen_add_video_button => 'Додати відеоджерело';
 
   @override
-  String get project_screen_from_desc => 'Ми ведемо запис за останні 24 години, тому ви можете переглянути будь-який потрібний часовий проміжок.';
+  String get project_screen_from_desc =>
+      'Ми ведемо запис за останні 24 години, тому ви можете переглянути будь-який потрібний часовий проміжок.';
 
   @override
   String get project_screen_report_settings => 'Налаштування';
@@ -129,13 +137,15 @@ class LocalizationUk extends Localization {
   String get filter_screen_title => 'Фільтр';
 
   @override
-  String get filter_screen_desc => 'Виберіть діапазон фільтрації зі списку нижче';
+  String get filter_screen_desc =>
+      'Виберіть діапазон фільтрації зі списку нижче';
 
   @override
   String get filter_screen_error_title => 'Фільтр';
 
   @override
-  String get filter_screen_error_content => 'Час закінчення має бути пізніше часу початку';
+  String get filter_screen_error_content =>
+      'Час закінчення має бути пізніше часу початку';
 
   @override
   String get filter_screen_error_custom => 'Користувацький';
@@ -150,7 +160,8 @@ class LocalizationUk extends Localization {
   String get settings_screen_title => 'Налаштування';
 
   @override
-  String get settings_screen_desc => 'Встановіть назву проєкту, параметри виявлення, скидання підрахунку.';
+  String get settings_screen_desc =>
+      'Встановіть назву проєкту, параметри виявлення, скидання підрахунку.';
 
   @override
   String get settings_screen_project_id => 'ID проєкту';
@@ -159,28 +170,34 @@ class LocalizationUk extends Localization {
   String get settings_screen_project_name => 'Назва проєкту';
 
   @override
-  String get settings_screen_project_name_place_holder => 'вул. Хрещатик, 1 або Парк Шевченка';
+  String get settings_screen_project_name_place_holder =>
+      'вул. Хрещатик, 1 або Парк Шевченка';
 
   @override
-  String get settings_screen_project_error => 'Назва проєкту не може бути порожньою';
+  String get settings_screen_project_error =>
+      'Назва проєкту не може бути порожньою';
 
   @override
-  String get settings_screen_random_count_button => 'Додати випадкові підрахунки';
+  String get settings_screen_random_count_button =>
+      'Додати випадкові підрахунки';
 
   @override
-  String get settings_screen_reset_count_header => 'Скинути всі підрахунки в цьому проєкті';
+  String get settings_screen_reset_count_header =>
+      'Скинути всі підрахунки в цьому проєкті';
 
   @override
   String get settings_screen_reset_count_button => 'Скинути підрахунки';
 
   @override
-  String get settings_screen_reset_count_content => 'Ви впевнені, що хочете скинути всі підрахунки?';
+  String get settings_screen_reset_count_content =>
+      'Ви впевнені, що хочете скинути всі підрахунки?';
 
   @override
   String get settings_screen_delete_header => 'Видалити цей проєкт';
 
   @override
-  String get settings_screen_delete_content => 'Ви впевнені, що хочете видалити цей проєкт?';
+  String get settings_screen_delete_content =>
+      'Ви впевнені, що хочете видалити цей проєкт?';
 
   @override
   String get settings_screen_delete_button => 'Видалити';
@@ -189,16 +206,19 @@ class LocalizationUk extends Localization {
   String get settings_screen_center_point_title => 'Центральна точка на цілі';
 
   @override
-  String get settings_screen_center_point_desc => 'Центральна точка допомагає визначити, чи знаходиться ціль у зоні влучання.';
+  String get settings_screen_center_point_desc =>
+      'Центральна точка допомагає визначити, чи знаходиться ціль у зоні влучання.';
 
   @override
-  String get settings_screen_center_point_button => 'Показати центральну точку на цілі';
+  String get settings_screen_center_point_button =>
+      'Показати центральну точку на цілі';
 
   @override
   String get settings_screen_lost_target_title => 'Втрачена ціль';
 
   @override
-  String get settings_screen_lost_target_desc => 'Коли відстеження об\'єкта втрачає ціль, ця опція робить її видимою. За замовчуванням втрачені цілі не відображаються.';
+  String get settings_screen_lost_target_desc =>
+      'Коли відстеження об\'єкта втрачає ціль, ця опція робить її видимою. За замовчуванням втрачені цілі не відображаються.';
 
   @override
   String get settings_screen_lost_target_button => 'Показати втрачену ціль';
@@ -213,7 +233,8 @@ class LocalizationUk extends Localization {
   String get detection_screen_confidence => 'Достовірність';
 
   @override
-  String get detection_screen_confidence_desc => 'достовірність вище #0 вважається коректним виявленням';
+  String get detection_screen_confidence_desc =>
+      'достовірність вище #0 вважається коректним виявленням';
 
   @override
   String get detection_screen_low => 'Низька';
@@ -225,31 +246,36 @@ class LocalizationUk extends Localization {
   String get detection_screen_nms => 'Придушення немаксимумів';
 
   @override
-  String get detection_screen_nms_desc => '#0 Нижчий поріг NMS (наприклад 0.3-0.4) більш строго видаляє перекриваючі рамки та зменшує хибно позитивні результати але може пропустити перекриваючих людей. Вищий поріг (0.7-0.9) зберігає більше рамок що може збільшити хибно позитивні результати але краще виявляє перекриваючих людей.';
+  String get detection_screen_nms_desc =>
+      '#0 Нижчий поріг NMS (наприклад 0.3-0.4) більш строго видаляє перекриваючі рамки та зменшує хибно позитивні результати але може пропустити перекриваючих людей. Вищий поріг (0.7-0.9) зберігає більше рамок що може збільшити хибно позитивні результати але краще виявляє перекриваючих людей.';
 
   @override
   String get detection_screen_match => 'Збіг';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold - ключовий параметр у відстеженні об\'єктів який вимірює ступінь відповідності між різними рамками виявлення. Нижче значення полегшує зв\'язування об\'єктів але збільшує ризик неправильних зв\'язків. Вище значення суворіше до зв\'язків об\'єктів але може пропустити деякі справжні збіги.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold - ключовий параметр у відстеженні об\'єктів який вимірює ступінь відповідності між різними рамками виявлення. Нижче значення полегшує зв\'язування об\'єктів але збільшує ризик неправильних зв\'язків. Вище значення суворіше до зв\'язків об\'єктів але може пропустити деякі справжні збіги.';
 
   @override
   String get detection_screen_lost => 'Втрачено';
 
   @override
-  String get detection_screen_lost_desc => 'Динамічно визначає час видалення втрачених об\'єктів між #0 та #1 на основі швидкості руху';
+  String get detection_screen_lost_desc =>
+      'Динамічно визначає час видалення втрачених об\'єктів між #0 та #1 на основі швидкості руху';
 
   @override
   String get detection_screen_consider_valid => 'Вважати дійсним після';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Відстежуваний об\'єкт буде вважатися дійсним після #0';
+  String get detection_screen_consider_valid_desc =>
+      'Відстежуваний об\'єкт буде вважатися дійсним після #0';
 
   @override
   String get detection_screen_reset => 'Скинути';
 
   @override
-  String get detection_screen_reset_content => 'Ви впевнені, що хочете скинути налаштування виявлення?';
+  String get detection_screen_reset_content =>
+      'Ви впевнені, що хочете скинути налаштування виявлення?';
 
   @override
   String get url_screen_title => 'URL трансляції';
@@ -261,7 +287,8 @@ class LocalizationUk extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream або rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream або rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Додати відеоджерело';
@@ -294,16 +321,19 @@ class LocalizationUk extends Localization {
   String get camera_screen_zoom_level => 'Рівень масштабування';
 
   @override
-  String get video_screen_name_empty => 'Назва відеоджерела не може бути порожньою.';
+  String get video_screen_name_empty =>
+      'Назва відеоджерела не може бути порожньою.';
 
   @override
-  String get video_screen_desc => 'Керування відеоджерелами, додавання або зміна зон виявлення.';
+  String get video_screen_desc =>
+      'Керування відеоджерелами, додавання або зміна зон виявлення.';
 
   @override
   String get video_screen_video_name => 'Назва відеоджерела';
 
   @override
-  String get video_screen_edit_placeholder => 'Камера біля вхідних дверей або Камера на стоянці';
+  String get video_screen_edit_placeholder =>
+      'Камера біля вхідних дверей або Камера на стоянці';
 
   @override
   String get video_screen_change_file => 'Змінити файл';
@@ -315,7 +345,8 @@ class LocalizationUk extends Localization {
   String get video_screen_zones => 'Зони виявлення';
 
   @override
-  String get video_screen_zones_desc => 'Використовуйте перетягування для налаштування зон';
+  String get video_screen_zones_desc =>
+      'Використовуйте перетягування для налаштування зон';
 
   @override
   String get video_screen_tools => 'Інструменти';
@@ -345,13 +376,15 @@ class LocalizationUk extends Localization {
   String get video_screen_delete_header => 'Видалити це відеоджерело';
 
   @override
-  String get video_screen_delete_content => 'Ви впевнені, що хочете видалити це відеоджерело?';
+  String get video_screen_delete_content =>
+      'Ви впевнені, що хочете видалити це відеоджерело?';
 
   @override
   String get video_screen_delete_button => 'Видалити';
 
   @override
-  String get video_screen_sources => 'Налаштування джерела зображення, цілей виявлення та параметрів моделі.';
+  String get video_screen_sources =>
+      'Налаштування джерела зображення, цілей виявлення та параметрів моделі.';
 
   @override
   String get video_screen_targets => 'Цілі виявлення';
@@ -363,10 +396,12 @@ class LocalizationUk extends Localization {
   String get color_screen_title => 'Вибрати колір';
 
   @override
-  String get zone_screen_desc => 'Зона виявлення може встановлювати типи об\'єктів для виявлення та вибирати, які лічильники відображати, такі як Виявлено, Створено та Увійшло.';
+  String get zone_screen_desc =>
+      'Зона виявлення може встановлювати типи об\'єктів для виявлення та вибирати, які лічильники відображати, такі як Виявлено, Створено та Увійшло.';
 
   @override
-  String get zone_screen_name_placeholder => 'Назва зони, наприклад Тротуар або Стоянка';
+  String get zone_screen_name_placeholder =>
+      'Назва зони, наприклад Тротуар або Стоянка';
 
   @override
   String get zone_screen_zone_color => 'Колір зони';
@@ -378,7 +413,8 @@ class LocalizationUk extends Localization {
   String get zone_screen_delete_header => 'Видалити цю зону';
 
   @override
-  String get zone_screen_delete_content => 'Ви впевнені, що хочете видалити цю зону?';
+  String get zone_screen_delete_content =>
+      'Ви впевнені, що хочете видалити цю зону?';
 
   @override
   String get zone_screen_delete_button => 'Видалити';
@@ -390,7 +426,8 @@ class LocalizationUk extends Localization {
   String get zone_screen_one_zone_required => 'Потрібна принаймні одна зона.';
 
   @override
-  String get zone_screen_zone_name_required => 'Назва зони не може бути порожньою';
+  String get zone_screen_zone_name_required =>
+      'Назва зони не може бути порожньою';
 
   @override
   String get counter_screen_show_on => 'Показати на екрані';
@@ -402,7 +439,8 @@ class LocalizationUk extends Localization {
   String get counter_screen_reentry_threshold => 'Поріг повторного входу';
 
   @override
-  String get counter_screen_reentry_desc => 'Об\'єкти повинні увійти #0 разів, з періодом охолодження #1 секунд між кожним виходом і повторним входом, щоб активувати повторний вхід';
+  String get counter_screen_reentry_desc =>
+      'Об\'єкти повинні увійти #0 разів, з періодом охолодження #1 секунд між кожним виходом і повторним входом, щоб активувати повторний вхід';
 
   @override
   String get counter_screen_reentry_title => 'Лічильник повторних входів';
@@ -411,7 +449,8 @@ class LocalizationUk extends Localization {
   String get counter_screen_cooldown_threshold => 'Поріг охолодження';
 
   @override
-  String get counter_screen_cooldown_desc => 'Повторний вхід вимагає періоду охолодження #0 секунд після виходу із зони виявлення';
+  String get counter_screen_cooldown_desc =>
+      'Повторний вхід вимагає періоду охолодження #0 секунд після виходу із зони виявлення';
 
   @override
   String get counter_screen_cooldown_time => 'Час охолодження';
@@ -423,7 +462,8 @@ class LocalizationUk extends Localization {
   String get counter_screen_stagnant_threshold => 'Поріг нерухомості';
 
   @override
-  String get counter_screen_stagnant_desc => 'Об\'єкти, що залишаються нерухомими більше #0 секунд, вважатимуться застійними';
+  String get counter_screen_stagnant_desc =>
+      'Об\'єкти, що залишаються нерухомими більше #0 секунд, вважатимуться застійними';
 
   @override
   String get counter_screen_stagnant_consider => 'Вважати нерухомим';
@@ -438,25 +478,29 @@ class LocalizationUk extends Localization {
   String get counter_screen_stagnant_desc_suffix => 'Суфікс опису';
 
   @override
-  String get counter_screen_name_error => 'Назва лічильника не може бути порожньою';
+  String get counter_screen_name_error =>
+      'Назва лічильника не може бути порожньою';
 
   @override
   String get counter_screen_enabled_error => 'Помилка';
 
   @override
-  String get counter_screen_enabled_error_content => 'Вам потрібно спочатку ввімкнути інший лічильник, перш ніж вимкнути цей';
+  String get counter_screen_enabled_error_content =>
+      'Вам потрібно спочатку ввімкнути інший лічильник, перш ніж вимкнути цей';
 
   @override
   String get objects_screen_title => 'Об\'єкти';
 
   @override
-  String get objects_screen_desc => 'Вибрати цілі виявлення, такі як людина, автомобіль, автобус тощо.';
+  String get objects_screen_desc =>
+      'Вибрати цілі виявлення, такі як людина, автомобіль, автобус тощо.';
 
   @override
   String get open_project_screen_title => 'Відкрити проєкт';
 
   @override
-  String get open_project_screen_desc => 'Відкрийте раніше створені проєкти, зберігаючи тільки 20 останніх.';
+  String get open_project_screen_desc =>
+      'Відкрийте раніше створені проєкти, зберігаючи тільки 20 останніх.';
 
   @override
   String get open_project_screen_no_project => 'Проєктів не знайдено.';
@@ -474,7 +518,8 @@ class LocalizationUk extends Localization {
   String get error_oops => 'Ой, щось пішло не так';
 
   @override
-  String get error_content => 'Сталася неочікувана помилка. Хочете надіслати звіт електронною поштою?';
+  String get error_content =>
+      'Сталася неочікувана помилка. Хочете надіслати звіт електронною поштою?';
 
   @override
   String get error_report => 'Написати нам';
@@ -516,8 +561,10 @@ class LocalizationUk extends Localization {
   String get video_sources_camera_denied => 'Доступ до камери заборонено';
 
   @override
-  String get video_sources_photos_denied_msg => 'Перейдіть до налаштувань і дозвольте доступ до фото для цього додатка.';
+  String get video_sources_photos_denied_msg =>
+      'Перейдіть до налаштувань і дозвольте доступ до фото для цього додатка.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Перейдіть до налаштувань і дозвольте доступ до камери для цього додатка.';
+  String get video_sources_camera_denied_msg =>
+      'Перейдіть до налаштувань і дозвольте доступ до камери для цього додатка.';
 }

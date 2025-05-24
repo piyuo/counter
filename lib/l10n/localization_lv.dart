@@ -12,7 +12,8 @@ class LocalizationLv extends Localization {
   String get product_name => 'Skaitītājs';
 
   @override
-  String get product_desc => 'Izmanto datora redzi un mākslīgo intelektu, lai skaitītu cilvēkus, transportlīdzekļus, mājdzīvniekus un citus objektus.';
+  String get product_desc =>
+      'Izmanto datora redzi un mākslīgo intelektu, lai skaitītu cilvēkus, transportlīdzekļus, mājdzīvniekus un citus objektus.';
 
   @override
   String get product_copyright => 'Autortiesības © 2025';
@@ -33,16 +34,20 @@ class LocalizationLv extends Localization {
   String get video_sources_camera_not_found_title => 'Kamera nav atrasta';
 
   @override
-  String get video_sources_camera_not_found_message => 'Lai izmantotu kameru, nepieciešama atļauja piekļūt kamerai';
+  String get video_sources_camera_not_found_message =>
+      'Lai izmantotu kameru, nepieciešama atļauja piekļūt kamerai';
 
   @override
-  String get video_sources_webcam_not_found_title => 'Tīmekļa kamera nav atrasta';
+  String get video_sources_webcam_not_found_title =>
+      'Tīmekļa kamera nav atrasta';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Lūdzu pārbaudiet lietotnes atļauju un kameras savienojumu';
+  String get video_sources_webcam_not_found_message =>
+      'Lūdzu pārbaudiet lietotnes atļauju un kameras savienojumu';
 
   @override
-  String get wizard_screen_desc => 'Izveidojiet jaunu projektu, lai sāktu skaitīšanu.';
+  String get wizard_screen_desc =>
+      'Izveidojiet jaunu projektu, lai sāktu skaitīšanu.';
 
   @override
   String get wizard_screen_new_project_from => 'Jauns projekts no';
@@ -54,7 +59,8 @@ class LocalizationLv extends Localization {
   String get wizard_screen_about => 'Par programmu';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Visi projekti tiks automātiski saglabāti lokāli';
+  String get wizard_screen_open_projects_tip =>
+      'Visi projekti tiks automātiski saglabāti lokāli';
 
   @override
   String get wizard_screen_open_projects => 'Atvērt esošu projektu';
@@ -99,7 +105,8 @@ class LocalizationLv extends Localization {
   String get benchmark_screen_start_button => 'Sākt veiktspējas testu';
 
   @override
-  String get benchmark_screen_start_failed => 'Neizdevās sākt veiktspējas testu, kļūdas kods ir';
+  String get benchmark_screen_start_failed =>
+      'Neizdevās sākt veiktspējas testu, kļūdas kods ir';
 
   @override
   String get benchmark_screen_models => 'Objektu noteikšanas modeļi';
@@ -108,10 +115,12 @@ class LocalizationLv extends Localization {
   String get project_screen_title => 'Projekts';
 
   @override
-  String get project_screen_exit_confirm_title => 'Apstiprināt iziešanu no projekta';
+  String get project_screen_exit_confirm_title =>
+      'Apstiprināt iziešanu no projekta';
 
   @override
-  String get project_screen_exit_confirm_content => 'Atstājot projektu, skaitīšana tiks apturēta. Vai tiešām vēlaties turpināt?';
+  String get project_screen_exit_confirm_content =>
+      'Atstājot projektu, skaitīšana tiks apturēta. Vai tiešām vēlaties turpināt?';
 
   @override
   String get project_screen_exit_button => 'Iziet';
@@ -120,7 +129,8 @@ class LocalizationLv extends Localization {
   String get project_screen_add_video_button => 'Pievienot video avotu';
 
   @override
-  String get project_screen_from_desc => 'Mēs uzturam nepārtrauktu 24 stundu ierakstu, lai jūs varētu apskatīt jebkuru laika periodu.';
+  String get project_screen_from_desc =>
+      'Mēs uzturam nepārtrauktu 24 stundu ierakstu, lai jūs varētu apskatīt jebkuru laika periodu.';
 
   @override
   String get project_screen_report_settings => 'Iestatījumi';
@@ -129,13 +139,15 @@ class LocalizationLv extends Localization {
   String get filter_screen_title => 'Filtrs';
 
   @override
-  String get filter_screen_desc => 'Izvēlieties filtra diapazonu no saraksta zemāk';
+  String get filter_screen_desc =>
+      'Izvēlieties filtra diapazonu no saraksta zemāk';
 
   @override
   String get filter_screen_error_title => 'Filtrs';
 
   @override
-  String get filter_screen_error_content => 'Beigu laikam jābūt lielākam par sākuma laiku';
+  String get filter_screen_error_content =>
+      'Beigu laikam jābūt lielākam par sākuma laiku';
 
   @override
   String get filter_screen_error_custom => 'Pielāgots';
@@ -150,7 +162,8 @@ class LocalizationLv extends Localization {
   String get settings_screen_title => 'Iestatījumi';
 
   @override
-  String get settings_screen_desc => 'Iestatiet projekta nosaukumu, noteikšanas parametrus, skaitītāju atiestatīšanu.';
+  String get settings_screen_desc =>
+      'Iestatiet projekta nosaukumu, noteikšanas parametrus, skaitītāju atiestatīšanu.';
 
   @override
   String get settings_screen_project_id => 'Projekta ID';
@@ -159,28 +172,34 @@ class LocalizationLv extends Localization {
   String get settings_screen_project_name => 'Projekta nosaukums';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Rīgas iela 123 vai Vērmanes dārzs';
+  String get settings_screen_project_name_place_holder =>
+      'Rīgas iela 123 vai Vērmanes dārzs';
 
   @override
-  String get settings_screen_project_error => 'Projekta nosaukums nevar būt tukšs';
+  String get settings_screen_project_error =>
+      'Projekta nosaukums nevar būt tukšs';
 
   @override
-  String get settings_screen_random_count_button => 'Pievienot nejaušus skaitījumus';
+  String get settings_screen_random_count_button =>
+      'Pievienot nejaušus skaitījumus';
 
   @override
-  String get settings_screen_reset_count_header => 'Atiestatīt visus skaitījumus šajā projektā';
+  String get settings_screen_reset_count_header =>
+      'Atiestatīt visus skaitījumus šajā projektā';
 
   @override
   String get settings_screen_reset_count_button => 'Atiestatīt skaitījumus';
 
   @override
-  String get settings_screen_reset_count_content => 'Vai tiešām vēlaties atiestatīt visus skaitījumus?';
+  String get settings_screen_reset_count_content =>
+      'Vai tiešām vēlaties atiestatīt visus skaitījumus?';
 
   @override
   String get settings_screen_delete_header => 'Dzēst šo projektu';
 
   @override
-  String get settings_screen_delete_content => 'Vai tiešām vēlaties dzēst šo projektu?';
+  String get settings_screen_delete_content =>
+      'Vai tiešām vēlaties dzēst šo projektu?';
 
   @override
   String get settings_screen_delete_button => 'Dzēst';
@@ -189,16 +208,19 @@ class LocalizationLv extends Localization {
   String get settings_screen_center_point_title => 'Centrālais punkts uz mērķa';
 
   @override
-  String get settings_screen_center_point_desc => 'Centrālais punkts palīdz noteikt, vai mērķis atrodas trāpījuma zonā.';
+  String get settings_screen_center_point_desc =>
+      'Centrālais punkts palīdz noteikt, vai mērķis atrodas trāpījuma zonā.';
 
   @override
-  String get settings_screen_center_point_button => 'Rādīt centrālo punktu uz mērķa';
+  String get settings_screen_center_point_button =>
+      'Rādīt centrālo punktu uz mērķa';
 
   @override
   String get settings_screen_lost_target_title => 'Pazaudētais mērķis';
 
   @override
-  String get settings_screen_lost_target_desc => 'Kad objektu izsekošana pazaudē mērķi, šī opcija to padara redzamu. Pēc noklusējuma pazaudētie mērķi netiek rādīti.';
+  String get settings_screen_lost_target_desc =>
+      'Kad objektu izsekošana pazaudē mērķi, šī opcija to padara redzamu. Pēc noklusējuma pazaudētie mērķi netiek rādīti.';
 
   @override
   String get settings_screen_lost_target_button => 'Rādīt pazaudēto mērķi';
@@ -213,7 +235,8 @@ class LocalizationLv extends Localization {
   String get detection_screen_confidence => 'Ticamība';
 
   @override
-  String get detection_screen_confidence_desc => 'ticamība virs #0 tiek uzskatīta par derīgu noteikšanu';
+  String get detection_screen_confidence_desc =>
+      'ticamība virs #0 tiek uzskatīta par derīgu noteikšanu';
 
   @override
   String get detection_screen_low => 'Zema';
@@ -225,31 +248,36 @@ class LocalizationLv extends Localization {
   String get detection_screen_nms => 'Ne-maksimuma apspiešana';
 
   @override
-  String get detection_screen_nms_desc => '#0 Zemāks NMS slieksnis (piem. 0.3-0.4) stingrāk noņem pārklājošos kadrus un samazina viltus pozitīvos rezultātus bet var neatpazīt pārklājošos cilvēkus. Augstāks slieksnis (0.7-0.9) saglabā vairāk kadru kas var palielināt viltus pozitīvos rezultātus bet labāk atpazīst pārklājošos cilvēkus.';
+  String get detection_screen_nms_desc =>
+      '#0 Zemāks NMS slieksnis (piem. 0.3-0.4) stingrāk noņem pārklājošos kadrus un samazina viltus pozitīvos rezultātus bet var neatpazīt pārklājošos cilvēkus. Augstāks slieksnis (0.7-0.9) saglabā vairāk kadru kas var palielināt viltus pozitīvos rezultātus bet labāk atpazīst pārklājošos cilvēkus.';
 
   @override
   String get detection_screen_match => 'Atbilstība';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold ir galvenais parametrs objektu izsekošanā kas mēra atbilstības pakāpi starp dažādiem noteikšanas rāmjiem. Zemāka vērtība atvieglo objektu sasaisti bet palielina nepareizu sasaišu risku. Augstāka vērtība ir stingrāka attiecībā uz objektu sasaistēm bet var nokavēt dažas patiesas atbilstības.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold ir galvenais parametrs objektu izsekošanā kas mēra atbilstības pakāpi starp dažādiem noteikšanas rāmjiem. Zemāka vērtība atvieglo objektu sasaisti bet palielina nepareizu sasaišu risku. Augstāka vērtība ir stingrāka attiecībā uz objektu sasaistēm bet var nokavēt dažas patiesas atbilstības.';
 
   @override
   String get detection_screen_lost => 'Pazaudēts';
 
   @override
-  String get detection_screen_lost_desc => 'Dinamiski nosaka zaudēto objektu noņemšanas laiku starp #0 un #1 atkarībā no kustības ātruma';
+  String get detection_screen_lost_desc =>
+      'Dinamiski nosaka zaudēto objektu noņemšanas laiku starp #0 un #1 atkarībā no kustības ātruma';
 
   @override
   String get detection_screen_consider_valid => 'Uzskatīt par derīgu pēc';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Izsekojamais objekts tiks uzskatīts par derīgu pēc #0';
+  String get detection_screen_consider_valid_desc =>
+      'Izsekojamais objekts tiks uzskatīts par derīgu pēc #0';
 
   @override
   String get detection_screen_reset => 'Atiestatīt';
 
   @override
-  String get detection_screen_reset_content => 'Vai tiešām vēlaties atiestatīt noteikšanas iestatījumus?';
+  String get detection_screen_reset_content =>
+      'Vai tiešām vēlaties atiestatīt noteikšanas iestatījumus?';
 
   @override
   String get url_screen_title => 'Tiešraides URL';
@@ -261,7 +289,8 @@ class LocalizationLv extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream vai rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream vai rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Pievienot video avotu';
@@ -297,13 +326,15 @@ class LocalizationLv extends Localization {
   String get video_screen_name_empty => 'Video nosaukums nevar būt tukšs.';
 
   @override
-  String get video_screen_desc => 'Pārvaldīt video avotus, pievienot vai modificēt noteikšanas zonas.';
+  String get video_screen_desc =>
+      'Pārvaldīt video avotus, pievienot vai modificēt noteikšanas zonas.';
 
   @override
   String get video_screen_video_name => 'Video avota nosaukums';
 
   @override
-  String get video_screen_edit_placeholder => 'Priekšdurvju kamera vai Autostāvvietas kamera';
+  String get video_screen_edit_placeholder =>
+      'Priekšdurvju kamera vai Autostāvvietas kamera';
 
   @override
   String get video_screen_change_file => 'Mainīt failu';
@@ -315,7 +346,8 @@ class LocalizationLv extends Localization {
   String get video_screen_zones => 'Noteikšanas zonas';
 
   @override
-  String get video_screen_zones_desc => 'Izmantojiet velciet un nometiet, lai pielāgotu zonas';
+  String get video_screen_zones_desc =>
+      'Izmantojiet velciet un nometiet, lai pielāgotu zonas';
 
   @override
   String get video_screen_tools => 'Rīki';
@@ -345,13 +377,15 @@ class LocalizationLv extends Localization {
   String get video_screen_delete_header => 'Dzēst šo video avotu';
 
   @override
-  String get video_screen_delete_content => 'Vai tiešām vēlaties dzēst šo video avotu?';
+  String get video_screen_delete_content =>
+      'Vai tiešām vēlaties dzēst šo video avotu?';
 
   @override
   String get video_screen_delete_button => 'Dzēst';
 
   @override
-  String get video_screen_sources => 'Konfigurēt attēla avotu, noteikšanas mērķus un modeļa parametrus.';
+  String get video_screen_sources =>
+      'Konfigurēt attēla avotu, noteikšanas mērķus un modeļa parametrus.';
 
   @override
   String get video_screen_targets => 'Noteikšanas mērķi';
@@ -363,10 +397,12 @@ class LocalizationLv extends Localization {
   String get color_screen_title => 'Izvēlēties krāsu';
 
   @override
-  String get zone_screen_desc => 'Noteikšanas zonā var iestatīt nosakāmo objektu veidus un izvēlēties, kurus skaitītājus rādīt, piemēram, Noteikts, Radies un Ienācis.';
+  String get zone_screen_desc =>
+      'Noteikšanas zonā var iestatīt nosakāmo objektu veidus un izvēlēties, kurus skaitītājus rādīt, piemēram, Noteikts, Radies un Ienācis.';
 
   @override
-  String get zone_screen_name_placeholder => 'Zonas nosaukums, piemēram, Ietve vai Autostāvvieta';
+  String get zone_screen_name_placeholder =>
+      'Zonas nosaukums, piemēram, Ietve vai Autostāvvieta';
 
   @override
   String get zone_screen_zone_color => 'Zonas krāsa';
@@ -390,7 +426,8 @@ class LocalizationLv extends Localization {
   String get zone_screen_one_zone_required => 'Nepieciešama vismaz viena zona.';
 
   @override
-  String get zone_screen_zone_name_required => 'Zonas nosaukums nevar būt tukšs';
+  String get zone_screen_zone_name_required =>
+      'Zonas nosaukums nevar būt tukšs';
 
   @override
   String get counter_screen_show_on => 'Rādīt uz ekrāna';
@@ -399,10 +436,12 @@ class LocalizationLv extends Localization {
   String get counter_screen_enabled => 'Ieslēgts';
 
   @override
-  String get counter_screen_reentry_threshold => 'Atkārtotas ienākšanas slieksnis';
+  String get counter_screen_reentry_threshold =>
+      'Atkārtotas ienākšanas slieksnis';
 
   @override
-  String get counter_screen_reentry_desc => 'Objektiem jāienāk #0 reizes ar #1 sekunžu atdzišanas laiku starp katru iziešanu un atkārtotu ienākšanu, lai izraisītu atkārtotu ienākšanu';
+  String get counter_screen_reentry_desc =>
+      'Objektiem jāienāk #0 reizes ar #1 sekunžu atdzišanas laiku starp katru iziešanu un atkārtotu ienākšanu, lai izraisītu atkārtotu ienākšanu';
 
   @override
   String get counter_screen_reentry_title => 'Atkārtotas ienākšanas skaitījums';
@@ -411,7 +450,8 @@ class LocalizationLv extends Localization {
   String get counter_screen_cooldown_threshold => 'Atdzišanas slieksnis';
 
   @override
-  String get counter_screen_cooldown_desc => 'Atkārtotai ienākšanai nepieciešams #0 sekunžu atdzišanas laiks pēc iziešanas no noteikšanas zonas';
+  String get counter_screen_cooldown_desc =>
+      'Atkārtotai ienākšanai nepieciešams #0 sekunžu atdzišanas laiks pēc iziešanas no noteikšanas zonas';
 
   @override
   String get counter_screen_cooldown_time => 'Atdzišanas laiks';
@@ -423,7 +463,8 @@ class LocalizationLv extends Localization {
   String get counter_screen_stagnant_threshold => 'Stagnācijas slieksnis';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objekti, kas paliek nekustīgi ilgāk par #0 sekundēm, tiks uzskatīti par stagnējošiem';
+  String get counter_screen_stagnant_desc =>
+      'Objekti, kas paliek nekustīgi ilgāk par #0 sekundēm, tiks uzskatīti par stagnējošiem';
 
   @override
   String get counter_screen_stagnant_consider => 'Uzskatīt par stagnējošu';
@@ -438,25 +479,29 @@ class LocalizationLv extends Localization {
   String get counter_screen_stagnant_desc_suffix => 'Apraksta sufikss';
 
   @override
-  String get counter_screen_name_error => 'Skaitītāja nosaukums nevar būt tukšs';
+  String get counter_screen_name_error =>
+      'Skaitītāja nosaukums nevar būt tukšs';
 
   @override
   String get counter_screen_enabled_error => 'Kļūda';
 
   @override
-  String get counter_screen_enabled_error_content => 'Jums vispirms jāiespējo cits skaitītājs, tad varēsiet atspējot šo skaitītāju';
+  String get counter_screen_enabled_error_content =>
+      'Jums vispirms jāiespējo cits skaitītājs, tad varēsiet atspējot šo skaitītāju';
 
   @override
   String get objects_screen_title => 'Objekti';
 
   @override
-  String get objects_screen_desc => 'Izvēlieties noteikšanas mērķus, piemēram, persona, automašīna, autobuss utt.';
+  String get objects_screen_desc =>
+      'Izvēlieties noteikšanas mērķus, piemēram, persona, automašīna, autobuss utt.';
 
   @override
   String get open_project_screen_title => 'Atvērt projektu';
 
   @override
-  String get open_project_screen_desc => 'Atvērt iepriekš izveidotus projektus, saglabājot tikai 20 jaunākos.';
+  String get open_project_screen_desc =>
+      'Atvērt iepriekš izveidotus projektus, saglabājot tikai 20 jaunākos.';
 
   @override
   String get open_project_screen_no_project => 'Projekts nav atrasts.';
@@ -474,7 +519,8 @@ class LocalizationLv extends Localization {
   String get error_oops => 'Ak vai, kaut kas nogāja greizi';
 
   @override
-  String get error_content => 'Notika neparedzēta kļūda. Vai vēlaties iesniegt e-pasta ziņojumu?';
+  String get error_content =>
+      'Notika neparedzēta kļūda. Vai vēlaties iesniegt e-pasta ziņojumu?';
 
   @override
   String get error_report => 'Rakstīt mums';
@@ -516,8 +562,10 @@ class LocalizationLv extends Localization {
   String get video_sources_camera_denied => 'Piekļuve kamerai liegta';
 
   @override
-  String get video_sources_photos_denied_msg => 'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.';
+  String get video_sources_photos_denied_msg =>
+      'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt fotoattēliem.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt kamerai.';
+  String get video_sources_camera_denied_msg =>
+      'Lūdzu dodieties uz iestatījumiem un atļaujiet šai lietotnei piekļūt kamerai.';
 }

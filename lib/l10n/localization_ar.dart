@@ -12,7 +12,8 @@ class LocalizationAr extends Localization {
   String get product_name => 'عداد';
 
   @override
-  String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
+  String get product_desc =>
+      'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
 
   @override
   String get product_copyright => 'حقوق النشر © 2025';
@@ -33,13 +34,15 @@ class LocalizationAr extends Localization {
   String get video_sources_camera_not_found_title => 'الكاميرا غير موجودة';
 
   @override
-  String get video_sources_camera_not_found_message => 'يجب منح إذن استخدام الكاميرا لاستخدامها';
+  String get video_sources_camera_not_found_message =>
+      'يجب منح إذن استخدام الكاميرا لاستخدامها';
 
   @override
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
+  String get video_sources_webcam_not_found_message =>
+      'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'قم بإنشاء مشروع جديد أدناه للبدء في العد.';
@@ -54,7 +57,8 @@ class LocalizationAr extends Localization {
   String get wizard_screen_about => 'حول';
 
   @override
-  String get wizard_screen_open_projects_tip => 'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
+  String get wizard_screen_open_projects_tip =>
+      'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
 
   @override
   String get wizard_screen_open_projects => 'فتح مشروع موجود';
@@ -99,7 +103,8 @@ class LocalizationAr extends Localization {
   String get benchmark_screen_start_button => 'بدء اختبار الأداء';
 
   @override
-  String get benchmark_screen_start_failed => 'فشل بدء اختبار الأداء، رمز الخطأ هو';
+  String get benchmark_screen_start_failed =>
+      'فشل بدء اختبار الأداء، رمز الخطأ هو';
 
   @override
   String get benchmark_screen_models => 'نماذج كشف الأجسام';
@@ -111,7 +116,8 @@ class LocalizationAr extends Localization {
   String get project_screen_exit_confirm_title => 'تأكيد الخروج من المشروع';
 
   @override
-  String get project_screen_exit_confirm_content => 'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
+  String get project_screen_exit_confirm_content =>
+      'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
 
   @override
   String get project_screen_exit_button => 'خروج';
@@ -120,7 +126,8 @@ class LocalizationAr extends Localization {
   String get project_screen_add_video_button => 'إضافة مصدر فيديو';
 
   @override
-  String get project_screen_from_desc => 'نحتفظ بسجل دوار لمدة 24 ساعة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
+  String get project_screen_from_desc =>
+      'نحتفظ بسجل دوار لمدة 24 ساعة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
 
   @override
   String get project_screen_report_settings => 'الإعدادات';
@@ -135,7 +142,8 @@ class LocalizationAr extends Localization {
   String get filter_screen_error_title => 'تصفية';
 
   @override
-  String get filter_screen_error_content => 'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
+  String get filter_screen_error_content =>
+      'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
 
   @override
   String get filter_screen_error_custom => 'مخصص';
@@ -159,28 +167,33 @@ class LocalizationAr extends Localization {
   String get settings_screen_project_name => 'اسم المشروع';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 الشارع الرئيسي أو حي العليا';
+  String get settings_screen_project_name_place_holder =>
+      '123 الشارع الرئيسي أو حي العليا';
 
   @override
-  String get settings_screen_project_error => 'لا يمكن أن يكون اسم المشروع فارغًا';
+  String get settings_screen_project_error =>
+      'لا يمكن أن يكون اسم المشروع فارغًا';
 
   @override
   String get settings_screen_random_count_button => 'إضافة عدّات عشوائية';
 
   @override
-  String get settings_screen_reset_count_header => 'إعادة تعيين جميع العدّات في هذا المشروع';
+  String get settings_screen_reset_count_header =>
+      'إعادة تعيين جميع العدّات في هذا المشروع';
 
   @override
   String get settings_screen_reset_count_button => 'إعادة تعيين العدّات';
 
   @override
-  String get settings_screen_reset_count_content => 'هل أنت متأكد أنك تريد إعادة تعيين جميع العدّات؟';
+  String get settings_screen_reset_count_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين جميع العدّات؟';
 
   @override
   String get settings_screen_delete_header => 'حذف هذا المشروع';
 
   @override
-  String get settings_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
+  String get settings_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
 
   @override
   String get settings_screen_delete_button => 'حذف';
@@ -189,7 +202,8 @@ class LocalizationAr extends Localization {
   String get settings_screen_center_point_title => 'نقطة المركز على الهدف';
 
   @override
-  String get settings_screen_center_point_desc => 'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
+  String get settings_screen_center_point_desc =>
+      'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
 
   @override
   String get settings_screen_center_point_button => 'عرض نقطة المركز على الهدف';
@@ -198,7 +212,8 @@ class LocalizationAr extends Localization {
   String get settings_screen_lost_target_title => 'الهدف المفقود';
 
   @override
-  String get settings_screen_lost_target_desc => 'عندما يفقد تتبع الكائن هدفًا، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
+  String get settings_screen_lost_target_desc =>
+      'عندما يفقد تتبع الكائن هدفًا، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
 
   @override
   String get settings_screen_lost_target_button => 'عرض الهدف المفقود';
@@ -213,7 +228,8 @@ class LocalizationAr extends Localization {
   String get detection_screen_confidence => 'الثقة';
 
   @override
-  String get detection_screen_confidence_desc => 'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
+  String get detection_screen_confidence_desc =>
+      'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
 
   @override
   String get detection_screen_low => 'منخفض';
@@ -225,31 +241,36 @@ class LocalizationAr extends Localization {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 قيمة NMS المنخفضة (مثل 0.3-0.4) تزيل الإطارات المتداخلة بشكل أكثر صرامة وتقلل الإيجابيات الكاذبة لكنها قد تفوت الأشخاص المتداخلين. القيمة الأعلى (0.7-0.9) تحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الكاذبة لكنها تكشف الأشخاص المتداخلين بشكل أفضل.';
+  String get detection_screen_nms_desc =>
+      '#0 قيمة NMS المنخفضة (مثل 0.3-0.4) تزيل الإطارات المتداخلة بشكل أكثر صرامة وتقلل الإيجابيات الكاذبة لكنها قد تفوت الأشخاص المتداخلين. القيمة الأعلى (0.7-0.9) تحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الكاذبة لكنها تكشف الأشخاص المتداخلين بشكل أفضل.';
 
   @override
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس مدى التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تجعل ربط الكائنات أسهل لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة في ربط الكائنات لكنها قد تفقد بعض التطابقات الحقيقية';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس مدى التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تجعل ربط الكائنات أسهل لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة في ربط الكائنات لكنها قد تفقد بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
+  String get detection_screen_lost_desc =>
+      'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتباره صالحًا بعد';
 
   @override
-  String get detection_screen_consider_valid_desc => 'سيعتبر الكائن المتتبع صالحًا بعد #0';
+  String get detection_screen_consider_valid_desc =>
+      'سيعتبر الكائن المتتبع صالحًا بعد #0';
 
   @override
   String get detection_screen_reset => 'إعادة تعيين';
 
   @override
-  String get detection_screen_reset_content => 'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
+  String get detection_screen_reset_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
 
   @override
   String get url_screen_title => 'رابط البث المباشر';
@@ -261,7 +282,8 @@ class LocalizationAr extends Localization {
   String get url_screen_url => 'الرابط';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream أو rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream أو rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'إضافة مصدر فيديو';
@@ -297,13 +319,15 @@ class LocalizationAr extends Localization {
   String get video_screen_name_empty => 'لا يمكن أن يكون اسم الفيديو فارغًا.';
 
   @override
-  String get video_screen_desc => 'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_screen_desc =>
+      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
 
   @override
   String get video_screen_video_name => 'اسم مصدر الفيديو';
 
   @override
-  String get video_screen_edit_placeholder => 'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
+  String get video_screen_edit_placeholder =>
+      'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
 
   @override
   String get video_screen_change_file => 'تغيير الملف';
@@ -345,13 +369,15 @@ class LocalizationAr extends Localization {
   String get video_screen_delete_header => 'حذف مصدر الفيديو هذا';
 
   @override
-  String get video_screen_delete_content => 'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
+  String get video_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
 
   @override
   String get video_screen_delete_button => 'حذف';
 
   @override
-  String get video_screen_sources => 'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
+  String get video_screen_sources =>
+      'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
 
   @override
   String get video_screen_targets => 'أهداف الكشف';
@@ -363,10 +389,12 @@ class LocalizationAr extends Localization {
   String get color_screen_title => 'اختر لونًا';
 
   @override
-  String get zone_screen_desc => 'يمكن لمنطقة الكشف تحديد أنواع الكائنات المراد اكتشافها واختيار العدادات التي سيتم عرضها، مثل تم الكشف، تم الظهور، ودخل.';
+  String get zone_screen_desc =>
+      'يمكن لمنطقة الكشف تحديد أنواع الكائنات المراد اكتشافها واختيار العدادات التي سيتم عرضها، مثل تم الكشف، تم الظهور، ودخل.';
 
   @override
-  String get zone_screen_name_placeholder => 'اسم المنطقة، مثل الرصيف أو موقف السيارات';
+  String get zone_screen_name_placeholder =>
+      'اسم المنطقة، مثل الرصيف أو موقف السيارات';
 
   @override
   String get zone_screen_zone_color => 'لون المنطقة';
@@ -378,7 +406,8 @@ class LocalizationAr extends Localization {
   String get zone_screen_delete_header => 'حذف هذه المنطقة';
 
   @override
-  String get zone_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
+  String get zone_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
 
   @override
   String get zone_screen_delete_button => 'حذف';
@@ -390,7 +419,8 @@ class LocalizationAr extends Localization {
   String get zone_screen_one_zone_required => 'مطلوب منطقة واحدة على الأقل.';
 
   @override
-  String get zone_screen_zone_name_required => 'لا يمكن أن يكون اسم المنطقة فارغًا';
+  String get zone_screen_zone_name_required =>
+      'لا يمكن أن يكون اسم المنطقة فارغًا';
 
   @override
   String get counter_screen_show_on => 'عرض على الشاشة';
@@ -402,7 +432,8 @@ class LocalizationAr extends Localization {
   String get counter_screen_reentry_threshold => 'عتبة إعادة الدخول';
 
   @override
-  String get counter_screen_reentry_desc => 'يجب أن تدخل الكائنات #0 مرات، مع وقت تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
+  String get counter_screen_reentry_desc =>
+      'يجب أن تدخل الكائنات #0 مرات، مع وقت تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
 
   @override
   String get counter_screen_reentry_title => 'عد إعادة الدخول';
@@ -411,7 +442,8 @@ class LocalizationAr extends Localization {
   String get counter_screen_cooldown_threshold => 'عتبة التهدئة';
 
   @override
-  String get counter_screen_cooldown_desc => 'تتطلب إعادة الدخول وقت تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
+  String get counter_screen_cooldown_desc =>
+      'تتطلب إعادة الدخول وقت تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
 
   @override
   String get counter_screen_cooldown_time => 'وقت التهدئة';
@@ -423,7 +455,8 @@ class LocalizationAr extends Localization {
   String get counter_screen_stagnant_threshold => 'عتبة الركود';
 
   @override
-  String get counter_screen_stagnant_desc => 'الكائنات التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
+  String get counter_screen_stagnant_desc =>
+      'الكائنات التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
 
   @override
   String get counter_screen_stagnant_consider => 'اعتبارها راكدة';
@@ -444,19 +477,22 @@ class LocalizationAr extends Localization {
   String get counter_screen_enabled_error => 'خطأ';
 
   @override
-  String get counter_screen_enabled_error_content => 'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
+  String get counter_screen_enabled_error_content =>
+      'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
 
   @override
   String get objects_screen_title => 'الكائنات';
 
   @override
-  String get objects_screen_desc => 'اختر أهداف الكشف مثل شخص، سيارة، حافلة، إلخ.';
+  String get objects_screen_desc =>
+      'اختر أهداف الكشف مثل شخص، سيارة، حافلة، إلخ.';
 
   @override
   String get open_project_screen_title => 'فتح مشروع';
 
   @override
-  String get open_project_screen_desc => 'افتح المشاريع التي تم إنشاؤها سابقًا، مع الاحتفاظ بأحدث 20 مشروعًا فقط.';
+  String get open_project_screen_desc =>
+      'افتح المشاريع التي تم إنشاؤها سابقًا، مع الاحتفاظ بأحدث 20 مشروعًا فقط.';
 
   @override
   String get open_project_screen_no_project => 'لم يتم العثور على مشروع.';
@@ -474,7 +510,8 @@ class LocalizationAr extends Localization {
   String get error_oops => 'عذرًا، حدث خطأ ما';
 
   @override
-  String get error_content => 'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
+  String get error_content =>
+      'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
 
   @override
   String get error_report => 'راسلنا عبر البريد الإلكتروني';
@@ -516,21 +553,24 @@ class LocalizationAr extends Localization {
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_photos_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg =>
+      'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
+  String get video_sources_camera_denied_msg =>
+      'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in the United Arab Emirates (`ar_AE`).
 class LocalizationArAe extends LocalizationAr {
-  LocalizationArAe(): super('ar_AE');
+  LocalizationArAe() : super('ar_AE');
 
   @override
   String get product_name => 'عداد';
 
   @override
-  String get product_desc => 'استخدام رؤية الكمبيوتر والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
+  String get product_desc =>
+      'استخدام رؤية الكمبيوتر والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
 
   @override
   String get product_copyright => 'حقوق النشر © 2025';
@@ -551,13 +591,15 @@ class LocalizationArAe extends LocalizationAr {
   String get video_sources_camera_not_found_title => 'الكاميرا غير موجودة';
 
   @override
-  String get video_sources_camera_not_found_message => 'تحتاج إلى منح إذن الكاميرا لاستخدامها';
+  String get video_sources_camera_not_found_message =>
+      'تحتاج إلى منح إذن الكاميرا لاستخدامها';
 
   @override
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
+  String get video_sources_webcam_not_found_message =>
+      'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'قم بإنشاء مشروع جديد أدناه لبدء العد.';
@@ -572,7 +614,8 @@ class LocalizationArAe extends LocalizationAr {
   String get wizard_screen_about => 'حول';
 
   @override
-  String get wizard_screen_open_projects_tip => 'سيتم حفظ جميع المشاريع محلياً تلقائياً';
+  String get wizard_screen_open_projects_tip =>
+      'سيتم حفظ جميع المشاريع محلياً تلقائياً';
 
   @override
   String get wizard_screen_open_projects => 'فتح مشروع موجود';
@@ -617,7 +660,8 @@ class LocalizationArAe extends LocalizationAr {
   String get benchmark_screen_start_button => 'بدء اختبار الأداء';
 
   @override
-  String get benchmark_screen_start_failed => 'فشل بدء اختبار الأداء، رمز الخطأ هو';
+  String get benchmark_screen_start_failed =>
+      'فشل بدء اختبار الأداء، رمز الخطأ هو';
 
   @override
   String get benchmark_screen_models => 'نماذج كشف الكائنات';
@@ -629,7 +673,8 @@ class LocalizationArAe extends LocalizationAr {
   String get project_screen_exit_confirm_title => 'تأكيد الخروج من المشروع';
 
   @override
-  String get project_screen_exit_confirm_content => 'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
+  String get project_screen_exit_confirm_content =>
+      'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
 
   @override
   String get project_screen_exit_button => 'خروج';
@@ -638,7 +683,8 @@ class LocalizationArAe extends LocalizationAr {
   String get project_screen_add_video_button => 'إضافة مصدر فيديو';
 
   @override
-  String get project_screen_from_desc => 'نحتفظ بسجل لمدة 24 ساعة متواصلة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
+  String get project_screen_from_desc =>
+      'نحتفظ بسجل لمدة 24 ساعة متواصلة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
 
   @override
   String get project_screen_report_settings => 'الإعدادات';
@@ -653,7 +699,8 @@ class LocalizationArAe extends LocalizationAr {
   String get filter_screen_error_title => 'تصفية';
 
   @override
-  String get filter_screen_error_content => 'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
+  String get filter_screen_error_content =>
+      'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
 
   @override
   String get filter_screen_error_custom => 'مخصص';
@@ -677,28 +724,33 @@ class LocalizationArAe extends LocalizationAr {
   String get settings_screen_project_name => 'اسم المشروع';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 شارع الاتحاد أو حديقة خليفة';
+  String get settings_screen_project_name_place_holder =>
+      '123 شارع الاتحاد أو حديقة خليفة';
 
   @override
-  String get settings_screen_project_error => 'لا يمكن أن يكون اسم المشروع فارغاً';
+  String get settings_screen_project_error =>
+      'لا يمكن أن يكون اسم المشروع فارغاً';
 
   @override
   String get settings_screen_random_count_button => 'إضافة عد عشوائي';
 
   @override
-  String get settings_screen_reset_count_header => 'إعادة تعيين جميع العدادات في هذا المشروع';
+  String get settings_screen_reset_count_header =>
+      'إعادة تعيين جميع العدادات في هذا المشروع';
 
   @override
   String get settings_screen_reset_count_button => 'إعادة تعيين العدادات';
 
   @override
-  String get settings_screen_reset_count_content => 'هل أنت متأكد أنك تريد إعادة تعيين جميع العدادات؟';
+  String get settings_screen_reset_count_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين جميع العدادات؟';
 
   @override
   String get settings_screen_delete_header => 'حذف هذا المشروع';
 
   @override
-  String get settings_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
+  String get settings_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
 
   @override
   String get settings_screen_delete_button => 'حذف';
@@ -707,16 +759,19 @@ class LocalizationArAe extends LocalizationAr {
   String get settings_screen_center_point_title => 'نقطة المركز على الهدف';
 
   @override
-  String get settings_screen_center_point_desc => 'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
+  String get settings_screen_center_point_desc =>
+      'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
 
   @override
-  String get settings_screen_center_point_button => 'إظهار نقطة المركز على الهدف';
+  String get settings_screen_center_point_button =>
+      'إظهار نقطة المركز على الهدف';
 
   @override
   String get settings_screen_lost_target_title => 'الهدف المفقود';
 
   @override
-  String get settings_screen_lost_target_desc => 'عندما يفقد تتبع الكائن هدفاً، يجعل هذا الخيار الهدف مرئياً. افتراضياً، لا يتم عرض الأهداف المفقودة.';
+  String get settings_screen_lost_target_desc =>
+      'عندما يفقد تتبع الكائن هدفاً، يجعل هذا الخيار الهدف مرئياً. افتراضياً، لا يتم عرض الأهداف المفقودة.';
 
   @override
   String get settings_screen_lost_target_button => 'إظهار الهدف المفقود';
@@ -731,7 +786,8 @@ class LocalizationArAe extends LocalizationAr {
   String get detection_screen_confidence => 'الثقة';
 
   @override
-  String get detection_screen_confidence_desc => 'الثقة أكثر من #0 تعتبر كشفاً صالحاً';
+  String get detection_screen_confidence_desc =>
+      'الثقة أكثر من #0 تعتبر كشفاً صالحاً';
 
   @override
   String get detection_screen_low => 'منخفض';
@@ -743,31 +799,36 @@ class LocalizationArAe extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل الصناديق المتداخلة بصرامة أكبر وتقلل الإيجابيات الخاطئة لكن قد تفوت الأشخاص المتداخلين. العتبة الأعلى (0.7-0.9) تحتفظ بمزيد من الصناديق مما قد يزيد الإيجابيات الخاطئة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
+  String get detection_screen_nms_desc =>
+      '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل الصناديق المتداخلة بصرامة أكبر وتقلل الإيجابيات الخاطئة لكن قد تفوت الأشخاص المتداخلين. العتبة الأعلى (0.7-0.9) تحتفظ بمزيد من الصناديق مما قد يزيد الإيجابيات الخاطئة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold هو معيار أساسي في تتبع الكائنات يقيس مدى التطابق بين صناديق الكشف المختلفة. القيمة المنخفضة تسهّل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الفعلية';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold هو معيار أساسي في تتبع الكائنات يقيس مدى التطابق بين صناديق الكشف المختلفة. القيمة المنخفضة تسهّل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الفعلية';
 
   @override
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 بناءً على سرعة الحركة';
+  String get detection_screen_lost_desc =>
+      'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 بناءً على سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتباره صالحاً بعد';
 
   @override
-  String get detection_screen_consider_valid_desc => 'سيعتبر تتبع الكائن صالحاً بعد #0';
+  String get detection_screen_consider_valid_desc =>
+      'سيعتبر تتبع الكائن صالحاً بعد #0';
 
   @override
   String get detection_screen_reset => 'إعادة تعيين';
 
   @override
-  String get detection_screen_reset_content => 'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
+  String get detection_screen_reset_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
 
   @override
   String get url_screen_title => 'رابط البث المباشر';
@@ -779,7 +840,8 @@ class LocalizationArAe extends LocalizationAr {
   String get url_screen_url => 'الرابط';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream أو rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream أو rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'إضافة مصدر فيديو';
@@ -815,13 +877,15 @@ class LocalizationArAe extends LocalizationAr {
   String get video_screen_name_empty => 'لا يمكن أن يكون اسم الفيديو فارغاً.';
 
   @override
-  String get video_screen_desc => 'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_screen_desc =>
+      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
 
   @override
   String get video_screen_video_name => 'اسم مصدر الفيديو';
 
   @override
-  String get video_screen_edit_placeholder => 'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
+  String get video_screen_edit_placeholder =>
+      'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
 
   @override
   String get video_screen_change_file => 'تغيير الملف';
@@ -863,13 +927,15 @@ class LocalizationArAe extends LocalizationAr {
   String get video_screen_delete_header => 'حذف مصدر الفيديو هذا';
 
   @override
-  String get video_screen_delete_content => 'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
+  String get video_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
 
   @override
   String get video_screen_delete_button => 'حذف';
 
   @override
-  String get video_screen_sources => 'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
+  String get video_screen_sources =>
+      'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
 
   @override
   String get video_screen_targets => 'أهداف الكشف';
@@ -881,10 +947,12 @@ class LocalizationArAe extends LocalizationAr {
   String get color_screen_title => 'اختر لوناً';
 
   @override
-  String get zone_screen_desc => 'يمكن لمنطقة الكشف تحديد أنواع الكائنات للكشف واختيار العدادات التي سيتم عرضها، مثل المكتشفة والمنشأة والداخلة.';
+  String get zone_screen_desc =>
+      'يمكن لمنطقة الكشف تحديد أنواع الكائنات للكشف واختيار العدادات التي سيتم عرضها، مثل المكتشفة والمنشأة والداخلة.';
 
   @override
-  String get zone_screen_name_placeholder => 'اسم المنطقة، مثل الرصيف أو موقف السيارات';
+  String get zone_screen_name_placeholder =>
+      'اسم المنطقة، مثل الرصيف أو موقف السيارات';
 
   @override
   String get zone_screen_zone_color => 'لون المنطقة';
@@ -896,7 +964,8 @@ class LocalizationArAe extends LocalizationAr {
   String get zone_screen_delete_header => 'حذف هذه المنطقة';
 
   @override
-  String get zone_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
+  String get zone_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
 
   @override
   String get zone_screen_delete_button => 'حذف';
@@ -908,7 +977,8 @@ class LocalizationArAe extends LocalizationAr {
   String get zone_screen_one_zone_required => 'مطلوب منطقة واحدة على الأقل.';
 
   @override
-  String get zone_screen_zone_name_required => 'لا يمكن أن يكون اسم المنطقة فارغاً';
+  String get zone_screen_zone_name_required =>
+      'لا يمكن أن يكون اسم المنطقة فارغاً';
 
   @override
   String get counter_screen_show_on => 'عرض على الشاشة';
@@ -920,7 +990,8 @@ class LocalizationArAe extends LocalizationAr {
   String get counter_screen_reentry_threshold => 'عتبة إعادة الدخول';
 
   @override
-  String get counter_screen_reentry_desc => 'يجب أن تدخل الكائنات #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
+  String get counter_screen_reentry_desc =>
+      'يجب أن تدخل الكائنات #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
 
   @override
   String get counter_screen_reentry_title => 'عد إعادة الدخول';
@@ -929,7 +1000,8 @@ class LocalizationArAe extends LocalizationAr {
   String get counter_screen_cooldown_threshold => 'عتبة فترة التهدئة';
 
   @override
-  String get counter_screen_cooldown_desc => 'تتطلب إعادة الدخول فترة تهدئة #0 ثانية بعد مغادرة منطقة الكشف';
+  String get counter_screen_cooldown_desc =>
+      'تتطلب إعادة الدخول فترة تهدئة #0 ثانية بعد مغادرة منطقة الكشف';
 
   @override
   String get counter_screen_cooldown_time => 'وقت فترة التهدئة';
@@ -941,7 +1013,8 @@ class LocalizationArAe extends LocalizationAr {
   String get counter_screen_stagnant_threshold => 'عتبة الركود';
 
   @override
-  String get counter_screen_stagnant_desc => 'الكائنات التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
+  String get counter_screen_stagnant_desc =>
+      'الكائنات التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
 
   @override
   String get counter_screen_stagnant_consider => 'اعتبارها راكدة';
@@ -962,19 +1035,22 @@ class LocalizationArAe extends LocalizationAr {
   String get counter_screen_enabled_error => 'خطأ';
 
   @override
-  String get counter_screen_enabled_error_content => 'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
+  String get counter_screen_enabled_error_content =>
+      'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
 
   @override
   String get objects_screen_title => 'الكائنات';
 
   @override
-  String get objects_screen_desc => 'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
+  String get objects_screen_desc =>
+      'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
 
   @override
   String get open_project_screen_title => 'فتح مشروع';
 
   @override
-  String get open_project_screen_desc => 'افتح المشاريع التي تم إنشاؤها سابقاً، مع الاحتفاظ بأحدث 20 مشروعاً فقط.';
+  String get open_project_screen_desc =>
+      'افتح المشاريع التي تم إنشاؤها سابقاً، مع الاحتفاظ بأحدث 20 مشروعاً فقط.';
 
   @override
   String get open_project_screen_no_project => 'لم يتم العثور على مشروع.';
@@ -992,7 +1068,8 @@ class LocalizationArAe extends LocalizationAr {
   String get error_oops => 'عذراً، حدث خطأ ما';
 
   @override
-  String get error_content => 'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
+  String get error_content =>
+      'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
 
   @override
   String get error_report => 'راسلنا عبر البريد الإلكتروني';
@@ -1034,21 +1111,24 @@ class LocalizationArAe extends LocalizationAr {
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_photos_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg =>
+      'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_camera_denied_msg => 'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
+  String get video_sources_camera_denied_msg =>
+      'يرجى الانتقال إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in Algeria (`ar_DZ`).
 class LocalizationArDz extends LocalizationAr {
-  LocalizationArDz(): super('ar_DZ');
+  LocalizationArDz() : super('ar_DZ');
 
   @override
   String get product_name => 'عداد';
 
   @override
-  String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
+  String get product_desc =>
+      'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
 
   @override
   String get product_copyright => 'حقوق النشر © 2025';
@@ -1069,13 +1149,15 @@ class LocalizationArDz extends LocalizationAr {
   String get video_sources_camera_not_found_title => 'الكاميرا غير موجودة';
 
   @override
-  String get video_sources_camera_not_found_message => 'يجب منح إذن استخدام الكاميرا';
+  String get video_sources_camera_not_found_message =>
+      'يجب منح إذن استخدام الكاميرا';
 
   @override
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
+  String get video_sources_webcam_not_found_message =>
+      'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
 
   @override
   String get wizard_screen_desc => 'أنشئ مشروعًا جديدًا أدناه لبدء العد.';
@@ -1090,7 +1172,8 @@ class LocalizationArDz extends LocalizationAr {
   String get wizard_screen_about => 'حول';
 
   @override
-  String get wizard_screen_open_projects_tip => 'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
+  String get wizard_screen_open_projects_tip =>
+      'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
 
   @override
   String get wizard_screen_open_projects => 'فتح مشروع موجود';
@@ -1135,7 +1218,8 @@ class LocalizationArDz extends LocalizationAr {
   String get benchmark_screen_start_button => 'بدء اختبار الأداء';
 
   @override
-  String get benchmark_screen_start_failed => 'فشل بدء اختبار الأداء، رمز الخطأ هو';
+  String get benchmark_screen_start_failed =>
+      'فشل بدء اختبار الأداء، رمز الخطأ هو';
 
   @override
   String get benchmark_screen_models => 'نماذج كشف الأجسام';
@@ -1147,7 +1231,8 @@ class LocalizationArDz extends LocalizationAr {
   String get project_screen_exit_confirm_title => 'تأكيد الخروج من المشروع';
 
   @override
-  String get project_screen_exit_confirm_content => 'مغادرة المشروع ستوقف العد. هل أنت متأكد من أنك تريد المتابعة؟';
+  String get project_screen_exit_confirm_content =>
+      'مغادرة المشروع ستوقف العد. هل أنت متأكد من أنك تريد المتابعة؟';
 
   @override
   String get project_screen_exit_button => 'خروج';
@@ -1156,7 +1241,8 @@ class LocalizationArDz extends LocalizationAr {
   String get project_screen_add_video_button => 'إضافة مصدر فيديو';
 
   @override
-  String get project_screen_from_desc => 'نحتفظ بسجل متجدد لمدة 24 ساعة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
+  String get project_screen_from_desc =>
+      'نحتفظ بسجل متجدد لمدة 24 ساعة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
 
   @override
   String get project_screen_report_settings => 'الإعدادات';
@@ -1171,7 +1257,8 @@ class LocalizationArDz extends LocalizationAr {
   String get filter_screen_error_title => 'تصفية';
 
   @override
-  String get filter_screen_error_content => 'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
+  String get filter_screen_error_content =>
+      'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
 
   @override
   String get filter_screen_error_custom => 'مخصص';
@@ -1186,7 +1273,8 @@ class LocalizationArDz extends LocalizationAr {
   String get settings_screen_title => 'الإعدادات';
 
   @override
-  String get settings_screen_desc => 'تعيين اسم المشروع، معلمات الكشف، مسح العد.';
+  String get settings_screen_desc =>
+      'تعيين اسم المشروع، معلمات الكشف، مسح العد.';
 
   @override
   String get settings_screen_project_id => 'معرف المشروع';
@@ -1195,28 +1283,33 @@ class LocalizationArDz extends LocalizationAr {
   String get settings_screen_project_name => 'اسم المشروع';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 شارع الرئيسي أو شارع الحديقة';
+  String get settings_screen_project_name_place_holder =>
+      '123 شارع الرئيسي أو شارع الحديقة';
 
   @override
-  String get settings_screen_project_error => 'لا يمكن أن يكون اسم المشروع فارغًا';
+  String get settings_screen_project_error =>
+      'لا يمكن أن يكون اسم المشروع فارغًا';
 
   @override
   String get settings_screen_random_count_button => 'إضافة أعداد عشوائية';
 
   @override
-  String get settings_screen_reset_count_header => 'إعادة تعيين جميع الأعداد في هذا المشروع';
+  String get settings_screen_reset_count_header =>
+      'إعادة تعيين جميع الأعداد في هذا المشروع';
 
   @override
   String get settings_screen_reset_count_button => 'إعادة تعيين الأعداد';
 
   @override
-  String get settings_screen_reset_count_content => 'هل أنت متأكد من أنك تريد إعادة تعيين جميع الأعداد؟';
+  String get settings_screen_reset_count_content =>
+      'هل أنت متأكد من أنك تريد إعادة تعيين جميع الأعداد؟';
 
   @override
   String get settings_screen_delete_header => 'حذف هذا المشروع';
 
   @override
-  String get settings_screen_delete_content => 'هل أنت متأكد من أنك تريد حذف هذا المشروع؟';
+  String get settings_screen_delete_content =>
+      'هل أنت متأكد من أنك تريد حذف هذا المشروع؟';
 
   @override
   String get settings_screen_delete_button => 'حذف';
@@ -1225,16 +1318,19 @@ class LocalizationArDz extends LocalizationAr {
   String get settings_screen_center_point_title => 'نقطة المركز على الهدف';
 
   @override
-  String get settings_screen_center_point_desc => 'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
+  String get settings_screen_center_point_desc =>
+      'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
 
   @override
-  String get settings_screen_center_point_button => 'إظهار نقطة المركز على الهدف';
+  String get settings_screen_center_point_button =>
+      'إظهار نقطة المركز على الهدف';
 
   @override
   String get settings_screen_lost_target_title => 'الهدف المفقود';
 
   @override
-  String get settings_screen_lost_target_desc => 'عندما يفقد تتبع الكائن هدفًا، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
+  String get settings_screen_lost_target_desc =>
+      'عندما يفقد تتبع الكائن هدفًا، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
 
   @override
   String get settings_screen_lost_target_button => 'إظهار الهدف المفقود';
@@ -1249,7 +1345,8 @@ class LocalizationArDz extends LocalizationAr {
   String get detection_screen_confidence => 'الثقة';
 
   @override
-  String get detection_screen_confidence_desc => 'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
+  String get detection_screen_confidence_desc =>
+      'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
 
   @override
   String get detection_screen_low => 'منخفض';
@@ -1261,31 +1358,36 @@ class LocalizationArDz extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل المربعات المتداخلة بشكل أكثر صرامة وتقلل من الإيجابيات الكاذبة لكن قد تفوت الأشخاص المتداخلين. العتبة العالية (0.7-0.9) تحتفظ بمزيد من المربعات مما قد يزيد الإيجابيات الكاذبة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
+  String get detection_screen_nms_desc =>
+      '#0 عتبة NMS المنخفضة (مثل 0.3-0.4) تزيل المربعات المتداخلة بشكل أكثر صرامة وتقلل من الإيجابيات الكاذبة لكن قد تفوت الأشخاص المتداخلين. العتبة العالية (0.7-0.9) تحتفظ بمزيد من المربعات مما قد يزيد الإيجابيات الكاذبة لكنها أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس درجة التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الحقيقية';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس درجة التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الكائنات لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة لكنها قد تفقد بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
+  String get detection_screen_lost_desc =>
+      'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتبار صالح بعد';
 
   @override
-  String get detection_screen_consider_valid_desc => 'سيتم اعتبار الكائن المتتبع صالحًا بعد #0';
+  String get detection_screen_consider_valid_desc =>
+      'سيتم اعتبار الكائن المتتبع صالحًا بعد #0';
 
   @override
   String get detection_screen_reset => 'إعادة ضبط';
 
   @override
-  String get detection_screen_reset_content => 'هل أنت متأكد من أنك تريد إعادة ضبط إعدادات الكشف؟';
+  String get detection_screen_reset_content =>
+      'هل أنت متأكد من أنك تريد إعادة ضبط إعدادات الكشف؟';
 
   @override
   String get url_screen_title => 'رابط البث المباشر';
@@ -1297,7 +1399,8 @@ class LocalizationArDz extends LocalizationAr {
   String get url_screen_url => 'الرابط';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream أو rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream أو rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'إضافة مصدر فيديو';
@@ -1333,13 +1436,15 @@ class LocalizationArDz extends LocalizationAr {
   String get video_screen_name_empty => 'لا يمكن أن يكون اسم الفيديو فارغًا.';
 
   @override
-  String get video_screen_desc => 'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_screen_desc =>
+      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
 
   @override
   String get video_screen_video_name => 'اسم مصدر الفيديو';
 
   @override
-  String get video_screen_edit_placeholder => 'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
+  String get video_screen_edit_placeholder =>
+      'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
 
   @override
   String get video_screen_change_file => 'تغيير الملف';
@@ -1381,13 +1486,15 @@ class LocalizationArDz extends LocalizationAr {
   String get video_screen_delete_header => 'حذف مصدر الفيديو هذا';
 
   @override
-  String get video_screen_delete_content => 'هل أنت متأكد من أنك تريد حذف مصدر الفيديو هذا؟';
+  String get video_screen_delete_content =>
+      'هل أنت متأكد من أنك تريد حذف مصدر الفيديو هذا؟';
 
   @override
   String get video_screen_delete_button => 'حذف';
 
   @override
-  String get video_screen_sources => 'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
+  String get video_screen_sources =>
+      'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
 
   @override
   String get video_screen_targets => 'أهداف الكشف';
@@ -1399,10 +1506,12 @@ class LocalizationArDz extends LocalizationAr {
   String get color_screen_title => 'اختر لونًا';
 
   @override
-  String get zone_screen_desc => 'يمكن لمنطقة الكشف تعيين أنواع الأجسام للكشف واختيار العدادات التي يجب عرضها، مثل تم الكشف، تم الإنشاء، ودخل.';
+  String get zone_screen_desc =>
+      'يمكن لمنطقة الكشف تعيين أنواع الأجسام للكشف واختيار العدادات التي يجب عرضها، مثل تم الكشف، تم الإنشاء، ودخل.';
 
   @override
-  String get zone_screen_name_placeholder => 'اسم المنطقة، مثل الرصيف أو موقف السيارات';
+  String get zone_screen_name_placeholder =>
+      'اسم المنطقة، مثل الرصيف أو موقف السيارات';
 
   @override
   String get zone_screen_zone_color => 'لون المنطقة';
@@ -1414,7 +1523,8 @@ class LocalizationArDz extends LocalizationAr {
   String get zone_screen_delete_header => 'حذف هذه المنطقة';
 
   @override
-  String get zone_screen_delete_content => 'هل أنت متأكد من أنك تريد حذف هذه المنطقة؟';
+  String get zone_screen_delete_content =>
+      'هل أنت متأكد من أنك تريد حذف هذه المنطقة؟';
 
   @override
   String get zone_screen_delete_button => 'حذف';
@@ -1426,7 +1536,8 @@ class LocalizationArDz extends LocalizationAr {
   String get zone_screen_one_zone_required => 'مطلوب منطقة واحدة على الأقل.';
 
   @override
-  String get zone_screen_zone_name_required => 'لا يمكن أن يكون اسم المنطقة فارغًا';
+  String get zone_screen_zone_name_required =>
+      'لا يمكن أن يكون اسم المنطقة فارغًا';
 
   @override
   String get counter_screen_show_on => 'عرض على الشاشة';
@@ -1438,7 +1549,8 @@ class LocalizationArDz extends LocalizationAr {
   String get counter_screen_reentry_threshold => 'عتبة إعادة الدخول';
 
   @override
-  String get counter_screen_reentry_desc => 'يجب أن تدخل الأجسام #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
+  String get counter_screen_reentry_desc =>
+      'يجب أن تدخل الأجسام #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
 
   @override
   String get counter_screen_reentry_title => 'عدد إعادة الدخول';
@@ -1447,7 +1559,8 @@ class LocalizationArDz extends LocalizationAr {
   String get counter_screen_cooldown_threshold => 'عتبة فترة التهدئة';
 
   @override
-  String get counter_screen_cooldown_desc => 'تتطلب إعادة الدخول فترة تهدئة #0 ثانية بعد مغادرة منطقة الكشف';
+  String get counter_screen_cooldown_desc =>
+      'تتطلب إعادة الدخول فترة تهدئة #0 ثانية بعد مغادرة منطقة الكشف';
 
   @override
   String get counter_screen_cooldown_time => 'وقت التهدئة';
@@ -1459,7 +1572,8 @@ class LocalizationArDz extends LocalizationAr {
   String get counter_screen_stagnant_threshold => 'عتبة الركود';
 
   @override
-  String get counter_screen_stagnant_desc => 'الأجسام التي تبقى ثابتة لأكثر من #0 ثوانٍ ستعتبر راكدة';
+  String get counter_screen_stagnant_desc =>
+      'الأجسام التي تبقى ثابتة لأكثر من #0 ثوانٍ ستعتبر راكدة';
 
   @override
   String get counter_screen_stagnant_consider => 'اعتبار راكدًا';
@@ -1480,19 +1594,22 @@ class LocalizationArDz extends LocalizationAr {
   String get counter_screen_enabled_error => 'خطأ';
 
   @override
-  String get counter_screen_enabled_error_content => 'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
+  String get counter_screen_enabled_error_content =>
+      'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
 
   @override
   String get objects_screen_title => 'الأجسام';
 
   @override
-  String get objects_screen_desc => 'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
+  String get objects_screen_desc =>
+      'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
 
   @override
   String get open_project_screen_title => 'فتح مشروع';
 
   @override
-  String get open_project_screen_desc => 'افتح المشاريع التي تم إنشاؤها سابقًا، مع الاحتفاظ بأحدث 20 مشروعًا فقط.';
+  String get open_project_screen_desc =>
+      'افتح المشاريع التي تم إنشاؤها سابقًا، مع الاحتفاظ بأحدث 20 مشروعًا فقط.';
 
   @override
   String get open_project_screen_no_project => 'لم يتم العثور على مشروع.';
@@ -1510,7 +1627,8 @@ class LocalizationArDz extends LocalizationAr {
   String get error_oops => 'عفوًا، حدث خطأ ما';
 
   @override
-  String get error_content => 'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
+  String get error_content =>
+      'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
 
   @override
   String get error_report => 'راسلنا';
@@ -1552,21 +1670,24 @@ class LocalizationArDz extends LocalizationAr {
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_photos_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg =>
+      'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_camera_denied_msg => 'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
+  String get video_sources_camera_denied_msg =>
+      'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }
 
 /// The translations for Arabic, as used in Egypt (`ar_EG`).
 class LocalizationArEg extends LocalizationAr {
-  LocalizationArEg(): super('ar_EG');
+  LocalizationArEg() : super('ar_EG');
 
   @override
   String get product_name => 'عداد';
 
   @override
-  String get product_desc => 'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
+  String get product_desc =>
+      'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
 
   @override
   String get product_copyright => 'حقوق النشر © 2025';
@@ -1587,13 +1708,15 @@ class LocalizationArEg extends LocalizationAr {
   String get video_sources_camera_not_found_title => 'الكاميرا غير موجودة';
 
   @override
-  String get video_sources_camera_not_found_message => 'يجب منح إذن الكاميرا لاستخدامها';
+  String get video_sources_camera_not_found_message =>
+      'يجب منح إذن الكاميرا لاستخدامها';
 
   @override
   String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
 
   @override
-  String get video_sources_webcam_not_found_message => 'تأكد من إعطاء التطبيق إذن الوصول للكاميرا والتوصيل الصحيح';
+  String get video_sources_webcam_not_found_message =>
+      'تأكد من إعطاء التطبيق إذن الوصول للكاميرا والتوصيل الصحيح';
 
   @override
   String get wizard_screen_desc => 'أنشئ مشروعًا جديدًا أدناه لبدء العد.';
@@ -1608,7 +1731,8 @@ class LocalizationArEg extends LocalizationAr {
   String get wizard_screen_about => 'حول';
 
   @override
-  String get wizard_screen_open_projects_tip => 'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
+  String get wizard_screen_open_projects_tip =>
+      'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
 
   @override
   String get wizard_screen_open_projects => 'فتح مشروع موجود';
@@ -1653,7 +1777,8 @@ class LocalizationArEg extends LocalizationAr {
   String get benchmark_screen_start_button => 'بدء اختبار الأداء';
 
   @override
-  String get benchmark_screen_start_failed => 'فشل بدء اختبار الأداء، رمز الخطأ هو';
+  String get benchmark_screen_start_failed =>
+      'فشل بدء اختبار الأداء، رمز الخطأ هو';
 
   @override
   String get benchmark_screen_models => 'نماذج كشف الأجسام';
@@ -1665,7 +1790,8 @@ class LocalizationArEg extends LocalizationAr {
   String get project_screen_exit_confirm_title => 'تأكيد الخروج من المشروع';
 
   @override
-  String get project_screen_exit_confirm_content => 'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
+  String get project_screen_exit_confirm_content =>
+      'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
 
   @override
   String get project_screen_exit_button => 'خروج';
@@ -1674,7 +1800,8 @@ class LocalizationArEg extends LocalizationAr {
   String get project_screen_add_video_button => 'إضافة مصدر فيديو';
 
   @override
-  String get project_screen_from_desc => 'نحتفظ بسجل متجدد لمدة 24 ساعة، لذا يمكنك عرض أي جزء زمني تحتاجه.';
+  String get project_screen_from_desc =>
+      'نحتفظ بسجل متجدد لمدة 24 ساعة، لذا يمكنك عرض أي جزء زمني تحتاجه.';
 
   @override
   String get project_screen_report_settings => 'الإعدادات';
@@ -1689,7 +1816,8 @@ class LocalizationArEg extends LocalizationAr {
   String get filter_screen_error_title => 'تصفية';
 
   @override
-  String get filter_screen_error_content => 'يجب أن يكون وقت النهاية أكبر من وقت البداية';
+  String get filter_screen_error_content =>
+      'يجب أن يكون وقت النهاية أكبر من وقت البداية';
 
   @override
   String get filter_screen_error_custom => 'مخصص';
@@ -1713,28 +1841,33 @@ class LocalizationArEg extends LocalizationAr {
   String get settings_screen_project_name => 'اسم المشروع';
 
   @override
-  String get settings_screen_project_name_place_holder => '١٢٣ شارع مصر أو ميدان التحرير';
+  String get settings_screen_project_name_place_holder =>
+      '١٢٣ شارع مصر أو ميدان التحرير';
 
   @override
-  String get settings_screen_project_error => 'اسم المشروع لا يمكن أن يكون فارغًا';
+  String get settings_screen_project_error =>
+      'اسم المشروع لا يمكن أن يكون فارغًا';
 
   @override
   String get settings_screen_random_count_button => 'إضافة عد عشوائي';
 
   @override
-  String get settings_screen_reset_count_header => 'إعادة تعيين جميع العدادات في هذا المشروع';
+  String get settings_screen_reset_count_header =>
+      'إعادة تعيين جميع العدادات في هذا المشروع';
 
   @override
   String get settings_screen_reset_count_button => 'إعادة تعيين العد';
 
   @override
-  String get settings_screen_reset_count_content => 'هل أنت متأكد أنك تريد إعادة تعيين جميع العدادات؟';
+  String get settings_screen_reset_count_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين جميع العدادات؟';
 
   @override
   String get settings_screen_delete_header => 'حذف هذا المشروع';
 
   @override
-  String get settings_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
+  String get settings_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
 
   @override
   String get settings_screen_delete_button => 'حذف';
@@ -1743,16 +1876,19 @@ class LocalizationArEg extends LocalizationAr {
   String get settings_screen_center_point_title => 'نقطة المركز على الهدف';
 
   @override
-  String get settings_screen_center_point_desc => 'تساعد نقطة المركز في تحديد ما إذا كان الهدف داخل منطقة الضرب.';
+  String get settings_screen_center_point_desc =>
+      'تساعد نقطة المركز في تحديد ما إذا كان الهدف داخل منطقة الضرب.';
 
   @override
-  String get settings_screen_center_point_button => 'إظهار نقطة المركز على الهدف';
+  String get settings_screen_center_point_button =>
+      'إظهار نقطة المركز على الهدف';
 
   @override
   String get settings_screen_lost_target_title => 'الهدف المفقود';
 
   @override
-  String get settings_screen_lost_target_desc => 'عند فقدان تتبع الأجسام للهدف، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
+  String get settings_screen_lost_target_desc =>
+      'عند فقدان تتبع الأجسام للهدف، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
 
   @override
   String get settings_screen_lost_target_button => 'إظهار الهدف المفقود';
@@ -1767,7 +1903,8 @@ class LocalizationArEg extends LocalizationAr {
   String get detection_screen_confidence => 'الثقة';
 
   @override
-  String get detection_screen_confidence_desc => 'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
+  String get detection_screen_confidence_desc =>
+      'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
 
   @override
   String get detection_screen_low => 'منخفض';
@@ -1779,31 +1916,36 @@ class LocalizationArEg extends LocalizationAr {
   String get detection_screen_nms => 'قمع غير الحد الأقصى';
 
   @override
-  String get detection_screen_nms_desc => '#0 حد NMS المنخفض (مثل 0.3-0.4) يزيل الإطارات المتداخلة بشكل أكثر صرامة ويقلل من الإيجابيات الخاطئة لكنه قد يفوت الأشخاص المتداخلين. الحد الأعلى (0.7-0.9) يحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الخاطئة لكنه أفضل في اكتشاف الأشخاص المتداخلين.';
+  String get detection_screen_nms_desc =>
+      '#0 حد NMS المنخفض (مثل 0.3-0.4) يزيل الإطارات المتداخلة بشكل أكثر صرامة ويقلل من الإيجابيات الخاطئة لكنه قد يفوت الأشخاص المتداخلين. الحد الأعلى (0.7-0.9) يحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الخاطئة لكنه أفضل في اكتشاف الأشخاص المتداخلين.';
 
   @override
   String get detection_screen_match => 'تطابق';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold هو معلمة أساسية في تتبع الأجسام تقيس التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الأجسام ولكن تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة ولكن قد تفوت بعض التطابقات الحقيقية';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold هو معلمة أساسية في تتبع الأجسام تقيس التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تسهل ربط الأجسام ولكن تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة ولكن قد تفوت بعض التطابقات الحقيقية';
 
   @override
   String get detection_screen_lost => 'مفقود';
 
   @override
-  String get detection_screen_lost_desc => 'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
+  String get detection_screen_lost_desc =>
+      'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
 
   @override
   String get detection_screen_consider_valid => 'اعتبار صالح بعد';
 
   @override
-  String get detection_screen_consider_valid_desc => 'سيتم اعتبار الجسم المتتبع صالحًا بعد #0';
+  String get detection_screen_consider_valid_desc =>
+      'سيتم اعتبار الجسم المتتبع صالحًا بعد #0';
 
   @override
   String get detection_screen_reset => 'إعادة تعيين';
 
   @override
-  String get detection_screen_reset_content => 'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
+  String get detection_screen_reset_content =>
+      'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
 
   @override
   String get url_screen_title => 'رابط البث المباشر';
@@ -1815,7 +1957,8 @@ class LocalizationArEg extends LocalizationAr {
   String get url_screen_url => 'الرابط';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream أو rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream أو rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'إضافة مصدر فيديو';
@@ -1851,13 +1994,15 @@ class LocalizationArEg extends LocalizationAr {
   String get video_screen_name_empty => 'اسم الفيديو لا يمكن أن يكون فارغًا.';
 
   @override
-  String get video_screen_desc => 'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_screen_desc =>
+      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
 
   @override
   String get video_screen_video_name => 'اسم مصدر الفيديو';
 
   @override
-  String get video_screen_edit_placeholder => 'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
+  String get video_screen_edit_placeholder =>
+      'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
 
   @override
   String get video_screen_change_file => 'تغيير الملف';
@@ -1899,13 +2044,15 @@ class LocalizationArEg extends LocalizationAr {
   String get video_screen_delete_header => 'حذف مصدر الفيديو هذا';
 
   @override
-  String get video_screen_delete_content => 'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
+  String get video_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
 
   @override
   String get video_screen_delete_button => 'حذف';
 
   @override
-  String get video_screen_sources => 'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
+  String get video_screen_sources =>
+      'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
 
   @override
   String get video_screen_targets => 'أهداف الكشف';
@@ -1917,10 +2064,12 @@ class LocalizationArEg extends LocalizationAr {
   String get color_screen_title => 'اختر لونًا';
 
   @override
-  String get zone_screen_desc => 'يمكن لمنطقة الكشف تحديد أنواع الأجسام المراد كشفها واختيار العدادات التي سيتم عرضها، مثل المكتشفة والمنشأة والمدخلة.';
+  String get zone_screen_desc =>
+      'يمكن لمنطقة الكشف تحديد أنواع الأجسام المراد كشفها واختيار العدادات التي سيتم عرضها، مثل المكتشفة والمنشأة والمدخلة.';
 
   @override
-  String get zone_screen_name_placeholder => 'اسم المنطقة، مثل الرصيف أو موقف السيارات';
+  String get zone_screen_name_placeholder =>
+      'اسم المنطقة، مثل الرصيف أو موقف السيارات';
 
   @override
   String get zone_screen_zone_color => 'لون المنطقة';
@@ -1932,7 +2081,8 @@ class LocalizationArEg extends LocalizationAr {
   String get zone_screen_delete_header => 'حذف هذه المنطقة';
 
   @override
-  String get zone_screen_delete_content => 'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
+  String get zone_screen_delete_content =>
+      'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
 
   @override
   String get zone_screen_delete_button => 'حذف';
@@ -1944,7 +2094,8 @@ class LocalizationArEg extends LocalizationAr {
   String get zone_screen_one_zone_required => 'مطلوب منطقة واحدة على الأقل.';
 
   @override
-  String get zone_screen_zone_name_required => 'اسم المنطقة لا يمكن أن يكون فارغًا';
+  String get zone_screen_zone_name_required =>
+      'اسم المنطقة لا يمكن أن يكون فارغًا';
 
   @override
   String get counter_screen_show_on => 'إظهار على الشاشة';
@@ -1956,7 +2107,8 @@ class LocalizationArEg extends LocalizationAr {
   String get counter_screen_reentry_threshold => 'حد إعادة الدخول';
 
   @override
-  String get counter_screen_reentry_desc => 'يجب أن تدخل الأجسام #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتشغيل إعادة الدخول';
+  String get counter_screen_reentry_desc =>
+      'يجب أن تدخل الأجسام #0 مرات، مع فترة تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتشغيل إعادة الدخول';
 
   @override
   String get counter_screen_reentry_title => 'عد إعادة الدخول';
@@ -1965,7 +2117,8 @@ class LocalizationArEg extends LocalizationAr {
   String get counter_screen_cooldown_threshold => 'حد فترة التهدئة';
 
   @override
-  String get counter_screen_cooldown_desc => 'إعادة الدخول تتطلب فترة تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
+  String get counter_screen_cooldown_desc =>
+      'إعادة الدخول تتطلب فترة تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
 
   @override
   String get counter_screen_cooldown_time => 'وقت التهدئة';
@@ -1977,7 +2130,8 @@ class LocalizationArEg extends LocalizationAr {
   String get counter_screen_stagnant_threshold => 'حد الركود';
 
   @override
-  String get counter_screen_stagnant_desc => 'الأجسام التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
+  String get counter_screen_stagnant_desc =>
+      'الأجسام التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
 
   @override
   String get counter_screen_stagnant_consider => 'اعتبارها راكدة';
@@ -1998,19 +2152,22 @@ class LocalizationArEg extends LocalizationAr {
   String get counter_screen_enabled_error => 'خطأ';
 
   @override
-  String get counter_screen_enabled_error_content => 'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
+  String get counter_screen_enabled_error_content =>
+      'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
 
   @override
   String get objects_screen_title => 'الأجسام';
 
   @override
-  String get objects_screen_desc => 'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
+  String get objects_screen_desc =>
+      'اختر أهداف الكشف مثل الشخص، السيارة، الحافلة، إلخ.';
 
   @override
   String get open_project_screen_title => 'فتح مشروع';
 
   @override
-  String get open_project_screen_desc => 'فتح المشاريع المنشأة سابقًا، مع الاحتفاظ بآخر 20 مشروع فقط.';
+  String get open_project_screen_desc =>
+      'فتح المشاريع المنشأة سابقًا، مع الاحتفاظ بآخر 20 مشروع فقط.';
 
   @override
   String get open_project_screen_no_project => 'لم يتم العثور على مشروع.';
@@ -2028,7 +2185,8 @@ class LocalizationArEg extends LocalizationAr {
   String get error_oops => 'عفواً، حدث خطأ ما';
 
   @override
-  String get error_content => 'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
+  String get error_content =>
+      'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
 
   @override
   String get error_report => 'راسلنا';
@@ -2070,8 +2228,10 @@ class LocalizationArEg extends LocalizationAr {
   String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
 
   @override
-  String get video_sources_photos_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
+  String get video_sources_photos_denied_msg =>
+      'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_camera_denied_msg => 'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
+  String get video_sources_camera_denied_msg =>
+      'الرجاء الذهاب للإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 }

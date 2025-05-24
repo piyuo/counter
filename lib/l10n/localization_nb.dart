@@ -12,7 +12,8 @@ class LocalizationNb extends Localization {
   String get product_name => 'Teller';
 
   @override
-  String get product_desc => 'Bruk datamaskinsyn og kunstig intelligens for å telle mennesker, kjøretøy, kjæledyr og mer.';
+  String get product_desc =>
+      'Bruk datamaskinsyn og kunstig intelligens for å telle mennesker, kjøretøy, kjæledyr og mer.';
 
   @override
   String get product_copyright => 'Opphavsrett © 2025';
@@ -33,16 +34,19 @@ class LocalizationNb extends Localization {
   String get video_sources_camera_not_found_title => 'Kamera ikke funnet';
 
   @override
-  String get video_sources_camera_not_found_message => 'Trenger kameratillatelse for å bruke kamera';
+  String get video_sources_camera_not_found_message =>
+      'Trenger kameratillatelse for å bruke kamera';
 
   @override
   String get video_sources_webcam_not_found_title => 'Webkamera ikke funnet';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Sjekk app-tillatelse og webkamera-tilkobling';
+  String get video_sources_webcam_not_found_message =>
+      'Sjekk app-tillatelse og webkamera-tilkobling';
 
   @override
-  String get wizard_screen_desc => 'Opprett et nytt prosjekt nedenfor for å begynne å telle.';
+  String get wizard_screen_desc =>
+      'Opprett et nytt prosjekt nedenfor for å begynne å telle.';
 
   @override
   String get wizard_screen_new_project_from => 'Nytt prosjekt fra';
@@ -54,7 +58,8 @@ class LocalizationNb extends Localization {
   String get wizard_screen_about => 'Om';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Alle prosjekter lagres automatisk lokalt';
+  String get wizard_screen_open_projects_tip =>
+      'Alle prosjekter lagres automatisk lokalt';
 
   @override
   String get wizard_screen_open_projects => 'Åpne eksisterende prosjekt';
@@ -99,7 +104,8 @@ class LocalizationNb extends Localization {
   String get benchmark_screen_start_button => 'Start ytelsestest';
 
   @override
-  String get benchmark_screen_start_failed => 'Kunne ikke starte ytelsestest, feilkoden er';
+  String get benchmark_screen_start_failed =>
+      'Kunne ikke starte ytelsestest, feilkoden er';
 
   @override
   String get benchmark_screen_models => 'Objektgjenkjenningsmodeller';
@@ -108,10 +114,12 @@ class LocalizationNb extends Localization {
   String get project_screen_title => 'Prosjekt';
 
   @override
-  String get project_screen_exit_confirm_title => 'Bekreft avslutning av prosjekt';
+  String get project_screen_exit_confirm_title =>
+      'Bekreft avslutning av prosjekt';
 
   @override
-  String get project_screen_exit_confirm_content => 'Å forlate prosjektet vil stoppe tellingen. Er du sikker på at du vil fortsette?';
+  String get project_screen_exit_confirm_content =>
+      'Å forlate prosjektet vil stoppe tellingen. Er du sikker på at du vil fortsette?';
 
   @override
   String get project_screen_exit_button => 'Avslutt';
@@ -120,7 +128,8 @@ class LocalizationNb extends Localization {
   String get project_screen_add_video_button => 'Legg til videokilde';
 
   @override
-  String get project_screen_from_desc => 'Vi beholder en rullerende 24-timers historikk, så du kan se ethvert tidsutsnitt du trenger.';
+  String get project_screen_from_desc =>
+      'Vi beholder en rullerende 24-timers historikk, så du kan se ethvert tidsutsnitt du trenger.';
 
   @override
   String get project_screen_report_settings => 'Innstillinger';
@@ -135,7 +144,8 @@ class LocalizationNb extends Localization {
   String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Sluttid må være senere enn starttid';
+  String get filter_screen_error_content =>
+      'Sluttid må være senere enn starttid';
 
   @override
   String get filter_screen_error_custom => 'Egendefinert';
@@ -150,7 +160,8 @@ class LocalizationNb extends Localization {
   String get settings_screen_title => 'Innstillinger';
 
   @override
-  String get settings_screen_desc => 'Angi prosjektnavn, deteksjonsparametere og nullstilling av tellinger.';
+  String get settings_screen_desc =>
+      'Angi prosjektnavn, deteksjonsparametere og nullstilling av tellinger.';
 
   @override
   String get settings_screen_project_id => 'Prosjekt-ID';
@@ -159,28 +170,34 @@ class LocalizationNb extends Localization {
   String get settings_screen_project_name => 'Prosjektnavn';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 Storgate eller Slottsparken';
+  String get settings_screen_project_name_place_holder =>
+      '123 Storgate eller Slottsparken';
 
   @override
-  String get settings_screen_project_error => 'Prosjektnavnet kan ikke være tomt';
+  String get settings_screen_project_error =>
+      'Prosjektnavnet kan ikke være tomt';
 
   @override
-  String get settings_screen_random_count_button => 'Legg til tilfeldige tellinger';
+  String get settings_screen_random_count_button =>
+      'Legg til tilfeldige tellinger';
 
   @override
-  String get settings_screen_reset_count_header => 'Nullstill alle tellinger i dette prosjektet';
+  String get settings_screen_reset_count_header =>
+      'Nullstill alle tellinger i dette prosjektet';
 
   @override
   String get settings_screen_reset_count_button => 'Nullstill tellinger';
 
   @override
-  String get settings_screen_reset_count_content => 'Er du sikker på at du vil nullstille alle tellinger?';
+  String get settings_screen_reset_count_content =>
+      'Er du sikker på at du vil nullstille alle tellinger?';
 
   @override
   String get settings_screen_delete_header => 'Slett dette prosjektet';
 
   @override
-  String get settings_screen_delete_content => 'Er du sikker på at du vil slette dette prosjektet?';
+  String get settings_screen_delete_content =>
+      'Er du sikker på at du vil slette dette prosjektet?';
 
   @override
   String get settings_screen_delete_button => 'Slett';
@@ -189,7 +206,8 @@ class LocalizationNb extends Localization {
   String get settings_screen_center_point_title => 'Senterpunkt på mål';
 
   @override
-  String get settings_screen_center_point_desc => 'Senterpunktet hjelper med å bestemme om målet er innenfor treffområdet.';
+  String get settings_screen_center_point_desc =>
+      'Senterpunktet hjelper med å bestemme om målet er innenfor treffområdet.';
 
   @override
   String get settings_screen_center_point_button => 'Vis senterpunkt på mål';
@@ -198,7 +216,8 @@ class LocalizationNb extends Localization {
   String get settings_screen_lost_target_title => 'Tapt mål';
 
   @override
-  String get settings_screen_lost_target_desc => 'Når objektsporing mister et mål, gjør dette valget det synlig. Som standard vises ikke tapte mål.';
+  String get settings_screen_lost_target_desc =>
+      'Når objektsporing mister et mål, gjør dette valget det synlig. Som standard vises ikke tapte mål.';
 
   @override
   String get settings_screen_lost_target_button => 'Vis tapte mål';
@@ -213,7 +232,8 @@ class LocalizationNb extends Localization {
   String get detection_screen_confidence => 'Konfidens';
 
   @override
-  String get detection_screen_confidence_desc => 'konfidens over #0 anses som en gyldig deteksjon';
+  String get detection_screen_confidence_desc =>
+      'konfidens over #0 anses som en gyldig deteksjon';
 
   @override
   String get detection_screen_low => 'Lav';
@@ -225,31 +245,36 @@ class LocalizationNb extends Localization {
   String get detection_screen_nms => 'Ikke-maksimum undertrykking';
 
   @override
-  String get detection_screen_nms_desc => '#0 Lavere NMS-terskel (f.eks. 0.3-0.4) fjerner overlappende bokser strengere og reduserer falske positive men kan overse overlappende personer. Høyere terskel (0.7-0.9) beholder flere bokser som kan øke falske positive men oppdager overlappende personer bedre.';
+  String get detection_screen_nms_desc =>
+      '#0 Lavere NMS-terskel (f.eks. 0.3-0.4) fjerner overlappende bokser strengere og reduserer falske positive men kan overse overlappende personer. Høyere terskel (0.7-0.9) beholder flere bokser som kan øke falske positive men oppdager overlappende personer bedre.';
 
   @override
   String get detection_screen_match => 'Samsvar';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold er en nøkkelparameter i objektsporing som måler graden av samsvar mellom ulike deteksjonsbokser. Lavere verdi gjør objekttilknytning enklere men øker risikoen for feil tilknytninger. Høyere verdi er strengere på objekttilknytninger men kan gå glipp av noen sanne samsvar.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold er en nøkkelparameter i objektsporing som måler graden av samsvar mellom ulike deteksjonsbokser. Lavere verdi gjør objekttilknytning enklere men øker risikoen for feil tilknytninger. Høyere verdi er strengere på objekttilknytninger men kan gå glipp av noen sanne samsvar.';
 
   @override
   String get detection_screen_lost => 'Tapt';
 
   @override
-  String get detection_screen_lost_desc => 'Bestemmer dynamisk fjerntid for tapte objekter mellom #0 og #1 basert på bevegelseshastighet';
+  String get detection_screen_lost_desc =>
+      'Bestemmer dynamisk fjerntid for tapte objekter mellom #0 og #1 basert på bevegelseshastighet';
 
   @override
   String get detection_screen_consider_valid => 'Anse som gyldig etter';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Sporingsobjekt vil bli ansett som gyldig etter #0';
+  String get detection_screen_consider_valid_desc =>
+      'Sporingsobjekt vil bli ansett som gyldig etter #0';
 
   @override
   String get detection_screen_reset => 'Nullstill';
 
   @override
-  String get detection_screen_reset_content => 'Er du sikker på at du vil nullstille deteksjonsinnstillingene?';
+  String get detection_screen_reset_content =>
+      'Er du sikker på at du vil nullstille deteksjonsinnstillingene?';
 
   @override
   String get url_screen_title => 'Direktestrøm URL';
@@ -261,7 +286,8 @@ class LocalizationNb extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://eksempel.no/strøm eller rtsp://eksempel.no/strøm';
+  String get url_screen_url_placeholder =>
+      'http://eksempel.no/strøm eller rtsp://eksempel.no/strøm';
 
   @override
   String get add_video_screen_title => 'Legg til videokilde';
@@ -297,13 +323,15 @@ class LocalizationNb extends Localization {
   String get video_screen_name_empty => 'Videokildenavnet kan ikke være tomt.';
 
   @override
-  String get video_screen_desc => 'Administrer videokilder, legg til eller endre deteksjonssoner.';
+  String get video_screen_desc =>
+      'Administrer videokilder, legg til eller endre deteksjonssoner.';
 
   @override
   String get video_screen_video_name => 'Videokildenavn';
 
   @override
-  String get video_screen_edit_placeholder => 'Inngangskamera eller Parkeringskamera';
+  String get video_screen_edit_placeholder =>
+      'Inngangskamera eller Parkeringskamera';
 
   @override
   String get video_screen_change_file => 'Endre fil';
@@ -345,13 +373,15 @@ class LocalizationNb extends Localization {
   String get video_screen_delete_header => 'Slett denne videokilden';
 
   @override
-  String get video_screen_delete_content => 'Er du sikker på at du vil slette denne videokilden?';
+  String get video_screen_delete_content =>
+      'Er du sikker på at du vil slette denne videokilden?';
 
   @override
   String get video_screen_delete_button => 'Slett';
 
   @override
-  String get video_screen_sources => 'Konfigurer bildekilde, deteksjonsmål og modellparametere.';
+  String get video_screen_sources =>
+      'Konfigurer bildekilde, deteksjonsmål og modellparametere.';
 
   @override
   String get video_screen_targets => 'Deteksjonsmål';
@@ -363,10 +393,12 @@ class LocalizationNb extends Localization {
   String get color_screen_title => 'Velg en farge';
 
   @override
-  String get zone_screen_desc => 'Deteksjonssonen kan angi hvilke typer objekter som skal oppdages og velge hvilke tellere som skal vises, som Oppdaget, Opprettet og Kommet inn.';
+  String get zone_screen_desc =>
+      'Deteksjonssonen kan angi hvilke typer objekter som skal oppdages og velge hvilke tellere som skal vises, som Oppdaget, Opprettet og Kommet inn.';
 
   @override
-  String get zone_screen_name_placeholder => 'Navnet på sonen, som Fortau eller Parkeringsplass';
+  String get zone_screen_name_placeholder =>
+      'Navnet på sonen, som Fortau eller Parkeringsplass';
 
   @override
   String get zone_screen_zone_color => 'Sonefarge';
@@ -378,7 +410,8 @@ class LocalizationNb extends Localization {
   String get zone_screen_delete_header => 'Slett denne sonen';
 
   @override
-  String get zone_screen_delete_content => 'Er du sikker på at du vil slette denne sonen?';
+  String get zone_screen_delete_content =>
+      'Er du sikker på at du vil slette denne sonen?';
 
   @override
   String get zone_screen_delete_button => 'Slett';
@@ -402,7 +435,8 @@ class LocalizationNb extends Localization {
   String get counter_screen_reentry_threshold => 'Gjeninntredelsesterskel';
 
   @override
-  String get counter_screen_reentry_desc => 'Objekter må komme inn #0 ganger, med en #1 sekunds nedkjølingstid mellom hver utgang og gjeninntreden, for å utløse gjeninntreden';
+  String get counter_screen_reentry_desc =>
+      'Objekter må komme inn #0 ganger, med en #1 sekunds nedkjølingstid mellom hver utgang og gjeninntreden, for å utløse gjeninntreden';
 
   @override
   String get counter_screen_reentry_title => 'Gjeninntredelsestelling';
@@ -411,7 +445,8 @@ class LocalizationNb extends Localization {
   String get counter_screen_cooldown_threshold => 'Nedkjølingsterskel';
 
   @override
-  String get counter_screen_cooldown_desc => 'Gjeninntreden krever en #0 sekunds nedkjølingstid etter å ha forlatt deteksjonssonen';
+  String get counter_screen_cooldown_desc =>
+      'Gjeninntreden krever en #0 sekunds nedkjølingstid etter å ha forlatt deteksjonssonen';
 
   @override
   String get counter_screen_cooldown_time => 'Nedkjølingstid';
@@ -423,7 +458,8 @@ class LocalizationNb extends Localization {
   String get counter_screen_stagnant_threshold => 'Stillstandsterskel';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objekter som forblir stasjonære i mer enn #0 sekunder vil bli ansett som stillestående';
+  String get counter_screen_stagnant_desc =>
+      'Objekter som forblir stasjonære i mer enn #0 sekunder vil bli ansett som stillestående';
 
   @override
   String get counter_screen_stagnant_consider => 'Anse som stillestående';
@@ -444,19 +480,22 @@ class LocalizationNb extends Localization {
   String get counter_screen_enabled_error => 'Feil';
 
   @override
-  String get counter_screen_enabled_error_content => 'Du må aktivere en annen teller først, deretter kan du deaktivere denne telleren';
+  String get counter_screen_enabled_error_content =>
+      'Du må aktivere en annen teller først, deretter kan du deaktivere denne telleren';
 
   @override
   String get objects_screen_title => 'Objekter';
 
   @override
-  String get objects_screen_desc => 'Velg deteksjonsmål som person, bil, buss, osv.';
+  String get objects_screen_desc =>
+      'Velg deteksjonsmål som person, bil, buss, osv.';
 
   @override
   String get open_project_screen_title => 'Åpne prosjekt';
 
   @override
-  String get open_project_screen_desc => 'Åpne tidligere opprettede prosjekter, beholder kun de 20 nyeste.';
+  String get open_project_screen_desc =>
+      'Åpne tidligere opprettede prosjekter, beholder kun de 20 nyeste.';
 
   @override
   String get open_project_screen_no_project => 'Ingen prosjekter funnet.';
@@ -474,7 +513,8 @@ class LocalizationNb extends Localization {
   String get error_oops => 'Ups, noe gikk galt';
 
   @override
-  String get error_content => 'En uventet feil oppstod. Vil du sende en e-postrapport?';
+  String get error_content =>
+      'En uventet feil oppstod. Vil du sende en e-postrapport?';
 
   @override
   String get error_report => 'Send e-post til oss';
@@ -516,8 +556,10 @@ class LocalizationNb extends Localization {
   String get video_sources_camera_denied => 'Tilgang til kamera avslått';
 
   @override
-  String get video_sources_photos_denied_msg => 'Gå til innstillinger og tillat fototilgang for denne appen.';
+  String get video_sources_photos_denied_msg =>
+      'Gå til innstillinger og tillat fototilgang for denne appen.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Gå til innstillinger og tillat kameratilgang for denne appen.';
+  String get video_sources_camera_denied_msg =>
+      'Gå til innstillinger og tillat kameratilgang for denne appen.';
 }

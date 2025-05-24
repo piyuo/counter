@@ -12,7 +12,8 @@ class LocalizationFi extends Localization {
   String get product_name => 'Laskuri';
 
   @override
-  String get product_desc => 'Käyttää konenäköä ja tekoälyä laskemaan ihmisiä, ajoneuvoja, lemmikkejä ja muuta.';
+  String get product_desc =>
+      'Käyttää konenäköä ja tekoälyä laskemaan ihmisiä, ajoneuvoja, lemmikkejä ja muuta.';
 
   @override
   String get product_copyright => 'Tekijänoikeus © 2025';
@@ -33,16 +34,19 @@ class LocalizationFi extends Localization {
   String get video_sources_camera_not_found_title => 'Kameraa ei löydy';
 
   @override
-  String get video_sources_camera_not_found_message => 'Kameran käyttö vaatii kameraoikeuksien hyväksymisen';
+  String get video_sources_camera_not_found_message =>
+      'Kameran käyttö vaatii kameraoikeuksien hyväksymisen';
 
   @override
   String get video_sources_webcam_not_found_title => 'Webkameraa ei löydy';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Tarkista sovelluksen lupa ja webkameran yhteys';
+  String get video_sources_webcam_not_found_message =>
+      'Tarkista sovelluksen lupa ja webkameran yhteys';
 
   @override
-  String get wizard_screen_desc => 'Luo uusi projekti aloittaaksesi laskemisen.';
+  String get wizard_screen_desc =>
+      'Luo uusi projekti aloittaaksesi laskemisen.';
 
   @override
   String get wizard_screen_new_project_from => 'Uusi projekti lähteestä';
@@ -54,7 +58,8 @@ class LocalizationFi extends Localization {
   String get wizard_screen_about => 'Tietoja';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Kaikki projektit tallennetaan automaattisesti paikallisesti';
+  String get wizard_screen_open_projects_tip =>
+      'Kaikki projektit tallennetaan automaattisesti paikallisesti';
 
   @override
   String get wizard_screen_open_projects => 'Avaa olemassa oleva projekti';
@@ -99,7 +104,8 @@ class LocalizationFi extends Localization {
   String get benchmark_screen_start_button => 'Aloita suorituskykytesti';
 
   @override
-  String get benchmark_screen_start_failed => 'Suorituskykytestin käynnistys epäonnistui, virhekoodi on';
+  String get benchmark_screen_start_failed =>
+      'Suorituskykytestin käynnistys epäonnistui, virhekoodi on';
 
   @override
   String get benchmark_screen_models => 'Kohteiden tunnistusmallit';
@@ -108,10 +114,12 @@ class LocalizationFi extends Localization {
   String get project_screen_title => 'Projekti';
 
   @override
-  String get project_screen_exit_confirm_title => 'Vahvista projektista poistuminen';
+  String get project_screen_exit_confirm_title =>
+      'Vahvista projektista poistuminen';
 
   @override
-  String get project_screen_exit_confirm_content => 'Projektista poistuminen lopettaa laskemisen. Haluatko varmasti jatkaa?';
+  String get project_screen_exit_confirm_content =>
+      'Projektista poistuminen lopettaa laskemisen. Haluatko varmasti jatkaa?';
 
   @override
   String get project_screen_exit_button => 'Poistu';
@@ -120,7 +128,8 @@ class LocalizationFi extends Localization {
   String get project_screen_add_video_button => 'Lisää videolähde';
 
   @override
-  String get project_screen_from_desc => 'Pidämme 24 tunnin jatkuvan tallenteen, joten voit tarkastella mitä tahansa ajanjaksoa.';
+  String get project_screen_from_desc =>
+      'Pidämme 24 tunnin jatkuvan tallenteen, joten voit tarkastella mitä tahansa ajanjaksoa.';
 
   @override
   String get project_screen_report_settings => 'Asetukset';
@@ -129,13 +138,15 @@ class LocalizationFi extends Localization {
   String get filter_screen_title => 'Suodatin';
 
   @override
-  String get filter_screen_desc => 'Valitse suodatusalue alla olevasta luettelosta';
+  String get filter_screen_desc =>
+      'Valitse suodatusalue alla olevasta luettelosta';
 
   @override
   String get filter_screen_error_title => 'Suodatin';
 
   @override
-  String get filter_screen_error_content => 'Loppuajan on oltava suurempi kuin aloitusaika';
+  String get filter_screen_error_content =>
+      'Loppuajan on oltava suurempi kuin aloitusaika';
 
   @override
   String get filter_screen_error_custom => 'Mukautettu';
@@ -150,7 +161,8 @@ class LocalizationFi extends Localization {
   String get settings_screen_title => 'Asetukset';
 
   @override
-  String get settings_screen_desc => 'Aseta projektin nimi, tunnistusparametrit, laskurien nollaus.';
+  String get settings_screen_desc =>
+      'Aseta projektin nimi, tunnistusparametrit, laskurien nollaus.';
 
   @override
   String get settings_screen_project_id => 'Projektin tunnus';
@@ -159,28 +171,34 @@ class LocalizationFi extends Localization {
   String get settings_screen_project_name => 'Projektin nimi';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Mannerheimintiellä 123 tai Kauppatorin puisto';
+  String get settings_screen_project_name_place_holder =>
+      'Mannerheimintiellä 123 tai Kauppatorin puisto';
 
   @override
-  String get settings_screen_project_error => 'Projektin nimi ei voi olla tyhjä';
+  String get settings_screen_project_error =>
+      'Projektin nimi ei voi olla tyhjä';
 
   @override
-  String get settings_screen_random_count_button => 'Lisää satunnaisia laskentoja';
+  String get settings_screen_random_count_button =>
+      'Lisää satunnaisia laskentoja';
 
   @override
-  String get settings_screen_reset_count_header => 'Nollaa kaikki laskennat tässä projektissa';
+  String get settings_screen_reset_count_header =>
+      'Nollaa kaikki laskennat tässä projektissa';
 
   @override
   String get settings_screen_reset_count_button => 'Nollaa laskennat';
 
   @override
-  String get settings_screen_reset_count_content => 'Haluatko varmasti nollata kaikki laskennat?';
+  String get settings_screen_reset_count_content =>
+      'Haluatko varmasti nollata kaikki laskennat?';
 
   @override
   String get settings_screen_delete_header => 'Poista tämä projekti';
 
   @override
-  String get settings_screen_delete_content => 'Haluatko varmasti poistaa tämän projektin?';
+  String get settings_screen_delete_content =>
+      'Haluatko varmasti poistaa tämän projektin?';
 
   @override
   String get settings_screen_delete_button => 'Poista';
@@ -189,16 +207,19 @@ class LocalizationFi extends Localization {
   String get settings_screen_center_point_title => 'Keskipiste kohteessa';
 
   @override
-  String get settings_screen_center_point_desc => 'Keskipiste auttaa määrittämään, onko kohde osuma-alueella.';
+  String get settings_screen_center_point_desc =>
+      'Keskipiste auttaa määrittämään, onko kohde osuma-alueella.';
 
   @override
-  String get settings_screen_center_point_button => 'Näytä keskipiste kohteessa';
+  String get settings_screen_center_point_button =>
+      'Näytä keskipiste kohteessa';
 
   @override
   String get settings_screen_lost_target_title => 'Kadotettu kohde';
 
   @override
-  String get settings_screen_lost_target_desc => 'Kun kohteiden seuranta kadottaa kohteen, tämä asetus tekee sen näkyväksi. Oletusarvoisesti kadotettuja kohteita ei näytetä.';
+  String get settings_screen_lost_target_desc =>
+      'Kun kohteiden seuranta kadottaa kohteen, tämä asetus tekee sen näkyväksi. Oletusarvoisesti kadotettuja kohteita ei näytetä.';
 
   @override
   String get settings_screen_lost_target_button => 'Näytä kadotettu kohde';
@@ -213,7 +234,8 @@ class LocalizationFi extends Localization {
   String get detection_screen_confidence => 'Luotettavuus';
 
   @override
-  String get detection_screen_confidence_desc => 'Yli #0 luotettavuus katsotaan kelvolliseksi tunnistukseksi';
+  String get detection_screen_confidence_desc =>
+      'Yli #0 luotettavuus katsotaan kelvolliseksi tunnistukseksi';
 
   @override
   String get detection_screen_low => 'Matala';
@@ -225,31 +247,36 @@ class LocalizationFi extends Localization {
   String get detection_screen_nms => 'Ei-maksimaalinen suppressio';
 
   @override
-  String get detection_screen_nms_desc => '#0 Matalampi NMS-kynnysarvo (esim. 0.3-0.4) poistaa päällekkäiset laatikot tiukemmin ja vähentää vääriä positiivisia tuloksia mutta saattaa ohittaa päällekkäiset ihmiset. Korkeampi kynnysarvo (0.7-0.9) säilyttää enemmän laatikoita mikä voi lisätä vääriä positiivisia tuloksia mutta havaitsee päällekkäiset ihmiset paremmin.';
+  String get detection_screen_nms_desc =>
+      '#0 Matalampi NMS-kynnysarvo (esim. 0.3-0.4) poistaa päällekkäiset laatikot tiukemmin ja vähentää vääriä positiivisia tuloksia mutta saattaa ohittaa päällekkäiset ihmiset. Korkeampi kynnysarvo (0.7-0.9) säilyttää enemmän laatikoita mikä voi lisätä vääriä positiivisia tuloksia mutta havaitsee päällekkäiset ihmiset paremmin.';
 
   @override
   String get detection_screen_match => 'Vastaavuus';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold on objektien seurannassa keskeinen parametri joka mittaa erilaisten havaintolaatikoiden välisen vastaavuuden astetta. Alempi arvo helpottaa objektien yhdistämistä mutta lisää väärien yhteyksien riskiä. Korkeampi arvo on tiukempi objektien yhdistämisessä mutta voi ohittaa joitain todellisia vastaavuuksia.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold on objektien seurannassa keskeinen parametri joka mittaa erilaisten havaintolaatikoiden välisen vastaavuuden astetta. Alempi arvo helpottaa objektien yhdistämistä mutta lisää väärien yhteyksien riskiä. Korkeampi arvo on tiukempi objektien yhdistämisessä mutta voi ohittaa joitain todellisia vastaavuuksia.';
 
   @override
   String get detection_screen_lost => 'Kadotettu';
 
   @override
-  String get detection_screen_lost_desc => 'Määrittää dynaamisesti kadonneiden objektien poistoajan välillä #0 ja #1 liikkumisnopeuden perusteella';
+  String get detection_screen_lost_desc =>
+      'Määrittää dynaamisesti kadonneiden objektien poistoajan välillä #0 ja #1 liikkumisnopeuden perusteella';
 
   @override
   String get detection_screen_consider_valid => 'Pidä kelvollisena';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Seurattu kohde katsotaan kelvolliseksi #0 jälkeen';
+  String get detection_screen_consider_valid_desc =>
+      'Seurattu kohde katsotaan kelvolliseksi #0 jälkeen';
 
   @override
   String get detection_screen_reset => 'Nollaa';
 
   @override
-  String get detection_screen_reset_content => 'Haluatko varmasti nollata tunnistusasetukset?';
+  String get detection_screen_reset_content =>
+      'Haluatko varmasti nollata tunnistusasetukset?';
 
   @override
   String get url_screen_title => 'Suoratoistolinkin URL';
@@ -261,7 +288,8 @@ class LocalizationFi extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream tai rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream tai rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Lisää videolähde';
@@ -297,13 +325,15 @@ class LocalizationFi extends Localization {
   String get video_screen_name_empty => 'Videolähteen nimi ei voi olla tyhjä.';
 
   @override
-  String get video_screen_desc => 'Hallitse videolähteitä, lisää tai muokkaa tunnistusalueita.';
+  String get video_screen_desc =>
+      'Hallitse videolähteitä, lisää tai muokkaa tunnistusalueita.';
 
   @override
   String get video_screen_video_name => 'Videolähteen nimi';
 
   @override
-  String get video_screen_edit_placeholder => 'Etuoven kamera tai Parkkipaikan kamera';
+  String get video_screen_edit_placeholder =>
+      'Etuoven kamera tai Parkkipaikan kamera';
 
   @override
   String get video_screen_change_file => 'Vaihda tiedosto';
@@ -315,7 +345,8 @@ class LocalizationFi extends Localization {
   String get video_screen_zones => 'Tunnistusalueet';
 
   @override
-  String get video_screen_zones_desc => 'Käytä vedä ja pudota -toimintoa alueiden säätämiseen';
+  String get video_screen_zones_desc =>
+      'Käytä vedä ja pudota -toimintoa alueiden säätämiseen';
 
   @override
   String get video_screen_tools => 'Työkalut';
@@ -345,13 +376,15 @@ class LocalizationFi extends Localization {
   String get video_screen_delete_header => 'Poista tämä videolähde';
 
   @override
-  String get video_screen_delete_content => 'Haluatko varmasti poistaa tämän videolähteen?';
+  String get video_screen_delete_content =>
+      'Haluatko varmasti poistaa tämän videolähteen?';
 
   @override
   String get video_screen_delete_button => 'Poista';
 
   @override
-  String get video_screen_sources => 'Määritä kuvalähde, tunnistuskohteet ja malliparametrit.';
+  String get video_screen_sources =>
+      'Määritä kuvalähde, tunnistuskohteet ja malliparametrit.';
 
   @override
   String get video_screen_targets => 'Tunnistuskohteet';
@@ -363,10 +396,12 @@ class LocalizationFi extends Localization {
   String get color_screen_title => 'Valitse väri';
 
   @override
-  String get zone_screen_desc => 'Tunnistusalueella voit määrittää tunnistettavien kohteiden tyypit ja valita näytettävät laskurit, kuten Havaitut, Ilmestyneet ja Saapuneet.';
+  String get zone_screen_desc =>
+      'Tunnistusalueella voit määrittää tunnistettavien kohteiden tyypit ja valita näytettävät laskurit, kuten Havaitut, Ilmestyneet ja Saapuneet.';
 
   @override
-  String get zone_screen_name_placeholder => 'Alueen nimi, kuten Jalkakäytävä tai Parkkipaikka';
+  String get zone_screen_name_placeholder =>
+      'Alueen nimi, kuten Jalkakäytävä tai Parkkipaikka';
 
   @override
   String get zone_screen_zone_color => 'Alueen väri';
@@ -378,7 +413,8 @@ class LocalizationFi extends Localization {
   String get zone_screen_delete_header => 'Poista tämä alue';
 
   @override
-  String get zone_screen_delete_content => 'Haluatko varmasti poistaa tämän alueen?';
+  String get zone_screen_delete_content =>
+      'Haluatko varmasti poistaa tämän alueen?';
 
   @override
   String get zone_screen_delete_button => 'Poista';
@@ -399,10 +435,12 @@ class LocalizationFi extends Localization {
   String get counter_screen_enabled => 'Käytössä';
 
   @override
-  String get counter_screen_reentry_threshold => 'Uudelleensaapumisen kynnysarvo';
+  String get counter_screen_reentry_threshold =>
+      'Uudelleensaapumisen kynnysarvo';
 
   @override
-  String get counter_screen_reentry_desc => 'Kohteiden on saavuttava #0 kertaa, joiden välillä on #1 sekunnin jäähdytysaika jokaisen poistumisen ja uudelleensaapumisen välillä, jotta uudelleensaapuminen käynnistyy';
+  String get counter_screen_reentry_desc =>
+      'Kohteiden on saavuttava #0 kertaa, joiden välillä on #1 sekunnin jäähdytysaika jokaisen poistumisen ja uudelleensaapumisen välillä, jotta uudelleensaapuminen käynnistyy';
 
   @override
   String get counter_screen_reentry_title => 'Uudelleensaapumislaskuri';
@@ -411,7 +449,8 @@ class LocalizationFi extends Localization {
   String get counter_screen_cooldown_threshold => 'Jäähdytysajan kynnysarvo';
 
   @override
-  String get counter_screen_cooldown_desc => 'Uudelleensaapuminen vaatii #0 sekunnin jäähdytysajan tunnistusalueelta poistumisen jälkeen';
+  String get counter_screen_cooldown_desc =>
+      'Uudelleensaapuminen vaatii #0 sekunnin jäähdytysajan tunnistusalueelta poistumisen jälkeen';
 
   @override
   String get counter_screen_cooldown_time => 'Jäähdytysaika';
@@ -423,7 +462,8 @@ class LocalizationFi extends Localization {
   String get counter_screen_stagnant_threshold => 'Pysähtyneisyyden kynnysarvo';
 
   @override
-  String get counter_screen_stagnant_desc => 'Kohteet, jotka pysyvät paikallaan yli #0 sekuntia, katsotaan pysähtyneiksi';
+  String get counter_screen_stagnant_desc =>
+      'Kohteet, jotka pysyvät paikallaan yli #0 sekuntia, katsotaan pysähtyneiksi';
 
   @override
   String get counter_screen_stagnant_consider => 'Katso pysähtyneeksi';
@@ -444,19 +484,22 @@ class LocalizationFi extends Localization {
   String get counter_screen_enabled_error => 'Virhe';
 
   @override
-  String get counter_screen_enabled_error_content => 'Sinun täytyy ensin ottaa käyttöön muu laskuri, sitten voit poistaa tämän laskurin käytöstä';
+  String get counter_screen_enabled_error_content =>
+      'Sinun täytyy ensin ottaa käyttöön muu laskuri, sitten voit poistaa tämän laskurin käytöstä';
 
   @override
   String get objects_screen_title => 'Kohteet';
 
   @override
-  String get objects_screen_desc => 'Valitse tunnistuskohteet kuten henkilö, auto, bussi, jne.';
+  String get objects_screen_desc =>
+      'Valitse tunnistuskohteet kuten henkilö, auto, bussi, jne.';
 
   @override
   String get open_project_screen_title => 'Avaa projekti';
 
   @override
-  String get open_project_screen_desc => 'Avaa aiemmin luotuja projekteja, säilyttäen vain 20 viimeisintä.';
+  String get open_project_screen_desc =>
+      'Avaa aiemmin luotuja projekteja, säilyttäen vain 20 viimeisintä.';
 
   @override
   String get open_project_screen_no_project => 'Projekteja ei löytynyt.';
@@ -474,7 +517,8 @@ class LocalizationFi extends Localization {
   String get error_oops => 'Hups, jokin meni pieleen';
 
   @override
-  String get error_content => 'Tapahtui odottamaton virhe. Haluatko lähettää sähköpostiraportin?';
+  String get error_content =>
+      'Tapahtui odottamaton virhe. Haluatko lähettää sähköpostiraportin?';
 
   @override
   String get error_report => 'Lähetä sähköpostia';
@@ -516,8 +560,10 @@ class LocalizationFi extends Localization {
   String get video_sources_camera_denied => 'Pääsy kameraan estetty';
 
   @override
-  String get video_sources_photos_denied_msg => 'Siirry asetuksiin ja salli tämän sovelluksen käyttää valokuvia.';
+  String get video_sources_photos_denied_msg =>
+      'Siirry asetuksiin ja salli tämän sovelluksen käyttää valokuvia.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Siirry asetuksiin ja salli tämän sovelluksen käyttää kameraa.';
+  String get video_sources_camera_denied_msg =>
+      'Siirry asetuksiin ja salli tämän sovelluksen käyttää kameraa.';
 }

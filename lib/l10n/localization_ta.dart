@@ -12,7 +12,8 @@ class LocalizationTa extends Localization {
   String get product_name => 'எண்ணிக்கை';
 
   @override
-  String get product_desc => 'கணினி பார்வை மற்றும் செயற்கை நுண்ணறிவைப் பயன்படுத்தி மக்கள், வாகனங்கள், செல்லப்பிராணிகள் மற்றும் பலவற்றை எண்ணுதல்.';
+  String get product_desc =>
+      'கணினி பார்வை மற்றும் செயற்கை நுண்ணறிவைப் பயன்படுத்தி மக்கள், வாகனங்கள், செல்லப்பிராணிகள் மற்றும் பலவற்றை எண்ணுதல்.';
 
   @override
   String get product_copyright => 'பதிப்புரிமை © 2025';
@@ -30,19 +31,24 @@ class LocalizationTa extends Localization {
   String get video_sources_camera => 'கேமரா';
 
   @override
-  String get video_sources_camera_not_found_title => 'கேமரா கண்டுபிடிக்கப்படவில்லை';
+  String get video_sources_camera_not_found_title =>
+      'கேமரா கண்டுபிடிக்கப்படவில்லை';
 
   @override
-  String get video_sources_camera_not_found_message => 'கேமராவைப் பயன்படுத்த அனுமதி வழங்க வேண்டும்';
+  String get video_sources_camera_not_found_message =>
+      'கேமராவைப் பயன்படுத்த அனுமதி வழங்க வேண்டும்';
 
   @override
-  String get video_sources_webcam_not_found_title => 'வெப்கேம் கண்டுபிடிக்கப்படவில்லை';
+  String get video_sources_webcam_not_found_title =>
+      'வெப்கேம் கண்டுபிடிக்கப்படவில்லை';
 
   @override
-  String get video_sources_webcam_not_found_message => 'ஏப் அனுமதி மற்றும் வெப்கேம் இணைப்பைச் சரிபார்க்கவும்';
+  String get video_sources_webcam_not_found_message =>
+      'ஏப் அனுமதி மற்றும் வெப்கேம் இணைப்பைச் சரிபார்க்கவும்';
 
   @override
-  String get wizard_screen_desc => 'எண்ணத் தொடங்க கீழே ஒரு புதிய திட்டத்தை உருவாக்கவும்.';
+  String get wizard_screen_desc =>
+      'எண்ணத் தொடங்க கீழே ஒரு புதிய திட்டத்தை உருவாக்கவும்.';
 
   @override
   String get wizard_screen_new_project_from => 'இதிலிருந்து புதிய திட்டம்';
@@ -54,10 +60,12 @@ class LocalizationTa extends Localization {
   String get wizard_screen_about => 'பற்றி';
 
   @override
-  String get wizard_screen_open_projects_tip => 'அனைத்து திட்டங்களும் தானாகவே உள்ளூரில் சேமிக்கப்படும்';
+  String get wizard_screen_open_projects_tip =>
+      'அனைத்து திட்டங்களும் தானாகவே உள்ளூரில் சேமிக்கப்படும்';
 
   @override
-  String get wizard_screen_open_projects => 'ஏற்கனவே உள்ள திட்டத்தைத் திறக்கவும்';
+  String get wizard_screen_open_projects =>
+      'ஏற்கனவே உள்ள திட்டத்தைத் திறக்கவும்';
 
   @override
   String get wizard_screen_email_us => 'எங்களுக்கு மின்னஞ்சல் அனுப்பவும்';
@@ -99,7 +107,8 @@ class LocalizationTa extends Localization {
   String get benchmark_screen_start_button => 'செயல்திறன் அளவீடு தொடங்கவும்';
 
   @override
-  String get benchmark_screen_start_failed => 'செயல்திறன் அளவீடு தொடங்க முடியவில்லை, பிழை குறியீடு';
+  String get benchmark_screen_start_failed =>
+      'செயல்திறன் அளவீடு தொடங்க முடியவில்லை, பிழை குறியீடு';
 
   @override
   String get benchmark_screen_models => 'பொருள் கண்டறிதல் மாடல்கள்';
@@ -108,10 +117,12 @@ class LocalizationTa extends Localization {
   String get project_screen_title => 'திட்டம்';
 
   @override
-  String get project_screen_exit_confirm_title => 'திட்டத்திலிருந்து வெளியேறுவதை உறுதிப்படுத்தவும்';
+  String get project_screen_exit_confirm_title =>
+      'திட்டத்திலிருந்து வெளியேறுவதை உறுதிப்படுத்தவும்';
 
   @override
-  String get project_screen_exit_confirm_content => 'திட்டத்தை விட்டு வெளியேறுவது எண்ணிக்கையை நிறுத்தும். தொடர விரும்புகிறீர்களா?';
+  String get project_screen_exit_confirm_content =>
+      'திட்டத்தை விட்டு வெளியேறுவது எண்ணிக்கையை நிறுத்தும். தொடர விரும்புகிறீர்களா?';
 
   @override
   String get project_screen_exit_button => 'வெளியேறு';
@@ -120,7 +131,8 @@ class LocalizationTa extends Localization {
   String get project_screen_add_video_button => 'வீடியோ ஆதாரத்தைச் சேர்க்கவும்';
 
   @override
-  String get project_screen_from_desc => 'தேவையான எந்த நேர துண்டையும் பார்க்க, 24 மணி நேர பதிவை நாங்கள் வைத்திருக்கிறோம்.';
+  String get project_screen_from_desc =>
+      'தேவையான எந்த நேர துண்டையும் பார்க்க, 24 மணி நேர பதிவை நாங்கள் வைத்திருக்கிறோம்.';
 
   @override
   String get project_screen_report_settings => 'அமைப்புகள்';
@@ -129,13 +141,15 @@ class LocalizationTa extends Localization {
   String get filter_screen_title => 'வடிகட்டி';
 
   @override
-  String get filter_screen_desc => 'கீழே உள்ள பட்டியலில் இருந்து ஒரு வடிகட்டி வரம்பைத் தேர்ந்தெடுக்கவும்';
+  String get filter_screen_desc =>
+      'கீழே உள்ள பட்டியலில் இருந்து ஒரு வடிகட்டி வரம்பைத் தேர்ந்தெடுக்கவும்';
 
   @override
   String get filter_screen_error_title => 'வடிகட்டி';
 
   @override
-  String get filter_screen_error_content => 'முடிவு நேரம் தொடக்க நேரத்தை விட அதிகமாக இருக்க வேண்டும்';
+  String get filter_screen_error_content =>
+      'முடிவு நேரம் தொடக்க நேரத்தை விட அதிகமாக இருக்க வேண்டும்';
 
   @override
   String get filter_screen_error_custom => 'விருப்ப';
@@ -150,7 +164,8 @@ class LocalizationTa extends Localization {
   String get settings_screen_title => 'அமைப்புகள்';
 
   @override
-  String get settings_screen_desc => 'திட்டப் பெயர், கண்டறிதல் அளவுருக்கள், எண்ணிக்கை அழித்தல் ஆகியவற்றை அமைக்கவும்.';
+  String get settings_screen_desc =>
+      'திட்டப் பெயர், கண்டறிதல் அளவுருக்கள், எண்ணிக்கை அழித்தல் ஆகியவற்றை அமைக்கவும்.';
 
   @override
   String get settings_screen_project_id => 'திட்ட ஐடி';
@@ -159,28 +174,35 @@ class LocalizationTa extends Localization {
   String get settings_screen_project_name => 'திட்டப் பெயர்';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 மெயின் தெரு அல்லது அண்ணா சாலை';
+  String get settings_screen_project_name_place_holder =>
+      '123 மெயின் தெரு அல்லது அண்ணா சாலை';
 
   @override
-  String get settings_screen_project_error => 'திட்டப் பெயர் காலியாக இருக்க முடியாது';
+  String get settings_screen_project_error =>
+      'திட்டப் பெயர் காலியாக இருக்க முடியாது';
 
   @override
-  String get settings_screen_random_count_button => 'சீரற்ற எண்ணிக்கைகளைச் சேர்க்கவும்';
+  String get settings_screen_random_count_button =>
+      'சீரற்ற எண்ணிக்கைகளைச் சேர்க்கவும்';
 
   @override
-  String get settings_screen_reset_count_header => 'இந்த திட்டத்தில் உள்ள அனைத்து எண்ணிக்கைகளையும் மீட்டமைக்கவும்';
+  String get settings_screen_reset_count_header =>
+      'இந்த திட்டத்தில் உள்ள அனைத்து எண்ணிக்கைகளையும் மீட்டமைக்கவும்';
 
   @override
-  String get settings_screen_reset_count_button => 'எண்ணிக்கைகளை மீட்டமைக்கவும்';
+  String get settings_screen_reset_count_button =>
+      'எண்ணிக்கைகளை மீட்டமைக்கவும்';
 
   @override
-  String get settings_screen_reset_count_content => 'அனைத்து எண்ணிக்கைகளையும் மீட்டமைக்க விரும்புகிறீர்களா?';
+  String get settings_screen_reset_count_content =>
+      'அனைத்து எண்ணிக்கைகளையும் மீட்டமைக்க விரும்புகிறீர்களா?';
 
   @override
   String get settings_screen_delete_header => 'இந்த திட்டத்தை நீக்கவும்';
 
   @override
-  String get settings_screen_delete_content => 'இந்த திட்டத்தை நீக்க விரும்புகிறீர்களா?';
+  String get settings_screen_delete_content =>
+      'இந்த திட்டத்தை நீக்க விரும்புகிறீர்களா?';
 
   @override
   String get settings_screen_delete_button => 'நீக்கு';
@@ -189,16 +211,19 @@ class LocalizationTa extends Localization {
   String get settings_screen_center_point_title => 'இலக்கில் மைய புள்ளி';
 
   @override
-  String get settings_screen_center_point_desc => 'இலக்கு தாக்க மண்டலத்திற்குள் உள்ளதா என்பதைத் தீர்மானிக்க மைய புள்ளி உதவுகிறது.';
+  String get settings_screen_center_point_desc =>
+      'இலக்கு தாக்க மண்டலத்திற்குள் உள்ளதா என்பதைத் தீர்மானிக்க மைய புள்ளி உதவுகிறது.';
 
   @override
-  String get settings_screen_center_point_button => 'இலக்கில் மைய புள்ளியைக் காட்டு';
+  String get settings_screen_center_point_button =>
+      'இலக்கில் மைய புள்ளியைக் காட்டு';
 
   @override
   String get settings_screen_lost_target_title => 'இழந்த இலக்கு';
 
   @override
-  String get settings_screen_lost_target_desc => 'பொருள் கண்காணிப்பு ஒரு இலக்கை இழக்கும்போது, இந்த விருப்பம் அதை காணக்கூடியதாக்குகிறது. இயல்பாக, இழந்த இலக்குகள் காட்டப்படாது.';
+  String get settings_screen_lost_target_desc =>
+      'பொருள் கண்காணிப்பு ஒரு இலக்கை இழக்கும்போது, இந்த விருப்பம் அதை காணக்கூடியதாக்குகிறது. இயல்பாக, இழந்த இலக்குகள் காட்டப்படாது.';
 
   @override
   String get settings_screen_lost_target_button => 'இழந்த இலக்கைக் காட்டு';
@@ -213,7 +238,8 @@ class LocalizationTa extends Localization {
   String get detection_screen_confidence => 'நம்பகத்தன்மை';
 
   @override
-  String get detection_screen_confidence_desc => '#0 க்கு மேல் நம்பகத்தன்மை ஒரு செல்லுபடியாகும் கண்டறிதலாகக் கருதப்படுகிறது';
+  String get detection_screen_confidence_desc =>
+      '#0 க்கு மேல் நம்பகத்தன்மை ஒரு செல்லுபடியாகும் கண்டறிதலாகக் கருதப்படுகிறது';
 
   @override
   String get detection_screen_low => 'குறைவு';
@@ -225,31 +251,37 @@ class LocalizationTa extends Localization {
   String get detection_screen_nms => 'நான்-மாக்ஸிமம் சப்ரெஷன்';
 
   @override
-  String get detection_screen_nms_desc => '#0 குறைந்த NMS தொடக்கநிலை (எ.கா. 0.3-0.4) மேலுறை பெட்டிகளை கடுமையாக அகற்றி தவறான பாசிட்டிவ்களைக் குறைக்கிறது ஆனால் மேலுறையில் உள்ள நபர்களைத் தவறவிடலாம். அதிக தொடக்கநிலை (0.7-0.9) மேலும் பெட்டிகளை வைத்திருப்பது தவறான பாசிட்டிவ்களை அதிகரிக்கலாம் ஆனால் மேலுறை நபர்களை சிறப்பாகக் கண்டறியும்.';
+  String get detection_screen_nms_desc =>
+      '#0 குறைந்த NMS தொடக்கநிலை (எ.கா. 0.3-0.4) மேலுறை பெட்டிகளை கடுமையாக அகற்றி தவறான பாசிட்டிவ்களைக் குறைக்கிறது ஆனால் மேலுறையில் உள்ள நபர்களைத் தவறவிடலாம். அதிக தொடக்கநிலை (0.7-0.9) மேலும் பெட்டிகளை வைத்திருப்பது தவறான பாசிட்டிவ்களை அதிகரிக்கலாம் ஆனால் மேலுறை நபர்களை சிறப்பாகக் கண்டறியும்.';
 
   @override
   String get detection_screen_match => 'பொருத்தம்';
 
   @override
-  String get detection_screen_match_desc => '#0 மாச்தரஷோல்ட் என்பது பொருள் தடமறிதலில் ஒரு முக்கிய அளவுரு இது வெவ்வேறு கண்டறிதல் பெட்டிகளுக்கு இடையேயான பொருந்தும் அளவை அளவிடுகிறது. குறைந்த மதிப்பு பொருள் தொடர்புகளை எளிதாக்குகிறது ஆனால் தவறான தொடர்புகளின் அபாயத்தை அதிகரிக்கிறது. அதிக மதிப்பு பொருள் தொடர்புகளில் கடுமையானது ஆனால் சில உண்மையான பொருத்தங்களை இழக்கலாம்.';
+  String get detection_screen_match_desc =>
+      '#0 மாச்தரஷோல்ட் என்பது பொருள் தடமறிதலில் ஒரு முக்கிய அளவுரு இது வெவ்வேறு கண்டறிதல் பெட்டிகளுக்கு இடையேயான பொருந்தும் அளவை அளவிடுகிறது. குறைந்த மதிப்பு பொருள் தொடர்புகளை எளிதாக்குகிறது ஆனால் தவறான தொடர்புகளின் அபாயத்தை அதிகரிக்கிறது. அதிக மதிப்பு பொருள் தொடர்புகளில் கடுமையானது ஆனால் சில உண்மையான பொருத்தங்களை இழக்கலாம்.';
 
   @override
   String get detection_screen_lost => 'இழந்தது';
 
   @override
-  String get detection_screen_lost_desc => 'நகர்வு வேகத்தின் அடிப்படையில் #0 மற்றும் #1 இடையே தொலைந்த பொருட்களை அகற்றும் நேரத்தை மாறும் தன்மையுடன் தீர்மானிக்கிறது';
+  String get detection_screen_lost_desc =>
+      'நகர்வு வேகத்தின் அடிப்படையில் #0 மற்றும் #1 இடையே தொலைந்த பொருட்களை அகற்றும் நேரத்தை மாறும் தன்மையுடன் தீர்மானிக்கிறது';
 
   @override
-  String get detection_screen_consider_valid => 'இதற்குப் பிறகு செல்லுபடியாகும்';
+  String get detection_screen_consider_valid =>
+      'இதற்குப் பிறகு செல்லுபடியாகும்';
 
   @override
-  String get detection_screen_consider_valid_desc => '#0 க்குப் பிறகு தடமறியும் பொருள் செல்லுபடியாகும்';
+  String get detection_screen_consider_valid_desc =>
+      '#0 க்குப் பிறகு தடமறியும் பொருள் செல்லுபடியாகும்';
 
   @override
   String get detection_screen_reset => 'மீட்டமை';
 
   @override
-  String get detection_screen_reset_content => 'கண்டறிதல் அமைப்புகளை மீட்டமைக்க விரும்புகிறீர்களா?';
+  String get detection_screen_reset_content =>
+      'கண்டறிதல் அமைப்புகளை மீட்டமைக்க விரும்புகிறீர்களா?';
 
   @override
   String get url_screen_title => 'நேரலை ஓட URL';
@@ -261,13 +293,15 @@ class LocalizationTa extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream அல்லது rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream அல்லது rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'வீடியோ ஆதாரத்தைச் சேர்க்கவும்';
 
   @override
-  String get add_video_screen_from => 'இதிலிருந்து வீடியோ ஆதாரத்தைச் சேர்க்கவும்';
+  String get add_video_screen_from =>
+      'இதிலிருந்து வீடியோ ஆதாரத்தைச் சேர்க்கவும்';
 
   @override
   String get webcam_screen_add_title => 'வெப்கேம் சேர்க்கவும்';
@@ -297,13 +331,15 @@ class LocalizationTa extends Localization {
   String get video_screen_name_empty => 'வீடியோ பெயர் காலியாக இருக்க முடியாது.';
 
   @override
-  String get video_screen_desc => 'வீடியோ ஆதாரங்களை நிர்வகிக்கவும், கண்டறிதல் மண்டலங்களைச் சேர்க்கவும் அல்லது மாற்றவும்.';
+  String get video_screen_desc =>
+      'வீடியோ ஆதாரங்களை நிர்வகிக்கவும், கண்டறிதல் மண்டலங்களைச் சேர்க்கவும் அல்லது மாற்றவும்.';
 
   @override
   String get video_screen_video_name => 'வீடியோ ஆதார பெயர்';
 
   @override
-  String get video_screen_edit_placeholder => 'முன் கதவு கேம் அல்லது நிறுத்துமிட கேம்';
+  String get video_screen_edit_placeholder =>
+      'முன் கதவு கேம் அல்லது நிறுத்துமிட கேம்';
 
   @override
   String get video_screen_change_file => 'கோப்பை மாற்றவும்';
@@ -321,13 +357,16 @@ class LocalizationTa extends Localization {
   String get video_screen_tools => 'கருவிகள்';
 
   @override
-  String get video_screen_move_bottom => 'தற்போதைய மண்டலத்தை அடிப்பகுதிக்கு நகர்த்தவும்';
+  String get video_screen_move_bottom =>
+      'தற்போதைய மண்டலத்தை அடிப்பகுதிக்கு நகர்த்தவும்';
 
   @override
-  String get video_screen_add_point => 'தற்போதைய மண்டலத்தில் புள்ளியைச் சேர்க்கவும்';
+  String get video_screen_add_point =>
+      'தற்போதைய மண்டலத்தில் புள்ளியைச் சேர்க்கவும்';
 
   @override
-  String get video_screen_remove_point => 'தற்போதைய மண்டலத்திலிருந்து புள்ளியை அகற்றவும்';
+  String get video_screen_remove_point =>
+      'தற்போதைய மண்டலத்திலிருந்து புள்ளியை அகற்றவும்';
 
   @override
   String get video_screen_playback_speed => 'பிளேபேக் வேகம்';
@@ -345,13 +384,15 @@ class LocalizationTa extends Localization {
   String get video_screen_delete_header => 'இந்த வீடியோ ஆதாரத்தை நீக்கவும்';
 
   @override
-  String get video_screen_delete_content => 'இந்த வீடியோ ஆதாரத்தை நீக்க விரும்புகிறீர்களா?';
+  String get video_screen_delete_content =>
+      'இந்த வீடியோ ஆதாரத்தை நீக்க விரும்புகிறீர்களா?';
 
   @override
   String get video_screen_delete_button => 'நீக்கு';
 
   @override
-  String get video_screen_sources => 'படம் ஆதாரம், கண்டறிதல் இலக்குகள் மற்றும் மாடல் அளவுருக்களை உள்ளமைக்கவும்.';
+  String get video_screen_sources =>
+      'படம் ஆதாரம், கண்டறிதல் இலக்குகள் மற்றும் மாடல் அளவுருக்களை உள்ளமைக்கவும்.';
 
   @override
   String get video_screen_targets => 'கண்டறிதல் இலக்குகள்';
@@ -363,10 +404,12 @@ class LocalizationTa extends Localization {
   String get color_screen_title => 'ஒரு நிறத்தைத் தேர்ந்தெடுக்கவும்';
 
   @override
-  String get zone_screen_desc => 'கண்டறிதல் மண்டலம் கண்டறிய வேண்டிய பொருள்களின் வகைகளை அமைக்கலாம் மற்றும் கண்டறியப்பட்டது, உருவாக்கப்பட்டது மற்றும் நுழைந்தது போன்ற எந்த எண்ணிக்கையைக் காட்ட வேண்டும் என்பதைத் தேர்வு செய்யலாம்.';
+  String get zone_screen_desc =>
+      'கண்டறிதல் மண்டலம் கண்டறிய வேண்டிய பொருள்களின் வகைகளை அமைக்கலாம் மற்றும் கண்டறியப்பட்டது, உருவாக்கப்பட்டது மற்றும் நுழைந்தது போன்ற எந்த எண்ணிக்கையைக் காட்ட வேண்டும் என்பதைத் தேர்வு செய்யலாம்.';
 
   @override
-  String get zone_screen_name_placeholder => 'நடைபாதை அல்லது நிறுத்துமிடம் போன்ற மண்டலத்தின் பெயர்';
+  String get zone_screen_name_placeholder =>
+      'நடைபாதை அல்லது நிறுத்துமிடம் போன்ற மண்டலத்தின் பெயர்';
 
   @override
   String get zone_screen_zone_color => 'மண்டல நிறம்';
@@ -378,7 +421,8 @@ class LocalizationTa extends Localization {
   String get zone_screen_delete_header => 'இந்த மண்டலத்தை நீக்கவும்';
 
   @override
-  String get zone_screen_delete_content => 'இந்த மண்டலத்தை நீக்க விரும்புகிறீர்களா?';
+  String get zone_screen_delete_content =>
+      'இந்த மண்டலத்தை நீக்க விரும்புகிறீர்களா?';
 
   @override
   String get zone_screen_delete_button => 'நீக்கு';
@@ -390,7 +434,8 @@ class LocalizationTa extends Localization {
   String get zone_screen_one_zone_required => 'குறைந்தபட்சம் ஒரு மண்டலம் தேவை.';
 
   @override
-  String get zone_screen_zone_name_required => 'மண்டலப் பெயர் காலியாக இருக்க முடியாது';
+  String get zone_screen_zone_name_required =>
+      'மண்டலப் பெயர் காலியாக இருக்க முடியாது';
 
   @override
   String get counter_screen_show_on => 'திரையில் காட்டு';
@@ -402,7 +447,8 @@ class LocalizationTa extends Localization {
   String get counter_screen_reentry_threshold => 'மறு நுழைவு தொடக்கநிலை';
 
   @override
-  String get counter_screen_reentry_desc => 'ஒவ்வொரு வெளியேறுதல் மற்றும் மறு நுழைவிற்கும் இடையே #1 வினாடி குளிர்விப்பு காலத்துடன், பொருட்கள் #0 முறை நுழைய வேண்டும், மறுநுழைவைத் தூண்ட';
+  String get counter_screen_reentry_desc =>
+      'ஒவ்வொரு வெளியேறுதல் மற்றும் மறு நுழைவிற்கும் இடையே #1 வினாடி குளிர்விப்பு காலத்துடன், பொருட்கள் #0 முறை நுழைய வேண்டும், மறுநுழைவைத் தூண்ட';
 
   @override
   String get counter_screen_reentry_title => 'மீண்டும் நுழைவது எண்ணிக்கை';
@@ -411,7 +457,8 @@ class LocalizationTa extends Localization {
   String get counter_screen_cooldown_threshold => 'குளிர்விப்பு தொடக்கநிலை';
 
   @override
-  String get counter_screen_cooldown_desc => 'கண்டறிதல் மண்டலத்திலிருந்து வெளியேறிய பிறகு மறுநுழைவுக்கு #0 வினாடி குளிர்விப்பு தேவைப்படுகிறது';
+  String get counter_screen_cooldown_desc =>
+      'கண்டறிதல் மண்டலத்திலிருந்து வெளியேறிய பிறகு மறுநுழைவுக்கு #0 வினாடி குளிர்விப்பு தேவைப்படுகிறது';
 
   @override
   String get counter_screen_cooldown_time => 'குளிர்விப்பு நேரம்';
@@ -423,7 +470,8 @@ class LocalizationTa extends Localization {
   String get counter_screen_stagnant_threshold => 'தேக்க தொடக்கநிலை';
 
   @override
-  String get counter_screen_stagnant_desc => '#0 வினாடிகளுக்கு மேல் நிலையாக இருக்கும் பொருட்கள் தேக்கமாகக் கருதப்படும்';
+  String get counter_screen_stagnant_desc =>
+      '#0 வினாடிகளுக்கு மேல் நிலையாக இருக்கும் பொருட்கள் தேக்கமாகக் கருதப்படும்';
 
   @override
   String get counter_screen_stagnant_consider => 'தேக்கமாகக் கருதுதல்';
@@ -438,25 +486,29 @@ class LocalizationTa extends Localization {
   String get counter_screen_stagnant_desc_suffix => 'விளக்க பின்னொட்டு';
 
   @override
-  String get counter_screen_name_error => 'எண்ணிக்கை பெயர் காலியாக இருக்க முடியாது';
+  String get counter_screen_name_error =>
+      'எண்ணிக்கை பெயர் காலியாக இருக்க முடியாது';
 
   @override
   String get counter_screen_enabled_error => 'பிழை';
 
   @override
-  String get counter_screen_enabled_error_content => 'முதலில் மற்ற எண்ணிக்கையை இயக்க வேண்டும், பின்னர் இந்த எண்ணிக்கையை முடக்கலாம்';
+  String get counter_screen_enabled_error_content =>
+      'முதலில் மற்ற எண்ணிக்கையை இயக்க வேண்டும், பின்னர் இந்த எண்ணிக்கையை முடக்கலாம்';
 
   @override
   String get objects_screen_title => 'பொருட்கள்';
 
   @override
-  String get objects_screen_desc => 'நபர், கார், பேருந்து போன்ற கண்டறிதல் இலக்குகளைத் தேர்ந்தெடுக்கவும்.';
+  String get objects_screen_desc =>
+      'நபர், கார், பேருந்து போன்ற கண்டறிதல் இலக்குகளைத் தேர்ந்தெடுக்கவும்.';
 
   @override
   String get open_project_screen_title => 'திட்டத்தைத் திறக்கவும்';
 
   @override
-  String get open_project_screen_desc => 'முன்பு உருவாக்கப்பட்ட திட்டங்களைத் திறக்கவும், சமீபத்திய 20 திட்டங்களை மட்டுமே வைத்திருக்கவும்.';
+  String get open_project_screen_desc =>
+      'முன்பு உருவாக்கப்பட்ட திட்டங்களைத் திறக்கவும், சமீபத்திய 20 திட்டங்களை மட்டுமே வைத்திருக்கவும்.';
 
   @override
   String get open_project_screen_no_project => 'திட்டம் எதுவும் கிடைக்கவில்லை.';
@@ -474,7 +526,8 @@ class LocalizationTa extends Localization {
   String get error_oops => 'அச்சச்சோ, ஏதோ தவறாகிவிட்டது';
 
   @override
-  String get error_content => 'எதிர்பாராத பிழை ஏற்பட்டது. மின்னஞ்சல் அறிக்கையை சமர்ப்பிக்க விரும்புகிறீர்களா?';
+  String get error_content =>
+      'எதிர்பாராத பிழை ஏற்பட்டது. மின்னஞ்சல் அறிக்கையை சமர்ப்பிக்க விரும்புகிறீர்களா?';
 
   @override
   String get error_report => 'எங்களுக்கு மின்னஞ்சல் அனுப்பவும்';
@@ -507,17 +560,21 @@ class LocalizationTa extends Localization {
   String get zone_screen_zone_show_summary => 'திரையில் சுருக்கத்தைக் காட்டு';
 
   @override
-  String get video_sources_photos_denied => 'புகைப்படங்களுக்கான அணுகல் மறுக்கப்பட்டது';
+  String get video_sources_photos_denied =>
+      'புகைப்படங்களுக்கான அணுகல் மறுக்கப்பட்டது';
 
   @override
   String get video_sources_photos_goto_settings => 'அமைப்புகளுக்குச் செல்';
 
   @override
-  String get video_sources_camera_denied => 'கேமராவுக்கான அணுகல் மறுக்கப்பட்டது';
+  String get video_sources_camera_denied =>
+      'கேமராவுக்கான அணுகல் மறுக்கப்பட்டது';
 
   @override
-  String get video_sources_photos_denied_msg => 'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான புகைப்பட அணுகல் அனுமதியை அளிக்கவும்.';
+  String get video_sources_photos_denied_msg =>
+      'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான புகைப்பட அணுகல் அனுமதியை அளிக்கவும்.';
 
   @override
-  String get video_sources_camera_denied_msg => 'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான கேமரா அணுகல் அனுமதியை அளிக்கவும்.';
+  String get video_sources_camera_denied_msg =>
+      'அமைப்புகளுக்குச் சென்று இந்த பயன்பாட்டிற்கான கேமரா அணுகல் அனுமதியை அளிக்கவும்.';
 }

@@ -51,7 +51,7 @@ dependencies:
   camera_macos: ^0.0.9
   camera_windows: ^0.2.6+2
   uuid: ^4.5.1
-  intl: ^0.19.0
+  intl: ^0.20.2
   wakelock_plus: ^1.2.10
   sensors_plus: ^6.1.1
   super_cupertino_navigation_bar: ^2.1.2

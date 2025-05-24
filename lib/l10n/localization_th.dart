@@ -12,7 +12,8 @@ class LocalizationTh extends Localization {
   String get product_name => 'เครื่องนับ';
 
   @override
-  String get product_desc => 'ใช้คอมพิวเตอร์วิชั่นและเอไอเพื่อนับคน ยานพาหนะ สัตว์เลี้ยง และอื่นๆ';
+  String get product_desc =>
+      'ใช้คอมพิวเตอร์วิชั่นและเอไอเพื่อนับคน ยานพาหนะ สัตว์เลี้ยง และอื่นๆ';
 
   @override
   String get product_copyright => 'ลิขสิทธิ์ © 2025';
@@ -33,13 +34,15 @@ class LocalizationTh extends Localization {
   String get video_sources_camera_not_found_title => 'ไม่พบกล้อง';
 
   @override
-  String get video_sources_camera_not_found_message => 'ต้องอนุญาตการเข้าถึงกล้องเพื่อใช้งาน';
+  String get video_sources_camera_not_found_message =>
+      'ต้องอนุญาตการเข้าถึงกล้องเพื่อใช้งาน';
 
   @override
   String get video_sources_webcam_not_found_title => 'ไม่พบเว็บแคม';
 
   @override
-  String get video_sources_webcam_not_found_message => 'กรุณาตรวจสอบสิทธิ์แอปและการเชื่อมต่อเว็บแคม';
+  String get video_sources_webcam_not_found_message =>
+      'กรุณาตรวจสอบสิทธิ์แอปและการเชื่อมต่อเว็บแคม';
 
   @override
   String get wizard_screen_desc => 'สร้างโปรเจกต์ใหม่ด้านล่างเพื่อเริ่มการนับ';
@@ -54,7 +57,8 @@ class LocalizationTh extends Localization {
   String get wizard_screen_about => 'เกี่ยวกับ';
 
   @override
-  String get wizard_screen_open_projects_tip => 'โปรเจกต์ทั้งหมดจะถูกบันทึกในเครื่องโดยอัตโนมัติ';
+  String get wizard_screen_open_projects_tip =>
+      'โปรเจกต์ทั้งหมดจะถูกบันทึกในเครื่องโดยอัตโนมัติ';
 
   @override
   String get wizard_screen_open_projects => 'เปิดโปรเจกต์ที่มีอยู่';
@@ -99,7 +103,8 @@ class LocalizationTh extends Localization {
   String get benchmark_screen_start_button => 'เริ่มการทดสอบ';
 
   @override
-  String get benchmark_screen_start_failed => 'เริ่มการทดสอบล้มเหลว รหัสข้อผิดพลาดคือ';
+  String get benchmark_screen_start_failed =>
+      'เริ่มการทดสอบล้มเหลว รหัสข้อผิดพลาดคือ';
 
   @override
   String get benchmark_screen_models => 'โมเดลตรวจจับวัตถุ';
@@ -111,7 +116,8 @@ class LocalizationTh extends Localization {
   String get project_screen_exit_confirm_title => 'ยืนยันการออกจากโปรเจกต์';
 
   @override
-  String get project_screen_exit_confirm_content => 'การออกจากโปรเจกต์จะหยุดการนับ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?';
+  String get project_screen_exit_confirm_content =>
+      'การออกจากโปรเจกต์จะหยุดการนับ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?';
 
   @override
   String get project_screen_exit_button => 'ออก';
@@ -120,7 +126,8 @@ class LocalizationTh extends Localization {
   String get project_screen_add_video_button => 'เพิ่มแหล่งวิดีโอ';
 
   @override
-  String get project_screen_from_desc => 'เราเก็บบันทึกต่อเนื่อง 24 ชั่วโมง คุณจึงสามารถดูช่วงเวลาใดก็ได้ตามที่ต้องการ';
+  String get project_screen_from_desc =>
+      'เราเก็บบันทึกต่อเนื่อง 24 ชั่วโมง คุณจึงสามารถดูช่วงเวลาใดก็ได้ตามที่ต้องการ';
 
   @override
   String get project_screen_report_settings => 'การตั้งค่า';
@@ -135,7 +142,8 @@ class LocalizationTh extends Localization {
   String get filter_screen_error_title => 'ตัวกรอง';
 
   @override
-  String get filter_screen_error_content => 'เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้น';
+  String get filter_screen_error_content =>
+      'เวลาสิ้นสุดต้องมากกว่าเวลาเริ่มต้น';
 
   @override
   String get filter_screen_error_custom => 'กำหนดเอง';
@@ -150,7 +158,8 @@ class LocalizationTh extends Localization {
   String get settings_screen_title => 'การตั้งค่า';
 
   @override
-  String get settings_screen_desc => 'ตั้งค่าชื่อโปรเจกต์ พารามิเตอร์การตรวจจับ การล้างข้อมูลการนับ';
+  String get settings_screen_desc =>
+      'ตั้งค่าชื่อโปรเจกต์ พารามิเตอร์การตรวจจับ การล้างข้อมูลการนับ';
 
   @override
   String get settings_screen_project_id => 'รหัสโปรเจกต์';
@@ -159,7 +168,8 @@ class LocalizationTh extends Localization {
   String get settings_screen_project_name => 'ชื่อโปรเจกต์';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 ถ.สุขุมวิท หรือ สวนลุมพินี';
+  String get settings_screen_project_name_place_holder =>
+      '123 ถ.สุขุมวิท หรือ สวนลุมพินี';
 
   @override
   String get settings_screen_project_error => 'ชื่อโปรเจกต์ต้องไม่ว่างเปล่า';
@@ -168,19 +178,22 @@ class LocalizationTh extends Localization {
   String get settings_screen_random_count_button => 'เพิ่มการนับแบบสุ่ม';
 
   @override
-  String get settings_screen_reset_count_header => 'รีเซ็ตการนับทั้งหมดในโปรเจกต์นี้';
+  String get settings_screen_reset_count_header =>
+      'รีเซ็ตการนับทั้งหมดในโปรเจกต์นี้';
 
   @override
   String get settings_screen_reset_count_button => 'รีเซ็ตการนับ';
 
   @override
-  String get settings_screen_reset_count_content => 'คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการนับทั้งหมด?';
+  String get settings_screen_reset_count_content =>
+      'คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการนับทั้งหมด?';
 
   @override
   String get settings_screen_delete_header => 'ลบโปรเจกต์นี้';
 
   @override
-  String get settings_screen_delete_content => 'คุณแน่ใจหรือไม่ว่าต้องการลบโปรเจกต์นี้?';
+  String get settings_screen_delete_content =>
+      'คุณแน่ใจหรือไม่ว่าต้องการลบโปรเจกต์นี้?';
 
   @override
   String get settings_screen_delete_button => 'ลบ';
@@ -189,16 +202,19 @@ class LocalizationTh extends Localization {
   String get settings_screen_center_point_title => 'จุดศูนย์กลางบนเป้าหมาย';
 
   @override
-  String get settings_screen_center_point_desc => 'จุดศูนย์กลางช่วยระบุว่าเป้าหมายอยู่ในโซนหรือไม่';
+  String get settings_screen_center_point_desc =>
+      'จุดศูนย์กลางช่วยระบุว่าเป้าหมายอยู่ในโซนหรือไม่';
 
   @override
-  String get settings_screen_center_point_button => 'แสดงจุดศูนย์กลางบนเป้าหมาย';
+  String get settings_screen_center_point_button =>
+      'แสดงจุดศูนย์กลางบนเป้าหมาย';
 
   @override
   String get settings_screen_lost_target_title => 'เป้าหมายที่หายไป';
 
   @override
-  String get settings_screen_lost_target_desc => 'เมื่อการติดตามวัตถุเสียเป้าหมาย ตัวเลือกนี้จะทำให้มองเห็นได้ โดยค่าเริ่มต้น เป้าหมายที่หายไปจะไม่แสดง';
+  String get settings_screen_lost_target_desc =>
+      'เมื่อการติดตามวัตถุเสียเป้าหมาย ตัวเลือกนี้จะทำให้มองเห็นได้ โดยค่าเริ่มต้น เป้าหมายที่หายไปจะไม่แสดง';
 
   @override
   String get settings_screen_lost_target_button => 'แสดงเป้าหมายที่หายไป';
@@ -213,7 +229,8 @@ class LocalizationTh extends Localization {
   String get detection_screen_confidence => 'ความเชื่อมั่น';
 
   @override
-  String get detection_screen_confidence_desc => 'ความเชื่อมั่นมากกว่า #0 จะถือว่าเป็นการตรวจจับที่ถูกต้อง';
+  String get detection_screen_confidence_desc =>
+      'ความเชื่อมั่นมากกว่า #0 จะถือว่าเป็นการตรวจจับที่ถูกต้อง';
 
   @override
   String get detection_screen_low => 'ต่ำ';
@@ -225,31 +242,36 @@ class LocalizationTh extends Localization {
   String get detection_screen_nms => 'Non-Maximum Suppression';
 
   @override
-  String get detection_screen_nms_desc => '#0 ค่าเทรชโฮลด์ NMS ที่ต่ำกว่า (เช่น 0.3-0.4) จะลบกรอบที่ซ้อนทับกันอย่างเข้มงวดมากขึ้นและลดผลบวกปลอมแต่อาจพลาดคนที่ซ้อนทับกัน ค่าเทรชโฮลด์ที่สูงกว่า (0.7-0.9) จะเก็บกรอบไว้มากขึ้นซึ่งอาจเพิ่มผลบวกปลอมแต่ตรวจจับคนที่ซ้อนทับกันได้ดีกว่า';
+  String get detection_screen_nms_desc =>
+      '#0 ค่าเทรชโฮลด์ NMS ที่ต่ำกว่า (เช่น 0.3-0.4) จะลบกรอบที่ซ้อนทับกันอย่างเข้มงวดมากขึ้นและลดผลบวกปลอมแต่อาจพลาดคนที่ซ้อนทับกัน ค่าเทรชโฮลด์ที่สูงกว่า (0.7-0.9) จะเก็บกรอบไว้มากขึ้นซึ่งอาจเพิ่มผลบวกปลอมแต่ตรวจจับคนที่ซ้อนทับกันได้ดีกว่า';
 
   @override
   String get detection_screen_match => 'การจับคู่';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold คือพารามิเตอร์สำคัญในการติดตามวัตถุที่วัดระดับความสอดคล้องระหว่างกล่องตรวจจับต่างๆ ค่าที่ต่ำกว่าทำให้การเชื่อมโยงวัตถุง่ายขึ้นแต่เพิ่มความเสี่ยงของการเชื่อมโยงที่ผิด ค่าที่สูงกว่าจะเข้มงวดกับการเชื่อมโยงวัตถุมากขึ้นแต่อาจพลาดการจับคู่ที่ถูกต้องบางส่วน';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold คือพารามิเตอร์สำคัญในการติดตามวัตถุที่วัดระดับความสอดคล้องระหว่างกล่องตรวจจับต่างๆ ค่าที่ต่ำกว่าทำให้การเชื่อมโยงวัตถุง่ายขึ้นแต่เพิ่มความเสี่ยงของการเชื่อมโยงที่ผิด ค่าที่สูงกว่าจะเข้มงวดกับการเชื่อมโยงวัตถุมากขึ้นแต่อาจพลาดการจับคู่ที่ถูกต้องบางส่วน';
 
   @override
   String get detection_screen_lost => 'การสูญหาย';
 
   @override
-  String get detection_screen_lost_desc => 'กำหนดเวลาในการลบวัตถุที่สูญหายระหว่าง #0 ถึง #1 แบบไดนามิกตามความเร็วในการเคลื่อนที่';
+  String get detection_screen_lost_desc =>
+      'กำหนดเวลาในการลบวัตถุที่สูญหายระหว่าง #0 ถึง #1 แบบไดนามิกตามความเร็วในการเคลื่อนที่';
 
   @override
   String get detection_screen_consider_valid => 'พิจารณาว่าถูกต้องหลังจาก';
 
   @override
-  String get detection_screen_consider_valid_desc => 'การติดตามวัตถุจะถือว่าถูกต้องหลังจาก #0';
+  String get detection_screen_consider_valid_desc =>
+      'การติดตามวัตถุจะถือว่าถูกต้องหลังจาก #0';
 
   @override
   String get detection_screen_reset => 'รีเซ็ต';
 
   @override
-  String get detection_screen_reset_content => 'คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการตั้งค่าการตรวจจับ?';
+  String get detection_screen_reset_content =>
+      'คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการตั้งค่าการตรวจจับ?';
 
   @override
   String get url_screen_title => 'URL สตรีมสด';
@@ -261,7 +283,8 @@ class LocalizationTh extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream หรือ rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream หรือ rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'เพิ่มแหล่งวิดีโอ';
@@ -297,7 +320,8 @@ class LocalizationTh extends Localization {
   String get video_screen_name_empty => 'ชื่อวิดีโอต้องไม่ว่างเปล่า';
 
   @override
-  String get video_screen_desc => 'จัดการแหล่งวิดีโอ เพิ่มหรือแก้ไขโซนการตรวจจับ';
+  String get video_screen_desc =>
+      'จัดการแหล่งวิดีโอ เพิ่มหรือแก้ไขโซนการตรวจจับ';
 
   @override
   String get video_screen_video_name => 'ชื่อแหล่งวิดีโอ';
@@ -345,13 +369,15 @@ class LocalizationTh extends Localization {
   String get video_screen_delete_header => 'ลบแหล่งวิดีโอนี้';
 
   @override
-  String get video_screen_delete_content => 'คุณแน่ใจหรือไม่ว่าต้องการลบแหล่งวิดีโอนี้?';
+  String get video_screen_delete_content =>
+      'คุณแน่ใจหรือไม่ว่าต้องการลบแหล่งวิดีโอนี้?';
 
   @override
   String get video_screen_delete_button => 'ลบ';
 
   @override
-  String get video_screen_sources => 'กำหนดค่าแหล่งภาพ เป้าหมายการตรวจจับ และพารามิเตอร์โมเดล';
+  String get video_screen_sources =>
+      'กำหนดค่าแหล่งภาพ เป้าหมายการตรวจจับ และพารามิเตอร์โมเดล';
 
   @override
   String get video_screen_targets => 'เป้าหมายการตรวจจับ';
@@ -363,10 +389,12 @@ class LocalizationTh extends Localization {
   String get color_screen_title => 'เลือกสี';
 
   @override
-  String get zone_screen_desc => 'โซนการตรวจจับสามารถกำหนดประเภทของวัตถุที่จะตรวจจับและเลือกตัวนับที่จะแสดง เช่น ตรวจพบ เกิดขึ้น และเข้ามา';
+  String get zone_screen_desc =>
+      'โซนการตรวจจับสามารถกำหนดประเภทของวัตถุที่จะตรวจจับและเลือกตัวนับที่จะแสดง เช่น ตรวจพบ เกิดขึ้น และเข้ามา';
 
   @override
-  String get zone_screen_name_placeholder => 'ชื่อของโซน เช่น ทางเท้าหรือลานจอดรถ';
+  String get zone_screen_name_placeholder =>
+      'ชื่อของโซน เช่น ทางเท้าหรือลานจอดรถ';
 
   @override
   String get zone_screen_zone_color => 'สีโซน';
@@ -402,7 +430,8 @@ class LocalizationTh extends Localization {
   String get counter_screen_reentry_threshold => 'เกณฑ์การเข้าซ้ำ';
 
   @override
-  String get counter_screen_reentry_desc => 'วัตถุต้องเข้ามา #0 ครั้ง โดยมีเวลาคูลดาวน์ #1 วินาทีระหว่างการออกและเข้าซ้ำแต่ละครั้ง เพื่อทริกเกอร์การเข้าซ้ำ';
+  String get counter_screen_reentry_desc =>
+      'วัตถุต้องเข้ามา #0 ครั้ง โดยมีเวลาคูลดาวน์ #1 วินาทีระหว่างการออกและเข้าซ้ำแต่ละครั้ง เพื่อทริกเกอร์การเข้าซ้ำ';
 
   @override
   String get counter_screen_reentry_title => 'จำนวนการเข้าซ้ำ';
@@ -411,7 +440,8 @@ class LocalizationTh extends Localization {
   String get counter_screen_cooldown_threshold => 'เกณฑ์คูลดาวน์';
 
   @override
-  String get counter_screen_cooldown_desc => 'การเข้าซ้ำต้องมีเวลาคูลดาวน์ #0 วินาทีหลังจากออกจากโซนการตรวจจับ';
+  String get counter_screen_cooldown_desc =>
+      'การเข้าซ้ำต้องมีเวลาคูลดาวน์ #0 วินาทีหลังจากออกจากโซนการตรวจจับ';
 
   @override
   String get counter_screen_cooldown_time => 'เวลาคูลดาวน์';
@@ -423,7 +453,8 @@ class LocalizationTh extends Localization {
   String get counter_screen_stagnant_threshold => 'เกณฑ์การหยุดนิ่ง';
 
   @override
-  String get counter_screen_stagnant_desc => 'วัตถุที่อยู่นิ่งนานกว่า #0 วินาทีจะถือว่าหยุดนิ่ง';
+  String get counter_screen_stagnant_desc =>
+      'วัตถุที่อยู่นิ่งนานกว่า #0 วินาทีจะถือว่าหยุดนิ่ง';
 
   @override
   String get counter_screen_stagnant_consider => 'พิจารณาว่าหยุดนิ่ง';
@@ -444,19 +475,22 @@ class LocalizationTh extends Localization {
   String get counter_screen_enabled_error => 'ข้อผิดพลาด';
 
   @override
-  String get counter_screen_enabled_error_content => 'คุณต้องเปิดใช้งานตัวนับอื่นก่อน จึงจะสามารถปิดใช้งานตัวนับนี้ได้';
+  String get counter_screen_enabled_error_content =>
+      'คุณต้องเปิดใช้งานตัวนับอื่นก่อน จึงจะสามารถปิดใช้งานตัวนับนี้ได้';
 
   @override
   String get objects_screen_title => 'วัตถุ';
 
   @override
-  String get objects_screen_desc => 'เลือกเป้าหมายการตรวจจับ เช่น คน รถยนต์ รถบัส ฯลฯ';
+  String get objects_screen_desc =>
+      'เลือกเป้าหมายการตรวจจับ เช่น คน รถยนต์ รถบัส ฯลฯ';
 
   @override
   String get open_project_screen_title => 'เปิดโปรเจกต์';
 
   @override
-  String get open_project_screen_desc => 'เปิดโปรเจกต์ที่สร้างไว้ก่อนหน้า เก็บไว้เพียง 20 รายการล่าสุด';
+  String get open_project_screen_desc =>
+      'เปิดโปรเจกต์ที่สร้างไว้ก่อนหน้า เก็บไว้เพียง 20 รายการล่าสุด';
 
   @override
   String get open_project_screen_no_project => 'ไม่พบโปรเจกต์';
@@ -474,7 +508,8 @@ class LocalizationTh extends Localization {
   String get error_oops => 'อุ๊ปส์ เกิดข้อผิดพลาด';
 
   @override
-  String get error_content => 'เกิดข้อผิดพลาดที่ไม่คาดคิด คุณต้องการส่งรายงานทางอีเมลหรือไม่?';
+  String get error_content =>
+      'เกิดข้อผิดพลาดที่ไม่คาดคิด คุณต้องการส่งรายงานทางอีเมลหรือไม่?';
 
   @override
   String get error_report => 'อีเมลถึงเรา';
@@ -516,8 +551,10 @@ class LocalizationTh extends Localization {
   String get video_sources_camera_denied => 'ไม่อนุญาตให้เข้าถึงกล้อง';
 
   @override
-  String get video_sources_photos_denied_msg => 'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงรูปภาพ';
+  String get video_sources_photos_denied_msg =>
+      'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงรูปภาพ';
 
   @override
-  String get video_sources_camera_denied_msg => 'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงกล้อง';
+  String get video_sources_camera_denied_msg =>
+      'โปรดไปที่การตั้งค่าและอนุญาตให้แอปนี้เข้าถึงกล้อง';
 }

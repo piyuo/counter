@@ -12,7 +12,8 @@ class LocalizationEt extends Localization {
   String get product_name => 'Loendur';
 
   @override
-  String get product_desc => 'Arvutinägemise ja tehisintellekti abil inimeste, sõidukite, lemmikloomade ja muu loendamine.';
+  String get product_desc =>
+      'Arvutinägemise ja tehisintellekti abil inimeste, sõidukite, lemmikloomade ja muu loendamine.';
 
   @override
   String get product_copyright => 'Autoriõigus © 2025';
@@ -33,13 +34,15 @@ class LocalizationEt extends Localization {
   String get video_sources_camera_not_found_title => 'Kaamerat ei leitud';
 
   @override
-  String get video_sources_camera_not_found_message => 'Kaamera kasutamiseks on vaja kaamerapääsu lubada';
+  String get video_sources_camera_not_found_message =>
+      'Kaamera kasutamiseks on vaja kaamerapääsu lubada';
 
   @override
   String get video_sources_webcam_not_found_title => 'Veebikaamerat ei leitud';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Palun kontrollige rakenduse luba ja kaamera ühendust';
+  String get video_sources_webcam_not_found_message =>
+      'Palun kontrollige rakenduse luba ja kaamera ühendust';
 
   @override
   String get wizard_screen_desc => 'Loendamise alustamiseks looge uus projekt.';
@@ -54,7 +57,8 @@ class LocalizationEt extends Localization {
   String get wizard_screen_about => 'Teave';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Kõik projektid salvestatakse automaatselt kohalikult';
+  String get wizard_screen_open_projects_tip =>
+      'Kõik projektid salvestatakse automaatselt kohalikult';
 
   @override
   String get wizard_screen_open_projects => 'Ava olemasolev projekt';
@@ -99,7 +103,8 @@ class LocalizationEt extends Localization {
   String get benchmark_screen_start_button => 'Alusta jõudlustesti';
 
   @override
-  String get benchmark_screen_start_failed => 'Jõudlustesti käivitamine ebaõnnestus, veakood on';
+  String get benchmark_screen_start_failed =>
+      'Jõudlustesti käivitamine ebaõnnestus, veakood on';
 
   @override
   String get benchmark_screen_models => 'Objektituvastuse mudelid';
@@ -108,10 +113,12 @@ class LocalizationEt extends Localization {
   String get project_screen_title => 'Projekt';
 
   @override
-  String get project_screen_exit_confirm_title => 'Kinnita projektist väljumine';
+  String get project_screen_exit_confirm_title =>
+      'Kinnita projektist väljumine';
 
   @override
-  String get project_screen_exit_confirm_content => 'Projektist lahkumine peatab loendamise. Kas soovite kindlasti jätkata?';
+  String get project_screen_exit_confirm_content =>
+      'Projektist lahkumine peatab loendamise. Kas soovite kindlasti jätkata?';
 
   @override
   String get project_screen_exit_button => 'Välju';
@@ -120,7 +127,8 @@ class LocalizationEt extends Localization {
   String get project_screen_add_video_button => 'Lisa videoallikas';
 
   @override
-  String get project_screen_from_desc => 'Salvestame 24-tunnise liikuva ajalugu, et saaksite vaadata mistahes ajavahemikku.';
+  String get project_screen_from_desc =>
+      'Salvestame 24-tunnise liikuva ajalugu, et saaksite vaadata mistahes ajavahemikku.';
 
   @override
   String get project_screen_report_settings => 'Seaded';
@@ -135,7 +143,8 @@ class LocalizationEt extends Localization {
   String get filter_screen_error_title => 'Filter';
 
   @override
-  String get filter_screen_error_content => 'Lõppaeg peab olema suurem kui algusaeg';
+  String get filter_screen_error_content =>
+      'Lõppaeg peab olema suurem kui algusaeg';
 
   @override
   String get filter_screen_error_custom => 'Kohandatud';
@@ -150,7 +159,8 @@ class LocalizationEt extends Localization {
   String get settings_screen_title => 'Seaded';
 
   @override
-  String get settings_screen_desc => 'Määra projekti nimi, tuvastusparameetrid, loenduste nullimine.';
+  String get settings_screen_desc =>
+      'Määra projekti nimi, tuvastusparameetrid, loenduste nullimine.';
 
   @override
   String get settings_screen_project_id => 'Projekti ID';
@@ -159,7 +169,8 @@ class LocalizationEt extends Localization {
   String get settings_screen_project_name => 'Projekti nimi';
 
   @override
-  String get settings_screen_project_name_place_holder => 'Vabaduse tänav 123 või Kadrioru park';
+  String get settings_screen_project_name_place_holder =>
+      'Vabaduse tänav 123 või Kadrioru park';
 
   @override
   String get settings_screen_project_error => 'Projekti nimi ei saa olla tühi';
@@ -168,19 +179,22 @@ class LocalizationEt extends Localization {
   String get settings_screen_random_count_button => 'Lisa juhuslikud loendused';
 
   @override
-  String get settings_screen_reset_count_header => 'Lähtesta kõik loendused selles projektis';
+  String get settings_screen_reset_count_header =>
+      'Lähtesta kõik loendused selles projektis';
 
   @override
   String get settings_screen_reset_count_button => 'Lähtesta loendused';
 
   @override
-  String get settings_screen_reset_count_content => 'Kas olete kindel, et soovite kõik loendused lähtestada?';
+  String get settings_screen_reset_count_content =>
+      'Kas olete kindel, et soovite kõik loendused lähtestada?';
 
   @override
   String get settings_screen_delete_header => 'Kustuta see projekt';
 
   @override
-  String get settings_screen_delete_content => 'Kas olete kindel, et soovite selle projekti kustutada?';
+  String get settings_screen_delete_content =>
+      'Kas olete kindel, et soovite selle projekti kustutada?';
 
   @override
   String get settings_screen_delete_button => 'Kustuta';
@@ -189,7 +203,8 @@ class LocalizationEt extends Localization {
   String get settings_screen_center_point_title => 'Keskpunkt objektil';
 
   @override
-  String get settings_screen_center_point_desc => 'Keskpunkt aitab määrata, kas objekt on tabaamisalas.';
+  String get settings_screen_center_point_desc =>
+      'Keskpunkt aitab määrata, kas objekt on tabaamisalas.';
 
   @override
   String get settings_screen_center_point_button => 'Näita objektil keskpunkti';
@@ -198,7 +213,8 @@ class LocalizationEt extends Localization {
   String get settings_screen_lost_target_title => 'Kadunud objekt';
 
   @override
-  String get settings_screen_lost_target_desc => 'Kui objekti jälgimine kaotab objekti, siis see valik muudab selle nähtavaks. Vaikimisi kadunud objekte ei näidata.';
+  String get settings_screen_lost_target_desc =>
+      'Kui objekti jälgimine kaotab objekti, siis see valik muudab selle nähtavaks. Vaikimisi kadunud objekte ei näidata.';
 
   @override
   String get settings_screen_lost_target_button => 'Näita kadunud objekti';
@@ -213,7 +229,8 @@ class LocalizationEt extends Localization {
   String get detection_screen_confidence => 'Kindlus';
 
   @override
-  String get detection_screen_confidence_desc => 'kindlus üle #0 loetakse kehtivaks tuvastuseks';
+  String get detection_screen_confidence_desc =>
+      'kindlus üle #0 loetakse kehtivaks tuvastuseks';
 
   @override
   String get detection_screen_low => 'Madal';
@@ -225,31 +242,36 @@ class LocalizationEt extends Localization {
   String get detection_screen_nms => 'Mitte-maksimumide summutamine';
 
   @override
-  String get detection_screen_nms_desc => '#0 Madalam NMS lävi (nt 0.3-0.4) eemaldab kattuvaid kaste rangemalt ja vähendab valepositiivseid tulemusi kuid võib jätta märkamata kattuvad inimesed. Kõrgem lävi (0.7-0.9) säilitab rohkem kaste mis võib suurendada valepositiivseid tulemusi kuid tuvastab kattuvaid inimesi paremini.';
+  String get detection_screen_nms_desc =>
+      '#0 Madalam NMS lävi (nt 0.3-0.4) eemaldab kattuvaid kaste rangemalt ja vähendab valepositiivseid tulemusi kuid võib jätta märkamata kattuvad inimesed. Kõrgem lävi (0.7-0.9) säilitab rohkem kaste mis võib suurendada valepositiivseid tulemusi kuid tuvastab kattuvaid inimesi paremini.';
 
   @override
   String get detection_screen_match => 'Vaste';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold on objekti jälgimisel oluline parameeter mis mõõdab erinevate tuvastuskastide vahelise sobivuse taset. Madalam väärtus lihtsustab objektide seostamist kuid suurendab valede ühenduste riski. Kõrgem väärtus on objektide seostamisel rangem kuid võib mõned tõelised vastavused maha jätta.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold on objekti jälgimisel oluline parameeter mis mõõdab erinevate tuvastuskastide vahelise sobivuse taset. Madalam väärtus lihtsustab objektide seostamist kuid suurendab valede ühenduste riski. Kõrgem väärtus on objektide seostamisel rangem kuid võib mõned tõelised vastavused maha jätta.';
 
   @override
   String get detection_screen_lost => 'Kadunud';
 
   @override
-  String get detection_screen_lost_desc => 'Määrab dünaamiliselt kadunud objektide eemaldamise aja vahemikus #0 kuni #1 liikumiskiiruse põhjal';
+  String get detection_screen_lost_desc =>
+      'Määrab dünaamiliselt kadunud objektide eemaldamise aja vahemikus #0 kuni #1 liikumiskiiruse põhjal';
 
   @override
   String get detection_screen_consider_valid => 'Loe kehtivaks pärast';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Jälgitavat objekti loetakse kehtivaks pärast #0';
+  String get detection_screen_consider_valid_desc =>
+      'Jälgitavat objekti loetakse kehtivaks pärast #0';
 
   @override
   String get detection_screen_reset => 'Lähtesta';
 
   @override
-  String get detection_screen_reset_content => 'Kas olete kindel, et soovite tuvastusseaded lähtestada?';
+  String get detection_screen_reset_content =>
+      'Kas olete kindel, et soovite tuvastusseaded lähtestada?';
 
   @override
   String get url_screen_title => 'Otseülekande URL';
@@ -261,7 +283,8 @@ class LocalizationEt extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://näide.com/voog või rtsp://näide.com/voog';
+  String get url_screen_url_placeholder =>
+      'http://näide.com/voog või rtsp://näide.com/voog';
 
   @override
   String get add_video_screen_title => 'Lisa videoallikas';
@@ -297,13 +320,15 @@ class LocalizationEt extends Localization {
   String get video_screen_name_empty => 'Video nimi ei saa olla tühi.';
 
   @override
-  String get video_screen_desc => 'Halda videoallikaid, lisa või muuda tuvastusalasid.';
+  String get video_screen_desc =>
+      'Halda videoallikaid, lisa või muuda tuvastusalasid.';
 
   @override
   String get video_screen_video_name => 'Videoallika nimi';
 
   @override
-  String get video_screen_edit_placeholder => 'Esiukse kaamera või Parkla kaamera';
+  String get video_screen_edit_placeholder =>
+      'Esiukse kaamera või Parkla kaamera';
 
   @override
   String get video_screen_change_file => 'Muuda faili';
@@ -315,7 +340,8 @@ class LocalizationEt extends Localization {
   String get video_screen_zones => 'Tuvastusalad';
 
   @override
-  String get video_screen_zones_desc => 'Kasuta lohistamist alade kohandamiseks';
+  String get video_screen_zones_desc =>
+      'Kasuta lohistamist alade kohandamiseks';
 
   @override
   String get video_screen_tools => 'Tööriistad';
@@ -345,13 +371,15 @@ class LocalizationEt extends Localization {
   String get video_screen_delete_header => 'Kustuta see videoallikas';
 
   @override
-  String get video_screen_delete_content => 'Kas olete kindel, et soovite selle videoallika kustutada?';
+  String get video_screen_delete_content =>
+      'Kas olete kindel, et soovite selle videoallika kustutada?';
 
   @override
   String get video_screen_delete_button => 'Kustuta';
 
   @override
-  String get video_screen_sources => 'Seadista pildialllikas, tuvastatavad objektid ja mudeli parameetrid.';
+  String get video_screen_sources =>
+      'Seadista pildialllikas, tuvastatavad objektid ja mudeli parameetrid.';
 
   @override
   String get video_screen_targets => 'Tuvastatavad objektid';
@@ -363,10 +391,12 @@ class LocalizationEt extends Localization {
   String get color_screen_title => 'Vali värv';
 
   @override
-  String get zone_screen_desc => 'Tuvastusalale saab määrata tuvastatavad objektitüübid ja valida, milliseid loendustulemusi kuvada, näiteks tuvastatud, ilmunud ja sisenenud.';
+  String get zone_screen_desc =>
+      'Tuvastusalale saab määrata tuvastatavad objektitüübid ja valida, milliseid loendustulemusi kuvada, näiteks tuvastatud, ilmunud ja sisenenud.';
 
   @override
-  String get zone_screen_name_placeholder => 'Ala nimi, nagu Kõnnitee või Parkla';
+  String get zone_screen_name_placeholder =>
+      'Ala nimi, nagu Kõnnitee või Parkla';
 
   @override
   String get zone_screen_zone_color => 'Ala värv';
@@ -378,7 +408,8 @@ class LocalizationEt extends Localization {
   String get zone_screen_delete_header => 'Kustuta see ala';
 
   @override
-  String get zone_screen_delete_content => 'Kas olete kindel, et soovite selle ala kustutada?';
+  String get zone_screen_delete_content =>
+      'Kas olete kindel, et soovite selle ala kustutada?';
 
   @override
   String get zone_screen_delete_button => 'Kustuta';
@@ -402,7 +433,8 @@ class LocalizationEt extends Localization {
   String get counter_screen_reentry_threshold => 'Taassisenemise lävi';
 
   @override
-  String get counter_screen_reentry_desc => 'Objektid peavad sisenema #0 korda, iga väljumise ja taassisenemise vahel peab olema #1 sekundi pikkune jahutusaeg, et käivitada taassisenemine';
+  String get counter_screen_reentry_desc =>
+      'Objektid peavad sisenema #0 korda, iga väljumise ja taassisenemise vahel peab olema #1 sekundi pikkune jahutusaeg, et käivitada taassisenemine';
 
   @override
   String get counter_screen_reentry_title => 'Taassisenemise loendus';
@@ -411,7 +443,8 @@ class LocalizationEt extends Localization {
   String get counter_screen_cooldown_threshold => 'Jahutusaja lävi';
 
   @override
-  String get counter_screen_cooldown_desc => 'Taassisenemine nõuab #0 sekundi pikkust jahutusaega pärast tuvastusalalt lahkumist';
+  String get counter_screen_cooldown_desc =>
+      'Taassisenemine nõuab #0 sekundi pikkust jahutusaega pärast tuvastusalalt lahkumist';
 
   @override
   String get counter_screen_cooldown_time => 'Jahutusaeg';
@@ -423,7 +456,8 @@ class LocalizationEt extends Localization {
   String get counter_screen_stagnant_threshold => 'Paigalseisu lävi';
 
   @override
-  String get counter_screen_stagnant_desc => 'Objekte, mis jäävad paigale rohkem kui #0 sekundiks, loetakse paigalseisvaks';
+  String get counter_screen_stagnant_desc =>
+      'Objekte, mis jäävad paigale rohkem kui #0 sekundiks, loetakse paigalseisvaks';
 
   @override
   String get counter_screen_stagnant_consider => 'Loe paigalseisvaks';
@@ -444,19 +478,22 @@ class LocalizationEt extends Localization {
   String get counter_screen_enabled_error => 'Viga';
 
   @override
-  String get counter_screen_enabled_error_content => 'Peate esmalt lubama teise loenduri, alles siis saate selle loenduri keelata';
+  String get counter_screen_enabled_error_content =>
+      'Peate esmalt lubama teise loenduri, alles siis saate selle loenduri keelata';
 
   @override
   String get objects_screen_title => 'Objektid';
 
   @override
-  String get objects_screen_desc => 'Valige tuvastatavad objektid nagu inimene, auto, buss jne.';
+  String get objects_screen_desc =>
+      'Valige tuvastatavad objektid nagu inimene, auto, buss jne.';
 
   @override
   String get open_project_screen_title => 'Ava projekt';
 
   @override
-  String get open_project_screen_desc => 'Ava varem loodud projektid, säilitatakse ainult 20 viimast.';
+  String get open_project_screen_desc =>
+      'Ava varem loodud projektid, säilitatakse ainult 20 viimast.';
 
   @override
   String get open_project_screen_no_project => 'Projekte ei leitud.';
@@ -474,7 +511,8 @@ class LocalizationEt extends Localization {
   String get error_oops => 'Ups, midagi läks valesti';
 
   @override
-  String get error_content => 'Ilmnes ootamatu viga. Kas soovite saata e-kirja aruande?';
+  String get error_content =>
+      'Ilmnes ootamatu viga. Kas soovite saata e-kirja aruande?';
 
   @override
   String get error_report => 'Kirjuta meile';
@@ -516,8 +554,10 @@ class LocalizationEt extends Localization {
   String get video_sources_camera_denied => 'Juurdepääs kaamerale keelatud';
 
   @override
-  String get video_sources_photos_denied_msg => 'Mine seadetesse ja luba sellele rakendusele juurdepääs fotodele.';
+  String get video_sources_photos_denied_msg =>
+      'Mine seadetesse ja luba sellele rakendusele juurdepääs fotodele.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Mine seadetesse ja luba sellele rakendusele juurdepääs kaamerale.';
+  String get video_sources_camera_denied_msg =>
+      'Mine seadetesse ja luba sellele rakendusele juurdepääs kaamerale.';
 }

@@ -12,7 +12,8 @@ class LocalizationKk extends Localization {
   String get product_name => 'Санауыш';
 
   @override
-  String get product_desc => 'Компьютерлік көру және жасанды интеллект арқылы адамдарды, көліктерді, үй жануарларын және т.б. санау.';
+  String get product_desc =>
+      'Компьютерлік көру және жасанды интеллект арқылы адамдарды, көліктерді, үй жануарларын және т.б. санау.';
 
   @override
   String get product_copyright => 'Барлық құқықтар қорғалған © 2025';
@@ -33,16 +34,19 @@ class LocalizationKk extends Localization {
   String get video_sources_camera_not_found_title => 'Камера табылмады';
 
   @override
-  String get video_sources_camera_not_found_message => 'Камераны пайдалану үшін камера рұқсатын беру қажет';
+  String get video_sources_camera_not_found_message =>
+      'Камераны пайдалану үшін камера рұқсатын беру қажет';
 
   @override
   String get video_sources_webcam_not_found_title => 'Веб-камера табылмады';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Қолданбаның рұқсатын және веб-камераны қосуды тексеріңіз';
+  String get video_sources_webcam_not_found_message =>
+      'Қолданбаның рұқсатын және веб-камераны қосуды тексеріңіз';
 
   @override
-  String get wizard_screen_desc => 'Санауды бастау үшін төменде жаңа жоба жасаңыз.';
+  String get wizard_screen_desc =>
+      'Санауды бастау үшін төменде жаңа жоба жасаңыз.';
 
   @override
   String get wizard_screen_new_project_from => 'Жаңа жоба құру';
@@ -54,7 +58,8 @@ class LocalizationKk extends Localization {
   String get wizard_screen_about => 'Туралы';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Барлық жобалар жергілікті құрылғыда автоматты түрде сақталады';
+  String get wizard_screen_open_projects_tip =>
+      'Барлық жобалар жергілікті құрылғыда автоматты түрде сақталады';
 
   @override
   String get wizard_screen_open_projects => 'Бар жобаны ашу';
@@ -99,7 +104,8 @@ class LocalizationKk extends Localization {
   String get benchmark_screen_start_button => 'Бенчмаркты бастау';
 
   @override
-  String get benchmark_screen_start_failed => 'Бенчмаркты бастау сәтсіз аяқталды, қате коды';
+  String get benchmark_screen_start_failed =>
+      'Бенчмаркты бастау сәтсіз аяқталды, қате коды';
 
   @override
   String get benchmark_screen_models => 'Объектілерді анықтау модельдері';
@@ -111,7 +117,8 @@ class LocalizationKk extends Localization {
   String get project_screen_exit_confirm_title => 'Жобадан шығуды растау';
 
   @override
-  String get project_screen_exit_confirm_content => 'Жобадан шығу санауды тоқтатады. Жалғастырғыңыз келе ме?';
+  String get project_screen_exit_confirm_content =>
+      'Жобадан шығу санауды тоқтатады. Жалғастырғыңыз келе ме?';
 
   @override
   String get project_screen_exit_button => 'Шығу';
@@ -120,7 +127,8 @@ class LocalizationKk extends Localization {
   String get project_screen_add_video_button => 'Бейне көзін қосу';
 
   @override
-  String get project_screen_from_desc => 'Біз 24 сағаттық ақпаратты сақтаймыз, сондықтан сіз кез келген уақыт аралығын көре аласыз.';
+  String get project_screen_from_desc =>
+      'Біз 24 сағаттық ақпаратты сақтаймыз, сондықтан сіз кез келген уақыт аралығын көре аласыз.';
 
   @override
   String get project_screen_report_settings => 'Параметрлер';
@@ -135,7 +143,8 @@ class LocalizationKk extends Localization {
   String get filter_screen_error_title => 'Сүзгі';
 
   @override
-  String get filter_screen_error_content => 'Аяқталу уақыты басталу уақытынан үлкен болуы керек';
+  String get filter_screen_error_content =>
+      'Аяқталу уақыты басталу уақытынан үлкен болуы керек';
 
   @override
   String get filter_screen_error_custom => 'Арнайы';
@@ -150,7 +159,8 @@ class LocalizationKk extends Localization {
   String get settings_screen_title => 'Параметрлер';
 
   @override
-  String get settings_screen_desc => 'Жоба атауын, анықтау параметрлерін, санауды тазалауды орнатыңыз.';
+  String get settings_screen_desc =>
+      'Жоба атауын, анықтау параметрлерін, санауды тазалауды орнатыңыз.';
 
   @override
   String get settings_screen_project_id => 'Жоба идентификаторы';
@@ -159,7 +169,8 @@ class LocalizationKk extends Localization {
   String get settings_screen_project_name => 'Жоба атауы';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 Абай даңғылы немесе Орталық саябақ';
+  String get settings_screen_project_name_place_holder =>
+      '123 Абай даңғылы немесе Орталық саябақ';
 
   @override
   String get settings_screen_project_error => 'Жоба атауы бос болмауы керек';
@@ -168,13 +179,15 @@ class LocalizationKk extends Localization {
   String get settings_screen_random_count_button => 'Кездейсоқ санау қосу';
 
   @override
-  String get settings_screen_reset_count_header => 'Осы жобадағы барлық сандарды қалпына келтіру';
+  String get settings_screen_reset_count_header =>
+      'Осы жобадағы барлық сандарды қалпына келтіру';
 
   @override
   String get settings_screen_reset_count_button => 'Сандарды қалпына келтіру';
 
   @override
-  String get settings_screen_reset_count_content => 'Барлық сандарды қалпына келтіргіңіз келе ме?';
+  String get settings_screen_reset_count_content =>
+      'Барлық сандарды қалпына келтіргіңіз келе ме?';
 
   @override
   String get settings_screen_delete_header => 'Осы жобаны жою';
@@ -189,16 +202,19 @@ class LocalizationKk extends Localization {
   String get settings_screen_center_point_title => 'Нысанның орталық нүктесі';
 
   @override
-  String get settings_screen_center_point_desc => 'Орталық нүкте нысанның қабылдану аймағында екенін анықтауға көмектеседі.';
+  String get settings_screen_center_point_desc =>
+      'Орталық нүкте нысанның қабылдану аймағында екенін анықтауға көмектеседі.';
 
   @override
-  String get settings_screen_center_point_button => 'Нысан орталық нүктесін көрсету';
+  String get settings_screen_center_point_button =>
+      'Нысан орталық нүктесін көрсету';
 
   @override
   String get settings_screen_lost_target_title => 'Жоғалған нысан';
 
   @override
-  String get settings_screen_lost_target_desc => 'Объектті бақылау нысанды жоғалтқан кезде, бұл опция оны көрінетін етеді. Әдепкі бойынша, жоғалған нысандар көрсетілмейді.';
+  String get settings_screen_lost_target_desc =>
+      'Объектті бақылау нысанды жоғалтқан кезде, бұл опция оны көрінетін етеді. Әдепкі бойынша, жоғалған нысандар көрсетілмейді.';
 
   @override
   String get settings_screen_lost_target_button => 'Жоғалған нысанды көрсету';
@@ -213,7 +229,8 @@ class LocalizationKk extends Localization {
   String get detection_screen_confidence => 'Сенімділік';
 
   @override
-  String get detection_screen_confidence_desc => '#0 жоғары сенімділік жарамды анықтау ретінде қарастырылады';
+  String get detection_screen_confidence_desc =>
+      '#0 жоғары сенімділік жарамды анықтау ретінде қарастырылады';
 
   @override
   String get detection_screen_low => 'Төмен';
@@ -225,31 +242,36 @@ class LocalizationKk extends Localization {
   String get detection_screen_nms => 'Максимум емес басу';
 
   @override
-  String get detection_screen_nms_desc => '#0 Төмен NMS шегі (мысалы 0.3-0.4) қабаттасқан жақтауларды қатаң жояды және жалған оң нәтижелерді азайтады бірақ қабаттасқан адамдарды жіберіп алуы мүмкін. Жоғары шек (0.7-0.9) көбірек жақтауларды сақтайды бұл жалған оң нәтижелерді арттыруы мүмкін бірақ қабаттасқан адамдарды жақсырақ анықтайды.';
+  String get detection_screen_nms_desc =>
+      '#0 Төмен NMS шегі (мысалы 0.3-0.4) қабаттасқан жақтауларды қатаң жояды және жалған оң нәтижелерді азайтады бірақ қабаттасқан адамдарды жіберіп алуы мүмкін. Жоғары шек (0.7-0.9) көбірек жақтауларды сақтайды бұл жалған оң нәтижелерді арттыруы мүмкін бірақ қабаттасқан адамдарды жақсырақ анықтайды.';
 
   @override
   String get detection_screen_match => 'Сәйкестік';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold объектілерді бақылаудағы негізгі параметр ол әр түрлі анықтау жақтаулары арасындағы сәйкестік дәрежесін өлшейді. Төмен мән объектілерді байланыстыруды жеңілдетеді бірақ қате байланыстар қаупін арттырады. Жоғары мән объект байланыстарына қатаң болады бірақ кейбір шынайы сәйкестіктерді жіберіп алуы мүмкін.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold объектілерді бақылаудағы негізгі параметр ол әр түрлі анықтау жақтаулары арасындағы сәйкестік дәрежесін өлшейді. Төмен мән объектілерді байланыстыруды жеңілдетеді бірақ қате байланыстар қаупін арттырады. Жоғары мән объект байланыстарына қатаң болады бірақ кейбір шынайы сәйкестіктерді жіберіп алуы мүмкін.';
 
   @override
   String get detection_screen_lost => 'Жоғалту';
 
   @override
-  String get detection_screen_lost_desc => 'Қозғалыс жылдамдығына байланысты #0 мен #1 арасында жоғалған нысандарды жою уақытын динамикалық түрде анықтайды';
+  String get detection_screen_lost_desc =>
+      'Қозғалыс жылдамдығына байланысты #0 мен #1 арасында жоғалған нысандарды жою уақытын динамикалық түрде анықтайды';
 
   @override
   String get detection_screen_consider_valid => 'Жарамды деп санау';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Бақылау объектісі #0 кейін жарамды деп саналады';
+  String get detection_screen_consider_valid_desc =>
+      'Бақылау объектісі #0 кейін жарамды деп саналады';
 
   @override
   String get detection_screen_reset => 'Қалпына келтіру';
 
   @override
-  String get detection_screen_reset_content => 'Анықтау параметрлерін қалпына келтіргіңіз келе ме?';
+  String get detection_screen_reset_content =>
+      'Анықтау параметрлерін қалпына келтіргіңіз келе ме?';
 
   @override
   String get url_screen_title => 'Тікелей эфир URL';
@@ -261,7 +283,8 @@ class LocalizationKk extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream немесе rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream немесе rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Бейне көзін қосу';
@@ -297,13 +320,15 @@ class LocalizationKk extends Localization {
   String get video_screen_name_empty => 'Бейне атауы бос болмауы керек.';
 
   @override
-  String get video_screen_desc => 'Бейне көздерін басқару, анықтау аймақтарын қосу немесе өзгерту.';
+  String get video_screen_desc =>
+      'Бейне көздерін басқару, анықтау аймақтарын қосу немесе өзгерту.';
 
   @override
   String get video_screen_video_name => 'Бейне көзінің атауы';
 
   @override
-  String get video_screen_edit_placeholder => 'Алдыңғы есік камерасы немесе Тұрақ камерасы';
+  String get video_screen_edit_placeholder =>
+      'Алдыңғы есік камерасы немесе Тұрақ камерасы';
 
   @override
   String get video_screen_change_file => 'Файлды өзгерту';
@@ -315,7 +340,8 @@ class LocalizationKk extends Localization {
   String get video_screen_zones => 'Анықтау аймақтары';
 
   @override
-  String get video_screen_zones_desc => 'Аймақтарды реттеу үшін сүйреу және тастауды пайдаланыңыз';
+  String get video_screen_zones_desc =>
+      'Аймақтарды реттеу үшін сүйреу және тастауды пайдаланыңыз';
 
   @override
   String get video_screen_tools => 'Құралдар';
@@ -351,7 +377,8 @@ class LocalizationKk extends Localization {
   String get video_screen_delete_button => 'Жою';
 
   @override
-  String get video_screen_sources => 'Кескін көзін, анықтау нысандарын және модель параметрлерін конфигурациялау.';
+  String get video_screen_sources =>
+      'Кескін көзін, анықтау нысандарын және модель параметрлерін конфигурациялау.';
 
   @override
   String get video_screen_targets => 'Анықтау нысандары';
@@ -363,10 +390,12 @@ class LocalizationKk extends Localization {
   String get color_screen_title => 'Түс таңдау';
 
   @override
-  String get zone_screen_desc => 'Анықтау аймағы анықталатын объект түрлерін орнатуға және Анықталған, Пайда болған және Кірген сияқты қандай санағыштарды көрсетуді таңдауға мүмкіндік береді.';
+  String get zone_screen_desc =>
+      'Анықтау аймағы анықталатын объект түрлерін орнатуға және Анықталған, Пайда болған және Кірген сияқты қандай санағыштарды көрсетуді таңдауға мүмкіндік береді.';
 
   @override
-  String get zone_screen_name_placeholder => 'Аймақ атауы, мысалы Жаяу жүргінші жолы немесе Тұрақ';
+  String get zone_screen_name_placeholder =>
+      'Аймақ атауы, мысалы Жаяу жүргінші жолы немесе Тұрақ';
 
   @override
   String get zone_screen_zone_color => 'Аймақ түсі';
@@ -402,7 +431,8 @@ class LocalizationKk extends Localization {
   String get counter_screen_reentry_threshold => 'Қайта кіру шегі';
 
   @override
-  String get counter_screen_reentry_desc => 'Объектілер қайта кіруді іске қосу үшін #0 рет кіруі керек, әрбір шығу мен қайта кіру арасында #1 секундтық салқындату уақыты бар';
+  String get counter_screen_reentry_desc =>
+      'Объектілер қайта кіруді іске қосу үшін #0 рет кіруі керек, әрбір шығу мен қайта кіру арасында #1 секундтық салқындату уақыты бар';
 
   @override
   String get counter_screen_reentry_title => 'Қайта кіру саны';
@@ -411,7 +441,8 @@ class LocalizationKk extends Localization {
   String get counter_screen_cooldown_threshold => 'Салқындату шегі';
 
   @override
-  String get counter_screen_cooldown_desc => 'Қайта кіру үшін анықтау аймағынан шыққаннан кейін #0 секундтық салқындату қажет';
+  String get counter_screen_cooldown_desc =>
+      'Қайта кіру үшін анықтау аймағынан шыққаннан кейін #0 секундтық салқындату қажет';
 
   @override
   String get counter_screen_cooldown_time => 'Салқындату уақыты';
@@ -423,7 +454,8 @@ class LocalizationKk extends Localization {
   String get counter_screen_stagnant_threshold => 'Тоқтап қалу шегі';
 
   @override
-  String get counter_screen_stagnant_desc => '#0 секундтан артық қозғалмай тұрған объектілер тоқтап қалған деп саналады';
+  String get counter_screen_stagnant_desc =>
+      '#0 секундтан артық қозғалмай тұрған объектілер тоқтап қалған деп саналады';
 
   @override
   String get counter_screen_stagnant_consider => 'Тоқтап қалған деп санау';
@@ -444,19 +476,22 @@ class LocalizationKk extends Localization {
   String get counter_screen_enabled_error => 'Қате';
 
   @override
-  String get counter_screen_enabled_error_content => 'Алдымен басқа санағышты қосу керек, содан кейін ғана бұл санағышты өшіре аласыз';
+  String get counter_screen_enabled_error_content =>
+      'Алдымен басқа санағышты қосу керек, содан кейін ғана бұл санағышты өшіре аласыз';
 
   @override
   String get objects_screen_title => 'Объектілер';
 
   @override
-  String get objects_screen_desc => 'Адам, көлік, автобус т.б. сияқты анықтау нысандарын таңдаңыз.';
+  String get objects_screen_desc =>
+      'Адам, көлік, автобус т.б. сияқты анықтау нысандарын таңдаңыз.';
 
   @override
   String get open_project_screen_title => 'Жобаны ашу';
 
   @override
-  String get open_project_screen_desc => 'Бұрын жасалған жобаларды ашыңыз, тек соңғы 20 жоба сақталады.';
+  String get open_project_screen_desc =>
+      'Бұрын жасалған жобаларды ашыңыз, тек соңғы 20 жоба сақталады.';
 
   @override
   String get open_project_screen_no_project => 'Жоба табылмады.';
@@ -474,7 +509,8 @@ class LocalizationKk extends Localization {
   String get error_oops => 'Қап, бірдеңе дұрыс жұмыс істемеді';
 
   @override
-  String get error_content => 'Күтпеген қате орын алды. Электрондық пошта есебін жібергіңіз келе ме?';
+  String get error_content =>
+      'Күтпеген қате орын алды. Электрондық пошта есебін жібергіңіз келе ме?';
 
   @override
   String get error_report => 'Бізге хат жазу';
@@ -507,7 +543,8 @@ class LocalizationKk extends Localization {
   String get zone_screen_zone_show_summary => 'Экранда қорытынды көрсету';
 
   @override
-  String get video_sources_photos_denied => 'Фотосуреттерге қол жеткізу мүмкін емес';
+  String get video_sources_photos_denied =>
+      'Фотосуреттерге қол жеткізу мүмкін емес';
 
   @override
   String get video_sources_photos_goto_settings => 'Параметрлерге өту';
@@ -516,8 +553,10 @@ class LocalizationKk extends Localization {
   String get video_sources_camera_denied => 'Камераға қол жеткізу мүмкін емес';
 
   @override
-  String get video_sources_photos_denied_msg => 'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.';
+  String get video_sources_photos_denied_msg =>
+      'Параметрлерге өтіп бұл қолданбаға фотосуреттерге қол жеткізу рұқсатын беріңіз.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Параметрлерге өтіп бұл қолданбаға камераға қол жеткізу рұқсатын беріңіз.';
+  String get video_sources_camera_denied_msg =>
+      'Параметрлерге өтіп бұл қолданбаға камераға қол жеткізу рұқсатын беріңіз.';
 }

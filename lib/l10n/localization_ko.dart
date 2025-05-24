@@ -33,7 +33,8 @@ class LocalizationKo extends Localization {
   String get video_sources_camera_not_found_title => '카메라를 찾을 수 없음';
 
   @override
-  String get video_sources_camera_not_found_message => '카메라를 사용하려면 카메라 권한이 필요합니다';
+  String get video_sources_camera_not_found_message =>
+      '카메라를 사용하려면 카메라 권한이 필요합니다';
 
   @override
   String get video_sources_webcam_not_found_title => '웹캠을 찾을 수 없음';
@@ -111,7 +112,8 @@ class LocalizationKo extends Localization {
   String get project_screen_exit_confirm_title => '프로젝트 종료 확인';
 
   @override
-  String get project_screen_exit_confirm_content => '프로젝트를 나가면 카운팅이 중지됩니다. 계속하시겠습니까?';
+  String get project_screen_exit_confirm_content =>
+      '프로젝트를 나가면 카운팅이 중지됩니다. 계속하시겠습니까?';
 
   @override
   String get project_screen_exit_button => '종료';
@@ -120,7 +122,8 @@ class LocalizationKo extends Localization {
   String get project_screen_add_video_button => '비디오 소스 추가';
 
   @override
-  String get project_screen_from_desc => '24시간 연속 기록을 유지하므로 필요한 시간대를 확인할 수 있습니다.';
+  String get project_screen_from_desc =>
+      '24시간 연속 기록을 유지하므로 필요한 시간대를 확인할 수 있습니다.';
 
   @override
   String get project_screen_report_settings => '설정';
@@ -189,7 +192,8 @@ class LocalizationKo extends Localization {
   String get settings_screen_center_point_title => '대상 중심점';
 
   @override
-  String get settings_screen_center_point_desc => '중심점은 대상이 적중 영역 내에 있는지 판단하는 데 도움이 됩니다.';
+  String get settings_screen_center_point_desc =>
+      '중심점은 대상이 적중 영역 내에 있는지 판단하는 데 도움이 됩니다.';
 
   @override
   String get settings_screen_center_point_button => '대상에 중심점 표시';
@@ -198,7 +202,8 @@ class LocalizationKo extends Localization {
   String get settings_screen_lost_target_title => '손실된 대상';
 
   @override
-  String get settings_screen_lost_target_desc => '객체 추적이 대상을 놓쳤을 때 이 옵션을 사용하면 표시됩니다. 기본적으로 손실된 대상은 표시되지 않습니다.';
+  String get settings_screen_lost_target_desc =>
+      '객체 추적이 대상을 놓쳤을 때 이 옵션을 사용하면 표시됩니다. 기본적으로 손실된 대상은 표시되지 않습니다.';
 
   @override
   String get settings_screen_lost_target_button => '손실된 대상 표시';
@@ -225,25 +230,29 @@ class LocalizationKo extends Localization {
   String get detection_screen_nms => '비최대 억제';
 
   @override
-  String get detection_screen_nms_desc => '#0 낮은 NMS 임계값(예: 0.3-0.4)은 겹치는 상자를 더 엄격하게 제거하고 거짓 양성을 줄이지만 겹치는 사람들을 놓칠 수 있습니다. 높은 임계값(0.7-0.9)은 더 많은 상자를 유지하여 거짓 양성을 증가시킬 수 있지만 겹치는 사람들을 더 잘 감지합니다.';
+  String get detection_screen_nms_desc =>
+      '#0 낮은 NMS 임계값(예: 0.3-0.4)은 겹치는 상자를 더 엄격하게 제거하고 거짓 양성을 줄이지만 겹치는 사람들을 놓칠 수 있습니다. 높은 임계값(0.7-0.9)은 더 많은 상자를 유지하여 거짓 양성을 증가시킬 수 있지만 겹치는 사람들을 더 잘 감지합니다.';
 
   @override
   String get detection_screen_match => '일치';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold는 객체 추적에서 서로 다른 감지 상자 간의 일치 정도를 측정하는 핵심 매개변수입니다. 낮은 값은 객체 연결을 쉽게 만들지만 잘못된 연결 위험을 증가시킵니다. 높은 값은 객체 연결에 더 엄격하지만 일부 실제 일치를 놓칠 수 있습니다.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold는 객체 추적에서 서로 다른 감지 상자 간의 일치 정도를 측정하는 핵심 매개변수입니다. 낮은 값은 객체 연결을 쉽게 만들지만 잘못된 연결 위험을 증가시킵니다. 높은 값은 객체 연결에 더 엄격하지만 일부 실제 일치를 놓칠 수 있습니다.';
 
   @override
   String get detection_screen_lost => '손실';
 
   @override
-  String get detection_screen_lost_desc => '이동 속도에 따라 #0에서 #1 사이의 분실 객체 제거 시간을 동적으로 결정합니다';
+  String get detection_screen_lost_desc =>
+      '이동 속도에 따라 #0에서 #1 사이의 분실 객체 제거 시간을 동적으로 결정합니다';
 
   @override
   String get detection_screen_consider_valid => '유효 간주 시간';
 
   @override
-  String get detection_screen_consider_valid_desc => '추적 객체는 #0 후에 유효한 것으로 간주됩니다';
+  String get detection_screen_consider_valid_desc =>
+      '추적 객체는 #0 후에 유효한 것으로 간주됩니다';
 
   @override
   String get detection_screen_reset => '초기화';
@@ -261,7 +270,8 @@ class LocalizationKo extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream 또는 rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream 또는 rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => '비디오 소스 추가';
@@ -363,7 +373,8 @@ class LocalizationKo extends Localization {
   String get color_screen_title => '색상 선택';
 
   @override
-  String get zone_screen_desc => '감지 영역에서는 감지할 객체 유형을 설정하고 감지됨, 생성됨, 진입함과 같은 표시할 카운터를 선택할 수 있습니다.';
+  String get zone_screen_desc =>
+      '감지 영역에서는 감지할 객체 유형을 설정하고 감지됨, 생성됨, 진입함과 같은 표시할 카운터를 선택할 수 있습니다.';
 
   @override
   String get zone_screen_name_placeholder => '보도 또는 주차장과 같은 영역 이름';
@@ -402,7 +413,8 @@ class LocalizationKo extends Localization {
   String get counter_screen_reentry_threshold => '재진입 임계값';
 
   @override
-  String get counter_screen_reentry_desc => '객체는 #0 번 진입해야 하며, 각 퇴장과 재진입 사이에 #1 초의 쿨다운 시간이 있어야 재진입이 트리거됩니다';
+  String get counter_screen_reentry_desc =>
+      '객체는 #0 번 진입해야 하며, 각 퇴장과 재진입 사이에 #1 초의 쿨다운 시간이 있어야 재진입이 트리거됩니다';
 
   @override
   String get counter_screen_reentry_title => '재진입 카운트';
@@ -411,7 +423,8 @@ class LocalizationKo extends Localization {
   String get counter_screen_cooldown_threshold => '쿨다운 임계값';
 
   @override
-  String get counter_screen_cooldown_desc => '재진입하려면 감지 영역에서 나간 후 #0 초의 쿨다운이 필요합니다';
+  String get counter_screen_cooldown_desc =>
+      '재진입하려면 감지 영역에서 나간 후 #0 초의 쿨다운이 필요합니다';
 
   @override
   String get counter_screen_cooldown_time => '쿨다운 시간';
@@ -423,7 +436,8 @@ class LocalizationKo extends Localization {
   String get counter_screen_stagnant_threshold => '정체 임계값';
 
   @override
-  String get counter_screen_stagnant_desc => '#0 초 이상 정지 상태를 유지하는 객체는 정체된 것으로 간주됩니다';
+  String get counter_screen_stagnant_desc =>
+      '#0 초 이상 정지 상태를 유지하는 객체는 정체된 것으로 간주됩니다';
 
   @override
   String get counter_screen_stagnant_consider => '정체된 것으로 간주';
@@ -444,7 +458,8 @@ class LocalizationKo extends Localization {
   String get counter_screen_enabled_error => '오류';
 
   @override
-  String get counter_screen_enabled_error_content => '다른 카운터를 먼저 활성화한 다음 이 카운터를 비활성화할 수 있습니다';
+  String get counter_screen_enabled_error_content =>
+      '다른 카운터를 먼저 활성화한 다음 이 카운터를 비활성화할 수 있습니다';
 
   @override
   String get objects_screen_title => '객체';
@@ -516,8 +531,10 @@ class LocalizationKo extends Localization {
   String get video_sources_camera_denied => '카메라 접근이 거부됨';
 
   @override
-  String get video_sources_photos_denied_msg => '설정으로 이동하여 이 앱의 사진 접근 권한을 허용해 주세요.';
+  String get video_sources_photos_denied_msg =>
+      '설정으로 이동하여 이 앱의 사진 접근 권한을 허용해 주세요.';
 
   @override
-  String get video_sources_camera_denied_msg => '설정으로 이동하여 이 앱의 카메라 접근 권한을 허용해 주세요.';
+  String get video_sources_camera_denied_msg =>
+      '설정으로 이동하여 이 앱의 카메라 접근 권한을 허용해 주세요.';
 }

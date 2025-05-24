@@ -12,7 +12,8 @@ class LocalizationVi extends Localization {
   String get product_name => 'Bộ Đếm';
 
   @override
-  String get product_desc => 'Sử dụng thị giác máy tính và trí tuệ nhân tạo để đếm người, phương tiện, thú cưng và nhiều đối tượng khác.';
+  String get product_desc =>
+      'Sử dụng thị giác máy tính và trí tuệ nhân tạo để đếm người, phương tiện, thú cưng và nhiều đối tượng khác.';
 
   @override
   String get product_copyright => 'Bản quyền © 2025';
@@ -33,13 +34,15 @@ class LocalizationVi extends Localization {
   String get video_sources_camera_not_found_title => 'Không tìm thấy camera';
 
   @override
-  String get video_sources_camera_not_found_message => 'Cần cấp quyền camera để sử dụng tính năng này';
+  String get video_sources_camera_not_found_message =>
+      'Cần cấp quyền camera để sử dụng tính năng này';
 
   @override
   String get video_sources_webcam_not_found_title => 'Không tìm thấy webcam';
 
   @override
-  String get video_sources_webcam_not_found_message => 'Vui lòng kiểm tra quyền truy cập ứng dụng và kết nối webcam';
+  String get video_sources_webcam_not_found_message =>
+      'Vui lòng kiểm tra quyền truy cập ứng dụng và kết nối webcam';
 
   @override
   String get wizard_screen_desc => 'Tạo dự án mới bên dưới để bắt đầu đếm.';
@@ -54,7 +57,8 @@ class LocalizationVi extends Localization {
   String get wizard_screen_about => 'Giới thiệu';
 
   @override
-  String get wizard_screen_open_projects_tip => 'Tất cả dự án sẽ được tự động lưu trữ cục bộ';
+  String get wizard_screen_open_projects_tip =>
+      'Tất cả dự án sẽ được tự động lưu trữ cục bộ';
 
   @override
   String get wizard_screen_open_projects => 'Mở dự án hiện có';
@@ -99,7 +103,8 @@ class LocalizationVi extends Localization {
   String get benchmark_screen_start_button => 'Bắt đầu đánh giá';
 
   @override
-  String get benchmark_screen_start_failed => 'Không thể bắt đầu đánh giá, mã lỗi là';
+  String get benchmark_screen_start_failed =>
+      'Không thể bắt đầu đánh giá, mã lỗi là';
 
   @override
   String get benchmark_screen_models => 'Mô hình phát hiện đối tượng';
@@ -111,7 +116,8 @@ class LocalizationVi extends Localization {
   String get project_screen_exit_confirm_title => 'Xác nhận thoát dự án';
 
   @override
-  String get project_screen_exit_confirm_content => 'Rời khỏi dự án sẽ dừng việc đếm. Bạn có chắc chắn muốn tiếp tục không?';
+  String get project_screen_exit_confirm_content =>
+      'Rời khỏi dự án sẽ dừng việc đếm. Bạn có chắc chắn muốn tiếp tục không?';
 
   @override
   String get project_screen_exit_button => 'Thoát';
@@ -120,7 +126,8 @@ class LocalizationVi extends Localization {
   String get project_screen_add_video_button => 'Thêm nguồn video';
 
   @override
-  String get project_screen_from_desc => 'Chúng tôi lưu trữ bản ghi 24 giờ liên tục, để bạn có thể xem bất kỳ khoảng thời gian nào cần thiết.';
+  String get project_screen_from_desc =>
+      'Chúng tôi lưu trữ bản ghi 24 giờ liên tục, để bạn có thể xem bất kỳ khoảng thời gian nào cần thiết.';
 
   @override
   String get project_screen_report_settings => 'Cài đặt';
@@ -135,7 +142,8 @@ class LocalizationVi extends Localization {
   String get filter_screen_error_title => 'Bộ lọc';
 
   @override
-  String get filter_screen_error_content => 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
+  String get filter_screen_error_content =>
+      'Thời gian kết thúc phải lớn hơn thời gian bắt đầu';
 
   @override
   String get filter_screen_error_custom => 'Tùy chỉnh';
@@ -150,7 +158,8 @@ class LocalizationVi extends Localization {
   String get settings_screen_title => 'Cài đặt';
 
   @override
-  String get settings_screen_desc => 'Đặt tên dự án, thông số phát hiện, xóa số lượng.';
+  String get settings_screen_desc =>
+      'Đặt tên dự án, thông số phát hiện, xóa số lượng.';
 
   @override
   String get settings_screen_project_id => 'ID dự án';
@@ -159,7 +168,8 @@ class LocalizationVi extends Localization {
   String get settings_screen_project_name => 'Tên dự án';
 
   @override
-  String get settings_screen_project_name_place_holder => '123 Đường Lê Lợi hoặc Công viên Thống Nhất';
+  String get settings_screen_project_name_place_holder =>
+      '123 Đường Lê Lợi hoặc Công viên Thống Nhất';
 
   @override
   String get settings_screen_project_error => 'Tên dự án không được để trống';
@@ -168,37 +178,44 @@ class LocalizationVi extends Localization {
   String get settings_screen_random_count_button => 'Thêm số lượng ngẫu nhiên';
 
   @override
-  String get settings_screen_reset_count_header => 'Đặt lại tất cả số lượng trong dự án này';
+  String get settings_screen_reset_count_header =>
+      'Đặt lại tất cả số lượng trong dự án này';
 
   @override
   String get settings_screen_reset_count_button => 'Đặt lại số lượng';
 
   @override
-  String get settings_screen_reset_count_content => 'Bạn có chắc chắn muốn đặt lại tất cả số lượng không?';
+  String get settings_screen_reset_count_content =>
+      'Bạn có chắc chắn muốn đặt lại tất cả số lượng không?';
 
   @override
   String get settings_screen_delete_header => 'Xóa dự án này';
 
   @override
-  String get settings_screen_delete_content => 'Bạn có chắc chắn muốn xóa dự án này không?';
+  String get settings_screen_delete_content =>
+      'Bạn có chắc chắn muốn xóa dự án này không?';
 
   @override
   String get settings_screen_delete_button => 'Xóa';
 
   @override
-  String get settings_screen_center_point_title => 'Điểm trung tâm trên đối tượng';
+  String get settings_screen_center_point_title =>
+      'Điểm trung tâm trên đối tượng';
 
   @override
-  String get settings_screen_center_point_desc => 'Điểm trung tâm giúp xác định xem đối tượng có nằm trong vùng phát hiện hay không.';
+  String get settings_screen_center_point_desc =>
+      'Điểm trung tâm giúp xác định xem đối tượng có nằm trong vùng phát hiện hay không.';
 
   @override
-  String get settings_screen_center_point_button => 'Hiển thị điểm trung tâm trên đối tượng';
+  String get settings_screen_center_point_button =>
+      'Hiển thị điểm trung tâm trên đối tượng';
 
   @override
   String get settings_screen_lost_target_title => 'Đối tượng bị mất';
 
   @override
-  String get settings_screen_lost_target_desc => 'Khi theo dõi đối tượng bị mất, tùy chọn này giúp hiển thị chúng. Mặc định, đối tượng bị mất sẽ không được hiển thị.';
+  String get settings_screen_lost_target_desc =>
+      'Khi theo dõi đối tượng bị mất, tùy chọn này giúp hiển thị chúng. Mặc định, đối tượng bị mất sẽ không được hiển thị.';
 
   @override
   String get settings_screen_lost_target_button => 'Hiển thị đối tượng bị mất';
@@ -213,7 +230,8 @@ class LocalizationVi extends Localization {
   String get detection_screen_confidence => 'Độ tin cậy';
 
   @override
-  String get detection_screen_confidence_desc => 'độ tin cậy trên #0 được coi là phát hiện hợp lệ';
+  String get detection_screen_confidence_desc =>
+      'độ tin cậy trên #0 được coi là phát hiện hợp lệ';
 
   @override
   String get detection_screen_low => 'Thấp';
@@ -225,31 +243,36 @@ class LocalizationVi extends Localization {
   String get detection_screen_nms => 'Triệt tiêu không cực đại';
 
   @override
-  String get detection_screen_nms_desc => '#0 Ngưỡng NMS thấp hơn (ví dụ: 0.3-0.4) loại bỏ các khung chồng chéo nghiêm ngặt hơn và giảm kết quả dương tính giả nhưng có thể bỏ sót người chồng chéo. Ngưỡng cao hơn (0.7-0.9) giữ nhiều khung hơn có thể tăng kết quả dương tính giả nhưng phát hiện người chồng chéo tốt hơn.';
+  String get detection_screen_nms_desc =>
+      '#0 Ngưỡng NMS thấp hơn (ví dụ: 0.3-0.4) loại bỏ các khung chồng chéo nghiêm ngặt hơn và giảm kết quả dương tính giả nhưng có thể bỏ sót người chồng chéo. Ngưỡng cao hơn (0.7-0.9) giữ nhiều khung hơn có thể tăng kết quả dương tính giả nhưng phát hiện người chồng chéo tốt hơn.';
 
   @override
   String get detection_screen_match => 'Khớp';
 
   @override
-  String get detection_screen_match_desc => '#0 matchThreshold là tham số quan trọng trong theo dõi đối tượng đo lường mức độ khớp giữa các khung phát hiện khác nhau. Giá trị thấp hơn giúp liên kết đối tượng dễ dàng hơn nhưng tăng nguy cơ liên kết sai. Giá trị cao hơn nghiêm ngặt hơn đối với liên kết đối tượng nhưng có thể bỏ lỡ một số khớp thực.';
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold là tham số quan trọng trong theo dõi đối tượng đo lường mức độ khớp giữa các khung phát hiện khác nhau. Giá trị thấp hơn giúp liên kết đối tượng dễ dàng hơn nhưng tăng nguy cơ liên kết sai. Giá trị cao hơn nghiêm ngặt hơn đối với liên kết đối tượng nhưng có thể bỏ lỡ một số khớp thực.';
 
   @override
   String get detection_screen_lost => 'Mất';
 
   @override
-  String get detection_screen_lost_desc => 'Xác định động thời gian xóa vật thể bị mất giữa #0 và #1 dựa trên tốc độ di chuyển';
+  String get detection_screen_lost_desc =>
+      'Xác định động thời gian xóa vật thể bị mất giữa #0 và #1 dựa trên tốc độ di chuyển';
 
   @override
   String get detection_screen_consider_valid => 'Coi là hợp lệ sau';
 
   @override
-  String get detection_screen_consider_valid_desc => 'Đối tượng theo dõi sẽ được coi là hợp lệ sau #0';
+  String get detection_screen_consider_valid_desc =>
+      'Đối tượng theo dõi sẽ được coi là hợp lệ sau #0';
 
   @override
   String get detection_screen_reset => 'Đặt lại';
 
   @override
-  String get detection_screen_reset_content => 'Bạn có chắc chắn muốn đặt lại cài đặt phát hiện không?';
+  String get detection_screen_reset_content =>
+      'Bạn có chắc chắn muốn đặt lại cài đặt phát hiện không?';
 
   @override
   String get url_screen_title => 'URL phát trực tiếp';
@@ -261,7 +284,8 @@ class LocalizationVi extends Localization {
   String get url_screen_url => 'URL';
 
   @override
-  String get url_screen_url_placeholder => 'http://example.com/stream hoặc rtsp://example.com/stream';
+  String get url_screen_url_placeholder =>
+      'http://example.com/stream hoặc rtsp://example.com/stream';
 
   @override
   String get add_video_screen_title => 'Thêm nguồn video';
@@ -297,13 +321,15 @@ class LocalizationVi extends Localization {
   String get video_screen_name_empty => 'Tên nguồn video không được để trống.';
 
   @override
-  String get video_screen_desc => 'Quản lý nguồn video, thêm hoặc sửa đổi vùng phát hiện.';
+  String get video_screen_desc =>
+      'Quản lý nguồn video, thêm hoặc sửa đổi vùng phát hiện.';
 
   @override
   String get video_screen_video_name => 'Tên nguồn video';
 
   @override
-  String get video_screen_edit_placeholder => 'Camera cửa trước hoặc Camera bãi đỗ xe';
+  String get video_screen_edit_placeholder =>
+      'Camera cửa trước hoặc Camera bãi đỗ xe';
 
   @override
   String get video_screen_change_file => 'Đổi tệp';
@@ -321,7 +347,8 @@ class LocalizationVi extends Localization {
   String get video_screen_tools => 'Công cụ';
 
   @override
-  String get video_screen_move_bottom => 'Di chuyển vùng hiện tại xuống dưới cùng';
+  String get video_screen_move_bottom =>
+      'Di chuyển vùng hiện tại xuống dưới cùng';
 
   @override
   String get video_screen_add_point => 'Thêm điểm vào vùng hiện tại';
@@ -345,13 +372,15 @@ class LocalizationVi extends Localization {
   String get video_screen_delete_header => 'Xóa nguồn video này';
 
   @override
-  String get video_screen_delete_content => 'Bạn có chắc chắn muốn xóa nguồn video này không?';
+  String get video_screen_delete_content =>
+      'Bạn có chắc chắn muốn xóa nguồn video này không?';
 
   @override
   String get video_screen_delete_button => 'Xóa';
 
   @override
-  String get video_screen_sources => 'Cấu hình nguồn hình ảnh, đối tượng phát hiện và thông số mô hình.';
+  String get video_screen_sources =>
+      'Cấu hình nguồn hình ảnh, đối tượng phát hiện và thông số mô hình.';
 
   @override
   String get video_screen_targets => 'Đối tượng phát hiện';
@@ -363,10 +392,12 @@ class LocalizationVi extends Localization {
   String get color_screen_title => 'Chọn màu';
 
   @override
-  String get zone_screen_desc => 'Vùng phát hiện có thể đặt các loại đối tượng cần phát hiện và chọn bộ đếm hiển thị, như Đã phát hiện, Đã xuất hiện và Đã đi vào.';
+  String get zone_screen_desc =>
+      'Vùng phát hiện có thể đặt các loại đối tượng cần phát hiện và chọn bộ đếm hiển thị, như Đã phát hiện, Đã xuất hiện và Đã đi vào.';
 
   @override
-  String get zone_screen_name_placeholder => 'Tên của vùng, như Vỉa hè hoặc Bãi đỗ xe';
+  String get zone_screen_name_placeholder =>
+      'Tên của vùng, như Vỉa hè hoặc Bãi đỗ xe';
 
   @override
   String get zone_screen_zone_color => 'Màu vùng';
@@ -378,7 +409,8 @@ class LocalizationVi extends Localization {
   String get zone_screen_delete_header => 'Xóa vùng này';
 
   @override
-  String get zone_screen_delete_content => 'Bạn có chắc chắn muốn xóa vùng này không?';
+  String get zone_screen_delete_content =>
+      'Bạn có chắc chắn muốn xóa vùng này không?';
 
   @override
   String get zone_screen_delete_button => 'Xóa';
@@ -402,7 +434,8 @@ class LocalizationVi extends Localization {
   String get counter_screen_reentry_threshold => 'Ngưỡng vào lại';
 
   @override
-  String get counter_screen_reentry_desc => 'Đối tượng phải vào #0 lần, với thời gian chờ #1 giây giữa mỗi lần ra và vào lại, để kích hoạt việc vào lại';
+  String get counter_screen_reentry_desc =>
+      'Đối tượng phải vào #0 lần, với thời gian chờ #1 giây giữa mỗi lần ra và vào lại, để kích hoạt việc vào lại';
 
   @override
   String get counter_screen_reentry_title => 'Đếm vào lại';
@@ -411,7 +444,8 @@ class LocalizationVi extends Localization {
   String get counter_screen_cooldown_threshold => 'Ngưỡng thời gian chờ';
 
   @override
-  String get counter_screen_cooldown_desc => 'Vào lại yêu cầu thời gian chờ #0 giây sau khi rời khỏi vùng phát hiện';
+  String get counter_screen_cooldown_desc =>
+      'Vào lại yêu cầu thời gian chờ #0 giây sau khi rời khỏi vùng phát hiện';
 
   @override
   String get counter_screen_cooldown_time => 'Thời gian chờ';
@@ -423,7 +457,8 @@ class LocalizationVi extends Localization {
   String get counter_screen_stagnant_threshold => 'Ngưỡng đứng yên';
 
   @override
-  String get counter_screen_stagnant_desc => 'Đối tượng đứng yên trong hơn #0 giây sẽ được coi là đứng yên';
+  String get counter_screen_stagnant_desc =>
+      'Đối tượng đứng yên trong hơn #0 giây sẽ được coi là đứng yên';
 
   @override
   String get counter_screen_stagnant_consider => 'Coi là đứng yên';
@@ -444,19 +479,22 @@ class LocalizationVi extends Localization {
   String get counter_screen_enabled_error => 'Lỗi';
 
   @override
-  String get counter_screen_enabled_error_content => 'Bạn cần bật bộ đếm khác trước, sau đó mới có thể tắt bộ đếm này';
+  String get counter_screen_enabled_error_content =>
+      'Bạn cần bật bộ đếm khác trước, sau đó mới có thể tắt bộ đếm này';
 
   @override
   String get objects_screen_title => 'Đối tượng';
 
   @override
-  String get objects_screen_desc => 'Chọn đối tượng phát hiện như người, xe hơi, xe buýt, v.v.';
+  String get objects_screen_desc =>
+      'Chọn đối tượng phát hiện như người, xe hơi, xe buýt, v.v.';
 
   @override
   String get open_project_screen_title => 'Mở dự án';
 
   @override
-  String get open_project_screen_desc => 'Mở dự án đã tạo trước đó, chỉ giữ 20 dự án gần nhất.';
+  String get open_project_screen_desc =>
+      'Mở dự án đã tạo trước đó, chỉ giữ 20 dự án gần nhất.';
 
   @override
   String get open_project_screen_no_project => 'Không tìm thấy dự án nào.';
@@ -474,7 +512,8 @@ class LocalizationVi extends Localization {
   String get error_oops => 'Rất tiếc, đã xảy ra sự cố';
 
   @override
-  String get error_content => 'Đã xảy ra lỗi không mong muốn. Bạn có muốn gửi báo cáo qua email không?';
+  String get error_content =>
+      'Đã xảy ra lỗi không mong muốn. Bạn có muốn gửi báo cáo qua email không?';
 
   @override
   String get error_report => 'Gửi email cho chúng tôi';
@@ -516,8 +555,10 @@ class LocalizationVi extends Localization {
   String get video_sources_camera_denied => 'Quyền truy cập camera bị từ chối';
 
   @override
-  String get video_sources_photos_denied_msg => 'Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.';
+  String get video_sources_photos_denied_msg =>
+      'Vui lòng đi tới cài đặt và cho phép quyền truy cập ảnh cho ứng dụng này.';
 
   @override
-  String get video_sources_camera_denied_msg => 'Vui lòng đi tới cài đặt và cho phép quyền truy cập camera cho ứng dụng này.';
+  String get video_sources_camera_denied_msg =>
+      'Vui lòng đi tới cài đặt và cho phép quyền truy cập camera cho ứng dụng này.';
 }
