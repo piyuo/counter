@@ -1,0 +1,39 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - develop 
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      # 以下輸出可用於後續的發佈步驟 (例如：發佈到 pub.dev)
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_url: ${{ steps.release.outputs.release_url }}
+      prerelease: ${{ steps.release.outputs.prerelease }}
+      id: ${{ steps.release.outputs.id }}
+      body: ${{ steps.release.outputs.body }}
+      upload_url: ${{ steps.release.outputs.upload_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run Release Please
+        id: release
+        uses: google-github-actions/release-please-action@v4
+        with:
+          release-type: dart
+          # 設定自動建立一個 Release PR
+          pull-request-title-pattern: "chore(release): ${version}"
+          # 選擇是否合併 Release PR 後自動刪除分支 (預設為 true)
+          delete-merged-branch: true
+          # config-file: "release-please-config.json" # 如果有更複雜的配置
