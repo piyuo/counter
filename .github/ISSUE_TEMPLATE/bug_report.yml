@@ -89,12 +89,11 @@ body:
       label: Operating System
       description: What operating system are you using?
       options:
-        - Windows 11
-        - Windows 10
-        - macOS (latest)
-        - macOS (older version)
-        - Ubuntu/Debian
-        - Other Linux
+        - Windows
+        - macOS
+        - iOS
+        - Android
+        - Linux
         - Other
     validations:
       required: true
