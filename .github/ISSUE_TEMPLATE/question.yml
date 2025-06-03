@@ -1,9 +1,7 @@
----
 name: ❓ Question
 description: Ask a question or request support
 title: "[Question]: "
-labels: ["question", "needs-triage"]
-assignees: []
+labels: ["type: question", "needs-triage"]
 body:
   - type: markdown
     attributes:
@@ -43,39 +41,35 @@ body:
     id: question
     attributes:
       label: Your Question
-      description: What would you like to know?
+      description: What would you like to know? Please describe your question clearly.
       placeholder: Please describe your question clearly...
     validations:
       required: true
 
   - type: textarea
-    id: context
+    id: context_and_tried
     attributes:
-      label: Context
-      description: What are you trying to accomplish? What's your use case?
-      placeholder: I'm trying to...
-
-  - type: textarea
-    id: attempted
-    attributes:
-      label: What You've Tried
-      description: What have you already tried to solve this?
+      label: Context & What You've Tried (Optional)
+      description: What are you trying to accomplish, and what steps have you already taken to solve this?
       placeholder: |
+        I'm trying to...
         I tried:
         1. ...
         2. ...
+    # Removed required: true, making this field optional
 
   - type: input
     id: version
     attributes:
-      label: Version
+      label: Version (Optional)
       description: What version are you using?
       placeholder: e.g., v1.2.0
+    # Removed required: true, making this field optional
 
   - type: dropdown
     id: environment
     attributes:
-      label: Environment
+      label: Environment (Optional)
       description: What environment are you working in?
       options:
         - Development
@@ -83,18 +77,21 @@ body:
         - Production
         - Local setup
         - Other
+    # Removed required: true, making this field optional
 
   - type: textarea
     id: code
     attributes:
-      label: Relevant Code/Configuration
-      description: Please share any relevant code or configuration
+      label: Relevant Code/Configuration (Optional)
+      description: Please share any relevant code or configuration.
       render: shell
       placeholder: Paste your code here...
+    # Removed required: true, making this field optional
 
   - type: textarea
     id: additional
     attributes:
-      label: Additional Information
-      description: Any other information that might be helpful?
+      label: Additional Information (Optional)
+      description: Any other details, screenshots, or error messages that might be helpful?
       placeholder: Screenshots, error messages, logs, etc...
+    # Removed required: true, making this field optional
