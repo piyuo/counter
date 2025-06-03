@@ -1,9 +1,7 @@
----
 name: 📚 Documentation
 description: Report missing or incorrect documentation
 title: "[Docs]: "
-labels: ["documentation", "needs-triage"]
-assignees: []
+labels: ["type: docs", "needs-triage"]
 body:
   - type: markdown
     attributes:
@@ -50,16 +48,17 @@ body:
   - type: textarea
     id: current
     attributes:
-      label: Current Documentation
-      description: What does the current documentation say? (copy/paste the relevant section)
+      label: Current Documentation (Optional)
+      description: Copy/paste the relevant section if the issue is about existing content.
       render: markdown
       placeholder: Current text or "No documentation exists"
+    # Removed required: true to make it optional
 
   - type: textarea
     id: expected
     attributes:
-      label: Expected Documentation
-      description: What should the documentation say instead?
+      label: Proposed Change / Expected Documentation
+      description: What should the documentation say instead, or what new content is needed?
       render: markdown
       placeholder: Suggested improvement or new content...
     validations:
@@ -68,19 +67,10 @@ body:
   - type: textarea
     id: context
     attributes:
-      label: Additional Context
-      description: Why is this documentation change needed? What problem does it solve?
+      label: Why is this change needed? (Optional)
+      description: Explain why this documentation change is important or what problem it solves.
       placeholder: This would help users understand...
-
-  - type: checkboxes
-    id: help
-    attributes:
-      label: Contribution Willingness
-      description: Are you willing to help improve the documentation?
-      options:
-        - label: I'm willing to submit a PR to fix this
-        - label: I can help review the changes
-        - label: I can provide examples or use cases
+    # Removed required: true to make it optional
 
   - type: dropdown
     id: priority
