@@ -1,8 +1,7 @@
----
 name: ✨ Feature Request
 description: Suggest an idea for this project
 title: "[Feature]: "
-labels: ["enhancement", "needs-triage"]
+labels: ["type: feature", "needs-triage"]
 assignees: []
 body:
   - type: markdown
@@ -14,11 +13,11 @@ body:
     id: checklist
     attributes:
       label: Pre-flight Checklist
-      description: Please ensure you've completed these steps before submitting
+      description: Please confirm the following before submitting:
       options:
-        - label: I have searched existing issues to ensure this is not a duplicate
+        - label: I have searched existing issues to avoid duplicates.
           required: true
-        - label: I have read the contributing guidelines
+        - label: I have read the contributing guidelines.
           required: true
 
   - type: textarea
@@ -34,17 +33,10 @@ body:
     id: solution
     attributes:
       label: Proposed Solution
-      description: Describe the solution you'd like to see implemented
+      description: Describe the solution you'd like to see implemented. If possible, include specific use cases and what "done" looks like (acceptance criteria).
       placeholder: I would like to see...
     validations:
       required: true
-
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternative Solutions
-      description: Describe any alternative solutions or features you've considered
-      placeholder: Alternative approaches could be...
 
   - type: dropdown
     id: priority
@@ -59,50 +51,9 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: complexity
-    attributes:
-      label: Estimated Complexity
-      description: How complex do you think this feature would be to implement?
-      options:
-        - Low - Simple change
-        - Medium - Moderate effort
-        - High - Significant work
-        - Unknown - Hard to estimate
-
-  - type: checkboxes
-    id: implementation
-    attributes:
-      label: Implementation Willingness
-      description: Are you willing to help implement this feature?
-      options:
-        - label: I'm willing to submit a PR for this feature
-        - label: I can help with testing
-        - label: I can help with documentation
-        - label: I can provide feedback during development
-
-  - type: textarea
-    id: use-cases
-    attributes:
-      label: Use Cases
-      description: Describe specific use cases where this feature would be valuable
-      placeholder: |
-        1. When I'm doing X, I need Y because...
-        2. In scenario Z, this would help by...
-
-  - type: textarea
-    id: acceptance-criteria
-    attributes:
-      label: Acceptance Criteria
-      description: What would need to be true for this feature to be considered complete?
-      placeholder: |
-        - [ ] User can do X
-        - [ ] System behaves Y when Z
-        - [ ] Documentation is updated
-
   - type: textarea
     id: additional
     attributes:
-      label: Additional Context
-      description: Add any other context, mockups, or examples about the feature request here
+      label: Additional Context (Optional)
+      description: Provide any other helpful context, mockups, or examples.
       placeholder: Any additional information that might be helpful...
