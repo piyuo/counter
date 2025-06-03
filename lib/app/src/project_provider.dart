@@ -270,11 +270,6 @@ class ProjectProvider with ChangeNotifier {
     project = null;
   }
 
-  /// notify the video playing state changed
-  void notifyVideoPlayingChange() {
-    notifyListeners();
-  }
-
   /// get the video playing state
   VideoPlayingState get videoPlayingState {
     if (project == null) {

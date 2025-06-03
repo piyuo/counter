@@ -29,11 +29,17 @@ class VideoProvider with ChangeNotifier {
       sampler: sampler,
       isShowCenterRedDotOnTarget: _projectProvider!.project!.isShowCenterRedDotOnTarget,
       isShowGhostTarget: _projectProvider!.project!.isShowGhostTarget,
-      onSourceReady: (visionController) {
+      onSourceReady: (visionController, media) async {
         if (video.zones.isNotEmpty) {
           // if zones are already set, no need to add default zone
           return null;
         }
+
+        double min, max;
+        (min, max) = await visionController.getCameraZoomRange();
+        minZoom = min;
+        maxZoom = max;
+        isZoomToolEnabled = min != max;
 
         final zone = _addDefaultZone();
         video.zones.add(zone);
@@ -68,9 +74,6 @@ class VideoProvider with ChangeNotifier {
 
   /// the controllers for each video source
   late final vision.Controller visionController;
-
-  /// the status subscription for vision controller
-  StreamSubscription<vision.Status>? _visionStatusSubscription;
 
   /// the player controller for each video source
   late final vision.PlayerController playerController;
@@ -131,19 +134,6 @@ class VideoProvider with ChangeNotifier {
     isZoomToolEnabled = false;
     await visionController.init();
     await reload(project);
-
-    _visionStatusSubscription = visionController.statusController.stream.listen((status) {
-      switch (status) {
-        case vision.Status.playing:
-          _projectProvider?.notifyVideoPlayingChange();
-          break;
-        case vision.Status.paused:
-          _projectProvider?.notifyVideoPlayingChange();
-          break;
-        default:
-          break;
-      }
-    });
   }
 
   /// shutdown the server prepare for dispose.
@@ -154,7 +144,6 @@ class VideoProvider with ChangeNotifier {
   /// dispose multi view provider
   @override
   void dispose() {
-    _visionStatusSubscription?.cancel();
     _projectProvider = null;
     visionController.dispose();
     playerController.dispose();
@@ -231,8 +220,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   /// reload the video source, if project not null mean need setRecognition
-  Future<int> reload(Project project) async {
-    int errorCode = vision.errorOK;
+  Future<void> reload(Project project) async {
     video.zoom = 1;
     await visionController.close();
     switch (video.sourceType) {
@@ -240,31 +228,19 @@ class VideoProvider with ChangeNotifier {
         assert(video.path != null && video.path!.isNotEmpty, 'file path is empty');
         final appDir = await getApplicationSupportDirectory();
         final filePath = '${appDir.path}/${video.path}';
-        errorCode = await visionController.openFile(filePath);
+        await visionController.openFile(filePath);
       case vision.SourceType.camera:
         assert(video.camera != null, 'camera is null');
-        errorCode = await visionController.openCamera(video.camera!.name);
-        if (errorCode == vision.errorOK) {
-          double min, max;
-          (min, max) = await visionController.getCameraZoomRange();
-          minZoom = min;
-          maxZoom = max;
-          isZoomToolEnabled = min != max;
-        }
+        await visionController.openCamera(video.camera!.name);
       case vision.SourceType.webcam:
         assert(video.webcam != null, 'webcam is null');
-        errorCode = await visionController.openWebcam(video.webcam!.index);
+        await visionController.openWebcam(video.webcam!.index);
       case vision.SourceType.liveStream:
         assert(video.path != null && video.path!.isNotEmpty, 'live url path is empty');
-        errorCode = await visionController.openLiveURL(video.path!);
-    }
-    if (errorCode != vision.errorOK) {
-      notifyListeners();
-      return errorCode;
+        await visionController.openLiveURL(video.path!);
     }
 
     notifyListeners();
-    return errorCode;
   }
 
   /// get the video type
@@ -274,11 +250,10 @@ class VideoProvider with ChangeNotifier {
   bool get isNotFrozen => visionController.isNotFrozen;
 
   /// set the video path
-  Future<int> setVideoPath(Project project, String newVideoPath) async {
+  Future<void> setVideoPath(Project project, String newVideoPath) async {
     video.path = newVideoPath;
-    final errorCode = await reload(project);
+    await reload(project);
     _saveProject();
-    return errorCode;
   }
 
   /// set new camera
