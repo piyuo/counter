@@ -1,0 +1,86 @@
+name: 📚 Documentation
+description: Report missing or incorrect documentation
+title: "[Docs]: "
+labels: ["type: docs", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve our documentation! Clear docs make the project better for everyone.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-flight Checklist
+      description: Please ensure you've completed these steps before submitting
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have checked the current documentation
+          required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Documentation Issue Type
+      description: What type of documentation issue is this?
+      options:
+        - Missing documentation
+        - Incorrect/outdated information
+        - Unclear/confusing content
+        - Typo/grammar error
+        - Code example doesn't work
+        - Broken link
+        - Formatting issue
+        - Translation needed
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the documentation issue located?
+      placeholder: e.g., README.md, docs/api.md, line 42, https://example.com/docs/...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Documentation (Optional)
+      description: Copy/paste the relevant section if the issue is about existing content.
+      render: markdown
+      placeholder: Current text or "No documentation exists"
+    # Removed required: true to make it optional
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Proposed Change / Expected Documentation
+      description: What should the documentation say instead, or what new content is needed?
+      render: markdown
+      placeholder: Suggested improvement or new content...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Why is this change needed? (Optional)
+      description: Explain why this documentation change is important or what problem it solves.
+      placeholder: This would help users understand...
+    # Removed required: true to make it optional
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this documentation fix?
+      options:
+        - Low - Minor improvement
+        - Medium - Would help users
+        - High - Confusing/blocking users
+        - Critical - Incorrect information causing issues
+    validations:
+      required: true
