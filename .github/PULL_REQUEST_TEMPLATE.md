@@ -9,9 +9,6 @@
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] Any dependent changes have been merged and published
 
-## Description of Changes
-<!-- Provide a brief description of the changes in this PR -->
-
 ## Testing
 <!-- Describe how you tested your changes -->
 - [ ] Existing tests pass
@@ -21,18 +18,7 @@
 
 ### Test Evidence (Optional)
 <!-- Provide screenshots, logs, or other evidence of testing -->
-
-## Changes Made
-<!-- Describe the changes you made in detail -->
 -
--
--
-
-## Breaking Changes (Optional)
-<!-- If this is a breaking change, describe what breaks and how to migrate -->
-
-## Reviewer Notes (Optional)
-<!-- Any specific areas you'd like reviewers to focus on -->
 
 ## Deployment Notes (Optional)
 <!-- Any special deployment considerations -->
@@ -40,3 +26,7 @@
 - [ ] Database migrations required
 - [ ] Environment variables need to be updated
 - [ ] Other: _________
+
+## Reviewer Notes (Optional)
+<!-- Any specific areas you'd like reviewers to focus on -->
+-
