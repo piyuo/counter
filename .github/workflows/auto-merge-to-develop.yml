@@ -1,0 +1,212 @@
+# .github/workflows/auto-merge-to-develop.yml
+name: Auto Create PR to Merge Main to Develop
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    create-merge-pr:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Check if should sync
+              id: check-commit
+              run: |
+                  # Get the latest commit message
+                  LATEST_COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+                  echo "Latest commit message: $LATEST_COMMIT_MSG"
+
+                  # Check if this is a merge commit from release-please PR
+                  if [[ $LATEST_COMMIT_MSG =~ ^Merge\ pull\ request.*release-please ]]; then
+                    echo "This is a release-please merge commit"
+
+                    # Get the actual release commit message (the one before the merge)
+                    RELEASE_COMMIT_MSG=$(git log -2 --pretty=format:"%s" | tail -1)
+                    RELEASE_COMMIT_AUTHOR=$(git log -2 --pretty=format:"%an" | tail -1)
+
+                    echo "Release commit message: $RELEASE_COMMIT_MSG"
+                    echo "Release commit author: $RELEASE_COMMIT_AUTHOR"
+
+                    if [[ $RELEASE_COMMIT_MSG =~ ^chore\(.*\):\ release ]]; then
+                      echo "should_sync=true" >> $GITHUB_OUTPUT
+                      echo "✅ Found release commit in merge, will create merge PR"
+                    else
+                      echo "should_sync=false" >> $GITHUB_OUTPUT
+                      echo "ℹ️ Merge commit doesn't contain release commit"
+                    fi
+                  else
+                    # Check if this is a direct release commit (squash merge case)
+                    COMMIT_AUTHOR=$(git log -1 --pretty=format:"%an")
+                    echo "Commit author: $COMMIT_AUTHOR"
+
+                    if [[ $LATEST_COMMIT_MSG =~ ^chore\(.*\):\ release ]]; then
+                      echo "should_sync=true" >> $GITHUB_OUTPUT
+                      echo "✅ This is a direct release commit, will create merge PR"
+                    else
+                      echo "should_sync=false" >> $GITHUB_OUTPUT
+                      echo "ℹ️ Commit does not match release pattern, skipping sync"
+                    fi
+                  fi
+
+            - name: Configure Git
+              if: steps.check-commit.outputs.should_sync == 'true'
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Check if main already in develop
+              id: check-already-merged
+              if: steps.check-commit.outputs.should_sync == 'true'
+              run: |
+                  git fetch origin
+                  # Check if main is already fully included in develop
+                  if git merge-base --is-ancestor origin/main origin/develop; then
+                    echo "Main already in develop. No PR needed."
+                    echo "already_merged=true" >> $GITHUB_OUTPUT
+                  else
+                    echo "already_merged=false" >> $GITHUB_OUTPUT
+                  fi
+
+            - name: Check if PR already exists
+              id: check-existing-pr
+              if: steps.check-commit.outputs.should_sync == 'true' && steps.check-already-merged.outputs.already_merged == 'false'
+              run: |
+                  # Check if there's already an open PR for this purpose
+                  EXISTING_PR=$(gh pr list --base develop --head release-merge-to-develop --state open --json number --jq '.[0].number')
+                  if [[ -n "$EXISTING_PR" && "$EXISTING_PR" != "null" ]]; then
+                    echo "pr_exists=true" >> $GITHUB_OUTPUT
+                    echo "existing_pr_number=$EXISTING_PR" >> $GITHUB_OUTPUT
+                    echo "ℹ️ PR already exists: #$EXISTING_PR"
+                  else
+                    echo "pr_exists=false" >> $GITHUB_OUTPUT
+                    echo "ℹ️ No existing PR found"
+                  fi
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create or update merge branch
+              if: steps.check-commit.outputs.should_sync == 'true' && steps.check-already-merged.outputs.already_merged == 'false'
+              run: |
+                  BRANCH_NAME="release-merge-to-develop"
+
+                  # Fetch latest changes
+                  git fetch origin
+
+                  # Check if branch exists remotely
+                  if git ls-remote --heads origin $BRANCH_NAME | grep -q $BRANCH_NAME; then
+                    echo "Branch exists, updating it"
+                    git checkout $BRANCH_NAME
+                    git pull origin $BRANCH_NAME
+                    git reset --hard origin/main
+                  else
+                    echo "Creating new branch"
+                    git checkout -b $BRANCH_NAME origin/main
+                  fi
+
+                  # Push the branch
+                  git push origin $BRANCH_NAME --force-with-lease
+
+            - name: Create Pull Request
+              if: steps.check-commit.outputs.should_sync == 'true' && steps.check-already-merged.outputs.already_merged == 'false' && steps.check-existing-pr.outputs.pr_exists == 'false'
+              run: |
+                  # Extract version from commit message for better PR title
+                  COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+                  VERSION=$(echo "$COMMIT_MSG" | sed -n 's/^chore.*: release \([0-9.]*\).*/\1/p')
+
+                  if [[ -n "$VERSION" ]]; then
+                    PR_TITLE="🚀 Auto-merge: Release v$VERSION from main to develop"
+                  else
+                    PR_TITLE="🚀 Auto-merge: Sync main to develop after release"
+                  fi
+
+                  PR_BODY="## 📋 Summary
+                  This PR automatically syncs the latest release changes from \`main\` to \`develop\` branch.
+
+                  ## 🔄 Changes
+                  - Merges latest release commit from main branch
+                  - Updates CHANGELOG.md with release notes
+                  - Syncs version bumps and tags
+
+                  ## 🤖 Automation
+                  This PR was automatically created by the release workflow.
+
+                  **Commit:** \`$(git rev-parse --short HEAD)\`
+                  **Release Commit:** \`$COMMIT_MSG\`"
+
+                  # Create PR first
+                  PR_URL=$(gh pr create \
+                    --title "$PR_TITLE" \
+                    --body "$PR_BODY" \
+                    --base develop \
+                    --head release-merge-to-develop)
+
+                  echo "Created PR: $PR_URL"
+
+                  # Try to add labels (ignore if they don't exist)
+                  PR_NUMBER=$(echo "$PR_URL" | sed 's/.*\/pull\/\([0-9]*\).*/\1/')
+                  gh pr edit $PR_NUMBER --add-label "automated" 2>/dev/null || echo "⚠️ 'automated' label not found, skipping"
+                  gh pr edit $PR_NUMBER --add-label "release" 2>/dev/null || echo "⚠️ 'release' label not found, skipping"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Update existing PR
+              if: steps.check-commit.outputs.should_sync == 'true' && steps.check-already-merged.outputs.already_merged == 'false' && steps.check-existing-pr.outputs.pr_exists == 'true'
+              run: |
+                  COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+                  PR_NUMBER="${{ steps.check-existing-pr.outputs.existing_pr_number }}"
+
+                  # Add comment to existing PR
+                  gh pr comment $PR_NUMBER --body "🔄 **Updated with latest release**
+
+                  New commit: \`$COMMIT_MSG\`
+                  Updated at: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+                  echo "✅ Updated existing PR #$PR_NUMBER with latest changes"
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Success notification
+              if: success() && steps.check-commit.outputs.should_sync == 'true' && steps.check-already-merged.outputs.already_merged == 'false'
+              run: |
+                  if [[ "${{ steps.check-existing-pr.outputs.pr_exists }}" == "true" ]]; then
+                    echo "✅ Updated existing PR for merging main to develop"
+                  else
+                    echo "✅ Created new PR for merging main to develop"
+                  fi
+
+            - name: Already up to date notification
+              if: steps.check-already-merged.outputs.already_merged == 'true'
+              run: |
+                  echo "ℹ️ Skipped: main is already merged into develop"
+
+            - name: Sync skipped notification
+              if: steps.check-commit.outputs.should_sync == 'false'
+              run: |
+                  echo "ℹ️ Sync skipped - not a release commit"
+
+            - name: Handle failure
+              if: failure() && steps.check-commit.outputs.should_sync == 'true'
+              run: |
+                  echo "❌ Failed to create/update merge PR. Check logs for details."
+
+                  # Optionally create an issue for manual intervention
+                  gh issue create \
+                    --title "🚨 Auto-merge to develop failed" \
+                    --body "The automatic merge from main to develop failed. Manual intervention required.
+
+                    **Failed at:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+                    **Workflow:** ${{ github.workflow }}
+                    **Run:** ${{ github.run_id }}" \
+                    --label "bug" \
+                    --label "automated" || true \
+                    --assignee "${{ github.actor }}" || true
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
