@@ -1,9 +1,11 @@
+# .github/workflows/release-please.yml
 name: Release Please
 
 on:
   push:
     branches:
       - main # our release branch
+  workflow_dispatch:
 
 jobs:
   release-please:
@@ -18,17 +20,9 @@ jobs:
       upload_url: ${{ steps.release.outputs.upload_url }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Git identity
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: Run Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
           release-type: dart
-          # config-file: "release-please-config.json"
+          target-branch: main
