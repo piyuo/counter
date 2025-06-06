@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/piyuo/counter/compare/v1.0.0...v1.0.1) (2025-06-06)
+
+
+### Bug Fixes
+
+* streamline GitHub workflows by removing outdated issue type labels and adding auto-merge functionality from main to develop ([6b362cc](https://github.com/piyuo/counter/commit/6b362cc21250bf9f258530ec79541d6a488575da))
+
 ## 1.0.0 (2025-06-04)
 
 
