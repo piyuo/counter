@@ -65,5 +65,6 @@
         "wrapf",
         "yourname"
     ],
-    "cmake.sourceDirectory": "C:/dropbox/counter/linux"
+    "cmake.sourceDirectory": "C:/dropbox/counter/linux",
+    "cmake.ignoreCMakeListsMissing": true
 }

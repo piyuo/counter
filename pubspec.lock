@@ -771,7 +771,7 @@ packages:
       path: "../libcli"
       relative: true
     source: path
-    version: "1.4.2"
+    version: "1.8.0"
   lints:
     dependency: transitive
     description:

@@ -1,0 +1,42 @@
+# .github/CODEOWNERS
+
+# This is an example CODEOWNERS file.
+# Each line defines one or more code owners responsible for reviewing changes to specific files or folders.
+
+# Comments start with '#' and are ignored.
+# Blank lines are also ignored.
+
+# Default Owners
+# These owners will be automatically assigned to review any files in the project
+# that are not covered by more specific rules below.
+* @piyuo # Default reviewers for the entire project
+
+# File-Specific Owners
+# Ensure these individuals are notified whenever this specific file changes.
+/README.md      @piyuo # Owner for the README file
+/docs/CONTRIBUTING.md @piyuo # Owner for the contributing guidelines
+
+# Folder-Specific Owners
+# When a folder is specified, it covers that folder and all its subfolders and files.
+/src/backend/      @your-org/backend-team @charlie # Owners for backend code
+/src/frontend/components/ @diana # Owner for frontend components
+
+# Exclusion Rules
+# Use '!' to exclude files or folders that were previously covered by a rule.
+# For example, /docs/ is owned by @documentation-team, but /docs/api/ is owned by @api-owners.
+/docs/          @documentation-team
+!/docs/api/     @api-owners # ! means exclude, API documentation is owned by the API team
+
+# File Type Owners
+# The asterisk (*) is a wildcard that matches any characters.
+# If you want to specify owners for all .js files:
+*.js        @javascript-expert # Owner for all .js files
+
+# Specific file types within a specific subfolder
+/tests/*.py     @qa-team # All .py test files within the 'tests' folder
+
+# Note: Rules are processed from top to bottom.
+# More specific paths override less specific paths.
+# For example:
+# /src/frontend/components/Navbar.js @eve # Owner for Navbar.js
+# /src/frontend/components/         @diana # But if Navbar.js changes, @eve will be prioritized.

@@ -1,695 +1,639 @@
 # Contributing Guidelines
 
-We follow a **GitHub Projects-driven workflow** that combines issue tracking with visual project management for better team coordination and automated status tracking.
+We follow a **simplified GitHub Flow** with **rebase and merge** strategy for clean commit history and milestone-driven releases.
 
-## 📋 Table of Contents
+## 📋 Quick Start
 
-### Quick Start
-- [Project Board Workflow](#project-board-workflow)
-- [Branching Strategy](#branching-strategy)
-- [Contribution Workflow](#contribution-workflow)
+Here's the complete workflow at a glance:
 
-### Step-by-Step Guide
-1. [Create an Issue](#1-create-an-issue)
-2. [Add Issue to Sprint Board](#2-add-issue-to-sprint-board)
-3. [Create Your Branch](#3-create-your-branch)
-4. [Branch Naming Convention](#4-branch-naming-convention)
-5. [Development and Commit Guidelines](#5-development-and-commit-guidelines)
-6. [Pull Request Process](#6-pull-request-process)
-7. [Automated Status Updates](#7-automated-status-updates)
-8. [Changelog](#8-changelog)
+1. **Create Issue** → Select milestone, use templates, estimate effort
+2. **Create Branch** → From main, using GitHub's branch creation feature
+3. **Open Draft PR** → Enable early collaboration with reviewers
+4. **Develop & Commit** → Frequent commits with descriptive messages
+5. **Clean History** → Squash into meaningful commits before requesting review
+6. **Request Review** → Convert to ready PR, address feedback
+7. **Merge** → Maintainer performs rebase and merge
+8. **Auto-Release** → When milestone complete, release-please handles versioning
 
-### Emergency Procedures
-- [Critical Production Fix Process](#critical-production-fix-process)
-  - [Complete Critical Fix Workflow](#complete-critical-fix-workflow)
-  - [Critical Fix Rollback Procedures](#critical-fix-rollback-procedures)
-  - [Critical Fix Best Practices](#critical-fix-best-practices)
+For detailed instructions, see the sections below:
 
-### Advanced Topics
-- [Updating Issue-Based Branches](#updating-issue-based-branches)
-- [Automated Release Process](#automated-release-process)
+- [AI Integration Schema](#-ai-integration-schema)
+- [Workflow Overview](#workflow-overview)
+- [Issue and Milestone Management](#issue-and-milestone-management)
+- [Development Process](#development-process)
+- [Commit Management](#commit-management)
+- [Pull Request Process](#pull-request-process)
+- [Release Management](#release-management)
 - [Code Standards](#code-standards)
 
-### FAQ
-- [Frequently Asked Questions](#frequently-asked-questions)
+## 🔄 Workflow Overview
 
----
-
-<a name="project-board-workflow"></a>
-## 📊 Project Board Workflow
-
-We use **GitHub Projects Sprint Board** for visual project management and automated workflow tracking.
-
-### Sprint Board Columns
-- **Backlog** - New issues waiting for planning
-- **Ready** - Issues planned and ready to start
-- **In Progress** - Currently being worked on
-- **In Review** - Pull request created, waiting for review
-- **Done** - Completed and merged to develop/main
-
-### Automated Workflows
-Our project board includes automated rules:
-- **When pull request is merged to develop** → Set status to "Done" and close issue
-
-<a name="branching-strategy"></a>
-## 🌿 Branching Strategy
-
-We follow a simplified **Issue-Driven Git Flow** for branch management:
+Our workflow emphasizes **meaningful commit history** and **milestone-driven releases**:
 
 ```mermaid
 gitGraph
-    commit id: "Initial"
-    branch develop
-    checkout develop
-    commit id: "Setup"
+    commit id: "v1.0.0"
     branch issue-17-fix-auth
     checkout issue-17-fix-auth
-    commit id: "Fix auth bug"
-    checkout develop
-    merge issue-17-fix-auth
+    commit id: "WIP: auth changes"
+    commit id: "fix: typo"
+    commit id: "refactor: cleanup"
+    checkout main
+    merge issue-17-fix-auth id: "fix: authentication bug in login flow #17"
     branch issue-25-add-feature
     checkout issue-25-add-feature
-    commit id: "Add feature"
-    checkout develop
-    merge issue-25-add-feature
+    commit id: "feat: implement core logic"
+    commit id: "feat: add validation layer"
     checkout main
-    merge develop
-    commit id: "Release v1.0.0"
+    merge issue-25-add-feature id: "feat: add user dashboard feature #25"
+    commit id: "v1.1.0"
 ```
 
-### Main Branches
-- **`main`** - Production branch
-  - Contains only stable, released code
-  - All releases are tagged here and deployed via CI/CD
-  - Example: Version tags like `v1.2.0` are created on this branch
+### Key Principles
+- **Meaningful commits on main** - avoid WIP, typo fixes, and noisy commits
+- **Rebase and merge only** - no merge commits
+- **Milestone-driven releases** - all issues must belong to a milestone
+- **Draft PRs for early collaboration** with reviewers
+- **Clear PR-Issue linking** - PR titles must include issue number
 
-- **`develop`** - Integration branch
-  - Contains the latest integrated features for the next release
-  - May be unstable as new features are integrated
-  - All issue-based branches merge here first
+## 📊 Issue and Milestone Management
 
-### Issue-Based Branches
-All development work (features, bug fixes, and critical production fixes) uses issue-based branches:
+### Creating Issues
+All work must begin with a GitHub Issue:
 
-- **Created via**: GitHub's issue branch creation feature only
-- **Naming**: Auto-generated by GitHub (e.g., `17-fix-payment-gateway-crash`, `25-add-user-authentication`)
-- **Branch from**:
-  - `develop` for regular features and bug fixes
-  - `main` for critical production fixes (labeled with `critical`)
-- **Merge back to**:
-  - `develop` for regular development work
-  - `main` for critical fixes (then immediately sync to `develop`)
-- **Benefits**:
-  - Automatic issue linking and traceability
-  - Consistent naming across all contributors
-  - No manual branch naming errors
+1. **Select milestone first** - Choose from available milestones
+2. **Use issue templates** - Choose between:
+   - **🐛 Bug Report** - For reporting bugs and issues
+   - **✨ Feature Request** - For suggesting new features or improvements
+3. **Complete required fields**:
+   - **Bug Report**: Description, reproduction steps, expected/actual behavior, severity, version, OS
+   - **Feature Request**: Problem statement, proposed solution, priority
+4. **Add optional details** as helpful (screenshots, logs, additional context)
+5. **Estimate effort** - Use story points (1 point ≈ 2 hours, max 20 points per week)
 
-<a name="contribution-workflow"></a>
-## 🔄 Contribution Workflow
+### Large Feature Management
+For complex features, we use **Epic + Sub-issues** approach:
 
-### 1. Create an Issue
-All work must begin with a GitHub Issue to track the problem or feature request.
+1. **Epic Issue** - Main feature request with overview and background
+2. **Team Planning** - Collaborative breakdown into sub-issues (1-2 days each)
+3. **Sub-issue Creation** - Each with clear acceptance criteria
+4. **Team Assignment** - Developers claim specific sub-issues
+5. **Coordinated Development** - All sub-issues tracked in project board
 
-**Note**: This repository uses minimal labeling - only the `critical` label is used for urgent production issues requiring hotfix process. All other issue classification (type, status, priority) is managed through issue templates and Project fields.
+#### Issue Types and Commit Prefixes:
+| Issue Type        | Template            | Commit Prefix       | Version Impact   | Example                                                                   |
+| ----------------- | ------------------- | ------------------- | ---------------- | ------------------------------------------------------------------------- |
+| 🐛 Bug Report      | `🐛 Bug Report`      | `fix:`              | Patch            | `fix: resolve payment gateway timeout`                                    |
+| ✨ Feature Request | `✨ Feature Request` | `feat:` or `feat!:` | Minor or Major** | `feat: add user profile management`<br>`feat!: migrate to new API format` |
+| Documentation     | Manual creation     | `docs:`             | None*            | `docs: update API authentication guide`                                   |
 
-### 2. Add Issue to Sprint Board
-**Before starting any work**, add the issue to the Sprint Board and fill in the planning fields:
+*\*Does not trigger version bumps by release-please*
 
-#### Required Fields to Complete:
-```
-□ Priority: High/Medium/Low
-□ Estimate: Expected effort in story points
-□ Iteration: Target sprint/milestone
-□ Start Date: When you plan to begin work
-□ Assignee: Assign to yourself
-```
+*\*\*Feature Requests can result in either regular features (`feat:` → minor bump) or breaking changes (`feat!:` → major bump) depending on implementation impact*
 
-#### Estimate Story Point Reference:
-| Story Points | Typical Duration | Description                       |
-| ------------ | ---------------- | --------------------------------- |
-| 1            | 1-2 hours        | Very simple fix or change         |
-| 2            | Half day         | Simple feature or bug fix         |
-| 3            | 1 day            | Moderate complexity               |
-| 5            | 2-3 days         | Complex feature                   |
-| 8+           | 1+ week          | Very complex (consider splitting) |
+### Milestone Management
+- **All issues must have a milestone** assigned before starting work
+- **Milestones represent development cycles** - e.g., "Sprint 7 - Payment Integration"
+- **Version numbers determined by release-please** based on commit types
+- **Release when milestone complete** - all issues closed
 
-#### Moving Issue to "In Progress":
-1. Navigate to the Sprint Board
-2. Drag the issue from "Ready" to "In Progress"
-3. Ensure all required fields are filled
-4. Now you can start development work
+## 🚀 Development Process
 
-### 3. Create Your Branch
-Create a branch using GitHub's issue integration:
-
-**For all development work (features, bugs, critical fixes):**
-1. Navigate to the relevant GitHub Issue
-2. Click "Create a branch for this issue" in the Development section
-3. **Important**: Choose the appropriate source branch:
-   - **`develop`** for regular features and bug fixes
-   - **`main`** for critical production fixes (issues labeled `critical`)
-4. GitHub will auto-generate a descriptive branch name
-
-**Manual branch creation (discouraged):**
-```bash
-# Only if GitHub branch creation is unavailable
-# For regular development:
-git checkout develop
-git pull origin develop
-git checkout -b 123-your-issue-description
-
-# For critical production fixes:
-git checkout main
-git pull origin main
-git checkout -b 456-critical-fix-description
-```
-
-### 4. Branch Naming Convention
-**Required**: Always use GitHub's issue branch creation feature to ensure consistent naming.
-
-When creating a branch from an issue:
-1. Navigate to the relevant GitHub Issue
-2. Click "Create a branch for this issue" in the Development section
-3. **Important**: Choose the correct source branch:
-   - **`develop`** for features and regular bug fixes
-   - **`main`** for critical production fixes
-4. GitHub will auto-generate a descriptive branch name like:
-   - `3-add-login-page` (feature)
-   - `17-fix-user-registration-bug` (bug fix)
-   - `25-fix-critical-payment-gateway-crash` (critical fix)
-
-This approach ensures:
-- Consistent naming across all contributors
-- Automatic linking between branches and issues
-- Clear traceability of all work
-- No manual naming errors or inconsistencies
-- Complete audit trail through GitHub issues
-
-### 5. Development and Commit Guidelines
-We follow the [Conventional Commits](https://www.conventionalcommits.org/) format with **scope** for better organization:
-
-#### Basic Format
-```
-<type>(<scope>): <description>
-```
-
-#### Types and Scopes
-
-| Type        | Description                       | Example with Scope                              |
-| ----------- | --------------------------------- | ----------------------------------------------- |
-| `feat:`     | New feature                       | `feat(auth): add support for 2FA login`         |
-| `fix:`      | Bug fix                           | `fix(ui): correct button alignment in settings` |
-| `docs:`     | Documentation changes             | `docs(api): update authentication endpoints`    |
-| `chore:`    | Maintenance, refactor, formatting | `chore(deps): update dependencies to latest`    |
-| `refactor:` | Code refactoring                  | `refactor(db): optimize query performance`      |
-
-#### Common Scopes
-- `auth` - Authentication related
-- `ui` - User interface
-- `api` - API endpoints
-- `db` - Database related
-- `deps` - Dependencies
-- `config` - Configuration
-- `ci` - Continuous Integration
-- `docs` - Documentation
-
-#### Examples
-```bash
-# Feature with scope
-git commit -m "feat(auth): implement OAuth2 integration with Google"
-
-# Bug fix with scope
-git commit -m "fix(payment): resolve timeout issue in gateway processing"
-
-# Documentation with scope
-git commit -m "docs(readme): add setup instructions for local development"
-
-# Breaking change (note the !)
-git commit -m "feat(api)!: change user endpoint response format"
-```
-
-**Important**: Issue closure is now handled automatically by GitHub Projects when PRs are merged. You no longer need to include `fixes #<issue_number>` in your commits.
-
-### 6. Pull Request Process
-- **Target branch**:
-  - Regular features/bug fixes: merge to `develop`
-  - Critical production fixes: merge to `main` (then immediately sync to `develop`)
-- **Automated issue management**: Issues are automatically closed when PRs are merged via GitHub Projects automation
-- **PR review**: Wait for required reviews and ensure all CI checks pass before merging
-- **Automatic status updates**: Issue moves to "In Review" when PR is created, then to "Done" when merged
-
-### 7. Automated Status Updates
-When your PR is merged to `develop` or `main`:
-- ✅ Issue automatically moves to "Done" column
-- ✅ Issue status is set to completed and closed
-- ✅ Sprint board reflects the completed work
-- ✅ No manual status updates needed!
-
-### 8. Changelog
-Follow [Conventional Commits](https://www.conventionalcommits.org/) standards for commit messages to ensure changelogs can be generated automatically by Release Please.
-
-<a name="critical-production-fix-process"></a>
-## 🚨 Critical Production Fix Process
-
-When a critical bug is discovered in production that requires immediate attention, follow this process to ensure safe and traceable emergency fixes.
-
-### Complete Critical Fix Workflow:
-
-#### 1. Create Critical Issue
-1. Create a GitHub Issue documenting the critical problem
-2. Add label: `critical`
-3. Clearly describe the production impact and urgency
-
-#### 2. Add to Sprint Board
-1. Add the critical issue to the Sprint Board
-2. Set Priority to "High"
-3. Fill in Estimate (can be rough for urgent fixes)
-4. Move to "In Progress"
-
-#### 3. Create Branch from Main
-1. Navigate to the critical issue
+### 1. Create Issue Branch
+1. Navigate to your assigned GitHub Issue
 2. Click "Create a branch for this issue"
-3. **Important**: Set source branch to `main` (not `develop`)
-4. GitHub will create a branch like `123-fix-critical-payment-gateway-crash`
+3. **Source**: Always branch from `main`
+4. **Naming**: GitHub auto-generates (e.g., `17-fix-payment-gateway`)
 
-#### 4. Implement the Fix
+### 2. Start with Draft PR (Recommended)
+Create a **Draft PR** immediately for early collaboration:
+
 ```bash
-# Work on your auto-generated issue branch
-git checkout 123-fix-critical-payment-gateway-crash
-git pull origin 123-fix-critical-payment-gateway-crash
-
-# Make your changes - multiple commits are OK
-git add .
-git commit -m "fix(payment): resolve gateway timeout issue"
-
-# Test thoroughly and make additional commits if needed
-git commit -m "fix(payment): add additional error handling for edge cases"
-
-# Push the branch
-git push origin 123-fix-critical-payment-gateway-crash
+# After first commit
+git push -u origin <branch-name>
+# Create Draft PR on GitHub
 ```
 
-#### 5. Create Pull Request to Main
-- **Target**: `main` branch (not `develop`)
-- **Review**: Even for urgent fixes, get a quick review if possible
-- **Automatic linking**: The branch is automatically linked to the issue
+**Benefits of Draft PRs:**
+- Early feedback from CODEOWNERS reviewers
+- Discuss approach before implementation
+- Avoid large changes at review time
+- Track progress transparently
 
-#### 6. Deploy Critical Fix
+### 3. Development and Commits
+During development, commit frequently with any messages you find helpful:
+
 ```bash
-# After PR is approved and merged to main
-# The fix will be automatically deployed via CI/CD
-# Issue automatically moves to "Done" and closes
+# Examples of work-in-progress commits (these will be cleaned up later)
+git commit -m "WIP: initial authentication setup"
+git commit -m "add password validation logic"
+git commit -m "fix: handle edge case for empty passwords"
+git commit -m "refactor: extract validation functions"
+git commit -m "docs: add authentication flow diagram"
+git commit -m "fix typo in error message"
+git commit -m "debug: add logging for troubleshooting"
 ```
 
-#### 7. Sync to Develop Branch
-**Critical**: After the critical fix is merged to `main`, immediately sync it to `develop`:
+**Development Phase Freedom:**
+- Commit as frequently as you want with any message style
+- Use WIP, debug, typo fix, or any other commit messages
+- Focus on progress, not commit message perfection
+- These commits will be cleaned up before review
 
+## 📝 Commit Management
+
+### Before Requesting Review (Critical Step)
+
+**You MUST clean up your commit history** before creating a PR or converting Draft PR to ready for review.
+
+#### Option 1: Command Line (Traditional)
 ```bash
-git checkout develop
-git pull origin develop
-git merge origin/main
-git push origin develop
-```
-
-### Critical Fix Rollback Procedures
-
-When a critical fix causes additional problems or needs to be reverted, choose the appropriate rollback method based on your situation:
-
-#### Choosing the Right Rollback Method
-
-| Situation                                | Method                          | Reason                           |
-| ---------------------------------------- | ------------------------------- | -------------------------------- |
-| Critical fix already merged and deployed | Option 1 (New Issue & Rollback) | Preserves complete git history   |
-| Critical fix still in PR stage           | Option 2 (Branch Rollback)      | Clean restart is simpler         |
-| Production critically broken             | Option 3 (Emergency Rollback)   | Immediate return to stable state |
-
-#### Option 1: Rollback via New Critical Issue (Recommended)
-
-**When to use**: The problematic critical fix has already been merged to `main` and deployed to production.
-
-**Step-by-step example**:
-```bash
-# First, identify the problematic commit
-git log --oneline main -5
-# Output might show:
-# a1b2c3d fix(payment): resolve gateway timeout
-# e4f5g6h feat(ui): add new user dashboard
-# ...
-
-# 1. Create a new GitHub Issue for the rollback with 'critical' label
-# 2. Add to Sprint Board with High priority
-# 3. Create branch from the issue (source: main)
-# 4. Use git revert to create a new commit that undoes the previous change
-
-git checkout 456-rollback-payment-gateway-fix  # Your new issue branch
-git revert a1b2c3d
-
-# Push and create PR to main as usual
-git push origin 456-rollback-payment-gateway-fix
-```
-
-#### Option 2: Branch-level Rollback
-
-**When to use**: The critical fix branch still exists and has **NOT been merged** to `main` yet.
-
-**Step-by-step example**:
-```bash
-# Close the original issue's PR and delete the branch
-# Delete the problematic branch (local and remote)
-git branch -D 123-problematic-payment-fix
-git push origin --delete 123-problematic-payment-fix
-
-# Create a new issue for the corrected approach
-# Add to Sprint Board and implement the correct solution
-```
-
-#### Option 3: Emergency Production Rollback
-
-**When to use**: The critical fix is deployed and causing severe production issues.
-
-```bash
-# 1. Create emergency rollback issue immediately with 'critical' label
-# 2. Add to Sprint Board with High priority
-# 3. Create branch from issue (source: main)
-# 4. Identify the last known good commit on main
-git log --oneline main
-
-# 5. Revert the problematic commit
-git checkout 789-emergency-rollback-payment-fix  # Your emergency issue branch
-git revert <problematic-commit-hash>
-git push origin 789-emergency-rollback-payment-fix
-
-# 6. Fast-track the rollback PR and deploy immediately
-```
-
-### Critical Fix Best Practices
-
-- **Always use issues**: Every critical fix must start with a GitHub Issue for proper tracking
-- **Always use Sprint Board**: Add critical issues to the board for visibility
-- **Always use GitHub branch creation**: Never manually name branches, even in emergencies
-- **Document thoroughly**: Create clear commit messages explaining the problem and solution
-- **Test on the branch**: Verify the fix works before merging
-- **Multiple commits OK**: It's better to have several small, clear commits than one large messy one
-- **Quick reviews**: Even urgent fixes benefit from a second pair of eyes
-- **Monitor after deployment**: Watch for any side effects after the fix is deployed
-- **Use labels**: Always label critical issues with `critical` for visibility
-
-<a name="updating-issue-based-branches"></a>
-## 🔄 Updating Issue-Based Branches
-
-When the `develop` branch is updated (e.g., after a critical fix sync), existing issue-based branches should be updated to include the latest changes.
-
-### When to Update Your Branch:
-- After critical fix changes have been synced to `develop`
-- When `develop` has significant updates that might affect your work
-- Before creating a Pull Request (recommended)
-
-### Method 1: Rebase (Recommended - Clean History)
-
-```bash
-# 1. Switch to your issue-based branch
-git checkout your-branch-name
-
-# 2. Ensure you have the latest develop changes
+# First, sync with latest main
 git fetch origin
+git rebase origin/main
 
-# 3. Rebase your branch onto the latest develop
-git rebase origin/develop
-
-# 4. If conflicts occur, resolve them and continue
-# git add .
-# git rebase --continue
-
-# 5. Force push (rebase changes history)
-git push --force-with-lease origin your-branch-name
+# Clean up commits using interactive rebase
+git rebase -i origin/main
 ```
 
-### Method 2: Merge (Alternative - Safer for Shared Branches)
+#### Option 2: Visual Studio Code Git Graph (Recommended)
+For developers using VS Code, the **Git Graph extension** provides a more intuitive UI approach:
 
+1. **Install Git Graph extension** (if not already installed)
+2. **Open Git Graph** - Click the graph icon in Source Control panel
+3. **Reset to clean point**:
+   - Right-click on the latest `main` commit
+   - Select "Reset current branch to this Commit"
+   - Choose "**Soft - Keep all changes, but reset head**"
+   - This preserves all your work but removes commit history
+4. **Create meaningful commits**:
+   - Stage and commit your changes as clean, meaningful commits
+   - Follow the commit format: `<type>: <description> #<issue-number>`
+5. **Force push safely**:
+   - Right-click on your branch in Git Graph
+   - Select "**Push branch - Force With Lease**"
+   - This safely updates your remote branch
+
+**Benefits of Git Graph approach:**
+- Visual representation of commit history
+- Point-and-click interface for complex git operations
+- Safer force-push with built-in conflict detection
+- No need to remember git rebase commands
+
+### Commit Cleanup Guidelines
+
+**Goal**: Transform messy development commits into **1-n meaningful commits** (typically 1 per issue).
+
+**What to squash/remove:**
+- ❌ WIP commits
+- ❌ Typo fixes
+- ❌ Debug commits
+- ❌ "Fix review comments"
+- ❌ Any noisy, non-meaningful commits
+
+**What constitutes meaningful commits:**
+- ✅ `feat: implement user authentication system #17`
+- ✅ `fix: resolve payment gateway timeout issues #142`
+- ✅ `refactor: optimize database query performance #201`
+- ✅ `docs: add API authentication guide #78`
+
+### Interactive Rebase Example
 ```bash
-# 1. Switch to your branch
-git checkout your-branch-name
+# Before cleanup (messy development history):
+pick abc1234 WIP: start auth work
+pick def5678 add validation
+pick ghi9012 fix typo in validation
+pick jkl3456 debug: add more logging
+pick mno7890 fix: handle edge cases
+pick pqr1234 remove debug logging
+pick stu5678 final cleanup
 
-# 2. Merge the latest develop
-git merge origin/develop
-
-# 3. Push the updates
-git push origin your-branch-name
+# After cleanup (meaningful history):
+pick abc1234 feat: implement user authentication with validation #17
 ```
 
-### Choosing the Right Method:
-- **Use Rebase** when:
-  - Your branch hasn't been shared with others
-  - You want to maintain a clean, linear history
-  - Your branch doesn't have an active Pull Request yet
+**For Complex Features:**
+You may keep multiple meaningful commits if they represent distinct logical units:
+```bash
+# Acceptable for complex features:
+feat: implement OAuth2 authentication core #17
+feat: add user session management #17
+docs: add authentication flow documentation #17
+```
 
-- **Use Merge** when:
-  - Other team members are collaborating on the branch
-  - The branch has an active Pull Request
-  - You prefer to preserve the exact commit history
+### Final Commit Requirements
+Your cleaned commits must follow these requirements:
 
-<a name="automated-release-process"></a>
-## 🚀 Automated Release Process
-We utilize `Release Please` (a GitHub Action) to automate versioning, changelog generation, and GitHub Releases. This process relies on adherence to the Conventional Commits specification.
+- **Use conventional commit format**: `<type>: <description> #<issue-number>`
+- **Must be `feat:` or `fix:`** to trigger version updates (unless it's docs/refactor/chore)
+- **Include issue number** for traceability
+- **Be descriptive and actionable**
 
-### Configuration Files
-The automated release process is configured via:
-- `.release-please.yml` - Main configuration file defining release settings
-- `.github/workflows/release-please.yml` - GitHub Action workflow that triggers the automation
+#### Good Examples:
+```bash
+feat: add user dashboard with activity metrics #95
+fix: resolve payment gateway connection timeout #142
+refactor: optimize database query performance for large datasets #201
+```
 
-### Release Workflow
-The `main` branch is designated as our production/release branch, and releases are automatically created based on changes merged into it.
+#### Bad Examples:
+```bash
+WIP: working on dashboard  # ❌ Not meaningful
+Update code  # ❌ Not descriptive, no issue number
+fix typo  # ❌ Noisy commit that should be squashed
+```
 
-**Workflow for a New Release:**
-1. **Develop Features/Bugfixes:** Continue to develop new features and bugfixes on issue-based branches, merging them into `develop` as per our branching strategy. Ensure your commit messages follow Conventional Commits format.
-2. **Prepare for Release (Sync `develop` to `main`):**
-   * Once `develop` branch is stable and ready for a release, create a Pull Request from `develop` to `main`.
-   * The title and description of this PR can be concise, for example:
-     ```
-     Title: Merge develop into main for next release
-     Description: This PR syncs the latest changes from the 'develop' branch to 'main' to initiate the release process via Release Please.
-     ```
-   * Review and merge this PR into `main`.
-3. **Release Please Automation Trigger:** Merging `develop` to `main` will trigger the `release-please.yml` GitHub Action.
-4. **Review the Automated Release PR:**
-   * `Release Please` will automatically create a new Pull Request targeting the `main` branch (e.g., `chore(main): release 1.0.0+X`).
-   * This PR will contain the automatically calculated version number and the generated `CHANGELOG.md` entries based on your Conventional Commits.
-   * **Crucially, review this PR** to ensure the versioning and changelog are as expected.
-5. **Finalize the Release:**
-   * Merge the automated Release PR into `main`.
-   * Once merged, Release Please automatically:
-     * Creates a Git Tag (e.g., `v1.0.0+X`) on the `main` branch
-     * Creates a corresponding GitHub Release with the generated changelog
-6. **Sync `main` back to `develop`:**
-   * After the release is finalized on `main`, manually merge the changes from `main` back into `develop` to ensure `develop` has the latest version number and `CHANGELOG.md` updates.
-   * Use the following commands:
-     ```bash
-     git checkout develop
-     git pull origin main --no-ff
-     git push origin develop
-     ```
+## 🔀 Pull Request Process
 
-<a name="code-standards"></a>
+### Before Creating/Converting PR
+
+**MANDATORY STEPS:**
+
+1. **Clean up your commits** (see Commit Management section above)
+2. **Sync with main branch**:
+```bash
+git fetch origin
+git rebase origin/main
+git push --force-with-lease origin <branch-name>
+```
+3. **Run all tests and linting** locally
+
+### Creating the PR
+
+Use our **PR template** which includes:
+
+**Required Sections:**
+- **Checklist** - Code standards, testing, documentation
+- **Testing** - How changes were tested, evidence provided
+- **Deployment Notes** - Any special deployment considerations
+- **Reviewer Notes** - Specific areas for review focus
+
+**Template automatically populated** when creating PR from issue branch.
+
+#### PR Title Format:
+```
+<type>: <description> #<issue-number>
+```
+
+**IMPORTANT**: PR title must include the issue number for proper linking and traceability.
+
+**Examples:**
+```bash
+feat: add user dashboard with activity metrics #95
+fix: resolve payment gateway connection timeout #142
+docs: update API authentication guide #78
+refactor: optimize database query performance #201
+```
+
+### Review Process
+
+1. **CODEOWNERS automatically assigned** as reviewers
+2. **Address feedback promptly**:
+   ```bash
+   # Address review feedback with additional commits
+   git commit -m "address review: improve error handling per feedback"
+   git commit -m "fix: update tests based on reviewer suggestions"
+   ```
+3. **All CI checks must pass** before merge
+4. **At least one approval required** from CODEOWNERS
+
+### Merge Timing and Responsibilities
+
+**Key Understanding:**
+- **Reviewers decide when to merge** - once they approve, they typically merge immediately
+- **No additional cleanup opportunity** after review approval
+- **Reviewers may request commit cleanup** as part of their review if they notice noisy commits
+- **Developer responsibility**: Ensure commits are clean BEFORE requesting review
+
+**Review Scenarios:**
+
+**Scenario 1: Clean commits submitted**
+```
+✅ Developer submits PR with meaningful commits
+✅ Reviewer approves and merges immediately
+✅ Clean history preserved on main
+```
+
+**Scenario 2: Noisy commits detected**
+```
+❌ Developer submits PR with WIP/typo commits
+🔍 Reviewer requests: "Please clean up commits before merge"
+🛠️ Developer rebases and force-pushes cleaned history
+✅ Reviewer re-approves and merges
+```
+
+### Merge Process
+
+- **Only "Rebase and merge" allowed** - other options are disabled
+- **Maintainer performs the merge** after approval
+- **Commits appear on main exactly as they exist on feature branch**
+- **Branch automatically deleted** after merge
+
+## 🏷️ Release Management
+
+### Understanding Release-Please
+
+**Release-please** is an automated tool that handles versioning and releases by:
+
+1. **Analyzing commit messages** on main branch
+2. **Determining version type** based on conventional commits:
+   - `feat:` commits → Minor version bump (1.1.0 → 1.2.0)
+   - `fix:` commits → Patch version bump (1.1.0 → 1.1.1)
+   - `feat!:` or `BREAKING CHANGE` → Major version bump (1.1.0 → 2.0.0)
+3. **Generating changelog** from commit messages and linked issues
+4. **Creating release PR** with version bump and changelog
+5. **Creating Git tags** when release PR is merged
+
+### Milestone Completion
+When all issues in a milestone are completed:
+
+1. **Release-please creates release PR** automatically
+2. **Maintainer reviews and merges** release PR to main
+3. **Automatic version bump and changelog** generation
+4. **Git tag created** with version number
+5. **CI/CD deployment triggered** automatically
+
+### Version Strategy
+Following **semantic versioning** (semver):
+
+- **feat:** commits → Minor version bump (1.1.0 → 1.2.0)
+- **fix:** commits → Patch version bump (1.1.0 → 1.1.1)
+- **feat!:** or **BREAKING CHANGE** → Major version bump (1.1.0 → 2.0.0)
+- **docs/refactor/chore:** → No version bump
+
 ## 💡 Code Standards
 
-### Code Quality Requirements
+### Quality Requirements
+- **All linting warnings resolved** before review
+- **Test coverage ≥ 80%** for new code
+- **Unit tests required** for business logic
+- **Integration tests required** for APIs
 
-#### Linting and Analysis
-- **Dart/Flutter projects**: Use `dart analyze` and `flutter analyze`
-- **JavaScript/TypeScript**: Use ESLint with appropriate configuration
-- **Python**: Use pylint, flake8, or black for formatting
-- All linting warnings must be resolved before merging
+### Naming Conventions
+- **Variables**: camelCase (JS/Dart) or snake_case (Python)
+- **Functions**: Descriptive verbs (`getUserById`, `calculateTotal`)
+- **Classes**: PascalCase (`UserService`, `PaymentGateway`)
+- **Files**: kebab-case (`user-service.js`, `payment-gateway.py`)
 
-#### Testing Requirements
-- **Minimum test coverage**: 80% for new code
-- **Unit tests**: Required for all business logic functions
-- **Integration tests**: Required for API endpoints and critical user flows
-- **Test naming**: Use descriptive names that explain what is being tested
+### Best Practices
+- **Functions under 20 lines** (max 50 lines)
+- **Single responsibility principle**
+- **Maximum 3 levels of nesting**
+- **Meaningful comments explain why, not what**
+- **Remove dead code** before PR
 
-#### Naming Conventions
-- **Variables**: Use camelCase (JavaScript/Dart) or snake_case (Python)
-- **Functions**: Use descriptive verbs (e.g., `getUserById`, `calculateTotalPrice`)
-- **Classes**: Use PascalCase (e.g., `UserService`, `PaymentGateway`)
-- **Files**: Use kebab-case for most files (e.g., `user-service.js`, `payment-gateway.dart`)
-- **Constants**: Use UPPER_SNAKE_CASE (e.g., `MAX_RETRY_ATTEMPTS`)
+## 🛠️ Common Git Operations
 
-#### Code Organization
-- **Keep functions small**: Ideally under 20 lines, maximum 50 lines
-- **Single responsibility**: Each function/class should have one clear purpose
-- **Avoid deep nesting**: Maximum 3 levels of indentation
-- **Use meaningful comments**: Explain why, not what
-- **Remove dead code**: Delete unused functions, variables, and imports
-
-#### Documentation Requirements
-- **Public APIs**: Must have comprehensive documentation
-- **Complex algorithms**: Include explanation comments
-- **Configuration files**: Document all options and their effects
-- **README files**: Keep up-to-date with current setup instructions
-
-#### Security Best Practices
-- **Never commit secrets**: Use environment variables or secure vaults
-- **Input validation**: Validate all user inputs
-- **Error handling**: Don't expose internal details in error messages
-- **Dependencies**: Keep dependencies updated and audit for vulnerabilities
-
-#### Performance Guidelines
-- **Database queries**: Optimize for minimal N+1 queries
-- **API responses**: Keep response times under 200ms for most endpoints
-- **Memory usage**: Avoid memory leaks, especially in long-running processes
-- **Caching**: Implement appropriate caching strategies
-
-<a name="frequently-asked-questions"></a>
-## 🤔 Frequently Asked Questions
-
-### Project Board and Sprint Management
-
-**Q: What if I forget to fill in the Sprint Board fields before starting work?**
-A: Please fill them in as soon as possible. These fields help with sprint planning and resource allocation. The issue won't be blocked, but it helps the team plan better.
-
-**Q: Can I change the Estimate after starting work?**
-A: Yes, estimates can be updated as you learn more about the task. This helps improve future estimation accuracy.
-
-**Q: What if my work takes much longer than estimated?**
-A: Update the estimate and communicate with your team. This feedback helps improve future sprint planning.
-
-### General Workflow
-
-**Q: Can I work on multiple issues at the same time?**
-A: Yes, but create separate branches for each issue and move them to "In Progress" on the Sprint Board. This keeps changes isolated and makes reviews easier.
-
-**Q: What if I accidentally commit to the wrong branch?**
-A: You can use `git cherry-pick` to move commits to the correct branch, or create a new issue-based branch and start fresh.
-
-**Q: Do I still need to include "fixes #123" in my commits?**
-A: No! This is no longer required. GitHub Projects automation handles issue closure when PRs are merged to develop or main.
-
-### Branching and Issues
-
-**Q: What if GitHub's "Create a branch" button isn't available?**
-A: This usually means you don't have write access to the repository. Contact a repository maintainer for permissions.
-
-**Q: Can I rename a branch after creating it?**
-A: It's better to create a new issue-based branch instead. This maintains the automatic linking between issues and branches.
-
-**Q: What if I need to work on something that doesn't have an issue?**
-A: Always create an issue first, then add it to the Sprint Board. This ensures proper tracking and follows our workflow consistently.
-
-### Commit Messages
-
-**Q: How specific should commit scopes be?**
-A: Use the most specific scope that makes sense. For example, `feat(auth/2fa)` if you have sub-modules, or just `feat(auth)` for general authentication work.
-
-**Q: Can I have multiple types in one commit?**
-A: No, each commit should have a single type. If you're doing multiple things, consider breaking them into separate commits.
-
-### Critical Fixes
-
-**Q: How do I know if something is "critical" enough for the emergency process?**
-A: If it's causing production downtime, data loss, security issues, or significantly impacting users, it's critical. When in doubt, discuss with your team lead.
-
-**Q: Should I still add critical fixes to the Sprint Board?**
-A: Yes, even critical fixes should be added to the Sprint Board for visibility and tracking, but with High priority.
-
-### Release Process
-
-**Q: What if Release Please creates the wrong version number?**
-A: This usually happens due to incorrect commit message formatting. You can edit the automated PR before merging, or create a manual adjustment commit.
-
-**Q: How often should we release?**
-A: This depends on your team's needs. Many teams do weekly or bi-weekly releases, but you can release as often as daily or as infrequently as monthly.
-
-### Code Standards
-
-**Q: What if the linter conflicts with our existing code style?**
-A: Update the linter configuration to match your team's agreed-upon style. Consistency is more important than any specific style choice.
-
-**Q: How do I handle legacy code that doesn't meet current standards?**
-A: Don't refactor everything at once. Improve code quality incrementally when you're working in those areas, following the "boy scout rule" - leave code better than you found it.
-
----
-
-## 🎯 Quick Reference Card
-
-### New Issue Workflow:
-```
-1. Create GitHub Issue (no labels needed except 'critical' for hotfixes)
-2. Add to Sprint Board and fill fields:
-   - Priority, Estimate, Iteration, Start Date
-3. Move to "In Progress"
-4. Click "Create a branch for this issue"
-5. Develop and commit (NO need for fixes #123)
-6. Create PR → Auto moves to "In Review"
-7. Merge PR to develop → Auto moves to "Done" and closes issue
-```
-
-### Sprint Planning Checklist:
-```
-□ All issues have Priority set
-□ All issues have Estimate (Story Points)
-□ Issues assigned to team members
-□ Sprint capacity vs. planned work reviewed
-□ Dependencies identified
-□ Definition of Done agreed upon
-```
-
-### Most Common Commands
+### Interactive Rebase Example (Command Line)
 ```bash
-# Create issue-based workflow
-1. Create GitHub Issue (only add 'critical' label if hotfix needed)
-2. Add to Sprint Board with required fields
-3. Click "Create a branch for this issue"
-4. git checkout <auto-generated-branch-name>
-5. git commit -m "feat(scope): description" (NO fixes #123 needed)
-6. git push origin <branch-name>
-7. Create PR to develop
-
-# Update branch with latest develop
+# Start interactive rebase (make sure to fetch first)
 git fetch origin
-git rebase origin/develop
-git push --force-with-lease origin <branch-name>
+git rebase -i origin/main
 
-# Critical fix emergency workflow
-1. Create issue with "critical" label
-2. Add to Sprint Board with High priority
-3. Branch from main (not develop)
-4. Fix, test, PR to main
-5. After merge: git checkout develop && git merge origin/main
+# In the editor, squash noisy commits:
+pick abc1234 feat: implement user authentication #17
+squash def5678 WIP: add validation
+squash ghi9012 fix typo in validation
+squash jkl3456 remove debug logging
+
+# Edit the final commit message to be meaningful:
+# feat: implement user authentication with validation #17
 ```
 
-### Commit Message Templates
+### Git Graph Alternative (Visual Studio Code)
+For VS Code users, commit cleanup can be done visually:
+
+1. **View commit history** in Git Graph extension
+2. **Identify cleanup point** - usually the last commit from main
+3. **Soft reset** to that point (keeps all changes)
+4. **Re-commit cleanly** with meaningful messages
+5. **Force push with lease** to update remote branch
+
+### Handling Review Changes
 ```bash
-# Regular feature (NO fixes #123 needed)
-git commit -m "feat(scope): add new feature description"
+# After reviewer approval, they merge immediately
+# No opportunity for additional cleanup
 
-# Bug fix (NO closes #456 needed)
-git commit -m "fix(scope): resolve specific bug description"
+# If reviewer requests commit cleanup:
+git rebase -i origin/main  # Clean up commits
+git push --force-with-lease origin <branch-name>  # Update PR
+# Reviewer will then re-review and merge
+```
 
-# Breaking change
-git commit -m "feat(scope)!: change that breaks API"
+## 🔍 Enhanced Traceability with Issue Linking
+
+With our improved PR title format, traceability is significantly enhanced:
+
+### Complete Traceability Chain
+```
+Issue #93 → Branch 93-docs-update → PR #94 "docs: update contributing guide #93" → Commit "docs: update contributing guide #93"
+```
+
+### Finding Related Content
+1. **From main branch commit**: Issue number is directly visible in commit message
+2. **From commit to PR**: Click the `#PR-NUMBER` link below commit title
+3. **From PR to issue**: Issue number in PR title links directly to original issue
+4. **Reverse lookup**: GitHub automatically shows all PRs that reference an issue
+
+### Benefits of Enhanced Linking
+- **Instant issue identification** from any commit on main branch
+- **Streamlined code archaeology** - easily trace why changes were made
+- **Automated issue closing** - GitHub closes issues when PR with `#issue-number` is merged
+- **Better project management** - clear visibility of which issues are in progress/completed
+- **Improved changelog generation** - release notes can include issue context
+
+## 🤔 FAQ
+
+**Q: When exactly should I clean up my commits?**
+A: **Before creating a PR or converting Draft PR to ready for review**. This is mandatory - reviewers expect clean, meaningful commits.
+
+**Q: Can I keep WIP commits in my PR?**
+A: **No**. All WIP, typo fixes, debug commits, and other noisy commits must be squashed before review. Use interactive rebase to clean them up.
+
+**Q: What if reviewers ask for changes after I submit clean commits?**
+A: Make the requested changes in new commits. Reviewers will merge when satisfied - there's typically no opportunity for you to clean up review feedback commits before merge.
+
+**Q: Do I need exactly one commit per PR?**
+A: **No**. You need **1-n meaningful commits**. Simple issues typically result in 1 commit, but complex features can have multiple logical commits (e.g., core implementation + documentation + tests).
+
+**Q: What's the easiest way to clean up commits if I'm not comfortable with git rebase?**
+A: **Use Visual Studio Code's Git Graph extension**. It provides a visual interface where you can:
+1. Right-click on main's latest commit → "Reset current branch to this Commit" → "Soft"
+2. This keeps all your changes but cleans the commit history
+3. Create new meaningful commits with proper messages
+4. Force push with lease to update your branch
+
+This is much more intuitive than interactive rebase for beginners.
+
+**Q: Why is commit cleanup so important?**
+A: Because commits go directly to main branch via rebase-and-merge. The main branch history becomes our project's permanent record and is used by release-please for changelog generation.
+
+**Q: What's the difference between "squash all into one" vs "meaningful commits"?**
+A:
+- ❌ **Squash everything**: Forces all work into exactly 1 commit regardless of complexity
+- ✅ **Meaningful commits**: Keep logically distinct work separate, remove noise
+
+**Examples:**
+```bash
+# Complex feature with meaningful commits:
+feat: implement OAuth2 authentication core #17
+feat: add session management and user profiles #17
+docs: add authentication setup guide #17
+
+# Simple bug fix:
+fix: resolve payment gateway timeout issue #17
+```
+
+**Q: Can I work on multiple issues simultaneously?**
+A: Yes, but each must have its own branch and milestone assignment.
+
+**Q: What happens if CI fails after merge?**
+A: Create a hotfix issue and follow the same process. No direct commits to main allowed.
+
+**Q: How do I handle breaking changes?**
+A: Use the exclamation mark syntax in your commit type to trigger a major version bump:
+
+```bash
+# Breaking change examples:
+feat!: change user ID from int to UUID #123
+
+# Or with detailed explanation:
+feat!: migrate authentication to OAuth 2.0 #456
+
+BREAKING CHANGE: Previous API key authentication is no longer supported.
+Users must migrate to OAuth 2.0 authentication flow.
+```
+
+**Q: How do we handle large features?**
+A: Use Epic + Sub-issues approach. Team collaboratively breaks down the epic into 1-2 day sub-issues, each developer claims specific sub-issues and creates their own branch + PR.
+
+**Q: What about hotfixes for production issues?**
+A: We don't use hotfix branches. All changes follow the standard workflow. Production issues are handled at the deployment level using CI/CD rollback capabilities.
+
+**Q: Why should I use `git rebase -i origin/main` instead of `git rebase -i main`?**
+A: Using `origin/main` ensures you're rebasing against the latest remote version of main, and it only affects commits unique to your feature branch.
+
+## 🤖 AI Integration Schema
+
+To support AI-powered development tools, here are the machine-readable format standards:
+
+### Commit Format Schema
+```yaml
+commit:
+  format: "<type>: <description> #<issue>"
+  types:
+    - feat      # New features (minor version bump)
+    - fix       # Bug fixes (patch version bump)
+    - docs      # Documentation changes (no version bump)
+    - refactor  # Code refactoring (no version bump)
+    - chore     # Maintenance tasks (no version bump)
+  breaking_change:
+    format: "<type>!: <description>"
+    description: "Use exclamation mark for major version bumps"
+  cleanup_required: true
+  cleanup_timing: "Before creating PR or converting Draft to ready"
+  examples:
+    - "feat: add user dashboard with activity metrics #95"
+    - "fix: resolve payment gateway timeout issues #142"
+    - "feat!: migrate to OAuth 2.0 authentication #78"
+```
+
+### PR Title Schema
+```yaml
+pr_title:
+  regex: "^(feat|fix|docs|refactor|chore)(!)?:\\s.+\\s#[0-9]+$"
+  format: "<type>: <description> #<issue-number>"
+  required_fields:
+    - type: Must match commit types
+    - description: Clear, actionable description
+    - issue_number: GitHub issue reference
+  examples:
+    - "feat: add user dashboard with activity metrics #95"
+    - "fix: resolve payment gateway connection timeout #142"
+```
+
+### Commit Cleanup Schema
+```yaml
+commit_cleanup:
+  timing: "Before PR creation or Draft conversion to ready"
+  mandatory: true
+  goal: "1-n meaningful commits per issue"
+  remove_commits:
+    - "WIP commits"
+    - "Typo fixes"
+    - "Debug commits"
+    - "Temporary commits"
+  keep_commits:
+    - "Logical feature implementations"
+    - "Distinct bug fixes"
+    - "Documentation additions"
+    - "Refactoring improvements"
+  tools:
+    - "git rebase -i origin/main"
+    - "Interactive rebase for squashing"
+```
+
+### PR Description Schema
+```yaml
+pr_description:
+  required_sections:
+    - checklist:
+        - "Code follows project style guidelines"
+        - "Self-review completed"
+        - "Tests added/updated and passing"
+        - "Documentation updated"
+        - "Commits cleaned up and meaningful"
+    - testing:
+        description: "How changes were tested with evidence"
+        required: true
+    - deployment_notes:
+        description: "Special deployment considerations"
+        required: false
+    - reviewer_notes:
+        description: "Specific areas for review focus"
+        required: false
+  template_auto_populated: true
+```
+
+### Issue Schema
+```yaml
+issue:
+  required_fields:
+    - milestone: "Must be assigned before starting work"
+    - template: "🐛 Bug Report or ✨ Feature Request"
+    - estimation: "Story points (1 point ≈ 2 hours, max 20 points/week)"
+  templates:
+    bug_report:
+      name: "🐛 Bug Report"
+      labels: ["type: bug", "needs-triage"]
+      required_fields:
+        - description: "Clear bug description"
+        - reproduction: "Steps to reproduce"
+        - expected: "Expected behavior"
+        - actual: "Actual behavior"
+        - severity: "Low/Medium/High/Critical"
+        - version: "Software version"
+        - os: "Operating system"
+      optional_fields:
+        - browser: "Browser (if applicable)"
+        - logs: "Error messages/logs"
+        - screenshots: "Visual evidence"
+        - additional: "Additional context"
+      commit_type: "fix"
+      version_impact: "patch"
+    feature_request:
+      name: "✨ Feature Request"
+      labels: ["type: feature", "needs-triage"]
+      required_fields:
+        - problem: "Problem statement"
+        - solution: "Proposed solution with acceptance criteria"
+        - priority: "Low/Medium/High/Critical"
+      optional_fields:
+        - additional: "Additional context, mockups, examples"
+      commit_type: "feat or feat!"
+      version_impact: "minor or major (depending on breaking changes)"
 ```
 
 ---
 
-## 📈 Sprint Board Benefits
-
-### For Developers:
-- **Clear prioritization** - See what's most important to work on
-- **Workload visibility** - Understand current team capacity
-- **Automated tracking** - Focus on coding, not status updates
-- **Better planning** - Estimate and track your own work using Story Points
-
-### For Project Managers:
-- **Real-time dashboard** - See project progress at a glance
-- **Resource allocation** - Identify bottlenecks and redistribute work
-- **Data-driven planning** - Use historical estimates for future sprints
-- **Velocity tracking** - Monitor sprint progress and team velocity
-
-### For Teams:
-- **Improved coordination** - Everyone knows who's working on what
-- **Reduced ceremonies** - Less time spent on status meetings
-- **Better estimates** - Learn from completed work to improve planning
-- **Automated reporting** - Generate reports from board data
-
----
-
-Thank you for contributing! 🙏
+**Remember**: Clean, meaningful commits before review - this is your only opportunity to ensure main branch history stays clean! 🧹✨🔗
