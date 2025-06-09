@@ -23,7 +23,10 @@ class WebcamManager {
       List<CameraMacOSDevice> videoDevices =
           await CameraMacOS.instance.listDevices(deviceType: CameraMacOSDeviceType.video);
       for (int i = 0; i < videoDevices.length; i++) {
-        webcamDefines.add(WebcamDefine(index: i, name: videoDevices[i].localizedName ?? 'webcam $i'));
+        // Note: camera indices from the `camera` package may not match
+        // OpenCV's. We can determine the specific webcam for a given index
+        // only by observing the output in the `vision preview` after opening it.
+        webcamDefines.add(WebcamDefine(index: i, name: 'Webcam $i'));
       }
       return;
     }
@@ -32,7 +35,10 @@ class WebcamManager {
       CameraWindows cameraWindows = CameraWindows();
       final cameras = await cameraWindows.availableCameras();
       for (int i = 0; i < cameras.length; i++) {
-        webcamDefines.add(WebcamDefine(index: i, name: cameras[i].name));
+        // Note: camera indices from the `camera` package may not match
+        // OpenCV's. We can determine the specific webcam for a given index
+        // only by observing the output in the `vision preview` after opening it.
+        webcamDefines.add(WebcamDefine(index: i, name: 'Webcam $i'));
       }
       return;
     }
