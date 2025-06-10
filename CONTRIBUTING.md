@@ -23,6 +23,7 @@ For detailed instructions, see the sections below:
 - [Development Process](#development-process)
 - [Commit Management](#commit-management)
 - [Pull Request Process](#pull-request-process)
+- [Branch Management](#branch-management)
 - [Release Management](#release-management)
 - [Code Standards](#code-standards)
 
@@ -39,13 +40,13 @@ gitGraph
     commit id: "fix: typo"
     commit id: "refactor: cleanup"
     checkout main
-    merge issue-17-fix-auth id: "fix: authentication bug in login flow #17"
+    merge issue-17-fix-auth id: "fix(AUTH): authentication bug in login flow #17"
     branch issue-25-add-feature
     checkout issue-25-add-feature
     commit id: "feat: implement core logic"
     commit id: "feat: add validation layer"
     checkout main
-    merge issue-25-add-feature id: "feat: add user dashboard feature #25"
+    merge issue-25-add-feature id: "feat(DASH): add user dashboard feature #25"
     commit id: "v1.1.0"
 ```
 
@@ -55,6 +56,7 @@ gitGraph
 - **Milestone-driven releases** - all issues must belong to a milestone
 - **Draft PRs for early collaboration** with reviewers
 - **Clear PR-Issue linking** - PR titles must include issue number
+- **All commits must include issue number** - for complete traceability
 
 ## 📊 Issue and Milestone Management
 
@@ -81,11 +83,11 @@ For complex features, we use **Epic + Sub-issues** approach:
 5. **Coordinated Development** - All sub-issues tracked in project board
 
 #### Issue Types and Commit Prefixes:
-| Issue Type        | Template            | Commit Prefix       | Version Impact   | Example                                                                   |
-| ----------------- | ------------------- | ------------------- | ---------------- | ------------------------------------------------------------------------- |
-| 🐛 Bug Report      | `🐛 Bug Report`      | `fix:`              | Patch            | `fix: resolve payment gateway timeout`                                    |
-| ✨ Feature Request | `✨ Feature Request` | `feat:` or `feat!:` | Minor or Major** | `feat: add user profile management`<br>`feat!: migrate to new API format` |
-| Documentation     | Manual creation     | `docs:`             | None*            | `docs: update API authentication guide`                                   |
+| Issue Type        | Template            | Commit Prefix       | Version Impact   | Example                                                                                 |
+| ----------------- | ------------------- | ------------------- | ---------------- | --------------------------------------------------------------------------------------- |
+| 🐛 Bug Report      | `🐛 Bug Report`      | `fix:`              | Patch            | `fix(AUTH): resolve payment gateway timeout #142`                                       |
+| ✨ Feature Request | `✨ Feature Request` | `feat:` or `feat!:` | Minor or Major** | `feat(DASH): add user profile management #95`<br>`feat!: migrate to new API format #78` |
+| Documentation     | Manual creation     | `docs:`             | None*            | `docs(README): update API authentication guide #123`                                    |
 
 *\*Does not trigger version bumps by release-please*
 
@@ -120,7 +122,13 @@ git push -u origin <branch-name>
 - Avoid large changes at review time
 - Track progress transparently
 
-### 3. Development and Commits
+### 3. Keep Branch Updated
+GitHub will **always suggest updating pull request branches**. This complements our rebase and merge strategy:
+
+- When your feature branch falls behind `main`, click **"Update branch"**
+- **Always choose "Update with rebase"** to maintain linear history
+
+### 4. Development and Commits
 During development, commit frequently with any messages you find helpful:
 
 ```bash
@@ -168,7 +176,7 @@ For developers using VS Code, the **Git Graph extension** provides a more intuit
    - This preserves all your work but removes commit history
 4. **Create meaningful commits**:
    - Stage and commit your changes as clean, meaningful commits
-   - Follow the commit format: `<type>: <description> #<issue-number>`
+   - Follow the commit format: `<type>(<scope>): <description> #<issue-number>`
 5. **Force push safely**:
    - Right-click on your branch in Git Graph
    - Select "**Push branch - Force With Lease**"
@@ -192,10 +200,10 @@ For developers using VS Code, the **Git Graph extension** provides a more intuit
 - ❌ Any noisy, non-meaningful commits
 
 **What constitutes meaningful commits:**
-- ✅ `feat: implement user authentication system #17`
-- ✅ `fix: resolve payment gateway timeout issues #142`
-- ✅ `refactor: optimize database query performance #201`
-- ✅ `docs: add API authentication guide #78`
+- ✅ `feat(AUTH): implement user authentication system #17`
+- ✅ `fix(PAY): resolve payment gateway timeout issues #142`
+- ✅ `refactor(DB): optimize database query performance #201`
+- ✅ `docs(API): add API authentication guide #78`
 
 ### Interactive Rebase Example
 ```bash
@@ -209,38 +217,41 @@ pick pqr1234 remove debug logging
 pick stu5678 final cleanup
 
 # After cleanup (meaningful history):
-pick abc1234 feat: implement user authentication with validation #17
+pick abc1234 feat(AUTH): implement user authentication with validation #17
 ```
 
 **For Complex Features:**
 You may keep multiple meaningful commits if they represent distinct logical units:
 ```bash
 # Acceptable for complex features:
-feat: implement OAuth2 authentication core #17
-feat: add user session management #17
-docs: add authentication flow documentation #17
+feat(AUTH): implement OAuth2 authentication core #17
+feat(AUTH): add user session management #17
+docs(AUTH): add authentication flow documentation #17
 ```
 
 ### Final Commit Requirements
 Your cleaned commits must follow these requirements:
 
-- **Use conventional commit format**: `<type>: <description> #<issue-number>`
+- **Use conventional commit format**: `<type>(<scope>): <description> #<issue-number>`
+- **Must include issue number** - **MANDATORY** for all commits
 - **Must be `feat:` or `fix:`** to trigger version updates (unless it's docs/refactor/chore)
-- **Include issue number** for traceability
+- **Include scope** for better categorization (AUTH, DASH, PAY, etc.)
 - **Be descriptive and actionable**
 
 #### Good Examples:
 ```bash
-feat: add user dashboard with activity metrics #95
-fix: resolve payment gateway connection timeout #142
-refactor: optimize database query performance for large datasets #201
+feat(DASH): add user dashboard with activity metrics #95
+fix(PAY): resolve payment gateway connection timeout #142
+refactor(DB): optimize database query performance for large datasets #201
+docs(README): update API authentication guide #78
 ```
 
 #### Bad Examples:
 ```bash
-WIP: working on dashboard  # ❌ Not meaningful
+WIP: working on dashboard  # ❌ Not meaningful, no issue number
 Update code  # ❌ Not descriptive, no issue number
-fix typo  # ❌ Noisy commit that should be squashed
+fix typo  # ❌ Noisy commit that should be squashed, no issue number
+feat: add dashboard  # ❌ Missing issue number (MANDATORY)
 ```
 
 ## 🔀 Pull Request Process
@@ -250,13 +261,14 @@ fix typo  # ❌ Noisy commit that should be squashed
 **MANDATORY STEPS:**
 
 1. **Clean up your commits** (see Commit Management section above)
-2. **Sync with main branch**:
+2. **Ensure all commits include issue number** - This is now **MANDATORY**
+3. **Sync with main branch**:
 ```bash
 git fetch origin
 git rebase origin/main
 git push --force-with-lease origin <branch-name>
 ```
-3. **Run all tests and linting** locally
+4. **Run all tests and linting** locally
 
 ### Creating the PR
 
@@ -272,17 +284,17 @@ Use our **PR template** which includes:
 
 #### PR Title Format:
 ```
-<type>: <description> #<issue-number>
+<type>(<scope>): <description> #<issue-number>
 ```
 
 **IMPORTANT**: PR title must include the issue number for proper linking and traceability.
 
 **Examples:**
 ```bash
-feat: add user dashboard with activity metrics #95
-fix: resolve payment gateway connection timeout #142
-docs: update API authentication guide #78
-refactor: optimize database query performance #201
+feat(DASH): add user dashboard with activity metrics #95
+fix(PAY): resolve payment gateway connection timeout #142
+docs(README): update API authentication guide #78
+refactor(DB): optimize database query performance #201
 ```
 
 ### Review Process
@@ -291,8 +303,8 @@ refactor: optimize database query performance #201
 2. **Address feedback promptly**:
    ```bash
    # Address review feedback with additional commits
-   git commit -m "address review: improve error handling per feedback"
-   git commit -m "fix: update tests based on reviewer suggestions"
+   git commit -m "address review: improve error handling per feedback #95"
+   git commit -m "fix(DASH): update tests based on reviewer suggestions #95"
    ```
 3. **All CI checks must pass** before merge
 4. **At least one approval required** from CODEOWNERS
@@ -309,15 +321,15 @@ refactor: optimize database query performance #201
 
 **Scenario 1: Clean commits submitted**
 ```
-✅ Developer submits PR with meaningful commits
+✅ Developer submits PR with meaningful commits (all with issue numbers)
 ✅ Reviewer approves and merges immediately
 ✅ Clean history preserved on main
 ```
 
 **Scenario 2: Noisy commits detected**
 ```
-❌ Developer submits PR with WIP/typo commits
-🔍 Reviewer requests: "Please clean up commits before merge"
+❌ Developer submits PR with WIP/typo commits or missing issue numbers
+🔍 Reviewer requests: "Please clean up commits and add issue numbers before merge"
 🛠️ Developer rebases and force-pushes cleaned history
 ✅ Reviewer re-approves and merges
 ```
@@ -328,6 +340,54 @@ refactor: optimize database query performance #201
 - **Maintainer performs the merge** after approval
 - **Commits appear on main exactly as they exist on feature branch**
 - **Branch automatically deleted** after merge
+
+## 🌿 Branch Management
+
+### Automatic Branch Deletion
+**After pull requests are merged, issue branches are deleted automatically.**
+
+Since we use the **rebase and merge** strategy, issue branches become unnecessary after merge and can be safely deleted. This keeps the repository clean and prevents branch accumulation.
+
+### Recreating Issue Branches for Debugging
+
+Sometimes you may need to recreate an issue branch for debugging or reference purposes. Here's how:
+
+#### Method 1: From Main Branch History
+1. **Find the issue commit** in main branch history
+2. **Copy the commit SHA** (the unique identifier)
+3. **Create new branch** from that commit:
+   ```bash
+   git checkout -b new-debug-branch <commit-SHA>
+   ```
+
+#### Method 2: From PR Page
+1. **Navigate to the merged PR page** on GitHub
+2. **Click the "Commits" tab** in the PR
+3. **Find the commit** you're interested in
+4. **Copy the commit SHA** from the commit details
+5. **Create new branch** locally:
+   ```bash
+   git checkout -b new-debug-branch <commit-SHA>
+   ```
+
+#### Result
+Now you have a new branch with content **exactly matching** the original issue branch at the time of merge. This is perfect for:
+- Debugging issues that emerged after merge
+- Understanding the implementation details
+- Creating hotfixes based on previous work
+- Code archaeology and investigation
+
+**Example Workflow:**
+```bash
+# Find commit SHA from main branch or PR page
+git log --oneline | grep "#142"
+# Output: abc1234 fix(PAY): resolve payment gateway timeout #142
+
+# Create debug branch from that commit
+git checkout -b debug-payment-issue abc1234
+
+# Now you have the exact state of the original issue branch
+```
 
 ## 🏷️ Release Management
 
@@ -391,13 +451,13 @@ git fetch origin
 git rebase -i origin/main
 
 # In the editor, squash noisy commits:
-pick abc1234 feat: implement user authentication #17
+pick abc1234 feat(AUTH): implement user authentication #17
 squash def5678 WIP: add validation
 squash ghi9012 fix typo in validation
 squash jkl3456 remove debug logging
 
 # Edit the final commit message to be meaningful:
-# feat: implement user authentication with validation #17
+# feat(AUTH): implement user authentication with validation #17
 ```
 
 ### Git Graph Alternative (Visual Studio Code)
@@ -406,7 +466,7 @@ For VS Code users, commit cleanup can be done visually:
 1. **View commit history** in Git Graph extension
 2. **Identify cleanup point** - usually the last commit from main
 3. **Soft reset** to that point (keeps all changes)
-4. **Re-commit cleanly** with meaningful messages
+4. **Re-commit cleanly** with meaningful messages and issue numbers
 5. **Force push with lease** to update remote branch
 
 ### Handling Review Changes
@@ -422,36 +482,56 @@ git push --force-with-lease origin <branch-name>  # Update PR
 
 ## 🔍 Enhanced Traceability with Issue Linking
 
-With our improved PR title format, traceability is significantly enhanced:
+With our improved commit format requiring issue numbers, traceability is significantly enhanced:
 
 ### Complete Traceability Chain
 ```
-Issue #93 → Branch 93-docs-update → PR #94 "docs: update contributing guide #93" → Commit "docs: update contributing guide #93"
+Issue #93 → Branch 93-docs-update → PR #94 "docs(README): update contributing guide #93" → Commit "docs(README): update contributing guide #93"
 ```
 
 ### Finding Related Content
 1. **From main branch commit**: Issue number is directly visible in commit message
-2. **From commit to PR**: Click the `#PR-NUMBER` link below commit title
-3. **From PR to issue**: Issue number in PR title links directly to original issue
-4. **Reverse lookup**: GitHub automatically shows all PRs that reference an issue
+2. **Click issue number** (e.g., #93) to jump directly to the issue
+3. **From commit to PR**: GitHub automatically links commits to their PRs
+4. **From PR to issue**: Issue number in PR title links directly to original issue
+5. **Reverse lookup**: GitHub automatically shows all PRs that reference an issue
 
 ### Benefits of Enhanced Linking
 - **Instant issue identification** from any commit on main branch
+- **One-click navigation** from commit to issue via #issue-number
 - **Streamlined code archaeology** - easily trace why changes were made
 - **Automated issue closing** - GitHub closes issues when PR with `#issue-number` is merged
 - **Better project management** - clear visibility of which issues are in progress/completed
 - **Improved changelog generation** - release notes can include issue context
+- **Perfect traceability** - every commit is linked to its originating issue
+
+### Main Branch History Example
+```bash
+git log --oneline
+f2a1b3c feat(DASH): add user activity metrics dashboard #95
+e4d5c6f fix(AUTH): resolve OAuth token refresh bug #87
+a7b8c9d feat(PAY): implement Stripe payment integration #78
+```
+
+From this history, you can:
+- **Click #95** to see the original dashboard feature request
+- **Click #87** to understand the auth bug context
+- **Click #78** to review payment integration requirements
+- **Trace complete development lifecycle** for any feature
 
 ## 🤔 FAQ
 
 **Q: When exactly should I clean up my commits?**
-A: **Before creating a PR or converting Draft PR to ready for review**. This is mandatory - reviewers expect clean, meaningful commits.
+A: **Before creating a PR or converting Draft PR to ready for review**. This is mandatory - reviewers expect clean, meaningful commits with issue numbers.
 
 **Q: Can I keep WIP commits in my PR?**
 A: **No**. All WIP, typo fixes, debug commits, and other noisy commits must be squashed before review. Use interactive rebase to clean them up.
 
+**Q: Do all my commits need to have issue numbers?**
+A: **Yes, this is now MANDATORY**. Every commit must include the issue number (e.g., `#123`) for complete traceability. Commits without issue numbers will be rejected.
+
 **Q: What if reviewers ask for changes after I submit clean commits?**
-A: Make the requested changes in new commits. Reviewers will merge when satisfied - there's typically no opportunity for you to clean up review feedback commits before merge.
+A: Make the requested changes in new commits (still including issue numbers). Reviewers will merge when satisfied - there's typically no opportunity for you to clean up review feedback commits before merge.
 
 **Q: Do I need exactly one commit per PR?**
 A: **No**. You need **1-n meaningful commits**. Simple issues typically result in 1 commit, but complex features can have multiple logical commits (e.g., core implementation + documentation + tests).
@@ -460,13 +540,18 @@ A: **No**. You need **1-n meaningful commits**. Simple issues typically result i
 A: **Use Visual Studio Code's Git Graph extension**. It provides a visual interface where you can:
 1. Right-click on main's latest commit → "Reset current branch to this Commit" → "Soft"
 2. This keeps all your changes but cleans the commit history
-3. Create new meaningful commits with proper messages
+3. Create new meaningful commits with proper messages and issue numbers
 4. Force push with lease to update your branch
 
 This is much more intuitive than interactive rebase for beginners.
 
-**Q: Why is commit cleanup so important?**
-A: Because commits go directly to main branch via rebase-and-merge. The main branch history becomes our project's permanent record and is used by release-please for changelog generation.
+**Q: Why is the issue number requirement so important?**
+A: Issue numbers create **complete traceability** from commits back to requirements. When someone reads the main branch history, they can instantly understand:
+- What problem each commit solves
+- Why the change was made
+- Who requested the feature
+- When it was implemented
+- Click directly to the issue for full context
 
 **Q: What's the difference between "squash all into one" vs "meaningful commits"?**
 A:
@@ -476,16 +561,24 @@ A:
 **Examples:**
 ```bash
 # Complex feature with meaningful commits:
-feat: implement OAuth2 authentication core #17
-feat: add session management and user profiles #17
-docs: add authentication setup guide #17
+feat(AUTH): implement OAuth2 authentication core #17
+feat(AUTH): add session management and user profiles #17
+docs(AUTH): add authentication setup guide #17
 
 # Simple bug fix:
-fix: resolve payment gateway timeout issue #17
+fix(PAY): resolve payment gateway timeout issue #142
 ```
 
+**Q: My issue branch was deleted after merge - how do I continue working on related issues?**
+A: This is normal behavior. For new work:
+1. **Create a new issue** for the additional work
+2. **Branch from main** (which now includes your previous work)
+3. **Follow the standard workflow** with the new issue number
+
+If you need to reference the old branch state, use the **branch recreation method** described in the Branch Management section.
+
 **Q: Can I work on multiple issues simultaneously?**
-A: Yes, but each must have its own branch and milestone assignment.
+A: Yes, but each must have its own branch and milestone assignment. Remember that each commit must reference its specific issue number.
 
 **Q: What happens if CI fails after merge?**
 A: Create a hotfix issue and follow the same process. No direct commits to main allowed.
@@ -495,23 +588,26 @@ A: Use the exclamation mark syntax in your commit type to trigger a major versio
 
 ```bash
 # Breaking change examples:
-feat!: change user ID from int to UUID #123
+feat!(AUTH): change user ID from int to UUID #123
 
 # Or with detailed explanation:
-feat!: migrate authentication to OAuth 2.0 #456
+feat!(API): migrate authentication to OAuth 2.0 #456
 
 BREAKING CHANGE: Previous API key authentication is no longer supported.
 Users must migrate to OAuth 2.0 authentication flow.
 ```
 
 **Q: How do we handle large features?**
-A: Use Epic + Sub-issues approach. Team collaboratively breaks down the epic into 1-2 day sub-issues, each developer claims specific sub-issues and creates their own branch + PR.
+A: Use Epic + Sub-issues approach. Team collaboratively breaks down the epic into 1-2 day sub-issues, each developer claims specific sub-issues and creates their own branch + PR. Each sub-issue gets its own commits with the corresponding issue number.
 
 **Q: What about hotfixes for production issues?**
 A: We don't use hotfix branches. All changes follow the standard workflow. Production issues are handled at the deployment level using CI/CD rollback capabilities.
 
 **Q: Why should I use `git rebase -i origin/main` instead of `git rebase -i main`?**
 A: Using `origin/main` ensures you're rebasing against the latest remote version of main, and it only affects commits unique to your feature branch.
+
+**Q: What if I forget to add the issue number to a commit?**
+A: You must fix this before review. Use interactive rebase to amend the commit message and include the issue number. Commits without issue numbers will be rejected during review.
 
 ## 🤖 AI Integration Schema
 
@@ -520,7 +616,12 @@ To support AI-powered development tools, here are the machine-readable format st
 ### Commit Format Schema
 ```yaml
 commit:
-  format: "<type>: <description> #<issue>"
+  format: "<type>(<scope>): <description> #<issue>"
+  mandatory_fields:
+    - type: Required commit type
+    - scope: Component/area affected
+    - description: Clear, actionable description
+    - issue: GitHub issue number (MANDATORY)
   types:
     - feat      # New features (minor version bump)
     - fix       # Bug fixes (patch version bump)
@@ -528,28 +629,29 @@ commit:
     - refactor  # Code refactoring (no version bump)
     - chore     # Maintenance tasks (no version bump)
   breaking_change:
-    format: "<type>!: <description>"
+    format: "<type>!(<scope>): <description> #<issue>"
     description: "Use exclamation mark for major version bumps"
   cleanup_required: true
   cleanup_timing: "Before creating PR or converting Draft to ready"
   examples:
-    - "feat: add user dashboard with activity metrics #95"
-    - "fix: resolve payment gateway timeout issues #142"
-    - "feat!: migrate to OAuth 2.0 authentication #78"
+    - "feat(DASH): add user dashboard with activity metrics #95"
+    - "fix(PAY): resolve payment gateway timeout issues #142"
+    - "feat!(AUTH): migrate to OAuth 2.0 authentication #78"
 ```
 
 ### PR Title Schema
 ```yaml
 pr_title:
-  regex: "^(feat|fix|docs|refactor|chore)(!)?:\\s.+\\s#[0-9]+$"
-  format: "<type>: <description> #<issue-number>"
+  regex: "^(feat|fix|docs|refactor|chore)(!)?\\(\\w+\\):\\s.+\\s#[0-9]+$"
+  format: "<type>(<scope>): <description> #<issue-number>"
   required_fields:
     - type: Must match commit types
+    - scope: Component/area affected
     - description: Clear, actionable description
-    - issue_number: GitHub issue reference
+    - issue_number: GitHub issue reference (MANDATORY)
   examples:
-    - "feat: add user dashboard with activity metrics #95"
-    - "fix: resolve payment gateway connection timeout #142"
+    - "feat(DASH): add user dashboard with activity metrics #95"
+    - "fix(PAY): resolve payment gateway connection timeout #142"
 ```
 
 ### Commit Cleanup Schema
@@ -558,6 +660,10 @@ commit_cleanup:
   timing: "Before PR creation or Draft conversion to ready"
   mandatory: true
   goal: "1-n meaningful commits per issue"
+  requirements:
+    - "All commits must include issue number"
+    - "Use conventional commit format with scope"
+    - "Descriptive and actionable commit messages"
   remove_commits:
     - "WIP commits"
     - "Typo fixes"
@@ -573,6 +679,31 @@ commit_cleanup:
     - "Interactive rebase for squashing"
 ```
 
+### Branch Management Schema
+```yaml
+branch_management:
+  auto_deletion: true
+  deletion_timing: "After PR merge"
+  reason: "Rebase and merge strategy makes branches unnecessary"
+  recreation_methods:
+    - method: "From main branch history"
+      steps:
+        - "Find issue commit in main branch"
+        - "Copy commit SHA"
+        - "git checkout -b new-debug-branch <commit-SHA>"
+    - method: "From PR page"
+      steps:
+        - "Navigate to merged PR"
+        - "Click Commits tab"
+        - "Copy commit SHA"
+        - "git checkout -b new-debug-branch <commit-SHA>"
+  use_cases:
+    - "Debugging post-merge issues"
+    - "Code archaeology"
+    - "Understanding implementation details"
+    - "Creating related hotfixes"
+```
+
 ### PR Description Schema
 ```yaml
 pr_description:
@@ -583,6 +714,7 @@ pr_description:
         - "Tests added/updated and passing"
         - "Documentation updated"
         - "Commits cleaned up and meaningful"
+        - "All commits include issue numbers"
     - testing:
         description: "How changes were tested with evidence"
         required: true
@@ -593,6 +725,7 @@ pr_description:
         description: "Specific areas for review focus"
         required: false
   template_auto_populated: true
+  branch_update_strategy: "Always suggest rebase updates"
 ```
 
 ### Issue Schema
@@ -636,4 +769,4 @@ issue:
 
 ---
 
-**Remember**: Clean, meaningful commits before review - this is your only opportunity to ensure main branch history stays clean! 🧹✨🔗
+**Remember**: Clean, meaningful commits with issue numbers before review - this is your only opportunity to ensure main branch history stays clean and traceable! 🧹✨🔗
