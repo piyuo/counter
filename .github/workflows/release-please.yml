@@ -24,5 +24,5 @@ jobs:
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          release-type: node
+          release-type: dart
           target-branch: main
