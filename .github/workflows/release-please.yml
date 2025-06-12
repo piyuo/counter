@@ -2,27 +2,27 @@
 name: Release Please
 
 on:
-    push:
-        branches:
-            - main # our main branch
-    workflow_dispatch:
+  push:
+    branches:
+      - main # our main branch
+  workflow_dispatch:
 
 jobs:
-    release-please:
-        runs-on: ubuntu-latest
-        outputs:
-            release_created: ${{ steps.release.outputs.release_created }}
-            tag_name: ${{ steps.release.outputs.tag_name }}
-            release_url: ${{ steps.release.outputs.release_url }}
-            prerelease: ${{ steps.release.outputs.prerelease }}
-            id: ${{ steps.release.outputs.id }}
-            body: ${{ steps.release.outputs.body }}
-            upload_url: ${{ steps.release.outputs.upload_url }}
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      release_url: ${{ steps.release.outputs.release_url }}
+      prerelease: ${{ steps.release.outputs.prerelease }}
+      id: ${{ steps.release.outputs.id }}
+      body: ${{ steps.release.outputs.body }}
+      upload_url: ${{ steps.release.outputs.upload_url }}
 
-        steps:
-            - name: Run Release Please
-              id: release
-              uses: googleapis/release-please-action@v4
-              with:
-                  release-type: dart
-                  target-branch: main
+    steps:
+      - name: Run Release Please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+          target-branch: main

@@ -7,6 +7,10 @@ on:
     paths:
       - .github/labels.yml
 
+permissions:
+  contents: read
+  issues: write # 👈 this is the key permission needed for labels
+
 jobs:
   sync:
     runs-on: ubuntu-latest
