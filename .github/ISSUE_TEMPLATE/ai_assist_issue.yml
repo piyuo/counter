@@ -1,0 +1,218 @@
+name: 🤖 AI Assist Issue
+description: Let AI assist you in creating a professional GitHub issue...
+body:
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-flight Checklist
+      description: Please ensure you've completed these steps before submitting
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have read the contributing guidelines
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        1. **Fill in your raw idea/bug above**
+        2. **Copy both sections (your input and the AI guide) into any AI assistant** (ChatGPT, Claude, Gemini, etc.)
+        3. **Copy the AI's markdown result back to description to replace content**
+        4. **Move the first line to the Title Field** - the AI will generate the title as the first line
+        5. **Review the AI-generated content** – the AI might generate too much or make assumptions; change it if needed
+        6. **Create a new issue** with that enhanced content
+        The AI will transform your simple description into a professional GitHub issue! 🚀
+
+  - type: textarea
+    id: description
+    attributes:
+      label: AI Assist
+      value: |
+
+        Start typing your raw idea or bug report below.
+
+
+
+
+        #Can you convert the user input above into an issue using the instructions below?
+        ## AI Issue Assistant
+        This document is for AI agents to convert raw user input into a clear, well-structured GitHub issue.
+
+        ---
+
+        ## Input
+
+        1. Raw user text: description of a bug, feature idea, or documentation issue.
+        2. This guide (used by the AI to format the issue).
+
+        ---
+
+        ## 🎯 Your Role: Issue Clarifier (NOT Solution Provider)
+
+        **Your job is to create a clear issue description, NOT to solve the problem.**
+
+        **DO:**
+        - ✅ Clarify what the user wants or what's broken
+        - ✅ Organize their thoughts into a structured format
+        - ✅ Ask for missing essential details (if needed)
+        - ✅ Use clear, simple language
+        - ✅ Focus on describing the problem or need
+
+        **DON'T:**
+        - ❌ Suggest implementation details or code solutions
+        - ❌ Recommend specific libraries, frameworks, or tools
+        - ❌ Provide code examples or technical architecture advice
+        - ❌ Explain how to fix/implement anything
+        - ❌ Act as a consultant or technical advisor
+
+        **Remember: The developers who read this issue are the experts - they'll figure out HOW to implement it. Your job is just to make sure they understand WHAT is needed.**
+
+        ---
+
+        ## Steps for AI
+
+        1. **Classify the Issue**
+           * 🐛 Bug Report → keywords: crash, error, broken, unexpected, doesn't work
+           * ✨ Feature Request → keywords: add, implement, improve, want, need, should
+           * 📚 Documentation → keywords: doc, missing, unclear, typo, help
+
+        2. **Clarify the User's Input**
+           * Turn vague descriptions into specific, clear statements
+           * Organize scattered thoughts into logical sections
+           * Fill in obvious gaps with reasonable assumptions
+           * Keep language simple and user-friendly
+
+        3. **Select Template Fields** (see templates below)
+
+        4. **Generate Clean Markdown Output**
+           * Start with a single-line title in format:
+             - `fix: [summary]` for bug reports
+             - `feat: [summary]` for feature requests
+             - `docs: [summary]` for documentation issues
+           * **Write summary in lowercase, no punctuation at end**
+           * **DO NOT add "Title:" prefix** - just write the title directly
+           * Use GitHub markdown formatting for the rest
+           * Keep descriptions focused on the problem, not the solution
+
+        ## ⚠️ CRITICAL OUTPUT FORMATTING
+
+        **ALWAYS wrap the final GitHub issue in a code block with `markdown` language specification:**
+
+        ````
+        ```markdown
+        fix: your title here
+
+        **Your Content Here**
+        ```
+        ````
+
+        ---
+
+        ## Template Structures
+
+        ### 🐛 Bug Report
+
+        * **Bug Description** *(required - what's broken)*
+        * **Steps to Reproduce** *(required - how to trigger the bug)*
+        * **Expected Behavior** *(required - what should happen)*
+        * **Actual Behavior** *(required - what actually happens)*
+        * **Severity** *(required: Low, Medium, High, Critical)*
+        * **Version** *(required)*
+        * **OS** *(required: Windows, macOS, iOS, Android, Linux, Other)*
+        * **Browser** *(optional: Chrome, Firefox, Safari, Edge, Other, N/A)*
+        * **Logs** *(optional)*
+        * **Screenshots** *(optional)*
+        * **Additional Context** *(optional)*
+
+        ### ✨ Feature Request
+
+        * **What do you want?** *(required - clear description of the desired feature)*
+        * **Why do you need this?** *(required - explain the problem this solves)*
+        * **Priority** *(required: Low, Medium, High, Critical)*
+        * **Additional Context** *(optional - any other relevant details)*
+
+        ### 📚 Documentation
+
+        * **Documentation Issue Type** *(required: Missing, Incorrect, Unclear, Typo, Broken link)*
+        * **Documentation Location** *(required - where is the issue)*
+        * **Current Documentation** *(optional - what's there now)*
+        * **What should it say instead?** *(required - what needs to be fixed/added)*
+        * **Why is this important?** *(optional)*
+        * **Priority** *(required: Low, Medium, High, Critical)*
+
+        ---
+
+        ## Good Examples
+
+        ### User Input: "add dark mode"
+
+        **Good AI Output:**
+        ```markdown
+        feat: add dark mode theme option
+
+        **What do you want?**
+        A dark mode theme that users can switch to instead of the current light theme.
+
+        **Why do you need this?**
+        Many users prefer dark themes, especially when working in low-light environments. It reduces eye strain and is a common expectation in modern applications.
+
+        **Priority**
+        Medium
+
+        **Additional Context**
+        Should remember the user's choice between sessions.
+        ```
+
+        ### User Input: "app crashes when I click submit sometimes"
+
+        **Good AI Output:**
+        ```markdown
+        fix: app crashes intermittently when clicking submit button
+
+        **Bug Description**
+        The application crashes unexpectedly when clicking the submit button, but it doesn't happen every time.
+
+        **Steps to Reproduce**
+        1. Fill out the form
+        2. Click the submit button
+        3. Sometimes the app crashes
+
+        **Expected Behavior**
+        The form should submit successfully every time.
+
+        **Actual Behavior**
+        The app crashes occasionally, requiring a restart.
+
+        **Severity**
+        High - Prevents users from completing their work
+
+        **Version**
+        _User needs to provide version info_
+
+        **OS**
+        _User needs to provide OS info_
+
+        **Additional Context**
+        The crash doesn't happen consistently, making it hard to predict when it will occur.
+        ```
+
+        ---
+
+        ## 🎯 Success Criteria
+
+        A good AI-enhanced issue should:
+        - ✅ Be clear and easy to understand
+        - ✅ Focus on describing the problem or need
+        - ✅ Be organized and well-structured
+        - ✅ Avoid technical implementation details
+        - ✅ Use simple, straightforward language
+        - ✅ Help developers understand what the user wants
+
+        **Remember: You're a translator, not a consultant. Turn user thoughts into clear issue descriptions.**
+
+        ---
+
+        End of guide.
+    validations:
+      required: false

@@ -1,7 +1,7 @@
 name: 🐛 Bug Report
 description: Report a bug to help us improve
 title: "fix: "
-labels: ["fix", "needs-triage"]
+labels: ["fix"]
 body:
   - type: markdown
     attributes:
@@ -125,6 +125,19 @@ body:
       description: If applicable, add screenshots to help explain your problem.
       placeholder: Drag and drop or paste screenshots here...
     # Removed required: true, making this field optional
+
+  - type: textarea
+    id: ai_assistance
+    attributes:
+      label: "🤖 AI Assistance (Optional)"
+      description: If AI tools helped generate code or debug this issue, please share the prompt used for transparency.
+      placeholder: |
+        Prompt used: "Help me debug this authentication error..."
+        AI tool: ChatGPT/Claude/Copilot/etc.
+
+        Generated code or suggestions:
+        <!-- Include any AI-generated code or debugging suggestions here -->
+    # Optional field for AI assistance information
 
   - type: textarea
     id: additional

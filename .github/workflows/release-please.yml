@@ -10,6 +10,10 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write # This is important for label creation
+      contents: write # This is crucial for creating branches and committing changes
+      pull-requests: write # This is crucial for creating and updating PRs
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
       tag_name: ${{ steps.release.outputs.tag_name }}

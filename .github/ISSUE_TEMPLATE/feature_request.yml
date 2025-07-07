@@ -1,7 +1,7 @@
 name: ✨ Feature Request
 description: Suggest an idea for this project
 title: "feat: "
-labels: ["feat", "needs-triage"]
+labels: ["feat"]
 body:
   - type: markdown
     attributes:
@@ -49,6 +49,19 @@ body:
         - Critical - Blocking my work
     validations:
       required: true
+
+  - type: textarea
+    id: ai_assistance
+    attributes:
+      label: "🤖 AI Assistance (Optional)"
+      description: If AI tools helped brainstorm this feature or generate implementation ideas, please share the prompt used for transparency.
+      placeholder: |
+        Prompt used: "Help me design a feature for user authentication..."
+        AI tool: ChatGPT/Claude/Copilot/etc.
+
+        Generated ideas or code suggestions:
+        <!-- Include any AI-generated feature ideas or implementation suggestions here -->
+    # Optional field for AI assistance information
 
   - type: textarea
     id: additional

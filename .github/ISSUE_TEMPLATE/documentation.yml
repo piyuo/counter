@@ -1,7 +1,7 @@
 name: 📚 Documentation
 description: Report missing or incorrect documentation
 title: "docs: "
-labels: ["docs", "needs-triage"]
+labels: ["docs"]
 body:
   - type: markdown
     attributes:
@@ -84,3 +84,15 @@ body:
         - Critical - Incorrect information causing issues
     validations:
       required: true
+
+  - type: textarea
+    id: ai_assistance
+    attributes:
+      label: "🤖 AI Assistance (Optional)"
+      description: If AI tools helped generate documentation content or identify issues, please share the prompt used for transparency.
+      placeholder: |
+        Prompt used: "Help me write better documentation for this API..."
+        AI tool: ChatGPT/Claude/Copilot/etc.
+
+        Generated content or suggestions:
+        <!-- Include any AI-generated documentation content or improvement suggestions here -->

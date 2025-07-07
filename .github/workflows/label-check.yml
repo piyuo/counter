@@ -1,0 +1,52 @@
+# .github/workflows/label-check.yml
+
+name: Check and Add Labels to Issues
+
+on:
+    issues:
+        types: [opened]
+
+jobs:
+    label_check:
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write # Required to modify labels on issues
+        steps:
+            - name: Check issue title and apply labels
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const title = context.payload.issue.title;
+                      const issue_number = context.payload.issue.number;
+                      const existingLabels = context.payload.issue.labels.map(l => l.name);
+
+                      const labelMap = {
+                        "feat:": ["feat", "needs-triage"],
+                        "fix:": ["fix", "needs-triage"],
+                        "docs:": ["docs", "needs-triage"]
+                      };
+
+                      let labelsToAdd = [];
+
+                      for (const [prefix, requiredLabels] of Object.entries(labelMap)) {
+                        if (title.startsWith(prefix)) {
+                          for (const label of requiredLabels) {
+                            if (!existingLabels.includes(label)) {
+                              labelsToAdd.push(label);
+                            }
+                          }
+                          break;
+                        }
+                      }
+
+                      if (labelsToAdd.length > 0) {
+                        await github.rest.issues.addLabels({
+                          owner: context.repo.owner,
+                          repo: context.repo.repo,
+                          issue_number,
+                          labels: labelsToAdd
+                        });
+                        console.log(`Added labels: ${labelsToAdd.join(", ")}`);
+                      } else {
+                        console.log("No labels to add.");
+                      }

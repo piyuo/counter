@@ -2,36 +2,31 @@
 export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
-    // 移除 type-enum 限制，允許任意 type
-    'type-enum': [0], // 禁用 type 限制
+    // Remove type-enum restriction, allow any type
+    'type-enum': [0], // Disable type restriction
     'header-max-length': [2, 'always', 100],
-    'subject-empty': [2, 'never'],
-    // 禁用原有規則，因為我們有自定義需求
-    'subject-case': [0],
-    'subject-full-stop': [0],
-    'type-case': [0], // 也移除 type-case 限制，允許 WIP: 這樣的格式
-    'type-empty': [0], // 允許沒有 type 的 commit message
-    // 自定義規則：要求 commit message 必須以 #<issue number> 結尾（除了特殊情況）
+    'type-case': [0], // Also remove type-case restriction, allow formats like WIP:
+    // Custom rule: require commit message to end with #<issue number> (except special cases)
     'issue-number-required': [2, 'always']
   },
   plugins: [
     {
       rules: {
         'issue-number-required': (parsed) => {
-          // 檢查 parsed 物件是否存在且有 header 屬性
+          // Check if parsed object exists and has header property
           if (!parsed || !parsed.header) {
             return [false, 'Commit message could not be parsed'];
           }
 
           const header = parsed.header;
 
-          // 檢查是否是 release-please 產生的 commit (chore(main) 開頭)
+          // Check if it's a release-please generated commit (starts with chore(main))
           const releaseCommitRegex = /^chore\(main\):/;
           if (releaseCommitRegex.test(header)) {
-            return [true, '']; // release-please commit 不需要 issue number
+            return [true, '']; // release-please commits don't need issue numbers
           }
 
-          // 檢查是否以 #數字 結尾
+          // Check if it ends with #number
           const issueNumberRegex = / #\d+$/;
 
           if (!issueNumberRegex.test(header)) {
