@@ -1,6 +1,8 @@
+# scripts/start_issue.sh
+# version 1.0.0
 #!/bin/bash
 # This script uses GitHub CLI to create and check out a branch linked to an issue.
-# Usage: ./start-issue.sh <issue-number>
+# Usage: ./start_issue.sh <issue-number>
 
 set -e
 
@@ -86,13 +88,13 @@ fi
 
 # Call cleanup script to remove old branches
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CLEANUP_SCRIPT="$SCRIPT_DIR/cleanup-branches.sh"
+CLEANUP_SCRIPT="$SCRIPT_DIR/cleanup_branches.sh"
 
 if [ -x "$CLEANUP_SCRIPT" ]; then
     echo -e "🧹 Running branch cleanup script..."
     bash "$CLEANUP_SCRIPT"
 else
-    echo -e "${RED}⚠️ Warning: cleanup-branches.sh not found or not executable.${NC}"
+    echo -e "${RED}⚠️ Warning: cleanup_branches.sh not found or not executable.${NC}"
 fi
 
 echo -e "${GREEN}🎉 Issue #$ISSUE is ready for development!${NC}"
