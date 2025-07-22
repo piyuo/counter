@@ -54,6 +54,7 @@
         "protoc",
         "protos",
         "rgba",
+        "Riverpod",
         "rxdart",
         "serializers",
         "signin",

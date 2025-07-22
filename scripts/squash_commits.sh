@@ -1,3 +1,4 @@
+# scripts/squash_commits.sh
 # Sync with main
 git fetch origin
 git rebase origin/main

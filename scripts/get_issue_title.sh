@@ -1,3 +1,4 @@
+# scripts/get_issue_title.sh
 #!/bin/bash
 
 # This script fetches the title of a GitHub issue using its number.
