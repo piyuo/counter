@@ -1,5 +1,5 @@
+import 'package:flutter_vision/flutter_vision.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:vision/vision.dart';
 
 import 'camera_meta.dart';
 import 'webcam_meta.dart';

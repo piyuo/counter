@@ -1,10 +1,10 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:libcli/cli/cli.dart' as cli;
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/vision.dart' as vision;
 
 import '../wizard_app.dart';
 import 'pick_video.dart';
@@ -51,7 +51,7 @@ Future<bool> isWebcamExists(app.ProjectProvider projectProvider) async {
   // show dialog to say camera not found
   await showCupertinoDialog(
     // ignore: use_build_context_synchronously
-    context: cli.globalContext,
+    context: appkit.globalContext,
     builder: (context) {
       return CupertinoAlertDialog(
         title: Text(context.l.video_sources_webcam_not_found_title),
@@ -76,7 +76,7 @@ Future<bool> havePhoneCameraPermission() async {
   if (status.isPermanentlyDenied) {
     await showCupertinoDialog(
       // ignore: use_build_context_synchronously
-      context: cli.globalContext,
+      context: appkit.globalContext,
       builder: (context) {
         return CupertinoAlertDialog(
           title: Text(context.l.video_sources_camera_denied),
@@ -261,7 +261,7 @@ List<Widget> buildVideoSources(
               if (status.isPermanentlyDenied) {
                 await showCupertinoDialog(
                   // ignore: use_build_context_synchronously
-                  context: cli.globalContext,
+                  context: appkit.globalContext,
                   builder: (context) {
                     return CupertinoAlertDialog(
                       title: Text(context.l.video_sources_photos_denied),

@@ -2,9 +2,9 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:input_quantity/input_quantity.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({

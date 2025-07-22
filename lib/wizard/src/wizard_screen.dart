@@ -2,7 +2,7 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:libcli/cli/cli.dart' as cli;
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 
@@ -146,7 +146,7 @@ class WizardScreen extends StatelessWidget {
                             title: Text(context.l.wizard_screen_email_us),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
-                              cli.openMailTo('service@piyuo.com', '', '');
+                              appkit.netOpenMailTo('service@piyuo.com', '', '');
                             }),
                       ],
                     ),

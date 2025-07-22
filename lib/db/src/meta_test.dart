@@ -4,7 +4,7 @@ import 'package:counter/app/app.dart' as app;
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vision/vision.dart' as vision;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 import 'meta.dart';
 

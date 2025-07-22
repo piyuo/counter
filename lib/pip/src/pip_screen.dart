@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'pip_provider.dart';
 import 'pip_sliding.dart';

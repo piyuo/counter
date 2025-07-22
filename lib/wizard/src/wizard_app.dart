@@ -3,7 +3,7 @@ import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:libcli/cli/cli.dart' as cli;
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
 import 'about/about_screen.dart';
 import 'about/benchmark_screen.dart';
@@ -143,7 +143,7 @@ class WizardAppState extends State<WizardApp> {
       locale: widget.appLocale,
       localizationsDelegates: widget.appLocaleDelegates,
       supportedLocales: Localization.supportedLocales,
-      localeResolutionCallback: cli.localeResolutionCallback,
+      localeResolutionCallback: appkit.localeResolutionCallback,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,

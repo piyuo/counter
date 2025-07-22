@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/intl.dart';
-import 'package:vision/vision.dart' as vision;
 
 List<Color> gradientColors = [
   CupertinoColors.lightBackgroundGray,

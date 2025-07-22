@@ -3,8 +3,8 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:intl/intl.dart';
-import 'package:libcli/cli/cli.dart' as cli;
 import 'package:universal_platform/universal_platform.dart';
 
 import 'panel.dart';
@@ -44,7 +44,10 @@ class PipSliding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isRTL = Bidi.isRtlLanguage(cli.defaultLocale.toString());
+    final defaultLocale =
+        Intl.defaultLocale != null ? appkit.localeParseString(Intl.defaultLocale!) : appkit.localeSystem;
+    final isRTL = Bidi.isRtlLanguage(defaultLocale.toString());
+
     return MediaQuery.removePadding(
         context: context,
         removeTop: true,

@@ -4,9 +4,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:vision/vision.dart' as vision;
 
 /// benchmarkImagePath is the path of the image to be used for benchmarking.
 const String benchmarkImagePath = 'assets/images/benchmark.jpg';

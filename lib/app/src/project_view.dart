@@ -1,9 +1,9 @@
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
 import 'model/video.dart';

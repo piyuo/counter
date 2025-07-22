@@ -2,7 +2,7 @@
 
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vision/vision.dart';
+import 'package:flutter_vision/flutter_vision.dart';
 
 import 'filter_meta.dart';
 import 'time_of_day_meta.dart';

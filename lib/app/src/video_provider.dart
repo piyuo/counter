@@ -3,9 +3,9 @@ import 'dart:math';
 
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:libcli/cli/cli.dart' as cli;
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:path_provider/path_provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'model/project.dart';
 import 'model/video.dart';
@@ -336,7 +336,7 @@ class VideoProvider with ChangeNotifier {
 
   /// add default zone if the project is new
   vision.VideoZone _addDefaultZone() {
-    final safePadding = MediaQuery.of(cli.globalContext).padding;
+    final safePadding = MediaQuery.of(appkit.globalContext).padding;
     final mediaWidth = visionController.mediaWidth!;
     final mediaHeight = visionController.mediaHeight!;
     final double reductionValue = min(mediaWidth * 0.1, mediaHeight * 0.1);
@@ -345,9 +345,9 @@ class VideoProvider with ChangeNotifier {
     final offsetY = (reductionValue / 2) + safePadding.top;
     final zoneId = _projectProvider!.getNextZoneId();
     final zone = vision.VideoZone(
-      tallyAnnotations: vision.defaultTallyAnnotation(cli.globalContext),
+      tallyAnnotations: vision.defaultTallyAnnotation(appkit.globalContext),
       zoneId: zoneId,
-      name: '${cli.globalContext.l.default_zone_name} $zoneId',
+      name: '${appkit.globalContext.l.default_zone_name} $zoneId',
       color: getNextZoneColor(),
       points: [
         Offset(offsetX, offsetY),

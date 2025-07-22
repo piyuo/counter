@@ -22,7 +22,7 @@ body:
         4. **Move the first line to the Title Field** - the AI will generate the title as the first line
         5. **Review the AI-generated content** – the AI might generate too much or make assumptions; change it if needed
         6. **Create a new issue** with that enhanced content
-        The AI will transform your simple description into a professional GitHub issue! 🚀
+        The AI will transform your simple description into a professional GitHub issue using EARS methodology! 🚀
 
   - type: textarea
     id: description
@@ -36,28 +36,51 @@ body:
 
 
         #Can you convert the user input above into an issue using the instructions below?
-        ## AI Issue Assistant
-        This document is for AI agents to convert raw user input into a clear, well-structured GitHub issue.
+        ## AI Issue Assistant with EARS Methodology
+        This document is for AI agents to convert raw user input into a clear, well-structured GitHub issue using EARS (Easy Approach to Requirements Syntax).
 
         ---
 
         ## Input
 
         1. Raw user text: description of a bug, feature idea, or documentation issue.
-        2. This guide (used by the AI to format the issue).
+        2. This guide (used by the AI to format the issue using EARS methodology).
 
         ---
 
-        ## 🎯 Your Role: Issue Clarifier (NOT Solution Provider)
+        ## 📝 EARS Methodology Overview
 
-        **Your job is to create a clear issue description, NOT to solve the problem.**
+        **EARS (Easy Approach to Requirements Syntax)** is a method for writing clear, concise, and unambiguous software requirements using natural language. It uses structured keywords to create requirements that are easy to understand for both technical and non-technical stakeholders.
+
+        ### EARS Keywords:
+        - **WHEN** - Triggers or conditions
+        - **IF** - Conditional logic
+        - **WHERE** - Location or context constraints
+        - **WHILE** - Concurrent conditions
+        - **THE SYSTEM SHALL** - System capabilities
+        - **THE USER SHALL BE ABLE TO** - User capabilities
+
+        ### EARS Sentence Structure:
+        `[Precondition] [Trigger], THE SYSTEM SHALL [Response]`
+
+        **Examples:**
+        - `WHEN the user clicks the submit button, THE SYSTEM SHALL validate all form fields`
+        - `IF the password is incorrect, THE SYSTEM SHALL display an error message`
+        - `WHERE the user has admin privileges, THE USER SHALL BE ABLE TO delete records`
+
+        ---
+
+        ## 🎯 Your Role: Issue Clarifier with EARS (NOT Solution Provider)
+
+        **Your job is to create a clear issue description using EARS methodology, NOT to solve the problem.**
 
         **DO:**
-        - ✅ Clarify what the user wants or what's broken
-        - ✅ Organize their thoughts into a structured format
+        - ✅ Clarify what the user wants using EARS structure
+        - ✅ Use EARS keywords to make requirements unambiguous
+        - ✅ Organize their thoughts into structured EARS format
         - ✅ Ask for missing essential details (if needed)
-        - ✅ Use clear, simple language
-        - ✅ Focus on describing the problem or need
+        - ✅ Use clear, simple language with EARS syntax
+        - ✅ Focus on describing the problem or need with structured requirements
 
         **DON'T:**
         - ❌ Suggest implementation details or code solutions
@@ -66,7 +89,7 @@ body:
         - ❌ Explain how to fix/implement anything
         - ❌ Act as a consultant or technical advisor
 
-        **Remember: The developers who read this issue are the experts - they'll figure out HOW to implement it. Your job is just to make sure they understand WHAT is needed.**
+        **Remember: Use EARS to make requirements crystal clear. The developers who read this issue are the experts - they'll figure out HOW to implement it. Your job is to make sure they understand WHAT is needed using precise EARS language.**
 
         ---
 
@@ -76,23 +99,34 @@ body:
            * 🐛 Bug Report → keywords: crash, error, broken, unexpected, doesn't work
            * ✨ Feature Request → keywords: add, implement, improve, want, need, should
            * 📚 Documentation → keywords: doc, missing, unclear, typo, help
+           * 🔧 Chore → keywords: build, ci/cd, deploy, config, tools, setup, maintenance
+           * 🔄 Refactor → keywords: refactor, test, cleanup, reorganize, optimize, improve code structure
 
-        2. **Clarify the User's Input**
-           * Turn vague descriptions into specific, clear statements
-           * Organize scattered thoughts into logical sections
-           * Fill in obvious gaps with reasonable assumptions
-           * Keep language simple and user-friendly
+        2. **Apply EARS Methodology**
+           * Convert vague descriptions into specific EARS statements
+           * Use EARS keywords (WHEN, IF, WHERE, WHILE, THE SYSTEM SHALL, THE USER SHALL BE ABLE TO)
+           * Structure requirements as: [Precondition] [Trigger], [Response]
+           * Make requirements measurable and testable where possible
 
-        3. **Select Template Fields** (see templates below)
+        3. **Clarify the User's Input**
+           * Turn vague descriptions into specific, clear EARS statements
+           * Organize scattered thoughts into logical EARS requirements
+           * Fill in obvious gaps with reasonable EARS assumptions
+           * Keep language simple and user-friendly while maintaining EARS structure
 
-        4. **Generate Clean Markdown Output**
+        4. **Select Template Fields** (see templates below with EARS integration)
+
+        5. **Generate Clean Markdown Output**
            * Start with a single-line title in format:
              - `fix: [summary]` for bug reports
              - `feat: [summary]` for feature requests
              - `docs: [summary]` for documentation issues
+             - `chore: [summary]` for chore tasks
+             - `refactor: [summary]` for refactor tasks
            * **Write summary in lowercase, no punctuation at end**
            * **DO NOT add "Title:" prefix** - just write the title directly
            * Use GitHub markdown formatting for the rest
+           * Include EARS-structured requirements in appropriate sections
            * Keep descriptions focused on the problem, not the solution
 
         ## ⚠️ CRITICAL OUTPUT FORMATTING
@@ -103,20 +137,21 @@ body:
         ```markdown
         fix: your title here
 
-        **Your Content Here**
+        **Your Content Here with EARS Requirements**
         ```
         ````
 
         ---
 
-        ## Template Structures
+        ## Template Structures with EARS Integration
 
         ### 🐛 Bug Report
 
-        * **Bug Description** *(required - what's broken)*
-        * **Steps to Reproduce** *(required - how to trigger the bug)*
-        * **Expected Behavior** *(required - what should happen)*
-        * **Actual Behavior** *(required - what actually happens)*
+        * **Bug Description** *(required - what's broken, use EARS to describe expected vs actual behavior)*
+        * **Requirements** *(required - EARS statements describing what THE SYSTEM SHALL do)*
+        * **Steps to Reproduce** *(required - structured as WHEN/IF conditions)*
+        * **Expected Behavior** *(required - EARS statement of what should happen)*
+        * **Actual Behavior** *(required - EARS statement of what actually happens)*
         * **Severity** *(required: Low, Medium, High, Critical)*
         * **Version** *(required)*
         * **OS** *(required: Windows, macOS, iOS, Android, Linux, Other)*
@@ -127,29 +162,59 @@ body:
 
         ### ✨ Feature Request
 
-        * **What do you want?** *(required - clear description of the desired feature)*
+        * **Requirements** *(required - EARS statements describing what THE SYSTEM SHALL do or what THE USER SHALL BE ABLE TO do)*
+        * **What do you want?** *(required - clear description using EARS methodology)*
         * **Why do you need this?** *(required - explain the problem this solves)*
+        * **Acceptance Criteria** *(required - EARS statements for testing)*
         * **Priority** *(required: Low, Medium, High, Critical)*
         * **Additional Context** *(optional - any other relevant details)*
 
         ### 📚 Documentation
 
+        * **Requirements** *(required - EARS statements about what documentation SHALL provide)*
         * **Documentation Issue Type** *(required: Missing, Incorrect, Unclear, Typo, Broken link)*
         * **Documentation Location** *(required - where is the issue)*
         * **Current Documentation** *(optional - what's there now)*
-        * **What should it say instead?** *(required - what needs to be fixed/added)*
+        * **What should it say instead?** *(required - what needs to be fixed/added using EARS structure)*
         * **Why is this important?** *(optional)*
         * **Priority** *(required: Low, Medium, High, Critical)*
 
+        ### 🔧 Chore
+
+        * **Requirements** *(required - EARS statements about what THE SYSTEM SHALL achieve after the chore)*
+        * **What needs to be done?** *(required - clear description using EARS methodology)*
+        * **Why is this needed?** *(required - explain why this chore is necessary)*
+        * **Type** *(required: Build, CI/CD, Configuration, Tools, Dependencies, Setup, Other)*
+        * **Acceptance Criteria** *(required - EARS statements for completion)*
+        * **Priority** *(required: Low, Medium, High, Critical)*
+        * **Additional Context** *(optional - any other relevant details)*
+
+        ### 🔄 Refactor
+
+        * **Requirements** *(required - EARS statements about what THE SYSTEM SHALL maintain/improve)*
+        * **What code needs refactoring?** *(required - describe the code area or component)*
+        * **Why does it need refactoring?** *(required - explain current issues or improvements needed)*
+        * **Current State** *(optional - describe how it works now using EARS)*
+        * **Desired Outcome** *(required - EARS statements of what should be improved)*
+        * **Acceptance Criteria** *(required - EARS statements for testing the refactor)*
+        * **Priority** *(required: Low, Medium, High, Critical)*
+        * **Additional Context** *(optional - any constraints or considerations)*
+
         ---
 
-        ## Good Examples
+        ## Good Examples with EARS
 
         ### User Input: "add dark mode"
 
-        **Good AI Output:**
+        **Good AI Output with EARS:**
         ```markdown
         feat: add dark mode theme option
+
+        **Requirements**
+        - WHEN the user accesses theme settings, THE USER SHALL BE ABLE TO select between light and dark modes
+        - WHEN the user selects dark mode, THE SYSTEM SHALL apply dark theme colors to all interface elements
+        - WHERE the user has selected a theme preference, THE SYSTEM SHALL remember this choice between sessions
+        - WHEN the application starts, THE SYSTEM SHALL apply the user's previously selected theme
 
         **What do you want?**
         A dark mode theme that users can switch to instead of the current light theme.
@@ -157,32 +222,39 @@ body:
         **Why do you need this?**
         Many users prefer dark themes, especially when working in low-light environments. It reduces eye strain and is a common expectation in modern applications.
 
+        **Acceptance Criteria**
+        - WHEN dark mode is enabled, THE SYSTEM SHALL display all text in light colors on dark backgrounds
+        - WHEN switching themes, THE SYSTEM SHALL apply changes immediately without requiring a restart
+        - WHERE the user closes and reopens the application, THE SYSTEM SHALL maintain their theme selection
+
         **Priority**
         Medium
-
-        **Additional Context**
-        Should remember the user's choice between sessions.
         ```
 
         ### User Input: "app crashes when I click submit sometimes"
 
-        **Good AI Output:**
+        **Good AI Output with EARS:**
         ```markdown
         fix: app crashes intermittently when clicking submit button
 
         **Bug Description**
         The application crashes unexpectedly when clicking the submit button, but it doesn't happen every time.
 
+        **Requirements**
+        - WHEN the user clicks the submit button, THE SYSTEM SHALL always process the form submission without crashing
+        - IF form validation fails, THE SYSTEM SHALL display error messages instead of crashing
+        - WHERE the submit action encounters an error, THE SYSTEM SHALL handle it gracefully and remain stable
+
         **Steps to Reproduce**
-        1. Fill out the form
-        2. Click the submit button
-        3. Sometimes the app crashes
+        - WHEN the user fills out the form
+        - IF the user clicks the submit button
+        - THEN sometimes the app crashes
 
         **Expected Behavior**
-        The form should submit successfully every time.
+        WHEN the user clicks submit, THE SYSTEM SHALL validate the form and either process the submission or display validation errors without crashing.
 
         **Actual Behavior**
-        The app crashes occasionally, requiring a restart.
+        WHEN the user clicks submit, THE SYSTEM SHALL occasionally crash instead of processing the form, requiring a restart.
 
         **Severity**
         High - Prevents users from completing their work
@@ -197,19 +269,82 @@ body:
         The crash doesn't happen consistently, making it hard to predict when it will occur.
         ```
 
+        ### User Input: "update ci pipeline to use newer node version"
+
+        **Good AI Output with EARS:**
+        ```markdown
+        chore: update ci pipeline to use newer node version
+
+        **Requirements**
+        - WHERE the CI pipeline builds the application, THE SYSTEM SHALL use a newer version of Node.js
+        - WHEN the pipeline runs, THE SYSTEM SHALL successfully complete all build steps with the new Node.js version
+        - IF dependencies require the newer Node.js version, THE SYSTEM SHALL be compatible
+
+        **What needs to be done?**
+        Update the CI/CD pipeline configuration to use a newer version of Node.js.
+
+        **Why is this needed?**
+        The current Node.js version in the pipeline is outdated and may have security vulnerabilities or compatibility issues with newer dependencies.
+
+        **Type**
+        CI/CD
+
+        **Acceptance Criteria**
+        - WHEN the CI pipeline runs, THE SYSTEM SHALL use Node.js version [specify version]
+        - WHEN builds complete, THE SYSTEM SHALL pass all existing tests with the new Node.js version
+        - WHERE documentation references Node.js version, THE SYSTEM SHALL reflect the updated version
+
+        **Priority**
+        Medium
+        ```
+
+        ### User Input: "clean up the user service code its messy"
+
+        **Good AI Output with EARS:**
+        ```markdown
+        refactor: clean up user service code structure
+
+        **Requirements**
+        - WHERE the user service code exists, THE SYSTEM SHALL maintain all existing functionality after refactoring
+        - WHEN developers read the refactored code, THE SYSTEM SHALL be easier to understand and maintain
+        - IF the code structure is improved, THE SYSTEM SHALL perform the same operations without behavior changes
+
+        **What code needs refactoring?**
+        The user service module and its related functions.
+
+        **Why does it need refactoring?**
+        The current code structure is difficult to read and maintain, making it hard for developers to understand and modify.
+
+        **Current State**
+        WHERE the user service exists, THE SYSTEM SHALL currently work but is disorganized and hard to follow.
+
+        **Desired Outcome**
+        WHEN the refactoring is complete, THE SYSTEM SHALL have clean, well-organized code that is easier to read, understand, and maintain without changing the existing functionality.
+
+        **Acceptance Criteria**
+        - WHEN developers review the refactored code, THE SYSTEM SHALL be more readable and maintainable
+        - WHERE existing functionality is tested, THE SYSTEM SHALL pass all current tests after refactoring
+        - IF new developers join the team, THE SYSTEM SHALL be easier for them to understand
+
+        **Priority**
+        Medium
+        ```
+
         ---
 
         ## 🎯 Success Criteria
 
-        A good AI-enhanced issue should:
-        - ✅ Be clear and easy to understand
-        - ✅ Focus on describing the problem or need
-        - ✅ Be organized and well-structured
+        A good AI-enhanced issue with EARS should:
+        - ✅ Be clear and easy to understand using structured EARS language
+        - ✅ Focus on describing the problem or need with precise requirements
+        - ✅ Be organized and well-structured with EARS methodology
+        - ✅ Use EARS keywords to eliminate ambiguity
         - ✅ Avoid technical implementation details
-        - ✅ Use simple, straightforward language
-        - ✅ Help developers understand what the user wants
+        - ✅ Use simple, straightforward language within EARS structure
+        - ✅ Help developers understand exactly what the user wants
+        - ✅ Provide testable acceptance criteria using EARS format
 
-        **Remember: You're a translator, not a consultant. Turn user thoughts into clear issue descriptions.**
+        **Remember: You're a translator using EARS methodology, not a consultant. Turn user thoughts into clear, unambiguous issue descriptions with structured requirements.**
 
         ---
 

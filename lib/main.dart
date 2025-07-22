@@ -8,20 +8,19 @@ import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/intl.dart';
-import 'package:libcli/cli/cli.dart' as cli;
-import 'package:libcli/l10n/localization.dart' as libcli_localization;
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/vision.dart' as vision;
 
 final GlobalKey<wizard.WizardAppState> wizardKey = GlobalKey<wizard.WizardAppState>();
 
 main() {
   registerTimeagoLocales();
-  cli.run(() => const MyApp(), alertUser: (e) {
+  appkit.appRun(() => const MyApp(), errorCallback: (e) {
     if (e is PlatformException || e is MissingPluginException) {
       return false;
     }
@@ -40,16 +39,6 @@ class _MyAppState extends State<MyApp> {
   _MyAppState();
   final db.DataManager dataManager = db.DataManager();
 
-  /// the default app localizations delegates
-  static const appLocaleDelegates = [
-    Localization.delegate,
-    libcli_localization.Localization.delegate,
-    vision.Localization.delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
-
   @override
   Widget build(BuildContext context) {
     pip.SlidingPanelState getPanelPositionWhenProjectOpened() {
@@ -57,9 +46,17 @@ class _MyAppState extends State<MyApp> {
       return isPortrait ? pip.SlidingPanelState.halfOpen : pip.SlidingPanelState.open;
     }
 
+    final appLocaleDelegates = [
+      Localization.delegate,
+      appkit.Localization.delegate,
+      vision.Localization.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ];
+
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => cli.LanguageProvider()..loadLocale()),
         ChangeNotifierProvider<app.ProjectProvider>(
             create: (context) => app.ProjectProvider(
                   onDatabaseMaintain: () {
@@ -76,7 +73,7 @@ class _MyAppState extends State<MyApp> {
                     await dataManager.addActivity(projectId, videoId, zoneId, classId, activity);
                   },
                   onProjectOpened: (_) async {
-                    final pipProvider = pip.PipProvider.of(cli.globalContext);
+                    final pipProvider = pip.PipProvider.of(appkit.globalContext);
                     await Future.delayed(
                         const Duration(seconds: 2)); // 2 seconds wait to avoid busy state when open project
                     pipProvider.animatePanelToSnapPoint();
@@ -102,8 +99,7 @@ class _MyAppState extends State<MyApp> {
         data: CupertinoThemeData(
           brightness: Brightness.dark,
         ),
-        child: Consumer3<cli.LanguageProvider, app.ProjectProvider, pip.PipProvider>(
-            builder: (context, languageProvider, projectProvider, pipProvider, child) {
+        child: Consumer2<app.ProjectProvider, pip.PipProvider>(builder: (context, projectProvider, pipProvider, child) {
           buildMainScreen() {
             return Scaffold(
               body: Container(
@@ -126,14 +122,17 @@ class _MyAppState extends State<MyApp> {
                 : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
           }
 
-          final isRTL = Bidi.isRtlLanguage(cli.defaultLocale.toString());
+          final defaultLocale =
+              Intl.defaultLocale != null ? appkit.localeParseString(Intl.defaultLocale!) : appkit.localeSystem;
+
+          final isRTL = Bidi.isRtlLanguage(defaultLocale.toString());
 
           return ChangeNotifierProvider<vision.OrientationProvider>.value(
               value: projectProvider.orientationProvider,
               child: Directionality(
                 textDirection: isRTL ? ui.TextDirection.rtl : ui.TextDirection.ltr,
                 child: Localizations(
-                    locale: cli.defaultLocale ?? cli.systemLocale,
+                    locale: defaultLocale,
                     delegates: appLocaleDelegates,
                     child: Navigator(
                       initialRoute: '/',
@@ -148,7 +147,7 @@ class _MyAppState extends State<MyApp> {
                                     isLockToPortrait: projectProvider.isLockToPortrait,
                                     slidingBuilder: (isPanelOpened) => wizard.WizardApp(
                                       key: wizardKey,
-                                      appLocale: cli.defaultLocale,
+                                      appLocale: defaultLocale,
                                       appLocaleDelegates: appLocaleDelegates,
                                       pipProvider: pipProvider,
                                     ),

@@ -1,6 +1,6 @@
 import 'package:counter/app/app.dart' as app;
 import 'package:flutter/material.dart';
-import 'package:vision/vision.dart' as vision;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 import 'meta/annotation_meta.dart';
 import 'meta/camera_meta.dart';

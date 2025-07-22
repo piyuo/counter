@@ -2,9 +2,9 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 import '../wizard_app.dart';
 

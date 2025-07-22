@@ -1,4 +1,4 @@
-import 'package:vision/vision.dart' as vision;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 import 'uuid.dart';
 import 'video.dart';

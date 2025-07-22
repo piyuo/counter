@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:counter/app/app.dart' as app;
-import 'package:vision/vision.dart' as vision;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 import 'database.dart';
 import 'meta.dart';

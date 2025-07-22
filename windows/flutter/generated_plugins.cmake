@@ -5,13 +5,16 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   camera_windows
   file_selector_windows
+  flutter_vision
   permission_handler_windows
+  sentry_flutter
+  share_plus
   sqlite3_flutter_libs
   url_launcher_windows
-  vision
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  jni
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)

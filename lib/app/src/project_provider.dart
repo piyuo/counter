@@ -5,13 +5,13 @@ import 'package:counter/db/db.dart' as db;
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:libcli/cli/cli.dart' as cli;
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/vision.dart' as vision;
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../db/src/project_summary.dart';
@@ -341,7 +341,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// create a project name
   String _createProjectName(vision.SourceType type, String? path) {
-    return '${cli.globalContext.l.default_project_name} ${_crateFormattedTimestamp()}';
+    return '${appkit.globalContext.l.default_project_name} ${_crateFormattedTimestamp()}';
   }
 
   /// create a video name
@@ -349,7 +349,7 @@ class ProjectProvider with ChangeNotifier {
     int index = project!.videos.length;
     String name;
     do {
-      name = '${cli.globalContext.l.default_video_name} ${++index}';
+      name = '${appkit.globalContext.l.default_video_name} ${++index}';
     } while (project!.isVideoNameExists(name));
     return name;
   }

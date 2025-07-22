@@ -49,7 +49,7 @@ All work must begin with a GitHub Issue for proper tracking.
 **ALWAYS** use the provided script:
 
 ```bash
-./scripts/start-issue.sh <issue-number>
+./scripts/start_issue.sh <issue-number>
 ```
 
 This script:
@@ -110,7 +110,7 @@ create your first commit with the proper format:
 ```bash
 
 # Get the exact issue title for consistency
-./scripts/get-issue-title.sh <issue-number>
+./scripts/get_issue_title.sh <issue-number>
 
 # Example first commit - this will become your PR title
 git commit -m "<issue-title> #<issue-number>"
@@ -118,19 +118,31 @@ git commit -m "<issue-title> #<issue-number>"
 
 **IMPORTANT:** This first commit message will be used as your PR title
 
-Commit Message Format (ENFORCED)
+## Commit Message Format (ENFORCED)
 
-- Always reference the issue number in the commit
+Always reference the issue number in the commit. Use one of the 5 approved commit types:
 
 **Format:** `type(scope): description #issue-number`
+
+### Approved Commit Types
+
+- **`feat:`** New features, including performance improvements *(will be added to Changelog)*
+- **`fix:`** Bug fixes *(will be added to Changelog)*
+- **`docs:`** Documentation only changes
+- **`chore:`** Build, CI/CD, settings, tools (non-code changes)
+- **`refactor:`** Code improvements including tests & cleanup (no behavior change)
 
 **Examples:**
 
 ```bash
-✅ feat(auth): implement user login system #123
-✅ fix(payment): resolve gateway timeout #456
-✅ docs(readme): update installation guide #789
-✅ refactor(db): optimize query performance #321
+✅ feat(auth): implement OAuth login system #123
+✅ feat(api): optimize database query performance #456
+✅ fix(payment): resolve gateway timeout issue #789
+✅ docs(readme): update installation guide #321
+✅ chore(ci): update Node.js version in GitHub Actions #654
+✅ chore(deps): upgrade React to v18.2.0 #987
+✅ refactor(utils): simplify date formatting functions #246
+✅ refactor(tests): improve test coverage for auth module #135
 ```
 
 **Common Mistakes:**
@@ -141,6 +153,8 @@ Commit Message Format (ENFORCED)
 ❌ feat(auth): implement login          (missing issue number)
 ❌ feat(auth): #123                     (empty description)
 ❌ feat(auth): implement user authentication system with OAuth and JWT #123  (>100 chars)
+❌ style(auth): fix indentation #123    (use 'refactor:' instead)
+❌ build(deps): update package #123     (use 'chore:' instead)
 ```
 
 **Key Rules:**
@@ -149,7 +163,46 @@ Commit Message Format (ENFORCED)
 - Lowercase scope
 - No period at end
 - Must include issue number
-- Use `feat:` or `fix:` for version updates
+- Use only approved commit types: `feat`, `fix`, `docs`, `chore`, `refactor`
+
+### Commit Type Selection Guide
+
+**Use `feat:` for:**
+
+- New features and functionality
+- Performance improvements
+- API enhancements
+- User-facing improvements
+
+**Use `fix:` for:**
+
+- Bug fixes
+- Security patches
+- Regression fixes
+- Error handling improvements
+
+**Use `docs:` for:**
+
+- README updates
+- Code comments
+- Documentation files
+- API documentation
+
+**Use `chore:` for:**
+
+- Dependency updates
+- Build configuration
+- CI/CD pipeline changes
+- Development tools setup
+- Package.json modifications
+
+**Use `refactor:` for:**
+
+- Code restructuring
+- Test improvements
+- Code cleanup
+- Performance optimizations without new features
+- Removing dead code
 
 ### Code Standards
 
@@ -160,7 +213,7 @@ Commit Message Format (ENFORCED)
 
 #### File Structure for AI Efficiency
 
-**MANDATORY:** Every code file and test file must include a TOC or Overview at the top in comments. This helps AI assistants understand file structure within the first 50-100 lines.
+**MANDATORY:** Every code file and test file and documents like *.md must include a TOC or Overview at the top in comments. This helps AI assistants understand file structure within the first 50-100 lines.
 
 **JavaScript/TypeScript Example:**
 
@@ -227,19 +280,17 @@ import { describe, test, expect } from '@jest/globals';
 Transform messy development commits into meaningful commits before creating PR.
 
 **Small issues:** Usually 1 commit
-**Larger issues:** Multiple logical commits (e.g., feat + docs + fix)
+**Larger issues:** Multiple logical commits (e.g., feat + docs + chore)
 
 ### Interactive Rebase Process
 
-You can automate this using the scripts/squash-commits.sh script:
+You can automate this using the scripts/squash_commits.sh script:
 
 ```bash
-./scripts/squash-commits.sh
+./scripts/squash_commits.sh
 ```
 
 This script rebases your branch onto main, helps you squash commits interactively, edits the final message, and safely force-pushes the result.
-
-
 
 ### Create PR for Review
 
@@ -257,7 +308,7 @@ This script rebases your branch onto main, helps you squash commits interactivel
 
 ```bash
 # Get the exact issue title for consistency
-./scripts/get-issue-title.sh <issue-number>
+./scripts/get_issue_title.sh <issue-number>
 
 # Create the PR using the body file, add --push to eliminates the interactive prompt.
 gh pr create \
@@ -278,6 +329,7 @@ rm .PR_BODY.md
 - [ ] Code formatted (linting/prettier)
 - [ ] Functions >10 lines documented
 - [ ] **All files include TOC/Overview at the top for AI efficiency**
+- [ ] **Commit types follow approved format** (`feat`, `fix`, `docs`, `chore`, `refactor`)
 
 ### Review Process
 
@@ -301,7 +353,7 @@ rm .PR_BODY.md
 
 **Must match:** `<issue-title> #<issue-number>`
 
-Get the exact title: `./scripts/get-issue-title.sh <issue-number>`
+Get the exact title: `./scripts/get_issue_title.sh <issue-number>`
 
 ### PR Body Template
 
@@ -420,7 +472,13 @@ Context: Issue #142 - Payment gateway integration
 ## ❓ FAQ
 
 **Q: My commit fails validation. What should I check?**
-A: Common issues - header >100 chars, uppercase scope, missing issue number, ends with period. Use `git commit --amend` to fix.
+A: Common issues - header >100 chars, uppercase scope, missing issue number, ends with period, invalid commit type. Use `git commit --amend` to fix.
+
+**Q: When should I use `refactor:` vs `feat:`?**
+A: Use `refactor:` for code improvements without behavior change (cleanup, optimization). Use `feat:` for new functionality or user-facing improvements.
+
+**Q: What's the difference between `chore:` and `refactor:`?**
+A: `chore:` is for non-code changes (build, CI, dependencies). `refactor:` is for code improvements without behavior change.
 
 **Q: When do I clean commits?**
 A: Before creating your PR. This is mandatory - reviewers expect clean history.
@@ -429,7 +487,7 @@ A: Before creating your PR. This is mandatory - reviewers expect clean history.
 A: Yes, mandatory for traceability (except `chore(main):` commits).
 
 **Q: How many commits per issue?**
-A: Small issues = 1 commit, larger issues = multiple logical commits (feat + docs, etc.).
+A: Small issues = 1 commit, larger issues = multiple logical commits (feat + docs + chore, etc.).
 
 **Q: Why do we need TOC/Overview at the top of files?**
 A: AI assistants (like Copilot) typically read the first 50-100 lines to understand file context. A clear TOC helps them work more efficiently and provide better suggestions.
@@ -449,6 +507,7 @@ A: Module name, brief description, and main sections/components. Keep it concise
 - **Never** end commit headers with periods
 - **Never** submit PRs with failing tests
 - **Never** forget to add TOC/Overview at the top of new files
+- **Never** use commit types other than: `feat`, `fix`, `docs`, `chore`, `refactor`
 
 ---
 

@@ -1,12 +1,11 @@
 import 'package:counter/l10n/l10n.dart';
-import 'package:counter/l10n/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:libcli/cli/cli.dart' as cli;
-import 'package:libcli/l10n/localization.dart' as cli_localization;
-import 'package:provider/provider.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart' as provider;
 
-class LanguageScreen extends StatelessWidget {
+class LanguageScreen extends ConsumerWidget {
   const LanguageScreen({
     required this.scrollController,
     this.previousPageTitle,
@@ -20,14 +19,17 @@ class LanguageScreen extends StatelessWidget {
   final ScrollController scrollController;
 
   @override
-  Widget build(BuildContext context) {
-    final languageProvider = cli.LanguageProvider.of(context);
-    final languages = cli.Language.fromSupportedLocales(Localization.supportedLocales);
-    final cliLocalization = cli_localization.Localization.of(context);
-    final value = cli.isSystemLocale ? Locale(' ') : cli.defaultLocale;
-    return ChangeNotifierProvider<LanguageScreenProvider>(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final displayLabels = appkit.localeDisplayLabels;
+    final locale = ref.watch(appkit.localeProvider);
+    final libcliLocalization = appkit.Localization.of(context);
+    //final languageProvider = cli.LanguageProvider.of(context);
+    //final languages = cli.Language.fromSupportedLocales(Localization.supportedLocales);
+    //final cliLocalization = cli_localization.Localization.of(context);
+    //final value = cli.isSystemLocale ? Locale(' ') : cli.defaultLocale;
+    return provider.ChangeNotifierProvider<LanguageScreenProvider>(
         create: (_) => LanguageScreenProvider(),
-        child: Consumer<LanguageScreenProvider>(builder: (context, languageScreenProvider, child) {
+        child: provider.Consumer<LanguageScreenProvider>(builder: (context, languageScreenProvider, child) {
           return pip.PipScaffold(
             previousPageTitle: previousPageTitle,
             child: SingleChildScrollView(
@@ -46,21 +48,28 @@ class LanguageScreen extends StatelessWidget {
                   CupertinoListSection(
                     children: [
                       CupertinoListTile(
-                        title: Text(cliLocalization.system_language),
+                        title: Text(libcliLocalization.language),
                         subtitle: Text('System language'),
-                        leading: value == Locale(' ') ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
+                        leading: locale == Locale(' ') ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
                         onTap: () async {
-                          await languageProvider.setLocale(Locale(' '));
+                          ref.read(appkit.localeProvider.notifier).set(Locale(' '));
                         },
                       ),
-                      ...languages.map((language) => CupertinoListTile(
-                            title: Text(language.name),
-                            subtitle: Text(language.engName),
-                            leading: language.locale == value ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
-                            onTap: () async {
-                              await languageProvider.setLocale(language.locale);
-                            },
-                          ))
+                      ...displayLabels.entries.map((entry) {
+                        final currentLocaleKey = entry.key;
+                        final currentLocaleName = entry.value;
+                        final currentLocaleEngName = appkit.localeEngNames[currentLocaleKey] ?? locale.toString();
+                        final currentLocale = appkit.localeParseString(currentLocaleKey);
+
+                        return CupertinoListTile(
+                          title: Text(currentLocaleName),
+                          subtitle: Text(currentLocaleEngName),
+                          leading: currentLocale == locale ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
+                          onTap: () async {
+                            ref.read(appkit.localeProvider.notifier).set(currentLocale);
+                          },
+                        );
+                      })
                     ],
                   ),
                   pip.PipFooter(),

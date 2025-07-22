@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:universal_platform/universal_platform.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'project_provider.dart';
 import 'zone_color_table.dart';

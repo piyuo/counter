@@ -1,4 +1,4 @@
-import 'package:vision/vision.dart' as vision;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 const _confidenceThreshold = 0.45; // pick object as many as possible
 const _trackingThreshold = 0.55; // byte track will filter object by

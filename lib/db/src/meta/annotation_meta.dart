@@ -1,5 +1,5 @@
+import 'package:flutter_vision/flutter_vision.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:vision/vision.dart';
 
 part 'annotation_meta.freezed.dart';
 part 'annotation_meta.g.dart'; // JSON support

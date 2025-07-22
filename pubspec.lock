@@ -478,6 +478,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_appkit:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: "v2.3.0"
+      resolved-ref: "5e6f6036d1c868b49253eb9a5985dd8bf44179c3"
+      url: "https://github.com/piyuo/flutter-appkit.git"
+    source: git
+    version: "2.3.0"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -486,6 +495,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  flutter_dotenv:
+    dependency: transitive
+    description:
+      name: flutter_dotenv
+      sha256: b7c7be5cd9f6ef7a78429cabd2774d3c4af50e79cb2b7593e3d5d763ef95c61b
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.1"
   flutter_launcher_icons:
     dependency: "direct overridden"
     description:
@@ -523,11 +540,26 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.28"
+  flutter_riverpod:
+    dependency: transitive
+    description:
+      name: flutter_riverpod
+      sha256: "9532ee6db4a943a1ed8383072a2e3eeda041db5657cdf6d2acecf3c21ecbe7e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_vision:
+    dependency: "direct main"
+    description:
+      path: "../flutter-vision"
+      relative: true
+    source: path
+    version: "2.0.0"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -581,6 +613,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  group_button:
+    dependency: transitive
+    description:
+      name: group_button
+      sha256: "0610fcf28ed122bfb4b410fce161a390f7f2531d55d1d65c5375982001415940"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.4"
   html:
     dependency: transitive
     description:
@@ -717,6 +757,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  jni:
+    dependency: transitive
+    description:
+      name: jni
+      sha256: cfd663ec90d87ec6abd338da7e21189e503bf6753a0027c1862796f5826adba6
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.1"
   js:
     dependency: transitive
     description:
@@ -765,13 +813,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  libcli:
-    dependency: "direct main"
-    description:
-      path: "../libcli"
-      relative: true
-    source: path
-    version: "1.8.0"
   lints:
     dependency: transitive
     description:
@@ -1100,6 +1141,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.6.3"
+  riverpod:
+    dependency: transitive
+    description:
+      name: riverpod
+      sha256: "59062512288d3056b2321804332a13ffdd1bf16df70dcc8e506e411280a72959"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
   sensors_plus:
     dependency: "direct main"
     description:
@@ -1116,6 +1165,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  sentry:
+    dependency: transitive
+    description:
+      name: sentry
+      sha256: e33638161982fb5deea36751800f7e83d9e4da79e2ff2e822dd92b6b6ddcee8b
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.5.0"
+  sentry_flutter:
+    dependency: transitive
+    description:
+      name: sentry_flutter
+      sha256: "3abb443a6308504478c4b4061016ee8b7f83aa569f9f3c7f019de7ce91832ea6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.5.0"
+  share_plus:
+    dependency: transitive
+    description:
+      name: share_plus
+      sha256: b2961506569e28948d75ec346c28775bb111986bb69dc6a20754a457e3d97fa0
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.0.0"
+  share_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: share_plus_platform_interface
+      sha256: "1032d392bc5d2095a77447a805aa3f804d2ae6a4d5eef5e6ebb3bd94c1bc19ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -1305,6 +1386,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.1"
+  state_notifier:
+    dependency: transitive
+    description:
+      name: state_notifier
+      sha256: b8677376aa54f2d7c58280d5a007f9e8774f1968d1fb1c096adcb4792fba29bb
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   stream_channel:
     dependency: transitive
     description:
@@ -1337,6 +1426,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  talker:
+    dependency: transitive
+    description:
+      name: talker
+      sha256: "95ac627afecb6267507b7a720a4713dcab84ff82179dc5794b980235aeeb5254"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.2"
+  talker_flutter:
+    dependency: transitive
+    description:
+      name: talker_flutter
+      sha256: abdfe281a2b9832d9f4cdbe6a68567debc977e878be7c45d9dabe4e168158fd1
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.2"
+  talker_logger:
+    dependency: transitive
+    description:
+      name: talker_logger
+      sha256: e3c5195fa3ef2af869bf5dad26f903bf38154dc937853df3ac1991a0747a67fd
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.2"
+  talker_riverpod_logger:
+    dependency: transitive
+    description:
+      name: talker_riverpod_logger
+      sha256: e632eff5e33cd7fa892098be469a235fa2870e2f6820a71457bee1383bf82a8d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.9.2"
   term_glyph:
     dependency: transitive
     description:
@@ -1505,13 +1626,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0+2"
-  vision:
-    dependency: "direct main"
-    description:
-      path: "../vision"
-      relative: true
-    source: path
-    version: "1.0.0+3"
   vm_service:
     dependency: transitive
     description:

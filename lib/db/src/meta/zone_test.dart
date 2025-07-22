@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_test/flutter_test.dart';
-import 'package:vision/vision.dart';
+import 'package:flutter_vision/flutter_vision.dart';
 
 import 'annotation_meta.dart';
 import 'point_meta.dart';

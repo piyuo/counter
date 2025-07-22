@@ -3,8 +3,8 @@ import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 /// The color screen for editing the color.
 class ColorScreen extends StatelessWidget {

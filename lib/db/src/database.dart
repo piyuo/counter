@@ -5,9 +5,9 @@ import 'dart:math';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
-import 'package:vision/vision.dart' as vision;
 
 import 'project_summary.dart';
 import 'table.dart';
