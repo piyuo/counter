@@ -278,62 +278,117 @@ These are common pitfalls and anti-patterns that can lead to performance issues,
 - **Don't ship unused code/assets**: Remove commented-out code, unused imports, and unreferenced assets to keep the bundle size small and the codebase clean.
 - **Avoid `as` casts without `is` checks**: Use the `is` operator before casting with `as` to prevent runtime exceptions (e.g., `if (object is MyType) { (object as MyType).doSomething(); }`).
 
-## 📦 Adding a New Module
+## 📦 Modular Project Architecture
 
-Since this is a simple library, all source files are organized directly under `/lib/src/` without a module structure. New features should be added as individual files or logical groupings within the source directory.
+This project follows a **feature-based modular architecture** where each feature is organized as a self-contained module with clear boundaries and public APIs. This approach promotes better code organization, maintainability, and reusability in larger Flutter applications.
 
-### 🛠️ How to Add New Features
-
-1. **Create new implementation files** in the `/lib/src/` directory:
-
-   ```bash
-   /lib
-     /src
-       env.dart
-       search_impl.dart
-       your_new_feature.dart    # ✅ Add new files here
-     flutter_appkit.dart
-   ```
-
-2. **Expose the public interface** in `flutter_appkit.dart`:
-
-   ```dart
-   export 'src/env.dart';
-   export 'src/search_impl.dart';
-   export 'src/your_new_feature.dart';
-   ```
-
-3. **Import the library**:
-
-   ```dart
-   import 'package:flutter_appkit/flutter_appkit.dart';
-   ```
-
-### ✅ Example
+### 🏗️ Project Structure
 
 ```bash
 /lib
-  /src
-    auth_service.dart
-    user_model.dart
-    api_client.dart
-  flutter_appkit.dart
+  /pip                    # PIP feature module
+    /src                  # Internal implementation (private)
+      pip_footer.dart     # Private implementation files
+      pip_screen.dart     # Private implementation files
+    pip.dart              # Public API (barrel file)
+  /db                     # Database UI feature module
+    /src                  # Internal implementation (private)
+      database.dart       # Private implementation files
+      data_manager.dart   # Private implementation files
+    db.dart               # Public API (barrel file)
+  main.dart               # App entry point
 ```
 
-In `flutter_appkit.dart`:
+### 🎯 Module Design Principles
+
+Each feature module follows these key principles:
+
+1. **Encapsulation**: Internal implementation details are kept in the `/src` folder and are private to the module
+2. **Public API**: Each module exposes only what's necessary through its barrel file (e.g., `pip.dart`, `db.dart`)
+3. **Clear Boundaries**: Modules communicate through well-defined interfaces, preventing tight coupling
+4. **Self-Contained**: Each module contains all the code needed for its specific feature or functionality
+
+### 💡 Usage Examples
+
+**Import modules with namespace aliases for better organization:**
 
 ```dart
-export 'src/auth_service.dart';
-export 'src/user_model.dart';
-export 'src/api_client.dart';
+// Import modules with descriptive aliases
+import 'package:counter/db/db.dart' as db;
+import 'package:counter/pip/pip.dart' as pip;
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        db.PipScreen(),           // Use DB module components
+        pip.DataManager(),        // Use PIP module components
+      ],
+    );
+  }
+}
 ```
 
-### 📌 Why This Structure
+**Module barrel files expose public APIs:**
 
-- **Simplicity**: Flat structure for a focused library
-- **Clear public API**: All exports managed in one place
-- **Easy maintenance**: No complex module dependencies
-- **Scalable**: Can easily reorganize into modules later if needed
+```dart
+// In /lib/db/db.dart (barrel file)
+export 'src/pip_footer.dart';
+export 'src/pip_screen.dart';
+// Only export what should be public - keep internal helpers private
+
+// In /lib/pip/pip.dart (barrel file)
+export 'src/data_manager.dart';
+export 'src/database.dart';
+// Internal utilities stay private in /src
+```
+
+### ✨ Benefits of This Architecture
+
+- **Scalability**: Easy to add new features without affecting existing code
+- **Maintainability**: Clear separation of concerns makes code easier to understand and modify
+- **Reusability**: Modules can be easily reused across different parts of the application
+- **Team Collaboration**: Different team members can work on different modules independently
+- **Testing**: Each module can be tested in isolation with clear boundaries
+- **Clean Imports**: Namespace aliases keep imports organized and prevent naming conflicts
+
+### 🛠️ How to Add New Modules
+
+1. **Create the module directory structure**:
+   ```bash
+   /lib
+     /your_new_feature
+       /src
+         internal_service.dart     # Private implementation
+         helper_utils.dart         # Private utilities
+       your_new_feature.dart       # Public API barrel file
+   ```
+
+2. **Define the public API** in the barrel file:
+   ```dart
+   // In /lib/your_new_feature/your_new_feature.dart
+   export 'src/internal_service.dart';
+   // Only export what other modules need to use
+   ```
+
+3. **Use the module** in your app:
+   ```dart
+   import 'package:counter/your_new_feature/your_new_feature.dart' as feature;
+
+   // Use with clear namespace
+   feature.InternalService()
+   ```
+
+### 📌 Module Guidelines
+
+- **Keep `/src` truly private**: Only expose what other modules genuinely need through the barrel file
+- **Use meaningful module names**: Choose names that clearly represent the feature or domain
+- **Maintain module independence**: Avoid circular dependencies between modules
+- **Document public APIs**: Clearly document what each module exposes and how to use it
+- **Consider module size**: If a module grows too large, consider splitting it into smaller, focused modules
+
+This modular architecture, also known as the **"barrel file" pattern**, is a well-established practice in Dart/Flutter projects that helps maintain clean, organized, and scalable codebases as your application grows.
 
 ## Release Process
 
@@ -528,114 +583,6 @@ The project includes automated dependency management tools:
 ```bash
 ./scripts/upgrade_deps.sh
 ```
-
-## ✅ Best Practices to Follow
-
-These practices guide our development to ensure code quality, maintainability, performance, and scalability:
-
-- We are **migrating from Provider to Riverpod** for improved scalability and testability.
-- **Follow the Effective Dart Style Guide**: Adhere to Dart's official style guide for consistent formatting, naming conventions (e.g., `UpperCamelCase` for classes, `lowerCamelCase` for variables), and code structure. This is enforced via `flutter_lints` and `dart format`.
-- **Embrace Widget Composition over Inheritance**: Favor composing smaller, reusable widgets to build complex UIs. This leads to cleaner code, better performance, and easier testing compared to deep inheritance hierarchies.
-- **Optimize Widget Rebuilds**:
-  - **Use `const` constructors whenever possible**: For immutable widgets, using `const` allows Flutter to perform significant optimizations by reusing widget instances and preventing unnecessary rebuilds.
-  - **Keep `build` methods pure and lean**: Avoid complex logic, heavy computations, or network calls directly within `build` methods, as they can run frequently. Delegate such operations to state management solutions or lifecycle methods.
-  - **Minimize `setState()` scope**: Use `setState()` sparingly and only for the smallest possible widget subtree that needs to update. Prefer robust state management solutions (like Provider, BLoC, Riverpod) for broader or more complex state changes.
-- **State Management**: Utilize `Provider` (or your chosen state management solution) for managing application state, ensuring clear separation of concerns between UI and business logic.
-  - **Keep state as low as possible**: Place `ChangeNotifier`s or other state objects at the lowest common ancestor in the widget tree to limit the scope of rebuilds.
-- **Proper Resource Management**:
-  - **Dispose of controllers and streams**: Always `dispose()` of `TextEditingController`, `ScrollController`, `AnimationController`, `StreamSubscription`s, and similar resources when the corresponding `StatefulWidget` is unmounted (`@override void dispose() { super.dispose(); }`). This prevents memory leaks.
-  - **Handle asynchronous operations safely**: Always check `mounted` before calling `setState()` after an `await` to prevent errors if the widget is unmounted while the operation is pending.
-- **Implement Robust Error Handling**:
-  - Use `try-catch` blocks for asynchronous operations (e.g., network requests, file operations).
-  - Consider using custom `Exception` classes for application-specific error types.
-  - Utilize `flutter_appkit`'s error handling capabilities for consistent error reporting and user feedback.
-- **Write Comprehensive Tests**:
-  - **Unit Tests**: For business logic, utilities, and individual functions.
-  - **Widget Tests**: To verify UI components behave as expected and render correctly.
-  - **Integration Tests**: To test interactions between multiple widgets or entire features, simulating user flows.
-  - **Strive for good test coverage**: Focus on critical functionalities and edge cases.
-- **Implement Responsive and Adaptive UI**: Design UIs that gracefully adapt to different screen sizes, orientations, and device types (mobile, tablet, web, desktop). Leverage `MediaQuery`, `LayoutBuilder`, and `Sliver` widgets.
-- **Use Material Design (or Cupertino)**: Adhere to established design guidelines for a consistent and high-quality user experience.
-- **Prioritize Performance**:
-  - Optimize image assets (e.g., compress, use `CachedNetworkImage` for network images).
-  - Employ lazy loading for lists (e.g., `ListView.builder`).
-  - Use `SizedBox` or `Sliver` widgets for spacing and layout over overly complex `Container`s when simple sizing is needed.
-- **Maintain Clean Code Structure**: Organize code logically into feature-based directories, clearly separating UI, business logic, services, and models.
-
----
-
-## 🚫 What to Avoid
-
-These are common pitfalls and anti-patterns that can lead to performance issues, bugs, and maintainability challenges:
-
-- **Avoid using the old Provider package** – we are standardizing on Riverpod going forward.
-- **Avoid over-reliance on `setState()`**: Do not use `setState()` for global state or for changes that affect large parts of the widget tree. This leads to unnecessary rebuilds and poor performance.
-- **Never block the UI thread**: Avoid performing heavy computations, large file I/O, or synchronous network requests directly on the main UI thread. Use `async/await`, `Isolates`, or background services to offload work.
-- **Do not hardcode sensitive information**: API keys, sensitive credentials, or environment-specific configurations should *never* be hardcoded into the source code. Use environment variables or secure configuration methods.
-- **Avoid excessive nesting (Widget Tree Depth)**: While composition is good, overly deep or convoluted widget trees can become hard to read and debug. Break down complex widgets into smaller, named components.
-- **Do not initialize controllers/resources in `build()`**: Avoid creating `AnimationController`, `TextEditingController`, `StreamController`, etc., directly within `build` methods. These should be initialized once in `initState()` and disposed in `dispose()`.
-- **Avoid using `print()` for production logging**: `print()` calls can be inefficient and stripped in release builds. Use `debugPrint()` for local debugging or integrate a dedicated logging package (like `logger`) for structured logging that can be controlled by build configurations.
-- **Do not ignore `Future`s or `Stream`s**: Ensure all `Future`s are `await`ed or handled with `.then().catchError()`. Similarly, `StreamSubscription`s must be `cancel()`ed. Unhandled futures or streams can lead to unexpected behavior or memory leaks.
-- **Avoid global variables for state**: While `GetIt` is a service locator, avoid using simple global variables (`static`) for mutable application state. This makes state harder to track, test, and manage, and can lead to unexpected side effects.
-- **Don't ship unused code/assets**: Remove commented-out code, unused imports, and unreferenced assets to keep the bundle size small and the codebase clean.
-- **Avoid `as` casts without `is` checks**: Use the `is` operator before casting with `as` to prevent runtime exceptions (e.g., `if (object is MyType) { (object as MyType).doSomething(); }`).
-
-## 📦 Adding a New Module
-
-Since this is a simple library, all source files are organized directly under `/lib/src/` without a module structure. New features should be added as individual files or logical groupings within the source directory.
-
-### 🛠️ How to Add New Features
-
-1. **Create new implementation files** in the `/lib/src/` directory:
-
-   ```bash
-   /lib
-     /src
-       env.dart
-       search_impl.dart
-       your_new_feature.dart    # ✅ Add new files here
-     flutter_appkit.dart
-   ```
-
-2. **Expose the public interface** in `flutter_appkit.dart`:
-
-   ```dart
-   export 'src/env.dart';
-   export 'src/search_impl.dart';
-   export 'src/your_new_feature.dart';
-   ```
-
-3. **Import the library**:
-
-   ```dart
-   import 'package:flutter_appkit/flutter_appkit.dart';
-   ```
-
-### ✅ Example
-
-```bash
-/lib
-  /src
-    auth_service.dart
-    user_model.dart
-    api_client.dart
-  flutter_appkit.dart
-```
-
-In `flutter_appkit.dart`:
-
-```dart
-export 'src/auth_service.dart';
-export 'src/user_model.dart';
-export 'src/api_client.dart';
-```
-
-### 📌 Why This Structure
-
-- **Simplicity**: Flat structure for a focused library
-- **Clear public API**: All exports managed in one place
-- **Easy maintenance**: No complex module dependencies
-- **Scalable**: Can easily reorganize into modules later if needed
 
 ### Release
 
