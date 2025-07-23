@@ -1,0 +1,1 @@
+Tăng cường độ ổn định khi chuyển đổi giữa các dự án, đảm bảo giải phóng tài nguyên ngay lập tức khi đóng dự án

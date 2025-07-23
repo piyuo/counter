@@ -1,0 +1,1 @@
+Estabilidad mejorada al cambiar entre proyectos, garantizando la liberación inmediata de recursos al cerrar un proyecto

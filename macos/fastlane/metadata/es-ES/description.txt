@@ -1,0 +1,15 @@
+Contador Piyuo es una herramienta inteligente para contar personas de forma automática.
+Características principales:
+
+Detección de peatones mediante cámara
+Modelo de IA integrado sin necesidad de internet
+Funciona en iPhone, iPad y Mac
+Compatible con cámaras web, streaming RTSP y móviles
+Registro continuo durante 24 horas
+Análisis de tráfico por intervalos
+Detecta peatones, vehículos y bicicletas
+
+Método tradicional vs Contador Piyuo:
+Frente al conteo manual con contador, eliminamos errores humanos. Solo necesitas encontrar el ángulo adecuado y dejar que la app trabaje.
+Precisión y realidad:
+Reconocemos sus limitaciones. La resolución de la cámara no es perfecta, pero ajustando bien el ángulo, obtendrás resultados fiables.

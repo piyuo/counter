@@ -1,0 +1,13 @@
+Piyuo Counter er en intelligente app som bruker smarttelefonens kamera til å telle mennesker og kjøretøy på gaten. Med innebygd AI-gjenkjenningsmodell kan du enkelt og nøyaktig registrere trafikkstrømmer uten internettforbindelse.
+Hvordan fungerer appen?
+
+Bruk smarttelefonkameraet til å telle fotgjengere, kjøretøy og syklister
+AI-modell som gjenkjenner og teller automatisk
+Ingen internettforbindelse nødvendig - alt skjer lokalt på enheten
+Støtter iPhone, iPad og Mac
+Kan også brukes med RTSP-videostrømmer eller ekstern webkamera
+Kontinuerlig telling i opptil 24 timer
+Detaljerte rapporter per tidssegment (f.eks. mellom kl. 1-3)
+
+Appen er ikke perfekt, men ved å justere kameravinkel og plassering kan du oppnå svært nøyaktige resultater. AI-modellen sikrer konsistent telling fra dag til dag.
+Tradisjonell manuell telling er upålitelig og varierende. Med Piyuo Counter får du en enkel, rask og objektiv måte å analysere trafikkstrømmer på.

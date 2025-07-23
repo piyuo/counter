@@ -1,0 +1,17 @@
+Penghitung Piyuo adalah solusi pintar untuk menghitung jumlah pejalan kaki menggunakan kecerdasan buatan.
+
+Fitur Utama:
+• Deteksi otomatis menggunakan AI canggih
+• Bekerja tanpa memerlukan internet
+• Kompatibel dengan iPhone, iPad, dan Mac
+• Mendukung kamera ponsel, webcam, dan aliran video RTSP
+• Mampu menghitung pejalan kaki, kendaraan, dan sepeda
+• Rekam statistik selama 24 jam
+• Lacak jumlah orang di berbagai interval waktu
+
+Bagaimana Cara Kerjanya?
+Cukup tempatkan ponsel atau kamera di sudut yang tepat. Aplikasi akan menghitung secara otomatis dengan presisi tinggi. Anda bisa melihat statistik untuk periode waktu apa pun.
+
+Catatan Penting:
+Meskipun tidak sempurna, aplikasi ini memberikan hasil yang konsisten. Dengan penyesuaian sudut dan posisi kamera yang tepat, Anda dapat memperoleh data yang akurat.
+

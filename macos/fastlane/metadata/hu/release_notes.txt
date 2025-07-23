@@ -1,0 +1,1 @@
+Javított stabilitás a projektek közötti váltáskor, azonnali erőforrás-felszabadítás a projekt bezárásakor

@@ -1,0 +1,20 @@
+Hello Review Team,
+
+This macOS application performs pedestrian counting using three input sources.
+
+Testing Webcam Input:
+
+Launch the app.
+Choose "Webcam" as the source to use the Mac's camera.
+Testing File Input:
+
+Please download the attached video "1.mp4" to the Mac (e.g., Desktop).
+Launch the app.
+Choose "File" as the source.
+Select the downloaded "1.mp4" using the file selection dialog.
+Testing Live Stream URL Input:
+
+Launch the app.
+Choose "Live stream URL" as the source.
+Input this URL: https://cdn-004.whatsupcams.com/hls/hr_pula06.m3u8
+Thank you for your time.

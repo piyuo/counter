@@ -1,0 +1,15 @@
+Découvrez une solution innovante pour le comptage de piétons grâce à Piyuo Counter !
+Cet outil révolutionnaire utilise l'intelligence artificielle pour compter automatiquement les personnes qui passent devant votre caméra. Plus besoin de compter manuellement - l'application fait tout le travail pour vous.
+Caractéristiques principales :
+
+Détection instantanée via caméra de smartphone
+Modèle d'IA embarqué, aucune connexion internet requise
+Compatible iPhone, iPad et Mac
+Supporte les flux vidéo RTSP et webcams externes
+Comptage précis des piétons, véhicules et cyclistes
+Enregistrement continu jusqu'à 24 heures
+Consultation des statistiques par période
+
+Comment ça fonctionne ? Positionnez simplement votre appareil, ajustez l'angle, et laissez l'application compter. Chaque minute, elle enregistre le nombre de personnes passant devant la caméra.
+Bien que l'application ne soit pas parfaite en raison des limitations de la résolution caméra, un bon positionnement permet d'obtenir des résultats fiables. L'IA garantit une cohérence de comptage d'un jour à l'autre.
+Un outil simple et intelligent pour comprendre les flux de circulation !

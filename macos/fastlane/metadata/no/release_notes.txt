@@ -1,0 +1,1 @@
+Forbedret stabilitet ved bytte mellom prosjekter, sikrer umiddelbar frigjøring av ressurser når et prosjekt lukkes

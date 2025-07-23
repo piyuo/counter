@@ -1,0 +1,1 @@
+Zwiększona stabilność podczas przełączania między projektami, zapewniająca natychmiastowe zwalnianie zasobów przy zamykaniu projektu

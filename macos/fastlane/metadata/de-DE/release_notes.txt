@@ -1,0 +1,1 @@
+Verbesserte Stabilität beim Wechseln zwischen Projekten und sofortige Ressourcenfreigabe beim Schließen eines Projekts

@@ -1,0 +1,15 @@
+Voici Piyuo Counter, votre compagnon intelligent pour le comptage de personnes !
+Cet outil utilise l'intelligence artificielle pour compter automatiquement les passants devant votre caméra. Fini les comptages manuels fastidieux !
+Fonctionnalités principales :
+
+Détection instantanée via caméra de téléphone
+Modèle d'IA intégré, aucun réseau requis
+Compatible iPhone, iPad et Mac
+Supporte les flux vidéo et webcams
+Compte piétons, véhicules et cyclistes
+Enregistrement continu 24/7
+Consultez les stats à tout moment
+
+Mode d'emploi : Placez votre appareil, ajustez l'angle et laissez faire. L'appli compte chaque minute.
+Pas parfait ? Normal. La résolution caméra a ses limites. Mais avec un bon positionnement, les résultats sont fiables. L'IA garantit une constance de mesure.
+Un outil simple pour comprendre le monde qui bouge !
