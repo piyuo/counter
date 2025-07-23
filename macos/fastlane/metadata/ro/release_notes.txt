@@ -1,0 +1,1 @@
+Stabilitate îmbunătățită la comutarea între proiecte, asigurând eliberarea imediată a resurselor la închiderea unui proiect

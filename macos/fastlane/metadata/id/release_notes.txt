@@ -1,0 +1,1 @@
+Stabilitas yang ditingkatkan saat beralih antar proyek, memastikan pelepasan sumber daya segera saat menutup proyek

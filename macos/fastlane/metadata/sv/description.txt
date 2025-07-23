@@ -1,0 +1,13 @@
+Piyuo Räknare är en intelligent app som använder AI för att räkna människor och fordon i realtid.
+Huvudfunktioner:
+
+Använd mobilkameran för att räkna fotgängare automatiskt
+Inbyggd AI-modell som fungerar offline
+Stöd för iPhone, iPad och Mac
+Kompatibel med RTSP-strömmar och externa webbkameror
+Kontinuerlig 24-timmars räkning
+Detaljerad statistik över personflöden
+
+Hur fungerar det?
+Traditionell manuell räkning är tidskrävande och opålitlig. Med Piyuo Räknare behöver du bara hitta rätt vinkel och låta appen göra jobbet. Appen registrerar antalet passerande personer varje minut.
+Observera: Precision beror på kamerans placering och vinkel. Experimentera för bästa resultat.

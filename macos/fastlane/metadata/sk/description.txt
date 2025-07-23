@@ -1,0 +1,22 @@
+Revolučná aplikácia na sčítavanie chodcov, ktorá premení váš smartfón na inteligentný nástroj mestskej analýzy.
+Hlavné funkcie:
+
+Presné sčítavanie chodcov pomocou zabudovaného AI modelu
+Funguje offline bez potreby internetového pripojenia
+Podporuje iPhone, iPad a Mac
+Flexibilná detekcia cez mobilnú kameru, online video stream alebo webkameru
+Nepretržité sledovanie pohybu počas 24 hodín
+Presné štatistiky pohybu v konkrétnych časových intervaloch
+Detekcia nielen chodcov, ale aj vozidiel a cyklistov
+
+Ako to funguje?
+Jednoducho nájdite vhodný uhol a aktivujte kameru. Aplikácia automaticky spočíta všetkých okoloidúcich. Každú minútu zaznamenáva presný počet osôb.
+Výhody:
+
+Žiadne manuálne počítanie
+Konzistentné výsledky
+Ľahké používanie
+Presnosť podporovaná AI technológiou
+
+Poznámka: Presnosť závisí od kvality kamery a uhla snímania. Experimentujte s rôznymi polohami pre najlepšie výsledky.
+Vytvorené nezávislým vývojárom s láskou k technológiám a mestskému pozorovaniu.

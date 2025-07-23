@@ -1,0 +1,15 @@
+Piyuo Zähler ist eine innovative App zur automatischen Personenzählung:
+Funktionen:
+
+Zählung von Personen, Fahrzeugen und Fahrrädern
+Ohne Internetverbindung - direkte Erkennung mit KI
+Unterstützt iPhone, iPad und Mac
+Nutzbar mit Mobilkamera, Webcam oder RTSP-Videostreams
+Kontinuierliche 24-Stunden-Aufzeichnung
+Detaillierte Zeitintervall-Analysen
+
+Wie funktioniert es?
+Positionieren Sie Ihr Gerät mit guter Sichtlinie. Die App zählt automatisch Personen und speichert Daten minütlich. Durch die KI-Technologie garantieren wir konsistente Zählungen.
+Bitte beachten:
+Die Genauigkeit hängt von Kamerawinkel und Auflösung ab. Experimentieren Sie mit der Positionierung für optimale Ergebnisse.
+Entwickelt von einem unabhängigen Entwickler mit Fokus auf Benutzerfreundlichkeit und Präzision.

@@ -1,0 +1,17 @@
+Piyuo Sayaç, akıllı yapay zeka teknolojisiyle yaya sayımını basitleştiren bir uygulamadır.
+Nasıl Çalışır?
+
+Mobil cihazınızın kamerasını kullanarak otomatik insan sayımı
+İnternet bağlantısı gerektirmez - tamamen çevrimdışı çalışır
+Hızlı ve doğru AI teknolojisi sayesinde kesintisiz sayım
+
+Özellikler:
+
+iPhone, iPad ve Mac platformlarında çalışır
+RTSP video akışı ve harici web kameralarını destekler
+İnsanların yanı sıra araç ve bisikletleri de sayabilir
+24 saat kesintisiz kayıt imkanı
+Belirlenen zaman aralıklarında detaylı raporlama
+
+Geleneksel manuel sayım yöntemlerinden farklı olarak, Piyuo Sayaç size zaman ve emek tasarrufu sağlar. Kameranızı doğru açıya yerleştirin ve uygulamaya güvenin.
+Not: Görüntü çözünürlüğü sınırlı olduğundan, en iyi sonuçlar için kamera konumlandırmasına dikkat edin.

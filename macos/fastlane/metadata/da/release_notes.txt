@@ -1,0 +1,1 @@
+Forbedret stabilitet ved skift mellem projekter, sikrer øjeblikkelig frigivelse af ressourcer når et projekt lukkes

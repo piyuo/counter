@@ -1,0 +1,14 @@
+A Piyuo Számláló egy innovatív alkalmazás, amely segít a forgalom automatikus megfigyelésében. Mobileszköze kamerájának segítségével könnyedén nyomon követheti az adott területen áthaladó gyalogosok és járművek számát.
+Főbb jellemzők:
+
+Beépített AI felismerő modell helyi eszközön
+Nem igényel internetkapcsolatot
+Támogatja az iPhone, iPad és Mac platformokat
+Használható mobil kamerával, RTSP videófolyammal és külső webkamerával
+Folyamatos 24 órás megfigyelés
+Részletes statisztikák bármely időintervallumról
+Precíz számlálás különböző járművekhez és gyalogosokhoz
+
+Hogyan működik:
+Egyszerűen állítsa be a kamerát a megfelelő szögben, és az alkalmazás automatikusan elvégzi a számlálást. Minden percben rögzíti az áthaladók számát, így utólag is részletes jelentéseket készíthet.
+Megjegyzés: Az alkalmazás pontossága függ a kamera látószögétől és felbontásától. Kísérletezzen a legjobb eredmény érdekében.

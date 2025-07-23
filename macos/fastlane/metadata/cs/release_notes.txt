@@ -1,0 +1,1 @@
+Vylepšená stabilita při přepínání mezi projekty a okamžité uvolnění prostředků při zavření projektu

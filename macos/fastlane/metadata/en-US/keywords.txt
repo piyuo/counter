@@ -1,0 +1,1 @@
+pedestrian counter,people counter,foot traffic,AI detection,crowd analysis,vehicle counter

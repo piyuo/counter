@@ -1,0 +1,21 @@
+Numărătorul Piyuo este o aplicație inovatoare care utilizează camera dispozitivului pentru a număra automat și inteligent persoanele.
+Caracteristici Principale:
+
+Numărare precisă a persoanelor în timp real
+Funcționează complet offline cu model de inteligență artificială integrat
+Compatibil cu iPhone, iPad și Mac
+Suportă camere de dispozitive, webcam-uri și fluxuri RTSP
+Înregistrează numărul de persoane la fiecare minut
+Capacitate de înregistrare continuă până la 24 de ore
+Identifică persoane, vehicule și biciclete
+
+Cum Funcționează:
+Poziționați camera într-un loc strategic și lăsați aplicația să facă treaba. Numărarea se realizează automat, eliminând erorile umane și asigurând consecvența.
+Limitări:
+Precizia depinde de rezoluția camerei și de poziționare. Ajustați unghiul și locația pentru a obține cele mai bune rezultate.
+Ideal pentru:
+
+Studii de trafic pietonal
+Gestionarea spațiilor publice
+Cercetare urbană
+Analiză de mișcare
