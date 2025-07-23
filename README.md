@@ -89,23 +89,26 @@ While the VS Code Flutter test plugin provides UI integration, it can be unstabl
 
 ## 🌍 Localization (i18n)
 
-l10n provides a streamlined localization system that supports 70+ languages and locales. All translations are managed through a single CSV file for easy maintenance and collaboration.
+The l10n module provides a streamlined localization system that supports 70+ languages and locales. All translations are managed through a single CSV file for easy maintenance and collaboration.
 
 ### 📁 File Structure
 
 ```bash
 /lib
-    /l10n
-      l10n.csv          # Master translation file (edit this)
+  /l10n
+    /src                # Internal implementation (private)
       *.arb             # Generated ARB files (do not edit)
       *.dart            # Generated Dart files (do not edit)
+    l10n.dart           # Public API (barrel file)
+    l10n.csv            # Master translation file (edit this)
 ```
 
 ### 🔧 How It Works
 
-1. **Central Translation File**: All translations are stored in `/lib/src/l10n/l10n.csv`
+1. **Central Translation File**: All translations are stored in `/lib/l10n/l10n.csv`
 2. **CSV Format**: Standard CSV with key column and locale columns
 3. **Automatic Generation**: Script converts CSV to Flutter ARB format and generates Dart code
+4. **Module Structure**: The l10n module follows the project's modular architecture with public API and private implementation
 
 ### 📝 CSV Structure
 
@@ -124,13 +127,13 @@ save,Stoor,አስቀምጥ,حفظ,Save,Guardar,Sauvegarder,Speichern,保存,저�
 
 ### 🛠️ Adding/Updating Translations
 
-1. **Edit the CSV file**: Open `/lib/src/l10n/l10n.csv` in any text editor or spreadsheet application
+1. **Edit the CSV file**: Open `/lib/l10n/l10n.csv` in any text editor or spreadsheet application
 2. **Add new keys**: Add new rows with translation key and values for each locale
 3. **Update existing translations**: Modify existing values in the CSV
 4. **Generate Flutter files**: Run the convert script
 
 ```bash
-# build_translation will Convert CSV to ARB and generate Dart files
+# build_translation will convert CSV to ARB and generate Dart files
 ./scripts/build_translation.sh
 ```
 
@@ -152,7 +155,7 @@ save,Stoor,አስቀምጥ,حفظ,Save,Guardar,Sauvegarder,Speichern,保存,저�
 
 This script:
 
-- Converts `l10n.csv` to standard Flutter ARB files
+- Converts `l10n.csv` to standard Flutter ARB files in `/lib/l10n/src/`
 - Automatically runs `flutter gen-l10n` to generate Dart localization classes
 - Creates ready-to-use localization files in your project
 
@@ -166,7 +169,7 @@ import 'package:flutter_appkit/l10n/l10n.dart';
 class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text(context.l.back),        // Displays "Back" in current locale;
+    return Text(context.l.back);        // Displays "Back" in current locale
   }
 }
 ```
@@ -296,6 +299,12 @@ This project follows a **feature-based modular architecture** where each feature
       database.dart       # Private implementation files
       data_manager.dart   # Private implementation files
     db.dart               # Public API (barrel file)
+  /l10n                   # Localization module
+    /src                  # Internal implementation (private)
+      *.arb               # Generated ARB files (do not edit)
+      *.dart              # Generated Dart files (do not edit)
+    l10n.dart             # Public API (barrel file)
+    l10n.csv              # Master translation file (edit this)
   main.dart               # App entry point
 ```
 
@@ -304,7 +313,7 @@ This project follows a **feature-based modular architecture** where each feature
 Each feature module follows these key principles:
 
 1. **Encapsulation**: Internal implementation details are kept in the `/src` folder and are private to the module
-2. **Public API**: Each module exposes only what's necessary through its barrel file (e.g., `pip.dart`, `db.dart`)
+2. **Public API**: Each module exposes only what's necessary through its barrel file (e.g., `pip.dart`, `db.dart`, `l10n.dart`)
 3. **Clear Boundaries**: Modules communicate through well-defined interfaces, preventing tight coupling
 4. **Self-Contained**: Each module contains all the code needed for its specific feature or functionality
 
@@ -316,6 +325,7 @@ Each feature module follows these key principles:
 // Import modules with descriptive aliases
 import 'package:counter/db/db.dart' as db;
 import 'package:counter/pip/pip.dart' as pip;
+import 'package:counter/l10n/l10n.dart';  // l10n is typically imported without alias
 
 class MyWidget extends StatelessWidget {
   @override
@@ -324,6 +334,7 @@ class MyWidget extends StatelessWidget {
       children: [
         db.PipScreen(),           // Use DB module components
         pip.DataManager(),        // Use PIP module components
+        Text(context.l.back),     // Use l10n translations
       ],
     );
   }
@@ -342,6 +353,11 @@ export 'src/pip_screen.dart';
 export 'src/data_manager.dart';
 export 'src/database.dart';
 // Internal utilities stay private in /src
+
+// In /lib/l10n/l10n.dart (barrel file)
+export 'src/app_localizations.dart';
+export 'src/app_localizations_extensions.dart';
+// Generated ARB and Dart files stay private in /src
 ```
 
 ### ✨ Benefits of This Architecture
@@ -443,114 +459,6 @@ flutter test --name "test_pattern"
 **Alternative Method - VS Code Flutter Test Plugin**:
 While the VS Code Flutter test plugin provides UI integration, it can be unstable and may hang during execution. Use it only if you specifically need the visual test runner interface, but be prepared to fall back to command line when issues occur.
 
-## 🌍 Localization (i18n)
-
-Flutter AppKit provides a streamlined localization system that supports 70+ languages and locales. All translations are managed through a single CSV file for easy maintenance and collaboration.
-
-### 📁 File Structure
-
-```bash
-/lib
-  /src
-    /l10n
-      l10n.csv          # Master translation file (edit this)
-      *.arb             # Generated ARB files (do not edit)
-      *.dart            # Generated Dart files (do not edit)
-```
-
-### 🔧 How It Works
-
-1. **Central Translation File**: All translations are stored in `/lib/src/l10n/l10n.csv`
-2. **CSV Format**: Standard CSV with key column and locale columns
-3. **Automatic Generation**: Script converts CSV to Flutter ARB format and generates Dart code
-
-### 📝 CSV Structure
-
-The `l10n.csv` file follows this format:
-
-```csv
-Key,app_af,app_am,app_ar,app_en,app_es,app_fr,app_de,app_ja,app_ko,app_zh,...
-back,Terug,ተመለስ,رجوع,Back,Atrás,Retour,Zurück,戻る,뒤로,返回,...
-save,Stoor,አስቀምጥ,حفظ,Save,Guardar,Sauvegarder,Speichern,保存,저장,保存,...
-```
-
-**Column Format**:
-
-- `Key`: Translation key used in your Dart code
-- `app_[locale]`: Translation for specific locale (e.g., `app_en` for English, `app_zh_CN` for Chinese Simplified)
-
-### 🛠️ Adding/Updating Translations
-
-1. **Edit the CSV file**: Open `/lib/src/l10n/l10n.csv` in any text editor or spreadsheet application
-2. **Add new keys**: Add new rows with translation key and values for each locale
-3. **Update existing translations**: Modify existing values in the CSV
-4. **Generate Flutter files**: Run the convert script
-
-```bash
-# build_translation will Convert CSV to ARB and generate Dart files
-./scripts/build_translation.sh
-```
-
-> **⚠️ CRITICAL: CSV Comma Escaping**
->
-> When adding or updating translations in the CSV file, **always escape commas properly**:
->
-> - **Text containing commas MUST be wrapped in double quotes**: `"Hello, world"`
-> - **Double quotes within text must be escaped with double quotes**: `"She said ""Hello"""`
-> - **Failure to escape commas will cause column misalignment and build errors**
->
-> **Examples**:
->
-> ```csv
-> Key,app_en,app_es,app_fr
-> greeting,"Hello, welcome!","¡Hola, bienvenido!","Bonjour, bienvenue!"
-> quote_example,"She said ""Hello""","Ella dijo ""Hola""","Elle a dit ""Bonjour"""
-> ```
-
-This script:
-
-- Converts `l10n.csv` to standard Flutter ARB files
-- Automatically runs `flutter gen-l10n` to generate Dart localization classes
-- Creates ready-to-use localization files in your project
-
-### 💻 Usage in Code
-
-After running the generation script, use translations in your Flutter code with the convenient `context.l` extension:
-
-```dart
-import 'package:flutter_appkit/l10n/l10n.dart';
-
-class MyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Text(context.l.back),        // Displays "Back" in current locale;
-  }
-}
-```
-
-### 📋 Best Practices
-
-- **Keep keys descriptive**: Use clear, meaningful keys like `login_button` instead of `btn1`
-- **Use CSV tools**: Edit the CSV in spreadsheet applications for easier management
-- **⚠️ ALWAYS escape commas**: Wrap text containing commas in double quotes to prevent column misalignment
-- **Test translations**: Verify translations in context, especially for RTL languages
-- **Consistent terminology**: Maintain consistent terminology across all locales
-- **Handle pluralization**: Use ICU message format for complex pluralization rules when needed
-
-### 🔄 Workflow for Teams
-
-1. **Developers**: Add new translation keys to CSV with English values
-2. **Translators**: Fill in translations for their assigned locales
-3. **Build Process**: Run `./scripts/build_translation.sh` to generate files
-4. **Version Control**: Commit both CSV and generated files to ensure consistency
-
-### 🚨 Important Notes
-
-- **Never edit generated files**: Only modify `l10n.csv` directly
-- **⚠️ ALWAYS escape commas in CSV**: Text containing commas must be wrapped in double quotes (`"Hello, world!"`) to prevent build errors
-- **Run script after changes**: Always run the generation script after CSV updates
-- **Commit generated files**: Include generated `.arb` and `.dart` files in version control
-- **Test thoroughly**: Test your app in different locales to ensure proper display and functionality
 
 ## 🧰 Tech Stack
 
@@ -583,7 +491,6 @@ The project includes automated dependency management tools:
 ```bash
 ./scripts/upgrade_deps.sh
 ```
-
 ### Release
 
 **Release-please** automatically handles versioning and releases by:
