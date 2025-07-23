@@ -127,7 +127,7 @@ class BenchmarkController {
       return filePath;
     }
 
-    final byteData = await rootBundle.load('packages/vision/$path');
+    final byteData = await rootBundle.load(path);
     final buffer = byteData.buffer;
     await file.create(recursive: true);
     await file.writeAsBytes(buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
