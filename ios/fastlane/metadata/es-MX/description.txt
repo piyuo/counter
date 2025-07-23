@@ -1,0 +1,15 @@
+Contador Piyuo es una aplicación innovadora para el conteo preciso de peatones utilizando inteligencia artificial.
+Características principales:
+
+Detección automática de peatones mediante cámara
+Modelo de IA integrado que funciona sin conexión a internet
+Rápido y eficiente en múltiples plataformas (iPhone, iPad, Mac)
+Compatible con cámaras web, streaming RTSP y cámaras móviles
+Registro continuo de tráfico peatonal durante 24 horas
+Capacidad de analizar datos en intervalos específicos
+Detección de peatones, vehículos y bicicletas
+
+Diferencias con métodos tradicionales:
+A diferencia del conteo manual con contador, esta aplicación elimina errores humanos. Simplemente encuentra el ángulo adecuado, inicia la cámara y déjala trabajar.
+Precisión y limitaciones:
+Reconocemos que la precisión depende de la resolución de la cámara. Ajustando cuidadosamente el ángulo y la posición, obtendrás resultados confiables.

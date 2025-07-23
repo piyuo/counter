@@ -1,0 +1,15 @@
+Descubra o futuro da contagem de pedestres com o Contador Piyuo!
+Este aplicativo revolucionário usa inteligência artificial para contar pessoas de forma precisa e simples. Basta posicionar sua câmera e deixar o aplicativo fazer o trabalho.
+Recursos principais:
+
+Reconhecimento por IA sem necessidade de internet
+Funciona em iPhone, iPad e Mac
+Suporta câmeras de dispositivos, webcams e streaming RTSP
+Registra contagem de pedestres, veículos e bicicletas
+Gravação contínua por até 24 horas
+Relatórios detalhados por período específico
+
+Como funciona:
+Diferente dos métodos tradicionais onde alguém conta manualmente, nosso aplicativo usa tecnologia de IA para garantir precisão. Encontre o ângulo ideal, posicione a câmera e o aplicativo fará o resto.
+Dica: A precisão depende do posicionamento da câmera. Experimente diferentes ângulos para os melhores resultados.
+Imperfeito, mas inteligente. Cada contagem segue os mesmos padrões de IA, oferecendo consistência nos seus registros.

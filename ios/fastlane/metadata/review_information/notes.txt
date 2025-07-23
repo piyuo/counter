@@ -1,0 +1,35 @@
+Hello Review Team,
+
+This app performs pedestrian counting. You can test using the live camera feed or a video file.
+
+Testing Camera Input:
+
+Launch the app.
+Choose "Camera" as the source.
+The app will start counting pedestrians seen by the camera.
+Testing File Input:
+
+Please save the attached video "1.mp4" to the device's Photo Library.
+Launch the app.
+Choose "File" as the source.
+Select "1.mp4" from the library to begin processing.
+
+Thank you for your time.
+
+
+Edit: 04/15/2025
+Hello Review Team,
+
+Thank you for the detailed review and the feedback provided. Please see my responses to the identified issues below:
+
+Guideline 2.1 – Demo Video File
+Although I initially attached the demo video file "1.mp4" with in the App Review Information, it appears that there may have been an issue with accessing the file. To ensure you can review the demo without any further issues, I have re-uploaded "1.mp4" as an attachment in the App Review Information. Additionally, you can download the demo video directly from my website using the following link:
+https://piyuo.com/test/1.mp4
+
+Guideline 5.1.1 – Purpose Strings for Protected Resources
+I have updated the purpose strings in the app to more clearly and comprehensively explain the use of protected resources. This update includes detailed examples of how the data is used by the app. The revised purpose strings are available in the latest version, which is now version 1.0.0 Build 5.
+
+Thank you for your time and consideration. I look forward to your feedback and am happy to provide any further details if needed.
+
+Best regards,
+Chien Chih Liu

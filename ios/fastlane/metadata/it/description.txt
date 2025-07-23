@@ -1,0 +1,15 @@
+Contatore Piyuo è lo strumento innovativo per il conteggio delle persone che trasforma il tuo dispositivo in un sistema di rilevamento intelligente.
+Caratteristiche principali:
+
+Rilevamento persone tramite fotocamera del dispositivo
+Tecnologia AI integrata che funziona offline
+Compatibile con iPhone, iPad e Mac
+Supporto per flussi video RTSP e webcam esterne
+Registrazione continua fino a 24 ore
+Rilevamento non solo di persone, ma anche di veicoli e biciclette
+
+Come funziona:
+Posiziona semplicemente il tuo dispositivo nell'angolazione migliore e lascia che l'app faccia il resto. Ogni minuto viene registrato il numero di persone che passano, permettendoti di analizzare i dati in qualsiasi momento.
+Precisione:
+L'app utilizza un modello AI avanzato, ma non è perfetta. La precisione dipende dall'angolazione e dalla risoluzione della fotocamera. Regolando attentamente la posizione, otterrai risultati sempre più accurati.
+Vantaggio chiave: Un metodo oggettivo e costante per contare il flusso di persone, eliminando gli errori umani dei conteggi manuali.

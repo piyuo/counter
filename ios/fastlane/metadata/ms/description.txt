@@ -1,0 +1,16 @@
+Piyuo Counter ialah aplikasi inovatif untuk mengira pejalan kaki dengan menggunakan teknologi AI termaju.
+Ciri-ciri Utama:
+
+Pengecaman pejalan kaki secara automatik menggunakan kamera
+Berfungsi tanpa sambungan internet
+Sokongan untuk iPhone, iPad, dan Mac
+Boleh menggunakan kamera telefon, video dalam talian (RTSP), atau webcam
+Rekod bilangan pejalan kaki setiap minit
+Boleh merakam sehingga 24 jam berterusan
+Mudah untuk melihat statistik pada mana-mana tempoh masa
+Mengesan pejalan kaki, kenderaan, dan basikal
+
+Cara Kerja:
+Aplikasi ini menggunakan model AI pintar untuk mengira orang yang melepasi kamera. Anda hanya perlu mencari sudut yang sesuai dan membiarkan aplikasi mengira secara automatik. Walaupun tidak sempurna, dengan penempatan kamera yang betul, anda boleh mendapatkan hasil yang hampir tepat.
+Nota Penting:
+Ketepatan bergantung kepada resolusi kamera dan sudut pengimejan. Alat ini memberi cara yang lebih konsisten berbanding pengiraan manual tradisional.

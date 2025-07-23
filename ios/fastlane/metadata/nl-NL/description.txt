@@ -1,0 +1,10 @@
+Piyuo Teller is een innovatieve app die personen, voertuigen en fietsen telt met behulp van je smartphone camera.
+Hoe werkt het?
+
+Gebruik je mobiele camera om mensen en verkeer te tellen
+Ingebouwd AI-model werkt offline en razendsnel
+Ondersteunt iPhone, iPad en Mac
+Werkt ook met RTSP-livestreams en externe webcams
+
+Traditionele tellingen zijn vaak onnauwkeurig en tijdrovend. Met Piyuo Teller hoef je alleen maar de juiste hoek te vinden en de camera te openen. De app registreert elk uur de passage en kan 24 uur achtereen doorgaan.
+Let op: De nauwkeurigheid hangt af van cameraresolutie en hoek. Experimenteer met de positie voor de beste resultaten. Door de AI-technologie blijven de tellingen consistent.

@@ -1,0 +1,1 @@
+Poboljšana stabilnost prilikom prebacivanja između projekata, uz osiguravanje trenutačnog oslobađanja resursa pri zatvaranju projekta

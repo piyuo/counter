@@ -1,0 +1,12 @@
+Bộ Đếm Piyuo là giải pháp thông minh để đếm số người qua lại tại bất kỳ không gian nào. Ứng dụng sử dụng công nghệ AI tiên tiến để phân tích hình ảnh từ camera, giúp bạn nhanh chóng và chính xác đếm được số lượng người qua lại.
+Tính Năng Chính:
+
+Hoạt động hoàn toàn ngoại tuyến, không cần kết nối internet
+Hỗ trợ nhiều nền tảng: iPhone, iPad, Mac
+Phân tích được từ camera điện thoại, webcam, hay luồng video RTSP
+Đếm được cả người, phương tiện và xe đạp
+Ghi lại số liệu theo từng khung giờ
+Có thể theo dõi liên tục trong 24 giờ
+
+Làm thế nào hoạt động?
+Không còn phải đếm thủ công mất nhiều thời gian nữa. Chỉ cần đặt camera ở góc phù hợp, ứng dụng sẽ tự động đếm số người qua lại. Mặc dù không hoàn hảo 100%, nhưng bạn có thể điều chỉnh góc độ camera để có kết quả chính xác nhất.

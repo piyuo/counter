@@ -1,0 +1,1 @@
+Verbeterde stabiliteit bij het wisselen tussen projecten, zorgt voor directe vrijgave van bronnen bij het sluiten van een project
