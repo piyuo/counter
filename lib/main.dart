@@ -2,7 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:counter/app/app.dart' as app;
 import 'package:counter/db/db.dart' as db;
-import 'package:counter/l10n/localization.dart';
+import 'package:counter/l10n/src/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:counter/wizard/wizard.dart' as wizard;
 import 'package:flutter/cupertino.dart';
