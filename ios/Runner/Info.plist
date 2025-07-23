@@ -13,7 +13,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>counter</string>
+    <string>Piyuo Counter</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
@@ -50,7 +50,8 @@
     <key>NSCameraUsageDescription</key>
     <string>This app needs access to your camera to capture real-time images for identifying and counting pedestrians. The captured video is processed locally to provide immediate statistics, and it is neither saved nor uploaded, remaining solely on your device.</string>
     <key>NSMotionUsageDescription</key>
-    <string>This app uses motion data to determine the device's rotation angle (e.g., 0° or 90°). This ensures that the images captured by the camera are adjusted correctly for accurate pedestrian detection.</string>    <key>UIStatusBarHidden</key>
+    <string>This app uses motion data to determine the device's rotation angle (e.g., 0° or 90°). This ensures that the images captured by the camera are adjusted correctly for accurate pedestrian detection.</string>
+    <key>UIStatusBarHidden</key>
     <false/>
     <key>LSApplicationCategoryType</key>
     <string>public.app-category.utilities</string>
