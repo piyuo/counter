@@ -83,10 +83,10 @@ dev_dependencies:
   json_serializable: ^6.9.4
   drift_dev: ^2.25.2
   msix: ^3.16.8
+  flutter_launcher_icons: ^0.14.4
 
 dependency_overrides:
   analyzer: ^7.1.0
-  flutter_launcher_icons: ^0.14.3
   rename_app: ^1.6.2
 
 # For information on the generic Dart part of this file, see the
