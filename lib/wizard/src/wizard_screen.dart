@@ -146,6 +146,7 @@ class WizardScreen extends StatelessWidget {
                             title: Text(context.l.wizard_screen_email_us),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
+//                              throw MyReleaseException('Email us is not implemented yet');
                               appkit.netOpenMailTo('service@piyuo.com', '', '');
                             }),
                       ],
@@ -173,3 +174,13 @@ class WizardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 }
+/*
+class MyReleaseException implements Exception {
+  final String message;
+
+  MyReleaseException(this.message);
+
+  @override
+  String toString() => 'MyException: $message';
+}
+*/
