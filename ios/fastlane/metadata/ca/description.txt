@@ -1,0 +1,19 @@
+Descobreix una nova manera de comptar persones amb tecnologia d'intel·ligència artificial!
+El Comptador Piyuo és una eina innovadora que utilitza la càmera del teu dispositiu per detectar i comptar vianants de manera automàtica i precisa. Gràcies al nostre model d'IA integrat, no necessites connexió a Internet per fer-lo funcionar.
+Característiques principals:
+
+Funciona sense connexió: Tota la detecció es fa localment al teu dispositiu
+Multiplataforma: Compatible amb iPhone, iPad i Mac
+Flexibilitat de captura: Utilitza la càmera del mòbil, streaming RTSP o webcam externa
+Precisió millorada: Comptatge automàtic cada minut
+Registre complet: Permet revisar dades de qualsevol interval de temps
+Detecció múltiple: Compta vianants, vehicles i bicicletes
+
+Com funciona?
+
+Tria l'angle de càmera adequat
+Obre l'aplicació i deixa que compti
+Revisa els resultats en qualsevol moment
+
+Notes importants:
+L'aplicació no és perfecta. La resolució de la càmera té limitacions, però ajustant correctament l'angle i la posició, obtindràs resultats precisos. Cada dia usaràs el mateix criteri de mesura gràcies al nostre model d'IA.

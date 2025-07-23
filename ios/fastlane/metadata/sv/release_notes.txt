@@ -1,0 +1,1 @@
+Förbättrad stabilitet vid byte mellan projekt, säkerställer omedelbar frigivning av resurser när ett projekt stängs

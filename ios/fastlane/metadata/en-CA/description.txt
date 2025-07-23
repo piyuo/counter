@@ -1,0 +1,12 @@
+Piyuo Counter is an intelligent pedestrian tracking app that transforms how you count people and movement.
+Key Features:
+
+AI-Powered Counting: Accurately detect and count pedestrians, vehicles, and cyclists
+Offline Functionality: Works completely offline using built-in AI recognition
+Multi-Platform Support: Available for iPhone, iPad, and Mac
+Flexible Tracking Options: Use mobile camera, online RTSP video streams, or external webcams
+Comprehensive Reporting: Record and review pedestrian traffic for any time period
+
+Traditional people counting methods are error-prone and inconsistent. With Piyuo Counter, simply find the right camera angle and let the app do the work. It records pedestrian counts every minute and can track continuously for 24 hours.
+Please note: While highly accurate, the app's detection depends on camera resolution and positioning. Adjust your camera angle to improve results.
+Perfect for researchers, urban planners, event organisers, and anyone interested in understanding foot traffic patterns.

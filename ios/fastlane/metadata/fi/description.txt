@@ -1,0 +1,12 @@
+Piyuo Counter on innovatiivinen sovellus, joka hyödyntää tekoälyä ihmisten laskemiseen kameran avulla. Sovellus toimii suoraan laitteessasi ilman internetyhteyttä, mikä takaa nopean ja yksityisen käytön.
+Ominaisuudet:
+
+Tarkka ihmisten, ajoneuvojen ja pyörien laskenta
+Toimii iPhonessa, iPadissa ja Macissa
+Tukee live-videovirtaa ja ulkoisia webcam-laitteita
+Jatkuva 24/7 laskenta
+Helppo aikavälin raportointi
+Älykäs tekoälymalli, joka tarjoaa johdonmukaisia tuloksia
+
+Perinteinen ihmislaskenta on altis virheille. Piyuo Counter automatisoi prosessin: aseta kamera sopivaan kulmaan ja anna sovelluksen tehdä työ puolestasi. Saat tarkat tiedot kulkijoista minuutin tarkkuudella.
+Huomaa, että sovellus ei ole täydellinen. Kameran rajoitukset voivat vaikuttaa tarkkuuteen, mutta oikealla kameran asemoinnilla saat luotettavia tuloksia.

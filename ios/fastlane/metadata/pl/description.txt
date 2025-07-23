@@ -1,0 +1,13 @@
+Licznik Piyuo to innowacyjna aplikacja do automatycznego liczenia osób, pojazdów i rowerów przy użyciu technologii AI.
+Kluczowe funkcje:
+
+Zaawansowany model AI do rozpoznawania ruchu
+Działa offline, bez potrzeby dostępu do internetu
+Kompatybilny z iPhone, iPad i Mac
+Wspiera różne źródła wideo: kamera mobilna, transmisje RTSP, webcam
+Precyzyjne zliczanie przez całą dobę
+Możliwość przeglądania statystyk dla dowolnego przedziału czasowego
+
+Jak to działa?
+Wystarczy ustawić kamerę pod odpowiednim kątem. Aplikacja automatycznie liczy przechodzące osoby, pojazdy i rowery. Każda minuta jest rejestrowana, a dane można przeglądać przez 24 godziny.
+Pamiętaj, że dokładność zależy od ustawienia kamery. Odpowiedni kąt i pozycja zwiększają precyzję wyników.

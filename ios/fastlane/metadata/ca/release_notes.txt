@@ -1,0 +1,1 @@
+Millora de l'estabilitat en canviar entre projectes, assegurant l'alliberament immediat de recursos en tancar un projecte

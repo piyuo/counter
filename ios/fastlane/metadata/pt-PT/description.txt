@@ -1,0 +1,21 @@
+O Contador Piyuo é uma aplicação inovadora que utiliza a câmara do seu dispositivo para contar pessoas de forma automática e inteligente.
+Funcionalidades Principais:
+
+Contagem precisa de pessoas em tempo real
+Funciona completamente offline com modelo de IA integrado
+Compatível com iPhone, iPad e Mac
+Suporta câmaras de dispositivos, webcams e fluxos RTSP
+Regista o número de pessoas a cada minuto
+Capacidade de gravação contínua até 24 horas
+Identifica pessoas, veículos e bicicletas
+
+Como Funciona:
+Posicione a câmara num local estratégico e deixe a aplicação fazer o trabalho. A contagem é realizada automaticamente, eliminando erros humanos e garantindo consistência.
+Limitações:
+A precisão depende da resolução da câmara e do posicionamento. Ajuste o ângulo e a localização para obter os melhores resultados.
+Ideal para:
+
+Estudos de tráfego pedonal
+Gestão de espaços públicos
+Investigação urbana
+Análise de movimento

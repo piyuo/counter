@@ -1,0 +1,15 @@
+Introducing Piyuo Counter: Your Smart People Counting Companion
+Tired of manual people counting? Our app revolutionises how you track foot traffic using advanced AI technology directly on your device.
+Key Features:
+
+AI-Powered Counting: Accurately detect and count people, vehicles, and bikes
+Offline Functionality: Works without internet connection
+Multi-Platform Support: Available on iPhone, iPad, and Mac
+Flexible Detection: Use mobile camera, RTSP video streams, or external webcams
+Continuous Monitoring: Record foot traffic 24/7
+Precise Time-Based Reporting: View counts for specific time intervals
+
+How It Works:
+Simply position your camera at the right angle and let the app do the rest. Our AI model provides consistent, reliable counting across different times and locations.
+Perfect for researchers, urban planners, small businesses, and anyone curious about foot traffic patterns.
+Note: While incredibly smart, the app's accuracy depends on camera positioning and resolution. Experiment to find the best setup for your needs.

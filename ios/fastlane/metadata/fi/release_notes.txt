@@ -1,0 +1,1 @@
+Parannettu vakaus projektien välillä vaihdettaessa, varmistaa resurssien välittömän vapautumisen projektin sulkemisen yhteydessä

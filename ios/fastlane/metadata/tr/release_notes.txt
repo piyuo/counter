@@ -1,0 +1,1 @@
+Projeler arası geçişlerde geliştirilmiş kararlılık, proje kapatıldığında kaynakların anında serbest bırakılmasını sağlar
