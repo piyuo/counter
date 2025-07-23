@@ -143,7 +143,8 @@ class _MyAppState extends State<MyApp> {
                               switch (routeSettings.name) {
                                 case '/':
                                 default:
-                                  return pip.PipScreen(
+                                  return appkit.GlobalContext(
+                                      child: pip.PipScreen(
                                     isLockToPortrait: projectProvider.isLockToPortrait,
                                     slidingBuilder: (isPanelOpened) => wizard.WizardApp(
                                       key: wizardKey,
@@ -161,7 +162,7 @@ class _MyAppState extends State<MyApp> {
                                         ),
                                       ],
                                     ),
-                                  );
+                                  ));
                               }
                             });
                       },

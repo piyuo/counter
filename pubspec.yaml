@@ -99,6 +99,7 @@ flutter:
   assets:
       - assets/icon/
       - assets/images/
+      - .env # support sentry
 
 flutter_native_splash:
   color: "#181743"
