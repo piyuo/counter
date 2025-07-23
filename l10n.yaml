@@ -1,4 +1,4 @@
-arb-dir: lib/l10n
+arb-dir: lib/l10n/src
 template-arb-file: app_en.arb
 output-localization-file: localization.dart   # 修改產生檔案名稱
 output-class: Localization                   # 修改類別名稱

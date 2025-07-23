@@ -4,17 +4,17 @@
 import 'dart:convert';
 import 'dart:io';
 
-/// Script to convert translations.csv to ARB files
+/// Script to convert l10n.csv to ARB files
 ///
-/// Usage: dart csv_to_arb.dart [csv_file_path] [output_directory]
+/// Usage: dart build_translation.dart [csv_file_path] [output_directory]
 ///
 /// Default:
-/// - csv_file_path: ../lib/src/l10n/translations.csv
-/// - output_directory: ../lib/src/l10n/
+/// - csv_file_path: ../lib/l10n/l10n.csv
+/// - output_directory: ../lib/l10n/src/
 void main(List<String> args) {
-  String csvFilePath = args.isNotEmpty ? args[0] : '../lib/src/l10n/translations.csv';
+  String csvFilePath = args.isNotEmpty ? args[0] : '../lib/l10n/l10n.csv';
 
-  String outputDir = args.length > 1 ? args[1] : '../lib/src/l10n/';
+  String outputDir = args.length > 1 ? args[1] : '../lib/l10n/src/';
 
   // Handle absolute vs relative paths
   File csvFile;

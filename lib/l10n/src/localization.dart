@@ -73,7 +73,7 @@ import 'localization_zh.dart' deferred as localization_zh;
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/localization.dart';
+/// import 'src/localization.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: Localization.localizationsDelegates,
@@ -235,149 +235,11 @@ abstract class Localization {
     Locale('zh', 'SG')
   ];
 
-  /// No description provided for @product_name.
-  ///
-  /// In en, this message translates to:
-  /// **'Counter'**
-  String get product_name;
-
-  /// No description provided for @product_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Using computer vision and ai to count people, vehicles, pets, and more.'**
-  String get product_desc;
-
-  /// No description provided for @product_copyright.
-  ///
-  /// In en, this message translates to:
-  /// **'Copyright © 2025'**
-  String get product_copyright;
-
-  /// No description provided for @video_sources_webcam.
-  ///
-  /// In en, this message translates to:
-  /// **'Webcam'**
-  String get video_sources_webcam;
-
-  /// No description provided for @video_sources_live_stream.
-  ///
-  /// In en, this message translates to:
-  /// **'Live stream URL'**
-  String get video_sources_live_stream;
-
-  /// No description provided for @video_sources_file.
-  ///
-  /// In en, this message translates to:
-  /// **'File'**
-  String get video_sources_file;
-
-  /// No description provided for @video_sources_camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera'**
-  String get video_sources_camera;
-
-  /// No description provided for @video_sources_camera_not_found_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera not found'**
-  String get video_sources_camera_not_found_title;
-
-  /// No description provided for @video_sources_camera_not_found_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Need grant camera permission to use camera'**
-  String get video_sources_camera_not_found_message;
-
-  /// No description provided for @video_sources_webcam_not_found_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Webcam not found'**
-  String get video_sources_webcam_not_found_title;
-
-  /// No description provided for @video_sources_webcam_not_found_message.
-  ///
-  /// In en, this message translates to:
-  /// **'Please check app permission and webcam connection'**
-  String get video_sources_webcam_not_found_message;
-
-  /// No description provided for @wizard_screen_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Create a new project below to start counting.'**
-  String get wizard_screen_desc;
-
-  /// No description provided for @wizard_screen_new_project_from.
-  ///
-  /// In en, this message translates to:
-  /// **'New Project from'**
-  String get wizard_screen_new_project_from;
-
-  /// No description provided for @wizard_screen_language.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get wizard_screen_language;
-
-  /// No description provided for @wizard_screen_about.
-  ///
-  /// In en, this message translates to:
-  /// **'About'**
-  String get wizard_screen_about;
-
-  /// No description provided for @wizard_screen_open_projects_tip.
-  ///
-  /// In en, this message translates to:
-  /// **'All projects will be saved locally automatically'**
-  String get wizard_screen_open_projects_tip;
-
-  /// No description provided for @wizard_screen_open_projects.
-  ///
-  /// In en, this message translates to:
-  /// **'Open existing project'**
-  String get wizard_screen_open_projects;
-
-  /// No description provided for @wizard_screen_email_us.
-  ///
-  /// In en, this message translates to:
-  /// **'Email us'**
-  String get wizard_screen_email_us;
-
-  /// No description provided for @language_screen_language.
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get language_screen_language;
-
-  /// No description provided for @project_view_no_videos.
-  ///
-  /// In en, this message translates to:
-  /// **'No video source available.'**
-  String get project_view_no_videos;
-
-  /// No description provided for @about_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'About'**
-  String get about_screen_title;
-
-  /// No description provided for @about_screen_platform.
-  ///
-  /// In en, this message translates to:
-  /// **'Platform'**
-  String get about_screen_platform;
-
   /// No description provided for @about_screen_app_version.
   ///
   /// In en, this message translates to:
   /// **'App Version'**
   String get about_screen_app_version;
-
-  /// No description provided for @about_screen_models.
-  ///
-  /// In en, this message translates to:
-  /// **'Object detection models'**
-  String get about_screen_models;
 
   /// No description provided for @about_screen_benchmark.
   ///
@@ -385,29 +247,65 @@ abstract class Localization {
   /// **'Benchmark'**
   String get about_screen_benchmark;
 
+  /// No description provided for @about_screen_models.
+  ///
+  /// In en, this message translates to:
+  /// **'Object detection models'**
+  String get about_screen_models;
+
   /// No description provided for @about_screen_opencv_build_info.
   ///
   /// In en, this message translates to:
   /// **'OpenCV Build Info'**
   String get about_screen_opencv_build_info;
 
-  /// No description provided for @benchmark_screen_title.
+  /// No description provided for @about_screen_platform.
   ///
   /// In en, this message translates to:
-  /// **'Models Benchmarks'**
-  String get benchmark_screen_title;
+  /// **'Platform'**
+  String get about_screen_platform;
 
-  /// No description provided for @benchmark_screen_recommended.
+  /// No description provided for @about_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Recommended Model'**
-  String get benchmark_screen_recommended;
+  /// **'About'**
+  String get about_screen_title;
+
+  /// No description provided for @add_video_screen_from.
+  ///
+  /// In en, this message translates to:
+  /// **'Add video source from'**
+  String get add_video_screen_from;
+
+  /// No description provided for @add_video_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Video source'**
+  String get add_video_screen_title;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
 
   /// No description provided for @benchmark_screen_fps.
   ///
   /// In en, this message translates to:
   /// **'FPS'**
   String get benchmark_screen_fps;
+
+  /// No description provided for @benchmark_screen_models.
+  ///
+  /// In en, this message translates to:
+  /// **'Object detection models'**
+  String get benchmark_screen_models;
+
+  /// No description provided for @benchmark_screen_recommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended Model'**
+  String get benchmark_screen_recommended;
 
   /// No description provided for @benchmark_screen_start_button.
   ///
@@ -421,371 +319,11 @@ abstract class Localization {
   /// **'Failed to start benchmark, the error code is'**
   String get benchmark_screen_start_failed;
 
-  /// No description provided for @benchmark_screen_models.
+  /// No description provided for @benchmark_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Object detection models'**
-  String get benchmark_screen_models;
-
-  /// No description provided for @project_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Project'**
-  String get project_screen_title;
-
-  /// No description provided for @project_screen_exit_confirm_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm exit the project'**
-  String get project_screen_exit_confirm_title;
-
-  /// No description provided for @project_screen_exit_confirm_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Leaving the project will stop Counting. Are you sure you want to continue?'**
-  String get project_screen_exit_confirm_content;
-
-  /// No description provided for @project_screen_exit_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Exit'**
-  String get project_screen_exit_button;
-
-  /// No description provided for @project_screen_add_video_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Add video source'**
-  String get project_screen_add_video_button;
-
-  /// No description provided for @project_screen_from_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'We keep a rolling 24-hour record, so you can view any time slice you need.'**
-  String get project_screen_from_desc;
-
-  /// No description provided for @project_screen_report_settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get project_screen_report_settings;
-
-  /// No description provided for @filter_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Filter'**
-  String get filter_screen_title;
-
-  /// No description provided for @filter_screen_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Select a filter range from the list below'**
-  String get filter_screen_desc;
-
-  /// No description provided for @filter_screen_error_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Filter'**
-  String get filter_screen_error_title;
-
-  /// No description provided for @filter_screen_error_content.
-  ///
-  /// In en, this message translates to:
-  /// **'End time must be greater than start time'**
-  String get filter_screen_error_content;
-
-  /// No description provided for @filter_screen_error_custom.
-  ///
-  /// In en, this message translates to:
-  /// **'Custom'**
-  String get filter_screen_error_custom;
-
-  /// No description provided for @filter_screen_error_start.
-  ///
-  /// In en, this message translates to:
-  /// **'Start'**
-  String get filter_screen_error_start;
-
-  /// No description provided for @filter_screen_error_end.
-  ///
-  /// In en, this message translates to:
-  /// **'End'**
-  String get filter_screen_error_end;
-
-  /// No description provided for @settings_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings_screen_title;
-
-  /// No description provided for @settings_screen_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Set Project name, detection parameters, count clearing.'**
-  String get settings_screen_desc;
-
-  /// No description provided for @settings_screen_project_id.
-  ///
-  /// In en, this message translates to:
-  /// **'Project Id'**
-  String get settings_screen_project_id;
-
-  /// No description provided for @settings_screen_project_name.
-  ///
-  /// In en, this message translates to:
-  /// **'Project Name'**
-  String get settings_screen_project_name;
-
-  /// No description provided for @settings_screen_project_name_place_holder.
-  ///
-  /// In en, this message translates to:
-  /// **'123 Main St. or Park Avenue'**
-  String get settings_screen_project_name_place_holder;
-
-  /// No description provided for @settings_screen_project_error.
-  ///
-  /// In en, this message translates to:
-  /// **'The project name cannot be empty'**
-  String get settings_screen_project_error;
-
-  /// No description provided for @settings_screen_random_count_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Add random counts'**
-  String get settings_screen_random_count_button;
-
-  /// No description provided for @settings_screen_reset_count_header.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset all counts in this project'**
-  String get settings_screen_reset_count_header;
-
-  /// No description provided for @settings_screen_reset_count_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset counts'**
-  String get settings_screen_reset_count_button;
-
-  /// No description provided for @settings_screen_reset_count_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to reset all counts?'**
-  String get settings_screen_reset_count_content;
-
-  /// No description provided for @settings_screen_delete_header.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete this project'**
-  String get settings_screen_delete_header;
-
-  /// No description provided for @settings_screen_delete_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this project?'**
-  String get settings_screen_delete_content;
-
-  /// No description provided for @settings_screen_delete_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get settings_screen_delete_button;
-
-  /// No description provided for @settings_screen_center_point_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Center Point on Target'**
-  String get settings_screen_center_point_title;
-
-  /// No description provided for @settings_screen_center_point_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'The center point helps determine whether the target is within the hit zone.'**
-  String get settings_screen_center_point_desc;
-
-  /// No description provided for @settings_screen_center_point_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Center Point on Target'**
-  String get settings_screen_center_point_button;
-
-  /// No description provided for @settings_screen_lost_target_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Lost Target'**
-  String get settings_screen_lost_target_title;
-
-  /// No description provided for @settings_screen_lost_target_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'When object tracking loses a target, this option makes it visible. By default, lost targets are not shown.'**
-  String get settings_screen_lost_target_desc;
-
-  /// No description provided for @settings_screen_lost_target_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Show Lost Target'**
-  String get settings_screen_lost_target_button;
-
-  /// No description provided for @detection_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Detection Settings'**
-  String get detection_screen_title;
-
-  /// No description provided for @detection_screen_models.
-  ///
-  /// In en, this message translates to:
-  /// **'Models'**
-  String get detection_screen_models;
-
-  /// No description provided for @detection_screen_confidence.
-  ///
-  /// In en, this message translates to:
-  /// **'Confidence'**
-  String get detection_screen_confidence;
-
-  /// No description provided for @detection_screen_confidence_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'confidence over #0 considered as a valid detection'**
-  String get detection_screen_confidence_desc;
-
-  /// No description provided for @detection_screen_low.
-  ///
-  /// In en, this message translates to:
-  /// **'Low'**
-  String get detection_screen_low;
-
-  /// No description provided for @detection_screen_high.
-  ///
-  /// In en, this message translates to:
-  /// **'High'**
-  String get detection_screen_high;
-
-  /// No description provided for @detection_screen_nms.
-  ///
-  /// In en, this message translates to:
-  /// **'Non-Maximum Suppression'**
-  String get detection_screen_nms;
-
-  /// No description provided for @detection_screen_nms_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.'**
-  String get detection_screen_nms_desc;
-
-  /// No description provided for @detection_screen_match.
-  ///
-  /// In en, this message translates to:
-  /// **'Match'**
-  String get detection_screen_match;
-
-  /// No description provided for @detection_screen_match_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.'**
-  String get detection_screen_match_desc;
-
-  /// No description provided for @detection_screen_lost.
-  ///
-  /// In en, this message translates to:
-  /// **'Lost'**
-  String get detection_screen_lost;
-
-  /// No description provided for @detection_screen_lost_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Dynamically determines lost object removal time between #0 and #1 based on movement speed'**
-  String get detection_screen_lost_desc;
-
-  /// No description provided for @detection_screen_consider_valid.
-  ///
-  /// In en, this message translates to:
-  /// **'Consider valid after'**
-  String get detection_screen_consider_valid;
-
-  /// No description provided for @detection_screen_consider_valid_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Track object will be consider valid after #0'**
-  String get detection_screen_consider_valid_desc;
-
-  /// No description provided for @detection_screen_reset.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset'**
-  String get detection_screen_reset;
-
-  /// No description provided for @detection_screen_reset_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to reset the detection settings?'**
-  String get detection_screen_reset_content;
-
-  /// No description provided for @url_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Live stream URL'**
-  String get url_screen_title;
-
-  /// No description provided for @url_screen_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Please enter the live stream URL'**
-  String get url_screen_desc;
-
-  /// No description provided for @url_screen_url.
-  ///
-  /// In en, this message translates to:
-  /// **'URL'**
-  String get url_screen_url;
-
-  /// No description provided for @url_screen_url_placeholder.
-  ///
-  /// In en, this message translates to:
-  /// **'http://example.com/stream or rtsp://example.com/stream'**
-  String get url_screen_url_placeholder;
-
-  /// No description provided for @add_video_screen_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Video source'**
-  String get add_video_screen_title;
-
-  /// No description provided for @add_video_screen_from.
-  ///
-  /// In en, this message translates to:
-  /// **'Add video source from'**
-  String get add_video_screen_from;
-
-  /// No description provided for @webcam_screen_add_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Add Webcam'**
-  String get webcam_screen_add_title;
-
-  /// No description provided for @webcam_screen_edit_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose Webcam'**
-  String get webcam_screen_edit_title;
-
-  /// No description provided for @webcam_manager_webcam.
-  ///
-  /// In en, this message translates to:
-  /// **'Webcam'**
-  String get webcam_manager_webcam;
-
-  /// No description provided for @camera_screen_front_camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Front Camera'**
-  String get camera_screen_front_camera;
-
-  /// No description provided for @camera_screen_back_camera.
-  ///
-  /// In en, this message translates to:
-  /// **'Back Camera'**
-  String get camera_screen_back_camera;
+  /// **'Models Benchmarks'**
+  String get benchmark_screen_title;
 
   /// No description provided for @camera_screen_add_title.
   ///
@@ -793,11 +331,23 @@ abstract class Localization {
   /// **'Add Camera'**
   String get camera_screen_add_title;
 
+  /// No description provided for @camera_screen_back_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Back Camera'**
+  String get camera_screen_back_camera;
+
   /// No description provided for @camera_screen_edit_title.
   ///
   /// In en, this message translates to:
   /// **'Choose Camera'**
   String get camera_screen_edit_title;
+
+  /// No description provided for @camera_screen_front_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Front Camera'**
+  String get camera_screen_front_camera;
 
   /// No description provided for @camera_screen_zoom_level.
   ///
@@ -805,137 +355,17 @@ abstract class Localization {
   /// **'Zoom Level'**
   String get camera_screen_zoom_level;
 
-  /// No description provided for @video_screen_name_empty.
+  /// No description provided for @cancel.
   ///
   /// In en, this message translates to:
-  /// **'The video name cannot be empty.'**
-  String get video_screen_name_empty;
+  /// **'Cancel'**
+  String get cancel;
 
-  /// No description provided for @video_screen_desc.
+  /// No description provided for @close.
   ///
   /// In en, this message translates to:
-  /// **'Manage video sources, add or modify detection zones.'**
-  String get video_screen_desc;
-
-  /// No description provided for @video_screen_video_name.
-  ///
-  /// In en, this message translates to:
-  /// **'Video source name'**
-  String get video_screen_video_name;
-
-  /// No description provided for @video_screen_edit_placeholder.
-  ///
-  /// In en, this message translates to:
-  /// **'Front Door Cam or Parking Lot Cam'**
-  String get video_screen_edit_placeholder;
-
-  /// No description provided for @video_screen_change_file.
-  ///
-  /// In en, this message translates to:
-  /// **'Change File'**
-  String get video_screen_change_file;
-
-  /// No description provided for @video_screen_add_zone.
-  ///
-  /// In en, this message translates to:
-  /// **'Add detection zone'**
-  String get video_screen_add_zone;
-
-  /// No description provided for @video_screen_zones.
-  ///
-  /// In en, this message translates to:
-  /// **'Detection zones'**
-  String get video_screen_zones;
-
-  /// No description provided for @video_screen_zones_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Use drag and drop to adjust zones'**
-  String get video_screen_zones_desc;
-
-  /// No description provided for @video_screen_tools.
-  ///
-  /// In en, this message translates to:
-  /// **'Tools'**
-  String get video_screen_tools;
-
-  /// No description provided for @video_screen_move_bottom.
-  ///
-  /// In en, this message translates to:
-  /// **'Move current zone to bottom'**
-  String get video_screen_move_bottom;
-
-  /// No description provided for @video_screen_add_point.
-  ///
-  /// In en, this message translates to:
-  /// **'Add point to current zone'**
-  String get video_screen_add_point;
-
-  /// No description provided for @video_screen_remove_point.
-  ///
-  /// In en, this message translates to:
-  /// **'Remove point from current zone'**
-  String get video_screen_remove_point;
-
-  /// No description provided for @video_screen_playback_speed.
-  ///
-  /// In en, this message translates to:
-  /// **'Playback Speed'**
-  String get video_screen_playback_speed;
-
-  /// No description provided for @video_screen_playback_current.
-  ///
-  /// In en, this message translates to:
-  /// **'current: '**
-  String get video_screen_playback_current;
-
-  /// No description provided for @video_screen_playback_14x.
-  ///
-  /// In en, this message translates to:
-  /// **'1/4x'**
-  String get video_screen_playback_14x;
-
-  /// No description provided for @video_screen_playback_2x.
-  ///
-  /// In en, this message translates to:
-  /// **'2x'**
-  String get video_screen_playback_2x;
-
-  /// No description provided for @video_screen_delete_header.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete this video source'**
-  String get video_screen_delete_header;
-
-  /// No description provided for @video_screen_delete_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this video source?'**
-  String get video_screen_delete_content;
-
-  /// No description provided for @video_screen_delete_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get video_screen_delete_button;
-
-  /// No description provided for @video_screen_sources.
-  ///
-  /// In en, this message translates to:
-  /// **'Configure image source, detection targets, and model parameters.'**
-  String get video_screen_sources;
-
-  /// No description provided for @video_screen_targets.
-  ///
-  /// In en, this message translates to:
-  /// **'Detection targets'**
-  String get video_screen_targets;
-
-  /// No description provided for @video_screen_detection.
-  ///
-  /// In en, this message translates to:
-  /// **'Model parameters'**
-  String get video_screen_detection;
+  /// **'Close'**
+  String get close;
 
   /// No description provided for @color_screen_title.
   ///
@@ -943,113 +373,11 @@ abstract class Localization {
   /// **'Pick a color'**
   String get color_screen_title;
 
-  /// No description provided for @zone_screen_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'The detection zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.'**
-  String get zone_screen_desc;
-
-  /// No description provided for @zone_screen_name_placeholder.
-  ///
-  /// In en, this message translates to:
-  /// **'The name of the zone, like Sidewalk or Parking Lot'**
-  String get zone_screen_name_placeholder;
-
-  /// No description provided for @zone_screen_zone_color.
-  ///
-  /// In en, this message translates to:
-  /// **'Zone color'**
-  String get zone_screen_zone_color;
-
-  /// No description provided for @zone_screen_color.
-  ///
-  /// In en, this message translates to:
-  /// **'Color'**
-  String get zone_screen_color;
-
-  /// No description provided for @zone_screen_delete_header.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete this zone'**
-  String get zone_screen_delete_header;
-
-  /// No description provided for @zone_screen_delete_content.
-  ///
-  /// In en, this message translates to:
-  /// **'Are you sure you want to delete this zone?'**
-  String get zone_screen_delete_content;
-
-  /// No description provided for @zone_screen_delete_button.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get zone_screen_delete_button;
-
-  /// No description provided for @zone_screen_can_not_delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Cannot delete zone'**
-  String get zone_screen_can_not_delete;
-
-  /// No description provided for @zone_screen_one_zone_required.
-  ///
-  /// In en, this message translates to:
-  /// **'At least one zone is required.'**
-  String get zone_screen_one_zone_required;
-
-  /// No description provided for @zone_screen_zone_name_required.
-  ///
-  /// In en, this message translates to:
-  /// **'The zone name cannot be empty'**
-  String get zone_screen_zone_name_required;
-
-  /// No description provided for @counter_screen_show_on.
-  ///
-  /// In en, this message translates to:
-  /// **'Show on screen'**
-  String get counter_screen_show_on;
-
-  /// No description provided for @counter_screen_enabled.
-  ///
-  /// In en, this message translates to:
-  /// **'Enabled'**
-  String get counter_screen_enabled;
-
-  /// No description provided for @counter_screen_reentry_threshold.
-  ///
-  /// In en, this message translates to:
-  /// **'Re-entry Threshold'**
-  String get counter_screen_reentry_threshold;
-
-  /// No description provided for @counter_screen_reentry_desc.
-  ///
-  /// In en, this message translates to:
-  /// **'Objects must enter #0 times, with a #1 second cooldown between each exit and re-entry, to trigger re-entry'**
-  String get counter_screen_reentry_desc;
-
-  /// No description provided for @counter_screen_reentry_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Re-entry count'**
-  String get counter_screen_reentry_title;
-
-  /// No description provided for @counter_screen_cooldown_threshold.
-  ///
-  /// In en, this message translates to:
-  /// **'Cooldown Threshold'**
-  String get counter_screen_cooldown_threshold;
-
   /// No description provided for @counter_screen_cooldown_desc.
   ///
   /// In en, this message translates to:
   /// **'Re-entry requires a #0 second cooldown after exiting the detection zone'**
   String get counter_screen_cooldown_desc;
-
-  /// No description provided for @counter_screen_cooldown_time.
-  ///
-  /// In en, this message translates to:
-  /// **'Cooldown Time'**
-  String get counter_screen_cooldown_time;
 
   /// No description provided for @counter_screen_cooldown_in_seconds.
   ///
@@ -1057,47 +385,23 @@ abstract class Localization {
   /// **'in seconds'**
   String get counter_screen_cooldown_in_seconds;
 
-  /// No description provided for @counter_screen_stagnant_threshold.
+  /// No description provided for @counter_screen_cooldown_threshold.
   ///
   /// In en, this message translates to:
-  /// **'Stagnant Threshold'**
-  String get counter_screen_stagnant_threshold;
+  /// **'Cooldown Threshold'**
+  String get counter_screen_cooldown_threshold;
 
-  /// No description provided for @counter_screen_stagnant_desc.
+  /// No description provided for @counter_screen_cooldown_time.
   ///
   /// In en, this message translates to:
-  /// **'Objects remaining stationary for more than #0 seconds will be considered stagnant'**
-  String get counter_screen_stagnant_desc;
+  /// **'Cooldown Time'**
+  String get counter_screen_cooldown_time;
 
-  /// No description provided for @counter_screen_stagnant_consider.
+  /// No description provided for @counter_screen_enabled.
   ///
   /// In en, this message translates to:
-  /// **'Consider as stagnant'**
-  String get counter_screen_stagnant_consider;
-
-  /// No description provided for @counter_screen_stagnant_in_seconds.
-  ///
-  /// In en, this message translates to:
-  /// **'in seconds'**
-  String get counter_screen_stagnant_in_seconds;
-
-  /// No description provided for @counter_screen_stagnant_desc_prefix.
-  ///
-  /// In en, this message translates to:
-  /// **'Description Prefix'**
-  String get counter_screen_stagnant_desc_prefix;
-
-  /// No description provided for @counter_screen_stagnant_desc_suffix.
-  ///
-  /// In en, this message translates to:
-  /// **'Description Suffix'**
-  String get counter_screen_stagnant_desc_suffix;
-
-  /// No description provided for @counter_screen_name_error.
-  ///
-  /// In en, this message translates to:
-  /// **'The counter name cannot be empty'**
-  String get counter_screen_name_error;
+  /// **'Enabled'**
+  String get counter_screen_enabled;
 
   /// No description provided for @counter_screen_enabled_error.
   ///
@@ -1111,35 +415,71 @@ abstract class Localization {
   /// **'You need to enable other counter first, then you can disable this counter'**
   String get counter_screen_enabled_error_content;
 
-  /// No description provided for @objects_screen_title.
+  /// No description provided for @counter_screen_name_error.
   ///
   /// In en, this message translates to:
-  /// **'Objects'**
-  String get objects_screen_title;
+  /// **'The counter name cannot be empty'**
+  String get counter_screen_name_error;
 
-  /// No description provided for @objects_screen_desc.
+  /// No description provided for @counter_screen_reentry_desc.
   ///
   /// In en, this message translates to:
-  /// **'Choose detection targets like person, car, bus, etc.'**
-  String get objects_screen_desc;
+  /// **'Objects must enter #0 times, with a #1 second cooldown between each exit and re-entry, to trigger re-entry'**
+  String get counter_screen_reentry_desc;
 
-  /// No description provided for @open_project_screen_title.
+  /// No description provided for @counter_screen_reentry_threshold.
   ///
   /// In en, this message translates to:
-  /// **'Open Project'**
-  String get open_project_screen_title;
+  /// **'Re-entry Threshold'**
+  String get counter_screen_reentry_threshold;
 
-  /// No description provided for @open_project_screen_desc.
+  /// No description provided for @counter_screen_reentry_title.
   ///
   /// In en, this message translates to:
-  /// **'Open previously created projects, keeping only the most recent 20.'**
-  String get open_project_screen_desc;
+  /// **'Re-entry count'**
+  String get counter_screen_reentry_title;
 
-  /// No description provided for @open_project_screen_no_project.
+  /// No description provided for @counter_screen_show_on.
   ///
   /// In en, this message translates to:
-  /// **'No project found.'**
-  String get open_project_screen_no_project;
+  /// **'Show on screen'**
+  String get counter_screen_show_on;
+
+  /// No description provided for @counter_screen_stagnant_consider.
+  ///
+  /// In en, this message translates to:
+  /// **'Consider as stagnant'**
+  String get counter_screen_stagnant_consider;
+
+  /// No description provided for @counter_screen_stagnant_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Objects remaining stationary for more than #0 seconds will be considered stagnant'**
+  String get counter_screen_stagnant_desc;
+
+  /// No description provided for @counter_screen_stagnant_desc_prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Description Prefix'**
+  String get counter_screen_stagnant_desc_prefix;
+
+  /// No description provided for @counter_screen_stagnant_desc_suffix.
+  ///
+  /// In en, this message translates to:
+  /// **'Description Suffix'**
+  String get counter_screen_stagnant_desc_suffix;
+
+  /// No description provided for @counter_screen_stagnant_in_seconds.
+  ///
+  /// In en, this message translates to:
+  /// **'in seconds'**
+  String get counter_screen_stagnant_in_seconds;
+
+  /// No description provided for @counter_screen_stagnant_threshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Stagnant Threshold'**
+  String get counter_screen_stagnant_threshold;
 
   /// No description provided for @default_project_name.
   ///
@@ -1159,11 +499,101 @@ abstract class Localization {
   /// **'Detection zone'**
   String get default_zone_name;
 
-  /// No description provided for @error_oops.
+  /// No description provided for @detection_screen_confidence.
   ///
   /// In en, this message translates to:
-  /// **'Oops, something went wrong'**
-  String get error_oops;
+  /// **'Confidence'**
+  String get detection_screen_confidence;
+
+  /// No description provided for @detection_screen_confidence_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'confidence over #0 considered as a valid detection'**
+  String get detection_screen_confidence_desc;
+
+  /// No description provided for @detection_screen_consider_valid.
+  ///
+  /// In en, this message translates to:
+  /// **'Consider valid after'**
+  String get detection_screen_consider_valid;
+
+  /// No description provided for @detection_screen_consider_valid_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Track object will be consider valid after #0'**
+  String get detection_screen_consider_valid_desc;
+
+  /// No description provided for @detection_screen_high.
+  ///
+  /// In en, this message translates to:
+  /// **'High'**
+  String get detection_screen_high;
+
+  /// No description provided for @detection_screen_lost.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost'**
+  String get detection_screen_lost;
+
+  /// No description provided for @detection_screen_lost_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamically determines lost object removal time between #0 and #1 based on movement speed'**
+  String get detection_screen_lost_desc;
+
+  /// No description provided for @detection_screen_low.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get detection_screen_low;
+
+  /// No description provided for @detection_screen_match.
+  ///
+  /// In en, this message translates to:
+  /// **'Match'**
+  String get detection_screen_match;
+
+  /// No description provided for @detection_screen_match_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'#0 matchThreshold is a key parameter in object tracking that measures the degree of matching between different detection boxes. Lower value makes object association easier but increases the risk of wrong associations. Higher value is stricter on object associations but may miss some true matches.'**
+  String get detection_screen_match_desc;
+
+  /// No description provided for @detection_screen_models.
+  ///
+  /// In en, this message translates to:
+  /// **'Models'**
+  String get detection_screen_models;
+
+  /// No description provided for @detection_screen_nms.
+  ///
+  /// In en, this message translates to:
+  /// **'Non-Maximum Suppression'**
+  String get detection_screen_nms;
+
+  /// No description provided for @detection_screen_nms_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'#0 Lower NMS threshold (e.g. 0.3-0.4) removes overlapping boxes more strictly and reduces false positives but may miss overlapping people. Higher threshold (0.7-0.9) keeps more boxes which may increase false positives but better detects overlapping people.'**
+  String get detection_screen_nms_desc;
+
+  /// No description provided for @detection_screen_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get detection_screen_reset;
+
+  /// No description provided for @detection_screen_reset_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset the detection settings?'**
+  String get detection_screen_reset_content;
+
+  /// No description provided for @detection_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Detection Settings'**
+  String get detection_screen_title;
 
   /// No description provided for @error_content.
   ///
@@ -1171,35 +601,65 @@ abstract class Localization {
   /// **'An unexpected error occurred. Would you like to submit a email report?'**
   String get error_content;
 
+  /// No description provided for @error_oops.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops, something went wrong'**
+  String get error_oops;
+
   /// No description provided for @error_report.
   ///
   /// In en, this message translates to:
   /// **'Email us'**
   String get error_report;
 
-  /// No description provided for @submit.
+  /// No description provided for @filter_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'Submit'**
-  String get submit;
+  /// **'Select a filter range from the list below'**
+  String get filter_screen_desc;
 
-  /// No description provided for @ok.
+  /// No description provided for @filter_screen_error_content.
   ///
   /// In en, this message translates to:
-  /// **'OK'**
-  String get ok;
+  /// **'End time must be greater than start time'**
+  String get filter_screen_error_content;
 
-  /// No description provided for @cancel.
+  /// No description provided for @filter_screen_error_custom.
   ///
   /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
+  /// **'Custom'**
+  String get filter_screen_error_custom;
 
-  /// No description provided for @yes.
+  /// No description provided for @filter_screen_error_end.
   ///
   /// In en, this message translates to:
-  /// **'Yes'**
-  String get yes;
+  /// **'End'**
+  String get filter_screen_error_end;
+
+  /// No description provided for @filter_screen_error_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get filter_screen_error_start;
+
+  /// No description provided for @filter_screen_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter_screen_error_title;
+
+  /// No description provided for @filter_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter_screen_title;
+
+  /// No description provided for @language_screen_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language_screen_language;
 
   /// No description provided for @no.
   ///
@@ -1207,41 +667,389 @@ abstract class Localization {
   /// **'No'**
   String get no;
 
-  /// No description provided for @close.
+  /// No description provided for @objects_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'Close'**
-  String get close;
+  /// **'Choose detection targets like person, car, bus, etc.'**
+  String get objects_screen_desc;
 
-  /// No description provided for @back.
+  /// No description provided for @objects_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Back'**
-  String get back;
+  /// **'Objects'**
+  String get objects_screen_title;
 
-  /// No description provided for @zone_screen_zone.
+  /// No description provided for @ok.
   ///
   /// In en, this message translates to:
-  /// **'Zone'**
-  String get zone_screen_zone;
+  /// **'OK'**
+  String get ok;
 
-  /// No description provided for @zone_screen_zone_show_summary.
+  /// No description provided for @open_project_screen_desc.
   ///
   /// In en, this message translates to:
-  /// **'Show summary on screen'**
-  String get zone_screen_zone_show_summary;
+  /// **'Open previously created projects, keeping only the most recent 20.'**
+  String get open_project_screen_desc;
 
-  /// No description provided for @video_sources_photos_denied.
+  /// No description provided for @open_project_screen_no_project.
   ///
   /// In en, this message translates to:
-  /// **'Access to photos denied'**
-  String get video_sources_photos_denied;
+  /// **'No project found.'**
+  String get open_project_screen_no_project;
 
-  /// No description provided for @video_sources_photos_goto_settings.
+  /// No description provided for @open_project_screen_title.
   ///
   /// In en, this message translates to:
-  /// **'Go to settings'**
-  String get video_sources_photos_goto_settings;
+  /// **'Open Project'**
+  String get open_project_screen_title;
+
+  /// No description provided for @product_copyright.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright © 2025'**
+  String get product_copyright;
+
+  /// No description provided for @product_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Using computer vision and ai to count people, vehicles, pets, and more.'**
+  String get product_desc;
+
+  /// No description provided for @product_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Counter'**
+  String get product_name;
+
+  /// No description provided for @project_screen_add_video_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add video source'**
+  String get project_screen_add_video_button;
+
+  /// No description provided for @project_screen_exit_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get project_screen_exit_button;
+
+  /// No description provided for @project_screen_exit_confirm_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaving the project will stop Counting. Are you sure you want to continue?'**
+  String get project_screen_exit_confirm_content;
+
+  /// No description provided for @project_screen_exit_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm exit the project'**
+  String get project_screen_exit_confirm_title;
+
+  /// No description provided for @project_screen_from_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'We keep a rolling 24-hour record, so you can view any time slice you need.'**
+  String get project_screen_from_desc;
+
+  /// No description provided for @project_screen_report_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get project_screen_report_settings;
+
+  /// No description provided for @project_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Project'**
+  String get project_screen_title;
+
+  /// No description provided for @project_view_no_videos.
+  ///
+  /// In en, this message translates to:
+  /// **'No video source available.'**
+  String get project_view_no_videos;
+
+  /// No description provided for @settings_screen_center_point_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Center Point on Target'**
+  String get settings_screen_center_point_button;
+
+  /// No description provided for @settings_screen_center_point_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The center point helps determine whether the target is within the hit zone.'**
+  String get settings_screen_center_point_desc;
+
+  /// No description provided for @settings_screen_center_point_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Center Point on Target'**
+  String get settings_screen_center_point_title;
+
+  /// No description provided for @settings_screen_delete_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get settings_screen_delete_button;
+
+  /// No description provided for @settings_screen_delete_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this project?'**
+  String get settings_screen_delete_content;
+
+  /// No description provided for @settings_screen_delete_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this project'**
+  String get settings_screen_delete_header;
+
+  /// No description provided for @settings_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Set Project name, detection parameters, count clearing.'**
+  String get settings_screen_desc;
+
+  /// No description provided for @settings_screen_lost_target_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Lost Target'**
+  String get settings_screen_lost_target_button;
+
+  /// No description provided for @settings_screen_lost_target_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'When object tracking loses a target, this option makes it visible. By default, lost targets are not shown.'**
+  String get settings_screen_lost_target_desc;
+
+  /// No description provided for @settings_screen_lost_target_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost Target'**
+  String get settings_screen_lost_target_title;
+
+  /// No description provided for @settings_screen_project_error.
+  ///
+  /// In en, this message translates to:
+  /// **'The project name cannot be empty'**
+  String get settings_screen_project_error;
+
+  /// No description provided for @settings_screen_project_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Id'**
+  String get settings_screen_project_id;
+
+  /// No description provided for @settings_screen_project_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Project Name'**
+  String get settings_screen_project_name;
+
+  /// No description provided for @settings_screen_project_name_place_holder.
+  ///
+  /// In en, this message translates to:
+  /// **'123 Main St. or Park Avenue'**
+  String get settings_screen_project_name_place_holder;
+
+  /// No description provided for @settings_screen_random_count_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add random counts'**
+  String get settings_screen_random_count_button;
+
+  /// No description provided for @settings_screen_reset_count_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset counts'**
+  String get settings_screen_reset_count_button;
+
+  /// No description provided for @settings_screen_reset_count_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to reset all counts?'**
+  String get settings_screen_reset_count_content;
+
+  /// No description provided for @settings_screen_reset_count_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset all counts in this project'**
+  String get settings_screen_reset_count_header;
+
+  /// No description provided for @settings_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings_screen_title;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
+
+  /// No description provided for @url_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the live stream URL'**
+  String get url_screen_desc;
+
+  /// No description provided for @url_screen_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Live stream URL'**
+  String get url_screen_title;
+
+  /// No description provided for @url_screen_url.
+  ///
+  /// In en, this message translates to:
+  /// **'URL'**
+  String get url_screen_url;
+
+  /// No description provided for @url_screen_url_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'http://example.com/stream or rtsp://example.com/stream'**
+  String get url_screen_url_placeholder;
+
+  /// No description provided for @video_screen_add_point.
+  ///
+  /// In en, this message translates to:
+  /// **'Add point to current zone'**
+  String get video_screen_add_point;
+
+  /// No description provided for @video_screen_add_zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Add detection zone'**
+  String get video_screen_add_zone;
+
+  /// No description provided for @video_screen_change_file.
+  ///
+  /// In en, this message translates to:
+  /// **'Change File'**
+  String get video_screen_change_file;
+
+  /// No description provided for @video_screen_delete_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get video_screen_delete_button;
+
+  /// No description provided for @video_screen_delete_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this video source?'**
+  String get video_screen_delete_content;
+
+  /// No description provided for @video_screen_delete_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this video source'**
+  String get video_screen_delete_header;
+
+  /// No description provided for @video_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage video sources, add or modify detection zones.'**
+  String get video_screen_desc;
+
+  /// No description provided for @video_screen_detection.
+  ///
+  /// In en, this message translates to:
+  /// **'Model parameters'**
+  String get video_screen_detection;
+
+  /// No description provided for @video_screen_edit_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Front Door Cam or Parking Lot Cam'**
+  String get video_screen_edit_placeholder;
+
+  /// No description provided for @video_screen_move_bottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Move current zone to bottom'**
+  String get video_screen_move_bottom;
+
+  /// No description provided for @video_screen_name_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'The video name cannot be empty.'**
+  String get video_screen_name_empty;
+
+  /// No description provided for @video_screen_playback_14x.
+  ///
+  /// In en, this message translates to:
+  /// **'1/4x'**
+  String get video_screen_playback_14x;
+
+  /// No description provided for @video_screen_playback_2x.
+  ///
+  /// In en, this message translates to:
+  /// **'2x'**
+  String get video_screen_playback_2x;
+
+  /// No description provided for @video_screen_playback_current.
+  ///
+  /// In en, this message translates to:
+  /// **'current: '**
+  String get video_screen_playback_current;
+
+  /// No description provided for @video_screen_playback_speed.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback Speed'**
+  String get video_screen_playback_speed;
+
+  /// No description provided for @video_screen_remove_point.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove point from current zone'**
+  String get video_screen_remove_point;
+
+  /// No description provided for @video_screen_sources.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure image source, detection targets, and model parameters.'**
+  String get video_screen_sources;
+
+  /// No description provided for @video_screen_targets.
+  ///
+  /// In en, this message translates to:
+  /// **'Detection targets'**
+  String get video_screen_targets;
+
+  /// No description provided for @video_screen_tools.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get video_screen_tools;
+
+  /// No description provided for @video_screen_video_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Video source name'**
+  String get video_screen_video_name;
+
+  /// No description provided for @video_screen_zones.
+  ///
+  /// In en, this message translates to:
+  /// **'Detection zones'**
+  String get video_screen_zones;
+
+  /// No description provided for @video_screen_zones_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use drag and drop to adjust zones'**
+  String get video_screen_zones_desc;
+
+  /// No description provided for @video_sources_camera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get video_sources_camera;
 
   /// No description provided for @video_sources_camera_denied.
   ///
@@ -1249,17 +1057,209 @@ abstract class Localization {
   /// **'Access to camera denied'**
   String get video_sources_camera_denied;
 
+  /// No description provided for @video_sources_camera_denied_msg.
+  ///
+  /// In en, this message translates to:
+  /// **'Please go to settings and allow camera access permission for this app.'**
+  String get video_sources_camera_denied_msg;
+
+  /// No description provided for @video_sources_camera_not_found_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Need grant camera permission to use camera'**
+  String get video_sources_camera_not_found_message;
+
+  /// No description provided for @video_sources_camera_not_found_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera not found'**
+  String get video_sources_camera_not_found_title;
+
+  /// No description provided for @video_sources_file.
+  ///
+  /// In en, this message translates to:
+  /// **'File'**
+  String get video_sources_file;
+
+  /// No description provided for @video_sources_live_stream.
+  ///
+  /// In en, this message translates to:
+  /// **'Live stream URL'**
+  String get video_sources_live_stream;
+
+  /// No description provided for @video_sources_photos_denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Access to photos denied'**
+  String get video_sources_photos_denied;
+
   /// No description provided for @video_sources_photos_denied_msg.
   ///
   /// In en, this message translates to:
   /// **'Please go to settings and allow photos access permission for this app.'**
   String get video_sources_photos_denied_msg;
 
-  /// No description provided for @video_sources_camera_denied_msg.
+  /// No description provided for @video_sources_photos_goto_settings.
   ///
   /// In en, this message translates to:
-  /// **'Please go to settings and allow camera access permission for this app.'**
-  String get video_sources_camera_denied_msg;
+  /// **'Go to settings'**
+  String get video_sources_photos_goto_settings;
+
+  /// No description provided for @video_sources_webcam.
+  ///
+  /// In en, this message translates to:
+  /// **'Webcam'**
+  String get video_sources_webcam;
+
+  /// No description provided for @video_sources_webcam_not_found_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check app permission and webcam connection'**
+  String get video_sources_webcam_not_found_message;
+
+  /// No description provided for @video_sources_webcam_not_found_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Webcam not found'**
+  String get video_sources_webcam_not_found_title;
+
+  /// No description provided for @webcam_manager_webcam.
+  ///
+  /// In en, this message translates to:
+  /// **'Webcam'**
+  String get webcam_manager_webcam;
+
+  /// No description provided for @webcam_screen_add_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Webcam'**
+  String get webcam_screen_add_title;
+
+  /// No description provided for @webcam_screen_edit_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Webcam'**
+  String get webcam_screen_edit_title;
+
+  /// No description provided for @wizard_screen_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get wizard_screen_about;
+
+  /// No description provided for @wizard_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a new project below to start counting.'**
+  String get wizard_screen_desc;
+
+  /// No description provided for @wizard_screen_email_us.
+  ///
+  /// In en, this message translates to:
+  /// **'Email us'**
+  String get wizard_screen_email_us;
+
+  /// No description provided for @wizard_screen_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get wizard_screen_language;
+
+  /// No description provided for @wizard_screen_new_project_from.
+  ///
+  /// In en, this message translates to:
+  /// **'New Project from'**
+  String get wizard_screen_new_project_from;
+
+  /// No description provided for @wizard_screen_open_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Open existing project'**
+  String get wizard_screen_open_projects;
+
+  /// No description provided for @wizard_screen_open_projects_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'All projects will be saved locally automatically'**
+  String get wizard_screen_open_projects_tip;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get yes;
+
+  /// No description provided for @zone_screen_can_not_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot delete zone'**
+  String get zone_screen_can_not_delete;
+
+  /// No description provided for @zone_screen_color.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get zone_screen_color;
+
+  /// No description provided for @zone_screen_delete_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get zone_screen_delete_button;
+
+  /// No description provided for @zone_screen_delete_content.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this zone?'**
+  String get zone_screen_delete_content;
+
+  /// No description provided for @zone_screen_delete_header.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this zone'**
+  String get zone_screen_delete_header;
+
+  /// No description provided for @zone_screen_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'The detection zone can set the types of objects to detect and choose which counters to display, such as Detected, Spawned, and Entered.'**
+  String get zone_screen_desc;
+
+  /// No description provided for @zone_screen_name_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'The name of the zone, like Sidewalk or Parking Lot'**
+  String get zone_screen_name_placeholder;
+
+  /// No description provided for @zone_screen_one_zone_required.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one zone is required.'**
+  String get zone_screen_one_zone_required;
+
+  /// No description provided for @zone_screen_zone.
+  ///
+  /// In en, this message translates to:
+  /// **'Zone'**
+  String get zone_screen_zone;
+
+  /// No description provided for @zone_screen_zone_color.
+  ///
+  /// In en, this message translates to:
+  /// **'Zone color'**
+  String get zone_screen_zone_color;
+
+  /// No description provided for @zone_screen_zone_name_required.
+  ///
+  /// In en, this message translates to:
+  /// **'The zone name cannot be empty'**
+  String get zone_screen_zone_name_required;
+
+  /// No description provided for @zone_screen_zone_show_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'Show summary on screen'**
+  String get zone_screen_zone_show_summary;
 }
 
 class _LocalizationDelegate extends LocalizationsDelegate<Localization> {

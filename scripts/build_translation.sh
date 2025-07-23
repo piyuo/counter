@@ -16,8 +16,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Default paths
-CSV_FILE="${1:-$PROJECT_ROOT/lib/src/l10n/l10n.csv}"
-OUTPUT_DIR="${2:-$PROJECT_ROOT/lib/src/l10n/}"
+CSV_FILE="${1:-$PROJECT_ROOT/lib/l10n/l10n.csv}"
+OUTPUT_DIR="${2:-$PROJECT_ROOT/lib/l10n/src/}"
 
 echo -e "${YELLOW}🔄 Converting CSV to ARB files...${NC}"
 echo "📄 CSV File: $CSV_FILE"
@@ -29,7 +29,7 @@ if [ ! -f "$CSV_FILE" ]; then
     echo -e "${RED}❌ Error: CSV file not found: $CSV_FILE${NC}"
     echo ""
     echo "Usage: $0 [csv_file] [output_directory]"
-    echo "Example: $0 ./lib/src/l10n/l10n.csv ./lib/src/l10n/"
+    echo "Example: $0 ./lib/l10n/l10n.csv ./lib/l10n/src/"
     exit 1
 fi
 
