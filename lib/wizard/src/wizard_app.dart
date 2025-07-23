@@ -1,5 +1,5 @@
 import 'package:counter/app/app.dart' as app;
-import 'package:counter/l10n/localization.dart';
+import 'package:counter/l10n/src/localization.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
