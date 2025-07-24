@@ -1,0 +1,14 @@
+{
+  "//": "This is an example placeholder file for the Google Play service account key used by fastlane.",
+  "// Instructions": [
+    "1. Visit https://console.cloud.google.com/.",
+    "2. Select your project (the one connected to your Google Play Console).",
+    "3. Go to IAM & Admin → Service Accounts.",
+    "4. Create a new service account or select an existing one.",
+    "5. Grant 'Editor' role and click 'Continue'.",
+    "6. Go to 'Keys' tab, and click 'Add Key' → 'Create new key'.",
+    "7. Choose JSON format and download the file.",
+    "8. Rename the downloaded file to play-account.json and place it in android/fastlane/."
+  ],
+  "// NOTE": "NEVER commit play-account.json to version control. It's sensitive and will be blocked by GitHub push protection."
+}
