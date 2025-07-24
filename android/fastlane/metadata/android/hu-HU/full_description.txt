@@ -1,0 +1,26 @@
+A Piyuo Counter egy innovatív alkalmazás, amely okostelefonját egy hatékony gyalogosszámláló eszközzé alakítja. A fejlett AI technológiának köszönhetően felismeri és számlálja az eszköz kameráján áthaladó embereket – mindezt internetkapcsolat nélkül.
+
+Főbb jellemzők:
+
+Gyalogosok, kerékpárosok és járművek azonnali, pontos számlálása
+Offline működik beépített AI felismeréssel
+Támogatja az RTSP videófolyamokat és a külső webkamerákat
+24 órás folyamatos rögzítés percenkénti adatokkal Mondjon búcsút a manuális kattintgatásnak! A Piyuo Counter automatizálja a folyamatot, így minden alkalommal következetes eredményeket biztosít. Egyszerűen helyezze a készüléket a megfelelő szögbe, és hagyja, hogy az alkalmazás elvégezze a munkát. Percenként rögzíti az áthaladó személyeket akár 24 órán keresztül, lehetővé téve a gyalogosforgalom elemzését adott időszakokban.
+Bár nem tökéletes (a kamera felbontása nem éri el az emberi szemét), a Piyuo Counter rugalmasságot kínál a készülék elhelyezésében az eredmények optimalizálása érdekében. Az AI modell szabványosított számlálást biztosít több munkamenet során, megbízható adatokat nyújtva a gyalogosforgalom elemzési igényeihez.
+
+Kinek ajánljuk:
+
+Várostervezőknek
+Kisvállalkozások tulajdonosainak
+Rendezvényszervezőknek
+Közlekedési elemzőknek
+Bárkinek, akinek gyalogosszámlálási adatokra van szüksége
+Töltse le a Piyuo Countert még ma, és tapasztalja meg a gyalogosszámlálási technológia jövőjét!
+
+Néhány megjegyzés:
+
+Nyelvi stílus: Igyekeztem egyszerű és érthető nyelvet használni, hogy széles közönség számára elérhető legyen.
+Helyi nyelvhasználat: Általános magyar szavakat és kifejezéseket használtam.
+Google Play Áruház irányelvei: A leírás informatív és pontos. Nem tartalmaz félrevezető állításokat vagy ígéreteket. Az alkalmazás főbb jellemzői és előnyei világosan szerepelnek.
+Nem lefordított szavak: A "Piyuo Counter" az Ön által megadott formában maradt.
+Remélem, ez a magyar fordítás hasznos lesz az Ön számára! Ha további kérdései vannak, kérem, tudassa velem.

@@ -1,0 +1,20 @@
+Piyuo Counter on innovatiivinen sovellus, joka muuttaa puhelimesi tehokkaaksi jalankulkijoiden laskentatyökaluksi. Kehittyneen tekoälyteknologian avulla se tunnistaa ja laskee ihmiset, jotka kulkevat laitteesi kameran ohi – eikä se tarvitse edes internet-yhteyttä.
+
+Tärkeimmät ominaisuudet:
+
+Välitön ja tarkka jalankulkijoiden, pyöräilijöiden ja ajoneuvojen laskenta
+Toimii offline-tilassa sisäänrakennetulla tekoälyllä
+Tukee RTSP-videovirtoja ja ulkoisia verkkokameroita
+24 tunnin jatkuva tallennus minuuttikohtaisilla tiedoilla
+Sano hyvästit manuaaliselle klikkerilaskennalle! Piyuo Counter automatisoi prosessin varmistaen johdonmukaiset tulokset joka kerta. Aseta laitteesi oikeaan kulmaan ja anna sovelluksen hoitaa loput. Se tallentaa ohikulkevat henkilöt joka minuutti jopa 24 tunnin ajan, jolloin voit analysoida jalankulkijoiden liikennettä tiettyinä ajanjaksoina.
+
+Vaikka se ei ole täydellinen (kameran resoluutio ei vastaa ihmissilmää), Piyuo Counter tarjoaa joustavuutta laitteen sijoittelussa tulosten optimoimiseksi. Tekoälymalli varmistaa standardoidun laskennan useissa istunnoissa, tarjoten luotettavaa dataa jalankulkijaliikenteen analysointitarpeisiisi.
+
+Täydellinen:
+
+Kaupunkisuunnittelijoille
+Pienyrittäjille
+Tapahtumajärjestäjille
+Liikenneanalyytikoille
+Kaikille, jotka tarvitsevat jalankulkijoiden laskentatietoja
+Lataa Piyuo Counter tänään ja koe jalankulkijoiden laskentateknologian tulevaisuus!

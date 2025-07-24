@@ -1,0 +1,20 @@
+Piyuo Counter ist eine innovative App, die Ihr Telefon in ein leistungsstarkes Werkzeug zur Fußgängerzählung verwandelt. Mithilfe fortschrittlicher KI-Technologie erkennt und zählt sie Personen, die über die Kamera Ihres Geräts vorbeigehen – und das alles ohne Internetverbindung.
+
+Hauptmerkmale:
+
+Sofortige, genaue Zählung von Fußgängern, Radfahrern und Fahrzeugen
+Funktioniert offline mit integrierter KI-Erkennung
+Unterstützt RTSP-Videostreams und externe Webcams
+24-Stunden-Daueraufzeichnung mit minutengenauen Daten
+Verabschieden Sie sich von der manuellen Zählung per Klicker! Piyuo Counter automatisiert den Prozess und gewährleistet jedes Mal konsistente Ergebnisse. Positionieren Sie Ihr Gerät einfach im richtigen Winkel, und lassen Sie die App die Arbeit erledigen. Sie zeichnet vorbeigehende Personen jede Minute für bis zu 24 Stunden auf, sodass Sie die Fußgängerfrequenz in bestimmten Zeiträumen analysieren können.
+
+Obwohl nicht perfekt (die Kameraauflösung kann nicht mit dem menschlichen Auge mithalten), bietet Piyuo Counter Flexibilität bei der Geräteplatzierung, um die Ergebnisse zu optimieren. Das KI-Modell gewährleistet eine standardisierte Zählung über mehrere Sitzungen hinweg und liefert zuverlässige Daten für Ihre Analyse des Fußgängerverkehrs.
+
+Perfekt für:
+
+Stadtplaner
+Kleinunternehmer
+Veranstalter
+Verkehrsanalysten
+Jeder, der Daten zur Fußgängerzählung benötigt
+Laden Sie Piyuo Counter noch heute herunter und erleben Sie die Zukunft der Fußgängerzählungstechnologie!
