@@ -44,3 +44,6 @@ app.*.map.json
 android/app/.cxx/
 android/key.properties
 android/piyuo-counter-release-key.jks
+
+#fastlane related
+play-account.json
