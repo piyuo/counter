@@ -1,0 +1,20 @@
+Piyuo Counter on uuenduslik rakendus, mis muudab sinu telefoni võimsaks jalakäijate loendamise tööriistaks. Kasutades täiustatud tehisintellekti tehnoloogiat, tuvastab ja loendab see inimesi, kes sinu seadme kaamera vaatevälja jäävad – ja seda kõike ilma internetiühenduseta.
+
+Peamised omadused:
+
+Jalakäijate, jalgratturite ja sõidukite kohene ja täpne loendamine
+Töötab võrguühenduseta sisseehitatud AI-tuvastusega
+Toetab RTSP videovooge ja väliseid veebikaameraid
+24-tunnine pidev salvestamine minutipõhiste andmetega
+Ütle hüvasti käsitsi klõpsimisega loendamisele! Piyuo Counter automatiseerib protsessi, tagades iga kord ühtlased tulemused. Lihtsalt aseta oma seade õige nurga alla ja lase rakendusel töö ära teha. See salvestab mööduvaid isikuid igal minutil kuni 24 tunni jooksul, võimaldades sul analüüsida jalakäijate liiklust kindlatel ajavahemikel.
+
+Kuigi see pole täiuslik (kaamera resolutsioon ei suuda inimsilmaga võistelda), pakub Piyuo Counter paindlikkust seadme paigutamisel, et tulemusi optimeerida. AI-mudel tagab standardiseeritud loendamise mitme seansi jooksul, pakkudes usaldusväärseid andmeid sinu jalakäijate liikluse analüüsi vajadusteks.
+
+Ideaalne:
+
+Linnaplaneerijatele
+Väikeettevõtete omanikele
+Ürituste korraldajatele
+Liikluse analüütikutele
+Kõigile, kes vajavad jalakäijate loendamise andmeid
+Laadi alla Piyuo Counter juba täna ja koge jalakäijate loendamise tehnoloogia tulevikku!

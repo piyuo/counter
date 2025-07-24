@@ -1,0 +1,19 @@
+Piyuo Counter is een innovatieve app die je telefoon transformeert in een krachtige tool voor het tellen van voetgangers. Met behulp van geavanceerde AI-technologie detecteert en telt het mensen die voorbij je apparaat lopen via de camera – en dat alles zonder dat een internetverbinding nodig is.
+
+Belangrijkste functies:
+
+Directe, nauwkeurige telling van voetgangers, fietsers en voertuigen
+Werkt offline met ingebouwde AI-herkenning
+Ondersteunt RTSP-videostreams en externe webcams
+24 uur continue opname met data per minuut
+Zeg vaarwel tegen handmatig klikken! Piyuo Counter automatiseert het proces en zorgt elke keer voor consistente resultaten. Plaats je apparaat eenvoudig in de juiste hoek en laat de app het werk doen. Het registreert passerende individuen elke minuut tot 24 uur lang, waardoor je de voetgangersstroom tijdens specifieke perioden kunt analyseren.
+Hoewel niet perfect (cameraresolutie kan niet tippen aan het menselijk oog), biedt Piyuo Counter flexibiliteit in de plaatsing van het apparaat om de resultaten te optimaliseren. Het AI-model zorgt voor gestandaardiseerde tellingen over meerdere sessies, waardoor betrouwbare gegevens worden geleverd voor je behoeften op het gebied van voetgangersanalyse.
+
+Perfect voor:
+
+Stedenbouwkundigen
+Eigenaren van kleine bedrijven
+Evenementenorganisatoren
+Verkeersanalisten
+Iedereen die gegevens over het aantal voetgangers nodig heeft
+Download Piyuo Counter vandaag nog en ervaar de toekomst van voetgangerstellingstechnologie!

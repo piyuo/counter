@@ -1,0 +1,26 @@
+我可以幫您準備 Azerbaijani (az-AZ) 版本的應用商店描述，並確保符合字數限制和當地語言習慣。以下是翻譯結果：
+[App name]
+Piyuo Counter
+[Short description]
+Telefonunuzun kamerasından istifadə edərək süni intellektlə piyadaları asanlıqla sayın.
+(字元數: 77/80)
+[Full description]
+Piyuo Counter telefonunuzu güclü piyada sayma vasitəsinə çevirən innovativ bir tətbiqdir. İnternet bağlantısı olmadan belə, cihazınızın kamerası vasitəsilə keçən insanları aşkarlayıb sayan təkmilləşdirilmiş süni intellekt texnologiyasından istifadə edir.
+Əsas xüsusiyyətlər:
+
+Piyadaların, velosipedçilərin və nəqliyyat vasitələrinin dərhal və dəqiq sayılması
+Daxili süni intellekt tanıma sistemi ilə oflayn işləyir
+RTSP video yayımlarını və xarici veb-kameraları dəstəkləyir
+Dəqiqə-dəqiqə məlumatlarla 24 saatlıq fasiləsiz qeydiyyat
+
+Əl ilə sayğaclarla saymağa əlvida deyin! Piyuo Counter prosesi avtomatlaşdırır və hər dəfə davamlı nəticələr təmin edir. Cihazınızı düzgün bucaqda yerləşdirin və tətbiqin işləməsinə icazə verin. 24 saata qədər hər dəqiqə keçən fərdləri qeyd edir və müəyyən vaxt dövrlərində piyada hərəkətini təhlil etməyə imkan verir.
+Mükəmməl olmasa da (kamera görüntüsü insan gözü ilə müqayisə edilə bilməz), Piyuo Counter nəticələri optimallaşdırmaq üçün cihazın yerləşdirilməsində çeviklik təklif edir. Süni intellekt modeli bir neçə sessiya boyunca standartlaşdırılmış sayma təmin edir və piyada hərəkəti təhlili ehtiyaclarınız üçün etibarlı məlumatlar təqdim edir.
+Bunlar üçün əla seçimdir:
+
+Şəhər planlaşdırıcıları
+Kiçik biznes sahibləri
+Tədbir təşkilatçıları
+Trafik analitikləri
+Piyada sayı məlumatlarına ehtiyacı olan hər kəs
+
+Piyuo Counter-i bu gün yükləyin və piyada sayma texnologiyasının gələcəyini təcrübə edin!

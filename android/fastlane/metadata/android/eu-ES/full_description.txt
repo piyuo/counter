@@ -1,0 +1,19 @@
+Piyuo Counter app berritzailea da, zure telefonoa oinezkoak zenbatzeko tresna ahaltsu bihurtzen duena. Adimen artifizial aurreratua erabiliz, zure gailuaren kameratik pasatzen diren pertsonak detektatu eta zenbatzen ditu – internet konexiorik behar izan gabe.
+Ezaugarri nagusiak:
+
+Oinezkoak, txirrindulariak eta ibilgailuak berehala eta zehaztasunez zenbatu
+Offline lan egiten du integratutako adimen artifizialaren bidez
+RTSP bideo-korronteak eta kanpoko webkamerak onartzen ditu
+24 orduko grabazio etengabea minutuz minutuko datuekin
+
+Esan agur eskuzko kontaketei! Piyuo Counter-ek prozesua automatizatzen du, emaitza sendoak bermatuz aldiro. Besterik gabe jarri zure gailua angelu egokian, eta utzi aplikazioari lana egiten. Minuturo pasatzen diren pertsonak erregistratzen ditu 24 ordura arte, denbora-tarte zehatzetan oinezkoen trafikoa aztertzeko aukera emanez.
+Perfektua ez den arren (kameraren bereizmenak ezin du giza begia berdindu), Piyuo Counter-ek malgutasuna eskaintzen du gailua kokatzeko orduan emaitzak optimizatzeko. Adimen artifizialeko ereduak saio anitzetan kontaketa estandarizatua bermatzen du, zure oinezkoen trafiko analisirako datu fidagarriak eskainiz.
+Hauentzat ezin hobea:
+
+Hiri-planifikatzaileak
+Enpresa txikien jabeak
+Ekitaldien antolatzaileak
+Trafiko analistak
+Oinezkoen zenbaketa datuak behar dituen edonor
+
+Deskargatu Piyuo Counter gaur eta bizi oinezkoak zenbatzeko teknologiaren etorkizuna!

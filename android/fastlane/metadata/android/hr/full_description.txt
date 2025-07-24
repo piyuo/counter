@@ -1,0 +1,19 @@
+Piyuo Counter inovativna je aplikacija koja vaš telefon pretvara u moćan alat za brojanje pješaka. Koristeći naprednu tehnologiju umjetne inteligencije, otkriva i broji ljude koji prolaze pored vašeg uređaja putem kamere – sve bez potrebe za internetskom vezom.
+
+Glavne značajke:
+
+Trenutno i točno brojanje pješaka, biciklista i vozila
+Radi izvan mreže s ugrađenim AI prepoznavanjem
+Podržava RTSP video streamove i vanjske web kamere
+24-satno kontinuirano snimanje s podacima po minuti
+Recite zbogom ručnom brojanju klikerima! Piyuo Counter automatizira proces, osiguravajući dosljedne rezultate svaki put. Jednostavno postavite svoj uređaj pod pravim kutom i prepustite aplikaciji da obavi posao. Bilježi prolaznike svake minute do 24 sata, omogućujući vam analizu pješačkog prometa tijekom određenih vremenskih razdoblja.
+Iako nije savršen (rezolucija kamere ne može parirati ljudskom oku), Piyuo Counter nudi fleksibilnost u postavljanju uređaja za optimizaciju rezultata. AI model osigurava standardizirano brojanje tijekom više sesija, pružajući pouzdane podatke za vaše potrebe analize pješačkog prometa.
+
+Savršeno za:
+
+Urbaniste
+Vlasnike malih poduzeća
+Organizatore događaja
+Prometne analitičare
+Sve kojima su potrebni podaci o broju pješaka
+Preuzmite Piyuo Counter danas i iskusite budućnost tehnologije brojanja pješaka!

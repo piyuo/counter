@@ -1,0 +1,26 @@
+Piyuo Counter è un'app innovativa che trasforma il tuo telefono in un potente strumento di conteggio dei pedoni. Utilizzando una tecnologia AI avanzata, rileva e conta le persone che passano attraverso la fotocamera del tuo dispositivo, tutto senza bisogno di una connessione internet.
+
+Caratteristiche principali:
+
+Conteggio istantaneo e accurato di pedoni, ciclisti e veicoli
+Funziona offline con riconoscimento AI integrato
+Supporta flussi video RTSP e webcam esterne
+Registrazione continua 24 ore su 24 con dati minuto per minuto Dì addio ai conteggi manuali con il clicker! Piyuo Counter automatizza il processo, garantendo risultati coerenti ogni volta. Basta posizionare il dispositivo all'angolazione corretta e lasciare che l'app faccia il resto. Registra gli individui che passano ogni minuto fino a 24 ore, consentendoti di analizzare il traffico pedonale durante specifici periodi di tempo.
+Sebbene non sia perfetto (la risoluzione della fotocamera non può eguagliare l'occhio umano), Piyuo Counter offre flessibilità nel posizionamento del dispositivo per ottimizzare i risultati. Il modello AI garantisce un conteggio standardizzato in più sessioni, fornendo dati affidabili per le tue esigenze di analisi del traffico pedonale.
+
+Perfetto per:
+
+Urbanisti
+Proprietari di piccole imprese
+Organizzatori di eventi
+Analisti del traffico
+Chiunque abbia bisogno di dati sul conteggio dei pedoni
+Scarica Piyuo Counter oggi e scopri il futuro della tecnologia di conteggio dei pedoni!
+
+Alcune note:
+
+Stile del linguaggio: Ho cercato di utilizzare un linguaggio semplice e comprensibile, in modo che sia accessibile a un vasto pubblico.
+Uso della lingua locale: Ho utilizzato parole ed espressioni comuni in italiano.
+Linee guida per la pubblicazione su Google Play: Questa descrizione è informativa e accurata. Non contiene affermazioni o promesse ingannevoli. Le caratteristiche e i vantaggi principali dell'app sono chiaramente indicati.
+Parole non tradotte: "Piyuo Counter" è stato mantenuto come da tua indicazione.
+Spero che questa traduzione italiana ti sia utile! Se hai altre domande, fammelo sapere.

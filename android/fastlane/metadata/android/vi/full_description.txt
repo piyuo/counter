@@ -1,0 +1,20 @@
+Piyuo Counter là một ứng dụng đột phá giúp biến điện thoại của bạn thành công cụ đếm người thông minh. Với công nghệ AI tiên tiến, ứng dụng phát hiện và đếm số người đi qua bằng camera – hoàn toàn không cần kết nối internet.
+
+Tính năng nổi bật:
+
+Đếm chính xác người đi bộ, xe đạp và phương tiện giao thông
+Hoạt động ngoại tuyến với nhận dạng AI tích hợp
+Hỗ trợ video RTSP và webcam ngoài
+Ghi lại liên tục 24 giờ, dữ liệu cập nhật theo từng phút
+Không còn cần bấm đếm thủ công! Piyuo Counter tự động hóa quy trình, mang lại kết quả nhất quán. Chỉ cần đặt thiết bị đúng góc nhìn, ứng dụng sẽ tự xử lý mọi thứ. Dữ liệu sẽ được ghi lại theo từng phút, lên đến 24 giờ, giúp bạn phân tích lưu lượng người qua lại theo thời gian.
+
+Dù không hoàn hảo (chất lượng camera không bằng mắt người), ứng dụng cho phép điều chỉnh góc đặt thiết bị để đạt kết quả tốt nhất. Mô hình AI đảm bảo khả năng đếm nhất quán qua nhiều lần sử dụng, cung cấp dữ liệu tin cậy cho việc phân tích lưu lượng.
+
+Phù hợp với:
+
+Nhân viên quy hoạch đô thị
+Chủ cửa hàng nhỏ
+Ban tổ chức sự kiện
+Chuyên gia phân tích giao thông
+Bất kỳ ai cần dữ liệu đếm người qua lại
+Tải ngay Piyuo Counter và trải nghiệm công nghệ đếm người hiện đại!

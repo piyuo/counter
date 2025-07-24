@@ -1,0 +1,20 @@
+Ang Piyuo Counter ay isang makabagong app na ginagawang isang makapangyarihang tool sa pagbibilang ng pedestrian ang iyong telepono. Gamit ang advanced na teknolohiya ng AI, nakikita at binibilang nito ang mga taong dumadaan sa pamamagitan ng camera ng iyong device – lahat nang hindi nangangailangan ng koneksyon sa internet.
+
+Pangunahing Tampok:
+
+Agarang at tumpak na pagbibilang ng mga pedestrian, siklista, at sasakyan
+Gumagana offline gamit ang built-in na AI recognition
+Sumusuporta sa mga RTSP video stream at mga panlabas na webcam
+24-oras na tuloy-tuloy na pag-record na may minutong-minutong datos
+Magpaalam na sa manu-manong pag-click para magbilang! Awtomatiko nang ginagawa ng Piyuo Counter ang proseso, na tinitiyak ang pare-parehong resulta sa bawat pagkakataon. Iposisyon lamang ang iyong device sa tamang anggulo, at hayaan ang app na gawin ang trabaho. Itinatala nito ang mga dumadaang indibidwal bawat minuto hanggang sa 24 na oras, na nagbibigay-daan sa iyo na suriin ang daloy ng tao sa mga tiyak na yugto ng oras.
+
+Bagama't hindi perpekto (hindi kayang pantayan ng resolusyon ng camera ang mata ng tao), nag-aalok ang Piyuo Counter ng flexibility sa paglalagay ng device upang ma-optimize ang mga resulta. Tinitiyak ng AI model ang standardisadong pagbibilang sa maraming sesyon, na nagbibigay ng maaasahang datos para sa iyong mga pangangailangan sa pagsusuri ng daloy ng pedestrian.
+
+Perpekto para sa:
+
+Mga tagaplano ng lungsod
+Mga may-ari ng maliliit na negosyo
+Mga tagapag-organisa ng kaganapan
+Mga analista ng trapiko
+Sinumang nangangailangan ng datos sa pagbibilang ng pedestrian
+I-download ang Piyuo Counter ngayon at maranasan ang hinaharap ng teknolohiya sa pagbibilang ng pedestrian!
