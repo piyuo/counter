@@ -1,6 +1,6 @@
-# scripts/start_issue.sh
-# version 1.0.0
 #!/bin/bash
+# scripts/start_issue.sh
+# version 1.0.1
 # This script uses GitHub CLI to create and check out a branch linked to an issue.
 # Usage: ./start_issue.sh <issue-number>
 
@@ -62,7 +62,6 @@ if [ -z "$CURRENT_USER" ]; then
     echo -e "${YELLOW}⚠️ Warning: Could not determine current GitHub username.${NC}"
 else
     echo "👤 Current user: $CURRENT_USER"
-
     # Assign current user to the issue
     echo "📝 Assigning issue #$ISSUE to $CURRENT_USER..."
     if gh issue edit "$ISSUE" --add-assignee "$CURRENT_USER" 2>/dev/null; then
@@ -86,15 +85,41 @@ else
     echo -e "${GREEN}✅ No 'needs-triage' label found on issue #$ISSUE.${NC}"
 fi
 
-# Call cleanup script to remove old branches
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Call cleanup script to remove old branches (cross-platform path handling)
+if [[ -n "${BASH_SOURCE[0]}" ]]; then
+  SCRIPT_PATH="${BASH_SOURCE[0]}"
+else
+  SCRIPT_PATH="$0"
+fi
+
+# More robust cross-platform path resolution
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd -W 2>/dev/null || pwd)"
+# Alternative approach: use realpath if available, fallback to readlink/dirname
+# SCRIPT_DIR="$(dirname "$(realpath "${SCRIPT_PATH}" 2>/dev/null || readlink -f "${SCRIPT_PATH}" 2>/dev/null || echo "${SCRIPT_PATH}")")"
+
 CLEANUP_SCRIPT="$SCRIPT_DIR/cleanup_branches.sh"
 
-if [ -x "$CLEANUP_SCRIPT" ]; then
-    echo -e "🧹 Running branch cleanup script..."
-    bash "$CLEANUP_SCRIPT"
+if [ -f "$CLEANUP_SCRIPT" ]; then
+    if [ -x "$CLEANUP_SCRIPT" ]; then
+        echo -e "🧹 Running branch cleanup script..."
+        if bash "$CLEANUP_SCRIPT"; then
+            echo -e "${GREEN}✅ Branch cleanup completed successfully.${NC}"
+        else
+            echo -e "${YELLOW}⚠️ Warning: Branch cleanup script executed but returned an error.${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ Warning: cleanup_branches.sh found but not executable. Making it executable...${NC}"
+        chmod +x "$CLEANUP_SCRIPT"
+        echo -e "🧹 Running branch cleanup script..."
+        if bash "$CLEANUP_SCRIPT"; then
+            echo -e "${GREEN}✅ Branch cleanup completed successfully.${NC}"
+        else
+            echo -e "${YELLOW}⚠️ Warning: Branch cleanup script executed but returned an error.${NC}"
+        fi
+    fi
 else
-    echo -e "${RED}⚠️ Warning: cleanup_branches.sh not found or not executable.${NC}"
+    echo -e "${YELLOW}⚠️ Info: cleanup_branches.sh not found. Skipping branch cleanup.${NC}"
+    echo -e "${YELLOW}💡 Tip: Create a cleanup_branches.sh script in the same directory to automatically clean up old branches.${NC}"
 fi
 
 echo -e "${GREEN}🎉 Issue #$ISSUE is ready for development!${NC}"
