@@ -47,3 +47,6 @@ android/piyuo-counter-release-key.jks
 
 #fastlane related
 play-account.json
+
+#sentry related
+.sentry-native
