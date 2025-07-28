@@ -91,10 +91,13 @@ print_step "Upgrading Flutter dependencies"
 
 # Upgrade dependencies
 print_info "Running 'flutter pub upgrade --major-versions'..."
+print_warning "This may take a few minutes depending on your project size..."
 if flutter pub upgrade --major-versions; then
     print_success "Dependencies upgraded successfully"
+    print_info "All Flutter dependencies have been updated to their latest compatible versions"
 else
     print_error "Failed to upgrade dependencies"
+    print_warning "This could be due to version conflicts or network issues"
     exit 1
 fi
 
@@ -102,15 +105,45 @@ print_step "Running tests to verify upgrade"
 
 # Run tests to ensure everything is working after the upgrade
 print_info "Running tests to ensure compatibility..."
+print_warning "This step is crucial to verify that the upgraded dependencies work correctly"
 if flutter test; then
-    print_success "All tests passed"
+    print_success "All tests passed - dependency upgrade is compatible"
 else
     print_error "Some tests failed after dependency upgrade"
     print_warning "Please review test failures and fix any compatibility issues"
+    print_info "Common issues include:"
+    print_info "  • Breaking changes in upgraded packages"
+    print_info "  • API changes requiring code updates"
+    print_info "  • Version conflicts between dependencies"
+    exit 1
+fi
+
+print_step "Updating pod repositories"
+
+# Update macOS pod repository
+print_info "Updating macOS pod repository..."
+if cd macos && pod repo update; then
+    print_success "macOS pod repository updated successfully"
+    cd ..
+else
+    print_error "Failed to update macOS pod repository"
+    cd .. 2>/dev/null || true  # Ensure we return to project root even if cd fails
+    exit 1
+fi
+
+# Update iOS pod repository
+print_info "Updating iOS pod repository..."
+if cd ios && pod repo update; then
+    print_success "iOS pod repository updated successfully"
+    cd ..
+else
+    print_error "Failed to update iOS pod repository"
+    cd .. 2>/dev/null || true  # Ensure we return to project root even if cd fails
     exit 1
 fi
 
 print_step "Upgrade completed successfully!"
+
 
 print_success "🎉 All dependencies have been upgraded successfully!"
 print_info "Summary of completed steps:"
@@ -118,5 +151,11 @@ print_info "  ✓ Analyzed current dependencies"
 print_info "  ✓ Updated version constraints in pubspec.yaml"
 print_info "  ✓ Upgraded all dependencies to latest versions"
 print_info "  ✓ Verified compatibility with tests"
-print_info "  ✓ Built example application successfully"
+print_info "  ✓ Updated macOS pod repository"
+print_info "  ✓ Updated iOS pod repository"
 echo -e "\n${GREEN}Your project is now using the latest compatible dependency versions.${NC}"
+print_info "Next steps:"
+print_info "  • Review any warnings from the upgrade process"
+print_info "  • Test your app thoroughly on all target platforms"
+print_info "  • Check for any deprecated API usage"
+print_info "  • Update your CI/CD pipelines if needed"
