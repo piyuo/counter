@@ -22,11 +22,7 @@ class LanguageScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final displayLabels = appkit.localeDisplayLabels;
     final locale = ref.watch(appkit.localeProvider);
-    final libcliLocalization = appkit.Localization.of(context);
-    //final languageProvider = cli.LanguageProvider.of(context);
-    //final languages = cli.Language.fromSupportedLocales(Localization.supportedLocales);
-    //final cliLocalization = cli_localization.Localization.of(context);
-    //final value = cli.isSystemLocale ? Locale(' ') : cli.defaultLocale;
+    final localization = appkit.Localization.of(context);
     return provider.ChangeNotifierProvider<LanguageScreenProvider>(
         create: (_) => LanguageScreenProvider(),
         child: provider.Consumer<LanguageScreenProvider>(builder: (context, languageScreenProvider, child) {
@@ -48,11 +44,11 @@ class LanguageScreen extends ConsumerWidget {
                   CupertinoListSection(
                     children: [
                       CupertinoListTile(
-                        title: Text(libcliLocalization.language),
+                        title: Text(localization.language),
                         subtitle: Text('System language'),
-                        leading: locale == Locale(' ') ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
+                        leading: locale == null ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
                         onTap: () async {
-                          ref.read(appkit.localeProvider.notifier).set(Locale(' '));
+                          ref.read(appkit.localeProvider.notifier).set(null);
                         },
                       ),
                       ...displayLabels.entries.map((entry) {

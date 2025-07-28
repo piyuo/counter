@@ -15,17 +15,26 @@ const double _headerHeightThreshold = 600;
 class WizardScreen extends StatelessWidget {
   const WizardScreen({
     required this.scrollController,
+    this.appLocale,
     super.key,
   });
 
   /// the scroll controller
   final ScrollController scrollController;
 
+  /// the app locale
+  final Locale? appLocale;
+
   @override
   Widget build(BuildContext context) {
     // get screen height
     final screenHeight = MediaQuery.of(context).size.height;
     final isCompactHeader = screenHeight < _headerHeightThreshold;
+    final localeDisplayLabels = appkit.localeDisplayLabels;
+    final localization = appkit.Localization.of(context);
+
+    final currentLocalDisplayLabel =
+        appLocale == null ? localization.language : localeDisplayLabels[appLocale.toString()] ?? appLocale.toString();
 
     final pageTitle = 'piyuo.com';
     return ChangeNotifierProvider<WizardScreenProvider>(
@@ -134,7 +143,7 @@ class WizardScreen extends StatelessWidget {
                         CupertinoListTile(
                             leading: Icon(CupertinoIcons.globe),
                             title: Text(context.l.wizard_screen_language),
-                            additionalInfo: Text('Language'),
+                            additionalInfo: Text(currentLocalDisplayLabel),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
                               Navigator.of(context).pushNamed(languageRoute, arguments: {
@@ -146,7 +155,7 @@ class WizardScreen extends StatelessWidget {
                             title: Text(context.l.wizard_screen_email_us),
                             trailing: CupertinoListTileChevron(),
                             onTap: () {
-//                              throw MyReleaseException('Email us is not implemented yet');
+                              //throw MyReleaseException('Email us is not implemented yet');
                               appkit.netOpenMailTo('service@piyuo.com', '', '');
                             }),
                       ],
@@ -174,7 +183,7 @@ class WizardScreenProvider with ChangeNotifier {
     notifyListeners();
   }
 }
-/*
+
 class MyReleaseException implements Exception {
   final String message;
 
@@ -183,4 +192,3 @@ class MyReleaseException implements Exception {
   @override
   String toString() => 'MyException: $message';
 }
-*/
