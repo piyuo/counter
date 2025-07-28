@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -125,9 +126,7 @@ class _MyAppState extends State<MyApp> {
                 : CupertinoPageRoute(settings: settings, fullscreenDialog: false, builder: builder);
           }
 
-          final defaultLocale =
-              Intl.defaultLocale != null ? appkit.localeParseString(Intl.defaultLocale!) : appkit.localeSystem;
-
+          final defaultLocale = widget.locale ?? appkit.localeSystem;
           final isRTL = Bidi.isRtlLanguage(defaultLocale.toString());
 
           return ChangeNotifierProvider<vision.OrientationProvider>.value(
