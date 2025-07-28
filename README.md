@@ -372,6 +372,7 @@ export 'src/app_localizations_extensions.dart';
 ### 🛠️ How to Add New Modules
 
 1. **Create the module directory structure**:
+
    ```bash
    /lib
      /your_new_feature
@@ -382,6 +383,7 @@ export 'src/app_localizations_extensions.dart';
    ```
 
 2. **Define the public API** in the barrel file:
+
    ```dart
    // In /lib/your_new_feature/your_new_feature.dart
    export 'src/internal_service.dart';
@@ -389,6 +391,7 @@ export 'src/app_localizations_extensions.dart';
    ```
 
 3. **Use the module** in your app:
+
    ```dart
    import 'package:counter/your_new_feature/your_new_feature.dart' as feature;
 
@@ -459,7 +462,6 @@ flutter test --name "test_pattern"
 **Alternative Method - VS Code Flutter Test Plugin**:
 While the VS Code Flutter test plugin provides UI integration, it can be unstable and may hang during execution. Use it only if you specifically need the visual test runner interface, but be prepared to fall back to command line when issues occur.
 
-
 ## 🧰 Tech Stack
 
 - **Flutter (Stable Channel, e.g., 3.x.x)**: Core UI framework for cross-platform mobile, web, and desktop development.
@@ -491,6 +493,7 @@ The project includes automated dependency management tools:
 ```bash
 ./scripts/upgrade_deps.sh
 ```
+
 ### Release
 
 **Release-please** automatically handles versioning and releases by:
