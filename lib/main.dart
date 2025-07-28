@@ -18,9 +18,9 @@ import 'package:universal_platform/universal_platform.dart';
 
 final GlobalKey<wizard.WizardAppState> wizardKey = GlobalKey<wizard.WizardAppState>();
 
-main() {
+void main() {
   registerTimeagoLocales();
-  appkit.appRun(() => const MyApp(), errorCallback: (e) {
+  appkit.appRun((locale) => MyApp(locale: locale), errorCallback: (e) {
     if (e is PlatformException || e is MissingPluginException) {
       return false;
     }
@@ -29,7 +29,10 @@ main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, this.locale});
+
+  /// The locale to use for the app.
+  final Locale? locale;
 
   @override
   State<MyApp> createState() => _MyAppState();

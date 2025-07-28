@@ -31,19 +31,19 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v2.3.0
+      ref: v2.3.1
   universal_platform: ^1.1.0
   nested: ^1.0.0
   path: ^1.9.0
-  protobuf: ^3.1.0
+  protobuf: ^4.1.1
   provider: ^6.1.2
-  carousel_slider: ^4.1.1
+  carousel_slider: ^5.1.1
   auto_size_text: ^3.0.0
   beamer: ^1.6.1
-  reactive_forms: ^17.0.1
-  calendar_date_picker2: ^1.1.7
+  reactive_forms: ^18.1.1
+  calendar_date_picker2: ^2.0.1
   badges: ^3.1.2
-  cupertino_listview: ^2.0.0
+  cupertino_listview: ^3.0.0
   cross_file: ^0.3.4+2
   auto_animated: ^3.2.0
   sliding_up_panel: ^2.0.0+1
@@ -59,34 +59,35 @@ dependencies:
   super_cupertino_navigation_bar: ^2.1.2
   package_info_plus: ^8.2.1
   flutter_colorpicker: ^1.1.0
-  fl_chart: ^0.70.2
+  fl_chart: ^1.0.0
   image_picker: ^1.1.2
   input_quantity: ^2.5.1
   drift: ^2.25.1
-  freezed: ^2.5.8
-  freezed_annotation: ^2.4.4
+  freezed: ^3.2.0
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
-  sqlite3_flutter_libs: 0.5.33
+  sqlite3_flutter_libs: ^0.5.38
   timeago: ^3.7.0
   flutter_native_splash: ^2.4.5
   url_launcher: ^6.3.1
   universal_io: ^2.2.2
-  permission_handler: ^11.4.0
+  permission_handler: ^12.0.1
+  flutter_riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.4.4
-  flutter_lints: ^5.0.0
-  analyzer: ^6.11.0
-  build_runner: ^2.4.15
-  json_serializable: ^6.9.4
+  mockito: ^5.5.0
+  flutter_lints: ^6.0.0
+  analyzer: ^8.0.0
+  build_runner: ^2.6.0
+  json_serializable: ^6.10.0
   drift_dev: ^2.25.2
   msix: ^3.16.8
   flutter_launcher_icons: ^0.14.4
 
 dependency_overrides:
-  analyzer: ^7.1.0
+  analyzer: ^8.0.0
   rename_app: ^1.6.2
 
 # For information on the generic Dart part of this file, see the
