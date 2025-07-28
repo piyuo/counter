@@ -242,7 +242,7 @@ class WizardAppState extends State<WizardApp> {
                 );
               case '/':
               default:
-                return WizardScreen(scrollController: scrollController);
+                return WizardScreen(appLocale: widget.appLocale, scrollController: scrollController);
             }
           },
         );
