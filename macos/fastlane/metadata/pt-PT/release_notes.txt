@@ -1,1 +1,3 @@
-Estabilidade melhorada ao alternar entre projetos, garantindo libertação imediata de recursos ao fechar um projeto
+Relatório de erros melhorado
+
+Adicionámos relatórios de erros anónimos! Se encontrar um problema inesperado, pode agora optar por enviar um relatório de erro para nos ajudar a corrigi-lo rapidamente.

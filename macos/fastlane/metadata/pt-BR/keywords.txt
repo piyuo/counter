@@ -1,1 +1,1 @@
-contagem pedestres, ai contador, camera pessoas, analise fluxo, deteccao movimento
+IA,pedestres,detecção,rastreamento

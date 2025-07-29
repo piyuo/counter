@@ -1,26 +1,22 @@
-Piyuo Counter è un'app innovativa che trasforma il tuo telefono in un potente strumento di conteggio dei pedoni. Utilizzando una tecnologia AI avanzata, rileva e conta le persone che passano attraverso la fotocamera del tuo dispositivo, tutto senza bisogno di una connessione internet.
+Questa è un'applicazione che può rilevare e contare automaticamente i pedoni, non richiede connessione internet e può essere utilizzata immediatamente dopo l'installazione.
 
-Caratteristiche principali:
+Panoramica delle funzionalità
+- Conteggio persone in tempo reale: Il sistema rileva le persone che camminano attraverso lo schermo e totalizza automaticamente il conteggio.
+- Uso offline: Tutte le funzioni possono funzionare localmente senza connessione internet.
+- Sorgenti schermo multiple: Supporta fotocamere integrate, video in streaming e fotocamere esterne (supporto diverso a seconda della piattaforma).
+- Registrazione a lungo termine: Può registrare continuamente per 24 ore e interrogare i dati per qualsiasi periodo di tempo.
 
-Conteggio istantaneo e accurato di pedoni, ciclisti e veicoli
-Funziona offline con riconoscimento AI integrato
-Supporta flussi video RTSP e webcam esterne
-Registrazione continua 24 ore su 24 con dati minuto per minuto Dì addio ai conteggi manuali con il clicker! Piyuo Counter automatizza il processo, garantendo risultati coerenti ogni volta. Basta posizionare il dispositivo all'angolazione corretta e lasciare che l'app faccia il resto. Registra gli individui che passano ogni minuto fino a 24 ore, consentendoti di analizzare il traffico pedonale durante specifici periodi di tempo.
-Sebbene non sia perfetto (la risoluzione della fotocamera non può eguagliare l'occhio umano), Piyuo Counter offre flessibilità nel posizionamento del dispositivo per ottimizzare i risultati. Il modello AI garantisce un conteggio standardizzato in più sessioni, fornendo dati affidabili per le tue esigenze di analisi del traffico pedonale.
+Come utilizzare
+1. Punta la fotocamera verso il passaggio o l'ingresso che vuoi monitorare.
+2. Apri il progetto e seleziona la sorgente dello schermo.
+3. Dopo l'avvio, il sistema rileverà e conterà automaticamente.
 
-Perfetto per:
+Note
+- L'accuratezza del conteggio è influenzata da angolo, illuminazione, ostruzioni, ecc. Si raccomanda di regolare la posizione della fotocamera in base alle condizioni reali.
+- Pur non essendo accurato al 100%, l'uso di un modello AI coerente riduce l'errore umano.
+- Tutta l'elaborazione dei dati viene completata localmente - nessuna immagine o dato viene caricato.
 
-Urbanisti
-Proprietari di piccole imprese
-Organizzatori di eventi
-Analisti del traffico
-Chiunque abbia bisogno di dati sul conteggio dei pedoni
-Scarica Piyuo Counter oggi e scopri il futuro della tecnologia di conteggio dei pedoni!
-
-Alcune note:
-
-Stile del linguaggio: Ho cercato di utilizzare un linguaggio semplice e comprensibile, in modo che sia accessibile a un vasto pubblico.
-Uso della lingua locale: Ho utilizzato parole ed espressioni comuni in italiano.
-Linee guida per la pubblicazione su Google Play: Questa descrizione è informativa e accurata. Non contiene affermazioni o promesse ingannevoli. Le caratteristiche e i vantaggi principali dell'app sono chiaramente indicati.
-Parole non tradotte: "Piyuo Counter" è stato mantenuto come da tua indicazione.
-Spero che questa traduzione italiana ti sia utile! Se hai altre domande, fammelo sapere.
+Scenari adatti
+- Comprendere il traffico pedonale negli spazi (come ingressi, corridoi, aree espositive).
+- Ricerca, pianificazione eventi o osservazione quotidiana.
+- Può iniziare a essere utilizzato immediatamente senza attrezzature hardware aggiuntive.

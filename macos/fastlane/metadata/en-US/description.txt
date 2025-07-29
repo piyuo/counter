@@ -1,16 +1,22 @@
-Piyuo Counter is an innovative app that transforms your iPhone, iPad, or Mac into a powerful pedestrian counting tool. Using advanced AI technology, it detects and tallies people passing by through your device's camera – all without needing an internet connection.
-Key Features:
-Instant, accurate counting of pedestrians, cyclists, and vehicles
-Works offline with built-in AI recognition
-Compatible with iPhone, iPad, and Mac
-Supports RTSP video streams and external webcams
-24-hour continuous recording with minute-by-minute data
-Say goodbye to manual clicker counts! Piyuo Counter automates the process, ensuring consistent results every time. Simply position your device at the right angle, and let the app do the work. It records passing individuals each minute for up to 24 hours, allowing you to analyze foot traffic during specific time periods.
-While not perfect (camera resolution can't match the human eye), Piyuo Counter offers flexibility in device placement to optimize results. The AI model ensures standardized counting across multiple sessions, providing reliable data for your pedestrian traffic analysis needs.
-Perfect for:
-Urban planners
-Small business owners
-Event organizers
-Traffic analysts
-Anyone needing pedestrian count data
-Download Piyuo Counter today and experience the future of pedestrian counting technology!
+This is an app that can automatically detect and count pedestrians, requires no internet connection, and can be used immediately after installation.
+
+Feature Overview
+- Real-time people counting: The system detects people walking through the screen and automatically totals the count.
+- Offline use: All functions can run locally without internet connection.
+- Multiple screen sources: Supports built-in cameras, streaming video, and external cameras (different support depending on platform).
+- Long-term recording: Can record continuously for 24 hours and query data for any time period.
+
+How to Use
+1. Point the camera at the passageway or entrance you want to monitor.
+2. Open the project and select the screen source.
+3. After starting, the system will automatically detect and count.
+
+Notes
+- Counting accuracy is affected by angle, lighting, obstructions, etc. It's recommended to adjust camera position based on actual conditions.
+- While not 100% accurate, using a consistent AI model reduces human error.
+- All data processing is completed locally - no images or data are uploaded.
+
+Suitable Scenarios
+- Understanding foot traffic in spaces (such as entrances, corridors, exhibition areas).
+- Research, event planning, or daily observation.
+- Can start using immediately without additional hardware equipment.

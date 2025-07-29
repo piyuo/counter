@@ -1,1 +1,3 @@
-Enhanced stability when switching between projects, ensuring immediate resource release when closing a project
+Improved Error Reporting
+
+We've added anonymous error reporting! If you encounter an unexpected issue, you can now choose to send an error report to help us fix it quickly.

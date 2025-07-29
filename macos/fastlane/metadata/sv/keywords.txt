@@ -1,1 +1,1 @@
-folkräkning, AI, kamera, räknare, trafikanalys, fotgängare, människoflöde
+AI,fotgängare,upptäckt,spårning

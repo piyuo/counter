@@ -1,20 +1,22 @@
-Piyuo Counter est une application innovante qui transforme votre téléphone en un puissant outil de comptage de piétons. Utilisant une technologie d'IA avancée, elle détecte et dénombre les personnes qui passent devant l'objectif de votre appareil – tout cela sans nécessiter de connexion internet.
+Ceci est une application qui peut automatiquement détecter et compter les piétons, ne nécessite aucune connexion internet et peut être utilisée immédiatement après l'installation.
 
-Fonctionnalités clés :
+Aperçu des fonctionnalités
+- Comptage de personnes en temps réel : Le système détecte les personnes qui traversent l'écran et totalise automatiquement le décompte.
+- Utilisation hors ligne : Toutes les fonctions peuvent fonctionner localement sans connexion internet.
+- Sources d'écran multiples : Prend en charge les caméras intégrées, la vidéo en streaming et les caméras externes (support différent selon la plateforme).
+- Enregistrement à long terme : Peut enregistrer en continu pendant 24 heures et interroger les données pour n'importe quelle période.
 
-Comptage instantané et précis des piétons, cyclistes et véhicules
-Fonctionne hors ligne grâce à la reconnaissance IA intégrée
-Prend en charge les flux vidéo RTSP et les webcams externes
-Enregistrement continu de 24 heures avec des données minute par minute
-Dites adieu aux comptages manuels avec un clicker ! Piyuo Counter automatise le processus, assurant des résultats cohérents à chaque utilisation. Positionnez simplement votre appareil à l'angle adéquat, et laissez l'application faire le travail. Elle enregistre les individus qui passent chaque minute pendant une durée allant jusqu'à 24 heures, vous permettant d'analyser le trafic piétonnier durant des périodes spécifiques.
+Comment utiliser
+1. Pointez la caméra vers le passage ou l'entrée que vous souhaitez surveiller.
+2. Ouvrez le projet et sélectionnez la source d'écran.
+3. Après le démarrage, le système détectera et comptera automatiquement.
 
-Bien que perfectible (la résolution de l'appareil photo ne peut égaler l'œil humain), Piyuo Counter offre une flexibilité dans le placement de l'appareil pour optimiser les résultats. Le modèle d'IA assure un comptage standardisé sur plusieurs sessions, fournissant des données fiables pour vos besoins d'analyse du trafic piétonnier.
+Notes
+- La précision du comptage est affectée par l'angle, l'éclairage, les obstructions, etc. Il est recommandé d'ajuster la position de la caméra selon les conditions réelles.
+- Bien que ce ne soit pas précis à 100%, l'utilisation d'un modèle IA cohérent réduit l'erreur humaine.
+- Tout le traitement des données est effectué localement - aucune image ou donnée n'est téléchargée.
 
-Parfait pour :
-
-Les urbanistes
-Les propriétaires de petites entreprises
-Les organisateurs d'événements
-Les analystes de trafic
-Toute personne ayant besoin de données de comptage de piétons
-Téléchargez Piyuo Counter dès aujourd'hui et découvrez l'avenir de la technologie de comptage de piétons !
+Scénarios appropriés
+- Comprendre le trafic piétonnier dans les espaces (tels que les entrées, couloirs, zones d'exposition).
+- Recherche, planification d'événements ou observation quotidienne.
+- Peut commencer à être utilisé immédiatement sans équipement matériel supplémentaire.

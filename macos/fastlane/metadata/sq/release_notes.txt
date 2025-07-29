@@ -1,0 +1,3 @@
+Raportim i përmirësuar i gabimeve
+
+Kemi shtuar raportimin anonim të gabimeve! Nëse hasni në një problem të papritur, tani mund të zgjidhni të dërgoni një raport gabimi për të na ndihmuar ta rregullojmë shpejt.

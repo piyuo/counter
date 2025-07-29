@@ -1,1 +1,3 @@
-Vylepšená stabilita pri prepínaní medzi projektmi a okamžité uvoľnenie zdrojov pri zatvorení projektu
+Vylepšené hlásenie chýb
+
+Pridali sme anonymné hlásenie chýb! Ak narazíte na neočakávaný problém, teraz si môžete vybrať odoslanie hlásenia chyby, aby ste nám pomohli ho rýchlo opraviť.

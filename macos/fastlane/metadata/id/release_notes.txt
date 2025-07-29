@@ -1,1 +1,3 @@
-Stabilitas yang ditingkatkan saat beralih antar proyek, memastikan pelepasan sumber daya segera saat menutup proyek
+Pelaporan Kesalahan yang Ditingkatkan
+
+Kami telah menambahkan pelaporan kesalahan anonim! Jika Anda mengalami masalah yang tidak terduga, sekarang Anda dapat memilih untuk mengirim laporan kesalahan agar membantu kami memperbaikinya dengan cepat.

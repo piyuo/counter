@@ -1,1 +1,1 @@
-đếm người,ai,camera,phân tích,thống kê,giao thông,dòng người
+AI,người đi bộ,phát hiện,theo dõi

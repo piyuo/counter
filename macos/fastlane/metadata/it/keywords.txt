@@ -1,1 +1,1 @@
-conteggio persone, rilevamento AI, analisi flusso, contatore mobile, tecnologia intelligente
+AI,pedoni,rilevamento,tracciamento

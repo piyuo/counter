@@ -1,1 +1,1 @@
-AI-tæller for fodgængere
+Tæl gående med AI

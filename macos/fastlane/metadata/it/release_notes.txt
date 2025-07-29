@@ -1,1 +1,3 @@
-Stabilità migliorata durante il passaggio tra progetti, garantendo il rilascio immediato delle risorse alla chiusura del progetto
+Segnalazione errori migliorata
+
+Abbiamo aggiunto la segnalazione anonima degli errori! Se riscontri un problema inaspettato, ora puoi scegliere di inviare una segnalazione di errore per aiutarci a risolverlo rapidamente.

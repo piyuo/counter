@@ -1,15 +1,22 @@
-Descubra o futuro da contagem de pedestres com o Contador Piyuo!
-Este aplicativo revolucionário usa inteligência artificial para contar pessoas de forma precisa e simples. Basta posicionar sua câmera e deixar o aplicativo fazer o trabalho.
-Recursos principais:
+Este é um aplicativo que pode detectar e contar automaticamente pedestres, não requer conexão com a internet e pode ser usado imediatamente após a instalação.
 
-Reconhecimento por IA sem necessidade de internet
-Funciona em iPhone, iPad e Mac
-Suporta câmeras de dispositivos, webcams e streaming RTSP
-Registra contagem de pedestres, veículos e bicicletas
-Gravação contínua por até 24 horas
-Relatórios detalhados por período específico
+Visão geral dos recursos
+- Contagem de pessoas em tempo real: O sistema detecta pessoas caminhando pela tela e automaticamente totaliza a contagem.
+- Uso offline: Todas as funções podem executar localmente sem conexão com a internet.
+- Múltiplas fontes de tela: Suporta câmeras integradas, vídeo streaming e câmeras externas (suporte diferente dependendo da plataforma).
+- Gravação de longo prazo: Pode gravar continuamente por 24 horas e consultar dados para qualquer período de tempo.
 
-Como funciona:
-Diferente dos métodos tradicionais onde alguém conta manualmente, nosso aplicativo usa tecnologia de IA para garantir precisão. Encontre o ângulo ideal, posicione a câmera e o aplicativo fará o resto.
-Dica: A precisão depende do posicionamento da câmera. Experimente diferentes ângulos para os melhores resultados.
-Imperfeito, mas inteligente. Cada contagem segue os mesmos padrões de IA, oferecendo consistência nos seus registros.
+Como usar
+1. Aponte a câmera para a passagem ou entrada que você quer monitorar.
+2. Abra o projeto e selecione a fonte da tela.
+3. Após iniciar, o sistema detectará e contará automaticamente.
+
+Observações
+- A precisão da contagem é afetada por ângulo, iluminação, obstruções, etc. É recomendado ajustar a posição da câmera com base nas condições reais.
+- Embora não seja 100% preciso, usar um modelo de IA consistente reduz o erro humano.
+- Todo o processamento de dados é concluído localmente - nenhuma imagem ou dados são enviados.
+
+Cenários adequados
+- Entender o tráfego de pedestres em espaços (como entradas, corredores, áreas de exposição).
+- Pesquisa, planejamento de eventos ou observação diária.
+- Pode começar a usar imediatamente sem equipamentos de hardware adicionais.

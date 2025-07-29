@@ -1,1 +1,1 @@
-contagem pessoas, ia, pedonal, tráfego, análise movimento, webcam, offline, inteligência artificial
+IA,peões,deteção,rastreamento

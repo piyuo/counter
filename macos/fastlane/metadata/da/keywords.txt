@@ -1,1 +1,1 @@
-fodgænger,tæller,AI,kamera,optælling,trafikanalyse,mobilapp,offline
+AI,fodgænger,detektion,sporing

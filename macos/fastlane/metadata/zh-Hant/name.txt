@@ -1,1 +1,1 @@
-Piyuo 計數器
+Piyuo Counter

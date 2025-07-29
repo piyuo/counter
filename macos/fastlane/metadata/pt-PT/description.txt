@@ -1,21 +1,22 @@
-O Contador Piyuo é uma aplicação inovadora que utiliza a câmara do seu dispositivo para contar pessoas de forma automática e inteligente.
-Funcionalidades Principais:
+Esta é uma aplicação que pode detectar e contar automaticamente peões, não requer ligação à internet e pode ser utilizada imediatamente após a instalação.
 
-Contagem precisa de pessoas em tempo real
-Funciona completamente offline com modelo de IA integrado
-Compatível com iPhone, iPad e Mac
-Suporta câmaras de dispositivos, webcams e fluxos RTSP
-Regista o número de pessoas a cada minuto
-Capacidade de gravação contínua até 24 horas
-Identifica pessoas, veículos e bicicletas
+Visão geral das funcionalidades
+- Contagem de pessoas em tempo real: O sistema detecta pessoas a caminhar pelo ecrã e totaliza automaticamente a contagem.
+- Utilização offline: Todas as funções podem executar localmente sem ligação à internet.
+- Múltiplas fontes de ecrã: Suporta câmaras integradas, vídeo streaming e câmaras externas (suporte diferente dependendo da plataforma).
+- Gravação de longo prazo: Pode gravar continuamente durante 24 horas e consultar dados para qualquer período de tempo.
 
-Como Funciona:
-Posicione a câmara num local estratégico e deixe a aplicação fazer o trabalho. A contagem é realizada automaticamente, eliminando erros humanos e garantindo consistência.
-Limitações:
-A precisão depende da resolução da câmara e do posicionamento. Ajuste o ângulo e a localização para obter os melhores resultados.
-Ideal para:
+Como utilizar
+1. Aponte a câmara para a passagem ou entrada que pretende monitorizar.
+2. Abra o projecto e seleccione a fonte do ecrã.
+3. Após iniciar, o sistema detectará e contará automaticamente.
 
-Estudos de tráfego pedonal
-Gestão de espaços públicos
-Investigação urbana
-Análise de movimento
+Notas
+- A precisão da contagem é afectada por ângulo, iluminação, obstruções, etc. É recomendado ajustar a posição da câmara com base nas condições reais.
+- Embora não seja 100% preciso, utilizar um modelo de IA consistente reduz o erro humano.
+- Todo o processamento de dados é concluído localmente - nenhuma imagem ou dados são enviados.
+
+Cenários adequados
+- Entender o tráfego de peões em espaços (como entradas, corredores, áreas de exposição).
+- Investigação, planeamento de eventos ou observação diária.
+- Pode começar a utilizar imediatamente sem equipamento de hardware adicional.

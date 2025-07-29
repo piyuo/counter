@@ -1,0 +1,3 @@
+Pinabuting Pag-uulat ng Error
+
+Nagdagdag kami ng anonymous error reporting! Kung makatagpo ka ng hindi inaasahang isyu, maaari ka na ngayong pumili na magpadala ng error report upang matulungan kaming ayusin ito nang mabilis.

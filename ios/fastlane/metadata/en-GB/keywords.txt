@@ -1,1 +1,1 @@
-pedestrian-counter, ai-tracking, crowd-monitoring, traffic-analysis, people-counting
+AI,pedestrian,detection,tracking

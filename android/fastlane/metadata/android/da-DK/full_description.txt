@@ -1,19 +1,22 @@
-Piyuo Counter er en innovativ app, der forvandler din telefon til et kraftfuldt værktøj til at tælle fodgængere. Ved hjælp af avanceret AI-teknologi registrerer og tæller den folk, der passerer forbi din enheds kamera – alt sammen uden behov for en internetforbindelse.
+Dette er en app, der automatisk kan registrere og tælle fodgængere, kræver ingen internetforbindelse og kan bruges med det samme efter installation.
 
-Nøglefunktioner:
+Funktionsoversigt
+- Realtids personoptælling: Systemet registrerer personer, der går gennem skærmen, og tæller automatisk det samlede antal.
+- Offline brug: Alle funktioner kan køre lokalt uden internetforbindelse.
+- Flere skærmkilder: Understøtter indbyggede kameraer, streaming video og eksterne kameraer.
+- Langtidsoptagelse: Kan optage kontinuerligt i 24 timer og forespørge data for enhver tidsperiode.
 
-Øjeblikkelig og præcis tælling af fodgængere, cyklister og køretøjer
-Fungerer offline med indbygget AI-genkendelse
-Understøtter RTSP-videostreams og eksterne webcams
-24-timers kontinuerlig optagelse med data pr. minut
-Sig farvel til manuel klikkertælling! Piyuo Counter automatiserer processen og sikrer konsistente resultater hver gang. Du skal blot placere din enhed i den rigtige vinkel, og så klarer appen resten. Den registrerer forbipasserende personer hvert minut i op til 24 timer, hvilket giver dig mulighed for at analysere fodtrafikken i specifikke tidsperioder.
-Selvom den ikke er perfekt (kameraopløsningen kan ikke matche det menneskelige øje), tilbyder Piyuo Counter fleksibilitet i enhedens placering for at optimere resultaterne. AI-modellen sikrer standardiseret tælling på tværs af flere sessioner og leverer pålidelige data til dine behov for analyse af fodgængertrafik.
+Sådan bruges det
+1. Ret kameraet mod den passage eller indgang, du vil overvåge.
+2. Åbn projektet og vælg skærmkilden.
+3. Efter start vil systemet automatisk registrere og tælle.
 
-Perfekt til:
+Bemærkninger
+- Optællingsnøjagtighed påvirkes af vinkel, belysning, forhindringer osv. Det anbefales at justere kameraposition baseret på faktiske forhold.
+- Selvom det ikke er 100% nøjagtigt, reducerer brug af en konsistent AI-model menneskelige fejl.
+- Al databehandling gennemføres lokalt - ingen billeder eller data uploades.
 
-Byplanlæggere
-Ejere af små virksomheder
-Eventarrangører
-Trafikanalytikere
-Alle, der har brug for data om antallet af fodgængere
-Download Piyuo Counter i dag og oplev fremtiden inden for teknologi til tælling af fodgængere!
+Passende scenarier
+- Forstå fodgængertrafik i rum (såsom indgange, korridorer, udstillingsområder).
+- Forskning, eventplanlægning eller daglig observation.
+- Kan begynde at bruge med det samme uden yderligere hardwareudstyr.

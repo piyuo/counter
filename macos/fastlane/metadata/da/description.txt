@@ -1,23 +1,22 @@
-Oplev en intelligent og effektiv måde at tælle fodgængere på med Piyuo Tæller. Denne app bruger avanceret AI-teknologi til at registrere og tælle mennesker, køretøjer og cyklister med blot et kamera.
-Hvordan fungerer det?
+Dette er en app, der automatisk kan registrere og tælle fodgængere, kræver ingen internetforbindelse og kan bruges med det samme efter installation.
 
-Benyt mobilkameraet, onlinevideo eller webcam
-Komplet offline AI-genkendelse
-Hurtig og nøjagtig optælling
-Understøtter iPhone, iPad og Mac
+Funktionsoversigt
+- Realtids personoptælling: Systemet registrerer personer, der går gennem skærmen, og tæller automatisk det samlede antal.
+- Offline brug: Alle funktioner kan køre lokalt uden internetforbindelse.
+- Flere skærmkilder: Understøtter indbyggede kameraer, streaming video og eksterne kameraer.
+- Langtidsoptagelse: Kan optage kontinuerligt i 24 timer og forespørge data for enhver tidsperiode.
 
-Traditionel manuel optælling er upålidelig og tidskrævende. Med Piyuo Tæller kan du:
+Sådan bruges det
+1. Ret kameraet mod den passage eller indgang, du vil overvåge.
+2. Åbn projektet og vælg skærmkilden.
+3. Efter start vil systemet automatisk registrere og tælle.
 
-Optælle fodgængere automatisk
-Registrere antal personer i bestemte tidsintervaller
-Gemme optællingsdata i op til 24 timer
-Justere kameravinkel for bedre nøjagtighed
+Bemærkninger
+- Optællingsnøjagtighed påvirkes af vinkel, belysning, forhindringer osv. Det anbefales at justere kameraposition baseret på faktiske forhold.
+- Selvom det ikke er 100% nøjagtigt, reducerer brug af en konsistent AI-model menneskelige fejl.
+- Al databehandling gennemføres lokalt - ingen billeder eller data uploades.
 
-Perfekt til:
-
-Byplanlægning
-Trafikanalyse
-Forskningsprojekter
-Butikstælling
-
-Bemærk: Resultaterne kan variere afhængigt af kameraets placering og opløsning.
+Passende scenarier
+- Forstå fodgængertrafik i rum (såsom indgange, korridorer, udstillingsområder).
+- Forskning, eventplanlægning eller daglig observation.
+- Kan begynde at bruge med det samme uden yderligere hardwareudstyr.

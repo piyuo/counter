@@ -1,1 +1,1 @@
-Comptador Piyuo
+Piyuo Counter

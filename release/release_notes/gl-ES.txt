@@ -1,0 +1,3 @@
+Mellora no informe de erros
+
+Engadimos informes de erros anónimos! Se atopas un problema inesperado, agora podes elixir enviar un informe de erro para axudarnos a solucionalo rapidamente.

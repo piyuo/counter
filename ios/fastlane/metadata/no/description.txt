@@ -1,13 +1,22 @@
-Piyuo Counter er en intelligente app som bruker smarttelefonens kamera til å telle mennesker og kjøretøy på gaten. Med innebygd AI-gjenkjenningsmodell kan du enkelt og nøyaktig registrere trafikkstrømmer uten internettforbindelse.
-Hvordan fungerer appen?
+Dette er en app som automatisk kan oppdage og telle fotgjengere, krever ingen internettilkobling og kan brukes umiddelbart etter installasjon.
 
-Bruk smarttelefonkameraet til å telle fotgjengere, kjøretøy og syklister
-AI-modell som gjenkjenner og teller automatisk
-Ingen internettforbindelse nødvendig - alt skjer lokalt på enheten
-Støtter iPhone, iPad og Mac
-Kan også brukes med RTSP-videostrømmer eller ekstern webkamera
-Kontinuerlig telling i opptil 24 timer
-Detaljerte rapporter per tidssegment (f.eks. mellom kl. 1-3)
+Funksjonsoversikt
+- Sanntids personentelling: Systemet oppdager personer som går gjennom skjermen og summerer automatisk antallet.
+- Offline bruk: Alle funksjoner kan kjøre lokalt uten internettilkobling.
+- Flere skjermkilder: Støtter innebygde kameraer, streaming video og eksterne kameraer (forskjellig støtte avhengig av plattform).
+- Langtidsopptak: Kan ta opp kontinuerlig i 24 timer og spørre data for hvilken som helst tidsperiode.
 
-Appen er ikke perfekt, men ved å justere kameravinkel og plassering kan du oppnå svært nøyaktige resultater. AI-modellen sikrer konsistent telling fra dag til dag.
-Tradisjonell manuell telling er upålitelig og varierende. Med Piyuo Counter får du en enkel, rask og objektiv måte å analysere trafikkstrømmer på.
+Slik bruker du
+1. Pek kameraet mot gangen eller inngangen du vil overvåke.
+2. Åpne prosjektet og velg skjermkilde.
+3. Etter oppstart vil systemet automatisk oppdage og telle.
+
+Merknader
+- Tellenøyaktigheten påvirkes av vinkel, belysning, hindringer osv. Det anbefales å justere kameraposisjonen basert på faktiske forhold.
+- Selv om det ikke er 100% nøyaktig, reduserer bruk av en konsistent AI-modell menneskelige feil.
+- All databehandling fullføres lokalt - ingen bilder eller data lastes opp.
+
+Egnede scenarier
+- Forstå fotgjengertrafikk i rom (som innganger, korridorer, utstillingsområder).
+- Forskning, arrangement planlegging eller daglig observasjon.
+- Kan begynne å bruke umiddelbart uten ekstra maskinvareutstyr.

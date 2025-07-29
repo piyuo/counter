@@ -1,1 +1,3 @@
-Verbeterde stabiliteit bij het wisselen tussen projecten, zorgt voor directe vrijgave van bronnen bij het sluiten van een project
+Verbeterde foutrapportage
+
+We hebben anonieme foutrapportage toegevoegd! Als je een onverwacht probleem tegenkomt, kun je er nu voor kiezen om een foutrapport te verzenden om ons te helpen het snel op te lossen.

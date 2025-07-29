@@ -1,1 +1,3 @@
-Javított stabilitás a projektek közötti váltáskor, azonnali erőforrás-felszabadítás a projekt bezárásakor
+Továbbfejlesztett hibakezelés
+
+Hozzáadtuk az anonim hibajelentést! Ha váratlan problémába ütközik, most kiválaszthatja a hibajelentés küldését, hogy segítsen nekünk gyorsan megjavítani.

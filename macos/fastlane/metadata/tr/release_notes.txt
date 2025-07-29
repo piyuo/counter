@@ -1,1 +1,3 @@
-Projeler arası geçişlerde geliştirilmiş kararlılık, proje kapatıldığında kaynakların anında serbest bırakılmasını sağlar
+Geliştirilmiş Hata Raporlama
+
+Anonim hata raporlama özelliğini ekledik! Beklenmedik bir sorunla karşılaştığınızda, artık hızlıca düzeltmemize yardımcı olmak için hata raporu göndermeyi seçebilirsiniz.

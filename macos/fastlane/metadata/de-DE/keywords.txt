@@ -1,1 +1,1 @@
-personenzähler, verkehrszählung, kamera-analyse, ki-erkennung, mobil-tracking, fussgänger, verkehr
+KI,Fußgänger,Erkennung,Verfolgung

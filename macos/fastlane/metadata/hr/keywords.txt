@@ -1,1 +1,1 @@
-pješaci, brojač, AI, kamera, analiza prometa
+AI,pješaci,otkrivanje,praćenje

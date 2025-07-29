@@ -1,14 +1,22 @@
-Piyuo Counter je revolucionarna aplikacija za automatsko brojanje pješaka koja vam omogućava jednostavno praćenje ljudskog prometa.
-Ključne značajke:
+Ovo je aplikacija koja može automatski detektirati i brojati pješake, ne zahtijeva internetsku vezu i može se koristiti odmah nakon instalacije.
 
-Koristi AI tehnologiju za prepoznavanje i brojanje pješaka
-Radi izravno na uređaju - bez potrebe za internetskom vezom
-Podržava iPhone, iPad i Mac platforme
-Mogućnost korištenja mobilne kamere, web kamere ili RTSP video strujanja
-Bilježi broj prolaznika svake minute
-Kontinuirano snimanje do 24 sata
-Preciznost ovisi o kutu postavljanja kamere
+Pregled značajki
+- Brojanje ljudi u stvarnom vremenu: Sustav detektira ljude koji prolaze kroz ekran i automatski zbraja ukupan broj.
+- Offline korištenje: Sve funkcije mogu raditi lokalno bez internetske veze.
+- Višestruki izvori ekrana: Podržava ugrađene kamere, streaming video i vanjske kamere (različita podrška ovisno o platformi).
+- Dugoročno snimanje: Može snimati kontinuirano 24 sata i ispitati podatke za bilo koje vremensko razdoblje.
 
-Tradicionalno brojanje pješaka zahtijeva ručno praćenje, što je dosadno i sklono pogreškama. Naša aplikacija automatizira ovaj proces. Jednostavno postavite kameru pod pravim kutom i pustite AI da obavi posao.
-Napomena: Kao i svaka AI tehnologija, precisnost ovisi o kvaliteti slike i postavljanju kamere. Eksperimentirajte i pronaći ćete optimalan položaj za svoje potrebe.
-Razvijeno s ljubavlju od strane neovisnog developera koji želi olakšati praćenje ljudskog prometa.
+Kako koristiti
+1. Usmjerite kameru na prolaz ili ulaz koji želite nadzirati.
+2. Otvorite projekt i odaberite izvor ekrana.
+3. Nakon pokretanja, sustav će automatski detektirati i brojati.
+
+Napomene
+- Na točnost brojanja utječu kut, osvjetljenje, prepreke itd. Preporučuje se prilagođavanje položaja kamere prema stvarnim uvjetima.
+- Iako nije 100% točan, korištenje konzistentnog AI modela smanjuje ljudsku grešku.
+- Sva obradba podataka završava se lokalno - ne prenose se slike ili podaci.
+
+Prikladni scenariji
+- Razumijevanje pješačkog prometa u prostorima (kao što su ulazi, hodnici, izložbeni prostori).
+- Istraživanje, planiranje događaja ili svakodnevno promatranje.
+- Može se početi koristiti odmah bez dodatne hardverske opreme.

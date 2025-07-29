@@ -1,1 +1,1 @@
-penghitung pejalan kaki, ai kamera, pengiraan automatik, statistik pergerakan
+AI,pejalan kaki,pengesanan,penjejakan

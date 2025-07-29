@@ -1,1 +1,3 @@
-Millora de l'estabilitat en canviar entre projectes, assegurant l'alliberament immediat de recursos en tancar un projecte
+Informes d'error millorats
+
+Hem afegit informes d'error anònims! Si trobeu un problema inesperat, ara podeu triar enviar un informe d'error per ajudar-nos a solucionar-ho ràpidament.

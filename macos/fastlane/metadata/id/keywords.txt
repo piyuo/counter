@@ -1,1 +1,1 @@
-penghitung pejalan kaki, ai, deteksi orang, statistik lalu lintas, analisis keramaian, kamera pintar
+AI,pejalan,deteksi,pelacakan

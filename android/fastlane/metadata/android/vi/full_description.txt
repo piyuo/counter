@@ -1,20 +1,22 @@
-Piyuo Counter là một ứng dụng đột phá giúp biến điện thoại của bạn thành công cụ đếm người thông minh. Với công nghệ AI tiên tiến, ứng dụng phát hiện và đếm số người đi qua bằng camera – hoàn toàn không cần kết nối internet.
+Đây là một ứng dụng có thể tự động phát hiện và đếm người đi bộ, không cần kết nối internet và có thể sử dụng ngay sau khi cài đặt.
 
-Tính năng nổi bật:
+Tổng quan tính năng
+- Đếm người thời gian thực: Hệ thống phát hiện những người đi qua màn hình và tự động tổng hợp số lượng.
+- Sử dụng ngoại tuyến: Tất cả các chức năng có thể chạy cục bộ mà không cần kết nối internet.
+- Nhiều nguồn màn hình: Hỗ trợ camera tích hợp, video streaming và camera ngoài (hỗ trợ khác nhau tùy thuộc vào nền tảng).
+- Ghi âm dài hạn: Có thể ghi liên tục trong 24 giờ và truy vấn dữ liệu cho bất kỳ khoảng thời gian nào.
 
-Đếm chính xác người đi bộ, xe đạp và phương tiện giao thông
-Hoạt động ngoại tuyến với nhận dạng AI tích hợp
-Hỗ trợ video RTSP và webcam ngoài
-Ghi lại liên tục 24 giờ, dữ liệu cập nhật theo từng phút
-Không còn cần bấm đếm thủ công! Piyuo Counter tự động hóa quy trình, mang lại kết quả nhất quán. Chỉ cần đặt thiết bị đúng góc nhìn, ứng dụng sẽ tự xử lý mọi thứ. Dữ liệu sẽ được ghi lại theo từng phút, lên đến 24 giờ, giúp bạn phân tích lưu lượng người qua lại theo thời gian.
+Cách sử dụng
+1. Hướng camera về lối đi hoặc lối vào mà bạn muốn giám sát.
+2. Mở dự án và chọn nguồn màn hình.
+3. Sau khi bắt đầu, hệ thống sẽ tự động phát hiện và đếm.
 
-Dù không hoàn hảo (chất lượng camera không bằng mắt người), ứng dụng cho phép điều chỉnh góc đặt thiết bị để đạt kết quả tốt nhất. Mô hình AI đảm bảo khả năng đếm nhất quán qua nhiều lần sử dụng, cung cấp dữ liệu tin cậy cho việc phân tích lưu lượng.
+Ghi chú
+- Độ chính xác của việc đếm bị ảnh hưởng bởi góc độ, ánh sáng, chướng ngại vật, v.v. Được khuyến nghị điều chỉnh vị trí camera dựa trên điều kiện thực tế.
+- Mặc dù không chính xác 100%, việc sử dụng mô hình AI nhất quán giảm lỗi của con người.
+- Tất cả xử lý dữ liệu được hoàn thành cục bộ - không có hình ảnh hoặc dữ liệu nào được tải lên.
 
-Phù hợp với:
-
-Nhân viên quy hoạch đô thị
-Chủ cửa hàng nhỏ
-Ban tổ chức sự kiện
-Chuyên gia phân tích giao thông
-Bất kỳ ai cần dữ liệu đếm người qua lại
-Tải ngay Piyuo Counter và trải nghiệm công nghệ đếm người hiện đại!
+Tình huống phù hợp
+- Hiểu lưu lượng người đi bộ trong không gian (như lối vào, hành lang, khu vực triển lãm).
+- Nghiên cứu, lập kế hoạch sự kiện hoặc quan sát hàng ngày.
+- Có thể bắt đầu sử dụng ngay mà không cần thiết bị phần cứng bổ sung.

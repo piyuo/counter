@@ -1,1 +1,1 @@
-AI broj pješaka
+Brojite pješake pomoću AI

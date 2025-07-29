@@ -1,1 +1,1 @@
-Mudah hitung pejalan kaki pakai kamera ponsel + AI.
+Hitung pejalan kaki dengan AI

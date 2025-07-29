@@ -1,21 +1,22 @@
-Numărătorul Piyuo este o aplicație inovatoare care utilizează camera dispozitivului pentru a număra automat și inteligent persoanele.
-Caracteristici Principale:
+Aceasta este o aplicație care poate detecta și număra automat pietonii, nu necesită conexiune la internet și poate fi folosită imediat după instalare.
 
-Numărare precisă a persoanelor în timp real
-Funcționează complet offline cu model de inteligență artificială integrat
-Compatibil cu iPhone, iPad și Mac
-Suportă camere de dispozitive, webcam-uri și fluxuri RTSP
-Înregistrează numărul de persoane la fiecare minut
-Capacitate de înregistrare continuă până la 24 de ore
-Identifică persoane, vehicule și biciclete
+Prezentarea funcțiilor
+- Numărarea persoanelor în timp real: Sistemul detectează persoanele care trec prin ecran și totalizează automat numărul.
+- Utilizare offline: Toate funcțiile pot rula local fără conexiune la internet.
+- Surse multiple de ecran: Suportă camere integrate, video streaming și camere externe (suport diferit în funcție de platformă).
+- Înregistrare pe termen lung: Poate înregistra continuu timp de 24 de ore și interoga date pentru orice perioadă de timp.
 
-Cum Funcționează:
-Poziționați camera într-un loc strategic și lăsați aplicația să facă treaba. Numărarea se realizează automat, eliminând erorile umane și asigurând consecvența.
-Limitări:
-Precizia depinde de rezoluția camerei și de poziționare. Ajustați unghiul și locația pentru a obține cele mai bune rezultate.
-Ideal pentru:
+Cum să utilizezi
+1. Îndreptă camera spre pasajul sau intrarea pe care vrei să o monitorizezi.
+2. Deschide proiectul și selectează sursa ecranului.
+3. După pornire, sistemul va detecta și număra automat.
 
-Studii de trafic pietonal
-Gestionarea spațiilor publice
-Cercetare urbană
-Analiză de mișcare
+Note
+- Acuratețea numărării este afectată de unghi, iluminare, obstrucții, etc. Se recomandă ajustarea poziției camerei în funcție de condițiile reale.
+- Deși nu este 100% precis, utilizarea unui model AI consistent reduce eroarea umană.
+- Toată procesarea datelor este finalizată local - nicio imagine sau date nu sunt încărcate.
+
+Scenarii potrivite
+- Înțelegerea traficului pietonal în spații (cum ar fi intrări, coridoare, zone de expoziție).
+- Cercetare, planificare evenimente sau observație zilnică.
+- Poate începe să fie folosit imediat fără echipamente hardware suplimentare.

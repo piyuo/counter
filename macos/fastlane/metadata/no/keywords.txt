@@ -1,1 +1,1 @@
-fotgjengertelling, trafikktelling, AI, kamera, menneskeopptelling, byanalyse
+AI,fotgjengere,oppdagelse,sporing
