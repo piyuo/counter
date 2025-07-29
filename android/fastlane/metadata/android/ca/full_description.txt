@@ -1,26 +1,22 @@
-Piyuo Counter és una aplicació innovadora que transforma el teu telèfon en una potent eina de comptatge de vianants. Utilitzant tecnologia avançada d'intel·ligència artificial, detecta i compta les persones que passen a través de la càmera del teu dispositiu, tot sense necessitat de connexió a internet.
+Aquesta és una aplicació que pot detectar i comptar vianants automàticament, no requereix connexió a internet i es pot utilitzar immediatament després de la instal·lació.
 
-Característiques principals:
+Resum de característiques
+- Recompte de persones en temps real: El sistema detecta persones que caminen per la pantalla i suma automàticament el total.
+- Ús sense connexió: Totes les funcions poden funcionar localment sense connexió a internet.
+- Múltiples fonts de pantalla: Admet càmeres integrades, vídeo en streaming i càmeres externes.
+- Gravació a llarg termini: Pot gravar contínuament durant 24 hores i consultar dades per a qualsevol període de temps.
 
-Comptatge instantani i precís de vianants, ciclistes i vehicles
-Funciona sense connexió amb reconeixement d'IA integrat
-Admet fluxos de vídeo RTSP i càmeres web externes
-Gravació contínua de 24 hores amb dades minut a minut
-Digues adéu als comptadors manuals! Piyuo Counter automatitza el procés, assegurant resultats consistents cada vegada. Simplement col·loca el dispositiu a l'angle correcte i deixa que l'aplicació faci la feina. Enregistra les persones que passen cada minut durant un màxim de 24 hores, cosa que et permet analitzar el trànsit de vianants durant períodes de temps específics.
-Tot i que no és perfecte (la resolució de la càmera no pot igualar l'ull humà), Piyuo Counter ofereix flexibilitat en la col·locació del dispositiu per optimitzar els resultats. El model d'IA garanteix un comptatge estandarditzat en múltiples sessions, proporcionant dades fiables per a les teves necessitats d'anàlisi del trànsit de vianants.
+Com utilitzar
+1. Apunteu la càmera cap al passadís o entrada que voleu monitoritzar.
+2. Obriu el projecte i seleccioneu la font de pantalla.
+3. Després de començar, el sistema detectarà i comptarà automàticament.
 
-Perfecte per a:
+Notes
+- La precisió del recompte es veu afectada per l'angle, la il·luminació, les obstruccions, etc. Es recomana ajustar la posició de la càmera segons les condicions reals.
+- Tot i que no és 100% precís, utilitzar un model d'IA consistent redueix l'error humà.
+- Tot el processament de dades es completa localment: no es carreguen imatges ni dades.
 
-Planificadors urbans
-Propietaris de petites empreses
-Organitzadors d'esdeveniments
-Analistes de trànsit
-Qualsevol persona que necessiti dades de comptatge de vianants
-Descarrega Piyuo Counter avui mateix i experimenta el futur de la tecnologia de comptatge de vianants!
-
-Algunes notes:
-
-Límit de caràcters: He intentat mantenir-me dins dels límits de caràcters de Google Play Store. Si us plau, reviseu-ho al Google Play Console.
-Expressions locals: He fet servir un llenguatge que espero que sigui natural i apropiat per als parlants de català.
-Nom de l'aplicació: El nom de l'aplicació s'ha mantingut en anglès tal com ho heu especificat.
-Espero que aquesta traducció us sigui útil! Si teniu alguna altra pregunta o necessiteu més ajuda, no dubteu a preguntar.
+Escenaris adequats
+- Comprendre el trànsit de vianants en espais (com entrades, passadissos, àrees d'exposició).
+- Investigació, planificació d'esdeveniments o observació diària.
+- Es pot començar a utilitzar immediatament sense equip de maquinari addicional.

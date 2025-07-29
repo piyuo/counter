@@ -1,12 +1,22 @@
-Bộ Đếm Piyuo là giải pháp thông minh để đếm số người qua lại tại bất kỳ không gian nào. Ứng dụng sử dụng công nghệ AI tiên tiến để phân tích hình ảnh từ camera, giúp bạn nhanh chóng và chính xác đếm được số lượng người qua lại.
-Tính Năng Chính:
+Đây là một ứng dụng có thể tự động phát hiện và đếm người đi bộ, không cần kết nối internet và có thể sử dụng ngay sau khi cài đặt.
 
-Hoạt động hoàn toàn ngoại tuyến, không cần kết nối internet
-Hỗ trợ nhiều nền tảng: iPhone, iPad, Mac
-Phân tích được từ camera điện thoại, webcam, hay luồng video RTSP
-Đếm được cả người, phương tiện và xe đạp
-Ghi lại số liệu theo từng khung giờ
-Có thể theo dõi liên tục trong 24 giờ
+Tổng quan tính năng
+- Đếm người thời gian thực: Hệ thống phát hiện những người đi qua màn hình và tự động tổng hợp số lượng.
+- Sử dụng ngoại tuyến: Tất cả các chức năng có thể chạy cục bộ mà không cần kết nối internet.
+- Nhiều nguồn màn hình: Hỗ trợ camera tích hợp, video streaming và camera ngoài (hỗ trợ khác nhau tùy thuộc vào nền tảng).
+- Ghi âm dài hạn: Có thể ghi liên tục trong 24 giờ và truy vấn dữ liệu cho bất kỳ khoảng thời gian nào.
 
-Làm thế nào hoạt động?
-Không còn phải đếm thủ công mất nhiều thời gian nữa. Chỉ cần đặt camera ở góc phù hợp, ứng dụng sẽ tự động đếm số người qua lại. Mặc dù không hoàn hảo 100%, nhưng bạn có thể điều chỉnh góc độ camera để có kết quả chính xác nhất.
+Cách sử dụng
+1. Hướng camera về lối đi hoặc lối vào mà bạn muốn giám sát.
+2. Mở dự án và chọn nguồn màn hình.
+3. Sau khi bắt đầu, hệ thống sẽ tự động phát hiện và đếm.
+
+Ghi chú
+- Độ chính xác của việc đếm bị ảnh hưởng bởi góc độ, ánh sáng, chướng ngại vật, v.v. Được khuyến nghị điều chỉnh vị trí camera dựa trên điều kiện thực tế.
+- Mặc dù không chính xác 100%, việc sử dụng mô hình AI nhất quán giảm lỗi của con người.
+- Tất cả xử lý dữ liệu được hoàn thành cục bộ - không có hình ảnh hoặc dữ liệu nào được tải lên.
+
+Tình huống phù hợp
+- Hiểu lưu lượng người đi bộ trong không gian (như lối vào, hành lang, khu vực triển lãm).
+- Nghiên cứu, lập kế hoạch sự kiện hoặc quan sát hàng ngày.
+- Có thể bắt đầu sử dụng ngay mà không cần thiết bị phần cứng bổ sung.

@@ -1,15 +1,22 @@
-Introducing Piyuo Counter: Your Smart People Counting Companion
-Tired of manual people counting? Our app revolutionises how you track foot traffic using advanced AI technology directly on your device.
-Key Features:
+This is an app that can automatically detect and count pedestrians, requires no internet connection, and can be used immediately after installation.
 
-AI-Powered Counting: Accurately detect and count people, vehicles, and bikes
-Offline Functionality: Works without internet connection
-Multi-Platform Support: Available on iPhone, iPad, and Mac
-Flexible Detection: Use mobile camera, RTSP video streams, or external webcams
-Continuous Monitoring: Record foot traffic 24/7
-Precise Time-Based Reporting: View counts for specific time intervals
+Feature Overview
+- Real-time people counting: The system detects people walking through the screen and automatically totals the count.
+- Offline use: All functions can run locally without internet connection.
+- Multiple screen sources: Supports built-in cameras, streaming video, and external cameras (different support depending on platform).
+- Long-term recording: Can record continuously for 24 hours and query data for any time period.
 
-How It Works:
-Simply position your camera at the right angle and let the app do the rest. Our AI model provides consistent, reliable counting across different times and locations.
-Perfect for researchers, urban planners, small businesses, and anyone curious about foot traffic patterns.
-Note: While incredibly smart, the app's accuracy depends on camera positioning and resolution. Experiment to find the best setup for your needs.
+How to Use
+1. Point the camera at the passageway or entrance you want to monitor.
+2. Open the project and select the screen source.
+3. After starting, the system will automatically detect and count.
+
+Notes
+- Counting accuracy is affected by angle, lighting, obstructions, etc. It's recommended to adjust camera position based on actual conditions.
+- While not 100% accurate, using a consistent AI model reduces human error.
+- All data processing is completed locally - no images or data are uploaded.
+
+Suitable Scenarios
+- Understanding foot traffic in spaces (such as entrances, corridors, exhibition areas).
+- Research, event planning, or daily observation.
+- Can start using immediately without additional hardware equipment.

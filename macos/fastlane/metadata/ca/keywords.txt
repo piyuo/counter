@@ -1,1 +1,1 @@
-recompte, vianants, IA, càmera, detecció, persones, trànsit, estadístiques
+IA,vianant,detecció,seguiment

@@ -1,19 +1,22 @@
-Piyuo Counter je inovativní aplikace, která promění váš telefon v účinný nástroj pro počítání chodců. Pomocí pokročilé technologie umělé inteligence detekuje a sčítá lidi procházející kolem vašeho zařízení prostřednictvím kamery – a to vše bez nutnosti připojení k internetu.
+Toto je aplikace, která dokáže automaticky detekovat a počítat chodce, nevyžaduje připojení k internetu a lze ji použít ihned po instalaci.
 
-Klíčové vlastnosti:
+Přehled funkcí
+- Počítání lidí v reálném čase: Systém detekuje lidi procházející přes obrazovku a automaticky sčítá celkový počet.
+- Offline použití: Všechny funkce mohou běžet lokálně bez připojení k internetu.
+- Více zdrojů obrazu: Podporuje vestavěné kamery, streamované video a externí kamery.
+- Dlouhodobé nahrávání: Může nahrávat nepřetržitě po dobu 24 hodin a dotazovat se na data za jakékoli časové období.
 
-Okamžité a přesné počítání chodců, cyklistů a vozidel
-Funguje offline s vestavěným rozpoznáváním pomocí umělé inteligence
-Podporuje video streamy RTSP a externí webové kamery
-24hodinové nepřetržité nahrávání s daty po minutách
-Dejte sbohem ručnímu počítání klikáním! Piyuo Counter automatizuje proces a zajišťuje konzistentní výsledky pokaždé. Jednoduše umístěte zařízení do správného úhlu a nechte aplikaci pracovat. Zaznamenává procházející jednotlivce každou minutu až po dobu 24 hodin, což vám umožní analyzovat pohyb chodců během konkrétních časových období.
-Ačkoli není dokonalý (rozlišení kamery se nemůže rovnat lidskému oku), Piyuo Counter nabízí flexibilitu v umístění zařízení pro optimalizaci výsledků. Model umělé inteligence zajišťuje standardizované počítání napříč více relacemi a poskytuje spolehlivá data pro vaše potřeby analýzy pohybu chodců.
+Jak používat
+1. Nasměrujte kameru na průchod nebo vchod, který chcete monitorovat.
+2. Otevřete projekt a vyberte zdroj obrazu.
+3. Po spuštění bude systém automaticky detekovat a počítat.
 
-Ideální pro:
+Poznámky
+- Přesnost počítání je ovlivněna úhlem, osvětlením, překážkami atd. Doporučuje se upravit pozici kamery podle skutečných podmínek.
+- I když není 100% přesná, použití konzistentního AI modelu snižuje lidské chyby.
+- Veškeré zpracování dat probíhá lokálně - žádné obrázky ani data se nenahrávají.
 
-Urbanisty
-Majitele malých firem
-Organizátory akcí
-Analytiky dopravy
-Kohokoli, kdo potřebuje data o počtu chodců
-Stáhněte si Piyuo Counter ještě dnes a zažijte budoucnost technologie počítání chodců!
+Vhodné scénáře
+- Pochopení pěšího provozu v prostorách (jako jsou vchody, chodby, výstavní oblasti).
+- Výzkum, plánování událostí nebo denní pozorování.
+- Lze začít používat okamžitě bez dodatečného hardwarového vybavení.

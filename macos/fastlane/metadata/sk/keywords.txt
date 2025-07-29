@@ -1,1 +1,1 @@
-počítanie chodcov, ai detekcia, mestská analýza, monitorovanie pohybu
+AI,chodci,detekcia,sledovanie

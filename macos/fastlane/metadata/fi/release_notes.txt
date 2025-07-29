@@ -1,1 +1,3 @@
-Parannettu vakaus projektien välillä vaihdettaessa, varmistaa resurssien välittömän vapautumisen projektin sulkemisen yhteydessä
+Paranneltu virheraportointi
+
+Lisäsimme anonyymin virheraportoimisen! Jos kohtaat odottamattoman ongelman, voit nyt valita virheraportin lähetyksen auttaaksemme korjaamaan sen nopeasti.

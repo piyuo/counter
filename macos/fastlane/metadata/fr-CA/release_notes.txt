@@ -1,1 +1,3 @@
-Stabilité améliorée lors du changement de projets, assurant une libération immédiate des ressources à la fermeture d'un projet
+Rapport d'erreurs amélioré
+
+Nous avons ajouté la création de rapports d'erreurs anonymes ! Si vous rencontrez un problème inattendu, vous pouvez maintenant choisir d'envoyer un rapport d'erreur pour nous aider à le corriger rapidement.

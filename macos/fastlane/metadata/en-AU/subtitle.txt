@@ -1,1 +1,1 @@
-Count People Simply with AI
+Count pedestrians with AI

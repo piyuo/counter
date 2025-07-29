@@ -1,15 +1,22 @@
-Contador Piyuo es una herramienta inteligente para contar personas de forma automática.
-Características principales:
+Esta es una aplicación que puede detectar y contar automáticamente peatones, no requiere conexión a internet y se puede usar inmediatamente después de la instalación.
 
-Detección de peatones mediante cámara
-Modelo de IA integrado sin necesidad de internet
-Funciona en iPhone, iPad y Mac
-Compatible con cámaras web, streaming RTSP y móviles
-Registro continuo durante 24 horas
-Análisis de tráfico por intervalos
-Detecta peatones, vehículos y bicicletas
+Resumen de características
+- Conteo de personas en tiempo real: El sistema detecta personas caminando por la pantalla y automáticamente totaliza el conteo.
+- Uso sin conexión: Todas las funciones pueden ejecutarse localmente sin conexión a internet.
+- Múltiples fuentes de pantalla: Compatible con cámaras integradas, vídeo en streaming y cámaras externas (soporte diferente según la plataforma).
+- Grabación a largo plazo: Puede grabar continuamente durante 24 horas y consultar datos para cualquier período de tiempo.
 
-Método tradicional vs Contador Piyuo:
-Frente al conteo manual con contador, eliminamos errores humanos. Solo necesitas encontrar el ángulo adecuado y dejar que la app trabaje.
-Precisión y realidad:
-Reconocemos sus limitaciones. La resolución de la cámara no es perfecta, pero ajustando bien el ángulo, obtendrás resultados fiables.
+Cómo usar
+1. Apunta la cámara hacia el pasillo o entrada que quieres monitorizar.
+2. Abre el proyecto y selecciona la fuente de pantalla.
+3. Después de iniciar, el sistema detectará y contará automáticamente.
+
+Notas
+- La precisión del conteo se ve afectada por el ángulo, iluminación, obstáculos, etc. Se recomienda ajustar la posición de la cámara según las condiciones reales.
+- Aunque no es 100% preciso, usar un modelo de IA consistente reduce el error humano.
+- Todo el procesamiento de datos se completa localmente - no se suben imágenes ni datos.
+
+Escenarios adecuados
+- Entender el tráfico peatonal en espacios (como entradas, pasillos, áreas de exposición).
+- Investigación, planificación de eventos u observación diaria.
+- Se puede empezar a usar inmediatamente sin equipamiento hardware adicional.

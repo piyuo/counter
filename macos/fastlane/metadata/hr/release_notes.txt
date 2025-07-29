@@ -1,1 +1,3 @@
-Poboljšana stabilnost prilikom prebacivanja između projekata, uz osiguravanje trenutačnog oslobađanja resursa pri zatvaranju projekta
+Poboljšano izvještavanje o greškama
+
+Dodali smo anonimno izvještavanje o greškama! Ako naletite na neočekivani problem, sada možete odabrati slanje izvještaja o grešci kako biste nam pomogli da ga brzo riješimo.

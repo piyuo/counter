@@ -1,1 +1,1 @@
-ihmislaskuri, tekoäly, kamera, laskenta, liikenne, analyysi, automaatio, liikkuminen, kulkijat
+AI,jalankulkijat,tunnistus,seuranta

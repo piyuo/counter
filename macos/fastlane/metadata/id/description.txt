@@ -1,17 +1,22 @@
-Penghitung Piyuo adalah solusi pintar untuk menghitung jumlah pejalan kaki menggunakan kecerdasan buatan.
+Ini adalah aplikasi yang dapat secara otomatis mendeteksi dan menghitung pejalan kaki, tidak memerlukan koneksi internet, dan dapat digunakan segera setelah instalasi.
 
-Fitur Utama:
-• Deteksi otomatis menggunakan AI canggih
-• Bekerja tanpa memerlukan internet
-• Kompatibel dengan iPhone, iPad, dan Mac
-• Mendukung kamera ponsel, webcam, dan aliran video RTSP
-• Mampu menghitung pejalan kaki, kendaraan, dan sepeda
-• Rekam statistik selama 24 jam
-• Lacak jumlah orang di berbagai interval waktu
+Gambaran Fitur
+- Penghitungan orang real-time: Sistem mendeteksi orang yang berjalan melewati layar dan secara otomatis menjumlahkan hitungan.
+- Penggunaan offline: Semua fungsi dapat berjalan secara lokal tanpa koneksi internet.
+- Sumber layar beragam: Mendukung kamera bawaan, video streaming, dan kamera eksternal (dukungan berbeda tergantung platform).
+- Perekaman jangka panjang: Dapat merekam secara terus-menerus selama 24 jam dan menanyakan data untuk periode waktu apa pun.
 
-Bagaimana Cara Kerjanya?
-Cukup tempatkan ponsel atau kamera di sudut yang tepat. Aplikasi akan menghitung secara otomatis dengan presisi tinggi. Anda bisa melihat statistik untuk periode waktu apa pun.
+Cara Menggunakan
+1. Arahkan kamera ke lorong atau pintu masuk yang ingin Anda pantau.
+2. Buka proyek dan pilih sumber layar.
+3. Setelah dimulai, sistem akan secara otomatis mendeteksi dan menghitung.
 
-Catatan Penting:
-Meskipun tidak sempurna, aplikasi ini memberikan hasil yang konsisten. Dengan penyesuaian sudut dan posisi kamera yang tepat, Anda dapat memperoleh data yang akurat.
+Catatan
+- Akurasi penghitungan dipengaruhi oleh sudut, pencahayaan, penghalang, dll. Disarankan untuk menyesuaikan posisi kamera berdasarkan kondisi aktual.
+- Meskipun tidak 100% akurat, menggunakan model AI yang konsisten mengurangi kesalahan manusia.
+- Semua pemrosesan data diselesaikan secara lokal - tidak ada gambar atau data yang diunggah.
 
+Skenario yang Cocok
+- Memahami lalu lintas pejalan kaki di ruang (seperti pintu masuk, koridor, area pameran).
+- Penelitian, perencanaan acara, atau observasi harian.
+- Dapat mulai digunakan segera tanpa peralatan perangkat keras tambahan.

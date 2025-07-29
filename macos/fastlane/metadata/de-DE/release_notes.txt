@@ -1,1 +1,3 @@
-Verbesserte Stabilität beim Wechseln zwischen Projekten und sofortige Ressourcenfreigabe beim Schließen eines Projekts
+Verbesserte Fehlerberichterstattung
+
+Wir haben anonyme Fehlerberichterstattung hinzugefügt! Wenn Sie auf ein unerwartetes Problem stoßen, können Sie jetzt einen Fehlerbericht senden, um uns zu helfen, es schnell zu beheben.

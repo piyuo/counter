@@ -1,26 +1,22 @@
-Piyuo Counter adalah aplikasi inovatif yang mengubah ponsel Anda menjadi alat penghitung pejalan kaki yang canggih. Menggunakan teknologi AI canggih, aplikasi ini mendeteksi dan menghitung orang yang lewat melalui kamera perangkat Anda – semuanya tanpa memerlukan koneksi internet.
+Ini adalah aplikasi yang dapat secara otomatis mendeteksi dan menghitung pejalan kaki, tidak memerlukan koneksi internet, dan dapat digunakan segera setelah instalasi.
 
-Fitur Utama:
+Gambaran Fitur
+- Penghitungan orang real-time: Sistem mendeteksi orang yang berjalan melewati layar dan secara otomatis menjumlahkan hitungan.
+- Penggunaan offline: Semua fungsi dapat berjalan secara lokal tanpa koneksi internet.
+- Sumber layar beragam: Mendukung kamera bawaan, video streaming, dan kamera eksternal (dukungan berbeda tergantung platform).
+- Perekaman jangka panjang: Dapat merekam secara terus-menerus selama 24 jam dan menanyakan data untuk periode waktu apa pun.
 
-Penghitungan pejalan kaki, pengendara sepeda, dan kendaraan yang instan dan akurat
-Bekerja offline dengan pengenalan AI bawaan
-Mendukung aliran video RTSP dan webcam eksternal
-Perekaman berkelanjutan 24 jam dengan data menit demi menit Ucapkan selamat tinggal pada penghitungan klik manual! Piyuo Counter mengotomatiskan proses, memastikan hasil yang konsisten setiap saat. Cukup posisikan perangkat Anda pada sudut yang tepat, dan biarkan aplikasi melakukan sisanya. Aplikasi ini merekam individu yang lewat setiap menit hingga 24 jam, memungkinkan Anda menganalisis lalu lintas pejalan kaki selama periode waktu tertentu.
-Meskipun tidak sempurna (resolusi kamera tidak dapat menandingi mata manusia), Piyuo Counter menawarkan fleksibilitas dalam penempatan perangkat untuk mengoptimalkan hasil. Model AI memastikan penghitungan standar di berbagai sesi, memberikan data yang andal untuk kebutuhan analisis lalu lintas pejalan kaki Anda.
+Cara Menggunakan
+1. Arahkan kamera ke lorong atau pintu masuk yang ingin Anda pantau.
+2. Buka proyek dan pilih sumber layar.
+3. Setelah dimulai, sistem akan secara otomatis mendeteksi dan menghitung.
 
-Sempurna untuk:
+Catatan
+- Akurasi penghitungan dipengaruhi oleh sudut, pencahayaan, penghalang, dll. Disarankan untuk menyesuaikan posisi kamera berdasarkan kondisi aktual.
+- Meskipun tidak 100% akurat, menggunakan model AI yang konsisten mengurangi kesalahan manusia.
+- Semua pemrosesan data diselesaikan secara lokal - tidak ada gambar atau data yang diunggah.
 
-Perencana kota
-Pemilik usaha kecil
-Penyelenggara acara
-Analis lalu lintas
-Siapa pun yang membutuhkan data penghitungan pejalan kaki
-Unduh Piyuo Counter hari ini dan rasakan masa depan teknologi penghitungan pejalan kaki!
-
-Beberapa catatan:
-
-Gaya Bahasa: Saya berusaha menggunakan bahasa yang sederhana dan mudah dipahami, sehingga dapat menjangkau khalayak yang luas.
-Penggunaan Bahasa Lokal: Saya menggunakan kata dan frasa umum dalam Bahasa Indonesia.
-Pedoman Listing Google Play: Deskripsi ini informatif dan akurat. Tidak ada klaim atau janji yang menyesatkan. Fitur dan manfaat utama aplikasi dijelaskan dengan jelas.
-Kata yang Tidak Diterjemahkan: "Piyuo Counter" tetap seperti yang Anda berikan.
-Saya harap terjemahan Bahasa Indonesia ini bermanfaat bagi Anda! Jika Anda memiliki pertanyaan lain, beri tahu saya.
+Skenario yang Cocok
+- Memahami lalu lintas pejalan kaki di ruang (seperti pintu masuk, koridor, area pameran).
+- Penelitian, perencanaan acara, atau observasi harian.
+- Dapat mulai digunakan segera tanpa peralatan perangkat keras tambahan.

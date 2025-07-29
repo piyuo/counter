@@ -1,1 +1,3 @@
-Tăng cường độ ổn định khi chuyển đổi giữa các dự án, đảm bảo giải phóng tài nguyên ngay lập tức khi đóng dự án
+Cải thiện báo cáo lỗi
+
+Chúng tôi đã thêm tính năng báo cáo lỗi ẩn danh! Nếu bạn gặp phải sự cố bất ngờ, giờ đây bạn có thể chọn gửi báo cáo lỗi để giúp chúng tôi khắc phục nhanh chóng.

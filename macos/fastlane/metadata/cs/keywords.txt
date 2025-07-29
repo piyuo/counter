@@ -1,1 +1,1 @@
-počítání chodců, AI sledování, městská analýza, pohyb osob, dopravní průzkum
+AI,chodec,detekce,sledování

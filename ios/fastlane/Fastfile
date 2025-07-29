@@ -18,8 +18,28 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new release build to the App Store"
   lane :release do
-    increment_build_number(xcodeproj: "Counter.xcodeproj")
+
+# Fetch the latest build number from App Store Connect
+    # This ensures we always increment from the highest number Apple knows about
+    current_app_store_build_number = app_store_build_number(
+      # Optional: You might need to specify your app_identifier if not already configured in your Appfile
+      # For example: app_identifier: "com.yourcompany.PiyuoCounter"
+      # And your Apple ID username if it's not set via environment variables:
+      # username: "your_apple_id@example.com"
+    )
+
+    # Increment the build number based on the fetched value
+    # We add 1 to the highest build number found on App Store Connect
+    new_build_number = (current_app_store_build_number.to_i + 1).to_s
+    increment_build_number(
+      xcodeproj: "Counter.xcodeproj",
+      build_number: new_build_number
+    )
+
+    # Build the app with the newly incremented build number
     build_app(workspace: "Counter.xcworkspace", scheme: "Runner")
+
+    # Upload the app to App Store Connect
     upload_to_app_store
   end
 end

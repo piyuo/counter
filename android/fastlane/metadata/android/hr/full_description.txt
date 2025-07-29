@@ -1,19 +1,22 @@
-Piyuo Counter inovativna je aplikacija koja vaš telefon pretvara u moćan alat za brojanje pješaka. Koristeći naprednu tehnologiju umjetne inteligencije, otkriva i broji ljude koji prolaze pored vašeg uređaja putem kamere – sve bez potrebe za internetskom vezom.
+Ovo je aplikacija koja može automatski detektirati i brojati pješake, ne zahtijeva internetsku vezu i može se koristiti odmah nakon instalacije.
 
-Glavne značajke:
+Pregled značajki
+- Brojanje ljudi u stvarnom vremenu: Sustav detektira ljude koji prolaze kroz ekran i automatski zbraja ukupan broj.
+- Offline korištenje: Sve funkcije mogu raditi lokalno bez internetske veze.
+- Višestruki izvori ekrana: Podržava ugrađene kamere, streaming video i vanjske kamere (različita podrška ovisno o platformi).
+- Dugoročno snimanje: Može snimati kontinuirano 24 sata i ispitati podatke za bilo koje vremensko razdoblje.
 
-Trenutno i točno brojanje pješaka, biciklista i vozila
-Radi izvan mreže s ugrađenim AI prepoznavanjem
-Podržava RTSP video streamove i vanjske web kamere
-24-satno kontinuirano snimanje s podacima po minuti
-Recite zbogom ručnom brojanju klikerima! Piyuo Counter automatizira proces, osiguravajući dosljedne rezultate svaki put. Jednostavno postavite svoj uređaj pod pravim kutom i prepustite aplikaciji da obavi posao. Bilježi prolaznike svake minute do 24 sata, omogućujući vam analizu pješačkog prometa tijekom određenih vremenskih razdoblja.
-Iako nije savršen (rezolucija kamere ne može parirati ljudskom oku), Piyuo Counter nudi fleksibilnost u postavljanju uređaja za optimizaciju rezultata. AI model osigurava standardizirano brojanje tijekom više sesija, pružajući pouzdane podatke za vaše potrebe analize pješačkog prometa.
+Kako koristiti
+1. Usmjerite kameru na prolaz ili ulaz koji želite nadzirati.
+2. Otvorite projekt i odaberite izvor ekrana.
+3. Nakon pokretanja, sustav će automatski detektirati i brojati.
 
-Savršeno za:
+Napomene
+- Na točnost brojanja utječu kut, osvjetljenje, prepreke itd. Preporučuje se prilagođavanje položaja kamere prema stvarnim uvjetima.
+- Iako nije 100% točan, korištenje konzistentnog AI modela smanjuje ljudsku grešku.
+- Sva obradba podataka završava se lokalno - ne prenose se slike ili podaci.
 
-Urbaniste
-Vlasnike malih poduzeća
-Organizatore događaja
-Prometne analitičare
-Sve kojima su potrebni podaci o broju pješaka
-Preuzmite Piyuo Counter danas i iskusite budućnost tehnologije brojanja pješaka!
+Prikladni scenariji
+- Razumijevanje pješačkog prometa u prostorima (kao što su ulazi, hodnici, izložbeni prostori).
+- Istraživanje, planiranje događaja ili svakodnevno promatranje.
+- Može se početi koristiti odmah bez dodatne hardverske opreme.

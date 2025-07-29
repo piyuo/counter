@@ -1,26 +1,22 @@
-A Piyuo Counter egy innovatív alkalmazás, amely okostelefonját egy hatékony gyalogosszámláló eszközzé alakítja. A fejlett AI technológiának köszönhetően felismeri és számlálja az eszköz kameráján áthaladó embereket – mindezt internetkapcsolat nélkül.
+Ez egy alkalmazás, amely automatikusan felismeri és megszámlálja a gyalogosokat, nem igényel internetkapcsolatot, és a telepítés után azonnal használható.
 
-Főbb jellemzők:
+Funkciók áttekintése
+- Valós idejű emberszámlálás: A rendszer felismeri a képernyőn áthaladó embereket és automatikusan összegzi a számlálást.
+- Offline használat: Minden funkció helyileg működhet internetkapcsolat nélkül.
+- Több képernyőforrás: Támogatja a beépített kamerákat, streaming videót és külső kamerákat (különböző támogatás a platformtól függően).
+- Hosszú távú felvétel: 24 órán át folyamatosan rögzíthet és bármely időszakra lekérdezheti az adatokat.
 
-Gyalogosok, kerékpárosok és járművek azonnali, pontos számlálása
-Offline működik beépített AI felismeréssel
-Támogatja az RTSP videófolyamokat és a külső webkamerákat
-24 órás folyamatos rögzítés percenkénti adatokkal Mondjon búcsút a manuális kattintgatásnak! A Piyuo Counter automatizálja a folyamatot, így minden alkalommal következetes eredményeket biztosít. Egyszerűen helyezze a készüléket a megfelelő szögbe, és hagyja, hogy az alkalmazás elvégezze a munkát. Percenként rögzíti az áthaladó személyeket akár 24 órán keresztül, lehetővé téve a gyalogosforgalom elemzését adott időszakokban.
-Bár nem tökéletes (a kamera felbontása nem éri el az emberi szemét), a Piyuo Counter rugalmasságot kínál a készülék elhelyezésében az eredmények optimalizálása érdekében. Az AI modell szabványosított számlálást biztosít több munkamenet során, megbízható adatokat nyújtva a gyalogosforgalom elemzési igényeihez.
+Használat
+1. Irányítsa a kamerát a figyelni kívánt átjáróra vagy bejáratra.
+2. Nyissa meg a projektet és válassza ki a képernyőforrást.
+3. Indítás után a rendszer automatikusan felismeri és számlálja.
 
-Kinek ajánljuk:
+Megjegyzések
+- A számlálás pontosságát befolyásolja a szög, világítás, akadályok stb. Ajánlott a kamera helyzetét a tényleges körülményeknek megfelelően beállítani.
+- Bár nem 100%-ban pontos, a következetes AI modell használata csökkenti az emberi hibát.
+- Minden adatfeldolgozás helyileg történik - nincsenek képek vagy adatok feltöltve.
 
-Várostervezőknek
-Kisvállalkozások tulajdonosainak
-Rendezvényszervezőknek
-Közlekedési elemzőknek
-Bárkinek, akinek gyalogosszámlálási adatokra van szüksége
-Töltse le a Piyuo Countert még ma, és tapasztalja meg a gyalogosszámlálási technológia jövőjét!
-
-Néhány megjegyzés:
-
-Nyelvi stílus: Igyekeztem egyszerű és érthető nyelvet használni, hogy széles közönség számára elérhető legyen.
-Helyi nyelvhasználat: Általános magyar szavakat és kifejezéseket használtam.
-Google Play Áruház irányelvei: A leírás informatív és pontos. Nem tartalmaz félrevezető állításokat vagy ígéreteket. Az alkalmazás főbb jellemzői és előnyei világosan szerepelnek.
-Nem lefordított szavak: A "Piyuo Counter" az Ön által megadott formában maradt.
-Remélem, ez a magyar fordítás hasznos lesz az Ön számára! Ha további kérdései vannak, kérem, tudassa velem.
+Alkalmas forgatókönyvek
+- Gyalogos forgalom megértése terekben (például bejáratok, folyosók, kiállítási területek).
+- Kutatás, eseménytervezés vagy napi megfigyelés.
+- További hardvereszközök nélkül azonnal használhatóvá válik.

@@ -1,17 +1,22 @@
-Piyuo Sayaç, akıllı yapay zeka teknolojisiyle yaya sayımını basitleştiren bir uygulamadır.
-Nasıl Çalışır?
+Bu, yayaları otomatik olarak tespit edip sayabilen, internet bağlantısı gerektirmeyen ve kurulumdan hemen sonra kullanılabilen bir uygulamadır.
 
-Mobil cihazınızın kamerasını kullanarak otomatik insan sayımı
-İnternet bağlantısı gerektirmez - tamamen çevrimdışı çalışır
-Hızlı ve doğru AI teknolojisi sayesinde kesintisiz sayım
+Özellik Genel Bakışı
+- Gerçek zamanlı kişi sayımı: Sistem ekrandan geçen kişileri tespit eder ve otomatik olarak sayımı toplar.
+- Çevrimdışı kullanım: Tüm işlevler internet bağlantısı olmadan yerel olarak çalışabilir.
+- Çoklu ekran kaynakları: Yerleşik kameralar, akış videosu ve harici kameraları destekler (platforma bağlı olarak farklı destek).
+- Uzun vadeli kayıt: 24 saat sürekli kayıt yapabilir ve herhangi bir zaman dilimi için veri sorgulayabilir.
 
-Özellikler:
+Nasıl Kullanılır
+1. Kamerayı izlemek istediğiniz geçit veya girişe doğrultun.
+2. Projeyi açın ve ekran kaynağını seçin.
+3. Başlattıktan sonra sistem otomatik olarak tespit edip sayacaktır.
 
-iPhone, iPad ve Mac platformlarında çalışır
-RTSP video akışı ve harici web kameralarını destekler
-İnsanların yanı sıra araç ve bisikletleri de sayabilir
-24 saat kesintisiz kayıt imkanı
-Belirlenen zaman aralıklarında detaylı raporlama
+Notlar
+- Sayım doğruluğu açı, aydınlatma, engeller vb. etkenlerden etkilenir. Gerçek koşullara göre kamera konumunu ayarlamanız önerilir.
+- %100 doğru olmasa da tutarlı bir AI modeli kullanmak insan hatasını azaltır.
+- Tüm veri işleme yerel olarak tamamlanır - hiçbir görüntü veya veri yüklenmez.
 
-Geleneksel manuel sayım yöntemlerinden farklı olarak, Piyuo Sayaç size zaman ve emek tasarrufu sağlar. Kameranızı doğru açıya yerleştirin ve uygulamaya güvenin.
-Not: Görüntü çözünürlüğü sınırlı olduğundan, en iyi sonuçlar için kamera konumlandırmasına dikkat edin.
+Uygun Senaryolar
+- Alanlardaki yaya trafiğini anlama (girişler, koridorlar, sergi alanları gibi).
+- Araştırma, etkinlik planlama veya günlük gözlem.
+- Ek donanım ekipmanı olmadan hemen kullanmaya başlayabilir.

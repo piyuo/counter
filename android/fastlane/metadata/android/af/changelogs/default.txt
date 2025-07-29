@@ -1,0 +1,3 @@
+Verbeterde Foutrapportering
+
+Ons het anonieme foutrapportering bygevoeg! As jy 'n onverwagte probleem ondervind, kan jy nou kies om 'n foutverslag te stuur om ons te help om dit vinnig reg te maak.

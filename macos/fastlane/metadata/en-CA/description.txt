@@ -1,12 +1,22 @@
-Piyuo Counter is an intelligent pedestrian tracking app that transforms how you count people and movement.
-Key Features:
+This is an app that can automatically detect and count pedestrians, requires no internet connection, and can be used immediately after installation.
 
-AI-Powered Counting: Accurately detect and count pedestrians, vehicles, and cyclists
-Offline Functionality: Works completely offline using built-in AI recognition
-Multi-Platform Support: Available for iPhone, iPad, and Mac
-Flexible Tracking Options: Use mobile camera, online RTSP video streams, or external webcams
-Comprehensive Reporting: Record and review pedestrian traffic for any time period
+Feature Overview
+- Real-time people counting: The system detects people walking through the screen and automatically totals the count.
+- Offline use: All functions can run locally without internet connection.
+- Multiple screen sources: Supports built-in cameras, streaming video, and external cameras (different support depending on platform).
+- Long-term recording: Can record continuously for 24 hours and query data for any time period.
 
-Traditional people counting methods are error-prone and inconsistent. With Piyuo Counter, simply find the right camera angle and let the app do the work. It records pedestrian counts every minute and can track continuously for 24 hours.
-Please note: While highly accurate, the app's detection depends on camera resolution and positioning. Adjust your camera angle to improve results.
-Perfect for researchers, urban planners, event organisers, and anyone interested in understanding foot traffic patterns.
+How to Use
+1. Point the camera at the passageway or entrance you want to monitor.
+2. Open the project and select the screen source.
+3. After starting, the system will automatically detect and count.
+
+Notes
+- Counting accuracy is affected by angle, lighting, obstructions, etc. It's recommended to adjust camera position based on actual conditions.
+- While not 100% accurate, using a consistent AI model reduces human error.
+- All data processing is completed locally - no images or data are uploaded.
+
+Suitable Scenarios
+- Understanding foot traffic in spaces (such as entrances, corridors, exhibition areas).
+- Research, event planning, or daily observation.
+- Can start using immediately without additional hardware equipment.

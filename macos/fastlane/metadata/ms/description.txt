@@ -1,16 +1,22 @@
-Piyuo Counter ialah aplikasi inovatif untuk mengira pejalan kaki dengan menggunakan teknologi AI termaju.
-Ciri-ciri Utama:
+Ini adalah aplikasi yang boleh mengesan dan mengira pejalan kaki secara automatik, tidak memerlukan sambungan internet, dan boleh digunakan serta-merta selepas pemasangan.
 
-Pengecaman pejalan kaki secara automatik menggunakan kamera
-Berfungsi tanpa sambungan internet
-Sokongan untuk iPhone, iPad, dan Mac
-Boleh menggunakan kamera telefon, video dalam talian (RTSP), atau webcam
-Rekod bilangan pejalan kaki setiap minit
-Boleh merakam sehingga 24 jam berterusan
-Mudah untuk melihat statistik pada mana-mana tempoh masa
-Mengesan pejalan kaki, kenderaan, dan basikal
+Gambaran Keseluruhan Ciri
+- Pengiraan orang masa nyata: Sistem mengesan orang yang berjalan melalui skrin dan secara automatik menjumlahkan kiraan.
+- Penggunaan luar talian: Semua fungsi boleh berjalan secara tempatan tanpa sambungan internet.
+- Pelbagai sumber skrin: Menyokong kamera terbina dalam, video penstriman dan kamera luaran (sokongan berbeza bergantung pada platform).
+- Rakaman jangka panjang: Boleh merakam secara berterusan selama 24 jam dan menanyakan data untuk mana-mana tempoh masa.
 
-Cara Kerja:
-Aplikasi ini menggunakan model AI pintar untuk mengira orang yang melepasi kamera. Anda hanya perlu mencari sudut yang sesuai dan membiarkan aplikasi mengira secara automatik. Walaupun tidak sempurna, dengan penempatan kamera yang betul, anda boleh mendapatkan hasil yang hampir tepat.
-Nota Penting:
-Ketepatan bergantung kepada resolusi kamera dan sudut pengimejan. Alat ini memberi cara yang lebih konsisten berbanding pengiraan manual tradisional.
+Cara Menggunakan
+1. Halakan kamera ke laluan atau pintu masuk yang anda ingin pantau.
+2. Buka projek dan pilih sumber skrin.
+3. Selepas memulakan, sistem akan secara automatik mengesan dan mengira.
+
+Nota
+- Ketepatan pengiraan dipengaruhi oleh sudut, pencahayaan, halangan, dll. Adalah disyorkan untuk menyesuaikan kedudukan kamera berdasarkan keadaan sebenar.
+- Walaupun tidak 100% tepat, menggunakan model AI yang konsisten mengurangkan ralat manusia.
+- Semua pemprosesan data diselesaikan secara tempatan - tiada imej atau data dimuat naik.
+
+Senario Yang Sesuai
+- Memahami lalu lintas pejalan kaki di ruang (seperti pintu masuk, koridor, kawasan pameran).
+- Penyelidikan, perancangan acara atau pemerhatian harian.
+- Boleh mula menggunakan serta-merta tanpa peralatan perkakasan tambahan.

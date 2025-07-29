@@ -1,15 +1,22 @@
-Découvrez une solution innovante pour le comptage de piétons grâce à Piyuo Counter !
-Cet outil révolutionnaire utilise l'intelligence artificielle pour compter automatiquement les personnes qui passent devant votre caméra. Plus besoin de compter manuellement - l'application fait tout le travail pour vous.
-Caractéristiques principales :
+Ceci est une application qui peut automatiquement détecter et compter les piétons, ne nécessite aucune connexion internet et peut être utilisée immédiatement après l'installation.
 
-Détection instantanée via caméra de smartphone
-Modèle d'IA embarqué, aucune connexion internet requise
-Compatible iPhone, iPad et Mac
-Supporte les flux vidéo RTSP et webcams externes
-Comptage précis des piétons, véhicules et cyclistes
-Enregistrement continu jusqu'à 24 heures
-Consultation des statistiques par période
+Aperçu des fonctionnalités
+- Comptage de personnes en temps réel : Le système détecte les personnes qui traversent l'écran et totalise automatiquement le décompte.
+- Utilisation hors ligne : Toutes les fonctions peuvent fonctionner localement sans connexion internet.
+- Sources d'écran multiples : Prend en charge les caméras intégrées, la vidéo en streaming et les caméras externes (support différent selon la plateforme).
+- Enregistrement à long terme : Peut enregistrer en continu pendant 24 heures et interroger les données pour n'importe quelle période.
 
-Comment ça fonctionne ? Positionnez simplement votre appareil, ajustez l'angle, et laissez l'application compter. Chaque minute, elle enregistre le nombre de personnes passant devant la caméra.
-Bien que l'application ne soit pas parfaite en raison des limitations de la résolution caméra, un bon positionnement permet d'obtenir des résultats fiables. L'IA garantit une cohérence de comptage d'un jour à l'autre.
-Un outil simple et intelligent pour comprendre les flux de circulation !
+Comment utiliser
+1. Pointez la caméra vers le passage ou l'entrée que vous souhaitez surveiller.
+2. Ouvrez le projet et sélectionnez la source d'écran.
+3. Après le démarrage, le système détectera et comptera automatiquement.
+
+Notes
+- La précision du comptage est affectée par l'angle, l'éclairage, les obstructions, etc. Il est recommandé d'ajuster la position de la caméra selon les conditions réelles.
+- Bien que ce ne soit pas précis à 100%, l'utilisation d'un modèle IA cohérent réduit l'erreur humaine.
+- Tout le traitement des données est effectué localement - aucune image ou donnée n'est téléchargée.
+
+Scénarios appropriés
+- Comprendre le trafic piétonnier dans les espaces (tels que les entrées, couloirs, zones d'exposition).
+- Recherche, planification d'événements ou observation quotidienne.
+- Peut commencer à être utilisé immédiatement sans équipement matériel supplémentaire.

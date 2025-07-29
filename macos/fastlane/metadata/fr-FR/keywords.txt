@@ -1,1 +1,1 @@
-comptage piétons, IA, détection, caméra, traffic, analyse, mobile, intelligence artificielle
+IA,piétons,détection,suivi

@@ -1,13 +1,22 @@
-Licznik Piyuo to innowacyjna aplikacja do automatycznego liczenia osób, pojazdów i rowerów przy użyciu technologii AI.
-Kluczowe funkcje:
+To jest aplikacja, która może automatycznie wykrywać i liczyć pieszych, nie wymaga połączenia z internetem i może być używana natychmiast po instalacji.
 
-Zaawansowany model AI do rozpoznawania ruchu
-Działa offline, bez potrzeby dostępu do internetu
-Kompatybilny z iPhone, iPad i Mac
-Wspiera różne źródła wideo: kamera mobilna, transmisje RTSP, webcam
-Precyzyjne zliczanie przez całą dobę
-Możliwość przeglądania statystyk dla dowolnego przedziału czasowego
+Przegląd funkcji
+- Liczenie ludzi w czasie rzeczywistym: System wykrywa osoby przechodzące przez ekran i automatycznie sumuje liczbę.
+- Użytkowanie offline: Wszystkie funkcje mogą działać lokalnie bez połączenia z internetem.
+- Wiele źródeł ekranu: Obsługuje wbudowane kamery, wideo strumieniowe i kamery zewnętrzne (różne wsparcie w zależności od platformy).
+- Długoterminowe nagrywanie: Może nagrywać nieprzerwanie przez 24 godziny i zapytać o dane z dowolnego okresu.
 
-Jak to działa?
-Wystarczy ustawić kamerę pod odpowiednim kątem. Aplikacja automatycznie liczy przechodzące osoby, pojazdy i rowery. Każda minuta jest rejestrowana, a dane można przeglądać przez 24 godziny.
-Pamiętaj, że dokładność zależy od ustawienia kamery. Odpowiedni kąt i pozycja zwiększają precyzję wyników.
+Jak używać
+1. Skieruj kamerę na przejście lub wejście, które chcesz monitorować.
+2. Otwórz projekt i wybierz źródło ekranu.
+3. Po uruchomieniu system automatycznie wykryje i policzy.
+
+Uwagi
+- Dokładność liczenia jest wpływana przez kąt, oświetlenie, przeszkody itp. Zaleca się dostosowanie pozycji kamery w oparciu o rzeczywiste warunki.
+- Chociaż nie jest w 100% dokładny, używanie spójnego modelu AI redukuje błędy ludzkie.
+- Całe przetwarzanie danych jest ukończone lokalnie - żadne obrazy ani dane nie są przesyłane.
+
+Odpowiednie scenariusze
+- Zrozumienie ruchu pieszego w przestrzeniach (takich jak wejścia, korytarze, obszary wystawowe).
+- Badania, planowanie wydarzeń lub codzienne obserwacje.
+- Można zacząć używać natychmiast bez dodatkowego sprzętu.

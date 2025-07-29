@@ -1,18 +1,22 @@
-Piyuo Counter ialah aplikasi inovatif yang mengubah telefon anda menjadi alat pengiraan pejalan kaki yang berkuasa. Menggunakan teknologi AI yang canggih, ia mengesan dan mengira orang yang lalu lalang melalui kamera peranti anda – semuanya tanpa memerlukan sambungan internet.
+Ini adalah aplikasi yang boleh mengesan dan mengira pejalan kaki secara automatik, tidak memerlukan sambungan internet, dan boleh digunakan serta-merta selepas pemasangan.
 
-Ciri-ciri Utama:
+Gambaran Keseluruhan Ciri
+- Pengiraan orang masa nyata: Sistem mengesan orang yang berjalan melalui skrin dan secara automatik menjumlahkan kiraan.
+- Penggunaan luar talian: Semua fungsi boleh berjalan secara tempatan tanpa sambungan internet.
+- Pelbagai sumber skrin: Menyokong kamera terbina dalam, video penstriman dan kamera luaran (sokongan berbeza bergantung pada platform).
+- Rakaman jangka panjang: Boleh merakam secara berterusan selama 24 jam dan menanyakan data untuk mana-mana tempoh masa.
 
-Pengiraan pejalan kaki, penunggang basikal dan kenderaan yang pantas dan tepat
-Berfungsi di luar talian dengan pengecaman AI terbina dalam
-Menyokong strim video RTSP dan webcam luaran
-Rakaman berterusan 24 jam dengan data minit demi minit Ucapkan selamat tinggal kepada pengiraan klik manual! Piyuo Counter mengautomasikan proses, memastikan hasil yang konsisten setiap kali. Hanya letakkan peranti anda pada sudut yang betul, dan biarkan aplikasi melakukan kerja. Ia merekodkan individu yang lalu setiap minit sehingga 24 jam, membolehkan anda menganalisis trafik pejalan kaki dalam tempoh masa tertentu.
-Walaupun tidak sempurna (resolusi kamera tidak dapat menandingi mata manusia), Piyuo Counter menawarkan fleksibiliti dalam penempatan peranti untuk mengoptimumkan hasil. Model AI memastikan pengiraan yang standard di pelbagai sesi, menyediakan data yang boleh dipercayai untuk keperluan analisis trafik pejalan kaki anda.
+Cara Menggunakan
+1. Halakan kamera ke laluan atau pintu masuk yang anda ingin pantau.
+2. Buka projek dan pilih sumber skrin.
+3. Selepas memulakan, sistem akan secara automatik mengesan dan mengira.
 
-Sesuai untuk:
+Nota
+- Ketepatan pengiraan dipengaruhi oleh sudut, pencahayaan, halangan, dll. Adalah disyorkan untuk menyesuaikan kedudukan kamera berdasarkan keadaan sebenar.
+- Walaupun tidak 100% tepat, menggunakan model AI yang konsisten mengurangkan ralat manusia.
+- Semua pemprosesan data diselesaikan secara tempatan - tiada imej atau data dimuat naik.
 
-Perancang bandar
-Pemilik perniagaan kecil
-Penganjur acara
-Penganalisis trafik
-Sesiapa sahaja yang memerlukan data pengiraan pejalan kaki
-Muat turun Piyuo Counter hari ini dan alami masa depan teknologi pengiraan pejalan kaki!
+Senario Yang Sesuai
+- Memahami lalu lintas pejalan kaki di ruang (seperti pintu masuk, koridor, kawasan pameran).
+- Penyelidikan, perancangan acara atau pemerhatian harian.
+- Boleh mula menggunakan serta-merta tanpa peralatan perkakasan tambahan.

@@ -1,1 +1,3 @@
-Kestabilan dipertingkatkan semasa menukar antara projek, memastikan pembebasan sumber serta-merta apabila menutup projek
+Pelaporan Ralat yang Diperbaiki
+
+Kami telah menambahkan pelaporan ralat tanpa nama! Jika anda menghadapi masalah yang tidak dijangka, kini anda boleh memilih untuk menghantar laporan ralat bagi membantu kami membetulkannya dengan cepat.

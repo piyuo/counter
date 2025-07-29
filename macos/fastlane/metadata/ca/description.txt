@@ -1,19 +1,22 @@
-Descobreix una nova manera de comptar persones amb tecnologia d'intel·ligència artificial!
-El Comptador Piyuo és una eina innovadora que utilitza la càmera del teu dispositiu per detectar i comptar vianants de manera automàtica i precisa. Gràcies al nostre model d'IA integrat, no necessites connexió a Internet per fer-lo funcionar.
-Característiques principals:
+Aquesta és una aplicació que pot detectar i comptar vianants automàticament, no requereix connexió a internet i es pot utilitzar immediatament després de la instal·lació.
 
-Funciona sense connexió: Tota la detecció es fa localment al teu dispositiu
-Multiplataforma: Compatible amb iPhone, iPad i Mac
-Flexibilitat de captura: Utilitza la càmera del mòbil, streaming RTSP o webcam externa
-Precisió millorada: Comptatge automàtic cada minut
-Registre complet: Permet revisar dades de qualsevol interval de temps
-Detecció múltiple: Compta vianants, vehicles i bicicletes
+Resum de característiques
+- Recompte de persones en temps real: El sistema detecta persones que caminen per la pantalla i suma automàticament el total.
+- Ús sense connexió: Totes les funcions poden funcionar localment sense connexió a internet.
+- Múltiples fonts de pantalla: Admet càmeres integrades, vídeo en streaming i càmeres externes.
+- Gravació a llarg termini: Pot gravar contínuament durant 24 hores i consultar dades per a qualsevol període de temps.
 
-Com funciona?
+Com utilitzar
+1. Apunteu la càmera cap al passadís o entrada que voleu monitoritzar.
+2. Obriu el projecte i seleccioneu la font de pantalla.
+3. Després de començar, el sistema detectarà i comptarà automàticament.
 
-Tria l'angle de càmera adequat
-Obre l'aplicació i deixa que compti
-Revisa els resultats en qualsevol moment
+Notes
+- La precisió del recompte es veu afectada per l'angle, la il·luminació, les obstruccions, etc. Es recomana ajustar la posició de la càmera segons les condicions reals.
+- Tot i que no és 100% precís, utilitzar un model d'IA consistent redueix l'error humà.
+- Tot el processament de dades es completa localment: no es carreguen imatges ni dades.
 
-Notes importants:
-L'aplicació no és perfecta. La resolució de la càmera té limitacions, però ajustant correctament l'angle i la posició, obtindràs resultats precisos. Cada dia usaràs el mateix criteri de mesura gràcies al nostre model d'IA.
+Escenaris adequats
+- Comprendre el trànsit de vianants en espais (com entrades, passadissos, àrees d'exposició).
+- Investigació, planificació d'esdeveniments o observació diària.
+- Es pot començar a utilitzar immediatament sense equip de maquinari addicional.

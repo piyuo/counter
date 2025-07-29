@@ -1,1 +1,1 @@
-Count pedestrians effortlessly with mobile camera using AI.
+Count pedestrians with AI

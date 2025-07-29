@@ -1,15 +1,22 @@
-Revoluce v počítání chodců přímo ve vašem zařízení!
-Představujeme vám aplikaci, která změní způsob, jakým sledujete pohyb osob. Využívá pokročilou AI technologii pro přesné sčítání chodců pomocí kamery vašeho zařízení - bez nutnosti připojení k internetu.
-Klíčové vlastnosti:
+Toto je aplikace, která dokáže automaticky detekovat a počítat chodce, nevyžaduje připojení k internetu a lze ji použít ihned po instalaci.
 
-Vestavěný AI model pro okamžité rozpoznávání
-Funguje na iPhone, iPad i Mac
-Podporuje přímé sledování z kamery, videotoku nebo webkamery
-Nepřetržité sledování po dobu až 24 hodin
-Přesné záznamy o počtu chodců, vozidel a cyklistů
+Přehled funkcí
+- Počítání lidí v reálném čase: Systém detekuje lidi procházející přes obrazovku a automaticky sčítá celkový počet.
+- Offline použití: Všechny funkce mohou běžet lokálně bez připojení k internetu.
+- Více zdrojů obrazu: Podporuje vestavěné kamery, streamované video a externí kamery.
+- Dlouhodobé nahrávání: Může nahrávat nepřetržitě po dobu 24 hodin a dotazovat se na data za jakékoli časové období.
 
-Jak to funguje:
-Stačí najít správný úhel pohledu, aktivovat kameru a nechat aplikaci pracovat. Každou minutu zaznamenává počet procházejících osob a umožňuje vám prohlížet statistiky v libovolném časovém intervalu.
-Poznámka:
-Aplikace není dokonalá. Kvalita rozpoznávání závisí na úhlu a umístění kamery. Experimentujte a najděte nejlepší nastavení pro vaše potřeby.
-Vyvinuto nezávislým vývojářem s láskou k technologiím a jednoduchým řešením.
+Jak používat
+1. Nasměrujte kameru na průchod nebo vchod, který chcete monitorovat.
+2. Otevřete projekt a vyberte zdroj obrazu.
+3. Po spuštění bude systém automaticky detekovat a počítat.
+
+Poznámky
+- Přesnost počítání je ovlivněna úhlem, osvětlením, překážkami atd. Doporučuje se upravit pozici kamery podle skutečných podmínek.
+- I když není 100% přesná, použití konzistentního AI modelu snižuje lidské chyby.
+- Veškeré zpracování dat probíhá lokálně - žádné obrázky ani data se nenahrávají.
+
+Vhodné scénáře
+- Pochopení pěšího provozu v prostorách (jako jsou vchody, chodby, výstavní oblasti).
+- Výzkum, plánování událostí nebo denní pozorování.
+- Lze začít používat okamžitě bez dodatečného hardwarového vybavení.

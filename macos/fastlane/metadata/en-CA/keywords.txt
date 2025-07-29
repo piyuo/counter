@@ -1,1 +1,1 @@
-pedestrian counter, people tracking, ai counting, traffic analysis, footfall tracker
+AI,pedestrian,detection,tracking

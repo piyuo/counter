@@ -1,15 +1,22 @@
-Piyuo Zähler ist eine innovative App zur automatischen Personenzählung:
-Funktionen:
+Diese App kann automatisch Fußgänger erkennen und zählen, benötigt keine Internetverbindung und kann sofort nach der Installation verwendet werden.
 
-Zählung von Personen, Fahrzeugen und Fahrrädern
-Ohne Internetverbindung - direkte Erkennung mit KI
-Unterstützt iPhone, iPad und Mac
-Nutzbar mit Mobilkamera, Webcam oder RTSP-Videostreams
-Kontinuierliche 24-Stunden-Aufzeichnung
-Detaillierte Zeitintervall-Analysen
+Funktionsübersicht
+- Echtzeit-Personenzählung: Das System erkennt Personen, die über den Bildschirm gehen, und zählt automatisch die Gesamtzahl.
+- Offline-Nutzung: Alle Funktionen können lokal ohne Internetverbindung ausgeführt werden.
+- Mehrere Bildschirmquellen: Unterstützt eingebaute Kameras, Streaming-Video und externe Kameras.
+- Langzeitaufzeichnung: Kann 24 Stunden kontinuierlich aufzeichnen und Daten für jeden Zeitraum abfragen.
 
-Wie funktioniert es?
-Positionieren Sie Ihr Gerät mit guter Sichtlinie. Die App zählt automatisch Personen und speichert Daten minütlich. Durch die KI-Technologie garantieren wir konsistente Zählungen.
-Bitte beachten:
-Die Genauigkeit hängt von Kamerawinkel und Auflösung ab. Experimentieren Sie mit der Positionierung für optimale Ergebnisse.
-Entwickelt von einem unabhängigen Entwickler mit Fokus auf Benutzerfreundlichkeit und Präzision.
+Verwendung
+1. Richten Sie die Kamera auf den Durchgang oder Eingang, den Sie überwachen möchten.
+2. Öffnen Sie das Projekt und wählen Sie die Bildschirmquelle.
+3. Nach dem Start erkennt und zählt das System automatisch.
+
+Hinweise
+- Die Zählgenauigkeit wird durch Winkel, Beleuchtung, Hindernisse usw. beeinflusst. Es wird empfohlen, die Kameraposition basierend auf den tatsächlichen Bedingungen anzupassen.
+- Obwohl nicht 100% genau, reduziert die Verwendung eines konsistenten KI-Modells menschliche Fehler.
+- Alle Datenverarbeitung erfolgt lokal - keine Bilder oder Daten werden hochgeladen.
+
+Geeignete Szenarien
+- Verständnis des Fußgängerverkehrs in Räumen (wie Eingänge, Korridore, Ausstellungsbereiche).
+- Forschung, Eventplanung oder tägliche Beobachtung.
+- Kann sofort ohne zusätzliche Hardware-Ausrüstung verwendet werden.

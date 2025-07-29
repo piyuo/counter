@@ -1,12 +1,22 @@
-Piyuo Counter on innovatiivinen sovellus, joka hyödyntää tekoälyä ihmisten laskemiseen kameran avulla. Sovellus toimii suoraan laitteessasi ilman internetyhteyttä, mikä takaa nopean ja yksityisen käytön.
-Ominaisuudet:
+Dette er en app som automatisk kan oppdage og telle fotgjengere, krever ingen internettilkobling og kan brukes umiddelbart etter installasjon.
 
-Tarkka ihmisten, ajoneuvojen ja pyörien laskenta
-Toimii iPhonessa, iPadissa ja Macissa
-Tukee live-videovirtaa ja ulkoisia webcam-laitteita
-Jatkuva 24/7 laskenta
-Helppo aikavälin raportointi
-Älykäs tekoälymalli, joka tarjoaa johdonmukaisia tuloksia
+Funksjonsoversikt
+- Sanntids personentelling: Systemet oppdager personer som går gjennom skjermen og summerer automatisk antallet.
+- Offline bruk: Alle funksjoner kan kjøre lokalt uten internettilkobling.
+- Flere skjermkilder: Støtter innebygde kameraer, streaming video og eksterne kameraer (forskjellig støtte avhengig av plattform).
+- Langtidsopptak: Kan ta opp kontinuerlig i 24 timer og spørre data for hvilken som helst tidsperiode.
 
-Perinteinen ihmislaskenta on altis virheille. Piyuo Counter automatisoi prosessin: aseta kamera sopivaan kulmaan ja anna sovelluksen tehdä työ puolestasi. Saat tarkat tiedot kulkijoista minuutin tarkkuudella.
-Huomaa, että sovellus ei ole täydellinen. Kameran rajoitukset voivat vaikuttaa tarkkuuteen, mutta oikealla kameran asemoinnilla saat luotettavia tuloksia.
+Slik bruker du
+1. Pek kameraet mot gangen eller inngangen du vil overvåke.
+2. Åpne prosjektet og velg skjermkilde.
+3. Etter oppstart vil systemet automatisk oppdage og telle.
+
+Merknader
+- Tellenøyaktigheten påvirkes av vinkel, belysning, hindringer osv. Det anbefales å justere kameraposisjonen basert på faktiske forhold.
+- Selv om det ikke er 100% nøyaktig, reduserer bruk av en konsistent AI-modell menneskelige feil.
+- All databehandling fullføres lokalt - ingen bilder eller data lastes opp.
+
+Egnede scenarier
+- Forstå fotgjengertrafikk i rom (som innganger, korridorer, utstillingsområder).
+- Forskning, arrangement planlegging eller daglig observasjon.
+- Kan begynne å bruke umiddelbart uten ekstra maskinvareutstyr.

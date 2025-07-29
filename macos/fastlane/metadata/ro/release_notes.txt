@@ -1,1 +1,3 @@
-Stabilitate îmbunătățită la comutarea între proiecte, asigurând eliberarea imediată a resurselor la închiderea unui proiect
+Raportare îmbunătățită a erorilor
+
+Am adăugat raportarea anonimă a erorilor! Dacă întâlnești o problemă neașteptată, acum poți alege să trimiți un raport de eroare pentru a ne ajuta să o reparăm rapid.

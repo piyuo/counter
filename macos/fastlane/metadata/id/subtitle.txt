@@ -1,1 +1,1 @@
-AI Hitung Pejalan Kaki Cepat
+Hitung pejalan kaki dengan AI

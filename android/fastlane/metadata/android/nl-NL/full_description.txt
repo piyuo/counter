@@ -1,19 +1,22 @@
-Piyuo Counter is een innovatieve app die je telefoon transformeert in een krachtige tool voor het tellen van voetgangers. Met behulp van geavanceerde AI-technologie detecteert en telt het mensen die voorbij je apparaat lopen via de camera – en dat alles zonder dat een internetverbinding nodig is.
+Dit is een app die automatisch voetgangers kan detecteren en tellen, geen internetverbinding vereist en direct na installatie gebruikt kan worden.
 
-Belangrijkste functies:
+Functieoverzicht
+- Realtime personen tellen: Het systeem detecteert mensen die door het scherm lopen en telt automatisch het totaal.
+- Offline gebruik: Alle functies kunnen lokaal draaien zonder internetverbinding.
+- Meerdere schermbronnen: Ondersteunt ingebouwde camera's, streaming video en externe camera's (verschillende ondersteuning afhankelijk van platform).
+- Langetermijnopname: Kan 24 uur continu opnemen en data opvragen voor elke tijdsperiode.
 
-Directe, nauwkeurige telling van voetgangers, fietsers en voertuigen
-Werkt offline met ingebouwde AI-herkenning
-Ondersteunt RTSP-videostreams en externe webcams
-24 uur continue opname met data per minuut
-Zeg vaarwel tegen handmatig klikken! Piyuo Counter automatiseert het proces en zorgt elke keer voor consistente resultaten. Plaats je apparaat eenvoudig in de juiste hoek en laat de app het werk doen. Het registreert passerende individuen elke minuut tot 24 uur lang, waardoor je de voetgangersstroom tijdens specifieke perioden kunt analyseren.
-Hoewel niet perfect (cameraresolutie kan niet tippen aan het menselijk oog), biedt Piyuo Counter flexibiliteit in de plaatsing van het apparaat om de resultaten te optimaliseren. Het AI-model zorgt voor gestandaardiseerde tellingen over meerdere sessies, waardoor betrouwbare gegevens worden geleverd voor je behoeften op het gebied van voetgangersanalyse.
+Hoe te gebruiken
+1. Richt de camera op de doorgang of ingang die je wilt monitoren.
+2. Open het project en selecteer de schermbron.
+3. Na het starten zal het systeem automatisch detecteren en tellen.
 
-Perfect voor:
+Opmerkingen
+- Telnauwkeurigheid wordt beïnvloed door hoek, belichting, obstakels, enz. Het wordt aanbevolen om de camerapositie aan te passen op basis van werkelijke omstandigheden.
+- Hoewel het niet 100% nauwkeurig is, vermindert het gebruik van een consistent AI-model menselijke fouten.
+- Alle dataverwerking wordt lokaal voltooid - geen afbeeldingen of data worden geüpload.
 
-Stedenbouwkundigen
-Eigenaren van kleine bedrijven
-Evenementenorganisatoren
-Verkeersanalisten
-Iedereen die gegevens over het aantal voetgangers nodig heeft
-Download Piyuo Counter vandaag nog en ervaar de toekomst van voetgangerstellingstechnologie!
+Geschikte scenario's
+- Begrijpen van voetgangersverkeer in ruimtes (zoals ingangen, gangen, tentoonstellingsgebieden).
+- Onderzoek, evenementenplanning of dagelijkse observatie.
+- Kan direct beginnen met gebruiken zonder extra hardwareapparatuur.

@@ -1,22 +1,22 @@
-Revolučná aplikácia na sčítavanie chodcov, ktorá premení váš smartfón na inteligentný nástroj mestskej analýzy.
-Hlavné funkcie:
+Toto je aplikácia, ktorá môže automaticky detekovať a rátať chodcov, nevyžaduje pripojenie na internet a môže sa používať okamžite po inštalácii.
 
-Presné sčítavanie chodcov pomocou zabudovaného AI modelu
-Funguje offline bez potreby internetového pripojenia
-Podporuje iPhone, iPad a Mac
-Flexibilná detekcia cez mobilnú kameru, online video stream alebo webkameru
-Nepretržité sledovanie pohybu počas 24 hodín
-Presné štatistiky pohybu v konkrétnych časových intervaloch
-Detekcia nielen chodcov, ale aj vozidiel a cyklistov
+Prehľad funkcií
+- Počítanie ľudí v reálnom čase: Systém detekuje ľudí prechádzajúcich cez obrazovku a automaticky spočíta celkový počet.
+- Offline použitie: Všetky funkcie môžu bežať lokálne bez pripojenia na internet.
+- Viacero zdrojov obrazovky: Podporuje vstavaná kamery, streamované video a externé kamery (rôzna podpora v závislosti od platformy).
+- Dlhodobé nahrávanie: Môže nahrávať nepretržite 24 hodín a dopytovať sa na údaje pre akékoľvek časové obdobie.
 
-Ako to funguje?
-Jednoducho nájdite vhodný uhol a aktivujte kameru. Aplikácia automaticky spočíta všetkých okoloidúcich. Každú minútu zaznamenáva presný počet osôb.
-Výhody:
+Ako používať
+1. Nasmerujte kameru na priechod alebo vchod, ktorý chcete monitorovať.
+2. Otvorte projekt a vyberte zdroj obrazovky.
+3. Po spustení bude systém automaticky detekovať a počítať.
 
-Žiadne manuálne počítanie
-Konzistentné výsledky
-Ľahké používanie
-Presnosť podporovaná AI technológiou
+Poznámky
+- Presnosť počítania je ovplyvnená uhlom, osvetlením, prekážkami atď. Odporúča sa upraviť pozíciu kamery na základe skutočných podmienok.
+- Aj keď nie je 100% presné, použitie konzistentného AI modelu znižuje ľudské chyby.
+- Všetko spracovanie údajov je dokončené lokálne - žiadne obrázky ani údaje nie sú nahrané.
 
-Poznámka: Presnosť závisí od kvality kamery a uhla snímania. Experimentujte s rôznymi polohami pre najlepšie výsledky.
-Vytvorené nezávislým vývojárom s láskou k technológiám a mestskému pozorovaniu.
+Vhodné scenáre
+- Pochopenie chodcovskej premávky v priestoroch (ako sú vchody, chodby, výstavné oblasti).
+- Výskum, plánovanie podujatí alebo denné pozorovanie.
+- Môže sa začať používať okamžite bez dodatočného hardvérového vybavenia.

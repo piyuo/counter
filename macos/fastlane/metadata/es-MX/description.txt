@@ -1,15 +1,22 @@
-Contador Piyuo es una aplicación innovadora para el conteo preciso de peatones utilizando inteligencia artificial.
-Características principales:
+Esta es una aplicación que puede detectar y contar automáticamente peatones, no requiere conexión a internet y se puede usar inmediatamente después de la instalación.
 
-Detección automática de peatones mediante cámara
-Modelo de IA integrado que funciona sin conexión a internet
-Rápido y eficiente en múltiples plataformas (iPhone, iPad, Mac)
-Compatible con cámaras web, streaming RTSP y cámaras móviles
-Registro continuo de tráfico peatonal durante 24 horas
-Capacidad de analizar datos en intervalos específicos
-Detección de peatones, vehículos y bicicletas
+Resumen de características
+- Conteo de personas en tiempo real: El sistema detecta personas caminando por la pantalla y automáticamente totaliza el conteo.
+- Uso sin conexión: Todas las funciones pueden ejecutarse localmente sin conexión a internet.
+- Múltiples fuentes de pantalla: Compatible con cámaras integradas, video en streaming y cámaras externas (soporte diferente según la plataforma).
+- Grabación a largo plazo: Puede grabar continuamente durante 24 horas y consultar datos para cualquier período de tiempo.
 
-Diferencias con métodos tradicionales:
-A diferencia del conteo manual con contador, esta aplicación elimina errores humanos. Simplemente encuentra el ángulo adecuado, inicia la cámara y déjala trabajar.
-Precisión y limitaciones:
-Reconocemos que la precisión depende de la resolución de la cámara. Ajustando cuidadosamente el ángulo y la posición, obtendrás resultados confiables.
+Cómo usar
+1. Apunta la cámara hacia el pasillo o entrada que quieres monitorear.
+2. Abre el proyecto y selecciona la fuente de pantalla.
+3. Después de iniciar, el sistema detectará y contará automáticamente.
+
+Notas
+- La precisión del conteo se ve afectada por el ángulo, iluminación, obstáculos, etc. Se recomienda ajustar la posición de la cámara según las condiciones reales.
+- Aunque no es 100% preciso, usar un modelo de IA consistente reduce el error humano.
+- Todo el procesamiento de datos se completa localmente - no se suben imágenes ni datos.
+
+Escenarios adecuados
+- Entender el tráfico peatonal en espacios (como entradas, pasillos, áreas de exposición).
+- Investigación, planeación de eventos u observación diaria.
+- Se puede empezar a usar inmediatamente sin equipamiento de hardware adicional.
