@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
+        "AENK",
         "angular",
         "appbundle",
+        "Appfile",
         "appkit",
         "arraybuffer",
         "assertion",
@@ -43,6 +45,7 @@
         "hubindex",
         "injectable",
         "interop",
+        "krausefx",
         "lib",
         "libbase",
         "libcli",
@@ -59,6 +62,7 @@
         "piyuo",
         "plkdev",
         "polyfills",
+        "precheck",
         "privatelittlekitchen",
         "projects",
         "proto",

@@ -1,3 +1,0 @@
-Ulepszone raportowanie błędów
-
-Dodaliśmy anonimowe raportowanie błędów! Jeśli napotkasz nieoczekiwany problem, możesz teraz wybrać wysłanie raportu błędu, aby pomóc nam szybko go naprawić.

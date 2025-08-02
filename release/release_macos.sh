@@ -12,8 +12,8 @@ flutter build macos --release
 echo "Running Fastlane release..."
 cd macos/fastlane
 bundle exec fastlane mac release
-
+cd ../..
 rm -rf build/macos
 rm -rf macos/Piyuo\ Counter.app
-rm macos/Piyuo\ Counter.app.dSYM.zip
-rm macos/Piyuo\ Counter.pkg
+rm -f macos/Piyuo\ Counter.app.dSYM.zip
+rm -f macos/Piyuo\ Counter.pkg

@@ -1,3 +1,0 @@
-Paranneltu virheraportointi
-
-Lisäsimme anonyymin virheraportoimisen! Jos kohtaat odottamattoman ongelman, voit nyt valita virheraportin lähetyksen auttaaksemme korjaamaan sen nopeasti.

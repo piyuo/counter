@@ -1,3 +1,0 @@
-Segnalazione errori migliorata
-
-Abbiamo aggiunto la segnalazione anonima degli errori! Se riscontri un problema inaspettato, ora puoi scegliere di inviare una segnalazione di errore per aiutarci a risolverlo rapidamente.
