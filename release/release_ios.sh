@@ -12,8 +12,8 @@ flutter build ios --release
 echo "Running Fastlane release..."
 cd ios/fastlane
 bundle exec fastlane ios release
-
+cd ../..
 rm -rf build/ios
-rm ios/Counter.ipa
-rm ios/Counter.app.dSYM.zip
-rm ios/Counter.pkg
+rm -f ios/Counter.ipa
+rm -f ios/Counter.app.dSYM.zip
+rm -f ios/Counter.pkg

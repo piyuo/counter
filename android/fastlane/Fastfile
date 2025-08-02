@@ -1,10 +1,26 @@
 # android/fastlane/Fastfile
+
 default_platform(:android)
 
 platform :android do
   desc "Release a new version to the Google Play Store"
   lane :release do
-    gradle(task: "clean bundleRelease") # or assembleRelease if not using .aab
-    upload_to_play_store(track: "internal")
+    # Clean the project
+    #gradle(task: "clean")
+
+    # Build the AAB
+    #gradle(
+    #  task: "bundle",
+    #  build_type: "Release"
+    #)
+
+    # the expected path to the AAB file that fluter generates
+    aab_file = "../build/app/outputs/bundle/release/app-release.aab"
+
+    # Upload to Play Store
+    upload_to_play_store(
+      track: "alpha",
+      aab: aab_file
+    )
   end
 end

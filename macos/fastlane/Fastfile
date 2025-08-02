@@ -8,6 +8,13 @@ default_platform(:mac)
 platform :mac do
   desc "Push a new release build to the Apple App Store(macos)"
   lane :release do
+    app_store_connect_api_key(
+      key_id: ENV["APP_STORE_CONNECT_API_KEY_ID"],
+      issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+      key_content: ENV["APP_STORE_CONNECT_KEY_CONTENT"]
+    )
+
+
     # Fetch the latest build number from App Store Connect
     # This ensures we always increment from the highest number Apple knows about
     current_app_store_build_number = app_store_build_number()
@@ -24,6 +31,8 @@ platform :mac do
     build_app(workspace: "Counter.xcworkspace", scheme: "Runner",export_method: "app-store")
 
     # Upload the app to App Store Connect
-    upload_to_app_store
+    upload_to_app_store(
+      precheck_include_in_app_purchases: false
+    )
   end
 end

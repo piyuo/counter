@@ -1,3 +1,15 @@
+# ios/fastlane/Deliverfile
 # The Deliverfile allows you to store various App Store Connect metadata
 # For more information, check out the docs
 # https://docs.fastlane.tools/actions/deliver/
+
+ignore_language_directory_validation true
+force true
+submit_for_review true
+skip_screenshots true # Skip screenshots for now, but update this later if needed
+
+# Submission information for the app
+
+submission_information({
+  export_compliance_uses_encryption: false
+})

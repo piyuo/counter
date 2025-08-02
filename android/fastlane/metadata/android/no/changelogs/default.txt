@@ -1,3 +1,0 @@
-Forbedret feilrapportering
-
-Vi har lagt til anonym feilrapportering! Hvis du støter på et uventet problem, kan du nå velge å sende en feilrapport for å hjelpe oss med å fikse det raskt.

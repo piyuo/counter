@@ -9,8 +9,13 @@ echo "Building Flutter android release..."
 flutter build appbundle --release
 # This step prepares the Flutter side of your android app and is required.
 
+#cleanup android locales
+echo "Cleaning up Android locales..."
+release/cleanup_android_locales.sh
+
 echo "Running Fastlane release..."
 cd android/fastlane
 bundle exec fastlane android release
+cd ../..
 
 rm -rf build/app

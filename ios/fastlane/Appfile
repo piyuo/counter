@@ -1,3 +1,4 @@
+# ios/fastlane/Appfile
 app_identifier("com.piyuo.counter") # The bundle identifier of your app
 apple_id("791088@gmail.com") # Your Apple Developer Portal username
 
