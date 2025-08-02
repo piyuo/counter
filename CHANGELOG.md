@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.1.0](https://github.com/piyuo/counter/compare/v1.0.1...v1.1.0) (2025-08-02)
+
+
+### Features
+
+* enable sentry error reporting in flutter_appkit [#16](https://github.com/piyuo/counter/issues/16) ([facaf2e](https://github.com/piyuo/counter/commit/facaf2e030ce1a3d4ab029180d9cf3dd6ed071f7))
+* **main:** init ai workflow ([4730a3c](https://github.com/piyuo/counter/commit/4730a3c52ccee586c8beefbefbb4b823f115c10c))
+* setup fastlane for macos [#20](https://github.com/piyuo/counter/issues/20) ([4d365b3](https://github.com/piyuo/counter/commit/4d365b3c29915f865eca1cbaba79db5c8eda63f6))
+* setup fastlane on android [#20](https://github.com/piyuo/counter/issues/20) ([8ef64f3](https://github.com/piyuo/counter/commit/8ef64f393e0850ee7b9519dfaaad3ebde424948c))
+* setup fastlane on ios [#20](https://github.com/piyuo/counter/issues/20) ([f9f559e](https://github.com/piyuo/counter/commit/f9f559e10ceeda3601a8f3689eb08d96952717a1))
+* support flutter_appkit ([26873d2](https://github.com/piyuo/counter/commit/26873d2be2558d9b1d610f9a1817772750fb6760))
+
+
+### Bug Fixes
+
+* benchmark.jpg is missing [#20](https://github.com/piyuo/counter/issues/20) ([ecb8a94](https://github.com/piyuo/counter/commit/ecb8a94ea06cd461fab5e2cfea5ecc2f9d64d05f))
+* update default locale handling in MyApp to use widget locale if available [#29](https://github.com/piyuo/counter/issues/29) ([a31f649](https://github.com/piyuo/counter/commit/a31f6491a8a736479bebf3a7ae34286bc6caf27c))
+* update start_issue.sh to improve cleanup script handling and versioning [#20](https://github.com/piyuo/counter/issues/20) ([e28b8f5](https://github.com/piyuo/counter/commit/e28b8f51138eadbc568be94fa8febad552f4b921))
+* update webcam naming and improve clarity in webcam index handling ([668c792](https://github.com/piyuo/counter/commit/668c792f65b68f72e80d3c609f7cd6b73653b7b6))
+
 ## [1.0.1](https://github.com/piyuo/counter/compare/v1.0.0...v1.0.1) (2025-06-06)
 
 
