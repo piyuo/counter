@@ -1,5 +1,6 @@
 # Miscellaneous
 .env
+*.p8
 *.class
 *.log
 *.pyc
