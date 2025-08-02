@@ -48,5 +48,13 @@ android/piyuo-counter-release-key.jks
 #fastlane related
 play-account.json
 
+#fastlane build artifacts
+macos/Piyuo Counter.app
+macos/Piyuo Counter.pkg
+macos/Piyuo Counter.app.dSYM.zip
+ios/Counter.ipa
+ios/Counter.pkg
+ios/Counter.app.dSYM.zip
+
 #sentry related
 .sentry-native
