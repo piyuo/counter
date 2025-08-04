@@ -12,7 +12,8 @@ part of 'project_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ProjectMeta _$ProjectMetaFromJson(Map<String, dynamic> json) {
   return _ProjectMeta.fromJson(json);
@@ -40,16 +41,18 @@ mixin _$ProjectMeta {
 /// @nodoc
 abstract class $ProjectMetaCopyWith<$Res> {
   factory $ProjectMetaCopyWith(
-          ProjectMeta value, $Res Function(ProjectMeta) then) =
-      _$ProjectMetaCopyWithImpl<$Res, ProjectMeta>;
+    ProjectMeta value,
+    $Res Function(ProjectMeta) then,
+  ) = _$ProjectMetaCopyWithImpl<$Res, ProjectMeta>;
   @useResult
-  $Res call(
-      {String projectId,
-      String projectName,
-      List<VideoMeta> videos,
-      FilterMeta filter,
-      bool isShowCenterRedDotOnTarget,
-      bool isShowGhostTarget});
+  $Res call({
+    String projectId,
+    String projectName,
+    List<VideoMeta> videos,
+    FilterMeta filter,
+    bool isShowCenterRedDotOnTarget,
+    bool isShowGhostTarget,
+  });
 
   $FilterMetaCopyWith<$Res> get filter;
 }
@@ -76,32 +79,35 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
     Object? isShowCenterRedDotOnTarget = null,
     Object? isShowGhostTarget = null,
   }) {
-    return _then(_value.copyWith(
-      projectId: null == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      videos: null == videos
-          ? _value.videos
-          : videos // ignore: cast_nullable_to_non_nullable
-              as List<VideoMeta>,
-      filter: null == filter
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as FilterMeta,
-      isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
-          ? _value.isShowCenterRedDotOnTarget
-          : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowGhostTarget: null == isShowGhostTarget
-          ? _value.isShowGhostTarget
-          : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            projectId: null == projectId
+                ? _value.projectId
+                : projectId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            projectName: null == projectName
+                ? _value.projectName
+                : projectName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            videos: null == videos
+                ? _value.videos
+                : videos // ignore: cast_nullable_to_non_nullable
+                      as List<VideoMeta>,
+            filter: null == filter
+                ? _value.filter
+                : filter // ignore: cast_nullable_to_non_nullable
+                      as FilterMeta,
+            isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
+                ? _value.isShowCenterRedDotOnTarget
+                : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isShowGhostTarget: null == isShowGhostTarget
+                ? _value.isShowGhostTarget
+                : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of ProjectMeta
@@ -119,17 +125,19 @@ class _$ProjectMetaCopyWithImpl<$Res, $Val extends ProjectMeta>
 abstract class _$$ProjectMetaImplCopyWith<$Res>
     implements $ProjectMetaCopyWith<$Res> {
   factory _$$ProjectMetaImplCopyWith(
-          _$ProjectMetaImpl value, $Res Function(_$ProjectMetaImpl) then) =
-      __$$ProjectMetaImplCopyWithImpl<$Res>;
+    _$ProjectMetaImpl value,
+    $Res Function(_$ProjectMetaImpl) then,
+  ) = __$$ProjectMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String projectId,
-      String projectName,
-      List<VideoMeta> videos,
-      FilterMeta filter,
-      bool isShowCenterRedDotOnTarget,
-      bool isShowGhostTarget});
+  $Res call({
+    String projectId,
+    String projectName,
+    List<VideoMeta> videos,
+    FilterMeta filter,
+    bool isShowCenterRedDotOnTarget,
+    bool isShowGhostTarget,
+  });
 
   @override
   $FilterMetaCopyWith<$Res> get filter;
@@ -140,8 +148,9 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
     extends _$ProjectMetaCopyWithImpl<$Res, _$ProjectMetaImpl>
     implements _$$ProjectMetaImplCopyWith<$Res> {
   __$$ProjectMetaImplCopyWithImpl(
-      _$ProjectMetaImpl _value, $Res Function(_$ProjectMetaImpl) _then)
-      : super(_value, _then);
+    _$ProjectMetaImpl _value,
+    $Res Function(_$ProjectMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ProjectMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -155,32 +164,34 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
     Object? isShowCenterRedDotOnTarget = null,
     Object? isShowGhostTarget = null,
   }) {
-    return _then(_$ProjectMetaImpl(
-      projectId: null == projectId
-          ? _value.projectId
-          : projectId // ignore: cast_nullable_to_non_nullable
-              as String,
-      projectName: null == projectName
-          ? _value.projectName
-          : projectName // ignore: cast_nullable_to_non_nullable
-              as String,
-      videos: null == videos
-          ? _value._videos
-          : videos // ignore: cast_nullable_to_non_nullable
-              as List<VideoMeta>,
-      filter: null == filter
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as FilterMeta,
-      isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
-          ? _value.isShowCenterRedDotOnTarget
-          : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isShowGhostTarget: null == isShowGhostTarget
-          ? _value.isShowGhostTarget
-          : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$ProjectMetaImpl(
+        projectId: null == projectId
+            ? _value.projectId
+            : projectId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        projectName: null == projectName
+            ? _value.projectName
+            : projectName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        videos: null == videos
+            ? _value._videos
+            : videos // ignore: cast_nullable_to_non_nullable
+                  as List<VideoMeta>,
+        filter: null == filter
+            ? _value.filter
+            : filter // ignore: cast_nullable_to_non_nullable
+                  as FilterMeta,
+        isShowCenterRedDotOnTarget: null == isShowCenterRedDotOnTarget
+            ? _value.isShowCenterRedDotOnTarget
+            : isShowCenterRedDotOnTarget // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isShowGhostTarget: null == isShowGhostTarget
+            ? _value.isShowGhostTarget
+            : isShowGhostTarget // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
@@ -188,14 +199,14 @@ class __$$ProjectMetaImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$ProjectMetaImpl implements _ProjectMeta {
-  const _$ProjectMetaImpl(
-      {required this.projectId,
-      required this.projectName,
-      required final List<VideoMeta> videos,
-      required this.filter,
-      required this.isShowCenterRedDotOnTarget,
-      required this.isShowGhostTarget})
-      : _videos = videos;
+  const _$ProjectMetaImpl({
+    required this.projectId,
+    required this.projectName,
+    required final List<VideoMeta> videos,
+    required this.filter,
+    required this.isShowCenterRedDotOnTarget,
+    required this.isShowGhostTarget,
+  }) : _videos = videos;
 
   factory _$ProjectMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProjectMetaImplFromJson(json);
@@ -235,8 +246,10 @@ class _$ProjectMetaImpl implements _ProjectMeta {
                 other.projectName == projectName) &&
             const DeepCollectionEquality().equals(other._videos, _videos) &&
             (identical(other.filter, filter) || other.filter == filter) &&
-            (identical(other.isShowCenterRedDotOnTarget,
-                    isShowCenterRedDotOnTarget) ||
+            (identical(
+                  other.isShowCenterRedDotOnTarget,
+                  isShowCenterRedDotOnTarget,
+                ) ||
                 other.isShowCenterRedDotOnTarget ==
                     isShowCenterRedDotOnTarget) &&
             (identical(other.isShowGhostTarget, isShowGhostTarget) ||
@@ -246,13 +259,14 @@ class _$ProjectMetaImpl implements _ProjectMeta {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      projectId,
-      projectName,
-      const DeepCollectionEquality().hash(_videos),
-      filter,
-      isShowCenterRedDotOnTarget,
-      isShowGhostTarget);
+    runtimeType,
+    projectId,
+    projectName,
+    const DeepCollectionEquality().hash(_videos),
+    filter,
+    isShowCenterRedDotOnTarget,
+    isShowGhostTarget,
+  );
 
   /// Create a copy of ProjectMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -264,20 +278,19 @@ class _$ProjectMetaImpl implements _ProjectMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ProjectMetaImplToJson(
-      this,
-    );
+    return _$$ProjectMetaImplToJson(this);
   }
 }
 
 abstract class _ProjectMeta implements ProjectMeta {
-  const factory _ProjectMeta(
-      {required final String projectId,
-      required final String projectName,
-      required final List<VideoMeta> videos,
-      required final FilterMeta filter,
-      required final bool isShowCenterRedDotOnTarget,
-      required final bool isShowGhostTarget}) = _$ProjectMetaImpl;
+  const factory _ProjectMeta({
+    required final String projectId,
+    required final String projectName,
+    required final List<VideoMeta> videos,
+    required final FilterMeta filter,
+    required final bool isShowCenterRedDotOnTarget,
+    required final bool isShowGhostTarget,
+  }) = _$ProjectMetaImpl;
 
   factory _ProjectMeta.fromJson(Map<String, dynamic> json) =
       _$ProjectMetaImpl.fromJson;

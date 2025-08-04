@@ -16,14 +16,14 @@ _$AnnotationMetaImpl _$$AnnotationMetaImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$AnnotationMetaImplToJson(
-        _$AnnotationMetaImpl instance) =>
-    <String, dynamic>{
-      'type': _$TallyTypeEnumMap[instance.type]!,
-      'enabled': instance.enabled,
-      'title': instance.title,
-      'prefix': instance.prefix,
-      'suffix': instance.suffix,
-    };
+  _$AnnotationMetaImpl instance,
+) => <String, dynamic>{
+  'type': _$TallyTypeEnumMap[instance.type]!,
+  'enabled': instance.enabled,
+  'title': instance.title,
+  'prefix': instance.prefix,
+  'suffix': instance.suffix,
+};
 
 const _$TallyTypeEnumMap = {
   TallyType.detected: 'detected',

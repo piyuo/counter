@@ -8,83 +8,127 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $ProjectsTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _projectIdMeta =
-      const VerificationMeta('projectId');
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
   @override
   late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
-      'project_id', aliasedName, false,
-      additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 22),
-      type: DriftSqlType.string,
-      requiredDuringInsert: true);
-  static const VerificationMeta _projectNameMeta =
-      const VerificationMeta('projectName');
+    'project_id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 22,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _projectNameMeta = const VerificationMeta(
+    'projectName',
+  );
   @override
   late final GeneratedColumn<String> projectName = GeneratedColumn<String>(
-      'project_name', aliasedName, false,
-      additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 256),
-      type: DriftSqlType.string,
-      requiredDuringInsert: true);
+    'project_name',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 256,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _dataMeta = const VerificationMeta('data');
   @override
   late final GeneratedColumn<Uint8List> data = GeneratedColumn<Uint8List>(
-      'data', aliasedName, false,
-      type: DriftSqlType.blob, requiredDuringInsert: true);
-  static const VerificationMeta _createdAtMeta =
-      const VerificationMeta('createdAt');
+    'data',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
   @override
   late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-      'created_at', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
-  static const VerificationMeta _updatedAtMeta =
-      const VerificationMeta('updatedAt');
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
   @override
   late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
-      'updated_at', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
   @override
-  List<GeneratedColumn> get $columns =>
-      [projectId, projectName, data, createdAt, updatedAt];
+  List<GeneratedColumn> get $columns => [
+    projectId,
+    projectName,
+    data,
+    createdAt,
+    updatedAt,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'projects';
   @override
-  VerificationContext validateIntegrity(Insertable<Project> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<Project> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('project_id')) {
-      context.handle(_projectIdMeta,
-          projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta));
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_projectIdMeta);
     }
     if (data.containsKey('project_name')) {
       context.handle(
+        _projectNameMeta,
+        projectName.isAcceptableOrUnknown(
+          data['project_name']!,
           _projectNameMeta,
-          projectName.isAcceptableOrUnknown(
-              data['project_name']!, _projectNameMeta));
+        ),
+      );
     } else if (isInserting) {
       context.missing(_projectNameMeta);
     }
     if (data.containsKey('data')) {
       context.handle(
-          _dataMeta, this.data.isAcceptableOrUnknown(data['data']!, _dataMeta));
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
     } else if (isInserting) {
       context.missing(_dataMeta);
     }
     if (data.containsKey('created_at')) {
-      context.handle(_createdAtMeta,
-          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
     if (data.containsKey('updated_at')) {
-      context.handle(_updatedAtMeta,
-          updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta));
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
     } else if (isInserting) {
       context.missing(_updatedAtMeta);
     }
@@ -97,16 +141,26 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
   Project map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Project(
-      projectId: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}project_id'])!,
-      projectName: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}project_name'])!,
-      data: attachedDatabase.typeMapping
-          .read(DriftSqlType.blob, data['${effectivePrefix}data'])!,
-      createdAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
-      updatedAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}updated_at'])!,
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      projectName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_name'],
+      )!,
+      data: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}data'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
     );
   }
 
@@ -122,12 +176,13 @@ class Project extends DataClass implements Insertable<Project> {
   final Uint8List data;
   final DateTime createdAt;
   final DateTime updatedAt;
-  const Project(
-      {required this.projectId,
-      required this.projectName,
-      required this.data,
-      required this.createdAt,
-      required this.updatedAt});
+  const Project({
+    required this.projectId,
+    required this.projectName,
+    required this.data,
+    required this.createdAt,
+    required this.updatedAt,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -149,8 +204,10 @@ class Project extends DataClass implements Insertable<Project> {
     );
   }
 
-  factory Project.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory Project.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Project(
       projectId: serializer.fromJson<String>(json['projectId']),
@@ -172,24 +229,25 @@ class Project extends DataClass implements Insertable<Project> {
     };
   }
 
-  Project copyWith(
-          {String? projectId,
-          String? projectName,
-          Uint8List? data,
-          DateTime? createdAt,
-          DateTime? updatedAt}) =>
-      Project(
-        projectId: projectId ?? this.projectId,
-        projectName: projectName ?? this.projectName,
-        data: data ?? this.data,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-      );
+  Project copyWith({
+    String? projectId,
+    String? projectName,
+    Uint8List? data,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) => Project(
+    projectId: projectId ?? this.projectId,
+    projectName: projectName ?? this.projectName,
+    data: data ?? this.data,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+  );
   Project copyWithCompanion(ProjectsCompanion data) {
     return Project(
       projectId: data.projectId.present ? data.projectId.value : this.projectId,
-      projectName:
-          data.projectName.present ? data.projectName.value : this.projectName,
+      projectName: data.projectName.present
+          ? data.projectName.value
+          : this.projectName,
       data: data.data.present ? data.data.value : this.data,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
       updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
@@ -209,8 +267,13 @@ class Project extends DataClass implements Insertable<Project> {
   }
 
   @override
-  int get hashCode => Object.hash(projectId, projectName,
-      $driftBlobEquality.hash(data), createdAt, updatedAt);
+  int get hashCode => Object.hash(
+    projectId,
+    projectName,
+    $driftBlobEquality.hash(data),
+    createdAt,
+    updatedAt,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -244,11 +307,11 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     required DateTime createdAt,
     required DateTime updatedAt,
     this.rowid = const Value.absent(),
-  })  : projectId = Value(projectId),
-        projectName = Value(projectName),
-        data = Value(data),
-        createdAt = Value(createdAt),
-        updatedAt = Value(updatedAt);
+  }) : projectId = Value(projectId),
+       projectName = Value(projectName),
+       data = Value(data),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
   static Insertable<Project> custom({
     Expression<String>? projectId,
     Expression<String>? projectName,
@@ -267,13 +330,14 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     });
   }
 
-  ProjectsCompanion copyWith(
-      {Value<String>? projectId,
-      Value<String>? projectName,
-      Value<Uint8List>? data,
-      Value<DateTime>? createdAt,
-      Value<DateTime>? updatedAt,
-      Value<int>? rowid}) {
+  ProjectsCompanion copyWith({
+    Value<String>? projectId,
+    Value<String>? projectName,
+    Value<Uint8List>? data,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<int>? rowid,
+  }) {
     return ProjectsCompanion(
       projectId: projectId ?? this.projectId,
       projectName: projectName ?? this.projectName,
@@ -331,198 +395,295 @@ class $ActivitiesTable extends Activities
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
-  static const VerificationMeta _projectIdMeta =
-      const VerificationMeta('projectId');
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _projectIdMeta = const VerificationMeta(
+    'projectId',
+  );
   @override
   late final GeneratedColumn<String> projectId = GeneratedColumn<String>(
-      'project_id', aliasedName, false,
-      additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 22),
-      type: DriftSqlType.string,
-      requiredDuringInsert: true);
-  static const VerificationMeta _videoIdMeta =
-      const VerificationMeta('videoId');
+    'project_id',
+    aliasedName,
+    false,
+    additionalChecks: GeneratedColumn.checkTextLength(
+      minTextLength: 1,
+      maxTextLength: 22,
+    ),
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _videoIdMeta = const VerificationMeta(
+    'videoId',
+  );
   @override
   late final GeneratedColumn<int> videoId = GeneratedColumn<int>(
-      'video_id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'video_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _zoneIdMeta = const VerificationMeta('zoneId');
   @override
   late final GeneratedColumn<int> zoneId = GeneratedColumn<int>(
-      'zone_id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _classIdMeta =
-      const VerificationMeta('classId');
+    'zone_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _classIdMeta = const VerificationMeta(
+    'classId',
+  );
   @override
   late final GeneratedColumn<int> classId = GeneratedColumn<int>(
-      'class_id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _createdAtMeta =
-      const VerificationMeta('createdAt');
+    'class_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
   @override
   late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
-      'created_at', aliasedName, false,
-      type: DriftSqlType.dateTime, requiredDuringInsert: true);
-  static const VerificationMeta _spawnedMeta =
-      const VerificationMeta('spawned');
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _spawnedMeta = const VerificationMeta(
+    'spawned',
+  );
   @override
   late final GeneratedColumn<int> spawned = GeneratedColumn<int>(
-      'spawned', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _vanishedMeta =
-      const VerificationMeta('vanished');
+    'spawned',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _vanishedMeta = const VerificationMeta(
+    'vanished',
+  );
   @override
   late final GeneratedColumn<int> vanished = GeneratedColumn<int>(
-      'vanished', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _enteredMeta =
-      const VerificationMeta('entered');
+    'vanished',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _enteredMeta = const VerificationMeta(
+    'entered',
+  );
   @override
   late final GeneratedColumn<int> entered = GeneratedColumn<int>(
-      'entered', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'entered',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _exitedMeta = const VerificationMeta('exited');
   @override
   late final GeneratedColumn<int> exited = GeneratedColumn<int>(
-      'exited', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _stagnantMeta =
-      const VerificationMeta('stagnant');
+    'exited',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _stagnantMeta = const VerificationMeta(
+    'stagnant',
+  );
   @override
   late final GeneratedColumn<int> stagnant = GeneratedColumn<int>(
-      'stagnant', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _reenteredMeta =
-      const VerificationMeta('reentered');
+    'stagnant',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _reenteredMeta = const VerificationMeta(
+    'reentered',
+  );
   @override
   late final GeneratedColumn<int> reentered = GeneratedColumn<int>(
-      'reentered', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _occupiedMeta =
-      const VerificationMeta('occupied');
+    'reentered',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _occupiedMeta = const VerificationMeta(
+    'occupied',
+  );
   @override
   late final GeneratedColumn<int> occupied = GeneratedColumn<int>(
-      'occupied', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
-  static const VerificationMeta _stayDurationMeta =
-      const VerificationMeta('stayDuration');
+    'occupied',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _stayDurationMeta = const VerificationMeta(
+    'stayDuration',
+  );
   @override
   late final GeneratedColumn<int> stayDuration = GeneratedColumn<int>(
-      'stay_duration', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+    'stay_duration',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   @override
   List<GeneratedColumn> get $columns => [
-        id,
-        projectId,
-        videoId,
-        zoneId,
-        classId,
-        createdAt,
-        spawned,
-        vanished,
-        entered,
-        exited,
-        stagnant,
-        reentered,
-        occupied,
-        stayDuration
-      ];
+    id,
+    projectId,
+    videoId,
+    zoneId,
+    classId,
+    createdAt,
+    spawned,
+    vanished,
+    entered,
+    exited,
+    stagnant,
+    reentered,
+    occupied,
+    stayDuration,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'activities';
   @override
-  VerificationContext validateIntegrity(Insertable<Activity> instance,
-      {bool isInserting = false}) {
+  VerificationContext validateIntegrity(
+    Insertable<Activity> instance, {
+    bool isInserting = false,
+  }) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('project_id')) {
-      context.handle(_projectIdMeta,
-          projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta));
+      context.handle(
+        _projectIdMeta,
+        projectId.isAcceptableOrUnknown(data['project_id']!, _projectIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_projectIdMeta);
     }
     if (data.containsKey('video_id')) {
-      context.handle(_videoIdMeta,
-          videoId.isAcceptableOrUnknown(data['video_id']!, _videoIdMeta));
+      context.handle(
+        _videoIdMeta,
+        videoId.isAcceptableOrUnknown(data['video_id']!, _videoIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_videoIdMeta);
     }
     if (data.containsKey('zone_id')) {
-      context.handle(_zoneIdMeta,
-          zoneId.isAcceptableOrUnknown(data['zone_id']!, _zoneIdMeta));
+      context.handle(
+        _zoneIdMeta,
+        zoneId.isAcceptableOrUnknown(data['zone_id']!, _zoneIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_zoneIdMeta);
     }
     if (data.containsKey('class_id')) {
-      context.handle(_classIdMeta,
-          classId.isAcceptableOrUnknown(data['class_id']!, _classIdMeta));
+      context.handle(
+        _classIdMeta,
+        classId.isAcceptableOrUnknown(data['class_id']!, _classIdMeta),
+      );
     } else if (isInserting) {
       context.missing(_classIdMeta);
     }
     if (data.containsKey('created_at')) {
-      context.handle(_createdAtMeta,
-          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
     } else if (isInserting) {
       context.missing(_createdAtMeta);
     }
     if (data.containsKey('spawned')) {
-      context.handle(_spawnedMeta,
-          spawned.isAcceptableOrUnknown(data['spawned']!, _spawnedMeta));
+      context.handle(
+        _spawnedMeta,
+        spawned.isAcceptableOrUnknown(data['spawned']!, _spawnedMeta),
+      );
     } else if (isInserting) {
       context.missing(_spawnedMeta);
     }
     if (data.containsKey('vanished')) {
-      context.handle(_vanishedMeta,
-          vanished.isAcceptableOrUnknown(data['vanished']!, _vanishedMeta));
+      context.handle(
+        _vanishedMeta,
+        vanished.isAcceptableOrUnknown(data['vanished']!, _vanishedMeta),
+      );
     } else if (isInserting) {
       context.missing(_vanishedMeta);
     }
     if (data.containsKey('entered')) {
-      context.handle(_enteredMeta,
-          entered.isAcceptableOrUnknown(data['entered']!, _enteredMeta));
+      context.handle(
+        _enteredMeta,
+        entered.isAcceptableOrUnknown(data['entered']!, _enteredMeta),
+      );
     } else if (isInserting) {
       context.missing(_enteredMeta);
     }
     if (data.containsKey('exited')) {
-      context.handle(_exitedMeta,
-          exited.isAcceptableOrUnknown(data['exited']!, _exitedMeta));
+      context.handle(
+        _exitedMeta,
+        exited.isAcceptableOrUnknown(data['exited']!, _exitedMeta),
+      );
     } else if (isInserting) {
       context.missing(_exitedMeta);
     }
     if (data.containsKey('stagnant')) {
-      context.handle(_stagnantMeta,
-          stagnant.isAcceptableOrUnknown(data['stagnant']!, _stagnantMeta));
+      context.handle(
+        _stagnantMeta,
+        stagnant.isAcceptableOrUnknown(data['stagnant']!, _stagnantMeta),
+      );
     } else if (isInserting) {
       context.missing(_stagnantMeta);
     }
     if (data.containsKey('reentered')) {
-      context.handle(_reenteredMeta,
-          reentered.isAcceptableOrUnknown(data['reentered']!, _reenteredMeta));
+      context.handle(
+        _reenteredMeta,
+        reentered.isAcceptableOrUnknown(data['reentered']!, _reenteredMeta),
+      );
     } else if (isInserting) {
       context.missing(_reenteredMeta);
     }
     if (data.containsKey('occupied')) {
-      context.handle(_occupiedMeta,
-          occupied.isAcceptableOrUnknown(data['occupied']!, _occupiedMeta));
+      context.handle(
+        _occupiedMeta,
+        occupied.isAcceptableOrUnknown(data['occupied']!, _occupiedMeta),
+      );
     } else if (isInserting) {
       context.missing(_occupiedMeta);
     }
     if (data.containsKey('stay_duration')) {
       context.handle(
+        _stayDurationMeta,
+        stayDuration.isAcceptableOrUnknown(
+          data['stay_duration']!,
           _stayDurationMeta,
-          stayDuration.isAcceptableOrUnknown(
-              data['stay_duration']!, _stayDurationMeta));
+        ),
+      );
     } else if (isInserting) {
       context.missing(_stayDurationMeta);
     }
@@ -535,34 +696,62 @@ class $ActivitiesTable extends Activities
   Activity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Activity(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
-      projectId: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}project_id'])!,
-      videoId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}video_id'])!,
-      zoneId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}zone_id'])!,
-      classId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}class_id'])!,
-      createdAt: attachedDatabase.typeMapping
-          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
-      spawned: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}spawned'])!,
-      vanished: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}vanished'])!,
-      entered: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}entered'])!,
-      exited: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}exited'])!,
-      stagnant: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}stagnant'])!,
-      reentered: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}reentered'])!,
-      occupied: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}occupied'])!,
-      stayDuration: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}stay_duration'])!,
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      projectId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}project_id'],
+      )!,
+      videoId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}video_id'],
+      )!,
+      zoneId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}zone_id'],
+      )!,
+      classId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}class_id'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      spawned: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}spawned'],
+      )!,
+      vanished: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}vanished'],
+      )!,
+      entered: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}entered'],
+      )!,
+      exited: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}exited'],
+      )!,
+      stagnant: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}stagnant'],
+      )!,
+      reentered: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}reentered'],
+      )!,
+      occupied: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}occupied'],
+      )!,
+      stayDuration: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}stay_duration'],
+      )!,
     );
   }
 
@@ -587,21 +776,22 @@ class Activity extends DataClass implements Insertable<Activity> {
   final int reentered;
   final int occupied;
   final int stayDuration;
-  const Activity(
-      {required this.id,
-      required this.projectId,
-      required this.videoId,
-      required this.zoneId,
-      required this.classId,
-      required this.createdAt,
-      required this.spawned,
-      required this.vanished,
-      required this.entered,
-      required this.exited,
-      required this.stagnant,
-      required this.reentered,
-      required this.occupied,
-      required this.stayDuration});
+  const Activity({
+    required this.id,
+    required this.projectId,
+    required this.videoId,
+    required this.zoneId,
+    required this.classId,
+    required this.createdAt,
+    required this.spawned,
+    required this.vanished,
+    required this.entered,
+    required this.exited,
+    required this.stagnant,
+    required this.reentered,
+    required this.occupied,
+    required this.stayDuration,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -641,8 +831,10 @@ class Activity extends DataClass implements Insertable<Activity> {
     );
   }
 
-  factory Activity.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
+  factory Activity.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Activity(
       id: serializer.fromJson<int>(json['id']),
@@ -682,37 +874,37 @@ class Activity extends DataClass implements Insertable<Activity> {
     };
   }
 
-  Activity copyWith(
-          {int? id,
-          String? projectId,
-          int? videoId,
-          int? zoneId,
-          int? classId,
-          DateTime? createdAt,
-          int? spawned,
-          int? vanished,
-          int? entered,
-          int? exited,
-          int? stagnant,
-          int? reentered,
-          int? occupied,
-          int? stayDuration}) =>
-      Activity(
-        id: id ?? this.id,
-        projectId: projectId ?? this.projectId,
-        videoId: videoId ?? this.videoId,
-        zoneId: zoneId ?? this.zoneId,
-        classId: classId ?? this.classId,
-        createdAt: createdAt ?? this.createdAt,
-        spawned: spawned ?? this.spawned,
-        vanished: vanished ?? this.vanished,
-        entered: entered ?? this.entered,
-        exited: exited ?? this.exited,
-        stagnant: stagnant ?? this.stagnant,
-        reentered: reentered ?? this.reentered,
-        occupied: occupied ?? this.occupied,
-        stayDuration: stayDuration ?? this.stayDuration,
-      );
+  Activity copyWith({
+    int? id,
+    String? projectId,
+    int? videoId,
+    int? zoneId,
+    int? classId,
+    DateTime? createdAt,
+    int? spawned,
+    int? vanished,
+    int? entered,
+    int? exited,
+    int? stagnant,
+    int? reentered,
+    int? occupied,
+    int? stayDuration,
+  }) => Activity(
+    id: id ?? this.id,
+    projectId: projectId ?? this.projectId,
+    videoId: videoId ?? this.videoId,
+    zoneId: zoneId ?? this.zoneId,
+    classId: classId ?? this.classId,
+    createdAt: createdAt ?? this.createdAt,
+    spawned: spawned ?? this.spawned,
+    vanished: vanished ?? this.vanished,
+    entered: entered ?? this.entered,
+    exited: exited ?? this.exited,
+    stagnant: stagnant ?? this.stagnant,
+    reentered: reentered ?? this.reentered,
+    occupied: occupied ?? this.occupied,
+    stayDuration: stayDuration ?? this.stayDuration,
+  );
   Activity copyWithCompanion(ActivitiesCompanion data) {
     return Activity(
       id: data.id.present ? data.id.value : this.id,
@@ -757,20 +949,21 @@ class Activity extends DataClass implements Insertable<Activity> {
 
   @override
   int get hashCode => Object.hash(
-      id,
-      projectId,
-      videoId,
-      zoneId,
-      classId,
-      createdAt,
-      spawned,
-      vanished,
-      entered,
-      exited,
-      stagnant,
-      reentered,
-      occupied,
-      stayDuration);
+    id,
+    projectId,
+    videoId,
+    zoneId,
+    classId,
+    createdAt,
+    spawned,
+    vanished,
+    entered,
+    exited,
+    stagnant,
+    reentered,
+    occupied,
+    stayDuration,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -837,19 +1030,19 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     required int reentered,
     required int occupied,
     required int stayDuration,
-  })  : projectId = Value(projectId),
-        videoId = Value(videoId),
-        zoneId = Value(zoneId),
-        classId = Value(classId),
-        createdAt = Value(createdAt),
-        spawned = Value(spawned),
-        vanished = Value(vanished),
-        entered = Value(entered),
-        exited = Value(exited),
-        stagnant = Value(stagnant),
-        reentered = Value(reentered),
-        occupied = Value(occupied),
-        stayDuration = Value(stayDuration);
+  }) : projectId = Value(projectId),
+       videoId = Value(videoId),
+       zoneId = Value(zoneId),
+       classId = Value(classId),
+       createdAt = Value(createdAt),
+       spawned = Value(spawned),
+       vanished = Value(vanished),
+       entered = Value(entered),
+       exited = Value(exited),
+       stagnant = Value(stagnant),
+       reentered = Value(reentered),
+       occupied = Value(occupied),
+       stayDuration = Value(stayDuration);
   static Insertable<Activity> custom({
     Expression<int>? id,
     Expression<String>? projectId,
@@ -884,21 +1077,22 @@ class ActivitiesCompanion extends UpdateCompanion<Activity> {
     });
   }
 
-  ActivitiesCompanion copyWith(
-      {Value<int>? id,
-      Value<String>? projectId,
-      Value<int>? videoId,
-      Value<int>? zoneId,
-      Value<int>? classId,
-      Value<DateTime>? createdAt,
-      Value<int>? spawned,
-      Value<int>? vanished,
-      Value<int>? entered,
-      Value<int>? exited,
-      Value<int>? stagnant,
-      Value<int>? reentered,
-      Value<int>? occupied,
-      Value<int>? stayDuration}) {
+  ActivitiesCompanion copyWith({
+    Value<int>? id,
+    Value<String>? projectId,
+    Value<int>? videoId,
+    Value<int>? zoneId,
+    Value<int>? classId,
+    Value<DateTime>? createdAt,
+    Value<int>? spawned,
+    Value<int>? vanished,
+    Value<int>? entered,
+    Value<int>? exited,
+    Value<int>? stagnant,
+    Value<int>? reentered,
+    Value<int>? occupied,
+    Value<int>? stayDuration,
+  }) {
     return ActivitiesCompanion(
       id: id ?? this.id,
       projectId: projectId ?? this.projectId,
@@ -992,45 +1186,54 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $ProjectsTable projects = $ProjectsTable(this);
   late final $ActivitiesTable activities = $ActivitiesTable(this);
-  late final Index idxProjectsProjectId = Index('idx_projects_project_id',
-      'CREATE INDEX idx_projects_project_id ON projects (project_id)');
-  late final Index idxProjectsCreatedAt = Index('idx_projects_created_at',
-      'CREATE INDEX idx_projects_created_at ON projects (created_at)');
+  late final Index idxProjectsProjectId = Index(
+    'idx_projects_project_id',
+    'CREATE INDEX idx_projects_project_id ON projects (project_id)',
+  );
+  late final Index idxProjectsCreatedAt = Index(
+    'idx_projects_created_at',
+    'CREATE INDEX idx_projects_created_at ON projects (created_at)',
+  );
   late final Index idxActivitiesProjectCreatedAt = Index(
-      'idx_activities_project_created_at',
-      'CREATE INDEX idx_activities_project_created_at ON activities (project_id, created_at)');
-  late final Index idxActivitiesCreatedAt = Index('idx_activities_created_at',
-      'CREATE INDEX idx_activities_created_at ON activities (created_at)');
+    'idx_activities_project_created_at',
+    'CREATE INDEX idx_activities_project_created_at ON activities (project_id, created_at)',
+  );
+  late final Index idxActivitiesCreatedAt = Index(
+    'idx_activities_created_at',
+    'CREATE INDEX idx_activities_created_at ON activities (created_at)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [
-        projects,
-        activities,
-        idxProjectsProjectId,
-        idxProjectsCreatedAt,
-        idxActivitiesProjectCreatedAt,
-        idxActivitiesCreatedAt
-      ];
+    projects,
+    activities,
+    idxProjectsProjectId,
+    idxProjectsCreatedAt,
+    idxActivitiesProjectCreatedAt,
+    idxActivitiesCreatedAt,
+  ];
 }
 
-typedef $$ProjectsTableCreateCompanionBuilder = ProjectsCompanion Function({
-  required String projectId,
-  required String projectName,
-  required Uint8List data,
-  required DateTime createdAt,
-  required DateTime updatedAt,
-  Value<int> rowid,
-});
-typedef $$ProjectsTableUpdateCompanionBuilder = ProjectsCompanion Function({
-  Value<String> projectId,
-  Value<String> projectName,
-  Value<Uint8List> data,
-  Value<DateTime> createdAt,
-  Value<DateTime> updatedAt,
-  Value<int> rowid,
-});
+typedef $$ProjectsTableCreateCompanionBuilder =
+    ProjectsCompanion Function({
+      required String projectId,
+      required String projectName,
+      required Uint8List data,
+      required DateTime createdAt,
+      required DateTime updatedAt,
+      Value<int> rowid,
+    });
+typedef $$ProjectsTableUpdateCompanionBuilder =
+    ProjectsCompanion Function({
+      Value<String> projectId,
+      Value<String> projectName,
+      Value<Uint8List> data,
+      Value<DateTime> createdAt,
+      Value<DateTime> updatedAt,
+      Value<int> rowid,
+    });
 
 class $$ProjectsTableFilterComposer
     extends Composer<_$AppDatabase, $ProjectsTable> {
@@ -1042,19 +1245,29 @@ class $$ProjectsTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<String> get projectId => $composableBuilder(
-      column: $table.projectId, builder: (column) => ColumnFilters(column));
+    column: $table.projectId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get projectName => $composableBuilder(
-      column: $table.projectName, builder: (column) => ColumnFilters(column));
+    column: $table.projectName,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<Uint8List> get data => $composableBuilder(
-      column: $table.data, builder: (column) => ColumnFilters(column));
+    column: $table.data,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$ProjectsTableOrderingComposer
@@ -1067,19 +1280,29 @@ class $$ProjectsTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<String> get projectId => $composableBuilder(
-      column: $table.projectId, builder: (column) => ColumnOrderings(column));
+    column: $table.projectId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get projectName => $composableBuilder(
-      column: $table.projectName, builder: (column) => ColumnOrderings(column));
+    column: $table.projectName,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<Uint8List> get data => $composableBuilder(
-      column: $table.data, builder: (column) => ColumnOrderings(column));
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ProjectsTableAnnotationComposer
@@ -1095,7 +1318,9 @@ class $$ProjectsTableAnnotationComposer
       $composableBuilder(column: $table.projectId, builder: (column) => column);
 
   GeneratedColumn<String> get projectName => $composableBuilder(
-      column: $table.projectName, builder: (column) => column);
+    column: $table.projectName,
+    builder: (column) => column,
+  );
 
   GeneratedColumn<Uint8List> get data =>
       $composableBuilder(column: $table.data, builder: (column) => column);
@@ -1107,20 +1332,24 @@ class $$ProjectsTableAnnotationComposer
       $composableBuilder(column: $table.updatedAt, builder: (column) => column);
 }
 
-class $$ProjectsTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $ProjectsTable,
-    Project,
-    $$ProjectsTableFilterComposer,
-    $$ProjectsTableOrderingComposer,
-    $$ProjectsTableAnnotationComposer,
-    $$ProjectsTableCreateCompanionBuilder,
-    $$ProjectsTableUpdateCompanionBuilder,
-    (Project, BaseReferences<_$AppDatabase, $ProjectsTable, Project>),
-    Project,
-    PrefetchHooks Function()> {
+class $$ProjectsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ProjectsTable,
+          Project,
+          $$ProjectsTableFilterComposer,
+          $$ProjectsTableOrderingComposer,
+          $$ProjectsTableAnnotationComposer,
+          $$ProjectsTableCreateCompanionBuilder,
+          $$ProjectsTableUpdateCompanionBuilder,
+          (Project, BaseReferences<_$AppDatabase, $ProjectsTable, Project>),
+          Project,
+          PrefetchHooks Function()
+        > {
   $$ProjectsTableTableManager(_$AppDatabase db, $ProjectsTable table)
-      : super(TableManagerState(
+    : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -1129,89 +1358,94 @@ class $$ProjectsTableTableManager extends RootTableManager<
               $$ProjectsTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$ProjectsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<String> projectId = const Value.absent(),
-            Value<String> projectName = const Value.absent(),
-            Value<Uint8List> data = const Value.absent(),
-            Value<DateTime> createdAt = const Value.absent(),
-            Value<DateTime> updatedAt = const Value.absent(),
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              ProjectsCompanion(
-            projectId: projectId,
-            projectName: projectName,
-            data: data,
-            createdAt: createdAt,
-            updatedAt: updatedAt,
-            rowid: rowid,
-          ),
-          createCompanionCallback: ({
-            required String projectId,
-            required String projectName,
-            required Uint8List data,
-            required DateTime createdAt,
-            required DateTime updatedAt,
-            Value<int> rowid = const Value.absent(),
-          }) =>
-              ProjectsCompanion.insert(
-            projectId: projectId,
-            projectName: projectName,
-            data: data,
-            createdAt: createdAt,
-            updatedAt: updatedAt,
-            rowid: rowid,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<String> projectId = const Value.absent(),
+                Value<String> projectName = const Value.absent(),
+                Value<Uint8List> data = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => ProjectsCompanion(
+                projectId: projectId,
+                projectName: projectName,
+                data: data,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String projectId,
+                required String projectName,
+                required Uint8List data,
+                required DateTime createdAt,
+                required DateTime updatedAt,
+                Value<int> rowid = const Value.absent(),
+              }) => ProjectsCompanion.insert(
+                projectId: projectId,
+                projectName: projectName,
+                data: data,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                rowid: rowid,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$ProjectsTableProcessedTableManager = ProcessedTableManager<
-    _$AppDatabase,
-    $ProjectsTable,
-    Project,
-    $$ProjectsTableFilterComposer,
-    $$ProjectsTableOrderingComposer,
-    $$ProjectsTableAnnotationComposer,
-    $$ProjectsTableCreateCompanionBuilder,
-    $$ProjectsTableUpdateCompanionBuilder,
-    (Project, BaseReferences<_$AppDatabase, $ProjectsTable, Project>),
-    Project,
-    PrefetchHooks Function()>;
-typedef $$ActivitiesTableCreateCompanionBuilder = ActivitiesCompanion Function({
-  Value<int> id,
-  required String projectId,
-  required int videoId,
-  required int zoneId,
-  required int classId,
-  required DateTime createdAt,
-  required int spawned,
-  required int vanished,
-  required int entered,
-  required int exited,
-  required int stagnant,
-  required int reentered,
-  required int occupied,
-  required int stayDuration,
-});
-typedef $$ActivitiesTableUpdateCompanionBuilder = ActivitiesCompanion Function({
-  Value<int> id,
-  Value<String> projectId,
-  Value<int> videoId,
-  Value<int> zoneId,
-  Value<int> classId,
-  Value<DateTime> createdAt,
-  Value<int> spawned,
-  Value<int> vanished,
-  Value<int> entered,
-  Value<int> exited,
-  Value<int> stagnant,
-  Value<int> reentered,
-  Value<int> occupied,
-  Value<int> stayDuration,
-});
+typedef $$ProjectsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ProjectsTable,
+      Project,
+      $$ProjectsTableFilterComposer,
+      $$ProjectsTableOrderingComposer,
+      $$ProjectsTableAnnotationComposer,
+      $$ProjectsTableCreateCompanionBuilder,
+      $$ProjectsTableUpdateCompanionBuilder,
+      (Project, BaseReferences<_$AppDatabase, $ProjectsTable, Project>),
+      Project,
+      PrefetchHooks Function()
+    >;
+typedef $$ActivitiesTableCreateCompanionBuilder =
+    ActivitiesCompanion Function({
+      Value<int> id,
+      required String projectId,
+      required int videoId,
+      required int zoneId,
+      required int classId,
+      required DateTime createdAt,
+      required int spawned,
+      required int vanished,
+      required int entered,
+      required int exited,
+      required int stagnant,
+      required int reentered,
+      required int occupied,
+      required int stayDuration,
+    });
+typedef $$ActivitiesTableUpdateCompanionBuilder =
+    ActivitiesCompanion Function({
+      Value<int> id,
+      Value<String> projectId,
+      Value<int> videoId,
+      Value<int> zoneId,
+      Value<int> classId,
+      Value<DateTime> createdAt,
+      Value<int> spawned,
+      Value<int> vanished,
+      Value<int> entered,
+      Value<int> exited,
+      Value<int> stagnant,
+      Value<int> reentered,
+      Value<int> occupied,
+      Value<int> stayDuration,
+    });
 
 class $$ActivitiesTableFilterComposer
     extends Composer<_$AppDatabase, $ActivitiesTable> {
@@ -1223,46 +1457,74 @@ class $$ActivitiesTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnFilters(column));
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<String> get projectId => $composableBuilder(
-      column: $table.projectId, builder: (column) => ColumnFilters(column));
+    column: $table.projectId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get videoId => $composableBuilder(
-      column: $table.videoId, builder: (column) => ColumnFilters(column));
+    column: $table.videoId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get zoneId => $composableBuilder(
-      column: $table.zoneId, builder: (column) => ColumnFilters(column));
+    column: $table.zoneId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get classId => $composableBuilder(
-      column: $table.classId, builder: (column) => ColumnFilters(column));
+    column: $table.classId,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get spawned => $composableBuilder(
-      column: $table.spawned, builder: (column) => ColumnFilters(column));
+    column: $table.spawned,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get vanished => $composableBuilder(
-      column: $table.vanished, builder: (column) => ColumnFilters(column));
+    column: $table.vanished,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get entered => $composableBuilder(
-      column: $table.entered, builder: (column) => ColumnFilters(column));
+    column: $table.entered,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get exited => $composableBuilder(
-      column: $table.exited, builder: (column) => ColumnFilters(column));
+    column: $table.exited,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get stagnant => $composableBuilder(
-      column: $table.stagnant, builder: (column) => ColumnFilters(column));
+    column: $table.stagnant,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get reentered => $composableBuilder(
-      column: $table.reentered, builder: (column) => ColumnFilters(column));
+    column: $table.reentered,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get occupied => $composableBuilder(
-      column: $table.occupied, builder: (column) => ColumnFilters(column));
+    column: $table.occupied,
+    builder: (column) => ColumnFilters(column),
+  );
 
   ColumnFilters<int> get stayDuration => $composableBuilder(
-      column: $table.stayDuration, builder: (column) => ColumnFilters(column));
+    column: $table.stayDuration,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$ActivitiesTableOrderingComposer
@@ -1275,47 +1537,74 @@ class $$ActivitiesTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-      column: $table.id, builder: (column) => ColumnOrderings(column));
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<String> get projectId => $composableBuilder(
-      column: $table.projectId, builder: (column) => ColumnOrderings(column));
+    column: $table.projectId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get videoId => $composableBuilder(
-      column: $table.videoId, builder: (column) => ColumnOrderings(column));
+    column: $table.videoId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get zoneId => $composableBuilder(
-      column: $table.zoneId, builder: (column) => ColumnOrderings(column));
+    column: $table.zoneId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get classId => $composableBuilder(
-      column: $table.classId, builder: (column) => ColumnOrderings(column));
+    column: $table.classId,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get spawned => $composableBuilder(
-      column: $table.spawned, builder: (column) => ColumnOrderings(column));
+    column: $table.spawned,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get vanished => $composableBuilder(
-      column: $table.vanished, builder: (column) => ColumnOrderings(column));
+    column: $table.vanished,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get entered => $composableBuilder(
-      column: $table.entered, builder: (column) => ColumnOrderings(column));
+    column: $table.entered,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get exited => $composableBuilder(
-      column: $table.exited, builder: (column) => ColumnOrderings(column));
+    column: $table.exited,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get stagnant => $composableBuilder(
-      column: $table.stagnant, builder: (column) => ColumnOrderings(column));
+    column: $table.stagnant,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get reentered => $composableBuilder(
-      column: $table.reentered, builder: (column) => ColumnOrderings(column));
+    column: $table.reentered,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get occupied => $composableBuilder(
-      column: $table.occupied, builder: (column) => ColumnOrderings(column));
+    column: $table.occupied,
+    builder: (column) => ColumnOrderings(column),
+  );
 
   ColumnOrderings<int> get stayDuration => $composableBuilder(
-      column: $table.stayDuration,
-      builder: (column) => ColumnOrderings(column));
+    column: $table.stayDuration,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$ActivitiesTableAnnotationComposer
@@ -1367,23 +1656,29 @@ class $$ActivitiesTableAnnotationComposer
       $composableBuilder(column: $table.occupied, builder: (column) => column);
 
   GeneratedColumn<int> get stayDuration => $composableBuilder(
-      column: $table.stayDuration, builder: (column) => column);
+    column: $table.stayDuration,
+    builder: (column) => column,
+  );
 }
 
-class $$ActivitiesTableTableManager extends RootTableManager<
-    _$AppDatabase,
-    $ActivitiesTable,
-    Activity,
-    $$ActivitiesTableFilterComposer,
-    $$ActivitiesTableOrderingComposer,
-    $$ActivitiesTableAnnotationComposer,
-    $$ActivitiesTableCreateCompanionBuilder,
-    $$ActivitiesTableUpdateCompanionBuilder,
-    (Activity, BaseReferences<_$AppDatabase, $ActivitiesTable, Activity>),
-    Activity,
-    PrefetchHooks Function()> {
+class $$ActivitiesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $ActivitiesTable,
+          Activity,
+          $$ActivitiesTableFilterComposer,
+          $$ActivitiesTableOrderingComposer,
+          $$ActivitiesTableAnnotationComposer,
+          $$ActivitiesTableCreateCompanionBuilder,
+          $$ActivitiesTableUpdateCompanionBuilder,
+          (Activity, BaseReferences<_$AppDatabase, $ActivitiesTable, Activity>),
+          Activity,
+          PrefetchHooks Function()
+        > {
   $$ActivitiesTableTableManager(_$AppDatabase db, $ActivitiesTable table)
-      : super(TableManagerState(
+    : super(
+        TableManagerState(
           db: db,
           table: table,
           createFilteringComposer: () =>
@@ -1392,89 +1687,92 @@ class $$ActivitiesTableTableManager extends RootTableManager<
               $$ActivitiesTableOrderingComposer($db: db, $table: table),
           createComputedFieldComposer: () =>
               $$ActivitiesTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            Value<String> projectId = const Value.absent(),
-            Value<int> videoId = const Value.absent(),
-            Value<int> zoneId = const Value.absent(),
-            Value<int> classId = const Value.absent(),
-            Value<DateTime> createdAt = const Value.absent(),
-            Value<int> spawned = const Value.absent(),
-            Value<int> vanished = const Value.absent(),
-            Value<int> entered = const Value.absent(),
-            Value<int> exited = const Value.absent(),
-            Value<int> stagnant = const Value.absent(),
-            Value<int> reentered = const Value.absent(),
-            Value<int> occupied = const Value.absent(),
-            Value<int> stayDuration = const Value.absent(),
-          }) =>
-              ActivitiesCompanion(
-            id: id,
-            projectId: projectId,
-            videoId: videoId,
-            zoneId: zoneId,
-            classId: classId,
-            createdAt: createdAt,
-            spawned: spawned,
-            vanished: vanished,
-            entered: entered,
-            exited: exited,
-            stagnant: stagnant,
-            reentered: reentered,
-            occupied: occupied,
-            stayDuration: stayDuration,
-          ),
-          createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required String projectId,
-            required int videoId,
-            required int zoneId,
-            required int classId,
-            required DateTime createdAt,
-            required int spawned,
-            required int vanished,
-            required int entered,
-            required int exited,
-            required int stagnant,
-            required int reentered,
-            required int occupied,
-            required int stayDuration,
-          }) =>
-              ActivitiesCompanion.insert(
-            id: id,
-            projectId: projectId,
-            videoId: videoId,
-            zoneId: zoneId,
-            classId: classId,
-            createdAt: createdAt,
-            spawned: spawned,
-            vanished: vanished,
-            entered: entered,
-            exited: exited,
-            stagnant: stagnant,
-            reentered: reentered,
-            occupied: occupied,
-            stayDuration: stayDuration,
-          ),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String> projectId = const Value.absent(),
+                Value<int> videoId = const Value.absent(),
+                Value<int> zoneId = const Value.absent(),
+                Value<int> classId = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<int> spawned = const Value.absent(),
+                Value<int> vanished = const Value.absent(),
+                Value<int> entered = const Value.absent(),
+                Value<int> exited = const Value.absent(),
+                Value<int> stagnant = const Value.absent(),
+                Value<int> reentered = const Value.absent(),
+                Value<int> occupied = const Value.absent(),
+                Value<int> stayDuration = const Value.absent(),
+              }) => ActivitiesCompanion(
+                id: id,
+                projectId: projectId,
+                videoId: videoId,
+                zoneId: zoneId,
+                classId: classId,
+                createdAt: createdAt,
+                spawned: spawned,
+                vanished: vanished,
+                entered: entered,
+                exited: exited,
+                stagnant: stagnant,
+                reentered: reentered,
+                occupied: occupied,
+                stayDuration: stayDuration,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required String projectId,
+                required int videoId,
+                required int zoneId,
+                required int classId,
+                required DateTime createdAt,
+                required int spawned,
+                required int vanished,
+                required int entered,
+                required int exited,
+                required int stagnant,
+                required int reentered,
+                required int occupied,
+                required int stayDuration,
+              }) => ActivitiesCompanion.insert(
+                id: id,
+                projectId: projectId,
+                videoId: videoId,
+                zoneId: zoneId,
+                classId: classId,
+                createdAt: createdAt,
+                spawned: spawned,
+                vanished: vanished,
+                entered: entered,
+                exited: exited,
+                stagnant: stagnant,
+                reentered: reentered,
+                occupied: occupied,
+                stayDuration: stayDuration,
+              ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
               .toList(),
           prefetchHooksCallback: null,
-        ));
+        ),
+      );
 }
 
-typedef $$ActivitiesTableProcessedTableManager = ProcessedTableManager<
-    _$AppDatabase,
-    $ActivitiesTable,
-    Activity,
-    $$ActivitiesTableFilterComposer,
-    $$ActivitiesTableOrderingComposer,
-    $$ActivitiesTableAnnotationComposer,
-    $$ActivitiesTableCreateCompanionBuilder,
-    $$ActivitiesTableUpdateCompanionBuilder,
-    (Activity, BaseReferences<_$AppDatabase, $ActivitiesTable, Activity>),
-    Activity,
-    PrefetchHooks Function()>;
+typedef $$ActivitiesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $ActivitiesTable,
+      Activity,
+      $$ActivitiesTableFilterComposer,
+      $$ActivitiesTableOrderingComposer,
+      $$ActivitiesTableAnnotationComposer,
+      $$ActivitiesTableCreateCompanionBuilder,
+      $$ActivitiesTableUpdateCompanionBuilder,
+      (Activity, BaseReferences<_$AppDatabase, $ActivitiesTable, Activity>),
+      Activity,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;

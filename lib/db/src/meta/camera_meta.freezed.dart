@@ -12,7 +12,8 @@ part of 'camera_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 CameraMeta _$CameraMetaFromJson(Map<String, dynamic> json) {
   return _CameraMeta.fromJson(json);
@@ -37,8 +38,9 @@ mixin _$CameraMeta {
 /// @nodoc
 abstract class $CameraMetaCopyWith<$Res> {
   factory $CameraMetaCopyWith(
-          CameraMeta value, $Res Function(CameraMeta) then) =
-      _$CameraMetaCopyWithImpl<$Res, CameraMeta>;
+    CameraMeta value,
+    $Res Function(CameraMeta) then,
+  ) = _$CameraMetaCopyWithImpl<$Res, CameraMeta>;
   @useResult
   $Res call({String name, String title, bool isFront});
 }
@@ -62,20 +64,23 @@ class _$CameraMetaCopyWithImpl<$Res, $Val extends CameraMeta>
     Object? title = null,
     Object? isFront = null,
   }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      isFront: null == isFront
-          ? _value.isFront
-          : isFront // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+            title: null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String,
+            isFront: null == isFront
+                ? _value.isFront
+                : isFront // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -83,8 +88,9 @@ class _$CameraMetaCopyWithImpl<$Res, $Val extends CameraMeta>
 abstract class _$$CameraMetaImplCopyWith<$Res>
     implements $CameraMetaCopyWith<$Res> {
   factory _$$CameraMetaImplCopyWith(
-          _$CameraMetaImpl value, $Res Function(_$CameraMetaImpl) then) =
-      __$$CameraMetaImplCopyWithImpl<$Res>;
+    _$CameraMetaImpl value,
+    $Res Function(_$CameraMetaImpl) then,
+  ) = __$$CameraMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String name, String title, bool isFront});
@@ -95,8 +101,9 @@ class __$$CameraMetaImplCopyWithImpl<$Res>
     extends _$CameraMetaCopyWithImpl<$Res, _$CameraMetaImpl>
     implements _$$CameraMetaImplCopyWith<$Res> {
   __$$CameraMetaImplCopyWithImpl(
-      _$CameraMetaImpl _value, $Res Function(_$CameraMetaImpl) _then)
-      : super(_value, _then);
+    _$CameraMetaImpl _value,
+    $Res Function(_$CameraMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CameraMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -107,28 +114,33 @@ class __$$CameraMetaImplCopyWithImpl<$Res>
     Object? title = null,
     Object? isFront = null,
   }) {
-    return _then(_$CameraMetaImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      isFront: null == isFront
-          ? _value.isFront
-          : isFront // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$CameraMetaImpl(
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        title: null == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        isFront: null == isFront
+            ? _value.isFront
+            : isFront // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$CameraMetaImpl implements _CameraMeta {
-  const _$CameraMetaImpl(
-      {required this.name, required this.title, required this.isFront});
+  const _$CameraMetaImpl({
+    required this.name,
+    required this.title,
+    required this.isFront,
+  });
 
   factory _$CameraMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$CameraMetaImplFromJson(json);
@@ -169,17 +181,16 @@ class _$CameraMetaImpl implements _CameraMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CameraMetaImplToJson(
-      this,
-    );
+    return _$$CameraMetaImplToJson(this);
   }
 }
 
 abstract class _CameraMeta implements CameraMeta {
-  const factory _CameraMeta(
-      {required final String name,
-      required final String title,
-      required final bool isFront}) = _$CameraMetaImpl;
+  const factory _CameraMeta({
+    required final String name,
+    required final String title,
+    required final bool isFront,
+  }) = _$CameraMetaImpl;
 
   factory _CameraMeta.fromJson(Map<String, dynamic> json) =
       _$CameraMetaImpl.fromJson;

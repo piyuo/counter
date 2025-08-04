@@ -12,7 +12,8 @@ part of 'zone_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ZoneMeta _$ZoneMetaFromJson(Map<String, dynamic> json) {
   return _ZoneMeta.fromJson(json);
@@ -49,19 +50,20 @@ abstract class $ZoneMetaCopyWith<$Res> {
   factory $ZoneMetaCopyWith(ZoneMeta value, $Res Function(ZoneMeta) then) =
       _$ZoneMetaCopyWithImpl<$Res, ZoneMeta>;
   @useResult
-  $Res call(
-      {int zoneId,
-      bool showSummaryOnScreen,
-      List<AnnotationMeta> annotations,
-      String zoneName,
-      List<PointMeta> points,
-      int pointIndex,
-      @ColorConverter() Color color,
-      int stagnant,
-      int reentered,
-      int crossedZones,
-      int cooldown,
-      bool ignoreIfCounted});
+  $Res call({
+    int zoneId,
+    bool showSummaryOnScreen,
+    List<AnnotationMeta> annotations,
+    String zoneName,
+    List<PointMeta> points,
+    int pointIndex,
+    @ColorConverter() Color color,
+    int stagnant,
+    int reentered,
+    int crossedZones,
+    int cooldown,
+    bool ignoreIfCounted,
+  });
 }
 
 /// @nodoc
@@ -92,56 +94,59 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
     Object? cooldown = null,
     Object? ignoreIfCounted = null,
   }) {
-    return _then(_value.copyWith(
-      zoneId: null == zoneId
-          ? _value.zoneId
-          : zoneId // ignore: cast_nullable_to_non_nullable
-              as int,
-      showSummaryOnScreen: null == showSummaryOnScreen
-          ? _value.showSummaryOnScreen
-          : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-      annotations: null == annotations
-          ? _value.annotations
-          : annotations // ignore: cast_nullable_to_non_nullable
-              as List<AnnotationMeta>,
-      zoneName: null == zoneName
-          ? _value.zoneName
-          : zoneName // ignore: cast_nullable_to_non_nullable
-              as String,
-      points: null == points
-          ? _value.points
-          : points // ignore: cast_nullable_to_non_nullable
-              as List<PointMeta>,
-      pointIndex: null == pointIndex
-          ? _value.pointIndex
-          : pointIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-      stagnant: null == stagnant
-          ? _value.stagnant
-          : stagnant // ignore: cast_nullable_to_non_nullable
-              as int,
-      reentered: null == reentered
-          ? _value.reentered
-          : reentered // ignore: cast_nullable_to_non_nullable
-              as int,
-      crossedZones: null == crossedZones
-          ? _value.crossedZones
-          : crossedZones // ignore: cast_nullable_to_non_nullable
-              as int,
-      cooldown: null == cooldown
-          ? _value.cooldown
-          : cooldown // ignore: cast_nullable_to_non_nullable
-              as int,
-      ignoreIfCounted: null == ignoreIfCounted
-          ? _value.ignoreIfCounted
-          : ignoreIfCounted // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            zoneId: null == zoneId
+                ? _value.zoneId
+                : zoneId // ignore: cast_nullable_to_non_nullable
+                      as int,
+            showSummaryOnScreen: null == showSummaryOnScreen
+                ? _value.showSummaryOnScreen
+                : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            annotations: null == annotations
+                ? _value.annotations
+                : annotations // ignore: cast_nullable_to_non_nullable
+                      as List<AnnotationMeta>,
+            zoneName: null == zoneName
+                ? _value.zoneName
+                : zoneName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            points: null == points
+                ? _value.points
+                : points // ignore: cast_nullable_to_non_nullable
+                      as List<PointMeta>,
+            pointIndex: null == pointIndex
+                ? _value.pointIndex
+                : pointIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
+            color: null == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
+                      as Color,
+            stagnant: null == stagnant
+                ? _value.stagnant
+                : stagnant // ignore: cast_nullable_to_non_nullable
+                      as int,
+            reentered: null == reentered
+                ? _value.reentered
+                : reentered // ignore: cast_nullable_to_non_nullable
+                      as int,
+            crossedZones: null == crossedZones
+                ? _value.crossedZones
+                : crossedZones // ignore: cast_nullable_to_non_nullable
+                      as int,
+            cooldown: null == cooldown
+                ? _value.cooldown
+                : cooldown // ignore: cast_nullable_to_non_nullable
+                      as int,
+            ignoreIfCounted: null == ignoreIfCounted
+                ? _value.ignoreIfCounted
+                : ignoreIfCounted // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -149,23 +154,25 @@ class _$ZoneMetaCopyWithImpl<$Res, $Val extends ZoneMeta>
 abstract class _$$ZoneMetaImplCopyWith<$Res>
     implements $ZoneMetaCopyWith<$Res> {
   factory _$$ZoneMetaImplCopyWith(
-          _$ZoneMetaImpl value, $Res Function(_$ZoneMetaImpl) then) =
-      __$$ZoneMetaImplCopyWithImpl<$Res>;
+    _$ZoneMetaImpl value,
+    $Res Function(_$ZoneMetaImpl) then,
+  ) = __$$ZoneMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int zoneId,
-      bool showSummaryOnScreen,
-      List<AnnotationMeta> annotations,
-      String zoneName,
-      List<PointMeta> points,
-      int pointIndex,
-      @ColorConverter() Color color,
-      int stagnant,
-      int reentered,
-      int crossedZones,
-      int cooldown,
-      bool ignoreIfCounted});
+  $Res call({
+    int zoneId,
+    bool showSummaryOnScreen,
+    List<AnnotationMeta> annotations,
+    String zoneName,
+    List<PointMeta> points,
+    int pointIndex,
+    @ColorConverter() Color color,
+    int stagnant,
+    int reentered,
+    int crossedZones,
+    int cooldown,
+    bool ignoreIfCounted,
+  });
 }
 
 /// @nodoc
@@ -173,8 +180,9 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
     extends _$ZoneMetaCopyWithImpl<$Res, _$ZoneMetaImpl>
     implements _$$ZoneMetaImplCopyWith<$Res> {
   __$$ZoneMetaImplCopyWithImpl(
-      _$ZoneMetaImpl _value, $Res Function(_$ZoneMetaImpl) _then)
-      : super(_value, _then);
+    _$ZoneMetaImpl _value,
+    $Res Function(_$ZoneMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ZoneMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -194,56 +202,58 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
     Object? cooldown = null,
     Object? ignoreIfCounted = null,
   }) {
-    return _then(_$ZoneMetaImpl(
-      zoneId: null == zoneId
-          ? _value.zoneId
-          : zoneId // ignore: cast_nullable_to_non_nullable
-              as int,
-      showSummaryOnScreen: null == showSummaryOnScreen
-          ? _value.showSummaryOnScreen
-          : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
-              as bool,
-      annotations: null == annotations
-          ? _value._annotations
-          : annotations // ignore: cast_nullable_to_non_nullable
-              as List<AnnotationMeta>,
-      zoneName: null == zoneName
-          ? _value.zoneName
-          : zoneName // ignore: cast_nullable_to_non_nullable
-              as String,
-      points: null == points
-          ? _value._points
-          : points // ignore: cast_nullable_to_non_nullable
-              as List<PointMeta>,
-      pointIndex: null == pointIndex
-          ? _value.pointIndex
-          : pointIndex // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-      stagnant: null == stagnant
-          ? _value.stagnant
-          : stagnant // ignore: cast_nullable_to_non_nullable
-              as int,
-      reentered: null == reentered
-          ? _value.reentered
-          : reentered // ignore: cast_nullable_to_non_nullable
-              as int,
-      crossedZones: null == crossedZones
-          ? _value.crossedZones
-          : crossedZones // ignore: cast_nullable_to_non_nullable
-              as int,
-      cooldown: null == cooldown
-          ? _value.cooldown
-          : cooldown // ignore: cast_nullable_to_non_nullable
-              as int,
-      ignoreIfCounted: null == ignoreIfCounted
-          ? _value.ignoreIfCounted
-          : ignoreIfCounted // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$ZoneMetaImpl(
+        zoneId: null == zoneId
+            ? _value.zoneId
+            : zoneId // ignore: cast_nullable_to_non_nullable
+                  as int,
+        showSummaryOnScreen: null == showSummaryOnScreen
+            ? _value.showSummaryOnScreen
+            : showSummaryOnScreen // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        annotations: null == annotations
+            ? _value._annotations
+            : annotations // ignore: cast_nullable_to_non_nullable
+                  as List<AnnotationMeta>,
+        zoneName: null == zoneName
+            ? _value.zoneName
+            : zoneName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        points: null == points
+            ? _value._points
+            : points // ignore: cast_nullable_to_non_nullable
+                  as List<PointMeta>,
+        pointIndex: null == pointIndex
+            ? _value.pointIndex
+            : pointIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
+        color: null == color
+            ? _value.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as Color,
+        stagnant: null == stagnant
+            ? _value.stagnant
+            : stagnant // ignore: cast_nullable_to_non_nullable
+                  as int,
+        reentered: null == reentered
+            ? _value.reentered
+            : reentered // ignore: cast_nullable_to_non_nullable
+                  as int,
+        crossedZones: null == crossedZones
+            ? _value.crossedZones
+            : crossedZones // ignore: cast_nullable_to_non_nullable
+                  as int,
+        cooldown: null == cooldown
+            ? _value.cooldown
+            : cooldown // ignore: cast_nullable_to_non_nullable
+                  as int,
+        ignoreIfCounted: null == ignoreIfCounted
+            ? _value.ignoreIfCounted
+            : ignoreIfCounted // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
@@ -251,21 +261,21 @@ class __$$ZoneMetaImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$ZoneMetaImpl implements _ZoneMeta {
-  const _$ZoneMetaImpl(
-      {required this.zoneId,
-      required this.showSummaryOnScreen,
-      required final List<AnnotationMeta> annotations,
-      required this.zoneName,
-      required final List<PointMeta> points,
-      required this.pointIndex,
-      @ColorConverter() required this.color,
-      required this.stagnant,
-      required this.reentered,
-      required this.crossedZones,
-      required this.cooldown,
-      required this.ignoreIfCounted})
-      : _annotations = annotations,
-        _points = points;
+  const _$ZoneMetaImpl({
+    required this.zoneId,
+    required this.showSummaryOnScreen,
+    required final List<AnnotationMeta> annotations,
+    required this.zoneName,
+    required final List<PointMeta> points,
+    required this.pointIndex,
+    @ColorConverter() required this.color,
+    required this.stagnant,
+    required this.reentered,
+    required this.crossedZones,
+    required this.cooldown,
+    required this.ignoreIfCounted,
+  }) : _annotations = annotations,
+       _points = points;
 
   factory _$ZoneMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$ZoneMetaImplFromJson(json);
@@ -321,8 +331,10 @@ class _$ZoneMetaImpl implements _ZoneMeta {
             (identical(other.zoneId, zoneId) || other.zoneId == zoneId) &&
             (identical(other.showSummaryOnScreen, showSummaryOnScreen) ||
                 other.showSummaryOnScreen == showSummaryOnScreen) &&
-            const DeepCollectionEquality()
-                .equals(other._annotations, _annotations) &&
+            const DeepCollectionEquality().equals(
+              other._annotations,
+              _annotations,
+            ) &&
             (identical(other.zoneName, zoneName) ||
                 other.zoneName == zoneName) &&
             const DeepCollectionEquality().equals(other._points, _points) &&
@@ -344,19 +356,20 @@ class _$ZoneMetaImpl implements _ZoneMeta {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      zoneId,
-      showSummaryOnScreen,
-      const DeepCollectionEquality().hash(_annotations),
-      zoneName,
-      const DeepCollectionEquality().hash(_points),
-      pointIndex,
-      color,
-      stagnant,
-      reentered,
-      crossedZones,
-      cooldown,
-      ignoreIfCounted);
+    runtimeType,
+    zoneId,
+    showSummaryOnScreen,
+    const DeepCollectionEquality().hash(_annotations),
+    zoneName,
+    const DeepCollectionEquality().hash(_points),
+    pointIndex,
+    color,
+    stagnant,
+    reentered,
+    crossedZones,
+    cooldown,
+    ignoreIfCounted,
+  );
 
   /// Create a copy of ZoneMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -368,26 +381,25 @@ class _$ZoneMetaImpl implements _ZoneMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ZoneMetaImplToJson(
-      this,
-    );
+    return _$$ZoneMetaImplToJson(this);
   }
 }
 
 abstract class _ZoneMeta implements ZoneMeta {
-  const factory _ZoneMeta(
-      {required final int zoneId,
-      required final bool showSummaryOnScreen,
-      required final List<AnnotationMeta> annotations,
-      required final String zoneName,
-      required final List<PointMeta> points,
-      required final int pointIndex,
-      @ColorConverter() required final Color color,
-      required final int stagnant,
-      required final int reentered,
-      required final int crossedZones,
-      required final int cooldown,
-      required final bool ignoreIfCounted}) = _$ZoneMetaImpl;
+  const factory _ZoneMeta({
+    required final int zoneId,
+    required final bool showSummaryOnScreen,
+    required final List<AnnotationMeta> annotations,
+    required final String zoneName,
+    required final List<PointMeta> points,
+    required final int pointIndex,
+    @ColorConverter() required final Color color,
+    required final int stagnant,
+    required final int reentered,
+    required final int crossedZones,
+    required final int cooldown,
+    required final bool ignoreIfCounted,
+  }) = _$ZoneMetaImpl;
 
   factory _ZoneMeta.fromJson(Map<String, dynamic> json) =
       _$ZoneMetaImpl.fromJson;

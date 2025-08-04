@@ -13,7 +13,4 @@ _$TimeOfDayMetaImpl _$$TimeOfDayMetaImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$TimeOfDayMetaImplToJson(_$TimeOfDayMetaImpl instance) =>
-    <String, dynamic>{
-      'hour': instance.hour,
-      'minute': instance.minute,
-    };
+    <String, dynamic>{'hour': instance.hour, 'minute': instance.minute};

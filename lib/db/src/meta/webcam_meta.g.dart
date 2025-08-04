@@ -13,7 +13,4 @@ _$WebcamMetaImpl _$$WebcamMetaImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$WebcamMetaImplToJson(_$WebcamMetaImpl instance) =>
-    <String, dynamic>{
-      'index': instance.index,
-      'name': instance.name,
-    };
+    <String, dynamic>{'index': instance.index, 'name': instance.name};
