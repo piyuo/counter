@@ -13,7 +13,4 @@ _$PointMetaImpl _$$PointMetaImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$PointMetaImplToJson(_$PointMetaImpl instance) =>
-    <String, dynamic>{
-      'x': instance.x,
-      'y': instance.y,
-    };
+    <String, dynamic>{'x': instance.x, 'y': instance.y};

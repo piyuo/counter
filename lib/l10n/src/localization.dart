@@ -118,7 +118,7 @@ import 'localization_zh.dart' deferred as localization_zh;
 /// property.
 abstract class Localization {
   Localization(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -141,11 +141,11 @@ abstract class Localization {
   /// of delegates is preferred or required.
   static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
       <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
@@ -232,7 +232,7 @@ abstract class Localization {
     Locale('zh', 'CN'),
     Locale('zh', 'HK'),
     Locale('zh', 'MO'),
-    Locale('zh', 'SG')
+    Locale('zh', 'SG'),
   ];
 
   /// No description provided for @about_screen_app_version.
@@ -1272,65 +1272,65 @@ class _LocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   bool isSupported(Locale locale) => <String>[
-        'af',
-        'am',
-        'ar',
-        'az',
-        'bg',
-        'bn',
-        'ca',
-        'cs',
-        'da',
-        'de',
-        'el',
-        'en',
-        'es',
-        'et',
-        'fa',
-        'fi',
-        'fr',
-        'gl',
-        'gu',
-        'he',
-        'hi',
-        'hr',
-        'hu',
-        'id',
-        'it',
-        'ja',
-        'kk',
-        'ko',
-        'lt',
-        'lv',
-        'ml',
-        'mn',
-        'mr',
-        'ms',
-        'my',
-        'nb',
-        'ne',
-        'nl',
-        'pl',
-        'pt',
-        'ro',
-        'ru',
-        'si',
-        'sk',
-        'sl',
-        'sr',
-        'sv',
-        'sw',
-        'ta',
-        'te',
-        'th',
-        'tl',
-        'tr',
-        'uk',
-        'ur',
-        'uz',
-        'vi',
-        'zh'
-      ].contains(locale.languageCode);
+    'af',
+    'am',
+    'ar',
+    'az',
+    'bg',
+    'bn',
+    'ca',
+    'cs',
+    'da',
+    'de',
+    'el',
+    'en',
+    'es',
+    'et',
+    'fa',
+    'fi',
+    'fr',
+    'gl',
+    'gu',
+    'he',
+    'hi',
+    'hr',
+    'hu',
+    'id',
+    'it',
+    'ja',
+    'kk',
+    'ko',
+    'lt',
+    'lv',
+    'ml',
+    'mn',
+    'mr',
+    'ms',
+    'my',
+    'nb',
+    'ne',
+    'nl',
+    'pl',
+    'pt',
+    'ro',
+    'ru',
+    'si',
+    'sk',
+    'sl',
+    'sr',
+    'sv',
+    'sw',
+    'ta',
+    'te',
+    'th',
+    'tl',
+    'tr',
+    'uk',
+    'ur',
+    'uz',
+    'vi',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_LocalizationDelegate old) => false;
@@ -1343,17 +1343,17 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'AE':
-            return localization_ar
-                .loadLibrary()
-                .then((dynamic _) => localization_ar.LocalizationArAe());
+            return localization_ar.loadLibrary().then(
+              (dynamic _) => localization_ar.LocalizationArAe(),
+            );
           case 'DZ':
-            return localization_ar
-                .loadLibrary()
-                .then((dynamic _) => localization_ar.LocalizationArDz());
+            return localization_ar.loadLibrary().then(
+              (dynamic _) => localization_ar.LocalizationArDz(),
+            );
           case 'EG':
-            return localization_ar
-                .loadLibrary()
-                .then((dynamic _) => localization_ar.LocalizationArEg());
+            return localization_ar.loadLibrary().then(
+              (dynamic _) => localization_ar.LocalizationArEg(),
+            );
         }
         break;
       }
@@ -1361,9 +1361,9 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'IN':
-            return localization_bn
-                .loadLibrary()
-                .then((dynamic _) => localization_bn.LocalizationBnIn());
+            return localization_bn.loadLibrary().then(
+              (dynamic _) => localization_bn.LocalizationBnIn(),
+            );
         }
         break;
       }
@@ -1371,13 +1371,13 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'AT':
-            return localization_de
-                .loadLibrary()
-                .then((dynamic _) => localization_de.LocalizationDeAt());
+            return localization_de.loadLibrary().then(
+              (dynamic _) => localization_de.LocalizationDeAt(),
+            );
           case 'CH':
-            return localization_de
-                .loadLibrary()
-                .then((dynamic _) => localization_de.LocalizationDeCh());
+            return localization_de.loadLibrary().then(
+              (dynamic _) => localization_de.LocalizationDeCh(),
+            );
         }
         break;
       }
@@ -1385,21 +1385,21 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'AU':
-            return localization_en
-                .loadLibrary()
-                .then((dynamic _) => localization_en.LocalizationEnAu());
+            return localization_en.loadLibrary().then(
+              (dynamic _) => localization_en.LocalizationEnAu(),
+            );
           case 'CA':
-            return localization_en
-                .loadLibrary()
-                .then((dynamic _) => localization_en.LocalizationEnCa());
+            return localization_en.loadLibrary().then(
+              (dynamic _) => localization_en.LocalizationEnCa(),
+            );
           case 'GB':
-            return localization_en
-                .loadLibrary()
-                .then((dynamic _) => localization_en.LocalizationEnGb());
+            return localization_en.loadLibrary().then(
+              (dynamic _) => localization_en.LocalizationEnGb(),
+            );
           case 'IN':
-            return localization_en
-                .loadLibrary()
-                .then((dynamic _) => localization_en.LocalizationEnIn());
+            return localization_en.loadLibrary().then(
+              (dynamic _) => localization_en.LocalizationEnIn(),
+            );
         }
         break;
       }
@@ -1407,17 +1407,17 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'AR':
-            return localization_es
-                .loadLibrary()
-                .then((dynamic _) => localization_es.LocalizationEsAr());
+            return localization_es.loadLibrary().then(
+              (dynamic _) => localization_es.LocalizationEsAr(),
+            );
           case 'CO':
-            return localization_es
-                .loadLibrary()
-                .then((dynamic _) => localization_es.LocalizationEsCo());
+            return localization_es.loadLibrary().then(
+              (dynamic _) => localization_es.LocalizationEsCo(),
+            );
           case 'MX':
-            return localization_es
-                .loadLibrary()
-                .then((dynamic _) => localization_es.LocalizationEsMx());
+            return localization_es.loadLibrary().then(
+              (dynamic _) => localization_es.LocalizationEsMx(),
+            );
         }
         break;
       }
@@ -1425,17 +1425,17 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'BE':
-            return localization_fr
-                .loadLibrary()
-                .then((dynamic _) => localization_fr.LocalizationFrBe());
+            return localization_fr.loadLibrary().then(
+              (dynamic _) => localization_fr.LocalizationFrBe(),
+            );
           case 'CA':
-            return localization_fr
-                .loadLibrary()
-                .then((dynamic _) => localization_fr.LocalizationFrCa());
+            return localization_fr.loadLibrary().then(
+              (dynamic _) => localization_fr.LocalizationFrCa(),
+            );
           case 'CH':
-            return localization_fr
-                .loadLibrary()
-                .then((dynamic _) => localization_fr.LocalizationFrCh());
+            return localization_fr.loadLibrary().then(
+              (dynamic _) => localization_fr.LocalizationFrCh(),
+            );
         }
         break;
       }
@@ -1443,9 +1443,9 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'SG':
-            return localization_ms
-                .loadLibrary()
-                .then((dynamic _) => localization_ms.LocalizationMsSg());
+            return localization_ms.loadLibrary().then(
+              (dynamic _) => localization_ms.LocalizationMsSg(),
+            );
         }
         break;
       }
@@ -1453,9 +1453,9 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'BE':
-            return localization_nl
-                .loadLibrary()
-                .then((dynamic _) => localization_nl.LocalizationNlBe());
+            return localization_nl.loadLibrary().then(
+              (dynamic _) => localization_nl.LocalizationNlBe(),
+            );
         }
         break;
       }
@@ -1463,9 +1463,9 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'PT':
-            return localization_pt
-                .loadLibrary()
-                .then((dynamic _) => localization_pt.LocalizationPtPt());
+            return localization_pt.loadLibrary().then(
+              (dynamic _) => localization_pt.LocalizationPtPt(),
+            );
         }
         break;
       }
@@ -1473,13 +1473,13 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'KZ':
-            return localization_ru
-                .loadLibrary()
-                .then((dynamic _) => localization_ru.LocalizationRuKz());
+            return localization_ru.loadLibrary().then(
+              (dynamic _) => localization_ru.LocalizationRuKz(),
+            );
           case 'UA':
-            return localization_ru
-                .loadLibrary()
-                .then((dynamic _) => localization_ru.LocalizationRuUa());
+            return localization_ru.loadLibrary().then(
+              (dynamic _) => localization_ru.LocalizationRuUa(),
+            );
         }
         break;
       }
@@ -1487,9 +1487,9 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'IN':
-            return localization_ur
-                .loadLibrary()
-                .then((dynamic _) => localization_ur.LocalizationUrIn());
+            return localization_ur.loadLibrary().then(
+              (dynamic _) => localization_ur.LocalizationUrIn(),
+            );
         }
         break;
       }
@@ -1497,21 +1497,21 @@ Future<Localization> lookupLocalization(Locale locale) {
       {
         switch (locale.countryCode) {
           case 'CN':
-            return localization_zh
-                .loadLibrary()
-                .then((dynamic _) => localization_zh.LocalizationZhCn());
+            return localization_zh.loadLibrary().then(
+              (dynamic _) => localization_zh.LocalizationZhCn(),
+            );
           case 'HK':
-            return localization_zh
-                .loadLibrary()
-                .then((dynamic _) => localization_zh.LocalizationZhHk());
+            return localization_zh.loadLibrary().then(
+              (dynamic _) => localization_zh.LocalizationZhHk(),
+            );
           case 'MO':
-            return localization_zh
-                .loadLibrary()
-                .then((dynamic _) => localization_zh.LocalizationZhMo());
+            return localization_zh.loadLibrary().then(
+              (dynamic _) => localization_zh.LocalizationZhMo(),
+            );
           case 'SG':
-            return localization_zh
-                .loadLibrary()
-                .then((dynamic _) => localization_zh.LocalizationZhSg());
+            return localization_zh.loadLibrary().then(
+              (dynamic _) => localization_zh.LocalizationZhSg(),
+            );
         }
         break;
       }
@@ -1520,242 +1520,243 @@ Future<Localization> lookupLocalization(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'af':
-      return localization_af
-          .loadLibrary()
-          .then((dynamic _) => localization_af.LocalizationAf());
+      return localization_af.loadLibrary().then(
+        (dynamic _) => localization_af.LocalizationAf(),
+      );
     case 'am':
-      return localization_am
-          .loadLibrary()
-          .then((dynamic _) => localization_am.LocalizationAm());
+      return localization_am.loadLibrary().then(
+        (dynamic _) => localization_am.LocalizationAm(),
+      );
     case 'ar':
-      return localization_ar
-          .loadLibrary()
-          .then((dynamic _) => localization_ar.LocalizationAr());
+      return localization_ar.loadLibrary().then(
+        (dynamic _) => localization_ar.LocalizationAr(),
+      );
     case 'az':
-      return localization_az
-          .loadLibrary()
-          .then((dynamic _) => localization_az.LocalizationAz());
+      return localization_az.loadLibrary().then(
+        (dynamic _) => localization_az.LocalizationAz(),
+      );
     case 'bg':
-      return localization_bg
-          .loadLibrary()
-          .then((dynamic _) => localization_bg.LocalizationBg());
+      return localization_bg.loadLibrary().then(
+        (dynamic _) => localization_bg.LocalizationBg(),
+      );
     case 'bn':
-      return localization_bn
-          .loadLibrary()
-          .then((dynamic _) => localization_bn.LocalizationBn());
+      return localization_bn.loadLibrary().then(
+        (dynamic _) => localization_bn.LocalizationBn(),
+      );
     case 'ca':
-      return localization_ca
-          .loadLibrary()
-          .then((dynamic _) => localization_ca.LocalizationCa());
+      return localization_ca.loadLibrary().then(
+        (dynamic _) => localization_ca.LocalizationCa(),
+      );
     case 'cs':
-      return localization_cs
-          .loadLibrary()
-          .then((dynamic _) => localization_cs.LocalizationCs());
+      return localization_cs.loadLibrary().then(
+        (dynamic _) => localization_cs.LocalizationCs(),
+      );
     case 'da':
-      return localization_da
-          .loadLibrary()
-          .then((dynamic _) => localization_da.LocalizationDa());
+      return localization_da.loadLibrary().then(
+        (dynamic _) => localization_da.LocalizationDa(),
+      );
     case 'de':
-      return localization_de
-          .loadLibrary()
-          .then((dynamic _) => localization_de.LocalizationDe());
+      return localization_de.loadLibrary().then(
+        (dynamic _) => localization_de.LocalizationDe(),
+      );
     case 'el':
-      return localization_el
-          .loadLibrary()
-          .then((dynamic _) => localization_el.LocalizationEl());
+      return localization_el.loadLibrary().then(
+        (dynamic _) => localization_el.LocalizationEl(),
+      );
     case 'en':
-      return localization_en
-          .loadLibrary()
-          .then((dynamic _) => localization_en.LocalizationEn());
+      return localization_en.loadLibrary().then(
+        (dynamic _) => localization_en.LocalizationEn(),
+      );
     case 'es':
-      return localization_es
-          .loadLibrary()
-          .then((dynamic _) => localization_es.LocalizationEs());
+      return localization_es.loadLibrary().then(
+        (dynamic _) => localization_es.LocalizationEs(),
+      );
     case 'et':
-      return localization_et
-          .loadLibrary()
-          .then((dynamic _) => localization_et.LocalizationEt());
+      return localization_et.loadLibrary().then(
+        (dynamic _) => localization_et.LocalizationEt(),
+      );
     case 'fa':
-      return localization_fa
-          .loadLibrary()
-          .then((dynamic _) => localization_fa.LocalizationFa());
+      return localization_fa.loadLibrary().then(
+        (dynamic _) => localization_fa.LocalizationFa(),
+      );
     case 'fi':
-      return localization_fi
-          .loadLibrary()
-          .then((dynamic _) => localization_fi.LocalizationFi());
+      return localization_fi.loadLibrary().then(
+        (dynamic _) => localization_fi.LocalizationFi(),
+      );
     case 'fr':
-      return localization_fr
-          .loadLibrary()
-          .then((dynamic _) => localization_fr.LocalizationFr());
+      return localization_fr.loadLibrary().then(
+        (dynamic _) => localization_fr.LocalizationFr(),
+      );
     case 'gl':
-      return localization_gl
-          .loadLibrary()
-          .then((dynamic _) => localization_gl.LocalizationGl());
+      return localization_gl.loadLibrary().then(
+        (dynamic _) => localization_gl.LocalizationGl(),
+      );
     case 'gu':
-      return localization_gu
-          .loadLibrary()
-          .then((dynamic _) => localization_gu.LocalizationGu());
+      return localization_gu.loadLibrary().then(
+        (dynamic _) => localization_gu.LocalizationGu(),
+      );
     case 'he':
-      return localization_he
-          .loadLibrary()
-          .then((dynamic _) => localization_he.LocalizationHe());
+      return localization_he.loadLibrary().then(
+        (dynamic _) => localization_he.LocalizationHe(),
+      );
     case 'hi':
-      return localization_hi
-          .loadLibrary()
-          .then((dynamic _) => localization_hi.LocalizationHi());
+      return localization_hi.loadLibrary().then(
+        (dynamic _) => localization_hi.LocalizationHi(),
+      );
     case 'hr':
-      return localization_hr
-          .loadLibrary()
-          .then((dynamic _) => localization_hr.LocalizationHr());
+      return localization_hr.loadLibrary().then(
+        (dynamic _) => localization_hr.LocalizationHr(),
+      );
     case 'hu':
-      return localization_hu
-          .loadLibrary()
-          .then((dynamic _) => localization_hu.LocalizationHu());
+      return localization_hu.loadLibrary().then(
+        (dynamic _) => localization_hu.LocalizationHu(),
+      );
     case 'id':
-      return localization_id
-          .loadLibrary()
-          .then((dynamic _) => localization_id.LocalizationId());
+      return localization_id.loadLibrary().then(
+        (dynamic _) => localization_id.LocalizationId(),
+      );
     case 'it':
-      return localization_it
-          .loadLibrary()
-          .then((dynamic _) => localization_it.LocalizationIt());
+      return localization_it.loadLibrary().then(
+        (dynamic _) => localization_it.LocalizationIt(),
+      );
     case 'ja':
-      return localization_ja
-          .loadLibrary()
-          .then((dynamic _) => localization_ja.LocalizationJa());
+      return localization_ja.loadLibrary().then(
+        (dynamic _) => localization_ja.LocalizationJa(),
+      );
     case 'kk':
-      return localization_kk
-          .loadLibrary()
-          .then((dynamic _) => localization_kk.LocalizationKk());
+      return localization_kk.loadLibrary().then(
+        (dynamic _) => localization_kk.LocalizationKk(),
+      );
     case 'ko':
-      return localization_ko
-          .loadLibrary()
-          .then((dynamic _) => localization_ko.LocalizationKo());
+      return localization_ko.loadLibrary().then(
+        (dynamic _) => localization_ko.LocalizationKo(),
+      );
     case 'lt':
-      return localization_lt
-          .loadLibrary()
-          .then((dynamic _) => localization_lt.LocalizationLt());
+      return localization_lt.loadLibrary().then(
+        (dynamic _) => localization_lt.LocalizationLt(),
+      );
     case 'lv':
-      return localization_lv
-          .loadLibrary()
-          .then((dynamic _) => localization_lv.LocalizationLv());
+      return localization_lv.loadLibrary().then(
+        (dynamic _) => localization_lv.LocalizationLv(),
+      );
     case 'ml':
-      return localization_ml
-          .loadLibrary()
-          .then((dynamic _) => localization_ml.LocalizationMl());
+      return localization_ml.loadLibrary().then(
+        (dynamic _) => localization_ml.LocalizationMl(),
+      );
     case 'mn':
-      return localization_mn
-          .loadLibrary()
-          .then((dynamic _) => localization_mn.LocalizationMn());
+      return localization_mn.loadLibrary().then(
+        (dynamic _) => localization_mn.LocalizationMn(),
+      );
     case 'mr':
-      return localization_mr
-          .loadLibrary()
-          .then((dynamic _) => localization_mr.LocalizationMr());
+      return localization_mr.loadLibrary().then(
+        (dynamic _) => localization_mr.LocalizationMr(),
+      );
     case 'ms':
-      return localization_ms
-          .loadLibrary()
-          .then((dynamic _) => localization_ms.LocalizationMs());
+      return localization_ms.loadLibrary().then(
+        (dynamic _) => localization_ms.LocalizationMs(),
+      );
     case 'my':
-      return localization_my
-          .loadLibrary()
-          .then((dynamic _) => localization_my.LocalizationMy());
+      return localization_my.loadLibrary().then(
+        (dynamic _) => localization_my.LocalizationMy(),
+      );
     case 'nb':
-      return localization_nb
-          .loadLibrary()
-          .then((dynamic _) => localization_nb.LocalizationNb());
+      return localization_nb.loadLibrary().then(
+        (dynamic _) => localization_nb.LocalizationNb(),
+      );
     case 'ne':
-      return localization_ne
-          .loadLibrary()
-          .then((dynamic _) => localization_ne.LocalizationNe());
+      return localization_ne.loadLibrary().then(
+        (dynamic _) => localization_ne.LocalizationNe(),
+      );
     case 'nl':
-      return localization_nl
-          .loadLibrary()
-          .then((dynamic _) => localization_nl.LocalizationNl());
+      return localization_nl.loadLibrary().then(
+        (dynamic _) => localization_nl.LocalizationNl(),
+      );
     case 'pl':
-      return localization_pl
-          .loadLibrary()
-          .then((dynamic _) => localization_pl.LocalizationPl());
+      return localization_pl.loadLibrary().then(
+        (dynamic _) => localization_pl.LocalizationPl(),
+      );
     case 'pt':
-      return localization_pt
-          .loadLibrary()
-          .then((dynamic _) => localization_pt.LocalizationPt());
+      return localization_pt.loadLibrary().then(
+        (dynamic _) => localization_pt.LocalizationPt(),
+      );
     case 'ro':
-      return localization_ro
-          .loadLibrary()
-          .then((dynamic _) => localization_ro.LocalizationRo());
+      return localization_ro.loadLibrary().then(
+        (dynamic _) => localization_ro.LocalizationRo(),
+      );
     case 'ru':
-      return localization_ru
-          .loadLibrary()
-          .then((dynamic _) => localization_ru.LocalizationRu());
+      return localization_ru.loadLibrary().then(
+        (dynamic _) => localization_ru.LocalizationRu(),
+      );
     case 'si':
-      return localization_si
-          .loadLibrary()
-          .then((dynamic _) => localization_si.LocalizationSi());
+      return localization_si.loadLibrary().then(
+        (dynamic _) => localization_si.LocalizationSi(),
+      );
     case 'sk':
-      return localization_sk
-          .loadLibrary()
-          .then((dynamic _) => localization_sk.LocalizationSk());
+      return localization_sk.loadLibrary().then(
+        (dynamic _) => localization_sk.LocalizationSk(),
+      );
     case 'sl':
-      return localization_sl
-          .loadLibrary()
-          .then((dynamic _) => localization_sl.LocalizationSl());
+      return localization_sl.loadLibrary().then(
+        (dynamic _) => localization_sl.LocalizationSl(),
+      );
     case 'sr':
-      return localization_sr
-          .loadLibrary()
-          .then((dynamic _) => localization_sr.LocalizationSr());
+      return localization_sr.loadLibrary().then(
+        (dynamic _) => localization_sr.LocalizationSr(),
+      );
     case 'sv':
-      return localization_sv
-          .loadLibrary()
-          .then((dynamic _) => localization_sv.LocalizationSv());
+      return localization_sv.loadLibrary().then(
+        (dynamic _) => localization_sv.LocalizationSv(),
+      );
     case 'sw':
-      return localization_sw
-          .loadLibrary()
-          .then((dynamic _) => localization_sw.LocalizationSw());
+      return localization_sw.loadLibrary().then(
+        (dynamic _) => localization_sw.LocalizationSw(),
+      );
     case 'ta':
-      return localization_ta
-          .loadLibrary()
-          .then((dynamic _) => localization_ta.LocalizationTa());
+      return localization_ta.loadLibrary().then(
+        (dynamic _) => localization_ta.LocalizationTa(),
+      );
     case 'te':
-      return localization_te
-          .loadLibrary()
-          .then((dynamic _) => localization_te.LocalizationTe());
+      return localization_te.loadLibrary().then(
+        (dynamic _) => localization_te.LocalizationTe(),
+      );
     case 'th':
-      return localization_th
-          .loadLibrary()
-          .then((dynamic _) => localization_th.LocalizationTh());
+      return localization_th.loadLibrary().then(
+        (dynamic _) => localization_th.LocalizationTh(),
+      );
     case 'tl':
-      return localization_tl
-          .loadLibrary()
-          .then((dynamic _) => localization_tl.LocalizationTl());
+      return localization_tl.loadLibrary().then(
+        (dynamic _) => localization_tl.LocalizationTl(),
+      );
     case 'tr':
-      return localization_tr
-          .loadLibrary()
-          .then((dynamic _) => localization_tr.LocalizationTr());
+      return localization_tr.loadLibrary().then(
+        (dynamic _) => localization_tr.LocalizationTr(),
+      );
     case 'uk':
-      return localization_uk
-          .loadLibrary()
-          .then((dynamic _) => localization_uk.LocalizationUk());
+      return localization_uk.loadLibrary().then(
+        (dynamic _) => localization_uk.LocalizationUk(),
+      );
     case 'ur':
-      return localization_ur
-          .loadLibrary()
-          .then((dynamic _) => localization_ur.LocalizationUr());
+      return localization_ur.loadLibrary().then(
+        (dynamic _) => localization_ur.LocalizationUr(),
+      );
     case 'uz':
-      return localization_uz
-          .loadLibrary()
-          .then((dynamic _) => localization_uz.LocalizationUz());
+      return localization_uz.loadLibrary().then(
+        (dynamic _) => localization_uz.LocalizationUz(),
+      );
     case 'vi':
-      return localization_vi
-          .loadLibrary()
-          .then((dynamic _) => localization_vi.LocalizationVi());
+      return localization_vi.loadLibrary().then(
+        (dynamic _) => localization_vi.LocalizationVi(),
+      );
     case 'zh':
-      return localization_zh
-          .loadLibrary()
-          .then((dynamic _) => localization_zh.LocalizationZh());
+      return localization_zh.loadLibrary().then(
+        (dynamic _) => localization_zh.LocalizationZh(),
+      );
   }
 
   throw FlutterError(
-      'Localization.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'Localization.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.',
+  );
 }

@@ -12,7 +12,8 @@ part of 'webcam_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 WebcamMeta _$WebcamMetaFromJson(Map<String, dynamic> json) {
   return _WebcamMeta.fromJson(json);
@@ -36,8 +37,9 @@ mixin _$WebcamMeta {
 /// @nodoc
 abstract class $WebcamMetaCopyWith<$Res> {
   factory $WebcamMetaCopyWith(
-          WebcamMeta value, $Res Function(WebcamMeta) then) =
-      _$WebcamMetaCopyWithImpl<$Res, WebcamMeta>;
+    WebcamMeta value,
+    $Res Function(WebcamMeta) then,
+  ) = _$WebcamMetaCopyWithImpl<$Res, WebcamMeta>;
   @useResult
   $Res call({int index, String name});
 }
@@ -56,20 +58,20 @@ class _$WebcamMetaCopyWithImpl<$Res, $Val extends WebcamMeta>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? index = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? index = null, Object? name = null}) {
+    return _then(
+      _value.copyWith(
+            index: null == index
+                ? _value.index
+                : index // ignore: cast_nullable_to_non_nullable
+                      as int,
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -77,8 +79,9 @@ class _$WebcamMetaCopyWithImpl<$Res, $Val extends WebcamMeta>
 abstract class _$$WebcamMetaImplCopyWith<$Res>
     implements $WebcamMetaCopyWith<$Res> {
   factory _$$WebcamMetaImplCopyWith(
-          _$WebcamMetaImpl value, $Res Function(_$WebcamMetaImpl) then) =
-      __$$WebcamMetaImplCopyWithImpl<$Res>;
+    _$WebcamMetaImpl value,
+    $Res Function(_$WebcamMetaImpl) then,
+  ) = __$$WebcamMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int index, String name});
@@ -89,27 +92,27 @@ class __$$WebcamMetaImplCopyWithImpl<$Res>
     extends _$WebcamMetaCopyWithImpl<$Res, _$WebcamMetaImpl>
     implements _$$WebcamMetaImplCopyWith<$Res> {
   __$$WebcamMetaImplCopyWithImpl(
-      _$WebcamMetaImpl _value, $Res Function(_$WebcamMetaImpl) _then)
-      : super(_value, _then);
+    _$WebcamMetaImpl _value,
+    $Res Function(_$WebcamMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of WebcamMeta
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? index = null,
-    Object? name = null,
-  }) {
-    return _then(_$WebcamMetaImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? index = null, Object? name = null}) {
+    return _then(
+      _$WebcamMetaImpl(
+        index: null == index
+            ? _value.index
+            : index // ignore: cast_nullable_to_non_nullable
+                  as int,
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -154,16 +157,15 @@ class _$WebcamMetaImpl implements _WebcamMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$WebcamMetaImplToJson(
-      this,
-    );
+    return _$$WebcamMetaImplToJson(this);
   }
 }
 
 abstract class _WebcamMeta implements WebcamMeta {
-  const factory _WebcamMeta(
-      {required final int index,
-      required final String name}) = _$WebcamMetaImpl;
+  const factory _WebcamMeta({
+    required final int index,
+    required final String name,
+  }) = _$WebcamMetaImpl;
 
   factory _WebcamMeta.fromJson(Map<String, dynamic> json) =
       _$WebcamMetaImpl.fromJson;

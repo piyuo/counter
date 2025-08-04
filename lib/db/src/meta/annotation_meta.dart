@@ -1,3 +1,11 @@
+// ===============================================
+// File: annotation_meta.dart
+// Description: Data model for annotation metadata using Freezed
+// Sections:
+//   - Imports
+//   - Freezed AnnotationMeta class
+// ===============================================
+
 import 'package:flutter_vision/flutter_vision.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

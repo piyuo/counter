@@ -12,7 +12,8 @@ part of 'annotation_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 AnnotationMeta _$AnnotationMetaFromJson(Map<String, dynamic> json) {
   return _AnnotationMeta.fromJson(json);
@@ -39,15 +40,17 @@ mixin _$AnnotationMeta {
 /// @nodoc
 abstract class $AnnotationMetaCopyWith<$Res> {
   factory $AnnotationMetaCopyWith(
-          AnnotationMeta value, $Res Function(AnnotationMeta) then) =
-      _$AnnotationMetaCopyWithImpl<$Res, AnnotationMeta>;
+    AnnotationMeta value,
+    $Res Function(AnnotationMeta) then,
+  ) = _$AnnotationMetaCopyWithImpl<$Res, AnnotationMeta>;
   @useResult
-  $Res call(
-      {TallyType type,
-      bool enabled,
-      String title,
-      String prefix,
-      String suffix});
+  $Res call({
+    TallyType type,
+    bool enabled,
+    String title,
+    String prefix,
+    String suffix,
+  });
 }
 
 /// @nodoc
@@ -71,45 +74,50 @@ class _$AnnotationMetaCopyWithImpl<$Res, $Val extends AnnotationMeta>
     Object? prefix = null,
     Object? suffix = null,
   }) {
-    return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TallyType,
-      enabled: null == enabled
-          ? _value.enabled
-          : enabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      prefix: null == prefix
-          ? _value.prefix
-          : prefix // ignore: cast_nullable_to_non_nullable
-              as String,
-      suffix: null == suffix
-          ? _value.suffix
-          : suffix // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            type: null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as TallyType,
+            enabled: null == enabled
+                ? _value.enabled
+                : enabled // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            title: null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String,
+            prefix: null == prefix
+                ? _value.prefix
+                : prefix // ignore: cast_nullable_to_non_nullable
+                      as String,
+            suffix: null == suffix
+                ? _value.suffix
+                : suffix // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$AnnotationMetaImplCopyWith<$Res>
     implements $AnnotationMetaCopyWith<$Res> {
-  factory _$$AnnotationMetaImplCopyWith(_$AnnotationMetaImpl value,
-          $Res Function(_$AnnotationMetaImpl) then) =
-      __$$AnnotationMetaImplCopyWithImpl<$Res>;
+  factory _$$AnnotationMetaImplCopyWith(
+    _$AnnotationMetaImpl value,
+    $Res Function(_$AnnotationMetaImpl) then,
+  ) = __$$AnnotationMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {TallyType type,
-      bool enabled,
-      String title,
-      String prefix,
-      String suffix});
+  $Res call({
+    TallyType type,
+    bool enabled,
+    String title,
+    String prefix,
+    String suffix,
+  });
 }
 
 /// @nodoc
@@ -117,8 +125,9 @@ class __$$AnnotationMetaImplCopyWithImpl<$Res>
     extends _$AnnotationMetaCopyWithImpl<$Res, _$AnnotationMetaImpl>
     implements _$$AnnotationMetaImplCopyWith<$Res> {
   __$$AnnotationMetaImplCopyWithImpl(
-      _$AnnotationMetaImpl _value, $Res Function(_$AnnotationMetaImpl) _then)
-      : super(_value, _then);
+    _$AnnotationMetaImpl _value,
+    $Res Function(_$AnnotationMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AnnotationMeta
   /// with the given fields replaced by the non-null parameter values.
@@ -131,40 +140,43 @@ class __$$AnnotationMetaImplCopyWithImpl<$Res>
     Object? prefix = null,
     Object? suffix = null,
   }) {
-    return _then(_$AnnotationMetaImpl(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as TallyType,
-      enabled: null == enabled
-          ? _value.enabled
-          : enabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      prefix: null == prefix
-          ? _value.prefix
-          : prefix // ignore: cast_nullable_to_non_nullable
-              as String,
-      suffix: null == suffix
-          ? _value.suffix
-          : suffix // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$AnnotationMetaImpl(
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as TallyType,
+        enabled: null == enabled
+            ? _value.enabled
+            : enabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        title: null == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        prefix: null == prefix
+            ? _value.prefix
+            : prefix // ignore: cast_nullable_to_non_nullable
+                  as String,
+        suffix: null == suffix
+            ? _value.suffix
+            : suffix // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$AnnotationMetaImpl implements _AnnotationMeta {
-  const _$AnnotationMetaImpl(
-      {required this.type,
-      required this.enabled,
-      required this.title,
-      required this.prefix,
-      required this.suffix});
+  const _$AnnotationMetaImpl({
+    required this.type,
+    required this.enabled,
+    required this.title,
+    required this.prefix,
+    required this.suffix,
+  });
 
   factory _$AnnotationMetaImpl.fromJson(Map<String, dynamic> json) =>
       _$$AnnotationMetaImplFromJson(json);
@@ -209,23 +221,24 @@ class _$AnnotationMetaImpl implements _AnnotationMeta {
   @pragma('vm:prefer-inline')
   _$$AnnotationMetaImplCopyWith<_$AnnotationMetaImpl> get copyWith =>
       __$$AnnotationMetaImplCopyWithImpl<_$AnnotationMetaImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AnnotationMetaImplToJson(
-      this,
-    );
+    return _$$AnnotationMetaImplToJson(this);
   }
 }
 
 abstract class _AnnotationMeta implements AnnotationMeta {
-  const factory _AnnotationMeta(
-      {required final TallyType type,
-      required final bool enabled,
-      required final String title,
-      required final String prefix,
-      required final String suffix}) = _$AnnotationMetaImpl;
+  const factory _AnnotationMeta({
+    required final TallyType type,
+    required final bool enabled,
+    required final String title,
+    required final String prefix,
+    required final String suffix,
+  }) = _$AnnotationMetaImpl;
 
   factory _AnnotationMeta.fromJson(Map<String, dynamic> json) =
       _$AnnotationMetaImpl.fromJson;

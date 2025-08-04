@@ -12,7 +12,8 @@ part of 'point_meta.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 PointMeta _$PointMetaFromJson(Map<String, dynamic> json) {
   return _PointMeta.fromJson(json);
@@ -55,20 +56,20 @@ class _$PointMetaCopyWithImpl<$Res, $Val extends PointMeta>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? x = null,
-    Object? y = null,
-  }) {
-    return _then(_value.copyWith(
-      x: null == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double,
-      y: null == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  $Res call({Object? x = null, Object? y = null}) {
+    return _then(
+      _value.copyWith(
+            x: null == x
+                ? _value.x
+                : x // ignore: cast_nullable_to_non_nullable
+                      as double,
+            y: null == y
+                ? _value.y
+                : y // ignore: cast_nullable_to_non_nullable
+                      as double,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -76,8 +77,9 @@ class _$PointMetaCopyWithImpl<$Res, $Val extends PointMeta>
 abstract class _$$PointMetaImplCopyWith<$Res>
     implements $PointMetaCopyWith<$Res> {
   factory _$$PointMetaImplCopyWith(
-          _$PointMetaImpl value, $Res Function(_$PointMetaImpl) then) =
-      __$$PointMetaImplCopyWithImpl<$Res>;
+    _$PointMetaImpl value,
+    $Res Function(_$PointMetaImpl) then,
+  ) = __$$PointMetaImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double x, double y});
@@ -88,27 +90,27 @@ class __$$PointMetaImplCopyWithImpl<$Res>
     extends _$PointMetaCopyWithImpl<$Res, _$PointMetaImpl>
     implements _$$PointMetaImplCopyWith<$Res> {
   __$$PointMetaImplCopyWithImpl(
-      _$PointMetaImpl _value, $Res Function(_$PointMetaImpl) _then)
-      : super(_value, _then);
+    _$PointMetaImpl _value,
+    $Res Function(_$PointMetaImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PointMeta
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? x = null,
-    Object? y = null,
-  }) {
-    return _then(_$PointMetaImpl(
-      x: null == x
-          ? _value.x
-          : x // ignore: cast_nullable_to_non_nullable
-              as double,
-      y: null == y
-          ? _value.y
-          : y // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+  $Res call({Object? x = null, Object? y = null}) {
+    return _then(
+      _$PointMetaImpl(
+        x: null == x
+            ? _value.x
+            : x // ignore: cast_nullable_to_non_nullable
+                  as double,
+        y: null == y
+            ? _value.y
+            : y // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }
 
@@ -153,9 +155,7 @@ class _$PointMetaImpl implements _PointMeta {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PointMetaImplToJson(
-      this,
-    );
+    return _$$PointMetaImplToJson(this);
   }
 }
 

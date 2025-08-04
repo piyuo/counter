@@ -20,9 +20,11 @@ class VideoProvider with ChangeNotifier {
     required this.video,
     required ProjectProvider projectProvider,
   }) : _projectProvider = projectProvider {
-    sampler = vision.Sampler(onActivityAdded: (zoneId, classId, activity) {
-      _projectProvider?.notifyActivityAdded(video.videoId, zoneId, classId, activity);
-    });
+    sampler = vision.Sampler(
+      onActivityAdded: (zoneId, classId, activity) {
+        _projectProvider?.notifyActivityAdded(video.videoId, zoneId, classId, activity);
+      },
+    );
     // pass sampler to vision controller, project keep counting through sampler in each vision controller
     visionController = vision.Controller(
       orientationProvider: orientationProvider,
@@ -30,9 +32,9 @@ class VideoProvider with ChangeNotifier {
       isShowCenterRedDotOnTarget: _projectProvider!.project!.isShowCenterRedDotOnTarget,
       isShowGhostTarget: _projectProvider!.project!.isShowGhostTarget,
       onSourceReady: (visionController, media) async {
-        if (video.zones.isNotEmpty) {
-          // if zones are already set, no need to add default zone
-          return null;
+        if (video.zones.isEmpty) {
+          final zone = _addDefaultZone();
+          video.zones.add(zone);
         }
 
         double min, max;
@@ -41,8 +43,6 @@ class VideoProvider with ChangeNotifier {
         maxZoom = max;
         isZoomToolEnabled = min != max;
 
-        final zone = _addDefaultZone();
-        video.zones.add(zone);
         return vision.RecognitionDefinition(
           model: video.model,
           objectClasses: video.objectClasses,
@@ -57,10 +57,7 @@ class VideoProvider with ChangeNotifier {
         );
       },
     );
-    playerController = vision.PlayerController(
-      visionController: visionController,
-      title: video.videoName,
-    );
+    playerController = vision.PlayerController(visionController: visionController, title: video.videoName);
   }
 
   /// the sampler for visionController
@@ -207,10 +204,7 @@ class VideoProvider with ChangeNotifier {
   Future<void> setObjectClassesToRecognition() async {
     // change object classes must set zone also
     await visionController.setRecognition(
-      vision.RecognitionDefinition(
-        objectClasses: video.objectClasses,
-        videoZones: video.zones,
-      ),
+      vision.RecognitionDefinition(objectClasses: video.objectClasses, videoZones: video.zones),
     );
   }
 
@@ -600,14 +594,16 @@ class VideoProvider with ChangeNotifier {
   Future<void> resetDetectionSettings() async {
     video.resetDetectionSettings();
     video.model = _projectProvider!.benchmarkLocalStorage.recommendedModel;
-    await setRecognition(vision.RecognitionDefinition(
-      model: video.model,
-      nmsThreshold: video.nmsThreshold,
-      matchThreshold: video.matchThreshold,
-      trackingThreshold: video.trackingThreshold,
-      detectionThreshold: video.confidenceThreshold,
-      maxLostSeconds: video.maxLostSeconds,
-    ));
+    await setRecognition(
+      vision.RecognitionDefinition(
+        model: video.model,
+        nmsThreshold: video.nmsThreshold,
+        matchThreshold: video.matchThreshold,
+        trackingThreshold: video.trackingThreshold,
+        detectionThreshold: video.confidenceThreshold,
+        maxLostSeconds: video.maxLostSeconds,
+      ),
+    );
     _saveProject();
   }
 }
