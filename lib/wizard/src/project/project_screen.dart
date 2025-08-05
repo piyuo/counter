@@ -13,10 +13,7 @@ import 'gauge_view.dart';
 import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
-  const ProjectScreen({
-    required this.scrollController,
-    super.key,
-  });
+  const ProjectScreen({required this.scrollController, super.key});
 
   /// the scroll controller
   final ScrollController scrollController;
@@ -46,6 +43,10 @@ class ProjectScreen extends StatelessWidget {
               value: count.sampling!,
               child: Consumer<vision.Sampling>(
                 builder: (context, profilesController, child) {
+                  if (count.isDisposed) {
+                    return const SizedBox.shrink();
+                  }
+
                   final zoneColor = videoZone.color.withValues(alpha: 1);
                   buildZoneGauges() {
                     List<Widget> gauges = [];
@@ -74,83 +75,85 @@ class ProjectScreen extends StatelessWidget {
           }
 
           List<Widget> buildVideoView() {
-            return projectProvider.videoProviders.map(
-              (videoProvider) {
-                buildGauges() {
-                  List<Widget> gauges = [];
-                  for (final zone in videoProvider.visionController.zones) {
-                    final zoneColor = zone.videoZone.color.withValues(alpha: 1);
-                    gauges.add(
-                      CupertinoListTile(
-                        leading: Icon(CupertinoIcons.square_stack, color: zoneColor),
-                        title: Text(zone.videoZone.name),
-                        trailing: const CupertinoListTileChevron(),
-                        onTap: () async {
-                          Navigator.of(context).pushNamed(zoneRoute, arguments: {
+            return projectProvider.videoProviders.map((videoProvider) {
+              buildGauges() {
+                List<Widget> gauges = [];
+                for (final zone in videoProvider.visionController.zones) {
+                  final zoneColor = zone.videoZone.color.withValues(alpha: 1);
+                  gauges.add(
+                    CupertinoListTile(
+                      leading: Icon(CupertinoIcons.square_stack, color: zoneColor),
+                      title: Text(zone.videoZone.name),
+                      trailing: const CupertinoListTileChevron(),
+                      onTap: () async {
+                        Navigator.of(context).pushNamed(
+                          zoneRoute,
+                          arguments: {
                             'previousPageTitle': pageTitle,
                             'videoProvider': videoProvider,
                             'videoZone': zone.videoZone,
-                          });
+                          },
+                        );
+                      },
+                    ),
+                  );
+
+                  for (final count in zone.counts) {
+                    final selectedTallyCounters = count.sampling!.tallyCounters
+                        .where((element) => zone.videoZone.selectedTallyTypes.contains(element.type))
+                        .toList();
+                    final selectedTallyAnnotations = zone.videoZone.getTallyAnnotationsByCounters(
+                      selectedTallyCounters,
+                    );
+                    gauges.add(
+                      buildZone(videoProvider, zone.videoZone, count, selectedTallyCounters, selectedTallyAnnotations),
+                    );
+                  }
+                }
+                return gauges;
+              }
+
+              return ChangeNotifierProvider<app.VideoProvider>.value(
+                value: videoProvider,
+                child: Consumer<app.VideoProvider>(
+                  builder: (context, profilesController, child) => CupertinoListSection(
+                    topMargin: 10,
+                    margin: EdgeInsets.zero,
+                    hasLeading: false,
+                    backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                    children: [
+                      CupertinoListTile(
+                        leading: Icon(
+                          videoProvider.getMediaTypeIcon(),
+                          color: CupertinoColors.inactiveGray.resolveFrom(context),
+                        ),
+                        title: Text(videoProvider.video.videoName),
+                        trailing: const CupertinoListTileChevron(),
+                        additionalInfo: Text(
+                          videoProvider.video.sourceType.localizedLabel(context),
+                          style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context)),
+                        ),
+                        onTap: () async {
+                          await projectProvider.enterVideoScreen(videoProvider);
+                          if (!context.mounted) {
+                            return;
+                          }
+                          try {
+                            await Navigator.of(context).pushNamed(
+                              videoRoute,
+                              arguments: {'videoProvider': videoProvider, 'previousPageTitle': pageTitle},
+                            );
+                          } finally {
+                            projectProvider.exitVideoScreen(videoProvider);
+                          }
                         },
                       ),
-                    );
-
-                    for (final count in zone.counts) {
-                      final selectedTallyCounters = count.sampling!.tallyCounters
-                          .where((element) => zone.videoZone.selectedTallyTypes.contains(element.type))
-                          .toList();
-                      final selectedTallyAnnotations =
-                          zone.videoZone.getTallyAnnotationsByCounters(selectedTallyCounters);
-                      gauges.add(
-                        buildZone(
-                            videoProvider, zone.videoZone, count, selectedTallyCounters, selectedTallyAnnotations),
-                      );
-                    }
-                  }
-                  return gauges;
-                }
-
-                return ChangeNotifierProvider<app.VideoProvider>.value(
-                  value: videoProvider,
-                  child: Consumer<app.VideoProvider>(
-                    builder: (context, profilesController, child) => CupertinoListSection(
-                      topMargin: 10,
-                      margin: EdgeInsets.zero,
-                      hasLeading: false,
-                      backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                      children: [
-                        CupertinoListTile(
-                          leading: Icon(videoProvider.getMediaTypeIcon(),
-                              color: CupertinoColors.inactiveGray.resolveFrom(context)),
-                          title: Text(videoProvider.video.videoName),
-                          trailing: const CupertinoListTileChevron(),
-                          additionalInfo: Text(videoProvider.video.sourceType.localizedLabel(context),
-                              style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context))),
-                          onTap: () async {
-                            await projectProvider.enterVideoScreen(videoProvider);
-                            if (!context.mounted) {
-                              return;
-                            }
-                            try {
-                              await Navigator.of(context).pushNamed(
-                                videoRoute,
-                                arguments: {
-                                  'videoProvider': videoProvider,
-                                  'previousPageTitle': pageTitle,
-                                },
-                              );
-                            } finally {
-                              projectProvider.exitVideoScreen(videoProvider);
-                            }
-                          },
-                        ),
-                        ...buildGauges(),
-                      ],
-                    ),
+                      ...buildGauges(),
+                    ],
                   ),
-                );
-              },
-            ).toList();
+                ),
+              );
+            }).toList();
           }
 
           buildTimeTagString() {
@@ -159,132 +162,132 @@ class ProjectScreen extends StatelessWidget {
           }
 
           return ChangeNotifierProvider<GaugeViewRedrawProvider>.value(
-              value: projectScreenProvider.gaugeViewRedrawProvider,
-              child: PopScope(
-                canPop: false,
-                onPopInvokedWithResult: (bool didPop, result) async {
-                  if (didPop) {
-                    return;
-                  }
-                  final bool shouldPop = await showCupertinoDialog<bool?>(
-                        context: context,
-                        builder: (BuildContext context) => CupertinoAlertDialog(
-                          title: Text(context.l.project_screen_exit_confirm_title),
-                          content: Text(context.l.project_screen_exit_confirm_content),
-                          actions: <CupertinoDialogAction>[
-                            CupertinoDialogAction(
-                              isDefaultAction: true,
-                              textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                              onPressed: () => Navigator.pop(context),
-                              child: Text(context.l.no),
-                            ),
-                            CupertinoDialogAction(
-                              isDestructiveAction: true,
-                              onPressed: () => Navigator.pop(context, true),
-                              child: Text(context.l.yes),
-                            ),
-                          ],
-                        ),
-                      ) ??
-                      false;
+            value: projectScreenProvider.gaugeViewRedrawProvider,
+            child: PopScope(
+              canPop: false,
+              onPopInvokedWithResult: (bool didPop, result) async {
+                if (didPop) {
+                  return;
+                }
+                final bool shouldPop =
+                    await showCupertinoDialog<bool?>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoAlertDialog(
+                        title: Text(context.l.project_screen_exit_confirm_title),
+                        content: Text(context.l.project_screen_exit_confirm_content),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            isDefaultAction: true,
+                            textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(context.l.no),
+                          ),
+                          CupertinoDialogAction(
+                            isDestructiveAction: true,
+                            onPressed: () => Navigator.pop(context, true),
+                            child: Text(context.l.yes),
+                          ),
+                        ],
+                      ),
+                    ) ??
+                    false;
 
-                  if (shouldPop) {
-                    await projectProvider.closeProject();
-                    if (context.mounted) {
-                      pip.PipProvider.of(context).setSlidingPanelState(pip.SlidingPanelState.open);
-                      Navigator.pop(context);
-                    }
+                if (shouldPop) {
+                  await projectProvider.closeProject();
+                  if (context.mounted) {
+                    pip.PipProvider.of(context).setSlidingPanelState(pip.SlidingPanelState.open);
+                    Navigator.pop(context);
                   }
-                },
-                child: pip.PipScaffold(
-                  previousPageTitle: context.l.project_screen_exit_button,
-                  action: CupertinoButton(
-                    sizeStyle: CupertinoButtonSize.medium,
-                    child: Text(context.l.project_screen_add_video_button),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(addVideoRoute, arguments: {
-                        'previousPageTitle': pageTitle,
-                      });
-                    },
-                  ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Column(
-                      children: [
-                        pip.PipHeader(
-                          showBottomBorder: false,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 5),
-                                child: ChangeNotifierProvider<IndicatorRedrawProvider>.value(
-                                  value: projectScreenProvider.indicatorRedrawProvider,
-                                  child: Consumer<IndicatorRedrawProvider>(
-                                    builder: (context, indicatorProvider, child) => IndicatorView(
-                                      value: indicatorProvider.value.toDouble(),
-                                      maxValue: indicatorProvider.maxValue.toDouble(),
-                                    ),
+                }
+              },
+              child: pip.PipScaffold(
+                previousPageTitle: context.l.project_screen_exit_button,
+                action: CupertinoButton(
+                  sizeStyle: CupertinoButtonSize.medium,
+                  child: Text(context.l.project_screen_add_video_button),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(addVideoRoute, arguments: {'previousPageTitle': pageTitle});
+                  },
+                ),
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: Column(
+                    children: [
+                      pip.PipHeader(
+                        showBottomBorder: false,
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: ChangeNotifierProvider<IndicatorRedrawProvider>.value(
+                                value: projectScreenProvider.indicatorRedrawProvider,
+                                child: Consumer<IndicatorRedrawProvider>(
+                                  builder: (context, indicatorProvider, child) => IndicatorView(
+                                    value: indicatorProvider.value.toDouble(),
+                                    maxValue: indicatorProvider.maxValue.toDouble(),
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10),
-                              Text(project.projectName,
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
-                                  )),
-                            ],
-                          ),
-                        ),
-                        CupertinoListSection(
-                          topMargin: 0,
-                          backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                          footer: Text(context.l.project_screen_from_desc),
-                          children: [
-                            CupertinoListTile(
-                              title: Text(projectProvider.project!.filter.formattedString(context)),
-                              subtitle: Consumer<GaugeViewRedrawProvider>(
-                                builder: (context, timeTagProvider, child) => Text(
-                                  buildTimeTagString(),
-                                  style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-                                ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              project.projectName,
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: CupertinoColors.secondaryLabel.resolveFrom(context),
                               ),
-                              trailing: const CupertinoListTileChevron(),
-                              onTap: () async {
-                                Navigator.of(context).pushNamed(filterRoute, arguments: {
-                                  'previousPageTitle': pageTitle,
-                                });
-                              },
-                            )
-                          ],
-                        ),
-
-                        // no need to show gauge if zone editor is enabled
-                        if (!projectProvider.isZoneEditorEnabled) ...buildVideoView(),
-                        CupertinoListSection(
-                          header: Text(context.l.project_screen_title),
-                          backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                          children: [
-                            CupertinoListTile(
-                              title: Text(context.l.project_screen_report_settings),
-                              leading: const Icon(CupertinoIcons.settings),
-                              trailing: const CupertinoListTileChevron(),
-                              onTap: () async {
-                                Navigator.of(context).pushNamed(settingsRoute, arguments: {
-                                  'previousPageTitle': pageTitle,
-                                });
-                                return;
-                              },
                             ),
                           ],
                         ),
-                        pip.PipFooter(),
-                      ],
-                    ),
+                      ),
+                      CupertinoListSection(
+                        topMargin: 0,
+                        backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                        footer: Text(context.l.project_screen_from_desc),
+                        children: [
+                          CupertinoListTile(
+                            title: Text(projectProvider.project!.filter.formattedString(context)),
+                            subtitle: Consumer<GaugeViewRedrawProvider>(
+                              builder: (context, timeTagProvider, child) => Text(
+                                buildTimeTagString(),
+                                style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context)),
+                              ),
+                            ),
+                            trailing: const CupertinoListTileChevron(),
+                            onTap: () async {
+                              Navigator.of(context).pushNamed(filterRoute, arguments: {'previousPageTitle': pageTitle});
+                            },
+                          ),
+                        ],
+                      ),
+
+                      // no need to show gauge if zone editor is enabled
+                      if (!projectProvider.isZoneEditorEnabled) ...buildVideoView(),
+                      CupertinoListSection(
+                        header: Text(context.l.project_screen_title),
+                        backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
+                        children: [
+                          CupertinoListTile(
+                            title: Text(context.l.project_screen_report_settings),
+                            leading: const Icon(CupertinoIcons.settings),
+                            trailing: const CupertinoListTileChevron(),
+                            onTap: () async {
+                              Navigator.of(
+                                context,
+                              ).pushNamed(settingsRoute, arguments: {'previousPageTitle': pageTitle});
+                              return;
+                            },
+                          ),
+                        ],
+                      ),
+                      pip.PipFooter(),
+                    ],
                   ),
                 ),
-              ));
+              ),
+            ),
+          );
         },
       ),
     );
