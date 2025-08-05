@@ -1,3 +1,6 @@
-Raportare îmbunătățită a erorilor
+Remedieri de erori
 
-Am adăugat raportarea anonimă a erorilor! Dacă întâlnești o problemă neașteptată, acum poți alege să trimiți un raport de eroare pentru a ne ajuta să o reparăm rapid.
+- Corectat un crash care apărea la închiderea unui proiect după 30 de secunde.
+- Rezolvat o problemă care făcea ca unele dispozitive să afișeze o imagine răsturnată de la camera frontală.
+- Corectate câteva traduceri de limbi incorecte.
+- Rezolvat un bug unde aplicația se bloca când permisiunile camerei erau refuzate.

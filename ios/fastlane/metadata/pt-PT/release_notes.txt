@@ -1,3 +1,6 @@
-Relatório de erros melhorado
+Correções de bugs
 
-Adicionámos relatórios de erros anónimos! Se encontrar um problema inesperado, pode agora optar por enviar um relatório de erro para nos ajudar a corrigi-lo rapidamente.
+- Corrigido um crash que ocorria ao fechar um projeto após 30 segundos.
+- Resolvido um problema que fazia alguns dispositivos exibirem uma imagem invertida da câmera frontal.
+- Corrigidas várias traduções de idiomas incorretas.
+- Corrigido um bug onde a aplicação ficava presa quando as permissões da câmera eram negadas.

@@ -1,3 +1,6 @@
-Poboljšano izvještavanje o greškama
+Ispravke grešaka
 
-Dodali smo anonimno izvještavanje o greškama! Ako naletite na neočekivani problem, sada možete odabrati slanje izvještaja o grešci kako biste nam pomogli da ga brzo riješimo.
+- Ispravljena greška koja je uzrokovala rušenje pri zatvaranju projekta nakon 30 sekundi.
+- Riješen problem koji je uzrokovao prikaz okrenute slike s prednje kamere na nekim uređajima.
+- Ispravleno nekoliko netočnih prijevoda jezika.
+- Riješena greška gdje se aplikacija zaglavila kad nisu odobrene dozvole kamere.

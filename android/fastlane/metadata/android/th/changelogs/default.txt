@@ -1,3 +1,6 @@
-การรายงานข้อผิดพลาดที่ปรับปรุงแล้ว
+Buggfixar
 
-เราได้เพิ่มการรายงานข้อผิดพลาดแบบไม่ระบุตัวตน! หากคุณพบปัญหาที่ไม่คาดคิด ตอนนี้คุณสามารถเลือกส่งรายงานข้อผิดพลาดเพื่อช่วยเราแก้ไขอย่างรวดเร็ว
+- Fixade en krasch som hände vid stängning av ett projekt efter 30 sekunder.
+- Löste ett problem som fick vissa enheter att visa en upp-och-ner bild från främre kameran.
+- Korrigerade flera felaktiga språköversättningar.
+- Åtgärdade en bugg där appen hängde sig när kamerabehörigheter nekades.

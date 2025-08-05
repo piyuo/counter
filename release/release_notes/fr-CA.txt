@@ -1,3 +1,6 @@
-Rapport d'erreurs amélioré
+Corrections de bogues
 
-Nous avons ajouté la création de rapports d'erreurs anonymes ! Si vous rencontrez un problème inattendu, vous pouvez maintenant choisir d'envoyer un rapport d'erreur pour nous aider à le corriger rapidement.
+- Corrigé un plantage qui se produisait lors de la fermeture d'un projet après 30 secondes.
+- Résolu un problème qui faisait afficher une image à l'envers de la caméra frontale sur certains appareils.
+- Corrigé plusieurs traductions linguistiques incorrectes.
+- Corrigé un bogue où l'app se bloquait quand les permissions de caméra étaient refusées.

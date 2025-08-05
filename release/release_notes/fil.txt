@@ -1,3 +1,6 @@
-Pinabuting Pag-uulat ng Error
+Mga Pag-aayos ng Bug
 
-Nagdagdag kami ng anonymous error reporting! Kung makatagpo ka ng hindi inaasahang isyu, maaari ka na ngayong pumili na magpadala ng error report upang matulungan kaming ayusin ito nang mabilis.
+- Naayos ang pag-crash na nangyayari kapag nagsasara ng proyekto pagkatapos ng 30 segundo.
+- Nalutas ang isyu na nagiging baliktad ang larawan mula sa front camera sa ilang device.
+- Naayos ang ilang maling mga pagsasalin ng wika.
+- Natugunan ang bug kung saan nagiging stuck ang app kapag hindi binigay ang camera permissions.

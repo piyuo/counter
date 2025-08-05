@@ -1,3 +1,6 @@
-Paranneltu virheraportointi
+Virheiden korjauksia
 
-Lisäsimme anonyymin virheraportoimisen! Jos kohtaat odottamattoman ongelman, voit nyt valita virheraportin lähetyksen auttaaksemme korjaamaan sen nopeasti.
+- Korjattiin kaatuminen joka tapahtui projektin sulkemisessa 30 sekunnin jälkeen.
+- Ratkaistu ongelma jossa etukanera näytti väärinpäin olevan kuvan joillakin laitteilla.
+- Korjattu useita vääriä kielenkäännöksiä.
+- Korjattu vika jossa sovellus jumitti kun kameraluvat evättiin.

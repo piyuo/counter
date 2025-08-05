@@ -1,3 +1,6 @@
-Parandatud vearaportid
+Veaparandused
 
-Lisasime anonüümse vearaportimise! Kui satute ootamatu probleemiga, saate nüüd valida vearaporti saatmise, et aidata meil see kiiresti parandada.
+- Parandatud viga, mis põhjustas rakenduse kokkujooksmist projekti sulgemisel 30 sekundi järel.
+- Lahendatud probleem, mis põhjustas mõnedel seadmetel esikaamerad ümberpööratud pilti.
+- Parandatud mitu vale keeletõlget.
+- Lahendatud viga, kus rakendus jäi kinni, kui kaamera õigusi ei antud.

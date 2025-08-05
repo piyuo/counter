@@ -1,3 +1,6 @@
-Verbeterde Foutrapportering
+Foutoplossings
 
-Ons het anonieme foutrapportering bygevoeg! As jy 'n onverwagte probleem ondervind, kan jy nou kies om 'n foutverslag te stuur om ons te help om dit vinnig reg te maak.
+- Herstel 'n fout wat veroorsaak het dat die app vasvang wanneer kamerapermissies nie toegestaan is nie.
+- Reggestel 'n probleem waar die voorste kamera 'n onderstebo beeld vertoon het.
+- Verbeter taalvertalings regoor alle ondersteunde tale.
+- Opgelos 'n fout wat veroorsaak het dat projekte na 30 sekondes vasvang.

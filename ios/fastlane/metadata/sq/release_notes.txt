@@ -1,3 +1,6 @@
-Raportim i përmirësuar i gabimeve
+Korrigjime të gabimeve
 
-Kemi shtuar raportimin anonim të gabimeve! Nëse hasni në një problem të papritur, tani mund të zgjidhni të dërgoni një raport gabimi për të na ndihmuar ta rregullojmë shpejt.
+- U rregullua një thyerje që ndodhte gjatë mbylljes së një projekti pas 30 sekondash.
+- U zgjidh një problem që shkaktonte që disa pajisje të shfaqnin një imazh të përmbysur nga kamera e përparme.
+- U korriguan disa përkthime të gabuara gjuhësore.
+- U adresua një defekt ku aplikacioni do të bllokohej kur lejet e kamerës nuk jepeshin.

@@ -1,3 +1,6 @@
-Továbbfejlesztett hibakezelés
+Hibajavítások
 
-Hozzáadtuk az anonim hibajelentést! Ha váratlan problémába ütközik, most kiválaszthatja a hibajelentés küldését, hogy segítsen nekünk gyorsan megjavítani.
+- Kijavítottuk az összeomlást, ami projekt bezárásakor történt 30 másodperc után.
+- Megoldottuk a problémát, ami miatt néhány eszközön fejjel lefelé jelent meg a kép az elülső kamerából.
+- Kijavítottunk több helytelen nyelvi fordítást.
+- Megoldottuk a hibát, ahol az alkalmazás lefagyott, ha a kamera engedélyeket megtagadták.

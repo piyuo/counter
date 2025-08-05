@@ -1,3 +1,6 @@
-Xəta Hesabatının Təkmilləşdirilməsi
+Səhvlərin düzəldilməsi
 
-Anonim xəta hesabatı əlavə etdik! Gözlənilməz problem yaşasanız, indi xəta hesabatı göndərərək bizə onu tez həll etməkdə kömək edə bilərsiniz.
+- 30 saniyədən sonra layihəni bağlayarkən baş verən çökməni həll etdik.
+- Ön kameranın bəzi cihazlarda tərs şəkil göstərməsi problemi həll edildi.
+- Bir neçə yanlış dil tərcüməsi düzəldildi.
+- Kamera icazələri verilmədikdə tətbiqin donması səhvi həll edildi.

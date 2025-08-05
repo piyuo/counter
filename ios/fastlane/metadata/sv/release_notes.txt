@@ -1,3 +1,6 @@
-Förbättrad felrapportering
+Popravki napak
 
-Vi har lagt till anonym felrapportering! Om du stöter på ett oväntat problem kan du nu välja att skicka en felrapport för att hjälpa oss fixa det snabbt.
+- Popravili smo sesutje, ki se je zgodilo pri zapiranju projekta po 30 sekundah.
+- Rešili smo težavo, ki je povzročila, da so nekatere naprave prikazovale obrnjeno sliko iz sprednje kamere.
+- Popravili smo več napačnih jezikovnih prevodov.
+- Odpravili smo napako, pri kateri se je aplikacija zataknila, ko so bila dovoljenja kamere zavrnjena.

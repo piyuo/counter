@@ -1,3 +1,6 @@
-Informes d'error millorats
+Correccions d'errors
 
-Hem afegit informes d'error anònims! Si trobeu un problema inesperat, ara podeu triar enviar un informe d'error per ajudar-nos a solucionar-ho ràpidament.
+- S'ha solucionat un error que feia que l'aplicació es pengés en tancar un projecte després de 30 segons.
+- S'ha resolt un problema que feia que alguns dispositius mostressin una imatge invertida de la càmera frontal.
+- S'han corregit diverses traduccions incorrectes d'idiomes.
+- S'ha solucionat un error que feia que l'aplicació es bloquegés quan es denegaven els permisos de la càmera.

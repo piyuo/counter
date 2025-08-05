@@ -1,0 +1,22 @@
+Dette er en app som automatisk kan oppdage og telle fotgjengere, krever ingen internettilkobling og kan brukes umiddelbart etter installasjon.
+
+Funksjonsoversikt
+- Sanntids personentelling: Systemet oppdager personer som går gjennom skjermen og summerer automatisk antallet.
+- Offline bruk: Alle funksjoner kan kjøre lokalt uten internettilkobling.
+- Flere skjermkilder: Støtter innebygde kameraer, streaming video og eksterne kameraer (forskjellig støtte avhengig av plattform).
+- Langtidsopptak: Kan ta opp kontinuerlig i 24 timer og spørre data for hvilken som helst tidsperiode.
+
+Slik bruker du
+1. Pek kameraet mot gangen eller inngangen du vil overvåke.
+2. Åpne prosjektet og velg skjermkilde.
+3. Etter oppstart vil systemet automatisk oppdage og telle.
+
+Merknader
+- Tellenøyaktigheten påvirkes av vinkel, belysning, hindringer osv. Det anbefales å justere kameraposisjonen basert på faktiske forhold.
+- Selv om det ikke er 100% nøyaktig, reduserer bruk av en konsistent AI-modell menneskelige feil.
+- All databehandling fullføres lokalt - ingen bilder eller data lastes opp.
+
+Egnede scenarier
+- Forstå fotgjengertrafikk i rom (som innganger, korridorer, utstillingsområder).
+- Forskning, arrangement planlegging eller daglig observasjon.
+- Kan begynne å bruke umiddelbart uten ekstra maskinvareutstyr.
