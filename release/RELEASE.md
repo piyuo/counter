@@ -53,36 +53,43 @@ After editing:
 
 ## Generate Translation PROMPT
 
-generate other locale files in `/release/release_notes` based on `/release/release_notes.txt` (original locale: en-US). If the translation exceeds the character limit, summarize while keeping the core meaning.
+**Task:** Generate a localized `release_notes.csv` file from a source text file.
 
-for example , generate `/release/release_notes/zh-TW.txt` with proper translation from `/release/release_notes.txt`
-all translation must meet local custom and easy understand by user, and don't sound like computer generated.
-please make sure all files in `/release/release_notes` are properly translated. don't miss any file.
-and all files in `/release/release_notes` should be updated, cause their content might be from last version release notes,
-which we don't need anymore, so just replace their content to new translation.
+**Goal:** Create a CSV file that serves as a localization resource, containing translations of release notes for all supported locales.
 
+**Input:**
 
-Locales to support:
+- Source text: The release notes are located in `/release/release_notes.txt`.
+- Supported locales: A comprehensive list of locales to be included in the output CSV.
+
+**Locales to Support:**
 af, am, ar, az-AZ, be, bg, bn-BD, ca, cs-CZ, da-DK, de-DE, el-GR, en-AU, en-CA, en-GB, en-IN, en-SG, en-US, en-ZA, et, eu-ES, fi-FI, fil, fr-CA, fr-FR, gl-ES, gu, hi-IN, hr, hu-HU, hy-AM, id, is-IS, it-IT, iw-IL, ja-JP, ka-GE, kk, km-KH, kn-IN, ko-KR, ky-KG, ms, my-MM, nl-NL, sq, uk, ur, vi, zh-CN, zh-HK, zh-TW, zu, ar-SA, cs, da, el, es-ES, es-MX, fi, he, hi, hu, it, ja, ko, no, pl, pt-BR, pt-PT, ro, ru, sk, sv, th, tr, zh-Hans, zh-Hant
 
-File name format: `[locale].txt`. Skip if the file already exists.
+**Output File:**
+
+- `release_notes.csv`
+- The file should be saved in the root directory.
+- If the file already exists, it must be replaced with the new content.
+
+**CSV Formatting Guidelines:**
+
+- **Header:** The first row must be the header, starting with `"key"` followed by all supported locale codes.
+  - *Example:* `"key","zh-Hans","zh-Hant","en-US",...`
+- **Data Rows:** Each subsequent row will contain a key and its translations.
+- **Quoting:** All fields in the CSV must be enclosed in double quotes (`"`).
+- **Escaping:** The newline character `\n` must be escaped within the CSV field.
+  - *Example:* `"Fixed a bug.\nAdded a new feature."`
+- **Keys:** The key for the release notes should be `notes`.
+  - *Example:* `notes,"更改 1","更改 2",...`
 
 **Translation Guidelines:**
 
-- Write in a natural, fluent tone for each locale.
-- Be concise, professional, and friendly—like an engineer explaining the app.
-- Avoid robotic or overly literal translation.
-- Use terms familiar to local users (e.g., “app,” not “application”).
-- Avoid exaggerated or promotional language (e.g., “#1”, “best app”).
-- Do not mention specific platforms unless required for that locale.
-- Do not include links or contact information.
-- Respect Apple, Google, and Microsoft platform guidelines.
-
-**Character Limits:**
-
-- name: 30 characters max
-- subtitle: 30 characters max
-- description: 4000 characters max
-- keywords: 100 characters total (comma-separated, no duplicates)
-- promotional_text: 170 characters max
-- release_notes: 500 characters max
+- **Tone:** Translations should be natural, fluent, and easy for local users to understand. The tone should be professional and friendly, as if from an engineer.
+- **Readability:** Avoid overly literal or robotic-sounding translations. Use terms familiar to local users (e.g., "app" instead of "application").
+- **Exclusions:**
+  - Do not use exaggerated or promotional language (e.g., "#1 app," "best app ever").
+  - Do not include links, URLs, or contact information.
+  - Do not mention specific platforms (e.g., Apple, Google) unless explicitly required for that locale's context.
+- **Constraints:**
+  - Adhere to the `500` character limit for the `release_notes` string in all translations.
+  - Ensure all files in `/release/release_notes/` are translated and included. Do not miss any files.
