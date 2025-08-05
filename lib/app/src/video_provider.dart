@@ -323,6 +323,11 @@ class VideoProvider with ChangeNotifier {
   /// add a new zone to the video source
   vision.VideoZone addZone(BuildContext context) {
     assert(zoneEditorController != null, 'zoneEditorController is null');
+    if (zoneEditorController == null) {
+      throw StateError('zoneEditorController is not ready yet, please go back and try again');
+      // sentry report some user enter here without zoneEditorController, but it should never happen
+    }
+
     vision.VideoZone zone = zoneEditorController!.addZone(context);
     video.zones.add(zone);
     return zone;
