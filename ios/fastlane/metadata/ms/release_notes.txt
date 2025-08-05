@@ -1,3 +1,6 @@
-Pelaporan Ralat yang Diperbaiki
+Pembetulan Pepijat
 
-Kami telah menambahkan pelaporan ralat tanpa nama! Jika anda menghadapi masalah yang tidak dijangka, kini anda boleh memilih untuk menghantar laporan ralat bagi membantu kami membetulkannya dengan cepat.
+- Membetulkan ranap yang berlaku semasa menutup projek selepas 30 saat.
+- Menyelesaikan masalah yang menyebabkan sesetengah peranti memaparkan imej terbalik dari kamera hadapan.
+- Membetulkan beberapa terjemahan bahasa yang salah.
+- Menangani pepijat di mana aplikasi akan tersangkut apabila kebenaran kamera tidak diberikan.

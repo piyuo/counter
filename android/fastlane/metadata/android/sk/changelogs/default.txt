@@ -1,3 +1,6 @@
-Vylepšené hlásenie chýb
+Opravy chýb
 
-Pridali sme anonymné hlásenie chýb! Ak narazíte na neočakávaný problém, teraz si môžete vybrať odoslanie hlásenia chyby, aby ste nám pomohli ho rýchlo opraviť.
+- Opravili sme pád pri zatváraní projektu po 30 sekundách.
+- Vyriešili sme problém s obráteným obrazom z prednej kamery na niektorých zariadeniach.
+- Opravili sme niekoľko nesprávnych jazykových prekladov.
+- Vyriešili sme chybu, pri ktorej sa aplikácia zasekla pri odmietnutí povolení kamery.

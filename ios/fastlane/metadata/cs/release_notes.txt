@@ -1,3 +1,6 @@
-Vylepšené hlášení chyb
+Opravy chyb
 
-Přidali jsme anonymní hlášení chyb! Pokud narazíte na neočekávaný problém, nyní si můžete vybrat odeslání hlášení chyby, které nám pomůže rychle ji opravit.
+- Opravili jsme pád při zavírání projektu po 30 sekundách.
+- Vyřešili jsme problém s obráceným obrazem z přední kamery na některých zařízeních.
+- Opravili jsme několik nesprávných překladů.
+- Vyřešili jsme chybu, kdy se aplikace zasekla při odmítnutí oprávnění kamery.

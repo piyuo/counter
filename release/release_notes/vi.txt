@@ -1,3 +1,6 @@
-Cải thiện báo cáo lỗi
+Sửa lỗi
 
-Chúng tôi đã thêm tính năng báo cáo lỗi ẩn danh! Nếu bạn gặp phải sự cố bất ngờ, giờ đây bạn có thể chọn gửi báo cáo lỗi để giúp chúng tôi khắc phục nhanh chóng.
+- Đã sửa lỗi ứng dụng bị crash khi đóng dự án sau 30 giây.
+- Giải quyết vấn đề khiến một số thiết bị hiển thị hình ảnh ngược từ camera trước.
+- Sửa nhiều bản dịch ngôn ngữ không chính xác.
+- Khắc phục lỗi ứng dụng bị treo khi quyền camera bị từ chối.

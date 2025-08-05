@@ -1,3 +1,6 @@
-Geliştirilmiş Hata Raporlama
+การแก้ไขข้อผิดพลาด
 
-Anonim hata raporlama özelliğini ekledik! Beklenmedik bir sorunla karşılaştığınızda, artık hızlıca düzeltmemize yardımcı olmak için hata raporu göndermeyi seçebilirsiniz.
+- แก้ไขการขัดข้องที่เกิดขึ้นเมื่อปิดโปรเจกต์หลังจาก 30 วินาที
+- แก้ไขปัญหาที่ทำให้อุปกรณ์บางเครื่องแสดงภาพกลับหัวจากกล้องหน้า
+- แก้ไขการแปลภาษาที่ผิดหลายจุด
+- แก้ไขข้อผิดพลาดที่ทำให้แอปค้างเมื่อสิทธิ์กล้องถูกปฏิเสธ

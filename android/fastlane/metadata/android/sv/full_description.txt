@@ -1,0 +1,22 @@
+Detta är en app som automatiskt kan upptäcka och räkna fotgängare, kräver ingen internetanslutning och kan användas omedelbart efter installation.
+
+Funktionsöversikt
+- Realtidsräkning av personer: Systemet upptäcker personer som går genom skärmen och summerar automatiskt antalet.
+- Offline-användning: Alla funktioner kan köras lokalt utan internetanslutning.
+- Flera skärmkällor: Stödjer inbyggda kameror, streaming-video och externa kameror (olika stöd beroende på plattform).
+- Långtidsinspelning: Kan spela in kontinuerligt i 24 timmar och fråga data för vilken tidsperiod som helst.
+
+Hur man använder
+1. Peka kameran mot passagen eller ingången du vill övervaka.
+2. Öppna projektet och välj skärmkälla.
+3. Efter start kommer systemet automatiskt att upptäcka och räkna.
+
+Anteckningar
+- Räkningsnoggrannheten påverkas av vinkel, belysning, hinder osv. Det rekommenderas att justera kamerapositionen baserat på faktiska förhållanden.
+- Även om det inte är 100% exakt minskar användningen av en konsekvent AI-modell mänskliga fel.
+- All databehandling slutförs lokalt - inga bilder eller data laddas upp.
+
+Lämpliga scenarier
+- Förstå fotgängartrafik i utrymmen (som ingångar, korridorer, utställningsområden).
+- Forskning, evenemangsplanering eller daglig observation.
+- Kan börja användas omedelbart utan ytterligare hårdvaruutrustning.

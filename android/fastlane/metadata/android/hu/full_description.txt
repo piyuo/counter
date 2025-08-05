@@ -1,0 +1,22 @@
+Ez egy alkalmazás, amely automatikusan felismeri és megszámlálja a gyalogosokat, nem igényel internetkapcsolatot, és a telepítés után azonnal használható.
+
+Funkciók áttekintése
+- Valós idejű emberszámlálás: A rendszer felismeri a képernyőn áthaladó embereket és automatikusan összegzi a számlálást.
+- Offline használat: Minden funkció helyileg működhet internetkapcsolat nélkül.
+- Több képernyőforrás: Támogatja a beépített kamerákat, streaming videót és külső kamerákat (különböző támogatás a platformtól függően).
+- Hosszú távú felvétel: 24 órán át folyamatosan rögzíthet és bármely időszakra lekérdezheti az adatokat.
+
+Használat
+1. Irányítsa a kamerát a figyelni kívánt átjáróra vagy bejáratra.
+2. Nyissa meg a projektet és válassza ki a képernyőforrást.
+3. Indítás után a rendszer automatikusan felismeri és számlálja.
+
+Megjegyzések
+- A számlálás pontosságát befolyásolja a szög, világítás, akadályok stb. Ajánlott a kamera helyzetét a tényleges körülményeknek megfelelően beállítani.
+- Bár nem 100%-ban pontos, a következetes AI modell használata csökkenti az emberi hibát.
+- Minden adatfeldolgozás helyileg történik - nincsenek képek vagy adatok feltöltve.
+
+Alkalmas forgatókönyvek
+- Gyalogos forgalom megértése terekben (például bejáratok, folyosók, kiállítási területek).
+- Kutatás, eseménytervezés vagy napi megfigyelés.
+- További hardvereszközök nélkül azonnal használhatóvá válik.

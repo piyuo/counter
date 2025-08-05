@@ -1,3 +1,6 @@
-Verbesserte Fehlerberichterstattung
+Fehlerkorrekturen
 
-Wir haben anonyme Fehlerberichterstattung hinzugefügt! Wenn Sie auf ein unerwartetes Problem stoßen, können Sie jetzt einen Fehlerbericht senden, um uns zu helfen, es schnell zu beheben.
+- Absturz beim Schließen eines Projekts nach 30 Sekunden behoben.
+- Problem mit umgedrehtem Bild der Frontkamera auf einigen Geräten gelöst.
+- Mehrere falsche Sprachübersetzungen korrigiert.
+- Fehler behoben, bei dem die App hängen blieb, wenn Kamera-Berechtigungen verweigert wurden.

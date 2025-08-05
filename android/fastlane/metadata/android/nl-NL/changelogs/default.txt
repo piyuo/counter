@@ -1,3 +1,6 @@
-Verbeterde foutrapportage
+Bugfixes
 
-We hebben anonieme foutrapportage toegevoegd! Als je een onverwacht probleem tegenkomt, kun je er nu voor kiezen om een foutrapport te verzenden om ons te helpen het snel op te lossen.
+- Crash bij het sluiten van een project na 30 seconden opgelost.
+- Probleem opgelost waarbij sommige apparaten een omgekeerd beeld van de voorste camera toonden.
+- Verschillende onjuiste taalvertalingen gecorrigeerd.
+- Bug opgelost waarbij de app vastliep als camera-rechten werden geweigerd.

@@ -1,3 +1,6 @@
-Errore-txostenen hobekuntza
+Erroreen konponketak
 
-Errore-txosten anonimoak gehitu ditugu! Ustekabeko arazo batekin topo egiten baduzu, orain errore-txosten bat bidaltzea aukera dezakezu azkar konpontzen laguntzeko.
+- Proiektu bat 30 segundo ondoren ixtean gertatzen zen huts bat konpondu dugu.
+- Zenbait gailutan aurreko kamerak irudi alderantzikatua erakusten zuen arazoa konpondu dugu.
+- Hizkuntza itzulpen oker batzuk zuzendu ditugu.
+- Kameraren baimenak ukatu zirenean aplikazioa blokeatu egiten zen errorea konpondu dugu.

@@ -1,3 +1,6 @@
-Forbedret fejlrapportering
+Fejlrettelser
 
-Vi har tilføjet anonym fejlrapportering! Hvis du støder på et uventet problem, kan du nu vælge at sende en fejlrapport for at hjælpe os med at løse det hurtigt.
+- Rettede et nedbrud der opstod ved lukning af et projekt efter 30 sekunder.
+- Løste et problem der fik nogle enheder til at vise et omvendt billede fra frontkameraet.
+- Rettede flere forkerte sprogoversættelser.
+- Løste en fejl hvor appen hang når kamerarettigheder blev nægtet.

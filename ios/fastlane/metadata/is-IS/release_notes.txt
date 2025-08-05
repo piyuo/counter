@@ -1,3 +1,6 @@
-Bætt villuskýrslukerfi
+Villuleiðréttingar
 
-Við höfum bætt við nafnlausri villuskýrslugerð! Ef þú lendir í óvæntum vandamálum geturðu nú valið að senda villuskýrslu til að hjálpa okkur að laga það fljótt.
+- Lagaði hrun sem átti sér stað þegar verkefni var lokað eftir 30 sekúndur.
+- Leysti vandamál sem olli því að sum tæki sýndu mynd á hvolf frá fremri myndavélinni.
+- Leiðrétti nokkrar rangar tungumálaþýðingar.
+- Leysti villu þar sem forritið festist þegar myndavélarheimildir voru hafnaðar.

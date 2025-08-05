@@ -1,3 +1,6 @@
-Pelaporan Kesalahan yang Ditingkatkan
+Perbaikan Bug
 
-Kami telah menambahkan pelaporan kesalahan anonim! Jika Anda mengalami masalah yang tidak terduga, sekarang Anda dapat memilih untuk mengirim laporan kesalahan agar membantu kami memperbaikinya dengan cepat.
+- Memperbaiki crash yang terjadi saat menutup proyek setelah 30 detik.
+- Mengatasi masalah yang menyebabkan beberapa perangkat menampilkan gambar terbalik dari kamera depan.
+- Memperbaiki beberapa terjemahan bahasa yang salah.
+- Mengatasi bug di mana aplikasi macet saat izin kamera ditolak.

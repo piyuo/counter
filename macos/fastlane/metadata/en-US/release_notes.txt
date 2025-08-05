@@ -1,3 +1,6 @@
-Improved Error Reporting
+Bug Fixes
 
-We've added anonymous error reporting! If you encounter an unexpected issue, you can now choose to send an error report to help us fix it quickly.
+- Fixed a crash that occurred when closing a project after 30 seconds. The application should now close projects reliably without crashing.
+- Resolved an issue causing some devices to display an upside-down image from the front camera. The front camera now functions correctly on all supported devices.
+- Corrected several incorrect language translations. The application's translations are now more accurate across all supported languages.
+- Addressed a bug where the app would get stuck when camera permissions were not granted. The application now handles denied camera access gracefully without freezing.

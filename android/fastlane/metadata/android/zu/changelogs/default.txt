@@ -1,3 +1,6 @@
-Ukubika amaphutha okuthuthukisiwe
+Ukulungiswa kwamaphutha
 
-Sengeze ukubika amaphutha ngokungaziwa! Uma uhlangabezana nenkinga ongayilindelanga, manje ungakhetha ukuthumela umbiko wephutha ukuze usisize silungise ngokushesha.
+- Kulungiswe ukuphela obekwenzeka lapho uvala iphrojekthi ngemva kwamasekhondi angu-30.
+- Kuxazululwe inkinga eyayenza ukuthi amanye amadivayisi abonise isithombe esiguqukile kusuka kukhamera yangaphambili.
+- Kulungiswe ukuhumusha okuningana okungalungile kwezilimi.
+- Kubhekwana nephutha lapho i-app yayizobambelela khona lapho imvume yekhamera ivinjelwa.

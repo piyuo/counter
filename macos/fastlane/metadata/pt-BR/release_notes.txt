@@ -1,3 +1,6 @@
-Relatório de erros aprimorado
+Correções de bugs
 
-Adicionamos relatórios de erros anônimos! Se você encontrar um problema inesperado, agora pode optar por enviar um relatório de erro para nos ajudar a corrigi-lo rapidamente.
+- Corrigido um travamento que ocorria ao fechar um projeto após 30 segundos.
+- Resolvido um problema que fazia alguns dispositivos exibirem uma imagem de cabeça para baixo da câmera frontal.
+- Corrigidas várias traduções de idiomas incorretas.
+- Corrigido um bug onde o app travava quando as permissões da câmera eram negadas.
