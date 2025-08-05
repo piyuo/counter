@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.1](https://github.com/piyuo/counter/compare/v1.1.0...v1.1.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* app stuck in loading state when camera access is denied [#45](https://github.com/piyuo/counter/issues/45) ([f358e93](https://github.com/piyuo/counter/commit/f358e933d8dbb596efb8105437c90c7453894802))
+* app stuck in loading state when camera access is denied [#46](https://github.com/piyuo/counter/issues/46) ([d012d19](https://github.com/piyuo/counter/commit/d012d193394797f871109a4b791059325161389b))
+* app stuck in loading state when camera access is denied [#46](https://github.com/piyuo/counter/issues/46) ([72b2ad0](https://github.com/piyuo/counter/commit/72b2ad0711f6cc963ee66205389db838e7e27f8a))
+* fastlane upload failure [#36](https://github.com/piyuo/counter/issues/36) ([182b776](https://github.com/piyuo/counter/commit/182b7769bccea7ccb338dfe05a284e61b6f40def))
+* TimeoutException[#39](https://github.com/piyuo/counter/issues/39) ([47c63fa](https://github.com/piyuo/counter/commit/47c63fa323c218b51c7471d95a6c227be9addacf))
+
 ## [1.1.0](https://github.com/piyuo/counter/compare/v1.0.1...v1.1.0) (2025-08-02)
 
 
