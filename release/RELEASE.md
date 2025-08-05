@@ -15,8 +15,8 @@ This document explains how to release the app to the public. Before starting, en
 2. Review `CHANGELOG.md` for the latest version number and changes.
 3. Create a release branch for the new version (e.g., `release-app-1.1.0`). This is needed because some files will be changed during the release process. After release, you can merge this branch back to `main`.
 4. Summarize the latest version changes from `CHANGELOG.md` and write result to `release/release_notes.txt`. Ensure the result content is user-friendly and does not exceed 500 characters.
-5. Use the "Generate Translation PROMPT" section below to generate translations for all supported languages.
-6. Ask current user to Confirm everything is ready: double-check that the build process succeeds, release notes are correct, and any other fields you want to update have been changed.
+5. Use the "Generate Translation PROMPT" section below to generate translations for all supported languages into `release_notes.csv`.
+6. Run `build_release_notes.sh` to deploy translated `release_notes.csv` into fastlane folders.
 
 7. Run the release script:
 

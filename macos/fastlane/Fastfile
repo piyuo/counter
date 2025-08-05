@@ -15,16 +15,14 @@ platform :mac do
     )
 
 
-    # Fetch the latest build number from App Store Connect
-    # This ensures we always increment from the highest number Apple knows about
-    current_app_store_build_number = app_store_build_number()
+    # Get current build number from pubspec.yaml
+    flutter_version = get_flutter_version(pubspec_location: "../../pubspec.yaml")
+    current_build_number = flutter_version["build_number"]
 
-    # Increment the build number based on the fetched value
-    # We add 1 to the highest build number found on App Store Connect
-    new_build_number = (current_app_store_build_number.to_i + 1).to_s
+    # Set the build number from pubspec.yaml
     increment_build_number(
       xcodeproj: "Counter.xcodeproj",
-      build_number: new_build_number
+      build_number: current_build_number
     )
 
     # Build the app with the newly incremented build number
