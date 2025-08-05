@@ -53,7 +53,14 @@ After editing:
 
 ## Generate Translation PROMPT
 
-To generate other locale files in `/release/release_notes` based on `/release/release_notes.txt` (original locale: en-US), use the following prompt. If the translation exceeds the character limit, summarize while keeping the core meaning.
+generate other locale files in `/release/release_notes` based on `/release/release_notes.txt` (original locale: en-US). If the translation exceeds the character limit, summarize while keeping the core meaning.
+
+for example , generate `/release/release_notes/zh-TW.txt` with proper translation from `/release/release_notes.txt`
+all translation must meet local custom and easy understand by user, and don't sound like computer generated.
+please make sure all files in `/release/release_notes` are properly translated. don't miss any file.
+and all files in `/release/release_notes` should be updated, cause their content might be from last version release notes,
+which we don't need anymore, so just replace their content to new translation.
+
 
 Locales to support:
 af, am, ar, az-AZ, be, bg, bn-BD, ca, cs-CZ, da-DK, de-DE, el-GR, en-AU, en-CA, en-GB, en-IN, en-SG, en-US, en-ZA, et, eu-ES, fi-FI, fil, fr-CA, fr-FR, gl-ES, gu, hi-IN, hr, hu-HU, hy-AM, id, is-IS, it-IT, iw-IL, ja-JP, ka-GE, kk, km-KH, kn-IN, ko-KR, ky-KG, ms, my-MM, nl-NL, sq, uk, ur, vi, zh-CN, zh-HK, zh-TW, zu, ar-SA, cs, da, el, es-ES, es-MX, fi, he, hi, hu, it, ja, ko, no, pl, pt-BR, pt-PT, ro, ru, sk, sv, th, tr, zh-Hans, zh-Hant
