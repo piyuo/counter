@@ -1,6 +1,0 @@
-Correcciones de errores
-
-- Se solucionó un error que causaba que la aplicación se colgara al cerrar un proyecto después de 30 segundos.
-- Se resolvió un problema que hacía que algunos dispositivos mostraran una imagen invertida de la cámara frontal.
-- Se corrigieron varias traducciones de idiomas incorrectas.
-- Se solucionó un error donde la app se quedaba atascada cuando se denegaban los permisos de la cámara.

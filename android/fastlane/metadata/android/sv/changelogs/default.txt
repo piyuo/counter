@@ -1,6 +1,0 @@
-Popravki napak
-
-- Popravili smo sesutje, ki se je zgodilo pri zapiranju projekta po 30 sekundah.
-- Rešili smo težavo, ki je povzročila, da so nekatere naprave prikazovale obrnjeno sliko iz sprednje kamere.
-- Popravili smo več napačnih jezikovnih prevodov.
-- Odpravili smo napako, pri kateri se je aplikacija zataknila, ko so bila dovoljenja kamere zavrnjena.
