@@ -14,16 +14,22 @@ platform :ios do
       key_content: ENV["APP_STORE_CONNECT_KEY_CONTENT"]
     )
 
-    # Fetch the latest build number from App Store Connect
-    # This ensures we always increment from the highest number Apple knows about
-    current_app_store_build_number = app_store_build_number()
 
-    # Increment the build number based on the fetched value
-    # We add 1 to the highest build number found on App Store Connect
-    new_build_number = (current_app_store_build_number.to_i + 1).to_s
+    # Get current build number from pubspec.yaml
+    pubspec_path = "../../pubspec.yaml"
+    pubspec_content = File.read(pubspec_path)
+    version_line = pubspec_content.match(/^version:\s*(.+)$/)
+
+    if version_line && version_line[1].include?('+')
+      current_build_number = version_line[1].split('+').last.strip
+    else
+      UI.user_error!("Could not find build number in pubspec.yaml")
+    end
+
+    # Set the build number from pubspec.yaml
     increment_build_number(
       xcodeproj: "Counter.xcodeproj",
-      build_number: new_build_number
+      build_number: current_build_number
     )
 
     # Build the app with the newly incremented build number
