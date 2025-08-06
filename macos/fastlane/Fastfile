@@ -16,8 +16,15 @@ platform :mac do
 
 
     # Get current build number from pubspec.yaml
-    flutter_version = get_flutter_version(pubspec_location: "../../pubspec.yaml")
-    current_build_number = flutter_version["build_number"]
+    pubspec_path = "../../pubspec.yaml"
+    pubspec_content = File.read(pubspec_path)
+    version_line = pubspec_content.match(/^version:\s*(.+)$/)
+
+    if version_line && version_line[1].include?('+')
+      current_build_number = version_line[1].split('+').last.strip
+    else
+      UI.user_error!("Could not find build number in pubspec.yaml")
+    end
 
     # Set the build number from pubspec.yaml
     increment_build_number(
