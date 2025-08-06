@@ -1,6 +1,0 @@
-Hata Düzeltmeleri
-
-- 30 saniye sonra proje kapatılırken oluşan çökmeyi düzelttik.
-- Bazı cihazlarda ön kameradan ters görüntü gösteren sorunu çözdük.
-- Birkaç yanlış dil çevirisini düzelttik.
-- Kamera izinleri reddedildiğinde uygulamanın takıldığı hatayı giderdik.

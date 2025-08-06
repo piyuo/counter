@@ -1,6 +1,0 @@
-Correzioni di bug
-
-- Risolto un crash che si verificava quando si chiudeva un progetto dopo 30 secondi.
-- Risolto un problema che causava la visualizzazione di un'immagine capovolta dalla fotocamera frontale su alcuni dispositivi.
-- Corrette diverse traduzioni linguistiche errate.
-- Risolto un bug in cui l'app si bloccava quando i permessi della fotocamera venivano negati.

@@ -1,6 +1,0 @@
-Poprawki błędów
-
-- Naprawiono zawieszenie się aplikacji podczas zamykania projektu po 30 sekundach.
-- Rozwiązano problem powodujący wyświetlanie odwróconego obrazu z przedniej kamery na niektórych urządzeniach.
-- Poprawiono kilka niepoprawnych tłumaczeń językowych.
-- Rozwiązano błąd, w którym aplikacja zawieszała się, gdy odrzucono uprawnienia kamery.
