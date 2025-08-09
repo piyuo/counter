@@ -31,7 +31,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v2.3.1
+      ref: v2.3.2
   universal_platform: ^1.1.0
   nested: ^1.0.0
   path: ^1.9.0
