@@ -1,6 +1,3 @@
 Corrections de bogues
 
-- Corrigé un plantage qui se produisait lors de la fermeture d'un projet après 30 secondes.
-- Résolu un problème qui faisait afficher une image à l'envers de la caméra frontale sur certains appareils.
-- Corrigé plusieurs traductions linguistiques incorrectes.
-- Corrigé un bogue où l'app se bloquait quand les permissions de caméra étaient refusées.
+- Corrigé le problème de blocage de l'application qui causait le gel de l'application pendant au moins 2000ms. L'app répond maintenant en douceur sans retards ou gel inattendus.

@@ -1,6 +1,3 @@
-Virheiden korjauksia
+Virheenkorjaukset
 
-- Korjattiin kaatuminen joka tapahtui projektin sulkemisessa 30 sekunnin jälkeen.
-- Ratkaistu ongelma jossa etukanera näytti väärinpäin olevan kuvan joillakin laitteilla.
-- Korjattu useita vääriä kielenkäännöksiä.
-- Korjattu vika jossa sovellus jumitti kun kameraluvat evättiin.
+- Korjattu sovelluksen jumiutumisongelmaa, joka aiheutti sovelluksen jäätymisen vähintään 2000ms:ksi. Sovellus vastaa nyt sujuvasti ilman odottamattomia viiveitä tai jäätymistä.

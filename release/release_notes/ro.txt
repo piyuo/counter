@@ -1,6 +1,3 @@
 Remedieri de erori
 
-- Corectat un crash care apărea la închiderea unui proiect după 30 de secunde.
-- Rezolvat o problemă care făcea ca unele dispozitive să afișeze o imagine răsturnată de la camera frontală.
-- Corectate câteva traduceri de limbi incorecte.
-- Rezolvat un bug unde aplicația se bloca când permisiunile camerei erau refuzate.
+- Remediat problema de blocare a aplicației care cauza înghețarea aplicației timp de cel puțin 2000ms în timpul funcționării. Aplicația răspunde acum fără probleme fără întârzieri sau înghețare neașteptate.

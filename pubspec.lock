@@ -482,11 +482,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v2.3.1"
-      resolved-ref: f886b32e0966d6bd99c1676a5a207bbb3c6d7489
+      ref: "v2.3.2"
+      resolved-ref: "21dcb883e90ae178ca13f5fbfbbac71e5c0e091b"
       url: "https://github.com/piyuo/flutter-appkit.git"
     source: git
-    version: "2.3.1"
+    version: "2.3.2"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -559,7 +559,7 @@ packages:
       path: "../flutter-vision"
       relative: true
     source: path
-    version: "2.1.5+10"
+    version: "2.1.6+11"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

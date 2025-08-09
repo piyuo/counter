@@ -1,6 +1,3 @@
 Ukulungiswa kwamaphutha
 
-- Kulungiswe ukuphela obekwenzeka lapho uvala iphrojekthi ngemva kwamasekhondi angu-30.
-- Kuxazululwe inkinga eyayenza ukuthi amanye amadivayisi abonise isithombe esiguqukile kusuka kukhamera yangaphambili.
-- Kulungiswe ukuhumusha okuningana okungalungile kwezilimi.
-- Kubhekwana nephutha lapho i-app yayizobambelela khona lapho imvume yekhamera ivinjelwa.
+- Kulungiswe inkinga yokulengisa ye-app eyabangela ukuthi i-application iqande okungenani ama-2000ms ngesikhathi sokusebenza. I-app manje iphendula ngokushelelayo ngaphandle kokuphuziseka okungalindelekile noma uqando.

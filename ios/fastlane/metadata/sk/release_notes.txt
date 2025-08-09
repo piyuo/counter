@@ -1,6 +1,3 @@
 Opravy chýb
 
-- Opravili sme pád pri zatváraní projektu po 30 sekundách.
-- Vyriešili sme problém s obráteným obrazom z prednej kamery na niektorých zariadeniach.
-- Opravili sme niekoľko nesprávnych jazykových prekladov.
-- Vyriešili sme chybu, pri ktorej sa aplikácia zasekla pri odmietnutí povolení kamery.
+- Opravený problém s visiacou aplikáciou, ktorý spôsoboval zamrznutie aplikácie aspoň na 2000ms počas prevádzky. Aplikácia teraz reaguje hladko bez neočakávaných oneskorení alebo zamrznutia.

@@ -1,6 +1,3 @@
 Correccions d'errors
 
-- S'ha solucionat un error que feia que l'aplicació es pengés en tancar un projecte després de 30 segons.
-- S'ha resolt un problema que feia que alguns dispositius mostressin una imatge invertida de la càmera frontal.
-- S'han corregit diverses traduccions incorrectes d'idiomes.
-- S'ha solucionat un error que feia que l'aplicació es bloquegés quan es denegaven els permisos de la càmera.
+- Solucionat el problema de penjament de l'aplicació que causava que l'aplicació es congelés durant almenys 2000ms durant l'operació. L'aplicació ara respon suaument sense retards o congelaments inesperats.

@@ -1,6 +1,3 @@
 Feilrettinger
 
-- Rettet en krasj som skjedde ved lukking av et prosjekt etter 30 sekunder.
-- Løste et problem som førte til at noen enheter viste et opp-ned bilde fra frontkameraet.
-- Rettet flere feilaktige språkoversettelser.
-- Løste en feil der appen hang når kameratillatelser ble nektet.
+- Løst app-hengingsproblem som forårsaket at applikasjonen frøs i minst 2000ms under drift. Appen reagerer nå jevnt uten uventede forsinkelser eller frysing.

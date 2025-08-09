@@ -1,6 +1,3 @@
 Perbaikan Bug
 
-- Memperbaiki crash yang terjadi saat menutup proyek setelah 30 detik.
-- Mengatasi masalah yang menyebabkan beberapa perangkat menampilkan gambar terbalik dari kamera depan.
-- Memperbaiki beberapa terjemahan bahasa yang salah.
-- Mengatasi bug di mana aplikasi macet saat izin kamera ditolak.
+- Diperbaiki masalah aplikasi hang yang menyebabkan aplikasi membeku setidaknya 2000ms selama operasi. Aplikasi sekarang merespons dengan lancar tanpa penundaan atau pembekuan yang tidak terduga.

@@ -1,6 +1,3 @@
-Correções de bugs
+Correções de Bugs
 
-- Corrigido um travamento que ocorria ao fechar um projeto após 30 segundos.
-- Resolvido um problema que fazia alguns dispositivos exibirem uma imagem de cabeça para baixo da câmera frontal.
-- Corrigidas várias traduções de idiomas incorretas.
-- Corrigido um bug onde o app travava quando as permissões da câmera eram negadas.
+- Corrigido problema de travamento do app que causava o congelamento da aplicação por pelo menos 2000ms durante a operação. O app agora responde suavemente sem atrasos ou travamentos inesperados.

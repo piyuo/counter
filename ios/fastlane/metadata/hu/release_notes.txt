@@ -1,6 +1,3 @@
 Hibajavítások
 
-- Kijavítottuk az összeomlást, ami projekt bezárásakor történt 30 másodperc után.
-- Megoldottuk a problémát, ami miatt néhány eszközön fejjel lefelé jelent meg a kép az elülső kamerából.
-- Kijavítottunk több helytelen nyelvi fordítást.
-- Megoldottuk a hibát, ahol az alkalmazás lefagyott, ha a kamera engedélyeket megtagadták.
+- Javítva az alkalmazás lefagyási problémája, amely legalább 2000ms-ra megfagyasztotta az alkalmazást. Az alkalmazás most zökkenőmentesen reagál váratlan késések vagy lefagyás nélkül.
