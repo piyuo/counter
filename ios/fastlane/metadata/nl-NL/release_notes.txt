@@ -1,6 +1,3 @@
 Bugfixes
 
-- Crash bij het sluiten van een project na 30 seconden opgelost.
-- Probleem opgelost waarbij sommige apparaten een omgekeerd beeld van de voorste camera toonden.
-- Verschillende onjuiste taalvertalingen gecorrigeerd.
-- Bug opgelost waarbij de app vastliep als camera-rechten werden geweigerd.
+- Probleem met hangende app opgelost waardoor de applicatie minstens 2000ms vastliep tijdens gebruik. De app reageert nu soepel zonder onverwachte vertragingen of vastlopen.

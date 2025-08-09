@@ -53,7 +53,8 @@ After editing:
 
 ## Generate Translation PROMPT
 
-**Task:** Generate a localized `release_notes.csv` file from a source text file.
+**Task:** Generate a localized `/release/release_notes.csv` file from a source text file.
+Important: The target CSV file may contain outdated content from a previous version. Please completely replace any existing data in release_notes.csv with the new content from release_notes.txt to avoid mixing versions.
 
 **Goal:** Create a CSV file that serves as a localization resource, containing translations of release notes for all supported locales.
 

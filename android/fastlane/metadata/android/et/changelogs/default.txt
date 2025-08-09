@@ -1,6 +1,3 @@
 Veaparandused
 
-- Parandatud viga, mis põhjustas rakenduse kokkujooksmist projekti sulgemisel 30 sekundi järel.
-- Lahendatud probleem, mis põhjustas mõnedel seadmetel esikaamerad ümberpööratud pilti.
-- Parandatud mitu vale keeletõlget.
-- Lahendatud viga, kus rakendus jäi kinni, kui kaamera õigusi ei antud.
+- Parandatud rakenduse hangumise probleem, mis põhjustas rakenduse külmumist vähemalt 2000ms ajaks. Rakendus reageerib nüüd sujuvalt ilma ootamatute viivituste või külmumiseta.

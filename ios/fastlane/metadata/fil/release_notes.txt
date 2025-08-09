@@ -1,6 +1,3 @@
 Mga Pag-aayos ng Bug
 
-- Naayos ang pag-crash na nangyayari kapag nagsasara ng proyekto pagkatapos ng 30 segundo.
-- Nalutas ang isyu na nagiging baliktad ang larawan mula sa front camera sa ilang device.
-- Naayos ang ilang maling mga pagsasalin ng wika.
-- Natugunan ang bug kung saan nagiging stuck ang app kapag hindi binigay ang camera permissions.
+- Naayos ang problema sa pag-hang ng app na nagdudulot sa application na mag-freeze ng hindi bababa sa 2000ms. Ang app ay sumagot na ngayon nang maayos nang walang hindi inaasahang pagkaantala o pagyeyelo.

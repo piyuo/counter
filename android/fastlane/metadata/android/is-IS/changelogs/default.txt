@@ -1,6 +1,3 @@
-Villuleiðréttingar
+Villulagfæringar
 
-- Lagaði hrun sem átti sér stað þegar verkefni var lokað eftir 30 sekúndur.
-- Leysti vandamál sem olli því að sum tæki sýndu mynd á hvolf frá fremri myndavélinni.
-- Leiðrétti nokkrar rangar tungumálaþýðingar.
-- Leysti villu þar sem forritið festist þegar myndavélarheimildir voru hafnaðar.
+- Lagfært vandamál með hangandi forriti sem olli því að forritið fraus í að minnsta kosti 2000ms. Forritið svarar nú mjúklega án óvæntra tafa eða frystingar.

@@ -1,6 +1,3 @@
-Arranxos de erros
+Corrección de erros
 
-- Corrixido un fallo que ocorría ao pechar un proxecto despois de 30 segundos.
-- Resolto un problema que facía que algúns dispositivos mostrasen unha imaxe invertida da cámara frontal.
-- Corrixidas varias traducións de idiomas incorrectas.
-- Solucionado un erro onde a app se quedaba bloqueada cando se denegaban os permisos da cámara.
+- Arranxado o problema de colgamento da aplicación que causaba que a aplicación se conxelase durante polo menos 2000ms. A aplicación agora responde suavemente sen atrasos ou conxelamentos inesperados.

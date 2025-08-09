@@ -1,6 +1,3 @@
 Foutoplossings
 
-- Herstel 'n fout wat veroorsaak het dat die app vasvang wanneer kamerapermissies nie toegestaan is nie.
-- Reggestel 'n probleem waar die voorste kamera 'n onderstebo beeld vertoon het.
-- Verbeter taalvertalings regoor alle ondersteunde tale.
-- Opgelos 'n fout wat veroorsaak het dat projekte na 30 sekondes vasvang.
+- Opgelos app-hangprobleem wat die toepassing vir ten minste 2000ms laat vries het tydens gebruik. Die app reageer nou glad sonder onverwagte vertragings of vasvriesing.

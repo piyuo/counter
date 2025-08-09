@@ -1,6 +1,3 @@
-Korrigjime të gabimeve
+Riparime të gabimeve
 
-- U rregullua një thyerje që ndodhte gjatë mbylljes së një projekti pas 30 sekondash.
-- U zgjidh një problem që shkaktonte që disa pajisje të shfaqnin një imazh të përmbysur nga kamera e përparme.
-- U korriguan disa përkthime të gabuara gjuhësore.
-- U adresua një defekt ku aplikacioni do të bllokohej kur lejet e kamerës nuk jepeshin.
+- U rregullua problemi i varjes së aplikacionit që shkaktonte ngrirjen e aplikacionit për së paku 2000ms gjatë operacionit. Aplikacioni tani përgjigjet qetësisht pa vonesa apo ngirje të papritura.

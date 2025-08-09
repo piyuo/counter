@@ -1,6 +1,3 @@
 Bug Fixes
 
-- Fixed a crash when closing a project after 30 seconds.
-- Resolved upside-down image issue with front camera on some devices.
-- Corrected several incorrect language translations.
-- Fixed app freezing when camera permissions were denied.
+- Fixed app hanging issue that caused the application to freeze for at least 2000ms during operation. The app now responds smoothly without unexpected delays or freezing.

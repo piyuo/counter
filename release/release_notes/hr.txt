@@ -1,6 +1,3 @@
 Ispravke grešaka
 
-- Ispravljena greška koja je uzrokovala rušenje pri zatvaranju projekta nakon 30 sekundi.
-- Riješen problem koji je uzrokovao prikaz okrenute slike s prednje kamere na nekim uređajima.
-- Ispravleno nekoliko netočnih prijevoda jezika.
-- Riješena greška gdje se aplikacija zaglavila kad nisu odobrene dozvole kamere.
+- Ispravljen problem vješanja aplikacije koji je uzrokovao zamrzavanje aplikacije najmanje 2000ms tijekom rada. Aplikacija sada odgovara glatko bez neočekivanih kašnjenja ili zamrzavanja.

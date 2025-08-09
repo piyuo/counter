@@ -1,6 +1,3 @@
-Fehlerkorrekturen
+Fehlerbehebungen
 
-- Absturz beim Schließen eines Projekts nach 30 Sekunden behoben.
-- Problem mit umgedrehtem Bild der Frontkamera auf einigen Geräten gelöst.
-- Mehrere falsche Sprachübersetzungen korrigiert.
-- Fehler behoben, bei dem die App hängen blieb, wenn Kamera-Berechtigungen verweigert wurden.
+- Problem behoben, bei dem die App hängen blieb und mindestens 2000ms lang eingefroren war. Die App reagiert jetzt reibungslos ohne unerwartete Verzögerungen oder Einfrieren.

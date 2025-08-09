@@ -1,6 +1,3 @@
 Sửa lỗi
 
-- Đã sửa lỗi ứng dụng bị crash khi đóng dự án sau 30 giây.
-- Giải quyết vấn đề khiến một số thiết bị hiển thị hình ảnh ngược từ camera trước.
-- Sửa nhiều bản dịch ngôn ngữ không chính xác.
-- Khắc phục lỗi ứng dụng bị treo khi quyền camera bị từ chối.
+- Đã sửa lỗi ứng dụng treo khiến ứng dụng bị đóng băng ít nhất 2000ms trong quá trình hoạt động. Ứng dụng hiện phản hồi mượt mà mà không có sự chậm trễ hoặc đóng băng bất ngờ.

@@ -1,6 +1,3 @@
-Erroreen konponketak
+Akatsen konponketak
 
-- Proiektu bat 30 segundo ondoren ixtean gertatzen zen huts bat konpondu dugu.
-- Zenbait gailutan aurreko kamerak irudi alderantzikatua erakusten zuen arazoa konpondu dugu.
-- Hizkuntza itzulpen oker batzuk zuzendu ditugu.
-- Kameraren baimenak ukatu zirenean aplikazioa blokeatu egiten zen errorea konpondu dugu.
+- Konpondu aplikazioaren blokeatze arazoa, aplikazioa gutxienez 2000ms izozten zuena eragiketan. Aplikazioak orain leunki erantzuten du ustekabeko atzerapenik edo izozketa gabe.

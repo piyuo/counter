@@ -1,6 +1,3 @@
-Səhvlərin düzəldilməsi
+Xəta Düzəltmələri
 
-- 30 saniyədən sonra layihəni bağlayarkən baş verən çökməni həll etdik.
-- Ön kameranın bəzi cihazlarda tərs şəkil göstərməsi problemi həll edildi.
-- Bir neçə yanlış dil tərcüməsi düzəldildi.
-- Kamera icazələri verilmədikdə tətbiqin donması səhvi həll edildi.
+- Tətbiqi ən azı 2000ms ərzində donduran tətbiq asılma problemi həll edilmişdir. Tətbiq indi gözlənilməz gecikmə və ya donma olmadan rahat işləyir.

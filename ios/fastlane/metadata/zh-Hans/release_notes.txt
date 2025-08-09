@@ -1,6 +1,3 @@
-Hata Düzeltmeleri
+错误修复
 
-- 30 saniye sonra proje kapatılırken oluşan çökmeyi düzelttik.
-- Bazı cihazlarda ön kameradan ters görüntü gösteren sorunu çözdük.
-- Birkaç yanlış dil çevirisini düzelttik.
-- Kamera izinleri reddedildiğinde uygulamanın takıldığı hatayı giderdik.
+- 修复了应用挂起问题，该问题会导致应用在运行期间至少冻结2000毫秒。应用现在响应流畅，没有意外延迟或冻结.

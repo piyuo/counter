@@ -1,6 +1,3 @@
 Pembetulan Pepijat
 
-- Membetulkan ranap yang berlaku semasa menutup projek selepas 30 saat.
-- Menyelesaikan masalah yang menyebabkan sesetengah peranti memaparkan imej terbalik dari kamera hadapan.
-- Membetulkan beberapa terjemahan bahasa yang salah.
-- Menangani pepijat di mana aplikasi akan tersangkut apabila kebenaran kamera tidak diberikan.
+- Diperbaiki masalah aplikasi tergantung yang menyebabkan aplikasi beku sekurang-kurangnya 2000ms semasa operasi. Aplikasi kini bertindak balas dengan lancar tanpa kelewatan atau pembekuan yang tidak dijangka.

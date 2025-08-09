@@ -1,6 +1,3 @@
 Fejlrettelser
 
-- Rettede et nedbrud der opstod ved lukning af et projekt efter 30 sekunder.
-- Løste et problem der fik nogle enheder til at vise et omvendt billede fra frontkameraet.
-- Rettede flere forkerte sprogoversættelser.
-- Løste en fejl hvor appen hang når kamerarettigheder blev nægtet.
+- Rettet app-hængningsproblem, der fik appen til at fryse i mindst 2000ms under drift. Appen reagerer nu glat uden uventede forsinkelser eller frysning.
