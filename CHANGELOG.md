@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/piyuo/counter/compare/v1.1.1...v1.1.2) (2025-08-09)
+
+
+### Bug Fixes
+
+* **app:** hanging for at least 2000 ms issue [#56](https://github.com/piyuo/counter/issues/56) ([dea83f2](https://github.com/piyuo/counter/commit/dea83f2117a0cf550095c01841409d488327805f))
+
 ## [1.1.1](https://github.com/piyuo/counter/compare/v1.1.0...v1.1.1) (2025-08-05)
 
 
