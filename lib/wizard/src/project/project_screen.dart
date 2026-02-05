@@ -4,12 +4,10 @@ import 'package:counter/app/app.dart' as app;
 import 'package:counter/l10n/l10n.dart';
 import 'package:counter/pip/pip.dart' as pip;
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../wizard_app.dart';
-import 'gauge_view.dart';
 import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
@@ -32,87 +30,9 @@ class ProjectScreen extends StatelessWidget {
             return const SizedBox();
           }
           final project = projectProvider.project!;
-          Widget buildZone(
-            app.VideoProvider videoProvider,
-            vision.VideoZone videoZone,
-            vision.Count count,
-            List<vision.TallyCounter> tallyCounters,
-            List<vision.TallyAnnotation> tallyAnnotations,
-          ) {
-            return ChangeNotifierProvider<vision.Sampling>.value(
-              value: count.sampling!,
-              child: Consumer<vision.Sampling>(
-                builder: (context, profilesController, child) {
-                  if (count.isDisposed) {
-                    return const SizedBox.shrink();
-                  }
-
-                  final zoneColor = videoZone.color.withValues(alpha: 1);
-                  buildZoneGauges() {
-                    List<Widget> gauges = [];
-                    DateTime now = DateTime.now();
-                    for (int i = 0; i < tallyCounters.length; i++) {
-                      final tallyCounter = tallyCounters[i];
-                      final tallyAnnotation = tallyAnnotations[i];
-                      gauges.add(
-                        GaugeView(
-                          chartColor: zoneColor,
-                          classId: count.classId,
-                          tallyCounter: tallyCounter,
-                          tallyAnnotation: tallyAnnotation,
-                          filter: projectProvider.project!.filter,
-                          now: now,
-                        ),
-                      );
-                    }
-                    return gauges;
-                  }
-
-                  return Column(crossAxisAlignment: CrossAxisAlignment.start, children: buildZoneGauges());
-                },
-              ),
-            );
-          }
 
           List<Widget> buildVideoView() {
             return projectProvider.videoProviders.map((videoProvider) {
-              buildGauges() {
-                List<Widget> gauges = [];
-                for (final zone in videoProvider.visionController.zones) {
-                  final zoneColor = zone.videoZone.color.withValues(alpha: 1);
-                  gauges.add(
-                    CupertinoListTile(
-                      leading: Icon(CupertinoIcons.square_stack, color: zoneColor),
-                      title: Text(zone.videoZone.name),
-                      trailing: const CupertinoListTileChevron(),
-                      onTap: () async {
-                        Navigator.of(context).pushNamed(
-                          zoneRoute,
-                          arguments: {
-                            'previousPageTitle': pageTitle,
-                            'videoProvider': videoProvider,
-                            'videoZone': zone.videoZone,
-                          },
-                        );
-                      },
-                    ),
-                  );
-
-                  for (final count in zone.counts) {
-                    final selectedTallyCounters = count.sampling!.tallyCounters
-                        .where((element) => zone.videoZone.selectedTallyTypes.contains(element.type))
-                        .toList();
-                    final selectedTallyAnnotations = zone.videoZone.getTallyAnnotationsByCounters(
-                      selectedTallyCounters,
-                    );
-                    gauges.add(
-                      buildZone(videoProvider, zone.videoZone, count, selectedTallyCounters, selectedTallyAnnotations),
-                    );
-                  }
-                }
-                return gauges;
-              }
-
               return ChangeNotifierProvider<app.VideoProvider>.value(
                 value: videoProvider,
                 child: Consumer<app.VideoProvider>(
@@ -121,35 +41,7 @@ class ProjectScreen extends StatelessWidget {
                     margin: EdgeInsets.zero,
                     hasLeading: false,
                     backgroundColor: pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [
-                      CupertinoListTile(
-                        leading: Icon(
-                          videoProvider.getMediaTypeIcon(),
-                          color: CupertinoColors.inactiveGray.resolveFrom(context),
-                        ),
-                        title: Text(videoProvider.video.videoName),
-                        trailing: const CupertinoListTileChevron(),
-                        additionalInfo: Text(
-                          videoProvider.video.sourceType.localizedLabel(context),
-                          style: TextStyle(color: CupertinoColors.inactiveGray.resolveFrom(context)),
-                        ),
-                        onTap: () async {
-                          await projectProvider.enterVideoScreen(videoProvider);
-                          if (!context.mounted) {
-                            return;
-                          }
-                          try {
-                            await Navigator.of(context).pushNamed(
-                              videoRoute,
-                              arguments: {'videoProvider': videoProvider, 'previousPageTitle': pageTitle},
-                            );
-                          } finally {
-                            projectProvider.exitVideoScreen(videoProvider);
-                          }
-                        },
-                      ),
-                      ...buildGauges(),
-                    ],
+                    children: [],
                   ),
                 ),
               );
@@ -247,7 +139,7 @@ class ProjectScreen extends StatelessWidget {
                         footer: Text(context.l.project_screen_from_desc),
                         children: [
                           CupertinoListTile(
-                            title: Text(projectProvider.project!.filter.formattedString(context)),
+                            title: Text('filter'),
                             subtitle: Consumer<GaugeViewRedrawProvider>(
                               builder: (context, timeTagProvider, child) => Text(
                                 buildTimeTagString(),

@@ -1,5 +1,3 @@
-import 'package:flutter_vision/flutter_vision.dart' as vision;
-
 const _confidenceThreshold = 0.45; // pick object as many as possible
 const _trackingThreshold = 0.55; // byte track will filter object by
 const _nmsThreshold = 0.30;
@@ -12,14 +10,11 @@ const _validThreshold = 900; // 900ms to consider object is valid
 class Video {
   Video({
     required this.videoId,
-    required this.sourceType,
     required this.videoName,
     this.camera,
     this.webcam,
     this.zoom = 1,
     this.path,
-    List<vision.VideoZone> zones = const [],
-    required this.model,
     required this.objectClasses,
     this.confidenceThreshold = _confidenceThreshold,
     this.nmsThreshold = _nmsThreshold,
@@ -28,18 +23,10 @@ class Video {
     this.maxLostSeconds = _maxLostSeconds,
     this.validThreshold = _validThreshold,
     this.trackingThreshold = _trackingThreshold,
-  }) {
-    // if zones is not empty, add them to the video
-    if (zones.isNotEmpty) {
-      this.zones.addAll(zones);
-    }
-  }
+  }) {}
 
   /// the video id
   final int videoId;
-
-  /// the video source type
-  final vision.SourceType sourceType;
 
   /// the project source name
   String videoName;
@@ -58,12 +45,6 @@ class Video {
 
   /// the object classes want to detect for the video
   final List<int> objectClasses;
-
-  /// zones
-  final List<vision.VideoZone> zones = [];
-
-  /// the current model used by the controller
-  vision.Models model;
 
   /// confidence threshold
   double confidenceThreshold;
@@ -100,11 +81,7 @@ class Video {
 
 /// Define camera name and zoom level
 class CameraDefine {
-  const CameraDefine({
-    required this.name,
-    required this.title,
-    required this.isFrontCamera,
-  });
+  const CameraDefine({required this.name, required this.title, required this.isFrontCamera});
 
   /// name for camera, this will not be displayed in the UI only for identification
   final String name;
@@ -131,10 +108,7 @@ class CameraDefine {
 
 /// Define webcam
 class WebcamDefine {
-  WebcamDefine({
-    required this.index,
-    required this.name,
-  });
+  WebcamDefine({required this.index, required this.name});
 
   /// the index of webcam, like 0,1,2
   final int index;

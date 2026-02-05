@@ -31,13 +31,13 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v2.3.2
+      ref: v2.5.0
   universal_platform: ^1.1.0
   nested: ^1.0.0
   path: ^1.9.0
   protobuf: ^4.1.1
   provider: ^6.1.2
-  carousel_slider: ^5.1.1
+  carousel_slider: ^5.1.2
   auto_size_text: ^3.0.0
   beamer: ^1.6.1
   reactive_forms: ^18.1.1
@@ -62,24 +62,23 @@ dependencies:
   fl_chart: ^1.0.0
   image_picker: ^1.1.2
   input_quantity: ^2.5.1
-  drift: ^2.25.1
-  freezed: ^2.5.8
-  freezed_annotation: ^2.4.4
+  freezed: ^3.2.5
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.9.0
-  sqlite3_flutter_libs: ^0.5.38
-  timeago: ^3.7.0
   flutter_native_splash: ^2.4.5
   url_launcher: ^6.3.1
   universal_io: ^2.2.2
   permission_handler: ^12.0.1
-  flutter_riverpod: ^2.6.1
+  flutter_riverpod: ^3.2.0
+  riverpod_annotation: ^4.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.4.4
+  mockito: ^5.6.3
   flutter_lints: ^6.0.0
-  analyzer: ^7.7.1
+  analyzer: ^8.4.0
+  riverpod_generator: ^4.0.2
   build_runner: ^2.4.15
   json_serializable: ^6.9.4
   drift_dev: ^2.25.2
@@ -87,7 +86,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.14.4
 
 dependency_overrides:
-  #analyzer: ^8.0.0
+  analyzer: ^10.0.1
   rename_app: ^1.6.2
 
 # For information on the generic Dart part of this file, see the
