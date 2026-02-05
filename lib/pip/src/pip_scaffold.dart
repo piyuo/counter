@@ -15,6 +15,7 @@ class PipScaffold extends StatelessWidget {
     this.onSearch,
     this.bottomNavigationBar,
     this.previousPageTitle,
+    this.backgroundColor,
     super.key,
   });
 
@@ -42,29 +43,24 @@ class PipScaffold extends StatelessWidget {
   /// the previous page title
   final String? previousPageTitle;
 
+  final Color? backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoTheme(
-      data: const CupertinoThemeData(
-        brightness: Brightness.dark,
-      ),
+      data: const CupertinoThemeData(brightness: Brightness.dark),
       child: Scaffold(
         bottomNavigationBar: bottomNavigationBar,
         backgroundColor: getCupertinoListSectionBackgroundColor(context),
         body: SuperScaffold(
           appBar: SuperAppBar(
             previousPageTitle: previousPageTitle ?? context.l.back,
-            backgroundColor: CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.4),
+            backgroundColor:
+                backgroundColor ?? CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.4),
             title: titleWidget ?? (title != null ? AutoSizeText(title!) : null),
-            largeTitle: SuperLargeTitle(
-              enabled: largeTitle != null,
-              largeTitle: largeTitle ?? '',
-            ),
+            largeTitle: SuperLargeTitle(enabled: largeTitle != null, largeTitle: largeTitle ?? ''),
             actions: action,
-            searchBar: SuperSearchBar(
-              enabled: onSearch != null,
-              animationBehavior: SearchBarAnimationBehavior.steady,
-            ),
+            searchBar: SuperSearchBar(enabled: onSearch != null, animationBehavior: SearchBarAnimationBehavior.steady),
           ),
           body: child,
           // extra padding let user easy to tap button on the bottom

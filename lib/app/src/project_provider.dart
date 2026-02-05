@@ -1,12 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:counter/db/db.dart' as db;
-import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -15,7 +11,6 @@ import 'package:universal_platform/universal_platform.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import '../../db/src/project_summary.dart';
-import 'benchmark.dart';
 import 'camera_manager.dart';
 import 'model/project.dart';
 import 'model/video.dart';
@@ -32,8 +27,6 @@ class ProjectProvider with ChangeNotifier {
   ProjectProvider({
     this.onClearActivities,
     this.onDatabaseMaintain,
-    this.onGetRecentProjectActivities,
-    this.onActivityAdded,
     this.onProjectOpened,
     this.onProjectClosed,
     this.onProjectSave,
@@ -44,9 +37,6 @@ class ProjectProvider with ChangeNotifier {
 
   /// is project loading, this used to new project or loading project
   bool isLoading = false;
-
-  /// keep the benchmark result to use in the create project screen choose default model
-  BenchmarkLocalStorage benchmarkLocalStorage = BenchmarkLocalStorage();
 
   /// the navigator key to keep the navigator state from switch between side and floating layout
   final navigatorKey = GlobalKey<NavigatorState>();
@@ -71,12 +61,6 @@ class ProjectProvider with ChangeNotifier {
 
   /// get recent activities when project opened
   final VoidCallback? onDatabaseMaintain;
-
-  /// get recent activities when project opened
-  final Future<List<db.Activity>> Function(String projectId)? onGetRecentProjectActivities;
-
-  /// Callback function that is called when a new activity is added.
-  final void Function(String projectId, int videoId, int zoneId, int classId, vision.Activity)? onActivityAdded;
 
   /// Callback function that is called when activities need to be cleared.
   final Future<void> Function(String projectId)? onClearActivities;
@@ -115,11 +99,6 @@ class ProjectProvider with ChangeNotifier {
       videoProvider.setShowGhostTarget(value);
     }
     saveProject(null);
-  }
-
-  /// called when a new activity is added
-  void notifyActivityAdded(int videoId, int zoneId, int classId, vision.Activity activity) {
-    onActivityAdded?.call(project!.projectId, videoId, zoneId, classId, activity);
   }
 
   /// get the project summaries
@@ -212,9 +191,6 @@ class ProjectProvider with ChangeNotifier {
   /// true if the zone editor is enabled
   bool get isZoneEditorEnabled => fullscreenVideoProvider != null;
 
-  /// orientation provider for camera
-  final vision.OrientationProvider orientationProvider = vision.OrientationProvider();
-
   /// get the project provider
   static ProjectProvider of(BuildContext context) {
     return Provider.of<ProjectProvider>(context, listen: false);
@@ -223,7 +199,6 @@ class ProjectProvider with ChangeNotifier {
   /// init the project provider
   Future<void> init(BuildContext context) async {
     onDatabaseMaintain?.call();
-    benchmarkLocalStorage.init(); // don't await on this, cause we only need it when user open the create project screen
     await initializeDateFormatting();
     notifyListeners();
   }
@@ -234,7 +209,6 @@ class ProjectProvider with ChangeNotifier {
     _saveProjectTimer?.cancel();
     _onProjectClosed();
     wizardStreamController.close();
-    orientationProvider.dispose();
     super.dispose();
   }
 
@@ -280,13 +254,7 @@ class ProjectProvider with ChangeNotifier {
     }
     bool allPlay = true;
     bool allPause = true;
-    for (final videoProvider in videoProviders) {
-      if (videoProvider.isNotFrozen) {
-        allPause = false;
-      } else {
-        allPlay = false;
-      }
-    }
+    for (final videoProvider in videoProviders) {}
     if (allPlay) {
       return VideoPlayingState.allPlay;
     } else if (allPause) {
@@ -306,9 +274,7 @@ class ProjectProvider with ChangeNotifier {
   ///
   Future<void> lockToPortrait() async {
     isLockToPortrait = true;
-    await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   }
 
   Future<void> unlockFromPortrait() async {
@@ -332,40 +298,8 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// send a wizard command
-  void sendWizardCommand(
-    WizardCommands command, {
-    Object? arguments,
-  }) {
+  void sendWizardCommand(WizardCommands command, {Object? arguments}) {
     wizardStreamController.add(WizardCommand(command, arguments: arguments));
-  }
-
-  /// create a project name
-  String _createProjectName(vision.SourceType type, String? path) {
-    return '${appkit.globalContext.l.default_project_name} ${_crateFormattedTimestamp()}';
-  }
-
-  /// create a video name
-  String _createVideoName(vision.SourceType type) {
-    int index = project!.videos.length;
-    String name;
-    do {
-      name = '${appkit.globalContext.l.default_video_name} ${++index}';
-    } while (project!.isVideoNameExists(name));
-    return name;
-  }
-
-  /// set the filter
-  void setFilter(vision.Filter filter) {
-    if (filter.equals(project!.filter)) {
-      return;
-    }
-    project!.filter = filter;
-    DateTime now = DateTime.now();
-    // update sampling in each video provider
-    for (final videoProvider in videoProviders) {
-      videoProvider.updateSamplingOnFilterChange(now, filter);
-    }
-    saveProject(null);
   }
 
   /// get next video id that available to use
@@ -390,13 +324,6 @@ class ProjectProvider with ChangeNotifier {
     }
 
     int maxId = 0;
-    for (final video in project!.videos) {
-      for (final zone in video.zones) {
-        if (zone.zoneId > maxId) {
-          maxId = zone.zoneId;
-        }
-      }
-    }
     return maxId + 1;
   }
 
@@ -409,40 +336,11 @@ class ProjectProvider with ChangeNotifier {
         return false;
       }
       await _makeProjectOpened();
-      for (final videoProvider in videoProviders) {
-        videoProvider.resetSamplerFilter(project!.filter);
-      }
+      for (final videoProvider in videoProviders) {}
 
       // reset zone global id first to avoid id conflict
       final nextZoneId = getNextZoneId();
       setNextZoneColorIndex(nextZoneId);
-
-      // load recent activities
-      final recentActivities = await onGetRecentProjectActivities!(projectId);
-      final videoProviderMap = {for (var vp in videoProviders) vp.video.videoId: vp};
-      for (final dbActivity in recentActivities) {
-        final videoProvider = videoProviderMap[dbActivity.videoId];
-        if (videoProvider != null) {
-          final activity = vision.Activity(
-            createdAt: dbActivity.createdAt,
-            spawned: dbActivity.spawned,
-            vanished: dbActivity.vanished,
-            entered: dbActivity.entered,
-            exited: dbActivity.exited,
-            stagnant: dbActivity.stagnant,
-            reentered: dbActivity.reentered,
-            occupied: dbActivity.occupied,
-            stayDuration: dbActivity.stayDuration,
-          );
-
-          videoProvider.addActivity(dbActivity.zoneId, dbActivity.classId, activity);
-        }
-      }
-
-      DateTime now = DateTime.now();
-      for (final videoProvider in videoProviders) {
-        videoProvider.updateSample(now);
-      }
 
       notifyListeners();
       return true;
@@ -465,28 +363,12 @@ class ProjectProvider with ChangeNotifier {
   }
 
   /// start a new project with a video source, return tru e if success
-  Future<bool> newProject({
-    required String projectId,
-    required vision.SourceType mediaType,
-    String? path,
-    int? videoId,
-  }) async {
+  Future<bool> newProject({required String projectId, String? path, int? videoId}) async {
     setLoading(true);
     try {
       _onProjectClosed();
       setNextZoneColorIndex(0);
 
-      // create project with a video source
-      project = Project(
-        projectId: projectId,
-        projectName: _createProjectName(mediaType, path),
-        videos: [],
-      );
-      await _addVideoToProject(mediaType: mediaType, path: path, videoId: videoId);
-      await _makeProjectOpened();
-      for (final videoProvider in videoProviders) {
-        videoProvider.resetSamplerFilter(project!.filter);
-      }
       saveProject(null);
       return true;
     } finally {
@@ -511,38 +393,6 @@ class ProjectProvider with ChangeNotifier {
     _onProjectOpened();
   }
 
-  /// add a new video to project
-  Future<Video> _addVideoToProject({required vision.SourceType mediaType, required String? path, int? videoId}) async {
-    final video = Video(
-      videoId: videoId ?? getNextVideoId(),
-      sourceType: mediaType,
-      videoName: _createVideoName(mediaType),
-      objectClasses: [0, 2],
-      path: path,
-      model: benchmarkLocalStorage.recommendedModel,
-    );
-
-    // make sure the video source has a camera or webcam
-    if (mediaType == vision.SourceType.camera && video.camera == null) {
-      final cameraManager = await getCameraManager();
-      if (cameraManager.cameraDefines.isNotEmpty) {
-        video.camera = cameraManager.cameraDefines.first;
-      }
-    } else if (mediaType == vision.SourceType.webcam && video.webcam == null) {
-      final webcamManager = await getWebcamManager();
-      if (webcamManager.webcamDefines.isNotEmpty) {
-        for (final webcam in webcamManager.webcamDefines) {
-          if (!project!.isWebcamDefineExists(webcam)) {
-            video.webcam = webcam;
-            break;
-          }
-        }
-      }
-    }
-    project!.videos.add(video);
-    return video;
-  }
-
   /// check if the video source already has a provider
   bool isVideoAlreadyHasProvider(Video video) {
     for (final videoProvider in videoProviders) {
@@ -561,28 +411,7 @@ class ProjectProvider with ChangeNotifier {
       if (isVideoAlreadyHasProvider(video)) {
         continue;
       }
-      videoProvider = VideoProvider(
-        orientationProvider: orientationProvider,
-        video: video,
-        projectProvider: this,
-      );
-
-      videoProviders.add(videoProvider);
-      await videoProvider.init(project!);
     }
-    return videoProvider;
-  }
-
-  /// add a new video source to the project
-  Future<VideoProvider?> newVideoToProject({
-    required vision.SourceType mediaType,
-    String? path,
-    int? videoId,
-  }) async {
-    assert(project != null, 'Project must be opened');
-    await _addVideoToProject(mediaType: mediaType, path: path, videoId: videoId);
-    final videoProvider = await _prepareVideoProviders();
-    saveProject(videoProvider);
     return videoProvider;
   }
 
@@ -606,34 +435,12 @@ class ProjectProvider with ChangeNotifier {
   /// Gets the current occupied count.
   int get currentOccupiedCount {
     int count = 0;
-    for (final videoProvider in videoProviders) {
-      count += videoProvider.currentOccupiedCount;
-    }
+    for (final videoProvider in videoProviders) {}
     return count;
   }
 
   /// Remove a video source
-  Future<void> deleteVideo(VideoProvider videoProvider) async {
-    if (videoProvider.video.sourceType == vision.SourceType.file) {
-      // delete the video file
-      final file = File(videoProvider.video.path!);
-      if (await file.exists()) {
-        await file.delete();
-      }
-    }
-
-    await exitVideoScreen(videoProvider);
-    project?.videos.remove(videoProvider.video);
-    videoProviders.remove(videoProvider);
-    videoProvider.delete();
-    saveProject(videoProvider);
-  }
-
-  /// delete a zone from the video source
-  Future<void> deleteZone(VideoProvider videoProvider, vision.VideoZone videoZone) async {
-    videoProvider.deleteZone(videoZone);
-    saveProject(videoProvider);
-  }
+  Future<void> deleteVideo(VideoProvider videoProvider) async {}
 
   /// enter video screen, need show the zone editor on wizard screen
   Future<void> enterVideoScreen(VideoProvider videoProvider) async {
@@ -656,9 +463,7 @@ class ProjectProvider with ChangeNotifier {
 
   /// get video source provider by video source
   VideoProvider getVideoProvider(Video video) {
-    return videoProviders.firstWhere(
-      (videoSourceProvider) => videoSourceProvider.video == video,
-    );
+    return videoProviders.firstWhere((videoSourceProvider) => videoSourceProvider.video == video);
   }
 
   /// set project name

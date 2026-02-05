@@ -1,9 +1,6 @@
 import 'package:counter/l10n/l10n.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
-import 'package:universal_platform/universal_platform.dart';
 
 import 'model/project.dart';
 import 'model/video.dart';
@@ -12,12 +9,7 @@ import 'video_view.dart';
 
 /// Project view show multiple video sources from project
 class ProjectView extends StatelessWidget {
-  const ProjectView({
-    this.onProjectChanged,
-    this.noProjectScreen,
-    this.isSideLayout = false,
-    super.key,
-  });
+  const ProjectView({this.onProjectChanged, this.noProjectScreen, this.isSideLayout = false, super.key});
 
   /// screen to show when no project opened
   final Widget? noProjectScreen;
@@ -30,127 +22,70 @@ class ProjectView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ProjectProvider>(builder: (context, projectProvider, child) {
-      buildNoProject() {
-        return noProjectScreen ?? const SizedBox.shrink();
-      }
-
-      /// calculate the preview alignment based on the device orientation and screen width
-      AlignmentGeometry getPreviewAlignment(vision.OrientationProvider orientationProvider, double maxWidth) {
-        if (isSideLayout) {
-          return Alignment.center;
+    return Consumer<ProjectProvider>(
+      builder: (context, projectProvider, child) {
+        buildNoProject() {
+          return noProjectScreen ?? const SizedBox.shrink();
         }
 
-        if (UniversalPlatform.isDesktop) {
-          Orientation orientation = MediaQuery.of(context).orientation;
-          if (orientation == Orientation.portrait) {
-            return Alignment.topCenter;
-          }
-          return Alignment.centerRight;
+        /// calculate the preview alignment based on the device orientation and screen width
+
+        buildProjectOpened(Project project) {
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              // Choose the video view based on the state.
+              Widget videoContent;
+              if (projectProvider.isLoading) {
+                videoContent = Center(child: CupertinoActivityIndicator(radius: 48));
+              } else if (projectProvider.videoProviders.isEmpty) {
+                videoContent = Center(child: Text(context.l.project_view_no_videos));
+              } else if (projectProvider.fullscreenVideoProvider != null) {
+                videoContent = VideoView(videoProvider: projectProvider.fullscreenVideoProvider!);
+              } else if (projectProvider.videoProviders.length == 1) {
+                videoContent = VideoView(videoProvider: projectProvider.videoProviders.first);
+              } else {
+                videoContent = AdaptiveCameraPreviewGrid(
+                  animationDuration: const Duration(milliseconds: 500),
+                  animationCurve: Curves.fastOutSlowIn,
+                  previews: projectProvider.videoProviders.map((videoProvider) {
+                    return CameraPreviewHolder(
+                      id: videoProvider.video.videoId,
+                      preview: VideoView(
+                        videoProvider: videoProvider,
+                        title: videoProvider.video.videoName, // only show title when there are multiple sources
+                      ),
+                      width: 600,
+                      height: 600,
+                    );
+                  }).toList(),
+                );
+              }
+
+              // AnimatedSwitcher always exists to smoothly transition between states.
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return EnhancedScaleTransition(animation: animation, child: child);
+                },
+                // Use a key that changes with state to trigger the transition.
+                child: Container(
+                  key: ValueKey(projectProvider.fullscreenVideoProvider != null ? 'fullscreen' : 'normal'),
+                  child: videoContent,
+                ),
+              );
+            },
+          );
         }
 
-        // if project is camera video source , orientation is locked to portrait
-        if (projectProvider.isLockToPortrait) {
-          switch (orientationProvider.orientation) {
-            case DeviceOrientation.portraitUp:
-              return Alignment.topCenter;
-            case DeviceOrientation.landscapeLeft:
-              return Alignment.topCenter;
-            case DeviceOrientation.landscapeRight:
-              return Alignment.topCenter;
-            default:
-              return Alignment.center;
-          }
-        }
-
-        switch (orientationProvider.orientation) {
-          case DeviceOrientation.portraitUp:
-            return Alignment.topCenter;
-          case DeviceOrientation.landscapeLeft:
-            return Alignment.centerRight;
-          case DeviceOrientation.landscapeRight:
-            return Alignment.centerRight;
-          default:
-            return Alignment.center;
-        }
-      }
-
-      buildProjectOpened(Project project) {
-        return Consumer<vision.OrientationProvider>(
-            builder: (context, orientationProvider, child) => OrientationBuilder(
-                  builder: (context, orientation) => LayoutBuilder(
-                    builder: (context, constraints) {
-                      // Choose the video view based on the state.
-                      Widget videoContent;
-                      if (projectProvider.isLoading) {
-                        videoContent = Center(
-                            child: CupertinoActivityIndicator(
-                          radius: 48,
-                        ));
-                      } else if (projectProvider.videoProviders.isEmpty) {
-                        videoContent = Center(child: Text(context.l.project_view_no_videos));
-                      } else if (projectProvider.fullscreenVideoProvider != null) {
-                        videoContent = VideoView(
-                          previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
-                          videoProvider: projectProvider.fullscreenVideoProvider!,
-                          filter: projectProvider.project!.filter,
-                        );
-                      } else if (projectProvider.videoProviders.length == 1) {
-                        videoContent = VideoView(
-                          previewAlignment: getPreviewAlignment(orientationProvider, constraints.maxWidth),
-                          videoProvider: projectProvider.videoProviders.first,
-                          filter: projectProvider.project!.filter,
-                        );
-                      } else {
-                        videoContent = AdaptiveCameraPreviewGrid(
-                          animationDuration: const Duration(milliseconds: 500),
-                          animationCurve: Curves.fastOutSlowIn,
-                          previews: projectProvider.videoProviders.map((videoProvider) {
-                            return CameraPreviewHolder(
-                              id: videoProvider.video.videoId,
-                              preview: VideoView(
-                                videoProvider: videoProvider,
-                                title: videoProvider.video.videoName, // only show title when there are multiple sources
-                                filter: projectProvider.project!.filter,
-                              ),
-                              width: videoProvider.mediaWidth,
-                              height: videoProvider.mediaHeight,
-                            );
-                          }).toList(),
-                        );
-                      }
-
-                      // AnimatedSwitcher always exists to smoothly transition between states.
-                      return AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
-                        transitionBuilder: (child, animation) {
-                          return EnhancedScaleTransition(
-                            animation: animation,
-                            child: child,
-                          );
-                        },
-                        // Use a key that changes with state to trigger the transition.
-                        child: Container(
-                          key: ValueKey(projectProvider.fullscreenVideoProvider != null ? 'fullscreen' : 'normal'),
-                          child: videoContent,
-                        ),
-                      );
-                    },
-                  ),
-                ));
-      }
-
-      return projectProvider.isProjectOpened
-          ? Container(
-              color: const Color.fromARGB(255, 12, 12, 14),
-              key: const ValueKey<int>(1),
-              child: buildProjectOpened(projectProvider.project!),
-            )
-          : Container(
-              key: const ValueKey<int>(0),
-              child: buildNoProject(),
-            );
-    });
+        return projectProvider.isProjectOpened
+            ? Container(
+                color: const Color.fromARGB(255, 12, 12, 14),
+                key: const ValueKey<int>(1),
+                child: buildProjectOpened(projectProvider.project!),
+              )
+            : Container(key: const ValueKey<int>(0), child: buildNoProject());
+      },
+    );
   }
 }
 
@@ -219,10 +154,7 @@ class AdaptiveCameraPreviewGridState extends State<AdaptiveCameraPreviewGrid> {
           top: top,
           width: width,
           height: height,
-          child: AspectRatio(
-            aspectRatio: preview.aspectRatio,
-            child: preview.preview,
-          ),
+          child: AspectRatio(aspectRatio: preview.aspectRatio, child: preview.preview),
         );
       }).toList(),
     );
@@ -264,30 +196,24 @@ class EnhancedScaleTransition extends StatelessWidget {
   final Widget child;
   final Animation<double> animation;
 
-  const EnhancedScaleTransition({
-    required this.child,
-    required this.animation,
-    super.key,
-  });
+  const EnhancedScaleTransition({required this.child, required this.animation, super.key});
 
   @override
   Widget build(BuildContext context) {
     // Create a more dramatic scaling animation.
-    final scaleAnimation = Tween<double>(
-      begin: 0.8, // Start with a smaller size.
-      end: 1.0,
-    ).animate(
-      CurvedAnimation(
-        parent: animation,
-        // Use easeOutBack to create an elastic effect.
-        curve: Curves.easeOutBack,
-        // Adjust the animation duration as needed to match the elastic effect.
-      ),
-    );
+    final scaleAnimation =
+        Tween<double>(
+          begin: 0.8, // Start with a smaller size.
+          end: 1.0,
+        ).animate(
+          CurvedAnimation(
+            parent: animation,
+            // Use easeOutBack to create an elastic effect.
+            curve: Curves.easeOutBack,
+            // Adjust the animation duration as needed to match the elastic effect.
+          ),
+        );
 
-    return ScaleTransition(
-      scale: scaleAnimation,
-      child: child,
-    );
+    return ScaleTransition(scale: scaleAnimation, child: child);
   }
 }

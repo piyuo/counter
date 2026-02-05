@@ -1,0 +1,49 @@
+// ===============================================
+// Module: welcome1_view.dart
+// Description: Intro page 1 (what the app does)
+//
+// Sections:
+//   - Welcome1View widget
+// ===============================================
+import 'package:flutter/cupertino.dart';
+
+class Welcome1View extends StatelessWidget {
+  const Welcome1View({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final Color secondaryText = CupertinoColors.systemGrey.resolveFrom(context);
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: 'Welcome to\n',
+                  style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 16),
+                ),
+                TextSpan(
+                  text: 'Piyuo Counter',
+                  style: TextStyle(color: CupertinoColors.activeGreen, fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            'Count pedestrians and vehicles using on-device camera and AI in real time.\n\n'
+            'Privacy-first. No cloud video.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16.0, color: secondaryText),
+          ),
+          const SizedBox(height: 10.0),
+          SizedBox(height: 240, child: Image.asset('assets/images/welcome1.png', fit: BoxFit.cover)),
+        ],
+      ),
+    );
+  }
+}

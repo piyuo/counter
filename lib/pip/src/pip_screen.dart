@@ -1,8 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:provider/provider.dart';
 
 import 'pip_provider.dart';
@@ -32,12 +30,7 @@ const _animationDuration = Duration(milliseconds: 100);
 
 /// Picture in Picture screen
 class PipScreen extends StatelessWidget {
-  const PipScreen({
-    required this.builder,
-    required this.slidingBuilder,
-    required this.isLockToPortrait,
-    super.key,
-  });
+  const PipScreen({required this.builder, required this.slidingBuilder, required this.isLockToPortrait, super.key});
 
   /// the main screen builder
   final Widget Function(bool isSideLayout) builder;
@@ -112,9 +105,10 @@ class PipScreen extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: PipSliding(
-                          pipProvider: pipProvider,
-                          minHeight: _slidingPanelMinHeight + safePadding.bottom,
-                          builder: slidingBuilder),
+                        pipProvider: pipProvider,
+                        minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                        builder: slidingBuilder,
+                      ),
                     );
             }
 
@@ -147,14 +141,15 @@ class PipScreen extends StatelessWidget {
                 height: cWidth,
                 width: slidingPanelWidth,
                 child: Transform.rotate(
-                    angle: 90 * (pi / 180),
-                    child: PipSliding(
-                      transformRotation: 90,
-                      pipProvider: pipProvider,
-                      width: slidingPanelWidth,
-                      minHeight: _slidingPanelMinHeight,
-                      builder: slidingBuilder,
-                    )),
+                  angle: 90 * (pi / 180),
+                  child: PipSliding(
+                    transformRotation: 90,
+                    pipProvider: pipProvider,
+                    width: slidingPanelWidth,
+                    minHeight: _slidingPanelMinHeight,
+                    builder: slidingBuilder,
+                  ),
+                ),
               );
             }
 
@@ -163,7 +158,8 @@ class PipScreen extends StatelessWidget {
               return AnimatedPositioned(
                 duration: _animationDuration,
                 left: cWidth / 2 - (slidingPanelWidth / 2) + 10,
-                top: constraints.maxHeight / 2 -
+                top:
+                    constraints.maxHeight / 2 -
                     (cWidth / 2) +
                     (constraints.maxHeight / 2 - (slidingPanelWidth / 2)) -
                     10 -
@@ -171,14 +167,15 @@ class PipScreen extends StatelessWidget {
                 height: cWidth,
                 width: slidingPanelWidth,
                 child: Transform.rotate(
-                    angle: 270 * (pi / 180),
-                    child: PipSliding(
-                      transformRotation: 270,
-                      pipProvider: pipProvider,
-                      width: slidingPanelWidth,
-                      minHeight: _slidingPanelMinHeight,
-                      builder: slidingBuilder,
-                    )),
+                  angle: 270 * (pi / 180),
+                  child: PipSliding(
+                    transformRotation: 270,
+                    pipProvider: pipProvider,
+                    width: slidingPanelWidth,
+                    minHeight: _slidingPanelMinHeight,
+                    builder: slidingBuilder,
+                  ),
+                ),
               );
             }
 
@@ -192,7 +189,26 @@ class PipScreen extends StatelessWidget {
                   bottom: 0,
                   child: builder(pipProvider.isSidebarLayout),
                 ),
-                Consumer<vision.OrientationProvider>(builder: (context, orientationProvider, child) {
+                Builder(
+                  builder: (context) {
+                    if (pipProvider.isSidebarLayout) {
+                      return buildSidebarLayout();
+                    }
+
+                    if (isLockToPortrait) {
+                      switch (orientation) {
+                        case Orientation.portrait:
+                          return buildSliding0();
+                        case Orientation.landscape:
+                          // for locked portrait, we treat landscape as 90 degree rotation, so we show the sliding panel in landscape right position
+                          return buildSliding90();
+                      }
+                    }
+
+                    return buildSlidingLayout();
+                  },
+                ),
+                /*Consumer<vision.OrientationProvider>(builder: (context, orientationProvider, child) {
                   // screen is big enough, use sidebar layout
                   if (pipProvider.isSidebarLayout) {
                     return buildSidebarLayout();
@@ -214,7 +230,7 @@ class PipScreen extends StatelessWidget {
 
                   // any other cases, use sliding layout
                   return buildSlidingLayout();
-                })
+                })*/
               ],
             );
           },

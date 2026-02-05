@@ -14,8 +14,8 @@ println "Keystore path: " + keystorePropertiesFile.absolutePath
 
 android {
     namespace = "com.piyuo.counter"
-    compileSdk = 35 // flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973" // flutter.ndkVersion
+    compileSdk flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
