@@ -482,11 +482,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "v2.5.0"
-      resolved-ref: "20c093c240b5f293a0ac60ce2413cb2e89498d9b"
+      ref: "v2.6.0"
+      resolved-ref: "4d3e484c749990e312305e73a0a70dc5ab5b239c"
       url: "https://github.com/piyuo/flutter-appkit.git"
     source: git
-    version: "2.5.0"
+    version: "2.6.0"
   flutter_colorpicker:
     dependency: "direct main"
     description:
