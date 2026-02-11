@@ -30,7 +30,13 @@ const _animationDuration = Duration(milliseconds: 100);
 
 /// Picture in Picture screen
 class PipScreen extends StatelessWidget {
-  const PipScreen({required this.builder, required this.slidingBuilder, required this.isLockToPortrait, super.key});
+  const PipScreen({
+    required this.builder,
+    required this.slidingBuilder,
+    required this.isLockToPortrait,
+    this.defaultSidebarBackgroundColor = CupertinoColors.black,
+    super.key,
+  });
 
   /// the main screen builder
   final Widget Function(bool isSideLayout) builder;
@@ -40,6 +46,9 @@ class PipScreen extends StatelessWidget {
 
   /// is the device orientation locked to portrait
   final bool isLockToPortrait;
+
+  /// the default background color for sidebar layout, it will be used when the sliding panel is closed in sidebar layout
+  final Color defaultSidebarBackgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +62,7 @@ class PipScreen extends StatelessWidget {
             bool isCompactLayout = constraints.maxHeight < _compactHeightThreshold;
 
             /// the width of the sliding panel
-            double slidingPanelWidth = isCompactLayout ? 330 : 360;
+            double slidingPanelWidth = isCompactLayout ? 350 : 400;
 
             // screen is big enough, use sidebar layout
             buildSidebarLayout() {
@@ -61,10 +70,12 @@ class PipScreen extends StatelessWidget {
                 duration: _animationDuration,
                 left: 0,
                 width: slidingPanelWidth,
-                top: 28, // 28 is height for close/minimize button bar
+                top: 0,
                 bottom: 0,
                 child: Container(
+                  padding: const EdgeInsets.only(top: 22), // 16 is height for close/minimize button bar
                   decoration: BoxDecoration(
+                    color: defaultSidebarBackgroundColor,
                     boxShadow: [
                       BoxShadow(
                         color: CupertinoColors.black.withValues(alpha: 0.65),
