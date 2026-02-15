@@ -47,6 +47,16 @@
             "RTSP",
             "textsms",
             "webp"
+        ],
+        "favorites.resources": [
+            {
+                "filePath": "packages/core_domain/lib/core_domain.dart",
+                "group": "Default"
+            },
+            {
+                "filePath": "packages/core_runtime/lib/core_runtime.dart",
+                "group": "Default"
+            }
         ]
     }
 }

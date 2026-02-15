@@ -323,9 +323,9 @@ Each feature module follows these key principles:
 
 ```dart
 // Import modules with descriptive aliases
-import 'package:counter/db/db.dart' as db;
-import 'package:counter/pip/pip.dart' as pip;
-import 'package:counter/l10n/l10n.dart';  // l10n is typically imported without alias
+import 'package:counter_app/db/db.dart' as db;
+import 'package:counter_app/pip/pip.dart' as pip;
+import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;  // l10n is typically imported without alias
 
 class MyWidget extends StatelessWidget {
   @override
@@ -393,7 +393,7 @@ export 'src/app_localizations_extensions.dart';
 3. **Use the module** in your app:
 
    ```dart
-   import 'package:counter/your_new_feature/your_new_feature.dart' as feature;
+   import 'package:counter_app/your_new_feature/your_new_feature.dart' as feature;
 
    // Use with clear namespace
    feature.InternalService()

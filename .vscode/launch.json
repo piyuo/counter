@@ -1,29 +1,10 @@
 {
     "configurations": [
         {
-            "name": "main",
+            "name": "counter_app",
             "request": "launch",
             "type": "dart",
-            "program": "${workspaceFolder}/lib/main.dart"
+            "program": "${workspaceFolder}/apps/counter_app/lib/main.dart"
         },
-        {
-            "name": "main_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/main_example.dart"
-        },
-        {
-            "name": "app_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/app/example/app_example.dart"
-        },
-        {
-            "name": "dashboard_example",
-            "request": "launch",
-            "type": "dart",
-            "program": "${workspaceFolder}/lib/dashboard/example/main.dart"
-        },
-
     ]
 }

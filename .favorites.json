@@ -1,0 +1,26 @@
+[
+    {
+        "type": "Group",
+        "name": "apps",
+        "parent_id": null,
+        "workspaceRoot": null,
+        "workspacePath": null,
+        "id": "l0EWjVpXZGaTemcC"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/cc/Dropbox/counter/apps/counter_app",
+        "parent_id": null,
+        "workspaceRoot": "/Users/cc/Dropbox/counter",
+        "workspacePath": "apps/counter_app",
+        "id": "kTqtwi3DhX1uJ9gP"
+    },
+    {
+        "type": "Directory",
+        "name": "/Users/cc/Dropbox/counter/packages/counter_core/lib",
+        "parent_id": null,
+        "workspaceRoot": "/Users/cc/Dropbox/counter",
+        "workspacePath": "packages/counter_core/lib",
+        "id": "g4FfH9zLnIQipOjS"
+    }
+]

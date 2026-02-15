@@ -1,3 +1,12 @@
+# melos
+**/build/**
+**/.cxx/**
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.pub-cache/
+**/.pub/
+
 # Miscellaneous
 .env
 *.p8
