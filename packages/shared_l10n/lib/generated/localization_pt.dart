@@ -1,0 +1,572 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'localization.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Portuguese (`pt`).
+class LocalizationPt extends Localization {
+  LocalizationPt([String locale = 'pt']) : super(locale);
+
+  @override
+  String get about_screen_app_version => 'Versão do Aplicativo';
+
+  @override
+  String get about_screen_benchmark => 'Benchmark';
+
+  @override
+  String get about_screen_models => 'Modelos de detecção de objetos';
+
+  @override
+  String get about_screen_opencv_build_info =>
+      'Informações de Compilação do OpenCV';
+
+  @override
+  String get about_screen_platform => 'Plataforma';
+
+  @override
+  String get about_screen_title => 'Sobre';
+
+  @override
+  String get add_video_screen_from => 'Adicionar fonte de vídeo a partir de';
+
+  @override
+  String get add_video_screen_title => 'Adicionar fonte de vídeo';
+
+  @override
+  String get back => 'Voltar';
+
+  @override
+  String get benchmark_screen_fps => 'FPS';
+
+  @override
+  String get benchmark_screen_models => 'Modelos de detecção de objetos';
+
+  @override
+  String get benchmark_screen_recommended => 'Modelo Recomendado';
+
+  @override
+  String get benchmark_screen_start_button => 'Iniciar Benchmark';
+
+  @override
+  String get benchmark_screen_start_failed =>
+      'Falha ao iniciar o benchmark, o código de erro é';
+
+  @override
+  String get benchmark_screen_title => 'Benchmark dos Modelos';
+
+  @override
+  String get camera_screen_add_title => 'Adicionar Câmera';
+
+  @override
+  String get camera_screen_back_camera => 'Câmera Traseira';
+
+  @override
+  String get camera_screen_edit_title => 'Escolher Câmera';
+
+  @override
+  String get camera_screen_front_camera => 'Câmera Frontal';
+
+  @override
+  String get camera_screen_zoom_level => 'Nível de Zoom';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get close => 'Fechar';
+
+  @override
+  String get color_screen_title => 'Escolha uma cor';
+
+  @override
+  String get counter_screen_cooldown_desc =>
+      'A reentrada requer um tempo de espera de #0 segundos após sair da zona de detecção';
+
+  @override
+  String get counter_screen_cooldown_in_seconds => 'em segundos';
+
+  @override
+  String get counter_screen_cooldown_threshold => 'Limite de Tempo de Espera';
+
+  @override
+  String get counter_screen_cooldown_time => 'Tempo de Espera';
+
+  @override
+  String get counter_screen_enabled => 'Habilitado';
+
+  @override
+  String get counter_screen_enabled_error => 'Erro';
+
+  @override
+  String get counter_screen_enabled_error_content =>
+      'Você precisa habilitar outro contador primeiro, então poderá desabilitar este contador';
+
+  @override
+  String get counter_screen_name_error =>
+      'O nome do contador não pode estar vazio';
+
+  @override
+  String get counter_screen_reentry_desc =>
+      'Os objetos devem entrar #0 vezes, com um tempo de espera de #1 segundos entre cada saída e reentrada, para acionar a reentrada';
+
+  @override
+  String get counter_screen_reentry_threshold => 'Limite de Reentrada';
+
+  @override
+  String get counter_screen_reentry_title => 'Contagem de reentrada';
+
+  @override
+  String get counter_screen_show_on => 'Mostrar na tela';
+
+  @override
+  String get counter_screen_stagnant_consider => 'Considerar como estagnado';
+
+  @override
+  String get counter_screen_stagnant_desc =>
+      'Objetos que permanecerem imóveis por mais de #0 segundos serão considerados estagnados';
+
+  @override
+  String get counter_screen_stagnant_desc_prefix => 'Prefixo de Descrição';
+
+  @override
+  String get counter_screen_stagnant_desc_suffix => 'Sufixo de Descrição';
+
+  @override
+  String get counter_screen_stagnant_in_seconds => 'em segundos';
+
+  @override
+  String get counter_screen_stagnant_threshold => 'Limite de Estagnação';
+
+  @override
+  String get default_project_name => 'Projeto';
+
+  @override
+  String get default_video_name => 'Fonte de vídeo';
+
+  @override
+  String get default_zone_name => 'Zona de detecção';
+
+  @override
+  String get detection_screen_confidence => 'Confiança';
+
+  @override
+  String get detection_screen_confidence_desc =>
+      'confiança acima de #0 é considerada uma detecção válida';
+
+  @override
+  String get detection_screen_consider_valid => 'Considerar válido após';
+
+  @override
+  String get detection_screen_consider_valid_desc =>
+      'O objeto rastreado será considerado válido após #0';
+
+  @override
+  String get detection_screen_high => 'Alto';
+
+  @override
+  String get detection_screen_lost => 'Perdido';
+
+  @override
+  String get detection_screen_lost_desc =>
+      'Determina dinamicamente o tempo de remoção de objetos perdidos entre #0 e #1 com base na velocidade de movimento';
+
+  @override
+  String get detection_screen_low => 'Baixo';
+
+  @override
+  String get detection_screen_match => 'Correspondência';
+
+  @override
+  String get detection_screen_match_desc =>
+      '#0 matchThreshold é um parâmetro chave no rastreamento de objetos que mede o grau de correspondência entre diferentes caixas de detecção. Valor mais baixo facilita a associação de objetos mas aumenta o risco de associações erradas. Valor mais alto é mais rigoroso nas associações de objetos mas pode perder algumas correspondências verdadeiras.';
+
+  @override
+  String get detection_screen_models => 'Modelos';
+
+  @override
+  String get detection_screen_nms => 'Supressão Não-Máxima';
+
+  @override
+  String get detection_screen_nms_desc =>
+      '#0 Um limiar NMS mais baixo (ex. 0.3-0.4) remove caixas sobrepostas de forma mais rigorosa e reduz falsos positivos mas pode perder pessoas sobrepostas. Um limiar mais alto (0.7-0.9) mantém mais caixas o que pode aumentar falsos positivos mas detecta melhor pessoas sobrepostas.';
+
+  @override
+  String get detection_screen_reset => 'Redefinir';
+
+  @override
+  String get detection_screen_reset_content =>
+      'Tem certeza de que deseja redefinir as configurações de detecção?';
+
+  @override
+  String get detection_screen_title => 'Configurações de Detecção';
+
+  @override
+  String get error_content =>
+      'Ocorreu um erro inesperado. Gostaria de enviar um relatório por e-mail?';
+
+  @override
+  String get error_oops => 'Ops, algo deu errado';
+
+  @override
+  String get error_report => 'Enviar e-mail';
+
+  @override
+  String get filter_screen_desc =>
+      'Selecione um intervalo de filtro da lista abaixo';
+
+  @override
+  String get filter_screen_error_content =>
+      'O horário final deve ser maior que o horário inicial';
+
+  @override
+  String get filter_screen_error_custom => 'Personalizado';
+
+  @override
+  String get filter_screen_error_end => 'Fim';
+
+  @override
+  String get filter_screen_error_start => 'Início';
+
+  @override
+  String get filter_screen_error_title => 'Filtro';
+
+  @override
+  String get filter_screen_title => 'Filtro';
+
+  @override
+  String get language_screen_language => 'Idioma';
+
+  @override
+  String get no => 'Não';
+
+  @override
+  String get objects_screen_desc =>
+      'Escolha alvos de detecção como pessoa, carro, ônibus, etc.';
+
+  @override
+  String get objects_screen_title => 'Objetos';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get open_project_screen_desc =>
+      'Abra projetos criados anteriormente, mantendo apenas os 20 mais recentes.';
+
+  @override
+  String get open_project_screen_no_project => 'Nenhum projeto encontrado.';
+
+  @override
+  String get open_project_screen_title => 'Abrir Projeto';
+
+  @override
+  String get product_copyright => 'Copyright © 2025';
+
+  @override
+  String get product_desc =>
+      'Use visão computacional e IA para contar pessoas, veículos, animais de estimação e muito mais.';
+
+  @override
+  String get product_name => 'Contador';
+
+  @override
+  String get project_screen_add_video_button => 'Adicionar fonte de vídeo';
+
+  @override
+  String get project_screen_exit_button => 'Sair';
+
+  @override
+  String get project_screen_exit_confirm_content =>
+      'Sair do projeto irá interromper a contagem. Tem certeza de que deseja continuar?';
+
+  @override
+  String get project_screen_exit_confirm_title => 'Confirmar saída do projeto';
+
+  @override
+  String get project_screen_from_desc =>
+      'Mantemos um registro contínuo de 24 horas, então você pode visualizar qualquer período que precisar.';
+
+  @override
+  String get project_screen_report_settings => 'Configurações';
+
+  @override
+  String get project_screen_title => 'Projeto';
+
+  @override
+  String get project_view_no_videos => 'Nenhuma fonte de vídeo disponível.';
+
+  @override
+  String get settings_screen_center_point_button =>
+      'Mostrar Ponto Central no Alvo';
+
+  @override
+  String get settings_screen_center_point_desc =>
+      'O ponto central ajuda a determinar se o alvo está dentro da zona de detecção.';
+
+  @override
+  String get settings_screen_center_point_title => 'Ponto Central no Alvo';
+
+  @override
+  String get settings_screen_delete_button => 'Excluir';
+
+  @override
+  String get settings_screen_delete_content =>
+      'Tem certeza de que deseja excluir este projeto?';
+
+  @override
+  String get settings_screen_delete_header => 'Excluir este projeto';
+
+  @override
+  String get settings_screen_desc =>
+      'Defina nome do projeto, parâmetros de detecção e limpeza de contagens.';
+
+  @override
+  String get settings_screen_lost_target_button => 'Mostrar Alvo Perdido';
+
+  @override
+  String get settings_screen_lost_target_desc =>
+      'Quando o rastreamento de objetos perde um alvo, esta opção o torna visível. Por padrão, alvos perdidos não são mostrados.';
+
+  @override
+  String get settings_screen_lost_target_title => 'Alvo Perdido';
+
+  @override
+  String get settings_screen_project_error =>
+      'O nome do projeto não pode estar vazio';
+
+  @override
+  String get settings_screen_project_id => 'ID do Projeto';
+
+  @override
+  String get settings_screen_project_name => 'Nome do Projeto';
+
+  @override
+  String get settings_screen_project_name_place_holder =>
+      'Rua Principal, 123 ou Avenida Paulista';
+
+  @override
+  String get settings_screen_random_count_button =>
+      'Adicionar contagens aleatórias';
+
+  @override
+  String get settings_screen_reset_count_button => 'Redefinir contagens';
+
+  @override
+  String get settings_screen_reset_count_content =>
+      'Tem certeza de que deseja redefinir todas as contagens?';
+
+  @override
+  String get settings_screen_reset_count_header =>
+      'Redefinir todas as contagens neste projeto';
+
+  @override
+  String get settings_screen_title => 'Configurações';
+
+  @override
+  String get submit => 'Enviar';
+
+  @override
+  String get url_screen_desc =>
+      'Por favor, insira a URL da transmissão ao vivo';
+
+  @override
+  String get url_screen_title => 'URL de transmissão ao vivo';
+
+  @override
+  String get url_screen_url => 'URL';
+
+  @override
+  String get url_screen_url_placeholder =>
+      'http://exemplo.com/transmissao ou rtsp://exemplo.com/transmissao';
+
+  @override
+  String get video_screen_add_point => 'Adicionar ponto à zona atual';
+
+  @override
+  String get video_screen_add_zone => 'Adicionar zona de detecção';
+
+  @override
+  String get video_screen_change_file => 'Alterar Arquivo';
+
+  @override
+  String get video_screen_delete_button => 'Excluir';
+
+  @override
+  String get video_screen_delete_content =>
+      'Tem certeza de que deseja excluir esta fonte de vídeo?';
+
+  @override
+  String get video_screen_delete_header => 'Excluir esta fonte de vídeo';
+
+  @override
+  String get video_screen_desc =>
+      'Gerencie fontes de vídeo, adicione ou modifique zonas de detecção.';
+
+  @override
+  String get video_screen_detection => 'Parâmetros do modelo';
+
+  @override
+  String get video_screen_edit_placeholder =>
+      'Câmera da Porta da Frente ou Câmera do Estacionamento';
+
+  @override
+  String get video_screen_move_bottom => 'Mover zona atual para o fundo';
+
+  @override
+  String get video_screen_name_empty => 'O nome do vídeo não pode estar vazio.';
+
+  @override
+  String get video_screen_playback_14x => '1/4x';
+
+  @override
+  String get video_screen_playback_2x => '2x';
+
+  @override
+  String get video_screen_playback_current => 'atual: ';
+
+  @override
+  String get video_screen_playback_speed => 'Velocidade de Reprodução';
+
+  @override
+  String get video_screen_remove_point => 'Remover ponto da zona atual';
+
+  @override
+  String get video_screen_sources =>
+      'Configure fonte de imagem, alvos de detecção e parâmetros do modelo.';
+
+  @override
+  String get video_screen_targets => 'Alvos de detecção';
+
+  @override
+  String get video_screen_tools => 'Ferramentas';
+
+  @override
+  String get video_screen_video_name => 'Nome da fonte de vídeo';
+
+  @override
+  String get video_screen_zones => 'Zonas de detecção';
+
+  @override
+  String get video_screen_zones_desc =>
+      'Use arrastar e soltar para ajustar as zonas';
+
+  @override
+  String get video_sources_camera => 'Câmera';
+
+  @override
+  String get video_sources_camera_denied => 'Acesso à câmera negado';
+
+  @override
+  String get video_sources_camera_denied_msg =>
+      'Vá para configurações e permita o acesso à câmera para este aplicativo.';
+
+  @override
+  String get video_sources_camera_not_found_message =>
+      'É necessário conceder permissão para usar a câmera';
+
+  @override
+  String get video_sources_camera_not_found_title => 'Câmera não encontrada';
+
+  @override
+  String get video_sources_file => 'Arquivo';
+
+  @override
+  String get video_sources_live_stream => 'URL de transmissão ao vivo';
+
+  @override
+  String get video_sources_photos_denied => 'Acesso a fotos negado';
+
+  @override
+  String get video_sources_photos_denied_msg =>
+      'Vá para configurações e permita o acesso a fotos para este aplicativo.';
+
+  @override
+  String get video_sources_photos_goto_settings => 'Ir para configurações';
+
+  @override
+  String get video_sources_webcam => 'Webcam';
+
+  @override
+  String get video_sources_webcam_not_found_message =>
+      'Verifique a permissão do app e a conexão da webcam';
+
+  @override
+  String get video_sources_webcam_not_found_title => 'Webcam não encontrada';
+
+  @override
+  String get webcam_manager_webcam => 'Webcam';
+
+  @override
+  String get webcam_screen_add_title => 'Adicionar Webcam';
+
+  @override
+  String get webcam_screen_edit_title => 'Escolher Webcam';
+
+  @override
+  String get wizard_screen_about => 'Sobre';
+
+  @override
+  String get wizard_screen_desc =>
+      'Crie um novo projeto abaixo para começar a contar.';
+
+  @override
+  String get wizard_screen_email_us => 'Envie-nos um e-mail';
+
+  @override
+  String get wizard_screen_language => 'Idioma';
+
+  @override
+  String get wizard_screen_new_project_from => 'Novo Projeto a partir de';
+
+  @override
+  String get wizard_screen_open_projects => 'Abrir projeto existente';
+
+  @override
+  String get wizard_screen_open_projects_tip =>
+      'Todos os projetos serão salvos localmente de forma automática';
+
+  @override
+  String get yes => 'Sim';
+
+  @override
+  String get zone_screen_can_not_delete => 'Não é possível excluir a zona';
+
+  @override
+  String get zone_screen_color => 'Cor';
+
+  @override
+  String get zone_screen_delete_button => 'Excluir';
+
+  @override
+  String get zone_screen_delete_content =>
+      'Tem certeza de que deseja excluir esta zona?';
+
+  @override
+  String get zone_screen_delete_header => 'Excluir esta zona';
+
+  @override
+  String get zone_screen_desc =>
+      'A zona de detecção pode definir os tipos de objetos a serem detectados e escolher quais contadores exibir, como Detectados, Criados e Entrados.';
+
+  @override
+  String get zone_screen_name_placeholder =>
+      'O nome da zona, como Calçada ou Estacionamento';
+
+  @override
+  String get zone_screen_one_zone_required =>
+      'Pelo menos uma zona é necessária.';
+
+  @override
+  String get zone_screen_zone => 'Zona';
+
+  @override
+  String get zone_screen_zone_color => 'Cor da zona';
+
+  @override
+  String get zone_screen_zone_name_required =>
+      'O nome da zona não pode estar vazio';
+
+  @override
+  String get zone_screen_zone_show_summary => 'Mostrar resumo na tela';
+}

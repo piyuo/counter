@@ -1,0 +1,32 @@
+name: feature_pip
+description: "Picture in picture UI"
+version: 0.0.1
+resolution: workspace
+
+environment:
+  sdk: ^3.11.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_appkit:
+    git:
+      url: https://github.com/piyuo/flutter-appkit.git
+      ref: v3.0.0
+  riverpod_annotation: ^4.0.2
+  flutter_riverpod: ^3.2.1
+  universal_platform: ^1.1.0
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: ^5.6.3
+  flutter_lints: ^6.0.0
+  analyzer: ^9.0.0
+  riverpod_generator: ^4.0.3
+  build_runner: ^2.11.1
+
+# The following section is specific to Flutter packages.
+#flutter:

@@ -16,8 +16,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
 # Default paths
-CSV_FILE="${1:-$PROJECT_ROOT/lib/l10n/l10n.csv}"
-OUTPUT_DIR="${2:-$PROJECT_ROOT/lib/l10n/src/}"
+CSV_FILE="${1:-$PROJECT_ROOT/packages/shared_l10n/lib/l10n.csv}"
+OUTPUT_DIR="${2:-$PROJECT_ROOT/packages/shared_l10n/lib/generated/}"
 
 echo -e "${YELLOW}🔄 Converting CSV to ARB files...${NC}"
 echo "📄 CSV File: $CSV_FILE"
@@ -49,7 +49,7 @@ echo ""
 echo -e "${YELLOW}🔄 Generating localization files...${NC}"
 
 # Run flutter gen-l10n from the project root
-cd "$PROJECT_ROOT"
+cd "$PROJECT_ROOT/packages/shared_l10n"
 flutter gen-l10n
 
 echo ""
