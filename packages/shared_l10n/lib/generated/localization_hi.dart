@@ -235,6 +235,12 @@ class LocalizationHi extends Localization {
   String get language_screen_language => 'भाषा';
 
   @override
+  String get main_screen_booting => 'शुरू हो रहा है...';
+
+  @override
+  String get main_screen_checking_hardware => 'हार्डवेयर जाँच हो रही है...';
+
+  @override
   String get no => 'नहीं';
 
   @override

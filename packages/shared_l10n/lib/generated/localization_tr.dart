@@ -236,6 +236,12 @@ class LocalizationTr extends Localization {
   String get language_screen_language => 'Dil';
 
   @override
+  String get main_screen_booting => 'Başlatılıyor...';
+
+  @override
+  String get main_screen_checking_hardware => 'Donanım kontrol ediliyor...';
+
+  @override
   String get no => 'Hayır';
 
   @override

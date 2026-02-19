@@ -236,6 +236,13 @@ class LocalizationBn extends Localization {
   String get language_screen_language => 'ভাষা';
 
   @override
+  String get main_screen_booting => 'শুরু হচ্ছে...';
+
+  @override
+  String get main_screen_checking_hardware =>
+      'হার্ডওয়্যার পরীক্ষা করা হচ্ছে...';
+
+  @override
   String get no => 'না';
 
   @override

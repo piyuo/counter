@@ -70,6 +70,8 @@
   "filter_screen_error_title": "필터",
   "filter_screen_title": "필터",
   "language_screen_language": "언어",
+  "main_screen_booting": "시작 중...",
+  "main_screen_checking_hardware": "하드웨어 확인 중...",
   "no": "아니오",
   "objects_screen_desc": "사람, 자동차, 버스 등과 같은 감지 대상을 선택하세요.",
   "objects_screen_title": "객체",

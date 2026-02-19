@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filtre",
   "filter_screen_title": "Filtre",
   "language_screen_language": "Dil",
+  "main_screen_booting": "Başlatılıyor...",
+  "main_screen_checking_hardware": "Donanım kontrol ediliyor...",
   "no": "Hayır",
   "objects_screen_desc": "İnsan, araba, otobüs vb. algılama hedeflerini seçin.",
   "objects_screen_title": "Nesneler",

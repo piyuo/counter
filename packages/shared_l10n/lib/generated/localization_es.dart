@@ -238,6 +238,12 @@ class LocalizationEs extends Localization {
   String get language_screen_language => 'Idioma';
 
   @override
+  String get main_screen_booting => 'Iniciando...';
+
+  @override
+  String get main_screen_checking_hardware => 'Verificando hardware...';
+
+  @override
   String get no => 'No';
 
   @override

@@ -235,6 +235,12 @@ class LocalizationVi extends Localization {
   String get language_screen_language => 'Ngôn ngữ';
 
   @override
+  String get main_screen_booting => 'Đang khởi động...';
+
+  @override
+  String get main_screen_checking_hardware => 'Đang kiểm tra phần cứng...';
+
+  @override
   String get no => 'Không';
 
   @override

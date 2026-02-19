@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filtru",
   "filter_screen_title": "Filtru",
   "language_screen_language": "Limbă",
+  "main_screen_booting": "Se pornește...",
+  "main_screen_checking_hardware": "Se verifică hardware-ul...",
   "no": "Nu",
   "objects_screen_desc": "Alegeți ținte de detectare precum persoană, mașină, autobuz etc.",
   "objects_screen_title": "Obiecte",

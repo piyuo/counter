@@ -18,10 +18,7 @@ import 'welcome_3_view.dart';
 final CarouselSliderController _controller = CarouselSliderController();
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({required this.scrollController, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -48,7 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       child: Container(
         color: CupertinoColors.white,
         child: SingleChildScrollView(
-          controller: widget.scrollController,
+          controller: ScrollController(),
           child: Column(
             children: [
               CarouselSlider(

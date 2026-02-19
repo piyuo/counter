@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filtre",
   "filter_screen_title": "Filtre",
   "language_screen_language": "Langue",
+  "main_screen_booting": "Démarrage...",
+  "main_screen_checking_hardware": "Vérification du matériel...",
   "no": "Non",
   "objects_screen_desc": "Choisissez des cibles de détection comme personne, voiture, bus, etc.",
   "objects_screen_title": "Objets",

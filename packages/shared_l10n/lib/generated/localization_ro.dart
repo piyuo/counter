@@ -237,6 +237,12 @@ class LocalizationRo extends Localization {
   String get language_screen_language => 'Limbă';
 
   @override
+  String get main_screen_booting => 'Se pornește...';
+
+  @override
+  String get main_screen_checking_hardware => 'Se verifică hardware-ul...';
+
+  @override
   String get no => 'Nu';
 
   @override

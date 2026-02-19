@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/app_shell/screens/main_screen.dart';
-import 'package:counter_app/features/control_panel/control_panel.dart' as control_panel;
 import 'package:counter_app/features/monitor/monitor.dart' as app;
+import 'package:feature_control_panel/feature_control_panel.dart' as feature_control_panel;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +11,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:universal_platform/universal_platform.dart';
 
+/// Global key for the control panel shell state,  make sure only one instance of control panel shell in the app, otherwise it may cause unexpected behavior.
+final GlobalKey<feature_control_panel.ControlPanelShellState> _controlPanelKey =
+    GlobalKey<feature_control_panel.ControlPanelShellState>();
+
 class AppRouter {
   static Route<dynamic> onGenerateRoute(
     RouteSettings settings,
     WidgetRef ref,
     app.ProjectProvider projectProvider,
-    GlobalKey<control_panel.ControlPanelShellState> wizardKey,
     List<LocalizationsDelegate<dynamic>> appLocaleDelegates,
   ) {
     Route<dynamic> buildRoute(WidgetBuilder builder) {
@@ -26,7 +29,8 @@ class AppRouter {
       return CupertinoPageRoute(settings: settings, builder: builder, fullscreenDialog: false);
     }
 
-    final lifecycle = ref.watch(core_domain.lifecycleProvider);
+    final lifecycle = ref.watch(core_domain.systemLifecycleProvider);
+    final appFlow = ref.watch(core_domain.appFlowProvider);
 
     switch (settings.name) {
       case '/':
@@ -36,11 +40,10 @@ class AppRouter {
           return appkit.GlobalContext(
             child: vision.VisionLifecycle(
               child: feature_pip.PipScreen(
-                defaultSidebarBackgroundColor: lifecycle.isOnboarding ? CupertinoColors.white : CupertinoColors.black,
+                defaultSidebarBackgroundColor: appFlow.isOnboarding ? CupertinoColors.white : CupertinoColors.black,
                 isLockToPortrait: projectProvider.isLockToPortrait,
-                slidingBuilder: (isPanelOpened) => control_panel.ControlPanelShell(
-                  key: wizardKey,
-                  appLocale: locale,
+                slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
+                  key: _controlPanelKey,
                   appLocaleDelegates: appLocaleDelegates,
                 ),
                 builder: (isSideLayout) =>

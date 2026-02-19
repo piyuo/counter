@@ -236,6 +236,12 @@ class LocalizationPl extends Localization {
   String get language_screen_language => 'Język';
 
   @override
+  String get main_screen_booting => 'Uruchamianie...';
+
+  @override
+  String get main_screen_checking_hardware => 'Sprawdzanie sprzętu...';
+
+  @override
   String get no => 'Nie';
 
   @override

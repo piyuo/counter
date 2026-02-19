@@ -70,6 +70,8 @@
   "filter_screen_error_title": "फ़िल्टर",
   "filter_screen_title": "फ़िल्टर",
   "language_screen_language": "भाषा",
+  "main_screen_booting": "शुरू हो रहा है...",
+  "main_screen_checking_hardware": "हार्डवेयर जाँच हो रही है...",
   "no": "नहीं",
   "objects_screen_desc": "व्यक्ति, कार, बस आदि जैसे डिटेक्शन लक्ष्य चुनें।",
   "objects_screen_title": "ऑब्जेक्ट्स",

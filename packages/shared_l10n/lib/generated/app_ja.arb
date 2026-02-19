@@ -70,6 +70,8 @@
   "filter_screen_error_title": "フィルター",
   "filter_screen_title": "フィルター",
   "language_screen_language": "言語",
+  "main_screen_booting": "起動中...",
+  "main_screen_checking_hardware": "ハードウェアを確認中...",
   "no": "いいえ",
   "objects_screen_desc": "人、車、バスなどの検出対象を選択します。",
   "objects_screen_title": "オブジェクト",

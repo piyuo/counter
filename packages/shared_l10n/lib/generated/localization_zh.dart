@@ -226,6 +226,12 @@ class LocalizationZh extends Localization {
   String get language_screen_language => '語言';
 
   @override
+  String get main_screen_booting => '正在啟動...';
+
+  @override
+  String get main_screen_checking_hardware => '正在檢查硬體...';
+
+  @override
   String get no => '否';
 
   @override
@@ -749,6 +755,12 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get language_screen_language => '语言';
+
+  @override
+  String get main_screen_booting => '正在启动...';
+
+  @override
+  String get main_screen_checking_hardware => '正在检查硬件...';
 
   @override
   String get no => '否';

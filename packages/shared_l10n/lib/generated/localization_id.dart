@@ -236,6 +236,12 @@ class LocalizationId extends Localization {
   String get language_screen_language => 'Bahasa';
 
   @override
+  String get main_screen_booting => 'Memulai...';
+
+  @override
+  String get main_screen_checking_hardware => 'Memeriksa perangkat keras...';
+
+  @override
   String get no => 'Tidak';
 
   @override

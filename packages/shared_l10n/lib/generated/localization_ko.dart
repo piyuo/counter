@@ -230,6 +230,12 @@ class LocalizationKo extends Localization {
   String get language_screen_language => '언어';
 
   @override
+  String get main_screen_booting => '시작 중...';
+
+  @override
+  String get main_screen_checking_hardware => '하드웨어 확인 중...';
+
+  @override
   String get no => '아니오';
 
   @override

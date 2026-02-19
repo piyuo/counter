@@ -70,6 +70,8 @@
   "filter_screen_error_title": "篩選",
   "filter_screen_title": "篩選",
   "language_screen_language": "語言",
+  "main_screen_booting": "正在啟動...",
+  "main_screen_checking_hardware": "正在檢查硬體...",
   "no": "否",
   "objects_screen_desc": "選擇偵測目標，如人員、汽車、公車等。",
   "objects_screen_title": "物體",

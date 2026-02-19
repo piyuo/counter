@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filter",
   "filter_screen_title": "Filter",
   "language_screen_language": "Language",
+  "main_screen_booting": "Starting up...",
+  "main_screen_checking_hardware": "Checking hardware...",
   "no": "No",
   "objects_screen_desc": "Choose detection targets like person, car, bus, etc.",
   "objects_screen_title": "Objects",

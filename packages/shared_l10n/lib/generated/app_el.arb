@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Φίλτρο",
   "filter_screen_title": "Φίλτρο",
   "language_screen_language": "Γλώσσα",
+  "main_screen_booting": "Εκκίνηση...",
+  "main_screen_checking_hardware": "Έλεγχος υλικού...",
   "no": "Όχι",
   "objects_screen_desc": "Επιλέξτε στόχους ανίχνευσης όπως άτομο, αυτοκίνητο, λεωφορείο, κλπ.",
   "objects_screen_title": "Αντικείμενα",

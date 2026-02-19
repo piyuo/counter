@@ -70,6 +70,8 @@
   "filter_screen_error_title": "စစ်ထုတ်ရန်",
   "filter_screen_title": "စစ်ထုတ်ရန်",
   "language_screen_language": "ဘာသာစကား",
+  "main_screen_booting": "စတင်နေသည်...",
+  "main_screen_checking_hardware": "ဟာ့ဒ်ဝဲစစ်ဆေးနေသည်...",
   "no": "မဟုတ်ပါ",
   "objects_screen_desc": "လူ၊ ကား၊ ဘတ်စ်ကား စသည်ဖြင့် ရှာဖွေမှုပစ်မှတ်များကို ရွေးချယ်ပါ။",
   "objects_screen_title": "အရာဝတ္ထုများ",

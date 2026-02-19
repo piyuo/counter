@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filtro",
   "filter_screen_title": "Filtro",
   "language_screen_language": "Lingua",
+  "main_screen_booting": "Avvio in corso...",
+  "main_screen_checking_hardware": "Controllo hardware...",
   "no": "No",
   "objects_screen_desc": "Scegli obiettivi di rilevamento come persone, auto, autobus, ecc.",
   "objects_screen_title": "Oggetti",

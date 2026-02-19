@@ -235,6 +235,12 @@ class LocalizationMs extends Localization {
   String get language_screen_language => 'Bahasa';
 
   @override
+  String get main_screen_booting => 'Sedang memulakan...';
+
+  @override
+  String get main_screen_checking_hardware => 'Memeriksa perkakasan...';
+
+  @override
   String get no => 'Tidak';
 
   @override

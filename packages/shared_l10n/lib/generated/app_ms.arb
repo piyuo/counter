@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Tapisan",
   "filter_screen_title": "Tapis",
   "language_screen_language": "Bahasa",
+  "main_screen_booting": "Sedang memulakan...",
+  "main_screen_checking_hardware": "Memeriksa perkakasan...",
   "no": "Tidak",
   "objects_screen_desc": "Pilih sasaran pengesanan seperti orang, kereta, bas, dan sebagainya.",
   "objects_screen_title": "Objek",

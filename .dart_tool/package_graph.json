@@ -36,6 +36,7 @@
         "core_runtime",
         "cross_file",
         "cupertino_listview",
+        "feature_control_panel",
         "feature_monitor",
         "feature_onboarding",
         "feature_pip",
@@ -92,9 +93,11 @@
       "name": "feature_onboarding",
       "version": "0.0.1",
       "dependencies": [
+        "core_domain",
         "feature_pip",
         "flutter",
         "flutter_riverpod",
+        "go_router",
         "riverpod_annotation"
       ],
       "devDependencies": [
@@ -189,6 +192,7 @@
         "flutter",
         "flutter_appkit",
         "flutter_riverpod",
+        "freezed_annotation",
         "go_router",
         "riverpod_annotation"
       ],
@@ -197,6 +201,7 @@
         "build_runner",
         "flutter_lints",
         "flutter_test",
+        "freezed",
         "mockito",
         "riverpod_generator"
       ]
@@ -209,6 +214,7 @@
         "flutter",
         "flutter_appkit",
         "flutter_riverpod",
+        "freezed_annotation",
         "json_annotation",
         "riverpod_annotation"
       ],
@@ -403,6 +409,15 @@
       ]
     },
     {
+      "name": "freezed_annotation",
+      "version": "3.1.0",
+      "dependencies": [
+        "collection",
+        "json_annotation",
+        "meta"
+      ]
+    },
+    {
       "name": "flutter_appkit",
       "version": "3.0.0",
       "dependencies": [
@@ -477,15 +492,6 @@
         "clock",
         "meta",
         "path"
-      ]
-    },
-    {
-      "name": "freezed_annotation",
-      "version": "3.1.0",
-      "dependencies": [
-        "collection",
-        "json_annotation",
-        "meta"
       ]
     },
     {

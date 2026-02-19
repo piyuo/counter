@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filter",
   "filter_screen_title": "Filter",
   "language_screen_language": "Sprache",
+  "main_screen_booting": "Wird gestartet...",
+  "main_screen_checking_hardware": "Hardware wird überprüft...",
   "no": "Nein",
   "objects_screen_desc": "Wählen Sie Erkennungsziele wie Person, Auto, Bus usw.",
   "objects_screen_title": "Objekte",

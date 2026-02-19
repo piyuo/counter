@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filter",
   "filter_screen_title": "Filter",
   "language_screen_language": "Bahasa",
+  "main_screen_booting": "Memulai...",
+  "main_screen_checking_hardware": "Memeriksa perangkat keras...",
   "no": "Tidak",
   "objects_screen_desc": "Pilih target deteksi seperti orang, mobil, bus, dll.",
   "objects_screen_title": "Objek",
