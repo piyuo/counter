@@ -70,6 +70,8 @@
   "filter_screen_error_title": "筛选",
   "filter_screen_title": "筛选",
   "language_screen_language": "语言",
+  "main_screen_booting": "正在启动...",
+  "main_screen_checking_hardware": "正在检查硬件...",
   "no": "否",
   "objects_screen_desc": "选择检测目标，如人员、汽车、公交车等。",
   "objects_screen_title": "物体",

@@ -70,6 +70,8 @@
   "filter_screen_error_title": "ফিল্টার",
   "filter_screen_title": "ফিল্টার",
   "language_screen_language": "ভাষা",
+  "main_screen_booting": "শুরু হচ্ছে...",
+  "main_screen_checking_hardware": "হার্ডওয়্যার পরীক্ষা করা হচ্ছে...",
   "no": "না",
   "objects_screen_desc": "ডিটেকশন লক্ষ্যবস্তু যেমন ব্যক্তি, গাড়ি, বাস ইত্যাদি বেছে নিন।",
   "objects_screen_title": "অবজেক্ট",

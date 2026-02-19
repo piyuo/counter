@@ -238,6 +238,12 @@ class LocalizationFr extends Localization {
   String get language_screen_language => 'Langue';
 
   @override
+  String get main_screen_booting => 'Démarrage...';
+
+  @override
+  String get main_screen_checking_hardware => 'Vérification du matériel...';
+
+  @override
   String get no => 'Non';
 
   @override

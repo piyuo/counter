@@ -237,6 +237,12 @@ class LocalizationUk extends Localization {
   String get language_screen_language => 'Мова';
 
   @override
+  String get main_screen_booting => 'Запуск...';
+
+  @override
+  String get main_screen_checking_hardware => 'Перевірка обладнання...';
+
+  @override
   String get no => 'Ні';
 
   @override

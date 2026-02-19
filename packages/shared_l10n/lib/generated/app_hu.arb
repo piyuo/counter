@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Szűrő",
   "filter_screen_title": "Szűrő",
   "language_screen_language": "Nyelv",
+  "main_screen_booting": "Indítás...",
+  "main_screen_checking_hardware": "Hardver ellenőrzése...",
   "no": "Nem",
   "objects_screen_desc": "Válasszon felismerési célpontokat, például személy, autó, busz stb.",
   "objects_screen_title": "Objektumok",

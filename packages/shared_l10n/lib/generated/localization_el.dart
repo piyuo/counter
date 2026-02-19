@@ -237,6 +237,12 @@ class LocalizationEl extends Localization {
   String get language_screen_language => 'Γλώσσα';
 
   @override
+  String get main_screen_booting => 'Εκκίνηση...';
+
+  @override
+  String get main_screen_checking_hardware => 'Έλεγχος υλικού...';
+
+  @override
   String get no => 'Όχι';
 
   @override

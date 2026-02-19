@@ -10,7 +10,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 class InvitationScreen extends StatefulWidget {
-  const InvitationScreen({super.key});
+  const InvitationScreen({this.token, super.key});
+
+  final String? token;
 
   @override
   State<InvitationScreen> createState() => _InvitationScreenState();

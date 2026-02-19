@@ -70,6 +70,8 @@
   "filter_screen_error_title": "فیلتر",
   "filter_screen_title": "فیلتر",
   "language_screen_language": "زبان",
+  "main_screen_booting": "در حال راه‌اندازی...",
+  "main_screen_checking_hardware": "بررسی سخت‌افزار...",
   "no": "خیر",
   "objects_screen_desc": "اهداف تشخیص مانند شخص، خودرو، اتوبوس و غیره را انتخاب کنید.",
   "objects_screen_title": "اشیاء",

@@ -228,6 +228,12 @@ class LocalizationJa extends Localization {
   String get language_screen_language => '言語';
 
   @override
+  String get main_screen_booting => '起動中...';
+
+  @override
+  String get main_screen_checking_hardware => 'ハードウェアを確認中...';
+
+  @override
   String get no => 'いいえ';
 
   @override

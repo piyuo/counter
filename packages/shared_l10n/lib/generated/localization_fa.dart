@@ -236,6 +236,12 @@ class LocalizationFa extends Localization {
   String get language_screen_language => 'زبان';
 
   @override
+  String get main_screen_booting => 'در حال راه‌اندازی...';
+
+  @override
+  String get main_screen_checking_hardware => 'بررسی سخت‌افزار...';
+
+  @override
   String get no => 'خیر';
 
   @override

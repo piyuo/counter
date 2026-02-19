@@ -237,6 +237,12 @@ class LocalizationHu extends Localization {
   String get language_screen_language => 'Nyelv';
 
   @override
+  String get main_screen_booting => 'Indítás...';
+
+  @override
+  String get main_screen_checking_hardware => 'Hardver ellenőrzése...';
+
+  @override
   String get no => 'Nem';
 
   @override

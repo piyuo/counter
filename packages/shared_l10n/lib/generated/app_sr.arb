@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filter",
   "filter_screen_title": "Filter",
   "language_screen_language": "Jezik",
+  "main_screen_booting": "Pokretanje...",
+  "main_screen_checking_hardware": "Provera hardvera...",
   "no": "Ne",
   "objects_screen_desc": "Izaberite ciljeve detekcije poput osobe, automobila, autobusa, itd.",
   "objects_screen_title": "Objekti",

@@ -576,6 +576,18 @@ abstract class Localization {
   /// **'Language'**
   String get language_screen_language;
 
+  /// No description provided for @main_screen_booting.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting up...'**
+  String get main_screen_booting;
+
+  /// No description provided for @main_screen_checking_hardware.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking hardware...'**
+  String get main_screen_checking_hardware;
+
   /// No description provided for @no.
   ///
   /// In en, this message translates to:

@@ -238,6 +238,12 @@ class LocalizationRu extends Localization {
   String get language_screen_language => 'Язык';
 
   @override
+  String get main_screen_booting => 'Запуск...';
+
+  @override
+  String get main_screen_checking_hardware => 'Проверка оборудования...';
+
+  @override
   String get no => 'Нет';
 
   @override

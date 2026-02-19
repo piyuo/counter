@@ -70,6 +70,8 @@
   "filter_screen_error_title": "סינון",
   "filter_screen_title": "סינון",
   "language_screen_language": "שפה",
+  "main_screen_booting": "מתחיל...",
+  "main_screen_checking_hardware": "בודק חומרה...",
   "no": "לא",
   "objects_screen_desc": "בחר מטרות זיהוי כמו אדם, מכונית, אוטובוס וכו'.",
   "objects_screen_title": "אובייקטים",

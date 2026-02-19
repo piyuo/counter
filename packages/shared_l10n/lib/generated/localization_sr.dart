@@ -235,6 +235,12 @@ class LocalizationSr extends Localization {
   String get language_screen_language => 'Jezik';
 
   @override
+  String get main_screen_booting => 'Pokretanje...';
+
+  @override
+  String get main_screen_checking_hardware => 'Provera hardvera...';
+
+  @override
   String get no => 'Ne';
 
   @override

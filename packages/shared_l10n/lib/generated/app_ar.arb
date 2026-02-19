@@ -70,6 +70,8 @@
   "filter_screen_error_title": "تصفية",
   "filter_screen_title": "تصفية",
   "language_screen_language": "اللغة",
+  "main_screen_booting": "جاري التشغيل...",
+  "main_screen_checking_hardware": "جاري فحص الأجهزة...",
   "no": "لا",
   "objects_screen_desc": "اختر أهداف الكشف مثل شخص، سيارة، حافلة، إلخ.",
   "objects_screen_title": "الكائنات",

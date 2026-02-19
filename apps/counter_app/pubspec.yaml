@@ -28,6 +28,7 @@ dependencies:
   core_runtime: any
   feature_monitor: any
   feature_onboarding: any
+  feature_control_panel: any
   feature_pip: any
   flutter:
       sdk: flutter

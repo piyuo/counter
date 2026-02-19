@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Filter",
   "filter_screen_title": "Filter",
   "language_screen_language": "Taal",
+  "main_screen_booting": "Opstarten...",
+  "main_screen_checking_hardware": "Hardware controleren...",
   "no": "Nee",
   "objects_screen_desc": "Kies detectiedoelen zoals persoon, auto, bus, enz.",
   "objects_screen_title": "Objecten",

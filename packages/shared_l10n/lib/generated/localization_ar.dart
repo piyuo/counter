@@ -235,6 +235,12 @@ class LocalizationAr extends Localization {
   String get language_screen_language => 'اللغة';
 
   @override
+  String get main_screen_booting => 'جاري التشغيل...';
+
+  @override
+  String get main_screen_checking_hardware => 'جاري فحص الأجهزة...';
+
+  @override
   String get no => 'لا';
 
   @override

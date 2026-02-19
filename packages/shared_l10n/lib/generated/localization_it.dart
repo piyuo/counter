@@ -237,6 +237,12 @@ class LocalizationIt extends Localization {
   String get language_screen_language => 'Lingua';
 
   @override
+  String get main_screen_booting => 'Avvio in corso...';
+
+  @override
+  String get main_screen_checking_hardware => 'Controllo hardware...';
+
+  @override
   String get no => 'No';
 
   @override

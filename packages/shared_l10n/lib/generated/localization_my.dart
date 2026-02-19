@@ -237,6 +237,12 @@ class LocalizationMy extends Localization {
   String get language_screen_language => 'ဘာသာစကား';
 
   @override
+  String get main_screen_booting => 'စတင်နေသည်...';
+
+  @override
+  String get main_screen_checking_hardware => 'ဟာ့ဒ်ဝဲစစ်ဆေးနေသည်...';
+
+  @override
   String get no => 'မဟုတ်ပါ';
 
   @override

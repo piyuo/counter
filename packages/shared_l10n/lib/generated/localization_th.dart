@@ -235,6 +235,12 @@ class LocalizationTh extends Localization {
   String get language_screen_language => 'ภาษา';
 
   @override
+  String get main_screen_booting => 'กำลังเริ่ม...';
+
+  @override
+  String get main_screen_checking_hardware => 'กำลังตรวจสอบฮาร์ดแวร์...';
+
+  @override
   String get no => 'ไม่';
 
   @override

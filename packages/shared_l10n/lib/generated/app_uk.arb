@@ -70,6 +70,8 @@
   "filter_screen_error_title": "Фільтр",
   "filter_screen_title": "Фільтр",
   "language_screen_language": "Мова",
+  "main_screen_booting": "Запуск...",
+  "main_screen_checking_hardware": "Перевірка обладнання...",
   "no": "Ні",
   "objects_screen_desc": "Вибрати цілі виявлення, такі як людина, автомобіль, автобус тощо.",
   "objects_screen_title": "Об'єкти",

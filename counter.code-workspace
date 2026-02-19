@@ -56,7 +56,24 @@
             {
                 "filePath": "packages/core_runtime/lib/core_runtime.dart",
                 "group": "Default"
+            },
+            {
+                "filePath": "apps/counter_app/lib/app_shell/app_shell.dart",
+                "group": "Default"
+            },
+            {
+                "filePath": "packages/feature_monitor/lib/feature_monitor.dart",
+                "group": "Default"
+            },
+            {
+                "filePath": "packages/feature_onboarding/lib/feature_onboarding.dart",
+                "group": "Default"
+            },
+            {
+                "filePath": "packages/feature_control_panel/lib/feature_control_panel.dart",
+                "group": "Default"
             }
-        ]
+        ],
+        "favorites.sortOrder": "ASC"
     }
 }

@@ -237,6 +237,12 @@ class LocalizationNl extends Localization {
   String get language_screen_language => 'Taal';
 
   @override
+  String get main_screen_booting => 'Opstarten...';
+
+  @override
+  String get main_screen_checking_hardware => 'Hardware controleren...';
+
+  @override
   String get no => 'Nee';
 
   @override
