@@ -46,15 +46,18 @@ GoRouter _buildTestRouter() {
       GoRoute(
         path: core_domain.OnboardingRoutes.onboarding,
         builder: (_, __) => const SizedBox(),
-        routes: [GoRoute(path: core_domain.OnboardingRoutes.invitation, builder: (_, __) => const SizedBox())],
+        routes: [
+          GoRoute(path: core_domain.OnboardingRoutes.invitation, builder: (_, __) => const SizedBox()),
+          GoRoute(path: core_domain.OnboardingRoutes.cta, builder: (_, __) => const SizedBox()),
+        ],
       ),
     ],
   );
 }
 
 /// Replicates the stream subscription that [routerProvider] establishes.
-StreamSubscription<core_domain.AppNavigationEvent> _subscribeRouter(
-  StreamController<core_domain.AppNavigationEvent> bus,
+StreamSubscription<core_domain.NavigationEvent> _subscribeRouter(
+  StreamController<core_domain.NavigationEvent> bus,
   GoRouter router,
 ) {
   return bus.stream.listen((event) {
@@ -65,8 +68,12 @@ StreamSubscription<core_domain.AppNavigationEvent> _subscribeRouter(
         router.go(core_domain.ControlPanelRoutes.about);
       case core_domain.OpenOnboarding():
         router.go(core_domain.OnboardingRoutes.onboarding);
+      case core_domain.OpenOnboardingCTA():
+        router.go(core_domain.OnboardingRoutes.onboardingCTA);
       case core_domain.OpenOnboardingInvitation(token: final token):
         router.go(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
+      case core_domain.OpenLightOffScreen():
+        break;
     }
   });
 }
@@ -302,6 +309,26 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding);
+    });
+
+    testWidgets('OpenOnboardingCTA causes navigation to /onboarding/cta', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.add(const core_domain.OpenOnboardingCTA());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboardingCTA);
     });
 
     testWidgets('OpenOnboardingInvitation causes navigation to onboarding invitation path', (tester) async {

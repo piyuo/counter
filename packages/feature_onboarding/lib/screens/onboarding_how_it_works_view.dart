@@ -1,14 +1,14 @@
 // ===============================================
-// Module: welcome2_view.dart
+// Module: onboarding_how_it_works_view.dart
 // Description: Intro page 2 (how it works)
 //
 // Sections:
-//   - Welcome2View widget
+//   - OnboardingHowItWorksView widget
 // ===============================================
 import 'package:flutter/cupertino.dart';
 
-class Welcome2View extends StatelessWidget {
-  const Welcome2View({super.key});
+class OnboardingHowItWorksView extends StatelessWidget {
+  const OnboardingHowItWorksView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,7 @@ class Welcome2View extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 18.0, color: secondaryText),
           ),
+          const SizedBox(height: 10.0),
           SizedBox(height: 240.0, child: Image.asset('assets/images/welcome2.png', fit: BoxFit.cover)),
         ],
       ),

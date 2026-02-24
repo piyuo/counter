@@ -16,33 +16,42 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 ///
 /// These are not stored in state — the stream is a broadcast channel.
 /// Emitting the same event twice triggers navigation twice (intended).
-sealed class AppNavigationEvent {
-  const AppNavigationEvent();
+sealed class NavigationEvent {
+  const NavigationEvent();
 }
 
 /// Request to navigate to the settings screen.
-class OpenSettings extends AppNavigationEvent {
+class OpenSettings extends NavigationEvent {
   const OpenSettings();
 }
 
+class OpenLightOffScreen extends NavigationEvent {
+  const OpenLightOffScreen();
+}
+
 /// Request to navigate to the about screen.
-class OpenAbout extends AppNavigationEvent {
+class OpenAbout extends NavigationEvent {
   const OpenAbout();
 }
 
 /// Request to navigate to the onboarding root screen.
-class OpenOnboarding extends AppNavigationEvent {
+class OpenOnboarding extends NavigationEvent {
   const OpenOnboarding();
 }
 
+/// Request to navigate to onboarding CTA screen.
+class OpenOnboardingCTA extends NavigationEvent {
+  const OpenOnboardingCTA();
+}
+
 /// Request to navigate to onboarding invitation, optionally with token.
-class OpenOnboardingInvitation extends AppNavigationEvent {
+class OpenOnboardingInvitation extends NavigationEvent {
   final String? token;
 
   const OpenOnboardingInvitation({this.token});
 }
 
-/// Broadcast [StreamController] carrying [AppNavigationEvent]s.
+/// Broadcast [StreamController] carrying [NavigationEvent]s.
 ///
 /// Kept alive by whoever subscribes to it (the router provider).
 /// Disposed automatically via [ref.onDispose] when the container shuts down.
@@ -51,8 +60,8 @@ class OpenOnboardingInvitation extends AppNavigationEvent {
 /// ```dart
 /// ref.read(navigationEventBusProvider).add(const OpenSettings());
 /// ```
-final navigationEventBusProvider = Provider<StreamController<AppNavigationEvent>>((ref) {
-  final controller = StreamController<AppNavigationEvent>.broadcast();
+final navigationEventBusProvider = Provider<StreamController<NavigationEvent>>((ref) {
+  final controller = StreamController<NavigationEvent>.broadcast();
   ref.onDispose(controller.close);
   return controller;
 });

@@ -29,14 +29,12 @@ class AppRouter {
       return CupertinoPageRoute(settings: settings, builder: builder, fullscreenDialog: false);
     }
 
-    final lifecycle = ref.watch(core_domain.systemLifecycleProvider);
-    final appFlow = ref.watch(core_domain.appFlowProvider);
-
     switch (settings.name) {
       case '/':
       default:
         return buildRoute((_) {
           final locale = ref.watch(appkit.localeProvider);
+          final appFlow = ref.watch(core_domain.appFlowProvider);
           return appkit.GlobalContext(
             child: vision.VisionLifecycle(
               child: feature_pip.PipScreen(

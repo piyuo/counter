@@ -19,7 +19,7 @@ void main() {
 
       final controller = container.read(navigationEventBusProvider);
 
-      expect(controller, isA<StreamController<AppNavigationEvent>>());
+      expect(controller, isA<StreamController<NavigationEvent>>());
       expect(controller.stream.isBroadcast, isTrue);
     });
 
@@ -28,7 +28,7 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <AppNavigationEvent>[];
+      final received = <NavigationEvent>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
@@ -44,7 +44,7 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <AppNavigationEvent>[];
+      final received = <NavigationEvent>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
@@ -60,8 +60,8 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received1 = <AppNavigationEvent>[];
-      final received2 = <AppNavigationEvent>[];
+      final received1 = <NavigationEvent>[];
+      final received2 = <NavigationEvent>[];
 
       final sub1 = controller.stream.listen(received1.add);
       final sub2 = controller.stream.listen(received2.add);
@@ -80,7 +80,7 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <AppNavigationEvent>[];
+      final received = <NavigationEvent>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
@@ -96,7 +96,7 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <AppNavigationEvent>[];
+      final received = <NavigationEvent>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
@@ -135,19 +135,23 @@ void main() {
 
   group('AppNavigationEvent subtypes', () {
     test('OpenSettings is an AppNavigationEvent', () {
-      expect(const OpenSettings(), isA<AppNavigationEvent>());
+      expect(const OpenSettings(), isA<NavigationEvent>());
     });
 
     test('OpenAbout is an AppNavigationEvent', () {
-      expect(const OpenAbout(), isA<AppNavigationEvent>());
+      expect(const OpenAbout(), isA<NavigationEvent>());
     });
 
     test('OpenOnboarding is an AppNavigationEvent', () {
-      expect(const OpenOnboarding(), isA<AppNavigationEvent>());
+      expect(const OpenOnboarding(), isA<NavigationEvent>());
+    });
+
+    test('OpenOnboardingCTA is an AppNavigationEvent', () {
+      expect(const OpenOnboardingCTA(), isA<NavigationEvent>());
     });
 
     test('OpenOnboardingInvitation is an AppNavigationEvent', () {
-      expect(const OpenOnboardingInvitation(token: 'abc'), isA<AppNavigationEvent>());
+      expect(const OpenOnboardingInvitation(token: 'abc'), isA<NavigationEvent>());
     });
   });
 }

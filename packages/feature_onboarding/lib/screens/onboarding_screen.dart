@@ -7,28 +7,32 @@
 //   - GuideScreen widget
 // ===============================================
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'cta_screen.dart';
-import 'welcome_1_view.dart';
-import 'welcome_2_view.dart';
-import 'welcome_3_view.dart';
+import 'onboarding_how_it_works_view.dart';
+import 'onboarding_intro_view.dart';
+import 'onboarding_privacy_view.dart';
 
-final CarouselSliderController _controller = CarouselSliderController();
+const int _pageCount = 3;
 
-class OnboardingScreen extends StatefulWidget {
+class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  ConsumerState<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  static const int _pageCount = 3;
-  int _current = 0;
+class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
+  /// Carousel controller to programmatically change pages
+  final CarouselSliderController _carouselController = CarouselSliderController();
 
-  List<Widget> _buildPages() => const [Welcome1View(), Welcome2View(), Welcome3View()];
+  /// Track the current page index for indicators and button logic
+  int _currentPageIndex = 0;
+
+  List<Widget> _buildPages() => const [OnboardingIntroView(), OnboardingHowItWorksView(), OnboardingPrivacyView()];
 
   @override
   Widget build(BuildContext context) {
@@ -38,63 +42,72 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       action: CupertinoButton(
         sizeStyle: CupertinoButtonSize.medium,
         onPressed: () {
-          Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const CTAScreen()));
+          ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
         },
         child: Text('Skip Intro'), //todo:add translation
       ),
       child: Container(
         color: CupertinoColors.white,
-        child: SingleChildScrollView(
-          controller: ScrollController(),
-          child: Column(
-            children: [
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 480.0,
-                  viewportFraction: 1.0,
-                  enableInfiniteScroll: false,
-                  onPageChanged: (index, reason) => setState(() => _current = index),
-                ),
-                carouselController: _controller,
-                items: _buildPages(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(_pageCount, (index) {
-                  final bool isActive = _current == index;
-                  return GestureDetector(
-                    onTap: () => _controller.animateToPage(index),
-                    child: Container(
-                      width: 10.0,
-                      height: 10.0,
-                      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: CupertinoColors.black.withValues(alpha: isActive ? 0.9 : 0.2),
-                      ),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              controller: ScrollController(),
+              padding: const EdgeInsets.only(bottom: 120.0),
+              child: Column(
+                children: [
+                  CarouselSlider(
+                    options: CarouselOptions(
+                      height: 450.0,
+                      viewportFraction: 1.0,
+                      enableInfiniteScroll: false,
+                      onPageChanged: (index, reason) => setState(() => _currentPageIndex = index),
                     ),
-                  );
-                }),
+                    carouselController: _carouselController,
+                    items: _buildPages(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(_pageCount, (index) {
+                      final bool isActive = _currentPageIndex == index;
+                      return GestureDetector(
+                        onTap: () => _carouselController.animateToPage(index),
+                        child: Container(
+                          width: 10.0,
+                          height: 10.0,
+                          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: CupertinoColors.black.withValues(alpha: isActive ? 0.9 : 0.2),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 32.0, top: 16.0, left: 16.0, right: 16.0),
+            ),
+            Positioned(
+              left: 16.0,
+              right: 16.0,
+              bottom: 16.0,
+              child: SafeArea(
+                top: false,
                 child: SizedBox(
-                  width: double.infinity, // Full width makes it unmissable
+                  width: double.infinity,
                   child: CupertinoButton.filled(
-                    // FILLED is the key
                     onPressed: () {
-                      if (_current == _pageCount - 1) {
-                        Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const CTAScreen()));
+                      if (_currentPageIndex == _pageCount - 1) {
+                        ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
                         return;
                       }
-                      _controller.nextPage();
+                      _carouselController.nextPage();
                     },
                     child: Text('Next'), //todo:add translation
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

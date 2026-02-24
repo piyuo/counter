@@ -16,16 +16,23 @@ import 'package:core_domain/navigation/route_rule.dart';
 class AppFlowRule implements RouteRule {
   const AppFlowRule();
 
+  bool _isWithinOnboarding(String path) =>
+      path == OnboardingRoutes.onboarding || path.startsWith('${OnboardingRoutes.onboarding}/');
+
   @override
   int get priority => 10;
 
   @override
   RouteDecision? evaluate(RouteContext context) {
-    final target = context.flow.whenOrNull(
-      onboardingRequired: () => OnboardingRoutes.onboarding,
-      onboardingByInvitation: () => OnboardingRoutes.onboardingInvitation,
+    return context.flow.whenOrNull(
+      onboardingRequired: () {
+        if (_isWithinOnboarding(context.currentPath)) return null;
+        return const RouteDecision(target: OnboardingRoutes.onboarding, reason: 'app-flow gate');
+      },
+      onboardingByInvitation: () {
+        if (_isWithinOnboarding(context.currentPath)) return null;
+        return RouteDecision(target: OnboardingRoutes.onboardingInvitation, reason: 'app-flow gate');
+      },
     );
-    if (target == null) return null;
-    return RouteDecision(target: target, reason: 'app-flow gate');
   }
 }
