@@ -1,9 +1,11 @@
 // TOC:
 //  - AppFlowRule priority
-//  - AppFlowRule redirects to /onboarding for onboarding states
 //  - AppFlowRule returns null for non-gated states
+//  - AppFlowRule onboardingRequired gating behavior
+//  - AppFlowRule onboardingByInvitation gating behavior
 
 import 'package:core_domain/app_flow/models/app_flow.dart';
+import 'package:core_domain/navigation/onboarding_routes.dart';
 import 'package:core_domain/navigation/route_context.dart';
 import 'package:core_domain/navigation/rules/app_flow_rule.dart';
 import 'package:core_domain/system_lifecycle/models/system_lifecycle.dart';
@@ -31,6 +33,48 @@ void main() {
 
       test('sessionRunning → null', () {
         expect(rule.evaluate(_ctx(const AppFlow.sessionRunning())), isNull);
+      });
+    });
+
+    group('onboardingRequired gating', () {
+      test('redirects to onboarding from non-onboarding path', () {
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: '/settings'));
+
+        expect(decision, isNotNull);
+        expect(decision!.target, OnboardingRoutes.onboarding);
+      });
+
+      test('allows onboarding root path', () {
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: OnboardingRoutes.onboarding));
+        expect(decision, isNull);
+      });
+
+      test('allows onboarding CTA sub-route', () {
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: OnboardingRoutes.onboardingCTA));
+        expect(decision, isNull);
+      });
+    });
+
+    group('onboardingByInvitation gating', () {
+      test('redirects to onboarding invitation from non-onboarding path', () {
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingByInvitation(), path: '/settings'));
+
+        expect(decision, isNotNull);
+        expect(decision!.target, OnboardingRoutes.onboardingInvitation);
+      });
+
+      test('allows onboarding invitation path', () {
+        final decision = rule.evaluate(
+          _ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.onboardingInvitation),
+        );
+        expect(decision, isNull);
+      });
+
+      test('allows onboarding subtree path', () {
+        final decision = rule.evaluate(
+          _ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.onboardingCTA),
+        );
+        expect(decision, isNull);
       });
     });
   });

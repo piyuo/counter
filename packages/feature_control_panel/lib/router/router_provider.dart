@@ -50,13 +50,17 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
   final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((event) {
     switch (event) {
       case core_domain.OpenSettings():
-        router.go(core_domain.ControlPanelRoutes.settings);
+        router.push(core_domain.ControlPanelRoutes.settings);
       case core_domain.OpenAbout():
-        router.go(core_domain.ControlPanelRoutes.about);
+        router.push(core_domain.ControlPanelRoutes.about);
       case core_domain.OpenOnboarding():
-        router.go(core_domain.OnboardingRoutes.onboarding);
+        router.push(core_domain.OnboardingRoutes.onboarding);
+      case core_domain.OpenOnboardingCTA():
+        router.push(core_domain.OnboardingRoutes.onboardingCTA);
       case core_domain.OpenOnboardingInvitation(token: final token):
-        router.go(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
+        router.push(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
+      case core_domain.OpenLightOffScreen():
+        break; // No route for this event,
     }
   });
 

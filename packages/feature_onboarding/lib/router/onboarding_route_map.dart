@@ -7,6 +7,7 @@
 //  - Each builder receives a fresh ScrollController; the screen owns its lifecycle.
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_onboarding/screens/cta_screen.dart';
 import 'package:feature_onboarding/screens/invitation_screen.dart';
 import 'package:feature_onboarding/screens/onboarding_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -22,6 +23,12 @@ List<GoRoute> onBoardingRouteMap() {
           builder: (context, state) {
             final token = state.uri.queryParameters['token'];
             return InvitationScreen(token: token);
+          },
+        ),
+        GoRoute(
+          path: core_domain.OnboardingRoutes.cta,
+          builder: (context, state) {
+            return CTAScreen();
           },
         ),
       ],

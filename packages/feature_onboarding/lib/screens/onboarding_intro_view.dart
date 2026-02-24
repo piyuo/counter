@@ -1,14 +1,14 @@
 // ===============================================
-// Module: welcome1_view.dart
+// Module: onboarding_intro_view.dart
 // Description: Intro page 1 (what the app does)
 //
 // Sections:
-//   - Welcome1View widget
+//   - OnboardingIntroView widget
 // ===============================================
 import 'package:flutter/cupertino.dart';
 
-class Welcome1View extends StatelessWidget {
-  const Welcome1View({super.key});
+class OnboardingIntroView extends StatelessWidget {
+  const OnboardingIntroView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class Welcome1View extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16.0, color: secondaryText),
           ),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 30.0),
           SizedBox(height: 240, child: Image.asset('assets/images/welcome1.png', fit: BoxFit.cover)),
         ],
       ),

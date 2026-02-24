@@ -1,14 +1,14 @@
 // ===============================================
-// Module: welcome3_view.dart
+// Module: onboarding_privacy_view.dart
 // Description: Intro page 3 (privacy & trust)
 //
 // Sections:
-//   - Welcome3View widget
+//   - OnboardingPrivacyView widget
 // ===============================================
 import 'package:flutter/cupertino.dart';
 
-class Welcome3View extends StatelessWidget {
-  const Welcome3View({super.key});
+class OnboardingPrivacyView extends StatelessWidget {
+  const OnboardingPrivacyView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class Welcome3View extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16.0, color: secondaryText),
           ),
+          const SizedBox(height: 10.0),
           SizedBox(height: 240, child: Image.asset('assets/images/welcome3.png', fit: BoxFit.cover)),
         ],
       ),
