@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class OpencvScreen extends StatelessWidget {
-  const OpencvScreen({required this.scrollController, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const OpencvScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +14,7 @@ class OpencvScreen extends StatelessWidget {
         builder: (context, opencvScreenProvider, child) {
           return feature_pip.PipScaffold(
             title: 'OpenCV',
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

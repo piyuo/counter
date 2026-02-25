@@ -10,10 +10,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 import 'indicator_view.dart';
 
 class ProjectScreen extends StatelessWidget {
-  const ProjectScreen({required this.scrollController, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const ProjectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +94,7 @@ class ProjectScreen extends StatelessWidget {
                   child: Text(context.l.project_screen_add_video_button),
                   onPressed: () {},
                 ),
-                child: SingleChildScrollView(
+                builder: (scrollController) => SingleChildScrollView(
                   controller: scrollController,
                   child: Column(
                     children: [

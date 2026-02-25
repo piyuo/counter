@@ -7,20 +7,17 @@ import 'package:provider/provider.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class ObjectsScreen extends StatelessWidget {
-  const ObjectsScreen({required this.videoProvider, required this.scrollController, super.key});
+  const ObjectsScreen({required this.videoProvider, super.key});
 
   /// the video provider this settings provider is working on
   final app.VideoProvider videoProvider;
-
-  /// the scroll controller
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     final projectProvider = app.ProjectProvider.of(context);
     final pageTitle = context.l.objects_screen_title;
     return feature_pip.PipScaffold(
-      child: ChangeNotifierProvider(
+      builder: (scrollController) => ChangeNotifierProvider(
         create: (_) => ObjectScreenProvider(),
         child: Consumer<ObjectScreenProvider>(
           builder: (context, objectScreenProvider, child) {

@@ -7,10 +7,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 /// The color screen for editing the color.
 class ColorScreen extends StatelessWidget {
-  const ColorScreen({required this.scrollController, this.previousPageTitle, required this.videoProvider, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const ColorScreen({this.previousPageTitle, required this.videoProvider, super.key});
 
   /// the previous page title
   final String? previousPageTitle;
@@ -27,7 +24,7 @@ class ColorScreen extends StatelessWidget {
         builder: (context, colorScreenProvider, child) => feature_pip.PipScaffold(
           title: pageTitle,
           previousPageTitle: previousPageTitle,
-          child: SingleChildScrollView(
+          builder: (scrollController) => SingleChildScrollView(
             controller: scrollController,
             child: Column(
               children: [

@@ -7,10 +7,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 /// provide settings screen for the project
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({required this.scrollController, this.previousPageTitle, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const SettingsScreen({this.previousPageTitle, super.key});
 
   /// the previous page title
   final String? previousPageTitle;
@@ -25,7 +22,7 @@ class SettingsScreen extends StatelessWidget {
         builder: (context, settingsScreenProvider, child) {
           return feature_pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

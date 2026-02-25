@@ -27,63 +27,68 @@ class IndexScreen extends ConsumerWidget {
     );
 
     return feature_pip.PipScaffold(
-      child: SingleChildScrollView(
-        controller: ScrollController(),
-        child: Column(
-          children: [
-            feature_pip.PipHeader(
-              padding: EdgeInsets.all(10),
-              child: isCompactHeader
-                  ? Row(
-                      children: [
-                        const SizedBox(width: 8.0),
-                        Image(image: AssetImage('assets/icon/icon.png'), width: 48, height: 48),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Text(
-                                context.l.product_name,
-                                style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                context.l.wizard_screen_desc,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+      builder: (scrollController) {
+        return SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            children: [
+              feature_pip.PipHeader(
+                padding: EdgeInsets.all(10),
+                child: isCompactHeader
+                    ? Row(
+                        children: [
+                          const SizedBox(width: 8.0),
+                          Image(image: AssetImage('assets/icon/icon.png'), width: 48, height: 48),
+                          const SizedBox(width: 8.0),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                Text(
+                                  context.l.product_name,
+                                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(height: 8.0),
+                                Text(
+                                  context.l.wizard_screen_desc,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        Image(image: AssetImage('assets/icon/icon.png'), width: 84, height: 84),
-                        const SizedBox(height: 8.0),
-                        Text(
-                          context.l.product_name,
-                          style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 4.0),
-                        Text(
-                          context.l.wizard_screen_desc,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12.0, color: CupertinoColors.secondaryLabel.resolveFrom(context)),
-                        ),
-                      ],
-                    ),
-            ),
-            Text('index screen'),
-            if (statusLabel != null) Text(statusLabel),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Image(image: AssetImage('assets/icon/icon.png'), width: 84, height: 84),
+                          const SizedBox(height: 8.0),
+                          Text(
+                            context.l.product_name,
+                            style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 4.0),
+                          Text(
+                            context.l.wizard_screen_desc,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+              Text('index screen'),
+              if (statusLabel != null) Text(statusLabel),
 
-            feature_pip.PipFooter(),
-          ],
-        ),
-      ),
+              feature_pip.PipFooter(),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -45,7 +45,6 @@ dependencies:
   path: ^1.9.0
   protobuf: ^4.1.1
   provider: ^6.1.2
-  auto_size_text: ^3.0.0
   beamer: ^1.6.1
   reactive_forms: ^18.1.1
   calendar_date_picker2: ^2.0.1
@@ -62,7 +61,6 @@ dependencies:
   intl: ^0.20.2
   wakelock_plus: ^1.2.10
   sensors_plus: ^6.1.1
-  super_cupertino_navigation_bar: ^2.1.2
   package_info_plus: ^8.2.1
   flutter_colorpicker: ^1.1.0
   fl_chart: ^1.0.0

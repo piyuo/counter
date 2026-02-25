@@ -6,13 +6,10 @@ import 'package:provider/provider.dart' as provider;
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class LanguageScreen extends ConsumerWidget {
-  const LanguageScreen({required this.scrollController, this.previousPageTitle, super.key});
+  const LanguageScreen({this.previousPageTitle, super.key});
 
   /// The title of the previous page.
   final String? previousPageTitle;
-
-  /// the scroll controller
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +22,7 @@ class LanguageScreen extends ConsumerWidget {
         builder: (context, languageScreenProvider, child) {
           return feature_pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

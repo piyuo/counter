@@ -10,6 +10,7 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/feature_onboarding.dart' as feature_onboarding;
+import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -24,8 +25,6 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
   // State-driven: lifecycle and flow changes trigger GoRouter's redirect.
   ref.listen(core_domain.systemLifecycleProvider, (_, _) => notifier.value++);
   ref.listen(core_domain.appFlowProvider, (_, _) => notifier.value++);
-
-  ref.onDispose(notifier.dispose);
 
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
@@ -44,6 +43,14 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
       return engine.decide(routeContext)?.target;
     },
   );
+
+  void onRouteChanged() {
+    final currentPath = router.state.uri.path;
+    final pipController = ref.read(feature_pip.pipProvider.notifier);
+    pipController.onRouteChanged(currentPath);
+  }
+
+  router.routerDelegate.addListener(onRouteChanged);
 
   // Event-driven: one-shot navigation events go directly to router.go(),
   // bypassing the redirect cycle — no consume(), no stale state.
@@ -65,6 +72,8 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
   });
 
   ref.onDispose(() {
+    notifier.dispose();
+    router.routerDelegate.removeListener(onRouteChanged);
     subscription.cancel();
     router.dispose();
   });

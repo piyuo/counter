@@ -52,8 +52,6 @@ class _AppShellState extends ConsumerState<AppShell> {
       GlobalWidgetsLocalizations.delegate,
     ];
 
-    final pipState = ref.watch(feature_pip.pipProvider);
-
     return AppProviders(
       child: CupertinoTheme(
         data: AppTheme.cupertinoTheme,
@@ -73,7 +71,6 @@ class _AppShellState extends ConsumerState<AppShell> {
                 supportedLocales: shared_l10n.Localization.supportedLocales,
                 localeResolutionCallback: appkit.localeResolutionCallback,
                 theme: AppTheme.materialTheme,
-                navigatorObservers: [pipState.scrollObserver],
                 initialRoute: '/',
                 onGenerateRoute: (routeSettings) {
                   return AppRouter.onGenerateRoute(routeSettings, ref, projectProvider, appLocaleDelegates);

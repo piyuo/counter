@@ -13,7 +13,6 @@ const BorderRadiusGeometry _slidingPanelRadius = BorderRadius.only(
   topRight: Radius.circular(10.0),
 );
 
-/// SlidingPanel show project settings or runtime information
 class PipSliding extends ConsumerWidget {
   const PipSliding({
     required this.builder,
@@ -75,7 +74,7 @@ class PipSliding extends ConsumerWidget {
           return SlidingUpPanel(
             key: pipController.panelKey,
             transformRotation: transformRotation,
-            getCurrentScrollOffset: () => pipController.getCurrentScrollOffset(),
+            getCurrentScrollOffset: () => pipController.scrollOffset,
             color: CupertinoColors.transparent,
             defaultPanelState: pipState.isPanelOpened ? PanelState.open : PanelState.closed,
             snapPoint: 0.4,

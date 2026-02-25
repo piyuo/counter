@@ -5,10 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class OpenProjectScreen extends StatelessWidget {
-  const OpenProjectScreen({required this.scrollController, this.previousPageTitle, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const OpenProjectScreen({this.previousPageTitle, super.key});
 
   /// The title of the previous page.
   final String? previousPageTitle;
@@ -38,7 +35,7 @@ class OpenProjectScreen extends StatelessWidget {
           int index = 1;
           return feature_pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: openProjectScreenProvider._isLoading

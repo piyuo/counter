@@ -8,10 +8,7 @@ import '../project/video_sources.dart';
 
 /// Add new video screen
 class AddVideoScreen extends StatelessWidget {
-  const AddVideoScreen({required this.scrollController, this.previousPageTitle, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const AddVideoScreen({this.previousPageTitle, super.key});
 
   /// the previous page title
   final String? previousPageTitle;
@@ -23,7 +20,7 @@ class AddVideoScreen extends StatelessWidget {
     return feature_pip.PipScaffold(
       previousPageTitle: previousPageTitle,
       title: pageTitle,
-      child: ChangeNotifierProvider<AddVideoScreenProvider>(
+      builder: (scrollController) => ChangeNotifierProvider<AddVideoScreenProvider>(
         create: (_) => AddVideoScreenProvider(),
         child: Consumer<AddVideoScreenProvider>(
           builder: (context, addSourceScreenProvider, child) {
