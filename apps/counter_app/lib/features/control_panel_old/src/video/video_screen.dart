@@ -6,10 +6,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 /// The video screen for detail and zone editing.
 class VideoScreen extends StatelessWidget {
-  const VideoScreen({required this.scrollController, required this.videoProvider, this.previousPageTitle, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const VideoScreen({required this.videoProvider, this.previousPageTitle, super.key});
 
   /// the previous page title
   final String? previousPageTitle;
@@ -43,7 +40,7 @@ class VideoScreen extends StatelessWidget {
               onPressed: () {},
               child: Text(context.l.video_screen_add_zone),
             ),
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

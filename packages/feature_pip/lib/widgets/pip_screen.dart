@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pip_sliding.dart';
 
@@ -27,7 +28,7 @@ const double _slidingPanelMinHeight = 128;
 const _animationDuration = Duration(milliseconds: 100);
 
 /// Picture in Picture screen
-class PipScreen extends StatelessWidget {
+class PipScreen extends ConsumerWidget {
   const PipScreen({
     required this.builder,
     required this.slidingBuilder,
@@ -49,7 +50,7 @@ class PipScreen extends StatelessWidget {
   final Color defaultSidebarBackgroundColor;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final safePadding = MediaQuery.of(context).padding;
 
     return OrientationBuilder(

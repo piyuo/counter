@@ -5,21 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class DetectionScreen extends StatelessWidget {
-  const DetectionScreen({
-    required this.videoProvider,
-    required this.previousPageTitle,
-    required this.scrollController,
-    super.key,
-  });
+  const DetectionScreen({required this.videoProvider, required this.previousPageTitle, super.key});
 
   /// the video provider
   final app.VideoProvider videoProvider;
 
   /// the previous page title
   final String? previousPageTitle;
-
-  /// the scroll controller
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +20,7 @@ class DetectionScreen extends StatelessWidget {
     return feature_pip.PipScaffold(
       title: pageTitle,
       previousPageTitle: previousPageTitle,
-      child: ChangeNotifierProvider<DetectionScreenProvider>(
+      builder: (scrollController) => ChangeNotifierProvider<DetectionScreenProvider>(
         create: (_) => DetectionScreenProvider(),
         child: Consumer<DetectionScreenProvider>(
           builder: (context, detectionScreenProvider, child) {

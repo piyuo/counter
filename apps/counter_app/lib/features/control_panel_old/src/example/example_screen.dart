@@ -4,16 +4,13 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class ExampleScreen extends StatelessWidget {
-  const ExampleScreen({required this.scrollController, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const ExampleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return feature_pip.PipScaffold(
       titleWidget: Text('Hello Title', style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-      child: SingleChildScrollView(
+      builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
         child: Column(
           children: [

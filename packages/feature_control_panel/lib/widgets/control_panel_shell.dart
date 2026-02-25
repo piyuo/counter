@@ -1,4 +1,5 @@
 import 'package:feature_control_panel/router/router_provider.dart';
+import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -17,20 +18,24 @@ class ControlPanelShell extends ConsumerStatefulWidget {
 
 class ControlPanelShellState extends ConsumerState<ControlPanelShell> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final router = ref.watch(routerProvider(widget.initialRoute));
-    return ClipRect(
-      // clip rect is needed to prevent the navigator animation route from drawing outside the screen
-      child: Router(
-        routeInformationProvider: router.routeInformationProvider,
-        routeInformationParser: router.routeInformationParser,
-        routerDelegate: router.routerDelegate,
-        backButtonDispatcher: RootBackButtonDispatcher(),
+
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        final currentPath = router.state.uri.path;
+        final pipController = ref.read(feature_pip.pipProvider.notifier);
+        pipController.onScrollNotification(currentPath, notification);
+        return false;
+      },
+      child: ClipRect(
+        // clip rect is needed to prevent the navigator animation route from drawing outside the screen
+        child: Router(
+          routeInformationProvider: router.routeInformationProvider,
+          routeInformationParser: router.routeInformationParser,
+          routerDelegate: router.routerDelegate,
+          backButtonDispatcher: RootBackButtonDispatcher(),
+        ),
       ),
     );
   }

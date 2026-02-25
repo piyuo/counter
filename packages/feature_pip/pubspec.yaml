@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  shared_l10n: any
   flutter:
     sdk: flutter
   flutter_appkit:
@@ -18,6 +19,9 @@ dependencies:
   flutter_riverpod: ^3.2.1
   universal_platform: ^1.1.0
   intl: ^0.20.2
+  super_cupertino_navigation_bar: ^2.1.2
+  auto_size_text: ^3.0.0
+  go_router: ^17.1.0
 
 dev_dependencies:
   flutter_test:

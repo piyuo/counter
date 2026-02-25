@@ -12,16 +12,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 /// rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mov
 
 class UrlScreen extends StatelessWidget {
-  const UrlScreen({
-    required this.initialUrl,
-    required this.scrollController,
-    this.nextRouteBuilder,
-    this.previousPageTitle,
-    super.key,
-  });
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const UrlScreen({required this.initialUrl, this.nextRouteBuilder, this.previousPageTitle, super.key});
 
   /// the initial url
   final String initialUrl;
@@ -56,7 +47,7 @@ class UrlScreen extends StatelessWidget {
             },
             child: feature_pip.PipScaffold(
               previousPageTitle: previousPageTitle,
-              child: SingleChildScrollView(
+              builder: (scrollController) => SingleChildScrollView(
                 controller: scrollController,
                 child: Column(
                   children: [

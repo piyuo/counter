@@ -72,52 +72,57 @@ class _InvitationScreenState extends State<InvitationScreen> {
     final Color borderColor = CupertinoColors.systemGrey4.resolveFrom(context);
     return feature_pip.PipScaffold(
       backgroundColor: CupertinoColors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Enter invitation code',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10.0),
-            Text(
-              'Check your email invitation to get the 8-digit code.',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey.resolveFrom(context)),
-            ),
-            const SizedBox(height: 20.0),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 8.0,
-              runSpacing: 8.0,
-              children: List.generate(
-                _codeLength,
-                (index) => SizedBox(
-                  width: 38.0,
-                  child: CupertinoTextField(
-                    controller: _controllers[index],
-                    focusNode: _focusNodes[index],
-                    maxLength: 1,
-                    textAlign: TextAlign.center,
-                    textCapitalization: TextCapitalization.characters,
-                    keyboardType: TextInputType.text,
-                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]'))],
-                    decoration: BoxDecoration(
-                      color: CupertinoColors.white,
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(color: borderColor),
+      builder: (scrollController) {
+        return SingleChildScrollView(
+          controller: scrollController,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Enter invitation code',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10.0),
+                Text(
+                  'Check your email invitation to get the 8-digit code.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey.resolveFrom(context)),
+                ),
+                const SizedBox(height: 20.0),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: List.generate(
+                    _codeLength,
+                    (index) => SizedBox(
+                      width: 38.0,
+                      child: CupertinoTextField(
+                        controller: _controllers[index],
+                        focusNode: _focusNodes[index],
+                        maxLength: 1,
+                        textAlign: TextAlign.center,
+                        textCapitalization: TextCapitalization.characters,
+                        keyboardType: TextInputType.text,
+                        inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]'))],
+                        decoration: BoxDecoration(
+                          color: CupertinoColors.white,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: Border.all(color: borderColor),
+                        ),
+                        onChanged: (value) => _handleChanged(index, value),
+                      ),
                     ),
-                    onChanged: (value) => _handleChanged(index, value),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

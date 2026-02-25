@@ -6,16 +6,13 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 /// The zone screen for editing the video zone.
 class ZoneScreen extends StatelessWidget {
-  const ZoneScreen({required this.scrollController, required this.videoProvider, this.previousPageTitle, super.key});
+  const ZoneScreen({required this.videoProvider, this.previousPageTitle, super.key});
 
   /// the video zone editor controller
   final app.VideoProvider videoProvider;
 
   /// the previous page title
   final String? previousPageTitle;
-
-  /// the scroll controller
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +23,7 @@ class ZoneScreen extends StatelessWidget {
         builder: (context, videoProvider, zoneScreenProvider, child) {
           return feature_pip.PipScaffold(
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

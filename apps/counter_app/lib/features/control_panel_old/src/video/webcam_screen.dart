@@ -5,16 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class WebcamScreen extends StatelessWidget {
-  const WebcamScreen({
-    required this.scrollController,
-    required this.videoProvider,
-    required this.isAddMode,
-    this.previousPageTitle,
-    super.key,
-  });
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const WebcamScreen({required this.videoProvider, required this.isAddMode, this.previousPageTitle, super.key});
 
   /// the video provider this settings provider is working on
   final app.VideoProvider videoProvider;
@@ -36,7 +27,7 @@ class WebcamScreen extends StatelessWidget {
           return feature_pip.PipScaffold(
             title: pageTitle,
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

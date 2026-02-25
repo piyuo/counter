@@ -6,13 +6,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 /// Camera screen to choose camera
 class CameraScreen extends StatelessWidget {
-  const CameraScreen({
-    required this.scrollController,
-    required this.videoProvider,
-    required this.isAddMode,
-    this.previousPageTitle,
-    super.key,
-  });
+  const CameraScreen({required this.videoProvider, required this.isAddMode, this.previousPageTitle, super.key});
 
   /// the video provider this settings provider is working on
   final app.VideoProvider videoProvider;
@@ -22,9 +16,6 @@ class CameraScreen extends StatelessWidget {
 
   /// the previous page title
   final String? previousPageTitle;
-
-  /// the scroll controller
-  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +28,7 @@ class CameraScreen extends StatelessWidget {
           return feature_pip.PipScaffold(
             title: isAddMode ? context.l.camera_screen_add_title : context.l.camera_screen_edit_title,
             previousPageTitle: previousPageTitle,
-            child: SingleChildScrollView(
+            builder: (scrollController) => SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 children: [

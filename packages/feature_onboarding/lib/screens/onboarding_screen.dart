@@ -8,9 +8,12 @@
 // ===============================================
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_onboarding/widgets/carousel_page_indicator.dart';
+import 'package:feature_onboarding/widgets/next_button_container.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import 'onboarding_how_it_works_view.dart';
 import 'onboarding_intro_view.dart';
@@ -37,8 +40,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return feature_pip.PipScaffold(
-      backgroundColor: CupertinoColors.white,
-      //titleWidget: Text('Hello Title', style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
+      themeData: const CupertinoThemeData(brightness: Brightness.light),
       action: CupertinoButton(
         sizeStyle: CupertinoButtonSize.medium,
         onPressed: () {
@@ -46,70 +48,42 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         },
         child: Text('Skip Intro'), //todo:add translation
       ),
-      child: Container(
-        color: CupertinoColors.white,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              controller: ScrollController(),
-              padding: const EdgeInsets.only(bottom: 120.0),
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    options: CarouselOptions(
-                      height: 450.0,
-                      viewportFraction: 1.0,
-                      enableInfiniteScroll: false,
-                      onPageChanged: (index, reason) => setState(() => _currentPageIndex = index),
-                    ),
-                    carouselController: _carouselController,
-                    items: _buildPages(),
+      builder: (scrollController) {
+        return NextButtonContainer(
+          onNextPressed: () {
+            if (_currentPageIndex == _pageCount - 1) {
+              ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
+              return;
+            }
+            _carouselController.nextPage();
+          },
+          child: SingleChildScrollView(
+            controller: scrollController,
+            padding: const EdgeInsets.only(bottom: 120.0),
+            child: Column(
+              children: [
+                CarouselSlider(
+                  options: CarouselOptions(
+                    // Mobile screens are narrower so text wraps onto more lines,
+                    // requiring extra height compared to the wider macOS window.
+                    height: UniversalPlatform.isMobile ? 500.0 : 450.0,
+                    viewportFraction: 1.0,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) => setState(() => _currentPageIndex = index),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(_pageCount, (index) {
-                      final bool isActive = _currentPageIndex == index;
-                      return GestureDetector(
-                        onTap: () => _carouselController.animateToPage(index),
-                        child: Container(
-                          width: 10.0,
-                          height: 10.0,
-                          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 4.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: CupertinoColors.black.withValues(alpha: isActive ? 0.9 : 0.2),
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 16.0,
-              right: 16.0,
-              bottom: 16.0,
-              child: SafeArea(
-                top: false,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton.filled(
-                    onPressed: () {
-                      if (_currentPageIndex == _pageCount - 1) {
-                        ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
-                        return;
-                      }
-                      _carouselController.nextPage();
-                    },
-                    child: Text('Next'), //todo:add translation
-                  ),
+                  carouselController: _carouselController,
+                  items: _buildPages(),
                 ),
-              ),
+                CarouselPageIndicator(
+                  pageCount: _pageCount,
+                  currentPageIndex: _currentPageIndex,
+                  onPageSelected: (index) => _carouselController.animateToPage(index),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

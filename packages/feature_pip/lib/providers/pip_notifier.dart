@@ -3,42 +3,45 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/pip_state.dart';
 import '../widgets/panel.dart';
+import 'scroll_event_bus.dart';
 
 part 'pip_notifier.g.dart';
 
+/// Contract for controlling PIP (Picture-in-Picture) scroll and panel behavior.
+///
+/// Implemented by [PipNotifier]. Exposed as an interface so callers depend on
+/// the abstraction rather than the concrete Riverpod notifier.
 abstract class PipController {
-  void setCurrentRoute(String route);
-  void resetScroll();
-  void removeScrollController(String route);
+  /// The saved scroll offset of the currently active route.
+  double get scrollOffset;
+
+  /// Removes the stored scroll position for [path],
+  /// so the route scrolls back to the top on next visit.
+  void clearScrollPosition(String path);
+
+  /// Opens the sliding panel to [slidingPanelState].
+  /// In sidebar layout this is a no-op on the panel but still marks it as opened.
   Future<void> slideUp(SlidingPanelState slidingPanelState);
 }
 
 @riverpod
 class PipNotifier extends _$PipNotifier implements PipController {
-  late final NavigatorObserver scrollObserver;
+  /// Map to store scroll positions for each route
+  Map<String, double> scrollPositions = {};
 
-  /// the scroll controllers for each page
-  final Map<String, ScrollController> _scrollControllers = {};
+  /// the current scroll position of the active route
+  double currentScrollPosition = 0;
 
+  /// Controller for the sliding panel
   PanelController panelController = PanelController();
 
   /// the key for the sliding panel
   final GlobalKey<SlidingUpPanelState> panelKey = GlobalKey<SlidingUpPanelState>();
 
-  PipNotifier() {
-    scrollObserver = ScrollObserver(this);
-  }
-
   @override
   PipState build() {
-    // add dispose callback to dispose scroll controllers
-    ref.onDispose(() {
-      for (final scrollController in _scrollControllers.values) {
-        scrollController.dispose();
-      }
-      _scrollControllers.clear();
-    });
-    return PipState(scrollObserver: ScrollObserver(this));
+    ref.onDispose(() {});
+    return PipState();
   }
 
   /// bring the sliding panel up or set to opened in side layout
@@ -94,90 +97,35 @@ class PipNotifier extends _$PipNotifier implements PipController {
     }
   }
 
-  /// called by parent to notify their scroll position
-  void onScroll(ScrollController scrollController) {
-    if (panelKey.currentState != null) {
-      panelKey.currentState!.onScroll(scrollController);
-    }
-  }
-
-  /// called by parent to reset the scroll position
-  void resetScroll() {
-    if (panelKey.currentState != null) {
-      panelKey.currentState!.resetScroll();
-    }
-  }
-
-  /// get the scroll controller for a given route
-  ScrollController getScrollController(String route) {
-    if (_scrollControllers.containsKey(route)) {
-      return _scrollControllers[route]!;
-    }
-    final scrollController = ScrollController();
-    scrollController.addListener(() => onScroll(scrollController));
-    _scrollControllers[route] = scrollController;
-    return scrollController;
-  }
-
-  /// remove the scroll controller for a given route
-  void removeScrollController(String route) {
-    final scrollController = _scrollControllers[route];
-    if (scrollController != null) {
-      scrollController.dispose();
-    }
-    _scrollControllers.remove(route);
-  }
-
-  /// get the current route
-  void setCurrentRoute(String route) {
-    state = state.copyWith(currentRoute: route);
-  }
-
-  /// get the current route's scroll controller
-  ScrollController? getScrollControllerByRoute(String route) {
-    return _scrollControllers[route];
-  }
-
-  /// get the current route's scroll offset
-  double getCurrentScrollOffset() {
-    final scrollController = _scrollControllers[state.currentRoute];
-    if (scrollController != null && scrollController.hasClients) {
-      return scrollController.offset;
-    }
-    return 0.0;
-  }
-}
-
-class ScrollObserver extends NavigatorObserver {
-  ScrollObserver(this.pipController);
-
-  PipController pipController;
-
+  /// Removes the stored scroll position for the given route path,
+  /// so the route starts from the top on next visit.
   @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    super.didPush(route, previousRoute);
-    final currentRouteName = route.settings.name;
-    if (currentRouteName != null) {
-      Future.microtask(() {
-        pipController.setCurrentRoute(currentRouteName);
-        pipController.resetScroll();
-      });
+  void clearScrollPosition(String path) {
+    scrollPositions.remove(path);
+  }
+
+  /// Records the scroll position for [routePath] and notifies the sliding panel
+  /// to emit a scroll-to-top event when the user scrolls to the very top.
+  void onScrollNotification(String routePath, ScrollNotification notification) {
+    scrollPositions[routePath] = notification.metrics.pixels;
+    currentScrollPosition = notification.metrics.pixels;
+
+    if (panelKey.currentState != null) {
+      final sendScrollToTopEvent = panelKey.currentState!.onScroll();
+      if (sendScrollToTopEvent) {
+        // send scroll to top event to the content
+        ref.read(scrollEventBusProvider).add(const ScrollToTopEvent());
+      }
     }
   }
 
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    super.didPop(route, previousRoute);
-    final previousRouteName = previousRoute?.settings.name;
-    final currentRouteName = route.settings.name;
-    if (previousRouteName != null) {
-      Future.microtask(() {
-        pipController.setCurrentRoute(previousRouteName);
-        if (currentRouteName != null) {
-          pipController.removeScrollController(currentRouteName);
-        }
-        pipController.resetScroll();
-      });
-    }
+  /// Restores the scroll position for [newPath] from the saved positions map.
+  /// Called whenever the active route changes.
+  void onRouteChanged(String newPath) {
+    currentScrollPosition = scrollPositions[newPath] ?? 0;
   }
+
+  /// The saved scroll offset of the currently active route.
+  @override
+  double get scrollOffset => currentScrollPosition;
 }

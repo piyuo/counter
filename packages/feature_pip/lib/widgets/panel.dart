@@ -146,47 +146,42 @@ class SlidingUpPanel extends StatefulWidget {
   /// if outside use the transform widget, the rotation of the sliding panel
   final int transformRotation;
 
-  const SlidingUpPanel(
-      {super.key,
-      required this.getCurrentScrollOffset,
-      this.transformRotation = 0,
-      this.panel,
-      this.panelBuilder,
-      this.collapsed,
-      this.minHeight = 100.0,
-      this.maxHeight = 500.0,
-      this.snapPoint,
-      this.border,
-      this.borderRadius,
-      this.boxShadow = const <BoxShadow>[
-        BoxShadow(
-          blurRadius: 8.0,
-          color: Color.fromRGBO(0, 0, 0, 0.25),
-        )
-      ],
-      this.color = Colors.white,
-      this.padding,
-      this.margin,
-      this.renderPanelSheet = true,
-      this.panelSnapping = true,
-      this.controller,
-      this.backdropEnabled = false,
-      this.backdropColor = Colors.black,
-      this.backdropOpacity = 0.5,
-      this.backdropTapClosesPanel = true,
-      this.onPanelSlide,
-      this.onPanelOpened,
-      this.onPanelClosed,
-      this.parallaxEnabled = false,
-      this.parallaxOffset = 0.1,
-      this.isDraggable = true,
-      this.slideDirection = SlideDirection.up,
-      this.defaultPanelState = PanelState.closed,
-      this.header,
-      this.footer})
-      : assert(panel != null || panelBuilder != null),
-        assert(0 <= backdropOpacity && backdropOpacity <= 1.0),
-        assert(snapPoint == null || 0 < snapPoint && snapPoint < 1.0);
+  const SlidingUpPanel({
+    super.key,
+    required this.getCurrentScrollOffset,
+    this.transformRotation = 0,
+    this.panel,
+    this.panelBuilder,
+    this.collapsed,
+    this.minHeight = 100.0,
+    this.maxHeight = 500.0,
+    this.snapPoint,
+    this.border,
+    this.borderRadius,
+    this.boxShadow = const <BoxShadow>[BoxShadow(blurRadius: 8.0, color: Color.fromRGBO(0, 0, 0, 0.25))],
+    this.color = Colors.white,
+    this.padding,
+    this.margin,
+    this.renderPanelSheet = true,
+    this.panelSnapping = true,
+    this.controller,
+    this.backdropEnabled = false,
+    this.backdropColor = Colors.black,
+    this.backdropOpacity = 0.5,
+    this.backdropTapClosesPanel = true,
+    this.onPanelSlide,
+    this.onPanelOpened,
+    this.onPanelClosed,
+    this.parallaxEnabled = false,
+    this.parallaxOffset = 0.1,
+    this.isDraggable = true,
+    this.slideDirection = SlideDirection.up,
+    this.defaultPanelState = PanelState.closed,
+    this.header,
+    this.footer,
+  }) : assert(panel != null || panelBuilder != null),
+       assert(0 <= backdropOpacity && backdropOpacity <= 1.0),
+       assert(snapPoint == null || 0 < snapPoint && snapPoint < 1.0);
 
   @override
   SlidingUpPanelState createState() => SlidingUpPanelState();
@@ -221,34 +216,36 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
   }
 
   /// onScroll event called by the parent widget scroll controller
-  void onScroll(ScrollController scrollController) {
+  /// return true if n
+  bool onScroll() {
     if (UniversalPlatform.isDesktop) {
-      return;
+      return false;
     }
 
-    if (widget.isDraggable && !_scrollingEnabled && scrollController.hasClients) {
-      scrollController.jumpTo(0);
+    if (widget.isDraggable && !_scrollingEnabled) {
+      return true;
     }
+    return false;
   }
 
   @override
   void initState() {
     super.initState();
 
-    _ac = AnimationController(
-        vsync: this,
-        duration: const Duration(milliseconds: 300),
-        value: widget.defaultPanelState == PanelState.closed
-            ? 0.0
-            : 1.0 //set the default panel state (i.e. set initial value of _ac)
-        )
-      ..addListener(() {
-        if (widget.onPanelSlide != null) widget.onPanelSlide!(_ac.value);
+    _ac =
+        AnimationController(
+          vsync: this,
+          duration: const Duration(milliseconds: 300),
+          value: widget.defaultPanelState == PanelState.closed
+              ? 0.0
+              : 1.0, //set the default panel state (i.e. set initial value of _ac)
+        )..addListener(() {
+          if (widget.onPanelSlide != null) widget.onPanelSlide!(_ac.value);
 
-        if (widget.onPanelOpened != null && _ac.value == 1.0) widget.onPanelOpened!();
+          if (widget.onPanelOpened != null && _ac.value == 1.0) widget.onPanelOpened!();
 
-        if (widget.onPanelClosed != null && _ac.value == 0.0) widget.onPanelClosed!();
-      });
+          if (widget.onPanelClosed != null && _ac.value == 0.0) widget.onPanelClosed!();
+        });
 
     widget.controller?._addState(this);
   }
@@ -274,20 +271,21 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
                     : null,
                 onTap: widget.backdropTapClosesPanel ? () => _close() : null,
                 child: AnimatedBuilder(
-                    animation: _ac,
-                    builder: (context, _) {
-                      return Container(
-                        height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width,
+                  animation: _ac,
+                  builder: (context, _) {
+                    return Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
 
-                        //set color to null so that touch events pass through
-                        //to the body when the panel is closed, otherwise,
-                        //if a color exists, then touch events won't go through
-                        color: _ac.value == 0.0
-                            ? null
-                            : widget.backdropColor.withValues(alpha: widget.backdropOpacity * _ac.value),
-                      );
-                    }),
+                      //set color to null so that touch events pass through
+                      //to the body when the panel is closed, otherwise,
+                      //if a color exists, then touch events won't go through
+                      color: _ac.value == 0.0
+                          ? null
+                          : widget.backdropColor.withValues(alpha: widget.backdropOpacity * _ac.value),
+                    );
+                  },
+                ),
               ),
 
         //the actual sliding part
@@ -316,15 +314,14 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
                     children: <Widget>[
                       //open panel
                       Positioned(
-                          top: 0.0,
-                          bottom: 0.0,
-                          width: MediaQuery.of(context).size.width -
-                              (widget.margin != null ? widget.margin!.horizontal : 0) -
-                              (widget.padding != null ? widget.padding!.horizontal : 0),
-                          child: SizedBox(
-                            height: widget.maxHeight,
-                            child: widget.panel ?? widget.panelBuilder!(),
-                          )),
+                        top: 0.0,
+                        bottom: 0.0,
+                        width:
+                            MediaQuery.of(context).size.width -
+                            (widget.margin != null ? widget.margin!.horizontal : 0) -
+                            (widget.padding != null ? widget.padding!.horizontal : 0),
+                        child: SizedBox(height: widget.maxHeight, child: widget.panel ?? widget.panelBuilder!()),
+                      ),
 
                       // header
                       widget.header != null
@@ -340,14 +337,16 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
                           ? Positioned(
                               top: widget.slideDirection == SlideDirection.up ? null : 0.0,
                               bottom: widget.slideDirection == SlideDirection.down ? null : 0.0,
-                              child: widget.footer ?? const SizedBox())
+                              child: widget.footer ?? const SizedBox(),
+                            )
                           : Container(),
 
                       // collapsed panel
                       Positioned(
                         top: widget.slideDirection == SlideDirection.up ? 0.0 : null,
                         bottom: widget.slideDirection == SlideDirection.down ? 0.0 : null,
-                        width: MediaQuery.of(context).size.width -
+                        width:
+                            MediaQuery.of(context).size.width -
                             (widget.margin != null ? widget.margin!.horizontal : 0) -
                             (widget.padding != null ? widget.padding!.horizontal : 0),
                         child: SizedBox(
@@ -437,17 +436,19 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
         } else if (transformRotation == 90) {
           // Rotate 90 degrees clockwise
           adjustedVelocity = Velocity(
-              pixelsPerSecond: Offset(
-                  -originalVelocity.pixelsPerSecond.dy, // y becomes -x
-                  originalVelocity.pixelsPerSecond.dx // x becomes y
-                  ));
+            pixelsPerSecond: Offset(
+              -originalVelocity.pixelsPerSecond.dy, // y becomes -x
+              originalVelocity.pixelsPerSecond.dx, // x becomes y
+            ),
+          );
         } else if (transformRotation == 270) {
           // Rotate 270 degrees clockwise (or 90 degrees counter-clockwise)
           adjustedVelocity = Velocity(
-              pixelsPerSecond: Offset(
-                  originalVelocity.pixelsPerSecond.dy, // y becomes x
-                  -originalVelocity.pixelsPerSecond.dx // x becomes -y
-                  ));
+            pixelsPerSecond: Offset(
+              originalVelocity.pixelsPerSecond.dy, // y becomes x
+              -originalVelocity.pixelsPerSecond.dx, // x becomes -y
+            ),
+          );
         } else {
           // By default, use the original velocity
           adjustedVelocity = originalVelocity;
@@ -504,8 +505,8 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
     // get minimum distances to figure out where the panel is at
     double d2Close = _ac.value;
     double d2Open = 1 - _ac.value;
-    double d2Snap =
-        ((widget.snapPoint ?? 3) - _ac.value).abs(); // large value if null results in not every being the min
+    double d2Snap = ((widget.snapPoint ?? 3) - _ac.value)
+        .abs(); // large value if null results in not every being the min
     double minDistance = min(d2Close, min(d2Snap, d2Open));
 
     // check if velocity is sufficient for a fling
@@ -548,14 +549,11 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   void _flingPanelToPosition(double targetPos, double velocity) {
     final Simulation simulation = SpringSimulation(
-        SpringDescription.withDampingRatio(
-          mass: 1.0,
-          stiffness: 500.0,
-          ratio: 1.0,
-        ),
-        _ac.value,
-        targetPos,
-        velocity);
+      SpringDescription.withDampingRatio(mass: 1.0, stiffness: 500.0, ratio: 1.0),
+      _ac.value,
+      targetPos,
+      velocity,
+    );
 
     _ac.animateWith(simulation);
   }

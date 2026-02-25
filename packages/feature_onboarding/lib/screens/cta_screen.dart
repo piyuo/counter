@@ -30,100 +30,105 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
     final Color selectedColor = CupertinoColors.activeBlue;
     return feature_pip.PipScaffold(
       backgroundColor: CupertinoColors.white,
-      child: Container(
-        color: CupertinoColors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        width: MediaQuery.of(context).size.width,
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 120.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Where to send your data?',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10.0),
-                  _DecisionCard(
-                    subtitle: 'Option 1 (Invitation):',
-                    title: 'Connect with an invitation',
-                    body: 'Send data to the organization that invited you.',
-                    isSelected: _selection == _DecisionOption.invitation,
-                    borderColor: borderColor,
-                    selectedColor: selectedColor,
-                    onTap: () => setState(() => _selection = _DecisionOption.invitation),
-                  ),
-                  const SizedBox(height: 10.0),
-                  _DecisionCard(
-                    subtitle: 'Option 2 (Backend):',
-                    title: 'Connect to a backend',
-                    body: 'Send data to Piyuo Cloud or your own server. Requires a subscription.',
-                    isSelected: _selection == _DecisionOption.backend,
-                    borderColor: borderColor,
-                    selectedColor: selectedColor,
-                    onTap: () => setState(() => _selection = _DecisionOption.backend),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      "Only summarized 5-minute metadata is sent.\nRaw video never leaves this device.",
+      builder: (scrollController) {
+        return Container(
+          color: CupertinoColors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: [
+              SingleChildScrollView(
+                controller: scrollController,
+                padding: const EdgeInsets.only(bottom: 120.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Where to send your data?',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+                      style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  _DecisionCard(
-                    subtitle: 'Testing:', // Changed from Option 3
-                    title: 'Local Demo Mode', // Clearer purpose
-                    body: 'Verify AI detection and camera angles. \nData is not saved and cannot be exported.',
-                    isSelected: _selection == _DecisionOption.local,
-                    borderColor: borderColor,
-                    selectedColor: CupertinoColors.systemGrey, // Neutral color instead of Blue
-                    onTap: () => setState(() => _selection = _DecisionOption.local),
-                  ),
-                ],
+                    const SizedBox(height: 10.0),
+                    _DecisionCard(
+                      subtitle: 'Option 1 (Invitation):',
+                      title: 'Connect with an invitation',
+                      body: 'Send data to the organization that invited you.',
+                      isSelected: _selection == _DecisionOption.invitation,
+                      borderColor: borderColor,
+                      selectedColor: selectedColor,
+                      onTap: () => setState(() => _selection = _DecisionOption.invitation),
+                    ),
+                    const SizedBox(height: 10.0),
+                    _DecisionCard(
+                      subtitle: 'Option 2 (Backend):',
+                      title: 'Connect to a backend',
+                      body: 'Send data to Piyuo Cloud or your own server. Requires a subscription.',
+                      isSelected: _selection == _DecisionOption.backend,
+                      borderColor: borderColor,
+                      selectedColor: selectedColor,
+                      onTap: () => setState(() => _selection = _DecisionOption.backend),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        "Only summarized 5-minute metadata is sent.\nRaw video never leaves this device.",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
+                      ),
+                    ),
+                    const SizedBox(height: 10.0),
+                    _DecisionCard(
+                      subtitle: 'Testing:', // Changed from Option 3
+                      title: 'Local Demo Mode', // Clearer purpose
+                      body: 'Verify AI detection and camera angles. \nData is not saved and cannot be exported.',
+                      isSelected: _selection == _DecisionOption.local,
+                      borderColor: borderColor,
+                      selectedColor: CupertinoColors.systemGrey, // Neutral color instead of Blue
+                      onTap: () => setState(() => _selection = _DecisionOption.local),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Positioned(
-              left: 0.0,
-              right: 0.0,
-              bottom: 16.0,
-              child: SafeArea(
-                top: false,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: CupertinoButton.filled(
-                    onPressed: _selection == null
-                        ? null
-                        : () {
-                            switch (_selection!) {
-                              case _DecisionOption.invitation:
-                                ref
-                                    .read(core_domain.navigationEventBusProvider)
-                                    .add(const core_domain.OpenOnboardingInvitation());
-                                return;
-                              case _DecisionOption.backend:
-                                return;
-                              case _DecisionOption.local:
-                            }
+              Positioned(
+                left: 0.0,
+                right: 0.0,
+                bottom: 16.0,
+                child: SafeArea(
+                  top: false,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: CupertinoButton.filled(
+                      onPressed: _selection == null
+                          ? null
+                          : () {
+                              switch (_selection!) {
+                                case _DecisionOption.invitation:
+                                  ref
+                                      .read(core_domain.navigationEventBusProvider)
+                                      .add(const core_domain.OpenOnboardingInvitation());
+                                  return;
+                                case _DecisionOption.backend:
+                                  return;
+                                case _DecisionOption.local:
+                              }
 
-                            Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const SubscriptionScreen()));
-                            return;
-                          },
-                    child: Text(
-                      _selection == _DecisionOption.local ? 'Start Demo' : 'Get Started',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                              Navigator.of(
+                                context,
+                              ).push(CupertinoPageRoute(builder: (_) => const SubscriptionScreen()));
+                              return;
+                            },
+                      child: Text(
+                        _selection == _DecisionOption.local ? 'Start Demo' : 'Get Started',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

@@ -10,10 +10,7 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 const double _headerHeightThreshold = 600;
 
 class WizardScreen extends StatelessWidget {
-  const WizardScreen({required this.scrollController, this.appLocale, super.key});
-
-  /// the scroll controller
-  final ScrollController scrollController;
+  const WizardScreen({this.appLocale, super.key});
 
   /// the app locale
   final Locale? appLocale;
@@ -37,104 +34,106 @@ class WizardScreen extends StatelessWidget {
         builder: (context, projectProvider, wizardScreenProvider, child) {
           return feature_pip.PipScaffold(
             titleWidget: Text(pageTitle, style: TextStyle(color: CupertinoColors.secondaryLabel.resolveFrom(context))),
-            child: SingleChildScrollView(
-              controller: scrollController,
-              child: Column(
-                children: [
-                  feature_pip.PipHeader(
-                    padding: EdgeInsets.all(10),
-                    child: isCompactHeader
-                        ? Row(
-                            children: [
-                              const SizedBox(width: 8.0),
-                              Image(image: AssetImage('assets/icon/icon.png'), width: 48, height: 48),
-                              const SizedBox(width: 8.0),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      context.l.product_name,
-                                      style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(height: 8.0),
-                                    Text(
-                                      context.l.wizard_screen_desc,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 14.0,
-                                        color: CupertinoColors.secondaryLabel.resolveFrom(context),
+            builder: (scrollController) {
+              return SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  children: [
+                    feature_pip.PipHeader(
+                      padding: EdgeInsets.all(10),
+                      child: isCompactHeader
+                          ? Row(
+                              children: [
+                                const SizedBox(width: 8.0),
+                                Image(image: AssetImage('assets/icon/icon.png'), width: 48, height: 48),
+                                const SizedBox(width: 8.0),
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        context.l.product_name,
+                                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                  ],
+                                      const SizedBox(height: 8.0),
+                                      Text(
+                                        context.l.wizard_screen_desc,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 14.0,
+                                          color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              Image(image: AssetImage('assets/icon/icon.png'), width: 84, height: 84),
-                              const SizedBox(height: 8.0),
-                              Text(
-                                context.l.product_name,
-                                style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(height: 4.0),
-                              Text(
-                                context.l.wizard_screen_desc,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                Image(image: AssetImage('assets/icon/icon.png'), width: 84, height: 84),
+                                const SizedBox(height: 8.0),
+                                Text(
+                                  context.l.product_name,
+                                  style: const TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
                                 ),
-                              ),
-                            ],
-                          ),
-                  ),
-                  CupertinoListSection(
-                    header: Text(context.l.wizard_screen_open_projects_tip),
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [
-                      CupertinoListTile(
-                        leading: Icon(CupertinoIcons.archivebox),
-                        title: Text(context.l.wizard_screen_open_projects),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                  CupertinoListSection(
-                    header: Text(pageTitle),
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [
-                      CupertinoListTile(
-                        leading: Icon(CupertinoIcons.info),
-                        additionalInfo: Text(wizardScreenProvider.appVersion),
-                        title: Text(context.l.wizard_screen_about),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {},
-                      ),
-                      CupertinoListTile(
-                        leading: Icon(CupertinoIcons.globe),
-                        title: Text(context.l.wizard_screen_language),
-                        additionalInfo: Text(currentLocalDisplayLabel),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {},
-                      ),
-                      CupertinoListTile(
-                        leading: Icon(CupertinoIcons.mail),
-                        title: Text(context.l.wizard_screen_email_us),
-                        trailing: CupertinoListTileChevron(),
-                        onTap: () {
-                          //throw MyReleaseException('Email us is not implemented yet');
-                          appkit.netOpenMailTo('service@piyuo.com', '', '');
-                        },
-                      ),
-                    ],
-                  ),
-                  feature_pip.PipFooter(),
-                ],
-              ),
-            ),
+                                const SizedBox(height: 4.0),
+                                Text(
+                                  context.l.wizard_screen_desc,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: CupertinoColors.secondaryLabel.resolveFrom(context),
+                                  ),
+                                ),
+                              ],
+                            ),
+                    ),
+                    CupertinoListSection(
+                      header: Text(context.l.wizard_screen_open_projects_tip),
+                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                          leading: Icon(CupertinoIcons.archivebox),
+                          title: Text(context.l.wizard_screen_open_projects),
+                          trailing: CupertinoListTileChevron(),
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                    CupertinoListSection(
+                      header: Text(pageTitle),
+                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
+                      children: [
+                        CupertinoListTile(
+                          leading: Icon(CupertinoIcons.info),
+                          additionalInfo: Text(wizardScreenProvider.appVersion),
+                          title: Text(context.l.wizard_screen_about),
+                          trailing: CupertinoListTileChevron(),
+                          onTap: () {},
+                        ),
+                        CupertinoListTile(
+                          leading: Icon(CupertinoIcons.globe),
+                          title: Text(context.l.wizard_screen_language),
+                          additionalInfo: Text(currentLocalDisplayLabel),
+                          trailing: CupertinoListTileChevron(),
+                          onTap: () {},
+                        ),
+                        CupertinoListTile(
+                          leading: Icon(CupertinoIcons.mail),
+                          title: Text(context.l.wizard_screen_email_us),
+                          trailing: CupertinoListTileChevron(),
+                          onTap: () {
+                            //throw MyReleaseException('Email us is not implemented yet');
+                            appkit.netOpenMailTo('service@piyuo.com', '', '');
+                          },
+                        ),
+                      ],
+                    ),
+                    feature_pip.PipFooter(),
+                  ],
+                ),
+              );
+            },
           );
         },
       ),
