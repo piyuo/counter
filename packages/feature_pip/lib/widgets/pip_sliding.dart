@@ -19,6 +19,7 @@ class PipSliding extends ConsumerWidget {
     required this.minHeight,
     this.transformRotation = 0,
     this.isShowDragHeader = true,
+    this.isLockedOpen = false,
     this.width,
     super.key,
   });
@@ -34,6 +35,9 @@ class PipSliding extends ConsumerWidget {
 
   /// whether to show the drag header
   final bool isShowDragHeader;
+
+  /// when true, the panel stays fully open and cannot be slid down
+  final bool isLockedOpen;
 
   /// if outside use the transform widget, the rotation of the sliding panel
   final int transformRotation;
@@ -63,7 +67,7 @@ class PipSliding extends ConsumerWidget {
                 width: width,
                 child: ClipRRect(
                   borderRadius: _slidingPanelRadius,
-                  child: isShowDragHeader
+                  child: !isLockedOpen && isShowDragHeader
                       ? _DragHeader(child: builder(pipState.isPanelOpened))
                       : builder(pipState.isPanelOpened),
                 ),
@@ -78,6 +82,7 @@ class PipSliding extends ConsumerWidget {
             color: CupertinoColors.transparent,
             defaultPanelState: pipState.isPanelOpened ? PanelState.open : PanelState.closed,
             snapPoint: 0.4,
+            isLockedOpen: isLockedOpen,
             onPanelOpened: () {
               pipController.setIsPanelOpened(true);
             },

@@ -12,6 +12,7 @@ class PipState {
     this.slidingPanelState = SlidingPanelState.closed,
     this.isPanelOpened = false,
     this.isSidebarLayout = false,
+    this.isLockedOpen = false,
   });
 
   PipState copyWith({
@@ -19,12 +20,14 @@ class PipState {
     SlidingPanelState? slidingPanelState,
     bool? isPanelOpened,
     bool? isSidebarLayout,
+    bool? isLockedOpen,
   }) {
     return PipState(
       currentRoute: currentRoute ?? this.currentRoute,
       slidingPanelState: slidingPanelState ?? this.slidingPanelState,
       isPanelOpened: isPanelOpened ?? this.isPanelOpened,
       isSidebarLayout: isSidebarLayout ?? this.isSidebarLayout,
+      isLockedOpen: isLockedOpen ?? this.isLockedOpen,
     );
   }
 
@@ -39,4 +42,9 @@ class PipState {
 
   /// is the sidebar layout?
   final bool isSidebarLayout;
+
+  /// is the sliding panel locked to open state?
+  /// when true, the panel stays fully open and cannot be slide down or closed
+  /// this is used for the pip mode on mobile when the panel should always be open and not slideable
+  final bool isLockedOpen;
 }

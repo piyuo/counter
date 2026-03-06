@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/pip_notifier.dart';
 import 'pip_sliding.dart';
 
 /// the scroll event handler
@@ -52,6 +53,7 @@ class PipScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final safePadding = MediaQuery.of(context).padding;
+    final isLockedOpen = ref.watch(pipProvider).isLockedOpen;
 
     return OrientationBuilder(
       builder: (context, orientation) => LayoutBuilder(
@@ -100,6 +102,7 @@ class PipScreen extends ConsumerWidget {
                     left: 30, // no safePadding.left need more space to show preview,
                     width: slidingPanelWidth,
                     child: PipSliding(
+                      isLockedOpen: isLockedOpen,
                       width: slidingPanelWidth,
                       minHeight: _slidingPanelMinHeight + safePadding.bottom,
                       builder: slidingBuilder,
@@ -112,7 +115,11 @@ class PipScreen extends ConsumerWidget {
                     height: constraints.maxHeight - top,
                     left: 0,
                     right: 0,
-                    child: PipSliding(minHeight: _slidingPanelMinHeight + safePadding.bottom, builder: slidingBuilder),
+                    child: PipSliding(
+                      isLockedOpen: isLockedOpen,
+                      minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                      builder: slidingBuilder,
+                    ),
                   );
           }
 
@@ -124,7 +131,11 @@ class PipScreen extends ConsumerWidget {
               height: constraints.maxHeight - top,
               left: 0,
               right: 0,
-              child: PipSliding(minHeight: _slidingPanelMinHeight + safePadding.bottom, builder: slidingBuilder),
+              child: PipSliding(
+                isLockedOpen: isLockedOpen,
+                minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                builder: slidingBuilder,
+              ),
             );
           }
 
@@ -143,6 +154,7 @@ class PipScreen extends ConsumerWidget {
               child: Transform.rotate(
                 angle: 90 * (pi / 180),
                 child: PipSliding(
+                  isLockedOpen: isLockedOpen,
                   transformRotation: 90,
                   width: slidingPanelWidth,
                   minHeight: _slidingPanelMinHeight,
@@ -168,6 +180,7 @@ class PipScreen extends ConsumerWidget {
               child: Transform.rotate(
                 angle: 270 * (pi / 180),
                 child: PipSliding(
+                  isLockedOpen: isLockedOpen,
                   transformRotation: 270,
                   width: slidingPanelWidth,
                   minHeight: _slidingPanelMinHeight,

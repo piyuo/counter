@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import '../models/pip_state.dart';
 import '../widgets/panel.dart';
@@ -53,11 +55,34 @@ class PipNotifier extends _$PipNotifier implements PipController {
     state = state.copyWith(isPanelOpened: true);
   }
 
+  /// Locks or unlocks the sliding panel.
+  /// When [value] is true the panel stays fully open and cannot be slid down.
+  /// Locking also ensures the panel is opened immediately if it isn't already.
+  /// On mobile, locking also forces portrait orientation; unlocking restores all orientations.
+  void setIsLockedOpen(bool value) {
+    if (state.isLockedOpen == value) return;
+    state = state.copyWith(isLockedOpen: value);
+    if (value) {
+      if (!state.isPanelOpened) slideUp(SlidingPanelState.open);
+      if (UniversalPlatform.isMobile) {
+        SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+      }
+    } else {
+      if (UniversalPlatform.isMobile) {
+        SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+      }
+    }
+  }
+
   /// full open the sliding panel
   Future<void> setSlidingPanelState(SlidingPanelState slidingPanelState) async {
     if (state.isSidebarLayout) {
       return;
     }
+    if (state.isLockedOpen) {
+      slidingPanelState = SlidingPanelState.open;
+    }
+
     state = state.copyWith(slidingPanelState: slidingPanelState);
     if (panelController.isAttached) {
       switch (slidingPanelState) {

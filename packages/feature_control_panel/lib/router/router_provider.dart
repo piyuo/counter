@@ -48,6 +48,13 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
     final currentPath = router.state.uri.path;
     final pipController = ref.read(feature_pip.pipProvider.notifier);
     pipController.onRouteChanged(currentPath);
+
+    // Lock the sliding panel open while on any onboarding route (root + sub-routes).
+    // Release the lock as soon as the user leaves the onboarding subtree.
+    final isOnboarding =
+        currentPath == core_domain.OnboardingRoutes.onboarding ||
+        currentPath.startsWith('${core_domain.OnboardingRoutes.onboarding}/');
+    pipController.setIsLockedOpen(isOnboarding);
   }
 
   router.routerDelegate.addListener(onRouteChanged);
