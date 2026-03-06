@@ -7,20 +7,22 @@ import 'package:universal_platform/universal_platform.dart';
 /// at the bottom, respecting safe areas and adjusting bottom padding for mobile
 /// vs desktop platforms.
 class NextButtonContainer extends StatelessWidget {
-  const NextButtonContainer({super.key, required this.child, required this.onNextPressed});
+  const NextButtonContainer({super.key, required this.child, this.onNextPressed, this.nextButtonText});
 
   /// The main content displayed behind the "Next" button.
   final Widget child;
 
   /// Callback invoked when the "Next" button is pressed.
-  final void Function() onNextPressed;
+  final void Function()? onNextPressed;
+
+  final String? nextButtonText;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         // Main page content
-        child,
+        Padding(padding: EdgeInsetsGeometry.fromLTRB(16, 0, 16, 0), child: child),
         // "Next" button pinned to the bottom of the screen
         Positioned(
           left: 0,
@@ -31,10 +33,13 @@ class NextButtonContainer extends StatelessWidget {
               // Match the system background so the button bar blends with the page
               color: CupertinoColors.systemBackground.resolveFrom(context),
               // Extra bottom padding on mobile to clear the home indicator / nav bar
-              padding: EdgeInsets.fromLTRB(32, 16, 32, UniversalPlatform.isMobile ? 96 : 64),
+              padding: EdgeInsets.fromLTRB(32, 16, 32, UniversalPlatform.isMobile ? 96 : 54),
               child: CupertinoButton.filled(
                 onPressed: onNextPressed,
-                child: Text('Next'), //todo:add translation
+                child: Text(
+                  nextButtonText ?? 'Next',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ), //todo:add translation
               ),
             ),
           ),

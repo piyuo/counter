@@ -128,6 +128,10 @@ class SlidingUpPanel extends StatefulWidget {
   /// the panel up and down. Defaults to true.
   final bool isDraggable;
 
+  /// When true, the panel is locked in its open position.
+  /// Downward drags are ignored and gesture-end always snaps back to fully open.
+  final bool isLockedOpen;
+
   /// Either SlideDirection.UP or SlideDirection.DOWN. Indicates which way
   /// the panel should slide. Defaults to UP. If set to DOWN, the panel attaches
   /// itself to the top of the screen and is fully opened when the user swipes
@@ -175,6 +179,7 @@ class SlidingUpPanel extends StatefulWidget {
     this.parallaxEnabled = false,
     this.parallaxOffset = 0.1,
     this.isDraggable = true,
+    this.isLockedOpen = false,
     this.slideDirection = SlideDirection.up,
     this.defaultPanelState = PanelState.closed,
     this.header,
@@ -461,6 +466,14 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
   // handles the sliding gesture
   void _onGestureSlide(double dy) {
+    // when locked open, ignore any gesture that would slide the panel down
+    if (widget.isLockedOpen) {
+      final bool isClosingGesture =
+          (widget.slideDirection == SlideDirection.up && dy > 0) ||
+          (widget.slideDirection == SlideDirection.down && dy < 0);
+      if (isClosingGesture) return;
+    }
+
     // only slide the panel if scrolling is not enabled
     if (!_scrollingEnabled) {
       if (widget.slideDirection == SlideDirection.up) {
@@ -491,6 +504,12 @@ class SlidingUpPanelState extends State<SlidingUpPanel> with SingleTickerProvide
 
     //let the current animation finish before starting a new one
     if (_ac.isAnimating) return;
+
+    // when locked open, always snap back to fully open
+    if (widget.isLockedOpen) {
+      _open();
+      return;
+    }
 
     // if scrolling is allowed and the panel is open, we don't want to close
     // the panel if they swipe up on the scrollable
