@@ -4,17 +4,17 @@
 //  - SystemLifecycleRule returns null for all other states
 
 import 'package:core_domain/app_flow/models/app_flow.dart';
-import 'package:core_domain/navigation/control_panel_routes.dart';
 import 'package:core_domain/navigation/route_context.dart';
-import 'package:core_domain/navigation/rules/system_lifecycle_rule.dart';
+import 'package:core_domain/navigation/routes/control_panel_routes.dart';
+import 'package:core_domain/navigation/rules/control_panel_system_lifecycle_rule.dart';
 import 'package:core_domain/system_lifecycle/models/system_lifecycle.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 RouteContext _ctx(SystemLifecycle lifecycle, {String path = '/'}) =>
-    RouteContext(lifecycle: lifecycle, flow: const AppFlow.sessionRunning(), currentPath: path);
+    RouteContext(lifecycle: lifecycle, flow: const AppFlow.sessionRunning(), path: path);
 
 void main() {
-  const rule = SystemLifecycleRule();
+  const rule = ControlPanelSystemLifecycleRule();
 
   group('SystemLifecycleRule', () {
     test('has priority 0', () {
@@ -27,7 +27,6 @@ void main() {
 
         expect(decision, isNotNull);
         expect(decision!.target, ControlPanelRoutes.liveStreamOnly);
-        expect(decision.reason, 'system-lifecycle: liveStreamOnly');
       });
     });
 

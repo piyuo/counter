@@ -45,13 +45,12 @@ class RouteDecisionEngine {
   /// a cycle. The engine also caps at [_maxChainDepth] steps as a safety
   /// backstop against pathological rule combinations.
   ///
-  /// **Logging** — every rule verdict and cycle event is emitted via
-  /// `appkit.logInfo`:
+  /// **Logging** — the trigger (what changed) and only opinionated rules are
+  /// emitted via `appkit.logInfo`:
   ///
   /// ```
-  /// [RouteDecisionEngine] decide() at "/"
-  ///   SystemLifecycleRule(p:0)  → no opinion
-  ///   AppFlowRule(p:10)         → "/onboarding" [app-flow: onboarding gate]
+  /// [RouteDecisionEngine] decide() at "/home" ← flow: CheckingBackend→OnboardingRequired
+  ///   ControlPanelAppFlowRule(p:10) → "/onboarding" [AppFlow transition: checkingBackend -> onboardingRequired]
   /// ```
   ///
   /// Returns `null` when no rule fires or a cycle is detected.
@@ -61,7 +60,7 @@ class RouteDecisionEngine {
     _logEvaluations(context);
 
     // Walk the full chain to detect cycles before returning the first step.
-    final visited = <String>{context.currentPath};
+    final visited = <String>{context.path};
     var simulated = context;
     RouteDecision? first;
 
@@ -69,7 +68,7 @@ class RouteDecisionEngine {
       RouteDecision? step;
       for (final rule in _rules) {
         final candidate = rule.evaluate(simulated);
-        if (candidate != null && candidate.target != simulated.currentPath) {
+        if (candidate != null && candidate.target != simulated.path) {
           step = candidate;
           break;
         }
@@ -90,26 +89,39 @@ class RouteDecisionEngine {
       visited.add(step.target);
 
       // Advance simulation to the next hop.
-      simulated = RouteContext(lifecycle: simulated.lifecycle, flow: simulated.flow, currentPath: step.target);
+      simulated = RouteContext(lifecycle: simulated.lifecycle, flow: simulated.flow, path: step.target);
     }
 
     return first;
   }
 
-  /// Logs every rule's verdict for [context] via [appkit.logInfo].
+  /// Logs the trigger and only opinionated rule verdicts for [context].
   ///
-  /// Rules are stateless so double-evaluating them (once here, once in the
-  /// chain-walk above) is correct.
+  /// Example output:
+  /// ```
+  /// [RouteDecisionEngine] decide() at "/home" ← flow: CheckingBackend→OnboardingRequired
+  ///   ControlPanelAppFlowRule(p:10) → "/onboarding" [AppFlow transition: checkingBackend -> onboardingRequired]
+  /// ```
   void _logEvaluations(RouteContext context) {
-    appkit.logInfo('[RouteDecisionEngine] decide() at "${context.currentPath}"');
+    final triggers = <String>[];
+    if (context.lifecycleChanged) {
+      triggers.add('lifecycle: ${context.previousLifecycle.runtimeType}→${context.lifecycle.runtimeType}');
+    }
+    if (context.flowChanged) {
+      triggers.add('flow: ${context.previousFlow.runtimeType}→${context.flow.runtimeType}');
+    }
+    if (context.pathChanged) {
+      triggers.add('path: ${context.previousPath}→${context.path}');
+    }
+
+    final trigger = triggers.isEmpty ? 'initial' : triggers.join(', ');
+    appkit.logInfo('[RouteDecisionEngine] decide() at "${context.path}" ← $trigger');
+
     for (final rule in _rules) {
       final candidate = rule.evaluate(context);
-      final ruleName = '${rule.runtimeType}(p:${rule.priority})';
-      if (candidate == null || candidate.target == context.currentPath) {
-        appkit.logInfo('[RouteDecisionEngine]   $ruleName → no opinion');
-      } else {
-        final reason = candidate.reason != null ? ' [${candidate.reason}]' : '';
-        appkit.logInfo('[RouteDecisionEngine]   $ruleName → "${candidate.target}"$reason');
+      if (candidate != null && candidate.target != context.path) {
+        final ruleName = '${rule.runtimeType}(p:${rule.priority})';
+        appkit.logInfo('[RouteDecisionEngine]   $ruleName → "${candidate.target}"');
       }
     }
   }

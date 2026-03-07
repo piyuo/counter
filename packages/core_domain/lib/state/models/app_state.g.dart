@@ -13,9 +13,13 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   frontend: json['frontend'] == null
       ? const Frontend.empty()
       : Frontend.fromJson(json['frontend'] as Map<String, dynamic>),
+  setupBy: json['setupBy'] == null
+      ? const SetupBy.empty()
+      : SetupBy.fromJson(json['setupBy'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'backend': instance.backend,
   'frontend': instance.frontend,
+  'setupBy': instance.setupBy,
 };

@@ -19,23 +19,19 @@ import 'package:flutter_test/flutter_test.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
-RouteContext _ctx(String path) => RouteContext(
-  lifecycle: const SystemLifecycle.systemReady(),
-  flow: const AppFlow.sessionRunning(),
-  currentPath: path,
-);
+RouteContext _ctx(String path) =>
+    RouteContext(lifecycle: const SystemLifecycle.systemReady(), flow: const AppFlow.sessionRunning(), path: path);
 
 /// A rule that always redirects to [target] regardless of context.
 class _AlwaysRule implements RouteRule {
-  _AlwaysRule(this.priority, this.target, {this.reason});
+  _AlwaysRule(this.priority, this.target);
 
   @override
   final int priority;
   final String target;
-  final String? reason;
 
   @override
-  RouteDecision? evaluate(RouteContext context) => RouteDecision(target: target, reason: reason);
+  RouteDecision? evaluate(RouteContext context) => RouteDecision(target: target);
 }
 
 /// A rule that always returns null (no opinion).
@@ -59,7 +55,7 @@ class _ChainRule implements RouteRule {
   final String target;
 
   @override
-  RouteDecision? evaluate(RouteContext context) => context.currentPath == from ? RouteDecision(target: target) : null;
+  RouteDecision? evaluate(RouteContext context) => context.path == from ? RouteDecision(target: target) : null;
 }
 
 // ---------------------------------------------------------------------------
@@ -79,8 +75,8 @@ void main() {
         expect(engine.decide(_ctx('/')), isNull);
       });
 
-      test('returns null when only matching decision equals currentPath', () {
-        // Rule wants to go to '/', which is already the currentPath.
+      test('returns null when only matching decision equals path', () {
+        // Rule wants to go to '/', which is already the path.
         final engine = RouteDecisionEngine([_AlwaysRule(0, '/')]);
         expect(engine.decide(_ctx('/')), isNull);
       });
@@ -88,16 +84,15 @@ void main() {
 
     group('single firing rule', () {
       test('returns the decision when rule fires for a different path', () {
-        final engine = RouteDecisionEngine([_AlwaysRule(0, '/onboarding', reason: 'gate')]);
+        final engine = RouteDecisionEngine([_AlwaysRule(0, '/onboarding')]);
         final decision = engine.decide(_ctx('/'));
 
         expect(decision, isNotNull);
         expect(decision!.target, '/onboarding');
-        expect(decision.reason, 'gate');
       });
 
-      test('skips decision whose target equals currentPath (pass to next rule)', () {
-        // ChainRule(0, '/home', '/home') fires from /home → target=/home == currentPath → skipped.
+      test('skips decision whose target equals path (pass to next rule)', () {
+        // ChainRule(0, '/home', '/home') fires from /home → target=/home == path → skipped.
         // ChainRule(10, '/home', '/settings') fires from /home → target=/settings → wins.
         // Simulation at /settings: no rules fire → chain ends cleanly.
         final engine = RouteDecisionEngine([_ChainRule(0, '/home', '/home'), _ChainRule(10, '/home', '/settings')]);

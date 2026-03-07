@@ -16,15 +16,29 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'control_panel_route_map.dart';
-import 'route_rules_provider.dart';
+import 'control_panel_route_rules_provider.dart';
 
-final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation) {
+final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, initialLocation) {
   // Create a notifier to trigger router refreshes for state-driven routing.
   final notifier = ValueNotifier(0);
 
+  // Pending previous states — set by state-change listeners, cleared after
+  // each redirect so only the triggering call sees them (not later route navs).
+  core_domain.AppFlow? pendingPreviousFlow;
+  core_domain.SystemLifecycle? pendingPreviousLifecycle;
+
+  // Tracks the last committed path so redirect can report previousPath.
+  String lastCommittedPath = initialLocation ?? '/';
+
   // State-driven: lifecycle and flow changes trigger GoRouter's redirect.
-  ref.listen(core_domain.systemLifecycleProvider, (_, _) => notifier.value++);
-  ref.listen(core_domain.appFlowProvider, (_, _) => notifier.value++);
+  ref.listen(core_domain.systemLifecycleProvider, (prev, _) {
+    pendingPreviousLifecycle = prev;
+    notifier.value++;
+  });
+  ref.listen(core_domain.appFlowProvider, (prev, _) {
+    pendingPreviousFlow = prev;
+    notifier.value++;
+  });
 
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
@@ -32,12 +46,21 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
     routes: [...controlPanelRouteMap(), ...feature_onboarding.onBoardingRouteMap()],
     redirect: (context, state) {
       // Use read inside redirect to avoid recreating the router on every rebuild.
-      final engine = ref.read(routeDecisionEngineProvider);
+      final engine = ref.read(controlPanelRouteDecisionEngineProvider);
+
+      // Capture and clear pending previous states so transition detection
+      final previousFlow = pendingPreviousFlow;
+      final previousLifecycle = pendingPreviousLifecycle;
+      pendingPreviousFlow = null;
+      pendingPreviousLifecycle = null;
 
       final routeContext = core_domain.RouteContext(
         lifecycle: ref.read(core_domain.systemLifecycleProvider),
         flow: ref.read(core_domain.appFlowProvider),
-        currentPath: state.uri.path,
+        path: state.uri.path,
+        previousPath: lastCommittedPath,
+        previousFlow: previousFlow,
+        previousLifecycle: previousLifecycle,
       );
 
       return engine.decide(routeContext)?.target;
@@ -45,15 +68,16 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
   );
 
   void onRouteChanged() {
-    final currentPath = router.state.uri.path;
+    final path = router.state.uri.path;
+    lastCommittedPath = path;
     final pipController = ref.read(feature_pip.pipProvider.notifier);
-    pipController.onRouteChanged(currentPath);
+    pipController.onRouteChanged(path);
 
     // Lock the sliding panel open while on any onboarding route (root + sub-routes).
     // Release the lock as soon as the user leaves the onboarding subtree.
     final isOnboarding =
-        currentPath == core_domain.OnboardingRoutes.onboarding ||
-        currentPath.startsWith('${core_domain.OnboardingRoutes.onboarding}/');
+        path == core_domain.OnboardingRoutes.onboarding ||
+        path.startsWith('${core_domain.OnboardingRoutes.onboarding}/');
     pipController.setIsLockedOpen(isOnboarding);
   }
 
@@ -63,6 +87,8 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
   // bypassing the redirect cycle — no consume(), no stale state.
   final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((event) {
     switch (event) {
+      case core_domain.OpenLanguage():
+        router.push(core_domain.ControlPanelRoutes.language);
       case core_domain.OpenSettings():
         router.push(core_domain.ControlPanelRoutes.settings);
       case core_domain.OpenAbout():
@@ -73,6 +99,10 @@ final routerProvider = Provider.family<GoRouter, String?>((ref, initialLocation)
         router.push(core_domain.OnboardingRoutes.onboardingCTA);
       case core_domain.OpenOnboardingInvitation(token: final token):
         router.push(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
+      case core_domain.OpenOnboardingSignup():
+        router.push(core_domain.OnboardingRoutes.onboardingSignup);
+      case core_domain.OpenOnboardingDemo():
+        router.push(core_domain.OnboardingRoutes.onboardingDemo);
       case core_domain.OpenLightOffScreen():
         break; // No route for this event,
     }

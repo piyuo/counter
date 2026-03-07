@@ -8,42 +8,59 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('RouteContext', () {
-    test('stores lifecycle, flow, and currentPath', () {
-      const ctx = RouteContext(
-        lifecycle: SystemLifecycle.systemReady(),
-        flow: AppFlow.sessionRunning(),
-        currentPath: '/home',
-      );
+    test('stores lifecycle, flow, and path', () {
+      const ctx = RouteContext(lifecycle: SystemLifecycle.systemReady(), flow: AppFlow.sessionRunning(), path: '/home');
 
       expect(ctx.lifecycle, const SystemLifecycle.systemReady());
       expect(ctx.flow, const AppFlow.sessionRunning());
-      expect(ctx.currentPath, '/home');
+      expect(ctx.path, '/home');
     });
 
     test('accepts different lifecycle states', () {
-      const ctx = RouteContext(
-        lifecycle: SystemLifecycle.liveStreamOnly(),
-        flow: AppFlow.waitingForStart(),
-        currentPath: '/',
-      );
+      const ctx = RouteContext(lifecycle: SystemLifecycle.liveStreamOnly(), flow: AppFlow.waitingForStart(), path: '/');
 
       expect(ctx.lifecycle, const SystemLifecycle.liveStreamOnly());
     });
 
     test('accepts onboarding flow states', () {
-      const ctx = RouteContext(
-        lifecycle: SystemLifecycle.systemReady(),
-        flow: AppFlow.onboardingRequired(),
-        currentPath: '/',
-      );
+      const ctx = RouteContext(lifecycle: SystemLifecycle.systemReady(), flow: AppFlow.onboardingRequired(), path: '/');
 
       expect(ctx.flow, const AppFlow.onboardingRequired());
     });
 
-    test('accepts empty string currentPath', () {
-      const ctx = RouteContext(lifecycle: SystemLifecycle.booting(), flow: AppFlow.checkingBackend(), currentPath: '');
+    test('accepts empty string path', () {
+      const ctx = RouteContext(lifecycle: SystemLifecycle.booting(), flow: AppFlow.checkingBackend(), path: '');
 
-      expect(ctx.currentPath, '');
+      expect(ctx.path, '');
+    });
+
+    test('previousPath is null when not provided', () {
+      const ctx = RouteContext(lifecycle: SystemLifecycle.systemReady(), flow: AppFlow.sessionRunning(), path: '/home');
+
+      expect(ctx.previousPath, isNull);
+      expect(ctx.pathChanged, isFalse);
+    });
+
+    test('pathChanged is true when previousPath differs from path', () {
+      const ctx = RouteContext(
+        lifecycle: SystemLifecycle.systemReady(),
+        flow: AppFlow.sessionRunning(),
+        path: '/settings',
+        previousPath: '/home',
+      );
+
+      expect(ctx.pathChanged, isTrue);
+    });
+
+    test('pathChanged is false when previousPath equals path', () {
+      const ctx = RouteContext(
+        lifecycle: SystemLifecycle.systemReady(),
+        flow: AppFlow.sessionRunning(),
+        path: '/home',
+        previousPath: '/home',
+      );
+
+      expect(ctx.pathChanged, isFalse);
     });
   });
 }

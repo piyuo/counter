@@ -5,72 +5,76 @@
 // Sections:
 //   - InvitationScreen widget
 // ===============================================
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/widgets/next_button_container.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pinput/pinput.dart';
 
-class InvitationScreen extends StatefulWidget {
+class InvitationScreen extends ConsumerStatefulWidget {
   const InvitationScreen({this.token, super.key});
 
   final String? token;
 
   @override
-  State<InvitationScreen> createState() => _InvitationScreenState();
+  ConsumerState<InvitationScreen> createState() => _InvitationScreenState();
 }
 
-class _InvitationScreenState extends State<InvitationScreen> {
+class _InvitationScreenState extends ConsumerState<InvitationScreen> {
   static const int _codeLength = 6;
-  final List<TextEditingController> _controllers = List.generate(_codeLength, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(_codeLength, (_) => FocusNode());
-  bool _submitted = false;
+  final TextEditingController _pinController = TextEditingController();
+  final FocusNode _pinFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _pinFocusNode.requestFocus();
+    });
+  }
 
   @override
   void dispose() {
-    for (final controller in _controllers) {
-      controller.dispose();
-    }
-    for (final node in _focusNodes) {
-      node.dispose();
-    }
+    _pinController.dispose();
+    _pinFocusNode.dispose();
     super.dispose();
   }
 
-  void _handleChanged(int index, String value) {
-    final String upper = value.toUpperCase();
-    if (upper != value) {
-      _controllers[index].text = upper;
-      _controllers[index].selection = TextSelection.collapsed(offset: upper.length);
-    }
-
-    if (upper.isNotEmpty) {
-      if (index < _focusNodes.length - 1) {
-        _focusNodes[index + 1].requestFocus();
-      } else {
-        _focusNodes[index].unfocus();
-      }
-    } else if (index > 0) {
-      _focusNodes[index - 1].requestFocus();
-    }
-
-    _trySubmit();
-  }
-
-  void _trySubmit() {
-    if (_submitted) {
-      return;
-    }
-    final bool isComplete = _controllers.every((controller) => controller.text.trim().length == 1);
-    if (!isComplete) {
-      return;
-    }
-    _submitted = true;
-    Navigator.of(context).pushNamedAndRemoveUntil('/', (route) => false);
+  void _onCompleted(String pin) {
+    //todo: use real data from invitation download, when invitation backend is ready
+    // we should use pin to fetch the invitation data from piyuo.com, and then use the data to setup the app state
+    ref
+        .read(core_domain.appProvider.notifier)
+        .setup(
+          core_domain.SetupBy.invitation(),
+          core_domain.Backend.customServer(serverUrl: 'http://localhost', token: 'TOKEN_FROM_INVITATION'),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color borderColor = CupertinoColors.systemGrey4.resolveFrom(context);
+    final Color borderColor = CupertinoColors.systemGrey2.resolveFrom(context);
+    final defaultPinTheme = PinTheme(
+      width: 48.0,
+      height: 48.0,
+      textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CupertinoColors.black),
+      decoration: BoxDecoration(
+        color: CupertinoColors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: borderColor),
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
+      borderRadius: BorderRadius.circular(8),
+    );
+
+    final submittedPinTheme = defaultPinTheme.copyWith(
+      decoration: defaultPinTheme.decoration?.copyWith(color: Color.fromRGBO(234, 239, 243, 1)),
+    );
     return feature_pip.PipScaffold(
       themeData: const CupertinoThemeData(brightness: Brightness.light),
       builder: (scrollController) {
@@ -90,36 +94,22 @@ class _InvitationScreenState extends State<InvitationScreen> {
                   ),
                   const SizedBox(height: 10.0),
                   Text(
-                    'Check your email invitation to get the 8-digit code.',
+                    'Check your email invitation to get the 6-digit code.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey.resolveFrom(context)),
                   ),
                   const SizedBox(height: 20.0),
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 8.0,
-                    runSpacing: 8.0,
-                    children: List.generate(
-                      _codeLength,
-                      (index) => SizedBox(
-                        width: 40.0,
-                        child: CupertinoTextField(
-                          controller: _controllers[index],
-                          focusNode: _focusNodes[index],
-                          maxLength: 1,
-                          textAlign: TextAlign.center,
-                          textCapitalization: TextCapitalization.characters,
-                          keyboardType: TextInputType.text,
-                          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]'))],
-                          decoration: BoxDecoration(
-                            color: CupertinoColors.white,
-                            borderRadius: BorderRadius.circular(8.0),
-                            border: Border.all(color: borderColor),
-                          ),
-                          onChanged: (value) => _handleChanged(index, value),
-                        ),
-                      ),
-                    ),
+                  Pinput(
+                    length: _codeLength,
+                    controller: _pinController,
+                    focusNode: _pinFocusNode,
+                    defaultPinTheme: defaultPinTheme,
+                    focusedPinTheme: focusedPinTheme,
+                    submittedPinTheme: submittedPinTheme,
+                    keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.characters,
+                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]'))],
+                    onCompleted: _onCompleted,
                   ),
                 ],
               ),

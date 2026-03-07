@@ -30,7 +30,7 @@ class BootNotifier extends _$BootNotifier implements BootController {
       final hardwareService = ref.read(hardwareCapabilityServiceProvider);
       // Transition to CheckingHardware
       lifecycleController.dispatch(const SystemEvent.hardwareCheckInitiated());
-
+      // try to sleep for 20 seconds
       bool hasValidCams = false;
       if (appState.frontend is! EmptyFrontend) {
         hasValidCams = await hardwareService.isFrontendValid(appState.frontend);
@@ -44,6 +44,12 @@ class BootNotifier extends _$BootNotifier implements BootController {
         }
       }
       lifecycleController.dispatch(const SystemEvent.hardwareCheckPassed());
+      if (!hasValidCams) {
+        // No valid saved frontend, but cameras are present — persist default at index 0.
+        final defaultFrontend = await hardwareService.getDefaultFrontend();
+        await ref.read(appProvider.notifier).setFrontend(defaultFrontend);
+      }
+
       // hardware check passed, now run app flow check to determine if we can skip straight to ready
       final appFlowController = ref.read(appFlowProvider.notifier);
       appFlowController.dispatch(const AppFlowEvent.startRequested());
@@ -54,6 +60,7 @@ class BootNotifier extends _$BootNotifier implements BootController {
         return BootStatus.ready;
       }
 
+      //await hardwareService.initializeVisionSystem(ref);
       appFlowController.dispatch(const AppFlowEvent.onboardingCompleted());
       return BootStatus.ready;
     } finally {

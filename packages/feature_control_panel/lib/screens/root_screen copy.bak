@@ -8,8 +8,8 @@ import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 /// if the screen height is less than this value, use compact header
 const double _headerHeightThreshold = 600;
 
-class IndexScreen extends ConsumerWidget {
-  const IndexScreen({super.key});
+class RootScreen extends ConsumerWidget {
+  const RootScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

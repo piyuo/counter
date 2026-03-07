@@ -11,8 +11,6 @@ import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'subscription_screen.dart';
-
 //todo: make sure DPA" (Data Processing Agreement), is in terms of service and privacy policy, and add a link to it in the UI. This is important for legal compliance and user trust."Piyuo Cloud only processes anonymized aggregate counts. We store device identifiers only for subscription validation. We do not store, view, or share raw video or biometric data."
 // Technical Metadata: To ensure service reliability, Piyuo Cloud processes technical 'heartbeat' signals and error logs. This data is used solely for service monitoring and debugging and is not linked to any natural person's identity."
 class CTAScreen extends ConsumerStatefulWidget {
@@ -23,7 +21,7 @@ class CTAScreen extends ConsumerStatefulWidget {
 }
 
 class _CTAScreenState extends ConsumerState<CTAScreen> {
-  _DecisionOption? _selection;
+  core_domain.SetupBy? _setupBy;
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +31,22 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
       themeData: const CupertinoThemeData(brightness: Brightness.light),
       builder: (scrollController) {
         return NextButtonContainer(
-          onNextPressed: _selection == null
+          onNextPressed: _setupBy == null
               ? null
               : () {
-                  switch (_selection!) {
-                    case _DecisionOption.invitation:
-                      ref
-                          .read(core_domain.navigationEventBusProvider)
-                          .add(const core_domain.OpenOnboardingInvitation());
+                  final navigationEventBusProvider = ref.read(core_domain.navigationEventBusProvider);
+                  switch (_setupBy!) {
+                    case const core_domain.SetupBy.invitation():
+                      navigationEventBusProvider.add(const core_domain.OpenOnboardingInvitation());
                       return;
-                    case _DecisionOption.backend:
+                    case const core_domain.SetupBy.signUp():
+                      navigationEventBusProvider.add(const core_domain.OpenOnboardingSignup());
                       return;
-                    case _DecisionOption.local:
+                    case const core_domain.SetupBy.demo():
+                      navigationEventBusProvider.add(const core_domain.OpenOnboardingDemo());
+                      return;
+                    default:
                   }
-
-                  Navigator.of(context).push(CupertinoPageRoute(builder: (_) => const SubscriptionScreen()));
                 },
           child: SingleChildScrollView(
             controller: scrollController,
@@ -65,20 +64,20 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
                   subtitle: 'Option 1 (Invitation):',
                   title: 'Connect with an invitation',
                   body: 'Send data to the organization that invited you.',
-                  isSelected: _selection == _DecisionOption.invitation,
+                  isSelected: _setupBy == core_domain.SetupBy.invitation(),
                   borderColor: borderColor,
                   selectedColor: selectedColor,
-                  onTap: () => setState(() => _selection = _DecisionOption.invitation),
+                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.invitation()),
                 ),
                 const SizedBox(height: 10.0),
                 _DecisionCard(
                   subtitle: 'Option 2 (Backend):',
                   title: 'Connect to a backend',
                   body: 'Send data to Piyuo Cloud or your own server. Requires a subscription.',
-                  isSelected: _selection == _DecisionOption.backend,
+                  isSelected: _setupBy == core_domain.SetupBy.signUp(),
                   borderColor: borderColor,
                   selectedColor: selectedColor,
-                  onTap: () => setState(() => _selection = _DecisionOption.backend),
+                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.signUp()),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -93,10 +92,10 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
                   subtitle: 'Testing:', // Changed from Option 3
                   title: 'Local Demo Mode', // Clearer purpose
                   body: 'Verify AI detection and camera angles. \nData is not saved and cannot be exported.',
-                  isSelected: _selection == _DecisionOption.local,
+                  isSelected: _setupBy == core_domain.SetupBy.demo(),
                   borderColor: borderColor,
                   selectedColor: CupertinoColors.systemGrey, // Neutral color instead of Blue
-                  onTap: () => setState(() => _selection = _DecisionOption.local),
+                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.demo()),
                 ),
               ],
             ),
@@ -106,8 +105,6 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
     );
   }
 }
-
-enum _DecisionOption { invitation, backend, local }
 
 class _DecisionCard extends StatelessWidget {
   const _DecisionCard({

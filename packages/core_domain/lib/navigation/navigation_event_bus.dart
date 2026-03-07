@@ -20,6 +20,10 @@ sealed class NavigationEvent {
   const NavigationEvent();
 }
 
+class OpenLanguage extends NavigationEvent {
+  const OpenLanguage();
+}
+
 /// Request to navigate to the settings screen.
 class OpenSettings extends NavigationEvent {
   const OpenSettings();
@@ -49,6 +53,16 @@ class OpenOnboardingInvitation extends NavigationEvent {
   final String? token;
 
   const OpenOnboardingInvitation({this.token});
+}
+
+/// Request to navigate to onboarding sign-up screen.
+class OpenOnboardingSignup extends NavigationEvent {
+  const OpenOnboardingSignup();
+}
+
+/// Request to navigate to onboarding demo screen.
+class OpenOnboardingDemo extends NavigationEvent {
+  const OpenOnboardingDemo();
 }
 
 /// Broadcast [StreamController] carrying [NavigationEvent]s.

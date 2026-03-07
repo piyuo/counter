@@ -8,8 +8,19 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  camera: ^0.11.4
+  core_domain: ^0.0.1
   flutter:
     sdk: flutter
+  flutter_vision:
+    path: ../../../flutter-vision
+  flutter_appkit:
+    git:
+      url: https://github.com/piyuo/flutter-appkit.git
+      ref: v3.0.0
+  flutter_riverpod: ^3.3.1
+  go_router: ^17.1.0
+  universal_platform: ^1.1.0
 
 dev_dependencies:
   flutter_test:
