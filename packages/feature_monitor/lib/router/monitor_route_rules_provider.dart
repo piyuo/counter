@@ -22,14 +22,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 ///   SubscriptionGateRule()      // priority 20
 ///   HardwareErrorRule()         // priority 1
 ///   FeaturePermissionRule()     // priority 50
-final routeRulesProvider = Provider<List<core_domain.RouteRule>>((ref) {
-  return const [core_domain.SystemLifecycleRule(), core_domain.AppFlowRule()];
+final monitorRouteRulesProvider = Provider<List<core_domain.RouteRule>>((ref) {
+  return const [core_domain.MonitorSystemLifecycleRule(), core_domain.MonitorAppFlowRule()];
 });
 
 /// [core_domain.RouteDecisionEngine] built from [routeRulesProvider].
 ///
 /// Re-created whenever the rule list changes (e.g. dynamic feature loading).
-final routeDecisionEngineProvider = Provider<core_domain.RouteDecisionEngine>((ref) {
-  final rules = ref.watch(routeRulesProvider);
+final monitorRouteDecisionEngineProvider = Provider<core_domain.RouteDecisionEngine>((ref) {
+  final rules = ref.watch(monitorRouteRulesProvider);
   return core_domain.RouteDecisionEngine(rules);
 });

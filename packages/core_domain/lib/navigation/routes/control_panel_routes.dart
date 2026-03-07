@@ -11,12 +11,13 @@
 /// constants so every redirect target is defined in one place.
 class ControlPanelRoutes {
   const ControlPanelRoutes._();
+  static const String root = '/'; // booting screen, shows a loading indicator while the app determines where to go
+  static const String start = '/start'; // start screen for pedestrian detection,  it has statistic, settings and about
 
   // onboarding will be controlled by OnboardingRoutes
 
-  static const String root = '/';
   static const String liveStreamOnly = '/live-stream-only';
-
   static const String settings = '/settings';
+  static const String language = '/language';
   static const String about = '/about';
 }

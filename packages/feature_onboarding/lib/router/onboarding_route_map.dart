@@ -8,8 +8,10 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/screens/cta_screen.dart';
+import 'package:feature_onboarding/screens/demo_screen.dart';
 import 'package:feature_onboarding/screens/invitation_screen.dart';
 import 'package:feature_onboarding/screens/onboarding_screen.dart';
+import 'package:feature_onboarding/screens/signup_screen.dart';
 import 'package:go_router/go_router.dart';
 
 List<GoRoute> onBoardingRouteMap() {
@@ -19,6 +21,12 @@ List<GoRoute> onBoardingRouteMap() {
       builder: (context, state) => OnboardingScreen(),
       routes: [
         GoRoute(
+          path: core_domain.OnboardingRoutes.cta,
+          builder: (context, state) {
+            return CTAScreen();
+          },
+        ),
+        GoRoute(
           path: core_domain.OnboardingRoutes.invitation,
           builder: (context, state) {
             final token = state.uri.queryParameters['token'];
@@ -26,9 +34,15 @@ List<GoRoute> onBoardingRouteMap() {
           },
         ),
         GoRoute(
-          path: core_domain.OnboardingRoutes.cta,
+          path: core_domain.OnboardingRoutes.onboardingSignup,
           builder: (context, state) {
-            return CTAScreen();
+            return SignupScreen();
+          },
+        ),
+        GoRoute(
+          path: core_domain.OnboardingRoutes.onboardingDemo,
+          builder: (context, state) {
+            return DemoScreen();
           },
         ),
       ],

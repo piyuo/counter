@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
- Backend get backend; Frontend get frontend;
+ Backend get backend; Frontend get frontend; SetupBy get setupBy;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend)&&(identical(other.setupBy, setupBy) || other.setupBy == setupBy));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,backend,frontend);
+int get hashCode => Object.hash(runtimeType,backend,frontend,setupBy);
 
 @override
 String toString() {
-  return 'AppState(backend: $backend, frontend: $frontend)';
+  return 'AppState(backend: $backend, frontend: $frontend, setupBy: $setupBy)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- Backend backend, Frontend frontend
+ Backend backend, Frontend frontend, SetupBy setupBy
 });
 
 
-$BackendCopyWith<$Res> get backend;$FrontendCopyWith<$Res> get frontend;
+$BackendCopyWith<$Res> get backend;$FrontendCopyWith<$Res> get frontend;$SetupByCopyWith<$Res> get setupBy;
 
 }
 /// @nodoc
@@ -65,11 +65,12 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? backend = null,Object? frontend = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? backend = null,Object? frontend = null,Object? setupBy = null,}) {
   return _then(_self.copyWith(
 backend: null == backend ? _self.backend : backend // ignore: cast_nullable_to_non_nullable
 as Backend,frontend: null == frontend ? _self.frontend : frontend // ignore: cast_nullable_to_non_nullable
-as Frontend,
+as Frontend,setupBy: null == setupBy ? _self.setupBy : setupBy // ignore: cast_nullable_to_non_nullable
+as SetupBy,
   ));
 }
 /// Create a copy of AppState
@@ -89,6 +90,15 @@ $FrontendCopyWith<$Res> get frontend {
   
   return $FrontendCopyWith<$Res>(_self.frontend, (value) {
     return _then(_self.copyWith(frontend: value));
+  });
+}/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetupByCopyWith<$Res> get setupBy {
+  
+  return $SetupByCopyWith<$Res>(_self.setupBy, (value) {
+    return _then(_self.copyWith(setupBy: value));
   });
 }
 }
@@ -169,10 +179,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend,  SetupBy setupBy)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.backend,_that.frontend);case _:
+return $default(_that.backend,_that.frontend,_that.setupBy);case _:
   return orElse();
 
 }
@@ -190,10 +200,10 @@ return $default(_that.backend,_that.frontend);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend,  SetupBy setupBy)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.backend,_that.frontend);}
+return $default(_that.backend,_that.frontend,_that.setupBy);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -207,10 +217,10 @@ return $default(_that.backend,_that.frontend);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Backend backend,  Frontend frontend)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Backend backend,  Frontend frontend,  SetupBy setupBy)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.backend,_that.frontend);case _:
+return $default(_that.backend,_that.frontend,_that.setupBy);case _:
   return null;
 
 }
@@ -222,11 +232,12 @@ return $default(_that.backend,_that.frontend);case _:
 @JsonSerializable()
 
 class _AppState implements AppState {
-  const _AppState({this.backend = const Backend.empty(), this.frontend = const Frontend.empty()});
+  const _AppState({this.backend = const Backend.empty(), this.frontend = const Frontend.empty(), this.setupBy = const SetupBy.empty()});
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
 @override@JsonKey() final  Backend backend;
 @override@JsonKey() final  Frontend frontend;
+@override@JsonKey() final  SetupBy setupBy;
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -241,16 +252,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend)&&(identical(other.setupBy, setupBy) || other.setupBy == setupBy));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,backend,frontend);
+int get hashCode => Object.hash(runtimeType,backend,frontend,setupBy);
 
 @override
 String toString() {
-  return 'AppState(backend: $backend, frontend: $frontend)';
+  return 'AppState(backend: $backend, frontend: $frontend, setupBy: $setupBy)';
 }
 
 
@@ -261,11 +272,11 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- Backend backend, Frontend frontend
+ Backend backend, Frontend frontend, SetupBy setupBy
 });
 
 
-@override $BackendCopyWith<$Res> get backend;@override $FrontendCopyWith<$Res> get frontend;
+@override $BackendCopyWith<$Res> get backend;@override $FrontendCopyWith<$Res> get frontend;@override $SetupByCopyWith<$Res> get setupBy;
 
 }
 /// @nodoc
@@ -278,11 +289,12 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? backend = null,Object? frontend = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? backend = null,Object? frontend = null,Object? setupBy = null,}) {
   return _then(_AppState(
 backend: null == backend ? _self.backend : backend // ignore: cast_nullable_to_non_nullable
 as Backend,frontend: null == frontend ? _self.frontend : frontend // ignore: cast_nullable_to_non_nullable
-as Frontend,
+as Frontend,setupBy: null == setupBy ? _self.setupBy : setupBy // ignore: cast_nullable_to_non_nullable
+as SetupBy,
   ));
 }
 
@@ -303,6 +315,15 @@ $FrontendCopyWith<$Res> get frontend {
   
   return $FrontendCopyWith<$Res>(_self.frontend, (value) {
     return _then(_self.copyWith(frontend: value));
+  });
+}/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$SetupByCopyWith<$Res> get setupBy {
+  
+  return $SetupByCopyWith<$Res>(_self.setupBy, (value) {
+    return _then(_self.copyWith(setupBy: value));
   });
 }
 }

@@ -2,6 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:camera_macos/camera_macos.dart';
 import 'package:camera_windows/camera_windows.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:universal_platform/universal_platform.dart';
 
 class HardwareCapabilityService implements core_domain.HardwareCapabilityService {
@@ -80,5 +83,84 @@ class HardwareCapabilityService implements core_domain.HardwareCapabilityService
       }
     }
     return false;
+  }
+
+  @override
+  Future<core_domain.Frontend> getDefaultFrontend() async {
+    if (UniversalPlatform.isMobile) {
+      return const core_domain.Frontend.camera(cameraIndex: 0);
+    }
+    if (UniversalPlatform.isMacOS || UniversalPlatform.isWindows) {
+      return const core_domain.Frontend.webcam(webcamIndex: 0);
+    }
+    return const core_domain.Frontend.empty();
+  }
+
+  @override
+  Future<void> initializeVisionSystem(Ref ref) async {
+    final visionSourceSelection = ref.read(vision.visionSourceSelectionProvider.notifier);
+    if (UniversalPlatform.isMobile) {
+      visionSourceSelection.setSource(vision.VisionSourceType.camera);
+      // Keep the provider alive across async gaps to prevent ref-disposed errors.
+      final sub = ref.listen(vision.cameraVisionNotifierProvider, (_, __) {});
+      try {
+        final controller = ref.read(vision.cameraVisionNotifierProvider.notifier);
+        await initializeCameraVision(controller);
+      } finally {
+        sub.close();
+      }
+      return;
+    }
+    if (UniversalPlatform.isMacOS || UniversalPlatform.isWindows) {
+      visionSourceSelection.setSource(vision.VisionSourceType.webcam);
+      // Keep the provider alive across async gaps to prevent ref-disposed errors.
+      final sub = ref.listen(vision.webcamVisionNotifierProvider, (_, __) {});
+      try {
+        final controller = ref.read(vision.webcamVisionNotifierProvider.notifier);
+        await initializeWebcamVision(controller);
+      } finally {
+        sub.close();
+      }
+      return;
+    }
+    throw Exception('Failed to initialize vision system: unsupported platform');
+  }
+
+  Future<void> initializeCameraVision(vision.CameraNotifier controller) async {
+    final detectionModel = await vision.ModelDefine.human();
+    final reidModel = await vision.ModelDefine.humanReid();
+    try {
+      final cameraDescriptions = await availableCameras();
+      if (cameraDescriptions.isNotEmpty) {
+        final currentCameraDesc = cameraDescriptions[0];
+        await controller.initialize(
+          detectionModel: detectionModel,
+          reidModel: reidModel,
+          visionParams: vision.VisionParams(),
+          config: vision.CameraConfig(cameraDescription: currentCameraDesc),
+        );
+      }
+    } catch (e, stack) {
+      appkit.logCritical('no camera found: $e');
+      controller.setAsyncError(e, stack);
+      return;
+    }
+  }
+
+  Future<void> initializeWebcamVision(vision.WebcamNotifier controller) async {
+    final detectionModel = await vision.ModelDefine.human();
+    final reidModel = await vision.ModelDefine.humanReid();
+    try {
+      await controller.initialize(
+        detectionModel: detectionModel,
+        reidModel: reidModel,
+        visionParams: vision.VisionParams(),
+        config: vision.WebcamSourceConfig(deviceId: 0),
+      );
+    } catch (e, stack) {
+      appkit.logCritical('no webcam found: $e');
+      controller.setAsyncError(e, stack);
+      return;
+    }
   }
 }

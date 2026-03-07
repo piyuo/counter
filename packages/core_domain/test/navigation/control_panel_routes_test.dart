@@ -1,7 +1,7 @@
 // TOC:
 //  - ControlPanelRoutes path constant values
 
-import 'package:core_domain/navigation/control_panel_routes.dart';
+import 'package:core_domain/navigation/routes/control_panel_routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

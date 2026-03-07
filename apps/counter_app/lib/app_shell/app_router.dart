@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:counter_app/app_shell/screens/main_screen.dart';
 import 'package:counter_app/features/monitor/monitor.dart' as app;
 import 'package:feature_control_panel/feature_control_panel.dart' as feature_control_panel;
+import 'package:feature_monitor/feature_monitor.dart' as feature_monitor;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,8 +44,7 @@ class AppRouter {
                   key: _controlPanelKey,
                   appLocaleDelegates: appLocaleDelegates,
                 ),
-                builder: (isSideLayout) =>
-                    app.ProjectView(noProjectScreen: const MainScreen(), isSideLayout: isSideLayout),
+                builder: (isSideLayout) => feature_monitor.MonitorShell(),
               ),
             ),
           );

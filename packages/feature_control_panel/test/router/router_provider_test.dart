@@ -9,8 +9,8 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_control_panel/router/route_rules_provider.dart';
-import 'package:feature_control_panel/router/router_provider.dart';
+import 'package:feature_control_panel/router/control_panel_route_rules_provider.dart';
+import 'package:feature_control_panel/router/control_panel_router_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -55,7 +55,7 @@ GoRouter _buildTestRouter() {
   );
 }
 
-/// Replicates the stream subscription that [routerProvider] establishes.
+/// Replicates the stream subscription that [controlPanelRouterProvider] establishes.
 StreamSubscription<core_domain.NavigationEvent> _subscribeRouter(
   StreamController<core_domain.NavigationEvent> bus,
   GoRouter router,
@@ -70,9 +70,15 @@ StreamSubscription<core_domain.NavigationEvent> _subscribeRouter(
         router.go(core_domain.OnboardingRoutes.onboarding);
       case core_domain.OpenOnboardingCTA():
         router.go(core_domain.OnboardingRoutes.onboardingCTA);
+      case core_domain.OpenOnboardingSignup():
+        router.go(core_domain.OnboardingRoutes.onboardingSignup);
+      case core_domain.OpenOnboardingDemo():
+        router.go(core_domain.OnboardingRoutes.onboardingDemo);
       case core_domain.OpenOnboardingInvitation(token: final token):
         router.go(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
       case core_domain.OpenLightOffScreen():
+        break;
+      case core_domain.OpenLanguage():
         break;
     }
   });
@@ -92,7 +98,7 @@ void main() {
       final container = _makeContainer();
       addTearDown(container.dispose);
 
-      final router = container.read(routerProvider(null));
+      final router = container.read(controlPanelRouterProvider(null));
       expect(router, isA<GoRouter>());
       await tester.pumpWidget(const SizedBox());
     });
@@ -101,7 +107,7 @@ void main() {
       final container = _makeContainer();
       addTearDown(container.dispose);
 
-      final router = container.read(routerProvider('/settings'));
+      final router = container.read(controlPanelRouterProvider('/settings'));
       expect(router, isA<GoRouter>());
       await tester.pumpWidget(const SizedBox());
     });
@@ -110,8 +116,8 @@ void main() {
       final container = _makeContainer();
       addTearDown(container.dispose);
 
-      final a = container.read(routerProvider(null));
-      final b = container.read(routerProvider(null));
+      final a = container.read(controlPanelRouterProvider(null));
+      final b = container.read(controlPanelRouterProvider(null));
       expect(identical(a, b), isTrue);
       await tester.pumpWidget(const SizedBox());
     });
@@ -120,8 +126,8 @@ void main() {
       final container = _makeContainer();
       addTearDown(container.dispose);
 
-      final root = container.read(routerProvider(null));
-      final settings = container.read(routerProvider('/settings'));
+      final root = container.read(controlPanelRouterProvider(null));
+      final settings = container.read(controlPanelRouterProvider('/settings'));
       expect(identical(root, settings), isFalse);
       await tester.pumpWidget(const SizedBox());
     });
@@ -142,25 +148,26 @@ void main() {
       final container = _makeContainer();
       addTearDown(container.dispose);
 
-      final engine = container.read(routeDecisionEngineProvider);
+      final engine = container.read(controlPanelRouteDecisionEngineProvider);
       final ctx = core_domain.RouteContext(
         lifecycle: container.read(core_domain.systemLifecycleProvider),
         flow: container.read(core_domain.appFlowProvider),
-        currentPath: core_domain.ControlPanelRoutes.root,
+        path: core_domain.ControlPanelRoutes.root,
       );
 
       expect(engine.decide(ctx), isNull);
     });
 
-    test('engine decides /live-stream-only when lifecycle is liveStreamOnly', () {
+    test('engine decides /live-stream-only on checkingHardware→liveStreamOnly transition', () {
       final container = _makeContainer(lifecycle: const core_domain.SystemLifecycle.liveStreamOnly());
       addTearDown(container.dispose);
 
-      final engine = container.read(routeDecisionEngineProvider);
+      final engine = container.read(controlPanelRouteDecisionEngineProvider);
       final ctx = core_domain.RouteContext(
         lifecycle: container.read(core_domain.systemLifecycleProvider),
         flow: container.read(core_domain.appFlowProvider),
-        currentPath: core_domain.ControlPanelRoutes.root,
+        path: core_domain.ControlPanelRoutes.root,
+        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
       );
 
       expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
@@ -173,29 +180,30 @@ void main() {
       );
       addTearDown(container.dispose);
 
-      final engine = container.read(routeDecisionEngineProvider);
+      final engine = container.read(controlPanelRouteDecisionEngineProvider);
       final ctx = core_domain.RouteContext(
         lifecycle: container.read(core_domain.systemLifecycleProvider),
         flow: container.read(core_domain.appFlowProvider),
-        currentPath: core_domain.ControlPanelRoutes.root,
+        path: core_domain.ControlPanelRoutes.root,
+        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
       );
 
       expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
     });
 
-    test('liveStreamOnly + onboardingRequired creates unsatisfiable cycle → null', () {
-      // Both rules fire simultaneously; engine detects cycle and returns null.
+    test('liveStreamOnly + onboardingRequired without transitions → null (no rules fire)', () {
+      // Neither rule fires without a lifecycle/flow transition, so no redirect.
       final container = _makeContainer(
         lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
         flow: const core_domain.AppFlow.onboardingRequired(),
       );
       addTearDown(container.dispose);
 
-      final engine = container.read(routeDecisionEngineProvider);
+      final engine = container.read(controlPanelRouteDecisionEngineProvider);
       final ctx = core_domain.RouteContext(
         lifecycle: container.read(core_domain.systemLifecycleProvider),
         flow: container.read(core_domain.appFlowProvider),
-        currentPath: core_domain.ControlPanelRoutes.root,
+        path: core_domain.ControlPanelRoutes.root,
       );
 
       expect(engine.decide(ctx), isNull);
