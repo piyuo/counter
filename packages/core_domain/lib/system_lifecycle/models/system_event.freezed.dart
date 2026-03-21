@@ -55,14 +55,13 @@ extension SystemEventPatterns on SystemEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult Function( CameraMissingLiveStreamAvailable value)?  cameraMissingLiveStreamAvailable,TResult Function( CameraAndLiveStreamUnavailable value)?  cameraAndLiveStreamUnavailable,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult Function( CameraMissing value)?  cameraMissing,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated(_that);case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed(_that);case CameraMissingLiveStreamAvailable() when cameraMissingLiveStreamAvailable != null:
-return cameraMissingLiveStreamAvailable(_that);case CameraAndLiveStreamUnavailable() when cameraAndLiveStreamUnavailable != null:
-return cameraAndLiveStreamUnavailable(_that);case _:
+return hardwareCheckPassed(_that);case CameraMissing() when cameraMissing != null:
+return cameraMissing(_that);case _:
   return orElse();
 
 }
@@ -80,14 +79,13 @@ return cameraAndLiveStreamUnavailable(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HardwareCheckInitiated value)  hardwareCheckInitiated,required TResult Function( HardwareCheckPassed value)  hardwareCheckPassed,required TResult Function( CameraMissingLiveStreamAvailable value)  cameraMissingLiveStreamAvailable,required TResult Function( CameraAndLiveStreamUnavailable value)  cameraAndLiveStreamUnavailable,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HardwareCheckInitiated value)  hardwareCheckInitiated,required TResult Function( HardwareCheckPassed value)  hardwareCheckPassed,required TResult Function( CameraMissing value)  cameraMissing,}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated():
 return hardwareCheckInitiated(_that);case HardwareCheckPassed():
-return hardwareCheckPassed(_that);case CameraMissingLiveStreamAvailable():
-return cameraMissingLiveStreamAvailable(_that);case CameraAndLiveStreamUnavailable():
-return cameraAndLiveStreamUnavailable(_that);}
+return hardwareCheckPassed(_that);case CameraMissing():
+return cameraMissing(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -101,14 +99,13 @@ return cameraAndLiveStreamUnavailable(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult? Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult? Function( CameraMissingLiveStreamAvailable value)?  cameraMissingLiveStreamAvailable,TResult? Function( CameraAndLiveStreamUnavailable value)?  cameraAndLiveStreamUnavailable,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult? Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult? Function( CameraMissing value)?  cameraMissing,}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated(_that);case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed(_that);case CameraMissingLiveStreamAvailable() when cameraMissingLiveStreamAvailable != null:
-return cameraMissingLiveStreamAvailable(_that);case CameraAndLiveStreamUnavailable() when cameraAndLiveStreamUnavailable != null:
-return cameraAndLiveStreamUnavailable(_that);case _:
+return hardwareCheckPassed(_that);case CameraMissing() when cameraMissing != null:
+return cameraMissing(_that);case _:
   return null;
 
 }
@@ -125,13 +122,12 @@ return cameraAndLiveStreamUnavailable(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  hardwareCheckInitiated,TResult Function()?  hardwareCheckPassed,TResult Function()?  cameraMissingLiveStreamAvailable,TResult Function()?  cameraAndLiveStreamUnavailable,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  hardwareCheckInitiated,TResult Function()?  hardwareCheckPassed,TResult Function()?  cameraMissing,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated();case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed();case CameraMissingLiveStreamAvailable() when cameraMissingLiveStreamAvailable != null:
-return cameraMissingLiveStreamAvailable();case CameraAndLiveStreamUnavailable() when cameraAndLiveStreamUnavailable != null:
-return cameraAndLiveStreamUnavailable();case _:
+return hardwareCheckPassed();case CameraMissing() when cameraMissing != null:
+return cameraMissing();case _:
   return orElse();
 
 }
@@ -149,13 +145,12 @@ return cameraAndLiveStreamUnavailable();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  hardwareCheckInitiated,required TResult Function()  hardwareCheckPassed,required TResult Function()  cameraMissingLiveStreamAvailable,required TResult Function()  cameraAndLiveStreamUnavailable,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  hardwareCheckInitiated,required TResult Function()  hardwareCheckPassed,required TResult Function()  cameraMissing,}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated():
 return hardwareCheckInitiated();case HardwareCheckPassed():
-return hardwareCheckPassed();case CameraMissingLiveStreamAvailable():
-return cameraMissingLiveStreamAvailable();case CameraAndLiveStreamUnavailable():
-return cameraAndLiveStreamUnavailable();}
+return hardwareCheckPassed();case CameraMissing():
+return cameraMissing();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -169,13 +164,12 @@ return cameraAndLiveStreamUnavailable();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  hardwareCheckInitiated,TResult? Function()?  hardwareCheckPassed,TResult? Function()?  cameraMissingLiveStreamAvailable,TResult? Function()?  cameraAndLiveStreamUnavailable,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  hardwareCheckInitiated,TResult? Function()?  hardwareCheckPassed,TResult? Function()?  cameraMissing,}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated();case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed();case CameraMissingLiveStreamAvailable() when cameraMissingLiveStreamAvailable != null:
-return cameraMissingLiveStreamAvailable();case CameraAndLiveStreamUnavailable() when cameraAndLiveStreamUnavailable != null:
-return cameraAndLiveStreamUnavailable();case _:
+return hardwareCheckPassed();case CameraMissing() when cameraMissing != null:
+return cameraMissing();case _:
   return null;
 
 }
@@ -250,8 +244,8 @@ String toString() {
 /// @nodoc
 
 
-class CameraMissingLiveStreamAvailable implements SystemEvent {
-  const CameraMissingLiveStreamAvailable();
+class CameraMissing implements SystemEvent {
+  const CameraMissing();
   
 
 
@@ -261,7 +255,7 @@ class CameraMissingLiveStreamAvailable implements SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraMissingLiveStreamAvailable);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraMissing);
 }
 
 
@@ -270,39 +264,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent.cameraMissingLiveStreamAvailable()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class CameraAndLiveStreamUnavailable implements SystemEvent {
-  const CameraAndLiveStreamUnavailable();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraAndLiveStreamUnavailable);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SystemEvent.cameraAndLiveStreamUnavailable()';
+  return 'SystemEvent.cameraMissing()';
 }
 
 

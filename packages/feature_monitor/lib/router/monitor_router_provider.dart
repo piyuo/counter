@@ -13,7 +13,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'monitor_route_map.dart';
+import 'monitor_route_data.dart';
 import 'monitor_route_rules_provider.dart';
 
 final monitorRouterProvider = Provider.family<GoRouter, String?>((ref, initialLocation) {
@@ -41,7 +41,7 @@ final monitorRouterProvider = Provider.family<GoRouter, String?>((ref, initialLo
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
     refreshListenable: notifier,
-    routes: monitorRouteMap(),
+    routes: $appRoutes,
     redirect: (context, state) {
       // Use read inside redirect to avoid recreating the router on every rebuild.
       final engine = ref.read(monitorRouteDecisionEngineProvider);
@@ -73,7 +73,9 @@ final monitorRouterProvider = Provider.family<GoRouter, String?>((ref, initialLo
 
   // Event-driven: one-shot navigation events go directly to router.go(),
   // bypassing the redirect cycle — no consume(), no stale state.
-  final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((event) {});
+  final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((action) {
+    //appkit.logInfo('[monitor_route] (${action.event.runtimeType}) — not handled');
+  });
 
   ref.onDispose(() {
     notifier.dispose();

@@ -8,27 +8,12 @@ part of 'system_lifecycle_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 
 @ProviderFor(SystemLifecycleNotifier)
 final systemLifecycleProvider = SystemLifecycleNotifierProvider._();
 
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 final class SystemLifecycleNotifierProvider
     extends $NotifierProvider<SystemLifecycleNotifier, SystemLifecycle> {
-  /// Architecture note:
-  /// - Lifecycle is a synchronous state machine (event -> next state).
-  /// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-  /// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-  /// - AppBoot keeps itself alive only during async boot, then auto-disposes.
   SystemLifecycleNotifierProvider._()
     : super(
         from: null,
@@ -57,13 +42,7 @@ final class SystemLifecycleNotifierProvider
 }
 
 String _$systemLifecycleNotifierHash() =>
-    r'534c19f6632c789c81abd7edcc0eb1f811d0933b';
-
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
+    r'b89bdfe85f5552f0b8293f8ccee3d5c40a0ba0cf';
 
 abstract class _$SystemLifecycleNotifier extends $Notifier<SystemLifecycle> {
   SystemLifecycle build();

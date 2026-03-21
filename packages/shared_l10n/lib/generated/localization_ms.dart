@@ -79,6 +79,30 @@ class LocalizationMs extends Localization {
   String get color_screen_title => 'Pilih warna';
 
   @override
+  String get count_avg_dwell => 'Masa Purata';
+
+  @override
+  String get count_avg_occ => 'Purata Huni';
+
+  @override
+  String get count_enter => 'Masuk';
+
+  @override
+  String get count_exit => 'Keluar';
+
+  @override
+  String get count_max_dwell => 'Masa Maks.';
+
+  @override
+  String get count_max_occ => 'Occ. Maks.';
+
+  @override
+  String get count_pass_by => 'Lalu';
+
+  @override
+  String get count_window => 'Tempoh Kiraan: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Masuk semula memerlukan masa tenang #0 saat selepas keluar dari zon pengesanan';
 

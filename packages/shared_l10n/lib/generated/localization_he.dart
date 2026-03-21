@@ -79,6 +79,30 @@ class LocalizationHe extends Localization {
   String get color_screen_title => 'בחר צבע';
 
   @override
+  String get count_avg_dwell => 'שהות ממוצעת';
+
+  @override
+  String get count_avg_occ => 'ממוצע נוכחות';
+
+  @override
+  String get count_enter => 'כניסה';
+
+  @override
+  String get count_exit => 'יציאה';
+
+  @override
+  String get count_max_dwell => 'שהות מרבית';
+
+  @override
+  String get count_max_occ => 'תפוסה מרבית';
+
+  @override
+  String get count_pass_by => 'עברו';
+
+  @override
+  String get count_window => 'תקופת הספירה: 5 דקות';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'כניסה חוזרת דורשת זמן צינון של #0 שניות לאחר יציאה מאזור הזיהוי';
 

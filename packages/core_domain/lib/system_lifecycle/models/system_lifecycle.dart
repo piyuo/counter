@@ -11,9 +11,6 @@ sealed class SystemLifecycle with _$SystemLifecycle {
   /// The system is actively performing hardware verification.
   const factory SystemLifecycle.checkingHardware() = CheckingHardware;
 
-  /// The system is operating in a degraded state (no camera, stream only).
-  const factory SystemLifecycle.liveStreamOnly() = LiveStreamOnly;
-
   /// The system is fully initialized and operational.
   const factory SystemLifecycle.systemReady() = SystemReady;
 

@@ -79,6 +79,30 @@ class LocalizationTh extends Localization {
   String get color_screen_title => 'เลือกสี';
 
   @override
+  String get count_avg_dwell => 'เฉลี่ยเวลา';
+
+  @override
+  String get count_avg_occ => 'เฉลี่ยคน';
+
+  @override
+  String get count_enter => 'เข้า';
+
+  @override
+  String get count_exit => 'ออก';
+
+  @override
+  String get count_max_dwell => 'สูงสุดเวลา';
+
+  @override
+  String get count_max_occ => 'สูงสุด';
+
+  @override
+  String get count_pass_by => 'ผ่าน';
+
+  @override
+  String get count_window => 'สรุปช่วงเวลา: 5 นาที';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'การเข้าซ้ำต้องมีเวลาคูลดาวน์ #0 วินาทีหลังจากออกจากโซนการตรวจจับ';
 

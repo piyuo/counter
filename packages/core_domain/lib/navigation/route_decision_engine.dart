@@ -21,14 +21,16 @@ import 'route_rule.dart';
 ///
 /// Usage:
 /// ```dart
-/// final engine = RouteDecisionEngine([SystemLifecycleRule(), AppFlowRule()]);
+/// final engine = RouteDecisionEngine('main', [SystemLifecycleRule(), AppFlowRule()]);
 /// final decision = engine.decide(context); // returns RouteDecision or null
 /// ```
 class RouteDecisionEngine {
+  final String name;
   final List<RouteRule> _rules;
 
-  /// Constructs the engine and sorts [rules] by [RouteRule.priority] ascending.
-  RouteDecisionEngine(List<RouteRule> rules)
+  /// Constructs the engine with a [name] for log identification and sorts [rules]
+  /// by [RouteRule.priority] ascending.
+  RouteDecisionEngine(this.name, List<RouteRule> rules)
     : _rules = List.of(rules)..sort((a, b) => a.priority.compareTo(b.priority));
 
   /// Evaluates all rules against [context] and returns the first [RouteDecision].
@@ -45,19 +47,38 @@ class RouteDecisionEngine {
   /// a cycle. The engine also caps at [_maxChainDepth] steps as a safety
   /// backstop against pathological rule combinations.
   ///
-  /// **Logging** — the trigger (what changed) and only opinionated rules are
-  /// emitted via `appkit.logInfo`:
+  /// **Logging** — emits a single line per call via `appkit.logInfo`:
   ///
   /// ```
-  /// [RouteDecisionEngine] decide() at "/home" ← flow: CheckingBackend→OnboardingRequired
-  ///   ControlPanelAppFlowRule(p:10) → "/onboarding" [AppFlow transition: checkingBackend -> onboardingRequired]
+  /// [main] decide("/home") ← flow:CheckingBackend→OnboardingRequired | rules: ControlPanelAppFlowRule(p:10)→"/onboarding" | result: "/onboarding"
   /// ```
   ///
   /// Returns `null` when no rule fires or a cycle is detected.
   static const int _maxChainDepth = 20;
 
   RouteDecision? decide(RouteContext context) {
-    _logEvaluations(context);
+    // Build trigger string.
+    final triggers = <String>[];
+    if (context.lifecycleChanged) {
+      triggers.add('lifecycle:${context.previousLifecycle.runtimeType} → ${context.lifecycle.runtimeType}');
+    }
+    if (context.flowChanged) {
+      triggers.add('flow:${context.previousFlow.runtimeType} → ${context.flow.runtimeType}');
+    }
+    if (context.pathChanged) {
+      triggers.add('path:${context.previousPath} → ${context.path}');
+    }
+    final trigger = triggers.isEmpty ? 'initial' : triggers.join(', ');
+
+    // Collect opinionated rule verdicts for the current context.
+    final ruleHits = <String>[];
+    for (final rule in _rules) {
+      final candidate = rule.evaluate(context);
+      if (candidate != null && candidate.target != context.path) {
+        ruleHits.add('${rule.runtimeType}(p:${rule.priority})→"${candidate.target}"');
+      }
+    }
+    final rulesStr = ruleHits.isEmpty ? '' : ' | rules: ${ruleHits.join(', ')}';
 
     // Walk the full chain to detect cycles before returning the first step.
     final visited = <String>{context.path};
@@ -79,9 +100,6 @@ class RouteDecisionEngine {
 
       // A target we have already visited means a cycle.
       if (visited.contains(step.target)) {
-        appkit.logInfo(
-          '[RouteDecisionEngine] cycle detected: ${visited.join(' → ')} → ${step.target} — returning null',
-        );
         return null;
       }
 
@@ -92,37 +110,9 @@ class RouteDecisionEngine {
       simulated = RouteContext(lifecycle: simulated.lifecycle, flow: simulated.flow, path: step.target);
     }
 
+    if (first != null) {
+      appkit.logInfo('[$name] ${context.path} → ${first.target} ($trigger)');
+    }
     return first;
-  }
-
-  /// Logs the trigger and only opinionated rule verdicts for [context].
-  ///
-  /// Example output:
-  /// ```
-  /// [RouteDecisionEngine] decide() at "/home" ← flow: CheckingBackend→OnboardingRequired
-  ///   ControlPanelAppFlowRule(p:10) → "/onboarding" [AppFlow transition: checkingBackend -> onboardingRequired]
-  /// ```
-  void _logEvaluations(RouteContext context) {
-    final triggers = <String>[];
-    if (context.lifecycleChanged) {
-      triggers.add('lifecycle: ${context.previousLifecycle.runtimeType}→${context.lifecycle.runtimeType}');
-    }
-    if (context.flowChanged) {
-      triggers.add('flow: ${context.previousFlow.runtimeType}→${context.flow.runtimeType}');
-    }
-    if (context.pathChanged) {
-      triggers.add('path: ${context.previousPath}→${context.path}');
-    }
-
-    final trigger = triggers.isEmpty ? 'initial' : triggers.join(', ');
-    appkit.logInfo('[RouteDecisionEngine] decide() at "${context.path}" ← $trigger');
-
-    for (final rule in _rules) {
-      final candidate = rule.evaluate(context);
-      if (candidate != null && candidate.target != context.path) {
-        final ruleName = '${rule.runtimeType}(p:${rule.priority})';
-        appkit.logInfo('[RouteDecisionEngine]   $ruleName → "${candidate.target}"');
-      }
-    }
   }
 }

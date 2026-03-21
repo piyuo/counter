@@ -1,39 +1,48 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# core_domain
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+Pure-Dart domain layer for the Counter app.  No platform dependencies — only
+models, abstract service contracts, and business logic.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## What's in here
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+| Sub-directory       | Purpose                                                              |
+| ------------------- | -------------------------------------------------------------------- |
+| `state/models/`     | App-wide value types (`DeliveryConfig`, `DataServer`, …)             |
+| `telemetry/`        | Delivery pipeline: queue models, service contracts, `DeliveryWorker` |
+| `app_flow/`         | App lifecycle domain types                                           |
+| `navigation/`       | Navigation route models                                              |
+| `services/`         | Shared abstract service interfaces                                   |
+| `system_lifecycle/` | System-level lifecycle hooks                                         |
 
-## Features
+Implementation of the abstract interfaces lives in `packages/core_runtime`.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## Telemetry subsystem
 
-## Getting started
+The telemetry pipeline collects observation-window analytics, persists them in
+a local SQLite queue, and delivers them to the configured backend endpoint.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```
+WindowResult
+    │
+    ▼  (WindowResultMapper — core_runtime)
+TelemetryPayload
+    │
+    ▼  (TelemetryQueueRepository — Drift in core_runtime)
+Persistent queue
+    │
+    ▼  (DeliveryWorker.run())
+PayloadSerializer ──► bytes ──► TelemetryTransport ──► Backend
 ```
 
-## Additional information
+See [`lib/telemetry/README.md`](lib/telemetry/README.md) for a detailed
+description of the delivery loop, retry/discard logic, and worker status
+attributes.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Testing
+
+```bash
+flutter test
+```
+
+All tests use lightweight in-memory stubs — no code generation, Drift, or
+network I/O required.

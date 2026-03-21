@@ -79,6 +79,30 @@ class LocalizationRu extends Localization {
   String get color_screen_title => 'Выберите цвет';
 
   @override
+  String get count_avg_dwell => 'Ср. пребывание';
+
+  @override
+  String get count_avg_occ => 'Ср. занятость';
+
+  @override
+  String get count_enter => 'Вход';
+
+  @override
+  String get count_exit => 'Выход';
+
+  @override
+  String get count_max_dwell => 'Пиковое время';
+
+  @override
+  String get count_max_occ => 'Пиковое число';
+
+  @override
+  String get count_pass_by => 'Прошли';
+
+  @override
+  String get count_window => 'Период подсчёта: 5 мин';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Повторный вход требует #0-секундного времени восстановления после выхода из зоны обнаружения';
 

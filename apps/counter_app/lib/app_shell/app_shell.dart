@@ -5,9 +5,10 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/app_shell/app_providers.dart';
 import 'package:counter_app/app_shell/app_router.dart';
 import 'package:counter_app/app_shell/app_theme.dart';
+import 'package:counter_app/boot/boot_notifier.dart';
 import 'package:counter_app/features/monitor/monitor.dart' as app;
+import 'package:counter_app/vision/vision_session_bootstrap.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -31,6 +32,9 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   void initState() {
     super.initState();
+    // Start the boot sequence. BootNotifier orchestrates hardware + app-flow
+    // checks and drives SystemLifecycleNotifier transitions via dispatch().
+    ref.read(bootProvider);
     // delay to avoid busy state when open project
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
@@ -53,32 +57,33 @@ class _AppShellState extends ConsumerState<AppShell> {
     ];
 
     return AppProviders(
-      child: CupertinoTheme(
-        data: AppTheme.cupertinoTheme,
-        child: provider.Consumer<app.ProjectProvider>(
-          builder: (context, projectProvider, child) {
-            // system lifecycle start
-            // ignore: unused_local_variable
-            final systemLifecycle = ref.watch(core_domain.systemLifecycleProvider);
-            final defaultLocale = widget.locale ?? appkit.localeSystem;
+      child: provider.Consumer<app.ProjectProvider>(
+        builder: (context, projectProvider, child) {
+          // Watch lifecycle so the widget tree rebuilds when state changes.
+          // ignore: unused_local_variable
+          final systemLifecycle = ref.watch(core_domain.systemLifecycleProvider);
+          final defaultLocale = widget.locale ?? appkit.localeSystem;
 
-            return ToastificationWrapper(
-              child: MaterialApp(
-                navigatorKey: projectProvider.navigatorKey,
-                debugShowCheckedModeBanner: false,
-                locale: defaultLocale,
-                localizationsDelegates: appLocaleDelegates,
-                supportedLocales: shared_l10n.Localization.supportedLocales,
-                localeResolutionCallback: appkit.localeResolutionCallback,
-                theme: AppTheme.materialTheme,
-                initialRoute: '/',
-                onGenerateRoute: (routeSettings) {
-                  return AppRouter.onGenerateRoute(routeSettings, ref, projectProvider, appLocaleDelegates);
-                },
+          return VisionSessionBootstrap(
+            child: ToastificationWrapper(
+              child: AppTheme(
+                child: MaterialApp(
+                  navigatorKey: projectProvider.navigatorKey,
+                  debugShowCheckedModeBanner: false,
+                  locale: defaultLocale,
+                  localizationsDelegates: appLocaleDelegates,
+                  supportedLocales: shared_l10n.Localization.supportedLocales,
+                  localeResolutionCallback: appkit.localeResolutionCallback,
+                  theme: AppTheme.themeData,
+                  initialRoute: '/',
+                  onGenerateRoute: (routeSettings) {
+                    return AppRouter.onGenerateRoute(routeSettings, ref, projectProvider, appLocaleDelegates);
+                  },
+                ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

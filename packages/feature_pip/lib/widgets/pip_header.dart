@@ -1,44 +1,41 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-/// A header widget usually used in PipScaffold.
+import 'pip_panel.dart';
+
 class PipHeader extends StatelessWidget {
-  const PipHeader({
-    required this.child,
-    this.padding = const EdgeInsets.all(20.0),
-    this.showBottomBorder = true,
-    super.key,
-  });
+  const PipHeader({required this.title, required this.icon, this.children = const [], this.subtitle, super.key});
 
-  /// The child widget to display in the header.
-  final Widget child;
+  final List<Widget> children;
 
-  /// The padding to apply to the header.
-  final EdgeInsetsGeometry padding;
+  final String title;
 
-  /// Whether to show the bottom border.
-  final bool showBottomBorder;
+  final String? subtitle;
+
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: CupertinoColors.systemGrey6.resolveFrom(context).withValues(alpha: 0.85),
-        border: Border(
-          top: BorderSide(
-            color: CupertinoColors.opaqueSeparator.resolveFrom(context).withValues(alpha: 0.85),
-            width: 1.0,
-          ),
-          bottom: showBottomBorder
-              ? BorderSide(
-                  color: CupertinoColors.opaqueSeparator.resolveFrom(context).withValues(alpha: 0.85),
-                  width: 1.0,
-                )
-              : BorderSide.none,
-        ),
+    return PipPanel(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+      child: Column(
+        children: [
+          Icon(icon, size: 64),
+          const SizedBox(height: 8),
+          // title
+          Text(title, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 4),
+          // subtitle
+          if (subtitle != null)
+            Text(
+              subtitle!,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+            ),
+          if (subtitle != null) const SizedBox(height: 4),
+          ...children,
+        ],
       ),
-      padding: padding,
-      child: child,
     );
   }
 }

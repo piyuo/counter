@@ -11,9 +11,6 @@ sealed class SystemEvent with _$SystemEvent {
   /// Signals that all hardware checks passed successfully.
   const factory SystemEvent.hardwareCheckPassed() = HardwareCheckPassed;
 
-  /// Signals that the primary camera is missing, but a live stream is available.
-  const factory SystemEvent.cameraMissingLiveStreamAvailable() = CameraMissingLiveStreamAvailable;
-
-  /// Signals that neither the camera nor the live stream is available.
-  const factory SystemEvent.cameraAndLiveStreamUnavailable() = CameraAndLiveStreamUnavailable;
+  /// camera is missing
+  const factory SystemEvent.cameraMissing() = CameraMissing;
 }

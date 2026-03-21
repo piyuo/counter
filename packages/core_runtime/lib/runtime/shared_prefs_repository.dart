@@ -15,12 +15,25 @@ class SharedPrefsAppStateRepository implements core_domain.AppStateRepository {
       return const core_domain.AppState();
     }
 
-    return core_domain.AppState.fromJson(jsonDecode(jsonString));
+    try {
+      return core_domain.AppState.fromJson(jsonDecode(jsonString));
+    } catch (_) {
+      // Stored data is malformed or incompatible with the current schema.
+      // Wipe it out and start fresh.
+      await reset();
+      return const core_domain.AppState();
+    }
   }
 
   @override
   Future<void> save(core_domain.AppState state) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_key, jsonEncode(state.toJson()));
+  }
+
+  @override
+  Future<void> reset() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_key);
   }
 }

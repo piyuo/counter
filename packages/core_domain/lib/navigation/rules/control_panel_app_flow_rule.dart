@@ -23,10 +23,10 @@ class ControlPanelAppFlowRule implements RouteRule {
   @override
   RouteDecision? evaluate(RouteContext context) {
     return switch ((context.previousFlow, context.flow)) {
-      (WaitingForStart(), OnboardingByInvitation()) => RouteDecision(target: OnboardingRoutes.onboardingInvitation),
-      (CheckingBackend(), OnboardingRequired()) => const RouteDecision(target: OnboardingRoutes.onboarding),
-      (OnboardingRequired(), SessionRunning()) => const RouteDecision(target: ControlPanelRoutes.start),
-      (CheckingBackend(), SessionRunning()) => const RouteDecision(target: ControlPanelRoutes.start),
+      (CheckingDataServer(), OnboardingByInvitation()) => RouteDecision(target: OnboardingRoutes.onboardingInvitation),
+      (CheckingDataServer(), OnboardingBegin()) => const RouteDecision(target: OnboardingRoutes.onboarding),
+      (OnboardingBegin(), SessionRunning()) => const RouteDecision(target: ControlPanelRoutes.start),
+      (CheckingDataServer(), SessionRunning()) => const RouteDecision(target: ControlPanelRoutes.start),
       _ => null,
     };
   }

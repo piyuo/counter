@@ -1,6 +1,7 @@
 name: feature_control_panel
 description: "the float window control panel"
 version: 0.0.1
+publish_to: none
 resolution: workspace
 
 environment:
@@ -14,13 +15,21 @@ dependencies:
   feature_pip: any
   flutter:
     sdk: flutter
+  flutter_vision:
+    path: ../../../flutter-vision
+  liquid_glass_widgets: ^0.8.1
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.1.1
+      ref: v3.2.0
   flutter_riverpod: ^3.2.1
+  image_picker: ^1.1.2
+  intl: ^0.20.2
   freezed_annotation: ^3.1.0
   package_info_plus: ^8.2.1
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  primer_progress_bar: ^0.5.0
   go_router: ^17.1.0
   riverpod_annotation: ^4.0.2
   shared_l10n: ^0.0.1
@@ -32,6 +41,7 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   freezed: ^3.2.5
   analyzer: ^9.0.0
+  go_router_builder: ^4.2.1
   riverpod_generator: ^4.0.3
   build_runner: ^2.11.1
 

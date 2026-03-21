@@ -26,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
               controller: scrollController,
               child: Column(
                 children: [
-                  feature_pip.PipHeader(
+                  feature_pip.PipPanel(
                     child: Column(
                       children: [
                         Icon(CupertinoIcons.settings, size: 44),
@@ -37,7 +37,6 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_project_name),
                     footer: settingsScreenProvider._projectNameErrorMessage.isNotEmpty
                         ? Text(
@@ -57,7 +56,6 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_project_id),
                     children: [
                       Row(
@@ -75,7 +73,6 @@ class SettingsScreen extends StatelessWidget {
                   CupertinoListSection(
                     header: Text(context.l.settings_screen_center_point_title),
                     footer: Text(context.l.settings_screen_center_point_desc),
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         title: Text(context.l.settings_screen_center_point_button),
@@ -91,7 +88,6 @@ class SettingsScreen extends StatelessWidget {
                   CupertinoListSection(
                     header: Text(context.l.settings_screen_lost_target_title),
                     footer: Text(context.l.settings_screen_lost_target_desc),
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         title: Text(context.l.settings_screen_lost_target_button),
@@ -108,7 +104,6 @@ class SettingsScreen extends StatelessWidget {
                   CupertinoListSection(
                     dividerMargin: 0,
                     hasLeading: false,
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_reset_count_header),
                     children: [
                       if (projectProvider.developMode)
@@ -126,27 +121,12 @@ class SettingsScreen extends StatelessWidget {
                         title: Center(
                           child: CupertinoButton(
                             onPressed: () async {
-                              final bool? result = await showCupertinoDialog<bool>(
-                                context: context,
-                                builder: (context) {
-                                  return CupertinoAlertDialog(
-                                    title: Text(context.l.settings_screen_reset_count_button),
-                                    content: Text(context.l.settings_screen_reset_count_content),
-                                    actions: [
-                                      CupertinoDialogAction(
-                                        isDefaultAction: true,
-                                        textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                                        onPressed: () => Navigator.pop(context, false),
-                                        child: Text(context.l.cancel),
-                                      ),
-                                      CupertinoDialogAction(
-                                        isDestructiveAction: true,
-                                        onPressed: () => Navigator.pop(context, true),
-                                        child: Text(context.l.settings_screen_reset_count_button),
-                                      ),
-                                    ],
-                                  );
-                                },
+                              final bool? result = await feature_pip.showYesNoMessageDialog(
+                                context.l.settings_screen_reset_count_content,
+                                title: context.l.settings_screen_reset_count_button,
+                                noLabel: context.l.cancel,
+                                yesLabel: context.l.settings_screen_reset_count_button,
+                                isYesDestructive: true,
                               );
                               if (result == null || !result) return;
                               projectProvider.resetCounts();
@@ -161,36 +141,19 @@ class SettingsScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.settings_screen_delete_header),
                     children: [
                       CupertinoListTile(
                         title: Center(
                           child: CupertinoButton(
                             onPressed: () async {
-                              final navigator = Navigator.of(context);
                               // show confirmation dialog
-                              final bool? result = await showCupertinoDialog<bool>(
-                                context: context,
-                                builder: (context) {
-                                  return CupertinoAlertDialog(
-                                    title: Text(context.l.settings_screen_delete_header),
-                                    content: Text(context.l.settings_screen_delete_content),
-                                    actions: [
-                                      CupertinoDialogAction(
-                                        isDefaultAction: true,
-                                        textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                                        onPressed: () => Navigator.pop(context, false),
-                                        child: Text(context.l.cancel),
-                                      ),
-                                      CupertinoDialogAction(
-                                        isDestructiveAction: true,
-                                        onPressed: () => Navigator.pop(context, true),
-                                        child: Text(context.l.settings_screen_delete_button),
-                                      ),
-                                    ],
-                                  );
-                                },
+                              final bool? result = await feature_pip.showYesNoMessageDialog(
+                                context.l.settings_screen_delete_content,
+                                title: context.l.settings_screen_delete_header,
+                                noLabel: context.l.cancel,
+                                yesLabel: context.l.settings_screen_delete_button,
+                                isYesDestructive: true,
                               );
                               if (result == null || !result) return;
                               await Future.delayed(const Duration(milliseconds: 500));
@@ -205,7 +168,6 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

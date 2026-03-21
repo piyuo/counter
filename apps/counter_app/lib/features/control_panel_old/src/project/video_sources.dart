@@ -1,4 +1,5 @@
 import 'package:counter_app/features/monitor/monitor.dart' as app;
+import 'package:feature_pip/feature_pip.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:permission_handler/permission_handler.dart';
@@ -18,22 +19,10 @@ Future<bool> isCameraExists(BuildContext context, app.ProjectProvider projectPro
     return false;
   }
 
-  await showCupertinoDialog(
-    context: context,
-    builder: (context) {
-      return CupertinoAlertDialog(
-        title: Text(context.l.video_sources_camera_not_found_title),
-        content: Text(context.l.video_sources_camera_not_found_message),
-        actions: [
-          CupertinoDialogAction(
-            child: Text(context.l.ok),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
+  await showMessageDialog(
+    context.l.video_sources_camera_not_found_message,
+    title: context.l.video_sources_camera_not_found_title,
+    label: context.l.ok,
   );
 
   return false;
@@ -47,23 +36,11 @@ Future<bool> isWebcamExists(app.ProjectProvider projectProvider) async {
   }
 
   // show dialog to say camera not found
-  await showCupertinoDialog(
-    // ignore: use_build_context_synchronously
-    context: appkit.globalContext,
-    builder: (context) {
-      return CupertinoAlertDialog(
-        title: Text(context.l.video_sources_webcam_not_found_title),
-        content: Text(context.l.video_sources_webcam_not_found_message),
-        actions: [
-          CupertinoDialogAction(
-            child: Text(context.l.ok),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
+  // ignore: use_build_context_synchronously
+  await showMessageDialog(
+    appkit.globalContext.l.video_sources_webcam_not_found_message,
+    title: appkit.globalContext.l.video_sources_webcam_not_found_title,
+    label: appkit.globalContext.l.ok,
   );
   return false;
 }
@@ -72,31 +49,16 @@ Future<bool> isWebcamExists(app.ProjectProvider projectProvider) async {
 Future<bool> havePhoneCameraPermission() async {
   var status = await Permission.camera.status;
   if (status.isPermanentlyDenied) {
-    await showCupertinoDialog(
-      // ignore: use_build_context_synchronously
-      context: appkit.globalContext,
-      builder: (context) {
-        return CupertinoAlertDialog(
-          title: Text(context.l.video_sources_camera_denied),
-          content: Text(context.l.video_sources_camera_denied_msg),
-          actions: [
-            CupertinoDialogAction(
-              textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-              onPressed: () => Navigator.pop(context, false),
-              child: Text(context.l.cancel),
-            ),
-            CupertinoDialogAction(
-              isDefaultAction: true,
-              child: Text(context.l.video_sources_photos_goto_settings),
-              onPressed: () async {
-                openAppSettings();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+    // ignore: use_build_context_synchronously
+    final result = await showYesNoMessageDialog(
+      appkit.globalContext.l.video_sources_camera_denied_msg,
+      title: appkit.globalContext.l.video_sources_camera_denied,
+      noLabel: appkit.globalContext.l.cancel,
+      yesLabel: appkit.globalContext.l.video_sources_photos_goto_settings,
     );
+    if (result == true) {
+      await openAppSettings();
+    }
     return false;
   }
   return true;
@@ -176,31 +138,16 @@ List<Widget> buildVideoSources(
           if (filePath == 'denied') {
             var status = await Permission.photos.status;
             if (status.isPermanentlyDenied) {
-              await showCupertinoDialog(
-                // ignore: use_build_context_synchronously
-                context: appkit.globalContext,
-                builder: (context) {
-                  return CupertinoAlertDialog(
-                    title: Text(context.l.video_sources_photos_denied),
-                    content: Text(context.l.video_sources_photos_denied_msg),
-                    actions: [
-                      CupertinoDialogAction(
-                        textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                        onPressed: () => Navigator.pop(context, false),
-                        child: Text(context.l.cancel),
-                      ),
-                      CupertinoDialogAction(
-                        isDefaultAction: true,
-                        child: Text(context.l.video_sources_photos_goto_settings),
-                        onPressed: () async {
-                          openAppSettings();
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                },
+              // ignore: use_build_context_synchronously
+              final result = await showYesNoMessageDialog(
+                appkit.globalContext.l.video_sources_photos_denied_msg,
+                title: appkit.globalContext.l.video_sources_photos_denied,
+                noLabel: appkit.globalContext.l.cancel,
+                yesLabel: appkit.globalContext.l.video_sources_photos_goto_settings,
               );
+              if (result == true) {
+                await openAppSettings();
+              }
               // permanently denied, let user go to settings
               return;
             }

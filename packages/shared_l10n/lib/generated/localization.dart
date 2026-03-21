@@ -288,6 +288,54 @@ abstract class Localization {
   /// **'Pick a color'**
   String get color_screen_title;
 
+  /// No description provided for @count_avg_dwell.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg Dwell'**
+  String get count_avg_dwell;
+
+  /// No description provided for @count_avg_occ.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg Occ'**
+  String get count_avg_occ;
+
+  /// No description provided for @count_enter.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter'**
+  String get count_enter;
+
+  /// No description provided for @count_exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exit'**
+  String get count_exit;
+
+  /// No description provided for @count_max_dwell.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak Dwell'**
+  String get count_max_dwell;
+
+  /// No description provided for @count_max_occ.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak Occ'**
+  String get count_max_occ;
+
+  /// No description provided for @count_pass_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Passed'**
+  String get count_pass_by;
+
+  /// No description provided for @count_window.
+  ///
+  /// In en, this message translates to:
+  /// **'Counting Window: 5 min'**
+  String get count_window;
+
   /// No description provided for @counter_screen_cooldown_desc.
   ///
   /// In en, this message translates to:

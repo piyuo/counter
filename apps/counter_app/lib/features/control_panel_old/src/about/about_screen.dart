@@ -25,7 +25,7 @@ class AboutScreen extends StatelessWidget {
               controller: scrollController,
               child: Column(
                 children: [
-                  feature_pip.PipHeader(
+                  feature_pip.PipPanel(
                     child: Column(
                       children: [
                         Image(image: AssetImage('assets/icon/icon.png'), width: 145, height: 140),
@@ -39,7 +39,6 @@ class AboutScreen extends StatelessWidget {
                     ),
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         additionalInfo: Text(aboutScreenProvider.platform),
@@ -54,7 +53,6 @@ class AboutScreen extends StatelessWidget {
                   ),
                   CupertinoListSection(
                     header: Text(context.l.about_screen_models),
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         trailing: CupertinoListTileChevron(),
@@ -65,7 +63,6 @@ class AboutScreen extends StatelessWidget {
                   ),
                   if (aboutScreenProvider._versionTapCount >= 10)
                     CupertinoListSection(
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
                           title: Text(context.l.about_screen_opencv_build_info),
@@ -74,7 +71,6 @@ class AboutScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

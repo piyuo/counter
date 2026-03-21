@@ -37,14 +37,25 @@ class AppRouter {
           final appFlow = ref.watch(core_domain.appFlowProvider);
           return appkit.GlobalContext(
             child: vision.VisionLifecycle(
-              child: feature_pip.PipScreen(
-                defaultSidebarBackgroundColor: appFlow.isOnboarding ? CupertinoColors.white : CupertinoColors.black,
-                isLockToPortrait: projectProvider.isLockToPortrait,
-                slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
-                  key: _controlPanelKey,
-                  appLocaleDelegates: appLocaleDelegates,
+              child: Listener(
+                onPointerDown: (_) {
+                  final visionController = ref.read(vision.activeVisionControllerProvider);
+                  if (visionController == null) return;
+                  visionController.notifyUserInteraction();
+                },
+                onPointerSignal: (_) {
+                  final visionController = ref.read(vision.activeVisionControllerProvider);
+                  if (visionController == null) return;
+                  visionController.notifyUserInteraction();
+                },
+                child: feature_pip.PipScreen(
+                  isLockToPortrait: projectProvider.isLockToPortrait,
+                  slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
+                    key: _controlPanelKey,
+                    appLocaleDelegates: appLocaleDelegates,
+                  ),
+                  builder: (isSideLayout) => feature_monitor.MonitorShell(),
                 ),
-                builder: (isSideLayout) => feature_monitor.MonitorShell(),
               ),
             ),
           );

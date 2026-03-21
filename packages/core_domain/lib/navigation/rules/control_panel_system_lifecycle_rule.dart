@@ -6,8 +6,6 @@
 import 'package:core_domain/navigation/route_context.dart';
 import 'package:core_domain/navigation/route_decision.dart';
 import 'package:core_domain/navigation/route_rule.dart';
-import 'package:core_domain/navigation/routes/control_panel_routes.dart';
-import 'package:core_domain/system_lifecycle/models/system_lifecycle.dart';
 
 /// Redirects to degraded-mode routes when the system lifecycle requires it.
 ///
@@ -22,7 +20,7 @@ class ControlPanelSystemLifecycleRule implements RouteRule {
   @override
   RouteDecision? evaluate(RouteContext context) {
     return switch ((context.previousLifecycle, context.lifecycle)) {
-      (CheckingHardware(), LiveStreamOnly()) => const RouteDecision(target: ControlPanelRoutes.liveStreamOnly),
+      //(CheckingHardware(), LiveStreamOnly()) => const RouteDecision(target: ControlPanelRoutes.liveStreamOnly),
       _ => null,
     };
   }

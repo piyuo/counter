@@ -35,7 +35,6 @@ class DetectionScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.detection_screen_confidence),
                     footer: Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
@@ -63,7 +62,6 @@ class DetectionScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.detection_screen_nms),
                     footer: Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
@@ -91,7 +89,6 @@ class DetectionScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.detection_screen_match),
                     footer: Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
@@ -119,7 +116,6 @@ class DetectionScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.detection_screen_lost),
                     footer: Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
@@ -165,7 +161,6 @@ class DetectionScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.detection_screen_consider_valid),
                     footer: Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
@@ -191,7 +186,6 @@ class DetectionScreen extends StatelessWidget {
                     ],
                   ),
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: [
                       CupertinoListTile(
                         title: Center(
@@ -201,36 +195,21 @@ class DetectionScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: () async {
-                          final bool okToReset =
-                              await showCupertinoDialog<bool?>(
-                                context: context,
-                                builder: (BuildContext context) => CupertinoAlertDialog(
-                                  title: Text(context.l.detection_screen_reset),
-                                  content: Text(context.l.detection_screen_reset_content),
-                                  actions: <CupertinoDialogAction>[
-                                    CupertinoDialogAction(
-                                      isDefaultAction: true,
-                                      textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text(context.l.no),
-                                    ),
-                                    CupertinoDialogAction(
-                                      isDestructiveAction: true,
-                                      onPressed: () => Navigator.pop(context, true),
-                                      child: Text(context.l.yes),
-                                    ),
-                                  ],
-                                ),
-                              ) ??
-                              false;
-                          if (!okToReset) return;
-                          await videoProvider.resetDetectionSettings();
-                          detectionScreenProvider.onDetectionSettingsChanged();
+                          final bool? okToReset = await feature_pip.showYesNoMessageDialog(
+                            context.l.detection_screen_reset_content,
+                            title: context.l.detection_screen_reset,
+                            noLabel: context.l.no,
+                            yesLabel: context.l.yes,
+                            isYesDestructive: true,
+                          );
+                          if (okToReset ?? false) {
+                            await videoProvider.resetDetectionSettings();
+                            detectionScreenProvider.onDetectionSettingsChanged();
+                          }
                         },
                       ),
                     ],
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             );

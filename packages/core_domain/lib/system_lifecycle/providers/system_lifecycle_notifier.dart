@@ -1,4 +1,3 @@
-import 'package:core_domain/boot/boot_notifier.dart';
 import 'package:core_domain/system_lifecycle/models/system_event.dart';
 import 'package:core_domain/system_lifecycle/models/system_lifecycle.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
@@ -11,15 +10,9 @@ abstract class SystemLifecycleController {
 }
 
 @Riverpod(keepAlive: true)
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 class SystemLifecycleNotifier extends _$SystemLifecycleNotifier implements SystemLifecycleController {
   @override
   SystemLifecycle build() {
-    ref.read(bootProvider);
     return SystemLifecycle.booting();
   }
 
@@ -29,14 +22,22 @@ class SystemLifecycleNotifier extends _$SystemLifecycleNotifier implements Syste
     if (next == state) return;
     final previous = state;
     state = next;
-    appkit.logInfo('[SystemLifecycle] $previous → $next ($event)');
+    appkit.logInfo('[SystemLifecycle] ${_shortLc(previous)} → ${_shortLc(next)} (${_shortEvent(event)})');
   }
+
+  String _shortLc(SystemLifecycle lc) {
+    final s = lc.toString();
+    final dot = s.indexOf('.');
+    final paren = s.indexOf('(');
+    return s.substring(dot + 1, paren);
+  }
+
+  String _shortEvent(SystemEvent ev) => ev.toString().replaceAll('()', '');
 
   SystemLifecycle _reduce(SystemLifecycle current, SystemEvent event) {
     return switch ((current, event)) {
       (Booting(), const SystemEvent.hardwareCheckInitiated()) => const CheckingHardware(),
-      (CheckingHardware(), const SystemEvent.cameraMissingLiveStreamAvailable()) => const LiveStreamOnly(),
-      (CheckingHardware(), const SystemEvent.cameraAndLiveStreamUnavailable()) => const SystemError('no-camera'),
+      (CheckingHardware(), const SystemEvent.cameraMissing()) => const SystemError('no-camera'),
       (CheckingHardware(), const SystemEvent.hardwareCheckPassed()) => const SystemReady(),
       _ => current,
     };

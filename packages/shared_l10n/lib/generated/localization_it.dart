@@ -79,6 +79,30 @@ class LocalizationIt extends Localization {
   String get color_screen_title => 'Scegli un colore';
 
   @override
+  String get count_avg_dwell => 'Sosta Media';
+
+  @override
+  String get count_avg_occ => 'Occ. Media';
+
+  @override
+  String get count_enter => 'Ingresso';
+
+  @override
+  String get count_exit => 'Uscita';
+
+  @override
+  String get count_max_dwell => 'Sosta Max.';
+
+  @override
+  String get count_max_occ => 'Occ. Max.';
+
+  @override
+  String get count_pass_by => 'Passati';
+
+  @override
+  String get count_window => 'Periodo di Conteggio: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Il rientro richiede un tempo di attesa di #0 secondi dopo l\'uscita dalla zona di rilevamento';
 

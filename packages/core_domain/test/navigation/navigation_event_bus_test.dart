@@ -1,11 +1,10 @@
 // TOC:
-//  - navigationEventBusProvider returns a broadcast StreamController
-//  - Events emitted via add() are received by stream listeners
-//  - Multiple listeners (broadcast) each receive the event
-//  - AppNavigationEvent subtypes: OpenSettings, OpenAbout, onboarding events
-//  - StreamController is closed on provider disposal
-
-import 'dart:async';
+//  - navigationEventBusProvider returns a NavigationEventBus
+//  - Events emitted via push() are wrapped in PushAction and received by stream listeners
+//  - Events emitted via go() are wrapped in GoAction and received by stream listeners
+//  - Multiple listeners (broadcast) each receive the action
+//  - NavigationEvent subtypes: OpenSettings, OpenAbout, onboarding events
+//  - NavigationEventBus is closed on provider disposal
 
 import 'package:core_domain/navigation/navigation_event_bus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,62 +12,64 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('navigationEventBusProvider', () {
-    test('provides a broadcast StreamController', () {
+    test('provides a NavigationEventBus with a broadcast stream', () {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
 
-      expect(controller, isA<StreamController<NavigationEvent>>());
+      expect(controller, isA<NavigationEventBus>());
       expect(controller.stream.isBroadcast, isTrue);
     });
 
-    test('emitted OpenSettings event is received by listener', () async {
+    test('push() emits a PushAction wrapping the event', () async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <NavigationEvent>[];
+      final received = <NavigationAction>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
-      controller.add(const OpenSettings());
+      controller.push(const OpenSettings());
       await Future<void>.delayed(Duration.zero);
 
       expect(received, hasLength(1));
-      expect(received.first, isA<OpenSettings>());
+      expect(received.first, isA<PushAction>());
+      expect((received.first as PushAction).event, isA<OpenSettings>());
     });
 
-    test('emitted OpenAbout event is received by listener', () async {
+    test('go() emits a GoAction wrapping the event', () async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <NavigationEvent>[];
+      final received = <NavigationAction>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
-      controller.add(const OpenAbout());
+      controller.go(const OpenSettings());
       await Future<void>.delayed(Duration.zero);
 
       expect(received, hasLength(1));
-      expect(received.first, isA<OpenAbout>());
+      expect(received.first, isA<GoAction>());
+      expect((received.first as GoAction).event, isA<OpenSettings>());
     });
 
-    test('multiple listeners each receive the event (broadcast)', () async {
+    test('multiple listeners each receive the action (broadcast)', () async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received1 = <NavigationEvent>[];
-      final received2 = <NavigationEvent>[];
+      final received1 = <NavigationAction>[];
+      final received2 = <NavigationAction>[];
 
       final sub1 = controller.stream.listen(received1.add);
       final sub2 = controller.stream.listen(received2.add);
       addTearDown(sub1.cancel);
       addTearDown(sub2.cancel);
 
-      controller.add(const OpenSettings());
+      controller.push(const OpenSettings());
       await Future<void>.delayed(Duration.zero);
 
       expect(received1, hasLength(1));
@@ -80,37 +81,37 @@ void main() {
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <NavigationEvent>[];
+      final received = <NavigationAction>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
-      controller.add(const OpenSettings());
-      controller.add(const OpenSettings());
+      controller.push(const OpenSettings());
+      controller.push(const OpenSettings());
       await Future<void>.delayed(Duration.zero);
 
       expect(received, hasLength(2));
     });
 
-    test('mixed event sequence is received in order', () async {
+    test('mixed action sequence is received in order', () async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
       final controller = container.read(navigationEventBusProvider);
-      final received = <NavigationEvent>[];
+      final received = <NavigationAction>[];
       final sub = controller.stream.listen(received.add);
       addTearDown(sub.cancel);
 
-      controller.add(const OpenSettings());
-      controller.add(const OpenAbout());
-      controller.add(const OpenSettings());
+      controller.push(const OpenSettings());
+      controller.go(const OpenAbout());
+      controller.push(const OpenSettings());
       await Future<void>.delayed(Duration.zero);
 
-      expect(received[0], isA<OpenSettings>());
-      expect(received[1], isA<OpenAbout>());
-      expect(received[2], isA<OpenSettings>());
+      expect(received[0], isA<PushAction>());
+      expect(received[1], isA<GoAction>());
+      expect(received[2], isA<PushAction>());
     });
 
-    test('StreamController is closed when container is disposed', () async {
+    test('NavigationEventBus is closed when container is disposed', () async {
       final container = ProviderContainer();
       final controller = container.read(navigationEventBusProvider);
 
@@ -122,7 +123,7 @@ void main() {
       expect(controller.isClosed, isTrue);
     });
 
-    test('same container always returns the same StreamController instance', () {
+    test('same container always returns the same NavigationEventBus instance', () {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 

@@ -79,6 +79,30 @@ class LocalizationTr extends Localization {
   String get color_screen_title => 'Bir renk seçin';
 
   @override
+  String get count_avg_dwell => 'Ort. Kalış';
+
+  @override
+  String get count_avg_occ => 'Ort. Doluluk';
+
+  @override
+  String get count_enter => 'Giriş';
+
+  @override
+  String get count_exit => 'Çıkış';
+
+  @override
+  String get count_max_dwell => 'Maks. Kalış';
+
+  @override
+  String get count_max_occ => 'Maks. Doluluk';
+
+  @override
+  String get count_pass_by => 'Geçti';
+
+  @override
+  String get count_window => 'Sayım Süresi: 5 dak';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Yeniden giriş için algılama bölgesinden çıktıktan sonra #0 saniyelik bir bekleme süresi gereklidir';
 

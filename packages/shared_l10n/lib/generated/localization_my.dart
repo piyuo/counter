@@ -79,6 +79,30 @@ class LocalizationMy extends Localization {
   String get color_screen_title => 'အရောင်ရွေးချယ်ပါ';
 
   @override
+  String get count_avg_dwell => 'ပျမ်းတည်နေချိန်';
+
+  @override
+  String get count_avg_occ => 'ပျမ်းမျှ';
+
+  @override
+  String get count_enter => 'ဝင်ခြင်း';
+
+  @override
+  String get count_exit => 'ထွက်ခြင်း';
+
+  @override
+  String get count_max_dwell => 'အများဆုံးနေချိန်';
+
+  @override
+  String get count_max_occ => 'အများဆုံးလူ';
+
+  @override
+  String get count_pass_by => 'ဖြတ်ကျော်';
+
+  @override
+  String get count_window => 'ရေတွက်ချိန်ကာလ: 5 မို့';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'ပြန်လည်ဝင်ရောက်ရန် ရှာဖွေမှုဇုန်မှ ထွက်ခွာပြီးနောက် #0 စက္ကန့် အအေးခံချိန် လိုအပ်သည်';
 

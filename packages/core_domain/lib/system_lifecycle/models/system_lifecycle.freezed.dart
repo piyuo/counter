@@ -55,13 +55,12 @@ extension SystemLifecyclePatterns on SystemLifecycle {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Booting value)?  booting,TResult Function( CheckingHardware value)?  checkingHardware,TResult Function( LiveStreamOnly value)?  liveStreamOnly,TResult Function( SystemReady value)?  systemReady,TResult Function( SystemError value)?  systemError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Booting value)?  booting,TResult Function( CheckingHardware value)?  checkingHardware,TResult Function( SystemReady value)?  systemReady,TResult Function( SystemError value)?  systemError,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting(_that);case CheckingHardware() when checkingHardware != null:
-return checkingHardware(_that);case LiveStreamOnly() when liveStreamOnly != null:
-return liveStreamOnly(_that);case SystemReady() when systemReady != null:
+return checkingHardware(_that);case SystemReady() when systemReady != null:
 return systemReady(_that);case SystemError() when systemError != null:
 return systemError(_that);case _:
   return orElse();
@@ -81,13 +80,12 @@ return systemError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Booting value)  booting,required TResult Function( CheckingHardware value)  checkingHardware,required TResult Function( LiveStreamOnly value)  liveStreamOnly,required TResult Function( SystemReady value)  systemReady,required TResult Function( SystemError value)  systemError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Booting value)  booting,required TResult Function( CheckingHardware value)  checkingHardware,required TResult Function( SystemReady value)  systemReady,required TResult Function( SystemError value)  systemError,}){
 final _that = this;
 switch (_that) {
 case Booting():
 return booting(_that);case CheckingHardware():
-return checkingHardware(_that);case LiveStreamOnly():
-return liveStreamOnly(_that);case SystemReady():
+return checkingHardware(_that);case SystemReady():
 return systemReady(_that);case SystemError():
 return systemError(_that);}
 }
@@ -103,13 +101,12 @@ return systemError(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Booting value)?  booting,TResult? Function( CheckingHardware value)?  checkingHardware,TResult? Function( LiveStreamOnly value)?  liveStreamOnly,TResult? Function( SystemReady value)?  systemReady,TResult? Function( SystemError value)?  systemError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Booting value)?  booting,TResult? Function( CheckingHardware value)?  checkingHardware,TResult? Function( SystemReady value)?  systemReady,TResult? Function( SystemError value)?  systemError,}){
 final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting(_that);case CheckingHardware() when checkingHardware != null:
-return checkingHardware(_that);case LiveStreamOnly() when liveStreamOnly != null:
-return liveStreamOnly(_that);case SystemReady() when systemReady != null:
+return checkingHardware(_that);case SystemReady() when systemReady != null:
 return systemReady(_that);case SystemError() when systemError != null:
 return systemError(_that);case _:
   return null;
@@ -128,12 +125,11 @@ return systemError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  booting,TResult Function()?  checkingHardware,TResult Function()?  liveStreamOnly,TResult Function()?  systemReady,TResult Function( String message)?  systemError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  booting,TResult Function()?  checkingHardware,TResult Function()?  systemReady,TResult Function( String message)?  systemError,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting();case CheckingHardware() when checkingHardware != null:
-return checkingHardware();case LiveStreamOnly() when liveStreamOnly != null:
-return liveStreamOnly();case SystemReady() when systemReady != null:
+return checkingHardware();case SystemReady() when systemReady != null:
 return systemReady();case SystemError() when systemError != null:
 return systemError(_that.message);case _:
   return orElse();
@@ -153,12 +149,11 @@ return systemError(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  booting,required TResult Function()  checkingHardware,required TResult Function()  liveStreamOnly,required TResult Function()  systemReady,required TResult Function( String message)  systemError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  booting,required TResult Function()  checkingHardware,required TResult Function()  systemReady,required TResult Function( String message)  systemError,}) {final _that = this;
 switch (_that) {
 case Booting():
 return booting();case CheckingHardware():
-return checkingHardware();case LiveStreamOnly():
-return liveStreamOnly();case SystemReady():
+return checkingHardware();case SystemReady():
 return systemReady();case SystemError():
 return systemError(_that.message);}
 }
@@ -174,12 +169,11 @@ return systemError(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  booting,TResult? Function()?  checkingHardware,TResult? Function()?  liveStreamOnly,TResult? Function()?  systemReady,TResult? Function( String message)?  systemError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  booting,TResult? Function()?  checkingHardware,TResult? Function()?  systemReady,TResult? Function( String message)?  systemError,}) {final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting();case CheckingHardware() when checkingHardware != null:
-return checkingHardware();case LiveStreamOnly() when liveStreamOnly != null:
-return liveStreamOnly();case SystemReady() when systemReady != null:
+return checkingHardware();case SystemReady() when systemReady != null:
 return systemReady();case SystemError() when systemError != null:
 return systemError(_that.message);case _:
   return null;
@@ -245,38 +239,6 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'SystemLifecycle.checkingHardware()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class LiveStreamOnly implements SystemLifecycle {
-  const LiveStreamOnly();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiveStreamOnly);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'SystemLifecycle.liveStreamOnly()';
 }
 
 

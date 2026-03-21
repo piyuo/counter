@@ -79,6 +79,30 @@ class LocalizationEl extends Localization {
   String get color_screen_title => 'Επιλογή χρώματος';
 
   @override
+  String get count_avg_dwell => 'Μ.Ο. Παραμονή';
+
+  @override
+  String get count_avg_occ => 'Μ.Ο. Πλήθος';
+
+  @override
+  String get count_enter => 'Είσοδος';
+
+  @override
+  String get count_exit => 'Έξοδος';
+
+  @override
+  String get count_max_dwell => 'Μέγ. Παραμονή';
+
+  @override
+  String get count_max_occ => 'Μέγ. Πλήθος';
+
+  @override
+  String get count_pass_by => 'Πέρασαν';
+
+  @override
+  String get count_window => 'Περίοδος Αριθμητικής: 5 λεπτά';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Η επανείσοδος απαιτεί χρόνο αναμονής #0 δευτερολέπτων μετά την έξοδο από τη ζώνη ανίχνευσης';
 

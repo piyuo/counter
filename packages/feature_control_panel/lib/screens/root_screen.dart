@@ -27,7 +27,7 @@ class RootScreen extends ConsumerWidget {
           controller: scrollController,
           child: Column(
             children: [
-              feature_pip.PipHeader(
+              feature_pip.PipPanel(
                 padding: EdgeInsets.all(10),
                 child: Column(
                   children: [
@@ -47,7 +47,6 @@ class RootScreen extends ConsumerWidget {
                 ),
 
               if (statusLabel != null) Text(statusLabel),
-              feature_pip.PipFooter(),
             ],
           ),
         );

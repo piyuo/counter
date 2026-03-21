@@ -32,7 +32,6 @@ class AddVideoScreen extends StatelessWidget {
                     create: (_) => VideoSourcesProvider(),
                     child: Consumer<VideoSourcesProvider>(
                       builder: (context, videoStarterProvider, child) => CupertinoListSection(
-                        backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                         header: Text(context.l.add_video_screen_from),
                         children: buildVideoSources(
                           context,
@@ -44,7 +43,6 @@ class AddVideoScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             );

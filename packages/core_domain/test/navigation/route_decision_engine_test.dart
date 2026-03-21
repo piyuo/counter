@@ -66,25 +66,25 @@ void main() {
   group('RouteDecisionEngine', () {
     group('empty / no-opinion rules', () {
       test('returns null when rule list is empty', () {
-        final engine = RouteDecisionEngine([]);
+        final engine = RouteDecisionEngine('engine', []);
         expect(engine.decide(_ctx('/')), isNull);
       });
 
       test('returns null when all rules return null', () {
-        final engine = RouteDecisionEngine([_NeverRule(0), _NeverRule(10)]);
+        final engine = RouteDecisionEngine('engine', [_NeverRule(0), _NeverRule(10)]);
         expect(engine.decide(_ctx('/')), isNull);
       });
 
       test('returns null when only matching decision equals path', () {
         // Rule wants to go to '/', which is already the path.
-        final engine = RouteDecisionEngine([_AlwaysRule(0, '/')]);
+        final engine = RouteDecisionEngine('engine', [_AlwaysRule(0, '/')]);
         expect(engine.decide(_ctx('/')), isNull);
       });
     });
 
     group('single firing rule', () {
       test('returns the decision when rule fires for a different path', () {
-        final engine = RouteDecisionEngine([_AlwaysRule(0, '/onboarding')]);
+        final engine = RouteDecisionEngine('engine', [_AlwaysRule(0, '/onboarding')]);
         final decision = engine.decide(_ctx('/'));
 
         expect(decision, isNotNull);
@@ -95,7 +95,10 @@ void main() {
         // ChainRule(0, '/home', '/home') fires from /home → target=/home == path → skipped.
         // ChainRule(10, '/home', '/settings') fires from /home → target=/settings → wins.
         // Simulation at /settings: no rules fire → chain ends cleanly.
-        final engine = RouteDecisionEngine([_ChainRule(0, '/home', '/home'), _ChainRule(10, '/home', '/settings')]);
+        final engine = RouteDecisionEngine('engine', [
+          _ChainRule(0, '/home', '/home'),
+          _ChainRule(10, '/home', '/settings'),
+        ]);
         final decision = engine.decide(_ctx('/home'));
 
         expect(decision?.target, '/settings');
@@ -106,14 +109,14 @@ void main() {
       test('lower priority number runs first and wins', () {
         // ChainRule fires only from '/', so the simulation terminates cleanly
         // after the first hop without cycling back.
-        final engine = RouteDecisionEngine([_ChainRule(15, '/', '/second'), _ChainRule(5, '/', '/first')]);
+        final engine = RouteDecisionEngine('engine', [_ChainRule(15, '/', '/second'), _ChainRule(5, '/', '/first')]);
         final decision = engine.decide(_ctx('/'));
 
         expect(decision?.target, '/first');
       });
 
       test('higher-priority rule that has no opinion falls through to next', () {
-        final engine = RouteDecisionEngine([_NeverRule(0), _AlwaysRule(10, '/fallback')]);
+        final engine = RouteDecisionEngine('engine', [_NeverRule(0), _AlwaysRule(10, '/fallback')]);
         expect(engine.decide(_ctx('/'))?.target, '/fallback');
       });
     });
@@ -121,12 +124,12 @@ void main() {
     group('cycle detection', () {
       test('detects A → B → A and returns null', () {
         // /a → /b, /b → /a
-        final engine = RouteDecisionEngine([_ChainRule(0, '/a', '/b'), _ChainRule(0, '/b', '/a')]);
+        final engine = RouteDecisionEngine('engine', [_ChainRule(0, '/a', '/b'), _ChainRule(0, '/b', '/a')]);
         expect(engine.decide(_ctx('/a')), isNull);
       });
 
       test('detects A → B → C → A and returns null', () {
-        final engine = RouteDecisionEngine([
+        final engine = RouteDecisionEngine('engine', [
           _ChainRule(0, '/a', '/b'),
           _ChainRule(0, '/b', '/c'),
           _ChainRule(0, '/c', '/a'),
@@ -138,7 +141,7 @@ void main() {
     group('multi-hop chain', () {
       test('returns the first hop when chain is clean (A → B → C)', () {
         // /a → /b → /c → no more rules fire
-        final engine = RouteDecisionEngine([_ChainRule(0, '/a', '/b'), _ChainRule(0, '/b', '/c')]);
+        final engine = RouteDecisionEngine('engine', [_ChainRule(0, '/a', '/b'), _ChainRule(0, '/b', '/c')]);
         final decision = engine.decide(_ctx('/a'));
 
         // Engine returns the first redirect step (/b).
@@ -146,7 +149,7 @@ void main() {
       });
 
       test('returns null when starting path has no matching rule', () {
-        final engine = RouteDecisionEngine([_ChainRule(0, '/other', '/somewhere')]);
+        final engine = RouteDecisionEngine('engine', [_ChainRule(0, '/other', '/somewhere')]);
         expect(engine.decide(_ctx('/unrelated')), isNull);
       });
     });
@@ -156,7 +159,7 @@ void main() {
         // Build a 22-step chain /p0 → /p1 → ... → /p21
         // (exceeds _maxChainDepth of 20, but no path repeats).
         final rules = List.generate(22, (i) => _ChainRule(i, '/p$i', '/p${i + 1}'));
-        final engine = RouteDecisionEngine(rules);
+        final engine = RouteDecisionEngine('engine', rules);
 
         // Should not throw and should return the first hop.
         expect(() => engine.decide(_ctx('/p0')), returnsNormally);

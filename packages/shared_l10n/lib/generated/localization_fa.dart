@@ -79,6 +79,30 @@ class LocalizationFa extends Localization {
   String get color_screen_title => 'انتخاب رنگ';
 
   @override
+  String get count_avg_dwell => 'میانگین توقف';
+
+  @override
+  String get count_avg_occ => 'میانگین اشغال';
+
+  @override
+  String get count_enter => 'ورود';
+
+  @override
+  String get count_exit => 'خروج';
+
+  @override
+  String get count_max_dwell => 'بیشترین توقف';
+
+  @override
+  String get count_max_occ => 'اوج اشغال';
+
+  @override
+  String get count_pass_by => 'عبور';
+
+  @override
+  String get count_window => 'دوره شمارش: ۵ دقیقه';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'ورود مجدد نیاز به #0 ثانیه زمان انتظار پس از خروج از منطقه تشخیص دارد';
 

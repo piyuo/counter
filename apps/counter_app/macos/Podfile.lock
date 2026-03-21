@@ -1,8 +1,12 @@
 PODS:
+  - app_links (6.4.1):
+    - FlutterMacOS
   - camera_macos (0.0.1):
     - FlutterMacOS
   - EigenCocoa (3.4.0)
   - file_selector_macos (0.0.1):
+    - FlutterMacOS
+  - flutter_secure_storage_macos (6.1.3):
     - FlutterMacOS
   - flutter_vision (1.0.0):
     - EigenCocoa (~> 3.4.0)
@@ -12,24 +16,51 @@ PODS:
     - FlutterMacOS
   - screen_brightness_macos (0.1.0):
     - FlutterMacOS
-  - Sentry/HybridSDK (8.58.0)
-  - sentry_flutter (9.15.0):
+  - Sentry/HybridSDK (8.58.2)
+  - sentry_flutter (9.20.0):
     - Flutter
     - FlutterMacOS
-    - Sentry/HybridSDK (= 8.58.0)
+    - Sentry/HybridSDK (= 8.58.2)
   - share_plus (0.0.1):
     - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sqlite3 (3.52.0):
+    - sqlite3/common (= 3.52.0)
+  - sqlite3/common (3.52.0)
+  - sqlite3/dbstatvtab (3.52.0):
+    - sqlite3/common
+  - sqlite3/fts5 (3.52.0):
+    - sqlite3/common
+  - sqlite3/math (3.52.0):
+    - sqlite3/common
+  - sqlite3/perf-threadsafe (3.52.0):
+    - sqlite3/common
+  - sqlite3/rtree (3.52.0):
+    - sqlite3/common
+  - sqlite3/session (3.52.0):
+    - sqlite3/common
+  - sqlite3_flutter_libs (0.0.1):
+    - Flutter
+    - FlutterMacOS
+    - sqlite3 (~> 3.52.0)
+    - sqlite3/dbstatvtab
+    - sqlite3/fts5
+    - sqlite3/math
+    - sqlite3/perf-threadsafe
+    - sqlite3/rtree
+    - sqlite3/session
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
   - wakelock_plus (0.0.1):
     - FlutterMacOS
 
 DEPENDENCIES:
+  - app_links (from `Flutter/ephemeral/.symlinks/plugins/app_links/macos`)
   - camera_macos (from `Flutter/ephemeral/.symlinks/plugins/camera_macos/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
+  - flutter_secure_storage_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos`)
   - flutter_vision (from `Flutter/ephemeral/.symlinks/plugins/flutter_vision/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -37,6 +68,7 @@ DEPENDENCIES:
   - sentry_flutter (from `Flutter/ephemeral/.symlinks/plugins/sentry_flutter/macos`)
   - share_plus (from `Flutter/ephemeral/.symlinks/plugins/share_plus/macos`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sqlite3_flutter_libs (from `Flutter/ephemeral/.symlinks/plugins/sqlite3_flutter_libs/darwin`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
   - wakelock_plus (from `Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos`)
 
@@ -44,12 +76,17 @@ SPEC REPOS:
   trunk:
     - EigenCocoa
     - Sentry
+    - sqlite3
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: Flutter/ephemeral/.symlinks/plugins/app_links/macos
   camera_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/camera_macos/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
+  flutter_secure_storage_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos
   flutter_vision:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_vision/macos
   FlutterMacOS:
@@ -64,26 +101,32 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/share_plus/macos
   shared_preferences_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
+  sqlite3_flutter_libs:
+    :path: Flutter/ephemeral/.symlinks/plugins/sqlite3_flutter_libs/darwin
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
   wakelock_plus:
     :path: Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos
 
 SPEC CHECKSUMS:
+  app_links: c3185399a5cabc2e610ee5ad52fb7269b84ff869
   camera_macos: c2603f5eed16f05076cf17e12030d2ce55a77839
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   file_selector_macos: 3e56eaea051180007b900eacb006686fd54da150
+  flutter_secure_storage_macos: c2754d3483d20bb207bb9e5a14f1b8e771abcdb9
   flutter_vision: 63764ba7e30bc138619f65f41ae0bdab333f6033
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
-  screen_brightness_macos: 2d6d3af2165592d9a55ffcd95b7550970e41ebda
-  Sentry: d587a8fe91ca13503ecd69a1905f3e8a0fcf61be
-  sentry_flutter: d17e659e7ca47f9a40d65c93605f85b7346ece89
+  screen_brightness_macos: 8cc84c365ae2910833b7232f90b6027d4e67c31e
+  Sentry: de29b881e83bd91cf99a927f82f1fd86bfb39db2
+  sentry_flutter: aafdf112550e9550972852e71f44994bd4239254
   share_plus: 1fa619de8392a4398bfaf176d441853922614e89
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
+  sqlite3: a51c07cf16e023d6c48abd5e5791a61a47354921
+  sqlite3_flutter_libs: f9114e4bbe1f2e03dd543373c53d23245982ca13
   url_launcher_macos: 175a54c831f4375a6cf895875f716ee5af3888ce
   wakelock_plus: 9d63063ffb7af1c215209769067c57103bde719d
 
-PODFILE CHECKSUM: 49f2123cd595eb7c69c72e343fea1720dabeb676
+PODFILE CHECKSUM: 378abfec0f41e80a791923d85a5a7bf835b7fc55
 
 COCOAPODS: 1.16.2

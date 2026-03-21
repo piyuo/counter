@@ -79,6 +79,30 @@ class LocalizationEn extends Localization {
   String get color_screen_title => 'Pick a color';
 
   @override
+  String get count_avg_dwell => 'Avg Dwell';
+
+  @override
+  String get count_avg_occ => 'Avg Occ';
+
+  @override
+  String get count_enter => 'Enter';
+
+  @override
+  String get count_exit => 'Exit';
+
+  @override
+  String get count_max_dwell => 'Peak Dwell';
+
+  @override
+  String get count_max_occ => 'Peak Occ';
+
+  @override
+  String get count_pass_by => 'Passed';
+
+  @override
+  String get count_window => 'Counting Window: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Re-entry requires a #0 second cooldown after exiting the detection zone';
 

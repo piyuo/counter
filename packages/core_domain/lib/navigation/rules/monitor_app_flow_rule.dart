@@ -22,8 +22,10 @@ class MonitorAppFlowRule implements RouteRule {
   @override
   RouteDecision? evaluate(RouteContext context) {
     return switch ((context.previousFlow, context.flow)) {
-      (OnboardingRequired(), SessionRunning()) => RouteDecision(target: MonitorRoutes.video),
-      (CheckingBackend(), SessionRunning()) => RouteDecision(target: MonitorRoutes.video),
+      (OnboardingBegin(), SessionRunning()) => RouteDecision(target: MonitorRoutes.vision),
+      (CheckingDataServer(), SessionRunning()) => RouteDecision(target: MonitorRoutes.vision),
+      // When session ends for any reason, leave the vision screen and go back to root.
+      (SessionRunning(), _) => RouteDecision(target: MonitorRoutes.root),
       _ => null,
     };
   }

@@ -25,7 +25,7 @@ class ObjectsScreen extends StatelessWidget {
               controller: scrollController,
               child: Column(
                 children: [
-                  feature_pip.PipHeader(
+                  feature_pip.PipPanel(
                     child: Column(
                       children: [
                         Icon(CupertinoIcons.list_bullet, size: 44),
@@ -35,7 +35,6 @@ class ObjectsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             );

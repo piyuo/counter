@@ -1,5 +1,5 @@
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
@@ -19,45 +19,38 @@ class LanguageScreen extends ConsumerWidget {
       previousPageTitle: previousPageTitle,
       builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
+        padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
         child: Column(
           children: [
             feature_pip.PipHeader(
-              child: Column(
-                children: [
-                  Icon(CupertinoIcons.globe, size: 44),
-                  const SizedBox(height: 8.0),
-                  Text(context.l.language_screen_language, style: const TextStyle(fontSize: 20.0)),
-                ],
-              ),
+              icon: Icons.language,
+              title: context.l.language_screen_language,
+              subtitle: "Select your preferred language for the app interface",
             ),
-            CupertinoListSection(
-              children: [
-                CupertinoListTile(
-                  title: Text(localization.language),
-                  subtitle: Text('System language'),
-                  leading: locale == null ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
-                  onTap: () async {
-                    ref.read(appkit.localeProvider.notifier).set(null);
-                  },
-                ),
-                ...displayLabels.entries.map((entry) {
-                  final currentLocaleKey = entry.key;
-                  final currentLocaleName = entry.value;
-                  final currentLocaleEngName = appkit.localeEngNames[currentLocaleKey] ?? locale.toString();
-                  final currentLocale = appkit.localeParseString(currentLocaleKey);
+            ListTile(
+              title: Text(localization.language),
+              subtitle: Text('System language'),
+              leading: locale == null ? Icon(Icons.check) : SizedBox.shrink(),
+              onTap: () async {
+                ref.read(appkit.localeProvider.notifier).set(null);
+              },
+            ),
 
-                  return CupertinoListTile(
-                    title: Text(currentLocaleName),
-                    subtitle: Text(currentLocaleEngName),
-                    leading: currentLocale == locale ? Icon(CupertinoIcons.checkmark) : SizedBox.shrink(),
-                    onTap: () async {
-                      ref.read(appkit.localeProvider.notifier).set(currentLocale);
-                    },
-                  );
-                }),
-              ],
-            ),
-            feature_pip.PipFooter(),
+            ...displayLabels.entries.map((entry) {
+              final currentLocaleKey = entry.key;
+              final currentLocaleName = entry.value;
+              final currentLocaleEngName = appkit.localeEngNames[currentLocaleKey] ?? locale.toString();
+              final currentLocale = appkit.localeParseString(currentLocaleKey);
+
+              return ListTile(
+                title: Text(currentLocaleName),
+                subtitle: Text(currentLocaleEngName),
+                leading: currentLocale == locale ? Icon(Icons.check) : SizedBox.shrink(),
+                onTap: () async {
+                  ref.read(appkit.localeProvider.notifier).set(currentLocale);
+                },
+              );
+            }),
           ],
         ),
       ),
