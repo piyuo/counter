@@ -506,11 +506,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "v3.0.0"
-      resolved-ref: "407c70ae51cf871e4c06a75293a727f875e1b74f"
+      ref: "v3.1.1"
+      resolved-ref: f48cee4f2bb3a6e119794b9c2f0475ef05abfdc8
       url: "https://github.com/piyuo/flutter-appkit.git"
     source: git
-    version: "3.0.0"
+    version: "3.1.1"
   flutter_colorpicker:
     dependency: transitive
     description:
@@ -583,7 +583,7 @@ packages:
       path: "../flutter-vision"
       relative: true
     source: path
-    version: "2.4.0+14"
+    version: "2.5.1+16"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -1369,18 +1369,18 @@ packages:
     dependency: transitive
     description:
       name: sentry
-      sha256: e57e57123968b673c8ca19892eecf93113b4811b8e5cd5d165749ca7f7319fdb
+      sha256: a49b4fb1cba576fe216347dc2a0e6d76076fb998e6012857db96f991c23b7b3c
       url: "https://pub.dev"
     source: hosted
-    version: "9.13.0"
+    version: "9.15.0"
   sentry_flutter:
     dependency: transitive
     description:
       name: sentry_flutter
-      sha256: c8f5b805c0346cd0c93b09e584675af7ed8c3ef36c3589181ad19b4adce35954
+      sha256: "25150030c93bd1d4b727ab61cfb09e99121c69ce90fa820bb9ca16dab433e43a"
       url: "https://pub.dev"
     source: hosted
-    version: "9.13.0"
+    version: "9.15.0"
   share_plus:
     dependency: transitive
     description:
