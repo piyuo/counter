@@ -24,7 +24,6 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
     });
   }
 
-  @override
   Future<void> initializeVisionSystem() async {
     final visionSourceSelection = ref.read(vision.visionSourceSelectionProvider.notifier);
     if (UniversalPlatform.isMobile) {
@@ -84,9 +83,6 @@ class _VideoScreenState extends ConsumerState<VideoScreen> {
   @override
   Widget build(BuildContext context) {
     final visionState = ref.watch(vision.activeVisionStateProvider);
-    return Container(
-      color: Colors.white,
-      child: Center(child: vision.Preview()),
-    );
+    return vision.Preview(fit: BoxFit.cover);
   }
 }

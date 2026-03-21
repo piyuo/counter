@@ -17,7 +17,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.0.0
+      ref: v3.1.1
   freezed_annotation: ^3.1.0
 
 dev_dependencies:
