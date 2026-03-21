@@ -9,6 +9,7 @@
 import 'package:feature_onboarding/widgets/next_button_container.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/cupertino.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 class SubscriptionScreen extends StatelessWidget {
   const SubscriptionScreen({super.key});
@@ -29,12 +30,11 @@ class SubscriptionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Color muted = CupertinoColors.systemGrey.resolveFrom(context);
     return feature_pip.PipScaffold(
-      themeData: const CupertinoThemeData(brightness: Brightness.light),
       builder: (scrollController) {
         return NextButtonContainer(
           onNextPressed: () {},
-          nextButtonText: 'Unlock Pro Features',
           child: SingleChildScrollView(
+            padding: EdgeInsets.only(bottom: UniversalPlatform.isMobile ? 90 : 80.0),
             controller: scrollController,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),

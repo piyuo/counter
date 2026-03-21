@@ -79,6 +79,30 @@ class LocalizationHi extends Localization {
   String get color_screen_title => 'रंग चुनें';
 
   @override
+  String get count_avg_dwell => 'औसत ठहराव';
+
+  @override
+  String get count_avg_occ => 'औसत उपस्थिति';
+
+  @override
+  String get count_enter => 'प्रवेश';
+
+  @override
+  String get count_exit => 'निकास';
+
+  @override
+  String get count_max_dwell => 'अधिकतम ठहराव';
+
+  @override
+  String get count_max_occ => 'अधिकतम उपस्थिति';
+
+  @override
+  String get count_pass_by => 'गुजरे';
+
+  @override
+  String get count_window => 'गणना अवधि: 5 मिनट';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'डिटेक्शन ज़ोन से बाहर निकलने के बाद री-एंट्री के लिए #0 सेकंड का कूलडाउन आवश्यक है';
 

@@ -79,6 +79,30 @@ class LocalizationAr extends Localization {
   String get color_screen_title => 'اختر لونًا';
 
   @override
+  String get count_avg_dwell => 'متوسط التوقف';
+
+  @override
+  String get count_avg_occ => 'متوسط الإشغال';
+
+  @override
+  String get count_enter => 'دخول';
+
+  @override
+  String get count_exit => 'خروج';
+
+  @override
+  String get count_max_dwell => 'أطول توقف';
+
+  @override
+  String get count_max_occ => 'ذروة الإشغال';
+
+  @override
+  String get count_pass_by => 'مرور';
+
+  @override
+  String get count_window => 'فترة الإحصاء: 5 دقائق';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'تتطلب إعادة الدخول وقت تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
 

@@ -78,6 +78,30 @@ class LocalizationKo extends Localization {
   String get color_screen_title => '색상 선택';
 
   @override
+  String get count_avg_dwell => '평균 체류';
+
+  @override
+  String get count_avg_occ => '평균 점유';
+
+  @override
+  String get count_enter => '입장';
+
+  @override
+  String get count_exit => '퇴장';
+
+  @override
+  String get count_max_dwell => '최대 체류';
+
+  @override
+  String get count_max_occ => '최대 인원';
+
+  @override
+  String get count_pass_by => '통과';
+
+  @override
+  String get count_window => '집계 시간: 5분';
+
+  @override
   String get counter_screen_cooldown_desc =>
       '재진입하려면 감지 영역에서 나간 후 #0 초의 쿨다운이 필요합니다';
 

@@ -79,6 +79,30 @@ class LocalizationNl extends Localization {
   String get color_screen_title => 'Kies een kleur';
 
   @override
+  String get count_avg_dwell => 'Gem. Verblijf';
+
+  @override
+  String get count_avg_occ => 'Gem. Bez.';
+
+  @override
+  String get count_enter => 'Binnen';
+
+  @override
+  String get count_exit => 'Buiten';
+
+  @override
+  String get count_max_dwell => 'Piek Verblijf';
+
+  @override
+  String get count_max_occ => 'Piek Bez.';
+
+  @override
+  String get count_pass_by => 'Voorbij';
+
+  @override
+  String get count_window => 'Telperiode: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Herintreding vereist een afkoeltijd van #0 seconden na het verlaten van de detectiezone';
 

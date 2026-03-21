@@ -44,7 +44,7 @@ class VideoScreen extends StatelessWidget {
               controller: scrollController,
               child: Column(
                 children: [
-                  feature_pip.PipHeader(
+                  feature_pip.PipPanel(
                     child: Column(
                       children: [
                         const SizedBox(height: 8.0),
@@ -55,7 +55,6 @@ class VideoScreen extends StatelessWidget {
                   ),
 
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.video_screen_video_name),
                     footer: sourceScreenProvider._videoNameErrorMessage.isNotEmpty
                         ? Text(
@@ -77,7 +76,6 @@ class VideoScreen extends StatelessWidget {
                   ),
 
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.video_screen_sources),
                     children: [
                       CupertinoListTile(
@@ -125,7 +123,6 @@ class VideoScreen extends StatelessWidget {
                   ),
 
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     header: Text(context.l.video_screen_delete_header),
                     children: [
                       CupertinoListTile(
@@ -133,27 +130,12 @@ class VideoScreen extends StatelessWidget {
                           child: CupertinoButton(
                             onPressed: () async {
                               // show confirmation dialog
-                              final bool? result = await showCupertinoDialog<bool>(
-                                context: context,
-                                builder: (context) {
-                                  return CupertinoAlertDialog(
-                                    title: Text(context.l.video_screen_delete_header),
-                                    content: Text(context.l.video_screen_delete_content),
-                                    actions: [
-                                      CupertinoDialogAction(
-                                        isDefaultAction: true,
-                                        textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                                        onPressed: () => Navigator.pop(context, false),
-                                        child: Text(context.l.cancel),
-                                      ),
-                                      CupertinoDialogAction(
-                                        isDestructiveAction: true,
-                                        onPressed: () => Navigator.pop(context, true),
-                                        child: Text(context.l.video_screen_delete_button),
-                                      ),
-                                    ],
-                                  );
-                                },
+                              final bool? result = await feature_pip.showYesNoMessageDialog(
+                                context.l.video_screen_delete_content,
+                                title: context.l.video_screen_delete_header,
+                                noLabel: context.l.cancel,
+                                yesLabel: context.l.video_screen_delete_button,
+                                isYesDestructive: true,
                               );
                               if (result == null || !result) return;
 
@@ -169,7 +151,6 @@ class VideoScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

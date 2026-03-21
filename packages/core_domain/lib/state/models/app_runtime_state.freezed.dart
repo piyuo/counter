@@ -14,30 +14,62 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppRuntimeState {
 
-
+ bool get developMode; String? get businessBearerToken;
+/// Create a copy of AppRuntimeState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AppRuntimeStateCopyWith<AppRuntimeState> get copyWith => _$AppRuntimeStateCopyWithImpl<AppRuntimeState>(this as AppRuntimeState, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.businessBearerToken, businessBearerToken) || other.businessBearerToken == businessBearerToken));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,developMode,businessBearerToken);
 
 @override
 String toString() {
-  return 'AppRuntimeState()';
+  return 'AppRuntimeState(developMode: $developMode, businessBearerToken: $businessBearerToken)';
 }
 
 
 }
 
 /// @nodoc
-class $AppRuntimeStateCopyWith<$Res>  {
-$AppRuntimeStateCopyWith(AppRuntimeState _, $Res Function(AppRuntimeState) __);
+abstract mixin class $AppRuntimeStateCopyWith<$Res>  {
+  factory $AppRuntimeStateCopyWith(AppRuntimeState value, $Res Function(AppRuntimeState) _then) = _$AppRuntimeStateCopyWithImpl;
+@useResult
+$Res call({
+ bool developMode, String? businessBearerToken
+});
+
+
+
+
+}
+/// @nodoc
+class _$AppRuntimeStateCopyWithImpl<$Res>
+    implements $AppRuntimeStateCopyWith<$Res> {
+  _$AppRuntimeStateCopyWithImpl(this._self, this._then);
+
+  final AppRuntimeState _self;
+  final $Res Function(AppRuntimeState) _then;
+
+/// Create a copy of AppRuntimeState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? developMode = null,Object? businessBearerToken = freezed,}) {
+  return _then(_self.copyWith(
+developMode: null == developMode ? _self.developMode : developMode // ignore: cast_nullable_to_non_nullable
+as bool,businessBearerToken: freezed == businessBearerToken ? _self.businessBearerToken : businessBearerToken // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
 }
 
 
@@ -116,10 +148,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool developMode,  String? businessBearerToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppRuntimeState() when $default != null:
-return $default();case _:
+return $default(_that.developMode,_that.businessBearerToken);case _:
   return orElse();
 
 }
@@ -137,10 +169,10 @@ return $default();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool developMode,  String? businessBearerToken)  $default,) {final _that = this;
 switch (_that) {
 case _AppRuntimeState():
-return $default();}
+return $default(_that.developMode,_that.businessBearerToken);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -154,10 +186,10 @@ return $default();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool developMode,  String? businessBearerToken)?  $default,) {final _that = this;
 switch (_that) {
 case _AppRuntimeState() when $default != null:
-return $default();case _:
+return $default(_that.developMode,_that.businessBearerToken);case _:
   return null;
 
 }
@@ -169,32 +201,68 @@ return $default();case _:
 
 
 class _AppRuntimeState implements AppRuntimeState {
-  const _AppRuntimeState();
+  const _AppRuntimeState({this.developMode = false, this.businessBearerToken});
   
 
+@override@JsonKey() final  bool developMode;
+@override final  String? businessBearerToken;
 
-
+/// Create a copy of AppRuntimeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AppRuntimeStateCopyWith<_AppRuntimeState> get copyWith => __$AppRuntimeStateCopyWithImpl<_AppRuntimeState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.businessBearerToken, businessBearerToken) || other.businessBearerToken == businessBearerToken));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,developMode,businessBearerToken);
 
 @override
 String toString() {
-  return 'AppRuntimeState()';
+  return 'AppRuntimeState(developMode: $developMode, businessBearerToken: $businessBearerToken)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$AppRuntimeStateCopyWith<$Res> implements $AppRuntimeStateCopyWith<$Res> {
+  factory _$AppRuntimeStateCopyWith(_AppRuntimeState value, $Res Function(_AppRuntimeState) _then) = __$AppRuntimeStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool developMode, String? businessBearerToken
+});
 
 
+
+
+}
+/// @nodoc
+class __$AppRuntimeStateCopyWithImpl<$Res>
+    implements _$AppRuntimeStateCopyWith<$Res> {
+  __$AppRuntimeStateCopyWithImpl(this._self, this._then);
+
+  final _AppRuntimeState _self;
+  final $Res Function(_AppRuntimeState) _then;
+
+/// Create a copy of AppRuntimeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? developMode = null,Object? businessBearerToken = freezed,}) {
+  return _then(_AppRuntimeState(
+developMode: null == developMode ? _self.developMode : developMode // ignore: cast_nullable_to_non_nullable
+as bool,businessBearerToken: freezed == businessBearerToken ? _self.businessBearerToken : businessBearerToken // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
+}
 
 // dart format on

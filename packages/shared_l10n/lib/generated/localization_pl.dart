@@ -79,6 +79,30 @@ class LocalizationPl extends Localization {
   String get color_screen_title => 'Wybierz kolor';
 
   @override
+  String get count_avg_dwell => 'Śr. Pobyt';
+
+  @override
+  String get count_avg_occ => 'Śr. Zajętość';
+
+  @override
+  String get count_enter => 'Wejście';
+
+  @override
+  String get count_exit => 'Wyjście';
+
+  @override
+  String get count_max_dwell => 'Maks. Pobyt';
+
+  @override
+  String get count_max_occ => 'Maks. Zajętość';
+
+  @override
+  String get count_pass_by => 'Przeszło';
+
+  @override
+  String get count_window => 'Okres Zliczania: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Ponowne wejście wymaga #0 sekundowego czasu odnowienia po opuszczeniu strefy wykrywania';
 

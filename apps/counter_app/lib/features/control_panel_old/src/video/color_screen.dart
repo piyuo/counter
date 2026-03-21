@@ -34,7 +34,6 @@ class ColorScreen extends StatelessWidget {
                   enableAlpha: true,
                   onColorChanged: (color) {},
                 ),
-                feature_pip.PipFooter(),
               ],
             ),
           ),

@@ -1,8 +1,11 @@
 export 'models/pip_state.dart';
 export 'providers/pip_notifier.dart';
 export 'widgets/absorb_sliding.dart';
-export 'widgets/pip_footer.dart';
+export 'widgets/pip_action_button.dart';
+export 'widgets/pip_app_bar.dart';
 export 'widgets/pip_header.dart';
+export 'widgets/pip_panel.dart';
 export 'widgets/pip_scaffold.dart';
 export 'widgets/pip_screen.dart';
 export 'widgets/pip_sliding.dart';
+export 'widgets/show_message_dialog.dart';

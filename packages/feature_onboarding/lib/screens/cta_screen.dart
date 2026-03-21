@@ -1,14 +1,12 @@
-// ===============================================
 // Module: cta_screen.dart
 // Description: Decision CTA screen
 //
 // Sections:
 //   - CTAScreen widget
-// ===============================================
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_onboarding/widgets/next_button_container.dart';
+import 'package:feature_onboarding/widgets/onboarding_scaffold.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 //todo: make sure DPA" (Data Processing Agreement), is in terms of service and privacy policy, and add a link to it in the UI. This is important for legal compliance and user trust."Piyuo Cloud only processes anonymized aggregate counts. We store device identifiers only for subscription validation. We do not store, view, or share raw video or biometric data."
@@ -20,155 +18,174 @@ class CTAScreen extends ConsumerStatefulWidget {
   ConsumerState<CTAScreen> createState() => _CTAScreenState();
 }
 
+enum SetupBy { invitation, piyuoCloud, customServer, demo }
+
 class _CTAScreenState extends ConsumerState<CTAScreen> {
-  core_domain.SetupBy? _setupBy;
+  SetupBy? _setupBy;
 
   @override
   Widget build(BuildContext context) {
-    final Color borderColor = CupertinoColors.systemGrey4.resolveFrom(context);
-    final Color selectedColor = CupertinoColors.activeBlue;
-    return feature_pip.PipScaffold(
-      themeData: const CupertinoThemeData(brightness: Brightness.light),
-      builder: (scrollController) {
-        return NextButtonContainer(
-          onNextPressed: _setupBy == null
-              ? null
-              : () {
-                  final navigationEventBusProvider = ref.read(core_domain.navigationEventBusProvider);
-                  switch (_setupBy!) {
-                    case const core_domain.SetupBy.invitation():
-                      navigationEventBusProvider.add(const core_domain.OpenOnboardingInvitation());
-                      return;
-                    case const core_domain.SetupBy.signUp():
-                      navigationEventBusProvider.add(const core_domain.OpenOnboardingSignup());
-                      return;
-                    case const core_domain.SetupBy.demo():
-                      navigationEventBusProvider.add(const core_domain.OpenOnboardingDemo());
-                      return;
-                    default:
-                  }
-                },
-          child: SingleChildScrollView(
-            controller: scrollController,
-            padding: const EdgeInsets.only(bottom: 120.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Text(
-                  'Where to send your data?',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10.0),
-                _DecisionCard(
-                  subtitle: 'Option 1 (Invitation):',
-                  title: 'Connect with an invitation',
-                  body: 'Send data to the organization that invited you.',
-                  isSelected: _setupBy == core_domain.SetupBy.invitation(),
-                  borderColor: borderColor,
-                  selectedColor: selectedColor,
-                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.invitation()),
-                ),
-                const SizedBox(height: 10.0),
-                _DecisionCard(
-                  subtitle: 'Option 2 (Backend):',
-                  title: 'Connect to a backend',
-                  body: 'Send data to Piyuo Cloud or your own server. Requires a subscription.',
-                  isSelected: _setupBy == core_domain.SetupBy.signUp(),
-                  borderColor: borderColor,
-                  selectedColor: selectedColor,
-                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.signUp()),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    "Only summarized 5-minute metadata is sent.\nRaw video never leaves this device.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12, color: CupertinoColors.systemGrey),
-                  ),
-                ),
-                const SizedBox(height: 10.0),
-                _DecisionCard(
-                  subtitle: 'Testing:', // Changed from Option 3
-                  title: 'Local Demo Mode', // Clearer purpose
-                  body: 'Verify AI detection and camera angles. \nData is not saved and cannot be exported.',
-                  isSelected: _setupBy == core_domain.SetupBy.demo(),
-                  borderColor: borderColor,
-                  selectedColor: CupertinoColors.systemGrey, // Neutral color instead of Blue
-                  onTap: () => setState(() => _setupBy = core_domain.SetupBy.demo()),
-                ),
-              ],
-            ),
+    return OnboardingScaffold(
+      onNextPressed: _setupBy == null
+          ? null
+          : () {
+              switch (_setupBy!) {
+                case SetupBy.invitation:
+                  ref.push(const core_domain.OpenOnboardingInvitation());
+                  return;
+                case SetupBy.piyuoCloud:
+                  ref.push(const core_domain.OpenOnboardingPiyuo());
+                  return;
+                case SetupBy.customServer:
+                  ref.push(const core_domain.OpenOnboardingServer());
+                  return;
+                case SetupBy.demo:
+                  ref.push(const core_domain.OpenOnboardingDemo());
+                  return;
+              }
+            },
+      children: [
+        feature_pip.PipPanel(
+          margin: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+          child: Column(
+            children: [
+              Text('Where should results go?', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              const SizedBox(height: 4),
+              Text(
+                'Choose where your counting results should be sent.',
+                style: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+              ),
+            ],
           ),
-        );
-      },
+        ),
+        const SizedBox(height: 15.0),
+        _DecisionCard(
+          title: 'Use an invitation',
+          body: 'Send results to the organization that invited you.',
+          icon: Icons.mail_outline,
+          isSelected: _setupBy == SetupBy.invitation,
+          textColor: Colors.white,
+          onTap: () => setState(() => _setupBy = SetupBy.invitation),
+        ),
+        const SizedBox(height: 10.0),
+        _DecisionCard(
+          title: 'Use Piyuo Cloud',
+          body: 'Send results to our cloud service.',
+          icon: Icons.cloud_outlined,
+          isSelected: _setupBy == SetupBy.piyuoCloud,
+          textColor: Colors.white,
+          onTap: () => setState(() => _setupBy = SetupBy.piyuoCloud),
+        ),
+        const SizedBox(height: 10.0),
+        _DecisionCard(
+          title: 'Use your own server',
+          body: 'We will help you set up a local server.',
+          icon: Icons.dns_outlined,
+          isSelected: _setupBy == SetupBy.customServer,
+          textColor: Colors.white,
+          onTap: () => setState(() => _setupBy = SetupBy.customServer),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 8),
+          child: Text(
+            "Don't want to connect?",
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 16, color: Colors.grey.shade400),
+          ),
+        ),
+        const SizedBox(height: 10.0),
+        _DecisionCard(
+          title: 'Demo mode',
+          body: 'Test counting only. Data is not saved or exported.',
+          icon: Icons.play_circle_outline,
+          isSelected: _setupBy == SetupBy.demo,
+          textColor: Colors.white.withValues(alpha: 0.8),
+          onTap: () => setState(() => _setupBy = SetupBy.demo),
+        ),
+      ],
     );
   }
 }
 
 class _DecisionCard extends StatelessWidget {
   const _DecisionCard({
-    required this.subtitle,
     required this.title,
     required this.body,
+    this.icon,
     required this.isSelected,
-    required this.borderColor,
-    required this.selectedColor,
+    required this.textColor,
     required this.onTap,
   });
 
-  final String subtitle;
   final String title;
   final String body;
+  final IconData? icon;
   final bool isSelected;
-  final Color borderColor;
-  final Color selectedColor;
+  final Color textColor;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final Color outline = isSelected ? selectedColor : borderColor;
-    final Color fill = isSelected ? selectedColor.withValues(alpha: 0.08) : CupertinoColors.white;
+    final Color fill = isSelected ? Colors.black.withValues(alpha: .6) : Colors.black.withValues(alpha: 0.5);
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        margin: const EdgeInsets.only(bottom: 8.0),
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         decoration: BoxDecoration(
           color: fill,
           borderRadius: BorderRadius.circular(16.0),
-          border: Border.all(color: outline),
+          border: Border.all(color: isSelected ? Colors.white : Colors.grey.shade700, width: 2),
         ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              width: 26.0,
-              height: 26.0,
-              decoration: BoxDecoration(
-                color: isSelected ? outline : CupertinoColors.white,
-                borderRadius: BorderRadius.circular(6.0),
-                border: Border.all(color: outline, width: 2.0),
+        child: IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 22.0,
+                          height: 22.0,
+                          decoration: BoxDecoration(
+                            color: isSelected ? Colors.green : Colors.black.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(6.0),
+                            border: Border.all(color: Colors.white, width: 2.0),
+                          ),
+                          child: isSelected ? const Icon(Icons.check, size: 20.0, color: Colors.white) : null,
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Text(
+                            title,
+                            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: textColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4.0),
+                    Text(body, style: TextStyle(fontSize: 14.0, height: 1.3, color: Colors.grey.shade300)),
+                  ],
+                ),
               ),
-              child: isSelected
-                  ? const Icon(CupertinoIcons.check_mark, size: 18.0, color: CupertinoColors.white)
-                  : null,
-            ),
-            const SizedBox(width: 12.0),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(subtitle, style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey)),
-                  Text(
-                    title,
-                    style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold, color: selectedColor),
+              if (icon != null) ...[
+                const SizedBox(width: 12.0),
+                Container(
+                  width: 68.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.08),
+                    borderRadius: BorderRadius.circular(14.0),
                   ),
-                  Text(body, style: TextStyle(fontSize: 14.0, height: 1.3, color: CupertinoColors.systemGrey)),
-                ],
-              ),
-            ),
-          ],
+                  child: Center(child: Icon(icon, size: 34.0, color: textColor)),
+                ),
+              ],
+            ],
+          ),
         ),
       ),
     );

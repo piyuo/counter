@@ -15,7 +15,31 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppState {
 
- Backend get backend; Frontend get frontend; SetupBy get setupBy;
+/// auto-generated unique device ID, sent to backend as a safety identifier
+ String get deviceId;/// Which remembered data-server choice is currently active.
+@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection get dataServerSelection;/// Last invitation/business server remembered for later reuse.
+ BusinessDataServer? get businessDataServer;/// Last custom personal server remembered for later reuse.
+ PersonalDataServer? get customPersonalDataServer;/// Stable personal Piyuo Cloud server remembered for later reuse.
+ PersonalDataServer? get piyuoPersonalDataServer;/// how to upload data to remote server/
+ UploadConfig get uploadConfig;/// Vision input selection.
+///
+/// Stored as a flat AppState field rather than inside a nested vision-session
+/// object because source, detection, and params can each change independently.
+@JsonKey(name: 'videoSource') VideoSource get videoSource;/// Vision model selection paired with [videoSource] and [detectionParams]
+/// to define the desired runtime session.
+ DetectionType get detection;/// Runtime tuning paired with [videoSource] and [detection].
+///
+/// Kept flat in AppState so small parameter edits remain ordinary app-state
+/// updates instead of forcing a wrapper type with weak domain meaning.
+ DetectionParams get detectionParams;/// Stable per-device jitter added to every wall-clock upload boundary.
+///
+/// Generated once on first boot (range: 0–180 seconds) and never changed.
+/// Spreads simultaneous uploads across a 3-minute window to prevent
+/// thundering herd against the backend (Lambda / DynamoDB).
+///
+/// A value of 0 means "not yet generated" and triggers auto-generation in
+/// [AppNotifier.build].
+ int get uploadJitterSec;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +52,16 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend)&&(identical(other.setupBy, setupBy) || other.setupBy == setupBy));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&const DeepCollectionEquality().equals(other.customPersonalDataServer, customPersonalDataServer)&&const DeepCollectionEquality().equals(other.piyuoPersonalDataServer, piyuoPersonalDataServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,backend,frontend,setupBy);
+int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(businessDataServer),const DeepCollectionEquality().hash(customPersonalDataServer),const DeepCollectionEquality().hash(piyuoPersonalDataServer),uploadConfig,videoSource,detection,detectionParams,uploadJitterSec);
 
 @override
 String toString() {
-  return 'AppState(backend: $backend, frontend: $frontend, setupBy: $setupBy)';
+  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, businessDataServer: $businessDataServer, customPersonalDataServer: $customPersonalDataServer, piyuoPersonalDataServer: $piyuoPersonalDataServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detection: $detection, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
 }
 
 
@@ -48,11 +72,11 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- Backend backend, Frontend frontend, SetupBy setupBy
+ String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, BusinessDataServer? businessDataServer, PersonalDataServer? customPersonalDataServer, PersonalDataServer? piyuoPersonalDataServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detection, DetectionParams detectionParams, int uploadJitterSec
 });
 
 
-$BackendCopyWith<$Res> get backend;$FrontendCopyWith<$Res> get frontend;$SetupByCopyWith<$Res> get setupBy;
+$UploadConfigCopyWith<$Res> get uploadConfig;$VideoSourceCopyWith<$Res> get videoSource;$DetectionTypeCopyWith<$Res> get detection;$DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -65,40 +89,56 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? backend = null,Object? frontend = null,Object? setupBy = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? businessDataServer = freezed,Object? customPersonalDataServer = freezed,Object? piyuoPersonalDataServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detection = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
   return _then(_self.copyWith(
-backend: null == backend ? _self.backend : backend // ignore: cast_nullable_to_non_nullable
-as Backend,frontend: null == frontend ? _self.frontend : frontend // ignore: cast_nullable_to_non_nullable
-as Frontend,setupBy: null == setupBy ? _self.setupBy : setupBy // ignore: cast_nullable_to_non_nullable
-as SetupBy,
+deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,dataServerSelection: null == dataServerSelection ? _self.dataServerSelection : dataServerSelection // ignore: cast_nullable_to_non_nullable
+as DataServerSelection,businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
+as BusinessDataServer?,customPersonalDataServer: freezed == customPersonalDataServer ? _self.customPersonalDataServer : customPersonalDataServer // ignore: cast_nullable_to_non_nullable
+as PersonalDataServer?,piyuoPersonalDataServer: freezed == piyuoPersonalDataServer ? _self.piyuoPersonalDataServer : piyuoPersonalDataServer // ignore: cast_nullable_to_non_nullable
+as PersonalDataServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
+as VideoSource,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
+as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$BackendCopyWith<$Res> get backend {
+$UploadConfigCopyWith<$Res> get uploadConfig {
   
-  return $BackendCopyWith<$Res>(_self.backend, (value) {
-    return _then(_self.copyWith(backend: value));
+  return $UploadConfigCopyWith<$Res>(_self.uploadConfig, (value) {
+    return _then(_self.copyWith(uploadConfig: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FrontendCopyWith<$Res> get frontend {
+$VideoSourceCopyWith<$Res> get videoSource {
   
-  return $FrontendCopyWith<$Res>(_self.frontend, (value) {
-    return _then(_self.copyWith(frontend: value));
+  return $VideoSourceCopyWith<$Res>(_self.videoSource, (value) {
+    return _then(_self.copyWith(videoSource: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$SetupByCopyWith<$Res> get setupBy {
+$DetectionTypeCopyWith<$Res> get detection {
   
-  return $SetupByCopyWith<$Res>(_self.setupBy, (value) {
-    return _then(_self.copyWith(setupBy: value));
+  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
+    return _then(_self.copyWith(detection: value));
+  });
+}/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DetectionParamsCopyWith<$Res> get detectionParams {
+  
+  return $DetectionParamsCopyWith<$Res>(_self.detectionParams, (value) {
+    return _then(_self.copyWith(detectionParams: value));
   });
 }
 }
@@ -179,10 +219,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend,  SetupBy setupBy)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.backend,_that.frontend,_that.setupBy);case _:
+return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);case _:
   return orElse();
 
 }
@@ -200,10 +240,10 @@ return $default(_that.backend,_that.frontend,_that.setupBy);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Backend backend,  Frontend frontend,  SetupBy setupBy)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.backend,_that.frontend,_that.setupBy);}
+return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -217,10 +257,10 @@ return $default(_that.backend,_that.frontend,_that.setupBy);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Backend backend,  Frontend frontend,  SetupBy setupBy)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.backend,_that.frontend,_that.setupBy);case _:
+return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);case _:
   return null;
 
 }
@@ -231,13 +271,44 @@ return $default(_that.backend,_that.frontend,_that.setupBy);case _:
 /// @nodoc
 @JsonSerializable()
 
-class _AppState implements AppState {
-  const _AppState({this.backend = const Backend.empty(), this.frontend = const Frontend.empty(), this.setupBy = const SetupBy.empty()});
+class _AppState extends AppState {
+  const _AppState({this.deviceId = '', @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.businessDataServer, this.customPersonalDataServer, this.piyuoPersonalDataServer, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detection = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0}): super._();
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
-@override@JsonKey() final  Backend backend;
-@override@JsonKey() final  Frontend frontend;
-@override@JsonKey() final  SetupBy setupBy;
+/// auto-generated unique device ID, sent to backend as a safety identifier
+@override@JsonKey() final  String deviceId;
+/// Which remembered data-server choice is currently active.
+@override@JsonKey(unknownEnumValue: DataServerSelection.unspecified) final  DataServerSelection dataServerSelection;
+/// Last invitation/business server remembered for later reuse.
+@override final  BusinessDataServer? businessDataServer;
+/// Last custom personal server remembered for later reuse.
+@override final  PersonalDataServer? customPersonalDataServer;
+/// Stable personal Piyuo Cloud server remembered for later reuse.
+@override final  PersonalDataServer? piyuoPersonalDataServer;
+/// how to upload data to remote server/
+@override@JsonKey() final  UploadConfig uploadConfig;
+/// Vision input selection.
+///
+/// Stored as a flat AppState field rather than inside a nested vision-session
+/// object because source, detection, and params can each change independently.
+@override@JsonKey(name: 'videoSource') final  VideoSource videoSource;
+/// Vision model selection paired with [videoSource] and [detectionParams]
+/// to define the desired runtime session.
+@override@JsonKey() final  DetectionType detection;
+/// Runtime tuning paired with [videoSource] and [detection].
+///
+/// Kept flat in AppState so small parameter edits remain ordinary app-state
+/// updates instead of forcing a wrapper type with weak domain meaning.
+@override@JsonKey() final  DetectionParams detectionParams;
+/// Stable per-device jitter added to every wall-clock upload boundary.
+///
+/// Generated once on first boot (range: 0–180 seconds) and never changed.
+/// Spreads simultaneous uploads across a 3-minute window to prevent
+/// thundering herd against the backend (Lambda / DynamoDB).
+///
+/// A value of 0 means "not yet generated" and triggers auto-generation in
+/// [AppNotifier.build].
+@override@JsonKey() final  int uploadJitterSec;
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -252,16 +323,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.backend, backend) || other.backend == backend)&&(identical(other.frontend, frontend) || other.frontend == frontend)&&(identical(other.setupBy, setupBy) || other.setupBy == setupBy));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&const DeepCollectionEquality().equals(other.customPersonalDataServer, customPersonalDataServer)&&const DeepCollectionEquality().equals(other.piyuoPersonalDataServer, piyuoPersonalDataServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,backend,frontend,setupBy);
+int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(businessDataServer),const DeepCollectionEquality().hash(customPersonalDataServer),const DeepCollectionEquality().hash(piyuoPersonalDataServer),uploadConfig,videoSource,detection,detectionParams,uploadJitterSec);
 
 @override
 String toString() {
-  return 'AppState(backend: $backend, frontend: $frontend, setupBy: $setupBy)';
+  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, businessDataServer: $businessDataServer, customPersonalDataServer: $customPersonalDataServer, piyuoPersonalDataServer: $piyuoPersonalDataServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detection: $detection, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
 }
 
 
@@ -272,11 +343,11 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- Backend backend, Frontend frontend, SetupBy setupBy
+ String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, BusinessDataServer? businessDataServer, PersonalDataServer? customPersonalDataServer, PersonalDataServer? piyuoPersonalDataServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detection, DetectionParams detectionParams, int uploadJitterSec
 });
 
 
-@override $BackendCopyWith<$Res> get backend;@override $FrontendCopyWith<$Res> get frontend;@override $SetupByCopyWith<$Res> get setupBy;
+@override $UploadConfigCopyWith<$Res> get uploadConfig;@override $VideoSourceCopyWith<$Res> get videoSource;@override $DetectionTypeCopyWith<$Res> get detection;@override $DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -289,12 +360,19 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? backend = null,Object? frontend = null,Object? setupBy = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? businessDataServer = freezed,Object? customPersonalDataServer = freezed,Object? piyuoPersonalDataServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detection = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
   return _then(_AppState(
-backend: null == backend ? _self.backend : backend // ignore: cast_nullable_to_non_nullable
-as Backend,frontend: null == frontend ? _self.frontend : frontend // ignore: cast_nullable_to_non_nullable
-as Frontend,setupBy: null == setupBy ? _self.setupBy : setupBy // ignore: cast_nullable_to_non_nullable
-as SetupBy,
+deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
+as String,dataServerSelection: null == dataServerSelection ? _self.dataServerSelection : dataServerSelection // ignore: cast_nullable_to_non_nullable
+as DataServerSelection,businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
+as BusinessDataServer?,customPersonalDataServer: freezed == customPersonalDataServer ? _self.customPersonalDataServer : customPersonalDataServer // ignore: cast_nullable_to_non_nullable
+as PersonalDataServer?,piyuoPersonalDataServer: freezed == piyuoPersonalDataServer ? _self.piyuoPersonalDataServer : piyuoPersonalDataServer // ignore: cast_nullable_to_non_nullable
+as PersonalDataServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
+as VideoSource,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
+as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
@@ -302,28 +380,37 @@ as SetupBy,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$BackendCopyWith<$Res> get backend {
+$UploadConfigCopyWith<$Res> get uploadConfig {
   
-  return $BackendCopyWith<$Res>(_self.backend, (value) {
-    return _then(_self.copyWith(backend: value));
+  return $UploadConfigCopyWith<$Res>(_self.uploadConfig, (value) {
+    return _then(_self.copyWith(uploadConfig: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$FrontendCopyWith<$Res> get frontend {
+$VideoSourceCopyWith<$Res> get videoSource {
   
-  return $FrontendCopyWith<$Res>(_self.frontend, (value) {
-    return _then(_self.copyWith(frontend: value));
+  return $VideoSourceCopyWith<$Res>(_self.videoSource, (value) {
+    return _then(_self.copyWith(videoSource: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$SetupByCopyWith<$Res> get setupBy {
+$DetectionTypeCopyWith<$Res> get detection {
   
-  return $SetupByCopyWith<$Res>(_self.setupBy, (value) {
-    return _then(_self.copyWith(setupBy: value));
+  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
+    return _then(_self.copyWith(detection: value));
+  });
+}/// Create a copy of AppState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$DetectionParamsCopyWith<$Res> get detectionParams {
+  
+  return $DetectionParamsCopyWith<$Res>(_self.detectionParams, (value) {
+    return _then(_self.copyWith(detectionParams: value));
   });
 }
 }

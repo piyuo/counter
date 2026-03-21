@@ -79,6 +79,30 @@ class LocalizationHu extends Localization {
   String get color_screen_title => 'Szín kiválasztása';
 
   @override
+  String get count_avg_dwell => 'Átlag Tartózkodás';
+
+  @override
+  String get count_avg_occ => 'Átlag Jelen';
+
+  @override
+  String get count_enter => 'Belépés';
+
+  @override
+  String get count_exit => 'Kilépés';
+
+  @override
+  String get count_max_dwell => 'Max. Tartózkodás';
+
+  @override
+  String get count_max_occ => 'Max. Jelenlét';
+
+  @override
+  String get count_pass_by => 'Áthaladt';
+
+  @override
+  String get count_window => 'Számolási Időszak: 5 perc';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Az újrabelépéshez #0 másodperces várakozási idő szükséges a felismerési zónából való kilépés után';
 

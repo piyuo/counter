@@ -14,7 +14,7 @@ class ExampleScreen extends StatelessWidget {
         controller: scrollController,
         child: Column(
           children: [
-            feature_pip.PipHeader(
+            feature_pip.PipPanel(
               padding: EdgeInsets.all(10),
               child: Column(
                 children: [
@@ -33,7 +33,6 @@ class ExampleScreen extends StatelessWidget {
 
             CupertinoListSection(
               header: Text('Hello List Section'),
-              backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
               children: [
                 CupertinoListTile(
                   leading: Icon(CupertinoIcons.info),
@@ -56,7 +55,6 @@ class ExampleScreen extends StatelessWidget {
                 ),
               ],
             ),
-            feature_pip.PipFooter(),
           ],
         ),
       ),

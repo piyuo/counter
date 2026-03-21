@@ -84,7 +84,6 @@ class RootScreen extends ConsumerWidget {
               Text('index screen'),
               if (statusLabel != null) Text(statusLabel),
 
-              feature_pip.PipFooter(),
             ],
           ),
         );

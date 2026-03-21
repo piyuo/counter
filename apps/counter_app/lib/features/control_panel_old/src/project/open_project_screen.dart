@@ -20,7 +20,7 @@ class OpenProjectScreen extends StatelessWidget {
       child: Consumer2<app.ProjectProvider, OpenProjectScreenProvider>(
         builder: (context, projectProvider, openProjectScreenProvider, child) {
           buildHeader() {
-            return feature_pip.PipHeader(
+            return feature_pip.PipPanel(
               child: Column(
                 children: [
                   Icon(CupertinoIcons.archivebox, size: 44),
@@ -43,7 +43,7 @@ class OpenProjectScreen extends StatelessWidget {
                         buildHeader(),
                         SizedBox(height: 200, child: Center(child: CupertinoActivityIndicator(radius: 28))),
                       ]
-                    : [buildHeader(), feature_pip.PipFooter()],
+                    : [buildHeader()],
               ),
             ),
           );

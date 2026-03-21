@@ -20,7 +20,7 @@ final class AppNotifierProvider
         argument: null,
         retry: null,
         name: r'appProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -33,7 +33,7 @@ final class AppNotifierProvider
   AppNotifier create() => AppNotifier();
 }
 
-String _$appNotifierHash() => r'99d7d6a9cada2e71569e7391c20b5a42e1ee5b3d';
+String _$appNotifierHash() => r'87b11fde2a3e2871cc656ea234f6b19e378a44c6';
 
 abstract class _$AppNotifier extends $AsyncNotifier<AppState> {
   FutureOr<AppState> build();

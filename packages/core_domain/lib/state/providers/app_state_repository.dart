@@ -6,6 +6,7 @@ part 'app_state_repository.g.dart';
 abstract class AppStateRepository {
   Future<AppState> load();
   Future<void> save(AppState state);
+  Future<void> reset();
 }
 
 @riverpod

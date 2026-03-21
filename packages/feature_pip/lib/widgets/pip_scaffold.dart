@@ -1,26 +1,26 @@
+// TOC:
+//  - PipScaffold: ConsumerStatefulWidget that owns a ScrollController and wires it to PipNotifier
+//  - _PipScaffoldState: creates, sends, disposes the ScrollController; listens to scrollEventBusProvider; uses PipAppBar
+//  - getCupertinoListSectionBackgroundColor: shared theme helper
+
 import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feature_pip/providers/pip_notifier.dart';
 import 'package:feature_pip/providers/scroll_event_bus.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:feature_pip/widgets/pip_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
-import 'package:super_cupertino_navigation_bar/super_cupertino_navigation_bar.dart';
+import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
-// TOC:
-//  - PipScaffold: ConsumerStatefulWidget that owns a ScrollController and wires it to PipNotifier
-//  - _PipScaffoldState: creates, sends, disposes the ScrollController; listens to scrollEventBusProvider
-//  - getCupertinoListSectionBackgroundColor: shared theme helper
+const kScrollContentAppbarPadding = 52.0 + 10; // appbar height + some spacing
 
 /// Picture in Picture screen scaffold that provides a managed [ScrollController]
 /// to its [builder] and notifies [PipNotifier] of scroll activity.
 class PipScaffold extends ConsumerStatefulWidget {
   const PipScaffold({
     required this.builder,
-    this.themeData = const CupertinoThemeData(brightness: Brightness.dark),
     this.action,
     this.titleWidget,
     this.title,
@@ -57,8 +57,6 @@ class PipScaffold extends ConsumerStatefulWidget {
   final String? previousPageTitle;
 
   final Color? backgroundColor;
-
-  final CupertinoThemeData themeData;
 
   @override
   ConsumerState<PipScaffold> createState() => _PipScaffoldState();
@@ -97,35 +95,24 @@ class _PipScaffoldState extends ConsumerState<PipScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTheme(
-      data: widget.themeData,
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            bottomNavigationBar: widget.bottomNavigationBar,
-            backgroundColor: CupertinoColors.systemBackground.resolveFrom(context),
-            body: SuperScaffold(
-              appBar: SuperAppBar(
-                previousPageTitle: widget.previousPageTitle ?? context.l.back,
-                backgroundColor: widget.backgroundColor ?? CupertinoColors.systemBackground.resolveFrom(context),
-                title: widget.titleWidget ?? (widget.title != null ? AutoSizeText(widget.title!) : null),
-                largeTitle: SuperLargeTitle(enabled: widget.largeTitle != null, largeTitle: widget.largeTitle ?? ''),
-                actions: widget.action,
-                searchBar: SuperSearchBar(
-                  enabled: widget.onSearch != null,
-                  animationBehavior: SearchBarAnimationBehavior.steady,
-                ),
-              ),
-              body: widget.builder(scrollController),
-            ),
-          );
-        },
+    return GlassContainer(
+      useOwnLayer: false,
+      quality: GlassQuality.standard,
+      child: Scaffold(
+        bottomNavigationBar: widget.bottomNavigationBar,
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
+        appBar: PipAppBar(
+          title:
+              widget.titleWidget ??
+              (widget.title != null
+                  ? AutoSizeText(widget.title!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+                  : null),
+          onSearch: widget.onSearch,
+          actions: widget.action != null ? [widget.action!] : null,
+        ),
+        body: widget.builder(scrollController),
       ),
     );
   }
-}
-
-/// get Cupertino list section theme color
-Color getCupertinoListSectionBackgroundColor(BuildContext context) {
-  return CupertinoColors.systemBackground.resolveFrom(context).withValues(alpha: 0.92);
 }

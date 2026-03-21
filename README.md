@@ -33,7 +33,8 @@ Visit [piyuo.com](https://piyuo.com) for direct download links.
 1. Open the app and point your camera at the area to monitor
 2. The AI automatically detects and counts passing pedestrians
 3. View real-time count statistics on your screen
-4. Export or save counting data as needed
+4. Telemetry uploads on scheduled cadence (hourly by default); failed uploads wait for the next scheduled slot
+5. Export or save counting data as needed
 
 ## Technology
 

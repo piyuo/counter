@@ -56,7 +56,7 @@ final class AppFlowNotifierProvider
   }
 }
 
-String _$appFlowNotifierHash() => r'48f7f78afe60a47df0d121a71e574020c9dc8fe4';
+String _$appFlowNotifierHash() => r'd65288c5874cedf7f47e374f8b75755279b84121';
 
 /// Architecture note:
 /// - Lifecycle is a synchronous state machine (event -> next state).

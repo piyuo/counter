@@ -31,5 +31,5 @@ final controlPanelRouteRulesProvider = Provider<List<core_domain.RouteRule>>((re
 /// Re-created whenever the rule list changes (e.g. dynamic feature loading).
 final controlPanelRouteDecisionEngineProvider = Provider<core_domain.RouteDecisionEngine>((ref) {
   final rules = ref.watch(controlPanelRouteRulesProvider);
-  return core_domain.RouteDecisionEngine(rules);
+  return core_domain.RouteDecisionEngine('control_panel_route', rules);
 });

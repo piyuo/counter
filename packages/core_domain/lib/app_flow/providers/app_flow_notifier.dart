@@ -27,14 +27,29 @@ class AppFlowNotifier extends _$AppFlowNotifier implements AppFlowController {
     if (next == state) return;
     final previous = state;
     state = next;
-    appkit.logInfo('[AppFlow] $previous → $next ($event)');
+    appkit.logInfo('[AppFlow] ${_shortFlow(previous)} → ${_shortFlow(next)} (${_shortEvent(event)})');
   }
+
+  String _shortFlow(AppFlow flow) {
+    final s = flow.toString();
+    final dot = s.indexOf('.');
+    final paren = s.indexOf('(');
+    return s.substring(dot + 1, paren);
+  }
+
+  String _shortEvent(AppFlowEvent ev) => ev.toString().replaceAll('()', '');
 
   AppFlow _reduce(AppFlow current, AppFlowEvent event) {
     return switch ((current, event)) {
-      (WaitingForStart(), const AppFlowEvent.startRequested()) => const CheckingBackend(),
-      (CheckingBackend(), const AppFlowEvent.onboardingNeeded()) => const OnboardingRequired(),
-      (CheckingBackend(), const AppFlowEvent.onboardingCompleted()) => const SessionRunning(),
+      (WaitingForStart(), const AppFlowEvent.videoSourceCheck()) => const CheckingVideoSource(),
+      (CheckingVideoSource(), const AppFlowEvent.dataServerCheck()) => const CheckingDataServer(),
+      (CheckingDataServer(), const AppFlowEvent.onboardingNeeded()) => const OnboardingBegin(),
+      // before onboarding, check app to see if it open by invitation
+      (CheckingDataServer(), const AppFlowEvent.invitationClicked()) => const OnboardingByInvitation(),
+      (CheckingDataServer(), const AppFlowEvent.startSession()) => const SessionRunning(),
+      (OnboardingBegin(), const AppFlowEvent.startSession()) => const SessionRunning(),
+      (OnboardingBegin(), const AppFlowEvent.invitationClicked()) => const OnboardingByInvitation(),
+      (SessionRunning(), const AppFlowEvent.onboardingNeeded()) => const OnboardingBegin(), //  user reset in settings
       _ => current,
     };
   }

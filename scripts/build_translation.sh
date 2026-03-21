@@ -1,4 +1,4 @@
-# script/build_translation.sh
+# scripts/build_translation.sh
 #!/bin/bash
 # CSV to ARB Converter Script
 # Converts l10n.csv to ARB files for Flutter localization

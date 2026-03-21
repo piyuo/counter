@@ -55,13 +55,14 @@ extension AppFlowPatterns on AppFlow {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WaitingForStart value)?  waitingForStart,TResult Function( CheckingBackend value)?  checkingBackend,TResult Function( OnboardingRequired value)?  onboardingRequired,TResult Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult Function( SessionRunning value)?  sessionRunning,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WaitingForStart value)?  waitingForStart,TResult Function( CheckingVideoSource value)?  checkingVideoSource,TResult Function( CheckingDataServer value)?  checkingDataServer,TResult Function( OnboardingBegin value)?  onboardingBegin,TResult Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult Function( SessionRunning value)?  sessionRunning,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart(_that);case CheckingBackend() when checkingBackend != null:
-return checkingBackend(_that);case OnboardingRequired() when onboardingRequired != null:
-return onboardingRequired(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
+return waitingForStart(_that);case CheckingVideoSource() when checkingVideoSource != null:
+return checkingVideoSource(_that);case CheckingDataServer() when checkingDataServer != null:
+return checkingDataServer(_that);case OnboardingBegin() when onboardingBegin != null:
+return onboardingBegin(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation(_that);case SessionRunning() when sessionRunning != null:
 return sessionRunning(_that);case _:
   return orElse();
@@ -81,13 +82,14 @@ return sessionRunning(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WaitingForStart value)  waitingForStart,required TResult Function( CheckingBackend value)  checkingBackend,required TResult Function( OnboardingRequired value)  onboardingRequired,required TResult Function( OnboardingByInvitation value)  onboardingByInvitation,required TResult Function( SessionRunning value)  sessionRunning,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WaitingForStart value)  waitingForStart,required TResult Function( CheckingVideoSource value)  checkingVideoSource,required TResult Function( CheckingDataServer value)  checkingDataServer,required TResult Function( OnboardingBegin value)  onboardingBegin,required TResult Function( OnboardingByInvitation value)  onboardingByInvitation,required TResult Function( SessionRunning value)  sessionRunning,}){
 final _that = this;
 switch (_that) {
 case WaitingForStart():
-return waitingForStart(_that);case CheckingBackend():
-return checkingBackend(_that);case OnboardingRequired():
-return onboardingRequired(_that);case OnboardingByInvitation():
+return waitingForStart(_that);case CheckingVideoSource():
+return checkingVideoSource(_that);case CheckingDataServer():
+return checkingDataServer(_that);case OnboardingBegin():
+return onboardingBegin(_that);case OnboardingByInvitation():
 return onboardingByInvitation(_that);case SessionRunning():
 return sessionRunning(_that);}
 }
@@ -103,13 +105,14 @@ return sessionRunning(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WaitingForStart value)?  waitingForStart,TResult? Function( CheckingBackend value)?  checkingBackend,TResult? Function( OnboardingRequired value)?  onboardingRequired,TResult? Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult? Function( SessionRunning value)?  sessionRunning,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WaitingForStart value)?  waitingForStart,TResult? Function( CheckingVideoSource value)?  checkingVideoSource,TResult? Function( CheckingDataServer value)?  checkingDataServer,TResult? Function( OnboardingBegin value)?  onboardingBegin,TResult? Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult? Function( SessionRunning value)?  sessionRunning,}){
 final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart(_that);case CheckingBackend() when checkingBackend != null:
-return checkingBackend(_that);case OnboardingRequired() when onboardingRequired != null:
-return onboardingRequired(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
+return waitingForStart(_that);case CheckingVideoSource() when checkingVideoSource != null:
+return checkingVideoSource(_that);case CheckingDataServer() when checkingDataServer != null:
+return checkingDataServer(_that);case OnboardingBegin() when onboardingBegin != null:
+return onboardingBegin(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation(_that);case SessionRunning() when sessionRunning != null:
 return sessionRunning(_that);case _:
   return null;
@@ -128,12 +131,13 @@ return sessionRunning(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  waitingForStart,TResult Function()?  checkingBackend,TResult Function()?  onboardingRequired,TResult Function()?  onboardingByInvitation,TResult Function()?  sessionRunning,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  waitingForStart,TResult Function()?  checkingVideoSource,TResult Function()?  checkingDataServer,TResult Function()?  onboardingBegin,TResult Function()?  onboardingByInvitation,TResult Function()?  sessionRunning,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart();case CheckingBackend() when checkingBackend != null:
-return checkingBackend();case OnboardingRequired() when onboardingRequired != null:
-return onboardingRequired();case OnboardingByInvitation() when onboardingByInvitation != null:
+return waitingForStart();case CheckingVideoSource() when checkingVideoSource != null:
+return checkingVideoSource();case CheckingDataServer() when checkingDataServer != null:
+return checkingDataServer();case OnboardingBegin() when onboardingBegin != null:
+return onboardingBegin();case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation();case SessionRunning() when sessionRunning != null:
 return sessionRunning();case _:
   return orElse();
@@ -153,12 +157,13 @@ return sessionRunning();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  waitingForStart,required TResult Function()  checkingBackend,required TResult Function()  onboardingRequired,required TResult Function()  onboardingByInvitation,required TResult Function()  sessionRunning,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  waitingForStart,required TResult Function()  checkingVideoSource,required TResult Function()  checkingDataServer,required TResult Function()  onboardingBegin,required TResult Function()  onboardingByInvitation,required TResult Function()  sessionRunning,}) {final _that = this;
 switch (_that) {
 case WaitingForStart():
-return waitingForStart();case CheckingBackend():
-return checkingBackend();case OnboardingRequired():
-return onboardingRequired();case OnboardingByInvitation():
+return waitingForStart();case CheckingVideoSource():
+return checkingVideoSource();case CheckingDataServer():
+return checkingDataServer();case OnboardingBegin():
+return onboardingBegin();case OnboardingByInvitation():
 return onboardingByInvitation();case SessionRunning():
 return sessionRunning();}
 }
@@ -174,12 +179,13 @@ return sessionRunning();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  waitingForStart,TResult? Function()?  checkingBackend,TResult? Function()?  onboardingRequired,TResult? Function()?  onboardingByInvitation,TResult? Function()?  sessionRunning,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  waitingForStart,TResult? Function()?  checkingVideoSource,TResult? Function()?  checkingDataServer,TResult? Function()?  onboardingBegin,TResult? Function()?  onboardingByInvitation,TResult? Function()?  sessionRunning,}) {final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart();case CheckingBackend() when checkingBackend != null:
-return checkingBackend();case OnboardingRequired() when onboardingRequired != null:
-return onboardingRequired();case OnboardingByInvitation() when onboardingByInvitation != null:
+return waitingForStart();case CheckingVideoSource() when checkingVideoSource != null:
+return checkingVideoSource();case CheckingDataServer() when checkingDataServer != null:
+return checkingDataServer();case OnboardingBegin() when onboardingBegin != null:
+return onboardingBegin();case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation();case SessionRunning() when sessionRunning != null:
 return sessionRunning();case _:
   return null;
@@ -224,8 +230,8 @@ String toString() {
 /// @nodoc
 
 
-class CheckingBackend implements AppFlow {
-  const CheckingBackend();
+class CheckingVideoSource implements AppFlow {
+  const CheckingVideoSource();
   
 
 
@@ -235,7 +241,7 @@ class CheckingBackend implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingBackend);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingVideoSource);
 }
 
 
@@ -244,7 +250,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.checkingBackend()';
+  return 'AppFlow.checkingVideoSource()';
 }
 
 
@@ -256,8 +262,8 @@ String toString() {
 /// @nodoc
 
 
-class OnboardingRequired implements AppFlow {
-  const OnboardingRequired();
+class CheckingDataServer implements AppFlow {
+  const CheckingDataServer();
   
 
 
@@ -267,7 +273,7 @@ class OnboardingRequired implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingRequired);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingDataServer);
 }
 
 
@@ -276,7 +282,39 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.onboardingRequired()';
+  return 'AppFlow.checkingDataServer()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class OnboardingBegin implements AppFlow {
+  const OnboardingBegin();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingBegin);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AppFlow.onboardingBegin()';
 }
 
 

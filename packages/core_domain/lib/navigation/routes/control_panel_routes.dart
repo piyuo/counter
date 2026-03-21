@@ -4,20 +4,19 @@
 // Architecture note:
 //  - Routing logic is handled by the RouteDecisionEngine + rule plugins.
 //  - This class is intentionally a constants-only namespace.
+//  - Only paths used by redirect rules (core_domain) live here.
+//    All other paths are owned by typed RouteData classes in feature_control_panel.
 
-/// Named path constants shared across the control-panel feature.
+/// Named path constants used by redirect rules in core_domain.
 ///
-/// Rules in `packages/core_domain/lib/navigation/rules/` reference these
-/// constants so every redirect target is defined in one place.
+/// Only constants referenced by RouteDecisionEngine rules belong here.
+/// Feature-local routes are accessed via RouteData().location instead.
 class ControlPanelRoutes {
   const ControlPanelRoutes._();
   static const String root = '/'; // booting screen, shows a loading indicator while the app determines where to go
-  static const String start = '/start'; // start screen for pedestrian detection,  it has statistic, settings and about
+  static const String start = '/start'; // start screen for pedestrian detection
 
   // onboarding will be controlled by OnboardingRoutes
 
   static const String liveStreamOnly = '/live-stream-only';
-  static const String settings = '/settings';
-  static const String language = '/language';
-  static const String about = '/about';
 }

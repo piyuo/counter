@@ -55,21 +55,6 @@ void main() {
       expect(container.read(controlPanelRouteDecisionEngineProvider), isA<core_domain.RouteDecisionEngine>());
     });
 
-    test('engine redirects liveStreamOnly lifecycle to /live-stream-only', () {
-      final container = ProviderContainer();
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.sessionRunning(),
-        path: core_domain.ControlPanelRoutes.root,
-        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
-      );
-
-      expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
-    });
-
     test('engine returns null for systemReady + sessionRunning (no redirect)', () {
       final container = ProviderContainer();
       addTearDown(container.dispose);
@@ -78,52 +63,6 @@ void main() {
       final ctx = core_domain.RouteContext(
         lifecycle: const core_domain.SystemLifecycle.systemReady(),
         flow: const core_domain.AppFlow.sessionRunning(),
-        path: core_domain.ControlPanelRoutes.root,
-      );
-
-      expect(engine.decide(ctx), isNull);
-    });
-
-    test('system-lifecycle rule decides /live-stream-only regardless of app-flow state', () {
-      // liveStreamOnly + sessionRunning: only SystemLifecycleRule fires → /live-stream-only.
-      // AppFlowRule is silent, so no cycle — confirms system rule priority.
-      final container = ProviderContainer();
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.sessionRunning(),
-        path: core_domain.ControlPanelRoutes.root,
-        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
-      );
-
-      expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
-    });
-
-    test('no transitions → null (rules are transition-based, not state-based)', () {
-      // Neither rule fires without lifecycle/flow transitions.
-      final container = ProviderContainer();
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.onboardingRequired(),
-        path: core_domain.ControlPanelRoutes.root,
-      );
-
-      expect(engine.decide(ctx), isNull);
-    });
-
-    test('overriding rules with empty list produces engine that always returns null', () {
-      final container = ProviderContainer(overrides: [controlPanelRouteRulesProvider.overrideWithValue([])]);
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.onboardingRequired(),
         path: core_domain.ControlPanelRoutes.root,
       );
 

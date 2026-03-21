@@ -1,0 +1,151 @@
+// TOC:
+//  - TelemetryQueue: Drift table definition for the telemetry queue
+//  - TelemetryQueue helpers: reusable query predicates for queue state
+//  - TelemetryDatabase: @DriftDatabase that owns the table
+
+import 'dart:io';
+
+import 'package:drift/drift.dart';
+import 'package:drift/native.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+
+part 'telemetry_database.g.dart';
+
+/// Drift table that persists payloads waiting to be (re-)sent.
+// Partial index for pending-only scans (fetchReady): keeps index small and hot.
+@TableIndex.sql('''
+  CREATE INDEX telemetry_queue_pending_ready_idx
+  ON telemetry_queue (created_at_ms)
+  WHERE delivered_at_ms IS NULL;
+''')
+// Full index for all-row time-window queries (fetchRecent/pruneExpired).
+// ASC is sufficient because SQLite can scan a single-column index in reverse.
+@TableIndex.sql('''
+  CREATE INDEX telemetry_queue_created_at_idx
+  ON telemetry_queue (created_at_ms);
+''')
+class TelemetryQueue extends Table {
+  /// UUID v4 string; primary key. Matches [core_domain.TelemetryPayload.payloadId].
+  TextColumn get id => text()();
+  TextColumn get serializedPayload => text()();
+
+  /// Milliseconds since epoch — when this item was first enqueued.
+  IntColumn get createdAtMs => integer()();
+
+  /// Milliseconds since epoch — observed window start time (UTC).
+  IntColumn get startMs => integer()();
+
+  /// Milliseconds since epoch — observed window end time (UTC).
+  IntColumn get endMs => integer()();
+
+  /// Milliseconds since epoch — when this item was successfully uploaded.
+  /// NULL if not yet uploaded.
+  /// Uses legacy column name for backward compatibility with existing databases.
+  IntColumn get uploadedAtMs => integer().named('delivered_at_ms').nullable()();
+
+  /// Returns `true` when the payload has been uploaded.
+  Expression<bool> get isUploaded => uploadedAtMs.isNotNull();
+
+  /// Returns `true` when the payload is still pending upload.
+  Expression<bool> get isPending => uploadedAtMs.isNull();
+
+  /// Returns `true` when the payload was uploaded on or after [cutoffMs].
+  Expression<bool> isUploadedAfter(int cutoffMs) => isUploaded & uploadedAtMs.isBiggerOrEqualValue(cutoffMs);
+
+  /// Returns `true` when the payload was enqueued before [beforeMs].
+  Expression<bool> isCreatedBefore(int beforeMs) => createdAtMs.isSmallerThanValue(beforeMs);
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+/// Drift table that persists one record per upload attempt.
+@TableIndex.sql('''
+  CREATE INDEX telemetry_upload_logs_attempted_at_idx
+  ON telemetry_upload_log (attempted_at_ms DESC);
+''')
+@TableIndex.sql('''
+  CREATE INDEX telemetry_upload_logs_attempted_at_success_idx
+  ON telemetry_upload_log (attempted_at_ms DESC, success);
+''')
+class TelemetryUploadLog extends Table {
+  /// Semantic primary key in UTC hour/status format: yyyyMMddHHs.
+  ///
+  /// Success digit:
+  /// - 1: success
+  /// - 0: failed
+  ///
+  /// Allows 2 records per hour (success/failure) without ID collisions during retries.
+  IntColumn get id => integer()();
+
+  /// True if the upload attempt succeeded.
+  BoolColumn get success => boolean()();
+
+  /// Milliseconds since epoch — timestamp of the upload attempt.
+  IntColumn get attemptedAtMs => integer()();
+
+  /// Serialized payload size sent in this attempt, rounded to KB.
+  IntColumn get payloadSizeKb => integer().named('size_kb')();
+
+  /// Number of payload items included in this upload attempt.
+  IntColumn get payloadCount => integer().withDefault(const Constant(0))();
+
+  /// Retry number captured for this upload attempt.
+  IntColumn get retryCount => integer().withDefault(const Constant(0))();
+
+  /// Human-readable error message from failed attempts.
+  TextColumn get error => text().nullable()();
+
+  /// Returns true when this log row was recorded before [beforeMs].
+  Expression<bool> isAttemptedBefore(int beforeMs) => attemptedAtMs.isSmallerThanValue(beforeMs);
+
+  /// Returns true when this log row was recorded after [cutoffMs].
+  Expression<bool> isAttemptedAfter(int cutoffMs) => attemptedAtMs.isBiggerOrEqualValue(cutoffMs);
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
+@DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog])
+class TelemetryDatabase extends _$TelemetryDatabase {
+  TelemetryDatabase._internal(super.executor);
+
+  /// Opens the database at an explicit filesystem path.
+  static Future<TelemetryDatabase> open({required String filePath}) async {
+    appkit.logDebug('[Telemetry] open database: $filePath');
+    final executor = NativeDatabase(File(filePath));
+    return TelemetryDatabase._internal(executor);
+  }
+
+  /// Deletes the telemetry database file if it exists.
+  ///
+  /// Also cleans up SQLite WAL (-wal) and SHM (-shm) ancillary files.
+  /// Test-only helper to keep test runs isolated.
+  static Future<void> remove({required String filePath}) async {
+    final dbFile = File(filePath);
+    if (await dbFile.exists()) {
+      appkit.logDebug('[Telemetry] delete database: $filePath');
+      await dbFile.delete();
+    }
+    // Clean up SQLite ancillary files (WAL/SHM) for test isolation
+    try {
+      await File('$filePath-wal').delete();
+    } catch (_) {}
+    try {
+      await File('$filePath-shm').delete();
+    } catch (_) {}
+  }
+
+  @override
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onUpgrade: (m, from, to) async {
+      if (from < 2) {
+        await m.addColumn(telemetryUploadLog, telemetryUploadLog.payloadCount);
+        await m.addColumn(telemetryUploadLog, telemetryUploadLog.retryCount);
+      }
+    },
+  );
+}

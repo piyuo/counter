@@ -51,7 +51,7 @@ class UrlScreen extends StatelessWidget {
                 controller: scrollController,
                 child: Column(
                   children: [
-                    feature_pip.PipHeader(
+                    feature_pip.PipPanel(
                       child: Column(
                         children: [
                           Icon(CupertinoIcons.cloud, size: 44),
@@ -66,7 +66,6 @@ class UrlScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       header: Text(context.l.url_screen_url),
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoTextField(
                           maxLines: 3,
@@ -87,7 +86,6 @@ class UrlScreen extends StatelessWidget {
                         ),
                       ),
                     CupertinoListSection(
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
                           trailing: urlScreenProvider._isSubmitButtonPressed ? CupertinoActivityIndicator() : null,
@@ -122,7 +120,6 @@ class UrlScreen extends StatelessWidget {
                     ),
                     if (initialUrl.isNotEmpty)
                       CupertinoListSection(
-                        backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                         children: [
                           CupertinoListTile(
                             title: Center(
@@ -139,7 +136,6 @@ class UrlScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                    feature_pip.PipFooter(),
                   ],
                 ),
               ),

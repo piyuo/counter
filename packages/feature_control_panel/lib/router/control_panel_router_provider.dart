@@ -12,10 +12,11 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/feature_onboarding.dart' as feature_onboarding;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/foundation.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'control_panel_route_map.dart';
+import 'control_panel_route_data.dart';
 import 'control_panel_route_rules_provider.dart';
 
 final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, initialLocation) {
@@ -43,24 +44,23 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
     refreshListenable: notifier,
-    routes: [...controlPanelRouteMap(), ...feature_onboarding.onBoardingRouteMap()],
+    routes: [...$appRoutes, ...feature_onboarding.$appRoutes],
     redirect: (context, state) {
       // Use read inside redirect to avoid recreating the router on every rebuild.
       final engine = ref.read(controlPanelRouteDecisionEngineProvider);
-
       // Capture and clear pending previous states so transition detection
-      final previousFlow = pendingPreviousFlow;
       final previousLifecycle = pendingPreviousLifecycle;
+      final previousFlow = pendingPreviousFlow;
       pendingPreviousFlow = null;
       pendingPreviousLifecycle = null;
 
       final routeContext = core_domain.RouteContext(
         lifecycle: ref.read(core_domain.systemLifecycleProvider),
+        previousLifecycle: previousLifecycle,
         flow: ref.read(core_domain.appFlowProvider),
+        previousFlow: previousFlow,
         path: state.uri.path,
         previousPath: lastCommittedPath,
-        previousFlow: previousFlow,
-        previousLifecycle: previousLifecycle,
       );
 
       return engine.decide(routeContext)?.target;
@@ -83,28 +83,19 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
 
   router.routerDelegate.addListener(onRouteChanged);
 
-  // Event-driven: one-shot navigation events go directly to router.go(),
-  // bypassing the redirect cycle — no consume(), no stale state.
-  final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((event) {
-    switch (event) {
-      case core_domain.OpenLanguage():
-        router.push(core_domain.ControlPanelRoutes.language);
-      case core_domain.OpenSettings():
-        router.push(core_domain.ControlPanelRoutes.settings);
-      case core_domain.OpenAbout():
-        router.push(core_domain.ControlPanelRoutes.about);
-      case core_domain.OpenOnboarding():
-        router.push(core_domain.OnboardingRoutes.onboarding);
-      case core_domain.OpenOnboardingCTA():
-        router.push(core_domain.OnboardingRoutes.onboardingCTA);
-      case core_domain.OpenOnboardingInvitation(token: final token):
-        router.push(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
-      case core_domain.OpenOnboardingSignup():
-        router.push(core_domain.OnboardingRoutes.onboardingSignup);
-      case core_domain.OpenOnboardingDemo():
-        router.push(core_domain.OnboardingRoutes.onboardingDemo);
-      case core_domain.OpenLightOffScreen():
-        break; // No route for this event,
+  // Event-driven: one-shot navigation actions go directly to router.push() or
+  // router.go(), bypassing the redirect cycle — no consume(), no stale state.
+  // Each NavigationEvent carries its own path; return null to ignore the event.
+  final subscription = ref.read(core_domain.navigationEventBusProvider).stream.listen((action) {
+    final path = action.event.path;
+    if (path == null) return;
+    final extra = action.event.extra;
+    appkit.logInfo('[control_panel_route] ${router.state.uri.path} → $path (${action.event.runtimeType})');
+    switch (action) {
+      case core_domain.PushAction():
+        router.push(path, extra: extra);
+      case core_domain.GoAction():
+        router.go(path, extra: extra);
     }
   });
 

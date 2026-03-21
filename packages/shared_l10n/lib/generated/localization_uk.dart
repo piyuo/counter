@@ -79,6 +79,30 @@ class LocalizationUk extends Localization {
   String get color_screen_title => 'Вибрати колір';
 
   @override
+  String get count_avg_dwell => 'Пересічний час';
+
+  @override
+  String get count_avg_occ => 'Середнє';
+
+  @override
+  String get count_enter => 'Вхід';
+
+  @override
+  String get count_exit => 'Вихід';
+
+  @override
+  String get count_max_dwell => 'Пиковий час';
+
+  @override
+  String get count_max_occ => 'Пікова';
+
+  @override
+  String get count_pass_by => 'Пройшли';
+
+  @override
+  String get count_window => 'Період підліку: 5 хв';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Повторний вхід вимагає періоду охолодження #0 секунд після виходу із зони виявлення';
 

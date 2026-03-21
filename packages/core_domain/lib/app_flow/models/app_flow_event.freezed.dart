@@ -55,13 +55,15 @@ extension AppFlowEventPatterns on AppFlowEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( StartRequested value)?  startRequested,TResult Function( OnboardingNeeded value)?  onboardingNeeded,TResult Function( OnboardingCompleted value)?  onboardingCompleted,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( VideoSourceCheck value)?  videoSourceCheck,TResult Function( DataServerCheck value)?  dataServerCheck,TResult Function( OnboardingNeeded value)?  onboardingNeeded,TResult Function( InvitationClicked value)?  invitationClicked,TResult Function( StartSession value)?  startSession,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case StartRequested() when startRequested != null:
-return startRequested(_that);case OnboardingNeeded() when onboardingNeeded != null:
-return onboardingNeeded(_that);case OnboardingCompleted() when onboardingCompleted != null:
-return onboardingCompleted(_that);case _:
+case VideoSourceCheck() when videoSourceCheck != null:
+return videoSourceCheck(_that);case DataServerCheck() when dataServerCheck != null:
+return dataServerCheck(_that);case OnboardingNeeded() when onboardingNeeded != null:
+return onboardingNeeded(_that);case InvitationClicked() when invitationClicked != null:
+return invitationClicked(_that);case StartSession() when startSession != null:
+return startSession(_that);case _:
   return orElse();
 
 }
@@ -79,13 +81,15 @@ return onboardingCompleted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( StartRequested value)  startRequested,required TResult Function( OnboardingNeeded value)  onboardingNeeded,required TResult Function( OnboardingCompleted value)  onboardingCompleted,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( VideoSourceCheck value)  videoSourceCheck,required TResult Function( DataServerCheck value)  dataServerCheck,required TResult Function( OnboardingNeeded value)  onboardingNeeded,required TResult Function( InvitationClicked value)  invitationClicked,required TResult Function( StartSession value)  startSession,}){
 final _that = this;
 switch (_that) {
-case StartRequested():
-return startRequested(_that);case OnboardingNeeded():
-return onboardingNeeded(_that);case OnboardingCompleted():
-return onboardingCompleted(_that);}
+case VideoSourceCheck():
+return videoSourceCheck(_that);case DataServerCheck():
+return dataServerCheck(_that);case OnboardingNeeded():
+return onboardingNeeded(_that);case InvitationClicked():
+return invitationClicked(_that);case StartSession():
+return startSession(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -99,13 +103,15 @@ return onboardingCompleted(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( StartRequested value)?  startRequested,TResult? Function( OnboardingNeeded value)?  onboardingNeeded,TResult? Function( OnboardingCompleted value)?  onboardingCompleted,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( VideoSourceCheck value)?  videoSourceCheck,TResult? Function( DataServerCheck value)?  dataServerCheck,TResult? Function( OnboardingNeeded value)?  onboardingNeeded,TResult? Function( InvitationClicked value)?  invitationClicked,TResult? Function( StartSession value)?  startSession,}){
 final _that = this;
 switch (_that) {
-case StartRequested() when startRequested != null:
-return startRequested(_that);case OnboardingNeeded() when onboardingNeeded != null:
-return onboardingNeeded(_that);case OnboardingCompleted() when onboardingCompleted != null:
-return onboardingCompleted(_that);case _:
+case VideoSourceCheck() when videoSourceCheck != null:
+return videoSourceCheck(_that);case DataServerCheck() when dataServerCheck != null:
+return dataServerCheck(_that);case OnboardingNeeded() when onboardingNeeded != null:
+return onboardingNeeded(_that);case InvitationClicked() when invitationClicked != null:
+return invitationClicked(_that);case StartSession() when startSession != null:
+return startSession(_that);case _:
   return null;
 
 }
@@ -122,12 +128,14 @@ return onboardingCompleted(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  startRequested,TResult Function()?  onboardingNeeded,TResult Function()?  onboardingCompleted,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  videoSourceCheck,TResult Function()?  dataServerCheck,TResult Function()?  onboardingNeeded,TResult Function()?  invitationClicked,TResult Function()?  startSession,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case StartRequested() when startRequested != null:
-return startRequested();case OnboardingNeeded() when onboardingNeeded != null:
-return onboardingNeeded();case OnboardingCompleted() when onboardingCompleted != null:
-return onboardingCompleted();case _:
+case VideoSourceCheck() when videoSourceCheck != null:
+return videoSourceCheck();case DataServerCheck() when dataServerCheck != null:
+return dataServerCheck();case OnboardingNeeded() when onboardingNeeded != null:
+return onboardingNeeded();case InvitationClicked() when invitationClicked != null:
+return invitationClicked();case StartSession() when startSession != null:
+return startSession();case _:
   return orElse();
 
 }
@@ -145,12 +153,14 @@ return onboardingCompleted();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  startRequested,required TResult Function()  onboardingNeeded,required TResult Function()  onboardingCompleted,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  videoSourceCheck,required TResult Function()  dataServerCheck,required TResult Function()  onboardingNeeded,required TResult Function()  invitationClicked,required TResult Function()  startSession,}) {final _that = this;
 switch (_that) {
-case StartRequested():
-return startRequested();case OnboardingNeeded():
-return onboardingNeeded();case OnboardingCompleted():
-return onboardingCompleted();}
+case VideoSourceCheck():
+return videoSourceCheck();case DataServerCheck():
+return dataServerCheck();case OnboardingNeeded():
+return onboardingNeeded();case InvitationClicked():
+return invitationClicked();case StartSession():
+return startSession();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -164,12 +174,14 @@ return onboardingCompleted();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  startRequested,TResult? Function()?  onboardingNeeded,TResult? Function()?  onboardingCompleted,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  videoSourceCheck,TResult? Function()?  dataServerCheck,TResult? Function()?  onboardingNeeded,TResult? Function()?  invitationClicked,TResult? Function()?  startSession,}) {final _that = this;
 switch (_that) {
-case StartRequested() when startRequested != null:
-return startRequested();case OnboardingNeeded() when onboardingNeeded != null:
-return onboardingNeeded();case OnboardingCompleted() when onboardingCompleted != null:
-return onboardingCompleted();case _:
+case VideoSourceCheck() when videoSourceCheck != null:
+return videoSourceCheck();case DataServerCheck() when dataServerCheck != null:
+return dataServerCheck();case OnboardingNeeded() when onboardingNeeded != null:
+return onboardingNeeded();case InvitationClicked() when invitationClicked != null:
+return invitationClicked();case StartSession() when startSession != null:
+return startSession();case _:
   return null;
 
 }
@@ -180,8 +192,8 @@ return onboardingCompleted();case _:
 /// @nodoc
 
 
-class StartRequested implements AppFlowEvent {
-  const StartRequested();
+class VideoSourceCheck implements AppFlowEvent {
+  const VideoSourceCheck();
   
 
 
@@ -191,7 +203,7 @@ class StartRequested implements AppFlowEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is StartRequested);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoSourceCheck);
 }
 
 
@@ -200,7 +212,39 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlowEvent.startRequested()';
+  return 'AppFlowEvent.videoSourceCheck()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class DataServerCheck implements AppFlowEvent {
+  const DataServerCheck();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DataServerCheck);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AppFlowEvent.dataServerCheck()';
 }
 
 
@@ -244,8 +288,8 @@ String toString() {
 /// @nodoc
 
 
-class OnboardingCompleted implements AppFlowEvent {
-  const OnboardingCompleted();
+class InvitationClicked implements AppFlowEvent {
+  const InvitationClicked();
   
 
 
@@ -255,7 +299,7 @@ class OnboardingCompleted implements AppFlowEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingCompleted);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InvitationClicked);
 }
 
 
@@ -264,7 +308,39 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlowEvent.onboardingCompleted()';
+  return 'AppFlowEvent.invitationClicked()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class StartSession implements AppFlowEvent {
+  const StartSession();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StartSession);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'AppFlowEvent.startSession()';
 }
 
 

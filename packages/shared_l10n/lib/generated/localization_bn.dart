@@ -79,6 +79,30 @@ class LocalizationBn extends Localization {
   String get color_screen_title => 'একটি রঙ বেছে নিন';
 
   @override
+  String get count_avg_dwell => 'গড় অবস্থানকাল';
+
+  @override
+  String get count_avg_occ => 'গড় উপস্থিতি';
+
+  @override
+  String get count_enter => 'প্রবেশ';
+
+  @override
+  String get count_exit => 'প্রস্থান';
+
+  @override
+  String get count_max_dwell => 'সর্বোচ্চ অবস্থান';
+
+  @override
+  String get count_max_occ => 'সর্বোচ্চ উপস্থিতি';
+
+  @override
+  String get count_pass_by => 'পার';
+
+  @override
+  String get count_window => 'গণনার সময়কাল: ৫ মিনিট';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'ডিটেকশন জোন থেকে বেরিয়ে যাওয়ার পরে পুনঃপ্রবেশের জন্য #0 সেকেন্ড কুলডাউন প্রয়োজন';
 

@@ -78,6 +78,30 @@ class LocalizationJa extends Localization {
   String get color_screen_title => '色を選択';
 
   @override
+  String get count_avg_dwell => '平均滞在';
+
+  @override
+  String get count_avg_occ => '平均在室';
+
+  @override
+  String get count_enter => '入場';
+
+  @override
+  String get count_exit => '退場';
+
+  @override
+  String get count_max_dwell => '最大滞在';
+
+  @override
+  String get count_max_occ => 'ピーク人数';
+
+  @override
+  String get count_pass_by => '通過';
+
+  @override
+  String get count_window => '集計時間: 5分';
+
+  @override
   String get counter_screen_cooldown_desc =>
       '検出ゾーンを退出した後、再入場するには #0 秒のクールダウンが必要です';
 

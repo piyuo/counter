@@ -26,7 +26,6 @@ class OpencvScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 14.0, color: CupertinoColors.secondaryLabel.resolveFrom(context)),
                     ),
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

@@ -31,5 +31,5 @@ final monitorRouteRulesProvider = Provider<List<core_domain.RouteRule>>((ref) {
 /// Re-created whenever the rule list changes (e.g. dynamic feature loading).
 final monitorRouteDecisionEngineProvider = Provider<core_domain.RouteDecisionEngine>((ref) {
   final rules = ref.watch(monitorRouteRulesProvider);
-  return core_domain.RouteDecisionEngine(rules);
+  return core_domain.RouteDecisionEngine('monitor_route', rules);
 });

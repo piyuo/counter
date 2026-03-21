@@ -2,13 +2,13 @@ name: core_domain
 description: "Business login and state machine for counter app."
 version: 0.0.1
 resolution: workspace
+publish_to: none
 
 environment:
   sdk: ^3.11.0
   flutter: ">=1.17.0"
 
 dependencies:
-  core_runtime: any
   flutter:
     sdk: flutter
   json_annotation: ^4.10.0
@@ -17,8 +17,10 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.1.1
+      ref: v3.2.0
   freezed_annotation: ^3.1.0
+  uuid: ^4.5.1
+  riverpod: ^3.2.1
 
 dev_dependencies:
   flutter_test:
@@ -33,4 +35,3 @@ dev_dependencies:
 
 
 flutter:
-    uses-material-design: true

@@ -1,17 +1,8 @@
-// ===============================================
-// Module: guide_screen.dart
-// Description: Intro carousel for the wizard flow
-//
-// Sections:
-//   - Imports
-//   - GuideScreen widget
-// ===============================================
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/widgets/carousel_page_indicator.dart';
-import 'package:feature_onboarding/widgets/next_button_container.dart';
-import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:feature_onboarding/widgets/onboarding_scaffold.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -39,51 +30,58 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return feature_pip.PipScaffold(
-      themeData: const CupertinoThemeData(brightness: Brightness.light),
-      action: CupertinoButton(
-        sizeStyle: CupertinoButtonSize.medium,
+    return OnboardingScaffold(
+      action: TextButton(
         onPressed: () {
-          ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
+          ref.go(const core_domain.OpenOnboardingCTA());
         },
         child: Text('Skip Intro'), //todo:add translation
       ),
-      builder: (scrollController) {
-        return NextButtonContainer(
-          onNextPressed: () {
-            if (_currentPageIndex == _pageCount - 1) {
-              ref.read(core_domain.navigationEventBusProvider).add(const core_domain.OpenOnboardingCTA());
-              return;
-            }
-            _carouselController.nextPage();
-          },
-          child: SingleChildScrollView(
-            controller: scrollController,
-            padding: const EdgeInsets.only(bottom: 120.0),
-            child: Column(
-              children: [
-                CarouselSlider(
-                  options: CarouselOptions(
-                    // Mobile screens are narrower so text wraps onto more lines,
-                    // requiring extra height compared to the wider macOS window.
-                    height: UniversalPlatform.isMobile ? 500.0 : 450.0,
-                    viewportFraction: 1.0,
-                    enableInfiniteScroll: false,
-                    onPageChanged: (index, reason) => setState(() => _currentPageIndex = index),
-                  ),
-                  carouselController: _carouselController,
-                  items: _buildPages(),
-                ),
-                CarouselPageIndicator(
-                  pageCount: _pageCount,
-                  currentPageIndex: _currentPageIndex,
-                  onPageSelected: (index) => _carouselController.animateToPage(index),
-                ),
-              ],
-            ),
-          ),
-        );
+      onNextPressed: () {
+        if (_currentPageIndex == _pageCount - 1) {
+          ref.go(const core_domain.OpenOnboardingCTA());
+          return;
+        }
+        _carouselController.nextPage();
       },
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(248, 248, 255, 1),
+            borderRadius: BorderRadius.circular(10.0),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.08),
+                blurRadius: 10.0,
+                spreadRadius: 0,
+                offset: Offset(0, 8),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              CarouselSlider(
+                options: CarouselOptions(
+                  // Mobile screens are narrower so text wraps onto more lines,
+                  // requiring extra height compared to the wider macOS window.
+                  height: UniversalPlatform.isMobile ? 460.0 : 390.0,
+                  viewportFraction: 1.0,
+                  enableInfiniteScroll: false,
+                  onPageChanged: (index, reason) => setState(() => _currentPageIndex = index),
+                ),
+                carouselController: _carouselController,
+                items: _buildPages(),
+              ),
+              CarouselPageIndicator(
+                pageCount: _pageCount,
+                currentPageIndex: _currentPageIndex,
+                onPageSelected: (index) => _carouselController.animateToPage(index),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

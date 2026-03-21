@@ -5,14 +5,14 @@
 // Sections:
 //   - OnboardingIntroView widget
 // ===============================================
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class OnboardingIntroView extends StatelessWidget {
   const OnboardingIntroView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Color secondaryText = CupertinoColors.systemGrey.resolveFrom(context);
+    final Color secondaryText = Colors.blueGrey;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -22,12 +22,12 @@ class OnboardingIntroView extends StatelessWidget {
             TextSpan(
               children: [
                 TextSpan(
-                  text: 'Welcome to\n',
-                  style: TextStyle(color: CupertinoColors.systemGrey, fontSize: 16),
+                  text: 'Welcome to ',
+                  style: TextStyle(color: Colors.blueGrey, fontSize: 16),
                 ),
                 TextSpan(
                   text: 'Piyuo Counter',
-                  style: TextStyle(color: CupertinoColors.activeGreen, fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(color: Colors.blue, fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -35,12 +35,12 @@ class OnboardingIntroView extends StatelessWidget {
           ),
           const SizedBox(height: 10.0),
           Text(
-            'Count pedestrians and vehicles using on-device camera and AI in real time.\n\n'
+            'Count pedestrians and vehicles using on-device camera and AI in real time.\n'
             'Privacy-first. No cloud video.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16.0, color: secondaryText),
           ),
-          const SizedBox(height: 30.0),
+          const SizedBox(height: 10.0),
           SizedBox(height: 240, child: Image.asset('assets/images/welcome1.png', fit: BoxFit.cover)),
         ],
       ),

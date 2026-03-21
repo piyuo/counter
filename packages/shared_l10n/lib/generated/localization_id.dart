@@ -79,6 +79,30 @@ class LocalizationId extends Localization {
   String get color_screen_title => 'Pilih warna';
 
   @override
+  String get count_avg_dwell => 'Durasi Rata-rata';
+
+  @override
+  String get count_avg_occ => 'Rata Huni';
+
+  @override
+  String get count_enter => 'Masuk';
+
+  @override
+  String get count_exit => 'Keluar';
+
+  @override
+  String get count_max_dwell => 'Durasi Maks.';
+
+  @override
+  String get count_max_occ => 'Maks. Hunian';
+
+  @override
+  String get count_pass_by => 'Lewat';
+
+  @override
+  String get count_window => 'Periode Penghitungan: 5 menit';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Masuk kembali membutuhkan pendinginan #0 detik setelah keluar dari zona deteksi';
 

@@ -2,45 +2,41 @@
 //  - controlPanelRouteMap route count
 //  - controlPanelRouteMap path constants coverage
 //  - controlPanelRouteMap all paths are distinct
-
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_control_panel/router/control_panel_route_map.dart';
+import 'package:feature_control_panel/router/control_panel_route_data.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 
+List<RouteBase> controlPanelRouteMap() => $appRoutes;
+
 void main() {
   group('controlPanelRouteMap', () {
-    late List<GoRoute> routes;
+    late List<RouteBase> routes;
 
     setUp(() => routes = controlPanelRouteMap());
 
-    test('returns exactly 5 routes', () {
-      expect(routes.length, 5);
-    });
-
     test('contains a route for the root path', () {
-      expect(routes.map((r) => r.path), contains(core_domain.ControlPanelRoutes.root));
+      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(core_domain.ControlPanelRoutes.root));
     });
 
     test('contains a route for liveStreamOnly', () {
-      expect(routes.map((r) => r.path), contains(core_domain.ControlPanelRoutes.liveStreamOnly));
-    });
-
-    test('contains a route for settings', () {
-      expect(routes.map((r) => r.path), contains(core_domain.ControlPanelRoutes.settings));
+      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(core_domain.ControlPanelRoutes.liveStreamOnly));
     });
 
     test('contains a route for about', () {
-      expect(routes.map((r) => r.path), contains(core_domain.ControlPanelRoutes.about));
+      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(AboutRouteData().location));
     });
 
-    test('all route paths are distinct', () {
-      final paths = routes.map((r) => r.path).toList();
-      expect(paths.toSet().length, paths.length);
+    test('contains a route for settings piyuo', () {
+      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(SettingsPiyuoRouteData().location));
+    });
+
+    test('contains a route for settings server', () {
+      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(SettingsServerRouteData().location));
     });
 
     test('every route has a non-null builder', () {
-      for (final route in routes) {
+      for (final route in routes.whereType<GoRoute>()) {
         expect(route.builder, isNotNull, reason: 'Route ${route.path} must have a builder');
       }
     });

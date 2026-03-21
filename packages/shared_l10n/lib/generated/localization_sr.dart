@@ -79,6 +79,30 @@ class LocalizationSr extends Localization {
   String get color_screen_title => 'Izaberi boju';
 
   @override
+  String get count_avg_dwell => 'Prosečni boravak';
+
+  @override
+  String get count_avg_occ => 'Prosek prisustva';
+
+  @override
+  String get count_enter => 'Ulaz';
+
+  @override
+  String get count_exit => 'Izlaz';
+
+  @override
+  String get count_max_dwell => 'Maks. boravak';
+
+  @override
+  String get count_max_occ => 'Maks. Broj';
+
+  @override
+  String get count_pass_by => 'Prošli';
+
+  @override
+  String get count_window => 'Period brojanja: 5 min';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Ponovni ulazak zahteva #0 sekundi hlađenja nakon izlaska iz zone detekcije';
 

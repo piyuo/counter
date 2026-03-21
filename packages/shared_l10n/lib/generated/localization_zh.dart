@@ -78,6 +78,30 @@ class LocalizationZh extends Localization {
   String get color_screen_title => '選擇顏色';
 
   @override
+  String get count_avg_dwell => '平均停留';
+
+  @override
+  String get count_avg_occ => '平均人數';
+
+  @override
+  String get count_enter => '進入';
+
+  @override
+  String get count_exit => '離開';
+
+  @override
+  String get count_max_dwell => '最大停留';
+
+  @override
+  String get count_max_occ => '最多人數';
+
+  @override
+  String get count_pass_by => '經過';
+
+  @override
+  String get count_window => '統計時段: 5 分鐘';
+
+  @override
   String get counter_screen_cooldown_desc => '重新進入需要在離開偵測區域後有 #0 秒的冷卻時間';
 
   @override
@@ -607,6 +631,30 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get color_screen_title => '选择颜色';
+
+  @override
+  String get count_avg_dwell => '平均停留';
+
+  @override
+  String get count_avg_occ => '平均人数';
+
+  @override
+  String get count_enter => '进入';
+
+  @override
+  String get count_exit => '离开';
+
+  @override
+  String get count_max_dwell => '最大停留';
+
+  @override
+  String get count_max_occ => '最多人数';
+
+  @override
+  String get count_pass_by => '经过';
+
+  @override
+  String get count_window => '统计时段: 5 分钟';
 
   @override
   String get counter_screen_cooldown_desc => '重新进入需要在离开检测区域后有 #0 秒的冷却时间';

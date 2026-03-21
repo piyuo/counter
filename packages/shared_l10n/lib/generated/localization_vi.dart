@@ -79,6 +79,30 @@ class LocalizationVi extends Localization {
   String get color_screen_title => 'Chọn màu';
 
   @override
+  String get count_avg_dwell => 'Thời gian TB';
+
+  @override
+  String get count_avg_occ => 'TB chiếm';
+
+  @override
+  String get count_enter => 'Vào';
+
+  @override
+  String get count_exit => 'Ra';
+
+  @override
+  String get count_max_dwell => 'Tối đa';
+
+  @override
+  String get count_max_occ => 'Cao điểm';
+
+  @override
+  String get count_pass_by => 'Đi qua';
+
+  @override
+  String get count_window => 'Kỳ đếm: 5 phút';
+
+  @override
   String get counter_screen_cooldown_desc =>
       'Vào lại yêu cầu thời gian chờ #0 giây sau khi rời khỏi vùng phát hiện';
 

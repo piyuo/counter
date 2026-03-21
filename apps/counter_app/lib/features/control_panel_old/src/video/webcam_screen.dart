@@ -32,7 +32,6 @@ class WebcamScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(projectProvider.webcamCount, (index) {
                       final webcamDefine = projectProvider.getWebcamDefine(index);
                       return webcamDefine != null
@@ -51,7 +50,6 @@ class WebcamScreen extends StatelessWidget {
                           : const SizedBox.shrink();
                     }),
                   ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

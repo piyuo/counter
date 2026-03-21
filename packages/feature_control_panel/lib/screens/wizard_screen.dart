@@ -39,7 +39,7 @@ class WizardScreen extends StatelessWidget {
                 controller: scrollController,
                 child: Column(
                   children: [
-                    feature_pip.PipHeader(
+                    feature_pip.PipPanel(
                       padding: EdgeInsets.all(10),
                       child: isCompactHeader
                           ? Row(
@@ -90,7 +90,6 @@ class WizardScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       header: Text(context.l.wizard_screen_open_projects_tip),
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
                           leading: Icon(CupertinoIcons.archivebox),
@@ -102,7 +101,6 @@ class WizardScreen extends StatelessWidget {
                     ),
                     CupertinoListSection(
                       header: Text(pageTitle),
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
                           leading: Icon(CupertinoIcons.info),
@@ -129,7 +127,6 @@ class WizardScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    feature_pip.PipFooter(),
                   ],
                 ),
               );

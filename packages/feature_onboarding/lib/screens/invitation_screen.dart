@@ -1,122 +1,178 @@
-// ===============================================
-// Module: invitation_screen.dart
+// invitation_screen.dart
 // Description: Invitation code entry screen
 //
 // Sections:
 //   - InvitationScreen widget
-// ===============================================
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_onboarding/widgets/next_button_container.dart';
+import 'package:feature_onboarding/widgets/onboarding_scaffold.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:pinput/pinput.dart';
+
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    return newValue.copyWith(text: newValue.text.toUpperCase());
+  }
+}
 
 class InvitationScreen extends ConsumerStatefulWidget {
-  const InvitationScreen({this.token, super.key});
-
-  final String? token;
+  const InvitationScreen({super.key});
 
   @override
   ConsumerState<InvitationScreen> createState() => _InvitationScreenState();
 }
 
 class _InvitationScreenState extends ConsumerState<InvitationScreen> {
-  static const int _codeLength = 6;
-  final TextEditingController _pinController = TextEditingController();
-  final FocusNode _pinFocusNode = FocusNode();
+  static const int _codeLength = 10;
+  final TextEditingController _codeController = TextEditingController();
+  final FocusNode _codeFocusNode = FocusNode();
+
+  String? _codeError;
+  bool _isValidating = false;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _pinFocusNode.requestFocus();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final code = ref.read(core_domain.invitationCodeProvider);
+      if (code != null && code.length == _codeLength) {
+        _codeController.text = code.toUpperCase();
+        await Future.delayed(const Duration(milliseconds: 800));
+        if (!mounted) return;
+        _submitCode(code);
+      } else {
+        _codeFocusNode.requestFocus();
+      }
     });
+    _codeController.addListener(
+      () => setState(() {
+        _codeError = null;
+      }),
+    );
   }
 
   @override
   void dispose() {
-    _pinController.dispose();
-    _pinFocusNode.dispose();
+    _codeController.dispose();
+    _codeFocusNode.dispose();
     super.dispose();
   }
 
-  void _onCompleted(String pin) {
-    //todo: use real data from invitation download, when invitation backend is ready
-    // we should use pin to fetch the invitation data from piyuo.com, and then use the data to setup the app state
-    ref
-        .read(core_domain.appProvider.notifier)
-        .setup(
-          core_domain.SetupBy.invitation(),
-          core_domain.Backend.customServer(serverUrl: 'http://localhost', token: 'TOKEN_FROM_INVITATION'),
-        );
+  Future<void> _submitCode(String code) async {
+    final invitationService = ref.read(core_domain.invitationServiceProvider);
+    if (!invitationService.isValidCode(code)) {
+      setState(() => _codeError = 'Invalid invitation code format.');
+      return;
+    }
+
+    setState(() {
+      _isValidating = true;
+      _codeError = null;
+    });
+
+    final invitation = await invitationService.download(code);
+
+    if (!mounted) return;
+
+    if (invitation == null) {
+      setState(() {
+        _codeError = 'Invitation not found. Please check the code and try again.';
+        _isValidating = false;
+      });
+      return;
+    }
+
+    setState(() => _isValidating = false);
+
+    final appController = ref.read(core_domain.appProvider.notifier);
+    appController.setBusinessDataServer(invitation.businessDataServer, invitation.bearerToken);
+    ref.go(core_domain.OpenOnboardingInvitationSummary(invitation: invitation));
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color borderColor = CupertinoColors.systemGrey2.resolveFrom(context);
-    final defaultPinTheme = PinTheme(
-      width: 48.0,
-      height: 48.0,
-      textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: CupertinoColors.black),
-      decoration: BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        border: Border.all(color: borderColor),
-      ),
-    );
-
-    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color.fromRGBO(114, 178, 238, 1)),
-      borderRadius: BorderRadius.circular(8),
-    );
-
-    final submittedPinTheme = defaultPinTheme.copyWith(
-      decoration: defaultPinTheme.decoration?.copyWith(color: Color.fromRGBO(234, 239, 243, 1)),
-    );
-    return feature_pip.PipScaffold(
-      themeData: const CupertinoThemeData(brightness: Brightness.light),
-      builder: (scrollController) {
-        return NextButtonContainer(
-          onNextPressed: () {},
-          child: SingleChildScrollView(
-            controller: scrollController,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Enter invitation code',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: CupertinoColors.systemGreen, fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Text(
-                    'Check your email invitation to get the 6-digit code.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey.resolveFrom(context)),
-                  ),
-                  const SizedBox(height: 20.0),
-                  Pinput(
-                    length: _codeLength,
-                    controller: _pinController,
-                    focusNode: _pinFocusNode,
-                    defaultPinTheme: defaultPinTheme,
-                    focusedPinTheme: focusedPinTheme,
-                    submittedPinTheme: submittedPinTheme,
-                    keyboardType: TextInputType.text,
-                    textCapitalization: TextCapitalization.characters,
-                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]'))],
-                    onCompleted: _onCompleted,
-                  ),
-                ],
+    final bool isComplete = _codeController.text.length == _codeLength;
+    return OnboardingScaffold(
+      isLoading: _isValidating,
+      onNextPressed: (isComplete && !_isValidating)
+          ? () => _submitCode(_codeController.text.trim().toUpperCase())
+          : null,
+      children: [
+        feature_pip.PipPanel(
+          margin: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+          child: Column(
+            children: [
+              Text('Enter Invitation Code', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+              const SizedBox(height: 4),
+              Text(
+                'Check your email invitation to get the 10-character code.',
+                style: TextStyle(fontSize: 16.0, color: Colors.grey.shade400),
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+
+        const SizedBox(height: 28.0),
+        TextField(
+          controller: _codeController,
+          focusNode: _codeFocusNode,
+          maxLength: _codeLength,
+          keyboardType: TextInputType.text,
+          textCapitalization: TextCapitalization.characters,
+          textAlign: TextAlign.center,
+          inputFormatters: [FilteringTextInputFormatter.allow(RegExp('[A-Za-z0-9]')), UpperCaseTextFormatter()],
+          onChanged: (value) {
+            if (value.length == _codeLength) _submitCode(value.trim().toUpperCase());
+          },
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 6.0,
+            fontFamily: 'monospace',
+          ),
+          decoration: InputDecoration(
+            counterText: '',
+            hintText: 'XXXXX XXXXX',
+            hintStyle: TextStyle(
+              color: Colors.grey.shade600,
+              fontSize: 22,
+              letterSpacing: 6.0,
+              fontFamily: 'monospace',
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: Colors.grey, width: 2),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: Color.fromRGBO(114, 178, 238, 1), width: 2),
+            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+          ),
+        ),
+        if (_codeError != null)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
+            child: Text(_codeError!, style: const TextStyle(fontSize: 16, color: Colors.red)),
+          ),
+        if (_codeError != null)
+          TextButton(
+            onPressed: () {
+              _codeController.clear();
+              _codeFocusNode.requestFocus();
+            },
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.zero,
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: const Text('Clear', style: TextStyle(fontSize: 16, color: Colors.blue)),
+          ),
+      ],
     );
   }
 }

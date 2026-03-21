@@ -33,7 +33,6 @@ class CameraScreen extends StatelessWidget {
               child: Column(
                 children: [
                   CupertinoListSection(
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                     children: List.generate(projectProvider.cameraCount, (index) {
                       final cameraDefine = projectProvider.getCameraDefine(index);
                       return cameraDefine != null
@@ -56,7 +55,6 @@ class CameraScreen extends StatelessWidget {
                   if (videoProvider.isZoomToolEnabled)
                     CupertinoListSection(
                       header: Text(context.l.camera_screen_zoom_level),
-                      backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                       children: [
                         CupertinoListTile(
                           leading: Icon(CupertinoIcons.zoom_in),
@@ -76,7 +74,6 @@ class CameraScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  feature_pip.PipFooter(),
                 ],
               ),
             ),

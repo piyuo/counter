@@ -41,14 +41,22 @@ GoRouter _buildTestRouter() {
   return GoRouter(
     routes: [
       GoRoute(path: core_domain.ControlPanelRoutes.root, builder: (_, __) => const SizedBox()),
-      GoRoute(path: core_domain.ControlPanelRoutes.settings, builder: (_, __) => const SizedBox()),
-      GoRoute(path: core_domain.ControlPanelRoutes.about, builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/settings', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/settings/piyuo', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/settings/server', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/about', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/detection-params', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/delivery-config', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/upload-logs', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/recent-payloads', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/recent-payloads/hour/:slotMs', builder: (_, __) => const SizedBox()),
+      GoRoute(path: '/recent-payloads/payload/:payloadId', builder: (_, __) => const SizedBox()),
       GoRoute(
         path: core_domain.OnboardingRoutes.onboarding,
         builder: (_, __) => const SizedBox(),
         routes: [
-          GoRoute(path: core_domain.OnboardingRoutes.invitation, builder: (_, __) => const SizedBox()),
-          GoRoute(path: core_domain.OnboardingRoutes.cta, builder: (_, __) => const SizedBox()),
+          GoRoute(path: 'invitation', builder: (_, __) => const SizedBox()),
+          GoRoute(path: 'cta', builder: (_, __) => const SizedBox()),
         ],
       ),
     ],
@@ -56,30 +64,45 @@ GoRouter _buildTestRouter() {
 }
 
 /// Replicates the stream subscription that [controlPanelRouterProvider] establishes.
-StreamSubscription<core_domain.NavigationEvent> _subscribeRouter(
-  StreamController<core_domain.NavigationEvent> bus,
-  GoRouter router,
-) {
-  return bus.stream.listen((event) {
-    switch (event) {
-      case core_domain.OpenSettings():
-        router.go(core_domain.ControlPanelRoutes.settings);
-      case core_domain.OpenAbout():
-        router.go(core_domain.ControlPanelRoutes.about);
-      case core_domain.OpenOnboarding():
-        router.go(core_domain.OnboardingRoutes.onboarding);
-      case core_domain.OpenOnboardingCTA():
-        router.go(core_domain.OnboardingRoutes.onboardingCTA);
-      case core_domain.OpenOnboardingSignup():
-        router.go(core_domain.OnboardingRoutes.onboardingSignup);
-      case core_domain.OpenOnboardingDemo():
-        router.go(core_domain.OnboardingRoutes.onboardingDemo);
-      case core_domain.OpenOnboardingInvitation(token: final token):
-        router.go(core_domain.OnboardingRoutes.onboardingInvitationPath(token: token));
-      case core_domain.OpenLightOffScreen():
-        break;
-      case core_domain.OpenLanguage():
-        break;
+StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.NavigationEventBus bus, GoRouter router) {
+  return bus.stream.listen((action) {
+    final path = switch (action.event) {
+      core_domain.OpenSettings() => '/settings',
+      core_domain.OpenSettingsPiyuo() => '/settings/piyuo',
+      core_domain.OpenSettingsServer() => '/settings/server',
+      core_domain.OpenDetectionParams() => '/detection-params',
+      core_domain.OpenDeliveryConfig() => '/delivery-config',
+      core_domain.OpenUploadLogs() => '/upload-logs',
+      core_domain.OpenPayloadsRecent() => '/recent-payloads',
+      core_domain.OpenPayloadsHour(slotMs: final slotMs) => '/recent-payloads/hour/$slotMs',
+      core_domain.OpenPayloadDetail(payloadId: final payloadId) => '/recent-payloads/payload/$payloadId',
+      core_domain.OpenAbout() => '/about',
+      core_domain.OpenBuildInfo() => '/build-info',
+      core_domain.OpenOnboarding() => core_domain.OnboardingRoutes.onboarding,
+      core_domain.OpenOnboardingCTA() => '/onboarding/cta',
+      core_domain.OpenOnboardingPiyuo() => '/onboarding/piyuo',
+      core_domain.OpenOnboardingServer() => '/onboarding/server',
+      core_domain.OpenOnboardingServerSummary(url: final url) => Uri(
+        path: '/onboarding/server/summary',
+        queryParameters: {'url': url},
+      ).toString(),
+      core_domain.OpenOnboardingDemo() => '/onboarding/demo',
+      core_domain.OpenOnboardingInvitation(token: final token) =>
+        token != null ? '/onboarding/invitation?token=$token' : '/onboarding/invitation',
+      core_domain.OpenOnboardingInvitationSummary(invitation: _) => '/onboarding/invitation-summary',
+      core_domain.OpenLightOffScreen() => null,
+      core_domain.OpenLanguage() => null,
+      core_domain.OpenVideoSources() => '/video-sources',
+      core_domain.OpenLiveUrl() => '/live-url',
+      core_domain.OpenDetectionTypeSelection() => '/detection-type',
+      core_domain.OpenUploadLogDetail() => '/upload-logs',
+    };
+    if (path == null) return;
+    switch (action) {
+      case core_domain.PushAction():
+        router.push(path.toString());
+      case core_domain.GoAction():
+        router.go(path.toString());
     }
   });
 }
@@ -157,57 +180,6 @@ void main() {
 
       expect(engine.decide(ctx), isNull);
     });
-
-    test('engine decides /live-stream-only on checkingHardware→liveStreamOnly transition', () {
-      final container = _makeContainer(lifecycle: const core_domain.SystemLifecycle.liveStreamOnly());
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: container.read(core_domain.systemLifecycleProvider),
-        flow: container.read(core_domain.appFlowProvider),
-        path: core_domain.ControlPanelRoutes.root,
-        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
-      );
-
-      expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
-    });
-
-    test('liveStreamOnly + sessionRunning decides /live-stream-only (system rule fires, app-flow silent)', () {
-      final container = _makeContainer(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.sessionRunning(),
-      );
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: container.read(core_domain.systemLifecycleProvider),
-        flow: container.read(core_domain.appFlowProvider),
-        path: core_domain.ControlPanelRoutes.root,
-        previousLifecycle: const core_domain.SystemLifecycle.checkingHardware(),
-      );
-
-      expect(engine.decide(ctx)?.target, core_domain.ControlPanelRoutes.liveStreamOnly);
-    });
-
-    test('liveStreamOnly + onboardingRequired without transitions → null (no rules fire)', () {
-      // Neither rule fires without a lifecycle/flow transition, so no redirect.
-      final container = _makeContainer(
-        lifecycle: const core_domain.SystemLifecycle.liveStreamOnly(),
-        flow: const core_domain.AppFlow.onboardingRequired(),
-      );
-      addTearDown(container.dispose);
-
-      final engine = container.read(controlPanelRouteDecisionEngineProvider);
-      final ctx = core_domain.RouteContext(
-        lifecycle: container.read(core_domain.systemLifecycleProvider),
-        flow: container.read(core_domain.appFlowProvider),
-        path: core_domain.ControlPanelRoutes.root,
-      );
-
-      expect(engine.decide(ctx), isNull);
-    });
   });
 
   // -------------------------------------------------------------------------
@@ -234,10 +206,10 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenSettings());
+      bus.push(const core_domain.OpenSettings());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.ControlPanelRoutes.settings);
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings');
     });
 
     testWidgets('OpenAbout causes navigation to /about', (tester) async {
@@ -254,10 +226,170 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenAbout());
+      bus.push(const core_domain.OpenAbout());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.ControlPanelRoutes.about);
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/about');
+    });
+
+    testWidgets('OpenSettingsPiyuo causes navigation to /settings/piyuo', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenSettingsPiyuo());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings/piyuo');
+    });
+
+    testWidgets('OpenSettingsServer causes navigation to /settings/server', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenSettingsServer());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings/server');
+    });
+
+    testWidgets('OpenDetectionParams causes navigation to /detection-params', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenDetectionParams());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/detection-params');
+    });
+
+    testWidgets('OpenDeliveryConfig causes navigation to /delivery-config', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenDeliveryConfig());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/delivery-config');
+    });
+
+    testWidgets('OpenUploadLogs causes navigation to /upload-logs', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenUploadLogs());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/upload-logs');
+    });
+
+    testWidgets('OpenRecentPayloads causes navigation to /recent-payloads', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenPayloadsRecent());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads');
+    });
+
+    testWidgets('OpenRecentPayloadHour causes navigation to /recent-payloads/hour/:slotMs', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenPayloadsHour(slotMs: 123));
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads/hour/123');
+    });
+
+    testWidgets('OpenRecentPayloadDetail causes navigation to /recent-payloads/payload/:payloadId', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenPayloadDetail(payloadId: 'abc-123'));
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads/payload/abc-123');
     });
 
     testWidgets('emitting two events navigates to the last destination', (tester) async {
@@ -274,11 +406,11 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenSettings());
-      bus.add(const core_domain.OpenAbout());
+      bus.push(const core_domain.OpenSettings());
+      bus.push(const core_domain.OpenAbout());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.ControlPanelRoutes.about);
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/about');
     });
 
     testWidgets('no event keeps router on root', (tester) async {
@@ -296,7 +428,7 @@ void main() {
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.ControlPanelRoutes.root);
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/');
     });
 
     testWidgets('OpenOnboarding causes navigation to /onboarding', (tester) async {
@@ -313,7 +445,7 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenOnboarding());
+      bus.push(const core_domain.OpenOnboarding());
       await tester.pumpAndSettle();
 
       expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding);
@@ -333,10 +465,10 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenOnboardingCTA());
+      bus.push(const core_domain.OpenOnboardingCTA());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboardingCTA);
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/onboarding/cta');
     });
 
     testWidgets('OpenOnboardingInvitation causes navigation to onboarding invitation path', (tester) async {
@@ -353,13 +485,10 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.add(const core_domain.OpenOnboardingInvitation(token: 'invite-token'));
+      bus.push(const core_domain.OpenOnboardingInvitation(token: 'invite-token'));
       await tester.pumpAndSettle();
 
-      expect(
-        router.routerDelegate.currentConfiguration.uri.toString(),
-        core_domain.OnboardingRoutes.onboardingInvitationPath(token: 'invite-token'),
-      );
+      expect(router.routerDelegate.currentConfiguration.uri.toString(), '/onboarding/invitation?token=invite-token');
     });
   });
 }

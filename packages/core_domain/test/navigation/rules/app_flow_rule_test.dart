@@ -11,8 +11,8 @@ import 'package:core_domain/navigation/rules/control_panel_app_flow_rule.dart';
 import 'package:core_domain/system_lifecycle/models/system_lifecycle.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-RouteContext _ctx(AppFlow flow, {String path = '/'}) =>
-    RouteContext(lifecycle: const SystemLifecycle.systemReady(), flow: flow, path: path);
+RouteContext _ctx(AppFlow flow, {String path = '/', AppFlow? previousFlow}) =>
+    RouteContext(lifecycle: const SystemLifecycle.systemReady(), flow: flow, path: path, previousFlow: previousFlow);
 
 void main() {
   const rule = ControlPanelAppFlowRule();
@@ -28,7 +28,7 @@ void main() {
       });
 
       test('checkingBackend → null', () {
-        expect(rule.evaluate(_ctx(const AppFlow.checkingBackend())), isNull);
+        expect(rule.evaluate(_ctx(const AppFlow.checkingDataServer())), isNull);
       });
 
       test('sessionRunning → null', () {
@@ -38,26 +38,34 @@ void main() {
 
     group('onboardingRequired gating', () {
       test('redirects to onboarding from non-onboarding path', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: '/settings'));
+        final decision = rule.evaluate(
+          _ctx(const AppFlow.onboardingBegin(), path: '/settings', previousFlow: const AppFlow.checkingDataServer()),
+        );
 
         expect(decision, isNotNull);
         expect(decision!.target, OnboardingRoutes.onboarding);
       });
 
       test('allows onboarding root path', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: OnboardingRoutes.onboarding));
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingBegin(), path: OnboardingRoutes.onboarding));
         expect(decision, isNull);
       });
 
       test('allows onboarding CTA sub-route', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingRequired(), path: OnboardingRoutes.onboardingCTA));
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingBegin(), path: '/onboarding/cta'));
         expect(decision, isNull);
       });
     });
 
     group('onboardingByInvitation gating', () {
       test('redirects to onboarding invitation from non-onboarding path', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingByInvitation(), path: '/settings'));
+        final decision = rule.evaluate(
+          _ctx(
+            const AppFlow.onboardingByInvitation(),
+            path: '/settings',
+            previousFlow: const AppFlow.checkingDataServer(),
+          ),
+        );
 
         expect(decision, isNotNull);
         expect(decision!.target, OnboardingRoutes.onboardingInvitation);
@@ -71,9 +79,7 @@ void main() {
       });
 
       test('allows onboarding subtree path', () {
-        final decision = rule.evaluate(
-          _ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.onboardingCTA),
-        );
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingByInvitation(), path: '/onboarding/cta'));
         expect(decision, isNull);
       });
     });

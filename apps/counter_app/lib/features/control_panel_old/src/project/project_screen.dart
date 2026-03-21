@@ -32,13 +32,8 @@ class ProjectScreen extends StatelessWidget {
               return ChangeNotifierProvider<app.VideoProvider>.value(
                 value: videoProvider,
                 child: Consumer<app.VideoProvider>(
-                  builder: (context, profilesController, child) => CupertinoListSection(
-                    topMargin: 10,
-                    margin: EdgeInsets.zero,
-                    hasLeading: false,
-                    backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
-                    children: [],
-                  ),
+                  builder: (context, profilesController, child) =>
+                      CupertinoListSection(topMargin: 10, margin: EdgeInsets.zero, hasLeading: false, children: []),
                 ),
               );
             }).toList();
@@ -57,30 +52,17 @@ class ProjectScreen extends StatelessWidget {
                 if (didPop) {
                   return;
                 }
-                final bool shouldPop =
-                    await showCupertinoDialog<bool?>(
-                      context: context,
-                      builder: (BuildContext context) => CupertinoAlertDialog(
-                        title: Text(context.l.project_screen_exit_confirm_title),
-                        content: Text(context.l.project_screen_exit_confirm_content),
-                        actions: <CupertinoDialogAction>[
-                          CupertinoDialogAction(
-                            isDefaultAction: true,
-                            textStyle: TextStyle(color: CupertinoColors.label.resolveFrom(context)),
-                            onPressed: () => Navigator.pop(context),
-                            child: Text(context.l.no),
-                          ),
-                          CupertinoDialogAction(
-                            isDestructiveAction: true,
-                            onPressed: () => Navigator.pop(context, true),
-                            child: Text(context.l.yes),
-                          ),
-                        ],
-                      ),
+                final bool? shouldPop =
+                    await feature_pip.showYesNoMessageDialog(
+                      context.l.project_screen_exit_confirm_content,
+                      title: context.l.project_screen_exit_confirm_title,
+                      noLabel: context.l.no,
+                      yesLabel: context.l.yes,
+                      isYesDestructive: true,
                     ) ??
                     false;
 
-                if (shouldPop) {
+                if (shouldPop ?? false) {
                   await projectProvider.closeProject();
                   if (context.mounted) {
                     Navigator.pop(context);
@@ -98,8 +80,7 @@ class ProjectScreen extends StatelessWidget {
                   controller: scrollController,
                   child: Column(
                     children: [
-                      feature_pip.PipHeader(
-                        showBottomBorder: false,
+                      feature_pip.PipPanel(
                         child: Column(
                           children: [
                             Padding(
@@ -128,7 +109,6 @@ class ProjectScreen extends StatelessWidget {
                       ),
                       CupertinoListSection(
                         topMargin: 0,
-                        backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                         footer: Text(context.l.project_screen_from_desc),
                         children: [
                           CupertinoListTile(
@@ -149,7 +129,6 @@ class ProjectScreen extends StatelessWidget {
                       if (!projectProvider.isZoneEditorEnabled) ...buildVideoView(),
                       CupertinoListSection(
                         header: Text(context.l.project_screen_title),
-                        backgroundColor: feature_pip.getCupertinoListSectionBackgroundColor(context),
                         children: [
                           CupertinoListTile(
                             title: Text(context.l.project_screen_report_settings),
@@ -161,7 +140,6 @@ class ProjectScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      feature_pip.PipFooter(),
                     ],
                   ),
                 ),

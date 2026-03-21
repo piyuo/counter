@@ -4,7 +4,14 @@ environment:
   sdk: '>=3.11.0 <4.0.0'
 workspace:
   - apps/counter_app
-  - packages/*
+  - packages/core_domain
+  - packages/core_runtime
+  - packages/feature_control_panel
+  - packages/feature_monitor
+  - packages/feature_onboarding
+  - packages/feature_pip
+  - packages/shared_l10n
+  - packages/super_cupertino_navigation_bar
 dev_dependencies:
   melos: ^7.4.0
 
@@ -22,7 +29,12 @@ melos:
       run: melos exec -- flutter clean
 
     build:
-      run: melos exec --depends-on="build_runner" -- "dart run build_runner build --delete-conflicting-outputs"
+      run: melos exec --depends-on="build_runner" -- "dart run build_runner build --delete-conflicting-outputs || (dart run build_runner clean && dart run build_runner build --delete-conflicting-outputs)"
+      description: Build generated files and retry once with a clean asset graph if build_runner state is stale.
+
+    build:clean:
+      run: melos exec -c 1 --depends-on="build_runner" -- "dart run build_runner clean && dart run build_runner build --delete-conflicting-outputs"
+      description: Clean build_runner state in each package, then rebuild generated files.
 
     watch:
       run: melos exec --depends-on="build_runner" -- "dart run build_runner watch --delete-conflicting-outputs"
@@ -32,3 +44,7 @@ melos:
 
     test:
       run: melos exec -- flutter test
+
+    upgrade:
+      run: melos exec -- "flutter pub upgrade"
+      description: Upgrade dependencies in all packages.

@@ -16,20 +16,14 @@ void main() {
       expect(ctx.path, '/home');
     });
 
-    test('accepts different lifecycle states', () {
-      const ctx = RouteContext(lifecycle: SystemLifecycle.liveStreamOnly(), flow: AppFlow.waitingForStart(), path: '/');
-
-      expect(ctx.lifecycle, const SystemLifecycle.liveStreamOnly());
-    });
-
     test('accepts onboarding flow states', () {
-      const ctx = RouteContext(lifecycle: SystemLifecycle.systemReady(), flow: AppFlow.onboardingRequired(), path: '/');
+      const ctx = RouteContext(lifecycle: SystemLifecycle.systemReady(), flow: AppFlow.onboardingBegin(), path: '/');
 
-      expect(ctx.flow, const AppFlow.onboardingRequired());
+      expect(ctx.flow, const AppFlow.onboardingBegin());
     });
 
     test('accepts empty string path', () {
-      const ctx = RouteContext(lifecycle: SystemLifecycle.booting(), flow: AppFlow.checkingBackend(), path: '');
+      const ctx = RouteContext(lifecycle: SystemLifecycle.booting(), flow: AppFlow.checkingDataServer(), path: '');
 
       expect(ctx.path, '');
     });
