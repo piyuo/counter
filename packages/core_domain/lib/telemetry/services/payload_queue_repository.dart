@@ -7,7 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../models/queued_payload.dart';
 import '../models/telemetry_payload.dart';
 import '../models/upload_log.dart';
-import '../models/uppload_log_list.dart';
+import '../models/upload_log_list.dart';
 
 part 'payload_queue_repository.g.dart';
 

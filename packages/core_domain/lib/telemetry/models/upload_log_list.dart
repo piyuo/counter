@@ -1,5 +1,5 @@
 // TOC:
-//  - UpploadLogList: lightweight upload-log item for UI list rendering
+//  - UploadLogList: lightweight upload-log item for UI list rendering
 
 /// Lightweight upload-log item used by UI list screens.
 class UploadLogList {
