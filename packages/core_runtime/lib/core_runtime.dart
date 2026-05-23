@@ -7,6 +7,7 @@ export 'runtime/random_token_generator_service.dart';
 export 'runtime/remote_invitation_service.dart';
 export 'runtime/secure_auth_storage_service.dart';
 export 'runtime/shared_prefs_repository.dart';
+export 'runtime/system_chrome_portrait_orientation_service.dart';
 export 'telemetry/drift_payload_queue_repository.dart';
 export 'telemetry/http_telemetry_transport.dart';
 export 'telemetry/json_payload_serializer.dart';

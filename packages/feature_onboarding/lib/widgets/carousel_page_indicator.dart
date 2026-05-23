@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 /// A row of dot indicators for a carousel/page-view.
 ///
@@ -37,7 +37,7 @@ class CarouselPageIndicator extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               // Active dot is nearly opaque; inactive dots are dimmed
-              color: CupertinoColors.black.withValues(alpha: isActive ? 0.9 : 0.2),
+              color: Colors.black.withValues(alpha: isActive ? 0.9 : 0.2),
             ),
           ),
         );

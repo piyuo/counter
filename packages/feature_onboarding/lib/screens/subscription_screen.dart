@@ -8,7 +8,7 @@
 // ===============================================
 import 'package:feature_onboarding/widgets/next_button_container.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class SubscriptionScreen extends StatelessWidget {
@@ -28,7 +28,7 @@ class SubscriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color muted = CupertinoColors.systemGrey.resolveFrom(context);
+    final Color muted = Colors.grey;
     return feature_pip.PipScaffold(
       builder: (scrollController) {
         return NextButtonContainer(
@@ -41,7 +41,7 @@ class SubscriptionScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(CupertinoIcons.star_circle, size: 64.0, color: CupertinoColors.systemGreen.resolveFrom(context)),
+                  Icon(Icons.star_border, size: 64.0, color: Colors.green),
                   const SizedBox(height: 12.0),
                   const Text(
                     'Founding Member Rate',
@@ -53,9 +53,9 @@ class SubscriptionScreen extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
                     decoration: BoxDecoration(
-                      color: CupertinoColors.systemGrey2.resolveFrom(context),
+                      color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(16.0),
-                      border: Border.all(color: CupertinoColors.systemGrey4.resolveFrom(context)),
+                      border: Border.all(color: Colors.grey.shade400),
                     ),
                     child: Column(
                       children: [
@@ -100,20 +100,32 @@ class SubscriptionScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            CupertinoButton(
-                              padding: EdgeInsets.zero,
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
                               onPressed: _launchTerms,
                               child: const Text('Terms', style: TextStyle(fontSize: 12)),
                             ),
-                            const Text(' • ', style: TextStyle(color: CupertinoColors.systemGrey)),
-                            CupertinoButton(
-                              padding: EdgeInsets.zero,
+                            const Text(' • ', style: TextStyle(color: Colors.grey)),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
                               onPressed: _launchPrivacy,
                               child: const Text('Privacy', style: TextStyle(fontSize: 12)),
                             ),
-                            const Text(' • ', style: TextStyle(color: CupertinoColors.systemGrey)),
-                            CupertinoButton(
-                              padding: EdgeInsets.zero,
+                            const Text(' • ', style: TextStyle(color: Colors.grey)),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
                               onPressed: _restorePurchases,
                               child: const Text('Restore Purchase', style: TextStyle(fontSize: 12)),
                             ),
@@ -123,7 +135,7 @@ class SubscriptionScreen extends StatelessWidget {
                         const Text(
                           'Subscription automatically renews monthly.\nCancel anytime in your App Store settings.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 10, color: CupertinoColors.systemGrey),
+                          style: TextStyle(fontSize: 10, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -150,10 +162,10 @@ class _FeatureRow extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(CupertinoIcons.check_mark_circled_solid, size: 18.0, color: CupertinoColors.systemGreen),
+          const Icon(Icons.check_circle, size: 18.0, color: Colors.green),
           const SizedBox(width: 8.0),
           Expanded(
-            child: Text(text, style: TextStyle(fontSize: 14.0, color: CupertinoColors.systemGrey.resolveFrom(context))),
+            child: Text(text, style: const TextStyle(fontSize: 14.0, color: Colors.grey)),
           ),
         ],
       ),

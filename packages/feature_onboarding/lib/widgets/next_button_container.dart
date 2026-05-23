@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 
 /// A container widget that overlays a "Next" button at the bottom of the screen.
-///
-/// Wraps [child] in a [Stack] and positions a full-width [CupertinoButton.filled]
-/// at the bottom, respecting safe areas and adjusting bottom padding for mobile
-/// vs desktop platforms.
 class NextButtonContainer extends StatelessWidget {
   const NextButtonContainer({
     super.key,

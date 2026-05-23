@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 bool pipAbsorbSliding = false;
 
 class AbsorbSliding extends StatelessWidget {
-  const AbsorbSliding({
-    required this.child,
-    super.key,
-  });
+  const AbsorbSliding({required this.child, super.key});
 
   /// the child
   final Widget child;

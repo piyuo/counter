@@ -34,6 +34,9 @@ void main() async {
         core_domain.hardwareCapabilityServiceProvider.overrideWith(
           (ref) => core_runtime.NativeHardwareCapabilityService(),
         ),
+        core_domain.portraitOrientationServiceProvider.overrideWith(
+          (ref) => core_runtime.SystemChromePortraitOrientationService(),
+        ),
         core_domain.visionRuntimeServiceProvider.overrideWith((ref) => core_runtime.FlutterVisionRuntimeService(ref)),
         core_domain.invitationServiceProvider.overrideWith((ref) => core_runtime.RemoteInvitationService()),
         core_domain.tokenGeneratorServiceProvider.overrideWith((ref) => core_runtime.RandomTokenGeneratorService()),

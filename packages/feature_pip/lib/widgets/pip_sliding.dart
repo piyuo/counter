@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -79,7 +79,7 @@ class PipSliding extends ConsumerWidget {
             key: pipController.panelKey,
             transformRotation: transformRotation,
             getCurrentScrollOffset: () => pipController.scrollOffset,
-            color: CupertinoColors.transparent,
+            color: Colors.transparent,
             defaultPanelState: pipState.isPanelOpened ? PanelState.open : PanelState.closed,
             snapPoint: 0.4,
             isLockedOpen: isLockedOpen,
@@ -130,10 +130,7 @@ class _DragHeader extends StatelessWidget {
               width: 40,
               height: 5,
               margin: const EdgeInsets.only(bottom: 3),
-              decoration: BoxDecoration(
-                color: CupertinoColors.opaqueSeparator,
-                borderRadius: BorderRadius.circular(12),
-              ),
+              decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(12)),
             ),
           ),
         ),

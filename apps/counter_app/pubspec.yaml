@@ -49,7 +49,6 @@ dependencies:
   reactive_forms: ^18.1.1
   calendar_date_picker2: ^2.0.1
   badges: ^3.1.2
-  cupertino_listview: ^3.0.0
   cross_file: ^0.3.4+2
   auto_animated: ^3.2.0
   sliding_up_panel: ^2.0.0+1

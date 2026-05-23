@@ -1,6 +1,6 @@
 import 'package:feature_control_panel/router/control_panel_router_provider.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ControlPanelShell extends ConsumerStatefulWidget {

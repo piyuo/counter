@@ -2,11 +2,9 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:counter_app/app_shell/app_providers.dart';
 import 'package:counter_app/app_shell/app_router.dart';
 import 'package:counter_app/app_shell/app_theme.dart';
 import 'package:counter_app/boot/boot_notifier.dart';
-import 'package:counter_app/features/monitor/monitor.dart' as app;
 import 'package:counter_app/vision/vision_session_bootstrap.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
@@ -14,7 +12,6 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
-import 'package:provider/provider.dart' as provider;
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 import 'package:toastification/toastification.dart';
 
@@ -29,6 +26,9 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
+  /// the navigator key to keep the navigator state from switch between side and floating layout
+  final navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   void initState() {
     super.initState();
@@ -52,38 +52,32 @@ class _AppShellState extends ConsumerState<AppShell> {
       appkit.Localization.delegate,
       vision.Localization.delegate,
       GlobalMaterialLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
+      //      GlobalCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ];
 
-    return AppProviders(
-      child: provider.Consumer<app.ProjectProvider>(
-        builder: (context, projectProvider, child) {
-          // Watch lifecycle so the widget tree rebuilds when state changes.
-          // ignore: unused_local_variable
-          final systemLifecycle = ref.watch(core_domain.systemLifecycleProvider);
-          final defaultLocale = widget.locale ?? appkit.localeSystem;
+    // Watch lifecycle so the widget tree rebuilds when state changes.
+    // ignore: unused_local_variable
+    final systemLifecycle = ref.watch(core_domain.systemLifecycleProvider);
+    final defaultLocale = widget.locale ?? appkit.localeSystem;
 
-          return VisionSessionBootstrap(
-            child: ToastificationWrapper(
-              child: AppTheme(
-                child: MaterialApp(
-                  navigatorKey: projectProvider.navigatorKey,
-                  debugShowCheckedModeBanner: false,
-                  locale: defaultLocale,
-                  localizationsDelegates: appLocaleDelegates,
-                  supportedLocales: shared_l10n.Localization.supportedLocales,
-                  localeResolutionCallback: appkit.localeResolutionCallback,
-                  theme: AppTheme.themeData,
-                  initialRoute: '/',
-                  onGenerateRoute: (routeSettings) {
-                    return AppRouter.onGenerateRoute(routeSettings, ref, projectProvider, appLocaleDelegates);
-                  },
-                ),
-              ),
-            ),
-          );
-        },
+    return VisionSessionBootstrap(
+      child: ToastificationWrapper(
+        child: AppTheme(
+          child: MaterialApp(
+            navigatorKey: navigatorKey,
+            debugShowCheckedModeBanner: false,
+            locale: defaultLocale,
+            localizationsDelegates: appLocaleDelegates,
+            supportedLocales: shared_l10n.Localization.supportedLocales,
+            localeResolutionCallback: appkit.localeResolutionCallback,
+            theme: AppTheme.themeData,
+            initialRoute: '/',
+            onGenerateRoute: (routeSettings) {
+              return AppRouter.onGenerateRoute(routeSettings, ref, appLocaleDelegates);
+            },
+          ),
+        ),
       ),
     );
   }
