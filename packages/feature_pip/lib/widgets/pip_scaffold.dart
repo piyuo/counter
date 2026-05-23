@@ -1,7 +1,6 @@
 // TOC:
 //  - PipScaffold: ConsumerStatefulWidget that owns a ScrollController and wires it to PipNotifier
 //  - _PipScaffoldState: creates, sends, disposes the ScrollController; listens to scrollEventBusProvider; uses PipAppBar
-//  - getCupertinoListSectionBackgroundColor: shared theme helper
 
 import 'dart:async';
 

@@ -10,7 +10,6 @@ environment:
 
 dependencies:
   shared_l10n: any
-  super_cupertino_navigation_bar: any
   flutter:
     sdk: flutter
   flutter_appkit:

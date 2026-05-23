@@ -1,6 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
@@ -38,13 +38,6 @@ class RootScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-
-              // show loading indicator and status label when booting or checking hardware
-              if (statusLabel != null)
-                Padding(
-                  padding: EdgeInsets.fromLTRB(16, 64, 16, 16),
-                  child: const CupertinoActivityIndicator(radius: 16.0),
-                ),
 
               if (statusLabel != null) Text(statusLabel),
             ],

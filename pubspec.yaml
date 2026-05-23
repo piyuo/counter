@@ -11,7 +11,6 @@ workspace:
   - packages/feature_onboarding
   - packages/feature_pip
   - packages/shared_l10n
-  - packages/super_cupertino_navigation_bar
 dev_dependencies:
   melos: ^7.4.0
 

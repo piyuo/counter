@@ -1,7 +1,6 @@
 // TOC:
 //  - SelectionCheckbox: reusable iOS-like adaptive checkbox
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SelectionCheckbox extends StatelessWidget {
@@ -30,7 +29,7 @@ class SelectionCheckbox extends StatelessWidget {
         data: Theme.of(context).copyWith(
           checkboxTheme: CheckboxThemeData(
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
-            side: BorderSide(color: CupertinoColors.systemGrey.resolveFrom(context), width: 1.3),
+            side: BorderSide(color: Colors.grey),
           ),
         ),
         child: Center(
