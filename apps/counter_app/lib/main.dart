@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ void main() async {
       await LiquidGlassWidgets.initialize();
       appLinkService = core_runtime.NativeAppLinkService();
       final appSupportDir = await getApplicationSupportDirectory();
+      await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
       telemetryDb = await core_runtime.TelemetryDatabase.open(filePath: telemetryDbPath);
     },
@@ -38,9 +41,7 @@ void main() async {
         core_domain.appLinkServiceProvider.overrideWith((ref) {
           assert(appLinkService != null, 'AppLinkService should have been initialized in preInitCallback');
           ref.keepAlive(); // must stay alive so the stream listener can write to invitationCodeProvider
-          Future(
-            () => appLinkService!.init(ref),
-          ); // schedule after binding is ready; completes well before boot reads the code
+          unawaited(appLinkService!.init(ref));
           return appLinkService!;
         }),
         core_domain.telemetryQueueRepositoryProvider.overrideWith((ref) {

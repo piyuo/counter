@@ -122,6 +122,7 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   }
 
   /// Removes all payload rows enqueued before [before].
+  /// Deletes all queued payloads created before [before].
   ///
   /// Expiry is based only on `createdAtMs`, regardless of upload status.
   @override

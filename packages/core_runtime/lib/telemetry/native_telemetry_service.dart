@@ -11,13 +11,10 @@ import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/foundation.dart';
-import 'package:path/path.dart' as p;
-import 'package:path_provider/path_provider.dart';
 
 import 'drift_payload_queue_repository.dart';
 import 'http_telemetry_transport.dart';
 import 'json_payload_serializer.dart';
-import 'telemetry_database.dart';
 
 /// Concrete [core_domain.TelemetryService] that wires together:
 /// - Drift SQLite queue ([DriftPayloadQueueRepository])
@@ -33,58 +30,17 @@ class NativeTelemetryService implements core_domain.TelemetryService {
   /// [jitterSecResolver] returns the stable per-device upload jitter (0–180 s).
   /// Added to every wall-clock boundary to spread simultaneous uploads and
   /// prevent thundering herd. Defaults to zero jitter when omitted.
+  ///
+  /// [serializer], [transport], and [responseWorker] can be injected for testing.
+  /// Defaults: [JsonPayloadSerializer], [HttpTelemetryTransport], and
+  /// [ResponseWorker] (with [onServerConfigOverride] applied).
   NativeTelemetryService({
     required Future<core_domain.UploadConfig> Function() uploadConfigResolver,
     required Future<core_domain.UploadSession?> Function() sessionResolver,
     core_domain.ServerConfigOverrideApplier? onServerConfigOverride,
     required core_domain.TelemetryQueueRepository queue,
-    Future<int> Function() jitterSecResolver = _zeroJitter,
-    DateTime Function() nowProvider = DateTime.now,
-  }) : _uploadConfigResolver = uploadConfigResolver,
-       _jitterSecResolver = jitterSecResolver,
-       _nowProvider = nowProvider,
-       _worker = core_domain.UploadWorker(
-         queue: queue,
-         serializer: const JsonPayloadSerializer(),
-         transport: HttpTelemetryTransport(),
-         responseWorker: core_domain.ResponseWorker(onServerConfigOverride: onServerConfigOverride),
-         sessionResolver: sessionResolver,
-       ) {
-    unawaited(_emitNextUploadTime());
-  }
-
-  /// Factory that creates a default queue by initializing the database.
-  static Future<NativeTelemetryService> create({
-    required Future<core_domain.UploadConfig> Function() uploadConfigResolver,
-    required Future<core_domain.UploadSession?> Function() sessionResolver,
-    core_domain.ServerConfigOverrideApplier? onServerConfigOverride,
-    Future<int> Function() jitterSecResolver = _zeroJitter,
-    DateTime Function() nowProvider = DateTime.now,
-  }) async {
-    final appSupportDir = await getApplicationSupportDirectory();
-    final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
-
-    final db = await TelemetryDatabase.open(filePath: telemetryDbPath);
-
-    final queue = DriftPayloadQueueRepository(db);
-
-    return NativeTelemetryService(
-      uploadConfigResolver: uploadConfigResolver,
-      sessionResolver: sessionResolver,
-      onServerConfigOverride: onServerConfigOverride,
-      jitterSecResolver: jitterSecResolver,
-      queue: queue,
-      nowProvider: nowProvider,
-    );
-  }
-
-  /// Constructor for testing — accepts injected collaborators.
-  NativeTelemetryService.withDependencies({
-    required Future<core_domain.UploadConfig> Function() uploadConfigResolver,
-    required Future<core_domain.UploadSession?> Function() sessionResolver,
-    required core_domain.TelemetryQueueRepository queue,
-    required core_domain.PayloadSerializer serializer,
-    required core_domain.TelemetryTransport transport,
+    core_domain.PayloadSerializer? serializer,
+    core_domain.TelemetryTransport? transport,
     core_domain.ResponseWorker? responseWorker,
     Future<int> Function() jitterSecResolver = _zeroJitter,
     DateTime Function() nowProvider = DateTime.now,
@@ -93,9 +49,9 @@ class NativeTelemetryService implements core_domain.TelemetryService {
        _nowProvider = nowProvider,
        _worker = core_domain.UploadWorker(
          queue: queue,
-         serializer: serializer,
-         transport: transport,
-         responseWorker: responseWorker ?? const core_domain.ResponseWorker(),
+         serializer: serializer ?? const JsonPayloadSerializer(),
+         transport: transport ?? HttpTelemetryTransport(),
+         responseWorker: responseWorker ?? core_domain.ResponseWorker(onServerConfigOverride: onServerConfigOverride),
          sessionResolver: sessionResolver,
        ) {
     unawaited(_emitNextUploadTime());

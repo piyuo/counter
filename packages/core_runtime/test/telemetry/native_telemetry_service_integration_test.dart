@@ -74,7 +74,7 @@ void main() {
       final transport = HttpTelemetryTransport(
         client: _FakeHttpClient((request) async => http.Response(responseBody, 200)),
       );
-      final service = NativeTelemetryService.withDependencies(
+      final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
@@ -139,7 +139,7 @@ void main() {
       final transport = HttpTelemetryTransport(
         client: _FakeHttpClient((request) async => http.Response('{not-json', 200)),
       );
-      final service = NativeTelemetryService.withDependencies(
+      final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
@@ -174,7 +174,7 @@ void main() {
       final db = await _openTempTelemetryDb();
       final queue = DriftPayloadQueueRepository(db);
 
-      final service = NativeTelemetryService.withDependencies(
+      final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
@@ -226,7 +226,7 @@ void main() {
       final queue = DriftPayloadQueueRepository(db);
       final transport = _CountingSuccessTransport();
 
-      final service = NativeTelemetryService.withDependencies(
+      final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
@@ -269,7 +269,7 @@ void main() {
     test('pruneExpired keeps recent payloads and does not remove pending payloads', () async {
       final db = await _openTempTelemetryDb();
       final queue = DriftPayloadQueueRepository(db);
-      final service = NativeTelemetryService.withDependencies(
+      final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),

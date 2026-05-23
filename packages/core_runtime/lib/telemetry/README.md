@@ -14,64 +14,88 @@ NativeTelemetryService
  ├── DriftPayloadQueueRepository  (SQLite via Drift)
  ├── JsonPayloadSerializer        (UTF-8 JSON)
  └── HttpTelemetryTransport       (HTTP POST)
-       └── DeliveryWorker         (pure domain logic, from core_domain)
+       └── UploadWorker           (pure domain logic, from core_domain)
 ```
 
 ---
 
 ## Files
 
-| File                                  | Purpose                                                  |
-| ------------------------------------- | -------------------------------------------------------- |
-| `telemetry_database.dart`             | Drift `@DriftDatabase` with `PendingPayloads` table      |
-| `drift_payload_queue_repository.dart` | SQLite-backed `PayloadQueueRepository`                   |
-| `json_payload_serializer.dart`        | Serialises payload batches as a UTF-8 JSON array         |
-| `http_telemetry_transport.dart`       | HTTP POST transport with Bearer auth                     |
-| `window_result_mapper.dart`           | Maps `vision.WindowResult` → `TelemetryPayload`          |
-| `native_telemetry_service.dart`       | Top-level facade; manages the config-driven upload timer |
+| File                                  | Purpose                                                                   |
+| ------------------------------------- | ------------------------------------------------------------------------- |
+| `telemetry_database.dart`             | Drift `@DriftDatabase` with queue and upload-log tables plus SQLite setup |
+| `drift_payload_queue_repository.dart` | SQLite-backed `TelemetryQueueRepository`                                  |
+| `json_payload_serializer.dart`        | Serialises payload batches as a UTF-8 JSON array                          |
+| `http_telemetry_transport.dart`       | HTTP POST transport with Bearer auth                                      |
+| `window_result_mapper.dart`           | Maps `vision.WindowCountState` to `TelemetryPayload`                      |
+| `native_telemetry_service.dart`       | Top-level facade; schedules aligned uploads and exposes status            |
 
 ---
 
 ## Database schema
 
-Table: **`pending_payloads`** (schema version 2)
+The runtime database is `TelemetryDatabase` (schema version 1) with two tables.
 
-- `id` (TEXT PK): Matches `TelemetryPayload.payloadId` (UUID v4)
-- `payload_json` (TEXT): Full JSON from `TelemetryPayload.toJson()`
-- `retry_count` (INTEGER): Defaults to 0
-- `next_retry_at_ms` (INTEGER): UTC ms-since-epoch; set to `now` on enqueue
-- `created_at_ms` (INTEGER): UTC ms-since-epoch; used for expiry pruning
-- `start_ms` (INTEGER): UTC ms-since-epoch; copied from `TelemetryPayload.startUtc`
-- `end_ms` (INTEGER): UTC ms-since-epoch; copied from `TelemetryPayload.endUtc`
-- `delivered_at_ms` (INTEGER): Nullable; set on success, retained for 7 days
+Table: **`telemetry_queue`**
+
+- `id` (TEXT PK): Matches `TelemetryPayload.id` (UUID v4).
+- `serialized_payload` (TEXT): Full JSON from `TelemetryPayload.toJson()`.
+- `created_at_ms` (INTEGER): UTC ms-since-epoch when the payload was enqueued.
+- `start_ms` (INTEGER): UTC ms-since-epoch copied from `TelemetryPayload.startUtc`.
+- `end_ms` (INTEGER): UTC ms-since-epoch copied from `TelemetryPayload.endUtc`.
+- `delivered_at_ms` (INTEGER, nullable): Set when a payload upload succeeds.
+
+Table: **`telemetry_upload_log`**
+
+- `id` (INTEGER PK): Semantic hour/status key in `yyyyMMddHHs` form.
+- `success` (BOOLEAN): Whether the upload attempt succeeded.
+- `attempted_at_ms` (INTEGER): UTC ms-since-epoch when the attempt ran.
+- `size_kb` (INTEGER): Serialized upload size in KB.
+- `payload_count` (INTEGER): Number of payloads included in the attempt.
+- `retry_count` (INTEGER): Retry number captured for that attempt.
+- `error` (TEXT, nullable): Human-readable failure message.
 
 Behavior notes:
 
-- Successful deliveries are **not deleted immediately**. They are marked with
-  `delivered_at_ms` and excluded from pending delivery queries.
-- UI/debug screens can call `fetchRecent(daysBack)` to retrieve all retained
-  payloads in one list. Delivered rows can be identified by a non-null
-  `PendingPayload.deliveredAt`.
-- `pruneExpired(before)` applies one retention rule to all rows based on
-  `created_at_ms`, regardless of delivery status.
-- Queue rows persist both observation bounds (`start_ms`, `end_ms`) so
-  engineers can audit by explicit window semantics.
-- Event-time ordering uses `end_ms` (window end), not enqueue or delivery time.
+- Successful deliveries are retained and marked by `delivered_at_ms`; pending
+  scans only include rows where that column is null.
+- `fetchReady()` reads pending rows oldest-first so retries do not starve older
+  payloads.
+- `fetchRecent(daysBack)` returns both pending and uploaded payloads based on
+  `created_at_ms` only.
+- `pruneExpired(before)` applies one retention rule to queue rows based on
+  `created_at_ms`, regardless of upload status.
+- `pruneUploadLogs(before)` trims upload-attempt history separately.
+- Queue rows persist `start_ms` and `end_ms` so engineers can audit by event
+  window rather than enqueue time.
+
+### SQLite pragmas
+
+`TelemetryDatabase.open()` configures SQLite for a small, steady-state telemetry
+workload:
+
+- `PRAGMA journal_mode=WAL;`
+- `PRAGMA busy_timeout=5000;`
+- `PRAGMA synchronous=NORMAL;`
+- `PRAGMA foreign_keys=ON;`
+- `PRAGMA wal_autocheckpoint=5000;`
+- `PRAGMA journal_size_limit=52428800;`
+
+The queue is expected to grow to a stable size and reuse freed pages, so routine
+`VACUUM` is not part of normal operation.
 
 ---
 
 ## Upload schedule
 
 `NativeTelemetryService.startPeriodicUpload()` resolves the active cadence,
-computes the **next aligned wall-clock upload slot**, and schedules a single
-one-shot timer. After each upload attempt, it repeats the same calculation and
-schedules the next one-shot timer.
+computes the next aligned wall-clock upload slot, applies stable per-device
+jitter, and schedules a single one-shot timer. After each scheduled attempt, it
+recomputes from the latest config and schedules the next timer again.
 
-This keeps uploads aligned to the latest `UploadConfig.wallClockCadenceMin`
-setting without minute polling or cadence-boundary checks on every minute tick.
-
-Call `flush()` on app start and on lifecycle pause/terminate to drain the queue
-immediately without waiting for the next hour boundary.
+This keeps uploads aligned to `UploadConfig.wallClockCadenceMin` without minute
+polling. Manual uploads should use `uploadNow()` when the app starts, pauses, or
+otherwise needs to drain the queue immediately.
 
 ---
 
@@ -80,9 +104,9 @@ immediately without waiting for the next hour boundary.
 Converts a `vision.WindowCountState` (from the detection engine) to the
 `TelemetryPayload` wire model.
 
-- Generates a fresh **UUID v4** `payloadId` per result for server-side
-  idempotent de-duplication on retry.
-- Requires a `deviceId` string (injected at construction time).
+- Generates a fresh UUID v4 `payloadId` per result for server-side idempotent
+  de-duplication on retry.
+- Requires a `deviceId` string injected at construction time.
 
 ---
 
@@ -90,7 +114,7 @@ Converts a `vision.WindowCountState` (from the detection engine) to the
 
 - Method: `POST`
 - Headers: `Authorization: Bearer <token>`, `Content-Type: <contentType>`
-- Throws `Exception` on any non-2xx status so `DeliveryWorker` applies retry
+- Throws `Exception` on any non-2xx status so `UploadWorker` can apply retry
   logic.
 
 ---
@@ -99,8 +123,10 @@ Converts a `vision.WindowCountState` (from the detection engine) to the
 
 See `test/telemetry/` for unit tests covering:
 
-- `json_payload_serializer_test.dart`: Encoding correctness, content-type.
-- `http_telemetry_transport_test.dart`: POST headers/body, 2xx success, non-2xx throws.
-- `drift_payload_queue_repository_test.dart`: Queue lifecycle including success retention and reset APIs.
+- `telemetry_database_test.dart`: SQLite pragmas, file creation, and corruption recovery.
+- `drift_payload_queue_repository_test.dart`: Queue lifecycle, retention, and upload logs.
+- `json_payload_serializer_test.dart`: Encoding correctness and content type.
+- `http_telemetry_transport_test.dart`: POST headers/body, 2xx success, and non-2xx throws.
 - `window_result_mapper_test.dart`: Field mapping, unique IDs, and deviceId propagation.
-- `native_telemetry_service_test.dart`: Enqueue delegation, flush no-op, and timer lifecycle.
+- `native_telemetry_service_test.dart`: Enqueue delegation, `uploadNow()`, and timer lifecycle.
+- `native_telemetry_service_integration_test.dart`: End-to-end scheduling and queue draining.

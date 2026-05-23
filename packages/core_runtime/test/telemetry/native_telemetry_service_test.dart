@@ -152,7 +152,7 @@ void main() {
       core_domain.TelemetryTransport? transport,
       DateTime Function()? nowProvider,
     }) {
-      return NativeTelemetryService.withDependencies(
+      return NativeTelemetryService(
         uploadConfigResolver: () async => config?.config ?? const core_domain.UploadConfig(),
         sessionResolver: () async => config,
         queue: queue ?? makeQueue(),
@@ -290,7 +290,7 @@ void main() {
 
     test('refreshSchedule updates when scheduler is inactive', () async {
       var cadenceMin = 60;
-      final svc = NativeTelemetryService.withDependencies(
+      final svc = NativeTelemetryService(
         uploadConfigResolver: () async => core_domain.UploadConfig(wallClockCadenceMin: cadenceMin),
         sessionResolver: () async => makeRuntimeConfig(wallClockCadenceMin: cadenceMin),
         queue: makeQueue(),
@@ -310,7 +310,7 @@ void main() {
 
     test('refreshSchedule reschedules immediately when scheduler is active', () async {
       var cadenceMin = 60;
-      final svc = NativeTelemetryService.withDependencies(
+      final svc = NativeTelemetryService(
         uploadConfigResolver: () async => core_domain.UploadConfig(wallClockCadenceMin: cadenceMin),
         sessionResolver: () async => makeRuntimeConfig(wallClockCadenceMin: cadenceMin),
         queue: makeQueue(),

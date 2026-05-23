@@ -7,6 +7,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
 part 'telemetry_database.g.dart';
@@ -110,11 +111,86 @@ class TelemetryUploadLog extends Table {
 class TelemetryDatabase extends _$TelemetryDatabase {
   TelemetryDatabase._internal(super.executor);
 
+  /// Returns true if [error] indicates database file corruption (not transient issues).
+  ///
+  /// Only deletes the DB on corruption-specific SQLite errors:
+  /// - SQLITE_CORRUPT (11): corrupted database pages
+  /// - SQLITE_NOTADB (26): file is not a valid database
+  ///
+  /// Transient errors (locked, I/O, permissions) are not deletion-candidates.
+  static bool _isCorruptionError(Object error) {
+    final message = error.toString();
+    // Check for SQLite error codes in the error message.
+    // sqlite3 package formats messages like "SqliteException(11): database disk image is malformed"
+    return message.contains('(11)') || // SQLITE_CORRUPT
+        message.contains('(26)') || // SQLITE_NOTADB
+        message.contains('database disk image is malformed') ||
+        message.contains('file is not a database') ||
+        message.contains('database corruption');
+  }
+
+  /// Creates a [NativeDatabase] with WAL mode and busy-timeout configured.
+  ///
+  /// - WAL mode: concurrent readers don't block writers; crash-safe for
+  ///   long-running processes with mixed read/write workloads.
+  /// - busy_timeout: retries for up to 5 s on transient lock contention
+  ///   instead of immediately throwing SQLITE_BUSY.
+  /// - synchronous=NORMAL: keeps WAL writes durable enough for telemetry while
+  ///   avoiding the extra fsync cost of FULL on every commit.
+  /// - wal_autocheckpoint: checkpoint every 5000 pages (balances WAL growth vs I/O).
+  /// - journal_size_limit: cap WAL at 50 MB to prevent unbounded growth on
+  ///   long-running devices.
+  static NativeDatabase _openExecutor(String filePath) => NativeDatabase(
+    File(filePath),
+    logStatements: kDebugMode,
+    setup: (db) {
+      db.execute('PRAGMA journal_mode=WAL;');
+      db.execute('PRAGMA busy_timeout=5000;');
+      db.execute('PRAGMA synchronous=NORMAL;');
+      db.execute('PRAGMA foreign_keys=ON;');
+      db.execute('PRAGMA wal_autocheckpoint=5000;');
+      db.execute('PRAGMA journal_size_limit=52428800;'); // 50 MB
+    },
+  );
+
   /// Opens the database at an explicit filesystem path.
+  ///
+  /// If the file is corrupted (bad header, unrecoverable WAL, etc.) the
+  /// corrupted files are deleted and a fresh database is returned.
+  /// Telemetry loss on corruption is acceptable.
+  ///
+  /// Transient errors (file locks, I/O, permissions) are rethrown.
   static Future<TelemetryDatabase> open({required String filePath}) async {
     appkit.logDebug('[Telemetry] open database: $filePath');
-    final executor = NativeDatabase(File(filePath));
-    return TelemetryDatabase._internal(executor);
+    final db = TelemetryDatabase._internal(_openExecutor(filePath));
+    try {
+      // NativeDatabase is lazy — probe forces the real connection so corruption
+      // is detected here rather than silently failing on first production query.
+      await db.customSelect('SELECT 1').get();
+      return db;
+    } catch (error, stackTrace) {
+      if (_isCorruptionError(error)) {
+        appkit.logError('[Telemetry] database corrupted, recreating: $error');
+        appkit.logDebug('[Telemetry] corruption stack trace: $stackTrace');
+        await db.close();
+        await remove(filePath: filePath);
+        return TelemetryDatabase._internal(_openExecutor(filePath));
+      } else {
+        appkit.logError('[Telemetry] transient error opening database, rethrowing: $error');
+        appkit.logDebug('[Telemetry] error stack trace: $stackTrace');
+        await db.close();
+        rethrow;
+      }
+    }
+  }
+
+  /// Defragments the database file by removing unused pages.
+  ///
+  /// Telemetry is expected to remain small and reach a steady-state size, so
+  /// routine vacuuming is unnecessary. Keep this as a manual maintenance tool.
+  Future<void> vacuum() async {
+    appkit.logDebug('[Telemetry] vacuum database');
+    await customSelect('VACUUM').get();
   }
 
   /// Deletes the telemetry database file if it exists.
@@ -137,15 +213,5 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   }
 
   @override
-  int get schemaVersion => 2;
-
-  @override
-  MigrationStrategy get migration => MigrationStrategy(
-    onUpgrade: (m, from, to) async {
-      if (from < 2) {
-        await m.addColumn(telemetryUploadLog, telemetryUploadLog.payloadCount);
-        await m.addColumn(telemetryUploadLog, telemetryUploadLog.retryCount);
-      }
-    },
-  );
+  int get schemaVersion => 1;
 }
