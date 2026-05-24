@@ -24,15 +24,17 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
   final Set<String> _selectedPayloadIds = <String>{};
   bool _isResending = false;
 
-  String _payloadDeliveryStatusDescription(core_domain.QueuedPayload payload, DateFormat timeFmt) {
-    if (payload.isUploaded) {
-      return 'Delivered on ${timeFmt.format(payload.uploadedAtUtc!.toLocal())}';
+  String _payloadDeliveryStatusDescription(core_domain.QueuedPayload queued, DateFormat timeFmt) {
+    if (queued.isUploaded) {
+      return 'Delivered on ${timeFmt.format(queued.uploadedAtUtc!.toLocal())}';
     }
     final nowUtc = DateTime.now().toUtc();
-    if (payload.payload.endUtc.isAfter(nowUtc)) {
-      return 'Pending to ${timeFmt.format(payload.payload.endUtc.toLocal())}';
+    final payloadEndUtc = core_domain.getPayloadEndUtc(queued.payload);
+
+    if (payloadEndUtc.isAfter(nowUtc)) {
+      return 'Pending to ${timeFmt.format(payloadEndUtc.toLocal())}';
     }
-    return 'Failed on ${timeFmt.format(payload.payload.endUtc.toLocal())}';
+    return 'Failed on ${timeFmt.format(payloadEndUtc.toLocal())}';
   }
 
   bool _isPayloadSelected(String payloadId) => _selectedPayloadIds.contains(payloadId);
@@ -81,6 +83,11 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
+
     final payloadsAsync = ref.watch(recentPayloadsProvider);
     final locale = Localizations.localeOf(context).toString();
     final dayFmt = DateFormat.yMMMMd(locale);
@@ -88,23 +95,25 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
     final payloadTimeFmt = hourFmt;
 
     return feature_pip.PipScaffold(
-      action: feature_pip.PipActionButton(
-        label: 'Resend',
-        onPressed: (_isResending || _selectedPayloadIds.isEmpty)
-            ? null
-            : () async {
-                final payloads = await ref.read(recentPayloadsProvider.future);
-                final group = core_domain.findStartHourGroupBySlotMs(payloads, widget.slotMs);
-                if (!context.mounted) return;
-                if (group == null) {
-                  ScaffoldMessenger.of(
-                    context,
-                  ).showSnackBar(const SnackBar(content: Text('This start hour no longer exists.')));
-                  return;
-                }
-                await _resendSelectedPayloads(group.payloads);
-              },
-      ),
+      action: appState.isLocalDeviceOnly
+          ? null
+          : feature_pip.PipActionButton(
+              label: 'Resend',
+              onPressed: (_isResending || _selectedPayloadIds.isEmpty)
+                  ? null
+                  : () async {
+                      final payloads = await ref.read(recentPayloadsProvider.future);
+                      final group = core_domain.findStartHourGroupBySlotMs(payloads, widget.slotMs);
+                      if (!context.mounted) return;
+                      if (group == null) {
+                        ScaffoldMessenger.of(
+                          context,
+                        ).showSnackBar(const SnackBar(content: Text('This start hour no longer exists.')));
+                        return;
+                      }
+                      await _resendSelectedPayloads(group.payloads);
+                    },
+            ),
       builder: (scrollController) => payloadsAsync.when(
         loading: () => const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white)),
         error: (error, stackTrace) => Center(
@@ -142,7 +151,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                           ),
                           title: Text(
                             '${payloadTimeFmt.format(group.payloads[i].payload.startUtc.toLocal())} - '
-                            '${payloadTimeFmt.format(group.payloads[i].payload.endUtc.toLocal())}',
+                            '${payloadTimeFmt.format(core_domain.getPayloadEndUtc(group.payloads[i].payload).toLocal())}',
                           ),
                           subtitle: Text(_payloadDeliveryStatusDescription(group.payloads[i], payloadTimeFmt)),
                           trailing: const Icon(Icons.arrow_forward_ios),

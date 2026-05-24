@@ -2,20 +2,23 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
-class SettingsServerScreen extends ConsumerStatefulWidget {
-  const SettingsServerScreen({super.key});
+class SettingsPersonalCustomScreen extends ConsumerStatefulWidget {
+  const SettingsPersonalCustomScreen({super.key});
 
   @override
-  ConsumerState<SettingsServerScreen> createState() => _SettingsServerScreenState();
+  ConsumerState<SettingsPersonalCustomScreen> createState() => _SettingsServerScreenState();
 }
 
-class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
-  static const List<int> _deliveryIntervalOptions = [5, 10, 15, 30, 60, 120, 240, 480, 720, 1440];
+class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScreen> {
+  //static const List<int> _deliveryIntervalOptions = [5, 10, 15, 30, 60, 120, 240, 480, 720, 1440];
 
   late final TextEditingController _serverUrlController;
-  late int _selectedCadenceMin;
+  late final TextEditingController _bearerTokenController;
+  //late int _selectedCadenceMin;
   String? _urlError;
   bool _isSaving = false;
 
@@ -23,28 +26,30 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
   void initState() {
     super.initState();
     final appState = ref.read(core_domain.appProvider).asData?.value;
-    final existingUrl = appState?.customServerUrl.isNotEmpty == true ? appState!.customServerUrl : 'https://';
-    _selectedCadenceMin = appState?.uploadConfig.wallClockCadenceMin ?? 60;
+    assert(appState != null, 'AppState should be available when SettingsPersonalCustomScreen is initialized.');
+
+    final existingUrl = appState?.personalCustomServer?.url ?? 'http://localhost:3000';
+    //_selectedCadenceMin = appState?.uploadConfig.wallClockCadenceMin ?? 60;
     _serverUrlController = TextEditingController(text: existingUrl);
+    _bearerTokenController = TextEditingController();
     _serverUrlController.addListener(_clearError);
   }
 
-  String _deliveryIntervalLabel(int minutes) {
+  /*
+  String _deliveryIntervalLabel(BuildContext context, int minutes) {
+    final materialLocalizations = MaterialLocalizations.of(context);
     return switch (minutes) {
-      60 => '1 hour',
-      120 => '2 hours',
-      240 => '4 hours',
-      480 => '8 hours',
-      720 => '12 hours',
-      1440 => '24 hours',
-      _ => '$minutes minutes',
+      60 || 120 || 240 || 480 || 720 || 1440 =>
+        '${materialLocalizations.formatDecimal(minutes ~/ 60)} ${minutes == 60 ? context.l.settings_server_screen_hour_unit_singular : context.l.settings_server_screen_hour_unit_plural}',
+      _ => '${materialLocalizations.formatDecimal(minutes)} ${context.l.settings_server_screen_minute_unit_plural}',
     };
   }
-
+*/
   @override
   void dispose() {
     _serverUrlController.removeListener(_clearError);
     _serverUrlController.dispose();
+    _bearerTokenController.dispose();
     super.dispose();
   }
 
@@ -69,10 +74,10 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                 children: [
                   const Icon(Icons.dns_outlined, size: 64),
                   const SizedBox(height: 8),
-                  Text('Custom Server', style: Theme.of(context).textTheme.titleMedium),
+                  Text(context.l.settings_server_screen_title, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 4),
                   Text(
-                    'Set the server URL used for uploads.',
+                    context.l.settings_server_screen_body,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                   ),
@@ -86,7 +91,10 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Server URL', style: Theme.of(context).textTheme.titleSmall),
+                    Text(
+                      context.l.settings_server_screen_server_url_label,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     const SizedBox(height: 10),
                     GlassTextField(controller: _serverUrlController),
                     if (_urlError != null) ...[
@@ -94,14 +102,21 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                       Text(_urlError!, style: const TextStyle(color: Colors.red, fontSize: 14)),
                     ],
                     const SizedBox(height: 16),
-                    Text('Deliver Payload On Wall Clock', style: Theme.of(context).textTheme.titleSmall),
+                    Text('Bearer Token', style: Theme.of(context).textTheme.titleSmall),
+                    const SizedBox(height: 10),
+                    GlassTextField(controller: _bearerTokenController),
+                    /*const SizedBox(height: 16),
+                    Text(
+                      context.l.settings_server_screen_delivery_cadence_label,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     const SizedBox(height: 10),
                     DropdownButtonFormField<int>(
                       initialValue: _selectedCadenceMin,
                       decoration: const InputDecoration(border: OutlineInputBorder()),
                       items: [
                         for (final minutes in _deliveryIntervalOptions)
-                          DropdownMenuItem<int>(value: minutes, child: Text(_deliveryIntervalLabel(minutes))),
+                          DropdownMenuItem<int>(value: minutes, child: Text(_deliveryIntervalLabel(context, minutes))),
                       ],
                       onChanged: _isSaving
                           ? null
@@ -111,7 +126,7 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                                 _selectedCadenceMin = value;
                               });
                             },
-                    ),
+                    ),*/
                   ],
                 ),
               ),
@@ -125,6 +140,7 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                       ? null
                       : () async {
                           final serverUrl = _serverUrlController.text.trim();
+                          final bearerToken = _bearerTokenController.text.trim();
                           setState(() {
                             _isSaving = true;
                             _urlError = null;
@@ -142,16 +158,17 @@ class _SettingsServerScreenState extends ConsumerState<SettingsServerScreen> {
                             return;
                           }
 
-                          await ref.read(core_domain.appProvider.notifier).setPersonalCustomDataServer(serverUrl);
-                          await ref
-                              .read(core_domain.appProvider.notifier)
-                              .setDeliveryWallClockCadenceMin(_selectedCadenceMin);
-
+                          final appController = ref.read(core_domain.appProvider.notifier);
+                          await appController.selectPersonalCustomServer(serverUrl, bearerToken);
                           if (!mounted) return;
-                          Navigator.of(context).pop();
+                          context.pop();
                         },
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-                  child: Text(_isSaving ? 'Saving...' : 'Use Custom Server'),
+                  child: Text(
+                    _isSaving
+                        ? context.l.settings_server_screen_saving_action
+                        : context.l.settings_server_screen_use_action,
+                  ),
                 ),
               ),
             ),

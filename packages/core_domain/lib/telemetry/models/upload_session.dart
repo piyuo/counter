@@ -8,10 +8,15 @@ import '../../state/models/upload_config.dart';
 /// tuning plus the currently active data server and optional business auth
 /// token.
 class UploadSession {
-  const UploadSession({required this.config, required this.dataServer, required this.deviceId, this.bearerToken});
+  const UploadSession({
+    required this.config,
+    required this.dataServer,
+    required this.deviceId,
+    required this.bearerToken,
+  });
 
   final UploadConfig config;
   final DataServer dataServer;
   final String deviceId;
-  final String? bearerToken;
+  final String bearerToken;
 }

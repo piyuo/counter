@@ -3,7 +3,6 @@
 
 import 'package:camera/camera.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 
@@ -65,29 +64,23 @@ class FlutterVisionRuntimeSourceAdapter {
     required vision.ModelDefine detectionModel,
     required vision.ModelDefine? reidModel,
   }) async {
-    final controller = _ref.read(vision.cameraVisionNotifierProvider.notifier);
-    try {
-      final cameraDescription = await _resolveCameraDescription(cameraSource.cameraIndex);
-      await controller.initialize(
-        detectionModel: detectionModel,
-        reidModel: reidModel,
-        visionParams: visionParams,
-        config: vision.CameraConfig(cameraDescription: cameraDescription),
-      );
-      return FlutterVisionRuntimeActiveController(
-        shutdown: controller.shutdown,
-        setParams: controller.setParams,
-        updateSource: (videoSource) async {
-          final nextSource = videoSource as core_domain.CameraVideoSource;
-          final nextCameraDescription = await _resolveCameraDescription(nextSource.cameraIndex);
-          await controller.changeCamera(nextCameraDescription);
-        },
-      );
-    } catch (error, stackTrace) {
-      appkit.logCritical('[VisionRuntime] Failed to initialize camera source: $error');
-      controller.setAsyncError(error, stackTrace);
-      rethrow;
-    }
+    final controller = _ref.read(vision.visionProvider.notifier);
+    final cameraDescription = await _resolveCameraDescription(cameraSource.cameraIndex);
+    await controller.start(
+      detectionModel: detectionModel,
+      reidModel: reidModel,
+      params: visionParams,
+      input: vision.CameraInput(description: cameraDescription),
+    );
+    return FlutterVisionRuntimeActiveController(
+      stop: controller.stop,
+      setParams: controller.setParams,
+      updateSource: (videoSource) async {
+        final nextSource = videoSource as core_domain.CameraVideoSource;
+        final nextCameraDescription = await _resolveCameraDescription(nextSource.cameraIndex);
+        await controller.changeCamera(nextCameraDescription);
+      },
+    );
   }
 
   Future<FlutterVisionRuntimeActiveController> _startWebcam({
@@ -96,27 +89,22 @@ class FlutterVisionRuntimeSourceAdapter {
     required vision.ModelDefine detectionModel,
     required vision.ModelDefine? reidModel,
   }) async {
-    final controller = _ref.read(vision.webcamVisionNotifierProvider.notifier);
-    try {
-      await controller.initialize(
-        detectionModel: detectionModel,
-        reidModel: reidModel,
-        visionParams: visionParams,
-        config: vision.WebcamSourceConfig(deviceId: webcamSource.webcamIndex),
-      );
-      return FlutterVisionRuntimeActiveController(
-        shutdown: controller.shutdown,
-        setParams: controller.setParams,
-        updateSource: (videoSource) async {
-          final nextSource = videoSource as core_domain.WebcamVideoSource;
-          await controller.changeWebcam(nextSource.webcamIndex);
-        },
-      );
-    } catch (error, stackTrace) {
-      appkit.logCritical('[VisionRuntime] Failed to initialize webcam source: $error');
-      controller.setAsyncError(error, stackTrace);
-      rethrow;
-    }
+    final controller = _ref.read(vision.visionProvider.notifier);
+    await controller.start(
+      detectionModel: detectionModel,
+      reidModel: reidModel,
+      params: visionParams,
+      input: vision.WebcamInput(deviceId: webcamSource.webcamIndex),
+    );
+    return FlutterVisionRuntimeActiveController(
+      stop: controller.stop,
+      setParams: controller.setParams,
+      updateSource: (videoSource) async {
+        final nextSource = videoSource as core_domain.WebcamVideoSource;
+        final newInput = vision.WebcamInput(deviceId: nextSource.webcamIndex);
+        await controller.setInput(newInput);
+      },
+    );
   }
 
   Future<FlutterVisionRuntimeActiveController> _startFile({
@@ -125,27 +113,21 @@ class FlutterVisionRuntimeSourceAdapter {
     required vision.ModelDefine detectionModel,
     required vision.ModelDefine? reidModel,
   }) async {
-    final controller = _ref.read(vision.fileVisionNotifierProvider.notifier);
-    try {
-      await controller.initialize(
-        detectionModel: detectionModel,
-        reidModel: reidModel,
-        visionParams: visionParams,
-        config: vision.FileSourceConfig(filePath: fileSource.path),
-      );
-      return FlutterVisionRuntimeActiveController(
-        shutdown: controller.shutdown,
-        setParams: controller.setParams,
-        updateSource: (videoSource) async {
-          final nextSource = videoSource as core_domain.FileVideoSource;
-          await controller.changeFile(nextSource.path);
-        },
-      );
-    } catch (error, stackTrace) {
-      appkit.logCritical('[VisionRuntime] Failed to initialize file source: $error');
-      controller.setAsyncError(error, stackTrace);
-      rethrow;
-    }
+    final controller = _ref.read(vision.visionProvider.notifier);
+    await controller.start(
+      detectionModel: detectionModel,
+      reidModel: reidModel,
+      params: visionParams,
+      input: vision.FileInput(filePath: fileSource.path),
+    );
+    return FlutterVisionRuntimeActiveController(
+      stop: controller.stop,
+      setParams: controller.setParams,
+      updateSource: (videoSource) async {
+        final nextSource = videoSource as core_domain.FileVideoSource;
+        await controller.setInput(vision.FileInput(filePath: nextSource.path));
+      },
+    );
   }
 
   Future<FlutterVisionRuntimeActiveController> _startLive({
@@ -154,38 +136,29 @@ class FlutterVisionRuntimeSourceAdapter {
     required vision.ModelDefine detectionModel,
     required vision.ModelDefine? reidModel,
   }) async {
-    final controller = _ref.read(vision.liveVisionNotifierProvider.notifier);
-    try {
-      await controller.initialize(
-        detectionModel: detectionModel,
-        reidModel: reidModel,
-        visionParams: visionParams,
-        config: vision.LivestreamSourceConfig(url: liveSource.url),
-      );
-      return FlutterVisionRuntimeActiveController(
-        shutdown: controller.shutdown,
-        setParams: controller.setParams,
-        updateSource: (videoSource) async {
-          final nextSource = videoSource as core_domain.LiveVideoSource;
-          await controller.changeURL(nextSource.url);
-        },
-      );
-    } catch (error, stackTrace) {
-      appkit.logCritical('[VisionRuntime] Failed to initialize live source: $error');
-      controller.setAsyncError(error, stackTrace);
-      rethrow;
-    }
+    final controller = _ref.read(vision.visionProvider.notifier);
+    await controller.start(
+      detectionModel: detectionModel,
+      reidModel: reidModel,
+      params: visionParams,
+      input: vision.LiveInput(url: liveSource.url),
+    );
+    return FlutterVisionRuntimeActiveController(
+      stop: controller.stop,
+      setParams: controller.setParams,
+      updateSource: (videoSource) async {
+        final nextSource = videoSource as core_domain.LiveVideoSource;
+        final newInput = vision.LiveInput(url: nextSource.url);
+        await controller.setInput(newInput);
+      },
+    );
   }
 }
 
 class FlutterVisionRuntimeActiveController {
-  const FlutterVisionRuntimeActiveController({
-    required this.shutdown,
-    required this.setParams,
-    required this.updateSource,
-  });
+  const FlutterVisionRuntimeActiveController({required this.stop, required this.setParams, required this.updateSource});
 
-  final Future<void> Function() shutdown;
+  final Future<void> Function() stop;
   final Future<void> Function(vision.VisionParams params) setParams;
   final Future<void> Function(core_domain.VideoSource videoSource) updateSource;
 }

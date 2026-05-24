@@ -109,7 +109,7 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                 children: [
                   feature_pip.PipHeader(
                     icon: Icons.tune,
-                    title: context.l.detection_screen_title,
+                    title: 'Tracking & Counting',
                     subtitle:
                         'Tune how the vision engine associates detections, retains lost tracks, assigns tracklet ids, and updates stay/disappear counts.',
                   ),

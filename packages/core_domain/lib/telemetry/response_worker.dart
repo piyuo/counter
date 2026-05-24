@@ -7,7 +7,11 @@ import '../state/models/upload_config.dart';
 import 'models/telemetry_response.dart';
 
 typedef ServerConfigOverrideApplier =
-    Future<void> Function({DetectionType? detection, DetectionParams? detectionParams, UploadConfig? deliveryConfig});
+    Future<void> Function({
+      DetectionType? detectionType,
+      DetectionParams? detectionParams,
+      UploadConfig? deliveryConfig,
+    });
 
 /// Parses transport response objects and decides whether delivery succeeded.
 ///
@@ -33,7 +37,7 @@ class ResponseWorker {
       final detectionParams = payload.detectionParams ?? _parseDetectionParams(configOverride?.detectionParams);
       final deliveryConfig = payload.deliveryConfig ?? _parseDeliveryConfig(configOverride);
       if (detection == null && detectionParams == null && deliveryConfig == null) return;
-      await applier(detection: detection, detectionParams: detectionParams, deliveryConfig: deliveryConfig);
+      await applier(detectionType: detection, detectionParams: detectionParams, deliveryConfig: deliveryConfig);
     }
   }
 

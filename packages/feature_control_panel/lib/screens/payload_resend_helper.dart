@@ -19,9 +19,7 @@ Future<bool> resendQueuedPayloads({
 
   try {
     final telemetryService = ref.read(core_domain.telemetryServiceProvider);
-    final resendPayloads = payloads
-        .map((pending) => pending.payload.copyWith(id: core_domain.generateTelemetryPayloadId()))
-        .toList(growable: false);
+    final resendPayloads = payloads.map((pending) => pending.payload).toList(growable: false);
     final success = await telemetryService.sendNow(resendPayloads);
 
     if (!context.mounted) {

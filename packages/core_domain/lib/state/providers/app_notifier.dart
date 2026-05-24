@@ -8,7 +8,7 @@ import 'package:core_domain/state/models/detection_params.dart';
 import 'package:core_domain/state/models/detection_type.dart';
 import 'package:core_domain/state/models/upload_config.dart';
 import 'package:core_domain/state/models/video_source.dart';
-import 'package:core_domain/state/providers/app_runtime_state_notifier.dart';
+import 'package:core_domain/state/providers/app_runtime_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:uuid/uuid.dart';
 
@@ -16,29 +16,26 @@ import 'app_state_repository.dart';
 
 part 'app_notifier.g.dart';
 
+const _kPiyuoCloudUrl = 'https://piyuo.com/api/v1';
+
 abstract class AppController {
   Future<void> setVideoSource(VideoSource videoSource);
   Future<void> setDetection(DetectionType detection);
   Future<void> setDetectionParams(DetectionParams detectionParams);
-  Future<void> setBusinessDataServer(BusinessDataServer dataServer, String bearerToken);
-  Future<void> setPersonalCustomDataServer(String url);
-  Future<void> setPersonalPiyuoDataServer(String url);
-  Future<void> setNoDataServer();
+  Future<void> selectPersonalPiyuoServer();
+  Future<void> selectPersonalCustomServer(String url, String token);
+  Future<void> selectBusinessPiyuoServer(BusinessPiyuoServer server, String token);
+  Future<void> selectBusinessCustomServer(BusinessCustomServer server, String token);
+  Future<void> selectNoDataServer();
   Future<void> applyServerConfigOverrides({
-    DetectionType? detection,
+    DetectionType? detectionType,
     DetectionParams? detectionParams,
     UploadConfig? deliveryConfig,
   });
-  Future<void> setDeliveryWallClockCadenceMin(int cadenceMin);
-  Future<void> setDeliveryIntervalMin(int intervalMin);
-  Future<String> ensurePiyuoCloudUrl();
-  Future<void> setPiyuoCloudUrl(String piyuoCloudUrl);
 }
 
 @Riverpod(keepAlive: true)
 class AppNotifier extends _$AppNotifier implements AppController {
-  static const _piyuoCloudBaseUrl = 'https://piyuo.com/api/';
-
   late final AppStateRepository repo;
 
   @override
@@ -47,18 +44,23 @@ class AppNotifier extends _$AppNotifier implements AppController {
     var loaded = await repo.load();
     // Auto-generate a stable device ID on first boot or after a data reset.
     if (loaded.deviceId.isEmpty) {
-      final id = const Uuid().v4();
-      loaded = loaded.copyWith(deviceId: id);
-      await repo.save(loaded);
-    }
-    // Auto-generate a stable per-device upload jitter (0–180 s) on first boot.
-    // This spreads wall-clock-aligned uploads over a 3-minute window to prevent
-    // thundering herd against the backend.
-    if (loaded.uploadJitterSec == 0) {
+      // first boot or after a data reset
+      loaded = loaded.copyWith();
+      // random url for personal piyuo.com endpoint, setup by user
+      final random = ref.read(tokenGeneratorServiceProvider).generate();
+      // Auto-generate a stable per-device upload jitter (0–180 s) on first boot.
+      // This spreads wall-clock-aligned uploads over a 3-minute window to prevent
+      // thundering herd against the backend.
       final jitter = Random().nextInt(181); // 0–180 inclusive
-      loaded = loaded.copyWith(uploadJitterSec: jitter);
+      loaded = loaded.copyWith(
+        deviceId: const Uuid().v4(),
+        uploadJitterSec: jitter,
+        personalPiyuoServer: PersonalPiyuoServer(url: '$_kPiyuoCloudUrl/$random'),
+        personalCustomServer: PersonalCustomServer(url: 'http://localhost:3000'),
+      );
       await repo.save(loaded);
     }
+    await ref.read(appRuntimeProvider.notifier).loadBearerToken(loaded.dataServerSelection);
     return loaded;
   }
 
@@ -71,9 +73,9 @@ class AppNotifier extends _$AppNotifier implements AppController {
   }
 
   @override
-  Future<void> setDetection(DetectionType detection) async {
+  Future<void> setDetection(DetectionType detectionType) async {
     final current = await future;
-    final updated = current.copyWith(detection: detection);
+    final updated = current.copyWith(detectionType: detectionType);
     state = AsyncData(updated);
     await repo.save(updated);
   }
@@ -92,35 +94,62 @@ class AppNotifier extends _$AppNotifier implements AppController {
   }
 
   @override
-  Future<void> setBusinessDataServer(BusinessDataServer dataServer, String bearerToken) async {
-    final current = await future;
-    await ref.read(appRuntimeStateProvider.notifier).setBusinessBearerToken(bearerToken);
-    final updated = current.copyWith(dataServerSelection: DataServerSelection.business, businessDataServer: dataServer);
-    await _saveUpdatedState(updated);
-  }
-
-  @override
-  Future<void> setPersonalCustomDataServer(String url) async {
-    final current = await future;
-    final updated = current.copyWith(
-      dataServerSelection: DataServerSelection.personalCustom,
-      customPersonalDataServer: PersonalDataServer(url: url),
-    );
-    await _saveUpdatedState(updated);
-  }
-
-  @override
-  Future<void> setPersonalPiyuoDataServer(String url) async {
+  Future<void> selectPersonalPiyuoServer() async {
     final current = await future;
     final updated = current.copyWith(
       dataServerSelection: DataServerSelection.personalPiyuo,
-      piyuoPersonalDataServer: PersonalDataServer(url: url),
+      isOnboardingComplete: true,
+    );
+    await ref.read(appRuntimeProvider.notifier).clearBearerToken(); // no bearer token for personal piyuo server
+    await _saveUpdatedState(updated);
+  }
+
+  @override
+  Future<void> selectPersonalCustomServer(String url, String token) async {
+    final current = await future;
+    await ref
+        .read(appRuntimeProvider.notifier)
+        .saveBearerToken(DataServerSelection.personalCustom, token); // no bearer token for personal piyuo server
+    final updated = current.copyWith(
+      dataServerSelection: DataServerSelection.personalCustom,
+      isOnboardingComplete: true,
+      personalCustomServer: PersonalCustomServer(url: url),
     );
     await _saveUpdatedState(updated);
   }
 
   @override
-  Future<void> setNoDataServer() async {
+  Future<void> selectBusinessPiyuoServer(BusinessPiyuoServer server, String token) async {
+    final current = await future;
+    await ref
+        .read(appRuntimeProvider.notifier)
+        .saveBearerToken(DataServerSelection.businessPiyuo, token); // no bearer token for personal piyuo server
+
+    final updated = current.copyWith(
+      dataServerSelection: DataServerSelection.businessPiyuo,
+      isOnboardingComplete: true,
+      businessPiyuoServer: server,
+    );
+    await _saveUpdatedState(updated);
+  }
+
+  @override
+  Future<void> selectBusinessCustomServer(BusinessCustomServer server, String token) async {
+    final current = await future;
+    await ref
+        .read(appRuntimeProvider.notifier)
+        .saveBearerToken(DataServerSelection.businessCustom, token); // no bearer token for personal piyuo server
+
+    final updated = current.copyWith(
+      dataServerSelection: DataServerSelection.businessCustom,
+      isOnboardingComplete: true,
+      businessCustomServer: server,
+    );
+    await _saveUpdatedState(updated);
+  }
+
+  @override
+  Future<void> selectNoDataServer() async {
     final current = await future;
     final updated = current.copyWith(dataServerSelection: DataServerSelection.none);
     await _saveUpdatedState(updated);
@@ -128,56 +157,20 @@ class AppNotifier extends _$AppNotifier implements AppController {
 
   @override
   Future<void> applyServerConfigOverrides({
-    DetectionType? detection,
+    DetectionType? detectionType,
     DetectionParams? detectionParams,
     UploadConfig? deliveryConfig,
   }) async {
-    if (detection == null && detectionParams == null && deliveryConfig == null) {
+    if (detectionType == null && detectionParams == null && deliveryConfig == null) {
       return;
     }
 
     final current = await future;
     final updated = current.copyWith(
-      detection: detection ?? current.detection,
+      detectionType: detectionType ?? current.detectionType,
       detectionParams: detectionParams ?? current.detectionParams,
       uploadConfig: deliveryConfig ?? current.uploadConfig,
     );
-    await _saveUpdatedState(updated);
-  }
-
-  @override
-  Future<void> setDeliveryWallClockCadenceMin(int cadenceMin) async {
-    final current = await future;
-    final updated = current.copyWith(uploadConfig: current.uploadConfig.copyWith(wallClockCadenceMin: cadenceMin));
-    await _saveUpdatedState(updated);
-  }
-
-  @Deprecated('Use setDeliveryWallClockCadenceMin')
-  @override
-  Future<void> setDeliveryIntervalMin(int intervalMin) async {
-    final current = await future;
-    final updated = current.copyWith(uploadConfig: current.uploadConfig.copyWith(wallClockCadenceMin: intervalMin));
-    await _saveUpdatedState(updated);
-  }
-
-  @override
-  Future<String> ensurePiyuoCloudUrl() async {
-    final current = await future;
-    if (current.piyuoPersonalDataServer case final PersonalDataServer remembered) {
-      return remembered.url;
-    }
-
-    final token = ref.read(tokenGeneratorServiceProvider).generate();
-    final piyuoCloudUrl = '$_piyuoCloudBaseUrl$token';
-    final updated = current.copyWith(piyuoPersonalDataServer: PersonalDataServer(url: piyuoCloudUrl));
-    await _saveUpdatedState(updated);
-    return piyuoCloudUrl;
-  }
-
-  @override
-  Future<void> setPiyuoCloudUrl(String piyuoCloudUrl) async {
-    final current = await future;
-    final updated = current.copyWith(piyuoPersonalDataServer: PersonalDataServer(url: piyuoCloudUrl));
     await _saveUpdatedState(updated);
   }
 }

@@ -6,7 +6,6 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter_vision/flutter_vision.dart' as vision;
-import 'package:uuid/uuid.dart';
 
 /// Converts a [vision.WindowCountState] produced by the detection engine into the
 /// [core_domain.TelemetryPayload] wire model used by the delivery pipeline.
@@ -16,35 +15,38 @@ class WindowResultMapper {
   /// Opaque device identifier included in every payload.
   final String deviceId;
 
-  static const _uuid = Uuid();
-
-  core_domain.TelemetryPayload map(vision.WindowCountState result) {
-    final areas = result.areas.entries.map((entry) {
+  core_domain.TelemetryPayload map(vision.WindowCountState windowCount) {
+    final areas = windowCount.areas.entries.map((entry) {
       final m = entry.value;
       return core_domain.AreaPayload(
-        id: entry.key,
+        areaId: entry.key,
         passBy: m.passBy,
         entry: m.entry,
         exit: m.exit,
-        occupancyAvg: m.occupancyAvg,
-        occupancyPeak: m.occupancyPeak,
-        dwellAvgSec: m.dwellAvgSec,
-        dwellPeakSec: m.dwellPeakSec,
+        avgOccupancy: m.avgOccupancy,
+        maxOccupancy: m.maxOccupancy,
+        avgDwellSec: m.avgDwellSec,
+        maxDwellSec: m.maxDwellSec,
       );
     }).toList();
 
+    // Derive businessDate from startBusiness
+    final sb = windowCount.startBusiness;
+    final businessDate =
+        '${sb.year.toString().padLeft(4, '0')}-${sb.month.toString().padLeft(2, '0')}-${sb.day.toString().padLeft(2, '0')}';
+
     return core_domain.TelemetryPayload(
-      id: _uuid.v4(),
-      startUtc: result.startUtc,
-      endUtc: result.endUtc,
-      sessionId: result.sessionId,
-      windowIndex: result.windowIndex,
-      frameCount: result.frameCount,
-      missingDurationMs: result.missingDuration.inMilliseconds,
-      confidence: result.confidence,
-      isPartial: result.coverageRatio < 1.0,
-      coverageRatio: result.coverageRatio,
-      fps: result.fps,
+      session: windowCount.session,
+      sequence: windowCount.sequence,
+      startUtc: windowCount.startUtc,
+      startBusiness: windowCount.startBusiness,
+      businessDate: businessDate,
+      frameCount: windowCount.frameCount,
+      missingSec: windowCount.missingDuration.inSeconds,
+      confidence: windowCount.confidence,
+      isPartial: windowCount.coverageRatio < 1.0,
+      coverage: windowCount.coverageRatio,
+      fps: windowCount.fps,
       areas: areas,
     );
   }

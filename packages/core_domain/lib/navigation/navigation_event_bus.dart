@@ -167,11 +167,30 @@ class OpenOnboarding extends NavigationEvent {
   String? get path => OnboardingRoutes.onboarding;
 }
 
-/// Request to navigate to onboarding CTA screen.
+class OpenOnboarding1 extends NavigationEvent {
+  const OpenOnboarding1();
+  @override
+  String? get path => OnboardingRoutes.onboarding1;
+}
+
+class OpenOnboarding2 extends NavigationEvent {
+  const OpenOnboarding2();
+  @override
+  String? get path => OnboardingRoutes.onboarding2;
+}
+
+/// Request to navigate to onboarding system check screen.
+class OpenOnboardingSystem extends NavigationEvent {
+  const OpenOnboardingSystem();
+  @override
+  String? get path => OnboardingRoutes.system;
+}
+
+/// Request to navigate to CTA screen (root level, breaks back stack).
 class OpenOnboardingCTA extends NavigationEvent {
   const OpenOnboardingCTA();
   @override
-  String? get path => '${OnboardingRoutes.onboarding}/cta';
+  String? get path => OnboardingRoutes.cta;
 }
 
 /// Request to navigate to onboarding invitation, optionally with token.
@@ -181,18 +200,16 @@ class OpenOnboardingInvitation extends NavigationEvent {
   const OpenOnboardingInvitation({this.token});
 
   @override
-  String? get path => Uri(
-    path: OnboardingRoutes.onboardingInvitation,
-    queryParameters: token != null ? {'token': token} : null,
-  ).toString();
+  String? get path =>
+      Uri(path: OnboardingRoutes.ctaInvitation, queryParameters: token != null ? {'token': token} : null).toString();
 }
 
-class OpenOnboardingInvitationSummary extends NavigationEvent {
-  const OpenOnboardingInvitationSummary({required this.invitation});
+class OpenOnboardingInvitationSuccess extends NavigationEvent {
+  const OpenOnboardingInvitationSuccess({required this.invitation});
   final Invitation invitation;
 
   @override
-  String? get path => '${OnboardingRoutes.onboardingInvitation}/summary';
+  String? get path => '${OnboardingRoutes.ctaInvitation}/success';
 
   @override
   Object? get extra => invitation;
@@ -201,28 +218,39 @@ class OpenOnboardingInvitationSummary extends NavigationEvent {
 class OpenOnboardingPiyuo extends NavigationEvent {
   const OpenOnboardingPiyuo();
   @override
-  String? get path => '${OnboardingRoutes.onboarding}/piyuo';
+  String? get path => '${OnboardingRoutes.cta}/piyuo';
 }
 
 class OpenOnboardingServer extends NavigationEvent {
   const OpenOnboardingServer();
   @override
-  String? get path => '${OnboardingRoutes.onboarding}/server';
+  String? get path => '${OnboardingRoutes.cta}/server';
 }
 
-class OpenOnboardingServerSummary extends NavigationEvent {
-  const OpenOnboardingServerSummary({required this.url});
+class OpenOnboardingServerSuccess extends NavigationEvent {
+  const OpenOnboardingServerSuccess({required this.url});
   final String url;
 
   @override
-  String? get path =>
-      Uri(path: '${OnboardingRoutes.onboarding}/server/summary', queryParameters: {'url': url}).toString();
+  String? get path => Uri(path: '${OnboardingRoutes.cta}/server/success', queryParameters: {'url': url}).toString();
 }
 
-class OpenOnboardingDemo extends NavigationEvent {
-  const OpenOnboardingDemo();
+class OpenOnboardingLocal extends NavigationEvent {
+  const OpenOnboardingLocal();
   @override
-  String? get path => '${OnboardingRoutes.onboarding}/demo';
+  String? get path => '${OnboardingRoutes.cta}/demo';
+}
+
+class OpenOnboardingPiyuoSubscription extends NavigationEvent {
+  const OpenOnboardingPiyuoSubscription();
+  @override
+  String? get path => Uri(path: '${OnboardingRoutes.cta}/piyuo-subscription').toString();
+}
+
+class OpenOnboardingServerSubscription extends NavigationEvent {
+  const OpenOnboardingServerSubscription();
+  @override
+  String? get path => Uri(path: '${OnboardingRoutes.cta}/server-subscription').toString();
 }
 
 /// Wraps a [NavigationEvent] with the routing intent.

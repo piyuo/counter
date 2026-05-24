@@ -33,7 +33,7 @@ final class BootNotifierProvider
   BootNotifier create() => BootNotifier();
 }
 
-String _$bootNotifierHash() => r'6b5a3920c2372e1d66ad1bc04f233413567fe177';
+String _$bootNotifierHash() => r'cfcc23e6f7496a9a156e81e66852967ddf73386b';
 
 abstract class _$BootNotifier extends $AsyncNotifier<BootStatus> {
   FutureOr<BootStatus> build();

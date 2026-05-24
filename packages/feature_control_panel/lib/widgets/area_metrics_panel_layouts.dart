@@ -50,7 +50,11 @@ List<AreaMetricsPanelModel> buildVisionAreaMetricPanels({
             crossAxisCount: 3,
             mainAxisExtent: 82,
             cells: [
-              AreaMetricCell(value: '${metrics.currentOccupancy}', label: 'Occupancy', valueColor: Colors.white),
+              AreaMetricCell(
+                value: '${metrics.currentOccupancy}',
+                label: 'Occupancy',
+                valueColor: Colors.grey.shade800,
+              ),
               AreaMetricCell(value: '${metrics.passBy}', label: 'Passed By'),
               AreaMetricCell(value: '${metrics.stay}', label: _stripColon('Stayed')),
             ],
@@ -70,8 +74,8 @@ List<AreaMetricsPanelModel> buildVisionAreaMetricPanels({
             mainAxisExtent: 78,
             showTopDivider: true,
             cells: [
-              AreaMetricCell(value: metrics.occupancyAvg.toStringAsFixed(1), label: _stripColon(countAvgOccLabel)),
-              AreaMetricCell(value: '${metrics.occupancyPeak}', label: countMaxOccLabel),
+              AreaMetricCell(value: metrics.avgOccupancy.toStringAsFixed(1), label: _stripColon(countAvgOccLabel)),
+              AreaMetricCell(value: '${metrics.maxOccupancy}', label: countMaxOccLabel),
             ],
           ),
           AreaMetricGridModel(
@@ -79,11 +83,11 @@ List<AreaMetricsPanelModel> buildVisionAreaMetricPanels({
             mainAxisExtent: 78,
             cells: [
               AreaMetricCell(
-                value: metrics.dwellAvgSec.toStringAsFixed(1),
+                value: metrics.avgDwellSec.toStringAsFixed(1),
                 valueSuffix: 's',
                 label: countAvgDwellLabel,
               ),
-              AreaMetricCell(value: _formatSeconds(metrics.dwellPeakSec), label: countMaxDwellLabel),
+              AreaMetricCell(value: _formatSeconds(metrics.maxDwellSec), label: countMaxDwellLabel),
             ],
           ),
         ],
@@ -97,13 +101,13 @@ List<AreaMetricsPanelModel> buildVisionAreaMetricPanels({
 List<AreaMetricsPanelModel> buildPayloadAreaMetricPanels({required List<core_domain.AreaPayload> areas}) {
   final orderedAreas = [...areas]
     ..sort((a, b) {
-      return a.id.compareTo(b.id);
+      return a.areaId.compareTo(b.areaId);
     });
 
   return [
     for (final area in orderedAreas)
       AreaMetricsPanelModel(
-        title: area.id == -1 ? null : 'Area ${area.id}',
+        title: area.areaId == -1 ? null : 'Area ${area.areaId}',
         valueColor: Colors.white,
         grids: [
           AreaMetricGridModel(
@@ -128,16 +132,16 @@ List<AreaMetricsPanelModel> buildPayloadAreaMetricPanels({required List<core_dom
             crossAxisCount: 2,
             mainAxisExtent: 78,
             cells: [
-              AreaMetricCell(value: area.occupancyAvg.toStringAsFixed(1), label: 'Avg Occ'),
-              AreaMetricCell(value: '${area.occupancyPeak}', label: 'Max Occ'),
+              AreaMetricCell(value: area.avgOccupancy.toStringAsFixed(1), label: 'Avg Occ'),
+              AreaMetricCell(value: '${area.maxOccupancy}', label: 'Max Occ'),
             ],
           ),
           AreaMetricGridModel(
             crossAxisCount: 2,
             mainAxisExtent: 78,
             cells: [
-              AreaMetricCell(value: area.dwellAvgSec.toStringAsFixed(1), valueSuffix: 's', label: 'Avg Dwell'),
-              AreaMetricCell(value: core_domain.formatSeconds(area.dwellPeakSec), label: 'Max Dwell'),
+              AreaMetricCell(value: area.avgDwellSec.toStringAsFixed(1), valueSuffix: 's', label: 'Avg Dwell'),
+              AreaMetricCell(value: core_domain.formatSeconds(area.maxDwellSec), label: 'Max Dwell'),
             ],
           ),
         ],

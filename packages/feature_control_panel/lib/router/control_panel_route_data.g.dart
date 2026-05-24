@@ -7,7 +7,7 @@ part of 'control_panel_route_data.dart';
 // **************************************************************************
 
 List<RouteBase> get $appRoutes => [
-  $rootRouteData,
+  $loadingRouteData,
   $startRouteData,
   $settingsRouteData,
   $settingsPiyuoRouteData,
@@ -16,7 +16,6 @@ List<RouteBase> get $appRoutes => [
   $buildInfoRouteData,
   $detectionParamsRouteData,
   $detectionTypeSelectionRouteData,
-  $deliveryConfigRouteData,
   $uploadLogsRouteData,
   $uploadLogDetailRouteData,
   $recentPayloadsRouteData,
@@ -28,11 +27,12 @@ List<RouteBase> get $appRoutes => [
   $noCameraRouteData,
 ];
 
-RouteBase get $rootRouteData =>
-    GoRouteData.$route(path: '/', factory: $RootRouteData._fromState);
+RouteBase get $loadingRouteData =>
+    GoRouteData.$route(path: '/', factory: $LoadingRouteData._fromState);
 
-mixin $RootRouteData on GoRouteData {
-  static RootRouteData _fromState(GoRouterState state) => const RootRouteData();
+mixin $LoadingRouteData on GoRouteData {
+  static LoadingRouteData _fromState(GoRouterState state) =>
+      const LoadingRouteData();
 
   @override
   String get location => GoRouteData.$location('/');
@@ -240,32 +240,6 @@ mixin $DetectionTypeSelectionRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/detection-type');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-RouteBase get $deliveryConfigRouteData => GoRouteData.$route(
-  path: '/delivery-config',
-  factory: $DeliveryConfigRouteData._fromState,
-);
-
-mixin $DeliveryConfigRouteData on GoRouteData {
-  static DeliveryConfigRouteData _fromState(GoRouterState state) =>
-      const DeliveryConfigRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/delivery-config');
 
   @override
   void go(BuildContext context) => context.go(location);

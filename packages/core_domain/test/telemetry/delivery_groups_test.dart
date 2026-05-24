@@ -4,21 +4,24 @@ import 'package:flutter_test/flutter_test.dart';
 QueuedPayload _pending(String id, DateTime localEnd, {bool delivered = false}) {
   final endUtc = localEnd.toUtc();
   final startUtc = localEnd.subtract(const Duration(minutes: 10)).toUtc();
+  final startBusiness = localEnd.subtract(const Duration(minutes: 10));
+  final businessDate =
+      '${startBusiness.year.toString().padLeft(4, '0')}-${startBusiness.month.toString().padLeft(2, '0')}-${startBusiness.day.toString().padLeft(2, '0')}';
 
   return QueuedPayload(
     id: id,
     payload: TelemetryPayload(
-      id: id,
       startUtc: startUtc,
-      endUtc: endUtc,
-      sessionId: 'session-1',
-      windowIndex: 1,
+      startBusiness: startBusiness,
+      businessDate: businessDate,
+      session: 'session-1',
+      sequence: 1,
       frameCount: 100,
-      missingDurationMs: 0,
+      missingSec: 0,
       confidence: 0.9,
       isPartial: false,
-      coverageRatio: 1.0,
-      fps: 10.0,
+      coverage: 1.0,
+      fps: 10,
       areas: const [],
     ),
     createdAtUtc: startUtc,
@@ -230,17 +233,6 @@ void main() {
   });
 
   group('misc helpers', () {
-    test('generateTelemetryPayloadId creates UUID v4-like values', () {
-      final a = generateTelemetryPayloadId();
-      final b = generateTelemetryPayloadId();
-
-      final pattern = RegExp(r'^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$');
-
-      expect(a, matches(pattern));
-      expect(b, matches(pattern));
-      expect(a, isNot(equals(b)));
-    });
-
     test('dayStartLocal strips time component', () {
       final dt = DateTime(2026, 1, 2, 13, 45, 12);
       expect(dayStartLocal(dt), DateTime(2026, 1, 2));

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppRuntimeState {
 
- bool get developMode; String? get businessBearerToken;
+ bool get developMode; String get bearerToken;
 /// Create a copy of AppRuntimeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AppRuntimeStateCopyWith<AppRuntimeState> get copyWith => _$AppRuntimeStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.businessBearerToken, businessBearerToken) || other.businessBearerToken == businessBearerToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,developMode,businessBearerToken);
+int get hashCode => Object.hash(runtimeType,developMode,bearerToken);
 
 @override
 String toString() {
-  return 'AppRuntimeState(developMode: $developMode, businessBearerToken: $businessBearerToken)';
+  return 'AppRuntimeState(developMode: $developMode, bearerToken: $bearerToken)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $AppRuntimeStateCopyWith<$Res>  {
   factory $AppRuntimeStateCopyWith(AppRuntimeState value, $Res Function(AppRuntimeState) _then) = _$AppRuntimeStateCopyWithImpl;
 @useResult
 $Res call({
- bool developMode, String? businessBearerToken
+ bool developMode, String bearerToken
 });
 
 
@@ -62,11 +62,11 @@ class _$AppRuntimeStateCopyWithImpl<$Res>
 
 /// Create a copy of AppRuntimeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? developMode = null,Object? businessBearerToken = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? developMode = null,Object? bearerToken = null,}) {
   return _then(_self.copyWith(
 developMode: null == developMode ? _self.developMode : developMode // ignore: cast_nullable_to_non_nullable
-as bool,businessBearerToken: freezed == businessBearerToken ? _self.businessBearerToken : businessBearerToken // ignore: cast_nullable_to_non_nullable
-as String?,
+as bool,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -148,10 +148,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool developMode,  String? businessBearerToken)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool developMode,  String bearerToken)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppRuntimeState() when $default != null:
-return $default(_that.developMode,_that.businessBearerToken);case _:
+return $default(_that.developMode,_that.bearerToken);case _:
   return orElse();
 
 }
@@ -169,10 +169,10 @@ return $default(_that.developMode,_that.businessBearerToken);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool developMode,  String? businessBearerToken)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool developMode,  String bearerToken)  $default,) {final _that = this;
 switch (_that) {
 case _AppRuntimeState():
-return $default(_that.developMode,_that.businessBearerToken);}
+return $default(_that.developMode,_that.bearerToken);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -186,10 +186,10 @@ return $default(_that.developMode,_that.businessBearerToken);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool developMode,  String? businessBearerToken)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool developMode,  String bearerToken)?  $default,) {final _that = this;
 switch (_that) {
 case _AppRuntimeState() when $default != null:
-return $default(_that.developMode,_that.businessBearerToken);case _:
+return $default(_that.developMode,_that.bearerToken);case _:
   return null;
 
 }
@@ -201,11 +201,11 @@ return $default(_that.developMode,_that.businessBearerToken);case _:
 
 
 class _AppRuntimeState implements AppRuntimeState {
-  const _AppRuntimeState({this.developMode = false, this.businessBearerToken});
+  const _AppRuntimeState({this.developMode = false, this.bearerToken = ''});
   
 
 @override@JsonKey() final  bool developMode;
-@override final  String? businessBearerToken;
+@override@JsonKey() final  String bearerToken;
 
 /// Create a copy of AppRuntimeState
 /// with the given fields replaced by the non-null parameter values.
@@ -217,16 +217,16 @@ _$AppRuntimeStateCopyWith<_AppRuntimeState> get copyWith => __$AppRuntimeStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.businessBearerToken, businessBearerToken) || other.businessBearerToken == businessBearerToken));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,developMode,businessBearerToken);
+int get hashCode => Object.hash(runtimeType,developMode,bearerToken);
 
 @override
 String toString() {
-  return 'AppRuntimeState(developMode: $developMode, businessBearerToken: $businessBearerToken)';
+  return 'AppRuntimeState(developMode: $developMode, bearerToken: $bearerToken)';
 }
 
 
@@ -237,7 +237,7 @@ abstract mixin class _$AppRuntimeStateCopyWith<$Res> implements $AppRuntimeState
   factory _$AppRuntimeStateCopyWith(_AppRuntimeState value, $Res Function(_AppRuntimeState) _then) = __$AppRuntimeStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool developMode, String? businessBearerToken
+ bool developMode, String bearerToken
 });
 
 
@@ -254,11 +254,11 @@ class __$AppRuntimeStateCopyWithImpl<$Res>
 
 /// Create a copy of AppRuntimeState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? developMode = null,Object? businessBearerToken = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? developMode = null,Object? bearerToken = null,}) {
   return _then(_AppRuntimeState(
 developMode: null == developMode ? _self.developMode : developMode // ignore: cast_nullable_to_non_nullable
-as bool,businessBearerToken: freezed == businessBearerToken ? _self.businessBearerToken : businessBearerToken // ignore: cast_nullable_to_non_nullable
-as String?,
+as bool,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 

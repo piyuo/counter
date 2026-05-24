@@ -55,8 +55,34 @@ GoRouter _buildTestRouter() {
         path: core_domain.OnboardingRoutes.onboarding,
         builder: (_, __) => const SizedBox(),
         routes: [
-          GoRoute(path: 'invitation', builder: (_, __) => const SizedBox()),
-          GoRoute(path: 'cta', builder: (_, __) => const SizedBox()),
+          GoRoute(
+            path: '1',
+            builder: (_, __) => const SizedBox(),
+            routes: [
+              GoRoute(
+                path: '2',
+                builder: (_, __) => const SizedBox(),
+                routes: [
+                  GoRoute(
+                    path: 'system',
+                    builder: (_, __) => const SizedBox(),
+                    routes: [
+                      GoRoute(
+                        path: 'cta',
+                        builder: (_, __) => const SizedBox(),
+                        routes: [
+                          GoRoute(path: 'invitation', builder: (_, __) => const SizedBox()),
+                          GoRoute(path: 'piyuo', builder: (_, __) => const SizedBox()),
+                          GoRoute(path: 'server', builder: (_, __) => const SizedBox()),
+                          GoRoute(path: 'demo', builder: (_, __) => const SizedBox()),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],
@@ -79,17 +105,25 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenAbout() => '/about',
       core_domain.OpenBuildInfo() => '/build-info',
       core_domain.OpenOnboarding() => core_domain.OnboardingRoutes.onboarding,
-      core_domain.OpenOnboardingCTA() => '/onboarding/cta',
-      core_domain.OpenOnboardingPiyuo() => '/onboarding/piyuo',
-      core_domain.OpenOnboardingServer() => '/onboarding/server',
-      core_domain.OpenOnboardingServerSummary(url: final url) => Uri(
-        path: '/onboarding/server/summary',
+      core_domain.OpenOnboarding1() => core_domain.OnboardingRoutes.onboarding1,
+      core_domain.OpenOnboarding2() => core_domain.OnboardingRoutes.onboarding2,
+      core_domain.OpenOnboardingSystem() => core_domain.OnboardingRoutes.system,
+      core_domain.OpenOnboardingCTA() => core_domain.OnboardingRoutes.cta,
+      core_domain.OpenOnboardingPiyuoSubscription() => '${core_domain.OnboardingRoutes.cta}/piyuo-subscription',
+      core_domain.OpenOnboardingServerSubscription() => '${core_domain.OnboardingRoutes.cta}/server-subscription',
+      core_domain.OpenOnboardingPiyuo() => '${core_domain.OnboardingRoutes.cta}/piyuo',
+      core_domain.OpenOnboardingServer() => '${core_domain.OnboardingRoutes.cta}/server',
+      core_domain.OpenOnboardingServerSuccess(url: final url) => Uri(
+        path: '${core_domain.OnboardingRoutes.cta}/server/success',
         queryParameters: {'url': url},
       ).toString(),
-      core_domain.OpenOnboardingDemo() => '/onboarding/demo',
+      core_domain.OpenOnboardingLocal() => '${core_domain.OnboardingRoutes.cta}/demo',
       core_domain.OpenOnboardingInvitation(token: final token) =>
-        token != null ? '/onboarding/invitation?token=$token' : '/onboarding/invitation',
-      core_domain.OpenOnboardingInvitationSummary(invitation: _) => '/onboarding/invitation-summary',
+        token != null
+            ? '${core_domain.OnboardingRoutes.ctaInvitation}?token=$token'
+            : core_domain.OnboardingRoutes.ctaInvitation,
+      core_domain.OpenOnboardingInvitationSuccess(invitation: _) =>
+        '${core_domain.OnboardingRoutes.ctaInvitation}/success',
       core_domain.OpenLightOffScreen() => null,
       core_domain.OpenLanguage() => null,
       core_domain.OpenVideoSources() => '/video-sources',
@@ -451,7 +485,47 @@ void main() {
       expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding);
     });
 
-    testWidgets('OpenOnboardingCTA causes navigation to /onboarding/cta', (tester) async {
+    testWidgets('OpenOnboarding1 causes navigation to /onboarding/1', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenOnboarding1());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding1);
+    });
+
+    testWidgets('OpenOnboarding2 causes navigation to /onboarding/1/2', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+
+      bus.push(const core_domain.OpenOnboarding2());
+      await tester.pumpAndSettle();
+
+      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding2);
+    });
+
+    testWidgets('OpenOnboardingCTA causes navigation to /onboarding/1/2/cta', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
@@ -468,7 +542,7 @@ void main() {
       bus.push(const core_domain.OpenOnboardingCTA());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/onboarding/cta');
+      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.cta);
     });
 
     testWidgets('OpenOnboardingInvitation causes navigation to onboarding invitation path', (tester) async {
@@ -488,7 +562,10 @@ void main() {
       bus.push(const core_domain.OpenOnboardingInvitation(token: 'invite-token'));
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.toString(), '/onboarding/invitation?token=invite-token');
+      expect(
+        router.routerDelegate.currentConfiguration.uri.toString(),
+        '${core_domain.OnboardingRoutes.ctaInvitation}?token=invite-token',
+      );
     });
   });
 }

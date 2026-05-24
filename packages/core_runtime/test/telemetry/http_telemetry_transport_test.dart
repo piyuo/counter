@@ -64,7 +64,7 @@ void main() {
         mockClient.post(any, headers: anyNamed('headers'), body: anyNamed('body')),
       ).thenAnswer((_) async => http.Response('', 200));
 
-      await transport.send(url: url, bearerToken: null, body: body, contentType: contentType);
+      await transport.send(url: url, bearerToken: '', body: body, contentType: contentType);
 
       final headers =
           verify(mockClient.post(any, headers: captureAnyNamed('headers'), body: anyNamed('body'))).captured.first

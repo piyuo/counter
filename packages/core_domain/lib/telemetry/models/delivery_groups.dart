@@ -5,11 +5,7 @@
 //  - payload-id helper: UUID generation for resend payload cloning
 //  - duration formatting helpers for payload detail presentation
 
-import 'package:uuid/uuid.dart';
-
 import 'queued_payload.dart';
-
-const _uuid = Uuid();
 
 enum DeliveryStatus { allDelivered, partiallyDelivered, noneDelivered }
 
@@ -179,9 +175,6 @@ List<QueuedPayload> collectSelectedPayloads(
 
   return byPayloadId.values.toList();
 }
-
-/// Generates a UUID v4 used as cloned payloadId for resend operations.
-String generateTelemetryPayloadId() => _uuid.v4();
 
 /// Returns the local calendar-day boundary (00:00) for [localTime].
 DateTime dayStartLocal(DateTime localTime) => DateTime(localTime.year, localTime.month, localTime.day);

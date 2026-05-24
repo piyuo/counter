@@ -36,9 +36,6 @@ class TelemetryQueue extends Table {
   /// Milliseconds since epoch — observed window start time (UTC).
   IntColumn get startMs => integer()();
 
-  /// Milliseconds since epoch — observed window end time (UTC).
-  IntColumn get endMs => integer()();
-
   /// Milliseconds since epoch — when this item was successfully uploaded.
   /// NULL if not yet uploaded.
   /// Uses legacy column name for backward compatibility with existing databases.

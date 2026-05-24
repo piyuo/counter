@@ -9,7 +9,7 @@ abstract class AppFlowController {
   void dispatch(AppFlowEvent event);
 }
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: true) // do not autoDispose , there are services that depend on, e.g. NativeAppLinkService
 /// Architecture note:
 /// - Lifecycle is a synchronous state machine (event -> next state).
 /// - AppBoot handles asynchronous startup work and dispatches lifecycle events.

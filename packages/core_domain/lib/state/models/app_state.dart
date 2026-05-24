@@ -27,8 +27,6 @@ import 'video_source.dart';
 part 'app_state.freezed.dart';
 part 'app_state.g.dart';
 
-enum DataServerSelection { unspecified, none, business, personalCustom, personalPiyuo }
-
 @freezed
 sealed class AppState with _$AppState {
   const AppState._();
@@ -38,21 +36,23 @@ sealed class AppState with _$AppState {
     @Default('') String deviceId,
 
     /// Which remembered data-server choice is currently active.
-    @Default(DataServerSelection.unspecified)
-    @JsonKey(unknownEnumValue: DataServerSelection.unspecified)
+    @Default(DataServerSelection.none)
+    @JsonKey(unknownEnumValue: DataServerSelection.none)
     DataServerSelection dataServerSelection,
 
-    /// Last invitation/business server remembered for later reuse.
-    BusinessDataServer? businessDataServer,
-
-    /// Last custom personal server remembered for later reuse.
-    PersonalDataServer? customPersonalDataServer,
-
-    /// Stable personal Piyuo Cloud server remembered for later reuse.
-    PersonalDataServer? piyuoPersonalDataServer,
-
+    /// personal subscription plan, use piyuo.com backend, setup by user.
+    PersonalPiyuoServer? personalPiyuoServer, // will be assign when first boot, 'https://piyuo.com/api/v1/$random'
+    /// personal subscription plan, use their own backend, setup by user.
+    PersonalCustomServer? personalCustomServer, // will be assign when first boot, 'http://localhost:3000'
+    /// business subscription plan, use piyuo.com backend, setup by invitation.
+    BusinessPiyuoServer? businessPiyuoServer, // assign by invitation, e.g. 'https://piyuo.com/api/v1'
+    /// business subscription plan, use their own backend, setup by invitation.
+    BusinessCustomServer? businessCustomServer, // assign by invitation, e.g. 'http://localhost:3000'
     /// how to upload data to remote server/
     @Default(UploadConfig()) UploadConfig uploadConfig,
+
+    /// Whether the user has completed the onboarding flow. This is used to determine
+    @Default(false) bool isOnboardingComplete,
 
     /// Vision input selection.
     ///
@@ -62,7 +62,7 @@ sealed class AppState with _$AppState {
 
     /// Vision model selection paired with [videoSource] and [detectionParams]
     /// to define the desired runtime session.
-    @Default(DetectionType.human()) DetectionType detection,
+    @Default(DetectionType.human()) DetectionType detectionType,
 
     /// Runtime tuning paired with [videoSource] and [detection].
     ///
@@ -83,18 +83,17 @@ sealed class AppState with _$AppState {
 
   factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
-  /// Derived view of the currently selected data server.
-  DataServer get dataServer => switch (dataServerSelection) {
-    DataServerSelection.unspecified => const DataServer.unspecified(),
-    DataServerSelection.none => const DataServer.none(),
-    DataServerSelection.business => businessDataServer ?? const DataServer.unspecified(),
-    DataServerSelection.personalCustom => customPersonalDataServer ?? const DataServer.unspecified(),
-    DataServerSelection.personalPiyuo => piyuoPersonalDataServer ?? const DataServer.unspecified(),
-  };
+  bool get hasDataServer => dataServerSelection != DataServerSelection.none;
 
-  /// Derived view of the last custom personal server URL.
-  String get customServerUrl => customPersonalDataServer?.url ?? '';
+  bool get isLocalDeviceOnly => dataServerSelection == DataServerSelection.none;
 
-  /// Derived view of the last Piyuo Cloud personal server URL.
-  String get piyuoCloudUrl => piyuoPersonalDataServer?.url ?? '';
+  DataServer? get currentDataServer {
+    return switch (dataServerSelection) {
+      DataServerSelection.none => const NoDataServer(),
+      DataServerSelection.personalPiyuo => personalPiyuoServer,
+      DataServerSelection.businessPiyuo => businessPiyuoServer,
+      DataServerSelection.personalCustom => personalCustomServer,
+      DataServerSelection.businessCustom => businessCustomServer,
+    };
+  }
 }

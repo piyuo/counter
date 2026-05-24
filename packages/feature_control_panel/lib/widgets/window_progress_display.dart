@@ -46,13 +46,13 @@ class WindowProgressDisplay extends StatelessWidget {
       ),
       Segment(
         value: inProgressSegmentValue,
-        color: Colors.grey,
+        color: Colors.grey.shade300,
         label: const Text('In progress', style: TextStyle(fontSize: 10)),
         valueLabel: Text('${inProgressPercent.toStringAsFixed(1)}%', style: TextStyle(fontSize: 10)),
       ),
       Segment(
         value: missingSegmentValue,
-        color: Colors.orange.withValues(alpha: 0.6),
+        color: Colors.orange.shade300,
         label: const Text('Missing', style: TextStyle(fontSize: 10)),
         valueLabel: Text('${missingPercent.toStringAsFixed(1)}%', style: TextStyle(fontSize: 10)),
       ),
@@ -78,7 +78,7 @@ class WindowProgressDisplay extends StatelessWidget {
                   data: Theme.of(context).copyWith(
                     textTheme: Theme.of(
                       context,
-                    ).textTheme.apply(bodyColor: Colors.white70, displayColor: Colors.white70),
+                    ).textTheme.apply(bodyColor: Colors.grey.shade700, displayColor: Colors.grey.shade700),
                   ),
                   child: PrimerProgressBar(
                     segments: progressSegments,

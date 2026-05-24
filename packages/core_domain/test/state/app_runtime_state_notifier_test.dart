@@ -8,21 +8,17 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('AppRuntimeStateNotifier', () {
-    test('ensureBusinessBearerTokenLoaded() hydrates token from secure storage once', () async {
-      final authStorage = _FakeAuthStorageService(initialToken: 'stored-token');
+    test('loadBearerToken() hydrates token from secure storage', () async {
+      final authStorage = _FakeAuthStorageService();
+      authStorage.set(getKeyFromDataServerSelection(DataServerSelection.personalCustom), 'stored-token');
       final container = ProviderContainer(overrides: [authStorageServiceProvider.overrideWith((ref) => authStorage)]);
       addTearDown(container.dispose);
 
-      final notifier = container.read(appRuntimeStateProvider.notifier);
+      final notifier = container.read(appRuntimeProvider.notifier);
 
-      final first = await notifier.ensureBusinessBearerTokenLoaded();
-      final second = await notifier.ensureBusinessBearerTokenLoaded();
-      final runtimeState = container.read(appRuntimeStateProvider);
-
-      expect(first, 'stored-token');
-      expect(second, 'stored-token');
-      expect(runtimeState.businessBearerToken, 'stored-token');
-      expect(authStorage.getTokenCalls, 1);
+      await notifier.loadBearerToken(DataServerSelection.personalCustom);
+      final runtimeState = container.read(appRuntimeProvider);
+      expect(runtimeState.bearerToken, 'stored-token');
     });
 
     test('setBusinessBearerToken() writes token to runtime state and secure storage', () async {
@@ -30,38 +26,40 @@ void main() {
       final container = ProviderContainer(overrides: [authStorageServiceProvider.overrideWith((ref) => authStorage)]);
       addTearDown(container.dispose);
 
-      final notifier = container.read(appRuntimeStateProvider.notifier);
-
-      await notifier.setBusinessBearerToken('fresh-token');
-      final runtimeState = container.read(appRuntimeStateProvider);
-
-      expect(runtimeState.businessBearerToken, 'fresh-token');
-      expect(authStorage.savedTokens, ['fresh-token']);
+      final notifier = container.read(appRuntimeProvider.notifier);
+      await notifier.saveBearerToken(DataServerSelection.personalCustom, 'fresh-token');
+      final runtimeState = container.read(appRuntimeProvider);
+      expect(runtimeState.bearerToken, 'fresh-token');
+      final key = getKeyFromDataServerSelection(DataServerSelection.personalCustom);
+      expect(authStorage.store[key], 'fresh-token');
     });
   });
 }
 
 class _FakeAuthStorageService implements AuthStorageService {
-  _FakeAuthStorageService({this.initialToken});
-
-  final String? initialToken;
-  final List<String> savedTokens = [];
-  int getTokenCalls = 0;
-  bool didClear = false;
+  final Map<String, String> store = {};
 
   @override
-  Future<void> clearToken() async {
-    didClear = true;
+  Future<void> set(String key, String value) async {
+    store[key] = value;
   }
 
   @override
-  Future<String?> getToken() async {
-    getTokenCalls += 1;
-    return savedTokens.isNotEmpty ? savedTokens.last : initialToken;
+  Future<String> get(String key) async {
+    final value = store[key];
+    if (value == null) {
+      return '';
+    }
+    return value;
   }
 
   @override
-  Future<void> saveToken(String token) async {
-    savedTokens.add(token);
+  Future<void> remove(String key) async {
+    store.remove(key);
+  }
+
+  @override
+  Future<void> reset() async {
+    store.clear();
   }
 }

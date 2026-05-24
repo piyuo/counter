@@ -60,6 +60,13 @@ abstract class TelemetryQueueRepository {
 
   /// Returns the number of payloads currently waiting to be sent (not uploaded).
   Future<int> pendingCount();
+
+  /// Clears all telemetry data from the database.
+  ///
+  /// Deletes all queued payloads and upload logs, resetting the database
+  /// to an empty state. Useful for clearing accumulated telemetry data
+  /// and starting fresh without recreating the database connection.
+  Future<void> reset();
 }
 
 @riverpod

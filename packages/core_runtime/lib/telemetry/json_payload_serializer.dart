@@ -20,10 +20,10 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
     'exit',
     'appear',
     'disappear',
-    'occupancyAvg',
-    'occupancyPeak',
-    'dwellAvgSec',
-    'dwellPeakSec',
+    'avgOccupancy',
+    'maxOccupancy',
+    'avgDwellSec',
+    'maxDwellSec',
   };
 
   @override
@@ -34,11 +34,19 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
     List<core_domain.TelemetryPayload> payloads, {
     required int schemaVersion,
     required String deviceId,
+    String? projectId,
+    String? assignId,
   }) {
     final payloadJson = payloads.map(_toTransportJson).toList(growable: false);
 
     final serialized = Uint8List.fromList(
-      _encoder.convert({'schema': schemaVersion, 'deviceId': deviceId, 'payloads': payloadJson}),
+      _encoder.convert({
+        'schema': schemaVersion,
+        'deviceId': deviceId,
+        'projectId': ?projectId,
+        'assignId': ?assignId,
+        'payloads': payloadJson,
+      }),
     );
 
     assert(() {
@@ -82,11 +90,11 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
 
   int _decimalsForKey(String? key) {
     switch (key) {
-      case 'coverageRatio':
+      case 'coverage':
         return 2;
       case 'fps':
         return 1;
-      case 'dwellAvgSec':
+      case 'avgDwellSec':
         return 1;
       default:
         return 2;

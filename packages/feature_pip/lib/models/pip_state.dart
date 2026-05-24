@@ -45,6 +45,7 @@ class PipState {
 
   /// is the sliding panel locked to open state?
   /// when true, the panel stays fully open and cannot be slide down or closed
-  /// this is used for the pip mode on mobile when the panel should always be open and not slideable
+  /// this is used for the pip mode on mobile when the panel should always be open and not slidable
+  /// usually used in onboarding when we need full screen pip.
   final bool isLockedOpen;
 }

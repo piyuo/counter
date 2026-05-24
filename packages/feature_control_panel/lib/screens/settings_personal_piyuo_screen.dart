@@ -4,7 +4,9 @@ import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 class SettingsPiyuoScreen extends ConsumerStatefulWidget {
   const SettingsPiyuoScreen({super.key});
@@ -21,13 +23,17 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
   @override
   void initState() {
     super.initState();
+    final appState = ref.read(core_domain.appProvider).asData?.value;
+    assert(appState != null, 'AppState should be available when PersonalCustomServerScreen is initialized.');
+    assert(
+      appState!.personalPiyuoServer != null,
+      'Personal Piyuo Server should be available when PersonalCustomServerScreen is initialized.',
+    );
+    final existingUrl = appState!.personalPiyuoServer!.url;
+
     _cloudUrlController = TextEditingController();
     _cloudUrlController.addListener(_clearError);
-    Future<void>(() async {
-      final cloudUrl = await ref.read(core_domain.appProvider.notifier).ensurePiyuoCloudUrl();
-      if (!mounted) return;
-      _cloudUrlController.text = cloudUrl;
-    });
+    _cloudUrlController.text = existingUrl;
   }
 
   @override
@@ -72,10 +78,10 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                 children: [
                   const Icon(Icons.cloud_outlined, size: 64),
                   const SizedBox(height: 8),
-                  Text('Piyuo Cloud', style: Theme.of(context).textTheme.titleMedium),
+                  Text(context.l.settings_piyuo_screen_title, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 4),
                   Text(
-                    'Use a Piyuo Cloud URL for uploads.',
+                    context.l.settings_piyuo_screen_body,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                   ),
@@ -89,7 +95,10 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Cloud URL', style: Theme.of(context).textTheme.titleSmall),
+                    Text(
+                      context.l.settings_piyuo_screen_cloud_url_label,
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     const SizedBox(height: 10),
                     GlassTextField(controller: _cloudUrlController),
                     if (_urlError != null) ...[
@@ -103,17 +112,17 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                           child: OutlinedButton.icon(
                             onPressed: () async {
                               Clipboard.setData(ClipboardData(text: _cloudUrlController.text.trim()));
-                              await showMessageDialog('URL copied');
+                              await showMessageDialog(context.l.settings_piyuo_screen_copy_success);
                             },
                             icon: const Icon(Icons.copy),
-                            label: const Text('Copy URL'),
+                            label: Text(context.l.settings_piyuo_screen_copy_action),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'If you already had a Piyuo Cloud URL from an older install, paste it here to keep using the same cloud space.',
+                      context.l.settings_piyuo_screen_legacy_body,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
                     ),
                   ],
@@ -131,7 +140,7 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                           final typedUrl = _cloudUrlController.text.trim();
                           if (!_isValidPiyuoCloudUrl(typedUrl)) {
                             setState(() {
-                              _urlError = 'Please paste a valid Piyuo Cloud URL.';
+                              _urlError = context.l.settings_piyuo_screen_invalid_url_error;
                             });
                             return;
                           }
@@ -141,18 +150,21 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                             _urlError = null;
                           });
 
-                          final notifier = ref.read(core_domain.appProvider.notifier);
-                          await notifier.setPiyuoCloudUrl(typedUrl);
-                          await notifier.setPersonalPiyuoDataServer(typedUrl);
+                          final appController = ref.read(core_domain.appProvider.notifier);
+                          await appController.selectPersonalPiyuoServer();
 
-                          if (!mounted) return;
                           setState(() {
                             _isSaving = false;
                           });
-                          Navigator.of(context).pop();
+                          if (!mounted) return;
+                          context.pop();
                         },
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-                  child: Text(_isSaving ? 'Saving...' : 'Use Piyuo Cloud'),
+                  child: Text(
+                    _isSaving
+                        ? context.l.settings_piyuo_screen_saving_action
+                        : context.l.settings_piyuo_screen_use_action,
+                  ),
                 ),
               ),
             ),

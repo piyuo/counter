@@ -41,7 +41,7 @@ final class PipNotifierProvider
   }
 }
 
-String _$pipNotifierHash() => r'7a12ca811715efe623e025bf4015c1eaea2faf6c';
+String _$pipNotifierHash() => r'3148e007d97c2d27d1d3701b749bb98b770f26e8';
 
 abstract class _$PipNotifier extends $Notifier<PipState> {
   PipState build();

@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 abstract class VisionSessionController {
   Future<void> reconcile({
     required VideoSource videoSource,
-    required DetectionType detection,
+    required DetectionType detectionType,
     required DetectionParams detectionParams,
   });
 
@@ -40,14 +40,14 @@ class VisionSessionNotifier extends Notifier<VisionSessionState> implements Visi
   @override
   Future<void> reconcile({
     required VideoSource videoSource,
-    required DetectionType detection,
+    required DetectionType detectionType,
     required DetectionParams detectionParams,
   }) {
     // Each reconcile waits for the previous runtime transition to finish.
     // Without this, quick successive changes could interleave start()/stop()
     // calls and leave the underlying vision runtime in an inconsistent state.
     final operation = _queue.then(
-      (_) => _performReconcile(videoSource: videoSource, detection: detection, detectionParams: detectionParams),
+      (_) => _performReconcile(videoSource: videoSource, detection: detectionType, detectionParams: detectionParams),
     );
     _queue = operation.catchError((error, stackTrace) {});
     return operation;

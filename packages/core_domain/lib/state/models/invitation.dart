@@ -19,14 +19,60 @@ part 'invitation.g.dart';
 @freezed
 abstract class Invitation with _$Invitation {
   const factory Invitation({
-    required BusinessDataServer businessDataServer,
-    required String bearerToken,
-    required String deviceName,
     required String instruction,
-    required DetectionType detection,
-    required DetectionParams detectionParams,
-    required UploadConfig deliveryConfig,
+    required String bearerToken,
+    BusinessPiyuoServer? businessPiyuoServer,
+    BusinessCustomServer? businessCustomServer,
+    DetectionType? detection,
+    DetectionParams? detectionParams,
+    UploadConfig? uploadConfig,
   }) = _Invitation;
 
   factory Invitation.fromJson(Map<String, dynamic> json) => _$InvitationFromJson(json);
+}
+
+String? getProjectNameFromInvitation(Invitation invitation) {
+  if (invitation.businessPiyuoServer != null) {
+    return invitation.businessPiyuoServer!.projectName;
+  } else if (invitation.businessCustomServer != null) {
+    return invitation.businessCustomServer!.projectName;
+  } else {
+    return null;
+  }
+}
+
+String? getAssignedNameFromInvitation(Invitation invitation) {
+  if (invitation.businessPiyuoServer != null) {
+    return invitation.businessPiyuoServer!.assignedName;
+  } else if (invitation.businessCustomServer != null) {
+    return invitation.businessCustomServer!.assignedName;
+  } else {
+    return null;
+  }
+}
+
+Invitation createDummyInvitation({
+  String instruction =
+      'Mount the device in the designated location and aim the camera toward street traffic for pedestrian counting.',
+  BusinessPiyuoServer? businessPiyuoServer,
+  BusinessCustomServer? businessCustomServer,
+  DetectionType? detection,
+  DetectionParams? detectionParams,
+  UploadConfig? uploadConfig,
+}) {
+  return Invitation(
+    businessPiyuoServer: const BusinessPiyuoServer(
+      url: 'https://piyuo.com/api/v1',
+      projectName: 'Demo Project',
+      projectId: 'demo-project-id',
+      assignedId: 'demo-device-id',
+      assignedName: 'phone point to street',
+    ),
+    bearerToken: 'demo-bearer-token',
+    instruction:
+        'Mount the device in the designated location and aim the camera toward street traffic for pedestrian counting.',
+    detection: detection,
+    detectionParams: detectionParams,
+    uploadConfig: uploadConfig,
+  );
 }

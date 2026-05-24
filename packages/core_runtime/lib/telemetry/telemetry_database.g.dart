@@ -52,15 +52,6 @@ class $TelemetryQueueTable extends TelemetryQueue
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _endMsMeta = const VerificationMeta('endMs');
-  @override
-  late final GeneratedColumn<int> endMs = GeneratedColumn<int>(
-    'end_ms',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
   static const VerificationMeta _uploadedAtMsMeta = const VerificationMeta(
     'uploadedAtMs',
   );
@@ -78,7 +69,6 @@ class $TelemetryQueueTable extends TelemetryQueue
     serializedPayload,
     createdAtMs,
     startMs,
-    endMs,
     uploadedAtMs,
   ];
   @override
@@ -128,14 +118,6 @@ class $TelemetryQueueTable extends TelemetryQueue
     } else if (isInserting) {
       context.missing(_startMsMeta);
     }
-    if (data.containsKey('end_ms')) {
-      context.handle(
-        _endMsMeta,
-        endMs.isAcceptableOrUnknown(data['end_ms']!, _endMsMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_endMsMeta);
-    }
     if (data.containsKey('delivered_at_ms')) {
       context.handle(
         _uploadedAtMsMeta,
@@ -170,10 +152,6 @@ class $TelemetryQueueTable extends TelemetryQueue
         DriftSqlType.int,
         data['${effectivePrefix}start_ms'],
       )!,
-      endMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}end_ms'],
-      )!,
       uploadedAtMs: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}delivered_at_ms'],
@@ -199,9 +177,6 @@ class TelemetryQueueData extends DataClass
   /// Milliseconds since epoch — observed window start time (UTC).
   final int startMs;
 
-  /// Milliseconds since epoch — observed window end time (UTC).
-  final int endMs;
-
   /// Milliseconds since epoch — when this item was successfully uploaded.
   /// NULL if not yet uploaded.
   /// Uses legacy column name for backward compatibility with existing databases.
@@ -211,7 +186,6 @@ class TelemetryQueueData extends DataClass
     required this.serializedPayload,
     required this.createdAtMs,
     required this.startMs,
-    required this.endMs,
     this.uploadedAtMs,
   });
   @override
@@ -221,7 +195,6 @@ class TelemetryQueueData extends DataClass
     map['serialized_payload'] = Variable<String>(serializedPayload);
     map['created_at_ms'] = Variable<int>(createdAtMs);
     map['start_ms'] = Variable<int>(startMs);
-    map['end_ms'] = Variable<int>(endMs);
     if (!nullToAbsent || uploadedAtMs != null) {
       map['delivered_at_ms'] = Variable<int>(uploadedAtMs);
     }
@@ -234,7 +207,6 @@ class TelemetryQueueData extends DataClass
       serializedPayload: Value(serializedPayload),
       createdAtMs: Value(createdAtMs),
       startMs: Value(startMs),
-      endMs: Value(endMs),
       uploadedAtMs: uploadedAtMs == null && nullToAbsent
           ? const Value.absent()
           : Value(uploadedAtMs),
@@ -251,7 +223,6 @@ class TelemetryQueueData extends DataClass
       serializedPayload: serializer.fromJson<String>(json['serializedPayload']),
       createdAtMs: serializer.fromJson<int>(json['createdAtMs']),
       startMs: serializer.fromJson<int>(json['startMs']),
-      endMs: serializer.fromJson<int>(json['endMs']),
       uploadedAtMs: serializer.fromJson<int?>(json['uploadedAtMs']),
     );
   }
@@ -263,7 +234,6 @@ class TelemetryQueueData extends DataClass
       'serializedPayload': serializer.toJson<String>(serializedPayload),
       'createdAtMs': serializer.toJson<int>(createdAtMs),
       'startMs': serializer.toJson<int>(startMs),
-      'endMs': serializer.toJson<int>(endMs),
       'uploadedAtMs': serializer.toJson<int?>(uploadedAtMs),
     };
   }
@@ -273,14 +243,12 @@ class TelemetryQueueData extends DataClass
     String? serializedPayload,
     int? createdAtMs,
     int? startMs,
-    int? endMs,
     Value<int?> uploadedAtMs = const Value.absent(),
   }) => TelemetryQueueData(
     id: id ?? this.id,
     serializedPayload: serializedPayload ?? this.serializedPayload,
     createdAtMs: createdAtMs ?? this.createdAtMs,
     startMs: startMs ?? this.startMs,
-    endMs: endMs ?? this.endMs,
     uploadedAtMs: uploadedAtMs.present ? uploadedAtMs.value : this.uploadedAtMs,
   );
   TelemetryQueueData copyWithCompanion(TelemetryQueueCompanion data) {
@@ -293,7 +261,6 @@ class TelemetryQueueData extends DataClass
           ? data.createdAtMs.value
           : this.createdAtMs,
       startMs: data.startMs.present ? data.startMs.value : this.startMs,
-      endMs: data.endMs.present ? data.endMs.value : this.endMs,
       uploadedAtMs: data.uploadedAtMs.present
           ? data.uploadedAtMs.value
           : this.uploadedAtMs,
@@ -307,21 +274,14 @@ class TelemetryQueueData extends DataClass
           ..write('serializedPayload: $serializedPayload, ')
           ..write('createdAtMs: $createdAtMs, ')
           ..write('startMs: $startMs, ')
-          ..write('endMs: $endMs, ')
           ..write('uploadedAtMs: $uploadedAtMs')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    serializedPayload,
-    createdAtMs,
-    startMs,
-    endMs,
-    uploadedAtMs,
-  );
+  int get hashCode =>
+      Object.hash(id, serializedPayload, createdAtMs, startMs, uploadedAtMs);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -330,7 +290,6 @@ class TelemetryQueueData extends DataClass
           other.serializedPayload == this.serializedPayload &&
           other.createdAtMs == this.createdAtMs &&
           other.startMs == this.startMs &&
-          other.endMs == this.endMs &&
           other.uploadedAtMs == this.uploadedAtMs);
 }
 
@@ -339,7 +298,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
   final Value<String> serializedPayload;
   final Value<int> createdAtMs;
   final Value<int> startMs;
-  final Value<int> endMs;
   final Value<int?> uploadedAtMs;
   final Value<int> rowid;
   const TelemetryQueueCompanion({
@@ -347,7 +305,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
     this.serializedPayload = const Value.absent(),
     this.createdAtMs = const Value.absent(),
     this.startMs = const Value.absent(),
-    this.endMs = const Value.absent(),
     this.uploadedAtMs = const Value.absent(),
     this.rowid = const Value.absent(),
   });
@@ -356,20 +313,17 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
     required String serializedPayload,
     required int createdAtMs,
     required int startMs,
-    required int endMs,
     this.uploadedAtMs = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : id = Value(id),
        serializedPayload = Value(serializedPayload),
        createdAtMs = Value(createdAtMs),
-       startMs = Value(startMs),
-       endMs = Value(endMs);
+       startMs = Value(startMs);
   static Insertable<TelemetryQueueData> custom({
     Expression<String>? id,
     Expression<String>? serializedPayload,
     Expression<int>? createdAtMs,
     Expression<int>? startMs,
-    Expression<int>? endMs,
     Expression<int>? uploadedAtMs,
     Expression<int>? rowid,
   }) {
@@ -378,7 +332,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
       if (serializedPayload != null) 'serialized_payload': serializedPayload,
       if (createdAtMs != null) 'created_at_ms': createdAtMs,
       if (startMs != null) 'start_ms': startMs,
-      if (endMs != null) 'end_ms': endMs,
       if (uploadedAtMs != null) 'delivered_at_ms': uploadedAtMs,
       if (rowid != null) 'rowid': rowid,
     });
@@ -389,7 +342,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
     Value<String>? serializedPayload,
     Value<int>? createdAtMs,
     Value<int>? startMs,
-    Value<int>? endMs,
     Value<int?>? uploadedAtMs,
     Value<int>? rowid,
   }) {
@@ -398,7 +350,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
       serializedPayload: serializedPayload ?? this.serializedPayload,
       createdAtMs: createdAtMs ?? this.createdAtMs,
       startMs: startMs ?? this.startMs,
-      endMs: endMs ?? this.endMs,
       uploadedAtMs: uploadedAtMs ?? this.uploadedAtMs,
       rowid: rowid ?? this.rowid,
     );
@@ -419,9 +370,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
     if (startMs.present) {
       map['start_ms'] = Variable<int>(startMs.value);
     }
-    if (endMs.present) {
-      map['end_ms'] = Variable<int>(endMs.value);
-    }
     if (uploadedAtMs.present) {
       map['delivered_at_ms'] = Variable<int>(uploadedAtMs.value);
     }
@@ -438,7 +386,6 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
           ..write('serializedPayload: $serializedPayload, ')
           ..write('createdAtMs: $createdAtMs, ')
           ..write('startMs: $startMs, ')
-          ..write('endMs: $endMs, ')
           ..write('uploadedAtMs: $uploadedAtMs, ')
           ..write('rowid: $rowid')
           ..write(')'))
@@ -974,7 +921,6 @@ typedef $$TelemetryQueueTableCreateCompanionBuilder =
       required String serializedPayload,
       required int createdAtMs,
       required int startMs,
-      required int endMs,
       Value<int?> uploadedAtMs,
       Value<int> rowid,
     });
@@ -984,7 +930,6 @@ typedef $$TelemetryQueueTableUpdateCompanionBuilder =
       Value<String> serializedPayload,
       Value<int> createdAtMs,
       Value<int> startMs,
-      Value<int> endMs,
       Value<int?> uploadedAtMs,
       Value<int> rowid,
     });
@@ -1015,11 +960,6 @@ class $$TelemetryQueueTableFilterComposer
 
   ColumnFilters<int> get startMs => $composableBuilder(
     column: $table.startMs,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get endMs => $composableBuilder(
-    column: $table.endMs,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -1058,11 +998,6 @@ class $$TelemetryQueueTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<int> get endMs => $composableBuilder(
-    column: $table.endMs,
-    builder: (column) => ColumnOrderings(column),
-  );
-
   ColumnOrderings<int> get uploadedAtMs => $composableBuilder(
     column: $table.uploadedAtMs,
     builder: (column) => ColumnOrderings(column),
@@ -1093,9 +1028,6 @@ class $$TelemetryQueueTableAnnotationComposer
 
   GeneratedColumn<int> get startMs =>
       $composableBuilder(column: $table.startMs, builder: (column) => column);
-
-  GeneratedColumn<int> get endMs =>
-      $composableBuilder(column: $table.endMs, builder: (column) => column);
 
   GeneratedColumn<int> get uploadedAtMs => $composableBuilder(
     column: $table.uploadedAtMs,
@@ -1144,7 +1076,6 @@ class $$TelemetryQueueTableTableManager
                 Value<String> serializedPayload = const Value.absent(),
                 Value<int> createdAtMs = const Value.absent(),
                 Value<int> startMs = const Value.absent(),
-                Value<int> endMs = const Value.absent(),
                 Value<int?> uploadedAtMs = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TelemetryQueueCompanion(
@@ -1152,7 +1083,6 @@ class $$TelemetryQueueTableTableManager
                 serializedPayload: serializedPayload,
                 createdAtMs: createdAtMs,
                 startMs: startMs,
-                endMs: endMs,
                 uploadedAtMs: uploadedAtMs,
                 rowid: rowid,
               ),
@@ -1162,7 +1092,6 @@ class $$TelemetryQueueTableTableManager
                 required String serializedPayload,
                 required int createdAtMs,
                 required int startMs,
-                required int endMs,
                 Value<int?> uploadedAtMs = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => TelemetryQueueCompanion.insert(
@@ -1170,7 +1099,6 @@ class $$TelemetryQueueTableTableManager
                 serializedPayload: serializedPayload,
                 createdAtMs: createdAtMs,
                 startMs: startMs,
-                endMs: endMs,
                 uploadedAtMs: uploadedAtMs,
                 rowid: rowid,
               ),

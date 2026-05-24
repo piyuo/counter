@@ -15,18 +15,33 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TelemetryPayload {
 
-/// UUID v4 — used by the server for idempotent de-duplication on retry.
- String get id;/// Window start time in UTC.
- DateTime get startUtc;/// Window end time in UTC.
- DateTime get endUtc;/// Identifier of the counting session this window belongs to.
- String get sessionId;/// 1-based index of this window within [sessionId].
- int get windowIndex;/// Total number of frames processed in this window.
- int get frameCount;/// Exact total duration of missing input within this window (milliseconds).
- int get missingDurationMs;/// Mean confidence (%) across all tracked-object samples in this window.
- double get confidence;/// True when the observation window was interrupted before completion.
+/// Identifier of the counting session this observation window belongs to.
+ String get session;/// Sequential number of this observation window within the session.
+///
+/// Starts at 1.
+ int get sequence;/// Beginning of the observation window in UTC.
+///
+/// This is the canonical timestamp used for synchronization,
+/// upload ordering, and auditing.
+ DateTime get startUtc;/// Beginning of the same observation window expressed using the
+/// site's business clock.
+///
+/// This timestamp is used for reports, grouping by business day,
+/// and business-hour analysis.
+ DateTime get startBusiness;/// businessDate MUST equal the date portion of [startBusiness].
+///
+/// It is stored separately because it is queried frequently and because
+/// payloads for the same business day are typically grouped into a single file.
+///
+/// Example:
+/// 2026-06-24
+ String get businessDate;/// Total number of frames processed in this window.
+ int get frameCount;/// Exact total duration of missing input within this window (seconds).
+ int get missingSec;/// Mean confidence (%) across all tracked-object samples in this window.
+@RoundedDouble2() double get confidence;/// True when the observation window was interrupted before completion.
  bool get isPartial;/// Fraction of the window that contained valid detection data (0.0–1.0).
- double get coverageRatio;/// Average processed frames per second over covered (non-missing) time.
- double get fps;/// Per-area analytics.  One entry per configured interest area.
+@RoundedDouble2() double get coverage;/// Average processed frames per second over covered (non-missing) time.
+@RoundedDouble2() double get fps;/// Per-area analytics.  One entry per configured interest area.
  List<AreaPayload> get areas;
 /// Create a copy of TelemetryPayload
 /// with the given fields replaced by the non-null parameter values.
@@ -40,16 +55,16 @@ $TelemetryPayloadCopyWith<TelemetryPayload> get copyWith => _$TelemetryPayloadCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryPayload&&(identical(other.id, id) || other.id == id)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.endUtc, endUtc) || other.endUtc == endUtc)&&(identical(other.sessionId, sessionId) || other.sessionId == sessionId)&&(identical(other.windowIndex, windowIndex) || other.windowIndex == windowIndex)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingDurationMs, missingDurationMs) || other.missingDurationMs == missingDurationMs)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverageRatio, coverageRatio) || other.coverageRatio == coverageRatio)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other.areas, areas));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryPayload&&(identical(other.session, session) || other.session == session)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.startBusiness, startBusiness) || other.startBusiness == startBusiness)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingSec, missingSec) || other.missingSec == missingSec)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverage, coverage) || other.coverage == coverage)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other.areas, areas));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startUtc,endUtc,sessionId,windowIndex,frameCount,missingDurationMs,confidence,isPartial,coverageRatio,fps,const DeepCollectionEquality().hash(areas));
+int get hashCode => Object.hash(runtimeType,session,sequence,startUtc,startBusiness,businessDate,frameCount,missingSec,confidence,isPartial,coverage,fps,const DeepCollectionEquality().hash(areas));
 
 @override
 String toString() {
-  return 'TelemetryPayload(id: $id, startUtc: $startUtc, endUtc: $endUtc, sessionId: $sessionId, windowIndex: $windowIndex, frameCount: $frameCount, missingDurationMs: $missingDurationMs, confidence: $confidence, isPartial: $isPartial, coverageRatio: $coverageRatio, fps: $fps, areas: $areas)';
+  return 'TelemetryPayload(session: $session, sequence: $sequence, startUtc: $startUtc, startBusiness: $startBusiness, businessDate: $businessDate, frameCount: $frameCount, missingSec: $missingSec, confidence: $confidence, isPartial: $isPartial, coverage: $coverage, fps: $fps, areas: $areas)';
 }
 
 
@@ -60,7 +75,7 @@ abstract mixin class $TelemetryPayloadCopyWith<$Res>  {
   factory $TelemetryPayloadCopyWith(TelemetryPayload value, $Res Function(TelemetryPayload) _then) = _$TelemetryPayloadCopyWithImpl;
 @useResult
 $Res call({
- String id, DateTime startUtc, DateTime endUtc, String sessionId, int windowIndex, int frameCount, int missingDurationMs, double confidence, bool isPartial, double coverageRatio, double fps, List<AreaPayload> areas
+ String session, int sequence, DateTime startUtc, DateTime startBusiness, String businessDate, int frameCount, int missingSec,@RoundedDouble2() double confidence, bool isPartial,@RoundedDouble2() double coverage,@RoundedDouble2() double fps, List<AreaPayload> areas
 });
 
 
@@ -77,18 +92,18 @@ class _$TelemetryPayloadCopyWithImpl<$Res>
 
 /// Create a copy of TelemetryPayload
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? startUtc = null,Object? endUtc = null,Object? sessionId = null,Object? windowIndex = null,Object? frameCount = null,Object? missingDurationMs = null,Object? confidence = null,Object? isPartial = null,Object? coverageRatio = null,Object? fps = null,Object? areas = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? session = null,Object? sequence = null,Object? startUtc = null,Object? startBusiness = null,Object? businessDate = null,Object? frameCount = null,Object? missingSec = null,Object? confidence = null,Object? isPartial = null,Object? coverage = null,Object? fps = null,Object? areas = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,startUtc: null == startUtc ? _self.startUtc : startUtc // ignore: cast_nullable_to_non_nullable
-as DateTime,endUtc: null == endUtc ? _self.endUtc : endUtc // ignore: cast_nullable_to_non_nullable
-as DateTime,sessionId: null == sessionId ? _self.sessionId : sessionId // ignore: cast_nullable_to_non_nullable
-as String,windowIndex: null == windowIndex ? _self.windowIndex : windowIndex // ignore: cast_nullable_to_non_nullable
-as int,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
-as int,missingDurationMs: null == missingDurationMs ? _self.missingDurationMs : missingDurationMs // ignore: cast_nullable_to_non_nullable
+session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
+as String,sequence: null == sequence ? _self.sequence : sequence // ignore: cast_nullable_to_non_nullable
+as int,startUtc: null == startUtc ? _self.startUtc : startUtc // ignore: cast_nullable_to_non_nullable
+as DateTime,startBusiness: null == startBusiness ? _self.startBusiness : startBusiness // ignore: cast_nullable_to_non_nullable
+as DateTime,businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
+as String,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as int,missingSec: null == missingSec ? _self.missingSec : missingSec // ignore: cast_nullable_to_non_nullable
 as int,confidence: null == confidence ? _self.confidence : confidence // ignore: cast_nullable_to_non_nullable
 as double,isPartial: null == isPartial ? _self.isPartial : isPartial // ignore: cast_nullable_to_non_nullable
-as bool,coverageRatio: null == coverageRatio ? _self.coverageRatio : coverageRatio // ignore: cast_nullable_to_non_nullable
+as bool,coverage: null == coverage ? _self.coverage : coverage // ignore: cast_nullable_to_non_nullable
 as double,fps: null == fps ? _self.fps : fps // ignore: cast_nullable_to_non_nullable
 as double,areas: null == areas ? _self.areas : areas // ignore: cast_nullable_to_non_nullable
 as List<AreaPayload>,
@@ -173,10 +188,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  DateTime startUtc,  DateTime endUtc,  String sessionId,  int windowIndex,  int frameCount,  int missingDurationMs,  double confidence,  bool isPartial,  double coverageRatio,  double fps,  List<AreaPayload> areas)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String session,  int sequence,  DateTime startUtc,  DateTime startBusiness,  String businessDate,  int frameCount,  int missingSec, @RoundedDouble2()  double confidence,  bool isPartial, @RoundedDouble2()  double coverage, @RoundedDouble2()  double fps,  List<AreaPayload> areas)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TelemetryPayload() when $default != null:
-return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windowIndex,_that.frameCount,_that.missingDurationMs,_that.confidence,_that.isPartial,_that.coverageRatio,_that.fps,_that.areas);case _:
+return $default(_that.session,_that.sequence,_that.startUtc,_that.startBusiness,_that.businessDate,_that.frameCount,_that.missingSec,_that.confidence,_that.isPartial,_that.coverage,_that.fps,_that.areas);case _:
   return orElse();
 
 }
@@ -194,10 +209,10 @@ return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windo
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  DateTime startUtc,  DateTime endUtc,  String sessionId,  int windowIndex,  int frameCount,  int missingDurationMs,  double confidence,  bool isPartial,  double coverageRatio,  double fps,  List<AreaPayload> areas)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String session,  int sequence,  DateTime startUtc,  DateTime startBusiness,  String businessDate,  int frameCount,  int missingSec, @RoundedDouble2()  double confidence,  bool isPartial, @RoundedDouble2()  double coverage, @RoundedDouble2()  double fps,  List<AreaPayload> areas)  $default,) {final _that = this;
 switch (_that) {
 case _TelemetryPayload():
-return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windowIndex,_that.frameCount,_that.missingDurationMs,_that.confidence,_that.isPartial,_that.coverageRatio,_that.fps,_that.areas);}
+return $default(_that.session,_that.sequence,_that.startUtc,_that.startBusiness,_that.businessDate,_that.frameCount,_that.missingSec,_that.confidence,_that.isPartial,_that.coverage,_that.fps,_that.areas);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -211,10 +226,10 @@ return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windo
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  DateTime startUtc,  DateTime endUtc,  String sessionId,  int windowIndex,  int frameCount,  int missingDurationMs,  double confidence,  bool isPartial,  double coverageRatio,  double fps,  List<AreaPayload> areas)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String session,  int sequence,  DateTime startUtc,  DateTime startBusiness,  String businessDate,  int frameCount,  int missingSec, @RoundedDouble2()  double confidence,  bool isPartial, @RoundedDouble2()  double coverage, @RoundedDouble2()  double fps,  List<AreaPayload> areas)?  $default,) {final _that = this;
 switch (_that) {
 case _TelemetryPayload() when $default != null:
-return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windowIndex,_that.frameCount,_that.missingDurationMs,_that.confidence,_that.isPartial,_that.coverageRatio,_that.fps,_that.areas);case _:
+return $default(_that.session,_that.sequence,_that.startUtc,_that.startBusiness,_that.businessDate,_that.frameCount,_that.missingSec,_that.confidence,_that.isPartial,_that.coverage,_that.fps,_that.areas);case _:
   return null;
 
 }
@@ -226,31 +241,46 @@ return $default(_that.id,_that.startUtc,_that.endUtc,_that.sessionId,_that.windo
 @JsonSerializable()
 
 class _TelemetryPayload implements TelemetryPayload {
-  const _TelemetryPayload({required this.id, required this.startUtc, required this.endUtc, required this.sessionId, required this.windowIndex, required this.frameCount, required this.missingDurationMs, required this.confidence, required this.isPartial, required this.coverageRatio, required this.fps, required final  List<AreaPayload> areas}): _areas = areas;
+  const _TelemetryPayload({required this.session, required this.sequence, required this.startUtc, required this.startBusiness, required this.businessDate, required this.frameCount, required this.missingSec, @RoundedDouble2() required this.confidence, required this.isPartial, @RoundedDouble2() required this.coverage, @RoundedDouble2() required this.fps, required final  List<AreaPayload> areas}): _areas = areas;
   factory _TelemetryPayload.fromJson(Map<String, dynamic> json) => _$TelemetryPayloadFromJson(json);
 
-/// UUID v4 — used by the server for idempotent de-duplication on retry.
-@override final  String id;
-/// Window start time in UTC.
+/// Identifier of the counting session this observation window belongs to.
+@override final  String session;
+/// Sequential number of this observation window within the session.
+///
+/// Starts at 1.
+@override final  int sequence;
+/// Beginning of the observation window in UTC.
+///
+/// This is the canonical timestamp used for synchronization,
+/// upload ordering, and auditing.
 @override final  DateTime startUtc;
-/// Window end time in UTC.
-@override final  DateTime endUtc;
-/// Identifier of the counting session this window belongs to.
-@override final  String sessionId;
-/// 1-based index of this window within [sessionId].
-@override final  int windowIndex;
+/// Beginning of the same observation window expressed using the
+/// site's business clock.
+///
+/// This timestamp is used for reports, grouping by business day,
+/// and business-hour analysis.
+@override final  DateTime startBusiness;
+/// businessDate MUST equal the date portion of [startBusiness].
+///
+/// It is stored separately because it is queried frequently and because
+/// payloads for the same business day are typically grouped into a single file.
+///
+/// Example:
+/// 2026-06-24
+@override final  String businessDate;
 /// Total number of frames processed in this window.
 @override final  int frameCount;
-/// Exact total duration of missing input within this window (milliseconds).
-@override final  int missingDurationMs;
+/// Exact total duration of missing input within this window (seconds).
+@override final  int missingSec;
 /// Mean confidence (%) across all tracked-object samples in this window.
-@override final  double confidence;
+@override@RoundedDouble2() final  double confidence;
 /// True when the observation window was interrupted before completion.
 @override final  bool isPartial;
 /// Fraction of the window that contained valid detection data (0.0–1.0).
-@override final  double coverageRatio;
+@override@RoundedDouble2() final  double coverage;
 /// Average processed frames per second over covered (non-missing) time.
-@override final  double fps;
+@override@RoundedDouble2() final  double fps;
 /// Per-area analytics.  One entry per configured interest area.
  final  List<AreaPayload> _areas;
 /// Per-area analytics.  One entry per configured interest area.
@@ -274,16 +304,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryPayload&&(identical(other.id, id) || other.id == id)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.endUtc, endUtc) || other.endUtc == endUtc)&&(identical(other.sessionId, sessionId) || other.sessionId == sessionId)&&(identical(other.windowIndex, windowIndex) || other.windowIndex == windowIndex)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingDurationMs, missingDurationMs) || other.missingDurationMs == missingDurationMs)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverageRatio, coverageRatio) || other.coverageRatio == coverageRatio)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other._areas, _areas));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryPayload&&(identical(other.session, session) || other.session == session)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.startBusiness, startBusiness) || other.startBusiness == startBusiness)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingSec, missingSec) || other.missingSec == missingSec)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverage, coverage) || other.coverage == coverage)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other._areas, _areas));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,startUtc,endUtc,sessionId,windowIndex,frameCount,missingDurationMs,confidence,isPartial,coverageRatio,fps,const DeepCollectionEquality().hash(_areas));
+int get hashCode => Object.hash(runtimeType,session,sequence,startUtc,startBusiness,businessDate,frameCount,missingSec,confidence,isPartial,coverage,fps,const DeepCollectionEquality().hash(_areas));
 
 @override
 String toString() {
-  return 'TelemetryPayload(id: $id, startUtc: $startUtc, endUtc: $endUtc, sessionId: $sessionId, windowIndex: $windowIndex, frameCount: $frameCount, missingDurationMs: $missingDurationMs, confidence: $confidence, isPartial: $isPartial, coverageRatio: $coverageRatio, fps: $fps, areas: $areas)';
+  return 'TelemetryPayload(session: $session, sequence: $sequence, startUtc: $startUtc, startBusiness: $startBusiness, businessDate: $businessDate, frameCount: $frameCount, missingSec: $missingSec, confidence: $confidence, isPartial: $isPartial, coverage: $coverage, fps: $fps, areas: $areas)';
 }
 
 
@@ -294,7 +324,7 @@ abstract mixin class _$TelemetryPayloadCopyWith<$Res> implements $TelemetryPaylo
   factory _$TelemetryPayloadCopyWith(_TelemetryPayload value, $Res Function(_TelemetryPayload) _then) = __$TelemetryPayloadCopyWithImpl;
 @override @useResult
 $Res call({
- String id, DateTime startUtc, DateTime endUtc, String sessionId, int windowIndex, int frameCount, int missingDurationMs, double confidence, bool isPartial, double coverageRatio, double fps, List<AreaPayload> areas
+ String session, int sequence, DateTime startUtc, DateTime startBusiness, String businessDate, int frameCount, int missingSec,@RoundedDouble2() double confidence, bool isPartial,@RoundedDouble2() double coverage,@RoundedDouble2() double fps, List<AreaPayload> areas
 });
 
 
@@ -311,18 +341,18 @@ class __$TelemetryPayloadCopyWithImpl<$Res>
 
 /// Create a copy of TelemetryPayload
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? startUtc = null,Object? endUtc = null,Object? sessionId = null,Object? windowIndex = null,Object? frameCount = null,Object? missingDurationMs = null,Object? confidence = null,Object? isPartial = null,Object? coverageRatio = null,Object? fps = null,Object? areas = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? session = null,Object? sequence = null,Object? startUtc = null,Object? startBusiness = null,Object? businessDate = null,Object? frameCount = null,Object? missingSec = null,Object? confidence = null,Object? isPartial = null,Object? coverage = null,Object? fps = null,Object? areas = null,}) {
   return _then(_TelemetryPayload(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,startUtc: null == startUtc ? _self.startUtc : startUtc // ignore: cast_nullable_to_non_nullable
-as DateTime,endUtc: null == endUtc ? _self.endUtc : endUtc // ignore: cast_nullable_to_non_nullable
-as DateTime,sessionId: null == sessionId ? _self.sessionId : sessionId // ignore: cast_nullable_to_non_nullable
-as String,windowIndex: null == windowIndex ? _self.windowIndex : windowIndex // ignore: cast_nullable_to_non_nullable
-as int,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
-as int,missingDurationMs: null == missingDurationMs ? _self.missingDurationMs : missingDurationMs // ignore: cast_nullable_to_non_nullable
+session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
+as String,sequence: null == sequence ? _self.sequence : sequence // ignore: cast_nullable_to_non_nullable
+as int,startUtc: null == startUtc ? _self.startUtc : startUtc // ignore: cast_nullable_to_non_nullable
+as DateTime,startBusiness: null == startBusiness ? _self.startBusiness : startBusiness // ignore: cast_nullable_to_non_nullable
+as DateTime,businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
+as String,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as int,missingSec: null == missingSec ? _self.missingSec : missingSec // ignore: cast_nullable_to_non_nullable
 as int,confidence: null == confidence ? _self.confidence : confidence // ignore: cast_nullable_to_non_nullable
 as double,isPartial: null == isPartial ? _self.isPartial : isPartial // ignore: cast_nullable_to_non_nullable
-as bool,coverageRatio: null == coverageRatio ? _self.coverageRatio : coverageRatio // ignore: cast_nullable_to_non_nullable
+as bool,coverage: null == coverage ? _self.coverage : coverage // ignore: cast_nullable_to_non_nullable
 as double,fps: null == fps ? _self.fps : fps // ignore: cast_nullable_to_non_nullable
 as double,areas: null == areas ? _self._areas : areas // ignore: cast_nullable_to_non_nullable
 as List<AreaPayload>,
@@ -337,7 +367,7 @@ as List<AreaPayload>,
 mixin _$AreaPayload {
 
 /// Index matching the configured interest-area ID.
- int get id;/// Objects detected moving past the area without entering it.
+ int get areaId;/// Objects detected moving past the area without entering it.
  int get passBy;/// Objects that stayed within the area.
  int get stay;/// Objects that crossed the threshold into the area.
  int get entry;/// Objects that crossed the threshold out of the area.
@@ -347,10 +377,10 @@ mixin _$AreaPayload {
 ///
 /// This is a simple arithmetic mean (sum of sampled occupancies / number of
 /// samples), with no time-weighting.
- double get occupancyAvg;/// Peak occupancy observed at any sample in the window.
- int get occupancyPeak;/// Mean dwell time in seconds across all dwell observations.
- double get dwellAvgSec;/// Peak dwell time in rounded seconds.
- int get dwellPeakSec;
+@RoundedDouble2() double get avgOccupancy;/// Max occupancy observed at any sample in the window.
+ int get maxOccupancy;/// Mean dwell time in seconds across all dwell observations.
+@RoundedDouble2() double get avgDwellSec;/// Maximum observed dwell time in rounded seconds.
+ int get maxDwellSec;
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -363,16 +393,16 @@ $AreaPayloadCopyWith<AreaPayload> get copyWith => _$AreaPayloadCopyWithImpl<Area
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.id, id) || other.id == id)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancyAvg, occupancyAvg) || other.occupancyAvg == occupancyAvg)&&(identical(other.occupancyPeak, occupancyPeak) || other.occupancyPeak == occupancyPeak)&&(identical(other.dwellAvgSec, dwellAvgSec) || other.dwellAvgSec == dwellAvgSec)&&(identical(other.dwellPeakSec, dwellPeakSec) || other.dwellPeakSec == dwellPeakSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,passBy,stay,entry,exit,appear,disappear,occupancyAvg,occupancyPeak,dwellAvgSec,dwellPeakSec);
+int get hashCode => Object.hash(runtimeType,areaId,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
 
 @override
 String toString() {
-  return 'AreaPayload(id: $id, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancyAvg: $occupancyAvg, occupancyPeak: $occupancyPeak, dwellAvgSec: $dwellAvgSec, dwellPeakSec: $dwellPeakSec)';
+  return 'AreaPayload(areaId: $areaId, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
 }
 
 
@@ -383,7 +413,7 @@ abstract mixin class $AreaPayloadCopyWith<$Res>  {
   factory $AreaPayloadCopyWith(AreaPayload value, $Res Function(AreaPayload) _then) = _$AreaPayloadCopyWithImpl;
 @useResult
 $Res call({
- int id, int passBy, int stay, int entry, int exit, int appear, int disappear, double occupancyAvg, int occupancyPeak, double dwellAvgSec, int dwellPeakSec
+ int areaId, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, int maxDwellSec
 });
 
 
@@ -400,19 +430,19 @@ class _$AreaPayloadCopyWithImpl<$Res>
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancyAvg = null,Object? occupancyPeak = null,Object? dwellAvgSec = null,Object? dwellPeakSec = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
 as int,stay: null == stay ? _self.stay : stay // ignore: cast_nullable_to_non_nullable
 as int,entry: null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
 as int,exit: null == exit ? _self.exit : exit // ignore: cast_nullable_to_non_nullable
 as int,appear: null == appear ? _self.appear : appear // ignore: cast_nullable_to_non_nullable
 as int,disappear: null == disappear ? _self.disappear : disappear // ignore: cast_nullable_to_non_nullable
-as int,occupancyAvg: null == occupancyAvg ? _self.occupancyAvg : occupancyAvg // ignore: cast_nullable_to_non_nullable
-as double,occupancyPeak: null == occupancyPeak ? _self.occupancyPeak : occupancyPeak // ignore: cast_nullable_to_non_nullable
-as int,dwellAvgSec: null == dwellAvgSec ? _self.dwellAvgSec : dwellAvgSec // ignore: cast_nullable_to_non_nullable
-as double,dwellPeakSec: null == dwellPeakSec ? _self.dwellPeakSec : dwellPeakSec // ignore: cast_nullable_to_non_nullable
+as int,avgOccupancy: null == avgOccupancy ? _self.avgOccupancy : avgOccupancy // ignore: cast_nullable_to_non_nullable
+as double,maxOccupancy: null == maxOccupancy ? _self.maxOccupancy : maxOccupancy // ignore: cast_nullable_to_non_nullable
+as int,avgDwellSec: null == avgDwellSec ? _self.avgDwellSec : avgDwellSec // ignore: cast_nullable_to_non_nullable
+as double,maxDwellSec: null == maxDwellSec ? _self.maxDwellSec : maxDwellSec // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -495,10 +525,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear,  double occupancyAvg,  int occupancyPeak,  double dwellAvgSec,  int dwellPeakSec)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AreaPayload() when $default != null:
-return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancyAvg,_that.occupancyPeak,_that.dwellAvgSec,_that.dwellPeakSec);case _:
+return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
   return orElse();
 
 }
@@ -516,10 +546,10 @@ return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.ap
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear,  double occupancyAvg,  int occupancyPeak,  double dwellAvgSec,  int dwellPeakSec)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)  $default,) {final _that = this;
 switch (_that) {
 case _AreaPayload():
-return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancyAvg,_that.occupancyPeak,_that.dwellAvgSec,_that.dwellPeakSec);}
+return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -533,10 +563,10 @@ return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.ap
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear,  double occupancyAvg,  int occupancyPeak,  double dwellAvgSec,  int dwellPeakSec)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)?  $default,) {final _that = this;
 switch (_that) {
 case _AreaPayload() when $default != null:
-return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancyAvg,_that.occupancyPeak,_that.dwellAvgSec,_that.dwellPeakSec);case _:
+return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
   return null;
 
 }
@@ -548,11 +578,11 @@ return $default(_that.id,_that.passBy,_that.stay,_that.entry,_that.exit,_that.ap
 @JsonSerializable()
 
 class _AreaPayload implements AreaPayload {
-  const _AreaPayload({required this.id, this.passBy = 0, this.stay = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, this.occupancyAvg = 0, this.occupancyPeak = 0, this.dwellAvgSec = 0, this.dwellPeakSec = 0});
+  const _AreaPayload({required this.areaId, this.passBy = 0, this.stay = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, @RoundedDouble2() this.avgOccupancy = 0, this.maxOccupancy = 0, @RoundedDouble2() this.avgDwellSec = 0, this.maxDwellSec = 0});
   factory _AreaPayload.fromJson(Map<String, dynamic> json) => _$AreaPayloadFromJson(json);
 
 /// Index matching the configured interest-area ID.
-@override final  int id;
+@override final  int areaId;
 /// Objects detected moving past the area without entering it.
 @override@JsonKey() final  int passBy;
 /// Objects that stayed within the area.
@@ -569,13 +599,13 @@ class _AreaPayload implements AreaPayload {
 ///
 /// This is a simple arithmetic mean (sum of sampled occupancies / number of
 /// samples), with no time-weighting.
-@override@JsonKey() final  double occupancyAvg;
-/// Peak occupancy observed at any sample in the window.
-@override@JsonKey() final  int occupancyPeak;
+@override@JsonKey()@RoundedDouble2() final  double avgOccupancy;
+/// Max occupancy observed at any sample in the window.
+@override@JsonKey() final  int maxOccupancy;
 /// Mean dwell time in seconds across all dwell observations.
-@override@JsonKey() final  double dwellAvgSec;
-/// Peak dwell time in rounded seconds.
-@override@JsonKey() final  int dwellPeakSec;
+@override@JsonKey()@RoundedDouble2() final  double avgDwellSec;
+/// Maximum observed dwell time in rounded seconds.
+@override@JsonKey() final  int maxDwellSec;
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
@@ -590,16 +620,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.id, id) || other.id == id)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancyAvg, occupancyAvg) || other.occupancyAvg == occupancyAvg)&&(identical(other.occupancyPeak, occupancyPeak) || other.occupancyPeak == occupancyPeak)&&(identical(other.dwellAvgSec, dwellAvgSec) || other.dwellAvgSec == dwellAvgSec)&&(identical(other.dwellPeakSec, dwellPeakSec) || other.dwellPeakSec == dwellPeakSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,passBy,stay,entry,exit,appear,disappear,occupancyAvg,occupancyPeak,dwellAvgSec,dwellPeakSec);
+int get hashCode => Object.hash(runtimeType,areaId,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
 
 @override
 String toString() {
-  return 'AreaPayload(id: $id, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancyAvg: $occupancyAvg, occupancyPeak: $occupancyPeak, dwellAvgSec: $dwellAvgSec, dwellPeakSec: $dwellPeakSec)';
+  return 'AreaPayload(areaId: $areaId, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
 }
 
 
@@ -610,7 +640,7 @@ abstract mixin class _$AreaPayloadCopyWith<$Res> implements $AreaPayloadCopyWith
   factory _$AreaPayloadCopyWith(_AreaPayload value, $Res Function(_AreaPayload) _then) = __$AreaPayloadCopyWithImpl;
 @override @useResult
 $Res call({
- int id, int passBy, int stay, int entry, int exit, int appear, int disappear, double occupancyAvg, int occupancyPeak, double dwellAvgSec, int dwellPeakSec
+ int areaId, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, int maxDwellSec
 });
 
 
@@ -627,19 +657,19 @@ class __$AreaPayloadCopyWithImpl<$Res>
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancyAvg = null,Object? occupancyPeak = null,Object? dwellAvgSec = null,Object? dwellPeakSec = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? areaId = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
   return _then(_AreaPayload(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
 as int,stay: null == stay ? _self.stay : stay // ignore: cast_nullable_to_non_nullable
 as int,entry: null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
 as int,exit: null == exit ? _self.exit : exit // ignore: cast_nullable_to_non_nullable
 as int,appear: null == appear ? _self.appear : appear // ignore: cast_nullable_to_non_nullable
 as int,disappear: null == disappear ? _self.disappear : disappear // ignore: cast_nullable_to_non_nullable
-as int,occupancyAvg: null == occupancyAvg ? _self.occupancyAvg : occupancyAvg // ignore: cast_nullable_to_non_nullable
-as double,occupancyPeak: null == occupancyPeak ? _self.occupancyPeak : occupancyPeak // ignore: cast_nullable_to_non_nullable
-as int,dwellAvgSec: null == dwellAvgSec ? _self.dwellAvgSec : dwellAvgSec // ignore: cast_nullable_to_non_nullable
-as double,dwellPeakSec: null == dwellPeakSec ? _self.dwellPeakSec : dwellPeakSec // ignore: cast_nullable_to_non_nullable
+as int,avgOccupancy: null == avgOccupancy ? _self.avgOccupancy : avgOccupancy // ignore: cast_nullable_to_non_nullable
+as double,maxOccupancy: null == maxOccupancy ? _self.maxOccupancy : maxOccupancy // ignore: cast_nullable_to_non_nullable
+as int,avgDwellSec: null == avgDwellSec ? _self.avgDwellSec : avgDwellSec // ignore: cast_nullable_to_non_nullable
+as double,maxDwellSec: null == maxDwellSec ? _self.maxDwellSec : maxDwellSec // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

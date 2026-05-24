@@ -145,6 +145,10 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
     final payloadsAsync = ref.watch(recentPayloadsProvider);
     final dateGroups = payloadsAsync.maybeWhen(
       data: core_domain.groupByDeliveryDate,
@@ -156,12 +160,14 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
     final selectedGroupCount = _selectionCount(dateGroups);
 
     return feature_pip.PipScaffold(
-      action: feature_pip.PipActionButton(
-        label: 'Resend',
-        onPressed: (_isResending || dateGroups.isEmpty || selectedGroupCount == 0)
-            ? null
-            : () => _resendSelection(dateGroups),
-      ),
+      action: appState.isLocalDeviceOnly
+          ? null
+          : feature_pip.PipActionButton(
+              label: 'Resend',
+              onPressed: (_isResending || dateGroups.isEmpty || selectedGroupCount == 0)
+                  ? null
+                  : () => _resendSelection(dateGroups),
+            ),
       builder: (scrollController) => payloadsAsync.when(
         loading: () => const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white)),
         error: (error, stackTrace) => Center(

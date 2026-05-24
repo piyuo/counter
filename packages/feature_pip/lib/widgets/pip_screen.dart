@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../providers/pip_notifier.dart';
@@ -25,11 +26,19 @@ const double _slidingPanelMinHeight = 128;
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 100);
 
-double _kSlidingPanelWidth = 400;
+double _kSlidingPanelWidth = 420;
+
+double _kSidebarPanelWidth = 460;
 
 /// Picture in Picture screen
 class PipScreen extends ConsumerWidget {
-  const PipScreen({required this.builder, required this.slidingBuilder, required this.isLockToPortrait, super.key});
+  const PipScreen({
+    required this.builder,
+    required this.slidingBuilder,
+    required this.isLockToPortrait,
+    this.deviceOrientation,
+    super.key,
+  });
 
   /// the main screen builder
   final Widget Function(bool isSideLayout) builder;
@@ -39,6 +48,8 @@ class PipScreen extends ConsumerWidget {
 
   /// is the device orientation locked to portrait
   final bool isLockToPortrait;
+
+  final DeviceOrientation? deviceOrientation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,7 +65,7 @@ class PipScreen extends ConsumerWidget {
             return AnimatedPositioned(
               duration: _animationDuration,
               left: 0,
-              width: _kSlidingPanelWidth,
+              width: _kSidebarPanelWidth,
               top: 0,
               bottom: 0,
               child: Container(
@@ -121,7 +132,7 @@ class PipScreen extends ConsumerWidget {
           // screen is not big, use sliding
           buildSlidingLayout() {
             // 28 is height for close/minimize button bar, 10 is padding
-            const top = 38.0;
+            final top = (isLockedOpen && constraints.maxWidth < _slidingLayoutWidthThreshold) ? 0 : 38.0;
             return constraints.maxWidth > _slidingLayoutWidthThreshold
                 // fixed width
                 ? AnimatedPositioned(
@@ -237,42 +248,27 @@ class PipScreen extends ConsumerWidget {
                     return buildSidebarLayout();
                   }
 
-                  if (isLockToPortrait) {
-                    switch (orientation) {
+                  if (isLockToPortrait || isLockedOpen) {
+                    return buildSlidingLayout();
+
+                    /*switch (orientation) {
                       case Orientation.portrait:
-                        return buildSliding0();
+                        return buildSlidingLayout();
                       case Orientation.landscape:
                         // for locked portrait, we treat landscape as 90 degree rotation, so we show the sliding panel in landscape right position
                         return buildSliding90();
-                    }
+                    }*/
+                  }
+
+                  if (deviceOrientation == DeviceOrientation.landscapeLeft) {
+                    return buildSliding270();
+                  } else if (deviceOrientation == DeviceOrientation.landscapeRight) {
+                    return buildSliding90();
                   }
 
                   return buildSlidingLayout();
                 },
               ),
-              /*Consumer<vision.OrientationProvider>(builder: (context, orientationProvider, child) {
-                  // screen is big enough, use sidebar layout
-                  if (pipProvider.isSidebarLayout) {
-                    return buildSidebarLayout();
-                  }
-
-                  // mobile device in locked portrait mode
-                  if (isLockToPortrait) {
-                    switch (orientationProvider.orientation) {
-                      case DeviceOrientation.portraitUp:
-                        return buildSliding0();
-                      case DeviceOrientation.landscapeRight:
-                        return buildSliding90();
-                      case DeviceOrientation.landscapeLeft:
-                        return buildSliding270();
-                      default:
-                        return buildSliding0();
-                    }
-                  }
-
-                  // any other cases, use sliding layout
-                  return buildSlidingLayout();
-                })*/
             ],
           );
         },

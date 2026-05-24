@@ -2,6 +2,15 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'invitation_code_notifier.g.dart';
 
+abstract class InvitationCodeController {
+  /// Stores [code] extracted by [AppLinkService] from an incoming deep link.
+  /// Replaces any previously stored code.
+  void setCode(String code);
+
+  /// Clears the stored code after it has been consumed by the onboarding flow.
+  void clear();
+}
+
 /// Temporarily holds an invitation code extracted from a deep link.
 ///
 /// ## Flow
@@ -16,16 +25,18 @@ part 'invitation_code_notifier.g.dart';
 ///
 /// [keepAlive: true] ensures the code survives navigation and is not discarded
 /// when there are temporarily no listeners (e.g. between route transitions).
-@Riverpod(keepAlive: true)
-class InvitationCodeNotifier extends _$InvitationCodeNotifier {
+@Riverpod(keepAlive: true) // do not autoDispose , there are services that depend on, e.g. NativeAppLinkService
+class InvitationCodeNotifier extends _$InvitationCodeNotifier implements InvitationCodeController {
   /// Initial state is null — no invitation code has been received yet.
   @override
   String? build() => null;
 
   /// Stores [code] extracted by [AppLinkService] from an incoming deep link.
   /// Replaces any previously stored code.
+  @override
   void setCode(String code) => state = code;
 
   /// Clears the stored code after it has been consumed by the onboarding flow.
+  @override
   void clear() => state = null;
 }

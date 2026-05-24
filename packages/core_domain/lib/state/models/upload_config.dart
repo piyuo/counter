@@ -27,19 +27,6 @@ abstract class UploadConfig with _$UploadConfig {
     /// - 60: 01:00, 02:00, 03:00...
     /// - 5: 01:00, 01:05, 01:10...
     @JsonKey(name: 'intervalMin') @Default(60) int wallClockCadenceMin,
-
-    /// Maximum records bundled into a single upload request.
-    /// 1008 ≈ 3.5 days per batch — since we only keep 7 days of data, so two batches would cover the retention period.
-    @Default(1008) int maxBatchSize,
-
-    /// Prune queued payloads older than this many days.
-    @Default(7) int payloadRetentionDays,
-
-    /// Prune upload-attempt logs older than this many days.
-    @JsonKey(name: 'deliveryLogRetentionDays') @Default(7) int uploadLogRetentionDays,
-
-    /// HTTP connection + response timeout per upload request, in seconds.
-    @Default(30) int timeoutSec,
   }) = _UploadConfig;
 
   factory UploadConfig.fromJson(Map<String, dynamic> json) => _$UploadConfigFromJson(json);

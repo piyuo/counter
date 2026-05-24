@@ -21,12 +21,12 @@ class HttpTelemetryTransport implements core_domain.TelemetryTransport {
   @override
   Future<core_domain.TelemetryResponse> send({
     required String url,
-    required String? bearerToken,
+    required String bearerToken,
     required List<int> body,
     required String contentType,
   }) async {
     final headers = <String, String>{'Content-Type': contentType};
-    if (bearerToken != null && bearerToken.isNotEmpty) {
+    if (bearerToken.isNotEmpty) {
       headers['Authorization'] = 'Bearer $bearerToken';
     }
 

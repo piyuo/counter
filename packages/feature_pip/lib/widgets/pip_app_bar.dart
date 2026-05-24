@@ -18,6 +18,7 @@ class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.automaticallyImplyLeading = true,
     this.actions,
     this.onSearch,
+    this.backgroundColor,
     this.preferredSize = const Size.fromHeight(68),
   });
 
@@ -39,6 +40,8 @@ class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// When non-null, a search [GlassButton] is appended before [actions].
   final VoidCallback? onSearch;
 
+  final Color? backgroundColor;
+
   @override
   final Size preferredSize;
 
@@ -58,13 +61,14 @@ class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     final List<Widget> effectiveActions = [
       if (onSearch != null) GlassButton(width: 44, height: 44, onTap: onSearch!, icon: Icon(Icons.search)),
-      if (actions != null) ...actions!,
+      ...?actions,
     ];
 
     return _AppBar(
       preferredSize: preferredSize,
       title: title,
       leading: effectiveLeading,
+      backgroundColor: backgroundColor,
       actions: effectiveActions.isEmpty ? null : effectiveActions,
     );
   }
@@ -72,7 +76,13 @@ class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
 
 class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Creates a glass app bar.
-  const _AppBar({this.title, this.leading, this.actions, this.preferredSize = const Size.fromHeight(44.0)});
+  const _AppBar({
+    this.title,
+    this.leading,
+    this.actions,
+    this.backgroundColor,
+    this.preferredSize = const Size.fromHeight(44.0),
+  });
 
   // ===========================================================================
   // Content Properties
@@ -93,9 +103,7 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Typically [GlassButton] widgets for actions like search, share, etc.
   final List<Widget>? actions;
 
-  // ===========================================================================
-  // Style Properties
-  // ===========================================================================
+  final Color? backgroundColor;
 
   /// The height of the app bar.
   ///
@@ -116,7 +124,8 @@ class _AppBar extends StatelessWidget implements PreferredSizeWidget {
 
     // Build the app bar content
     final appBarContent = SafeArea(
-      child: SizedBox(
+      child: Container(
+        color: backgroundColor,
         height: preferredSize.height,
         child: Stack(
           alignment: Alignment.center,

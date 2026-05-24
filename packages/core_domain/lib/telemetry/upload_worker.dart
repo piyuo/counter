@@ -7,15 +7,15 @@
 
 import 'dart:math' as math;
 
+import 'package:core_domain/core_domain.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
-import 'models/telemetry_payload.dart';
-import 'models/upload_log.dart';
-import 'models/upload_session.dart';
-import 'response_worker.dart';
-import 'services/payload_queue_repository.dart';
-import 'services/payload_serializer.dart';
-import 'services/telemetry_transport.dart';
+/// Prune queued payloads older than this many days.
+const int kPayloadRetentionDays = 7;
+
+/// Maximum records bundled into a single upload request.
+/// 1008 ≈ 3.5 days per batch — since we only keep 7 days of data, so two batches would cover the retention period.
+const int kMaxBatchSize = 1008;
 
 /// Drains the persistent queue by sending batches to the backend.
 ///
@@ -62,40 +62,55 @@ class UploadWorker {
   /// Last human-readable upload error message.
   String? lastError;
 
+  /// Groups [items] by businessDate, preserving oldest-first order within each group.
+  /// Returns an ordered list of groups so earlier dates are uploaded first.
+  List<List<QueuedPayload>> _splitByBusinessDate(List<QueuedPayload> items) {
+    final Map<String, List<QueuedPayload>> grouped = {};
+    for (final item in items) {
+      final date = item.payload.businessDate;
+      (grouped[date] ??= []).add(item);
+    }
+    // Preserve chronological order of dates.
+    return grouped.values.toList();
+  }
+
   /// Drains the queue in batches until empty or until a transport error occurs.
   ///
   /// Returns `true` when the run completes without upload issues.
   ///
   /// Returns `false` when no backend is configured or when any batch fails.
   Future<bool> run() async {
+    // Prune stale items first so they don't count against the batch limit.
+    final nowUtc = DateTime.now().toUtc();
+    await queue.pruneExpired(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
+    await queue.pruneUploadLogs(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
+
+    // check for a configured backend; if none, return early (no-op).
     final session = await _sessionResolver();
     if (session == null) {
       isLastUploadSuccess = false;
-      lastError = 'session_unavailable';
+      lastError = 'Local only mode: no telemetry backend is configured.';
+      appkit.logWarning('[UploadWorker] no backend configured, skipping upload');
       return false;
     }
-    final config = session.config;
-    final nowUtc = DateTime.now().toUtc();
-
-    // Prune stale items first so they don't count against the batch limit.
-    await queue.pruneExpired(nowUtc.subtract(Duration(days: config.payloadRetentionDays)));
-    await queue.pruneUploadLogs(nowUtc.subtract(Duration(days: config.uploadLogRetentionDays)));
 
     while (true) {
-      final batch = await queue.fetchReady(limit: config.maxBatchSize);
+      final batch = await queue.fetchReady(limit: kMaxBatchSize);
       if (batch.isEmpty) break;
 
-      final uploaded = await _deliverBatch(
-        session: session,
-        payloads: batch.map((p) => p.payload).toList(growable: false),
-        onSuccess: () async {
-          // Mark all payloads as uploaded in a single batch operation.
-          await queue.markUploadedBatch(batch.map((item) => item.id).toList(growable: false));
-        },
-      );
-      if (!uploaded) return false;
+      // Split by businessDate — server requires all payloads in a batch share the same date.
+      final dateGroups = _splitByBusinessDate(batch);
+      for (final group in dateGroups) {
+        final uploaded = await _deliverBatch(
+          session: session,
+          payloads: group.map((p) => p.payload).toList(growable: false),
+          onSuccess: () async {
+            await queue.markUploadedBatch(group.map((item) => item.id).toList(growable: false));
+          },
+        );
+        if (!uploaded) return false;
+      }
     }
-
     return true;
   }
 
@@ -115,7 +130,7 @@ class UploadWorker {
       return false;
     }
 
-    final batchSize = session.config.maxBatchSize <= 0 ? payloads.length : session.config.maxBatchSize;
+    final batchSize = kMaxBatchSize <= 0 ? payloads.length : kMaxBatchSize;
     var cursor = 0;
     while (cursor < payloads.length) {
       final end = math.min(cursor + batchSize, payloads.length);
@@ -133,16 +148,23 @@ class UploadWorker {
     required List<TelemetryPayload> payloads,
     Future<void> Function()? onSuccess,
   }) async {
+    final url = getUrlFromDataServer(session.dataServer);
+    if (url == null) {
+      appkit.logError('[UploadWorker] no URL for data server ${session.dataServer}');
+      return false;
+    }
     int sizeKb = 0;
     try {
       final body = serializer.serialize(
         payloads,
         schemaVersion: TelemetryPayload.schemaVersion,
         deviceId: session.deviceId,
+        projectId: getProjectIdFromDataServer(session.dataServer),
+        assignId: getAssignedIdFromDataServer(session.dataServer),
       );
       sizeKb = (body.length / 1024).round();
       final response = await transport.send(
-        url: session.dataServer.url,
+        url: url,
         bearerToken: session.bearerToken,
         body: body,
         contentType: serializer.contentType,

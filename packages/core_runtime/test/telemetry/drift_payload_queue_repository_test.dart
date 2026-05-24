@@ -14,6 +14,7 @@
 import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:core_runtime/telemetry/drift_payload_queue_repository.dart';
 import 'package:core_runtime/telemetry/telemetry_database.dart';
 import 'package:drift/drift.dart' hide isNull, isNotNull;
@@ -23,20 +24,22 @@ import 'package:flutter_test/flutter_test.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
-core_domain.TelemetryPayload _payload(String id, {DateTime? startUtc, DateTime? endUtc}) {
+core_domain.TelemetryPayload _payload(String id, {DateTime? startUtc}) {
   final resolvedStartUtc = startUtc ?? DateTime.utc(2026, 1, 1);
-  final resolvedEndUtc = endUtc ?? DateTime.utc(2026, 1, 1, 1);
+  final startBusiness = resolvedStartUtc.toLocal();
+  final businessDate =
+      '${startBusiness.year.toString().padLeft(4, '0')}-${startBusiness.month.toString().padLeft(2, '0')}-${startBusiness.day.toString().padLeft(2, '0')}';
   return core_domain.TelemetryPayload(
-    id: id,
     startUtc: resolvedStartUtc,
-    endUtc: resolvedEndUtc,
-    sessionId: 'session-1',
-    windowIndex: 1,
+    startBusiness: startBusiness,
+    businessDate: businessDate,
+    session: 'session-1',
+    sequence: 1,
     frameCount: 0,
-    missingDurationMs: 0,
+    missingSec: 0,
     confidence: 0.0,
     isPartial: false,
-    coverageRatio: 1.0,
+    coverage: 1.0,
     fps: 0.0,
     areas: const [],
   );
@@ -83,7 +86,7 @@ void main() {
       final original = _payload('p1');
       await repo.enqueue(original);
       final row = (await repo.fetchReady()).first;
-      expect(row.payload.id, original.id);
+      expect(getPayloadId(row.payload), getPayloadId(original));
     });
 
     test('enqueue is idempotent when payloadId already exists', () async {

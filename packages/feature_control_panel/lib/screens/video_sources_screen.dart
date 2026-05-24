@@ -3,19 +3,16 @@
 // - active selection: highlights and updates the current AppState video source
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:core_runtime/core_runtime.dart' as core_runtime;
+import 'package:feature_control_panel/utils/video_source_name.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:path/path.dart' as path;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/video_file_importer.dart';
-
-final _availableCamerasProvider = FutureProvider.autoDispose<List<core_domain.AvailableCamera>>((ref) async {
-  final hardwareCapabilityService = ref.watch(core_domain.hardwareCapabilityServiceProvider);
-  return hardwareCapabilityService.listAvailableCameras();
-});
 
 const _tileHorizontalPadding = 12.0;
 const _tileVerticalPadding = 14.0;
@@ -33,8 +30,15 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
   @override
   Widget build(BuildContext context) {
     final appState = ref.watch(core_domain.appProvider).asData?.value;
-    final selectedVideoSource = appState?.videoSource;
-    final availableCameras = ref.watch(_availableCamerasProvider);
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
+    final selectedVideoSource = appState.videoSource;
+    final cameraDeviceState = ref.watch(vision.cameraDeviceProvider);
+    final availableCameras = cameraDeviceState.asData?.value.availableCameras ?? [];
+    final availableVideoSources = <core_domain.VideoSource>[
+      for (var i = 0; i < availableCameras.length; i++) core_runtime.cameraDeviceToVideoSource(availableCameras[i], i),
+    ];
 
     return feature_pip.PipScaffold(
       builder: (scrollController) {
@@ -45,57 +49,42 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
             children: [
               feature_pip.PipHeader(
                 icon: Icons.video_camera_back,
-                title: 'Video Sources',
-                subtitle: context.l.video_screen_desc,
+                title: context.l.video_sources_screen_title,
+                subtitle: context.l.video_sources_screen_body,
               ),
               feature_pip.PipPanel(
-                child: availableCameras.when(
-                  loading: () => const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                  error: (error, stackTrace) => Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Text(
-                      'Failed to load video sources.',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.redAccent),
-                    ),
-                  ),
-                  data: (cameras) {
-                    return Column(
-                      children: [
-                        for (final camera in cameras)
-                          _SourceOptionTile(
-                            leading: _selectionIndicator(context, _isSelected(camera.videoSource, selectedVideoSource)),
-                            title: camera.displayName,
-                            titleIcon: _iconForVideoSource(camera.videoSource),
-                            subtitle: _labelForVideoSource(context, camera.videoSource),
-                            isSelected: _isSelected(camera.videoSource, selectedVideoSource),
-                            onTap: () async {
-                              await ref.read(core_domain.appProvider.notifier).setVideoSource(camera.videoSource);
-                            },
-                          ),
-                        if (cameras.isEmpty)
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Text(
-                                  context.l.video_sources_camera_not_found_title,
-                                  style: Theme.of(context).textTheme.titleMedium,
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  context.l.video_sources_camera_not_found_message,
-                                  textAlign: TextAlign.center,
-                                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
-                                ),
-                              ],
+                child: Column(
+                  children: [
+                    for (final videoSource in availableVideoSources)
+                      _SourceOptionTile(
+                        leading: _selectionIndicator(context, _isSelected(videoSource, selectedVideoSource)),
+                        title: buildVideoSourceName(context, videoSource),
+                        titleIcon: _iconForVideoSource(videoSource),
+                        subtitle: _labelForVideoSource(context, videoSource),
+                        isSelected: _isSelected(videoSource, selectedVideoSource),
+                        onTap: () async {
+                          await ref.read(core_domain.appProvider.notifier).setVideoSource(videoSource);
+                        },
+                      ),
+                    if (availableVideoSources.isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Text(
+                              context.l.video_sources_camera_not_found_title,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
-                          ),
-                      ],
-                    );
-                  },
+                            const SizedBox(height: 8),
+                            Text(
+                              context.l.video_sources_camera_not_found_message,
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),
@@ -104,7 +93,6 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
                   leading: _selectionIndicator(context, selectedVideoSource is core_domain.LiveVideoSource),
                   title: context.l.url_screen_title,
                   titleIcon: Icons.cloud_outlined,
-                  subtitle: _liveSourceSubtitle(context, selectedVideoSource),
                   isSelected: selectedVideoSource is core_domain.LiveVideoSource,
                   trailing: const Icon(Icons.arrow_forward_ios, size: 18),
                   onTap: () {
@@ -116,9 +104,8 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
               feature_pip.PipPanel(
                 child: _SourceOptionTile(
                   leading: _selectionIndicator(context, selectedVideoSource is core_domain.FileVideoSource),
-                  title: 'From File...',
+                  title: context.l.video_sources_file,
                   titleIcon: Icons.folder_open,
-                  subtitle: _fileSourceSubtitle(context, selectedVideoSource),
                   isSelected: selectedVideoSource is core_domain.FileVideoSource,
                   trailing: _isImportingVideoFile
                       ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2.5))
@@ -180,7 +167,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       }
     } catch (error) {
       if (context.mounted) {
-        await showMessageDialog('Failed to import video file.');
+        await showMessageDialog(context.l.video_sources_import_error);
       }
     } finally {
       if (mounted) {
@@ -207,21 +194,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       core_domain.WebcamVideoSource() => context.l.video_sources_webcam,
       core_domain.FileVideoSource() => context.l.video_sources_file,
       core_domain.LiveVideoSource() => context.l.video_sources_live_stream,
-      _ => 'Video Source',
-    };
-  }
-
-  String _fileSourceSubtitle(BuildContext context, core_domain.VideoSource? selectedVideoSource) {
-    return switch (selectedVideoSource) {
-      core_domain.FileVideoSource(path: final pathValue) => path.basename(pathValue),
-      _ => 'Pick a video from your device',
-    };
-  }
-
-  String _liveSourceSubtitle(BuildContext context, core_domain.VideoSource? selectedVideoSource) {
-    return switch (selectedVideoSource) {
-      core_domain.LiveVideoSource(:final url) => url,
-      _ => context.l.url_screen_desc,
+      _ => context.l.video_sources_screen_title,
     };
   }
 }
@@ -231,7 +204,7 @@ class _SourceOptionTile extends StatelessWidget {
     required this.leading,
     required this.title,
     required this.titleIcon,
-    required this.subtitle,
+    this.subtitle,
     required this.isSelected,
     this.trailing,
     this.onTap,
@@ -240,7 +213,7 @@ class _SourceOptionTile extends StatelessWidget {
   final Widget? leading;
   final String title;
   final IconData titleIcon;
-  final String subtitle;
+  final String? subtitle;
   final bool isSelected;
   final Widget? trailing;
   final VoidCallback? onTap;
@@ -275,7 +248,8 @@ class _SourceOptionTile extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: subtitleStyle),
+                  if (subtitle != null)
+                    Text(subtitle!, maxLines: 2, overflow: TextOverflow.ellipsis, style: subtitleStyle),
                 ],
               ),
             ),

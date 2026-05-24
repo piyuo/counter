@@ -54,11 +54,6 @@ abstract class DetectionParams with _$DetectionParams {
     /// distance and masks appearance matching for it as well.
     @Default(0.5) double appearanceThresh,
 
-    /// Expected input video frame rate. This controls Kalman filter timing and
-    /// also rescales [trackBuffer] into the effective lost-track timeout.
-    /// VisionSession may overwrite this later from stream startup metadata.
-    @Default(30) int frameRate,
-
     /// Blend factor used in the ReID-enabled motion-fusion step:
     /// `fusedCost = lambda * appearanceCost + (1 - lambda) * motionDistance`.
     /// Values closer to `1` keep appearance cost dominant; lower values
@@ -82,18 +77,10 @@ abstract class DetectionParams with _$DetectionParams {
     /// before assigning a user-visible `trackletId`.
     @Default(1.2) double trackletMinPresenceTimeSec,
 
-    /// Fraction of the smaller image dimension treated as the edge zone when
-    /// deciding whether a track is too close to the frame boundary to receive a
-    /// `trackletId`. For example, `0.05` means 5% on each side. Values less
-    /// than or equal to zero fall back to the built-in native default `0.05`.
-    @Default(0.05) double trackletEdgeZoneRatio,
-
-    /// Minimum edge-zone size, in pixels. The final edge margin used by native
-    /// tracklet filtering is
-    /// `max(trackletEdgeZoneRatio * min(width, height), trackletEdgeZoneMinPx)`.
-    /// Values less than or equal to zero fall back to the built-in native
-    /// default `32`.
-    @Default(32) int trackletEdgeZoneMinPx,
+    // Edge margin, in pixels. Objects detected within this distance from
+    // the frame boundary are not considered valid until they move away from
+    // the edge.
+    @Default(32) int trackletEdgeMargin,
 
     /// After the normal minimum-presence-time gate has been satisfied, allow
     /// `trackletId` assignment even if the track center is still inside the

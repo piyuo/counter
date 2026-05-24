@@ -23,25 +23,25 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Text(
-                'Failed to load detection type settings.',
+                context.l.detection_type_screen_load_error,
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
             ),
           ),
           data: (appState) {
-            final currentDetection = appState.detection;
+            final currentDetection = appState.detectionType;
             final options = <_DetectionTypeOption>[
               _DetectionTypeOption(
-                title: 'Pedestrian',
-                subtitle: 'Detect people and foot traffic.',
+                title: context.l.detection_type_screen_pedestrian_title,
+                subtitle: context.l.detection_type_screen_pedestrian_body,
                 icon: Icons.directions_walk,
                 matches: (detection) => detection is core_domain.DetectionHuman,
                 detection: const core_domain.DetectionType.human(),
               ),
               _DetectionTypeOption(
-                title: 'Vehicle',
-                subtitle: 'Detect cars and moving vehicles.',
+                title: context.l.detection_type_screen_vehicle_title,
+                subtitle: context.l.detection_type_screen_vehicle_body,
                 icon: Icons.directions_car,
                 matches: (detection) => detection is core_domain.DetectionVehicle,
                 detection: const core_domain.DetectionType.vehicle(),
@@ -55,8 +55,8 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
                 children: [
                   feature_pip.PipHeader(
                     icon: Icons.gps_fixed,
-                    title: context.l.detection_screen_title,
-                    subtitle: 'Choose the detection target you want to',
+                    title: context.l.detection_type_screen_title,
+                    subtitle: context.l.detection_type_screen_body,
                   ),
                   feature_pip.PipPanel(
                     child: Column(

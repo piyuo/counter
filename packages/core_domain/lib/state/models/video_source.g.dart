@@ -17,12 +17,14 @@ Map<String, dynamic> _$UnspecifiedVideoSourceToJson(
 CameraVideoSource _$CameraVideoSourceFromJson(Map<String, dynamic> json) =>
     CameraVideoSource(
       cameraIndex: (json['cameraIndex'] as num).toInt(),
+      isFaceFront: json['isFaceFront'] as bool,
       $type: json['runtimeType'] as String?,
     );
 
 Map<String, dynamic> _$CameraVideoSourceToJson(CameraVideoSource instance) =>
     <String, dynamic>{
       'cameraIndex': instance.cameraIndex,
+      'isFaceFront': instance.isFaceFront,
       'runtimeType': instance.$type,
     };
 

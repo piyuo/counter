@@ -5,6 +5,7 @@
 //  - WindowResultMapper — map: propagates deviceId
 //  - WindowResultMapper — map: handles empty areas map
 
+import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:core_runtime/telemetry/window_result_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
@@ -15,9 +16,9 @@ import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 vision.WindowCountState _result({Map<int, vision.AreaMetrics>? areas}) => vision.WindowCountState(
   startUtc: DateTime.utc(2026, 3, 1, 10, 0),
-  endUtc: DateTime.utc(2026, 3, 1, 11, 0),
-  sessionId: 'session-1',
-  windowIndex: 1,
+  startBusiness: DateTime(2026, 3, 1, 10, 0),
+  session: 'session-1',
+  sequence: 1,
   frameCount: 7200,
   confidence: 87.5,
   areas:
@@ -27,10 +28,10 @@ vision.WindowCountState _result({Map<int, vision.AreaMetrics>? areas}) => vision
           passBy: 5,
           entry: 3,
           exit: 2,
-          occupancyAvg: 1.5,
-          occupancyPeak: 4,
-          dwellAvgSec: 45.0,
-          dwellPeakSec: 200,
+          avgOccupancy: 1.5,
+          maxOccupancy: 4,
+          avgDwellSec: 45.0,
+          maxDwellSec: 200,
         ),
       },
   missingDuration: const Duration(seconds: 72),
@@ -48,20 +49,23 @@ void main() {
       final result = _result();
       final payload = mapper.map(result);
       expect(payload.startUtc, result.startUtc);
-      expect(payload.endUtc, result.endUtc);
-      expect(payload.sessionId, result.sessionId);
-      expect(payload.windowIndex, result.windowIndex);
+      expect(payload.startBusiness, result.startBusiness);
+      expect(payload.businessDate, '2026-03-01'); // Derived from startBusiness
+      expect(payload.session, result.session);
+      expect(payload.sequence, result.sequence);
       expect(payload.frameCount, result.frameCount);
-      expect(payload.missingDurationMs, result.missingDuration.inMilliseconds);
+      expect(payload.missingSec, result.missingDuration.inSeconds);
       expect(payload.confidence, closeTo(result.confidence, 0.0001));
       expect(payload.isPartial, true);
-      expect(payload.coverageRatio, closeTo(0.98, 0.0001));
-      expect(payload.fps, closeTo(result.fps, 0.0001));
+      // coverageRatio: (300s - 72s) / 300s = 0.76
+      expect(payload.coverage, closeTo(0.76, 0.0001));
+      // fps: 7200 frames / 228s = 31.58 fps
+      expect(payload.fps, closeTo(31.58, 0.01));
     });
 
     test('generates a unique payloadId on each call', () {
-      final id1 = mapper.map(_result()).id;
-      final id2 = mapper.map(_result()).id;
+      final id1 = getPayloadId(mapper.map(_result()));
+      final id2 = getPayloadId(mapper.map(_result()));
       expect(id1, isNotEmpty);
       expect(id1, isNot(equals(id2)));
     });
@@ -70,7 +74,7 @@ void main() {
       final payload = mapper.map(_result());
       expect(payload.areas.length, 1);
       final area = payload.areas.first;
-      expect(area.id, 1);
+      expect(area.areaId, 1);
       expect(area.passBy, 5);
       expect(area.entry, 3);
       expect(area.exit, 2);
@@ -79,10 +83,10 @@ void main() {
     test('maps area state metrics correctly', () {
       final payload = mapper.map(_result());
       final area = payload.areas.first;
-      expect(area.occupancyAvg, closeTo(1.5, 0.0001));
-      expect(area.occupancyPeak, 4);
-      expect(area.dwellAvgSec, closeTo(45.0, 0.0001));
-      expect(area.dwellPeakSec, 200);
+      expect(area.avgOccupancy, closeTo(1.5, 0.0001));
+      expect(area.maxOccupancy, 4);
+      expect(area.avgDwellSec, closeTo(45.0, 0.0001));
+      expect(area.maxDwellSec, 200);
     });
 
     test('handles an empty areas map', () {
@@ -97,19 +101,19 @@ void main() {
             passBy: 1,
             entry: 1,
             exit: 0,
-            occupancyAvg: 0.5,
-            occupancyPeak: 1,
-            dwellAvgSec: 10.0,
-            dwellPeakSec: 20,
+            avgOccupancy: 0.5,
+            maxOccupancy: 1,
+            avgDwellSec: 10.0,
+            maxDwellSec: 20,
           ),
           2: vision.AreaMetrics(
             passBy: 2,
             entry: 0,
             exit: 2,
-            occupancyAvg: 1.0,
-            occupancyPeak: 2,
-            dwellAvgSec: 20.0,
-            dwellPeakSec: 40,
+            avgOccupancy: 1.0,
+            maxOccupancy: 2,
+            avgDwellSec: 20.0,
+            maxDwellSec: 40,
           ),
         },
       );

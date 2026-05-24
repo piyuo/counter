@@ -29,16 +29,15 @@ import 'package:feature_control_panel/screens/detection_params_screen.dart';
 import 'package:feature_control_panel/screens/detection_type_selection_screen.dart';
 import 'package:feature_control_panel/screens/language_screen.dart';
 import 'package:feature_control_panel/screens/live_url_screen.dart';
+import 'package:feature_control_panel/screens/loading_screen.dart';
 import 'package:feature_control_panel/screens/no_camera_screen.dart';
 import 'package:feature_control_panel/screens/payload_detail_screen.dart';
 import 'package:feature_control_panel/screens/payloads_hour_screen.dart';
 import 'package:feature_control_panel/screens/payloads_recent_screen.dart';
-import 'package:feature_control_panel/screens/root_screen.dart';
-import 'package:feature_control_panel/screens/settings_piyuo_screen.dart';
+import 'package:feature_control_panel/screens/settings_personal_custom_screen.dart';
+import 'package:feature_control_panel/screens/settings_personal_piyuo_screen.dart';
 import 'package:feature_control_panel/screens/settings_screen.dart';
-import 'package:feature_control_panel/screens/settings_server_screen.dart';
 import 'package:feature_control_panel/screens/start_screen.dart';
-import 'package:feature_control_panel/screens/upload_config_screen.dart';
 import 'package:feature_control_panel/screens/upload_detail_screen.dart';
 import 'package:feature_control_panel/screens/upload_logs_screen.dart';
 import 'package:feature_control_panel/screens/video_sources_screen.dart';
@@ -47,12 +46,12 @@ import 'package:go_router/go_router.dart';
 
 part 'control_panel_route_data.g.dart';
 
-@TypedGoRoute<RootRouteData>(path: '/')
-class RootRouteData extends GoRouteData with $RootRouteData {
-  const RootRouteData();
+@TypedGoRoute<LoadingRouteData>(path: '/')
+class LoadingRouteData extends GoRouteData with $LoadingRouteData {
+  const LoadingRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const RootScreen();
+  Widget build(BuildContext context, GoRouterState state) => const LoadingScreen();
 }
 
 @TypedGoRoute<StartRouteData>(path: '/start')
@@ -84,7 +83,7 @@ class SettingsServerRouteData extends GoRouteData with $SettingsServerRouteData 
   const SettingsServerRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SettingsServerScreen();
+  Widget build(BuildContext context, GoRouterState state) => const SettingsPersonalCustomScreen();
 }
 
 @TypedGoRoute<AboutRouteData>(path: '/about')
@@ -117,14 +116,6 @@ class DetectionTypeSelectionRouteData extends GoRouteData with $DetectionTypeSel
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const DetectionTypeSelectionScreen();
-}
-
-@TypedGoRoute<DeliveryConfigRouteData>(path: '/delivery-config')
-class DeliveryConfigRouteData extends GoRouteData with $DeliveryConfigRouteData {
-  const DeliveryConfigRouteData();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const UploadConfigScreen();
 }
 
 @TypedGoRoute<UploadLogsRouteData>(path: '/upload-logs')

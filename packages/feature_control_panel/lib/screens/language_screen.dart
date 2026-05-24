@@ -2,7 +2,7 @@ import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
+import 'package:shared_l10n/shared_l10n.dart';
 
 class LanguageScreen extends ConsumerWidget {
   const LanguageScreen({this.previousPageTitle, super.key});
@@ -25,11 +25,11 @@ class LanguageScreen extends ConsumerWidget {
             feature_pip.PipHeader(
               icon: Icons.language,
               title: context.l.language_screen_language,
-              subtitle: "Select your preferred language for the app interface",
+              subtitle: context.l.language_screen_body,
             ),
             ListTile(
               title: Text(localization.language),
-              subtitle: Text('System language'),
+              subtitle: Text(context.l.language_screen_system_label),
               leading: locale == null ? Icon(Icons.check) : SizedBox.shrink(),
               onTap: () async {
                 ref.read(appkit.localeProvider.notifier).set(null);

@@ -39,9 +39,11 @@ class _AppShellState extends ConsumerState<AppShell> {
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
       final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-      ref
-          .read(feature_pip.pipProvider.notifier)
-          .slideUp(isPortrait ? feature_pip.SlidingPanelState.halfOpen : feature_pip.SlidingPanelState.open);
+      final appFlow = ref.read(core_domain.appFlowProvider);
+      final targetState = appFlow is core_domain.OnboardingBegin
+          ? feature_pip.SlidingPanelState.open
+          : (isPortrait ? feature_pip.SlidingPanelState.halfOpen : feature_pip.SlidingPanelState.open);
+      ref.read(feature_pip.pipProvider.notifier).slideUp(targetState);
     });
   }
 
@@ -55,6 +57,13 @@ class _AppShellState extends ConsumerState<AppShell> {
       //      GlobalCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ];
+
+    // When session starts running, collapse the panel to halfOpen.
+    ref.listen<core_domain.AppFlow>(core_domain.appFlowProvider, (previous, next) {
+      if (previous is core_domain.OnboardingBegin && next is core_domain.SessionRunning) {
+        ref.read(feature_pip.pipProvider.notifier).slideUp(feature_pip.SlidingPanelState.halfOpen);
+      }
+    });
 
     // Watch lifecycle so the widget tree rebuilds when state changes.
     // ignore: unused_local_variable

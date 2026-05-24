@@ -6,36 +6,37 @@ void main() {
   group('Invitation', () {
     test('constructs with required fields', () {
       const inv = core_domain.Invitation(
-        businessDataServer: core_domain.BusinessDataServer(
+        businessCustomServer: core_domain.BusinessCustomServer(
           url: 'https://example.com',
           projectName: 'project123',
           projectId: 'project123',
           assignedId: 'assign123',
+          assignedName: 'device',
         ),
         instruction: 'Test',
         bearerToken: 'token',
-        deviceName: 'device',
         detection: core_domain.DetectionType.human(),
         detectionParams: core_domain.DetectionParams(),
-        deliveryConfig: core_domain.UploadConfig(),
+        uploadConfig: core_domain.UploadConfig(),
       );
-      expect(inv.businessDataServer.url, 'https://example.com');
-      expect(inv.businessDataServer.projectId, 'project123');
+      expect(inv.businessCustomServer!.url, 'https://example.com');
+      expect(inv.businessCustomServer!.projectId, 'project123');
       expect(inv.instruction, 'Test');
       expect(inv.bearerToken, 'token');
-      expect(inv.deviceName, 'device');
-      expect(inv.businessDataServer.assignedId, 'assign123');
+      expect(inv.businessCustomServer!.assignedId, 'assign123');
+      expect(inv.businessCustomServer!.assignedName, 'device');
       expect(inv.detectionParams, isA<core_domain.DetectionParams>());
-      expect(inv.deliveryConfig, isA<core_domain.UploadConfig>());
+      expect(inv.uploadConfig, isA<core_domain.UploadConfig>());
     });
 
     test('decodes backend invitation json via Invitation.fromJson', () {
       final inv = core_domain.Invitation.fromJson({
-        'businessDataServer': {
+        'businessCustomServer': {
           'url': 'https://example.com',
           'projectName': 'project123',
           'projectId': 'project123',
           'assignedId': 'assign123',
+          'assignedName': 'device',
         },
         'instruction': 'Test',
         'bearerToken': 'token',
@@ -45,18 +46,18 @@ void main() {
         'deliveryConfig': <String, dynamic>{},
       });
 
-      expect(inv.businessDataServer.url, 'https://example.com');
-      expect(inv.businessDataServer.projectName, 'project123');
-      expect(inv.businessDataServer.assignedId, 'assign123');
+      expect(inv.businessCustomServer!.url, 'https://example.com');
+      expect(inv.businessCustomServer!.projectName, 'project123');
+      expect(inv.businessCustomServer!.assignedId, 'assign123');
       expect(inv.bearerToken, 'token');
       expect(inv.instruction, 'Test');
-      expect(inv.detectionParams.stayThresholdSeconds, 15);
-      expect(inv.detectionParams.disappearThresholdSeconds, 7);
+      expect(inv.detectionParams!.stayThresholdSeconds, 15);
+      expect(inv.detectionParams!.disappearThresholdSeconds, 7);
     });
   });
 
   group('RemoteInvitationService.isValidCode', () {
-    final service = RemoteInvitationService();
+    final service = PiyuoInvitationService();
 
     test('returns true for a valid 10-char code', () {
       expect(service.isValidCode('2345678abc'), isTrue);

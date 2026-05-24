@@ -12,33 +12,39 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
       $enumDecodeNullable(
         _$DataServerSelectionEnumMap,
         json['dataServerSelection'],
-        unknownValue: DataServerSelection.unspecified,
+        unknownValue: DataServerSelection.none,
       ) ??
-      DataServerSelection.unspecified,
-  businessDataServer: json['businessDataServer'] == null
+      DataServerSelection.none,
+  personalPiyuoServer: json['personalPiyuoServer'] == null
       ? null
-      : BusinessDataServer.fromJson(
-          json['businessDataServer'] as Map<String, dynamic>,
+      : PersonalPiyuoServer.fromJson(
+          json['personalPiyuoServer'] as Map<String, dynamic>,
         ),
-  customPersonalDataServer: json['customPersonalDataServer'] == null
+  personalCustomServer: json['personalCustomServer'] == null
       ? null
-      : PersonalDataServer.fromJson(
-          json['customPersonalDataServer'] as Map<String, dynamic>,
+      : PersonalCustomServer.fromJson(
+          json['personalCustomServer'] as Map<String, dynamic>,
         ),
-  piyuoPersonalDataServer: json['piyuoPersonalDataServer'] == null
+  businessPiyuoServer: json['businessPiyuoServer'] == null
       ? null
-      : PersonalDataServer.fromJson(
-          json['piyuoPersonalDataServer'] as Map<String, dynamic>,
+      : BusinessPiyuoServer.fromJson(
+          json['businessPiyuoServer'] as Map<String, dynamic>,
+        ),
+  businessCustomServer: json['businessCustomServer'] == null
+      ? null
+      : BusinessCustomServer.fromJson(
+          json['businessCustomServer'] as Map<String, dynamic>,
         ),
   uploadConfig: json['uploadConfig'] == null
       ? const UploadConfig()
       : UploadConfig.fromJson(json['uploadConfig'] as Map<String, dynamic>),
+  isOnboardingComplete: json['isOnboardingComplete'] as bool? ?? false,
   videoSource: json['videoSource'] == null
       ? const VideoSource.unspecified()
       : VideoSource.fromJson(json['videoSource'] as Map<String, dynamic>),
-  detection: json['detection'] == null
+  detectionType: json['detectionType'] == null
       ? const DetectionType.human()
-      : DetectionType.fromJson(json['detection'] as Map<String, dynamic>),
+      : DetectionType.fromJson(json['detectionType'] as Map<String, dynamic>),
   detectionParams: json['detectionParams'] == null
       ? const DetectionParams()
       : DetectionParams.fromJson(
@@ -51,20 +57,22 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'deviceId': instance.deviceId,
   'dataServerSelection':
       _$DataServerSelectionEnumMap[instance.dataServerSelection]!,
-  'businessDataServer': instance.businessDataServer,
-  'customPersonalDataServer': instance.customPersonalDataServer,
-  'piyuoPersonalDataServer': instance.piyuoPersonalDataServer,
+  'personalPiyuoServer': instance.personalPiyuoServer,
+  'personalCustomServer': instance.personalCustomServer,
+  'businessPiyuoServer': instance.businessPiyuoServer,
+  'businessCustomServer': instance.businessCustomServer,
   'uploadConfig': instance.uploadConfig,
+  'isOnboardingComplete': instance.isOnboardingComplete,
   'videoSource': instance.videoSource,
-  'detection': instance.detection,
+  'detectionType': instance.detectionType,
   'detectionParams': instance.detectionParams,
   'uploadJitterSec': instance.uploadJitterSec,
 };
 
 const _$DataServerSelectionEnumMap = {
-  DataServerSelection.unspecified: 'unspecified',
   DataServerSelection.none: 'none',
-  DataServerSelection.business: 'business',
-  DataServerSelection.personalCustom: 'personalCustom',
   DataServerSelection.personalPiyuo: 'personalPiyuo',
+  DataServerSelection.businessPiyuo: 'businessPiyuo',
+  DataServerSelection.personalCustom: 'personalCustom',
+  DataServerSelection.businessCustom: 'businessCustom',
 };

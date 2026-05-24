@@ -6,40 +6,69 @@ part of 'data_server.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnspecifiedDataServer _$UnspecifiedDataServerFromJson(
-  Map<String, dynamic> json,
-) => UnspecifiedDataServer($type: json['runtimeType'] as String?);
-
-Map<String, dynamic> _$UnspecifiedDataServerToJson(
-  UnspecifiedDataServer instance,
-) => <String, dynamic>{'runtimeType': instance.$type};
-
-BusinessDataServer _$BusinessDataServerFromJson(Map<String, dynamic> json) =>
-    BusinessDataServer(
+PersonalPiyuoServer _$PersonalPiyuoServerFromJson(Map<String, dynamic> json) =>
+    PersonalPiyuoServer(
       url: json['url'] as String,
-      projectName: json['projectName'] as String,
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$PersonalPiyuoServerToJson(
+  PersonalPiyuoServer instance,
+) => <String, dynamic>{'url': instance.url, 'runtimeType': instance.$type};
+
+BusinessPiyuoServer _$BusinessPiyuoServerFromJson(Map<String, dynamic> json) =>
+    BusinessPiyuoServer(
+      url: json['url'] as String,
       projectId: json['projectId'] as String,
+      projectName: json['projectName'] as String,
       assignedId: json['assignedId'] as String,
+      assignedName: json['assignedName'] as String,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$BusinessDataServerToJson(BusinessDataServer instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-      'projectName': instance.projectName,
-      'projectId': instance.projectId,
-      'assignedId': instance.assignedId,
-      'runtimeType': instance.$type,
-    };
+Map<String, dynamic> _$BusinessPiyuoServerToJson(
+  BusinessPiyuoServer instance,
+) => <String, dynamic>{
+  'url': instance.url,
+  'projectId': instance.projectId,
+  'projectName': instance.projectName,
+  'assignedId': instance.assignedId,
+  'assignedName': instance.assignedName,
+  'runtimeType': instance.$type,
+};
 
-PersonalDataServer _$PersonalDataServerFromJson(Map<String, dynamic> json) =>
-    PersonalDataServer(
-      url: json['url'] as String,
-      $type: json['runtimeType'] as String?,
-    );
+PersonalCustomServer _$PersonalCustomServerFromJson(
+  Map<String, dynamic> json,
+) => PersonalCustomServer(
+  url: json['url'] as String,
+  $type: json['runtimeType'] as String?,
+);
 
-Map<String, dynamic> _$PersonalDataServerToJson(PersonalDataServer instance) =>
-    <String, dynamic>{'url': instance.url, 'runtimeType': instance.$type};
+Map<String, dynamic> _$PersonalCustomServerToJson(
+  PersonalCustomServer instance,
+) => <String, dynamic>{'url': instance.url, 'runtimeType': instance.$type};
+
+BusinessCustomServer _$BusinessCustomServerFromJson(
+  Map<String, dynamic> json,
+) => BusinessCustomServer(
+  url: json['url'] as String,
+  projectId: json['projectId'] as String,
+  projectName: json['projectName'] as String,
+  assignedId: json['assignedId'] as String,
+  assignedName: json['assignedName'] as String,
+  $type: json['runtimeType'] as String?,
+);
+
+Map<String, dynamic> _$BusinessCustomServerToJson(
+  BusinessCustomServer instance,
+) => <String, dynamic>{
+  'url': instance.url,
+  'projectId': instance.projectId,
+  'projectName': instance.projectName,
+  'assignedId': instance.assignedId,
+  'assignedName': instance.assignedName,
+  'runtimeType': instance.$type,
+};
 
 NoDataServer _$NoDataServerFromJson(Map<String, dynamic> json) =>
     NoDataServer($type: json['runtimeType'] as String?);

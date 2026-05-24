@@ -43,7 +43,7 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
               feature_pip.PipHeader(
                 icon: Icons.cloud_outlined,
                 title: context.l.url_screen_title,
-                subtitle: context.l.url_screen_desc,
+                subtitle: context.l.url_screen_body,
               ),
               feature_pip.PipPanel(
                 child: Padding(
@@ -67,7 +67,7 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
                           }
                         },
                         decoration: InputDecoration(
-                          hintText: context.l.url_screen_url_placeholder,
+                          hintText: context.l.url_screen_url_hint,
                           filled: true,
                           fillColor: Colors.white.withValues(alpha: 0.08),
                           border: OutlineInputBorder(
@@ -86,7 +86,7 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
                       ],
                       const SizedBox(height: 14),
                       SelectableText(
-                        'Examples:\nhttps://cdn-004.whatsupcams.com/hls/hr_karlovac1.m3u8',
+                        '${context.l.live_url_screen_examples_label}:\nhttps://cdn-004.whatsupcams.com/hls/hr_karlovac1.m3u8',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
                       ),
                     ],
@@ -147,12 +147,12 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
 
   Future<String?> _validateLiveUrl(String url) async {
     if (url.isEmpty) {
-      return 'URL is empty.';
+      return context.l.live_url_screen_url_empty_error;
     }
 
     final parsedUri = Uri.tryParse(url);
     if (parsedUri == null || parsedUri.scheme.isEmpty) {
-      return 'Enter a valid URL.';
+      return context.l.live_url_screen_invalid_url_error;
     }
 
     switch (parsedUri.scheme.toLowerCase()) {
@@ -162,11 +162,11 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
       case 'rtsp':
       case 'rtsps':
         if (parsedUri.host.isEmpty) {
-          return 'Enter a valid RTSP URL.';
+          return context.l.live_url_screen_invalid_rtsp_error;
         }
         return null;
       default:
-        return 'Only http, https, rtsp, and rtsps URLs are supported.';
+        return context.l.live_url_screen_unsupported_scheme_error;
     }
   }
 }

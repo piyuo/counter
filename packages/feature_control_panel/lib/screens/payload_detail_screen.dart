@@ -25,53 +25,60 @@ class PayloadDetailScreen extends ConsumerStatefulWidget {
 class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
   bool _isResending = false;
 
-  String _payloadDeliveryStatusDescription(core_domain.QueuedPayload payload, DateFormat timeFmt) {
-    if (payload.isUploaded) {
-      return 'Delivered on ${timeFmt.format(payload.uploadedAtUtc!.toLocal())}';
+  String _payloadDeliveryStatusDescription(core_domain.QueuedPayload queued, DateFormat timeFmt) {
+    if (queued.isUploaded) {
+      return 'Delivered on ${timeFmt.format(queued.uploadedAtUtc!.toLocal())}';
     }
     final nowUtc = DateTime.now().toUtc();
-    if (payload.payload.endUtc.isAfter(nowUtc)) {
-      return 'Pending to ${timeFmt.format(payload.payload.endUtc.toLocal())}';
+    final payloadEndUtc = core_domain.getPayloadEndUtc(queued.payload);
+    if (payloadEndUtc.isAfter(nowUtc)) {
+      return 'Pending to ${timeFmt.format(payloadEndUtc.toLocal())}';
     }
-    return 'Failed on ${timeFmt.format(payload.payload.endUtc.toLocal())}';
+    return 'Failed on ${timeFmt.format(payloadEndUtc.toLocal())}';
   }
 
   @override
   Widget build(BuildContext context) {
     final payloadsAsync = ref.watch(recentPayloadsProvider);
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
 
     return feature_pip.PipScaffold(
-      action: feature_pip.PipActionButton(
-        label: 'Resend',
-        onPressed: _isResending
-            ? null
-            : () async {
-                setState(() {
-                  _isResending = true;
-                });
+      action: appState.isLocalDeviceOnly
+          ? null
+          : feature_pip.PipActionButton(
+              label: 'Resend',
+              onPressed: _isResending
+                  ? null
+                  : () async {
+                      setState(() {
+                        _isResending = true;
+                      });
 
-                try {
-                  final payloads = await ref.read(recentPayloadsProvider.future);
-                  if (!context.mounted) return;
+                      try {
+                        final payloads = await ref.read(recentPayloadsProvider.future);
+                        if (!context.mounted) return;
 
-                  final pendingPayload = core_domain.findPendingPayloadById(payloads, widget.payloadId);
-                  if (pendingPayload == null) {
-                    ScaffoldMessenger.of(
-                      context,
-                    ).showSnackBar(const SnackBar(content: Text('This payload no longer exists.')));
-                    return;
-                  }
+                        final pendingPayload = core_domain.findPendingPayloadById(payloads, widget.payloadId);
+                        if (pendingPayload == null) {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).showSnackBar(const SnackBar(content: Text('This payload no longer exists.')));
+                          return;
+                        }
 
-                  await resendQueuedPayloads(context: context, ref: ref, payloads: [pendingPayload]);
-                } finally {
-                  if (mounted) {
-                    setState(() {
-                      _isResending = false;
-                    });
-                  }
-                }
-              },
-      ),
+                        await resendQueuedPayloads(context: context, ref: ref, payloads: [pendingPayload]);
+                      } finally {
+                        if (mounted) {
+                          setState(() {
+                            _isResending = false;
+                          });
+                        }
+                      }
+                    },
+            ),
       builder: (scrollController) => payloadsAsync.when(
         loading: () => const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white)),
         error: (error, stackTrace) => Center(
@@ -88,11 +95,10 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
 
           final payload = pendingPayload.payload;
           final start = payload.startUtc.toLocal();
-          final end = payload.endUtc.toLocal();
           final locale = Localizations.localeOf(context).toString();
           final dayFmt = DateFormat.yMMMMd(locale);
           final hourFmt = DateFormat.jm(locale);
-          final donePercent = (payload.coverageRatio * 100.0).clamp(0.0, 100.0);
+          final donePercent = (payload.coverage * 100.0).clamp(0.0, 100.0);
           final missingPercent = (100.0 - donePercent).clamp(0.0, 100.0);
 
           final progressSegments = [
@@ -129,7 +135,7 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '${payload.sessionId}  #${payload.windowIndex}',
+                        '${payload.session}  #${payload.sequence}',
                         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 6),
@@ -145,7 +151,7 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                     ],
                   ),
                 ),
-                AreaMetricsPanels(panels: areaPanels),
+                AreaMetricsPanels(panels: areaPanels, backgroundColor: Colors.grey.shade100),
                 const SizedBox(height: 10),
               ],
             ),

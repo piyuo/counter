@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_runtime_state_notifier.dart';
+part of 'app_runtime_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,28 +9,28 @@ part of 'app_runtime_state_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(AppRuntimeStateNotifier)
-final appRuntimeStateProvider = AppRuntimeStateNotifierProvider._();
+@ProviderFor(AppRuntimeNotifier)
+final appRuntimeProvider = AppRuntimeNotifierProvider._();
 
-final class AppRuntimeStateNotifierProvider
-    extends $NotifierProvider<AppRuntimeStateNotifier, AppRuntimeState> {
-  AppRuntimeStateNotifierProvider._()
+final class AppRuntimeNotifierProvider
+    extends $NotifierProvider<AppRuntimeNotifier, AppRuntimeState> {
+  AppRuntimeNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'appRuntimeStateProvider',
+        name: r'appRuntimeProvider',
         isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$appRuntimeStateNotifierHash();
+  String debugGetCreateSourceHash() => _$appRuntimeNotifierHash();
 
   @$internal
   @override
-  AppRuntimeStateNotifier create() => AppRuntimeStateNotifier();
+  AppRuntimeNotifier create() => AppRuntimeNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(AppRuntimeState value) {
@@ -41,10 +41,10 @@ final class AppRuntimeStateNotifierProvider
   }
 }
 
-String _$appRuntimeStateNotifierHash() =>
-    r'821fe660b5a21f830d36370aab85a80e70b5a891';
+String _$appRuntimeNotifierHash() =>
+    r'88b93e2b47151694e33af11164da2579f40a91d7';
 
-abstract class _$AppRuntimeStateNotifier extends $Notifier<AppRuntimeState> {
+abstract class _$AppRuntimeNotifier extends $Notifier<AppRuntimeState> {
   AppRuntimeState build();
   @$mustCallSuper
   @override

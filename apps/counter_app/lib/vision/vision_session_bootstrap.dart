@@ -72,7 +72,7 @@ class _VisionSessionBootstrapState extends ConsumerState<VisionSessionBootstrap>
         final currentAppState = appState.requireValue;
         await visionSessionController.reconcile(
           videoSource: currentAppState.videoSource,
-          detection: currentAppState.detection,
+          detectionType: currentAppState.detectionType,
           detectionParams: currentAppState.detectionParams,
         );
       }),

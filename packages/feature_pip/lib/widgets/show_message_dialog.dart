@@ -1,22 +1,25 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
-import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
 Future<bool?> showMessageDialog(String message, {String? title, String label = 'OK'}) async {
   final context = appkit.globalContext;
   if (!context.mounted) return null;
-
-  return GlassDialog.show<bool>(
+  return showCupertinoDialog<bool>(
     context: context,
-    title: title,
-    message: message,
-    actions: [
-      GlassDialogAction(
-        label: label,
-        isPrimary: true,
-        onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
+    builder: (context) => CupertinoTheme(
+      data: CupertinoThemeData(brightness: Brightness.light),
+      child: CupertinoAlertDialog(
+        title: title != null ? Text(title) : null,
+        content: Text(message, style: const TextStyle(fontSize: 16)),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
+            child: Text(label),
+          ),
+        ],
       ),
-    ],
+    ),
   );
 }
 
@@ -29,19 +32,26 @@ Future<bool?> showYesNoMessageDialog(
 }) async {
   final context = appkit.globalContext;
   if (!context.mounted) return null;
-
-  return GlassDialog.show<bool>(
+  return showCupertinoDialog<bool>(
     context: context,
-    title: title,
-    message: message,
-    actions: [
-      GlassDialogAction(label: noLabel, onPressed: () => Navigator.of(context, rootNavigator: true).pop(false)),
-      GlassDialogAction(
-        label: yesLabel,
-        isPrimary: true,
-        isDestructive: isYesDestructive,
-        onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
+    builder: (context) => CupertinoTheme(
+      data: CupertinoThemeData(brightness: Brightness.light),
+      child: CupertinoAlertDialog(
+        title: title != null ? Text(title) : null,
+        content: Text(message, style: const TextStyle(fontSize: 16)),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop(false),
+            child: Text(noLabel),
+          ),
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            isDestructiveAction: isYesDestructive,
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
+            child: Text(yesLabel),
+          ),
+        ],
       ),
-    ],
+    ),
   );
 }
