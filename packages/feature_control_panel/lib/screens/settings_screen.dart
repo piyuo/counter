@@ -1,5 +1,4 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_control_panel/providers/reset_notifier.dart';
 import 'package:feature_control_panel/widgets/selection_checkbox.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
@@ -13,107 +12,146 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
     final localization = appkit.Localization.of(context);
     final currentLocalDisplayLabel = localization.language;
-    final dataServer =
-        ref.watch(core_domain.appProvider).asData?.value.dataServer ?? const core_domain.DataServer.unspecified();
-    final selectedSetupOption = _selectedSetupOption(dataServer);
+    final selectedDetectionIndex = switch (appState.detectionType) {
+      core_domain.DetectionVehicle() => 1,
+      _ => 0,
+    };
+
     return feature_pip.PipScaffold(
       builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
         padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
         child: Column(
           children: [
-            feature_pip.PipHeader(icon: Icons.settings, title: 'Settings', subtitle: context.l.settings_screen_desc),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Data Server')),
+            feature_pip.PipHeader(
+              icon: Icons.settings,
+              title: context.l.settings_screen_title,
+              subtitle: context.l.settings_screen_body,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(context.l.settings_screen_data_server_label),
+              ),
             ),
             feature_pip.PipPanel(
               child: Column(
                 children: [
+                  if (core_domain.isFlagPiyuoCloudEnabled)
+                    ListTile(
+                      leading: _selectionCheckbox(
+                        context,
+                        selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
+                      ),
+                      title: Text('Use Piyuo Cloud'),
+                      subtitle: Text('Store traffic data in Piyuo Cloud with dashboards and business insights.'),
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        ref.push(const core_domain.OpenSettingsPiyuo());
+                      },
+                    ),
                   ListTile(
                     leading: _selectionCheckbox(
                       context,
-                      selected: selectedSetupOption == _SettingsSetupOption.piyuoCloud,
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     ),
-                    title: const Text('Use Piyuo Cloud'),
-                    subtitle: const Text('Send results to our cloud service.'),
-                    selected: selectedSetupOption == _SettingsSetupOption.piyuoCloud,
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      ref.push(const core_domain.OpenSettingsPiyuo());
-                    },
-                  ),
-                  ListTile(
-                    leading: _selectionCheckbox(
-                      context,
-                      selected: selectedSetupOption == _SettingsSetupOption.customServer,
-                    ),
-                    title: const Text('Use your own server'),
-                    subtitle: const Text('We will help set up a local server.'),
-                    selected: selectedSetupOption == _SettingsSetupOption.customServer,
+                    title: Text('Use your own server'),
+                    subtitle: Text('Send traffic data directly to your own backend or database.'),
+                    selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       ref.push(const core_domain.OpenSettingsServer());
                     },
                   ),
                   ListTile(
-                    leading: _selectionCheckbox(context, selected: selectedSetupOption == _SettingsSetupOption.demo),
-                    title: const Text('Demo mode'),
-                    subtitle: const Text('Test only. Data is not exported.'),
-                    selected: selectedSetupOption == _SettingsSetupOption.demo,
+                    leading: _selectionCheckbox(context, selected: appState.isLocalDeviceOnly),
+                    title: Text('Local Device Only'),
+                    subtitle: Text('Store traffic data locally on this device. Nothing is uploaded remotely.'),
+                    selected: appState.isLocalDeviceOnly,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () async {
-                      await ref.read(core_domain.appProvider.notifier).setNoDataServer();
+                      await ref.read(core_domain.appProvider.notifier).selectNoDataServer();
                     },
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 10),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Parameters')),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Object Detection')),
             ),
             feature_pip.PipPanel(
               child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.camera_alt),
-                    title: Text('Detection'),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    leading: const Icon(Icons.directions_walk),
+                    title: Text('Detection Target'),
+                    trailing: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Text(
+                          selectedDetectionIndex == 1
+                              ? context.l.detection_type_screen_vehicle_title
+                              : context.l.detection_type_screen_pedestrian_title,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
+                        ),
+                        SizedBox(width: 10),
+                        Icon(Icons.arrow_forward_ios),
+                      ],
+                    ),
+                    onTap: () {
+                      ref.push(const core_domain.OpenDetectionTypeSelection());
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.tune),
+                    title: Text('Tracking & Counting'),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       ref.push(const core_domain.OpenDetectionParams());
                     },
                   ),
-                  ListTile(
-                    leading: Icon(Icons.send_outlined),
-                    title: Text('Delivery'),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                  /*ListTile(
+                    leading: const Icon(Icons.send_outlined),
+                    title: Text(context.l.settings_screen_delivery_label),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       ref.push(const core_domain.OpenDeliveryConfig());
                     },
-                  ),
+                  ),*/
                 ],
               ),
             ),
             const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Misc')),
+            ),
             feature_pip.PipPanel(
               child: Column(
                 children: [
+                  if (core_domain.isFlagSubscriptionEnabled)
+                    ListTile(
+                      leading: const Icon(Icons.subscriptions_rounded),
+                      title: Text(context.l.settings_screen_subscription_title),
+                      subtitle: Text(context.l.settings_screen_subscription_body),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      onTap: () {},
+                    ),
                   ListTile(
-                    leading: Icon(Icons.subscriptions_rounded),
-                    title: Text("Subscription"),
-                    subtitle: Text("Manage your subscription and billing details."),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                    onTap: () {},
-                  ),
-                  ListTile(
-                    leading: Icon(Icons.language),
+                    leading: const Icon(Icons.language),
                     title: Text(context.l.wizard_screen_language),
                     subtitle: Text(currentLocalDisplayLabel),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       ref.push(const core_domain.OpenLanguage());
                     },
@@ -129,15 +167,15 @@ class SettingsScreen extends ConsumerWidget {
                   onPressed: () async {
                     final confirmed = await GlassDialog.show<bool>(
                       context: context,
-                      title: 'Reset all data?',
-                      message: 'This will erase all data and start from the beginning. This action cannot be undone.',
+                      title: context.l.settings_screen_reset_all_data_title,
+                      message: context.l.settings_screen_reset_all_data_body,
                       actions: [
                         GlassDialogAction(
-                          label: 'Cancel',
+                          label: context.l.cancel,
                           onPressed: () => Navigator.of(context, rootNavigator: true).pop(false),
                         ),
                         GlassDialogAction(
-                          label: 'Reset',
+                          label: context.l.detection_screen_reset,
                           isPrimary: true,
                           isDestructive: true,
                           onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
@@ -145,13 +183,13 @@ class SettingsScreen extends ConsumerWidget {
                       ],
                     );
                     if (confirmed != true) return;
-                    await ref.read(resetProvider.notifier).reset();
+                    await ref.read(core_domain.resetAppProvider.notifier).reset();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red.withValues(alpha: 0.7),
                     minimumSize: const Size.fromHeight(56),
                   ),
-                  child: const Text('Reset', style: TextStyle(color: Colors.white)),
+                  child: Text(context.l.detection_screen_reset, style: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -161,20 +199,9 @@ class SettingsScreen extends ConsumerWidget {
     );
   }
 
-  _SettingsSetupOption? _selectedSetupOption(core_domain.DataServer dataServer) {
-    return switch (dataServer) {
-      core_domain.PersonalDataServer() when dataServer.isPiyuo => _SettingsSetupOption.piyuoCloud,
-      core_domain.PersonalDataServer() => _SettingsSetupOption.customServer,
-      core_domain.NoDataServer() => _SettingsSetupOption.demo,
-      _ => null,
-    };
-  }
-
   Widget _selectionCheckbox(BuildContext context, {required bool selected}) {
     return IgnorePointer(
       child: SelectionCheckbox(value: selected, onChanged: (_) {}),
     );
   }
 }
-
-enum _SettingsSetupOption { piyuoCloud, customServer, demo }

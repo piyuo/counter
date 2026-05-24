@@ -27,32 +27,27 @@ void main() {
     test('saveToken writes the token to secure storage', () async {
       when(mockStorage.write(key: 'device_token', value: 'tok_abc')).thenAnswer((_) async {});
 
-      await service.saveToken('tok_abc');
+      await service.set('device_token', 'tok_abc');
 
       verify(mockStorage.write(key: 'device_token', value: 'tok_abc')).called(1);
     });
 
-    test('getToken returns null when no token has been saved', () async {
+    test('getToken returns empty when no token has been saved', () async {
       when(mockStorage.read(key: 'device_token')).thenAnswer((_) async => null);
-
-      final result = await service.getToken();
-
-      expect(result, isNull);
+      final result = await service.get('device_token');
+      expect(result, isEmpty);
     });
 
     test('getToken returns the saved token', () async {
       when(mockStorage.read(key: 'device_token')).thenAnswer((_) async => 'tok_abc');
-
-      final result = await service.getToken();
-
+      final result = await service.get('device_token');
       expect(result, 'tok_abc');
     });
 
-    test('clearToken removes the stored token', () async {
+    test('remove the stored token', () async {
       when(mockStorage.delete(key: 'device_token')).thenAnswer((_) async {});
-
-      await service.clearToken();
-
+      when(mockStorage.read(key: 'device_token')).thenAnswer((_) async => 'tok_abc');
+      await service.remove('device_token');
       verify(mockStorage.delete(key: 'device_token')).called(1);
     });
 
@@ -60,10 +55,10 @@ void main() {
       when(mockStorage.write(key: 'device_token', value: anyNamed('value'))).thenAnswer((_) async {});
       when(mockStorage.read(key: 'device_token')).thenAnswer((_) async => 'tok_new');
 
-      await service.saveToken('tok_old');
-      await service.saveToken('tok_new');
+      await service.set('device_token', 'tok_old');
+      await service.set('device_token', 'tok_new');
 
-      final result = await service.getToken();
+      final result = await service.get('device_token');
       expect(result, 'tok_new');
       verify(mockStorage.write(key: 'device_token', value: anyNamed('value'))).called(2);
     });

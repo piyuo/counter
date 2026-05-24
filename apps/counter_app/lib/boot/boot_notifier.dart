@@ -56,11 +56,15 @@ class BootNotifier extends _$BootNotifier implements BootController {
         }
       }
       defaultVideoSource ??= await hardwareService.getDefaultVideoSource();
+      if (defaultVideoSource == null) {
+        lifecycleController.dispatch(const core_domain.SystemEvent.cameraMissing());
+        return BootStatus.booted;
+      }
       await ref.read(core_domain.appProvider.notifier).setVideoSource(defaultVideoSource);
 
       // data server check
       appFlowController.dispatch(const core_domain.AppFlowEvent.dataServerCheck());
-      if (!appState.dataServer.hasMadeDecision) {
+      if (!appState.isOnboardingComplete) {
         // todo: remove this debug code , that will set 123456 to invitationCodeProvider
         //if (kDebugMode) {
         //  ref.read(invitationCodeProvider.notifier).setCode('223456789X');
@@ -69,7 +73,8 @@ class BootNotifier extends _$BootNotifier implements BootController {
         // data server not configured, need onboarding to set up data server.
         // Scenario 1: invitation code present — start onboarding with invitation flow.
         // Scenario 2: no code — standard onboarding.
-        final hasInvitation = ref.read(core_domain.invitationCodeProvider) != null;
+        //final hasInvitation = ref.read(core_domain.invitationCodeProvider) != null;
+        final hasInvitation = false;
         appFlowController.dispatch(
           hasInvitation
               ? const core_domain.AppFlowEvent.invitationClicked()

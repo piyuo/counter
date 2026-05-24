@@ -17,17 +17,23 @@ mixin _$AppState {
 
 /// auto-generated unique device ID, sent to backend as a safety identifier
  String get deviceId;/// Which remembered data-server choice is currently active.
-@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection get dataServerSelection;/// Last invitation/business server remembered for later reuse.
- BusinessDataServer? get businessDataServer;/// Last custom personal server remembered for later reuse.
- PersonalDataServer? get customPersonalDataServer;/// Stable personal Piyuo Cloud server remembered for later reuse.
- PersonalDataServer? get piyuoPersonalDataServer;/// how to upload data to remote server/
- UploadConfig get uploadConfig;/// Vision input selection.
+@JsonKey(unknownEnumValue: DataServerSelection.none) DataServerSelection get dataServerSelection;/// personal subscription plan, use piyuo.com backend, setup by user.
+ PersonalPiyuoServer? get personalPiyuoServer;// will be assign when first boot, 'https://piyuo.com/api/v1/$random'
+/// personal subscription plan, use their own backend, setup by user.
+ PersonalCustomServer? get personalCustomServer;// will be assign when first boot, 'http://localhost:3000'
+/// business subscription plan, use piyuo.com backend, setup by invitation.
+ BusinessPiyuoServer? get businessPiyuoServer;// assign by invitation, e.g. 'https://piyuo.com/api/v1'
+/// business subscription plan, use their own backend, setup by invitation.
+ BusinessCustomServer? get businessCustomServer;// assign by invitation, e.g. 'http://localhost:3000'
+/// how to upload data to remote server/
+ UploadConfig get uploadConfig;/// Whether the user has completed the onboarding flow. This is used to determine
+ bool get isOnboardingComplete;/// Vision input selection.
 ///
 /// Stored as a flat AppState field rather than inside a nested vision-session
 /// object because source, detection, and params can each change independently.
 @JsonKey(name: 'videoSource') VideoSource get videoSource;/// Vision model selection paired with [videoSource] and [detectionParams]
 /// to define the desired runtime session.
- DetectionType get detection;/// Runtime tuning paired with [videoSource] and [detection].
+ DetectionType get detectionType;/// Runtime tuning paired with [videoSource] and [detection].
 ///
 /// Kept flat in AppState so small parameter edits remain ordinary app-state
 /// updates instead of forcing a wrapper type with weak domain meaning.
@@ -52,16 +58,16 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&const DeepCollectionEquality().equals(other.customPersonalDataServer, customPersonalDataServer)&&const DeepCollectionEquality().equals(other.piyuoPersonalDataServer, piyuoPersonalDataServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.isOnboardingComplete, isOnboardingComplete) || other.isOnboardingComplete == isOnboardingComplete)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detectionType, detectionType) || other.detectionType == detectionType)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(businessDataServer),const DeepCollectionEquality().hash(customPersonalDataServer),const DeepCollectionEquality().hash(piyuoPersonalDataServer),uploadConfig,videoSource,detection,detectionParams,uploadJitterSec);
+int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(personalPiyuoServer),const DeepCollectionEquality().hash(personalCustomServer),const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),uploadConfig,isOnboardingComplete,videoSource,detectionType,detectionParams,uploadJitterSec);
 
 @override
 String toString() {
-  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, businessDataServer: $businessDataServer, customPersonalDataServer: $customPersonalDataServer, piyuoPersonalDataServer: $piyuoPersonalDataServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detection: $detection, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
+  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, personalPiyuoServer: $personalPiyuoServer, personalCustomServer: $personalCustomServer, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, uploadConfig: $uploadConfig, isOnboardingComplete: $isOnboardingComplete, videoSource: $videoSource, detectionType: $detectionType, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
 }
 
 
@@ -72,11 +78,11 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, BusinessDataServer? businessDataServer, PersonalDataServer? customPersonalDataServer, PersonalDataServer? piyuoPersonalDataServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detection, DetectionParams detectionParams, int uploadJitterSec
+ String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.none) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig, bool isOnboardingComplete,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec
 });
 
 
-$UploadConfigCopyWith<$Res> get uploadConfig;$VideoSourceCopyWith<$Res> get videoSource;$DetectionTypeCopyWith<$Res> get detection;$DetectionParamsCopyWith<$Res> get detectionParams;
+$UploadConfigCopyWith<$Res> get uploadConfig;$VideoSourceCopyWith<$Res> get videoSource;$DetectionTypeCopyWith<$Res> get detectionType;$DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -89,16 +95,18 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? businessDataServer = freezed,Object? customPersonalDataServer = freezed,Object? piyuoPersonalDataServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detection = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? isOnboardingComplete = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
   return _then(_self.copyWith(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,dataServerSelection: null == dataServerSelection ? _self.dataServerSelection : dataServerSelection // ignore: cast_nullable_to_non_nullable
-as DataServerSelection,businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
-as BusinessDataServer?,customPersonalDataServer: freezed == customPersonalDataServer ? _self.customPersonalDataServer : customPersonalDataServer // ignore: cast_nullable_to_non_nullable
-as PersonalDataServer?,piyuoPersonalDataServer: freezed == piyuoPersonalDataServer ? _self.piyuoPersonalDataServer : piyuoPersonalDataServer // ignore: cast_nullable_to_non_nullable
-as PersonalDataServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
-as UploadConfig,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
-as VideoSource,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DataServerSelection,personalPiyuoServer: freezed == personalPiyuoServer ? _self.personalPiyuoServer : personalPiyuoServer // ignore: cast_nullable_to_non_nullable
+as PersonalPiyuoServer?,personalCustomServer: freezed == personalCustomServer ? _self.personalCustomServer : personalCustomServer // ignore: cast_nullable_to_non_nullable
+as PersonalCustomServer?,businessPiyuoServer: freezed == businessPiyuoServer ? _self.businessPiyuoServer : businessPiyuoServer // ignore: cast_nullable_to_non_nullable
+as BusinessPiyuoServer?,businessCustomServer: freezed == businessCustomServer ? _self.businessCustomServer : businessCustomServer // ignore: cast_nullable_to_non_nullable
+as BusinessCustomServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig,isOnboardingComplete: null == isOnboardingComplete ? _self.isOnboardingComplete : isOnboardingComplete // ignore: cast_nullable_to_non_nullable
+as bool,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
+as VideoSource,detectionType: null == detectionType ? _self.detectionType : detectionType // ignore: cast_nullable_to_non_nullable
 as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
 as int,
@@ -126,10 +134,10 @@ $VideoSourceCopyWith<$Res> get videoSource {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detection {
+$DetectionTypeCopyWith<$Res> get detectionType {
   
-  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
-    return _then(_self.copyWith(detection: value));
+  return $DetectionTypeCopyWith<$Res>(_self.detectionType, (value) {
+    return _then(_self.copyWith(detectionType: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -219,10 +227,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.none)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig,  bool isOnboardingComplete, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);case _:
+return $default(_that.deviceId,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.isOnboardingComplete,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec);case _:
   return orElse();
 
 }
@@ -240,10 +248,10 @@ return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.none)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig,  bool isOnboardingComplete, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);}
+return $default(_that.deviceId,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.isOnboardingComplete,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -257,10 +265,10 @@ return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  BusinessDataServer? businessDataServer,  PersonalDataServer? customPersonalDataServer,  PersonalDataServer? piyuoPersonalDataServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detection,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId, @JsonKey(unknownEnumValue: DataServerSelection.none)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig,  bool isOnboardingComplete, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServer,_that.customPersonalDataServer,_that.piyuoPersonalDataServer,_that.uploadConfig,_that.videoSource,_that.detection,_that.detectionParams,_that.uploadJitterSec);case _:
+return $default(_that.deviceId,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.isOnboardingComplete,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec);case _:
   return null;
 
 }
@@ -272,21 +280,29 @@ return $default(_that.deviceId,_that.dataServerSelection,_that.businessDataServe
 @JsonSerializable()
 
 class _AppState extends AppState {
-  const _AppState({this.deviceId = '', @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.businessDataServer, this.customPersonalDataServer, this.piyuoPersonalDataServer, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detection = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0}): super._();
+  const _AppState({this.deviceId = '', @JsonKey(unknownEnumValue: DataServerSelection.none) this.dataServerSelection = DataServerSelection.none, this.personalPiyuoServer, this.personalCustomServer, this.businessPiyuoServer, this.businessCustomServer, this.uploadConfig = const UploadConfig(), this.isOnboardingComplete = false, @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detectionType = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0}): super._();
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
 /// auto-generated unique device ID, sent to backend as a safety identifier
 @override@JsonKey() final  String deviceId;
 /// Which remembered data-server choice is currently active.
-@override@JsonKey(unknownEnumValue: DataServerSelection.unspecified) final  DataServerSelection dataServerSelection;
-/// Last invitation/business server remembered for later reuse.
-@override final  BusinessDataServer? businessDataServer;
-/// Last custom personal server remembered for later reuse.
-@override final  PersonalDataServer? customPersonalDataServer;
-/// Stable personal Piyuo Cloud server remembered for later reuse.
-@override final  PersonalDataServer? piyuoPersonalDataServer;
+@override@JsonKey(unknownEnumValue: DataServerSelection.none) final  DataServerSelection dataServerSelection;
+/// personal subscription plan, use piyuo.com backend, setup by user.
+@override final  PersonalPiyuoServer? personalPiyuoServer;
+// will be assign when first boot, 'https://piyuo.com/api/v1/$random'
+/// personal subscription plan, use their own backend, setup by user.
+@override final  PersonalCustomServer? personalCustomServer;
+// will be assign when first boot, 'http://localhost:3000'
+/// business subscription plan, use piyuo.com backend, setup by invitation.
+@override final  BusinessPiyuoServer? businessPiyuoServer;
+// assign by invitation, e.g. 'https://piyuo.com/api/v1'
+/// business subscription plan, use their own backend, setup by invitation.
+@override final  BusinessCustomServer? businessCustomServer;
+// assign by invitation, e.g. 'http://localhost:3000'
 /// how to upload data to remote server/
 @override@JsonKey() final  UploadConfig uploadConfig;
+/// Whether the user has completed the onboarding flow. This is used to determine
+@override@JsonKey() final  bool isOnboardingComplete;
 /// Vision input selection.
 ///
 /// Stored as a flat AppState field rather than inside a nested vision-session
@@ -294,7 +310,7 @@ class _AppState extends AppState {
 @override@JsonKey(name: 'videoSource') final  VideoSource videoSource;
 /// Vision model selection paired with [videoSource] and [detectionParams]
 /// to define the desired runtime session.
-@override@JsonKey() final  DetectionType detection;
+@override@JsonKey() final  DetectionType detectionType;
 /// Runtime tuning paired with [videoSource] and [detection].
 ///
 /// Kept flat in AppState so small parameter edits remain ordinary app-state
@@ -323,16 +339,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&const DeepCollectionEquality().equals(other.customPersonalDataServer, customPersonalDataServer)&&const DeepCollectionEquality().equals(other.piyuoPersonalDataServer, piyuoPersonalDataServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.isOnboardingComplete, isOnboardingComplete) || other.isOnboardingComplete == isOnboardingComplete)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detectionType, detectionType) || other.detectionType == detectionType)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(businessDataServer),const DeepCollectionEquality().hash(customPersonalDataServer),const DeepCollectionEquality().hash(piyuoPersonalDataServer),uploadConfig,videoSource,detection,detectionParams,uploadJitterSec);
+int get hashCode => Object.hash(runtimeType,deviceId,dataServerSelection,const DeepCollectionEquality().hash(personalPiyuoServer),const DeepCollectionEquality().hash(personalCustomServer),const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),uploadConfig,isOnboardingComplete,videoSource,detectionType,detectionParams,uploadJitterSec);
 
 @override
 String toString() {
-  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, businessDataServer: $businessDataServer, customPersonalDataServer: $customPersonalDataServer, piyuoPersonalDataServer: $piyuoPersonalDataServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detection: $detection, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
+  return 'AppState(deviceId: $deviceId, dataServerSelection: $dataServerSelection, personalPiyuoServer: $personalPiyuoServer, personalCustomServer: $personalCustomServer, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, uploadConfig: $uploadConfig, isOnboardingComplete: $isOnboardingComplete, videoSource: $videoSource, detectionType: $detectionType, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec)';
 }
 
 
@@ -343,11 +359,11 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, BusinessDataServer? businessDataServer, PersonalDataServer? customPersonalDataServer, PersonalDataServer? piyuoPersonalDataServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detection, DetectionParams detectionParams, int uploadJitterSec
+ String deviceId,@JsonKey(unknownEnumValue: DataServerSelection.none) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig, bool isOnboardingComplete,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec
 });
 
 
-@override $UploadConfigCopyWith<$Res> get uploadConfig;@override $VideoSourceCopyWith<$Res> get videoSource;@override $DetectionTypeCopyWith<$Res> get detection;@override $DetectionParamsCopyWith<$Res> get detectionParams;
+@override $UploadConfigCopyWith<$Res> get uploadConfig;@override $VideoSourceCopyWith<$Res> get videoSource;@override $DetectionTypeCopyWith<$Res> get detectionType;@override $DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -360,16 +376,18 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? businessDataServer = freezed,Object? customPersonalDataServer = freezed,Object? piyuoPersonalDataServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detection = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? deviceId = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? isOnboardingComplete = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,}) {
   return _then(_AppState(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,dataServerSelection: null == dataServerSelection ? _self.dataServerSelection : dataServerSelection // ignore: cast_nullable_to_non_nullable
-as DataServerSelection,businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
-as BusinessDataServer?,customPersonalDataServer: freezed == customPersonalDataServer ? _self.customPersonalDataServer : customPersonalDataServer // ignore: cast_nullable_to_non_nullable
-as PersonalDataServer?,piyuoPersonalDataServer: freezed == piyuoPersonalDataServer ? _self.piyuoPersonalDataServer : piyuoPersonalDataServer // ignore: cast_nullable_to_non_nullable
-as PersonalDataServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
-as UploadConfig,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
-as VideoSource,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DataServerSelection,personalPiyuoServer: freezed == personalPiyuoServer ? _self.personalPiyuoServer : personalPiyuoServer // ignore: cast_nullable_to_non_nullable
+as PersonalPiyuoServer?,personalCustomServer: freezed == personalCustomServer ? _self.personalCustomServer : personalCustomServer // ignore: cast_nullable_to_non_nullable
+as PersonalCustomServer?,businessPiyuoServer: freezed == businessPiyuoServer ? _self.businessPiyuoServer : businessPiyuoServer // ignore: cast_nullable_to_non_nullable
+as BusinessPiyuoServer?,businessCustomServer: freezed == businessCustomServer ? _self.businessCustomServer : businessCustomServer // ignore: cast_nullable_to_non_nullable
+as BusinessCustomServer?,uploadConfig: null == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig,isOnboardingComplete: null == isOnboardingComplete ? _self.isOnboardingComplete : isOnboardingComplete // ignore: cast_nullable_to_non_nullable
+as bool,videoSource: null == videoSource ? _self.videoSource : videoSource // ignore: cast_nullable_to_non_nullable
+as VideoSource,detectionType: null == detectionType ? _self.detectionType : detectionType // ignore: cast_nullable_to_non_nullable
 as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
 as int,
@@ -398,10 +416,10 @@ $VideoSourceCopyWith<$Res> get videoSource {
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detection {
+$DetectionTypeCopyWith<$Res> get detectionType {
   
-  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
-    return _then(_self.copyWith(detection: value));
+  return $DetectionTypeCopyWith<$Res>(_self.detectionType, (value) {
+    return _then(_self.copyWith(detectionType: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.

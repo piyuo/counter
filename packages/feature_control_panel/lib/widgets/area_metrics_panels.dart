@@ -43,12 +43,14 @@ class AreaMetricCell {
 }
 
 class AreaMetricsPanels extends StatelessWidget {
-  const AreaMetricsPanels({required this.panels, super.key});
+  const AreaMetricsPanels({required this.panels, required this.backgroundColor, super.key});
 
   final List<AreaMetricsPanelModel> panels;
 
+  final Color backgroundColor;
+
   static const _headerStyle = TextStyle(
-    color: Colors.white,
+    color: Colors.black,
     fontSize: 14,
     fontWeight: FontWeight.w600,
     decoration: TextDecoration.none,
@@ -57,17 +59,15 @@ class AreaMetricsPanels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
-
     for (final panel in panels) {
       if (panel.title != null && panel.title!.isNotEmpty) {
         children.add(
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 6),
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 6),
             child: Text(panel.title!, style: _headerStyle),
           ),
         );
       }
-
       children.add(_buildPanel(panel));
     }
 
@@ -100,8 +100,10 @@ class AreaMetricsPanels extends StatelessWidget {
     }
 
     return Container(
+      clipBehavior: Clip.antiAlias,
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+      decoration: BoxDecoration(color: backgroundColor, borderRadius: BorderRadius.circular(12)),
       child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: children),
     );
   }
@@ -152,61 +154,53 @@ class _MetricUnit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: compact ? 6 : 8, vertical: compact ? 4 : 6),
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white10),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: value,
+                  style: TextStyle(
+                    color: valueColor,
+                    fontSize: compact ? 20 : 24,
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
+                  ),
+                ),
+                if (valueSuffix != null)
                   TextSpan(
-                    text: value,
+                    text: valueSuffix,
                     style: TextStyle(
                       color: valueColor,
-                      fontSize: compact ? 20 : 24,
-                      fontWeight: FontWeight.bold,
+                      fontSize: compact ? 14 : 16,
+                      fontWeight: FontWeight.w600,
                       decoration: TextDecoration.none,
                     ),
                   ),
-                  if (valueSuffix != null)
-                    TextSpan(
-                      text: valueSuffix,
-                      style: TextStyle(
-                        color: valueColor,
-                        fontSize: compact ? 14 : 16,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                ],
-              ),
+              ],
             ),
           ),
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: Colors.blueGrey.shade200,
-              fontSize: compact ? 10 : 12,
-              fontWeight: FontWeight.normal,
-              decoration: TextDecoration.none,
-            ),
+        ),
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: Colors.blueGrey.shade900,
+            fontSize: compact ? 12 : 12,
+            fontWeight: FontWeight.normal,
+            decoration: TextDecoration.none,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

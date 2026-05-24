@@ -166,11 +166,11 @@ return live(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  unspecified,TResult Function( int cameraIndex)?  camera,TResult Function( int webcamIndex)?  webcam,TResult Function( String path)?  file,TResult Function( String url)?  live,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  unspecified,TResult Function( int cameraIndex,  bool isFaceFront)?  camera,TResult Function( int webcamIndex)?  webcam,TResult Function( String path)?  file,TResult Function( String url)?  live,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case UnspecifiedVideoSource() when unspecified != null:
 return unspecified();case CameraVideoSource() when camera != null:
-return camera(_that.cameraIndex);case WebcamVideoSource() when webcam != null:
+return camera(_that.cameraIndex,_that.isFaceFront);case WebcamVideoSource() when webcam != null:
 return webcam(_that.webcamIndex);case FileVideoSource() when file != null:
 return file(_that.path);case LiveVideoSource() when live != null:
 return live(_that.url);case _:
@@ -191,11 +191,11 @@ return live(_that.url);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  unspecified,required TResult Function( int cameraIndex)  camera,required TResult Function( int webcamIndex)  webcam,required TResult Function( String path)  file,required TResult Function( String url)  live,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  unspecified,required TResult Function( int cameraIndex,  bool isFaceFront)  camera,required TResult Function( int webcamIndex)  webcam,required TResult Function( String path)  file,required TResult Function( String url)  live,}) {final _that = this;
 switch (_that) {
 case UnspecifiedVideoSource():
 return unspecified();case CameraVideoSource():
-return camera(_that.cameraIndex);case WebcamVideoSource():
+return camera(_that.cameraIndex,_that.isFaceFront);case WebcamVideoSource():
 return webcam(_that.webcamIndex);case FileVideoSource():
 return file(_that.path);case LiveVideoSource():
 return live(_that.url);}
@@ -212,11 +212,11 @@ return live(_that.url);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  unspecified,TResult? Function( int cameraIndex)?  camera,TResult? Function( int webcamIndex)?  webcam,TResult? Function( String path)?  file,TResult? Function( String url)?  live,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  unspecified,TResult? Function( int cameraIndex,  bool isFaceFront)?  camera,TResult? Function( int webcamIndex)?  webcam,TResult? Function( String path)?  file,TResult? Function( String url)?  live,}) {final _that = this;
 switch (_that) {
 case UnspecifiedVideoSource() when unspecified != null:
 return unspecified();case CameraVideoSource() when camera != null:
-return camera(_that.cameraIndex);case WebcamVideoSource() when webcam != null:
+return camera(_that.cameraIndex,_that.isFaceFront);case WebcamVideoSource() when webcam != null:
 return webcam(_that.webcamIndex);case FileVideoSource() when file != null:
 return file(_that.path);case LiveVideoSource() when live != null:
 return live(_that.url);case _:
@@ -270,10 +270,11 @@ String toString() {
 @JsonSerializable()
 
 class CameraVideoSource extends VideoSource {
-  const CameraVideoSource({required this.cameraIndex, final  String? $type}): $type = $type ?? 'camera',super._();
+  const CameraVideoSource({required this.cameraIndex, required this.isFaceFront, final  String? $type}): $type = $type ?? 'camera',super._();
   factory CameraVideoSource.fromJson(Map<String, dynamic> json) => _$CameraVideoSourceFromJson(json);
 
  final  int cameraIndex;
+ final  bool isFaceFront;
 
 @JsonKey(name: 'runtimeType')
 final String $type;
@@ -292,16 +293,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraVideoSource&&(identical(other.cameraIndex, cameraIndex) || other.cameraIndex == cameraIndex));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraVideoSource&&(identical(other.cameraIndex, cameraIndex) || other.cameraIndex == cameraIndex)&&(identical(other.isFaceFront, isFaceFront) || other.isFaceFront == isFaceFront));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,cameraIndex);
+int get hashCode => Object.hash(runtimeType,cameraIndex,isFaceFront);
 
 @override
 String toString() {
-  return 'VideoSource.camera(cameraIndex: $cameraIndex)';
+  return 'VideoSource.camera(cameraIndex: $cameraIndex, isFaceFront: $isFaceFront)';
 }
 
 
@@ -312,7 +313,7 @@ abstract mixin class $CameraVideoSourceCopyWith<$Res> implements $VideoSourceCop
   factory $CameraVideoSourceCopyWith(CameraVideoSource value, $Res Function(CameraVideoSource) _then) = _$CameraVideoSourceCopyWithImpl;
 @useResult
 $Res call({
- int cameraIndex
+ int cameraIndex, bool isFaceFront
 });
 
 
@@ -329,10 +330,11 @@ class _$CameraVideoSourceCopyWithImpl<$Res>
 
 /// Create a copy of VideoSource
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? cameraIndex = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? cameraIndex = null,Object? isFaceFront = null,}) {
   return _then(CameraVideoSource(
 cameraIndex: null == cameraIndex ? _self.cameraIndex : cameraIndex // ignore: cast_nullable_to_non_nullable
-as int,
+as int,isFaceFront: null == isFaceFront ? _self.isFaceFront : isFaceFront // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

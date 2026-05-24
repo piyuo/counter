@@ -61,9 +61,11 @@ class PipNotifier extends _$PipNotifier implements PipController {
   /// On mobile, locking also forces portrait orientation; unlocking restores all orientations.
   void setIsLockedOpen(bool value) {
     if (state.isLockedOpen == value) return;
+    if (value && state.slidingPanelState != SlidingPanelState.open) {
+      slideUp(SlidingPanelState.open);
+    }
     state = state.copyWith(isLockedOpen: value);
     if (value) {
-      if (!state.isPanelOpened) slideUp(SlidingPanelState.open);
       if (UniversalPlatform.isMobile) {
         SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
       }

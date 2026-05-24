@@ -84,7 +84,7 @@ final class InvitationCodeNotifierProvider
 }
 
 String _$invitationCodeNotifierHash() =>
-    r'ccdec16d1c49654fa1a3fe78eadd2a1b23b02a19';
+    r'783a8e69e797975aea920a331f7bf644fd650df6';
 
 /// Temporarily holds an invitation code extracted from a deep link.
 ///

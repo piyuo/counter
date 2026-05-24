@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'reset_notifier.dart';
+part of 'reset_app_notifier.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -9,28 +9,28 @@ part of 'reset_notifier.dart';
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
 
-@ProviderFor(ResetNotifier)
-final resetProvider = ResetNotifierProvider._();
+@ProviderFor(ResetAppNotifier)
+final resetAppProvider = ResetAppNotifierProvider._();
 
-final class ResetNotifierProvider
-    extends $NotifierProvider<ResetNotifier, void> {
-  ResetNotifierProvider._()
+final class ResetAppNotifierProvider
+    extends $NotifierProvider<ResetAppNotifier, void> {
+  ResetAppNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
-        name: r'resetProvider',
-        isAutoDispose: true,
+        name: r'resetAppProvider',
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
 
   @override
-  String debugGetCreateSourceHash() => _$resetNotifierHash();
+  String debugGetCreateSourceHash() => _$resetAppNotifierHash();
 
   @$internal
   @override
-  ResetNotifier create() => ResetNotifier();
+  ResetAppNotifier create() => ResetAppNotifier();
 
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(void value) {
@@ -41,9 +41,9 @@ final class ResetNotifierProvider
   }
 }
 
-String _$resetNotifierHash() => r'e5be09eecec97e3d03197df3212911600b5a5f47';
+String _$resetAppNotifierHash() => r'7897576ab76b39d2ab6430872bcec28cd9e2e485';
 
-abstract class _$ResetNotifier extends $Notifier<void> {
+abstract class _$ResetAppNotifier extends $Notifier<void> {
   void build();
   @$mustCallSuper
   @override

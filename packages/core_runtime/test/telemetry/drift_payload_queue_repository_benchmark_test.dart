@@ -138,28 +138,31 @@ core_domain.TelemetryPayload _createTestPayload({
   required DateTime startUtc,
   required DateTime endUtc,
 }) {
+  final startBusiness = startUtc.toLocal();
+  final businessDate =
+      '${startBusiness.year.toString().padLeft(4, '0')}-${startBusiness.month.toString().padLeft(2, '0')}-${startBusiness.day.toString().padLeft(2, '0')}';
   return core_domain.TelemetryPayload(
-    id: payloadId,
     startUtc: startUtc,
-    endUtc: endUtc,
-    sessionId: 'session-1',
-    windowIndex: 1,
+    startBusiness: startBusiness,
+    businessDate: businessDate,
+    session: 'session-1',
+    sequence: 1,
     frameCount: 100,
-    missingDurationMs: 0,
+    missingSec: 0,
     confidence: 0.95,
     isPartial: false,
-    coverageRatio: 1.0,
+    coverage: 1.0,
     fps: 30.0,
     areas: [
       core_domain.AreaPayload(
-        id: 1,
+        areaId: 1,
         passBy: 5,
         entry: 3,
         exit: 2,
-        occupancyAvg: 0.5,
-        occupancyPeak: 3,
-        dwellAvgSec: 2.5,
-        dwellPeakSec: 5,
+        avgOccupancy: 0.5,
+        maxOccupancy: 3,
+        avgDwellSec: 2.5,
+        maxDwellSec: 5,
       ),
     ],
   );

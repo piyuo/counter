@@ -15,7 +15,13 @@ abstract class PayloadSerializer {
   String get contentType;
 
   /// Encodes payloads plus common envelope metadata shared by the whole batch.
-  List<int> serialize(List<TelemetryPayload> payloads, {required int schemaVersion, required String deviceId});
+  List<int> serialize(
+    List<TelemetryPayload> payloads, {
+    required int schemaVersion,
+    required String deviceId,
+    String? projectId,
+    String? assignId,
+  });
 }
 
 @riverpod

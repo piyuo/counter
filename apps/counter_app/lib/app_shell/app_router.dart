@@ -26,22 +26,15 @@ class AppRouter {
       case '/':
       default:
         return buildRoute((_) {
+          final deviceOrientation = ref.watch(vision.deviceRotationProvider).orientation;
+
           final locale = ref.watch(appkit.localeProvider);
           final appFlow = ref.watch(core_domain.appFlowProvider);
           return appkit.GlobalContext(
             child: vision.VisionLifecycle(
-              child: Listener(
-                onPointerDown: (_) {
-                  final visionController = ref.read(vision.activeVisionControllerProvider);
-                  if (visionController == null) return;
-                  visionController.notifyUserInteraction();
-                },
-                onPointerSignal: (_) {
-                  final visionController = ref.read(vision.activeVisionControllerProvider);
-                  if (visionController == null) return;
-                  visionController.notifyUserInteraction();
-                },
+              child: vision.LightOutWatcher(
                 child: feature_pip.PipScreen(
+                  deviceOrientation: deviceOrientation,
                   isLockToPortrait: ref.watch(core_domain.portraitOrientationProvider),
                   slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
                     key: _controlPanelKey,

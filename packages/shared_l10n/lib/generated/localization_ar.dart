@@ -15,6 +15,15 @@ class LocalizationAr extends Localization {
   String get about_screen_benchmark => 'اختبار الأداء';
 
   @override
+  String get about_screen_build_info_title => 'Build Information';
+
+  @override
+  String get about_screen_email_us => 'راسلنا عبر البريد الإلكتروني';
+
+  @override
+  String get about_screen_force_window_end_title => 'Force Window End';
+
+  @override
   String get about_screen_models => 'نماذج كشف الأجسام';
 
   @override
@@ -24,59 +33,17 @@ class LocalizationAr extends Localization {
   String get about_screen_platform => 'المنصة';
 
   @override
+  String get about_screen_reset_app_state_success =>
+      'App state has been reset.';
+
+  @override
+  String get about_screen_reset_app_state_title => 'Reset App State';
+
+  @override
   String get about_screen_title => 'حول';
 
   @override
-  String get add_video_screen_from => 'إضافة مصدر فيديو من';
-
-  @override
-  String get add_video_screen_title => 'إضافة مصدر فيديو';
-
-  @override
-  String get back => 'رجوع';
-
-  @override
-  String get benchmark_screen_fps => 'إطار في الثانية';
-
-  @override
-  String get benchmark_screen_models => 'نماذج كشف الأجسام';
-
-  @override
-  String get benchmark_screen_recommended => 'النموذج الموصى به';
-
-  @override
-  String get benchmark_screen_start_button => 'بدء اختبار الأداء';
-
-  @override
-  String get benchmark_screen_start_failed =>
-      'فشل بدء اختبار الأداء، رمز الخطأ هو';
-
-  @override
-  String get benchmark_screen_title => 'اختبارات أداء النماذج';
-
-  @override
-  String get camera_screen_add_title => 'إضافة كاميرا';
-
-  @override
-  String get camera_screen_back_camera => 'الكاميرا الخلفية';
-
-  @override
-  String get camera_screen_edit_title => 'اختيار كاميرا';
-
-  @override
-  String get camera_screen_front_camera => 'الكاميرا الأمامية';
-
-  @override
-  String get camera_screen_zoom_level => 'مستوى التكبير';
-
-  @override
-  String get cancel => 'إلغاء';
-
-  @override
-  String get close => 'إغلاق';
-
-  @override
-  String get color_screen_title => 'اختر لونًا';
+  String get cancel => 'Cancel';
 
   @override
   String get count_avg_dwell => 'متوسط التوقف';
@@ -85,133 +52,10 @@ class LocalizationAr extends Localization {
   String get count_avg_occ => 'متوسط الإشغال';
 
   @override
-  String get count_enter => 'دخول';
-
-  @override
-  String get count_exit => 'خروج';
-
-  @override
   String get count_max_dwell => 'أطول توقف';
 
   @override
   String get count_max_occ => 'ذروة الإشغال';
-
-  @override
-  String get count_pass_by => 'مرور';
-
-  @override
-  String get count_window => 'فترة الإحصاء: 5 دقائق';
-
-  @override
-  String get counter_screen_cooldown_desc =>
-      'تتطلب إعادة الدخول وقت تهدئة #0 ثانية بعد الخروج من منطقة الكشف';
-
-  @override
-  String get counter_screen_cooldown_in_seconds => 'بالثواني';
-
-  @override
-  String get counter_screen_cooldown_threshold => 'عتبة التهدئة';
-
-  @override
-  String get counter_screen_cooldown_time => 'وقت التهدئة';
-
-  @override
-  String get counter_screen_enabled => 'مفعّل';
-
-  @override
-  String get counter_screen_enabled_error => 'خطأ';
-
-  @override
-  String get counter_screen_enabled_error_content =>
-      'تحتاج إلى تفعيل عداد آخر أولاً، ثم يمكنك تعطيل هذا العداد';
-
-  @override
-  String get counter_screen_name_error => 'لا يمكن أن يكون اسم العداد فارغًا';
-
-  @override
-  String get counter_screen_reentry_desc =>
-      'يجب أن تدخل الكائنات #0 مرات، مع وقت تهدئة #1 ثانية بين كل خروج وإعادة دخول، لتفعيل إعادة الدخول';
-
-  @override
-  String get counter_screen_reentry_threshold => 'عتبة إعادة الدخول';
-
-  @override
-  String get counter_screen_reentry_title => 'عد إعادة الدخول';
-
-  @override
-  String get counter_screen_show_on => 'عرض على الشاشة';
-
-  @override
-  String get counter_screen_stagnant_consider => 'اعتبارها راكدة';
-
-  @override
-  String get counter_screen_stagnant_desc =>
-      'الكائنات التي تبقى ثابتة لأكثر من #0 ثانية ستعتبر راكدة';
-
-  @override
-  String get counter_screen_stagnant_desc_prefix => 'بادئة الوصف';
-
-  @override
-  String get counter_screen_stagnant_desc_suffix => 'لاحقة الوصف';
-
-  @override
-  String get counter_screen_stagnant_in_seconds => 'بالثواني';
-
-  @override
-  String get counter_screen_stagnant_threshold => 'عتبة الركود';
-
-  @override
-  String get default_project_name => 'مشروع';
-
-  @override
-  String get default_video_name => 'مصدر فيديو';
-
-  @override
-  String get default_zone_name => 'منطقة كشف';
-
-  @override
-  String get detection_screen_confidence => 'الثقة';
-
-  @override
-  String get detection_screen_confidence_desc =>
-      'الثقة أعلى من #0 تعتبر كشفًا صالحًا';
-
-  @override
-  String get detection_screen_consider_valid => 'اعتباره صالحًا بعد';
-
-  @override
-  String get detection_screen_consider_valid_desc =>
-      'سيعتبر الكائن المتتبع صالحًا بعد #0';
-
-  @override
-  String get detection_screen_high => 'مرتفع';
-
-  @override
-  String get detection_screen_lost => 'مفقود';
-
-  @override
-  String get detection_screen_lost_desc =>
-      'تحديد وقت إزالة الأجسام المفقودة ديناميكيًا بين #0 و #1 حسب سرعة الحركة';
-
-  @override
-  String get detection_screen_low => 'منخفض';
-
-  @override
-  String get detection_screen_match => 'تطابق';
-
-  @override
-  String get detection_screen_match_desc =>
-      '#0 matchThreshold هو معلمة أساسية في تتبع الكائنات تقيس مدى التطابق بين إطارات الكشف المختلفة. القيمة المنخفضة تجعل ربط الكائنات أسهل لكنها تزيد من خطر الارتباطات الخاطئة. القيمة العالية أكثر صرامة في ربط الكائنات لكنها قد تفقد بعض التطابقات الحقيقية';
-
-  @override
-  String get detection_screen_models => 'النماذج';
-
-  @override
-  String get detection_screen_nms => 'قمع غير الحد الأقصى';
-
-  @override
-  String get detection_screen_nms_desc =>
-      '#0 قيمة NMS المنخفضة (مثل 0.3-0.4) تزيل الإطارات المتداخلة بشكل أكثر صرامة وتقلل الإيجابيات الكاذبة لكنها قد تفوت الأشخاص المتداخلين. القيمة الأعلى (0.7-0.9) تحتفظ بمزيد من الإطارات مما قد يزيد الإيجابيات الكاذبة لكنها تكشف الأشخاص المتداخلين بشكل أفضل.';
 
   @override
   String get detection_screen_reset => 'إعادة تعيين';
@@ -224,39 +68,57 @@ class LocalizationAr extends Localization {
   String get detection_screen_title => 'إعدادات الكشف';
 
   @override
-  String get error_content =>
-      'حدث خطأ غير متوقع. هل ترغب في إرسال تقرير بالبريد الإلكتروني؟';
+  String get detection_type_screen_body =>
+      'Choose which detection model to use for this project.';
 
   @override
-  String get error_oops => 'عذرًا، حدث خطأ ما';
+  String get detection_type_screen_load_error =>
+      'Failed to load detection types.';
 
   @override
-  String get error_report => 'راسلنا عبر البريد الإلكتروني';
+  String get detection_type_screen_pedestrian_body =>
+      'Count people using the pedestrian detection model.';
 
   @override
-  String get filter_screen_desc => 'حدد نطاق تصفية من القائمة أدناه';
+  String get detection_type_screen_pedestrian_title => 'Pedestrian';
 
   @override
-  String get filter_screen_error_content =>
-      'يجب أن يكون وقت الانتهاء أكبر من وقت البدء';
+  String get detection_type_screen_title => 'Detection Type';
 
   @override
-  String get filter_screen_error_custom => 'مخصص';
+  String get detection_type_screen_vehicle_body =>
+      'Count cars and other vehicles using the vehicle model.';
 
   @override
-  String get filter_screen_error_end => 'الانتهاء';
+  String get detection_type_screen_vehicle_title => 'Vehicle';
 
   @override
-  String get filter_screen_error_start => 'البدء';
-
-  @override
-  String get filter_screen_error_title => 'تصفية';
-
-  @override
-  String get filter_screen_title => 'تصفية';
+  String get language_screen_body =>
+      'Select your preferred language for the app interface.';
 
   @override
   String get language_screen_language => 'اللغة';
+
+  @override
+  String get language_screen_system_label => 'System language';
+
+  @override
+  String get live_url_screen_examples_label => 'Example';
+
+  @override
+  String get live_url_screen_invalid_rtsp_error =>
+      'RTSP URLs must include a host name.';
+
+  @override
+  String get live_url_screen_invalid_url_error =>
+      'Enter a valid URL with a supported scheme.';
+
+  @override
+  String get live_url_screen_unsupported_scheme_error => 'Only HTTP';
+
+  @override
+  String get live_url_screen_url_empty_error =>
+      'Please enter a live stream URL.';
 
   @override
   String get main_screen_booting => 'جاري التشغيل...';
@@ -268,24 +130,11 @@ class LocalizationAr extends Localization {
   String get no => 'لا';
 
   @override
-  String get objects_screen_desc =>
-      'اختر أهداف الكشف مثل شخص، سيارة، حافلة، إلخ.';
+  String get no_camera_screen_body =>
+      'There is no camera detected on this device. Please connect a camera to use the app.\\nOr you can use Live URL or a file to test the app.';
 
   @override
-  String get objects_screen_title => 'الكائنات';
-
-  @override
-  String get ok => 'موافق';
-
-  @override
-  String get open_project_screen_desc =>
-      'افتح المشاريع التي تم إنشاؤها سابقًا، مع الاحتفاظ بأحدث 20 مشروعًا فقط.';
-
-  @override
-  String get open_project_screen_no_project => 'لم يتم العثور على مشروع.';
-
-  @override
-  String get open_project_screen_title => 'فتح مشروع';
+  String get no_camera_screen_title => 'No Camera Detected';
 
   @override
   String get product_copyright => 'حقوق النشر © 2025';
@@ -298,97 +147,263 @@ class LocalizationAr extends Localization {
   String get product_name => 'عداد';
 
   @override
-  String get project_screen_add_video_button => 'إضافة مصدر فيديو';
+  String get settings_piyuo_screen_body => 'Use a Piyuo Cloud URL for uploads.';
 
   @override
-  String get project_screen_exit_button => 'خروج';
+  String get settings_piyuo_screen_cloud_url_label => 'Cloud URL';
 
   @override
-  String get project_screen_exit_confirm_content =>
-      'مغادرة المشروع ستوقف العد. هل أنت متأكد أنك تريد المتابعة؟';
+  String get settings_piyuo_screen_copy_action => 'Copy URL';
 
   @override
-  String get project_screen_exit_confirm_title => 'تأكيد الخروج من المشروع';
+  String get settings_piyuo_screen_copy_success => 'URL copied';
 
   @override
-  String get project_screen_from_desc =>
-      'نحتفظ بسجل دوار لمدة 24 ساعة، لذا يمكنك عرض أي شريحة زمنية تحتاجها.';
+  String get settings_piyuo_screen_invalid_url_error =>
+      'Please paste a valid Piyuo Cloud URL.';
 
   @override
-  String get project_screen_report_settings => 'الإعدادات';
+  String get settings_piyuo_screen_legacy_body =>
+      'If you already had a Piyuo Cloud URL from an older install';
 
   @override
-  String get project_screen_title => 'المشروع';
+  String get settings_piyuo_screen_saving_action => 'Saving...';
 
   @override
-  String get project_view_no_videos => 'لا يوجد مصدر فيديو متاح.';
+  String get settings_piyuo_screen_title => 'Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_button => 'عرض نقطة المركز على الهدف';
+  String get settings_piyuo_screen_use_action => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_desc =>
-      'تساعد نقطة المركز في تحديد ما إذا كان الهدف ضمن منطقة الإصابة.';
+  String get settings_screen_body =>
+      'Set project name, detection parameters, count clearing.';
 
   @override
-  String get settings_screen_center_point_title => 'نقطة المركز على الهدف';
+  String get settings_screen_custom_server_body =>
+      'We will help set up a local server.';
 
   @override
-  String get settings_screen_delete_button => 'حذف';
+  String get settings_screen_custom_server_title => 'Use your own server';
 
   @override
-  String get settings_screen_delete_content =>
-      'هل أنت متأكد أنك تريد حذف هذا المشروع؟';
+  String get settings_screen_data_server_label => 'Data Server';
 
   @override
-  String get settings_screen_delete_header => 'حذف هذا المشروع';
+  String get settings_screen_delivery_label => 'Delivery';
+
+  @override
+  String get settings_screen_demo_mode_body =>
+      'Test only. Data is not exported.';
+
+  @override
+  String get settings_screen_demo_mode_title => 'Demo mode';
 
   @override
   String get settings_screen_desc => 'ضبط اسم المشروع، معلمات الكشف، مسح العد.';
 
   @override
-  String get settings_screen_lost_target_button => 'عرض الهدف المفقود';
+  String get settings_screen_detection_label => 'Detection';
 
   @override
-  String get settings_screen_lost_target_desc =>
-      'عندما يفقد تتبع الكائن هدفًا، يجعل هذا الخيار الهدف مرئيًا. افتراضيًا، لا يتم عرض الأهداف المفقودة.';
+  String get settings_screen_parameters_label => 'Parameters';
 
   @override
-  String get settings_screen_lost_target_title => 'الهدف المفقود';
+  String get settings_screen_piyuo_cloud_body =>
+      'Send results to our cloud service.';
 
   @override
-  String get settings_screen_project_error =>
-      'لا يمكن أن يكون اسم المشروع فارغًا';
+  String get settings_screen_piyuo_cloud_title => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_project_id => 'معرف المشروع';
+  String get settings_screen_reset_all_data_body =>
+      'This will erase all data and start from the beginning. This action cannot be undone.';
 
   @override
-  String get settings_screen_project_name => 'اسم المشروع';
+  String get settings_screen_reset_all_data_title => 'Reset all data?';
 
   @override
-  String get settings_screen_project_name_place_holder =>
-      '123 الشارع الرئيسي أو حي العليا';
+  String get settings_screen_subscription_body =>
+      'Manage your subscription and billing details.';
 
   @override
-  String get settings_screen_random_count_button => 'إضافة عدّات عشوائية';
+  String get settings_screen_subscription_title => 'Subscription';
 
   @override
-  String get settings_screen_reset_count_button => 'إعادة تعيين العدّات';
+  String get settings_screen_title => 'Settings';
 
   @override
-  String get settings_screen_reset_count_content =>
-      'هل أنت متأكد أنك تريد إعادة تعيين جميع العدّات؟';
+  String get settings_server_screen_body =>
+      'Set the server URL used for uploads.';
 
   @override
-  String get settings_screen_reset_count_header =>
-      'إعادة تعيين جميع العدّات في هذا المشروع';
+  String get settings_server_screen_delivery_cadence_label =>
+      'Deliver Payload On Wall Clock';
 
   @override
-  String get settings_screen_title => 'الإعدادات';
+  String get settings_server_screen_hour_unit_plural => 'hours';
+
+  @override
+  String get settings_server_screen_hour_unit_singular => 'hour';
+
+  @override
+  String get settings_server_screen_minute_unit_plural => 'minutes';
+
+  @override
+  String get settings_server_screen_saving_action => 'Saving...';
+
+  @override
+  String get settings_server_screen_server_url_label => 'Server URL';
+
+  @override
+  String get settings_server_screen_title => 'Custom Server';
+
+  @override
+  String get settings_server_screen_use_action => 'Use Custom Server';
+
+  @override
+  String get start_screen_demo_mode_body =>
+      'Demo mode. No data leaves your device.';
+
+  @override
+  String get start_screen_invitation_label => 'Invitation';
+
+  @override
+  String get start_screen_not_set_label => 'Not Set';
+
+  @override
+  String get start_screen_own_server_label => 'Own Server';
+
+  @override
+  String get start_screen_piyuo_cloud_label => 'Piyuo Cloud';
+
+  @override
+  String get start_screen_product_body =>
+      'Pedestrian and vehicle counter with data collection.';
+
+  @override
+  String get start_screen_product_title => 'Piyuo Counter';
 
   @override
   String get submit => 'إرسال';
+
+  @override
+  String get upload_config_screen_body =>
+      'Configure delivery settings for telemetry uploads.';
+
+  @override
+  String get upload_config_screen_fast_fail_label => 'Fast fail';
+
+  @override
+  String get upload_config_screen_frequent_label => 'Frequent';
+
+  @override
+  String get upload_config_screen_large_label => 'Large';
+
+  @override
+  String get upload_config_screen_load_error =>
+      'Failed to load delivery settings.';
+
+  @override
+  String get upload_config_screen_max_batch_size_body =>
+      'Max number of payload records sent in one HTTP request.';
+
+  @override
+  String get upload_config_screen_max_batch_size_title => 'Maximum Batch Size';
+
+  @override
+  String get upload_config_screen_request_timeout_body =>
+      'HTTP timeout per upload request.';
+
+  @override
+  String get upload_config_screen_request_timeout_title => 'Request Timeout';
+
+  @override
+  String get upload_config_screen_reset_body =>
+      'This restores upload cadence, batching, and timeout to defaults.';
+
+  @override
+  String get upload_config_screen_reset_title => 'Reset delivery settings?';
+
+  @override
+  String get upload_config_screen_small_label => 'Small';
+
+  @override
+  String get upload_config_screen_sparse_label => 'Sparse';
+
+  @override
+  String get upload_config_screen_title => 'Delivery Settings';
+
+  @override
+  String get upload_config_screen_wait_longer_label => 'Wait longer';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_body =>
+      'How often pending telemetry is uploaded on minute-aligned boundaries.';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_title =>
+      'Wall-Clock Upload Cadence';
+
+  @override
+  String get upload_logs_screen_check_data_server_error_prefix =>
+      'Unable to check Data Server: ';
+
+  @override
+  String get upload_logs_screen_detail_unavailable_body =>
+      'Upload log detail is no longer available.';
+
+  @override
+  String get upload_logs_screen_empty_body => 'No upload logs yet.';
+
+  @override
+  String get upload_logs_screen_load_error => 'Unable to load upload logs.';
+
+  @override
+  String get upload_logs_screen_next_upload_pending => 'Next upload at ...';
+
+  @override
+  String get upload_logs_screen_next_upload_prefix => 'Next upload at ';
+
+  @override
+  String get upload_logs_screen_payloads_unit => 'payloads';
+
+  @override
+  String get upload_logs_screen_retry_action => 'Retry';
+
+  @override
+  String get upload_logs_screen_set_data_server_first_body =>
+      'Please set the Data Server first.';
+
+  @override
+  String get upload_logs_screen_title => 'Upload Logs';
+
+  @override
+  String get upload_logs_screen_today_label => 'Today';
+
+  @override
+  String get upload_logs_screen_upload_failed_prefix => 'Upload failed: ';
+
+  @override
+  String get upload_logs_screen_upload_failed_unknown =>
+      'Upload failed due to an unknown error.';
+
+  @override
+  String get upload_logs_screen_upload_now_action => 'Upload Now';
+
+  @override
+  String get upload_logs_screen_uploaded_success =>
+      'Uploaded payloads to remote server.';
+
+  @override
+  String get upload_logs_screen_uploading_action => 'Uploading...';
+
+  @override
+  String get upload_logs_screen_yesterday_label => 'Yesterday';
+
+  @override
+  String get url_screen_body =>
+      'Enter the live stream URL for your camera source.';
 
   @override
   String get url_screen_desc => 'الرجاء إدخال رابط البث المباشر';
@@ -400,88 +415,19 @@ class LocalizationAr extends Localization {
   String get url_screen_url => 'الرابط';
 
   @override
+  String get url_screen_url_hint =>
+      'http://example.com/stream or rtsp://example.com/stream';
+
+  @override
   String get url_screen_url_placeholder =>
       'http://example.com/stream أو rtsp://example.com/stream';
-
-  @override
-  String get video_screen_add_point => 'إضافة نقطة إلى المنطقة الحالية';
-
-  @override
-  String get video_screen_add_zone => 'إضافة منطقة كشف';
-
-  @override
-  String get video_screen_change_file => 'تغيير الملف';
-
-  @override
-  String get video_screen_delete_button => 'حذف';
-
-  @override
-  String get video_screen_delete_content =>
-      'هل أنت متأكد أنك تريد حذف مصدر الفيديو هذا؟';
-
-  @override
-  String get video_screen_delete_header => 'حذف مصدر الفيديو هذا';
 
   @override
   String get video_screen_desc =>
       'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
 
   @override
-  String get video_screen_detection => 'معلمات النموذج';
-
-  @override
-  String get video_screen_edit_placeholder =>
-      'كاميرا الباب الأمامي أو كاميرا موقف السيارات';
-
-  @override
-  String get video_screen_move_bottom => 'نقل المنطقة الحالية إلى الأسفل';
-
-  @override
-  String get video_screen_name_empty => 'لا يمكن أن يكون اسم الفيديو فارغًا.';
-
-  @override
-  String get video_screen_playback_14x => '1/4x';
-
-  @override
-  String get video_screen_playback_2x => '2x';
-
-  @override
-  String get video_screen_playback_current => 'الحالي: ';
-
-  @override
-  String get video_screen_playback_speed => 'سرعة التشغيل';
-
-  @override
-  String get video_screen_remove_point => 'إزالة نقطة من المنطقة الحالية';
-
-  @override
-  String get video_screen_sources =>
-      'تكوين مصدر الصورة، أهداف الكشف، ومعلمات النموذج.';
-
-  @override
-  String get video_screen_targets => 'أهداف الكشف';
-
-  @override
-  String get video_screen_tools => 'الأدوات';
-
-  @override
-  String get video_screen_video_name => 'اسم مصدر الفيديو';
-
-  @override
-  String get video_screen_zones => 'مناطق الكشف';
-
-  @override
-  String get video_screen_zones_desc => 'استخدم السحب والإفلات لتعديل المناطق';
-
-  @override
   String get video_sources_camera => 'الكاميرا';
-
-  @override
-  String get video_sources_camera_denied => 'تم رفض الوصول للكاميرا';
-
-  @override
-  String get video_sources_camera_denied_msg =>
-      'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للكاميرا لهذا التطبيق.';
 
   @override
   String get video_sources_camera_not_found_message =>
@@ -494,99 +440,37 @@ class LocalizationAr extends Localization {
   String get video_sources_file => 'ملف';
 
   @override
+  String get video_sources_file_hint => 'اختر فيديو من جهازك';
+
+  @override
+  String get video_sources_import_error => 'تعذر استيراد ملف الفيديو.';
+
+  @override
   String get video_sources_live_stream => 'رابط البث المباشر';
 
   @override
-  String get video_sources_photos_denied => 'تم رفض الوصول للصور';
+  String get video_sources_load_error => 'تعذر تحميل مصادر الفيديو.';
 
   @override
   String get video_sources_photos_denied_msg =>
       'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_photos_goto_settings => 'اذهب إلى الإعدادات';
+  String get video_sources_screen_body =>
+      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+
+  @override
+  String get video_sources_screen_title => 'مصادر الفيديو';
 
   @override
   String get video_sources_webcam => 'كاميرا الويب';
 
   @override
-  String get video_sources_webcam_not_found_message =>
-      'يرجى التحقق من إذن التطبيق والتوصيل الصحيح للكاميرا';
-
-  @override
-  String get video_sources_webcam_not_found_title => 'كاميرا الويب غير موجودة';
-
-  @override
-  String get webcam_manager_webcam => 'كاميرا ويب';
-
-  @override
-  String get webcam_screen_add_title => 'إضافة كاميرا ويب';
-
-  @override
-  String get webcam_screen_edit_title => 'اختيار كاميرا ويب';
-
-  @override
   String get wizard_screen_about => 'حول';
-
-  @override
-  String get wizard_screen_desc => 'قم بإنشاء مشروع جديد أدناه للبدء في العد.';
-
-  @override
-  String get wizard_screen_email_us => 'راسلنا عبر البريد الإلكتروني';
 
   @override
   String get wizard_screen_language => 'اللغة';
 
   @override
-  String get wizard_screen_new_project_from => 'مشروع جديد من';
-
-  @override
-  String get wizard_screen_open_projects => 'فتح مشروع موجود';
-
-  @override
-  String get wizard_screen_open_projects_tip =>
-      'سيتم حفظ جميع المشاريع محليًا تلقائيًا';
-
-  @override
   String get yes => 'نعم';
-
-  @override
-  String get zone_screen_can_not_delete => 'لا يمكن حذف المنطقة';
-
-  @override
-  String get zone_screen_color => 'اللون';
-
-  @override
-  String get zone_screen_delete_button => 'حذف';
-
-  @override
-  String get zone_screen_delete_content =>
-      'هل أنت متأكد أنك تريد حذف هذه المنطقة؟';
-
-  @override
-  String get zone_screen_delete_header => 'حذف هذه المنطقة';
-
-  @override
-  String get zone_screen_desc =>
-      'يمكن لمنطقة الكشف تحديد أنواع الكائنات المراد اكتشافها واختيار العدادات التي سيتم عرضها، مثل تم الكشف، تم الظهور، ودخل.';
-
-  @override
-  String get zone_screen_name_placeholder =>
-      'اسم المنطقة، مثل الرصيف أو موقف السيارات';
-
-  @override
-  String get zone_screen_one_zone_required => 'مطلوب منطقة واحدة على الأقل.';
-
-  @override
-  String get zone_screen_zone => 'منطقة';
-
-  @override
-  String get zone_screen_zone_color => 'لون المنطقة';
-
-  @override
-  String get zone_screen_zone_name_required =>
-      'لا يمكن أن يكون اسم المنطقة فارغًا';
-
-  @override
-  String get zone_screen_zone_show_summary => 'عرض الملخص على الشاشة';
 }

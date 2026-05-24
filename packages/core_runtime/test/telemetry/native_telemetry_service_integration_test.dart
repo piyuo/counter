@@ -47,16 +47,16 @@ void main() {
         core_domain.QueuedPayload(
           id: 'p1',
           payload: core_domain.TelemetryPayload(
-            id: 'p1',
             startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-            endUtc: DateTime.utc(2026, 1, 1, 0, 5),
-            sessionId: 'session-1',
-            windowIndex: 1,
+            startBusiness: DateTime(2026, 1, 1, 0, 0),
+            businessDate: '2026-01-01',
+            session: 'session-1',
+            sequence: 1,
             frameCount: 0,
-            missingDurationMs: 0,
+            missingSec: 0,
             confidence: 0.0,
             isPartial: false,
-            coverageRatio: 1.0,
+            coverage: 1.0,
             fps: 0.0,
             areas: const [],
           ),
@@ -78,7 +78,7 @@ void main() {
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
-          dataServer: core_domain.DataServer.personal(url: 'https://example.com/api/telemetry'),
+          dataServer: core_domain.DataServer.personalCustom(url: 'https://example.com/api/telemetry'),
           deviceId: 'device-1',
           bearerToken: 'tok',
         ),
@@ -86,11 +86,11 @@ void main() {
         serializer: const _JsonSerializer(),
         transport: transport,
         responseWorker: core_domain.ResponseWorker(
-          onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
+          onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
             await container
                 .read(core_domain.appProvider.notifier)
                 .applyServerConfigOverrides(
-                  detection: detection,
+                  detectionType: detectionType,
                   detectionParams: detectionParams,
                   deliveryConfig: deliveryConfig,
                 );
@@ -101,7 +101,7 @@ void main() {
       await service.uploadNow();
 
       final state = await container.read(core_domain.appProvider.future);
-      expect(state.detection, const core_domain.DetectionType.vehicle());
+      expect(state.detectionType, const core_domain.DetectionType.vehicle());
       expect(state.detectionParams.trackHighThresh, 0.77);
       expect(state.uploadConfig.wallClockCadenceMin, 15);
       expect(queue.markedSuccessIds, ['p1']);
@@ -119,16 +119,16 @@ void main() {
         core_domain.QueuedPayload(
           id: 'p2',
           payload: core_domain.TelemetryPayload(
-            id: 'p2',
             startUtc: DateTime.utc(2026, 1, 1, 0, 5),
-            endUtc: DateTime.utc(2026, 1, 1, 0, 10),
-            sessionId: 'session-1',
-            windowIndex: 1,
+            startBusiness: DateTime(2026, 1, 1, 0, 5),
+            businessDate: '2026-01-01',
+            session: 'session-1',
+            sequence: 1,
             frameCount: 0,
-            missingDurationMs: 0,
+            missingSec: 0,
             confidence: 0.0,
             isPartial: false,
-            coverageRatio: 1.0,
+            coverage: 1.0,
             fps: 0.0,
             areas: const [],
           ),
@@ -143,7 +143,7 @@ void main() {
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
-          dataServer: core_domain.DataServer.personal(url: 'https://example.com/api/telemetry'),
+          dataServer: core_domain.DataServer.personalCustom(url: 'https://example.com/api/telemetry'),
           deviceId: 'device-1',
           bearerToken: 'tok',
         ),
@@ -151,11 +151,11 @@ void main() {
         serializer: const _JsonSerializer(),
         transport: transport,
         responseWorker: core_domain.ResponseWorker(
-          onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
+          onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
             await container
                 .read(core_domain.appProvider.notifier)
                 .applyServerConfigOverrides(
-                  detection: detection,
+                  detectionType: detectionType,
                   detectionParams: detectionParams,
                   deliveryConfig: deliveryConfig,
                 );
@@ -178,7 +178,7 @@ void main() {
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
-          dataServer: core_domain.DataServer.personal(url: 'https://example.com/api/telemetry'),
+          dataServer: core_domain.DataServer.personalCustom(url: 'https://example.com/api/telemetry'),
           deviceId: 'device-1',
           bearerToken: 'tok',
         ),
@@ -189,16 +189,16 @@ void main() {
 
       await service.enqueue(
         core_domain.TelemetryPayload(
-          id: 'p-reset',
           startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          endUtc: DateTime.utc(2026, 1, 1, 0, 5),
-          sessionId: 'session-1',
-          windowIndex: 1,
+          startBusiness: DateTime(2026, 1, 1, 0, 0),
+          businessDate: '2026-01-01',
+          session: 'session-1',
+          sequence: 1,
           frameCount: 0,
-          missingDurationMs: 0,
+          missingSec: 0,
           confidence: 0.0,
           isPartial: false,
-          coverageRatio: 1.0,
+          coverage: 1.0,
           fps: 0.0,
           areas: const [],
         ),
@@ -207,18 +207,18 @@ void main() {
       await service.uploadNow();
 
       final availableBeforePrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableBeforePrune.map((p) => p.id), contains('p-reset'));
+      expect(availableBeforePrune.map((p) => p.id), contains('session-1-1'));
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
       await (db.update(
         db.telemetryQueue,
-      )..where((t) => t.id.equals('p-reset'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
+      )..where((t) => t.id.equals('session-1-1'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final availableAfterPrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableAfterPrune.map((p) => p.id), isNot(contains('p-reset')));
+      expect(availableAfterPrune.map((p) => p.id), isNot(contains('session-1-1')));
     });
 
     test('repeated flush does not resend already-delivered payload', () async {
@@ -230,7 +230,7 @@ void main() {
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
-          dataServer: core_domain.DataServer.personal(url: 'https://example.com/api/telemetry'),
+          dataServer: core_domain.DataServer.personalCustom(url: 'https://example.com/api/telemetry'),
           deviceId: 'device-1',
           bearerToken: 'tok',
         ),
@@ -241,16 +241,16 @@ void main() {
 
       await service.enqueue(
         core_domain.TelemetryPayload(
-          id: 'p-once',
           startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          endUtc: DateTime.utc(2026, 1, 1, 0, 5),
-          sessionId: 'session-1',
-          windowIndex: 1,
+          startBusiness: DateTime(2026, 1, 1, 0, 0),
+          businessDate: '2026-01-01',
+          session: 'session-1',
+          sequence: 1,
           frameCount: 0,
-          missingDurationMs: 0,
+          missingSec: 0,
           confidence: 0.0,
           isPartial: false,
-          coverageRatio: 1.0,
+          coverage: 1.0,
           fps: 0.0,
           areas: const [],
         ),
@@ -263,7 +263,7 @@ void main() {
       expect(await queue.pendingCount(), 0);
       final available = await queue.fetchRecent(daysBack: 7);
       final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.id);
-      expect(delivered, contains('p-once'));
+      expect(delivered, contains('session-1-1'));
     });
 
     test('pruneExpired keeps recent payloads and does not remove pending payloads', () async {
@@ -273,7 +273,7 @@ void main() {
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
           config: core_domain.UploadConfig(),
-          dataServer: core_domain.DataServer.personal(url: 'https://example.com/api/telemetry'),
+          dataServer: core_domain.DataServer.personalCustom(url: 'https://example.com/api/telemetry'),
           deviceId: 'device-1',
           bearerToken: 'tok',
         ),
@@ -285,16 +285,16 @@ void main() {
       // First payload is delivered via flush.
       await service.enqueue(
         core_domain.TelemetryPayload(
-          id: 'p-delivered',
           startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          endUtc: DateTime.utc(2026, 1, 1, 0, 5),
-          sessionId: 'session-1',
-          windowIndex: 1,
+          startBusiness: DateTime(2026, 1, 1, 0, 0),
+          businessDate: '2026-01-01',
+          session: 'session-1',
+          sequence: 1,
           frameCount: 0,
-          missingDurationMs: 0,
+          missingSec: 0,
           confidence: 0.0,
           isPartial: false,
-          coverageRatio: 1.0,
+          coverage: 1.0,
           fps: 0.0,
           areas: const [],
         ),
@@ -304,16 +304,16 @@ void main() {
       // Second payload remains pending (not flushed).
       await service.enqueue(
         core_domain.TelemetryPayload(
-          id: 'p-pending',
           startUtc: DateTime.utc(2026, 1, 1, 1, 0),
-          endUtc: DateTime.utc(2026, 1, 1, 1, 5),
-          sessionId: 'session-1',
-          windowIndex: 2,
+          startBusiness: DateTime(2026, 1, 1, 1, 0),
+          businessDate: '2026-01-01',
+          session: 'session-1',
+          sequence: 2,
           frameCount: 0,
-          missingDurationMs: 0,
+          missingSec: 0,
           confidence: 0.0,
           isPartial: false,
-          coverageRatio: 1.0,
+          coverage: 1.0,
           fps: 0.0,
           areas: const [],
         ),
@@ -323,8 +323,8 @@ void main() {
 
       final available = await queue.fetchRecent(daysBack: 7);
       final pending = await queue.fetchReady(limit: 10);
-      expect(available.map((p) => p.id), contains('p-delivered'));
-      expect(pending.map((p) => p.id), contains('p-pending'));
+      expect(available.map((p) => p.id), contains('session-1-1'));
+      expect(pending.map((p) => p.id), contains('session-1-2'));
       expect(await queue.pendingCount(), 1);
     });
   });
@@ -424,6 +424,9 @@ class _ReadyOnceQueue implements core_domain.TelemetryQueueRepository {
   Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 10}) async {
     return _returned ? const [] : [pending];
   }
+
+  @override
+  Future<void> reset() async {}
 }
 
 class _JsonSerializer implements core_domain.PayloadSerializer {
@@ -437,6 +440,8 @@ class _JsonSerializer implements core_domain.PayloadSerializer {
     List<core_domain.TelemetryPayload> payloads, {
     required int schemaVersion,
     required String deviceId,
+    String? projectId,
+    String? assignId,
   }) {
     final body = <String, Object?>{
       'schema': schemaVersion,

@@ -14,9 +14,7 @@ abstract class AppLinkService {
   ///   to the invitation onboarding screen if the app flow is in a state that
   ///   accepts it (e.g. [CheckingBackend] or [OnboardingBegin]).
   ///
-  /// Call once during boot, passing the current [Ref] so the implementation
-  /// can update [invitationCodeProvider] when a link is received.
-  Future<void> init(Ref ref);
+  Future<void> init();
 
   /// Simulates an incoming deep link as if the OS had delivered it.
   ///

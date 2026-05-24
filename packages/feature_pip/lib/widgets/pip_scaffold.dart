@@ -28,6 +28,9 @@ class PipScaffold extends ConsumerStatefulWidget {
     this.bottomNavigationBar,
     this.previousPageTitle,
     this.backgroundColor,
+    this.appBarBackgroundColor,
+    this.leading,
+    this.automaticallyImplyLeading = true,
     super.key,
   });
 
@@ -56,6 +59,17 @@ class PipScaffold extends ConsumerStatefulWidget {
   final String? previousPageTitle;
 
   final Color? backgroundColor;
+
+  final Color? appBarBackgroundColor;
+
+  /// An explicit leading widget. When provided, [automaticallyImplyLeading]
+  /// is ignored.
+  final Widget? leading;
+
+  /// Whether to show a back button automatically when the navigator can pop.
+  ///
+  /// Defaults to true.
+  final bool automaticallyImplyLeading;
 
   @override
   ConsumerState<PipScaffold> createState() => _PipScaffoldState();
@@ -102,6 +116,8 @@ class _PipScaffoldState extends ConsumerState<PipScaffold> {
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: true,
         appBar: PipAppBar(
+          leading: widget.leading,
+          automaticallyImplyLeading: widget.automaticallyImplyLeading,
           title:
               widget.titleWidget ??
               (widget.title != null
@@ -109,6 +125,7 @@ class _PipScaffoldState extends ConsumerState<PipScaffold> {
                   : null),
           onSearch: widget.onSearch,
           actions: widget.action != null ? [widget.action!] : null,
+          backgroundColor: widget.appBarBackgroundColor,
         ),
         body: widget.builder(scrollController),
       ),

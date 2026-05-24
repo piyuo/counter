@@ -55,4 +55,4 @@ final class HardwareCapabilityServiceProvider
 }
 
 String _$hardwareCapabilityServiceHash() =>
-    r'ea6d32581833e24e77d40143faaa2a06ee7bee6e';
+    r'1c9e410eec4399f494acb9a8539a7185e04ae417';

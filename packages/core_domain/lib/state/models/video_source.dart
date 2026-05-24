@@ -20,7 +20,7 @@ sealed class VideoSource with _$VideoSource {
 
   const factory VideoSource.unspecified() = UnspecifiedVideoSource;
 
-  const factory VideoSource.camera({required int cameraIndex}) = CameraVideoSource;
+  const factory VideoSource.camera({required int cameraIndex, required bool isFaceFront}) = CameraVideoSource;
 
   const factory VideoSource.webcam({required int webcamIndex}) = WebcamVideoSource;
 

@@ -10,5 +10,9 @@ class OnboardingRoutes {
   const OnboardingRoutes._();
 
   static const String onboarding = '/onboarding';
-  static const String onboardingInvitation = '/onboarding/invitation';
+  static const String onboarding1 = '/onboarding/1';
+  static const String onboarding2 = '/onboarding/1/2';
+  static const String system = '/onboarding/1/2/system';
+  static const String cta = '/cta';
+  static const String ctaInvitation = '/cta/invitation';
 }

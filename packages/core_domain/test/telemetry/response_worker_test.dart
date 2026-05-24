@@ -14,7 +14,7 @@ void main() {
     test('process does not apply overrides for wrapped error envelope', () async {
       var overrideApplied = false;
       final worker = ResponseWorker(
-        onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
+        onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
           overrideApplied = true;
         },
       );
@@ -36,8 +36,8 @@ void main() {
       core_domain.UploadConfig? appliedDeliveryConfig;
 
       final worker = ResponseWorker(
-        onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
-          appliedDetection = detection;
+        onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
+          appliedDetection = detectionType;
           appliedDetectionParams = detectionParams;
           appliedDeliveryConfig = deliveryConfig;
         },
@@ -64,7 +64,7 @@ void main() {
       core_domain.UploadConfig? appliedDeliveryConfig;
 
       final worker = ResponseWorker(
-        onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
+        onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
           appliedDeliveryConfig = deliveryConfig;
         },
       );

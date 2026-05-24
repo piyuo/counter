@@ -10,6 +10,7 @@
 import 'dart:convert';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
@@ -30,22 +31,20 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   Future<void> enqueue(core_domain.TelemetryPayload payload) async {
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
     final startLocalHm = _formatLocalHourMinute(payload.startUtc);
-    final endLocalHm = _formatLocalHourMinute(payload.endUtc);
     await _db
         .into(_db.telemetryQueue)
         // Detection engine payload IDs are unique; if a duplicate appears,
         // keep the existing row as-is (do not reset/overwrite upload state).
         .insert(
           TelemetryQueueCompanion.insert(
-            id: payload.id,
+            id: getPayloadId(payload),
             serializedPayload: jsonEncode(payload.toJson()),
             createdAtMs: nowMs,
             startMs: payload.startUtc.toUtc().millisecondsSinceEpoch,
-            endMs: payload.endUtc.toUtc().millisecondsSinceEpoch,
           ),
           mode: InsertMode.insertOrIgnore,
         );
-    appkit.logInfo('[TelemetryQueue] add payload: $startLocalHm-$endLocalHm, ');
+    appkit.logInfo('[TelemetryQueue] add payload: $startLocalHm, ');
   }
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
@@ -148,6 +147,20 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
       ..addColumns([count])
       ..where(_db.telemetryQueue.isPending);
     return await query.map((row) => row.read(count) ?? 0).getSingle();
+  }
+
+  /// Clears all telemetry data from the database.
+  ///
+  /// Deletes all queued payloads and upload logs, effectively resetting the
+  /// database to an empty state while maintaining the database connection.
+  /// This is useful for clearing accumulated telemetry data and starting fresh.
+  @override
+  Future<void> reset() async {
+    appkit.logInfo('[TelemetryQueue] resetting database - clearing all records');
+    await _db.delete(_db.telemetryUploadLog).go();
+    // Delete all queued payloads
+    await _db.delete(_db.telemetryQueue).go();
+    appkit.logInfo('[TelemetryQueue] database reset complete');
   }
 
   String _formatLocalHourMinute(DateTime utcTime) {

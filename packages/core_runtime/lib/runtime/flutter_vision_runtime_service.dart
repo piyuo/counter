@@ -25,7 +25,7 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
   core_domain.VideoSource? _activeVideoSource;
   core_domain.DetectionType? _activeDetection;
   core_domain.DetectionParams? _activeDetectionParams;
-  StreamSubscription<vision.WindowCountState>? _finalizedSnapshotSubscription;
+  StreamSubscription<vision.WindowCountState>? _snapshotSubscription;
   bool _telemetryUploadStarted = false;
 
   @override
@@ -43,15 +43,13 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
     required core_domain.DetectionParams detectionParams,
   }) async {
     await stop();
-
     final sourceType = _mapSourceType(videoSource);
+    assert(sourceType != null, '$videoSource');
     if (sourceType == null) {
       appkit.logWarning('[VisionRuntime] No configured source, skipping startup');
       _setActiveConfig(videoSource: videoSource, detection: detection, detectionParams: detectionParams);
       return;
     }
-
-    _ref.read(vision.activeVisionSourceProvider.notifier).setSource(sourceType);
 
     final detectionModel = await _buildDetectionModel(detection);
     final reidModel = await _buildReidModel(detection);
@@ -103,12 +101,7 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
       return;
     }
 
-    final sourceType = _mapSourceType(videoSource);
-    if (sourceType != null) {
-      _ref.read(vision.activeVisionSourceProvider.notifier).setSource(sourceType);
-    }
     await _activeController!.updateSource(videoSource);
-
     _setActiveConfig(videoSource: videoSource, detection: currentDetection, detectionParams: currentDetectionParams);
   }
 
@@ -166,26 +159,16 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
     _clearActiveConfig();
 
     await _stopTelemetryBridge();
-
-    if (controller == null) {
-      _ref.read(vision.activeVisionSourceProvider.notifier).clearSource();
-      return;
-    }
-
-    try {
-      await controller.shutdown();
-    } finally {
-      _ref.read(vision.activeVisionSourceProvider.notifier).clearSource();
-    }
+    await controller?.stop();
   }
 
-  vision.VisionSourceType? _mapSourceType(core_domain.VideoSource videoSource) {
+  vision.VisionInputType? _mapSourceType(core_domain.VideoSource videoSource) {
     return switch (videoSource) {
       core_domain.UnspecifiedVideoSource() => null,
-      core_domain.CameraVideoSource() => vision.VisionSourceType.camera,
-      core_domain.WebcamVideoSource() => vision.VisionSourceType.webcam,
-      core_domain.FileVideoSource() => vision.VisionSourceType.file,
-      core_domain.LiveVideoSource() => vision.VisionSourceType.livestream,
+      core_domain.CameraVideoSource() => vision.VisionInputType.camera,
+      core_domain.WebcamVideoSource() => vision.VisionInputType.webcam,
+      core_domain.FileVideoSource() => vision.VisionInputType.file,
+      core_domain.LiveVideoSource() => vision.VisionInputType.livestream,
     };
   }
 
@@ -220,16 +203,14 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
   }
 
   Future<void> _ensureTelemetryBridgeStarted() async {
-    if (_finalizedSnapshotSubscription != null) {
+    if (_snapshotSubscription != null) {
       return;
     }
 
     final appState = await _ref.read(core_domain.appProvider.future);
     final mapper = WindowResultMapper(deviceId: appState.deviceId);
 
-    _finalizedSnapshotSubscription = _ref.read(vision.windowCountProvider.notifier).finalizedSnapshots.listen((
-      snapshot,
-    ) {
+    _snapshotSubscription = _ref.read(vision.windowCountProvider.notifier).snapshots.listen((snapshot) {
       unawaited(_enqueueWindowResult(snapshot, mapper));
     });
 
@@ -244,14 +225,15 @@ class FlutterVisionRuntimeService implements core_domain.VisionRuntimeService {
       final payload = mapper.map(snapshot);
       await _ref.read(core_domain.telemetryServiceProvider).enqueue(payload);
     } catch (error, stackTrace) {
-      appkit.logWarning('[VisionRuntime] Failed to enqueue telemetry payload from window result: $error');
-      appkit.logDebug('[VisionRuntime] Enqueue error stack trace: $stackTrace');
+      appkit.logDebug(
+        '[VisionRuntime] Failed to enqueue telemetry payload from window result: $error, stack trace: $stackTrace',
+      );
     }
   }
 
   Future<void> _stopTelemetryBridge() async {
-    final subscription = _finalizedSnapshotSubscription;
-    _finalizedSnapshotSubscription = null;
+    final subscription = _snapshotSubscription;
+    _snapshotSubscription = null;
     await subscription?.cancel();
 
     if (_telemetryUploadStarted) {

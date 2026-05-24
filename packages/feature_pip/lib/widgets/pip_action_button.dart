@@ -8,7 +8,6 @@ class PipActionButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.padding = const EdgeInsets.only(right: 16),
-    this.buttonPadding = const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
     this.backgroundColor = Colors.white70,
     this.foregroundColor = Colors.black87,
     super.key,
@@ -17,17 +16,22 @@ class PipActionButton extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry buttonPadding;
   final Color backgroundColor;
   final Color foregroundColor;
 
   @override
   Widget build(BuildContext context) {
+    final isCompact = MediaQuery.sizeOf(context).shortestSide < 600;
+    final buttonPadding = isCompact
+        ? const EdgeInsets.symmetric(horizontal: 16, vertical: 0)
+        : const EdgeInsets.symmetric(horizontal: 20, vertical: 12);
+
     return Padding(
       padding: padding,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           padding: buttonPadding,
+          tapTargetSize: isCompact ? MaterialTapTargetSize.shrinkWrap : MaterialTapTargetSize.padded,
           backgroundColor: backgroundColor,
           foregroundColor: foregroundColor,
         ),

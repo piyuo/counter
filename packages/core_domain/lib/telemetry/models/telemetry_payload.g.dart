@@ -8,17 +8,17 @@ part of 'telemetry_payload.dart';
 
 _TelemetryPayload _$TelemetryPayloadFromJson(Map<String, dynamic> json) =>
     _TelemetryPayload(
-      id: json['id'] as String,
+      session: json['session'] as String,
+      sequence: (json['sequence'] as num).toInt(),
       startUtc: DateTime.parse(json['startUtc'] as String),
-      endUtc: DateTime.parse(json['endUtc'] as String),
-      sessionId: json['sessionId'] as String,
-      windowIndex: (json['windowIndex'] as num).toInt(),
+      startBusiness: DateTime.parse(json['startBusiness'] as String),
+      businessDate: json['businessDate'] as String,
       frameCount: (json['frameCount'] as num).toInt(),
-      missingDurationMs: (json['missingDurationMs'] as num).toInt(),
-      confidence: (json['confidence'] as num).toDouble(),
+      missingSec: (json['missingSec'] as num).toInt(),
+      confidence: const RoundedDouble2().fromJson(json['confidence']),
       isPartial: json['isPartial'] as bool,
-      coverageRatio: (json['coverageRatio'] as num).toDouble(),
-      fps: (json['fps'] as num).toDouble(),
+      coverage: const RoundedDouble2().fromJson(json['coverage']),
+      fps: const RoundedDouble2().fromJson(json['fps']),
       areas: (json['areas'] as List<dynamic>)
           .map((e) => AreaPayload.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -26,45 +26,49 @@ _TelemetryPayload _$TelemetryPayloadFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$TelemetryPayloadToJson(_TelemetryPayload instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'session': instance.session,
+      'sequence': instance.sequence,
       'startUtc': instance.startUtc.toIso8601String(),
-      'endUtc': instance.endUtc.toIso8601String(),
-      'sessionId': instance.sessionId,
-      'windowIndex': instance.windowIndex,
+      'startBusiness': instance.startBusiness.toIso8601String(),
+      'businessDate': instance.businessDate,
       'frameCount': instance.frameCount,
-      'missingDurationMs': instance.missingDurationMs,
-      'confidence': instance.confidence,
+      'missingSec': instance.missingSec,
+      'confidence': const RoundedDouble2().toJson(instance.confidence),
       'isPartial': instance.isPartial,
-      'coverageRatio': instance.coverageRatio,
-      'fps': instance.fps,
+      'coverage': const RoundedDouble2().toJson(instance.coverage),
+      'fps': const RoundedDouble2().toJson(instance.fps),
       'areas': instance.areas,
     };
 
 _AreaPayload _$AreaPayloadFromJson(Map<String, dynamic> json) => _AreaPayload(
-  id: (json['id'] as num).toInt(),
+  areaId: (json['areaId'] as num).toInt(),
   passBy: (json['passBy'] as num?)?.toInt() ?? 0,
   stay: (json['stay'] as num?)?.toInt() ?? 0,
   entry: (json['entry'] as num?)?.toInt() ?? 0,
   exit: (json['exit'] as num?)?.toInt() ?? 0,
   appear: (json['appear'] as num?)?.toInt() ?? 0,
   disappear: (json['disappear'] as num?)?.toInt() ?? 0,
-  occupancyAvg: (json['occupancyAvg'] as num?)?.toDouble() ?? 0,
-  occupancyPeak: (json['occupancyPeak'] as num?)?.toInt() ?? 0,
-  dwellAvgSec: (json['dwellAvgSec'] as num?)?.toDouble() ?? 0,
-  dwellPeakSec: (json['dwellPeakSec'] as num?)?.toInt() ?? 0,
+  avgOccupancy: json['avgOccupancy'] == null
+      ? 0
+      : const RoundedDouble2().fromJson(json['avgOccupancy']),
+  maxOccupancy: (json['maxOccupancy'] as num?)?.toInt() ?? 0,
+  avgDwellSec: json['avgDwellSec'] == null
+      ? 0
+      : const RoundedDouble2().fromJson(json['avgDwellSec']),
+  maxDwellSec: (json['maxDwellSec'] as num?)?.toInt() ?? 0,
 );
 
 Map<String, dynamic> _$AreaPayloadToJson(_AreaPayload instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'areaId': instance.areaId,
       'passBy': instance.passBy,
       'stay': instance.stay,
       'entry': instance.entry,
       'exit': instance.exit,
       'appear': instance.appear,
       'disappear': instance.disappear,
-      'occupancyAvg': instance.occupancyAvg,
-      'occupancyPeak': instance.occupancyPeak,
-      'dwellAvgSec': instance.dwellAvgSec,
-      'dwellPeakSec': instance.dwellPeakSec,
+      'avgOccupancy': const RoundedDouble2().toJson(instance.avgOccupancy),
+      'maxOccupancy': instance.maxOccupancy,
+      'avgDwellSec': const RoundedDouble2().toJson(instance.avgDwellSec),
+      'maxDwellSec': instance.maxDwellSec,
     };

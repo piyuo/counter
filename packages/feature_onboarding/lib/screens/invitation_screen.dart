@@ -4,11 +4,12 @@
 // Sections:
 //   - InvitationScreen widget
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_onboarding/widgets/onboarding_scaffold.dart';
-import 'package:feature_pip/feature_pip.dart' as feature_pip;
+import 'package:feature_pip/feature_pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../widgets/onboarding_scaffold.dart';
 
 class UpperCaseTextFormatter extends TextInputFormatter {
   @override
@@ -29,7 +30,6 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
   final TextEditingController _codeController = TextEditingController();
   final FocusNode _codeFocusNode = FocusNode();
 
-  String? _codeError;
   bool _isValidating = false;
 
   @override
@@ -46,11 +46,6 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
         _codeFocusNode.requestFocus();
       }
     });
-    _codeController.addListener(
-      () => setState(() {
-        _codeError = null;
-      }),
-    );
   }
 
   @override
@@ -60,62 +55,77 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
     super.dispose();
   }
 
+  String getMessageByInvitationError(core_domain.InvitationError error, {String? serverCode}) {
+    return switch (error) {
+      core_domain.InvitationError.networkFailure => 'Network error. Please check your connection and try again.',
+      core_domain.InvitationError.serverError => 'Server error. Please try again later.',
+      core_domain.InvitationError.invalidFormat => 'Received invalid response from server. Please try again later.',
+      core_domain.InvitationError.serverRejected =>
+        'Invitation code rejected by server: ${serverCode ?? "unknown reason"}.',
+      core_domain.InvitationError.unknown => 'An unknown error occurred. Please try again later.',
+    };
+  }
+
   Future<void> _submitCode(String code) async {
     final invitationService = ref.read(core_domain.invitationServiceProvider);
     if (!invitationService.isValidCode(code)) {
-      setState(() => _codeError = 'Invalid invitation code format.');
+      final message = getMessageByInvitationError(core_domain.InvitationError.invalidFormat);
+      await pip.showMessageDialog(message);
       return;
     }
 
     setState(() {
       _isValidating = true;
-      _codeError = null;
     });
 
-    final invitation = await invitationService.download(code);
+    final result = await invitationService.download(code);
 
     if (!mounted) return;
-
-    if (invitation == null) {
+    if (result is core_domain.InvitationFailure) {
+      final message = getMessageByInvitationError(result.error, serverCode: result.serverCode);
+      await pip.showMessageDialog(message);
       setState(() {
-        _codeError = 'Invitation not found. Please check the code and try again.';
         _isValidating = false;
       });
       return;
     }
 
+    final invitation = (result as core_domain.InvitationSuccess).invitation;
     setState(() => _isValidating = false);
-
     final appController = ref.read(core_domain.appProvider.notifier);
-    appController.setBusinessDataServer(invitation.businessDataServer, invitation.bearerToken);
-    ref.go(core_domain.OpenOnboardingInvitationSummary(invitation: invitation));
+
+    if (invitation.businessPiyuoServer != null) {
+      await appController.selectBusinessPiyuoServer(invitation.businessPiyuoServer!, invitation.bearerToken);
+    } else if (invitation.businessCustomServer != null) {
+      await appController.selectBusinessCustomServer(invitation.businessCustomServer!, invitation.bearerToken);
+    }
+    ref.go(core_domain.OpenOnboardingInvitationSuccess(invitation: invitation));
   }
 
   @override
   Widget build(BuildContext context) {
     final bool isComplete = _codeController.text.length == _codeLength;
     return OnboardingScaffold(
+      title: 'Enter Invitation Code',
       isLoading: _isValidating,
-      onNextPressed: (isComplete && !_isValidating)
+      onNextButtonPressed: (isComplete && !_isValidating)
           ? () => _submitCode(_codeController.text.trim().toUpperCase())
           : null,
-      children: [
-        feature_pip.PipPanel(
-          margin: EdgeInsets.only(top: 10),
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-          child: Column(
-            children: [
-              Text('Enter Invitation Code', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-              const SizedBox(height: 4),
-              Text(
-                'Check your email invitation to get the 10-character code.',
-                style: TextStyle(fontSize: 16.0, color: Colors.grey.shade400),
-              ),
-            ],
-          ),
+      builder: (context) => [
+        Text(
+          'Enter the 10-character invitation code from your email or message.',
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
 
-        const SizedBox(height: 28.0),
+        onboardingSpacer(),
+
+        Text(
+          'The invitation will automatically configure this device for your organization.',
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+        ),
+        onboardingSpacer(),
         TextField(
           controller: _codeController,
           focusNode: _codeFocusNode,
@@ -128,7 +138,6 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
             if (value.length == _codeLength) _submitCode(value.trim().toUpperCase());
           },
           style: const TextStyle(
-            color: Colors.white,
             fontSize: 22,
             fontWeight: FontWeight.bold,
             letterSpacing: 6.0,
@@ -136,12 +145,12 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
           ),
           decoration: InputDecoration(
             counterText: '',
-            hintText: 'XXXXX XXXXX',
+            hintText: 'ABCD1 EFGH2',
             hintStyle: TextStyle(
-              color: Colors.grey.shade600,
               fontSize: 22,
               letterSpacing: 6.0,
               fontFamily: 'monospace',
+              color: Colors.grey.shade400,
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.0),
@@ -154,24 +163,13 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
           ),
         ),
-        if (_codeError != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-            child: Text(_codeError!, style: const TextStyle(fontSize: 16, color: Colors.red)),
-          ),
-        if (_codeError != null)
-          TextButton(
-            onPressed: () {
-              _codeController.clear();
-              _codeFocusNode.requestFocus();
-            },
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-            child: const Text('Clear', style: TextStyle(fontSize: 16, color: Colors.blue)),
-          ),
+        onboardingSpacer(),
+        Text(
+          "Didn't receive an invitation?\n"
+          "Contact your administrator.",
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
       ],
     );
   }

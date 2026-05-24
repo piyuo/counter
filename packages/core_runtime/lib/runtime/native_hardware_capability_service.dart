@@ -2,50 +2,13 @@ import 'package:camera/camera.dart';
 import 'package:camera_macos/camera_macos.dart';
 import 'package:camera_windows/camera_windows.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:universal_platform/universal_platform.dart';
 
 class NativeHardwareCapabilityService implements core_domain.HardwareCapabilityService {
-  @override
-  Future<List<core_domain.AvailableCamera>> listAvailableCameras() async {
-    if (UniversalPlatform.isMobile) {
-      try {
-        final cameras = await availableCameras();
-        return [
-          for (var index = 0; index < cameras.length; index++)
-            core_domain.AvailableCamera(
-              videoSource: core_domain.VideoSource.camera(cameraIndex: index),
-              displayName: _mobileCameraDisplayName(cameras[index], index),
-            ),
-        ];
-      } catch (e) {
-        return const [];
-      }
-    }
+  NativeHardwareCapabilityService(this._cameraDeviceController);
 
-    if (UniversalPlatform.isMacOS) {
-      final webcamCount = await availableMacosWebcamCount();
-      return [
-        for (var index = 0; index < webcamCount; index++)
-          core_domain.AvailableCamera(
-            videoSource: core_domain.VideoSource.webcam(webcamIndex: index),
-            displayName: _webcamDisplayName(index),
-          ),
-      ];
-    }
-
-    if (UniversalPlatform.isWindows) {
-      final webcamCount = await availableWindowsWebcamCount();
-      return [
-        for (var index = 0; index < webcamCount; index++)
-          core_domain.AvailableCamera(
-            videoSource: core_domain.VideoSource.webcam(webcamIndex: index),
-            displayName: _webcamDisplayName(index),
-          ),
-      ];
-    }
-
-    return const [];
-  }
+  vision.CameraDeviceNotifier _cameraDeviceController;
 
   Future<int> availableCameraCount() async {
     try {
@@ -103,34 +66,33 @@ class NativeHardwareCapabilityService implements core_domain.HardwareCapabilityS
 
   @override
   Future<bool> hasCameraVideoSource() async {
-    final cameras = await listAvailableCameras();
+    final cameras = await _cameraDeviceController.getCameraDevices();
     return cameras.isNotEmpty;
   }
 
   @override
-  Future<core_domain.VideoSource> getDefaultVideoSource() async {
-    if (UniversalPlatform.isMobile) {
-      return const core_domain.VideoSource.camera(cameraIndex: 0);
-    }
-    if (UniversalPlatform.isMacOS || UniversalPlatform.isWindows) {
-      return const core_domain.VideoSource.webcam(webcamIndex: 0);
-    }
-    return const core_domain.VideoSource.unspecified();
+  Future<List<core_domain.VideoSource>> getAvailableCameras() async {
+    final cameraDevices = await _cameraDeviceController.getCameraDevices();
+    return [for (var i = 0; i < cameraDevices.length; i++) cameraDeviceToVideoSource(cameraDevices[i], i)];
   }
 
-  String _mobileCameraDisplayName(CameraDescription camera, int index) {
-    if (camera.name.isNotEmpty) {
-      return camera.name;
-    }
-
-    final lensLabel = switch (camera.lensDirection) {
-      CameraLensDirection.front => 'Front Camera',
-      CameraLensDirection.back => 'Back Camera',
-      CameraLensDirection.external => 'External Camera',
-    };
-
-    return '$lensLabel ${index + 1}';
+  @override
+  Future<core_domain.VideoSource?> getDefaultVideoSource() async {
+    final videoSources = await getAvailableCameras();
+    return videoSources.isNotEmpty ? videoSources.first : null;
   }
+}
 
-  String _webcamDisplayName(int index) => 'Webcam ${index + 1}';
+core_domain.VideoSource cameraDeviceToVideoSource(vision.CameraDevice cameraDevice, int index) {
+  if (UniversalPlatform.isMobile) {
+    return core_domain.VideoSource.camera(
+      cameraIndex: index,
+      isFaceFront: cameraDevice.cameraDirection == vision.CameraDirection.front,
+    );
+  }
+  if (UniversalPlatform.isDesktop) {
+    return core_domain.VideoSource.webcam(webcamIndex: index);
+  }
+  assert(false, 'Unsupported platform for camera device to video source conversion');
+  return const core_domain.VideoSource.unspecified();
 }

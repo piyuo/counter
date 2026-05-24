@@ -13,7 +13,7 @@ part 'telemetry_transport.g.dart';
 abstract class TelemetryTransport {
   Future<TelemetryResponse> send({
     required String url,
-    required String? bearerToken,
+    required String bearerToken,
     required List<int> body,
     required String contentType,
   });

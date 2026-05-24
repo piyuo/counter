@@ -37,7 +37,7 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
   void _onTapVersion() {
     _versionTapCount++;
     if (_versionTapCount >= 10) {
-      ref.read(core_domain.appRuntimeStateProvider.notifier).setDevelopMode(true);
+      ref.read(core_domain.appRuntimeProvider.notifier).setDevelopMode(true);
     }
     setState(() {});
   }
@@ -74,7 +74,7 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                 children: [
                   ListTile(
                     leading: Icon(Icons.mail),
-                    title: Text(context.l.wizard_screen_email_us),
+                    title: Text(context.l.about_screen_email_us),
                     trailing: Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       appkit.netOpenMailTo('service@piyuo.com', '', '');
@@ -84,38 +84,35 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
               ),
             ),
 
-            //if (_versionTapCount >= 10)
-            feature_pip.PipPanel(
-              child: Column(
-                children: [
-                  ListTile(
-                    trailing: Icon(Icons.arrow_forward_ios),
-                    title: Text('Build Information'),
-                    onTap: () {
-                      ref.push(const core_domain.OpenBuildInfo());
-                    },
-                  ),
-                  ListTile(
-                    title: Text('Reset App State'),
-                    onTap: () async {
-                      await ref.read(core_domain.appStateRepositoryProvider).reset();
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(const SnackBar(content: Text('App state has been reset')));
-                      }
-                    },
-                  ),
-                  if (_versionTapCount >= 10)
+            if (_versionTapCount >= 10)
+              feature_pip.PipPanel(
+                child: Column(
+                  children: [
                     ListTile(
-                      title: Text('Force Window End'),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      title: Text(context.l.about_screen_build_info_title),
                       onTap: () {
-                        ref.read(vision.windowCountProvider.notifier).debugForceWindowEnd();
+                        ref.push(const core_domain.OpenBuildInfo());
                       },
                     ),
-                ],
+                    if (_versionTapCount >= 10)
+                      ListTile(
+                        title: Text(context.l.about_screen_force_window_end_title),
+                        onTap: () {
+                          ref.read(vision.windowCountProvider.notifier).debugForceWindowEnd();
+                        },
+                      ),
+                    if (_versionTapCount >= 10)
+                      ListTile(
+                        title: Text('Run Upload Worker (Debug)'),
+                        onTap: () async {
+                          final telemetryService = ref.read(core_domain.telemetryServiceProvider);
+                          await telemetryService.uploadNow();
+                        },
+                      ),
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),

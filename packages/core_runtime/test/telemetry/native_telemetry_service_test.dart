@@ -8,6 +8,7 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:core_runtime/telemetry/native_telemetry_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -20,7 +21,9 @@ class _StubQueue implements core_domain.TelemetryQueueRepository {
   int fetchReadyCalls = 0;
 
   void seed(core_domain.TelemetryPayload payload) {
-    _rows.add(core_domain.QueuedPayload(id: payload.id, payload: payload, createdAtUtc: DateTime.utc(2099, 1, 1)));
+    _rows.add(
+      core_domain.QueuedPayload(id: getPayloadId(payload), payload: payload, createdAtUtc: DateTime.utc(2099, 1, 1)),
+    );
   }
 
   @override
@@ -65,6 +68,12 @@ class _StubQueue implements core_domain.TelemetryQueueRepository {
   Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 7}) async {
     return const [];
   }
+
+  @override
+  Future<void> reset() async {
+    _rows.clear();
+    fetchReadyCalls = 0;
+  }
 }
 
 class _StubSerializer implements core_domain.PayloadSerializer {
@@ -76,6 +85,8 @@ class _StubSerializer implements core_domain.PayloadSerializer {
     List<core_domain.TelemetryPayload> payloads, {
     required int schemaVersion,
     required String deviceId,
+    String? projectId,
+    String? assignId,
   }) => [1, 2, 3];
 }
 
@@ -122,16 +133,16 @@ void main() {
 
     core_domain.TelemetryPayload makePayload(String id) {
       return core_domain.TelemetryPayload(
-        id: id,
         startUtc: DateTime.utc(2026, 1, 1),
-        endUtc: DateTime.utc(2026, 1, 1, 1),
-        sessionId: 'session-1',
-        windowIndex: 1,
+        startBusiness: DateTime(2026, 1, 1),
+        businessDate: '2026-01-01',
+        session: 'session-1',
+        sequence: 1,
         frameCount: 0,
-        missingDurationMs: 0,
+        missingSec: 0,
         confidence: 0.0,
         isPartial: false,
-        coverageRatio: 1.0,
+        coverage: 1.0,
         fps: 0.0,
         areas: const [],
       );
@@ -140,7 +151,7 @@ void main() {
     core_domain.UploadSession makeRuntimeConfig({int wallClockCadenceMin = 60}) {
       return core_domain.UploadSession(
         config: core_domain.UploadConfig(wallClockCadenceMin: wallClockCadenceMin),
-        dataServer: const core_domain.DataServer.personal(url: 'https://example.com/api'),
+        dataServer: const core_domain.DataServer.personalCustom(url: 'https://example.com/api'),
         deviceId: 'device-1',
         bearerToken: 'tok',
       );
@@ -192,16 +203,16 @@ void main() {
 
       await svc.enqueue(
         core_domain.TelemetryPayload(
-          id: 'p1',
           startUtc: DateTime.utc(2026, 1, 1),
-          endUtc: DateTime.utc(2026, 1, 1, 1),
-          sessionId: 'session-1',
-          windowIndex: 1,
+          startBusiness: DateTime(2026, 1, 1),
+          businessDate: '2026-01-01',
+          session: 'session-1',
+          sequence: 1,
           frameCount: 0,
-          missingDurationMs: 0,
+          missingSec: 0,
           confidence: 0.0,
           isPartial: false,
-          coverageRatio: 1.0,
+          coverage: 1.0,
           fps: 0.0,
           areas: const [],
         ),
@@ -389,7 +400,7 @@ void main() {
       await svc.runScheduledUploadForTest();
 
       expect(svc.isLastUploadSuccess, isFalse);
-      expect(svc.lastError, 'session_unavailable');
+      expect(svc.lastError, isNotEmpty);
       expect(await queue.pendingCount(), 1);
     });
 

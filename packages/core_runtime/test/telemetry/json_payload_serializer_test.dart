@@ -16,27 +16,27 @@ import 'package:flutter_test/flutter_test.dart';
 // ---------------------------------------------------------------------------
 
 core_domain.TelemetryPayload _payload(String id) => core_domain.TelemetryPayload(
-  id: id,
   startUtc: DateTime.utc(2026, 1, 1),
-  endUtc: DateTime.utc(2026, 1, 1, 1),
-  sessionId: 'session-1',
-  windowIndex: 1,
+  startBusiness: DateTime(2026, 1, 1),
+  businessDate: '2026-01-01',
+  session: 'session-1',
+  sequence: 1,
   frameCount: 0,
-  missingDurationMs: 0,
+  missingSec: 0,
   confidence: 0.0,
   isPartial: false,
-  coverageRatio: 0.95,
+  coverage: 0.95,
   fps: 0.0,
   areas: [
     const core_domain.AreaPayload(
-      id: 1,
+      areaId: 1,
       passBy: 10,
       entry: 5,
       exit: 5,
-      occupancyAvg: 2.5,
-      occupancyPeak: 8,
-      dwellAvgSec: 30.0,
-      dwellPeakSec: 120,
+      avgOccupancy: 2.5,
+      maxOccupancy: 8,
+      avgDwellSec: 30.0,
+      maxDwellSec: 120,
     ),
   ],
 );
@@ -100,30 +100,30 @@ void main() {
 
     test('serialize rounds floating-point metrics for payload size reduction', () {
       final payload = core_domain.TelemetryPayload(
-        id: 'p-rounded',
         startUtc: DateTime.utc(2026, 5, 22, 0, 15),
-        endUtc: DateTime.utc(2026, 5, 22, 0, 20),
-        sessionId: 'session-1',
-        windowIndex: 1,
+        startBusiness: DateTime(2026, 5, 22, 0, 15),
+        businessDate: '2026-05-22',
+        session: 'session-1',
+        sequence: 1,
         frameCount: 276,
-        missingDurationMs: 289616,
+        missingSec: 289616,
         confidence: 79.24257674886763,
         isPartial: true,
-        coverageRatio: 0.034613333333333336,
+        coverage: 0.034613333333333336,
         fps: 26.57935285053929,
         areas: const [
           core_domain.AreaPayload(
-            id: -1,
+            areaId: -1,
             passBy: 19,
             stay: 0,
             entry: 0,
             exit: 0,
             appear: 0,
             disappear: 0,
-            occupancyAvg: 7.1732851985559565,
-            occupancyPeak: 12,
-            dwellAvgSec: 4.164057876195269,
-            dwellPeakSec: 9,
+            avgOccupancy: 7.1732851985559565,
+            maxOccupancy: 12,
+            avgDwellSec: 4.164057876195269,
+            maxDwellSec: 9,
           ),
         ],
       );
@@ -136,36 +136,36 @@ void main() {
       expect(decoded['confidence'], 79.24);
       expect(decoded['coverageRatio'], 0.03);
       expect(decoded['fps'], 26.6);
-      expect(area['occupancyAvg'], 7.17);
-      expect(area['dwellAvgSec'], 4.2);
+      expect(area['avgOccupancy'], 7.17);
+      expect(area['avgDwellSec'], 4.2);
     });
 
     test('serialize omits zero-valued default area metrics', () {
       final payload = core_domain.TelemetryPayload(
-        id: 'p-area-zero-defaults',
         startUtc: DateTime.utc(2026, 5, 22, 0, 15),
-        endUtc: DateTime.utc(2026, 5, 22, 0, 20),
-        sessionId: 'session-1',
-        windowIndex: 1,
+        startBusiness: DateTime(2026, 5, 22, 0, 15),
+        businessDate: '2026-05-22',
+        session: 'session-1',
+        sequence: 1,
         frameCount: 10,
-        missingDurationMs: 0,
+        missingSec: 0,
         confidence: 10.0,
         isPartial: false,
-        coverageRatio: 1.0,
+        coverage: 1.0,
         fps: 26.0,
         areas: const [
           core_domain.AreaPayload(
-            id: -1,
+            areaId: -1,
             passBy: 18,
             stay: 0,
             entry: 0,
             exit: 0,
             appear: 0,
             disappear: 0,
-            occupancyAvg: 7.62,
-            occupancyPeak: 12,
-            dwellAvgSec: 4.4,
-            dwellPeakSec: 10,
+            avgOccupancy: 7.62,
+            maxOccupancy: 12,
+            avgDwellSec: 4.4,
+            maxDwellSec: 10,
           ),
         ],
       );
@@ -177,10 +177,10 @@ void main() {
 
       expect(area['areaId'], -1);
       expect(area['passBy'], 18);
-      expect(area['occupancyAvg'], 7.62);
-      expect(area['occupancyPeak'], 12);
-      expect(area['dwellAvgSec'], 4.4);
-      expect(area['dwellPeakSec'], 10);
+      expect(area['avgOccupancy'], 7.62);
+      expect(area['maxOccupancy'], 12);
+      expect(area['avgDwellSec'], 4.4);
+      expect(area['maxDwellSec'], 10);
 
       expect(area.containsKey('stay'), isFalse);
       expect(area.containsKey('entry'), isFalse);

@@ -15,6 +15,15 @@ class LocalizationIt extends Localization {
   String get about_screen_benchmark => 'Benchmark';
 
   @override
+  String get about_screen_build_info_title => 'Build Information';
+
+  @override
+  String get about_screen_email_us => 'Contattaci via email';
+
+  @override
+  String get about_screen_force_window_end_title => 'Force Window End';
+
+  @override
   String get about_screen_models => 'Modelli di rilevamento oggetti';
 
   @override
@@ -24,59 +33,17 @@ class LocalizationIt extends Localization {
   String get about_screen_platform => 'Piattaforma';
 
   @override
+  String get about_screen_reset_app_state_success =>
+      'App state has been reset.';
+
+  @override
+  String get about_screen_reset_app_state_title => 'Reset App State';
+
+  @override
   String get about_screen_title => 'Informazioni';
 
   @override
-  String get add_video_screen_from => 'Aggiungi fonte video da';
-
-  @override
-  String get add_video_screen_title => 'Aggiungi fonte video';
-
-  @override
-  String get back => 'Indietro';
-
-  @override
-  String get benchmark_screen_fps => 'FPS';
-
-  @override
-  String get benchmark_screen_models => 'Modelli di rilevamento oggetti';
-
-  @override
-  String get benchmark_screen_recommended => 'Modello consigliato';
-
-  @override
-  String get benchmark_screen_start_button => 'Avvia benchmark';
-
-  @override
-  String get benchmark_screen_start_failed =>
-      'Impossibile avviare il benchmark, il codice di errore è';
-
-  @override
-  String get benchmark_screen_title => 'Benchmark dei modelli';
-
-  @override
-  String get camera_screen_add_title => 'Aggiungi fotocamera';
-
-  @override
-  String get camera_screen_back_camera => 'Fotocamera posteriore';
-
-  @override
-  String get camera_screen_edit_title => 'Scegli fotocamera';
-
-  @override
-  String get camera_screen_front_camera => 'Fotocamera frontale';
-
-  @override
-  String get camera_screen_zoom_level => 'Livello zoom';
-
-  @override
-  String get cancel => 'Annulla';
-
-  @override
-  String get close => 'Chiudi';
-
-  @override
-  String get color_screen_title => 'Scegli un colore';
+  String get cancel => 'Cancel';
 
   @override
   String get count_avg_dwell => 'Sosta Media';
@@ -85,134 +52,10 @@ class LocalizationIt extends Localization {
   String get count_avg_occ => 'Occ. Media';
 
   @override
-  String get count_enter => 'Ingresso';
-
-  @override
-  String get count_exit => 'Uscita';
-
-  @override
   String get count_max_dwell => 'Sosta Max.';
 
   @override
   String get count_max_occ => 'Occ. Max.';
-
-  @override
-  String get count_pass_by => 'Passati';
-
-  @override
-  String get count_window => 'Periodo di Conteggio: 5 min';
-
-  @override
-  String get counter_screen_cooldown_desc =>
-      'Il rientro richiede un tempo di attesa di #0 secondi dopo l\'uscita dalla zona di rilevamento';
-
-  @override
-  String get counter_screen_cooldown_in_seconds => 'in secondi';
-
-  @override
-  String get counter_screen_cooldown_threshold => 'Soglia tempo di attesa';
-
-  @override
-  String get counter_screen_cooldown_time => 'Tempo di attesa';
-
-  @override
-  String get counter_screen_enabled => 'Abilitato';
-
-  @override
-  String get counter_screen_enabled_error => 'Errore';
-
-  @override
-  String get counter_screen_enabled_error_content =>
-      'Devi prima abilitare un altro contatore, poi potrai disabilitare questo';
-
-  @override
-  String get counter_screen_name_error =>
-      'Il nome del contatore non può essere vuoto';
-
-  @override
-  String get counter_screen_reentry_desc =>
-      'Gli oggetti devono entrare #0 volte, con un tempo di attesa di #1 secondi tra ogni uscita e rientro, per attivare il conteggio di rientro';
-
-  @override
-  String get counter_screen_reentry_threshold => 'Soglia di rientro';
-
-  @override
-  String get counter_screen_reentry_title => 'Conteggio rientri';
-
-  @override
-  String get counter_screen_show_on => 'Mostra sullo schermo';
-
-  @override
-  String get counter_screen_stagnant_consider => 'Considera come stazionario';
-
-  @override
-  String get counter_screen_stagnant_desc =>
-      'Gli oggetti che rimangono fermi per più di #0 secondi saranno considerati stazionari';
-
-  @override
-  String get counter_screen_stagnant_desc_prefix => 'Prefisso descrizione';
-
-  @override
-  String get counter_screen_stagnant_desc_suffix => 'Suffisso descrizione';
-
-  @override
-  String get counter_screen_stagnant_in_seconds => 'in secondi';
-
-  @override
-  String get counter_screen_stagnant_threshold => 'Soglia di stazionamento';
-
-  @override
-  String get default_project_name => 'Progetto';
-
-  @override
-  String get default_video_name => 'Fonte video';
-
-  @override
-  String get default_zone_name => 'Zona di rilevamento';
-
-  @override
-  String get detection_screen_confidence => 'Confidenza';
-
-  @override
-  String get detection_screen_confidence_desc =>
-      'confidenza superiore a #0 considerata come rilevamento valido';
-
-  @override
-  String get detection_screen_consider_valid => 'Considera valido dopo';
-
-  @override
-  String get detection_screen_consider_valid_desc =>
-      'L\'oggetto tracciato sarà considerato valido dopo #0';
-
-  @override
-  String get detection_screen_high => 'Alta';
-
-  @override
-  String get detection_screen_lost => 'Perso';
-
-  @override
-  String get detection_screen_lost_desc =>
-      'Determina dinamicamente il tempo di rimozione degli oggetti persi tra #0 e #1 in base alla velocità di movimento';
-
-  @override
-  String get detection_screen_low => 'Bassa';
-
-  @override
-  String get detection_screen_match => 'Corrispondenza';
-
-  @override
-  String get detection_screen_match_desc =>
-      '#0 matchThreshold è un parametro chiave nel tracciamento degli oggetti che misura il grado di corrispondenza tra diversi riquadri di rilevamento. Un valore più basso facilita l\'associazione degli oggetti ma aumenta il rischio di associazioni errate. Un valore più alto è più rigoroso sulle associazioni ma potrebbe perdere alcune corrispondenze reali.';
-
-  @override
-  String get detection_screen_models => 'Modelli';
-
-  @override
-  String get detection_screen_nms => 'Non-Maximum Suppression';
-
-  @override
-  String get detection_screen_nms_desc =>
-      '#0 Una soglia NMS più bassa (es. 0.3-0.4) rimuove i riquadri sovrapposti in modo più rigoroso e riduce i falsi positivi ma potrebbe perdere persone sovrapposte. Una soglia più alta (0.7-0.9) mantiene più riquadri il che può aumentare i falsi positivi ma rileva meglio le persone sovrapposte.';
 
   @override
   String get detection_screen_reset => 'Ripristina';
@@ -225,40 +68,57 @@ class LocalizationIt extends Localization {
   String get detection_screen_title => 'Impostazioni di rilevamento';
 
   @override
-  String get error_content =>
-      'Si è verificato un errore imprevisto. Desideri inviare una segnalazione via email?';
+  String get detection_type_screen_body =>
+      'Choose which detection model to use for this project.';
 
   @override
-  String get error_oops => 'Ops, qualcosa è andato storto';
+  String get detection_type_screen_load_error =>
+      'Failed to load detection types.';
 
   @override
-  String get error_report => 'Contattaci';
+  String get detection_type_screen_pedestrian_body =>
+      'Count people using the pedestrian detection model.';
 
   @override
-  String get filter_screen_desc =>
-      'Seleziona un intervallo di filtro dall\'elenco sottostante';
+  String get detection_type_screen_pedestrian_title => 'Pedestrian';
 
   @override
-  String get filter_screen_error_content =>
-      'L\'ora di fine deve essere successiva all\'ora di inizio';
+  String get detection_type_screen_title => 'Detection Type';
 
   @override
-  String get filter_screen_error_custom => 'Personalizzato';
+  String get detection_type_screen_vehicle_body =>
+      'Count cars and other vehicles using the vehicle model.';
 
   @override
-  String get filter_screen_error_end => 'Fine';
+  String get detection_type_screen_vehicle_title => 'Vehicle';
 
   @override
-  String get filter_screen_error_start => 'Inizio';
-
-  @override
-  String get filter_screen_error_title => 'Filtro';
-
-  @override
-  String get filter_screen_title => 'Filtro';
+  String get language_screen_body =>
+      'Select your preferred language for the app interface.';
 
   @override
   String get language_screen_language => 'Lingua';
+
+  @override
+  String get language_screen_system_label => 'System language';
+
+  @override
+  String get live_url_screen_examples_label => 'Example';
+
+  @override
+  String get live_url_screen_invalid_rtsp_error =>
+      'RTSP URLs must include a host name.';
+
+  @override
+  String get live_url_screen_invalid_url_error =>
+      'Enter a valid URL with a supported scheme.';
+
+  @override
+  String get live_url_screen_unsupported_scheme_error => 'Only HTTP';
+
+  @override
+  String get live_url_screen_url_empty_error =>
+      'Please enter a live stream URL.';
 
   @override
   String get main_screen_booting => 'Avvio in corso...';
@@ -270,24 +130,11 @@ class LocalizationIt extends Localization {
   String get no => 'No';
 
   @override
-  String get objects_screen_desc =>
-      'Scegli obiettivi di rilevamento come persone, auto, autobus, ecc.';
+  String get no_camera_screen_body =>
+      'There is no camera detected on this device. Please connect a camera to use the app.\\nOr you can use Live URL or a file to test the app.';
 
   @override
-  String get objects_screen_title => 'Oggetti';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get open_project_screen_desc =>
-      'Apri progetti creati in precedenza, mantenendo solo i 20 più recenti.';
-
-  @override
-  String get open_project_screen_no_project => 'Nessun progetto trovato.';
-
-  @override
-  String get open_project_screen_title => 'Apri progetto';
+  String get no_camera_screen_title => 'No Camera Detected';
 
   @override
   String get product_copyright => 'Copyright © 2025';
@@ -300,101 +147,264 @@ class LocalizationIt extends Localization {
   String get product_name => 'Contatore';
 
   @override
-  String get project_screen_add_video_button => 'Aggiungi fonte video';
+  String get settings_piyuo_screen_body => 'Use a Piyuo Cloud URL for uploads.';
 
   @override
-  String get project_screen_exit_button => 'Esci';
+  String get settings_piyuo_screen_cloud_url_label => 'Cloud URL';
 
   @override
-  String get project_screen_exit_confirm_content =>
-      'Lasciando il progetto il conteggio verrà interrotto. Sei sicuro di voler continuare?';
+  String get settings_piyuo_screen_copy_action => 'Copy URL';
 
   @override
-  String get project_screen_exit_confirm_title =>
-      'Conferma uscita dal progetto';
+  String get settings_piyuo_screen_copy_success => 'URL copied';
 
   @override
-  String get project_screen_from_desc =>
-      'Conserviamo una registrazione delle ultime 24 ore, così puoi visualizzare qualsiasi periodo temporale necessario.';
+  String get settings_piyuo_screen_invalid_url_error =>
+      'Please paste a valid Piyuo Cloud URL.';
 
   @override
-  String get project_screen_report_settings => 'Impostazioni';
+  String get settings_piyuo_screen_legacy_body =>
+      'If you already had a Piyuo Cloud URL from an older install';
 
   @override
-  String get project_screen_title => 'Progetto';
+  String get settings_piyuo_screen_saving_action => 'Saving...';
 
   @override
-  String get project_view_no_videos => 'Nessuna fonte video disponibile.';
+  String get settings_piyuo_screen_title => 'Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_button =>
-      'Mostra punto centrale sull\'obiettivo';
+  String get settings_piyuo_screen_use_action => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_desc =>
-      'Il punto centrale aiuta a determinare se l\'obiettivo si trova all\'interno della zona di rilevamento.';
+  String get settings_screen_body =>
+      'Set project name, detection parameters, count clearing.';
 
   @override
-  String get settings_screen_center_point_title =>
-      'Punto centrale sull\'obiettivo';
+  String get settings_screen_custom_server_body =>
+      'We will help set up a local server.';
 
   @override
-  String get settings_screen_delete_button => 'Elimina';
+  String get settings_screen_custom_server_title => 'Use your own server';
 
   @override
-  String get settings_screen_delete_content =>
-      'Sei sicuro di voler eliminare questo progetto?';
+  String get settings_screen_data_server_label => 'Data Server';
 
   @override
-  String get settings_screen_delete_header => 'Elimina questo progetto';
+  String get settings_screen_delivery_label => 'Delivery';
+
+  @override
+  String get settings_screen_demo_mode_body =>
+      'Test only. Data is not exported.';
+
+  @override
+  String get settings_screen_demo_mode_title => 'Demo mode';
 
   @override
   String get settings_screen_desc =>
       'Imposta nome del progetto, parametri di rilevamento, azzeramento conteggi.';
 
   @override
-  String get settings_screen_lost_target_button => 'Mostra obiettivo perso';
+  String get settings_screen_detection_label => 'Detection';
 
   @override
-  String get settings_screen_lost_target_desc =>
-      'Quando il tracciamento perde un obiettivo, questa opzione lo rende visibile. Per impostazione predefinita, gli obiettivi persi non vengono mostrati.';
+  String get settings_screen_parameters_label => 'Parameters';
 
   @override
-  String get settings_screen_lost_target_title => 'Obiettivo perso';
+  String get settings_screen_piyuo_cloud_body =>
+      'Send results to our cloud service.';
 
   @override
-  String get settings_screen_project_error =>
-      'Il nome del progetto non può essere vuoto';
+  String get settings_screen_piyuo_cloud_title => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_project_id => 'ID Progetto';
+  String get settings_screen_reset_all_data_body =>
+      'This will erase all data and start from the beginning. This action cannot be undone.';
 
   @override
-  String get settings_screen_project_name => 'Nome Progetto';
+  String get settings_screen_reset_all_data_title => 'Reset all data?';
 
   @override
-  String get settings_screen_project_name_place_holder =>
-      'Via Roma 123 o Parco Centrale';
+  String get settings_screen_subscription_body =>
+      'Manage your subscription and billing details.';
 
   @override
-  String get settings_screen_random_count_button => 'Aggiungi conteggi casuali';
+  String get settings_screen_subscription_title => 'Subscription';
 
   @override
-  String get settings_screen_reset_count_button => 'Azzera conteggi';
+  String get settings_screen_title => 'Settings';
 
   @override
-  String get settings_screen_reset_count_content =>
-      'Sei sicuro di voler azzerare tutti i conteggi?';
+  String get settings_server_screen_body =>
+      'Set the server URL used for uploads.';
 
   @override
-  String get settings_screen_reset_count_header =>
-      'Azzera tutti i conteggi in questo progetto';
+  String get settings_server_screen_delivery_cadence_label =>
+      'Deliver Payload On Wall Clock';
 
   @override
-  String get settings_screen_title => 'Impostazioni';
+  String get settings_server_screen_hour_unit_plural => 'hours';
+
+  @override
+  String get settings_server_screen_hour_unit_singular => 'hour';
+
+  @override
+  String get settings_server_screen_minute_unit_plural => 'minutes';
+
+  @override
+  String get settings_server_screen_saving_action => 'Saving...';
+
+  @override
+  String get settings_server_screen_server_url_label => 'Server URL';
+
+  @override
+  String get settings_server_screen_title => 'Custom Server';
+
+  @override
+  String get settings_server_screen_use_action => 'Use Custom Server';
+
+  @override
+  String get start_screen_demo_mode_body =>
+      'Demo mode. No data leaves your device.';
+
+  @override
+  String get start_screen_invitation_label => 'Invitation';
+
+  @override
+  String get start_screen_not_set_label => 'Not Set';
+
+  @override
+  String get start_screen_own_server_label => 'Own Server';
+
+  @override
+  String get start_screen_piyuo_cloud_label => 'Piyuo Cloud';
+
+  @override
+  String get start_screen_product_body =>
+      'Pedestrian and vehicle counter with data collection.';
+
+  @override
+  String get start_screen_product_title => 'Piyuo Counter';
 
   @override
   String get submit => 'Invia';
+
+  @override
+  String get upload_config_screen_body =>
+      'Configure delivery settings for telemetry uploads.';
+
+  @override
+  String get upload_config_screen_fast_fail_label => 'Fast fail';
+
+  @override
+  String get upload_config_screen_frequent_label => 'Frequent';
+
+  @override
+  String get upload_config_screen_large_label => 'Large';
+
+  @override
+  String get upload_config_screen_load_error =>
+      'Failed to load delivery settings.';
+
+  @override
+  String get upload_config_screen_max_batch_size_body =>
+      'Max number of payload records sent in one HTTP request.';
+
+  @override
+  String get upload_config_screen_max_batch_size_title => 'Maximum Batch Size';
+
+  @override
+  String get upload_config_screen_request_timeout_body =>
+      'HTTP timeout per upload request.';
+
+  @override
+  String get upload_config_screen_request_timeout_title => 'Request Timeout';
+
+  @override
+  String get upload_config_screen_reset_body =>
+      'This restores upload cadence, batching, and timeout to defaults.';
+
+  @override
+  String get upload_config_screen_reset_title => 'Reset delivery settings?';
+
+  @override
+  String get upload_config_screen_small_label => 'Small';
+
+  @override
+  String get upload_config_screen_sparse_label => 'Sparse';
+
+  @override
+  String get upload_config_screen_title => 'Delivery Settings';
+
+  @override
+  String get upload_config_screen_wait_longer_label => 'Wait longer';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_body =>
+      'How often pending telemetry is uploaded on minute-aligned boundaries.';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_title =>
+      'Wall-Clock Upload Cadence';
+
+  @override
+  String get upload_logs_screen_check_data_server_error_prefix =>
+      'Unable to check Data Server: ';
+
+  @override
+  String get upload_logs_screen_detail_unavailable_body =>
+      'Upload log detail is no longer available.';
+
+  @override
+  String get upload_logs_screen_empty_body => 'No upload logs yet.';
+
+  @override
+  String get upload_logs_screen_load_error => 'Unable to load upload logs.';
+
+  @override
+  String get upload_logs_screen_next_upload_pending => 'Next upload at ...';
+
+  @override
+  String get upload_logs_screen_next_upload_prefix => 'Next upload at ';
+
+  @override
+  String get upload_logs_screen_payloads_unit => 'payloads';
+
+  @override
+  String get upload_logs_screen_retry_action => 'Retry';
+
+  @override
+  String get upload_logs_screen_set_data_server_first_body =>
+      'Please set the Data Server first.';
+
+  @override
+  String get upload_logs_screen_title => 'Upload Logs';
+
+  @override
+  String get upload_logs_screen_today_label => 'Today';
+
+  @override
+  String get upload_logs_screen_upload_failed_prefix => 'Upload failed: ';
+
+  @override
+  String get upload_logs_screen_upload_failed_unknown =>
+      'Upload failed due to an unknown error.';
+
+  @override
+  String get upload_logs_screen_upload_now_action => 'Upload Now';
+
+  @override
+  String get upload_logs_screen_uploaded_success =>
+      'Uploaded payloads to remote server.';
+
+  @override
+  String get upload_logs_screen_uploading_action => 'Uploading...';
+
+  @override
+  String get upload_logs_screen_yesterday_label => 'Yesterday';
+
+  @override
+  String get url_screen_body =>
+      'Enter the live stream URL for your camera source.';
 
   @override
   String get url_screen_desc => 'Inserisci l\'URL dello streaming live';
@@ -406,90 +416,19 @@ class LocalizationIt extends Localization {
   String get url_screen_url => 'URL';
 
   @override
+  String get url_screen_url_hint =>
+      'http://example.com/stream or rtsp://example.com/stream';
+
+  @override
   String get url_screen_url_placeholder =>
       'http://esempio.com/stream o rtsp://esempio.com/stream';
-
-  @override
-  String get video_screen_add_point => 'Aggiungi punto alla zona corrente';
-
-  @override
-  String get video_screen_add_zone => 'Aggiungi zona di rilevamento';
-
-  @override
-  String get video_screen_change_file => 'Cambia file';
-
-  @override
-  String get video_screen_delete_button => 'Elimina';
-
-  @override
-  String get video_screen_delete_content =>
-      'Sei sicuro di voler eliminare questa fonte video?';
-
-  @override
-  String get video_screen_delete_header => 'Elimina questa fonte video';
 
   @override
   String get video_screen_desc =>
       'Gestisci fonti video, aggiungi o modifica zone di rilevamento.';
 
   @override
-  String get video_screen_detection => 'Parametri del modello';
-
-  @override
-  String get video_screen_edit_placeholder =>
-      'Telecamera ingresso o Telecamera parcheggio';
-
-  @override
-  String get video_screen_move_bottom => 'Sposta zona corrente in fondo';
-
-  @override
-  String get video_screen_name_empty =>
-      'Il nome della fonte video non può essere vuoto.';
-
-  @override
-  String get video_screen_playback_14x => '1/4x';
-
-  @override
-  String get video_screen_playback_2x => '2x';
-
-  @override
-  String get video_screen_playback_current => 'attuale: ';
-
-  @override
-  String get video_screen_playback_speed => 'Velocità di riproduzione';
-
-  @override
-  String get video_screen_remove_point => 'Rimuovi punto dalla zona corrente';
-
-  @override
-  String get video_screen_sources =>
-      'Configura fonte immagine, obiettivi di rilevamento e parametri del modello.';
-
-  @override
-  String get video_screen_targets => 'Obiettivi di rilevamento';
-
-  @override
-  String get video_screen_tools => 'Strumenti';
-
-  @override
-  String get video_screen_video_name => 'Nome fonte video';
-
-  @override
-  String get video_screen_zones => 'Zone di rilevamento';
-
-  @override
-  String get video_screen_zones_desc =>
-      'Usa il drag and drop per regolare le zone';
-
-  @override
   String get video_sources_camera => 'Fotocamera';
-
-  @override
-  String get video_sources_camera_denied => 'Accesso alla fotocamera negato';
-
-  @override
-  String get video_sources_camera_denied_msg =>
-      'Vai su impostazioni e consenti l\'accesso alla fotocamera per questa app.';
 
   @override
   String get video_sources_camera_not_found_message =>
@@ -502,100 +441,39 @@ class LocalizationIt extends Localization {
   String get video_sources_file => 'File';
 
   @override
+  String get video_sources_file_hint => 'Scegli un video dal tuo dispositivo';
+
+  @override
+  String get video_sources_import_error =>
+      'Impossibile importare il file video.';
+
+  @override
   String get video_sources_live_stream => 'URL di streaming live';
 
   @override
-  String get video_sources_photos_denied => 'Accesso alle foto negato';
+  String get video_sources_load_error =>
+      'Impossibile caricare le sorgenti video.';
 
   @override
   String get video_sources_photos_denied_msg =>
       'Vai su impostazioni e consenti l\'accesso alle foto per questa app.';
 
   @override
-  String get video_sources_photos_goto_settings => 'Vai a impostazioni';
+  String get video_sources_screen_body =>
+      'Videóforrások kezelése, felismerési zónák hozzáadása vagy módosítása.';
+
+  @override
+  String get video_sources_screen_title => 'Sorgenti video';
 
   @override
   String get video_sources_webcam => 'Webcam';
 
   @override
-  String get video_sources_webcam_not_found_message =>
-      'Verificare l\'autorizzazione dell\'app e la connessione della webcam';
-
-  @override
-  String get video_sources_webcam_not_found_title => 'Webcam non trovata';
-
-  @override
-  String get webcam_manager_webcam => 'Webcam';
-
-  @override
-  String get webcam_screen_add_title => 'Aggiungi webcam';
-
-  @override
-  String get webcam_screen_edit_title => 'Scegli webcam';
-
-  @override
   String get wizard_screen_about => 'Informazioni';
-
-  @override
-  String get wizard_screen_desc =>
-      'Crea un nuovo progetto per iniziare a contare.';
-
-  @override
-  String get wizard_screen_email_us => 'Contattaci via email';
 
   @override
   String get wizard_screen_language => 'Lingua';
 
   @override
-  String get wizard_screen_new_project_from => 'Nuovo progetto da';
-
-  @override
-  String get wizard_screen_open_projects => 'Apri progetto esistente';
-
-  @override
-  String get wizard_screen_open_projects_tip =>
-      'Tutti i progetti verranno salvati automaticamente in locale';
-
-  @override
   String get yes => 'Sì';
-
-  @override
-  String get zone_screen_can_not_delete => 'Impossibile eliminare la zona';
-
-  @override
-  String get zone_screen_color => 'Colore';
-
-  @override
-  String get zone_screen_delete_button => 'Elimina';
-
-  @override
-  String get zone_screen_delete_content =>
-      'Sei sicuro di voler eliminare questa zona?';
-
-  @override
-  String get zone_screen_delete_header => 'Elimina questa zona';
-
-  @override
-  String get zone_screen_desc =>
-      'La zona di rilevamento può impostare i tipi di oggetti da rilevare e scegliere quali contatori visualizzare, come Rilevati, Generati e Entrati.';
-
-  @override
-  String get zone_screen_name_placeholder =>
-      'Nome della zona, come Marciapiede o Parcheggio';
-
-  @override
-  String get zone_screen_one_zone_required => 'È richiesta almeno una zona.';
-
-  @override
-  String get zone_screen_zone => 'Zona';
-
-  @override
-  String get zone_screen_zone_color => 'Colore zona';
-
-  @override
-  String get zone_screen_zone_name_required =>
-      'Il nome della zona non può essere vuoto';
-
-  @override
-  String get zone_screen_zone_show_summary => 'Mostra riepilogo sullo schermo';
 }

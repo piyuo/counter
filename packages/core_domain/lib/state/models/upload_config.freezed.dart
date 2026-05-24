@@ -20,12 +20,7 @@ mixin _$UploadConfig {
 /// Examples:
 /// - 60: 01:00, 02:00, 03:00...
 /// - 5: 01:00, 01:05, 01:10...
-@JsonKey(name: 'intervalMin') int get wallClockCadenceMin;/// Maximum records bundled into a single upload request.
-/// 1008 ≈ 3.5 days per batch — since we only keep 7 days of data, so two batches would cover the retention period.
- int get maxBatchSize;/// Prune queued payloads older than this many days.
- int get payloadRetentionDays;/// Prune upload-attempt logs older than this many days.
-@JsonKey(name: 'deliveryLogRetentionDays') int get uploadLogRetentionDays;/// HTTP connection + response timeout per upload request, in seconds.
- int get timeoutSec;
+@JsonKey(name: 'intervalMin') int get wallClockCadenceMin;
 /// Create a copy of UploadConfig
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -38,16 +33,16 @@ $UploadConfigCopyWith<UploadConfig> get copyWith => _$UploadConfigCopyWithImpl<U
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UploadConfig&&(identical(other.wallClockCadenceMin, wallClockCadenceMin) || other.wallClockCadenceMin == wallClockCadenceMin)&&(identical(other.maxBatchSize, maxBatchSize) || other.maxBatchSize == maxBatchSize)&&(identical(other.payloadRetentionDays, payloadRetentionDays) || other.payloadRetentionDays == payloadRetentionDays)&&(identical(other.uploadLogRetentionDays, uploadLogRetentionDays) || other.uploadLogRetentionDays == uploadLogRetentionDays)&&(identical(other.timeoutSec, timeoutSec) || other.timeoutSec == timeoutSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UploadConfig&&(identical(other.wallClockCadenceMin, wallClockCadenceMin) || other.wallClockCadenceMin == wallClockCadenceMin));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,wallClockCadenceMin,maxBatchSize,payloadRetentionDays,uploadLogRetentionDays,timeoutSec);
+int get hashCode => Object.hash(runtimeType,wallClockCadenceMin);
 
 @override
 String toString() {
-  return 'UploadConfig(wallClockCadenceMin: $wallClockCadenceMin, maxBatchSize: $maxBatchSize, payloadRetentionDays: $payloadRetentionDays, uploadLogRetentionDays: $uploadLogRetentionDays, timeoutSec: $timeoutSec)';
+  return 'UploadConfig(wallClockCadenceMin: $wallClockCadenceMin)';
 }
 
 
@@ -58,7 +53,7 @@ abstract mixin class $UploadConfigCopyWith<$Res>  {
   factory $UploadConfigCopyWith(UploadConfig value, $Res Function(UploadConfig) _then) = _$UploadConfigCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'intervalMin') int wallClockCadenceMin, int maxBatchSize, int payloadRetentionDays,@JsonKey(name: 'deliveryLogRetentionDays') int uploadLogRetentionDays, int timeoutSec
+@JsonKey(name: 'intervalMin') int wallClockCadenceMin
 });
 
 
@@ -75,13 +70,9 @@ class _$UploadConfigCopyWithImpl<$Res>
 
 /// Create a copy of UploadConfig
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? wallClockCadenceMin = null,Object? maxBatchSize = null,Object? payloadRetentionDays = null,Object? uploadLogRetentionDays = null,Object? timeoutSec = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? wallClockCadenceMin = null,}) {
   return _then(_self.copyWith(
 wallClockCadenceMin: null == wallClockCadenceMin ? _self.wallClockCadenceMin : wallClockCadenceMin // ignore: cast_nullable_to_non_nullable
-as int,maxBatchSize: null == maxBatchSize ? _self.maxBatchSize : maxBatchSize // ignore: cast_nullable_to_non_nullable
-as int,payloadRetentionDays: null == payloadRetentionDays ? _self.payloadRetentionDays : payloadRetentionDays // ignore: cast_nullable_to_non_nullable
-as int,uploadLogRetentionDays: null == uploadLogRetentionDays ? _self.uploadLogRetentionDays : uploadLogRetentionDays // ignore: cast_nullable_to_non_nullable
-as int,timeoutSec: null == timeoutSec ? _self.timeoutSec : timeoutSec // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -167,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin,  int maxBatchSize,  int payloadRetentionDays, @JsonKey(name: 'deliveryLogRetentionDays')  int uploadLogRetentionDays,  int timeoutSec)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UploadConfig() when $default != null:
-return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetentionDays,_that.uploadLogRetentionDays,_that.timeoutSec);case _:
+return $default(_that.wallClockCadenceMin);case _:
   return orElse();
 
 }
@@ -188,10 +179,10 @@ return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetent
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin,  int maxBatchSize,  int payloadRetentionDays, @JsonKey(name: 'deliveryLogRetentionDays')  int uploadLogRetentionDays,  int timeoutSec)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin)  $default,) {final _that = this;
 switch (_that) {
 case _UploadConfig():
-return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetentionDays,_that.uploadLogRetentionDays,_that.timeoutSec);case _:
+return $default(_that.wallClockCadenceMin);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +199,10 @@ return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetent
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin,  int maxBatchSize,  int payloadRetentionDays, @JsonKey(name: 'deliveryLogRetentionDays')  int uploadLogRetentionDays,  int timeoutSec)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'intervalMin')  int wallClockCadenceMin)?  $default,) {final _that = this;
 switch (_that) {
 case _UploadConfig() when $default != null:
-return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetentionDays,_that.uploadLogRetentionDays,_that.timeoutSec);case _:
+return $default(_that.wallClockCadenceMin);case _:
   return null;
 
 }
@@ -223,7 +214,7 @@ return $default(_that.wallClockCadenceMin,_that.maxBatchSize,_that.payloadRetent
 @JsonSerializable()
 
 class _UploadConfig extends UploadConfig {
-  const _UploadConfig({@JsonKey(name: 'intervalMin') this.wallClockCadenceMin = 60, this.maxBatchSize = 1008, this.payloadRetentionDays = 7, @JsonKey(name: 'deliveryLogRetentionDays') this.uploadLogRetentionDays = 7, this.timeoutSec = 30}): super._();
+  const _UploadConfig({@JsonKey(name: 'intervalMin') this.wallClockCadenceMin = 60}): super._();
   factory _UploadConfig.fromJson(Map<String, dynamic> json) => _$UploadConfigFromJson(json);
 
 /// Upload cadence in minutes, aligned to local wall-clock boundaries.
@@ -232,15 +223,6 @@ class _UploadConfig extends UploadConfig {
 /// - 60: 01:00, 02:00, 03:00...
 /// - 5: 01:00, 01:05, 01:10...
 @override@JsonKey(name: 'intervalMin') final  int wallClockCadenceMin;
-/// Maximum records bundled into a single upload request.
-/// 1008 ≈ 3.5 days per batch — since we only keep 7 days of data, so two batches would cover the retention period.
-@override@JsonKey() final  int maxBatchSize;
-/// Prune queued payloads older than this many days.
-@override@JsonKey() final  int payloadRetentionDays;
-/// Prune upload-attempt logs older than this many days.
-@override@JsonKey(name: 'deliveryLogRetentionDays') final  int uploadLogRetentionDays;
-/// HTTP connection + response timeout per upload request, in seconds.
-@override@JsonKey() final  int timeoutSec;
 
 /// Create a copy of UploadConfig
 /// with the given fields replaced by the non-null parameter values.
@@ -255,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UploadConfig&&(identical(other.wallClockCadenceMin, wallClockCadenceMin) || other.wallClockCadenceMin == wallClockCadenceMin)&&(identical(other.maxBatchSize, maxBatchSize) || other.maxBatchSize == maxBatchSize)&&(identical(other.payloadRetentionDays, payloadRetentionDays) || other.payloadRetentionDays == payloadRetentionDays)&&(identical(other.uploadLogRetentionDays, uploadLogRetentionDays) || other.uploadLogRetentionDays == uploadLogRetentionDays)&&(identical(other.timeoutSec, timeoutSec) || other.timeoutSec == timeoutSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UploadConfig&&(identical(other.wallClockCadenceMin, wallClockCadenceMin) || other.wallClockCadenceMin == wallClockCadenceMin));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,wallClockCadenceMin,maxBatchSize,payloadRetentionDays,uploadLogRetentionDays,timeoutSec);
+int get hashCode => Object.hash(runtimeType,wallClockCadenceMin);
 
 @override
 String toString() {
-  return 'UploadConfig(wallClockCadenceMin: $wallClockCadenceMin, maxBatchSize: $maxBatchSize, payloadRetentionDays: $payloadRetentionDays, uploadLogRetentionDays: $uploadLogRetentionDays, timeoutSec: $timeoutSec)';
+  return 'UploadConfig(wallClockCadenceMin: $wallClockCadenceMin)';
 }
 
 
@@ -275,7 +257,7 @@ abstract mixin class _$UploadConfigCopyWith<$Res> implements $UploadConfigCopyWi
   factory _$UploadConfigCopyWith(_UploadConfig value, $Res Function(_UploadConfig) _then) = __$UploadConfigCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'intervalMin') int wallClockCadenceMin, int maxBatchSize, int payloadRetentionDays,@JsonKey(name: 'deliveryLogRetentionDays') int uploadLogRetentionDays, int timeoutSec
+@JsonKey(name: 'intervalMin') int wallClockCadenceMin
 });
 
 
@@ -292,13 +274,9 @@ class __$UploadConfigCopyWithImpl<$Res>
 
 /// Create a copy of UploadConfig
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? wallClockCadenceMin = null,Object? maxBatchSize = null,Object? payloadRetentionDays = null,Object? uploadLogRetentionDays = null,Object? timeoutSec = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? wallClockCadenceMin = null,}) {
   return _then(_UploadConfig(
 wallClockCadenceMin: null == wallClockCadenceMin ? _self.wallClockCadenceMin : wallClockCadenceMin // ignore: cast_nullable_to_non_nullable
-as int,maxBatchSize: null == maxBatchSize ? _self.maxBatchSize : maxBatchSize // ignore: cast_nullable_to_non_nullable
-as int,payloadRetentionDays: null == payloadRetentionDays ? _self.payloadRetentionDays : payloadRetentionDays // ignore: cast_nullable_to_non_nullable
-as int,uploadLogRetentionDays: null == uploadLogRetentionDays ? _self.uploadLogRetentionDays : uploadLogRetentionDays // ignore: cast_nullable_to_non_nullable
-as int,timeoutSec: null == timeoutSec ? _self.timeoutSec : timeoutSec // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

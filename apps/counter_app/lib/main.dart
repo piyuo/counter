@@ -5,6 +5,7 @@ import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
@@ -12,15 +13,11 @@ import 'package:path_provider/path_provider.dart';
 import 'app_shell/app_shell.dart';
 
 void main() async {
-  // Instantiate early — before ProviderScope — so AppLinks is ready to catch
-  // the very first link when the app launches from a cold state.
-  core_runtime.NativeAppLinkService? appLinkService;
-  core_runtime.TelemetryDatabase? telemetryDb;
+  late core_runtime.TelemetryDatabase telemetryDb;
   appkit.appRun(
     preInitCallback: () async {
       WidgetsFlutterBinding.ensureInitialized();
       await LiquidGlassWidgets.initialize();
-      appLinkService = core_runtime.NativeAppLinkService();
       final appSupportDir = await getApplicationSupportDirectory();
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
@@ -31,36 +28,37 @@ void main() async {
       overrides: [
         core_domain.appStateRepositoryProvider.overrideWith((ref) => core_runtime.SharedPrefsAppStateRepository()),
         core_domain.authStorageServiceProvider.overrideWith((ref) => core_runtime.SecureAuthStorageService()),
-        core_domain.hardwareCapabilityServiceProvider.overrideWith(
-          (ref) => core_runtime.NativeHardwareCapabilityService(),
-        ),
+        core_domain.hardwareCapabilityServiceProvider.overrideWith((ref) {
+          final cameraDeviceController = ref.read(vision.cameraDeviceProvider.notifier);
+          return core_runtime.NativeHardwareCapabilityService(cameraDeviceController);
+        }),
         core_domain.portraitOrientationServiceProvider.overrideWith(
           (ref) => core_runtime.SystemChromePortraitOrientationService(),
         ),
         core_domain.visionRuntimeServiceProvider.overrideWith((ref) => core_runtime.FlutterVisionRuntimeService(ref)),
-        core_domain.invitationServiceProvider.overrideWith((ref) => core_runtime.RemoteInvitationService()),
+        core_domain.invitationServiceProvider.overrideWith((ref) => core_runtime.PiyuoInvitationService()),
         core_domain.tokenGeneratorServiceProvider.overrideWith((ref) => core_runtime.RandomTokenGeneratorService()),
         core_domain.urlValidatorServiceProvider.overrideWith((ref) => core_runtime.HttpUrlValidatorService()),
         core_domain.appLinkServiceProvider.overrideWith((ref) {
-          assert(appLinkService != null, 'AppLinkService should have been initialized in preInitCallback');
-          ref.keepAlive(); // must stay alive so the stream listener can write to invitationCodeProvider
-          unawaited(appLinkService!.init(ref));
-          return appLinkService!;
+          final appLinkService = core_runtime.NativeAppLinkService(
+            ref.read(core_domain.appFlowProvider.notifier),
+            ref.read(core_domain.invitationCodeProvider.notifier),
+          );
+          unawaited(appLinkService.init());
+          return appLinkService;
         }),
         core_domain.telemetryQueueRepositoryProvider.overrideWith((ref) {
-          assert(telemetryDb != null, 'TelemetryDatabase should have been initialized in preInitCallback');
-          ref.keepAlive();
-          return core_runtime.DriftPayloadQueueRepository(telemetryDb!);
+          return core_runtime.DriftPayloadQueueRepository(telemetryDb);
         }),
         core_domain.telemetryServiceProvider.overrideWith((ref) {
           ref.keepAlive();
           final service = core_runtime.NativeTelemetryService(
             queue: ref.read(core_domain.telemetryQueueRepositoryProvider),
-            onServerConfigOverride: ({detection, detectionParams, deliveryConfig}) async {
+            onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
               await ref
                   .read(core_domain.appProvider.notifier)
                   .applyServerConfigOverrides(
-                    detection: detection,
+                    detectionType: detectionType,
                     detectionParams: detectionParams,
                     deliveryConfig: deliveryConfig,
                   );
@@ -75,20 +73,14 @@ void main() async {
             },
             sessionResolver: () async {
               final appState = await ref.read(core_domain.appProvider.future);
-              final dataServer = appState.dataServer;
-              if (!dataServer.hasMadeDecision || dataServer is core_domain.NoDataServer) return null;
-
-              final bearerToken = switch (dataServer) {
-                core_domain.BusinessDataServer() =>
-                  await ref.read(core_domain.appRuntimeStateProvider.notifier).ensureBusinessBearerTokenLoaded(),
-                _ => null,
-              };
+              if (!appState.hasDataServer) return null;
+              final appRuntimeState = ref.read(core_domain.appRuntimeProvider);
 
               return core_domain.UploadSession(
                 config: appState.uploadConfig,
-                dataServer: dataServer,
+                dataServer: appState.currentDataServer!,
                 deviceId: appState.deviceId,
-                bearerToken: bearerToken,
+                bearerToken: appRuntimeState.bearerToken,
               );
             },
           );

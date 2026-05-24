@@ -25,7 +25,7 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: config.videoSource,
-            detection: config.detection,
+            detectionType: config.detection,
             detectionParams: config.detectionParams,
           );
 
@@ -57,14 +57,14 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: initialConfig.videoSource,
-            detection: initialConfig.detection,
+            detectionType: initialConfig.detection,
             detectionParams: initialConfig.detectionParams,
           );
       await container
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: updatedConfig.videoSource,
-            detection: updatedConfig.detection,
+            detectionType: updatedConfig.detection,
             detectionParams: updatedConfig.detectionParams,
           );
 
@@ -91,14 +91,14 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: initialConfig.videoSource,
-            detection: initialConfig.detection,
+            detectionType: initialConfig.detection,
             detectionParams: initialConfig.detectionParams,
           );
       await container
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: updatedConfig.videoSource,
-            detection: updatedConfig.detection,
+            detectionType: updatedConfig.detection,
             detectionParams: updatedConfig.detectionParams,
           );
 
@@ -127,14 +127,14 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: initialConfig.videoSource,
-            detection: initialConfig.detection,
+            detectionType: initialConfig.detection,
             detectionParams: initialConfig.detectionParams,
           );
       await container
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: updatedConfig.videoSource,
-            detection: updatedConfig.detection,
+            detectionType: updatedConfig.detection,
             detectionParams: updatedConfig.detectionParams,
           );
 
@@ -164,14 +164,14 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: initialConfig.videoSource,
-            detection: initialConfig.detection,
+            detectionType: initialConfig.detection,
             detectionParams: initialConfig.detectionParams,
           );
       await container
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: updatedConfig.videoSource,
-            detection: updatedConfig.detection,
+            detectionType: updatedConfig.detection,
             detectionParams: updatedConfig.detectionParams,
           );
 
@@ -194,7 +194,7 @@ void main() {
           .read(visionSessionProvider.notifier)
           .reconcile(
             videoSource: config.videoSource,
-            detection: config.detection,
+            detectionType: config.detection,
             detectionParams: config.detectionParams,
           );
       await container.read(visionSessionProvider.notifier).stop();
@@ -207,7 +207,7 @@ void main() {
 
 _VisionConfig _config() {
   return const _VisionConfig(
-    videoSource: const VideoSource.camera(cameraIndex: 0),
+    videoSource: const VideoSource.camera(cameraIndex: 0, isFaceFront: true),
     detection: const DetectionType.human(),
     detectionParams: const DetectionParams(),
   );

@@ -52,13 +52,13 @@ void main() {
       });
 
       test('allows onboarding CTA sub-route', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingBegin(), path: '/onboarding/cta'));
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingBegin(), path: OnboardingRoutes.cta));
         expect(decision, isNull);
       });
     });
 
     group('onboardingByInvitation gating', () {
-      test('redirects to onboarding invitation from non-onboarding path', () {
+      test('redirects to CTA invitation from non-onboarding path', () {
         final decision = rule.evaluate(
           _ctx(
             const AppFlow.onboardingByInvitation(),
@@ -68,18 +68,18 @@ void main() {
         );
 
         expect(decision, isNotNull);
-        expect(decision!.target, OnboardingRoutes.onboardingInvitation);
+        expect(decision!.target, OnboardingRoutes.ctaInvitation);
       });
 
-      test('allows onboarding invitation path', () {
+      test('allows CTA invitation path', () {
         final decision = rule.evaluate(
-          _ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.onboardingInvitation),
+          _ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.ctaInvitation),
         );
         expect(decision, isNull);
       });
 
       test('allows onboarding subtree path', () {
-        final decision = rule.evaluate(_ctx(const AppFlow.onboardingByInvitation(), path: '/onboarding/cta'));
+        final decision = rule.evaluate(_ctx(const AppFlow.onboardingByInvitation(), path: OnboardingRoutes.cta));
         expect(decision, isNull);
       });
     });

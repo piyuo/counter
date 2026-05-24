@@ -11,5 +11,8 @@ part 'app_runtime_state.freezed.dart';
 @freezed
 sealed class AppRuntimeState with _$AppRuntimeState {
   /// click App Version in About screen 10 times to enable develop mode
-  const factory AppRuntimeState({@Default(false) bool developMode, String? businessBearerToken}) = _AppRuntimeState;
+  const factory AppRuntimeState({
+    @Default(false) bool developMode,
+    @Default('') String bearerToken, // the current bearer token for the selected DataServerSelection,
+  }) = _AppRuntimeState;
 }

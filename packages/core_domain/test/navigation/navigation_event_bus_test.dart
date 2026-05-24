@@ -151,6 +151,14 @@ void main() {
       expect(const OpenOnboardingCTA(), isA<NavigationEvent>());
     });
 
+    test('OpenOnboarding1 is an AppNavigationEvent', () {
+      expect(const OpenOnboarding1(), isA<NavigationEvent>());
+    });
+
+    test('OpenOnboarding2 is an AppNavigationEvent', () {
+      expect(const OpenOnboarding2(), isA<NavigationEvent>());
+    });
+
     test('OpenOnboardingInvitation is an AppNavigationEvent', () {
       expect(const OpenOnboardingInvitation(token: 'abc'), isA<NavigationEvent>());
     });

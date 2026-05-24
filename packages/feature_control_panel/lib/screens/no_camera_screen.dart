@@ -1,5 +1,6 @@
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 class NoCameraScreen extends StatelessWidget {
   const NoCameraScreen({super.key});
@@ -7,7 +8,7 @@ class NoCameraScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return feature_pip.PipScaffold(
-      title: 'no camera detected',
+      title: context.l.no_camera_screen_title,
       builder: (scrollController) {
         return SingleChildScrollView(
           controller: scrollController,
@@ -17,8 +18,7 @@ class NoCameraScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 color: Colors.red,
                 child: SelectableText(
-                  "There is no camera detected on this device. Please connect a camera to use the app.\n"
-                  "or you can use Live url or file to test the app.",
+                  context.l.no_camera_screen_body,
                   style: TextStyle(fontSize: 14.0, color: Colors.red),
                 ),
               ),

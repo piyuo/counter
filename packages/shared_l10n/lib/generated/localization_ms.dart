@@ -15,6 +15,15 @@ class LocalizationMs extends Localization {
   String get about_screen_benchmark => 'Penanda aras';
 
   @override
+  String get about_screen_build_info_title => 'Build Information';
+
+  @override
+  String get about_screen_email_us => 'E-mel kami';
+
+  @override
+  String get about_screen_force_window_end_title => 'Force Window End';
+
+  @override
   String get about_screen_models => 'Model pengesanan objek';
 
   @override
@@ -24,59 +33,17 @@ class LocalizationMs extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
+  String get about_screen_reset_app_state_success =>
+      'App state has been reset.';
+
+  @override
+  String get about_screen_reset_app_state_title => 'Reset App State';
+
+  @override
   String get about_screen_title => 'Tentang';
 
   @override
-  String get add_video_screen_from => 'Tambah sumber video dari';
-
-  @override
-  String get add_video_screen_title => 'Tambah sumber Video';
-
-  @override
-  String get back => 'Kembali';
-
-  @override
-  String get benchmark_screen_fps => 'FPS';
-
-  @override
-  String get benchmark_screen_models => 'Model pengesanan objek';
-
-  @override
-  String get benchmark_screen_recommended => 'Model Disyorkan';
-
-  @override
-  String get benchmark_screen_start_button => 'Mulakan Penanda Aras';
-
-  @override
-  String get benchmark_screen_start_failed =>
-      'Gagal memulakan penanda aras, kod ralat ialah';
-
-  @override
-  String get benchmark_screen_title => 'Penanda Aras Model';
-
-  @override
-  String get camera_screen_add_title => 'Tambah Kamera';
-
-  @override
-  String get camera_screen_back_camera => 'Kamera Belakang';
-
-  @override
-  String get camera_screen_edit_title => 'Pilih Kamera';
-
-  @override
-  String get camera_screen_front_camera => 'Kamera Hadapan';
-
-  @override
-  String get camera_screen_zoom_level => 'Tahap Zum';
-
-  @override
-  String get cancel => 'Batal';
-
-  @override
-  String get close => 'Tutup';
-
-  @override
-  String get color_screen_title => 'Pilih warna';
+  String get cancel => 'Cancel';
 
   @override
   String get count_avg_dwell => 'Masa Purata';
@@ -85,133 +52,10 @@ class LocalizationMs extends Localization {
   String get count_avg_occ => 'Purata Huni';
 
   @override
-  String get count_enter => 'Masuk';
-
-  @override
-  String get count_exit => 'Keluar';
-
-  @override
   String get count_max_dwell => 'Masa Maks.';
 
   @override
   String get count_max_occ => 'Occ. Maks.';
-
-  @override
-  String get count_pass_by => 'Lalu';
-
-  @override
-  String get count_window => 'Tempoh Kiraan: 5 min';
-
-  @override
-  String get counter_screen_cooldown_desc =>
-      'Masuk semula memerlukan masa tenang #0 saat selepas keluar dari zon pengesanan';
-
-  @override
-  String get counter_screen_cooldown_in_seconds => 'dalam saat';
-
-  @override
-  String get counter_screen_cooldown_threshold => 'Ambang Masa Tenang';
-
-  @override
-  String get counter_screen_cooldown_time => 'Masa Tenang';
-
-  @override
-  String get counter_screen_enabled => 'Diaktifkan';
-
-  @override
-  String get counter_screen_enabled_error => 'Ralat';
-
-  @override
-  String get counter_screen_enabled_error_content =>
-      'Anda perlu mengaktifkan kaunter lain dahulu, kemudian anda boleh menyahaktifkan kaunter ini';
-
-  @override
-  String get counter_screen_name_error => 'Nama kaunter tidak boleh kosong';
-
-  @override
-  String get counter_screen_reentry_desc =>
-      'Objek mesti masuk #0 kali, dengan masa tenang #1 saat antara setiap keluar dan masuk semula, untuk mencetuskan masuk semula';
-
-  @override
-  String get counter_screen_reentry_threshold => 'Ambang Masuk Semula';
-
-  @override
-  String get counter_screen_reentry_title => 'Kiraan masuk semula';
-
-  @override
-  String get counter_screen_show_on => 'Tunjukkan di skrin';
-
-  @override
-  String get counter_screen_stagnant_consider => 'Anggap sebagai pegun';
-
-  @override
-  String get counter_screen_stagnant_desc =>
-      'Objek yang kekal tidak bergerak selama lebih daripada #0 saat akan dianggap pegun';
-
-  @override
-  String get counter_screen_stagnant_desc_prefix => 'Awalan Penerangan';
-
-  @override
-  String get counter_screen_stagnant_desc_suffix => 'Akhiran Penerangan';
-
-  @override
-  String get counter_screen_stagnant_in_seconds => 'dalam saat';
-
-  @override
-  String get counter_screen_stagnant_threshold => 'Ambang Pegun';
-
-  @override
-  String get default_project_name => 'Projek';
-
-  @override
-  String get default_video_name => 'Sumber video';
-
-  @override
-  String get default_zone_name => 'Zon pengesanan';
-
-  @override
-  String get detection_screen_confidence => 'Keyakinan';
-
-  @override
-  String get detection_screen_confidence_desc =>
-      'keyakinan melebihi #0 dianggap sebagai pengesanan yang sah';
-
-  @override
-  String get detection_screen_consider_valid => 'Anggap sah selepas';
-
-  @override
-  String get detection_screen_consider_valid_desc =>
-      'Objek jejak akan dianggap sah selepas #0';
-
-  @override
-  String get detection_screen_high => 'Tinggi';
-
-  @override
-  String get detection_screen_lost => 'Hilang';
-
-  @override
-  String get detection_screen_lost_desc =>
-      'Menentukan masa penghapusan objek yang hilang secara dinamik antara #0 dan #1 berdasarkan kelajuan pergerakan';
-
-  @override
-  String get detection_screen_low => 'Rendah';
-
-  @override
-  String get detection_screen_match => 'Padanan';
-
-  @override
-  String get detection_screen_match_desc =>
-      '#0 matchThreshold ialah parameter utama dalam penjejakan objek yang mengukur tahap padanan antara kotak pengesanan berbeza. Nilai lebih rendah memudahkan pengaitan objek tetapi meningkatkan risiko pengaitan yang salah. Nilai lebih tinggi lebih ketat pada pengaitan objek tetapi mungkin terlepas beberapa padanan sebenar.';
-
-  @override
-  String get detection_screen_models => 'Model';
-
-  @override
-  String get detection_screen_nms => 'Penindasan Bukan Maksimum';
-
-  @override
-  String get detection_screen_nms_desc =>
-      '#0 Ambang NMS yang lebih rendah (cth. 0.3-0.4) membuang kotak bertindih dengan lebih ketat dan mengurangkan positif palsu tetapi mungkin terlepas pandang orang bertindih. Ambang yang lebih tinggi (0.7-0.9) mengekalkan lebih banyak kotak yang mungkin meningkatkan positif palsu tetapi mengesan orang bertindih dengan lebih baik.';
 
   @override
   String get detection_screen_reset => 'Set semula';
@@ -224,39 +68,58 @@ class LocalizationMs extends Localization {
   String get detection_screen_title => 'Tetapan Pengesanan';
 
   @override
-  String get error_content =>
-      'Ralat tidak dijangka telah berlaku. Adakah anda ingin menghantar laporan e-mel?';
+  String get detection_type_screen_body =>
+      'Choose which detection model to use for this project.';
 
   @override
-  String get error_oops => 'Ups, ada masalah';
+  String get detection_type_screen_load_error =>
+      'Failed to load detection types.';
 
   @override
-  String get error_report => 'E-mel kami';
+  String get detection_type_screen_pedestrian_body =>
+      'Count people using the pedestrian detection model.';
 
   @override
-  String get filter_screen_desc => 'Pilih julat tapis dari senarai di bawah';
+  String get detection_type_screen_pedestrian_title => 'Pedestrian';
 
   @override
-  String get filter_screen_error_content =>
-      'Masa tamat mestilah lebih besar daripada masa mula';
+  String get detection_type_screen_title => 'Detection Type';
 
   @override
-  String get filter_screen_error_custom => 'Tersuai';
+  String get detection_type_screen_vehicle_body =>
+      'Count cars and other vehicles using the vehicle model.';
 
   @override
-  String get filter_screen_error_end => 'Tamat';
+  String get detection_type_screen_vehicle_title => 'Vehicle';
 
   @override
-  String get filter_screen_error_start => 'Mula';
-
-  @override
-  String get filter_screen_error_title => 'Tapisan';
-
-  @override
-  String get filter_screen_title => 'Tapis';
+  String get language_screen_body =>
+      'Select your preferred language for the app interface.';
 
   @override
   String get language_screen_language => 'Bahasa';
+
+  @override
+  String get language_screen_system_label => 'System language';
+
+  @override
+  String get live_url_screen_examples_label => 'Example';
+
+  @override
+  String get live_url_screen_invalid_rtsp_error =>
+      'RTSP URLs must include a host name.';
+
+  @override
+  String get live_url_screen_invalid_url_error =>
+      'Enter a valid URL with a supported scheme.';
+
+  @override
+  String get live_url_screen_unsupported_scheme_error =>
+      ' and RTSPS URLs are supported.';
+
+  @override
+  String get live_url_screen_url_empty_error =>
+      'Please enter a live stream URL.';
 
   @override
   String get main_screen_booting => 'Sedang memulakan...';
@@ -268,24 +131,11 @@ class LocalizationMs extends Localization {
   String get no => 'Tidak';
 
   @override
-  String get objects_screen_desc =>
-      'Pilih sasaran pengesanan seperti orang, kereta, bas, dan sebagainya.';
+  String get no_camera_screen_body =>
+      'There is no camera detected on this device. Please connect a camera to use the app.\\nOr you can use Live URL or a file to test the app.';
 
   @override
-  String get objects_screen_title => 'Objek';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get open_project_screen_desc =>
-      'Buka projek yang dibuat sebelum ini, hanya menyimpan 20 yang terkini.';
-
-  @override
-  String get open_project_screen_no_project => 'Tiada projek dijumpai.';
-
-  @override
-  String get open_project_screen_title => 'Buka Projek';
+  String get no_camera_screen_title => 'No Camera Detected';
 
   @override
   String get product_copyright => 'Hak Cipta © 2025';
@@ -298,98 +148,264 @@ class LocalizationMs extends Localization {
   String get product_name => 'Pengira';
 
   @override
-  String get project_screen_add_video_button => 'Tambah sumber video';
+  String get settings_piyuo_screen_body => 'Use a Piyuo Cloud URL for uploads.';
 
   @override
-  String get project_screen_exit_button => 'Keluar';
+  String get settings_piyuo_screen_cloud_url_label => 'Cloud URL';
 
   @override
-  String get project_screen_exit_confirm_content =>
-      'Meninggalkan projek akan menghentikan Pengiraan. Adakah anda pasti mahu meneruskan?';
+  String get settings_piyuo_screen_copy_action => 'Copy URL';
 
   @override
-  String get project_screen_exit_confirm_title => 'Sahkan keluar dari projek';
+  String get settings_piyuo_screen_copy_success => 'URL copied';
 
   @override
-  String get project_screen_from_desc =>
-      'Kami menyimpan rekod berputar 24 jam, jadi anda boleh melihat mana-mana tempoh masa yang diperlukan.';
+  String get settings_piyuo_screen_invalid_url_error =>
+      'Please paste a valid Piyuo Cloud URL.';
 
   @override
-  String get project_screen_report_settings => 'Tetapan';
+  String get settings_piyuo_screen_legacy_body =>
+      ' paste it here to keep using the same cloud space.';
 
   @override
-  String get project_screen_title => 'Projek';
+  String get settings_piyuo_screen_saving_action => 'Saving...';
 
   @override
-  String get project_view_no_videos => 'Tiada sumber video tersedia.';
+  String get settings_piyuo_screen_title => 'Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_button =>
-      'Tunjukkan Titik Tengah pada Sasaran';
+  String get settings_piyuo_screen_use_action => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_center_point_desc =>
-      'Titik tengah membantu menentukan sama ada sasaran berada dalam zon hentaman.';
+  String get settings_screen_body =>
+      'Set project name, detection parameters, count clearing.';
 
   @override
-  String get settings_screen_center_point_title => 'Titik Tengah pada Sasaran';
+  String get settings_screen_custom_server_body =>
+      'We will help set up a local server.';
 
   @override
-  String get settings_screen_delete_button => 'Padam';
+  String get settings_screen_custom_server_title => 'Use your own server';
 
   @override
-  String get settings_screen_delete_content =>
-      'Adakah anda pasti mahu memadamkan projek ini?';
+  String get settings_screen_data_server_label => 'Data Server';
 
   @override
-  String get settings_screen_delete_header => 'Padam projek ini';
+  String get settings_screen_delivery_label => 'Delivery';
+
+  @override
+  String get settings_screen_demo_mode_body =>
+      'Test only. Data is not exported.';
+
+  @override
+  String get settings_screen_demo_mode_title => 'Demo mode';
 
   @override
   String get settings_screen_desc =>
       'Tetapkan nama Projek, parameter pengesanan, pengosongan kiraan.';
 
   @override
-  String get settings_screen_lost_target_button => 'Tunjukkan Sasaran Hilang';
+  String get settings_screen_detection_label => 'Detection';
 
   @override
-  String get settings_screen_lost_target_desc =>
-      'Apabila penjejakan objek kehilangan sasaran, pilihan ini menjadikannya kelihatan. Secara lalai, sasaran yang hilang tidak ditunjukkan.';
+  String get settings_screen_parameters_label => 'Parameters';
 
   @override
-  String get settings_screen_lost_target_title => 'Sasaran Hilang';
+  String get settings_screen_piyuo_cloud_body =>
+      'Send results to our cloud service.';
 
   @override
-  String get settings_screen_project_error => 'Nama projek tidak boleh kosong';
+  String get settings_screen_piyuo_cloud_title => 'Use Piyuo Cloud';
 
   @override
-  String get settings_screen_project_id => 'ID Projek';
+  String get settings_screen_reset_all_data_body =>
+      'This will erase all data and start from the beginning. This action cannot be undone.';
 
   @override
-  String get settings_screen_project_name => 'Nama Projek';
+  String get settings_screen_reset_all_data_title => 'Reset all data?';
 
   @override
-  String get settings_screen_project_name_place_holder =>
-      '123 Jalan Utama atau Taman Merdeka';
+  String get settings_screen_subscription_body =>
+      'Manage your subscription and billing details.';
 
   @override
-  String get settings_screen_random_count_button => 'Tambah kiraan rawak';
+  String get settings_screen_subscription_title => 'Subscription';
 
   @override
-  String get settings_screen_reset_count_button => 'Set semula kiraan';
+  String get settings_screen_title => 'Settings';
 
   @override
-  String get settings_screen_reset_count_content =>
-      'Adakah anda pasti mahu menetapkan semula semua kiraan?';
+  String get settings_server_screen_body =>
+      'Set the server URL used for uploads.';
 
   @override
-  String get settings_screen_reset_count_header =>
-      'Set semula semua kiraan dalam projek ini';
+  String get settings_server_screen_delivery_cadence_label =>
+      'Deliver Payload On Wall Clock';
 
   @override
-  String get settings_screen_title => 'Tetapan';
+  String get settings_server_screen_hour_unit_plural => 'hours';
+
+  @override
+  String get settings_server_screen_hour_unit_singular => 'hour';
+
+  @override
+  String get settings_server_screen_minute_unit_plural => 'minutes';
+
+  @override
+  String get settings_server_screen_saving_action => 'Saving...';
+
+  @override
+  String get settings_server_screen_server_url_label => 'Server URL';
+
+  @override
+  String get settings_server_screen_title => 'Custom Server';
+
+  @override
+  String get settings_server_screen_use_action => 'Use Custom Server';
+
+  @override
+  String get start_screen_demo_mode_body =>
+      'Demo mode. No data leaves your device.';
+
+  @override
+  String get start_screen_invitation_label => 'Invitation';
+
+  @override
+  String get start_screen_not_set_label => 'Not Set';
+
+  @override
+  String get start_screen_own_server_label => 'Own Server';
+
+  @override
+  String get start_screen_piyuo_cloud_label => 'Piyuo Cloud';
+
+  @override
+  String get start_screen_product_body =>
+      'Pedestrian and vehicle counter with data collection.';
+
+  @override
+  String get start_screen_product_title => 'Piyuo Counter';
 
   @override
   String get submit => 'Hantar';
+
+  @override
+  String get upload_config_screen_body =>
+      'Configure delivery settings for telemetry uploads.';
+
+  @override
+  String get upload_config_screen_fast_fail_label => 'Fast fail';
+
+  @override
+  String get upload_config_screen_frequent_label => 'Frequent';
+
+  @override
+  String get upload_config_screen_large_label => 'Large';
+
+  @override
+  String get upload_config_screen_load_error =>
+      'Failed to load delivery settings.';
+
+  @override
+  String get upload_config_screen_max_batch_size_body =>
+      'Max number of payload records sent in one HTTP request.';
+
+  @override
+  String get upload_config_screen_max_batch_size_title => 'Maximum Batch Size';
+
+  @override
+  String get upload_config_screen_request_timeout_body =>
+      'HTTP timeout per upload request.';
+
+  @override
+  String get upload_config_screen_request_timeout_title => 'Request Timeout';
+
+  @override
+  String get upload_config_screen_reset_body =>
+      'This restores upload cadence, batching, and timeout to defaults.';
+
+  @override
+  String get upload_config_screen_reset_title => 'Reset delivery settings?';
+
+  @override
+  String get upload_config_screen_small_label => 'Small';
+
+  @override
+  String get upload_config_screen_sparse_label => 'Sparse';
+
+  @override
+  String get upload_config_screen_title => 'Delivery Settings';
+
+  @override
+  String get upload_config_screen_wait_longer_label => 'Wait longer';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_body =>
+      'How often pending telemetry is uploaded on minute-aligned boundaries.';
+
+  @override
+  String get upload_config_screen_wall_clock_cadence_title =>
+      'Wall-Clock Upload Cadence';
+
+  @override
+  String get upload_logs_screen_check_data_server_error_prefix =>
+      'Unable to check Data Server: ';
+
+  @override
+  String get upload_logs_screen_detail_unavailable_body =>
+      'Upload log detail is no longer available.';
+
+  @override
+  String get upload_logs_screen_empty_body => 'No upload logs yet.';
+
+  @override
+  String get upload_logs_screen_load_error => 'Unable to load upload logs.';
+
+  @override
+  String get upload_logs_screen_next_upload_pending => 'Next upload at ...';
+
+  @override
+  String get upload_logs_screen_next_upload_prefix => 'Next upload at ';
+
+  @override
+  String get upload_logs_screen_payloads_unit => 'payloads';
+
+  @override
+  String get upload_logs_screen_retry_action => 'Retry';
+
+  @override
+  String get upload_logs_screen_set_data_server_first_body =>
+      'Please set the Data Server first.';
+
+  @override
+  String get upload_logs_screen_title => 'Upload Logs';
+
+  @override
+  String get upload_logs_screen_today_label => 'Today';
+
+  @override
+  String get upload_logs_screen_upload_failed_prefix => 'Upload failed: ';
+
+  @override
+  String get upload_logs_screen_upload_failed_unknown =>
+      'Upload failed due to an unknown error.';
+
+  @override
+  String get upload_logs_screen_upload_now_action => 'Upload Now';
+
+  @override
+  String get upload_logs_screen_uploaded_success =>
+      'Uploaded payloads to remote server.';
+
+  @override
+  String get upload_logs_screen_uploading_action => 'Uploading...';
+
+  @override
+  String get upload_logs_screen_yesterday_label => 'Yesterday';
+
+  @override
+  String get url_screen_body =>
+      'Enter the live stream URL for your camera source.';
 
   @override
   String get url_screen_desc => 'Sila masukkan URL strim langsung';
@@ -401,89 +417,19 @@ class LocalizationMs extends Localization {
   String get url_screen_url => 'URL';
 
   @override
+  String get url_screen_url_hint =>
+      'http://example.com/stream or rtsp://example.com/stream';
+
+  @override
   String get url_screen_url_placeholder =>
       'http://example.com/stream atau rtsp://example.com/stream';
-
-  @override
-  String get video_screen_add_point => 'Tambah titik ke zon semasa';
-
-  @override
-  String get video_screen_add_zone => 'Tambah zon pengesanan';
-
-  @override
-  String get video_screen_change_file => 'Tukar Fail';
-
-  @override
-  String get video_screen_delete_button => 'Padam';
-
-  @override
-  String get video_screen_delete_content =>
-      'Adakah anda pasti mahu memadamkan sumber video ini?';
-
-  @override
-  String get video_screen_delete_header => 'Padam sumber video ini';
 
   @override
   String get video_screen_desc =>
       'Urus sumber video, tambah atau ubah suai zon pengesanan.';
 
   @override
-  String get video_screen_detection => 'Parameter model';
-
-  @override
-  String get video_screen_edit_placeholder =>
-      'Kamera Pintu Depan atau Kamera Tempat Letak Kereta';
-
-  @override
-  String get video_screen_move_bottom => 'Alihkan zon semasa ke bawah';
-
-  @override
-  String get video_screen_name_empty => 'Nama video tidak boleh kosong.';
-
-  @override
-  String get video_screen_playback_14x => '1/4x';
-
-  @override
-  String get video_screen_playback_2x => '2x';
-
-  @override
-  String get video_screen_playback_current => 'semasa: ';
-
-  @override
-  String get video_screen_playback_speed => 'Kelajuan Main Balik';
-
-  @override
-  String get video_screen_remove_point => 'Buang titik dari zon semasa';
-
-  @override
-  String get video_screen_sources =>
-      'Konfigurasikan sumber imej, sasaran pengesanan, dan parameter model.';
-
-  @override
-  String get video_screen_targets => 'Sasaran pengesanan';
-
-  @override
-  String get video_screen_tools => 'Alat';
-
-  @override
-  String get video_screen_video_name => 'Nama sumber video';
-
-  @override
-  String get video_screen_zones => 'Zon pengesanan';
-
-  @override
-  String get video_screen_zones_desc =>
-      'Gunakan seret dan lepas untuk melaraskan zon';
-
-  @override
   String get video_sources_camera => 'Kamera';
-
-  @override
-  String get video_sources_camera_denied => 'Akses ke kamera dinafikan';
-
-  @override
-  String get video_sources_camera_denied_msg =>
-      'Sila pergi ke tetapan dan benarkan kebenaran akses kamera untuk aplikasi ini.';
 
   @override
   String get video_sources_camera_not_found_message =>
@@ -496,101 +442,37 @@ class LocalizationMs extends Localization {
   String get video_sources_file => 'Fail';
 
   @override
+  String get video_sources_file_hint => 'Pilih video daripada peranti anda';
+
+  @override
+  String get video_sources_import_error => 'Gagal mengimport fail video.';
+
+  @override
   String get video_sources_live_stream => 'URL strim langsung';
 
   @override
-  String get video_sources_photos_denied => 'Akses ke foto dinafikan';
+  String get video_sources_load_error => 'Gagal memuatkan sumber video.';
 
   @override
   String get video_sources_photos_denied_msg =>
       'Sila pergi ke tetapan dan benarkan kebenaran akses foto untuk aplikasi ini.';
 
   @override
-  String get video_sources_photos_goto_settings => 'Pergi ke tetapan';
+  String get video_sources_screen_body =>
+      'Gestisci fonti video, aggiungi o modifica le zone di rilevamento.';
+
+  @override
+  String get video_sources_screen_title => 'Sumber video';
 
   @override
   String get video_sources_webcam => 'Kamera web';
 
   @override
-  String get video_sources_webcam_not_found_message =>
-      'Semak izin aplikasi dan sambungan kamera web';
-
-  @override
-  String get video_sources_webcam_not_found_title =>
-      'Kamera web tidak dijumpai';
-
-  @override
-  String get webcam_manager_webcam => 'Kamera Web';
-
-  @override
-  String get webcam_screen_add_title => 'Tambah Kamera Web';
-
-  @override
-  String get webcam_screen_edit_title => 'Pilih Kamera Web';
-
-  @override
   String get wizard_screen_about => 'Tentang';
-
-  @override
-  String get wizard_screen_desc =>
-      'Cipta projek baharu di bawah untuk mula mengira.';
-
-  @override
-  String get wizard_screen_email_us => 'E-mel kami';
 
   @override
   String get wizard_screen_language => 'Bahasa';
 
   @override
-  String get wizard_screen_new_project_from => 'Projek Baharu dari';
-
-  @override
-  String get wizard_screen_open_projects => 'Buka projek sedia ada';
-
-  @override
-  String get wizard_screen_open_projects_tip =>
-      'Semua projek akan disimpan secara automatik dalam peranti';
-
-  @override
   String get yes => 'Ya';
-
-  @override
-  String get zone_screen_can_not_delete => 'Tidak boleh memadamkan zon';
-
-  @override
-  String get zone_screen_color => 'Warna';
-
-  @override
-  String get zone_screen_delete_button => 'Padam';
-
-  @override
-  String get zone_screen_delete_content =>
-      'Adakah anda pasti mahu memadamkan zon ini?';
-
-  @override
-  String get zone_screen_delete_header => 'Padam zon ini';
-
-  @override
-  String get zone_screen_desc =>
-      'Zon pengesanan boleh menetapkan jenis objek untuk dikesan dan memilih kounter mana yang akan dipaparkan, seperti Dikesan, Tercipta, dan Masuk.';
-
-  @override
-  String get zone_screen_name_placeholder =>
-      'Nama zon, seperti Kaki Lima atau Tempat Letak Kereta';
-
-  @override
-  String get zone_screen_one_zone_required =>
-      'Sekurang-kurangnya satu zon diperlukan.';
-
-  @override
-  String get zone_screen_zone => 'Zon';
-
-  @override
-  String get zone_screen_zone_color => 'Warna zon';
-
-  @override
-  String get zone_screen_zone_name_required => 'Nama zon tidak boleh kosong';
-
-  @override
-  String get zone_screen_zone_show_summary => 'Papar ringkasan pada skrin';
 }

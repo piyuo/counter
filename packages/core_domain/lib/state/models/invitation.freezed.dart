@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Invitation {
 
- BusinessDataServer get businessDataServer; String get bearerToken; String get deviceName; String get instruction; DetectionType get detection; DetectionParams get detectionParams; UploadConfig get deliveryConfig;
+ String get instruction; String get bearerToken; BusinessPiyuoServer? get businessPiyuoServer; BusinessCustomServer? get businessCustomServer; DetectionType? get detection; DetectionParams? get detectionParams; UploadConfig? get uploadConfig;
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $InvitationCopyWith<Invitation> get copyWith => _$InvitationCopyWithImpl<Invitat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Invitation&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&(identical(other.deviceName, deviceName) || other.deviceName == deviceName)&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Invitation&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(businessDataServer),bearerToken,deviceName,instruction,detection,detectionParams,deliveryConfig);
+int get hashCode => Object.hash(runtimeType,instruction,bearerToken,const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),detection,detectionParams,uploadConfig);
 
 @override
 String toString() {
-  return 'Invitation(businessDataServer: $businessDataServer, bearerToken: $bearerToken, deviceName: $deviceName, instruction: $instruction, detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig)';
+  return 'Invitation(instruction: $instruction, bearerToken: $bearerToken, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, detection: $detection, detectionParams: $detectionParams, uploadConfig: $uploadConfig)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $InvitationCopyWith<$Res>  {
   factory $InvitationCopyWith(Invitation value, $Res Function(Invitation) _then) = _$InvitationCopyWithImpl;
 @useResult
 $Res call({
- BusinessDataServer businessDataServer, String bearerToken, String deviceName, String instruction, DetectionType detection, DetectionParams detectionParams, UploadConfig deliveryConfig
+ String instruction, String bearerToken, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, DetectionType? detection, DetectionParams? detectionParams, UploadConfig? uploadConfig
 });
 
 
-$DetectionTypeCopyWith<$Res> get detection;$DetectionParamsCopyWith<$Res> get detectionParams;$UploadConfigCopyWith<$Res> get deliveryConfig;
+$DetectionTypeCopyWith<$Res>? get detection;$DetectionParamsCopyWith<$Res>? get detectionParams;$UploadConfigCopyWith<$Res>? get uploadConfig;
 
 }
 /// @nodoc
@@ -65,44 +65,53 @@ class _$InvitationCopyWithImpl<$Res>
 
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? businessDataServer = freezed,Object? bearerToken = null,Object? deviceName = null,Object? instruction = null,Object? detection = null,Object? detectionParams = null,Object? deliveryConfig = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? instruction = null,Object? bearerToken = null,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? detection = freezed,Object? detectionParams = freezed,Object? uploadConfig = freezed,}) {
   return _then(_self.copyWith(
-businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
-as BusinessDataServer,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
-as String,deviceName: null == deviceName ? _self.deviceName : deviceName // ignore: cast_nullable_to_non_nullable
-as String,instruction: null == instruction ? _self.instruction : instruction // ignore: cast_nullable_to_non_nullable
-as String,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
-as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
-as DetectionParams,deliveryConfig: null == deliveryConfig ? _self.deliveryConfig : deliveryConfig // ignore: cast_nullable_to_non_nullable
-as UploadConfig,
+instruction: null == instruction ? _self.instruction : instruction // ignore: cast_nullable_to_non_nullable
+as String,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
+as String,businessPiyuoServer: freezed == businessPiyuoServer ? _self.businessPiyuoServer : businessPiyuoServer // ignore: cast_nullable_to_non_nullable
+as BusinessPiyuoServer?,businessCustomServer: freezed == businessCustomServer ? _self.businessCustomServer : businessCustomServer // ignore: cast_nullable_to_non_nullable
+as BusinessCustomServer?,detection: freezed == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DetectionType?,detectionParams: freezed == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
+as DetectionParams?,uploadConfig: freezed == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig?,
   ));
 }
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detection {
-  
-  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
+$DetectionTypeCopyWith<$Res>? get detection {
+    if (_self.detection == null) {
+    return null;
+  }
+
+  return $DetectionTypeCopyWith<$Res>(_self.detection!, (value) {
     return _then(_self.copyWith(detection: value));
   });
 }/// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionParamsCopyWith<$Res> get detectionParams {
-  
-  return $DetectionParamsCopyWith<$Res>(_self.detectionParams, (value) {
+$DetectionParamsCopyWith<$Res>? get detectionParams {
+    if (_self.detectionParams == null) {
+    return null;
+  }
+
+  return $DetectionParamsCopyWith<$Res>(_self.detectionParams!, (value) {
     return _then(_self.copyWith(detectionParams: value));
   });
 }/// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UploadConfigCopyWith<$Res> get deliveryConfig {
-  
-  return $UploadConfigCopyWith<$Res>(_self.deliveryConfig, (value) {
-    return _then(_self.copyWith(deliveryConfig: value));
+$UploadConfigCopyWith<$Res>? get uploadConfig {
+    if (_self.uploadConfig == null) {
+    return null;
+  }
+
+  return $UploadConfigCopyWith<$Res>(_self.uploadConfig!, (value) {
+    return _then(_self.copyWith(uploadConfig: value));
   });
 }
 }
@@ -186,10 +195,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( BusinessDataServer businessDataServer,  String bearerToken,  String deviceName,  String instruction,  DetectionType detection,  DetectionParams detectionParams,  UploadConfig deliveryConfig)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String instruction,  String bearerToken,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  DetectionType? detection,  DetectionParams? detectionParams,  UploadConfig? uploadConfig)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Invitation() when $default != null:
-return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_that.instruction,_that.detection,_that.detectionParams,_that.deliveryConfig);case _:
+return $default(_that.instruction,_that.bearerToken,_that.businessPiyuoServer,_that.businessCustomServer,_that.detection,_that.detectionParams,_that.uploadConfig);case _:
   return orElse();
 
 }
@@ -207,10 +216,10 @@ return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( BusinessDataServer businessDataServer,  String bearerToken,  String deviceName,  String instruction,  DetectionType detection,  DetectionParams detectionParams,  UploadConfig deliveryConfig)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String instruction,  String bearerToken,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  DetectionType? detection,  DetectionParams? detectionParams,  UploadConfig? uploadConfig)  $default,) {final _that = this;
 switch (_that) {
 case _Invitation():
-return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_that.instruction,_that.detection,_that.detectionParams,_that.deliveryConfig);case _:
+return $default(_that.instruction,_that.bearerToken,_that.businessPiyuoServer,_that.businessCustomServer,_that.detection,_that.detectionParams,_that.uploadConfig);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -227,10 +236,10 @@ return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( BusinessDataServer businessDataServer,  String bearerToken,  String deviceName,  String instruction,  DetectionType detection,  DetectionParams detectionParams,  UploadConfig deliveryConfig)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String instruction,  String bearerToken,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  DetectionType? detection,  DetectionParams? detectionParams,  UploadConfig? uploadConfig)?  $default,) {final _that = this;
 switch (_that) {
 case _Invitation() when $default != null:
-return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_that.instruction,_that.detection,_that.detectionParams,_that.deliveryConfig);case _:
+return $default(_that.instruction,_that.bearerToken,_that.businessPiyuoServer,_that.businessCustomServer,_that.detection,_that.detectionParams,_that.uploadConfig);case _:
   return null;
 
 }
@@ -242,16 +251,16 @@ return $default(_that.businessDataServer,_that.bearerToken,_that.deviceName,_tha
 @JsonSerializable()
 
 class _Invitation implements Invitation {
-  const _Invitation({required this.businessDataServer, required this.bearerToken, required this.deviceName, required this.instruction, required this.detection, required this.detectionParams, required this.deliveryConfig});
+  const _Invitation({required this.instruction, required this.bearerToken, this.businessPiyuoServer, this.businessCustomServer, this.detection, this.detectionParams, this.uploadConfig});
   factory _Invitation.fromJson(Map<String, dynamic> json) => _$InvitationFromJson(json);
 
-@override final  BusinessDataServer businessDataServer;
-@override final  String bearerToken;
-@override final  String deviceName;
 @override final  String instruction;
-@override final  DetectionType detection;
-@override final  DetectionParams detectionParams;
-@override final  UploadConfig deliveryConfig;
+@override final  String bearerToken;
+@override final  BusinessPiyuoServer? businessPiyuoServer;
+@override final  BusinessCustomServer? businessCustomServer;
+@override final  DetectionType? detection;
+@override final  DetectionParams? detectionParams;
+@override final  UploadConfig? uploadConfig;
 
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
@@ -266,16 +275,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Invitation&&const DeepCollectionEquality().equals(other.businessDataServer, businessDataServer)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&(identical(other.deviceName, deviceName) || other.deviceName == deviceName)&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Invitation&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(businessDataServer),bearerToken,deviceName,instruction,detection,detectionParams,deliveryConfig);
+int get hashCode => Object.hash(runtimeType,instruction,bearerToken,const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),detection,detectionParams,uploadConfig);
 
 @override
 String toString() {
-  return 'Invitation(businessDataServer: $businessDataServer, bearerToken: $bearerToken, deviceName: $deviceName, instruction: $instruction, detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig)';
+  return 'Invitation(instruction: $instruction, bearerToken: $bearerToken, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, detection: $detection, detectionParams: $detectionParams, uploadConfig: $uploadConfig)';
 }
 
 
@@ -286,11 +295,11 @@ abstract mixin class _$InvitationCopyWith<$Res> implements $InvitationCopyWith<$
   factory _$InvitationCopyWith(_Invitation value, $Res Function(_Invitation) _then) = __$InvitationCopyWithImpl;
 @override @useResult
 $Res call({
- BusinessDataServer businessDataServer, String bearerToken, String deviceName, String instruction, DetectionType detection, DetectionParams detectionParams, UploadConfig deliveryConfig
+ String instruction, String bearerToken, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, DetectionType? detection, DetectionParams? detectionParams, UploadConfig? uploadConfig
 });
 
 
-@override $DetectionTypeCopyWith<$Res> get detection;@override $DetectionParamsCopyWith<$Res> get detectionParams;@override $UploadConfigCopyWith<$Res> get deliveryConfig;
+@override $DetectionTypeCopyWith<$Res>? get detection;@override $DetectionParamsCopyWith<$Res>? get detectionParams;@override $UploadConfigCopyWith<$Res>? get uploadConfig;
 
 }
 /// @nodoc
@@ -303,16 +312,16 @@ class __$InvitationCopyWithImpl<$Res>
 
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? businessDataServer = freezed,Object? bearerToken = null,Object? deviceName = null,Object? instruction = null,Object? detection = null,Object? detectionParams = null,Object? deliveryConfig = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? instruction = null,Object? bearerToken = null,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? detection = freezed,Object? detectionParams = freezed,Object? uploadConfig = freezed,}) {
   return _then(_Invitation(
-businessDataServer: freezed == businessDataServer ? _self.businessDataServer : businessDataServer // ignore: cast_nullable_to_non_nullable
-as BusinessDataServer,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
-as String,deviceName: null == deviceName ? _self.deviceName : deviceName // ignore: cast_nullable_to_non_nullable
-as String,instruction: null == instruction ? _self.instruction : instruction // ignore: cast_nullable_to_non_nullable
-as String,detection: null == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
-as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
-as DetectionParams,deliveryConfig: null == deliveryConfig ? _self.deliveryConfig : deliveryConfig // ignore: cast_nullable_to_non_nullable
-as UploadConfig,
+instruction: null == instruction ? _self.instruction : instruction // ignore: cast_nullable_to_non_nullable
+as String,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
+as String,businessPiyuoServer: freezed == businessPiyuoServer ? _self.businessPiyuoServer : businessPiyuoServer // ignore: cast_nullable_to_non_nullable
+as BusinessPiyuoServer?,businessCustomServer: freezed == businessCustomServer ? _self.businessCustomServer : businessCustomServer // ignore: cast_nullable_to_non_nullable
+as BusinessCustomServer?,detection: freezed == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
+as DetectionType?,detectionParams: freezed == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
+as DetectionParams?,uploadConfig: freezed == uploadConfig ? _self.uploadConfig : uploadConfig // ignore: cast_nullable_to_non_nullable
+as UploadConfig?,
   ));
 }
 
@@ -320,28 +329,37 @@ as UploadConfig,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detection {
-  
-  return $DetectionTypeCopyWith<$Res>(_self.detection, (value) {
+$DetectionTypeCopyWith<$Res>? get detection {
+    if (_self.detection == null) {
+    return null;
+  }
+
+  return $DetectionTypeCopyWith<$Res>(_self.detection!, (value) {
     return _then(_self.copyWith(detection: value));
   });
 }/// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$DetectionParamsCopyWith<$Res> get detectionParams {
-  
-  return $DetectionParamsCopyWith<$Res>(_self.detectionParams, (value) {
+$DetectionParamsCopyWith<$Res>? get detectionParams {
+    if (_self.detectionParams == null) {
+    return null;
+  }
+
+  return $DetectionParamsCopyWith<$Res>(_self.detectionParams!, (value) {
     return _then(_self.copyWith(detectionParams: value));
   });
 }/// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$UploadConfigCopyWith<$Res> get deliveryConfig {
-  
-  return $UploadConfigCopyWith<$Res>(_self.deliveryConfig, (value) {
-    return _then(_self.copyWith(deliveryConfig: value));
+$UploadConfigCopyWith<$Res>? get uploadConfig {
+    if (_self.uploadConfig == null) {
+    return null;
+  }
+
+  return $UploadConfigCopyWith<$Res>(_self.uploadConfig!, (value) {
+    return _then(_self.copyWith(uploadConfig: value));
   });
 }
 }

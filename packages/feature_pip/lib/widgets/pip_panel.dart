@@ -5,6 +5,7 @@ class PipPanel extends StatelessWidget {
     required this.child,
     this.padding = const EdgeInsets.all(0.0),
     this.margin = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+    this.backgroundColor,
     super.key,
   });
 
@@ -17,6 +18,8 @@ class PipPanel extends StatelessWidget {
   /// The padding to apply to the header.
   final EdgeInsetsGeometry margin;
 
+  final Color? backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,7 +30,7 @@ class PipPanel extends StatelessWidget {
         boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 12, offset: Offset(0, 4))],
       ),
       child: Material(
-        color: Colors.black.withValues(alpha: 0.2),
+        color: backgroundColor ?? Colors.black.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(16),
         clipBehavior: Clip.hardEdge,
         child: Padding(padding: padding, child: child),

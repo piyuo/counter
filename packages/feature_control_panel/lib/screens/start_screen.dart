@@ -4,42 +4,47 @@
 // - upload logs tile: quick access to recent telemetry upload outcomes
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_control_panel/utils/video_source_name.dart';
 import 'package:feature_control_panel/widgets/metrics_area_sections.dart';
-import 'package:feature_control_panel/widgets/window_progress_display.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
-import 'package:intl/intl.dart';
-import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import '../providers/app_version_provider.dart';
-
-final _startScreenAvailableCamerasProvider = FutureProvider.autoDispose<List<core_domain.AvailableCamera>>((ref) async {
-  final hardwareCapabilityService = ref.watch(core_domain.hardwareCapabilityServiceProvider);
-  return hardwareCapabilityService.listAvailableCameras();
-});
 
 class StartScreen extends ConsumerWidget {
   const StartScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final appVersion = ref.watch(appVersionProvider).asData?.value ?? '';
     final appState = ref.watch(core_domain.appProvider).asData?.value;
-    final windowCount = ref.watch(vision.windowCountProvider);
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
+
+    final appVersion = ref.watch(appVersionProvider).asData?.value ?? '';
     final telemetry = ref.watch(core_domain.telemetryServiceProvider);
-    final areaState = ref.watch(vision.interestAreaStateProvider);
-    final dataServer = appState?.dataServer ?? const core_domain.DataServer.unspecified();
-    final dataServerHeadline = _dataServerHeadline(dataServer);
-    final availableCameras = ref.watch(_startScreenAvailableCamerasProvider).asData?.value ?? const [];
-    final selectedDetectionIndex = switch (appState?.detection) {
+    final areaState = ref.watch(vision.interestAreaProvider);
+    final dataServerHeadline = switch (appState.dataServerSelection) {
+      core_domain.DataServerSelection.none => 'Local device only, no uploads',
+      core_domain.DataServerSelection.personalPiyuo =>
+        'Counting summary data uploads hourly to: ${appState.personalPiyuoServer?.url}',
+      core_domain.DataServerSelection.businessPiyuo =>
+        'Data uploads hourly to:${appState.businessPiyuoServer?.projectName}',
+      core_domain.DataServerSelection.personalCustom =>
+        'Counting summary data uploads hourly to: ${appState.personalCustomServer?.url}',
+      core_domain.DataServerSelection.businessCustom =>
+        'Data uploads hourly to:${appState.businessCustomServer?.projectName}',
+    };
+
+    final selectedDetectionIndex = switch (appState.detectionType) {
       core_domain.DetectionVehicle() => 1,
       _ => 0,
     };
 
-    final locale = Localizations.localeOf(context).toString();
     return feature_pip.PipScaffold(
       builder: (scrollController) {
         return SingleChildScrollView(
@@ -48,6 +53,7 @@ class StartScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Header with app icon, name, and description
               feature_pip.PipPanel(
                 padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                 child: Row(
@@ -59,9 +65,9 @@ class StartScreen extends ConsumerWidget {
                       child: Column(
                         children: [
                           const SizedBox(height: 4),
-                          Text('Piyuo Counter', style: Theme.of(context).textTheme.titleMedium),
+                          Text(context.l.start_screen_product_title, style: Theme.of(context).textTheme.titleMedium),
                           Text(
-                            'Pedestrian/Vehicle Counter and Data Collector',
+                            dataServerHeadline,
                             style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                           ),
                         ],
@@ -72,68 +78,15 @@ class StartScreen extends ConsumerWidget {
               ),
 
               const SizedBox(height: 8),
-              if (windowCount == null)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-                  child: Center(
-                    child: const GlassProgressIndicator.circular(color: Colors.white, strokeWidth: 4, size: 64),
-                  ),
-                ),
-              if (windowCount != null)
-                feature_pip.PipPanel(
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
-                  child: Column(
-                    children: [
-                      ListTile(
-                        contentPadding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
-                        title: Text(
-                          '${DateFormat.jm(locale).format(windowCount.startUtc.toLocal())} - ${DateFormat.jm(locale).format(windowCount.endUtc.toLocal())}',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-                        ),
-                        /*                        subtitle: nextUpload.when(
-                          data: (dt) {
-                            final time = DateFormat.jm(locale).format(dt.toLocal());
-                            return Text(
-                              'Next Upload at $time',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                decoration: TextDecoration.none,
-                              ),
-                            );
-                          },
-                          loading: () => const SizedBox.shrink(),
-                          error: (_, _) => const SizedBox.shrink(),
-                        ),*/
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {
-                          ref.push(const core_domain.OpenPayloadsRecent());
-                        },
-                      ),
-                      WindowProgressDisplay(windowCount: windowCount),
-                    ],
-                  ),
-                ),
-
-              const SizedBox(height: 8),
-              if (windowCount != null)
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    '${windowCount.sessionId}  #${windowCount.windowIndex}',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              if (windowCount != null) MetricsAreaSections(windowCount: windowCount, areaState: areaState),
+              MetricsAreaSections(areaState: areaState),
               const SizedBox(height: 8),
               feature_pip.PipPanel(
                 child: Column(
                   children: [
-                    if (dataServerHeadline.isNotEmpty)
+                    if (appState.hasDataServer)
                       ListTile(
                         leading: Icon(Icons.timelapse),
-                        title: Text("Upload Logs"),
+                        title: Text(context.l.upload_logs_screen_title),
                         trailing: ValueListenableBuilder<DateTime?>(
                           valueListenable: telemetry.nextUploadTimeListenable,
                           builder: (context, nextUpload, child) => Row(
@@ -149,11 +102,11 @@ class StartScreen extends ConsumerWidget {
                       ),
                     ListTile(
                       leading: Icon(Icons.video_camera_back),
-                      title: Text("Video Sources"),
+                      title: Text(context.l.video_sources_screen_title),
                       trailing: Wrap(
                         children: [
                           Text(
-                            _activeVideoSourceLabel(context, appState?.videoSource, availableCameras),
+                            buildVideoSourceName(context, appState.videoSource),
                             style: TextStyle(fontSize: 16, color: Colors.grey),
                           ),
                           SizedBox(width: 10),
@@ -165,30 +118,17 @@ class StartScreen extends ConsumerWidget {
                       },
                     ),
                     ListTile(
-                      leading: const Icon(Icons.gps_fixed),
-                      title: Text('Detection Type'),
+                      leading: Icon(Icons.settings),
+                      title: Text(context.l.settings_screen_title),
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
                           Text(
-                            selectedDetectionIndex == 1 ? 'Vehicle' : 'Pedestrian',
+                            selectedDetectionIndex == 1
+                                ? context.l.detection_type_screen_vehicle_title
+                                : context.l.detection_type_screen_pedestrian_title,
                             style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
                           ),
-                          SizedBox(width: 10),
-                          Icon(Icons.arrow_forward_ios),
-                        ],
-                      ),
-                      onTap: () {
-                        ref.push(const core_domain.OpenDetectionTypeSelection());
-                      },
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.settings),
-                      title: Text("Settings"),
-                      trailing: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Text(_dataServerByLabel(dataServer), style: TextStyle(fontSize: 16, color: Colors.grey)),
                           SizedBox(width: 10),
                           Icon(Icons.arrow_forward_ios),
                         ],
@@ -216,34 +156,12 @@ class StartScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+              SizedBox(height: UniversalPlatform.isMobile ? 60 : 20),
             ],
           ),
         );
       },
     );
-  }
-
-  String _activeVideoSourceLabel(
-    BuildContext context,
-    core_domain.VideoSource? selectedVideoSource,
-    List<core_domain.AvailableCamera> availableCameras,
-  ) {
-    if (selectedVideoSource == null || selectedVideoSource is core_domain.UnspecifiedVideoSource) {
-      return '';
-    }
-
-    for (final camera in availableCameras) {
-      if (camera.videoSource == selectedVideoSource) {
-        return camera.displayName;
-      }
-    }
-    return switch (selectedVideoSource) {
-      core_domain.CameraVideoSource() => context.l.video_sources_camera,
-      core_domain.WebcamVideoSource() => context.l.video_sources_webcam,
-      core_domain.FileVideoSource() => context.l.video_sources_file,
-      core_domain.LiveVideoSource() => context.l.video_sources_live_stream,
-      _ => '',
-    };
   }
 
   Widget _buildUploadStatusIndicator(
@@ -286,25 +204,6 @@ class StartScreen extends ConsumerWidget {
     return MaterialLocalizations.of(
       context,
     ).formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: alwaysUse24HourFormat);
-  }
-
-  String _dataServerByLabel(core_domain.DataServer dataServer) {
-    return switch (dataServer) {
-      core_domain.BusinessDataServer() => 'Invitation',
-      core_domain.PersonalDataServer() when dataServer.isPiyuo => 'Piyuo Cloud',
-      core_domain.PersonalDataServer() => 'Own Server',
-      core_domain.NoDataServer() => 'Demo Mode',
-      core_domain.UnspecifiedDataServer() => 'Not Set',
-    };
-  }
-
-  String _dataServerHeadline(core_domain.DataServer dataServer) {
-    return switch (dataServer) {
-      core_domain.BusinessDataServer(:final projectName) => projectName,
-      core_domain.PersonalDataServer(:final url) => url,
-      core_domain.NoDataServer() => 'Demo mode, no data leaves your device.',
-      core_domain.UnspecifiedDataServer() => '',
-    };
   }
 }
 
