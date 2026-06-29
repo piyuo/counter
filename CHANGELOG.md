@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.2.0](https://github.com/piyuo/counter/compare/v1.1.2...v1.2.0) (2026-06-29)
+
+
+### Features
+
+* add onboarding module for first-time users [#115](https://github.com/piyuo/counter/issues/115) ([6b1f96e](https://github.com/piyuo/counter/commit/6b1f96ef7178ba79c8fd2920f0f5e85b39cbe612))
+* connect core domain logic to onboarding process [#124](https://github.com/piyuo/counter/issues/124) ([68e2829](https://github.com/piyuo/counter/commit/68e28295dd7f7040218e3ae911b2f2a87553e281))
+* improve scroll behavior for pip + sliding float window [#126](https://github.com/piyuo/counter/issues/126) ([2839d57](https://github.com/piyuo/counter/commit/2839d57587bd1c42155d8c8fb2ce61bda9bdb9ec))
+* lock scrolling during onboarding [#130](https://github.com/piyuo/counter/issues/130) ([f39d8b8](https://github.com/piyuo/counter/commit/f39d8b8b90acd09557a094a86b9e6f3ebc6044ba))
+* redesign layout [#143](https://github.com/piyuo/counter/issues/143) ([bcb3601](https://github.com/piyuo/counter/commit/bcb3601b786c351e4e373ab3465b4c1828916740))
+* support flutter_vision 2.4.0 and flutter_appkit 2.6.0 [#111](https://github.com/piyuo/counter/issues/111) ([01c98f9](https://github.com/piyuo/counter/commit/01c98f946740712bc1230401ce46a6d9897e7507))
+* support flutter_vision package [#141](https://github.com/piyuo/counter/issues/141) ([9af7d7f](https://github.com/piyuo/counter/commit/9af7d7fe293114f00f7cf8eccecd46b69d80b1e0))
+* support flutter_vision version 2.3.0 [#94](https://github.com/piyuo/counter/issues/94) ([b9eba17](https://github.com/piyuo/counter/commit/b9eba173dc54322cde805b4ca9061b7740ac5ae9))
+* support l10n multi localization [#170](https://github.com/piyuo/counter/issues/170) ([576ff8b](https://github.com/piyuo/counter/commit/576ff8bb5220b45d3bb51fa2e475e097ed680ae5))
+
+
+### Bug Fixes
+
+* drift database created in temporary location [#166](https://github.com/piyuo/counter/issues/166) ([9e1cabe](https://github.com/piyuo/counter/commit/9e1cabe0effb2f10ef65b3915e08468cb1da154c))
+
 ## [1.1.2](https://github.com/piyuo/counter/compare/v1.1.1...v1.1.2) (2025-08-09)
 
 
