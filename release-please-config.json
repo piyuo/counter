@@ -1,0 +1,45 @@
+{
+  "separate-pull-requests": true,
+  "packages": {
+    "apps/counter_app": {
+      "release-type": "dart",
+      "package-name": "counter_app",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/core_domain": {
+      "release-type": "dart",
+      "package-name": "core_domain",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/core_runtime": {
+      "release-type": "dart",
+      "package-name": "core_runtime",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/feature_control_panel": {
+      "release-type": "dart",
+      "package-name": "feature_control_panel",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/feature_monitor": {
+      "release-type": "dart",
+      "package-name": "feature_monitor",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/feature_onboarding": {
+      "release-type": "dart",
+      "package-name": "feature_onboarding",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/feature_pip": {
+      "release-type": "dart",
+      "package-name": "feature_pip",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "packages/shared_l10n": {
+      "release-type": "dart",
+      "package-name": "shared_l10n",
+      "changelog-path": "CHANGELOG.md"
+    }
+  }
+}
