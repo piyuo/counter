@@ -1,3 +1,3 @@
-Buggfixar
+Nya förbättringar
 
-- Fixat app-hängningsproblem som fick applikationen att frysa i minst 2000ms under drift. Appen svarar nu smidigt utan oväntade förseningar eller frysningar.
+- Förbättrad detektionsmodell: Integrerat en ny, mer avancerad detektionsmodell som ger betydligt bättre noggrannhet och snabbare prestanda för detektion av fotgängare och fordon.

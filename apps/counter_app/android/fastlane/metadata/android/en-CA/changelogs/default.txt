@@ -1,3 +1,3 @@
-Bug Fixes
+New Improvements
 
-- Fixed app hanging issue that caused the application to freeze for at least 2000ms during operation. The app now responds smoothly without unexpected delays or freezing.
+- Enhanced Detection Model: Integrated a new, more advanced detection model that delivers significantly better accuracy and faster performance for pedestrian and vehicle detection.

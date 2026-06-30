@@ -1,3 +1,3 @@
-Akatsen konponketak
+Hobekuntza berriak
 
-- Konpondu aplikazioaren blokeatze arazoa, aplikazioa gutxienez 2000ms izozten zuena eragiketan. Aplikazioak orain leunki erantzuten du ustekabeko atzerapenik edo izozketa gabe.
+- Detekzio eredu hobetua: Detekzio eredu berri eta aurreratuagoa integratu da, oinezkoak eta ibilgailuak detektatzeko zehaztasun nabarmen hobea eta errendimendu azkarragoa eskaintzen duena.
