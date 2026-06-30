@@ -1,3 +1,3 @@
-Corrección de erros
+Melloras novas
 
-- Arranxado o problema de colgamento da aplicación que causaba que a aplicación se conxelase durante polo menos 2000ms. A aplicación agora responde suavemente sen atrasos ou conxelamentos inesperados.
+- Modelo de detección mellorado: Integróse un novo modelo de detección máis avanzado que ofrece unha precisión significativamente mellor e un rendemento máis rápido para a detección de peóns e vehículos.

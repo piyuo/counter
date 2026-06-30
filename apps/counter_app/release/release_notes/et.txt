@@ -1,3 +1,3 @@
-Veaparandused
+Uued täiustused
 
-- Parandatud rakenduse hangumise probleem, mis põhjustas rakenduse külmumist vähemalt 2000ms ajaks. Rakendus reageerib nüüd sujuvalt ilma ootamatute viivituste või külmumiseta.
+- Täiustatud tuvastusmudel: Integreeritud uus, arenenum tuvastusmudel, mis pakub märkimisväärselt paremat täpsust ja kiiremat jõudlust jalakäijate ja sõidukite tuvastamisel.

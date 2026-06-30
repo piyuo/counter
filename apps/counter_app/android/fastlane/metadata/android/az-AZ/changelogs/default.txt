@@ -1,3 +1,3 @@
-Xəta Düzəltmələri
+Yeni Təkmilləşdirmələr
 
-- Tətbiqi ən azı 2000ms ərzində donduran tətbiq asılma problemi həll edilmişdir. Tətbiq indi gözlənilməz gecikmə və ya donma olmadan rahat işləyir.
+- Təkmilləşdirilmiş Aşkarlama Modeli: Piyada və nəqliyyat vasitələrinin aşkarlanması üçün əhəmiyyətli dərəcədə yaxşı dəqiqlik və daha sürətli performans təqdim edən yeni, daha qabaqcıl aşkarlama modeli inteqrasiya edilmişdir.

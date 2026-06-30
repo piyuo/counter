@@ -1,3 +1,3 @@
-Opravy chýb
+Nové vylepšenia
 
-- Opravený problém s visiacou aplikáciou, ktorý spôsoboval zamrznutie aplikácie aspoň na 2000ms počas prevádzky. Aplikácia teraz reaguje hladko bez neočakávaných oneskorení alebo zamrznutia.
+- Vylepšený model detekcie: Bol integrovaný nový, pokročilejší model detekcie, ktorý poskytuje výrazne lepšiu presnosť a rýchlejší výkon pri detekcii chodcov a vozidiel.

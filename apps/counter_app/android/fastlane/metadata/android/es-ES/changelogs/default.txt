@@ -1,3 +1,3 @@
-Correcciones de errores
+Nuevas mejoras
 
-- Solucionado el problema de colgado de la aplicación que causaba que la aplicación se congelara durante al menos 2000ms durante la operación. La aplicación ahora responde suavemente sin retrasos o congelamiento inesperados.
+- Modelo de detección mejorado: Se ha integrado un nuevo modelo de detección más avanzado que ofrece una precisión significativamente mejor y un rendimiento más rápido para la detección de peatones y vehículos.

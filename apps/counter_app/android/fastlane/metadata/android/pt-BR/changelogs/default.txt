@@ -1,3 +1,3 @@
-Correções de Bugs
+Novas melhorias
 
-- Corrigido problema de travamento do app que causava o congelamento da aplicação por pelo menos 2000ms durante a operação. O app agora responde suavemente sem atrasos ou travamentos inesperados.
+- Modelo de detecção aprimorado: Integrou-se um novo modelo de detecção mais avançado que oferece precisão significativamente melhor e desempenho mais rápido para detecção de pedestres e veículos.

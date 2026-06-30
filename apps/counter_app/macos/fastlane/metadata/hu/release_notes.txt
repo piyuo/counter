@@ -1,3 +1,3 @@
-Hibajavítások
+Új fejlesztések
 
-- Javítva az alkalmazás lefagyási problémája, amely legalább 2000ms-ra megfagyasztotta az alkalmazást. Az alkalmazás most zökkenőmentesen reagál váratlan késések vagy lefagyás nélkül.
+- Továbbfejlesztett észlelési modell: Új, fejlettebb észlelési modellt integráltunk, amely jelentősen jobb pontosságot és gyorsabb teljesítményt nyújt a gyalogosok és járművek észlelésében.
