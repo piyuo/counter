@@ -1,10 +1,3 @@
 {
-  "apps/counter_app": "1.1.2+9",
-  "packages/core_domain": "0.0.1",
-  "packages/core_runtime": "0.0.1",
-  "packages/feature_control_panel": "0.0.1",
-  "packages/feature_monitor": "0.0.1",
-  "packages/feature_onboarding": "0.0.1",
-  "packages/feature_pip": "0.0.1",
-  "packages/shared_l10n": "0.0.1"
+  "apps/counter_app": "1.1.2"
 }
