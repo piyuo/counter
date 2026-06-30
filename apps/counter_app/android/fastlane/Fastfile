@@ -5,19 +5,37 @@ default_platform(:android)
 platform :android do
   desc "Release a new version to the Google Play Store"
   lane :release do
-    # Clean the project
-    #gradle(task: "clean")
 
-    # Build the AAB
-    #gradle(
-    #  task: "bundle",
-    #  build_type: "Release"
-    #)
+    # 1. Path pointing to the project root relative to android/fastlane/
+    build_num_file = "../../.build_number"
 
-    # the expected path to the AAB file that fluter generates
+    # 2. Read the current tracking number or start at 0 if it doesn't exist
+    if File.exist?(build_num_file)
+      current_build = File.read(build_num_file).strip.to_i
+    else
+      current_build = 0
+    end
+
+    # 3. Increment the counter
+    next_build_number = current_build + 1
+    UI.message("Shared Global Build Number: #{current_build} ──> Incrementing to: #{next_build_number}")
+
+    # 4. Save the new build number back to the root text file immediately
+    File.write(build_num_file, next_build_number.to_s)
+
+    # 5. Pass our EXPLICIT custom property safely into the Gradle execution
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      properties: {
+        "globalVersionCode" => next_build_number
+      }
+    )
+
+    # The expected path to the AAB file that Gradle generates
     aab_file = "../build/app/outputs/bundle/release/app-release.aab"
 
-    # Upload to Play Store
+    # 6. Upload to Play Store
     upload_to_play_store(
       track: "alpha",
       aab: aab_file
