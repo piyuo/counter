@@ -16,17 +16,12 @@ jobs:
       pull-requests: write # This is crucial for creating and updating PRs
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
-      tag_name: ${{ steps.release.outputs.tag_name }}
-      release_url: ${{ steps.release.outputs.release_url }}
-      prerelease: ${{ steps.release.outputs.prerelease }}
-      id: ${{ steps.release.outputs.id }}
-      body: ${{ steps.release.outputs.body }}
-      upload_url: ${{ steps.release.outputs.upload_url }}
 
     steps:
       - name: Run Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          release-type: dart
+          # Automatically detects release-please-config.json
+          # and .release-please-manifest.json in the root directory
           target-branch: main
