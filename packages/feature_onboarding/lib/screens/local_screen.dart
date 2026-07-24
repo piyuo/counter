@@ -1,6 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
@@ -12,7 +13,7 @@ class LocalScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OnboardingScaffold(
-      title: 'Ready to Start Counting',
+      title: context.l.cta_screen_local,
 
       nextButtonAction: NextButtonAction.start,
 
@@ -25,25 +26,9 @@ class LocalScreen extends ConsumerWidget {
 
       builder: (context) => [
         Text(
-          'Piyuo Counter will run entirely on this device.',
+          context.l.local_screen_text.replaceAll('\\n', '\n\n'),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
-        ),
-
-        onboardingSpacer(),
-
-        Text(
-          'Traffic data will be stored locally and not uploaded remotely.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-
-        onboardingSpacer(),
-
-        Text(
-          'You can connect to Piyuo Cloud or your own server later in Settings.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );

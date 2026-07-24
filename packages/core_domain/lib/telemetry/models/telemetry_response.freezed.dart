@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TelemetryResponse {
 
- int get v; bool get ok; String? get error; ServerData? get data;
+ int get v; bool get ok; TelemetryErrorCode? get errorCode; String? get error; ServerData? get data;
 /// Create a copy of TelemetryResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TelemetryResponseCopyWith<TelemetryResponse> get copyWith => _$TelemetryRespons
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.errorCode, errorCode) || other.errorCode == errorCode)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,v,ok,error,data);
+int get hashCode => Object.hash(runtimeType,v,ok,errorCode,error,data);
 
 @override
 String toString() {
-  return 'TelemetryResponse(v: $v, ok: $ok, error: $error, data: $data)';
+  return 'TelemetryResponse(v: $v, ok: $ok, errorCode: $errorCode, error: $error, data: $data)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TelemetryResponseCopyWith<$Res>  {
   factory $TelemetryResponseCopyWith(TelemetryResponse value, $Res Function(TelemetryResponse) _then) = _$TelemetryResponseCopyWithImpl;
 @useResult
 $Res call({
- int v, bool ok, String? error, ServerData? data
+ int v, bool ok, TelemetryErrorCode? errorCode, String? error, ServerData? data
 });
 
 
@@ -65,11 +65,12 @@ class _$TelemetryResponseCopyWithImpl<$Res>
 
 /// Create a copy of TelemetryResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? v = null,Object? ok = null,Object? error = freezed,Object? data = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? v = null,Object? ok = null,Object? errorCode = freezed,Object? error = freezed,Object? data = freezed,}) {
   return _then(_self.copyWith(
 v: null == v ? _self.v : v // ignore: cast_nullable_to_non_nullable
 as int,ok: null == ok ? _self.ok : ok // ignore: cast_nullable_to_non_nullable
-as bool,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as bool,errorCode: freezed == errorCode ? _self.errorCode : errorCode // ignore: cast_nullable_to_non_nullable
+as TelemetryErrorCode?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
 as ServerData?,
   ));
@@ -168,10 +169,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int v,  bool ok,  String? error,  ServerData? data)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int v,  bool ok,  TelemetryErrorCode? errorCode,  String? error,  ServerData? data)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TelemetryResponse() when $default != null:
-return $default(_that.v,_that.ok,_that.error,_that.data);case _:
+return $default(_that.v,_that.ok,_that.errorCode,_that.error,_that.data);case _:
   return orElse();
 
 }
@@ -189,10 +190,10 @@ return $default(_that.v,_that.ok,_that.error,_that.data);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int v,  bool ok,  String? error,  ServerData? data)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int v,  bool ok,  TelemetryErrorCode? errorCode,  String? error,  ServerData? data)  $default,) {final _that = this;
 switch (_that) {
 case _TelemetryResponse():
-return $default(_that.v,_that.ok,_that.error,_that.data);case _:
+return $default(_that.v,_that.ok,_that.errorCode,_that.error,_that.data);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +210,10 @@ return $default(_that.v,_that.ok,_that.error,_that.data);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int v,  bool ok,  String? error,  ServerData? data)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int v,  bool ok,  TelemetryErrorCode? errorCode,  String? error,  ServerData? data)?  $default,) {final _that = this;
 switch (_that) {
 case _TelemetryResponse() when $default != null:
-return $default(_that.v,_that.ok,_that.error,_that.data);case _:
+return $default(_that.v,_that.ok,_that.errorCode,_that.error,_that.data);case _:
   return null;
 
 }
@@ -224,11 +225,12 @@ return $default(_that.v,_that.ok,_that.error,_that.data);case _:
 @JsonSerializable()
 
 class _TelemetryResponse implements TelemetryResponse {
-  const _TelemetryResponse({required this.v, required this.ok, this.error, this.data});
+  const _TelemetryResponse({required this.v, required this.ok, this.errorCode, this.error, this.data});
   factory _TelemetryResponse.fromJson(Map<String, dynamic> json) => _$TelemetryResponseFromJson(json);
 
 @override final  int v;
 @override final  bool ok;
+@override final  TelemetryErrorCode? errorCode;
 @override final  String? error;
 @override final  ServerData? data;
 
@@ -245,16 +247,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.errorCode, errorCode) || other.errorCode == errorCode)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,v,ok,error,data);
+int get hashCode => Object.hash(runtimeType,v,ok,errorCode,error,data);
 
 @override
 String toString() {
-  return 'TelemetryResponse(v: $v, ok: $ok, error: $error, data: $data)';
+  return 'TelemetryResponse(v: $v, ok: $ok, errorCode: $errorCode, error: $error, data: $data)';
 }
 
 
@@ -265,7 +267,7 @@ abstract mixin class _$TelemetryResponseCopyWith<$Res> implements $TelemetryResp
   factory _$TelemetryResponseCopyWith(_TelemetryResponse value, $Res Function(_TelemetryResponse) _then) = __$TelemetryResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int v, bool ok, String? error, ServerData? data
+ int v, bool ok, TelemetryErrorCode? errorCode, String? error, ServerData? data
 });
 
 
@@ -282,11 +284,12 @@ class __$TelemetryResponseCopyWithImpl<$Res>
 
 /// Create a copy of TelemetryResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? v = null,Object? ok = null,Object? error = freezed,Object? data = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? v = null,Object? ok = null,Object? errorCode = freezed,Object? error = freezed,Object? data = freezed,}) {
   return _then(_TelemetryResponse(
 v: null == v ? _self.v : v // ignore: cast_nullable_to_non_nullable
 as int,ok: null == ok ? _self.ok : ok // ignore: cast_nullable_to_non_nullable
-as bool,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as bool,errorCode: freezed == errorCode ? _self.errorCode : errorCode // ignore: cast_nullable_to_non_nullable
+as TelemetryErrorCode?,error: freezed == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
 as String?,data: freezed == data ? _self.data : data // ignore: cast_nullable_to_non_nullable
 as ServerData?,
   ));

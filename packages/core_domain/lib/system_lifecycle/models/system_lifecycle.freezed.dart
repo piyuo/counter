@@ -55,14 +55,14 @@ extension SystemLifecyclePatterns on SystemLifecycle {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Booting value)?  booting,TResult Function( CheckingHardware value)?  checkingHardware,TResult Function( SystemReady value)?  systemReady,TResult Function( SystemError value)?  systemError,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Booting value)?  booting,TResult Function( CheckingHardware value)?  checkingHardware,TResult Function( SystemReady value)?  systemReady,TResult Function( SystemDeviceNotSupported value)?  systemDeviceNotSupported,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting(_that);case CheckingHardware() when checkingHardware != null:
 return checkingHardware(_that);case SystemReady() when systemReady != null:
-return systemReady(_that);case SystemError() when systemError != null:
-return systemError(_that);case _:
+return systemReady(_that);case SystemDeviceNotSupported() when systemDeviceNotSupported != null:
+return systemDeviceNotSupported(_that);case _:
   return orElse();
 
 }
@@ -80,14 +80,14 @@ return systemError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Booting value)  booting,required TResult Function( CheckingHardware value)  checkingHardware,required TResult Function( SystemReady value)  systemReady,required TResult Function( SystemError value)  systemError,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Booting value)  booting,required TResult Function( CheckingHardware value)  checkingHardware,required TResult Function( SystemReady value)  systemReady,required TResult Function( SystemDeviceNotSupported value)  systemDeviceNotSupported,}){
 final _that = this;
 switch (_that) {
 case Booting():
 return booting(_that);case CheckingHardware():
 return checkingHardware(_that);case SystemReady():
-return systemReady(_that);case SystemError():
-return systemError(_that);}
+return systemReady(_that);case SystemDeviceNotSupported():
+return systemDeviceNotSupported(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -101,14 +101,14 @@ return systemError(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Booting value)?  booting,TResult? Function( CheckingHardware value)?  checkingHardware,TResult? Function( SystemReady value)?  systemReady,TResult? Function( SystemError value)?  systemError,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Booting value)?  booting,TResult? Function( CheckingHardware value)?  checkingHardware,TResult? Function( SystemReady value)?  systemReady,TResult? Function( SystemDeviceNotSupported value)?  systemDeviceNotSupported,}){
 final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting(_that);case CheckingHardware() when checkingHardware != null:
 return checkingHardware(_that);case SystemReady() when systemReady != null:
-return systemReady(_that);case SystemError() when systemError != null:
-return systemError(_that);case _:
+return systemReady(_that);case SystemDeviceNotSupported() when systemDeviceNotSupported != null:
+return systemDeviceNotSupported(_that);case _:
   return null;
 
 }
@@ -125,13 +125,13 @@ return systemError(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  booting,TResult Function()?  checkingHardware,TResult Function()?  systemReady,TResult Function( String message)?  systemError,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  booting,TResult Function()?  checkingHardware,TResult Function()?  systemReady,TResult Function()?  systemDeviceNotSupported,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting();case CheckingHardware() when checkingHardware != null:
 return checkingHardware();case SystemReady() when systemReady != null:
-return systemReady();case SystemError() when systemError != null:
-return systemError(_that.message);case _:
+return systemReady();case SystemDeviceNotSupported() when systemDeviceNotSupported != null:
+return systemDeviceNotSupported();case _:
   return orElse();
 
 }
@@ -149,13 +149,13 @@ return systemError(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  booting,required TResult Function()  checkingHardware,required TResult Function()  systemReady,required TResult Function( String message)  systemError,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  booting,required TResult Function()  checkingHardware,required TResult Function()  systemReady,required TResult Function()  systemDeviceNotSupported,}) {final _that = this;
 switch (_that) {
 case Booting():
 return booting();case CheckingHardware():
 return checkingHardware();case SystemReady():
-return systemReady();case SystemError():
-return systemError(_that.message);}
+return systemReady();case SystemDeviceNotSupported():
+return systemDeviceNotSupported();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -169,13 +169,13 @@ return systemError(_that.message);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  booting,TResult? Function()?  checkingHardware,TResult? Function()?  systemReady,TResult? Function( String message)?  systemError,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  booting,TResult? Function()?  checkingHardware,TResult? Function()?  systemReady,TResult? Function()?  systemDeviceNotSupported,}) {final _that = this;
 switch (_that) {
 case Booting() when booting != null:
 return booting();case CheckingHardware() when checkingHardware != null:
 return checkingHardware();case SystemReady() when systemReady != null:
-return systemReady();case SystemError() when systemError != null:
-return systemError(_that.message);case _:
+return systemReady();case SystemDeviceNotSupported() when systemDeviceNotSupported != null:
+return systemDeviceNotSupported();case _:
   return null;
 
 }
@@ -282,67 +282,33 @@ String toString() {
 /// @nodoc
 
 
-class SystemError implements SystemLifecycle {
-  const SystemError(this.message);
+class SystemDeviceNotSupported implements SystemLifecycle {
+  const SystemDeviceNotSupported();
   
 
- final  String message;
 
-/// Create a copy of SystemLifecycle
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$SystemErrorCopyWith<SystemError> get copyWith => _$SystemErrorCopyWithImpl<SystemError>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemError&&(identical(other.message, message) || other.message == message));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemDeviceNotSupported);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,message);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle.systemError(message: $message)';
+  return 'SystemLifecycle.systemDeviceNotSupported()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class $SystemErrorCopyWith<$Res> implements $SystemLifecycleCopyWith<$Res> {
-  factory $SystemErrorCopyWith(SystemError value, $Res Function(SystemError) _then) = _$SystemErrorCopyWithImpl;
-@useResult
-$Res call({
- String message
-});
 
 
-
-
-}
-/// @nodoc
-class _$SystemErrorCopyWithImpl<$Res>
-    implements $SystemErrorCopyWith<$Res> {
-  _$SystemErrorCopyWithImpl(this._self, this._then);
-
-  final SystemError _self;
-  final $Res Function(SystemError) _then;
-
-/// Create a copy of SystemLifecycle
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
-  return _then(SystemError(
-null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
 
 // dart format on

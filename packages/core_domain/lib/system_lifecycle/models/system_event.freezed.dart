@@ -55,13 +55,13 @@ extension SystemEventPatterns on SystemEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult Function( CameraMissing value)?  cameraMissing,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult Function( DeviceNotSupported value)?  deviceNotSupported,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated(_that);case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed(_that);case CameraMissing() when cameraMissing != null:
-return cameraMissing(_that);case _:
+return hardwareCheckPassed(_that);case DeviceNotSupported() when deviceNotSupported != null:
+return deviceNotSupported(_that);case _:
   return orElse();
 
 }
@@ -79,13 +79,13 @@ return cameraMissing(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HardwareCheckInitiated value)  hardwareCheckInitiated,required TResult Function( HardwareCheckPassed value)  hardwareCheckPassed,required TResult Function( CameraMissing value)  cameraMissing,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( HardwareCheckInitiated value)  hardwareCheckInitiated,required TResult Function( HardwareCheckPassed value)  hardwareCheckPassed,required TResult Function( DeviceNotSupported value)  deviceNotSupported,}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated():
 return hardwareCheckInitiated(_that);case HardwareCheckPassed():
-return hardwareCheckPassed(_that);case CameraMissing():
-return cameraMissing(_that);}
+return hardwareCheckPassed(_that);case DeviceNotSupported():
+return deviceNotSupported(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -99,13 +99,13 @@ return cameraMissing(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult? Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult? Function( CameraMissing value)?  cameraMissing,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( HardwareCheckInitiated value)?  hardwareCheckInitiated,TResult? Function( HardwareCheckPassed value)?  hardwareCheckPassed,TResult? Function( DeviceNotSupported value)?  deviceNotSupported,}){
 final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated(_that);case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed(_that);case CameraMissing() when cameraMissing != null:
-return cameraMissing(_that);case _:
+return hardwareCheckPassed(_that);case DeviceNotSupported() when deviceNotSupported != null:
+return deviceNotSupported(_that);case _:
   return null;
 
 }
@@ -122,12 +122,12 @@ return cameraMissing(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  hardwareCheckInitiated,TResult Function()?  hardwareCheckPassed,TResult Function()?  cameraMissing,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  hardwareCheckInitiated,TResult Function()?  hardwareCheckPassed,TResult Function()?  deviceNotSupported,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated();case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed();case CameraMissing() when cameraMissing != null:
-return cameraMissing();case _:
+return hardwareCheckPassed();case DeviceNotSupported() when deviceNotSupported != null:
+return deviceNotSupported();case _:
   return orElse();
 
 }
@@ -145,12 +145,12 @@ return cameraMissing();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  hardwareCheckInitiated,required TResult Function()  hardwareCheckPassed,required TResult Function()  cameraMissing,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  hardwareCheckInitiated,required TResult Function()  hardwareCheckPassed,required TResult Function()  deviceNotSupported,}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated():
 return hardwareCheckInitiated();case HardwareCheckPassed():
-return hardwareCheckPassed();case CameraMissing():
-return cameraMissing();}
+return hardwareCheckPassed();case DeviceNotSupported():
+return deviceNotSupported();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -164,12 +164,12 @@ return cameraMissing();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  hardwareCheckInitiated,TResult? Function()?  hardwareCheckPassed,TResult? Function()?  cameraMissing,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  hardwareCheckInitiated,TResult? Function()?  hardwareCheckPassed,TResult? Function()?  deviceNotSupported,}) {final _that = this;
 switch (_that) {
 case HardwareCheckInitiated() when hardwareCheckInitiated != null:
 return hardwareCheckInitiated();case HardwareCheckPassed() when hardwareCheckPassed != null:
-return hardwareCheckPassed();case CameraMissing() when cameraMissing != null:
-return cameraMissing();case _:
+return hardwareCheckPassed();case DeviceNotSupported() when deviceNotSupported != null:
+return deviceNotSupported();case _:
   return null;
 
 }
@@ -244,8 +244,8 @@ String toString() {
 /// @nodoc
 
 
-class CameraMissing implements SystemEvent {
-  const CameraMissing();
+class DeviceNotSupported implements SystemEvent {
+  const DeviceNotSupported();
   
 
 
@@ -255,7 +255,7 @@ class CameraMissing implements SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraMissing);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceNotSupported);
 }
 
 
@@ -264,7 +264,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent.cameraMissing()';
+  return 'SystemEvent.deviceNotSupported()';
 }
 
 

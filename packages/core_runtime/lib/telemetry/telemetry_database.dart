@@ -7,10 +7,14 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
 part 'telemetry_database.g.dart';
+
+typedef TelemetryDatabaseFun = TelemetryDatabase Function();
+
+// Set to true to enable verbose Drift logging for debugging.
+const _kEnableDriftLogging = false;
 
 /// Drift table that persists payloads waiting to be (re-)sent.
 // Partial index for pending-only scans (fetchReady): keeps index small and hot.
@@ -106,7 +110,10 @@ class TelemetryUploadLog extends Table {
 
 @DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog])
 class TelemetryDatabase extends _$TelemetryDatabase {
-  TelemetryDatabase._internal(super.executor);
+  TelemetryDatabase._internal(super.executor, {required this.filePath});
+
+  /// Path to the database file on disk. Used for logging and deletion.
+  final String filePath;
 
   /// Returns true if [error] indicates database file corruption (not transient issues).
   ///
@@ -139,7 +146,7 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   ///   long-running devices.
   static NativeDatabase _openExecutor(String filePath) => NativeDatabase(
     File(filePath),
-    logStatements: kDebugMode,
+    logStatements: _kEnableDriftLogging,
     setup: (db) {
       db.execute('PRAGMA journal_mode=WAL;');
       db.execute('PRAGMA busy_timeout=5000;');
@@ -150,6 +157,12 @@ class TelemetryDatabase extends _$TelemetryDatabase {
     },
   );
 
+  /// Singleton instance of the database. Lazily initialized on first open.
+  static TelemetryDatabase? _db;
+
+  /// Returns a function that returns the singleton database instance.
+  static TelemetryDatabaseFun dbFactory = () => _db!;
+
   /// Opens the database at an explicit filesystem path.
   ///
   /// If the file is corrupted (bad header, unrecoverable WAL, etc.) the
@@ -157,25 +170,24 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   /// Telemetry loss on corruption is acceptable.
   ///
   /// Transient errors (file locks, I/O, permissions) are rethrown.
-  static Future<TelemetryDatabase> open({required String filePath}) async {
+  static Future<TelemetryDatabaseFun> open({required String filePath}) async {
     appkit.logDebug('[Telemetry] open database: $filePath');
-    final db = TelemetryDatabase._internal(_openExecutor(filePath));
+    _db = TelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
     try {
       // NativeDatabase is lazy — probe forces the real connection so corruption
       // is detected here rather than silently failing on first production query.
-      await db.customSelect('SELECT 1').get();
-      return db;
+      await _db!.customSelect('SELECT 1').get();
+      return dbFactory;
     } catch (error, stackTrace) {
       if (_isCorruptionError(error)) {
-        appkit.logError('[Telemetry] database corrupted, recreating: $error');
-        appkit.logDebug('[Telemetry] corruption stack trace: $stackTrace');
-        await db.close();
-        await remove(filePath: filePath);
-        return TelemetryDatabase._internal(_openExecutor(filePath));
+        appkit.logError('[Telemetry] database corrupted, recreating: $error', stackTrace: stackTrace);
+        await _db!.close();
+        await removeFile(filePath: filePath);
+        _db = TelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
+        return dbFactory;
       } else {
-        appkit.logError('[Telemetry] transient error opening database, rethrowing: $error');
-        appkit.logDebug('[Telemetry] error stack trace: $stackTrace');
-        await db.close();
+        appkit.logError('[Telemetry] transient error opening database, rethrowing: $error', stackTrace: stackTrace);
+        await _db!.close();
         rethrow;
       }
     }
@@ -190,11 +202,21 @@ class TelemetryDatabase extends _$TelemetryDatabase {
     await customSelect('VACUUM').get();
   }
 
+  /// Closes and deletes this database.
+  ///
+  /// After this call, this database instance is permanently unusable.
+  /// Create a new TelemetryDatabase by calling [open].
+  Future<void> reset() async {
+    await close();
+    await removeFile(filePath: filePath);
+    await open(filePath: filePath);
+  }
+
   /// Deletes the telemetry database file if it exists.
   ///
   /// Also cleans up SQLite WAL (-wal) and SHM (-shm) ancillary files.
   /// Test-only helper to keep test runs isolated.
-  static Future<void> remove({required String filePath}) async {
+  static Future<void> removeFile({required String filePath}) async {
     final dbFile = File(filePath);
     if (await dbFile.exists()) {
       appkit.logDebug('[Telemetry] delete database: $filePath');

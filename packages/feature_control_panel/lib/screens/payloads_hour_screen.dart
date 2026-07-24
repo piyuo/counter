@@ -3,13 +3,14 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_control_panel/providers/recent_payloads_provider.dart';
-import 'package:feature_control_panel/screens/payload_resend_helper.dart';
+import 'package:feature_control_panel/widgets/payloads_screen_helper.dart';
 import 'package:feature_control_panel/widgets/selection_checkbox.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 class PayloadsHourScreen extends ConsumerStatefulWidget {
   const PayloadsHourScreen({required this.slotMs, super.key});
@@ -24,19 +25,6 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
   final Set<String> _selectedPayloadIds = <String>{};
   bool _isResending = false;
 
-  String _payloadDeliveryStatusDescription(core_domain.QueuedPayload queued, DateFormat timeFmt) {
-    if (queued.isUploaded) {
-      return 'Delivered on ${timeFmt.format(queued.uploadedAtUtc!.toLocal())}';
-    }
-    final nowUtc = DateTime.now().toUtc();
-    final payloadEndUtc = core_domain.getPayloadEndUtc(queued.payload);
-
-    if (payloadEndUtc.isAfter(nowUtc)) {
-      return 'Pending to ${timeFmt.format(payloadEndUtc.toLocal())}';
-    }
-    return 'Failed on ${timeFmt.format(payloadEndUtc.toLocal())}';
-  }
-
   bool _isPayloadSelected(String payloadId) => _selectedPayloadIds.contains(payloadId);
 
   void _togglePayloadSelection(String payloadId, bool selected) {
@@ -49,10 +37,6 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
     });
   }
 
-  int _selectionCount(List<core_domain.QueuedPayload> payloads) {
-    return payloads.where((pending) => _isPayloadSelected(pending.id)).length;
-  }
-
   Future<void> _resendSelectedPayloads(List<core_domain.QueuedPayload> payloads) async {
     final selectedPayloads = payloads.where((pending) => _isPayloadSelected(pending.id)).toList(growable: false);
 
@@ -63,9 +47,9 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
     try {
       final resent = await resendQueuedPayloads(
         context: context,
-        ref: ref,
+        telemetryService: ref.read(core_domain.telemetryServiceProvider),
         payloads: selectedPayloads,
-        emptySelectionMessage: 'Select at least one payload first.',
+        emptySelectionMessage: context.l.payloads_screen_select_first,
       );
       if (!mounted || !resent) return;
 
@@ -98,7 +82,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
       action: appState.isLocalDeviceOnly
           ? null
           : feature_pip.PipActionButton(
-              label: 'Resend',
+              label: context.l.payloads_screen_resend,
               onPressed: (_isResending || _selectedPayloadIds.isEmpty)
                   ? null
                   : () async {
@@ -108,7 +92,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                       if (group == null) {
                         ScaffoldMessenger.of(
                           context,
-                        ).showSnackBar(const SnackBar(content: Text('This start hour no longer exists.')));
+                        ).showSnackBar(SnackBar(content: Text(context.l.payloads_screen_hour_not_exists)));
                         return;
                       }
                       await _resendSelectedPayloads(group.payloads);
@@ -119,15 +103,14 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
         error: (error, stackTrace) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text('Failed to load payloads: $error', textAlign: TextAlign.center),
+            child: Text('${context.l.payloads_screen_failed_load} $error', textAlign: TextAlign.center),
           ),
         ),
         data: (payloads) {
           final group = core_domain.findStartHourGroupBySlotMs(payloads, widget.slotMs);
           if (group == null) {
-            return const Center(child: Text('This start hour no longer exists.'));
+            return Center(child: Text(context.l.payloads_screen_hour_not_exists));
           }
-          final selectedCount = _selectionCount(group.payloads);
 
           return SingleChildScrollView(
             controller: scrollController,
@@ -153,7 +136,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                             '${payloadTimeFmt.format(group.payloads[i].payload.startUtc.toLocal())} - '
                             '${payloadTimeFmt.format(core_domain.getPayloadEndUtc(group.payloads[i].payload).toLocal())}',
                           ),
-                          subtitle: Text(_payloadDeliveryStatusDescription(group.payloads[i], payloadTimeFmt)),
+                          subtitle: Text(payloadDeliveryStatusDescription(context, group.payloads[i], payloadTimeFmt)),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
                             ref.push(core_domain.OpenPayloadDetail(payloadId: group.payloads[i].id));
@@ -161,8 +144,6 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                         ),
                         if (i < group.payloads.length - 1) const Divider(height: 1),
                       ],
-                      const SizedBox(height: 12),
-                      Text('Selected $selectedCount payload(s)', style: Theme.of(context).textTheme.bodySmall),
                     ],
                   ),
                 ),

@@ -40,9 +40,9 @@ void main() {
     container.read(dependentProvider);
 
     if (buildCount > 1) {
-      print('Provider REBUILT! buildCount: $buildCount');
+      //print('Provider REBUILT! buildCount: $buildCount');
     } else {
-      print('Provider DID NOT REBUILD. buildCount: $buildCount');
+      //print('Provider DID NOT REBUILD. buildCount: $buildCount');
     }
 
     expect(

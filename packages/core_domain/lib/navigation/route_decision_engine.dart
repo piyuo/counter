@@ -78,7 +78,6 @@ class RouteDecisionEngine {
         ruleHits.add('${rule.runtimeType}(p:${rule.priority})→"${candidate.target}"');
       }
     }
-    final rulesStr = ruleHits.isEmpty ? '' : ' | rules: ${ruleHits.join(', ')}';
 
     // Walk the full chain to detect cycles before returning the first step.
     final visited = <String>{context.path};

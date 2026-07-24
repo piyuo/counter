@@ -12,50 +12,178 @@ class LocalizationUk extends Localization {
   String get about_screen_app_version => 'Версія програми';
 
   @override
-  String get about_screen_benchmark => 'Тестування продуктивності';
-
-  @override
-  String get about_screen_build_info_title => 'Build Information';
-
-  @override
   String get about_screen_email_us => 'Написати нам';
-
-  @override
-  String get about_screen_force_window_end_title => 'Force Window End';
-
-  @override
-  String get about_screen_models => 'Моделі виявлення об\'єктів';
-
-  @override
-  String get about_screen_opencv_build_info => 'Інформація про збірку OpenCV';
 
   @override
   String get about_screen_platform => 'Платформа';
 
   @override
-  String get about_screen_reset_app_state_success =>
-      'App state has been reset.';
+  String get appeared => 'З\'явилися';
 
   @override
-  String get about_screen_reset_app_state_title => 'Reset App State';
+  String get appeared_help =>
+      'Підраховує людей або транспортні засоби, перша виявлена позиція яких була всередині цієї зони.\\n\\nДопомагає зрозуміти, де починається відстеження.\\n\\n(Переважно для досвідчених користувачів)';
 
   @override
-  String get about_screen_title => 'Про програму';
+  String get average_occupancy => 'Середня кількість';
 
   @override
-  String get cancel => 'Cancel';
+  String get average_occupancy_help =>
+      'Показує середню кількість людей або транспортних засобів у цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає оцінити, наскільки завантаженою була ця зона протягом усього періоду підрахунку.';
 
   @override
-  String get count_avg_dwell => 'Пересічний час';
+  String get average_stay => 'Середній час перебування';
 
   @override
-  String get count_avg_occ => 'Середнє';
+  String get average_stay_help =>
+      'Показує середній час, який люди або транспортні засоби перебували в цій зоні.\\n\\nДовший середній час перебування може свідчити, що відвідувачі проводять у цій зоні більше часу.';
 
   @override
-  String get count_max_dwell => 'Пиковий час';
+  String get camera_test_screen_help =>
+      'Piyuo Counter використовує камеру та ШІ на пристрої для підрахунку людей. Спочатку переконаймося, що ваш пристрій сумісний.';
 
   @override
-  String get count_max_occ => 'Пікова';
+  String get camera_test_screen_instruction =>
+      'Наведіть камеру на людей. Застосунок покаже рамки навколо виявлених людей.';
+
+  @override
+  String get camera_test_screen_next => 'Натисніть «Далі», щоб продовжити.';
+
+  @override
+  String get camera_test_screen_start =>
+      'Натисніть «Почати». Якщо буде запит, дозвольте доступ до камери.';
+
+  @override
+  String get camera_test_screen_test_failed => 'Тест не пройдено!';
+
+  @override
+  String get camera_test_screen_test_passed => 'Тест успішний!';
+
+  @override
+  String get camera_test_screen_title => 'Тест AI-камери';
+
+  @override
+  String get camera_test_screen_wait => 'Очікування, поки ШІ виявить людей…';
+
+  @override
+  String get cta_screen_custom => 'Використати власний сервер';
+
+  @override
+  String get cta_screen_custom_help =>
+      'Надсилайте дані про трафік безпосередньо до власного сервера або бази даних.';
+
+  @override
+  String get cta_screen_footer =>
+      'Продовжуючи, ви погоджуєтеся з Умовами використання, Політикою конфіденційності та Угодою про обробку даних.';
+
+  @override
+  String get cta_screen_invitation => 'Використати код запрошення';
+
+  @override
+  String get cta_screen_invitation_help =>
+      'Приєднайтеся до існуючої організації за допомогою запрошення від адміністратора.';
+
+  @override
+  String get cta_screen_local => 'Лише на цьому пристрої';
+
+  @override
+  String get cta_screen_local_help =>
+      'Зберігайте дані про трафік лише на цьому пристрої. Нічого не завантажується.';
+
+  @override
+  String get cta_screen_piyuo => 'Використати Piyuo Cloud';
+
+  @override
+  String get cta_screen_piyuo_help =>
+      'Зберігайте дані про трафік у Piyuo Cloud із панелями керування та бізнес-аналітикою.';
+
+  @override
+  String get cta_screen_premium => 'Преміум';
+
+  @override
+  String get cta_screen_title =>
+      'Piyuo Counter створює анонімну статистику трафіку кожні 5 хвилин.\\nВиберіть, як ви хочете зберігати дані та отримувати до них доступ.';
+
+  @override
+  String get current_occupancy => 'Поточна кількість';
+
+  @override
+  String get current_occupancy_help =>
+      'Показує поточну кількість людей або транспортних засобів у цій зоні.\\n\\nЦе значення оновлюється в реальному часі та допомагає перевірити, чи відповідає виявлення AI тому, що ви бачите на екрані. Воно не входить до завантажених телеметричних даних.';
+
+  @override
+  String get custom_server_screen_bearer_saving_action => 'Збереження...';
+
+  @override
+  String get custom_server_screen_server_url_label => 'URL сервера';
+
+  @override
+  String get detection_screen_confidence => 'Поріг впевненості';
+
+  @override
+  String get detection_screen_confidence_dialog =>
+      'Визначає, наскільки впевненим має бути ШІ перед підрахунком людини або транспортного засобу.\\nНижчі значення\\n• Виявляють більше об\'єктів\\n• Краще для віддалених або частково прихованих об\'єктів\\n• Можуть збільшити кількість хибних виявлень\\nВищі значення\\n• Рахують лише виявлення з високою достовірністю\\n• Зменшують хибні виявлення\\n• Можуть пропустити малі або складні об\'єкти\\nВикористовуйте нижче значення, якщо додаток пропускає людей або транспорт.\\nВикористовуйте вище значення, якщо додаток рахує тіні, відображення або інші хибні об\'єкти.';
+
+  @override
+  String get detection_screen_confidence_help =>
+      'Мінімальна впевненість, необхідна для виявлення об\'єкта.';
+
+  @override
+  String get detection_screen_confidence_max_label => 'Суворий';
+
+  @override
+  String get detection_screen_confidence_min_label => 'М\'який';
+
+  @override
+  String get detection_screen_disappear => 'Тайм-аут зникнення';
+
+  @override
+  String get detection_screen_disappear_dialog =>
+      'Визначає, як довго ШІ чекає, перш ніж позначити об\'єкт як зниклий після того, як його більше не виявляють.\\nКоротші значення\\n• Швидше позначають об\'єкти як зниклі\\n• Краще для швидкого руху\\n• Можуть помилково позначити тимчасово приховані об\'єкти як зниклі\\nДовші значення\\n• Довше чекають перед позначенням об\'єктів як зниклих\\n• Краще, коли об\'єкти ненадовго заблоковані або пропущені\\n• Затримують події зникнення';
+
+  @override
+  String get detection_screen_disappear_help =>
+      'Як довго ШІ чекатиме, перш ніж позначити об\'єкт як зниклий після того, як перестане його виявляти.';
+
+  @override
+  String get detection_screen_disappear_max_label => 'Повільно';
+
+  @override
+  String get detection_screen_disappear_min_label => 'Швидко';
+
+  @override
+  String get detection_screen_memory_dialog =>
+      'Визначає, як довго ШІ пам\'ятає об\'єкт після його зникнення.\\nЗбільште це значення, якщо люди або транспорт часто ховаються за іншими об\'єктами.\\nЗменшіть це значення, якщо об\'єкти неправильно пов\'язуються після виходу зі сцени.';
+
+  @override
+  String get detection_screen_min_presence => 'Мінімальний час присутності';
+
+  @override
+  String get detection_screen_min_presence_help =>
+      'Об\'єкт має залишатися видимим, перш ніж буде зарахований. Більші значення допомагають зменшити короткочасні хибні виявлення.';
+
+  @override
+  String get detection_screen_min_presence_max_label => 'Безпечніше';
+
+  @override
+  String get detection_screen_min_presence_min_label => 'Швидше';
+
+  @override
+  String get detection_screen_minimum_visible =>
+      'Об\'єкти повинні залишатися видимими протягом цього часу, перш ніж їх порахують.\\nЗбільште це значення, щоб ігнорувати короткочасні хибні виявлення.\\nЗменшіть це значення, якщо швидкорухомих людей або транспорт пропускають.';
+
+  @override
+  String get detection_screen_new_track => 'Поріг нового відстеження';
+
+  @override
+  String get detection_screen_new_track_help =>
+      'Мінімальна впевненість для початку відстеження нового об\'єкта. Нижчі значення можуть створювати дублікати відстеження.';
+
+  @override
+  String get detection_screen_new_track_max_label => 'Консервативно';
+
+  @override
+  String get detection_screen_new_track_min_label => 'Агресивно';
 
   @override
   String get detection_screen_reset => 'Скинути';
@@ -65,355 +193,572 @@ class LocalizationUk extends Localization {
       'Ви впевнені, що хочете скинути налаштування виявлення?';
 
   @override
-  String get detection_screen_title => 'Налаштування виявлення';
+  String get detection_screen_show_track_id => 'Показати ID відстеження';
 
   @override
-  String get detection_type_screen_body =>
-      'Choose which detection model to use for this project.';
+  String get detection_screen_show_track_id_help =>
+      'Увімкніть цей параметр, щоб відобразити унікальні ID відстеження для кожного об\'єкта, який відслідковується.';
 
   @override
-  String get detection_type_screen_load_error =>
-      'Failed to load detection types.';
+  String get detection_screen_stay => 'Час перебування';
 
   @override
-  String get detection_type_screen_pedestrian_body =>
-      'Count people using the pedestrian detection model.';
+  String get detection_screen_stay_help =>
+      'Скільки часу об\'єкт має перебувати в зоні, перш ніж буде зарахований як перебування.';
 
   @override
-  String get detection_type_screen_pedestrian_title => 'Pedestrian';
+  String get detection_screen_stay_max_label => 'Із затримкою';
 
   @override
-  String get detection_type_screen_title => 'Detection Type';
+  String get detection_screen_stay_min_label => 'Миттєво';
 
   @override
-  String get detection_type_screen_vehicle_body =>
-      'Count cars and other vehicles using the vehicle model.';
+  String get detection_screen_stay_threshold =>
+      'Визначає, коли об\'єкт враховується в підрахунку перебування.\\nКоротші значення\\n• Одразу рахують перебування\\n• Краще для швидкого аналізу\\nДовші значення\\n• Ігнорують короткочасний прохідний трафік\\n• Краще для вимірювання заповненості';
 
   @override
-  String get detection_type_screen_vehicle_title => 'Vehicle';
+  String get detection_screen_subtitle =>
+      'Налаштуйте, як ШІ виявляє та відстежує об\'єкти.';
 
   @override
-  String get language_screen_body =>
-      'Select your preferred language for the app interface.';
+  String get detection_screen_title => 'Відстеження та підрахунок';
+
+  @override
+  String get detection_screen_track_dialog =>
+      'Визначає, коли новий виявлений об\'єкт стає новим треком.\\nНижчі значення\\n• Відстеження починається раніше\\n• Краще для швидкорухомих об\'єктів\\n• Можуть створювати дубльовані треки\\nВищі значення\\n• Потребують сильніших доказів перед створенням нового треку\\n• Зменшують дубльовані треки\\n• Можуть затримувати відстеження нових об\'єктів';
+
+  @override
+  String get detection_screen_track_memory => 'Пам\'ять відстеження';
+
+  @override
+  String get detection_screen_track_memory_help =>
+      'Як довго продовжувати відстеження об\'єкта після його тимчасової втрати. Більші значення допомагають відновити відстеження після коротких перекриттів.';
+
+  @override
+  String get detection_screen_track_memory_max_label => 'Довга';
+
+  @override
+  String get detection_screen_track_memory_min_label => 'Коротка';
+
+  @override
+  String get device_not_supported_screen_body =>
+      'Piyuo Counter використовує камеру для виявлення пішоходів і транспортних засобів у реальному часі. На цьому пристрої немає доступної камери.';
+
+  @override
+  String get device_not_supported_screen_footer_hint =>
+      'Спробуйте відкрити цей застосунок на телефоні';
+
+  @override
+  String get device_not_supported_screen_requirement_camera =>
+      'Смартфон або планшет із камерою';
+
+  @override
+  String get device_not_supported_screen_requirement_platform =>
+      'Рекомендується пристрій iOS або Android';
+
+  @override
+  String get device_not_supported_screen_requirements_title => 'Що потрібно';
+
+  @override
+  String get device_not_supported_screen_title => 'Камеру не знайдено';
+
+  @override
+  String get disappeared => 'Зникли';
+
+  @override
+  String get disappeared_help =>
+      'Підраховує людей або транспортні засоби, остання виявлена позиція яких була всередині цієї зони.\\n\\nВідстеження завершується після закінчення налаштованого часу зникнення, якщо людину або транспортний засіб більше не виявлено.\\n\\n(Переважно для досвідчених користувачів)';
+
+  @override
+  String get dpa => 'Угода про обробку даних';
+
+  @override
+  String get durationDaysShort => '%sд';
+
+  @override
+  String get durationHoursShort => '%sгод';
+
+  @override
+  String get durationMinutesShort => '%sхв';
+
+  @override
+  String get durationSecondsShort => '%sсек';
+
+  @override
+  String get durationTwoUnit => '%first %second';
+
+  @override
+  String get entered => 'Увійшли';
+
+  @override
+  String get entered_help =>
+      'Підраховує людей або транспортні засоби, які увійшли до цієї зони під час поточного вікна підрахунку.\\n\\nВхід враховується, коли людина або транспортний засіб переміщується ззовні всередину зони.';
+
+  @override
+  String get exited => 'Вийшли';
+
+  @override
+  String get exited_help =>
+      'Підраховує людей або транспортні засоби, які вийшли з цієї зони під час поточного вікна підрахунку.\\n\\nВихід враховується, коли людина або транспортний засіб переміщується зсередини зони назовні.';
 
   @override
   String get language_screen_language => 'Мова';
 
   @override
-  String get language_screen_system_label => 'System language';
+  String get language_screen_subtitle =>
+      'Виберіть мову, яка використовуватиметься в застосунку.';
 
   @override
-  String get live_url_screen_examples_label => 'Example';
+  String get local_only_screen_body =>
+      'Режим «Лише локальний пристрій» дає змогу спробувати виявлення та відстеження за допомогою ШІ-камери без завантаження будь-яких даних. Уся статистика пішохідного трафіку обробляється лише на цьому пристрої, чудово підходить для тестування перед підключенням до сервера.';
 
   @override
-  String get live_url_screen_invalid_rtsp_error =>
-      'RTSP URLs must include a host name.';
+  String get local_only_screen_use_action =>
+      'Використовувати лише локальний пристрій';
 
   @override
-  String get live_url_screen_invalid_url_error =>
-      'Enter a valid URL with a supported scheme.';
+  String get local_screen_text =>
+      'Piyuo Counter працюватиме повністю на цьому пристрої.\\nСтатистика трафіку зберігатиметься лише на цьому пристрої та не завантажуватиметься.\\nПізніше ви зможете підключитися до Piyuo Cloud або власного сервера в Налаштуваннях.';
 
   @override
-  String get live_url_screen_unsupported_scheme_error => ' HTTPS';
+  String get maximum_occupancy => 'Максимальна кількість';
 
   @override
-  String get live_url_screen_url_empty_error =>
-      'Please enter a live stream URL.';
+  String get maximum_occupancy_help =>
+      'Показує найбільшу кількість людей або транспортних засобів, що одночасно перебували в цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає визначити пікові рівні відвідуваності або трафіку.';
 
   @override
-  String get main_screen_booting => 'Запуск...';
+  String get maximum_stay => 'Максимальний час перебування';
 
   @override
-  String get main_screen_checking_hardware => 'Перевірка обладнання...';
+  String get maximum_stay_help =>
+      'Показує найдовший час, протягом якого людина або транспортний засіб перебували в цій зоні під час поточного вікна підрахунку.\\n\\nДопомагає виявляти незвично довгі відвідування або зупинки.';
 
   @override
-  String get no => 'Ні';
+  String get metric_events => 'Події';
 
   @override
-  String get no_camera_screen_body =>
-      'There is no camera detected on this device. Please connect a camera to use the app.\\nOr you can use Live URL or a file to test the app.';
+  String get metric_live => 'Наживо';
 
   @override
-  String get no_camera_screen_title => 'No Camera Detected';
+  String get metric_show_less => 'Показати менше';
 
   @override
-  String get product_copyright => 'Авторське право © 2025';
+  String get metric_show_more => 'Показати більше';
+
+  @override
+  String get metric_statistics => 'Статистика';
+
+  @override
+  String get metrics_counting_all => 'Усі';
+
+  @override
+  String get metrics_counting_done => 'Завершено';
+
+  @override
+  String get metrics_counting_in_progress => 'У процесі';
+
+  @override
+  String get metrics_counting_missing => 'Відсутні';
+
+  @override
+  String get metrics_counting_window =>
+      'Статистика для кожного 5-хвилинного періоду';
+
+  @override
+  String get onboarding_back_action => 'Назад';
+
+  @override
+  String get onboarding_cta_no_server => 'Не хочете надсилати дані?';
+
+  @override
+  String get onboarding_cta_title => 'Куди надсилати ваші дані?';
+
+  @override
+  String get onboarding_intro_text1 =>
+      'Piyuo Counter використовує камеру пристрою та вбудований ШІ, щоб одразу розпізнавати людей і транспорт.\\nЗавдяки технології виявлення й відстеження додаток автоматично рахує потік пішоходів і транспорту — усе обробляється прямо на вашому пристрої.';
+
+  @override
+  String get onboarding_intro_text2 =>
+      'Уся обробка ШІ відбувається локально на вашому пристрої. Жодне відео, зображення, обличчя чи особисті дані не завантажуються.\\nПередаються лише анонімні зведення кожні 5 хвилин, включно зі статистикою підрахунків, заповненості, входів, виходів і часу перебування.';
+
+  @override
+  String get onboarding_intro_text3 =>
+      'Просто запустіть додаток і залиште його працювати. Piyuo Counter автоматично й безперервно збирає та зберігає дані про трафік.\\nЗведення даних зберігаються кожні 5 хвилин і завантажуються щогодини до Piyuo Cloud або вашого власного сервера.';
+
+  @override
+  String get onboarding_intro_title1 => 'Підрахунок трафіку за допомогою ШІ';
+
+  @override
+  String get onboarding_intro_title2 => 'Конфіденційність насамперед';
+
+  @override
+  String get onboarding_intro_title3 => 'Автоматично працює 24/7';
+
+  @override
+  String get onboarding_next_action => 'Далі';
+
+  @override
+  String get onboarding_skip_action => 'Пропустити вступ';
+
+  @override
+  String get onboarding_start_action => 'Почати';
+
+  @override
+  String get passed_by => 'Пройшли';
+
+  @override
+  String get passed_by_help =>
+      'Підраховує людей або транспортні засоби, які пройшли через цю зону під час поточного вікна підрахунку.\\n\\nКожна людина або транспортний засіб враховується лише один раз за кожне проходження через зону.';
+
+  @override
+  String get payloads_screen_area => 'Область';
+
+  @override
+  String get payloads_screen_confidence => 'Впевненість';
+
+  @override
+  String get payloads_screen_coverage => 'Покриття';
+
+  @override
+  String get payloads_screen_delivered => 'Доставлено';
+
+  @override
+  String get payloads_screen_failed_load =>
+      'Не вдалося завантажити останні payload-и';
+
+  @override
+  String get payloads_screen_frame_processed => 'Оброблені кадри';
+
+  @override
+  String get payloads_screen_hour_not_exists => 'Ця година більше не існує.';
+
+  @override
+  String get payloads_screen_missing_time => 'Втрачений час';
+
+  @override
+  String get payloads_screen_no_payloads => 'Поки немає payload-ів.';
+
+  @override
+  String get payloads_screen_partial => 'Вікно завершилося раніше (частково)';
+
+  @override
+  String get payloads_screen_partially => 'Доставлено частково';
+
+  @override
+  String get payloads_screen_payload_not_exists =>
+      'Цей payload більше не існує.';
+
+  @override
+  String get payloads_screen_pending => 'Очікує доставлення';
+
+  @override
+  String get payloads_screen_process_fps => 'FPS обробки';
+
+  @override
+  String get payloads_screen_resend => 'Надіслати повторно';
+
+  @override
+  String get payloads_screen_select_first =>
+      'Спочатку виберіть принаймні одну дату або годину.';
+
+  @override
+  String get payloads_screen_subtitle =>
+      'Виберіть дату або годину для повторного надсилання';
+
+  @override
+  String get payloads_screen_title => 'Останні payload-и';
+
+  @override
+  String get personal_custom_screen_build_server =>
+      'Потрібна допомога з налаштуванням власного сервера?\\nПерегляньте нашу документацію API та приклади серверів.';
+
+  @override
+  String get personal_custom_screen_help_action => 'Відкрити документацію API';
+
+  @override
+  String get personal_custom_screen_reset_action => 'Почати спочатку';
+
+  @override
+  String get personal_custom_success_screen_help =>
+      'Натисніть Start нижче, щоб почати підрахунок.';
+
+  @override
+  String get personal_custom_success_screen_help1 =>
+      'Статистика трафіку автоматично завантажується щогодини.\\nВи також можете завантажити її вручну з екрана журналу завантажень.';
+
+  @override
+  String get personal_custom_success_screen_help2 =>
+      'Ваш сервер ще не обов’язково має бути онлайн.\\nПочніть підрахунок уже зараз. Ви зможете завершити налаштування та протестувати свій сервер пізніше. Статистика трафіку залишатиметься на цьому пристрої, доки її не буде успішно завантажено.';
+
+  @override
+  String get personal_custom_success_screen_send_to =>
+      'Статистика трафіку буде надіслана до';
+
+  @override
+  String get personal_custom_success_screen_title => 'Ваш сервер готовий';
+
+  @override
+  String get piyuo_server_screen_cloud_url_label => 'Ваш URL Piyuo Cloud';
+
+  @override
+  String get piyuo_server_screen_copy_action => 'Копіювати URL';
+
+  @override
+  String get piyuo_server_screen_copy_success => 'URL скопійовано';
+
+  @override
+  String get piyuo_server_screen_saving_action => 'Збереження...';
+
+  @override
+  String get piyuo_server_screen_start =>
+      'Натисніть \"Start\" нижче, щоб почати підрахунок.';
+
+  @override
+  String get piyuo_server_screen_url_help =>
+      'Ваша особиста панель Piyuo Cloud доступна за цією URL-адресою.';
+
+  @override
+  String get piyuo_server_screen_url_remember =>
+      'Збережіть цю URL-адресу, щоб отримати доступ до панелі статистики з іншого пристрою.';
+
+  @override
+  String get piyuo_server_screen_use_action => 'Використовувати Piyuo Cloud';
+
+  @override
+  String get privacy => 'Політика конфіденційності';
+
+  @override
+  String get product_copyright => 'Авторське право © 2026';
 
   @override
   String get product_desc =>
-      'Використання комп\'ютерного зору та штучного інтелекту для підрахунку людей, транспортних засобів, домашніх тварин та іншого.';
+      'Підрахунок людей і транспортних засобів за допомогою ШІ.';
 
   @override
-  String get product_name => 'Лічильник';
+  String get settings_screen_custom_subtitle =>
+      'Надсилайте дані про трафік безпосередньо на свій сервер або в базу даних.';
 
   @override
-  String get settings_piyuo_screen_body => 'Use a Piyuo Cloud URL for uploads.';
+  String get settings_screen_custom_title => 'Використовувати власний сервер';
 
   @override
-  String get settings_piyuo_screen_cloud_url_label => 'Cloud URL';
+  String get settings_screen_data_server_label => 'Сервер даних';
 
   @override
-  String get settings_piyuo_screen_copy_action => 'Copy URL';
+  String get settings_screen_detection_target => 'Ціль виявлення';
 
   @override
-  String get settings_piyuo_screen_copy_success => 'URL copied';
+  String get settings_screen_language_title => 'Мова';
 
   @override
-  String get settings_piyuo_screen_invalid_url_error =>
-      'Please paste a valid Piyuo Cloud URL.';
+  String get settings_screen_local_subtitle =>
+      'Зберігайте дані про трафік лише на цьому пристрої. Нічого не завантажується.';
 
   @override
-  String get settings_piyuo_screen_legacy_body =>
-      ' paste it here to keep using the same cloud space.';
+  String get settings_screen_local_title => 'Лише локальний пристрій';
 
   @override
-  String get settings_piyuo_screen_saving_action => 'Saving...';
+  String get settings_screen_misc_label => 'Інше';
 
   @override
-  String get settings_piyuo_screen_title => 'Piyuo Cloud';
+  String get settings_screen_object_detection => 'Виявлення об\'єктів';
 
   @override
-  String get settings_piyuo_screen_use_action => 'Use Piyuo Cloud';
+  String get settings_screen_piyuo_subtitle =>
+      'Зберігайте дані про трафік у Piyuo Cloud із панелями керування та бізнес-аналітикою.';
 
   @override
-  String get settings_screen_body =>
-      'Set project name, detection parameters, count clearing.';
-
-  @override
-  String get settings_screen_custom_server_body =>
-      'We will help set up a local server.';
-
-  @override
-  String get settings_screen_custom_server_title => 'Use your own server';
-
-  @override
-  String get settings_screen_data_server_label => 'Data Server';
-
-  @override
-  String get settings_screen_delivery_label => 'Delivery';
-
-  @override
-  String get settings_screen_demo_mode_body =>
-      'Test only. Data is not exported.';
-
-  @override
-  String get settings_screen_demo_mode_title => 'Demo mode';
-
-  @override
-  String get settings_screen_desc =>
-      'Встановіть назву проєкту, параметри виявлення, скидання підрахунку.';
-
-  @override
-  String get settings_screen_detection_label => 'Detection';
-
-  @override
-  String get settings_screen_parameters_label => 'Parameters';
-
-  @override
-  String get settings_screen_piyuo_cloud_body =>
-      'Send results to our cloud service.';
-
-  @override
-  String get settings_screen_piyuo_cloud_title => 'Use Piyuo Cloud';
+  String get settings_screen_piyuo_title => 'Piyuo Cloud';
 
   @override
   String get settings_screen_reset_all_data_body =>
-      'This will erase all data and start from the beginning. This action cannot be undone.';
+      'Це видалить усі дані та дозволить почати спочатку. Цю дію неможливо скасувати.';
 
   @override
-  String get settings_screen_reset_all_data_title => 'Reset all data?';
+  String get settings_screen_reset_all_data_title => 'Скинути всі дані?';
 
   @override
   String get settings_screen_subscription_body =>
-      'Manage your subscription and billing details.';
+      'Керуйте підпискою та платіжними даними';
 
   @override
-  String get settings_screen_subscription_title => 'Subscription';
+  String get settings_screen_subscription_title => 'Підписка';
 
   @override
-  String get settings_screen_title => 'Settings';
+  String get start_screen_about => 'Про програму';
 
   @override
-  String get settings_server_screen_body =>
-      'Set the server URL used for uploads.';
+  String get start_screen_server_none =>
+      'Дані зберігаються лише на цьому пристрої';
 
   @override
-  String get settings_server_screen_delivery_cadence_label =>
-      'Deliver Payload On Wall Clock';
+  String get start_screen_server_personal => 'Дані завантажуються щогодини до';
 
   @override
-  String get settings_server_screen_hour_unit_plural => 'hours';
+  String get start_screen_settings => 'Налаштування';
 
   @override
-  String get settings_server_screen_hour_unit_singular => 'hour';
+  String get start_screen_upload_logs => 'Завантажити журнали';
 
   @override
-  String get settings_server_screen_minute_unit_plural => 'minutes';
+  String get start_screen_video_sources => 'Джерела відео';
 
   @override
-  String get settings_server_screen_saving_action => 'Saving...';
+  String get stayed => 'Залишилися';
 
   @override
-  String get settings_server_screen_server_url_label => 'Server URL';
+  String get stayed_help =>
+      'Підраховує людей або транспортні засоби, які перебували в цій зоні щонайменше протягом заданого часу перебування.\\n\\nТиповий час перебування становить 15 секунд і може бути змінений в Налаштуваннях.';
 
   @override
-  String get settings_server_screen_title => 'Custom Server';
+  String get target_pedestrian => 'Пішохід';
 
   @override
-  String get settings_server_screen_use_action => 'Use Custom Server';
+  String get target_pedestrian_help =>
+      'Підраховуйте людей за допомогою моделі виявлення пішоходів';
 
   @override
-  String get start_screen_demo_mode_body =>
-      'Demo mode. No data leaves your device.';
+  String get target_screen_subtitle => 'Виберіть модель виявлення';
 
   @override
-  String get start_screen_invitation_label => 'Invitation';
+  String get target_vehicle => 'Транспорт';
 
   @override
-  String get start_screen_not_set_label => 'Not Set';
+  String get target_vehicle_help =>
+      'Підраховуйте автомобілі та інші транспортні засоби за допомогою моделі виявлення транспорту';
 
   @override
-  String get start_screen_own_server_label => 'Own Server';
+  String get telemetry_error_connection_refused =>
+      'Не вдалося з\'єднатися із сервером. Можливо, він зараз недоступний.';
 
   @override
-  String get start_screen_piyuo_cloud_label => 'Piyuo Cloud';
+  String get telemetry_error_connection_reset =>
+      'З\'єднання було скинуто. Перевірте підключення до інтернету та повторіть спробу.';
 
   @override
-  String get start_screen_product_body =>
-      'Pedestrian and vehicle counter with data collection.';
+  String get telemetry_error_connection_timeout =>
+      'З\'єднання занадто довго не відповідало. Перевірте підключення до інтернету та повторіть спробу.';
 
   @override
-  String get start_screen_product_title => 'Piyuo Counter';
+  String get telemetry_error_dns_lookup_failed =>
+      'Не вдалося знайти адресу сервера. Перевірте підключення до інтернету або URL сервера.';
 
   @override
-  String get submit => 'Надіслати';
+  String get telemetry_error_http_error_status =>
+      'Сервер відхилив запит. Спробуйте пізніше.';
 
   @override
-  String get upload_config_screen_body =>
-      'Configure delivery settings for telemetry uploads.';
+  String get telemetry_error_http_unknown_error =>
+      'Під час обміну даними із сервером сталася неочікувана помилка.';
 
   @override
-  String get upload_config_screen_fast_fail_label => 'Fast fail';
+  String get telemetry_error_invalid_url =>
+      'Адреса сервера недійсна. Перевірте налаштування.';
 
   @override
-  String get upload_config_screen_frequent_label => 'Frequent';
+  String get telemetry_error_network_error =>
+      'Виникла мережева помилка. Перевірте підключення до інтернету та повторіть спробу.';
 
   @override
-  String get upload_config_screen_large_label => 'Large';
+  String get telemetry_error_socket_error =>
+      'Виникла проблема з мережевим підключенням. Перевірте підключення до інтернету.';
 
   @override
-  String get upload_config_screen_load_error =>
-      'Failed to load delivery settings.';
+  String get telemetry_error_transport_exception =>
+      'Під час надсилання даних щось пішло не так. Спробуйте ще раз.';
 
   @override
-  String get upload_config_screen_max_batch_size_body =>
-      'Max number of payload records sent in one HTTP request.';
+  String get terms => 'Умови користування сервісом';
 
   @override
-  String get upload_config_screen_max_batch_size_title => 'Maximum Batch Size';
+  String get upload_screen_attempt_time => 'Час спроби:';
 
   @override
-  String get upload_config_screen_request_timeout_body =>
-      'HTTP timeout per upload request.';
+  String get upload_screen_error => 'Помилка:';
 
   @override
-  String get upload_config_screen_request_timeout_title => 'Request Timeout';
+  String get upload_screen_failed => 'Не вдалося';
 
   @override
-  String get upload_config_screen_reset_body =>
-      'This restores upload cadence, batching, and timeout to defaults.';
+  String get upload_screen_load_error =>
+      'Не вдалося завантажити журнали завантаження.';
 
   @override
-  String get upload_config_screen_reset_title => 'Reset delivery settings?';
+  String get upload_screen_log_not_exists =>
+      'Журнал завантаження більше недоступний.';
 
   @override
-  String get upload_config_screen_small_label => 'Small';
+  String get upload_screen_next => 'Наступне завантаження ...';
 
   @override
-  String get upload_config_screen_sparse_label => 'Sparse';
+  String get upload_screen_next_upload_prefix => 'Наступне завантаження ';
 
   @override
-  String get upload_config_screen_title => 'Delivery Settings';
+  String get upload_screen_no_data_server =>
+      'Спочатку налаштуйте сервер даних.';
 
   @override
-  String get upload_config_screen_wait_longer_label => 'Wait longer';
+  String get upload_screen_no_logs => 'Поки немає журналів завантаження.';
 
   @override
-  String get upload_config_screen_wall_clock_cadence_body =>
-      'How often pending telemetry is uploaded on minute-aligned boundaries.';
+  String get upload_screen_payload_count => 'Кількість payload-ів';
 
   @override
-  String get upload_config_screen_wall_clock_cadence_title =>
-      'Wall-Clock Upload Cadence';
+  String get upload_screen_payload_count_label => 'Кількість payload-ів:';
 
   @override
-  String get upload_logs_screen_check_data_server_error_prefix =>
-      'Unable to check Data Server: ';
+  String get upload_screen_payload_size => 'Розмір payload-а:';
 
   @override
-  String get upload_logs_screen_detail_unavailable_body =>
-      'Upload log detail is no longer available.';
+  String get upload_screen_result => 'Результат:';
 
   @override
-  String get upload_logs_screen_empty_body => 'No upload logs yet.';
+  String get upload_screen_retry => 'Кількість повторних спроб:';
 
   @override
-  String get upload_logs_screen_load_error => 'Unable to load upload logs.';
+  String get upload_screen_size_kb => 'КБ';
 
   @override
-  String get upload_logs_screen_next_upload_pending => 'Next upload at ...';
+  String get upload_screen_success => 'Успішно';
 
   @override
-  String get upload_logs_screen_next_upload_prefix => 'Next upload at ';
+  String get upload_screen_today => 'Сьогодні';
 
   @override
-  String get upload_logs_screen_payloads_unit => 'payloads';
+  String get upload_screen_upload_now => 'Завантажити зараз';
 
   @override
-  String get upload_logs_screen_retry_action => 'Retry';
+  String get upload_screen_upload_success => 'Завантаження успішне.';
 
   @override
-  String get upload_logs_screen_set_data_server_first_body =>
-      'Please set the Data Server first.';
+  String get upload_screen_uploading => 'Завантаження...';
 
   @override
-  String get upload_logs_screen_title => 'Upload Logs';
+  String get upload_screen_yesterday => 'Учора';
 
   @override
-  String get upload_logs_screen_today_label => 'Today';
+  String get url_screen_invalid_rtsp_error =>
+      'URL RTSP має містити ім\'я хоста.';
 
   @override
-  String get upload_logs_screen_upload_failed_prefix => 'Upload failed: ';
+  String get url_screen_invalid_url_error =>
+      'Введіть правильний URL із підтримуваною схемою.';
 
   @override
-  String get upload_logs_screen_upload_failed_unknown =>
-      'Upload failed due to an unknown error.';
-
-  @override
-  String get upload_logs_screen_upload_now_action => 'Upload Now';
-
-  @override
-  String get upload_logs_screen_uploaded_success =>
-      'Uploaded payloads to remote server.';
-
-  @override
-  String get upload_logs_screen_uploading_action => 'Uploading...';
-
-  @override
-  String get upload_logs_screen_yesterday_label => 'Yesterday';
-
-  @override
-  String get url_screen_body =>
-      'Enter the live stream URL for your camera source.';
-
-  @override
-  String get url_screen_desc => 'Будь ласка, введіть URL трансляції';
+  String get url_screen_subtitle => 'Будь ласка, введіть URL трансляції';
 
   @override
   String get url_screen_title => 'URL трансляції';
 
   @override
+  String get url_screen_unsupported_scheme_error => ' HTTPS';
+
+  @override
   String get url_screen_url => 'URL';
+
+  @override
+  String get url_screen_url_empty_error => 'Введіть URL прямої трансляції.';
 
   @override
   String get url_screen_url_hint =>
@@ -424,54 +769,47 @@ class LocalizationUk extends Localization {
       'http://example.com/stream або rtsp://example.com/stream';
 
   @override
-  String get video_screen_desc =>
-      'Керування відеоджерелами, додавання або зміна зон виявлення.';
+  String get video_sources_back_camera => 'Задня камера';
 
   @override
   String get video_sources_camera => 'Камера';
 
   @override
-  String get video_sources_camera_not_found_message =>
-      'Потрібно надати дозвіл на використання камери';
-
-  @override
-  String get video_sources_camera_not_found_title => 'Камеру не знайдено';
-
-  @override
   String get video_sources_file => 'Файл';
 
   @override
-  String get video_sources_file_hint => 'Виберіть відео зі свого пристрою';
-
-  @override
-  String get video_sources_import_error => 'Не вдалося імпортувати відеофайл.';
+  String get video_sources_front_camera => 'Передня камера';
 
   @override
   String get video_sources_live_stream => 'URL трансляції';
 
   @override
-  String get video_sources_load_error =>
-      'Не вдалося завантажити джерела відео.';
+  String get video_sources_screen_camera_not_found_message =>
+      'Потрібно надати дозвіл на використання камери';
 
   @override
-  String get video_sources_photos_denied_msg =>
+  String get video_sources_screen_camera_not_found_title =>
+      'Камеру не знайдено';
+
+  @override
+  String get video_sources_screen_import_error =>
+      'Не вдалося імпортувати відеофайл.';
+
+  @override
+  String get video_sources_screen_photos_denied_msg =>
       'Перейдіть до налаштувань і дозвольте доступ до фото для цього додатка.';
 
   @override
-  String get video_sources_screen_body => 'Управляйте источниками видео';
+  String get video_sources_screen_select_camera =>
+      'Торкніться, щоб вибрати цю камеру';
 
   @override
-  String get video_sources_screen_title => 'Джерела відео';
+  String get video_sources_screen_select_file => 'Торкніться, щоб вибрати файл';
+
+  @override
+  String get video_sources_screen_select_live =>
+      'Торкніться, щоб встановити URL прямої трансляції';
 
   @override
   String get video_sources_webcam => 'Веб-камера';
-
-  @override
-  String get wizard_screen_about => 'Про програму';
-
-  @override
-  String get wizard_screen_language => 'Мова';
-
-  @override
-  String get yes => 'Так';
 }

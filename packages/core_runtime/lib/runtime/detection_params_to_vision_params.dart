@@ -9,7 +9,7 @@ vision.VisionParams detectionParamsToVisionParams(core_domain.DetectionParams de
     trackHighThresh: detectionParams.trackHighThresh,
     trackLowThresh: detectionParams.trackLowThresh,
     newTrackThresh: detectionParams.newTrackThresh,
-    trackBuffer: detectionParams.trackBuffer,
+    maxTimeLostSec: detectionParams.maxTimeLostSec,
     maxMatchDistance: detectionParams.maxMatchDistance,
     proximityThresh: detectionParams.proximityThresh,
     appearanceThresh: detectionParams.appearanceThresh,

@@ -6,11 +6,15 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_control_panel/utils/format_compact_duration.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart';
+
+import '../widgets/info_dialog.dart';
 
 class DetectionParamsScreen extends ConsumerStatefulWidget {
   const DetectionParamsScreen({super.key});
@@ -42,19 +46,23 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
   }
 
   Future<void> _resetToDefaults(BuildContext context) async {
-    final confirmed = await GlassDialog.show<bool>(
+    final confirmed = await showCupertinoDialog<bool>(
       context: context,
-      title: context.l.detection_screen_reset,
-      message: context.l.detection_screen_reset_content,
-      actions: [
-        GlassDialogAction(label: context.l.no, onPressed: () => Navigator.of(context, rootNavigator: true).pop(false)),
-        GlassDialogAction(
-          label: context.l.yes,
-          isPrimary: true,
-          isDestructive: true,
-          onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
-        ),
-      ],
+      builder: (context) => CupertinoAlertDialog(
+        title: Text(context.l.detection_screen_reset),
+        content: Text(context.l.detection_screen_reset_content),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(MaterialLocalizations.of(context).cancelButtonLabel),
+          ),
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(MaterialLocalizations.of(context).okButtonLabel),
+          ),
+        ],
+      ),
     );
     if (confirmed != true) return;
 
@@ -109,110 +117,111 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                 children: [
                   feature_pip.PipHeader(
                     icon: Icons.tune,
-                    title: 'Tracking & Counting',
-                    subtitle:
-                        'Tune how the vision engine associates detections, retains lost tracks, assigns tracklet ids, and updates stay/disappear counts.',
+                    title: context.l.detection_screen_title,
+                    subtitle: context.l.detection_screen_subtitle,
                   ),
                   feature_pip.PipPanel(
                     child: Column(
                       children: [
+                        _DetectionToggleTile(
+                          title: context.l.detection_screen_show_track_id,
+                          description: context.l.detection_screen_show_track_id_help,
+                          value: appState.isTrackIdVisible,
+                          onChanged: (value) {
+                            setState(() {
+                              ref.read(core_domain.appProvider.notifier).setTrackIdVisible(value);
+                            });
+                          },
+                        ),
+                        const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'High-Confidence Threshold',
-                          description:
-                              'Detection confidence needed to enter the first, high-confidence association pass.',
+                          title: context.l.detection_screen_confidence,
+                          description: context.l.detection_screen_confidence_help,
+                          infoContent: context.l.detection_screen_confidence_dialog,
                           value: params.trackHighThresh,
                           min: 0,
                           max: 1,
                           divisions: 100,
                           valueLabel: _percentLabel(params.trackHighThresh),
-                          minLabel: 'Loose',
-                          maxLabel: 'Strict',
+                          minLabel: context.l.detection_screen_confidence_min_label,
+                          maxLabel: context.l.detection_screen_confidence_max_label,
                           onChanged: (value) => _updateDraft((current) => current.copyWith(trackHighThresh: value)),
                           onChangeEnd: (_) => _persistDraft(),
                         ),
                         const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'New Track Threshold',
-                          description:
-                              'Detection confidence required to start a brand new track after matching finishes.',
+                          title: context.l.detection_screen_new_track,
+                          description: context.l.detection_screen_new_track_help,
+                          infoContent: context.l.detection_screen_track_dialog,
                           value: params.newTrackThresh,
                           min: 0,
                           max: 1,
                           divisions: 100,
                           valueLabel: _percentLabel(params.newTrackThresh),
-                          minLabel: 'Aggressive',
-                          maxLabel: 'Conservative',
+                          minLabel: context.l.detection_screen_new_track_min_label,
+                          maxLabel: context.l.detection_screen_new_track_max_label,
                           onChanged: (value) => _updateDraft((current) => current.copyWith(newTrackThresh: value)),
                           onChangeEnd: (_) => _persistDraft(),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  feature_pip.PipPanel(
-                    child: Column(
-                      children: [
+                        const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'Track Buffer',
-                          description: 'Base lost-track retention window in 30-FPS-equivalent frames before removal.',
-                          value: params.trackBuffer.toDouble(),
-                          min: 30,
-                          max: 300,
-                          divisions: 270,
-                          valueLabel: '${params.trackBuffer} frames',
-                          minLabel: 'Short',
-                          maxLabel: 'Long',
-                          onChanged: (value) => _updateDraft((current) => current.copyWith(trackBuffer: value.round())),
+                          title: context.l.detection_screen_track_memory,
+                          description: context.l.detection_screen_track_memory_help,
+                          infoContent: context.l.detection_screen_track_memory,
+                          value: params.maxTimeLostSec.toDouble(),
+                          min: 0.1,
+                          max: 30,
+                          divisions: 30,
+                          valueLabel: formatCompactDuration(context.l, params.maxTimeLostSec),
+                          minLabel: context.l.detection_screen_track_memory_min_label,
+                          maxLabel: context.l.detection_screen_track_memory_max_label,
+                          onChanged: (value) => _updateDraft((current) => current.copyWith(maxTimeLostSec: value)),
                           onChangeEnd: (_) => _persistDraft(),
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  feature_pip.PipPanel(
-                    child: Column(
-                      children: [
+                        const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'Minimum Presence Time',
-                          description: 'Minimum elapsed time before assigning a user-visible tracklet id.',
+                          title: context.l.detection_screen_min_presence,
+                          description: context.l.detection_screen_min_presence_help,
+                          infoContent: context.l.detection_screen_minimum_visible,
                           value: params.trackletMinPresenceTimeSec,
                           min: 0,
                           max: 5,
                           divisions: 100,
-                          valueLabel: _secondsLabel(params.trackletMinPresenceTimeSec),
-                          minLabel: 'Faster',
-                          maxLabel: 'Safer',
+                          valueLabel: formatCompactDuration(context.l, params.trackletMinPresenceTimeSec),
+                          minLabel: context.l.detection_screen_min_presence_min_label,
+                          maxLabel: context.l.detection_screen_min_presence_max_label,
                           onChanged: (value) =>
                               _updateDraft((current) => current.copyWith(trackletMinPresenceTimeSec: value)),
                           onChangeEnd: (_) => _persistDraft(),
                         ),
                         const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'Stay Threshold',
-                          description: 'Continuous in-area time required before a track contributes to the stay count.',
+                          title: context.l.detection_screen_stay,
+                          description: context.l.detection_screen_stay_help,
+                          infoContent: context.l.detection_screen_stay_threshold,
                           value: params.stayThresholdSeconds.toDouble(),
                           min: 0,
-                          max: 60,
+                          max: 1500,
                           divisions: 60,
-                          valueLabel: _integerSecondsLabel(params.stayThresholdSeconds),
-                          minLabel: 'Instant',
-                          maxLabel: 'Delayed',
+                          valueLabel: formatCompactDuration(context.l, params.stayThresholdSeconds.toDouble()),
+                          minLabel: context.l.detection_screen_stay_min_label,
+                          maxLabel: context.l.detection_screen_stay_max_label,
                           onChanged: (value) =>
                               _updateDraft((current) => current.copyWith(stayThresholdSeconds: value.round())),
                           onChangeEnd: (_) => _persistDraft(),
                         ),
                         const Divider(height: 1),
                         _DetectionSliderTile(
-                          title: 'Disappear Threshold',
-                          description:
-                              'Continuous out-of-area time required before a previous track contributes to the disappear count.',
+                          title: context.l.detection_screen_disappear,
+                          description: context.l.detection_screen_disappear_help,
+                          infoContent: context.l.detection_screen_disappear_dialog,
                           value: params.disappearThresholdSeconds.toDouble(),
                           min: 0,
                           max: 30,
                           divisions: 30,
-                          valueLabel: _integerSecondsLabel(params.disappearThresholdSeconds),
-                          minLabel: 'Fast',
-                          maxLabel: 'Slow',
+                          valueLabel: formatCompactDuration(context.l, params.disappearThresholdSeconds.toDouble()),
+                          minLabel: context.l.detection_screen_disappear_min_label,
+                          maxLabel: context.l.detection_screen_disappear_max_label,
                           onChanged: (value) =>
                               _updateDraft((current) => current.copyWith(disappearThresholdSeconds: value.round())),
                           onChangeEnd: (_) => _persistDraft(),
@@ -232,10 +241,6 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
 
 String _percentLabel(double value) => '${(value * 100).toStringAsFixed(0)}%';
 
-String _secondsLabel(double value) => '${value.toStringAsFixed(1)} s';
-
-String _integerSecondsLabel(int value) => '$value s';
-
 class _DetectionSliderTile extends StatelessWidget {
   const _DetectionSliderTile({
     required this.title,
@@ -248,6 +253,7 @@ class _DetectionSliderTile extends StatelessWidget {
     required this.maxLabel,
     required this.onChanged,
     required this.onChangeEnd,
+    this.infoContent,
     this.divisions,
   });
 
@@ -260,6 +266,7 @@ class _DetectionSliderTile extends StatelessWidget {
   final String valueLabel;
   final String minLabel;
   final String maxLabel;
+  final String? infoContent;
   final ValueChanged<double> onChanged;
   final ValueChanged<double> onChangeEnd;
 
@@ -274,7 +281,26 @@ class _DetectionSliderTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(child: Text(title, style: Theme.of(context).textTheme.titleSmall)),
+              Expanded(
+                child: Row(
+                  children: [
+                    Flexible(child: Text(title, style: Theme.of(context).textTheme.titleSmall)),
+                    if (infoContent != null) ...[
+                      const SizedBox(width: 4),
+                      CupertinoButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          showInfoDialog(context: context, title: title, content: infoContent!);
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(4),
+                          child: Icon(Icons.info_outline, size: 18, color: Colors.white70),
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
+              ),
               Text(valueLabel, style: Theme.of(context).textTheme.titleSmall),
             ],
           ),
@@ -305,6 +331,42 @@ class _DetectionSliderTile extends StatelessWidget {
               ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DetectionToggleTile extends StatelessWidget {
+  const _DetectionToggleTile({
+    required this.title,
+    required this.description,
+    required this.value,
+    required this.onChanged,
+  });
+
+  final String title;
+  final String description;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final mutedStyle = Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white70);
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(child: Text(title, style: Theme.of(context).textTheme.titleSmall)),
+              CupertinoSwitch(value: value, onChanged: onChanged, activeColor: Theme.of(context).colorScheme.primary),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(description, style: mutedStyle),
         ],
       ),
     );

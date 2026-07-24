@@ -7,6 +7,7 @@
 
 import 'dart:math' as math;
 
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/core_domain.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
@@ -59,8 +60,13 @@ class UploadWorker {
   /// - `null`: no attempt has happened yet
   bool? isLastUploadSuccess;
 
+  /// Machine-readable error code from the last failed attempt.
+  core_domain.TelemetryErrorCode? lastErrorCode;
+
   /// Last human-readable upload error message.
   String? lastError;
+
+  String? lastUrl;
 
   /// Groups [items] by businessDate, preserving oldest-first order within each group.
   /// Returns an ordered list of groups so earlier dates are uploaded first.
@@ -87,12 +93,7 @@ class UploadWorker {
 
     // check for a configured backend; if none, return early (no-op).
     final session = await _sessionResolver();
-    if (session == null) {
-      isLastUploadSuccess = false;
-      lastError = 'Local only mode: no telemetry backend is configured.';
-      appkit.logWarning('[UploadWorker] no backend configured, skipping upload');
-      return false;
-    }
+    assert(session != null, 'UploadWorker.run() called but no backend is configured; check sessionResolver');
 
     while (true) {
       final batch = await queue.fetchReady(limit: kMaxBatchSize);
@@ -101,14 +102,21 @@ class UploadWorker {
       // Split by businessDate — server requires all payloads in a batch share the same date.
       final dateGroups = _splitByBusinessDate(batch);
       for (final group in dateGroups) {
+        appkit.logInfo('[UploadWorker] uploading ${group.length} payload(s) for ${group.first.payload.businessDate}');
+        lastError = null;
+        lastErrorCode = null;
+        lastUrl = null;
         final uploaded = await _deliverBatch(
-          session: session,
+          session: session!,
           payloads: group.map((p) => p.payload).toList(growable: false),
           onSuccess: () async {
             await queue.markUploadedBatch(group.map((item) => item.id).toList(growable: false));
           },
         );
-        if (!uploaded) return false;
+        if (!uploaded) {
+          // no further attempts this run; next run will retry the same batch.
+          return false;
+        }
       }
     }
     return true;
@@ -124,18 +132,17 @@ class UploadWorker {
     if (payloads.isEmpty) return true;
 
     final session = await _sessionResolver();
-    if (session == null) {
-      isLastUploadSuccess = false;
-      lastError = 'No telemetry backend is configured.';
-      return false;
-    }
+    assert(
+      session != null,
+      'UploadWorker.sendPayloadsDirect() called but no backend is configured; check sessionResolver',
+    );
 
     final batchSize = kMaxBatchSize <= 0 ? payloads.length : kMaxBatchSize;
     var cursor = 0;
     while (cursor < payloads.length) {
       final end = math.min(cursor + batchSize, payloads.length);
       final chunk = payloads.sublist(cursor, end);
-      final uploaded = await _deliverBatch(session: session, payloads: chunk);
+      final uploaded = await _deliverBatch(session: session!, payloads: chunk);
       if (!uploaded) return false;
       cursor = end;
     }
@@ -148,8 +155,8 @@ class UploadWorker {
     required List<TelemetryPayload> payloads,
     Future<void> Function()? onSuccess,
   }) async {
-    final url = getUrlFromDataServer(session.dataServer);
-    if (url == null) {
+    lastUrl = getUrlFromDataServer(session.dataServer);
+    if (lastUrl == null) {
       appkit.logError('[UploadWorker] no URL for data server ${session.dataServer}');
       return false;
     }
@@ -164,23 +171,24 @@ class UploadWorker {
       );
       sizeKb = (body.length / 1024).round();
       final response = await transport.send(
-        url: url,
+        url: lastUrl!,
         bearerToken: session.bearerToken,
         body: body,
         contentType: serializer.contentType,
       );
-      await responseWorker.process(response);
       if (!response.ok) {
         await _recordUploadOutcome(
           success: false,
           attemptedAt: DateTime.now().toUtc(),
           payloadSizeKb: sizeKb,
           payloadCount: payloads.length,
+          errorCode: response.errorCode,
           error: response.error,
         );
         //        appkit.logError('[UploadWorker] rejected ${payloads.length} payload(s), $sizeKb KB  ${response.error}');
         return false;
       }
+      await responseWorker.process(response);
 
       if (onSuccess != null) await onSuccess();
       await _recordUploadOutcome(
@@ -197,6 +205,7 @@ class UploadWorker {
         attemptedAt: DateTime.now().toUtc(),
         payloadSizeKb: sizeKb,
         payloadCount: payloads.length,
+        errorCode: TelemetryErrorCode.httpUnknownError,
         error: '$error\n$stackTrace',
       );
       appkit.logError('[UploadWorker] failed: $error');
@@ -213,11 +222,13 @@ class UploadWorker {
     required bool success,
     required int payloadSizeKb,
     required int payloadCount,
+    core_domain.TelemetryErrorCode? errorCode,
     String? error,
   }) async {
     // Update worker-level status so UI/callers can inspect the most recent outcome.
     lastUploadTimeUtc = attemptedAt;
     isLastUploadSuccess = success;
+    lastErrorCode = errorCode;
     lastError = error;
 
     int retryCount = 0;

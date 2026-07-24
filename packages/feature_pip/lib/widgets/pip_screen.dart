@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import '../providers/pip_notifier.dart';
 import 'pip_sliding.dart';
@@ -20,13 +21,19 @@ const double _sidebarLayoutWidthThreshold = 1350;
 /// iphone pro max is 440
 const double _slidingLayoutWidthThreshold = 500;
 
-/// the min height for sliding panel
-const double _slidingPanelMinHeight = 128;
-
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 100);
 
-double _kSlidingPanelWidth = 420;
+/// the width for sliding panel in portrait mode
+double _kSlidingPanelWidth = 380; // 420
+
+/// the width for sliding panel in landscape mode
+double _kSlidingPanelWidthInHorizontal = 360;
+
+/// the min height for sliding panel
+const double _slidingPanelMinHeightInHorizontal = 120;
+
+const double _slidingPanelMinHeight = 140;
 
 double _kSidebarPanelWidth = 460;
 
@@ -35,7 +42,7 @@ class PipScreen extends ConsumerWidget {
   const PipScreen({
     required this.builder,
     required this.slidingBuilder,
-    required this.isLockToPortrait,
+    required this.isVideoLockToHorizontal,
     this.deviceOrientation,
     super.key,
   });
@@ -46,8 +53,7 @@ class PipScreen extends ConsumerWidget {
   /// the sliding builder
   final Widget Function(bool) slidingBuilder;
 
-  /// is the device orientation locked to portrait
-  final bool isLockToPortrait;
+  final bool? isVideoLockToHorizontal;
 
   final DeviceOrientation? deviceOrientation;
 
@@ -130,21 +136,27 @@ class PipScreen extends ConsumerWidget {
           }
 
           // screen is not big, use sliding
-          buildSlidingLayout() {
+          buildSlidingLayout({required bool isHorizontal}) {
             // 28 is height for close/minimize button bar, 10 is padding
-            final top = (isLockedOpen && constraints.maxWidth < _slidingLayoutWidthThreshold) ? 0 : 38.0;
+            final top =
+                (UniversalPlatform.isMobile || (isLockedOpen && constraints.maxWidth < _slidingLayoutWidthThreshold))
+                ? 0
+                : 38.0;
+
             return constraints.maxWidth > _slidingLayoutWidthThreshold
                 // fixed width
                 ? AnimatedPositioned(
                     duration: _animationDuration,
                     top: safePadding.top + top,
                     height: constraints.maxHeight - top,
-                    left: 30, // no safePadding.left need more space to show preview,
-                    width: _kSlidingPanelWidth,
+                    left: 42, // safe padding left to avoid dynamic island
+                    width: isHorizontal ? _kSlidingPanelWidthInHorizontal : _kSlidingPanelWidth,
                     child: PipSliding(
                       isLockedOpen: isLockedOpen,
-                      width: _kSlidingPanelWidth,
-                      minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                      width: isHorizontal ? _kSlidingPanelWidthInHorizontal : _kSlidingPanelWidth,
+                      minHeight: isHorizontal
+                          ? _slidingPanelMinHeightInHorizontal
+                          : _slidingPanelMinHeight + safePadding.bottom,
                       builder: slidingBuilder,
                     ),
                   )
@@ -161,22 +173,6 @@ class PipScreen extends ConsumerWidget {
                       builder: slidingBuilder,
                     ),
                   );
-          }
-
-          buildSliding0() {
-            const top = 70.0;
-            return AnimatedPositioned(
-              duration: _animationDuration,
-              top: top,
-              height: constraints.maxHeight - top,
-              left: 0,
-              right: 0,
-              child: PipSliding(
-                isLockedOpen: isLockedOpen,
-                minHeight: _slidingPanelMinHeight + safePadding.bottom,
-                builder: slidingBuilder,
-              ),
-            );
           }
 
           buildSliding90() {
@@ -235,7 +231,7 @@ class PipScreen extends ConsumerWidget {
             children: [
               AnimatedPositioned(
                 duration: _animationDuration,
-                left: isSidebarLayout ? _kSlidingPanelWidth : 0,
+                left: isSidebarLayout ? _kSidebarPanelWidth : 0,
                 right: 0,
                 top: 0,
                 bottom: 0,
@@ -248,16 +244,16 @@ class PipScreen extends ConsumerWidget {
                     return buildSidebarLayout();
                   }
 
-                  if (isLockToPortrait || isLockedOpen) {
-                    return buildSlidingLayout();
+                  if (isLockedOpen) {
+                    // some screen like onboarding, need lock to portrait
+                    return buildSlidingLayout(isHorizontal: false);
+                  }
 
-                    /*switch (orientation) {
-                      case Orientation.portrait:
-                        return buildSlidingLayout();
-                      case Orientation.landscape:
-                        // for locked portrait, we treat landscape as 90 degree rotation, so we show the sliding panel in landscape right position
-                        return buildSliding90();
-                    }*/
+                  if (isVideoLockToHorizontal == true) {
+                    return buildSlidingLayout(isHorizontal: true);
+                  }
+                  if (isVideoLockToHorizontal == false) {
+                    return buildSlidingLayout(isHorizontal: false);
                   }
 
                   if (deviceOrientation == DeviceOrientation.landscapeLeft) {
@@ -266,7 +262,7 @@ class PipScreen extends ConsumerWidget {
                     return buildSliding90();
                   }
 
-                  return buildSlidingLayout();
+                  return buildSlidingLayout(isHorizontal: false);
                 },
               ),
             ],
@@ -276,3 +272,20 @@ class PipScreen extends ConsumerWidget {
     );
   }
 }
+
+/*
+          buildSliding0() {
+            const top = 70.0;
+            return AnimatedPositioned(
+              duration: _animationDuration,
+              top: top,
+              height: constraints.maxHeight - top,
+              left: 0,
+              right: 0,
+              child: PipSliding(
+                isLockedOpen: isLockedOpen,
+                minHeight: _slidingPanelMinHeight + safePadding.bottom,
+                builder: slidingBuilder,
+              ),
+            );
+          }*/

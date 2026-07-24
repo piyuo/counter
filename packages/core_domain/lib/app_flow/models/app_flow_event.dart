@@ -5,7 +5,6 @@ part 'app_flow_event.freezed.dart';
 /// Events that drive user flow and application phases.
 @freezed
 sealed class AppFlowEvent with _$AppFlowEvent {
-  const factory AppFlowEvent.videoSourceCheck() = VideoSourceCheck;
   const factory AppFlowEvent.dataServerCheck() = DataServerCheck;
 
   /// User onboarding is needed.

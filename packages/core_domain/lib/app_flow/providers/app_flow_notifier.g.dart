@@ -8,27 +8,12 @@ part of 'app_flow_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 
 @ProviderFor(AppFlowNotifier)
 final appFlowProvider = AppFlowNotifierProvider._();
 
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 final class AppFlowNotifierProvider
     extends $NotifierProvider<AppFlowNotifier, AppFlow> {
-  /// Architecture note:
-  /// - Lifecycle is a synchronous state machine (event -> next state).
-  /// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-  /// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-  /// - AppBoot keeps itself alive only during async boot, then auto-disposes.
   AppFlowNotifierProvider._()
     : super(
         from: null,
@@ -56,13 +41,7 @@ final class AppFlowNotifierProvider
   }
 }
 
-String _$appFlowNotifierHash() => r'd65288c5874cedf7f47e374f8b75755279b84121';
-
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
+String _$appFlowNotifierHash() => r'ac42420584d15ba5f805e3ab058e8dad9081fe80';
 
 abstract class _$AppFlowNotifier extends $Notifier<AppFlow> {
   AppFlow build();

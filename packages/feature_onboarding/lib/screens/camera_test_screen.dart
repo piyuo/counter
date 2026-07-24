@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
+import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
-class SystemScreen extends ConsumerStatefulWidget {
-  const SystemScreen({super.key});
+class CameraTestScreen extends ConsumerStatefulWidget {
+  const CameraTestScreen({super.key});
 
   @override
-  ConsumerState<SystemScreen> createState() => _SystemScreenState();
+  ConsumerState<CameraTestScreen> createState() => _CameraTestScreenState();
 }
 
-class _SystemScreenState extends ConsumerState<SystemScreen> {
+class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
   @override
   void initState() {
     super.initState();
@@ -57,23 +58,17 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
     Widget getLine1() {
       if (compatibilityState.status == vision.TestStatus.none ||
           compatibilityState.status == vision.TestStatus.starting) {
-        return const Text(
-          "Piyuo Counter uses your camera and AI to count people. First, let's make sure your device is compatible.",
-          textAlign: TextAlign.center,
-        );
+        return Text(context.l.camera_test_screen_help, textAlign: TextAlign.center);
       }
       if (testErrorMessage != null) {
         return Text(
-          "Test failed: $testErrorMessage",
+          "${context.l.camera_test_screen_test_failed} $testErrorMessage",
           style: const TextStyle(color: Colors.red),
           textAlign: TextAlign.center,
         );
       }
       if (compatibilityState.status == vision.TestStatus.started) {
-        return const Text(
-          "Point your camera at people. The app will draw boxes around anyone it detects.",
-          textAlign: TextAlign.center,
-        );
+        return Text(context.l.camera_test_screen_instruction, textAlign: TextAlign.center);
       }
       return const SizedBox.shrink();
     }
@@ -81,11 +76,7 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
     Widget getLine2() {
       if (compatibilityState.status == vision.TestStatus.none ||
           compatibilityState.status == vision.TestStatus.starting) {
-        return const Text(
-          'Tap Start. If asked, allow camera access.',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 14),
-        );
+        return Text(context.l.camera_test_screen_start, textAlign: TextAlign.center, style: TextStyle(fontSize: 14));
       }
       if (testErrorMessage != null) {
         return const SizedBox.shrink();
@@ -95,7 +86,7 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
         return Column(
           children: [
             Text(
-              "Test passed! $testSuccessMessage",
+              "${context.l.camera_test_screen_test_passed} $testSuccessMessage",
               textAlign: TextAlign.center,
               style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
             ),
@@ -104,8 +95,8 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
                 await ref.read(vision.compatibilityProvider.notifier).stop();
                 ref.go(const core_domain.OpenOnboardingCTA());
               },
-              child: const Text(
-                'Tap Next to continue.',
+              child: Text(
+                context.l.camera_test_screen_next,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.blue, fontSize: 14),
               ),
@@ -114,7 +105,7 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
         );
       }
       if (compatibilityState.status == vision.TestStatus.started) {
-        return const Text("Waiting for the AI to detect people…", textAlign: TextAlign.center);
+        return Text(context.l.camera_test_screen_wait, textAlign: TextAlign.center);
       }
       return const SizedBox.shrink();
     }
@@ -136,7 +127,7 @@ class _SystemScreenState extends ConsumerState<SystemScreen> {
         }
       },
       child: OnboardingScaffold(
-        title: 'AI Camera Test',
+        title: context.l.camera_test_screen_title,
         nextButtonAction: NextButtonAction.next,
         onNextButtonPressed: testSuccessMessage == null
             ? null

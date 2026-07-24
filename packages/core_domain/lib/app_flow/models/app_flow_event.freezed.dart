@@ -55,11 +55,10 @@ extension AppFlowEventPatterns on AppFlowEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( VideoSourceCheck value)?  videoSourceCheck,TResult Function( DataServerCheck value)?  dataServerCheck,TResult Function( OnboardingNeeded value)?  onboardingNeeded,TResult Function( InvitationClicked value)?  invitationClicked,TResult Function( StartSession value)?  startSession,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( DataServerCheck value)?  dataServerCheck,TResult Function( OnboardingNeeded value)?  onboardingNeeded,TResult Function( InvitationClicked value)?  invitationClicked,TResult Function( StartSession value)?  startSession,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case VideoSourceCheck() when videoSourceCheck != null:
-return videoSourceCheck(_that);case DataServerCheck() when dataServerCheck != null:
+case DataServerCheck() when dataServerCheck != null:
 return dataServerCheck(_that);case OnboardingNeeded() when onboardingNeeded != null:
 return onboardingNeeded(_that);case InvitationClicked() when invitationClicked != null:
 return invitationClicked(_that);case StartSession() when startSession != null:
@@ -81,11 +80,10 @@ return startSession(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( VideoSourceCheck value)  videoSourceCheck,required TResult Function( DataServerCheck value)  dataServerCheck,required TResult Function( OnboardingNeeded value)  onboardingNeeded,required TResult Function( InvitationClicked value)  invitationClicked,required TResult Function( StartSession value)  startSession,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( DataServerCheck value)  dataServerCheck,required TResult Function( OnboardingNeeded value)  onboardingNeeded,required TResult Function( InvitationClicked value)  invitationClicked,required TResult Function( StartSession value)  startSession,}){
 final _that = this;
 switch (_that) {
-case VideoSourceCheck():
-return videoSourceCheck(_that);case DataServerCheck():
+case DataServerCheck():
 return dataServerCheck(_that);case OnboardingNeeded():
 return onboardingNeeded(_that);case InvitationClicked():
 return invitationClicked(_that);case StartSession():
@@ -103,11 +101,10 @@ return startSession(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( VideoSourceCheck value)?  videoSourceCheck,TResult? Function( DataServerCheck value)?  dataServerCheck,TResult? Function( OnboardingNeeded value)?  onboardingNeeded,TResult? Function( InvitationClicked value)?  invitationClicked,TResult? Function( StartSession value)?  startSession,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( DataServerCheck value)?  dataServerCheck,TResult? Function( OnboardingNeeded value)?  onboardingNeeded,TResult? Function( InvitationClicked value)?  invitationClicked,TResult? Function( StartSession value)?  startSession,}){
 final _that = this;
 switch (_that) {
-case VideoSourceCheck() when videoSourceCheck != null:
-return videoSourceCheck(_that);case DataServerCheck() when dataServerCheck != null:
+case DataServerCheck() when dataServerCheck != null:
 return dataServerCheck(_that);case OnboardingNeeded() when onboardingNeeded != null:
 return onboardingNeeded(_that);case InvitationClicked() when invitationClicked != null:
 return invitationClicked(_that);case StartSession() when startSession != null:
@@ -128,10 +125,9 @@ return startSession(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  videoSourceCheck,TResult Function()?  dataServerCheck,TResult Function()?  onboardingNeeded,TResult Function()?  invitationClicked,TResult Function()?  startSession,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  dataServerCheck,TResult Function()?  onboardingNeeded,TResult Function()?  invitationClicked,TResult Function()?  startSession,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case VideoSourceCheck() when videoSourceCheck != null:
-return videoSourceCheck();case DataServerCheck() when dataServerCheck != null:
+case DataServerCheck() when dataServerCheck != null:
 return dataServerCheck();case OnboardingNeeded() when onboardingNeeded != null:
 return onboardingNeeded();case InvitationClicked() when invitationClicked != null:
 return invitationClicked();case StartSession() when startSession != null:
@@ -153,10 +149,9 @@ return startSession();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  videoSourceCheck,required TResult Function()  dataServerCheck,required TResult Function()  onboardingNeeded,required TResult Function()  invitationClicked,required TResult Function()  startSession,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  dataServerCheck,required TResult Function()  onboardingNeeded,required TResult Function()  invitationClicked,required TResult Function()  startSession,}) {final _that = this;
 switch (_that) {
-case VideoSourceCheck():
-return videoSourceCheck();case DataServerCheck():
+case DataServerCheck():
 return dataServerCheck();case OnboardingNeeded():
 return onboardingNeeded();case InvitationClicked():
 return invitationClicked();case StartSession():
@@ -174,10 +169,9 @@ return startSession();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  videoSourceCheck,TResult? Function()?  dataServerCheck,TResult? Function()?  onboardingNeeded,TResult? Function()?  invitationClicked,TResult? Function()?  startSession,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  dataServerCheck,TResult? Function()?  onboardingNeeded,TResult? Function()?  invitationClicked,TResult? Function()?  startSession,}) {final _that = this;
 switch (_that) {
-case VideoSourceCheck() when videoSourceCheck != null:
-return videoSourceCheck();case DataServerCheck() when dataServerCheck != null:
+case DataServerCheck() when dataServerCheck != null:
 return dataServerCheck();case OnboardingNeeded() when onboardingNeeded != null:
 return onboardingNeeded();case InvitationClicked() when invitationClicked != null:
 return invitationClicked();case StartSession() when startSession != null:
@@ -188,38 +182,6 @@ return startSession();case _:
 }
 
 }
-
-/// @nodoc
-
-
-class VideoSourceCheck implements AppFlowEvent {
-  const VideoSourceCheck();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoSourceCheck);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'AppFlowEvent.videoSourceCheck()';
-}
-
-
-}
-
-
-
 
 /// @nodoc
 

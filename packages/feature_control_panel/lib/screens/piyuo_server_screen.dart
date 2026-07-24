@@ -8,14 +8,14 @@ import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-class SettingsPiyuoScreen extends ConsumerStatefulWidget {
-  const SettingsPiyuoScreen({super.key});
+class PiyuoServerScreen extends ConsumerStatefulWidget {
+  const PiyuoServerScreen({super.key});
 
   @override
-  ConsumerState<SettingsPiyuoScreen> createState() => _SettingsPiyuoScreenState();
+  ConsumerState<PiyuoServerScreen> createState() => _SettingsPiyuoScreenState();
 }
 
-class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
+class _SettingsPiyuoScreenState extends ConsumerState<PiyuoServerScreen> {
   late final TextEditingController _cloudUrlController;
   String? _urlError;
   bool _isSaving = false;
@@ -50,20 +50,6 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
     });
   }
 
-  bool _isValidPiyuoCloudUrl(String url) {
-    final uri = Uri.tryParse(url);
-    if (uri == null || !uri.hasScheme || uri.host.isEmpty) {
-      return false;
-    }
-
-    final isPiyuoHost = uri.host == 'piyuo.com' || uri.host.endsWith('.piyuo.com');
-    if (!isPiyuoHost) {
-      return false;
-    }
-
-    return uri.path == '/api' || uri.path.startsWith('/api/');
-  }
-
   @override
   Widget build(BuildContext context) {
     return feature_pip.PipScaffold(
@@ -78,10 +64,10 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                 children: [
                   const Icon(Icons.cloud_outlined, size: 64),
                   const SizedBox(height: 8),
-                  Text(context.l.settings_piyuo_screen_title, style: Theme.of(context).textTheme.titleMedium),
+                  Text(context.l.settings_screen_piyuo_title, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 4),
                   Text(
-                    context.l.settings_piyuo_screen_body,
+                    context.l.settings_screen_piyuo_subtitle,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                   ),
@@ -95,10 +81,7 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      context.l.settings_piyuo_screen_cloud_url_label,
-                      style: Theme.of(context).textTheme.titleSmall,
-                    ),
+                    Text(context.l.piyuo_server_screen_cloud_url_label, style: Theme.of(context).textTheme.titleSmall),
                     const SizedBox(height: 10),
                     GlassTextField(controller: _cloudUrlController),
                     if (_urlError != null) ...[
@@ -112,18 +95,14 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                           child: OutlinedButton.icon(
                             onPressed: () async {
                               Clipboard.setData(ClipboardData(text: _cloudUrlController.text.trim()));
-                              await showMessageDialog(context.l.settings_piyuo_screen_copy_success);
+                              await showMessageDialog(context.l.piyuo_server_screen_copy_success);
+                              if (!mounted) return;
                             },
                             icon: const Icon(Icons.copy),
-                            label: Text(context.l.settings_piyuo_screen_copy_action),
+                            label: Text(context.l.piyuo_server_screen_copy_action),
                           ),
                         ),
                       ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      context.l.settings_piyuo_screen_legacy_body,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
                     ),
                   ],
                 ),
@@ -137,14 +116,7 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                   onPressed: _isSaving
                       ? null
                       : () async {
-                          final typedUrl = _cloudUrlController.text.trim();
-                          if (!_isValidPiyuoCloudUrl(typedUrl)) {
-                            setState(() {
-                              _urlError = context.l.settings_piyuo_screen_invalid_url_error;
-                            });
-                            return;
-                          }
-
+                          final router = GoRouter.of(context);
                           setState(() {
                             _isSaving = true;
                             _urlError = null;
@@ -156,14 +128,11 @@ class _SettingsPiyuoScreenState extends ConsumerState<SettingsPiyuoScreen> {
                           setState(() {
                             _isSaving = false;
                           });
-                          if (!mounted) return;
-                          context.pop();
+                          router.pop();
                         },
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                   child: Text(
-                    _isSaving
-                        ? context.l.settings_piyuo_screen_saving_action
-                        : context.l.settings_piyuo_screen_use_action,
+                    _isSaving ? context.l.piyuo_server_screen_saving_action : context.l.piyuo_server_screen_use_action,
                   ),
                 ),
               ),

@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 
-const kScrollContentAppbarPadding = 52.0 + 10; // appbar height + some spacing
+const kScrollContentAppbarPadding = 52.0 + 12; // appbar height + some spacing
 
 /// Picture in Picture screen scaffold that provides a managed [ScrollController]
 /// to its [builder] and notifies [PipNotifier] of scroll activity.

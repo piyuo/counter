@@ -10,11 +10,6 @@ abstract class AppFlowController {
 }
 
 @Riverpod(keepAlive: true) // do not autoDispose , there are services that depend on, e.g. NativeAppLinkService
-/// Architecture note:
-/// - Lifecycle is a synchronous state machine (event -> next state).
-/// - AppBoot handles asynchronous startup work and dispatches lifecycle events.
-/// - build() triggers boot via ref.read(appBootProvider) without awaiting.
-/// - AppBoot keeps itself alive only during async boot, then auto-disposes.
 class AppFlowNotifier extends _$AppFlowNotifier implements AppFlowController {
   @override
   AppFlow build() {
@@ -41,8 +36,7 @@ class AppFlowNotifier extends _$AppFlowNotifier implements AppFlowController {
 
   AppFlow _reduce(AppFlow current, AppFlowEvent event) {
     return switch ((current, event)) {
-      (WaitingForStart(), const AppFlowEvent.videoSourceCheck()) => const CheckingVideoSource(),
-      (CheckingVideoSource(), const AppFlowEvent.dataServerCheck()) => const CheckingDataServer(),
+      (WaitingForStart(), const AppFlowEvent.dataServerCheck()) => const CheckingDataServer(),
       (CheckingDataServer(), const AppFlowEvent.onboardingNeeded()) => const OnboardingBegin(),
       // before onboarding, check app to see if it open by invitation
       (CheckingDataServer(), const AppFlowEvent.invitationClicked()) => const OnboardingByInvitation(),

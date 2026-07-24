@@ -8,8 +8,6 @@ sealed class AppFlow with _$AppFlow {
   /// The app is waiting for user interaction to begin.
   const factory AppFlow.waitingForStart() = WaitingForStart;
 
-  const factory AppFlow.checkingVideoSource() = CheckingVideoSource;
-
   /// The app is validating data server is set up.
   const factory AppFlow.checkingDataServer() = CheckingDataServer;
 

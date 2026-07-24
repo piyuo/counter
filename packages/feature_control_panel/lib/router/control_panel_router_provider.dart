@@ -12,7 +12,6 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_onboarding/feature_onboarding.dart' as feature_onboarding;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/foundation.dart';
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -90,7 +89,6 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
     final path = action.event.path;
     if (path == null) return;
     final extra = action.event.extra;
-    appkit.logInfo('[control_panel_route] ${router.state.uri.path} → $path (${action.event.runtimeType})');
     switch (action) {
       case core_domain.PushAction():
         router.push(path, extra: extra);

@@ -103,6 +103,12 @@ class NativeTelemetryService implements core_domain.TelemetryService {
   String? get lastError => _worker.lastError;
 
   @override
+  core_domain.TelemetryErrorCode? get lastErrorCode => _worker.lastErrorCode;
+
+  @override
+  String? get url => _worker.lastUrl;
+
+  @override
   void startPeriodicUpload() {
     stopPeriodicUpload();
     _schedulerActive = true;

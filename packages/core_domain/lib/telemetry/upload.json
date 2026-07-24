@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "deviceId": "041bfec6-8923-4b09-be5f-0fd11d3df7f5",
+  "payloads": [
+    {
+      "session": "2607131922",
+      "sequence": 1,
+      "startUtc": "2026-07-14T02:20:00.000Z",
+      "startBusiness": "2026-07-13T19:20:00.000",
+      "businessDate": "2026-07-13",
+      "frameCount": 2963,
+      "missingSec": 177,
+      "confidence": 86.92,
+      "isPartial": true,
+      "coverage": 0.41,
+      "fps": 24.2,
+      "areas": [
+        {
+          "areaId": 0,
+          "areaName": "",
+          "passBy": 1,
+          "avgOccupancy": 0.99,
+          "maxOccupancy": 1,
+          "avgDwellSec": 60.7,
+          "maxDwellSec": 122.0
+        }
+      ]
+    },
+    {
+      "session": "2607131922",
+      "sequence": 2,
+      "startUtc": "2026-07-14T02:25:00.000Z",
+      "startBusiness": "2026-07-13T19:25:00.000",
+      "businessDate": "2026-07-13",
+      "frameCount": 7511,
+      "missingSec": 5,
+      "confidence": 85.66,
+      "isPartial": true,
+      "coverage": 0.98,
+      "fps": 25.5,
+      "areas": [
+        {
+          "areaId": 0,
+          "areaName": "",
+          "avgOccupancy": 1.0,
+          "maxOccupancy": 1,
+          "avgDwellSec": 273.2,
+          "maxDwellSec": 422.0
+        }
+      ]
+    },
+    {
+      "session": "2607132120",
+      "sequence": 1,
+      "startUtc": "2026-07-14T04:20:00.000Z",
+      "startBusiness": "2026-07-13T21:20:00.000",
+      "businessDate": "2026-07-13",
+      "frameCount": 6124,
+      "missingSec": 42,
+      "confidence": 84.61,
+      "isPartial": true,
+      "coverage": 0.86,
+      "fps": 23.7,
+      "areas": [
+        {
+          "areaId": 0,
+          "areaName": "Global",
+          "passBy": 1,
+          "avgOccupancy": 1.0,
+          "maxOccupancy": 1,
+          "avgDwellSec": 126.2,
+          "maxDwellSec": 257.0
+        },
+        {
+          "areaId": 1,
+          "areaName": "Area Center",
+          "passBy": 1,
+          "avgOccupancy": 0.9,
+          "maxOccupancy": 1,
+          "avgDwellSec": 152.2,
+          "maxDwellSec": 257.0
+        }
+      ]
+    }
+  ]
+}

@@ -3,8 +3,10 @@ import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:feature_pip/feature_pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_l10n/shared_l10n.dart' show L10nExtension;
 
 enum NextButtonAction { next, start, none }
 
@@ -72,7 +74,7 @@ class OnboardingScaffold extends ConsumerWidget {
           padding: const EdgeInsets.only(left: 8),
           child: TextButton(
             onPressed: () => router.pop(),
-            child: Text('Back', style: TextStyle(fontSize: 18, color: Colors.blue)), //todo:add translation
+            child: Text(context.l.onboarding_back_action, style: TextStyle(fontSize: 18, color: Colors.blue)),
           ),
         );
       }
@@ -91,7 +93,7 @@ class OnboardingScaffold extends ConsumerWidget {
                   onPressed: () {
                     ref.go(const core_domain.OpenOnboardingSystem());
                   },
-                  child: Text('Skip Intro', style: TextStyle(fontSize: 18, color: Colors.blue)), //todo:add translation
+                  child: Text(context.l.onboarding_skip_action, style: TextStyle(fontSize: 18, color: Colors.blue)),
                 ),
               )
             : null,
@@ -126,17 +128,38 @@ class OnboardingScaffold extends ConsumerWidget {
                             color: nextButtonAction == NextButtonAction.start ? Colors.green : null,
                           ),
                         ),
-                      ...builder(innerContext),
                       const SizedBox(height: 8.0),
+                      ...builder(innerContext),
+                      const SizedBox(height: 15.0),
                       if (nextButtonAction != NextButtonAction.none)
                         IntroNextButton(
-                          text: nextButtonAction == NextButtonAction.next ? 'Next' : 'Start',
+                          text: nextButtonAction == NextButtonAction.next
+                              ? context.l.onboarding_next_action
+                              : context.l.onboarding_start_action,
                           color: nextButtonAction == NextButtonAction.next ? Colors.blue : Colors.green,
                           onPressed: onNextButtonPressed,
                           isLoading: isLoading,
                         ),
                       if (footBuilder != null) ...footBuilder!(innerContext),
-                      const SizedBox(height: 30.0), // bottom padding so next button won't be too close to the edge
+                      onboardingSpacer(),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        children: [
+                          onboardingTextButton(context.l.privacy, fontSize: 12, () {
+                            appkit.netOpenUrl('https://piyuo.com/privacy');
+                          }),
+                          onboardingTextButton(context.l.terms, fontSize: 12, () {
+                            appkit.netOpenUrl('https://piyuo.com/terms');
+                          }),
+                          onboardingTextButton(context.l.dpa, fontSize: 12, () {
+                            appkit.netOpenUrl('https://piyuo.com/dpa');
+                          }),
+                          onboardingTextButton(context.l.settings_screen_language_title, fontSize: 12, () {
+                            ref.push(const core_domain.OpenLanguage());
+                          }),
+                        ],
+                      ),
+                      const SizedBox(height: 100.0), // bottom padding so next button won't be too close to the edge
                     ],
                   ),
                 ),
@@ -168,7 +191,7 @@ class IntroNextButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        padding: EdgeInsets.symmetric(vertical: isMacOS ? 15.0 : 10.0),
+        padding: EdgeInsets.symmetric(vertical: isMacOS ? 18.0 : 12.0),
         minimumSize: Size(0, isMacOS ? 48.0 : 40.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         elevation: 4,
@@ -218,7 +241,7 @@ Widget onboardingPanel(Widget child) {
   );
 }
 
-Widget onboardingTextField(String text) {
+Widget onboardingTextField(BuildContext context, String text) {
   return TextFormField(
     initialValue: text,
     readOnly: true,
@@ -230,16 +253,19 @@ Widget onboardingTextField(String text) {
         icon: const Icon(Icons.copy),
         onPressed: () async {
           Clipboard.setData(ClipboardData(text: text));
-          await pip.showMessageDialog('URL copied');
+          await pip.showMessageDialog(context.l.piyuo_server_screen_copy_success);
         },
       ),
     ),
   );
 }
 
-Widget onboardingTextButton(String text, VoidCallback onPressed) {
+Widget onboardingTextButton(String text, VoidCallback onPressed, {double fontSize = 16}) {
   return TextButton(
     onPressed: onPressed,
-    child: Text(text, style: const TextStyle(fontSize: 16, color: Colors.blue)),
+    child: Text(
+      text,
+      style: TextStyle(fontSize: fontSize, color: Colors.blue),
+    ),
   );
 }

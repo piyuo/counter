@@ -18,14 +18,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-Future<TelemetryDatabase> _openTempTelemetryDb() async {
+Future<TelemetryDatabaseFun> _openTempTelemetryDb() async {
   final tempDir = await Directory.systemTemp.createTemp('native_telemetry_service_integration_test_');
   final dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_test.db';
   final db = await TelemetryDatabase.open(filePath: dbPath);
 
   addTearDown(() async {
-    await db.close();
-    await TelemetryDatabase.remove(filePath: dbPath);
+    await db().close();
+    await TelemetryDatabase.removeFile(filePath: dbPath);
     if (await tempDir.exists()) {
       await tempDir.delete(recursive: true);
     }
@@ -211,8 +211,8 @@ void main() {
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db.update(
-        db.telemetryQueue,
+      await (db().update(
+        db().telemetryQueue,
       )..where((t) => t.id.equals('session-1-1'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));

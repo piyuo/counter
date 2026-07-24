@@ -37,40 +37,50 @@ class HttpTelemetryTransport implements core_domain.TelemetryTransport {
           '[HttpTelemetryTransport] '
           '${response.statusCode} (${response.reasonPhrase ?? 'Unknown error'}) ',
         );
-        return _errorEnvelope(error: 'http_non_success');
+        return _errorEnvelope(
+          errorCode: core_domain.TelemetryErrorCode.httpErrorStatus,
+          error:
+              '${response.statusCode} ${response.reasonPhrase ?? 'Unknown error'} ${response.body.isNotEmpty ? response.body : ''}',
+        );
       }
 
       return _successEnvelope(response.body);
     } catch (error) {
       final classified = _classifyException(error);
       appkit.logError('[HttpTelemetryTransport] $classified ($error)');
-      return _errorEnvelope(error: classified);
+      return _errorEnvelope(errorCode: classified);
     }
   }
 
-  String _classifyException(Object error) {
+  core_domain.TelemetryErrorCode _classifyException(Object error) {
     if (error is SocketException) {
       // error 61 = ECONNREFUSED (wrong host/port or server not running)
-      if (error.osError?.errorCode == 61) return 'connection_refused';
+      if (error.osError?.errorCode == 61) return core_domain.TelemetryErrorCode.connectionRefused;
       // error 8 = NODENAME (DNS lookup failed — bad hostname)
-      if (error.osError?.errorCode == 8) return 'dns_lookup_failed';
-      return 'socket_error';
+      if (error.osError?.errorCode == 8) return core_domain.TelemetryErrorCode.dnsLookupFailed;
+      return core_domain.TelemetryErrorCode.socketError;
     }
     // http package wraps SocketException in ClientException
     if (error is http.ClientException) {
       final msg = error.message.toLowerCase();
-      if (msg.contains('connection refused')) return 'connection_refused';
-      if (msg.contains('failed host lookup') || msg.contains('no address associated')) return 'dns_lookup_failed';
-      if (msg.contains('connection timed out') || msg.contains('timed out')) return 'connection_timeout';
-      if (msg.contains('software caused') || msg.contains('connection reset')) return 'connection_reset';
-      return 'network_error';
+      if (msg.contains('connection refused')) return core_domain.TelemetryErrorCode.connectionRefused;
+      if (msg.contains('failed host lookup') || msg.contains('no address associated')) {
+        return core_domain.TelemetryErrorCode.dnsLookupFailed;
+      }
+      if (msg.contains('connection timed out') || msg.contains('timed out')) {
+        return core_domain.TelemetryErrorCode.connectionTimeout;
+      }
+      if (msg.contains('software caused') || msg.contains('connection reset')) {
+        return core_domain.TelemetryErrorCode.connectionReset;
+      }
+      return core_domain.TelemetryErrorCode.networkError;
     }
-    if (error is FormatException) return 'invalid_url';
-    return 'transport_exception'; // fallback — keeps old behaviour
+    if (error is FormatException) return core_domain.TelemetryErrorCode.invalidUrl;
+    return core_domain.TelemetryErrorCode.transportException; // fallback — keeps old behaviour
   }
 
-  core_domain.TelemetryResponse _errorEnvelope({required String error}) {
-    return core_domain.TelemetryResponse(v: 1, ok: false, error: error, data: null);
+  core_domain.TelemetryResponse _errorEnvelope({required core_domain.TelemetryErrorCode errorCode, String? error}) {
+    return core_domain.TelemetryResponse(v: 1, ok: false, errorCode: errorCode, error: error, data: null);
   }
 
   core_domain.TelemetryResponse _successEnvelope(String rawBody) {

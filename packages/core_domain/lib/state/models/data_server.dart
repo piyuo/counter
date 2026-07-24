@@ -10,12 +10,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'data_server.freezed.dart';
 part 'data_server.g.dart';
 
-enum DataServerSelection { none, personalPiyuo, businessPiyuo, personalCustom, businessCustom }
+enum DataServerSelection { unspecified, noDataServer, personalPiyuo, businessPiyuo, personalCustom, businessCustom }
 
 String getKeyFromDataServerSelection(DataServerSelection selection) {
   switch (selection) {
-    case DataServerSelection.none:
-      return 'none';
+    case DataServerSelection.unspecified:
+      return 'unspecified';
+    case DataServerSelection.noDataServer:
+      return 'noDataServer';
     case DataServerSelection.personalPiyuo:
       return 'personalPiyuo';
     case DataServerSelection.businessPiyuo:
@@ -65,7 +67,7 @@ sealed class DataServer with _$DataServer {
     required String assignedName,
   }) = BusinessCustomServer;
 
-  const factory DataServer.none() = NoDataServer;
+  const factory DataServer.noDataServer() = NoDataServer;
 
   bool hasBearerToken(DataServer dataServer) {
     return dataServer.map(
@@ -73,7 +75,7 @@ sealed class DataServer with _$DataServer {
       businessPiyuo: (_) => true,
       personalCustom: (_) => true,
       businessCustom: (_) => true,
-      none: (_) => false,
+      noDataServer: (_) => false,
     );
   }
 

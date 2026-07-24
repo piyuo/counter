@@ -60,18 +60,24 @@ class OpenSettingsServer extends NavigationEvent {
   String? get path => '/settings/server';
 }
 
-/// Request to navigate to the detection parameters screen.
-class OpenDetectionParams extends NavigationEvent {
-  const OpenDetectionParams();
+class OpenSettingsLocal extends NavigationEvent {
+  const OpenSettingsLocal();
   @override
-  String? get path => '/detection-params';
+  String? get path => '/settings/local';
+}
+
+/// Request to navigate to the detection parameters screen.
+class OpenDetection extends NavigationEvent {
+  const OpenDetection();
+  @override
+  String? get path => '/detection';
 }
 
 /// Request to navigate to the detection type selection screen.
-class OpenDetectionTypeSelection extends NavigationEvent {
-  const OpenDetectionTypeSelection();
+class OpenTarget extends NavigationEvent {
+  const OpenTarget();
   @override
-  String? get path => '/detection-type';
+  String? get path => '/target';
 }
 
 /// Request to navigate to the delivery configuration screen.

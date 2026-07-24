@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'app_shell/app_shell.dart';
 
 void main() async {
-  late core_runtime.TelemetryDatabase telemetryDb;
+  late core_runtime.TelemetryDatabaseFun dbFactory;
   appkit.appRun(
     preInitCallback: () async {
       WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +21,7 @@ void main() async {
       final appSupportDir = await getApplicationSupportDirectory();
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
-      telemetryDb = await core_runtime.TelemetryDatabase.open(filePath: telemetryDbPath);
+      dbFactory = await core_runtime.TelemetryDatabase.open(filePath: telemetryDbPath);
     },
     ProviderScope(
       //observers: [appkit.riverpodObserver()],
@@ -35,7 +35,9 @@ void main() async {
         core_domain.portraitOrientationServiceProvider.overrideWith(
           (ref) => core_runtime.SystemChromePortraitOrientationService(),
         ),
-        core_domain.visionRuntimeServiceProvider.overrideWith((ref) => core_runtime.FlutterVisionRuntimeService(ref)),
+        core_domain.visionRuntimeServiceProvider.overrideWith(
+          (ref) => ref.read(core_runtime.flutterVisionServiceProvider.notifier),
+        ),
         core_domain.invitationServiceProvider.overrideWith((ref) => core_runtime.PiyuoInvitationService()),
         core_domain.tokenGeneratorServiceProvider.overrideWith((ref) => core_runtime.RandomTokenGeneratorService()),
         core_domain.urlValidatorServiceProvider.overrideWith((ref) => core_runtime.HttpUrlValidatorService()),
@@ -48,7 +50,7 @@ void main() async {
           return appLinkService;
         }),
         core_domain.telemetryQueueRepositoryProvider.overrideWith((ref) {
-          return core_runtime.DriftPayloadQueueRepository(telemetryDb);
+          return core_runtime.DriftPayloadQueueRepository(dbFactory);
         }),
         core_domain.telemetryServiceProvider.overrideWith((ref) {
           ref.keepAlive();

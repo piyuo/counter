@@ -42,7 +42,7 @@ final class AppRuntimeNotifierProvider
 }
 
 String _$appRuntimeNotifierHash() =>
-    r'88b93e2b47151694e33af11164da2579f40a91d7';
+    r'60b2a8be5066dd98df0ff56050ecaf16dc92e986';
 
 abstract class _$AppRuntimeNotifier extends $Notifier<AppRuntimeState> {
   AppRuntimeState build();

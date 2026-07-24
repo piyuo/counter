@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
+import 'package:universal_platform/universal_platform.dart';
 
 import '../utils/video_file_importer.dart';
 
@@ -47,11 +48,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
           padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
           child: Column(
             children: [
-              feature_pip.PipHeader(
-                icon: Icons.video_camera_back,
-                title: context.l.video_sources_screen_title,
-                subtitle: context.l.video_sources_screen_body,
-              ),
+              feature_pip.PipHeader(icon: Icons.video_camera_back, title: context.l.start_screen_video_sources),
               feature_pip.PipPanel(
                 child: Column(
                   children: [
@@ -60,7 +57,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
                         leading: _selectionIndicator(context, _isSelected(videoSource, selectedVideoSource)),
                         title: buildVideoSourceName(context, videoSource),
                         titleIcon: _iconForVideoSource(videoSource),
-                        subtitle: _labelForVideoSource(context, videoSource),
+                        subtitle: context.l.video_sources_screen_select_camera,
                         isSelected: _isSelected(videoSource, selectedVideoSource),
                         onTap: () async {
                           await ref.read(core_domain.appProvider.notifier).setVideoSource(videoSource);
@@ -72,12 +69,12 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
                         child: Column(
                           children: [
                             Text(
-                              context.l.video_sources_camera_not_found_title,
+                              context.l.video_sources_screen_camera_not_found_title,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              context.l.video_sources_camera_not_found_message,
+                              context.l.video_sources_screen_camera_not_found_message,
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                             ),
@@ -87,25 +84,28 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-              feature_pip.PipPanel(
-                child: _SourceOptionTile(
-                  leading: _selectionIndicator(context, selectedVideoSource is core_domain.LiveVideoSource),
-                  title: context.l.url_screen_title,
-                  titleIcon: Icons.cloud_outlined,
-                  isSelected: selectedVideoSource is core_domain.LiveVideoSource,
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 18),
-                  onTap: () {
-                    ref.push(const core_domain.OpenLiveUrl());
-                  },
+              if (!UniversalPlatform.isAndroid && !UniversalPlatform.isIOS) const SizedBox(height: 10),
+              if (!UniversalPlatform.isAndroid && !UniversalPlatform.isIOS)
+                feature_pip.PipPanel(
+                  child: _SourceOptionTile(
+                    leading: _selectionIndicator(context, selectedVideoSource is core_domain.LiveVideoSource),
+                    title: context.l.url_screen_title,
+                    titleIcon: Icons.cloud_outlined,
+                    subtitle: context.l.video_sources_screen_select_live,
+                    isSelected: selectedVideoSource is core_domain.LiveVideoSource,
+                    trailing: const Icon(Icons.arrow_forward_ios, size: 18),
+                    onTap: () {
+                      ref.push(const core_domain.OpenLiveUrl());
+                    },
+                  ),
                 ),
-              ),
               const SizedBox(height: 10),
               feature_pip.PipPanel(
                 child: _SourceOptionTile(
                   leading: _selectionIndicator(context, selectedVideoSource is core_domain.FileVideoSource),
                   title: context.l.video_sources_file,
                   titleIcon: Icons.folder_open,
+                  subtitle: context.l.video_sources_screen_select_file,
                   isSelected: selectedVideoSource is core_domain.FileVideoSource,
                   trailing: _isImportingVideoFile
                       ? const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2.5))
@@ -142,17 +142,13 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       _isImportingVideoFile = true;
     });
     try {
-      final result = await pickAndImportVideoFile(
-        projectId: appState.deviceId,
-        videoId: DateTime.now().microsecondsSinceEpoch,
-      );
-
+      final result = await pickAndImportVideoFile();
       switch (result.status) {
         case ImportedVideoPickStatus.cancelled:
           return;
         case ImportedVideoPickStatus.permissionDenied:
           if (context.mounted) {
-            await showMessageDialog(context.l.video_sources_photos_denied_msg);
+            await showMessageDialog(context.l.video_sources_screen_photos_denied_msg);
           }
           return;
         case ImportedVideoPickStatus.selected:
@@ -167,7 +163,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       }
     } catch (error) {
       if (context.mounted) {
-        await showMessageDialog(context.l.video_sources_import_error);
+        await showMessageDialog(context.l.video_sources_screen_import_error);
       }
     } finally {
       if (mounted) {
@@ -187,16 +183,6 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       _ => Icons.video_camera_back,
     };
   }
-
-  String _labelForVideoSource(BuildContext context, core_domain.VideoSource videoSource) {
-    return switch (videoSource) {
-      core_domain.CameraVideoSource() => context.l.video_sources_camera,
-      core_domain.WebcamVideoSource() => context.l.video_sources_webcam,
-      core_domain.FileVideoSource() => context.l.video_sources_file,
-      core_domain.LiveVideoSource() => context.l.video_sources_live_stream,
-      _ => context.l.video_sources_screen_title,
-    };
-  }
 }
 
 class _SourceOptionTile extends StatelessWidget {
@@ -204,8 +190,8 @@ class _SourceOptionTile extends StatelessWidget {
     required this.leading,
     required this.title,
     required this.titleIcon,
-    this.subtitle,
     required this.isSelected,
+    this.subtitle,
     this.trailing,
     this.onTap,
   });
@@ -213,15 +199,14 @@ class _SourceOptionTile extends StatelessWidget {
   final Widget? leading;
   final String title;
   final IconData titleIcon;
-  final String? subtitle;
   final bool isSelected;
+  final String? subtitle;
   final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final iconColor = isSelected ? Theme.of(context).colorScheme.primary : Colors.grey;
-    final subtitleStyle = Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey);
 
     return InkWell(
       onTap: onTap,
@@ -242,14 +227,21 @@ class _SourceOptionTile extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(titleIcon, size: 18, color: iconColor),
+                      Icon(titleIcon, size: 32, color: iconColor),
                       const SizedBox(width: 10),
                       Expanded(child: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis)),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  if (subtitle != null)
-                    Text(subtitle!, maxLines: 2, overflow: TextOverflow.ellipsis, style: subtitleStyle),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      subtitle!,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                    ),
+                  ] else
+                    const SizedBox(height: 4),
                 ],
               ),
             ),

@@ -12,9 +12,9 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
       $enumDecodeNullable(
         _$DataServerSelectionEnumMap,
         json['dataServerSelection'],
-        unknownValue: DataServerSelection.none,
+        unknownValue: DataServerSelection.unspecified,
       ) ??
-      DataServerSelection.none,
+      DataServerSelection.unspecified,
   personalPiyuoServer: json['personalPiyuoServer'] == null
       ? null
       : PersonalPiyuoServer.fromJson(
@@ -38,7 +38,6 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   uploadConfig: json['uploadConfig'] == null
       ? const UploadConfig()
       : UploadConfig.fromJson(json['uploadConfig'] as Map<String, dynamic>),
-  isOnboardingComplete: json['isOnboardingComplete'] as bool? ?? false,
   videoSource: json['videoSource'] == null
       ? const VideoSource.unspecified()
       : VideoSource.fromJson(json['videoSource'] as Map<String, dynamic>),
@@ -51,6 +50,12 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
           json['detectionParams'] as Map<String, dynamic>,
         ),
   uploadJitterSec: (json['uploadJitterSec'] as num?)?.toInt() ?? 0,
+  interestAreas:
+      (json['interestAreas'] as List<dynamic>?)
+          ?.map((e) => InterestAreaData.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
+  isTrackIdVisible: json['isTrackIdVisible'] as bool? ?? false,
 );
 
 Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
@@ -62,15 +67,17 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'businessPiyuoServer': instance.businessPiyuoServer,
   'businessCustomServer': instance.businessCustomServer,
   'uploadConfig': instance.uploadConfig,
-  'isOnboardingComplete': instance.isOnboardingComplete,
   'videoSource': instance.videoSource,
   'detectionType': instance.detectionType,
   'detectionParams': instance.detectionParams,
   'uploadJitterSec': instance.uploadJitterSec,
+  'interestAreas': instance.interestAreas,
+  'isTrackIdVisible': instance.isTrackIdVisible,
 };
 
 const _$DataServerSelectionEnumMap = {
-  DataServerSelection.none: 'none',
+  DataServerSelection.unspecified: 'unspecified',
+  DataServerSelection.noDataServer: 'noDataServer',
   DataServerSelection.personalPiyuo: 'personalPiyuo',
   DataServerSelection.businessPiyuo: 'businessPiyuo',
   DataServerSelection.personalCustom: 'personalCustom',

@@ -41,7 +41,8 @@ Map<String, dynamic> _$TelemetryPayloadToJson(_TelemetryPayload instance) =>
     };
 
 _AreaPayload _$AreaPayloadFromJson(Map<String, dynamic> json) => _AreaPayload(
-  areaId: (json['areaId'] as num).toInt(),
+  areaId: (json['areaId'] as num?)?.toInt() ?? 0,
+  areaName: json['areaName'] as String? ?? '',
   passBy: (json['passBy'] as num?)?.toInt() ?? 0,
   stay: (json['stay'] as num?)?.toInt() ?? 0,
   entry: (json['entry'] as num?)?.toInt() ?? 0,
@@ -55,12 +56,13 @@ _AreaPayload _$AreaPayloadFromJson(Map<String, dynamic> json) => _AreaPayload(
   avgDwellSec: json['avgDwellSec'] == null
       ? 0
       : const RoundedDouble2().fromJson(json['avgDwellSec']),
-  maxDwellSec: (json['maxDwellSec'] as num?)?.toInt() ?? 0,
+  maxDwellSec: (json['maxDwellSec'] as num?)?.toDouble() ?? 0,
 );
 
 Map<String, dynamic> _$AreaPayloadToJson(_AreaPayload instance) =>
     <String, dynamic>{
       'areaId': instance.areaId,
+      'areaName': instance.areaName,
       'passBy': instance.passBy,
       'stay': instance.stay,
       'entry': instance.entry,

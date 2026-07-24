@@ -3,13 +3,14 @@
 // - _DetectionTypeOption: a selectable detection type row definition
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_control_panel/widgets/selection_checkbox.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-class DetectionTypeSelectionScreen extends ConsumerWidget {
-  const DetectionTypeSelectionScreen({super.key});
+class TargetScreen extends ConsumerWidget {
+  const TargetScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +24,7 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Text(
-                context.l.detection_type_screen_load_error,
+                'Failed to load app state. Please restart the app.',
                 style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
@@ -33,15 +34,15 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
             final currentDetection = appState.detectionType;
             final options = <_DetectionTypeOption>[
               _DetectionTypeOption(
-                title: context.l.detection_type_screen_pedestrian_title,
-                subtitle: context.l.detection_type_screen_pedestrian_body,
+                title: context.l.target_pedestrian,
+                subtitle: context.l.target_pedestrian_help,
                 icon: Icons.directions_walk,
                 matches: (detection) => detection is core_domain.DetectionHuman,
                 detection: const core_domain.DetectionType.human(),
               ),
               _DetectionTypeOption(
-                title: context.l.detection_type_screen_vehicle_title,
-                subtitle: context.l.detection_type_screen_vehicle_body,
+                title: context.l.target_vehicle,
+                subtitle: context.l.target_vehicle_help,
                 icon: Icons.directions_car,
                 matches: (detection) => detection is core_domain.DetectionVehicle,
                 detection: const core_domain.DetectionType.vehicle(),
@@ -55,8 +56,8 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
                 children: [
                   feature_pip.PipHeader(
                     icon: Icons.gps_fixed,
-                    title: context.l.detection_type_screen_title,
-                    subtitle: context.l.detection_type_screen_body,
+                    title: context.l.settings_screen_detection_target,
+                    subtitle: context.l.target_screen_subtitle,
                   ),
                   feature_pip.PipPanel(
                     child: Column(
@@ -66,7 +67,9 @@ class DetectionTypeSelectionScreen extends ConsumerWidget {
                             option: options[index],
                             selected: options[index].matches(currentDetection),
                             onTap: () async {
-                              await ref.read(core_domain.appProvider.notifier).setDetection(options[index].detection);
+                              await ref
+                                  .read(core_domain.appProvider.notifier)
+                                  .setDetectionType(options[index].detection);
                               if (context.mounted) {
                                 Navigator.of(context).maybePop();
                               }
@@ -116,11 +119,13 @@ class _DetectionTypeTile extends StatelessWidget {
     final subtitleStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey);
 
     return ListTile(
-      leading: Icon(option.icon, size: 32, color: selected ? Colors.greenAccent : Colors.grey),
+      leading: IgnorePointer(
+        child: SelectionCheckbox(value: selected, onChanged: (_) {}),
+      ),
       title: Text(option.title, style: titleStyle),
       subtitle: Text(option.subtitle, style: subtitleStyle),
       selected: selected,
-      trailing: selected ? const Icon(Icons.check, color: Colors.greenAccent) : null,
+      selectedTileColor: Colors.blue.withValues(alpha: 0.1),
       onTap: onTap,
     );
   }

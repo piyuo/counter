@@ -14,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DriftPayloadQueueRepository - fetchRecent Benchmark', () {
-    late TelemetryDatabase db;
+    late TelemetryDatabaseFun db;
     late DriftPayloadQueueRepository repository;
     late Directory tempDir;
     late String dbPath;
@@ -27,8 +27,8 @@ void main() {
     });
 
     tearDown(() async {
-      await db.close();
-      await TelemetryDatabase.remove(filePath: dbPath);
+      await db().close();
+      await TelemetryDatabase.removeFile(filePath: dbPath);
       if (await tempDir.exists()) {
         await tempDir.delete(recursive: true);
       }

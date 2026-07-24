@@ -1,6 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
@@ -12,7 +13,7 @@ class PersonalCustomSuccessScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return OnboardingScaffold(
-      title: 'Server Configured',
+      title: context.l.personal_custom_success_screen_title,
 
       nextButtonAction: NextButtonAction.start,
 
@@ -24,40 +25,28 @@ class PersonalCustomSuccessScreen extends ConsumerWidget {
 
       builder: (context) => [
         Text(
-          'Traffic summaries will be sent to:',
+          context.l.personal_custom_success_screen_send_to,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
 
         onboardingSpacer(),
-
-        onboardingTextField(url),
-
+        onboardingTextField(context, url),
         onboardingSpacer(),
 
         Text(
-          "Press 'Start' below to begin counting.",
+          context.l.personal_custom_success_screen_help2.replaceAll('\\n', '\n'),
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        onboardingSpacer(),
+        Text(
+          context.l.personal_custom_success_screen_help.replaceAll('\\n', '\n'),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
 
         onboardingSpacer(),
-
-        Text(
-          'Uploads happen automatically every hour. '
-          'You can also trigger manual uploads from the upload logs screen.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-
-        onboardingSpacer(),
-
-        Text(
-          'Your server does not need to be online yet. '
-          'You can start building and testing your backend after counting begins.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodySmall,
-        ),
       ],
     );
   }

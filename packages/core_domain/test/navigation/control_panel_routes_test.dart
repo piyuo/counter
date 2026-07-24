@@ -8,10 +8,13 @@ void main() {
   group('ControlPanelRoutes', () {
     test('root is "/"', () => expect(ControlPanelRoutes.root, '/'));
     test('start is "/start"', () => expect(ControlPanelRoutes.start, '/start'));
-    test('liveStreamOnly is "/live-stream-only"', () => expect(ControlPanelRoutes.liveStreamOnly, '/live-stream-only'));
+    test(
+      'deviceNotSupported is "/device-not-supported"',
+      () => expect(ControlPanelRoutes.deviceNotSupported, '/device-not-supported'),
+    );
 
     test('all constants are distinct', () {
-      final values = [ControlPanelRoutes.root, ControlPanelRoutes.start, ControlPanelRoutes.liveStreamOnly];
+      final values = [ControlPanelRoutes.root, ControlPanelRoutes.start, ControlPanelRoutes.deviceNotSupported];
       expect(values.toSet().length, values.length);
     });
   });

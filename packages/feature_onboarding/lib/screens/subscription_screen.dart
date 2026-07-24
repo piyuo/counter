@@ -15,17 +15,11 @@ class SubscriptionScreen extends StatelessWidget {
 
   final String nextPage;
 
-  void _launchTerms() {
-    // TODO: wire to terms URL.
-  }
+  void _launchTerms() {}
 
-  void _launchPrivacy() {
-    // TODO: wire to privacy URL.
-  }
+  void _launchPrivacy() {}
 
-  void _restorePurchases() {
-    // TODO: wire to restore purchases.
-  }
+  void _restorePurchases() {}
 
   @override
   Widget build(BuildContext context) {

@@ -17,7 +17,7 @@ PODS:
   - screen_brightness_macos (0.1.0):
     - FlutterMacOS
   - Sentry/HybridSDK (8.58.3)
-  - sentry_flutter (9.22.0):
+  - sentry_flutter (9.24.0):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.3)
@@ -119,7 +119,7 @@ SPEC CHECKSUMS:
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
   screen_brightness_macos: ffe1baaf6e68589b8bd446385adbbe69697cfc09
   Sentry: 108fdbb76299c4189af12246bf0308c09c278922
-  sentry_flutter: 23107cf6ac9e0b93600711a4a3ae3d4c1de01b9e
+  sentry_flutter: b9c59bc3a9fe2272f74961586afc08bd7300c2c3
   share_plus: 1fa619de8392a4398bfaf176d441853922614e89
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   sqlite3: a51c07cf16e023d6c48abd5e5791a61a47354921

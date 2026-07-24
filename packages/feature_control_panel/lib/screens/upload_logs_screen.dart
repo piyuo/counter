@@ -2,6 +2,7 @@
 // - UploadLogsScreen: upload log history grouped by day
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_control_panel/utils/telemetry_error_code_helper.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
@@ -38,16 +39,10 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
   }
 
   Future<void> _uploadNow() async {
-    try {
-      final appState = await ref.read(core_domain.appProvider.future);
-      if (!mounted) return;
-      if (appState.hasDataServer == false) {
-        await showMessageDialog(context.l.upload_logs_screen_set_data_server_first_body);
-        return;
-      }
-    } catch (error) {
-      if (!mounted) return;
-      await showMessageDialog('${context.l.upload_logs_screen_check_data_server_error_prefix}$error');
+    final appState = await ref.read(core_domain.appProvider.future);
+    if (!mounted) return;
+    if (appState.hasDataServer == false) {
+      await showMessageDialog(context.l.upload_screen_no_data_server);
       return;
     }
 
@@ -55,22 +50,26 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
       _isUploading = true;
     });
 
+    final telemetryService = ref.read(core_domain.telemetryServiceProvider);
     try {
-      final telemetryService = ref.read(core_domain.telemetryServiceProvider);
       final success = await telemetryService.uploadNow();
       if (!mounted) return;
       if (!success) {
-        if (telemetryService.lastError == null) {
-          await showMessageDialog(context.l.upload_logs_screen_upload_failed_unknown);
-        } else {
-          await showMessageDialog('${context.l.upload_logs_screen_upload_failed_prefix}${telemetryService.lastError}');
+        if (telemetryService.lastErrorCode != null) {
+          String errorMessage = telemetryService.lastErrorCode!.localizedMessage(context);
+          if (telemetryService.lastError != null) {
+            errorMessage += '\n${telemetryService.lastError}';
+          }
+          await showMessageDialog(errorMessage, title: telemetryService.url);
+          return;
         }
+        await showMessageDialog(telemetryService.lastError ?? context.l.telemetry_error_http_unknown_error);
         return;
       }
-      await showMessageDialog(context.l.upload_logs_screen_uploaded_success);
+      await showMessageDialog(context.l.upload_screen_upload_success);
     } catch (error) {
       if (!mounted) return;
-      await showMessageDialog('${context.l.upload_logs_screen_upload_failed_prefix}$error');
+      await showMessageDialog('$error', title: telemetryService.url);
     } finally {
       if (mounted) {
         setState(() {
@@ -96,8 +95,8 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final yesterday = today.subtract(const Duration(days: 1));
-    if (day == today) return context.l.upload_logs_screen_today_label;
-    if (day == yesterday) return context.l.upload_logs_screen_yesterday_label;
+    if (day == today) return context.l.upload_screen_today;
+    if (day == yesterday) return context.l.upload_screen_yesterday;
     return DateFormat.yMMMMd().format(day);
   }
 
@@ -110,7 +109,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
       return feature_pip.PipPanel(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Text(
-          context.l.upload_logs_screen_empty_body,
+          context.l.upload_screen_no_logs,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
         ),
       );
@@ -146,7 +145,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          '${entry.value[i].payloadCount} ${context.l.upload_logs_screen_payloads_unit}, ${entry.value[i].payloadSizeKb}KB',
+                          '${context.l.upload_screen_payload_count} ${entry.value[i].payloadCount}, ${entry.value[i].payloadSizeKb}KB',
                         ),
                         const SizedBox(width: 8),
                         const Icon(Icons.arrow_forward_ios, size: 14),
@@ -157,7 +156,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                       final fullLog = await queue.fetchUploadLogById(entry.value[i].id);
                       if (!mounted) return;
                       if (fullLog == null) {
-                        await showMessageDialog(context.l.upload_logs_screen_detail_unavailable_body);
+                        await showMessageDialog(context.l.upload_screen_log_not_exists);
                         return;
                       }
                       ref.push(core_domain.OpenUploadLogDetail(log: fullLog));
@@ -180,9 +179,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
 
     return feature_pip.PipScaffold(
       action: feature_pip.PipActionButton(
-        label: _isUploading
-            ? context.l.upload_logs_screen_uploading_action
-            : context.l.upload_logs_screen_upload_now_action,
+        label: _isUploading ? context.l.upload_screen_uploading : context.l.upload_screen_upload_now,
         onPressed: _isUploading ? null : _uploadNow,
       ),
       builder: (scrollController) {
@@ -195,7 +192,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                 valueListenable: telemetry.nextUploadTimeListenable,
                 builder: (context, nextUpload, child) => feature_pip.PipHeader(
                   icon: Icons.timelapse,
-                  title: context.l.upload_logs_screen_title,
+                  title: context.l.start_screen_upload_logs,
                   subtitle: _buildNextUploadLabel(nextUpload),
                 ),
               ),
@@ -215,17 +212,14 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(context.l.upload_logs_screen_load_error, style: Theme.of(context).textTheme.bodyMedium),
+                          Text(context.l.upload_screen_load_error, style: Theme.of(context).textTheme.bodyMedium),
                           const SizedBox(height: 8),
                           Text(
                             '${snapshot.error}',
                             style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
                           ),
                           const SizedBox(height: 8),
-                          TextButton(
-                            onPressed: _refreshRecentLogs,
-                            child: Text(context.l.upload_logs_screen_retry_action),
-                          ),
+                          TextButton(onPressed: _refreshRecentLogs, child: Text(context.l.upload_screen_retry)),
                         ],
                       ),
                     );
@@ -243,9 +237,9 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
 
   String _buildNextUploadLabel(DateTime? dt) {
     if (dt == null) {
-      return context.l.upload_logs_screen_next_upload_pending;
+      return context.l.upload_screen_next;
     }
 
-    return '${context.l.upload_logs_screen_next_upload_prefix}${DateFormat.jm().format(dt.toLocal())}';
+    return '${context.l.upload_screen_next_upload_prefix}${DateFormat.jm().format(dt.toLocal())}';
   }
 }

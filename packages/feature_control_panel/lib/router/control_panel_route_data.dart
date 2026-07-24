@@ -5,7 +5,7 @@
 //  - SettingsPiyuoRouteData: typed route for '/settings/piyuo'
 //  - SettingsServerRouteData: typed route for '/settings/server'
 //  - BuildInfoRouteData: typed route for '/build-info'
-//  - DetectionParamsRouteData: typed route for '/detection-params'
+//  - DetectionRouteData: typed route for '/detection'
 //  - DeliveryConfigRouteData: typed route for '/delivery-config'
 //  - UploadLogsRouteData: typed route for '/upload-logs'
 //  - UploadLogDetailRouteData: typed route for '/upload-logs/detail/:attemptedAtMs/:successFlag'
@@ -23,26 +23,28 @@
 //  - Paths are the single source of truth; ControlPanelRoutes only keeps root/start/liveStreamOnly.
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:counter_app/app_shell/device_not_supported_screen.dart';
 import 'package:feature_control_panel/screens/about_screen.dart';
 import 'package:feature_control_panel/screens/build_info_screen.dart';
-import 'package:feature_control_panel/screens/detection_params_screen.dart';
-import 'package:feature_control_panel/screens/detection_type_selection_screen.dart';
+import 'package:feature_control_panel/screens/custom_server_screen.dart';
+import 'package:feature_control_panel/screens/detection_screen.dart';
 import 'package:feature_control_panel/screens/language_screen.dart';
-import 'package:feature_control_panel/screens/live_url_screen.dart';
 import 'package:feature_control_panel/screens/loading_screen.dart';
-import 'package:feature_control_panel/screens/no_camera_screen.dart';
 import 'package:feature_control_panel/screens/payload_detail_screen.dart';
 import 'package:feature_control_panel/screens/payloads_hour_screen.dart';
 import 'package:feature_control_panel/screens/payloads_recent_screen.dart';
-import 'package:feature_control_panel/screens/settings_personal_custom_screen.dart';
-import 'package:feature_control_panel/screens/settings_personal_piyuo_screen.dart';
+import 'package:feature_control_panel/screens/piyuo_server_screen.dart';
 import 'package:feature_control_panel/screens/settings_screen.dart';
 import 'package:feature_control_panel/screens/start_screen.dart';
+import 'package:feature_control_panel/screens/target_screen.dart';
 import 'package:feature_control_panel/screens/upload_detail_screen.dart';
 import 'package:feature_control_panel/screens/upload_logs_screen.dart';
+import 'package:feature_control_panel/screens/url_screen.dart';
 import 'package:feature_control_panel/screens/video_sources_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../screens/local_only_screen.dart';
 
 part 'control_panel_route_data.g.dart';
 
@@ -75,7 +77,7 @@ class SettingsPiyuoRouteData extends GoRouteData with $SettingsPiyuoRouteData {
   const SettingsPiyuoRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SettingsPiyuoScreen();
+  Widget build(BuildContext context, GoRouterState state) => const PiyuoServerScreen();
 }
 
 @TypedGoRoute<SettingsServerRouteData>(path: '/settings/server')
@@ -83,7 +85,15 @@ class SettingsServerRouteData extends GoRouteData with $SettingsServerRouteData 
   const SettingsServerRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SettingsPersonalCustomScreen();
+  Widget build(BuildContext context, GoRouterState state) => const CustomServerScreen();
+}
+
+@TypedGoRoute<SettingsLocalRouteData>(path: '/settings/local')
+class SettingsLocalRouteData extends GoRouteData with $SettingsLocalRouteData {
+  const SettingsLocalRouteData();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const LocalOnlyScreen();
 }
 
 @TypedGoRoute<AboutRouteData>(path: '/about')
@@ -102,20 +112,20 @@ class BuildInfoRouteData extends GoRouteData with $BuildInfoRouteData {
   Widget build(BuildContext context, GoRouterState state) => const BuildInfoScreen();
 }
 
-@TypedGoRoute<DetectionParamsRouteData>(path: '/detection-params')
-class DetectionParamsRouteData extends GoRouteData with $DetectionParamsRouteData {
-  const DetectionParamsRouteData();
+@TypedGoRoute<DetectionRouteData>(path: '/detection')
+class DetectionRouteData extends GoRouteData with $DetectionRouteData {
+  const DetectionRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const DetectionParamsScreen();
 }
 
-@TypedGoRoute<DetectionTypeSelectionRouteData>(path: '/detection-type')
-class DetectionTypeSelectionRouteData extends GoRouteData with $DetectionTypeSelectionRouteData {
-  const DetectionTypeSelectionRouteData();
+@TypedGoRoute<TargetRouteData>(path: '/target')
+class TargetRouteData extends GoRouteData with $TargetRouteData {
+  const TargetRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const DetectionTypeSelectionScreen();
+  Widget build(BuildContext context, GoRouterState state) => const TargetScreen();
 }
 
 @TypedGoRoute<UploadLogsRouteData>(path: '/upload-logs')
@@ -181,7 +191,7 @@ class LiveUrlRouteData extends GoRouteData with $LiveUrlRouteData {
   const LiveUrlRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const LiveUrlScreen();
+  Widget build(BuildContext context, GoRouterState state) => const UrlScreen();
 }
 
 @TypedGoRoute<VideoSourcesRouteData>(path: '/video-sources')
@@ -192,10 +202,10 @@ class VideoSourcesRouteData extends GoRouteData with $VideoSourcesRouteData {
   Widget build(BuildContext context, GoRouterState state) => const VideoSourcesScreen();
 }
 
-@TypedGoRoute<NoCameraRouteData>(path: '/live-stream-only')
-class NoCameraRouteData extends GoRouteData with $NoCameraRouteData {
-  const NoCameraRouteData();
+@TypedGoRoute<DeviceNotSupportedRouteData>(path: '/device-not-supported')
+class DeviceNotSupportedRouteData extends GoRouteData with $DeviceNotSupportedRouteData {
+  const DeviceNotSupportedRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const NoCameraScreen();
+  Widget build(BuildContext context, GoRouterState state) => const DeviceNotSupportedScreen();
 }

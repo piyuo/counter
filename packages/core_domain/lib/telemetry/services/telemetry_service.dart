@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/telemetry_payload.dart';
+import 'telemetry_transport.dart' as core_domain;
 
 part 'telemetry_service.g.dart';
 
@@ -62,7 +63,13 @@ abstract class TelemetryService {
   bool? get isLastUploadSuccess;
 
   /// Machine-readable error code from the last failed attempt.
+  core_domain.TelemetryErrorCode? get lastErrorCode;
+
+  /// Machine-readable error code from the last failed attempt.
   String? get lastError;
+
+  /// Machine-readable error code from the last failed attempt.
+  String? get url;
 }
 
 @riverpod
