@@ -1,19 +1,20 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-class SettingsPersonalCustomScreen extends ConsumerStatefulWidget {
-  const SettingsPersonalCustomScreen({super.key});
+class CustomServerScreen extends ConsumerStatefulWidget {
+  const CustomServerScreen({super.key});
 
   @override
-  ConsumerState<SettingsPersonalCustomScreen> createState() => _SettingsServerScreenState();
+  ConsumerState<CustomServerScreen> createState() => _SettingsServerScreenState();
 }
 
-class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScreen> {
+class _SettingsServerScreenState extends ConsumerState<CustomServerScreen> {
   //static const List<int> _deliveryIntervalOptions = [5, 10, 15, 30, 60, 120, 240, 480, 720, 1440];
 
   late final TextEditingController _serverUrlController;
@@ -74,16 +75,17 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
                 children: [
                   const Icon(Icons.dns_outlined, size: 64),
                   const SizedBox(height: 8),
-                  Text(context.l.settings_server_screen_title, style: Theme.of(context).textTheme.titleMedium),
+                  Text(context.l.settings_screen_custom_title, style: Theme.of(context).textTheme.titleMedium),
                   const SizedBox(height: 4),
                   Text(
-                    context.l.settings_server_screen_body,
+                    context.l.settings_screen_custom_subtitle,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey),
                   ),
                 ],
               ),
             ),
+
             const SizedBox(height: 10),
             feature_pip.PipPanel(
               child: Padding(
@@ -92,7 +94,7 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      context.l.settings_server_screen_server_url_label,
+                      context.l.custom_server_screen_server_url_label,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 10),
@@ -102,7 +104,8 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
                       Text(_urlError!, style: const TextStyle(color: Colors.red, fontSize: 14)),
                     ],
                     const SizedBox(height: 16),
-                    Text('Bearer Token', style: Theme.of(context).textTheme.titleSmall),
+                    // don't translate this label, it's a technical term
+                    Text('Bearer Token (Optional)', style: Theme.of(context).textTheme.titleSmall),
                     const SizedBox(height: 10),
                     GlassTextField(controller: _bearerTokenController),
                     /*const SizedBox(height: 16),
@@ -131,6 +134,21 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
                 ),
               ),
             ),
+            feature_pip.PipPanel(
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.help),
+                    title: Text(context.l.personal_custom_screen_help_action),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      appkit.netOpenUrl('https://piyuo.com/en/docs/payload-format');
+                    },
+                  ),
+                ],
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 32, 16, 16),
               child: SizedBox(
@@ -139,6 +157,7 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
                   onPressed: _isSaving
                       ? null
                       : () async {
+                          final router = GoRouter.of(context);
                           final serverUrl = _serverUrlController.text.trim();
                           final bearerToken = _bearerTokenController.text.trim();
                           setState(() {
@@ -160,14 +179,13 @@ class _SettingsServerScreenState extends ConsumerState<SettingsPersonalCustomScr
 
                           final appController = ref.read(core_domain.appProvider.notifier);
                           await appController.selectPersonalCustomServer(serverUrl, bearerToken);
-                          if (!mounted) return;
-                          context.pop();
+                          router.pop();
                         },
                   style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                   child: Text(
                     _isSaving
-                        ? context.l.settings_server_screen_saving_action
-                        : context.l.settings_server_screen_use_action,
+                        ? context.l.custom_server_screen_bearer_saving_action
+                        : context.l.settings_screen_custom_title,
                   ),
                 ),
               ),

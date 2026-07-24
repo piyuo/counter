@@ -31,7 +31,7 @@ DataServer _$DataServerFromJson(
           return BusinessCustomServer.fromJson(
             json
           );
-                case 'none':
+                case 'noDataServer':
           return NoDataServer.fromJson(
             json
           );
@@ -93,15 +93,15 @@ extension DataServerPatterns on DataServer {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PersonalPiyuoServer value)?  personalPiyuo,TResult Function( BusinessPiyuoServer value)?  businessPiyuo,TResult Function( PersonalCustomServer value)?  personalCustom,TResult Function( BusinessCustomServer value)?  businessCustom,TResult Function( NoDataServer value)?  none,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( PersonalPiyuoServer value)?  personalPiyuo,TResult Function( BusinessPiyuoServer value)?  businessPiyuo,TResult Function( PersonalCustomServer value)?  personalCustom,TResult Function( BusinessCustomServer value)?  businessCustom,TResult Function( NoDataServer value)?  noDataServer,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case PersonalPiyuoServer() when personalPiyuo != null:
 return personalPiyuo(_that);case BusinessPiyuoServer() when businessPiyuo != null:
 return businessPiyuo(_that);case PersonalCustomServer() when personalCustom != null:
 return personalCustom(_that);case BusinessCustomServer() when businessCustom != null:
-return businessCustom(_that);case NoDataServer() when none != null:
-return none(_that);case _:
+return businessCustom(_that);case NoDataServer() when noDataServer != null:
+return noDataServer(_that);case _:
   return orElse();
 
 }
@@ -119,7 +119,7 @@ return none(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PersonalPiyuoServer value)  personalPiyuo,required TResult Function( BusinessPiyuoServer value)  businessPiyuo,required TResult Function( PersonalCustomServer value)  personalCustom,required TResult Function( BusinessCustomServer value)  businessCustom,required TResult Function( NoDataServer value)  none,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( PersonalPiyuoServer value)  personalPiyuo,required TResult Function( BusinessPiyuoServer value)  businessPiyuo,required TResult Function( PersonalCustomServer value)  personalCustom,required TResult Function( BusinessCustomServer value)  businessCustom,required TResult Function( NoDataServer value)  noDataServer,}){
 final _that = this;
 switch (_that) {
 case PersonalPiyuoServer():
@@ -127,7 +127,7 @@ return personalPiyuo(_that);case BusinessPiyuoServer():
 return businessPiyuo(_that);case PersonalCustomServer():
 return personalCustom(_that);case BusinessCustomServer():
 return businessCustom(_that);case NoDataServer():
-return none(_that);}
+return noDataServer(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -141,15 +141,15 @@ return none(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PersonalPiyuoServer value)?  personalPiyuo,TResult? Function( BusinessPiyuoServer value)?  businessPiyuo,TResult? Function( PersonalCustomServer value)?  personalCustom,TResult? Function( BusinessCustomServer value)?  businessCustom,TResult? Function( NoDataServer value)?  none,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( PersonalPiyuoServer value)?  personalPiyuo,TResult? Function( BusinessPiyuoServer value)?  businessPiyuo,TResult? Function( PersonalCustomServer value)?  personalCustom,TResult? Function( BusinessCustomServer value)?  businessCustom,TResult? Function( NoDataServer value)?  noDataServer,}){
 final _that = this;
 switch (_that) {
 case PersonalPiyuoServer() when personalPiyuo != null:
 return personalPiyuo(_that);case BusinessPiyuoServer() when businessPiyuo != null:
 return businessPiyuo(_that);case PersonalCustomServer() when personalCustom != null:
 return personalCustom(_that);case BusinessCustomServer() when businessCustom != null:
-return businessCustom(_that);case NoDataServer() when none != null:
-return none(_that);case _:
+return businessCustom(_that);case NoDataServer() when noDataServer != null:
+return noDataServer(_that);case _:
   return null;
 
 }
@@ -166,14 +166,14 @@ return none(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String url)?  personalPiyuo,TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessPiyuo,TResult Function( String url)?  personalCustom,TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessCustom,TResult Function()?  none,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String url)?  personalPiyuo,TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessPiyuo,TResult Function( String url)?  personalCustom,TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessCustom,TResult Function()?  noDataServer,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case PersonalPiyuoServer() when personalPiyuo != null:
 return personalPiyuo(_that.url);case BusinessPiyuoServer() when businessPiyuo != null:
 return businessPiyuo(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case PersonalCustomServer() when personalCustom != null:
 return personalCustom(_that.url);case BusinessCustomServer() when businessCustom != null:
-return businessCustom(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case NoDataServer() when none != null:
-return none();case _:
+return businessCustom(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case NoDataServer() when noDataServer != null:
+return noDataServer();case _:
   return orElse();
 
 }
@@ -191,14 +191,14 @@ return none();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String url)  personalPiyuo,required TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)  businessPiyuo,required TResult Function( String url)  personalCustom,required TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)  businessCustom,required TResult Function()  none,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String url)  personalPiyuo,required TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)  businessPiyuo,required TResult Function( String url)  personalCustom,required TResult Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)  businessCustom,required TResult Function()  noDataServer,}) {final _that = this;
 switch (_that) {
 case PersonalPiyuoServer():
 return personalPiyuo(_that.url);case BusinessPiyuoServer():
 return businessPiyuo(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case PersonalCustomServer():
 return personalCustom(_that.url);case BusinessCustomServer():
 return businessCustom(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case NoDataServer():
-return none();}
+return noDataServer();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -212,14 +212,14 @@ return none();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String url)?  personalPiyuo,TResult? Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessPiyuo,TResult? Function( String url)?  personalCustom,TResult? Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessCustom,TResult? Function()?  none,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String url)?  personalPiyuo,TResult? Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessPiyuo,TResult? Function( String url)?  personalCustom,TResult? Function( String url,  String projectId,  String projectName,  String assignedId,  String assignedName)?  businessCustom,TResult? Function()?  noDataServer,}) {final _that = this;
 switch (_that) {
 case PersonalPiyuoServer() when personalPiyuo != null:
 return personalPiyuo(_that.url);case BusinessPiyuoServer() when businessPiyuo != null:
 return businessPiyuo(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case PersonalCustomServer() when personalCustom != null:
 return personalCustom(_that.url);case BusinessCustomServer() when businessCustom != null:
-return businessCustom(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case NoDataServer() when none != null:
-return none();case _:
+return businessCustom(_that.url,_that.projectId,_that.projectName,_that.assignedId,_that.assignedName);case NoDataServer() when noDataServer != null:
+return noDataServer();case _:
   return null;
 
 }
@@ -547,7 +547,7 @@ as String,
 @JsonSerializable()
 
 class NoDataServer extends DataServer {
-  const NoDataServer({final  String? $type}): $type = $type ?? 'none',super._();
+  const NoDataServer({final  String? $type}): $type = $type ?? 'noDataServer',super._();
   factory NoDataServer.fromJson(Map<String, dynamic> json) => _$NoDataServerFromJson(json);
 
 
@@ -573,7 +573,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DataServer.none()';
+  return 'DataServer.noDataServer()';
 }
 
 

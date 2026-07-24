@@ -12,10 +12,11 @@ List<RouteBase> get $appRoutes => [
   $settingsRouteData,
   $settingsPiyuoRouteData,
   $settingsServerRouteData,
+  $settingsLocalRouteData,
   $aboutRouteData,
   $buildInfoRouteData,
-  $detectionParamsRouteData,
-  $detectionTypeSelectionRouteData,
+  $detectionRouteData,
+  $targetRouteData,
   $uploadLogsRouteData,
   $uploadLogDetailRouteData,
   $recentPayloadsRouteData,
@@ -24,7 +25,7 @@ List<RouteBase> get $appRoutes => [
   $languageRouteData,
   $liveUrlRouteData,
   $videoSourcesRouteData,
-  $noCameraRouteData,
+  $deviceNotSupportedRouteData,
 ];
 
 RouteBase get $loadingRouteData =>
@@ -153,6 +154,32 @@ mixin $SettingsServerRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
+RouteBase get $settingsLocalRouteData => GoRouteData.$route(
+  path: '/settings/local',
+  factory: $SettingsLocalRouteData._fromState,
+);
+
+mixin $SettingsLocalRouteData on GoRouteData {
+  static SettingsLocalRouteData _fromState(GoRouterState state) =>
+      const SettingsLocalRouteData();
+
+  @override
+  String get location => GoRouteData.$location('/settings/local');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
 RouteBase get $aboutRouteData =>
     GoRouteData.$route(path: '/about', factory: $AboutRouteData._fromState);
 
@@ -203,17 +230,17 @@ mixin $BuildInfoRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $detectionParamsRouteData => GoRouteData.$route(
-  path: '/detection-params',
-  factory: $DetectionParamsRouteData._fromState,
+RouteBase get $detectionRouteData => GoRouteData.$route(
+  path: '/detection',
+  factory: $DetectionRouteData._fromState,
 );
 
-mixin $DetectionParamsRouteData on GoRouteData {
-  static DetectionParamsRouteData _fromState(GoRouterState state) =>
-      const DetectionParamsRouteData();
+mixin $DetectionRouteData on GoRouteData {
+  static DetectionRouteData _fromState(GoRouterState state) =>
+      const DetectionRouteData();
 
   @override
-  String get location => GoRouteData.$location('/detection-params');
+  String get location => GoRouteData.$location('/detection');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -229,17 +256,15 @@ mixin $DetectionParamsRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $detectionTypeSelectionRouteData => GoRouteData.$route(
-  path: '/detection-type',
-  factory: $DetectionTypeSelectionRouteData._fromState,
-);
+RouteBase get $targetRouteData =>
+    GoRouteData.$route(path: '/target', factory: $TargetRouteData._fromState);
 
-mixin $DetectionTypeSelectionRouteData on GoRouteData {
-  static DetectionTypeSelectionRouteData _fromState(GoRouterState state) =>
-      const DetectionTypeSelectionRouteData();
+mixin $TargetRouteData on GoRouteData {
+  static TargetRouteData _fromState(GoRouterState state) =>
+      const TargetRouteData();
 
   @override
-  String get location => GoRouteData.$location('/detection-type');
+  String get location => GoRouteData.$location('/target');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -483,17 +508,17 @@ mixin $VideoSourcesRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $noCameraRouteData => GoRouteData.$route(
-  path: '/live-stream-only',
-  factory: $NoCameraRouteData._fromState,
+RouteBase get $deviceNotSupportedRouteData => GoRouteData.$route(
+  path: '/device-not-supported',
+  factory: $DeviceNotSupportedRouteData._fromState,
 );
 
-mixin $NoCameraRouteData on GoRouteData {
-  static NoCameraRouteData _fromState(GoRouterState state) =>
-      const NoCameraRouteData();
+mixin $DeviceNotSupportedRouteData on GoRouteData {
+  static DeviceNotSupportedRouteData _fromState(GoRouterState state) =>
+      const DeviceNotSupportedRouteData();
 
   @override
-  String get location => GoRouteData.$location('/live-stream-only');
+  String get location => GoRouteData.$location('/device-not-supported');
 
   @override
   void go(BuildContext context) => context.go(location);

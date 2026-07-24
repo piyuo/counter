@@ -1,5 +1,6 @@
+export 'interest_area_data_converters.dart';
 export 'runtime/detection_params_to_vision_params.dart';
-export 'runtime/flutter_vision_runtime_service.dart';
+export 'runtime/flutter_vision_service.dart';
 export 'runtime/http_url_validator_service.dart';
 export 'runtime/native_app_link_service.dart';
 export 'runtime/native_hardware_capability_service.dart';

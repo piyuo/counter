@@ -8,6 +8,19 @@ import '../models/telemetry_response.dart';
 
 part 'telemetry_transport.g.dart';
 
+enum TelemetryErrorCode {
+  connectionRefused,
+  dnsLookupFailed,
+  socketError,
+  networkError,
+  invalidUrl,
+  connectionTimeout,
+  connectionReset,
+  httpErrorStatus,
+  transportException,
+  httpUnknownError,
+}
+
 /// Low-level transport that delivers serialized bytes to the backend.
 /// Returns a typed envelope for both success and failure outcomes.
 abstract class TelemetryTransport {

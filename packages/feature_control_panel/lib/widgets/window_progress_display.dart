@@ -4,10 +4,12 @@
 
 import 'dart:math' as math;
 
+import 'package:feature_control_panel/utils/format_percent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:primer_progress_bar/primer_progress_bar.dart';
+import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class WindowProgressDisplay extends StatelessWidget {
   const WindowProgressDisplay({
@@ -41,20 +43,20 @@ class WindowProgressDisplay extends StatelessWidget {
       Segment(
         value: doneSegmentValue,
         color: Colors.lightBlue,
-        label: const Text('Done', style: TextStyle(fontSize: 10)),
-        valueLabel: Text('${donePercent.toStringAsFixed(1)}%', style: TextStyle(fontSize: 10)),
+        label: Text(context.l.metrics_counting_done, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, donePercent), style: TextStyle(fontSize: 9)),
       ),
       Segment(
         value: inProgressSegmentValue,
         color: Colors.grey.shade300,
-        label: const Text('In progress', style: TextStyle(fontSize: 10)),
-        valueLabel: Text('${inProgressPercent.toStringAsFixed(1)}%', style: TextStyle(fontSize: 10)),
+        label: Text(context.l.metrics_counting_in_progress, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, inProgressPercent), style: TextStyle(fontSize: 9)),
       ),
       Segment(
         value: missingSegmentValue,
         color: Colors.orange.shade300,
-        label: const Text('Missing', style: TextStyle(fontSize: 10)),
-        valueLabel: Text('${missingPercent.toStringAsFixed(1)}%', style: TextStyle(fontSize: 10)),
+        label: Text(context.l.metrics_counting_missing, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, missingPercent), style: TextStyle(fontSize: 9)),
       ),
     ];
 
@@ -63,7 +65,7 @@ class WindowProgressDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 6),
           child: DefaultTextStyle(
             style: const TextStyle(
               color: Colors.white70,

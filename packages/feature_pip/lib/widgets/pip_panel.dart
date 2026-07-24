@@ -4,7 +4,7 @@ class PipPanel extends StatelessWidget {
   const PipPanel({
     required this.child,
     this.padding = const EdgeInsets.all(0.0),
-    this.margin = const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+    this.margin = const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
     this.backgroundColor,
     super.key,
   });

@@ -83,11 +83,15 @@ sealed class TelemetryPayload with _$TelemetryPayload {
   factory TelemetryPayload.fromJson(Map<String, dynamic> json) => _$TelemetryPayloadFromJson(json);
 }
 
+// areaId is 0 mean global area, so every payload at least has one area with areaId=0, even if no interest areas are configured.
 @freezed
 sealed class AreaPayload with _$AreaPayload {
   const factory AreaPayload({
     /// Index matching the configured interest-area ID.
-    required int areaId,
+    @Default(0) int areaId,
+
+    /// Name of the configured interest area.
+    @Default('') String areaName,
 
     /// Objects detected moving past the area without entering it.
     @Default(0) int passBy,
@@ -120,7 +124,7 @@ sealed class AreaPayload with _$AreaPayload {
     @RoundedDouble2() @Default(0) double avgDwellSec,
 
     /// Maximum observed dwell time in rounded seconds.
-    @Default(0) int maxDwellSec,
+    @Default(0) double maxDwellSec,
   }) = _AreaPayload;
 
   factory AreaPayload.fromJson(Map<String, dynamic> json) => _$AreaPayloadFromJson(json);

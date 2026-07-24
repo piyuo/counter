@@ -12,50 +12,178 @@ class LocalizationAr extends Localization {
   String get about_screen_app_version => 'إصدار التطبيق';
 
   @override
-  String get about_screen_benchmark => 'اختبار الأداء';
-
-  @override
-  String get about_screen_build_info_title => 'Build Information';
-
-  @override
   String get about_screen_email_us => 'راسلنا عبر البريد الإلكتروني';
-
-  @override
-  String get about_screen_force_window_end_title => 'Force Window End';
-
-  @override
-  String get about_screen_models => 'نماذج كشف الأجسام';
-
-  @override
-  String get about_screen_opencv_build_info => 'معلومات بناء OpenCV';
 
   @override
   String get about_screen_platform => 'المنصة';
 
   @override
-  String get about_screen_reset_app_state_success =>
-      'App state has been reset.';
+  String get appeared => 'ظهر';
 
   @override
-  String get about_screen_reset_app_state_title => 'Reset App State';
+  String get appeared_help =>
+      'يحسب عدد الأشخاص أو المركبات التي كان أول موضع تم اكتشافه لها داخل هذه المنطقة.\\n\\nيفيد في فهم مكان بدء التتبع.\\n\\n(مخصص بشكل أساسي للمستخدمين المتقدمين)';
 
   @override
-  String get about_screen_title => 'حول';
+  String get average_occupancy => 'متوسط الإشغال';
 
   @override
-  String get cancel => 'Cancel';
+  String get average_occupancy_help =>
+      'يعرض متوسط عدد الأشخاص أو المركبات داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nيساعد ذلك على قياس مدى ازدحام المنطقة طوال نافذة العد.';
 
   @override
-  String get count_avg_dwell => 'متوسط التوقف';
+  String get average_stay => 'متوسط مدة البقاء';
 
   @override
-  String get count_avg_occ => 'متوسط الإشغال';
+  String get average_stay_help =>
+      'يعرض متوسط مدة بقاء الأشخاص أو المركبات في هذه المنطقة.\\n\\nقد يشير متوسط مدة البقاء الأطول إلى أن العملاء يقضون وقتًا أطول في هذه المنطقة.';
 
   @override
-  String get count_max_dwell => 'أطول توقف';
+  String get camera_test_screen_help =>
+      'يستخدم Piyuo Counter الكاميرا والذكاء الاصطناعي على الجهاز لعدّ الأشخاص. أولاً، لنتأكد من أن جهازك متوافق.';
 
   @override
-  String get count_max_occ => 'ذروة الإشغال';
+  String get camera_test_screen_instruction =>
+      'وجّه الكاميرا نحو الأشخاص. سيرسم التطبيق مربعات حول كل شخص يكتشفه.';
+
+  @override
+  String get camera_test_screen_next => 'اضغط على التالي للمتابعة.';
+
+  @override
+  String get camera_test_screen_start =>
+      'اضغط على ابدأ. إذا طُلب منك، اسمح بالوصول إلى الكاميرا.';
+
+  @override
+  String get camera_test_screen_test_failed => 'فشل الاختبار!';
+
+  @override
+  String get camera_test_screen_test_passed => 'الاختبار ناجح!';
+
+  @override
+  String get camera_test_screen_title => 'اختبار كاميرا الذكاء الاصطناعي';
+
+  @override
+  String get camera_test_screen_wait => 'جارٍ انتظار AI لاكتشاف الأشخاص…';
+
+  @override
+  String get cta_screen_custom => 'استخدام خادمك الخاص';
+
+  @override
+  String get cta_screen_custom_help =>
+      'أرسل بيانات الحركة مباشرة إلى الخادم الخلفي أو قاعدة البيانات الخاصة بك.';
+
+  @override
+  String get cta_screen_footer =>
+      'بالمتابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية واتفاقية معالجة البيانات.';
+
+  @override
+  String get cta_screen_invitation => 'استخدام رمز الدعوة';
+
+  @override
+  String get cta_screen_invitation_help =>
+      'انضم إلى مؤسسة موجودة باستخدام دعوة من المسؤول.';
+
+  @override
+  String get cta_screen_local => 'على هذا الجهاز فقط';
+
+  @override
+  String get cta_screen_local_help =>
+      'احفظ بيانات الحركة على هذا الجهاز فقط. لن يتم رفع أي بيانات.';
+
+  @override
+  String get cta_screen_piyuo => 'استخدام Piyuo Cloud';
+
+  @override
+  String get cta_screen_piyuo_help =>
+      'احفظ بيانات الحركة في Piyuo Cloud مع لوحات المعلومات ورؤى الأعمال.';
+
+  @override
+  String get cta_screen_premium => 'بريميوم';
+
+  @override
+  String get cta_screen_title =>
+      'ينشئ Piyuo Counter إحصاءات مرور مجهولة كل 5 دقائق.\\nاختر كيفية تخزين بياناتك والوصول إليها.';
+
+  @override
+  String get current_occupancy => 'العدد الحالي';
+
+  @override
+  String get current_occupancy_help =>
+      'يعرض العدد الحالي للأشخاص أو المركبات داخل هذه المنطقة.\\n\\nيتم تحديث هذا العدد في الوقت الفعلي، ويمكن استخدامه للتحقق من أن اكتشاف الذكاء الاصطناعي يطابق ما تراه على الشاشة. ولا يتم تضمينه في بيانات القياس المرسلة.';
+
+  @override
+  String get custom_server_screen_bearer_saving_action => 'جارٍ الحفظ...';
+
+  @override
+  String get custom_server_screen_server_url_label => 'رابط الخادم';
+
+  @override
+  String get detection_screen_confidence => 'حد الثقة';
+
+  @override
+  String get detection_screen_confidence_dialog =>
+      'يتحكم في مدى تأكد الذكاء الاصطناعي قبل عد شخص أو مركبة.\\nقيم أقل\\n• رصد المزيد من الكائنات\\n• أفضل للكائنات البعيدة أو المحجوبة جزئيًا\\n• قد يزيد من الرصد الخاطئ\\nقيم أعلى\\n• عد الكائنات عالية الثقة فقط\\n• تقليل الرصد الخاطئ\\n• قد يفوت كائنات صغيرة أو صعبة\\nاستخدم قيمة أقل إذا كان التطبيق لا يرصد بعض الأشخاص أو المركبات.\\nاستخدم قيمة أعلى إذا كان التطبيق يعد الظلال أو الانعكاسات أو كائنات وهمية أخرى.';
+
+  @override
+  String get detection_screen_confidence_help =>
+      'الحد الأدنى من الثقة المطلوبة لاكتشاف عنصر.';
+
+  @override
+  String get detection_screen_confidence_max_label => 'صارم';
+
+  @override
+  String get detection_screen_confidence_min_label => 'مرن';
+
+  @override
+  String get detection_screen_disappear => 'مهلة الاختفاء';
+
+  @override
+  String get detection_screen_disappear_dialog =>
+      'يحدد المدة التي ينتظرها الذكاء الاصطناعي قبل وسم كائن بأنه اختفى بعد أن لم يعد يُرصد.\\nقيم أقصر\\n• وسم الكائنات كمختفية بشكل أسرع\\n• أفضل لحركة المرور السريعة\\n• قد يسم الكائنات المخفية مؤقتًا بأنها اختفت\\nقيم أطول\\n• الانتظار لفترة أطول قبل وسم الكائنات كمختفية\\n• أفضل عندما تُحجب الكائنات أو تُفقد لفترة قصيرة\\n• تأخير أحداث الاختفاء';
+
+  @override
+  String get detection_screen_disappear_help =>
+      'المدة التي ينتظرها الذكاء الاصطناعي قبل اعتبار العنصر مختفيًا بعد أن يتوقف عن اكتشافه.';
+
+  @override
+  String get detection_screen_disappear_max_label => 'بطيء';
+
+  @override
+  String get detection_screen_disappear_min_label => 'سريع';
+
+  @override
+  String get detection_screen_memory_dialog =>
+      'يتحكم في المدة التي يتذكر فيها الذكاء الاصطناعي كائنًا بعد اختفائه.\\nزد هذه القيمة إذا كان الأشخاص أو المركبات يختفون بشكل متكرر خلف كائنات أخرى.\\nقلل هذه القيمة إذا تم ربط الكائنات بشكل خاطئ بعد مغادرتها المشهد.';
+
+  @override
+  String get detection_screen_min_presence => 'الحد الأدنى لوقت الظهور';
+
+  @override
+  String get detection_screen_min_presence_help =>
+      'يجب أن يبقى الكائن مرئيًا قبل احتسابه. تساعد القيم الأطول على تقليل الاكتشافات الخاطئة القصيرة.';
+
+  @override
+  String get detection_screen_min_presence_max_label => 'أكثر أمانًا';
+
+  @override
+  String get detection_screen_min_presence_min_label => 'أسرع';
+
+  @override
+  String get detection_screen_minimum_visible =>
+      'يجب أن تبقى الكائنات مرئية لهذه المدة قبل عدها.\\nزد هذه القيمة لتجاهل الرصد الخاطئ القصير.\\nقلل هذه القيمة إذا كان يتم تفويت الأشخاص أو المركبات سريعة الحركة.';
+
+  @override
+  String get detection_screen_new_track => 'عتبة بدء التتبع';
+
+  @override
+  String get detection_screen_new_track_help =>
+      'الحد الأدنى من الثقة لبدء تتبع عنصر جديد. قد تؤدي القيم المنخفضة إلى إنشاء مسارات مكررة.';
+
+  @override
+  String get detection_screen_new_track_max_label => 'متحفظ';
+
+  @override
+  String get detection_screen_new_track_min_label => 'نشط';
 
   @override
   String get detection_screen_reset => 'إعادة تعيين';
@@ -65,354 +193,562 @@ class LocalizationAr extends Localization {
       'هل أنت متأكد أنك تريد إعادة تعيين إعدادات الكشف؟';
 
   @override
-  String get detection_screen_title => 'إعدادات الكشف';
+  String get detection_screen_show_track_id => 'عرض معرّف التتبع';
 
   @override
-  String get detection_type_screen_body =>
-      'Choose which detection model to use for this project.';
+  String get detection_screen_show_track_id_help =>
+      'تفعيل هذا الخيار لإظهار معرّفات التتبع الفريدة لكل كائن يتم تتبعه.';
 
   @override
-  String get detection_type_screen_load_error =>
-      'Failed to load detection types.';
+  String get detection_screen_stay => 'Stay Time';
 
   @override
-  String get detection_type_screen_pedestrian_body =>
-      'Count people using the pedestrian detection model.';
+  String get detection_screen_stay_help =>
+      'المدة التي يجب أن يبقى فيها الكائن داخل المنطقة قبل احتسابه كحالة بقاء.';
 
   @override
-  String get detection_type_screen_pedestrian_title => 'Pedestrian';
+  String get detection_screen_stay_max_label => 'متأخر';
 
   @override
-  String get detection_type_screen_title => 'Detection Type';
+  String get detection_screen_stay_min_label => 'فوري';
 
   @override
-  String get detection_type_screen_vehicle_body =>
-      'Count cars and other vehicles using the vehicle model.';
+  String get detection_screen_stay_threshold =>
+      'يحدد متى يساهم كائن في عدد \\البقاء\\.\\nقيم أقصر\\n• عد البقاء فورًا\\n• أفضل للتحليل السريع\\nقيم أطول\\n• تجاهل المرور العابر القصير\\n• أفضل لقياس الإشغال';
 
   @override
-  String get detection_type_screen_vehicle_title => 'Vehicle';
+  String get detection_screen_subtitle =>
+      'ضبط كيفية اكتشاف الذكاء الاصطناعي وتتبع العناصر';
 
   @override
-  String get language_screen_body =>
-      'Select your preferred language for the app interface.';
+  String get detection_screen_title => 'التتبع والعد';
+
+  @override
+  String get detection_screen_track_dialog =>
+      'يتحكم في وقت تحول كائن مكتشف حديثًا إلى مسار جديد.\\nقيم أقل\\n• بدء التتبع بشكل أسرع\\n• أفضل للكائنات سريعة الحركة\\n• قد ينشئ مسارات مكررة\\nقيم أعلى\\n• يتطلب دليلاً أقوى قبل إنشاء مسار جديد\\n• تقليل المسارات المكررة\\n• قد يؤخر تتبع الكائنات الجديدة';
+
+  @override
+  String get detection_screen_track_memory => 'مدة الاحتفاظ بالتتبع';
+
+  @override
+  String get detection_screen_track_memory_help =>
+      'المدة التي يستمر فيها تتبع العنصر بعد فقدانه مؤقتًا. تساعد القيم الأطول على استعادة التتبع بعد الحجب القصير.';
+
+  @override
+  String get detection_screen_track_memory_max_label => 'طويل';
+
+  @override
+  String get detection_screen_track_memory_min_label => 'قصير';
+
+  @override
+  String get device_not_supported_screen_body =>
+      'يستخدم Piyuo Counter الكاميرا لاكتشاف المشاة والمركبات في الوقت الفعلي. لا تتوفر كاميرا على هذا الجهاز.';
+
+  @override
+  String get device_not_supported_screen_footer_hint =>
+      'حاول فتح هذا التطبيق على هاتفك';
+
+  @override
+  String get device_not_supported_screen_requirement_camera =>
+      'هاتف ذكي أو جهاز لوحي مزود بكاميرا';
+
+  @override
+  String get device_not_supported_screen_requirement_platform =>
+      'يوصى باستخدام جهاز iOS أو Android';
+
+  @override
+  String get device_not_supported_screen_requirements_title => 'ما تحتاجه';
+
+  @override
+  String get device_not_supported_screen_title => 'لم يتم العثور على كاميرا';
+
+  @override
+  String get disappeared => 'اختفى';
+
+  @override
+  String get disappeared_help =>
+      'يحسب عدد الأشخاص أو المركبات التي كان آخر موضع تم اكتشافه لها داخل هذه المنطقة.\\n\\nينتهي التتبع بعد انتهاء مدة الاختفاء المحددة إذا لم يعد يتم اكتشاف الشخص أو المركبة.\\n\\n(مخصص بشكل أساسي للمستخدمين المتقدمين)';
+
+  @override
+  String get dpa => 'اتفاقية معالجة البيانات';
+
+  @override
+  String get durationDaysShort => '%sي';
+
+  @override
+  String get durationHoursShort => '%sس';
+
+  @override
+  String get durationMinutesShort => '%sد';
+
+  @override
+  String get durationSecondsShort => '%sث';
+
+  @override
+  String get durationTwoUnit => '%first %second';
+
+  @override
+  String get entered => 'دخل';
+
+  @override
+  String get entered_help =>
+      'يحسب عدد الأشخاص أو المركبات التي دخلت هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب الدخول عندما ينتقل شخص أو مركبة من خارج المنطقة إلى داخلها.';
+
+  @override
+  String get exited => 'غادر';
+
+  @override
+  String get exited_help =>
+      'يحسب عدد الأشخاص أو المركبات التي غادرت هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب الخروج عندما ينتقل شخص أو مركبة من داخل المنطقة إلى خارجها.';
 
   @override
   String get language_screen_language => 'اللغة';
 
   @override
-  String get language_screen_system_label => 'System language';
+  String get language_screen_subtitle => 'اختر اللغة المستخدمة في التطبيق.';
 
   @override
-  String get live_url_screen_examples_label => 'Example';
+  String get local_only_screen_body =>
+      'وضع الجهاز المحلي فقط يتيح لك تجربة كشف وتتبع الكاميرا بالذكاء الاصطناعي دون رفع أي بيانات. تتم معالجة جميع إحصاءات حركة المرور على هذا الجهاز فقط، وهو مثالي لتجربة الكاميرا قبل الاتصال بخادم.';
 
   @override
-  String get live_url_screen_invalid_rtsp_error =>
-      'RTSP URLs must include a host name.';
+  String get local_only_screen_use_action => 'استخدام الجهاز المحلي فقط';
 
   @override
-  String get live_url_screen_invalid_url_error =>
-      'Enter a valid URL with a supported scheme.';
+  String get local_screen_text =>
+      'سيعمل Piyuo Counter بالكامل على هذا الجهاز.\\nسيتم حفظ إحصاءات الحركة على هذا الجهاز فقط ولن يتم رفعها.\\nيمكنك الاتصال بـ Piyuo Cloud أو بخادمك الخاص لاحقًا من الإعدادات.';
 
   @override
-  String get live_url_screen_unsupported_scheme_error => 'Only HTTP';
+  String get maximum_occupancy => 'أقصى إشغال';
 
   @override
-  String get live_url_screen_url_empty_error =>
-      'Please enter a live stream URL.';
+  String get maximum_occupancy_help =>
+      'يعرض أكبر عدد من الأشخاص أو المركبات الموجودين في هذه المنطقة في الوقت نفسه خلال نافذة العد الحالية.\\n\\nمفيد لتحديد أوقات الذروة أو أعلى كثافة لحركة المرور.';
 
   @override
-  String get main_screen_booting => 'جاري التشغيل...';
+  String get maximum_stay => 'أقصى مدة بقاء';
 
   @override
-  String get main_screen_checking_hardware => 'جاري فحص الأجهزة...';
+  String get maximum_stay_help =>
+      'يعرض أطول مدة بقي فيها شخص أو مركبة داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nمفيد لتحديد الزيارات أو التوقفات الطويلة بشكل غير معتاد.';
 
   @override
-  String get no => 'لا';
+  String get metric_events => 'أحداث';
 
   @override
-  String get no_camera_screen_body =>
-      'There is no camera detected on this device. Please connect a camera to use the app.\\nOr you can use Live URL or a file to test the app.';
+  String get metric_live => 'مباشر';
 
   @override
-  String get no_camera_screen_title => 'No Camera Detected';
+  String get metric_show_less => 'عرض أقل';
 
   @override
-  String get product_copyright => 'حقوق النشر © 2025';
+  String get metric_show_more => 'عرض المزيد';
 
   @override
-  String get product_desc =>
-      'استخدام الرؤية الحاسوبية والذكاء الاصطناعي لعد الأشخاص والمركبات والحيوانات الأليفة والمزيد.';
+  String get metric_statistics => 'إحصائيات';
 
   @override
-  String get product_name => 'عداد';
+  String get metrics_counting_all => 'الكل';
 
   @override
-  String get settings_piyuo_screen_body => 'Use a Piyuo Cloud URL for uploads.';
+  String get metrics_counting_done => 'مكتمل';
 
   @override
-  String get settings_piyuo_screen_cloud_url_label => 'Cloud URL';
+  String get metrics_counting_in_progress => 'قيد التقدم';
 
   @override
-  String get settings_piyuo_screen_copy_action => 'Copy URL';
+  String get metrics_counting_missing => 'مفقود';
 
   @override
-  String get settings_piyuo_screen_copy_success => 'URL copied';
+  String get metrics_counting_window => 'إحصاءات لكل فترة مدتها 5 دقائق';
 
   @override
-  String get settings_piyuo_screen_invalid_url_error =>
-      'Please paste a valid Piyuo Cloud URL.';
+  String get onboarding_back_action => 'رجوع';
 
   @override
-  String get settings_piyuo_screen_legacy_body =>
-      'If you already had a Piyuo Cloud URL from an older install';
+  String get onboarding_cta_no_server => 'لا تريد تحميل البيانات؟';
 
   @override
-  String get settings_piyuo_screen_saving_action => 'Saving...';
+  String get onboarding_cta_title => 'إلى أين يجب إرسال بياناتك؟';
 
   @override
-  String get settings_piyuo_screen_title => 'Piyuo Cloud';
+  String get onboarding_intro_text1 =>
+      'Piyuo Counter يستخدم كاميرا جهازك والذكاء الاصطناعي المدمج لرصد الأشخاص والمركبات لحظة بلحظة.\\nبفضل تقنية الرصد والتتبع، يحسب تلقائيًا عدد المارة والمركبات — كل ذلك يتم مباشرة على جهازك.';
 
   @override
-  String get settings_piyuo_screen_use_action => 'Use Piyuo Cloud';
+  String get onboarding_intro_text2 =>
+      'جميع عمليات الذكاء الاصطناعي تتم محليًا على جهازك. لا يتم رفع أي فيديو أو صور أو وجوه أو هويات.\\nيتم مشاركة ملخصات مجهولة كل 5 دقائق فقط، تشمل الأعداد ونسبة الإشغال وعدد الدخول والخروج ومدة البقاء.';
 
   @override
-  String get settings_screen_body =>
-      'Set project name, detection parameters, count clearing.';
+  String get onboarding_intro_text3 =>
+      'فقط شغّل التطبيق واتركه يعمل. يقوم Piyuo Counter بجمع وحفظ بيانات المرور تلقائيًا وباستمرار.\\nيتم حفظ ملخصات البيانات كل 5 دقائق ورفعها كل ساعة إلى Piyuo Cloud أو إلى خادمك الخاص.';
 
   @override
-  String get settings_screen_custom_server_body =>
-      'We will help set up a local server.';
+  String get onboarding_intro_title1 => 'عدّ الحركة بالذكاء الاصطناعي';
 
   @override
-  String get settings_screen_custom_server_title => 'Use your own server';
+  String get onboarding_intro_title2 => 'الخصوصية أولاً';
 
   @override
-  String get settings_screen_data_server_label => 'Data Server';
+  String get onboarding_intro_title3 => 'يعمل تلقائيًا على مدار الساعة';
 
   @override
-  String get settings_screen_delivery_label => 'Delivery';
+  String get onboarding_next_action => 'التالي';
 
   @override
-  String get settings_screen_demo_mode_body =>
-      'Test only. Data is not exported.';
+  String get onboarding_skip_action => 'تخطي المقدمة';
 
   @override
-  String get settings_screen_demo_mode_title => 'Demo mode';
+  String get onboarding_start_action => 'ابدأ';
 
   @override
-  String get settings_screen_desc => 'ضبط اسم المشروع، معلمات الكشف، مسح العد.';
+  String get passed_by => 'مرّ عبر';
 
   @override
-  String get settings_screen_detection_label => 'Detection';
+  String get passed_by_help =>
+      'يحسب عدد الأشخاص أو المركبات التي مرت عبر هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب كل شخص أو مركبة مرة واحدة فقط في كل مرة يمر فيها عبر المنطقة.';
 
   @override
-  String get settings_screen_parameters_label => 'Parameters';
+  String get payloads_screen_area => 'المنطقة';
 
   @override
-  String get settings_screen_piyuo_cloud_body =>
-      'Send results to our cloud service.';
+  String get payloads_screen_confidence => 'الثقة';
 
   @override
-  String get settings_screen_piyuo_cloud_title => 'Use Piyuo Cloud';
+  String get payloads_screen_coverage => 'التغطية';
+
+  @override
+  String get payloads_screen_delivered => 'تم التسليم';
+
+  @override
+  String get payloads_screen_failed_load => 'فشل تحميل الحمولات الأخيرة';
+
+  @override
+  String get payloads_screen_frame_processed => 'الإطارات المعالجة';
+
+  @override
+  String get payloads_screen_hour_not_exists => 'هذه الساعة لم تعد موجودة。';
+
+  @override
+  String get payloads_screen_missing_time => 'الوقت المفقود';
+
+  @override
+  String get payloads_screen_no_payloads => 'لا توجد حمولات بعد.';
+
+  @override
+  String get payloads_screen_partial => 'انتهت الفترة مبكرًا (جزئية)';
+
+  @override
+  String get payloads_screen_partially => 'تم التسليم جزئيًا';
+
+  @override
+  String get payloads_screen_payload_not_exists => 'هذه الحمولة لم تعد موجودة.';
+
+  @override
+  String get payloads_screen_pending => 'قيد التسليم';
+
+  @override
+  String get payloads_screen_process_fps => 'معدل المعالجة FPS';
+
+  @override
+  String get payloads_screen_resend => 'إعادة الإرسال';
+
+  @override
+  String get payloads_screen_select_first =>
+      'يرجى تحديد تاريخ أو ساعة واحدة على الأقل أولاً.';
+
+  @override
+  String get payloads_screen_subtitle =>
+      'حدد حسب التاريخ أو الساعة لإعادة الإرسال';
+
+  @override
+  String get payloads_screen_title => 'الحمولات الأخيرة';
+
+  @override
+  String get personal_custom_screen_build_server =>
+      'هل تحتاج إلى مساعدة لإعداد خادمك؟\\nاطلع على وثائق API وأمثلة الخوادم.';
+
+  @override
+  String get personal_custom_screen_help_action => 'افتح وثائق API';
+
+  @override
+  String get personal_custom_screen_reset_action => 'البدء من جديد';
+
+  @override
+  String get personal_custom_success_screen_help =>
+      'اضغط على زر ابدأ أدناه لبدء العد.';
+
+  @override
+  String get personal_custom_success_screen_help1 =>
+      'يتم رفع إحصاءات الحركة تلقائيًا كل ساعة.\\nيمكنك أيضًا رفعها يدويًا من شاشة سجلات الرفع.';
+
+  @override
+  String get personal_custom_success_screen_help2 =>
+      'لا يحتاج خادمك إلى أن يكون متصلاً الآن.\\nابدأ العد الآن. يمكنك إكمال بناء خادمك واختباره لاحقًا. ستبقى إحصاءات الحركة على هذا الجهاز حتى يتم رفعها بنجاح.';
+
+  @override
+  String get personal_custom_success_screen_send_to =>
+      'سيتم إرسال إحصائيات حركة المرور إلى';
+
+  @override
+  String get personal_custom_success_screen_title => 'الخادم جاهز';
+
+  @override
+  String get piyuo_server_screen_cloud_url_label => 'رابط Piyuo Cloud الخاص بك';
+
+  @override
+  String get piyuo_server_screen_copy_action => 'نسخ الرابط';
+
+  @override
+  String get piyuo_server_screen_copy_success => 'تم نسخ الرابط';
+
+  @override
+  String get piyuo_server_screen_saving_action => 'جارٍ الحفظ...';
+
+  @override
+  String get piyuo_server_screen_start => 'اضغط على \"ابدأ\" أدناه لبدء العد.';
+
+  @override
+  String get piyuo_server_screen_url_help =>
+      'لوحة معلومات Piyuo Cloud الخاصة بك جاهزة على هذا الرابط.';
+
+  @override
+  String get piyuo_server_screen_url_remember =>
+      'احفظ هذا الرابط للوصول إلى لوحة معلومات حركة الزوار من جهاز آخر.';
+
+  @override
+  String get piyuo_server_screen_use_action => 'استخدام Piyuo Cloud';
+
+  @override
+  String get privacy => 'سياسة الخصوصية';
+
+  @override
+  String get product_copyright => 'حقوق النشر © 2026';
+
+  @override
+  String get product_desc => 'عدّ الأشخاص والمركبات بالذكاء الاصطناعي.';
+
+  @override
+  String get settings_screen_custom_subtitle =>
+      'أرسل بيانات حركة الزوار مباشرة إلى خادمك أو قاعدة بياناتك.';
+
+  @override
+  String get settings_screen_custom_title => 'استخدام خادم مخصص';
+
+  @override
+  String get settings_screen_data_server_label => 'خادم البيانات';
+
+  @override
+  String get settings_screen_detection_target => 'هدف الكشف';
+
+  @override
+  String get settings_screen_language_title => 'اللغة';
+
+  @override
+  String get settings_screen_local_subtitle =>
+      'خزّن بيانات حركة الزوار على هذا الجهاز فقط. لن يتم رفع أي بيانات.';
+
+  @override
+  String get settings_screen_local_title => 'الجهاز المحلي فقط';
+
+  @override
+  String get settings_screen_misc_label => '其他';
+
+  @override
+  String get settings_screen_object_detection => 'كشف الكائنات';
+
+  @override
+  String get settings_screen_piyuo_subtitle =>
+      'احفظ بيانات حركة الزوار في سحابة Piyuo مع لوحات معلومات ورؤى للأعمال.';
+
+  @override
+  String get settings_screen_piyuo_title => 'سحابة Piyuo';
 
   @override
   String get settings_screen_reset_all_data_body =>
-      'This will erase all data and start from the beginning. This action cannot be undone.';
+      'سيؤدي هذا إلى حذف جميع البيانات والبدء من جديد. لا يمكن التراجع عن هذا الإجراء.';
 
   @override
-  String get settings_screen_reset_all_data_title => 'Reset all data?';
+  String get settings_screen_reset_all_data_title =>
+      'إعادة تعيين جميع البيانات؟';
 
   @override
   String get settings_screen_subscription_body =>
-      'Manage your subscription and billing details.';
+      'إدارة الاشتراك وتفاصيل الفوترة';
 
   @override
-  String get settings_screen_subscription_title => 'Subscription';
+  String get settings_screen_subscription_title => 'الاشتراك';
 
   @override
-  String get settings_screen_title => 'Settings';
+  String get start_screen_about => 'حول';
 
   @override
-  String get settings_server_screen_body =>
-      'Set the server URL used for uploads.';
+  String get start_screen_server_none => 'تُحفظ البيانات على هذا الجهاز فقط';
 
   @override
-  String get settings_server_screen_delivery_cadence_label =>
-      'Deliver Payload On Wall Clock';
+  String get start_screen_server_personal => 'يتم رفع البيانات كل ساعة إلى';
 
   @override
-  String get settings_server_screen_hour_unit_plural => 'hours';
+  String get start_screen_settings => 'الإعدادات';
 
   @override
-  String get settings_server_screen_hour_unit_singular => 'hour';
+  String get start_screen_upload_logs => 'رفع السجلات';
 
   @override
-  String get settings_server_screen_minute_unit_plural => 'minutes';
+  String get start_screen_video_sources => 'مصادر الفيديو';
 
   @override
-  String get settings_server_screen_saving_action => 'Saving...';
+  String get stayed => 'بقي';
 
   @override
-  String get settings_server_screen_server_url_label => 'Server URL';
+  String get stayed_help =>
+      'يحسب عدد الأشخاص أو المركبات التي بقيت داخل هذه المنطقة لمدة لا تقل عن مدة البقاء المحددة.\\n\\nمدة البقاء الافتراضية هي 15 ثانية ويمكن تغييرها في الإعدادات.';
 
   @override
-  String get settings_server_screen_title => 'Custom Server';
+  String get target_pedestrian => 'المشاة';
 
   @override
-  String get settings_server_screen_use_action => 'Use Custom Server';
+  String get target_pedestrian_help => 'عدّ الأشخاص باستخدام نموذج كشف المشاة';
 
   @override
-  String get start_screen_demo_mode_body =>
-      'Demo mode. No data leaves your device.';
+  String get target_screen_subtitle => 'اختر نموذج الكشف الذي تريد استخدامه';
 
   @override
-  String get start_screen_invitation_label => 'Invitation';
+  String get target_vehicle => 'المركبات';
 
   @override
-  String get start_screen_not_set_label => 'Not Set';
+  String get target_vehicle_help =>
+      'عدّ السيارات والمركبات الأخرى باستخدام نموذج المركبات';
 
   @override
-  String get start_screen_own_server_label => 'Own Server';
+  String get telemetry_error_connection_refused =>
+      'تعذر الوصول إلى الخادم. قد يكون غير متصل حالياً.';
 
   @override
-  String get start_screen_piyuo_cloud_label => 'Piyuo Cloud';
+  String get telemetry_error_connection_reset =>
+      'تمت إعادة تعيين الاتصال. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
 
   @override
-  String get start_screen_product_body =>
-      'Pedestrian and vehicle counter with data collection.';
+  String get telemetry_error_connection_timeout =>
+      'استغرق الاتصال وقتاً طويلاً للاستجابة. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
 
   @override
-  String get start_screen_product_title => 'Piyuo Counter';
+  String get telemetry_error_dns_lookup_failed =>
+      'تعذر العثور على عنوان الخادم. تحقق من اتصال الإنترنت أو رابط الخادم.';
 
   @override
-  String get submit => 'إرسال';
+  String get telemetry_error_http_error_status =>
+      'رفض الخادم الطلب. حاول مرة أخرى لاحقاً.';
 
   @override
-  String get upload_config_screen_body =>
-      'Configure delivery settings for telemetry uploads.';
+  String get telemetry_error_http_unknown_error =>
+      'حدث خطأ غير متوقع أثناء الاتصال بالخادم.';
 
   @override
-  String get upload_config_screen_fast_fail_label => 'Fast fail';
+  String get telemetry_error_invalid_url =>
+      'عنوان الخادم غير صالح. تحقق من الإعدادات.';
 
   @override
-  String get upload_config_screen_frequent_label => 'Frequent';
+  String get telemetry_error_network_error =>
+      'حدث خطأ في الشبكة. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
 
   @override
-  String get upload_config_screen_large_label => 'Large';
+  String get telemetry_error_socket_error =>
+      'حدثت مشكلة في اتصال الشبكة. تحقق من اتصال الإنترنت لديك.';
 
   @override
-  String get upload_config_screen_load_error =>
-      'Failed to load delivery settings.';
+  String get telemetry_error_transport_exception =>
+      'حدث خطأ ما أثناء إرسال البيانات. حاول مرة أخرى.';
 
   @override
-  String get upload_config_screen_max_batch_size_body =>
-      'Max number of payload records sent in one HTTP request.';
+  String get terms => 'شروط الخدمة';
 
   @override
-  String get upload_config_screen_max_batch_size_title => 'Maximum Batch Size';
+  String get upload_screen_attempt_time => 'وقت المحاولة:';
 
   @override
-  String get upload_config_screen_request_timeout_body =>
-      'HTTP timeout per upload request.';
+  String get upload_screen_error => 'الخطأ:';
 
   @override
-  String get upload_config_screen_request_timeout_title => 'Request Timeout';
+  String get upload_screen_failed => 'فشل';
 
   @override
-  String get upload_config_screen_reset_body =>
-      'This restores upload cadence, batching, and timeout to defaults.';
+  String get upload_screen_load_error => 'تعذر تحميل سجلات الرفع.';
 
   @override
-  String get upload_config_screen_reset_title => 'Reset delivery settings?';
+  String get upload_screen_log_not_exists => 'لم يعد سجل الرفع متاحًا.';
 
   @override
-  String get upload_config_screen_small_label => 'Small';
+  String get upload_screen_next => 'الرفع التالي في ...';
 
   @override
-  String get upload_config_screen_sparse_label => 'Sparse';
+  String get upload_screen_next_upload_prefix => 'الرفع التالي في ';
 
   @override
-  String get upload_config_screen_title => 'Delivery Settings';
+  String get upload_screen_no_data_server => 'يرجى تعيين خادم البيانات أولاً.';
 
   @override
-  String get upload_config_screen_wait_longer_label => 'Wait longer';
+  String get upload_screen_no_logs => 'لا توجد سجلات رفع بعد.';
 
   @override
-  String get upload_config_screen_wall_clock_cadence_body =>
-      'How often pending telemetry is uploaded on minute-aligned boundaries.';
+  String get upload_screen_payload_count => 'عدد الحمولات';
 
   @override
-  String get upload_config_screen_wall_clock_cadence_title =>
-      'Wall-Clock Upload Cadence';
+  String get upload_screen_payload_count_label => 'عدد الحمولات:';
 
   @override
-  String get upload_logs_screen_check_data_server_error_prefix =>
-      'Unable to check Data Server: ';
+  String get upload_screen_payload_size => 'حجم الحمولة:';
 
   @override
-  String get upload_logs_screen_detail_unavailable_body =>
-      'Upload log detail is no longer available.';
+  String get upload_screen_result => 'النتيجة:';
 
   @override
-  String get upload_logs_screen_empty_body => 'No upload logs yet.';
+  String get upload_screen_retry => 'عدد المحاولات:';
 
   @override
-  String get upload_logs_screen_load_error => 'Unable to load upload logs.';
+  String get upload_screen_size_kb => 'ك.ب.';
 
   @override
-  String get upload_logs_screen_next_upload_pending => 'Next upload at ...';
+  String get upload_screen_success => 'نجاح';
 
   @override
-  String get upload_logs_screen_next_upload_prefix => 'Next upload at ';
+  String get upload_screen_today => 'اليوم';
 
   @override
-  String get upload_logs_screen_payloads_unit => 'payloads';
+  String get upload_screen_upload_now => 'رفع الآن';
 
   @override
-  String get upload_logs_screen_retry_action => 'Retry';
+  String get upload_screen_upload_success => 'تم الرفع بنجاح.';
 
   @override
-  String get upload_logs_screen_set_data_server_first_body =>
-      'Please set the Data Server first.';
+  String get upload_screen_uploading => 'جارٍ الرفع...';
 
   @override
-  String get upload_logs_screen_title => 'Upload Logs';
+  String get upload_screen_yesterday => 'أمس';
 
   @override
-  String get upload_logs_screen_today_label => 'Today';
+  String get url_screen_invalid_rtsp_error =>
+      'يجب أن يتضمن رابط RTSP اسم المضيف.';
 
   @override
-  String get upload_logs_screen_upload_failed_prefix => 'Upload failed: ';
+  String get url_screen_invalid_url_error =>
+      'أدخل رابطًا صالحًا ببروتوكول مدعوم.';
 
   @override
-  String get upload_logs_screen_upload_failed_unknown =>
-      'Upload failed due to an unknown error.';
-
-  @override
-  String get upload_logs_screen_upload_now_action => 'Upload Now';
-
-  @override
-  String get upload_logs_screen_uploaded_success =>
-      'Uploaded payloads to remote server.';
-
-  @override
-  String get upload_logs_screen_uploading_action => 'Uploading...';
-
-  @override
-  String get upload_logs_screen_yesterday_label => 'Yesterday';
-
-  @override
-  String get url_screen_body =>
-      'Enter the live stream URL for your camera source.';
-
-  @override
-  String get url_screen_desc => 'الرجاء إدخال رابط البث المباشر';
+  String get url_screen_subtitle => 'الرجاء إدخال رابط البث المباشر';
 
   @override
   String get url_screen_title => 'رابط البث المباشر';
 
   @override
+  String get url_screen_unsupported_scheme_error =>
+      'يتم دعم روابط HTTP وHTTPS وRTSP وRTSPS فقط.';
+
+  @override
   String get url_screen_url => 'الرابط';
+
+  @override
+  String get url_screen_url_empty_error => 'يرجى إدخال رابط البث المباشر.';
 
   @override
   String get url_screen_url_hint =>
@@ -423,54 +759,45 @@ class LocalizationAr extends Localization {
       'http://example.com/stream أو rtsp://example.com/stream';
 
   @override
-  String get video_screen_desc =>
-      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_sources_back_camera => 'الكاميرا الخلفية';
 
   @override
   String get video_sources_camera => 'الكاميرا';
 
   @override
-  String get video_sources_camera_not_found_message =>
-      'يجب منح إذن استخدام الكاميرا لاستخدامها';
-
-  @override
-  String get video_sources_camera_not_found_title => 'الكاميرا غير موجودة';
-
-  @override
   String get video_sources_file => 'ملف';
 
   @override
-  String get video_sources_file_hint => 'اختر فيديو من جهازك';
-
-  @override
-  String get video_sources_import_error => 'تعذر استيراد ملف الفيديو.';
+  String get video_sources_front_camera => 'الكاميرا الأمامية';
 
   @override
   String get video_sources_live_stream => 'رابط البث المباشر';
 
   @override
-  String get video_sources_load_error => 'تعذر تحميل مصادر الفيديو.';
+  String get video_sources_screen_camera_not_found_message =>
+      'يجب منح إذن استخدام الكاميرا لاستخدامها';
 
   @override
-  String get video_sources_photos_denied_msg =>
+  String get video_sources_screen_camera_not_found_title =>
+      'الكاميرا غير موجودة';
+
+  @override
+  String get video_sources_screen_import_error => 'تعذر استيراد ملف الفيديو.';
+
+  @override
+  String get video_sources_screen_photos_denied_msg =>
       'الرجاء الذهاب إلى الإعدادات والسماح بإذن الوصول للصور لهذا التطبيق.';
 
   @override
-  String get video_sources_screen_body =>
-      'إدارة مصادر الفيديو، إضافة أو تعديل مناطق الكشف.';
+  String get video_sources_screen_select_camera => 'اضغط لتحديد هذه الكاميرا';
 
   @override
-  String get video_sources_screen_title => 'مصادر الفيديو';
+  String get video_sources_screen_select_file => 'اضغط لاختيار ملف';
+
+  @override
+  String get video_sources_screen_select_live =>
+      'اضغط لتعيين رابط البث المباشر';
 
   @override
   String get video_sources_webcam => 'كاميرا الويب';
-
-  @override
-  String get wizard_screen_about => 'حول';
-
-  @override
-  String get wizard_screen_language => 'اللغة';
-
-  @override
-  String get yes => 'نعم';
 }

@@ -4,13 +4,16 @@
 // - pickAndImportVideoFile: picks a video and copies it into app support storage
 // - isManagedImportedVideoPath: identifies files managed by this feature
 // - deleteManagedImportedVideo: deletes a previously imported managed file
+// - deleteAllManagedImportedVideos: deletes all files in the imported videos directory
 
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 enum ImportedVideoPickStatus { selected, cancelled, permissionDenied }
 
@@ -28,7 +31,7 @@ class ImportedVideoPickResult {
   final String? importedFilePath;
 }
 
-Future<ImportedVideoPickResult> pickAndImportVideoFile({required String projectId, required int videoId}) async {
+Future<ImportedVideoPickResult> pickAndImportVideoFile() async {
   final picker = ImagePicker();
 
   try {
@@ -37,11 +40,7 @@ Future<ImportedVideoPickResult> pickAndImportVideoFile({required String projectI
       return const ImportedVideoPickResult.cancelled();
     }
 
-    final importedPath = await _copyVideoIntoAppSupport(
-      originalPath: pickedFile.path,
-      projectId: projectId,
-      videoId: videoId,
-    );
+    final importedPath = await _copyVideoIntoAppSupport(originalPath: pickedFile.path);
     return ImportedVideoPickResult.selected(importedPath);
   } catch (error) {
     if (error.toString().toLowerCase().contains('denied')) {
@@ -52,25 +51,19 @@ Future<ImportedVideoPickResult> pickAndImportVideoFile({required String projectI
   }
 }
 
-Future<String> _copyVideoIntoAppSupport({
-  required String originalPath,
-  required String projectId,
-  required int videoId,
-}) async {
+Future<String> _copyVideoIntoAppSupport({required String originalPath}) async {
   final appSupportDirectory = await getApplicationSupportDirectory();
-  final importedVideosDirectory = Directory(path.join(appSupportDirectory.path, 'imported_videos', projectId));
+  final importedVideosDirectory = Directory(path.join(appSupportDirectory.path, 'imported_videos'));
 
   if (!await importedVideosDirectory.exists()) {
     await importedVideosDirectory.create(recursive: true);
   }
+  await deleteFilesInDir(importedVideosDirectory);
 
   final fileExtension = path.extension(originalPath);
-  final importedFilePath = path.join(importedVideosDirectory.path, '$videoId$fileExtension');
-
-  final importedFile = File(importedFilePath);
-  if (await importedFile.exists()) {
-    await importedFile.delete();
-  }
+  final fileId = const Uuid().v4();
+  final importedFilePath = path.join(importedVideosDirectory.path, '$fileId$fileExtension');
+  appkit.logInfo('[VideoFileImporter] Imported video to: $importedFilePath');
 
   await File(originalPath).copy(importedFilePath);
   return importedFilePath;
@@ -90,5 +83,26 @@ Future<void> deleteManagedImportedVideo(String filePath) async {
   final file = File(filePath);
   if (await file.exists()) {
     await file.delete();
+  }
+}
+
+Future<void> deleteFilesInDir(Directory dir) async {
+  try {
+    if (!await dir.exists()) {
+      return;
+    }
+
+    final entities = dir.listSync();
+    for (final entity in entities) {
+      if (entity is File) {
+        try {
+          await entity.delete();
+        } catch (e) {
+          // Ignore and continue with next file
+        }
+      }
+    }
+  } catch (e) {
+    // Silently ignore directory-level errors
   }
 }

@@ -34,8 +34,8 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_open_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      await db.customSelect('SELECT 1').get();
-      await db.close();
+      await db().customSelect('SELECT 1').get();
+      await db().close();
 
       expect(File(filePath).existsSync(), isTrue);
     });
@@ -44,8 +44,8 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_wal_mode_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      final result = await db.customSelect('PRAGMA journal_mode').get();
-      await db.close();
+      final result = await db().customSelect('PRAGMA journal_mode').get();
+      await db().close();
 
       expect(result.first.read<String>('journal_mode'), 'wal');
     });
@@ -54,8 +54,8 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_busy_timeout_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      final result = await db.customSelect('PRAGMA busy_timeout').get();
-      await db.close();
+      final result = await db().customSelect('PRAGMA busy_timeout').get();
+      await db().close();
 
       expect(result.first.read<int>('timeout'), 5000);
     });
@@ -64,8 +64,8 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_synchronous_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      final result = await db.customSelect('PRAGMA synchronous').get();
-      await db.close();
+      final result = await db().customSelect('PRAGMA synchronous').get();
+      await db().close();
 
       expect(result.first.read<int>('synchronous'), 1);
     });
@@ -74,9 +74,9 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_wal_limits_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      final checkpointResult = await db.customSelect('PRAGMA wal_autocheckpoint').get();
-      final limitResult = await db.customSelect('PRAGMA journal_size_limit').get();
-      await db.close();
+      final checkpointResult = await db().customSelect('PRAGMA wal_autocheckpoint').get();
+      final limitResult = await db().customSelect('PRAGMA journal_size_limit').get();
+      await db().close();
 
       expect(checkpointResult.first.read<int>('wal_autocheckpoint'), 5000);
       expect(limitResult.first.read<int>('journal_size_limit'), 52428800); // 50 MB
@@ -90,8 +90,8 @@ void main() {
 
       final db = await TelemetryDatabase.open(filePath: filePath);
       // If recovery worked the DB is usable and the corrupted file is gone.
-      await db.customSelect('SELECT 1').get();
-      await db.close();
+      await db().customSelect('SELECT 1').get();
+      await db().close();
 
       expect(File(filePath).existsSync(), isTrue);
     });
@@ -101,13 +101,13 @@ void main() {
 
       // Create a valid DB first, then corrupt the WAL file.
       final good = await TelemetryDatabase.open(filePath: filePath);
-      await good.customSelect('SELECT 1').get();
-      await good.close();
+      await good().customSelect('SELECT 1').get();
+      await good().close();
       await File('$filePath-wal').writeAsBytes(List.filled(512, 0xFF));
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      await db.customSelect('SELECT 1').get();
-      await db.close();
+      await db().customSelect('SELECT 1').get();
+      await db().close();
 
       expect(File(filePath).existsSync(), isTrue);
     });
@@ -117,8 +117,8 @@ void main() {
 
       // Create a valid DB first.
       final good = await TelemetryDatabase.open(filePath: filePath);
-      await good.customSelect('SELECT 1').get();
-      await good.close();
+      await good().customSelect('SELECT 1').get();
+      await good().close();
 
       expect(File(filePath).existsSync(), isTrue);
 
@@ -138,8 +138,8 @@ void main() {
 
       final db = await TelemetryDatabase.open(filePath: filePath);
       // Vacuum should succeed without error even on an empty database.
-      await db.vacuum();
-      await db.close();
+      await db().vacuum();
+      await db().close();
 
       expect(File(filePath).existsSync(), isTrue);
     });
@@ -148,12 +148,12 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_remove_test.db';
 
       final db = await TelemetryDatabase.open(filePath: filePath);
-      await db.customSelect('SELECT 1').get();
-      await db.close();
+      await db().customSelect('SELECT 1').get();
+      await db().close();
 
       expect(File(filePath).existsSync(), isTrue);
 
-      await TelemetryDatabase.remove(filePath: filePath);
+      await TelemetryDatabase.removeFile(filePath: filePath);
 
       expect(File(filePath).existsSync(), isFalse);
     });
@@ -163,7 +163,7 @@ void main() {
 
       expect(File(filePath).existsSync(), isFalse);
 
-      await TelemetryDatabase.remove(filePath: filePath);
+      await TelemetryDatabase.removeFile(filePath: filePath);
 
       expect(File(filePath).existsSync(), isFalse);
     });

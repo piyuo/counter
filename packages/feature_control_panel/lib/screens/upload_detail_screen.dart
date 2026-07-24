@@ -5,6 +5,7 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 class UploadDetailScreen extends StatelessWidget {
   const UploadDetailScreen({required this.attemptedAtMs, required this.success, this.log, super.key});
@@ -32,15 +33,16 @@ class UploadDetailScreen extends StatelessWidget {
               feature_pip.PipHeader(
                 icon: success ? Icons.check_circle : Icons.error_outline,
                 title: '${dayFmt.format(local)} ${timeFmt.format(local)}',
-                subtitle: isSuccess ? 'Success' : 'Failed',
+                subtitle: isSuccess ? context.l.upload_screen_success : context.l.upload_screen_failed,
               ),
               feature_pip.PipPanel(
                 padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
                 child: SelectableText(
                   _buildDetailText(
+                    context,
                     attemptedAtLabel: '${dayFmt.format(local)} ${timeFmt.format(local)}',
-                    resultLabel: isSuccess ? 'Success' : 'Failed',
-                    payloadSizeLabel: '${log?.payloadSizeKb ?? 0} KB',
+                    resultLabel: isSuccess ? context.l.upload_screen_success : context.l.upload_screen_failed,
+                    payloadSizeLabel: '${log?.payloadSizeKb ?? 0} ${context.l.upload_screen_size_kb}',
                     payloadCountLabel: log == null ? '-' : '${log!.payloadCount}',
                     retryCountLabel: log == null ? '-' : '${log!.retryCount}',
                     errorLabel: log?.error ?? '-',
@@ -55,7 +57,8 @@ class UploadDetailScreen extends StatelessWidget {
     );
   }
 
-  String _buildDetailText({
+  String _buildDetailText(
+    BuildContext context, {
     required String attemptedAtLabel,
     required String resultLabel,
     required String payloadSizeLabel,
@@ -64,22 +67,22 @@ class UploadDetailScreen extends StatelessWidget {
     required String errorLabel,
   }) {
     return [
-      'Attempt Time:',
+      context.l.upload_screen_attempt_time,
       attemptedAtLabel,
       '',
-      'Result:',
+      context.l.upload_screen_result,
       resultLabel,
       '',
-      'Payload Size:',
+      context.l.upload_screen_payload_size,
       payloadSizeLabel,
       '',
-      'Payload Count:',
+      context.l.upload_screen_payload_count_label,
       payloadCountLabel,
       '',
-      'Retry Count:',
+      context.l.upload_screen_retry,
       retryCountLabel,
       '',
-      'Error:',
+      context.l.upload_screen_error,
       errorLabel,
     ].join('\n');
   }

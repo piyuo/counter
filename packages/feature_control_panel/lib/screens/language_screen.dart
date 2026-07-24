@@ -24,12 +24,12 @@ class LanguageScreen extends ConsumerWidget {
           children: [
             feature_pip.PipHeader(
               icon: Icons.language,
-              title: context.l.language_screen_language,
-              subtitle: context.l.language_screen_body,
+              title: context.l.settings_screen_language_title,
+              subtitle: context.l.language_screen_subtitle,
             ),
             ListTile(
               title: Text(localization.language),
-              subtitle: Text(context.l.language_screen_system_label),
+              subtitle: Text('using System Language'),
               leading: locale == null ? Icon(Icons.check) : SizedBox.shrink(),
               onTap: () async {
                 ref.read(appkit.localeProvider.notifier).set(null);

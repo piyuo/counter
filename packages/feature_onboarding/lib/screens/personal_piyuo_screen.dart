@@ -2,7 +2,9 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
@@ -41,7 +43,19 @@ class _PiyuoScreenState extends ConsumerState<PersonalPiyuoScreen> {
     final Color cloudUrlColor = Colors.blue;
 
     return OnboardingScaffold(
-      title: 'Dashboard Ready',
+      title: context.l.piyuo_server_screen_cloud_url_label,
+      footBuilder: (context) => [
+        onboardingSpacer(),
+        Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            const Text('•'),
+            onboardingTextButton(context.l.dpa, () {
+              appkit.netOpenUrl('https://piyuo.com/dpa');
+            }),
+          ],
+        ),
+      ],
       nextButtonAction: NextButtonAction.start,
       onNextButtonPressed: () async {
         final appController = ref.read(core_domain.appProvider.notifier);
@@ -51,7 +65,14 @@ class _PiyuoScreenState extends ConsumerState<PersonalPiyuoScreen> {
       },
       builder: (context) => [
         Text(
-          'Your personal Piyuo Cloud dashboard is ready.',
+          context.l.piyuo_server_screen_url_help,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+
+        onboardingSpacer(),
+        Text(
+          context.l.piyuo_server_screen_url_remember,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
@@ -69,8 +90,7 @@ class _PiyuoScreenState extends ConsumerState<PersonalPiyuoScreen> {
               icon: const Icon(Icons.copy),
               onPressed: () async {
                 Clipboard.setData(ClipboardData(text: _cloudUrlController.text));
-
-                await pip.showMessageDialog('URL copied');
+                await pip.showMessageDialog(context.l.piyuo_server_screen_copy_success);
               },
             ),
           ),
@@ -78,16 +98,10 @@ class _PiyuoScreenState extends ConsumerState<PersonalPiyuoScreen> {
 
         onboardingSpacer(),
 
-        Text(
-          'Save this URL to access your traffic dashboard from another device.',
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-
         onboardingSpacer(),
 
         Text(
-          "Press 'Start' below to begin counting.",
+          context.l.piyuo_server_screen_start,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),

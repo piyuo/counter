@@ -40,41 +40,41 @@ ProviderContainer _makeContainer({
 GoRouter _buildTestRouter() {
   return GoRouter(
     routes: [
-      GoRoute(path: core_domain.ControlPanelRoutes.root, builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/settings', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/settings/piyuo', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/settings/server', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/about', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/detection-params', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/delivery-config', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/upload-logs', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/recent-payloads', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/recent-payloads/hour/:slotMs', builder: (_, __) => const SizedBox()),
-      GoRoute(path: '/recent-payloads/payload/:payloadId', builder: (_, __) => const SizedBox()),
+      GoRoute(path: core_domain.ControlPanelRoutes.root, builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/settings', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/settings/piyuo', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/settings/server', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/about', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/detection', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/delivery-config', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/upload-logs', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/recent-payloads', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/recent-payloads/hour/:slotMs', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/recent-payloads/payload/:payloadId', builder: (_, _) => const SizedBox()),
       GoRoute(
         path: core_domain.OnboardingRoutes.onboarding,
-        builder: (_, __) => const SizedBox(),
+        builder: (_, _) => const SizedBox(),
         routes: [
           GoRoute(
             path: '1',
-            builder: (_, __) => const SizedBox(),
+            builder: (_, _) => const SizedBox(),
             routes: [
               GoRoute(
                 path: '2',
-                builder: (_, __) => const SizedBox(),
+                builder: (_, _) => const SizedBox(),
                 routes: [
                   GoRoute(
                     path: 'system',
-                    builder: (_, __) => const SizedBox(),
+                    builder: (_, _) => const SizedBox(),
                     routes: [
                       GoRoute(
                         path: 'cta',
-                        builder: (_, __) => const SizedBox(),
+                        builder: (_, _) => const SizedBox(),
                         routes: [
-                          GoRoute(path: 'invitation', builder: (_, __) => const SizedBox()),
-                          GoRoute(path: 'piyuo', builder: (_, __) => const SizedBox()),
-                          GoRoute(path: 'server', builder: (_, __) => const SizedBox()),
-                          GoRoute(path: 'demo', builder: (_, __) => const SizedBox()),
+                          GoRoute(path: 'invitation', builder: (_, _) => const SizedBox()),
+                          GoRoute(path: 'piyuo', builder: (_, _) => const SizedBox()),
+                          GoRoute(path: 'server', builder: (_, _) => const SizedBox()),
+                          GoRoute(path: 'demo', builder: (_, _) => const SizedBox()),
                         ],
                       ),
                     ],
@@ -96,7 +96,8 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenSettings() => '/settings',
       core_domain.OpenSettingsPiyuo() => '/settings/piyuo',
       core_domain.OpenSettingsServer() => '/settings/server',
-      core_domain.OpenDetectionParams() => '/detection-params',
+      core_domain.OpenSettingsLocal() => '/settings/local',
+      core_domain.OpenDetection() => '/detection',
       core_domain.OpenDeliveryConfig() => '/delivery-config',
       core_domain.OpenUploadLogs() => '/upload-logs',
       core_domain.OpenPayloadsRecent() => '/recent-payloads',
@@ -128,7 +129,7 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenLanguage() => null,
       core_domain.OpenVideoSources() => '/video-sources',
       core_domain.OpenLiveUrl() => '/live-url',
-      core_domain.OpenDetectionTypeSelection() => '/detection-type',
+      core_domain.OpenTarget() => '/target',
       core_domain.OpenUploadLogDetail() => '/upload-logs',
     };
     if (path == null) return;
@@ -306,7 +307,7 @@ void main() {
       expect(router.routerDelegate.currentConfiguration.uri.path, '/settings/server');
     });
 
-    testWidgets('OpenDetectionParams causes navigation to /detection-params', (tester) async {
+    testWidgets('OpenDetectionParams causes navigation to /detection', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
@@ -320,10 +321,10 @@ void main() {
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
 
-      bus.push(const core_domain.OpenDetectionParams());
+      bus.push(const core_domain.OpenDetection());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/detection-params');
+      expect(router.routerDelegate.currentConfiguration.uri.path, '/detection');
     });
 
     testWidgets('OpenDeliveryConfig causes navigation to /delivery-config', (tester) async {

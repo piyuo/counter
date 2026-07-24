@@ -8,9 +8,11 @@ part 'app_runtime_notifier.g.dart';
 
 abstract class AppRuntimeController {
   void setDevelopMode(bool value);
+  void setIsVisionRunning(bool value);
   Future<void> saveBearerToken(DataServerSelection selection, String token);
   Future<void> clearBearerToken();
   Future<void> loadBearerToken(DataServerSelection selection);
+  Future<void> reset();
 }
 
 @Riverpod(keepAlive: true)
@@ -26,8 +28,13 @@ class AppRuntimeNotifier extends _$AppRuntimeNotifier implements AppRuntimeContr
   }
 
   @override
+  void setIsVisionRunning(bool value) {
+    state = state.copyWith(isVisionRunning: value);
+  }
+
+  @override
   Future<void> saveBearerToken(DataServerSelection selection, String token) async {
-    if (selection == DataServerSelection.none || selection == DataServerSelection.personalPiyuo) {
+    if (selection == DataServerSelection.noDataServer || selection == DataServerSelection.personalPiyuo) {
       appkit.logDebug(
         'Cannot save bearer token for DataServerSelection.none or piyuo, they should not have bearer tokens.',
       );
@@ -47,12 +54,17 @@ class AppRuntimeNotifier extends _$AppRuntimeNotifier implements AppRuntimeContr
   /// call by appNotifier when the app state is loaded
   @override
   Future<void> loadBearerToken(DataServerSelection selection) async {
-    if (selection == DataServerSelection.none || selection == DataServerSelection.personalPiyuo) {
+    if (selection == DataServerSelection.noDataServer || selection == DataServerSelection.personalPiyuo) {
       state = state.copyWith(bearerToken: '');
       return;
     }
 
     final storedToken = await ref.read(authStorageServiceProvider).get(getKeyFromDataServerSelection(selection));
     state = state.copyWith(bearerToken: storedToken);
+  }
+
+  @override
+  Future<void> reset() async {
+    state = const AppRuntimeState();
   }
 }

@@ -4,18 +4,19 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-class LiveUrlScreen extends ConsumerStatefulWidget {
-  const LiveUrlScreen({super.key});
+class UrlScreen extends ConsumerStatefulWidget {
+  const UrlScreen({super.key});
 
   @override
-  ConsumerState<LiveUrlScreen> createState() => _LiveUrlScreenState();
+  ConsumerState<UrlScreen> createState() => _LiveUrlScreenState();
 }
 
-class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
+class _LiveUrlScreenState extends ConsumerState<UrlScreen> {
   final TextEditingController _urlController = TextEditingController();
   String? _errorMessage;
   bool _isSubmitting = false;
@@ -43,7 +44,7 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
               feature_pip.PipHeader(
                 icon: Icons.cloud_outlined,
                 title: context.l.url_screen_title,
-                subtitle: context.l.url_screen_body,
+                subtitle: context.l.url_screen_subtitle,
               ),
               feature_pip.PipPanel(
                 child: Padding(
@@ -84,11 +85,11 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.redAccent),
                         ),
                       ],
-                      const SizedBox(height: 14),
-                      SelectableText(
-                        '${context.l.live_url_screen_examples_label}:\nhttps://cdn-004.whatsupcams.com/hls/hr_karlovac1.m3u8',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
-                      ),
+                      if (kDebugMode)
+                        SelectableText(
+                          'https://cdn-004.whatsupcams.com/hls/hr_karlovac1.m3u8',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                        ),
                     ],
                   ),
                 ),
@@ -103,7 +104,7 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
                     style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(52)),
                     child: _isSubmitting
                         ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2.4))
-                        : Text(context.l.submit),
+                        : Text(MaterialLocalizations.of(context).okButtonLabel),
                   ),
                 ),
               ),
@@ -147,12 +148,12 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
 
   Future<String?> _validateLiveUrl(String url) async {
     if (url.isEmpty) {
-      return context.l.live_url_screen_url_empty_error;
+      return context.l.url_screen_url_empty_error;
     }
 
     final parsedUri = Uri.tryParse(url);
     if (parsedUri == null || parsedUri.scheme.isEmpty) {
-      return context.l.live_url_screen_invalid_url_error;
+      return context.l.url_screen_invalid_url_error;
     }
 
     switch (parsedUri.scheme.toLowerCase()) {
@@ -162,11 +163,11 @@ class _LiveUrlScreenState extends ConsumerState<LiveUrlScreen> {
       case 'rtsp':
       case 'rtsps':
         if (parsedUri.host.isEmpty) {
-          return context.l.live_url_screen_invalid_rtsp_error;
+          return context.l.url_screen_invalid_rtsp_error;
         }
         return null;
       default:
-        return context.l.live_url_screen_unsupported_scheme_error;
+        return context.l.url_screen_unsupported_scheme_error;
     }
   }
 }

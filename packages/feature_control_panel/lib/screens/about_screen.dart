@@ -52,7 +52,13 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
           children: [
             Image(image: AssetImage('assets/icon/icon.png'), width: 145, height: 140),
             const SizedBox(height: 8.0),
-            Text(context.l.product_name, style: TextStyle(fontSize: 20.0)),
+            Text('Piyuo Counter', style: TextStyle(fontSize: 20.0)),
+            const SizedBox(height: 8.0),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Text(context.l.product_desc, style: TextStyle(fontSize: 16.0)),
+            ),
             const SizedBox(height: 28),
             feature_pip.PipPanel(
               child: Column(
@@ -69,6 +75,21 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                 ],
               ),
             ),
+            feature_pip.PipPanel(
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Icon(Icons.help),
+                    title: Text(context.l.personal_custom_screen_help_action),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      appkit.netOpenUrl('https://piyuo.com/en/docs/payload-format');
+                    },
+                  ),
+                ],
+              ),
+            ),
+
             feature_pip.PipPanel(
               child: Column(
                 children: [
@@ -90,14 +111,14 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                   children: [
                     ListTile(
                       trailing: Icon(Icons.arrow_forward_ios),
-                      title: Text(context.l.about_screen_build_info_title),
+                      title: Text('OpenCV build info'),
                       onTap: () {
                         ref.push(const core_domain.OpenBuildInfo());
                       },
                     ),
                     if (_versionTapCount >= 10)
                       ListTile(
-                        title: Text(context.l.about_screen_force_window_end_title),
+                        title: Text("End Counting Window and Enqueue"),
                         onTap: () {
                           ref.read(vision.windowCountProvider.notifier).debugForceWindowEnd();
                         },
@@ -113,6 +134,32 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                   ],
                 ),
               ),
+
+            const SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                appkit.netOpenUrl('https://piyuo.com/dpa');
+              },
+              child: Text(context.l.dpa),
+            ),
+            Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    appkit.netOpenUrl('https://piyuo.com/privacy');
+                  },
+                  child: Text(context.l.privacy),
+                ),
+                const Text('•'),
+                TextButton(
+                  onPressed: () {
+                    appkit.netOpenUrl('https://piyuo.com/terms');
+                  },
+                  child: Text(context.l.terms),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:camera_macos/camera_macos.dart';
 import 'package:camera_windows/camera_windows.dart';
@@ -8,7 +10,7 @@ import 'package:universal_platform/universal_platform.dart';
 class NativeHardwareCapabilityService implements core_domain.HardwareCapabilityService {
   NativeHardwareCapabilityService(this._cameraDeviceController);
 
-  vision.CameraDeviceNotifier _cameraDeviceController;
+  final vision.CameraDeviceNotifier _cameraDeviceController;
 
   Future<int> availableCameraCount() async {
     try {
@@ -48,6 +50,13 @@ class NativeHardwareCapabilityService implements core_domain.HardwareCapabilityS
 
   @override
   Future<bool> isVideoSourceValid(core_domain.VideoSource videoSource) async {
+    if (videoSource is core_domain.FileVideoSource) {
+      try {
+        return File(videoSource.path).existsSync();
+      } catch (e) {
+        return false;
+      }
+    }
     if (videoSource is core_domain.CameraVideoSource) {
       final cameraCount = await availableCameraCount();
       return cameraCount > videoSource.cameraIndex;

@@ -19,8 +19,11 @@ void main() {
       expect(routes.whereType<GoRoute>().map((r) => r.path), contains(core_domain.ControlPanelRoutes.root));
     });
 
-    test('contains a route for liveStreamOnly', () {
-      expect(routes.whereType<GoRoute>().map((r) => r.path), contains(core_domain.ControlPanelRoutes.liveStreamOnly));
+    test('contains a route for device not supported', () {
+      expect(
+        routes.whereType<GoRoute>().map((r) => r.path),
+        contains(core_domain.ControlPanelRoutes.deviceNotSupported),
+      );
     });
 
     test('contains a route for about', () {

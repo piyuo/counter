@@ -29,23 +29,21 @@ abstract class DetectionParams with _$DetectionParams {
     /// This is checked after all matching passes complete.
     @Default(0.75) double newTrackThresh,
 
-    /// Base lost-track retention window, expressed in 30-FPS-equivalent frames.
-    /// Native code scales this by `frameRate / 30` to compute how long a lost
-    /// track remains eligible for re-activation before it is removed.
-    @Default(180) int trackBuffer,
+    // Seconds a track may stay Lost before removal, measured via steady_clock
+    @Default(3) double maxTimeLostSec,
 
     /// Maximum fused association cost accepted by linear assignment in the first
     /// high-confidence association pass. Lower costs are better; larger values
     /// make that pass more permissive. This does not affect the later
     /// low-confidence and unconfirmed passes, which use fixed thresholds.
-    @Default(0.8) double maxMatchDistance,
+    @Default(0.9) double maxMatchDistance,
 
     /// IoU-distance threshold used to mark a track/detection pair as spatially
     /// poor during the high-confidence and unconfirmed association passes.
     /// Native code uses IoU distance `(1 - IoU)`, so lower values mean better
     /// overlap. This does not affect the second low-confidence pass, which uses
     /// raw IoU distance without this mask.
-    @Default(0.9) double proximityThresh,
+    @Default(0.95) double proximityThresh,
 
     /// Maximum embedding distance allowed before appearance matching is masked
     /// out in the ReID-enabled high-confidence and unconfirmed association
@@ -75,7 +73,7 @@ abstract class DetectionParams with _$DetectionParams {
 
     /// Minimum elapsed wall-clock time, in seconds, since the track started
     /// before assigning a user-visible `trackletId`.
-    @Default(1.2) double trackletMinPresenceTimeSec,
+    @Default(1) double trackletMinPresenceTimeSec,
 
     // Edge margin, in pixels. Objects detected within this distance from
     // the frame boundary are not considered valid until they move away from
@@ -90,12 +88,36 @@ abstract class DetectionParams with _$DetectionParams {
 
     /// Minimum continuous in-area duration, in seconds, before a track
     /// contributes to `stayCount` in window counting.
-    @Default(15) int stayThresholdSeconds,
-
+    @Default(600) int stayThresholdSeconds, // stay over ten minutes to count as a stay
     /// Minimum continuous absence duration, in seconds, before a previously
     /// in-area track contributes to `disappearCount` in window counting.
+    /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear
     @Default(7) int disappearThresholdSeconds,
   }) = _DetectionParams;
 
   factory DetectionParams.fromJson(Map<String, dynamic> json) => _$DetectionParamsFromJson(json);
+
+  /// Creates parameters optimized for vehicle tracking.
+  ///
+  /// Vehicles are generally more box-stable and have different motion
+  /// characteristics compared to pedestrians.
+  factory DetectionParams.vehicle() {
+    return const DetectionParams(
+      trackHighThresh: 0.75,
+      trackLowThresh: 0.20,
+      newTrackThresh: 0.70,
+      maxTimeLostSec: 5,
+      maxMatchDistance: 0.9,
+      proximityThresh: 0.95,
+      appearanceThresh: 0.25,
+      lambda: 0.80,
+      softMotionGating: true,
+      preferAppearanceFallbackOnLowIou: true,
+      trackletMinPresenceTimeSec: 0.2,
+      trackletEdgeMargin: 32,
+      trackletEdgeOverrideTimeSec: 2.0,
+      stayThresholdSeconds: 600, // 10 minutes count as stay
+      disappearThresholdSeconds: 7,
+    );
+  }
 }

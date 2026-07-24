@@ -94,7 +94,7 @@ void main() {
       await notifier.selectNoDataServer();
       final state = await container.read(appProvider.future);
 
-      expect(state.currentDataServer, const DataServer.none());
+      expect(state.currentDataServer, const DataServer.noDataServer());
       expect(repo.saveCalls, 1);
       expect(tokenService.callCount, 0);
     });

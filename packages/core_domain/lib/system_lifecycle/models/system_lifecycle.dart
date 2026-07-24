@@ -15,5 +15,5 @@ sealed class SystemLifecycle with _$SystemLifecycle {
   const factory SystemLifecycle.systemReady() = SystemReady;
 
   /// The system has encountered a fatal error during lifecycle transitions.
-  const factory SystemLifecycle.systemError(String message) = SystemError;
+  const factory SystemLifecycle.systemDeviceNotSupported() = SystemDeviceNotSupported;
 }

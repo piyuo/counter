@@ -2,6 +2,7 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
@@ -46,7 +47,7 @@ class _PersonalCustomServerScreenState extends ConsumerState<PersonalCustomScree
   @override
   Widget build(BuildContext context) {
     return OnboardingScaffold(
-      title: 'Use Your Own Server',
+      title: context.l.cta_screen_custom,
 
       onNextButtonPressed: _isValidating
           ? null
@@ -78,7 +79,7 @@ class _PersonalCustomServerScreenState extends ConsumerState<PersonalCustomScree
 
       builder: (context) => [
         Text(
-          'Send traffic summaries directly to your own server.',
+          context.l.cta_screen_custom_help,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
@@ -148,14 +149,16 @@ class _PersonalCustomServerScreenState extends ConsumerState<PersonalCustomScree
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
 
-            child: const Text('Start over', style: TextStyle(fontSize: 14, color: Colors.blue)),
+            child: Text(
+              context.l.personal_custom_screen_reset_action,
+              style: TextStyle(fontSize: 14, color: Colors.blue),
+            ),
           ),
 
         onboardingSpacer(),
 
         Text(
-          'Need help building a backend? '
-          'See our API documentation and server examples.',
+          context.l.personal_custom_screen_build_server.replaceAll('\\n', '\n'),
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
@@ -164,10 +167,10 @@ class _PersonalCustomServerScreenState extends ConsumerState<PersonalCustomScree
 
         TextButton(
           onPressed: () {
-            appkit.netOpenUrl('https://docs.piyuo.com/api/overview');
+            appkit.netOpenUrl('https://piyuo.com/en/docs/payload-format');
           },
 
-          child: const Text('Open API Documentation'),
+          child: Text(context.l.personal_custom_screen_help_action),
         ),
 
         onboardingSpacer(),

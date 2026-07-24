@@ -3,28 +3,15 @@
 
 import 'dart:convert';
 import 'dart:math' as math;
-import 'dart:typed_data';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter/foundation.dart';
 
 /// Serializes a batch of [TelemetryPayload]s to a UTF-8 encoded JSON array.
 class JsonPayloadSerializer implements core_domain.PayloadSerializer {
   const JsonPayloadSerializer();
 
   static final JsonUtf8Encoder _encoder = JsonUtf8Encoder();
-  static const Set<String> _areaZeroDefaultKeys = {
-    'passBy',
-    'stay',
-    'entry',
-    'exit',
-    'appear',
-    'disappear',
-    'avgOccupancy',
-    'maxOccupancy',
-    'avgDwellSec',
-    'maxDwellSec',
-  };
 
   @override
   String get contentType => 'application/json';
@@ -32,28 +19,25 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
   @override
   Uint8List serialize(
     List<core_domain.TelemetryPayload> payloads, {
-    required int schemaVersion,
-    required String deviceId,
-    String? projectId,
-    String? assignId,
+    required int schemaVersion, // the json schema version to use for the payloads, e.g. 1
+    required String deviceId, // the device ID to include in the payloads, e.g. "041bfec6-8923-4b09-be5f-0fd11d3df7f5"
+    String? projectId, // the project ID to include in the payloads, e.g. "my-project-id", this value is from invitation
+    String? assignId, // the assign ID to include in the payloads, e.g. "my-assign-id", this value is from invitation
   }) {
     final payloadJson = payloads.map(_toTransportJson).toList(growable: false);
+    final json = {
+      'schema': schemaVersion,
+      'deviceId': deviceId,
+      'projectId': ?projectId,
+      'assignId': ?assignId,
+      'payloads': payloadJson,
+    };
+    final serialized = Uint8List.fromList(_encoder.convert(json));
 
-    final serialized = Uint8List.fromList(
-      _encoder.convert({
-        'schema': schemaVersion,
-        'deviceId': deviceId,
-        'projectId': ?projectId,
-        'assignId': ?assignId,
-        'payloads': payloadJson,
-      }),
-    );
-
-    assert(() {
-      _debugLogPayloads(payloadJson, batchBytes: serialized.length, schemaVersion: schemaVersion, deviceId: deviceId);
-      return true;
-    }());
-
+    if (kDebugMode) {
+      String text = _printJson(json);
+      debugPrint(text);
+    }
     return serialized;
   }
 
@@ -63,13 +47,7 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
   }
 
   Map<String, dynamic> _roundJsonMap(Map<String, dynamic> json) {
-    final rounded = {for (final entry in json.entries) entry.key: _roundJsonValue(entry.value, key: entry.key)};
-
-    if (_isAreaJsonMap(rounded)) {
-      rounded.removeWhere((key, value) => _areaZeroDefaultKeys.contains(key) && _isZeroNumber(value));
-    }
-
-    return rounded;
+    return {for (final entry in json.entries) entry.key: _roundJsonValue(entry.value, key: entry.key)};
   }
 
   Object? _roundJsonValue(Object? value, {String? key}) {
@@ -110,28 +88,7 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
     return (value * factor).round() / factor;
   }
 
-  bool _isAreaJsonMap(Map<String, dynamic> map) => map.containsKey('areaId');
-
-  bool _isZeroNumber(Object? value) => value is num && value == 0;
-
-  void _debugLogPayloads(
-    List<Map<String, dynamic>> payloads, {
-    required int batchBytes,
-    required int schemaVersion,
-    required String deviceId,
-  }) {
-    final previewCount = math.min(3, payloads.length);
-    final batchKb = batchBytes / 1024;
-    final payloadPreview = List<String>.generate(previewCount, (i) {
-      final jsonString = jsonEncode(payloads[i]);
-      final jsonBytes = utf8.encode(jsonString).length;
-      return '\n payload[$i]={bytes:$jsonBytes,json:$jsonString}';
-    }).join(', ');
-    final truncatedCount = payloads.length - previewCount;
-    final truncatedSuffix = truncatedCount > 0 ? ', omitted=$truncatedCount' : '';
-
-    appkit.logInfo(
-      '[JsonPayloadSerializer] schema=$schemaVersion deviceId=$deviceId count=${payloads.length} bytes=$batchBytes kb=${batchKb.toStringAsFixed(2)} top=$previewCount $payloadPreview$truncatedSuffix',
-    );
+  String _printJson(Map<String, dynamic> json) {
+    return const JsonEncoder.withIndent('  ').convert(json);
   }
 }

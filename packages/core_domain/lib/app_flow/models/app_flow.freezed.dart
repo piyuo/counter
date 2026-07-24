@@ -55,12 +55,11 @@ extension AppFlowPatterns on AppFlow {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WaitingForStart value)?  waitingForStart,TResult Function( CheckingVideoSource value)?  checkingVideoSource,TResult Function( CheckingDataServer value)?  checkingDataServer,TResult Function( OnboardingBegin value)?  onboardingBegin,TResult Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult Function( SessionRunning value)?  sessionRunning,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( WaitingForStart value)?  waitingForStart,TResult Function( CheckingDataServer value)?  checkingDataServer,TResult Function( OnboardingBegin value)?  onboardingBegin,TResult Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult Function( SessionRunning value)?  sessionRunning,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart(_that);case CheckingVideoSource() when checkingVideoSource != null:
-return checkingVideoSource(_that);case CheckingDataServer() when checkingDataServer != null:
+return waitingForStart(_that);case CheckingDataServer() when checkingDataServer != null:
 return checkingDataServer(_that);case OnboardingBegin() when onboardingBegin != null:
 return onboardingBegin(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation(_that);case SessionRunning() when sessionRunning != null:
@@ -82,12 +81,11 @@ return sessionRunning(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WaitingForStart value)  waitingForStart,required TResult Function( CheckingVideoSource value)  checkingVideoSource,required TResult Function( CheckingDataServer value)  checkingDataServer,required TResult Function( OnboardingBegin value)  onboardingBegin,required TResult Function( OnboardingByInvitation value)  onboardingByInvitation,required TResult Function( SessionRunning value)  sessionRunning,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( WaitingForStart value)  waitingForStart,required TResult Function( CheckingDataServer value)  checkingDataServer,required TResult Function( OnboardingBegin value)  onboardingBegin,required TResult Function( OnboardingByInvitation value)  onboardingByInvitation,required TResult Function( SessionRunning value)  sessionRunning,}){
 final _that = this;
 switch (_that) {
 case WaitingForStart():
-return waitingForStart(_that);case CheckingVideoSource():
-return checkingVideoSource(_that);case CheckingDataServer():
+return waitingForStart(_that);case CheckingDataServer():
 return checkingDataServer(_that);case OnboardingBegin():
 return onboardingBegin(_that);case OnboardingByInvitation():
 return onboardingByInvitation(_that);case SessionRunning():
@@ -105,12 +103,11 @@ return sessionRunning(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WaitingForStart value)?  waitingForStart,TResult? Function( CheckingVideoSource value)?  checkingVideoSource,TResult? Function( CheckingDataServer value)?  checkingDataServer,TResult? Function( OnboardingBegin value)?  onboardingBegin,TResult? Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult? Function( SessionRunning value)?  sessionRunning,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( WaitingForStart value)?  waitingForStart,TResult? Function( CheckingDataServer value)?  checkingDataServer,TResult? Function( OnboardingBegin value)?  onboardingBegin,TResult? Function( OnboardingByInvitation value)?  onboardingByInvitation,TResult? Function( SessionRunning value)?  sessionRunning,}){
 final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart(_that);case CheckingVideoSource() when checkingVideoSource != null:
-return checkingVideoSource(_that);case CheckingDataServer() when checkingDataServer != null:
+return waitingForStart(_that);case CheckingDataServer() when checkingDataServer != null:
 return checkingDataServer(_that);case OnboardingBegin() when onboardingBegin != null:
 return onboardingBegin(_that);case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation(_that);case SessionRunning() when sessionRunning != null:
@@ -131,11 +128,10 @@ return sessionRunning(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  waitingForStart,TResult Function()?  checkingVideoSource,TResult Function()?  checkingDataServer,TResult Function()?  onboardingBegin,TResult Function()?  onboardingByInvitation,TResult Function()?  sessionRunning,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  waitingForStart,TResult Function()?  checkingDataServer,TResult Function()?  onboardingBegin,TResult Function()?  onboardingByInvitation,TResult Function()?  sessionRunning,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart();case CheckingVideoSource() when checkingVideoSource != null:
-return checkingVideoSource();case CheckingDataServer() when checkingDataServer != null:
+return waitingForStart();case CheckingDataServer() when checkingDataServer != null:
 return checkingDataServer();case OnboardingBegin() when onboardingBegin != null:
 return onboardingBegin();case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation();case SessionRunning() when sessionRunning != null:
@@ -157,11 +153,10 @@ return sessionRunning();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  waitingForStart,required TResult Function()  checkingVideoSource,required TResult Function()  checkingDataServer,required TResult Function()  onboardingBegin,required TResult Function()  onboardingByInvitation,required TResult Function()  sessionRunning,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  waitingForStart,required TResult Function()  checkingDataServer,required TResult Function()  onboardingBegin,required TResult Function()  onboardingByInvitation,required TResult Function()  sessionRunning,}) {final _that = this;
 switch (_that) {
 case WaitingForStart():
-return waitingForStart();case CheckingVideoSource():
-return checkingVideoSource();case CheckingDataServer():
+return waitingForStart();case CheckingDataServer():
 return checkingDataServer();case OnboardingBegin():
 return onboardingBegin();case OnboardingByInvitation():
 return onboardingByInvitation();case SessionRunning():
@@ -179,11 +174,10 @@ return sessionRunning();}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  waitingForStart,TResult? Function()?  checkingVideoSource,TResult? Function()?  checkingDataServer,TResult? Function()?  onboardingBegin,TResult? Function()?  onboardingByInvitation,TResult? Function()?  sessionRunning,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  waitingForStart,TResult? Function()?  checkingDataServer,TResult? Function()?  onboardingBegin,TResult? Function()?  onboardingByInvitation,TResult? Function()?  sessionRunning,}) {final _that = this;
 switch (_that) {
 case WaitingForStart() when waitingForStart != null:
-return waitingForStart();case CheckingVideoSource() when checkingVideoSource != null:
-return checkingVideoSource();case CheckingDataServer() when checkingDataServer != null:
+return waitingForStart();case CheckingDataServer() when checkingDataServer != null:
 return checkingDataServer();case OnboardingBegin() when onboardingBegin != null:
 return onboardingBegin();case OnboardingByInvitation() when onboardingByInvitation != null:
 return onboardingByInvitation();case SessionRunning() when sessionRunning != null:
@@ -219,38 +213,6 @@ int get hashCode => runtimeType.hashCode;
 @override
 String toString() {
   return 'AppFlow.waitingForStart()';
-}
-
-
-}
-
-
-
-
-/// @nodoc
-
-
-class CheckingVideoSource implements AppFlow {
-  const CheckingVideoSource();
-  
-
-
-
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingVideoSource);
-}
-
-
-@override
-int get hashCode => runtimeType.hashCode;
-
-@override
-String toString() {
-  return 'AppFlow.checkingVideoSource()';
 }
 
 

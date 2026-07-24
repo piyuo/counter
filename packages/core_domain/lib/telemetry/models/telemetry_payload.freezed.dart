@@ -367,7 +367,8 @@ as List<AreaPayload>,
 mixin _$AreaPayload {
 
 /// Index matching the configured interest-area ID.
- int get areaId;/// Objects detected moving past the area without entering it.
+ int get areaId;/// Name of the configured interest area.
+ String get areaName;/// Objects detected moving past the area without entering it.
  int get passBy;/// Objects that stayed within the area.
  int get stay;/// Objects that crossed the threshold into the area.
  int get entry;/// Objects that crossed the threshold out of the area.
@@ -380,7 +381,7 @@ mixin _$AreaPayload {
 @RoundedDouble2() double get avgOccupancy;/// Max occupancy observed at any sample in the window.
  int get maxOccupancy;/// Mean dwell time in seconds across all dwell observations.
 @RoundedDouble2() double get avgDwellSec;/// Maximum observed dwell time in rounded seconds.
- int get maxDwellSec;
+ double get maxDwellSec;
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -393,16 +394,16 @@ $AreaPayloadCopyWith<AreaPayload> get copyWith => _$AreaPayloadCopyWithImpl<Area
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,areaId,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
+int get hashCode => Object.hash(runtimeType,areaId,areaName,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
 
 @override
 String toString() {
-  return 'AreaPayload(areaId: $areaId, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
+  return 'AreaPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
 }
 
 
@@ -413,7 +414,7 @@ abstract mixin class $AreaPayloadCopyWith<$Res>  {
   factory $AreaPayloadCopyWith(AreaPayload value, $Res Function(AreaPayload) _then) = _$AreaPayloadCopyWithImpl;
 @useResult
 $Res call({
- int areaId, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, int maxDwellSec
+ int areaId, String areaName, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, double maxDwellSec
 });
 
 
@@ -430,10 +431,11 @@ class _$AreaPayloadCopyWithImpl<$Res>
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
   return _then(_self.copyWith(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
-as int,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
+as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
+as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
 as int,stay: null == stay ? _self.stay : stay // ignore: cast_nullable_to_non_nullable
 as int,entry: null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
 as int,exit: null == exit ? _self.exit : exit // ignore: cast_nullable_to_non_nullable
@@ -443,7 +445,7 @@ as int,avgOccupancy: null == avgOccupancy ? _self.avgOccupancy : avgOccupancy //
 as double,maxOccupancy: null == maxOccupancy ? _self.maxOccupancy : maxOccupancy // ignore: cast_nullable_to_non_nullable
 as int,avgDwellSec: null == avgDwellSec ? _self.avgDwellSec : avgDwellSec // ignore: cast_nullable_to_non_nullable
 as double,maxDwellSec: null == maxDwellSec ? _self.maxDwellSec : maxDwellSec // ignore: cast_nullable_to_non_nullable
-as int,
+as double,
   ));
 }
 
@@ -525,10 +527,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int areaId,  String areaName,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  double maxDwellSec)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AreaPayload() when $default != null:
-return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
+return $default(_that.areaId,_that.areaName,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
   return orElse();
 
 }
@@ -546,10 +548,10 @@ return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int areaId,  String areaName,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  double maxDwellSec)  $default,) {final _that = this;
 switch (_that) {
 case _AreaPayload():
-return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);}
+return $default(_that.areaId,_that.areaName,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -563,10 +565,10 @@ return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int areaId,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  int maxDwellSec)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int areaId,  String areaName,  int passBy,  int stay,  int entry,  int exit,  int appear,  int disappear, @RoundedDouble2()  double avgOccupancy,  int maxOccupancy, @RoundedDouble2()  double avgDwellSec,  double maxDwellSec)?  $default,) {final _that = this;
 switch (_that) {
 case _AreaPayload() when $default != null:
-return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
+return $default(_that.areaId,_that.areaName,_that.passBy,_that.stay,_that.entry,_that.exit,_that.appear,_that.disappear,_that.avgOccupancy,_that.maxOccupancy,_that.avgDwellSec,_that.maxDwellSec);case _:
   return null;
 
 }
@@ -578,11 +580,13 @@ return $default(_that.areaId,_that.passBy,_that.stay,_that.entry,_that.exit,_tha
 @JsonSerializable()
 
 class _AreaPayload implements AreaPayload {
-  const _AreaPayload({required this.areaId, this.passBy = 0, this.stay = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, @RoundedDouble2() this.avgOccupancy = 0, this.maxOccupancy = 0, @RoundedDouble2() this.avgDwellSec = 0, this.maxDwellSec = 0});
+  const _AreaPayload({this.areaId = 0, this.areaName = '', this.passBy = 0, this.stay = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, @RoundedDouble2() this.avgOccupancy = 0, this.maxOccupancy = 0, @RoundedDouble2() this.avgDwellSec = 0, this.maxDwellSec = 0});
   factory _AreaPayload.fromJson(Map<String, dynamic> json) => _$AreaPayloadFromJson(json);
 
 /// Index matching the configured interest-area ID.
-@override final  int areaId;
+@override@JsonKey() final  int areaId;
+/// Name of the configured interest area.
+@override@JsonKey() final  String areaName;
 /// Objects detected moving past the area without entering it.
 @override@JsonKey() final  int passBy;
 /// Objects that stayed within the area.
@@ -605,7 +609,7 @@ class _AreaPayload implements AreaPayload {
 /// Mean dwell time in seconds across all dwell observations.
 @override@JsonKey()@RoundedDouble2() final  double avgDwellSec;
 /// Maximum observed dwell time in rounded seconds.
-@override@JsonKey() final  int maxDwellSec;
+@override@JsonKey() final  double maxDwellSec;
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
@@ -620,16 +624,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,areaId,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
+int get hashCode => Object.hash(runtimeType,areaId,areaName,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
 
 @override
 String toString() {
-  return 'AreaPayload(areaId: $areaId, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
+  return 'AreaPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
 }
 
 
@@ -640,7 +644,7 @@ abstract mixin class _$AreaPayloadCopyWith<$Res> implements $AreaPayloadCopyWith
   factory _$AreaPayloadCopyWith(_AreaPayload value, $Res Function(_AreaPayload) _then) = __$AreaPayloadCopyWithImpl;
 @override @useResult
 $Res call({
- int areaId, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, int maxDwellSec
+ int areaId, String areaName, int passBy, int stay, int entry, int exit, int appear, int disappear,@RoundedDouble2() double avgOccupancy, int maxOccupancy,@RoundedDouble2() double avgDwellSec, double maxDwellSec
 });
 
 
@@ -657,10 +661,11 @@ class __$AreaPayloadCopyWithImpl<$Res>
 
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? areaId = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
   return _then(_AreaPayload(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
-as int,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
+as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
+as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
 as int,stay: null == stay ? _self.stay : stay // ignore: cast_nullable_to_non_nullable
 as int,entry: null == entry ? _self.entry : entry // ignore: cast_nullable_to_non_nullable
 as int,exit: null == exit ? _self.exit : exit // ignore: cast_nullable_to_non_nullable
@@ -670,7 +675,7 @@ as int,avgOccupancy: null == avgOccupancy ? _self.avgOccupancy : avgOccupancy //
 as double,maxOccupancy: null == maxOccupancy ? _self.maxOccupancy : maxOccupancy // ignore: cast_nullable_to_non_nullable
 as int,avgDwellSec: null == avgDwellSec ? _self.avgDwellSec : avgDwellSec // ignore: cast_nullable_to_non_nullable
 as double,maxDwellSec: null == maxDwellSec ? _self.maxDwellSec : maxDwellSec // ignore: cast_nullable_to_non_nullable
-as int,
+as double,
   ));
 }
 

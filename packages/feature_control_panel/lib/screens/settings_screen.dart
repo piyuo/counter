@@ -18,9 +18,10 @@ class SettingsScreen extends ConsumerWidget {
     }
     final localization = appkit.Localization.of(context);
     final currentLocalDisplayLabel = localization.language;
-    final selectedDetectionIndex = switch (appState.detectionType) {
-      core_domain.DetectionVehicle() => 1,
-      _ => 0,
+
+    final isPedestrian = switch (appState.detectionType) {
+      core_domain.DetectionVehicle() => false,
+      _ => true,
     };
 
     return feature_pip.PipScaffold(
@@ -29,11 +30,7 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
         child: Column(
           children: [
-            feature_pip.PipHeader(
-              icon: Icons.settings,
-              title: context.l.settings_screen_title,
-              subtitle: context.l.settings_screen_body,
-            ),
+            feature_pip.PipHeader(icon: Icons.settings, title: context.l.start_screen_settings),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Align(
@@ -50,8 +47,8 @@ class SettingsScreen extends ConsumerWidget {
                         context,
                         selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
                       ),
-                      title: Text('Use Piyuo Cloud'),
-                      subtitle: Text('Store traffic data in Piyuo Cloud with dashboards and business insights.'),
+                      title: Text(context.l.settings_screen_piyuo_title),
+                      subtitle: Text(context.l.settings_screen_piyuo_subtitle, style: TextStyle(fontSize: 12)),
                       selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
@@ -63,8 +60,8 @@ class SettingsScreen extends ConsumerWidget {
                       context,
                       selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     ),
-                    title: Text('Use your own server'),
-                    subtitle: Text('Send traffic data directly to your own backend or database.'),
+                    title: Text(context.l.settings_screen_custom_title),
+                    subtitle: Text(context.l.settings_screen_custom_subtitle, style: TextStyle(fontSize: 12)),
                     selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
@@ -73,12 +70,12 @@ class SettingsScreen extends ConsumerWidget {
                   ),
                   ListTile(
                     leading: _selectionCheckbox(context, selected: appState.isLocalDeviceOnly),
-                    title: Text('Local Device Only'),
-                    subtitle: Text('Store traffic data locally on this device. Nothing is uploaded remotely.'),
+                    title: Text(context.l.settings_screen_local_title),
+                    subtitle: Text(context.l.settings_screen_local_subtitle, style: TextStyle(fontSize: 12)),
                     selected: appState.isLocalDeviceOnly,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () async {
-                      await ref.read(core_domain.appProvider.notifier).selectNoDataServer();
+                      ref.push(const core_domain.OpenSettingsLocal());
                     },
                   ),
                 ],
@@ -87,54 +84,47 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Object Detection')),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(context.l.settings_screen_object_detection),
+              ),
             ),
             feature_pip.PipPanel(
               child: Column(
                 children: [
                   ListTile(
-                    leading: const Icon(Icons.directions_walk),
-                    title: Text('Detection Target'),
+                    leading: Icon(isPedestrian ? Icons.directions_walk : Icons.directions_car),
+                    title: Text(context.l.settings_screen_detection_target),
+                    subtitle: Text(
+                      isPedestrian ? context.l.target_pedestrian : context.l.target_vehicle,
+                      style: TextStyle(fontSize: 12, color: Colors.grey.shade300),
+                    ),
                     trailing: Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Text(
-                          selectedDetectionIndex == 1
-                              ? context.l.detection_type_screen_vehicle_title
-                              : context.l.detection_type_screen_pedestrian_title,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
-                        ),
-                        SizedBox(width: 10),
-                        Icon(Icons.arrow_forward_ios),
-                      ],
+                      children: [SizedBox(width: 10), Icon(Icons.arrow_forward_ios)],
                     ),
                     onTap: () {
-                      ref.push(const core_domain.OpenDetectionTypeSelection());
+                      ref.push(const core_domain.OpenTarget());
                     },
                   ),
                   ListTile(
                     leading: const Icon(Icons.tune),
-                    title: Text('Tracking & Counting'),
+                    title: Text(context.l.detection_screen_title),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
-                      ref.push(const core_domain.OpenDetectionParams());
+                      ref.push(const core_domain.OpenDetection());
                     },
                   ),
-                  /*ListTile(
-                    leading: const Icon(Icons.send_outlined),
-                    title: Text(context.l.settings_screen_delivery_label),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      ref.push(const core_domain.OpenDeliveryConfig());
-                    },
-                  ),*/
                 ],
               ),
             ),
             const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Align(alignment: AlignmentDirectional.centerStart, child: Text('Misc')),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(context.l.settings_screen_misc_label),
+              ),
             ),
             feature_pip.PipPanel(
               child: Column(
@@ -149,7 +139,7 @@ class SettingsScreen extends ConsumerWidget {
                     ),
                   ListTile(
                     leading: const Icon(Icons.language),
-                    title: Text(context.l.wizard_screen_language),
+                    title: Text(context.l.settings_screen_language_title),
                     subtitle: Text(currentLocalDisplayLabel),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
@@ -171,7 +161,7 @@ class SettingsScreen extends ConsumerWidget {
                       message: context.l.settings_screen_reset_all_data_body,
                       actions: [
                         GlassDialogAction(
-                          label: context.l.cancel,
+                          label: MaterialLocalizations.of(context).cancelButtonLabel,
                           onPressed: () => Navigator.of(context, rootNavigator: true).pop(false),
                         ),
                         GlassDialogAction(

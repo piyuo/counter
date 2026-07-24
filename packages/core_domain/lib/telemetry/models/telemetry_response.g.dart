@@ -10,6 +10,10 @@ _TelemetryResponse _$TelemetryResponseFromJson(Map<String, dynamic> json) =>
     _TelemetryResponse(
       v: (json['v'] as num).toInt(),
       ok: json['ok'] as bool,
+      errorCode: $enumDecodeNullable(
+        _$TelemetryErrorCodeEnumMap,
+        json['errorCode'],
+      ),
       error: json['error'] as String?,
       data: json['data'] == null
           ? null
@@ -20,9 +24,23 @@ Map<String, dynamic> _$TelemetryResponseToJson(_TelemetryResponse instance) =>
     <String, dynamic>{
       'v': instance.v,
       'ok': instance.ok,
+      'errorCode': _$TelemetryErrorCodeEnumMap[instance.errorCode],
       'error': instance.error,
       'data': instance.data,
     };
+
+const _$TelemetryErrorCodeEnumMap = {
+  TelemetryErrorCode.connectionRefused: 'connectionRefused',
+  TelemetryErrorCode.dnsLookupFailed: 'dnsLookupFailed',
+  TelemetryErrorCode.socketError: 'socketError',
+  TelemetryErrorCode.networkError: 'networkError',
+  TelemetryErrorCode.invalidUrl: 'invalidUrl',
+  TelemetryErrorCode.connectionTimeout: 'connectionTimeout',
+  TelemetryErrorCode.connectionReset: 'connectionReset',
+  TelemetryErrorCode.httpErrorStatus: 'httpErrorStatus',
+  TelemetryErrorCode.transportException: 'transportException',
+  TelemetryErrorCode.httpUnknownError: 'httpUnknownError',
+};
 
 _ServerData _$ServerDataFromJson(Map<String, dynamic> json) => _ServerData(
   detection: json['detection'] == null

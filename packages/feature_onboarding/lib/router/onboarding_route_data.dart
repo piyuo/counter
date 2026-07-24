@@ -21,6 +21,7 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/core_domain.dart' show Invitation; // required by go_router_builder generated code
+import 'package:feature_onboarding/screens/camera_test_screen.dart';
 import 'package:feature_onboarding/screens/cta_screen.dart';
 import 'package:feature_onboarding/screens/invitation_screen.dart';
 import 'package:feature_onboarding/screens/invitation_success_screen.dart';
@@ -32,7 +33,6 @@ import 'package:feature_onboarding/screens/personal_custom_screen.dart';
 import 'package:feature_onboarding/screens/personal_custom_success_screen.dart';
 import 'package:feature_onboarding/screens/personal_piyuo_screen.dart';
 import 'package:feature_onboarding/screens/subscription_screen.dart';
-import 'package:feature_onboarding/screens/system_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -77,7 +77,7 @@ class SystemRouteData extends GoRouteData with $SystemRouteData {
   const SystemRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SystemScreen();
+  Widget build(BuildContext context, GoRouterState state) => const CameraTestScreen();
 }
 
 @TypedGoRoute<CTARouteData>(

@@ -4,7 +4,7 @@
 // Storage notes:
 //  - All timestamps are stored as UTC milliseconds-since-epoch integers.
 //  - Serialized payload (JSON) is stored verbatim from TelemetryPayload.toJson().
-//  - startMs/endMs store payload window bounds for event-time inspection.
+//  - startMs store payload window bounds for event-time inspection.
 //  - All payload rows (pending or uploaded) are retained for 7 days.
 
 import 'dart:convert';
@@ -19,9 +19,9 @@ import 'telemetry_database.dart';
 /// SQLite-backed implementation of [core_domain.TelemetryQueueRepository] built
 /// on Drift.  All timestamps are stored as UTC milliseconds since epoch.
 class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepository {
-  DriftPayloadQueueRepository(this._db);
+  DriftPayloadQueueRepository(this._dbFactory);
 
-  final TelemetryDatabase _db;
+  final TelemetryDatabaseFun _dbFactory;
 
   /// Enqueues [payload] for upload.
   ///
@@ -31,20 +31,21 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   Future<void> enqueue(core_domain.TelemetryPayload payload) async {
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
     final startLocalHm = _formatLocalHourMinute(payload.startUtc);
-    await _db
-        .into(_db.telemetryQueue)
+    final encodedJson = jsonEncode(payload.toJson());
+    await _dbFactory()
+        .into(_dbFactory().telemetryQueue)
         // Detection engine payload IDs are unique; if a duplicate appears,
         // keep the existing row as-is (do not reset/overwrite upload state).
         .insert(
           TelemetryQueueCompanion.insert(
             id: getPayloadId(payload),
-            serializedPayload: jsonEncode(payload.toJson()),
+            serializedPayload: encodedJson,
             createdAtMs: nowMs,
             startMs: payload.startUtc.toUtc().millisecondsSinceEpoch,
           ),
-          mode: InsertMode.insertOrIgnore,
+          mode: InsertMode.insertOrAbort, // let it abort  if something  is wrong, other options may hide errors
         );
-    appkit.logInfo('[TelemetryQueue] add payload: $startLocalHm, ');
+    appkit.logDebug('[TelemetryQueue] add payload: $startLocalHm');
   }
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
@@ -56,7 +57,7 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
     // Availability is based on enqueue time only.
     final cutoffMs = DateTime.now().toUtc().subtract(Duration(days: daysBack)).millisecondsSinceEpoch;
     final rows =
-        await (_db.select(_db.telemetryQueue)
+        await (_dbFactory().select(_dbFactory().telemetryQueue)
               ..where((t) => t.createdAtMs.isBiggerThanValue(cutoffMs))
               ..orderBy([(t) => OrderingTerm.desc(t.createdAtMs)]))
             .get();
@@ -69,7 +70,7 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   @override
   Future<List<core_domain.QueuedPayload>> fetchReady({int limit = 10}) async {
     final rows =
-        await (_db.select(_db.telemetryQueue)
+        await (_dbFactory().select(_dbFactory().telemetryQueue)
               ..where((t) => t.isPending)
               // Oldest first — ensures no payload is starved during retries.
               ..orderBy([(t) => OrderingTerm.asc(t.createdAtMs)])
@@ -81,8 +82,8 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   @override
   Future<void> appendUploadLog(core_domain.UploadLog log) async {
     final attemptedAtUtc = log.attemptedAtUtc.toUtc();
-    await _db
-        .into(_db.telemetryUploadLog)
+    await _dbFactory()
+        .into(_dbFactory().telemetryUploadLog)
         .insertOnConflictUpdate(
           TelemetryUploadLogCompanion.insert(
             id: Value(log.id),
@@ -100,7 +101,7 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   Future<List<core_domain.UploadLogList>> fetchRecentUploadLogs({int daysBack = 7, int limit = 500}) async {
     final cutoffMs = DateTime.now().toUtc().subtract(Duration(days: daysBack)).millisecondsSinceEpoch;
     final rows =
-        await (_db.select(_db.telemetryUploadLog)
+        await (_dbFactory().select(_dbFactory().telemetryUploadLog)
               ..where((t) => t.isAttemptedAfter(cutoffMs))
               ..orderBy([(t) => OrderingTerm.desc(t.attemptedAtMs)])
               ..limit(limit))
@@ -110,14 +111,16 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
 
   @override
   Future<core_domain.UploadLog?> fetchUploadLogById(int id) async {
-    final row = await (_db.select(_db.telemetryUploadLog)..where((t) => t.id.equals(id))).getSingleOrNull();
+    final row = await (_dbFactory().select(
+      _dbFactory().telemetryUploadLog,
+    )..where((t) => t.id.equals(id))).getSingleOrNull();
     return row == null ? null : _toUploadLog(row);
   }
 
   @override
   Future<void> pruneUploadLogs(DateTime before) async {
     final beforeMs = before.toUtc().millisecondsSinceEpoch;
-    await (_db.delete(_db.telemetryUploadLog)..where((t) => t.isAttemptedBefore(beforeMs))).go();
+    await (_dbFactory().delete(_dbFactory().telemetryUploadLog)..where((t) => t.isAttemptedBefore(beforeMs))).go();
   }
 
   /// Removes all payload rows enqueued before [before].
@@ -127,7 +130,7 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   @override
   Future<void> pruneExpired(DateTime before) async {
     final beforeMs = before.toUtc().millisecondsSinceEpoch;
-    await (_db.delete(_db.telemetryQueue)..where((t) => t.isCreatedBefore(beforeMs))).go();
+    await (_dbFactory().delete(_dbFactory().telemetryQueue)..where((t) => t.isCreatedBefore(beforeMs))).go();
   }
 
   @override
@@ -135,17 +138,17 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
     if (ids.isEmpty) return; // Avoid unnecessary database call
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
     // Batch update all payloads in a single WHERE IN clause for efficiency.
-    await (_db.update(
-      _db.telemetryQueue,
+    await (_dbFactory().update(
+      _dbFactory().telemetryQueue,
     )..where((t) => t.id.isIn(ids))).write(TelemetryQueueCompanion(uploadedAtMs: Value(nowMs)));
   }
 
   @override
   Future<int> pendingCount() async {
     final count = countAll();
-    final query = _db.selectOnly(_db.telemetryQueue)
+    final query = _dbFactory().selectOnly(_dbFactory().telemetryQueue)
       ..addColumns([count])
-      ..where(_db.telemetryQueue.isPending);
+      ..where(_dbFactory().telemetryQueue.isPending);
     return await query.map((row) => row.read(count) ?? 0).getSingle();
   }
 
@@ -156,11 +159,8 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   /// This is useful for clearing accumulated telemetry data and starting fresh.
   @override
   Future<void> reset() async {
-    appkit.logInfo('[TelemetryQueue] resetting database - clearing all records');
-    await _db.delete(_db.telemetryUploadLog).go();
-    // Delete all queued payloads
-    await _db.delete(_db.telemetryQueue).go();
-    appkit.logInfo('[TelemetryQueue] database reset complete');
+    await _dbFactory().reset();
+    appkit.logInfo('[TelemetryQueue] telemetry database reset');
   }
 
   String _formatLocalHourMinute(DateTime utcTime) {

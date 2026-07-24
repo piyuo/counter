@@ -1,0 +1,43 @@
+{
+  "session": "2607132120",
+  "sequence": 1,
+  "startUtc": "2026-07-14T04:20:00.000Z",
+  "startBusiness": "2026-07-13T21:20:00.000",
+  "businessDate": "2026-07-13",
+  "frameCount": 6124,
+  "missingSec": 42,
+  "confidence": 84.61,
+  "isPartial": true,
+  "coverage": 0.86,
+  "fps": 23.74,
+  "areas": [
+    {
+      "areaId": 0,
+      "areaName": "Global",
+      "passBy": 1,
+      "stay": 0,
+      "entry": 0,
+      "exit": 0,
+      "appear": 0,
+      "disappear": 0,
+      "avgOccupancy": 1.0,
+      "maxOccupancy": 1,
+      "avgDwellSec": 126.21,
+      "maxDwellSec": 257.0
+    },
+    {
+      "areaId": 1,
+      "areaName": "Area Center",
+      "passBy": 1,
+      "stay": 0,
+      "entry": 0,
+      "exit": 0,
+      "appear": 0,
+      "disappear": 0,
+      "avgOccupancy": 0.9,
+      "maxOccupancy": 1,
+      "avgDwellSec": 152.16,
+      "maxDwellSec": 257.0
+    }
+  ]
+}

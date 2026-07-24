@@ -25,6 +25,8 @@ vision.WindowCountState _result({Map<int, vision.AreaMetrics>? areas}) => vision
       areas ??
       {
         1: vision.AreaMetrics(
+          areaId: 1,
+          areaName: 'Area 1',
           passBy: 5,
           entry: 3,
           exit: 2,
@@ -35,6 +37,10 @@ vision.WindowCountState _result({Map<int, vision.AreaMetrics>? areas}) => vision
         ),
       },
   missingDuration: const Duration(seconds: 72),
+  doneRatio: 0,
+  inProgressRatio: 1,
+  missingRatio: 0,
+  fps: 20,
 );
 
 // ---------------------------------------------------------------------------
@@ -64,8 +70,25 @@ void main() {
     });
 
     test('generates a unique payloadId on each call', () {
-      final id1 = getPayloadId(mapper.map(_result()));
-      final id2 = getPayloadId(mapper.map(_result()));
+      // Use different sequence numbers to generate different payloadIds
+      final result1 = _result();
+      final result2 = vision.WindowCountState(
+        startUtc: result1.startUtc,
+        startBusiness: result1.startBusiness,
+        session: result1.session,
+        sequence: result1.sequence + 1, // Different sequence
+        frameCount: result1.frameCount,
+        confidence: result1.confidence,
+        areas: result1.areas,
+        missingDuration: result1.missingDuration,
+        doneRatio: result1.doneRatio,
+        inProgressRatio: result1.inProgressRatio,
+        missingRatio: result1.missingRatio,
+        fps: result1.fps,
+      );
+
+      final id1 = getPayloadId(mapper.map(result1));
+      final id2 = getPayloadId(mapper.map(result2));
       expect(id1, isNotEmpty);
       expect(id1, isNot(equals(id2)));
     });
@@ -98,6 +121,8 @@ void main() {
       final result = _result(
         areas: {
           1: vision.AreaMetrics(
+            areaId: 1,
+            areaName: 'Area 1',
             passBy: 1,
             entry: 1,
             exit: 0,
@@ -107,6 +132,8 @@ void main() {
             maxDwellSec: 20,
           ),
           2: vision.AreaMetrics(
+            areaId: 2,
+            areaName: 'Area 2',
             passBy: 2,
             entry: 0,
             exit: 2,

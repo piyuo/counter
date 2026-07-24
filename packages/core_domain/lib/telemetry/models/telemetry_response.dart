@@ -3,19 +3,21 @@
 //  - ServerData: payload object for upload ack and optional server-side overrides
 //  - ServerConfig: sparse config override payload from server
 
+import 'package:core_domain/core_domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../state/models/detection_params.dart';
-import '../../state/models/detection_type.dart';
-import '../../state/models/upload_config.dart';
 
 part 'telemetry_response.freezed.dart';
 part 'telemetry_response.g.dart';
 
 @freezed
 abstract class TelemetryResponse with _$TelemetryResponse {
-  const factory TelemetryResponse({required int v, required bool ok, String? error, ServerData? data}) =
-      _TelemetryResponse;
+  const factory TelemetryResponse({
+    required int v,
+    required bool ok,
+    TelemetryErrorCode? errorCode,
+    String? error,
+    ServerData? data,
+  }) = _TelemetryResponse;
 
   factory TelemetryResponse.fromJson(Map<String, dynamic> json) => _$TelemetryResponseFromJson(json);
 }

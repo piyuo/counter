@@ -19,7 +19,8 @@ class WindowResultMapper {
     final areas = windowCount.areas.entries.map((entry) {
       final m = entry.value;
       return core_domain.AreaPayload(
-        areaId: entry.key,
+        areaId: m.areaId,
+        areaName: m.areaName,
         passBy: m.passBy,
         entry: m.entry,
         exit: m.exit,
@@ -35,6 +36,16 @@ class WindowResultMapper {
     final businessDate =
         '${sb.year.toString().padLeft(4, '0')}-${sb.month.toString().padLeft(2, '0')}-${sb.day.toString().padLeft(2, '0')}';
 
+    // Calculate coverage: fraction of the window with valid data
+    // Observation windows are 5 minutes (300 seconds)
+    const int windowDurationSec = 300;
+    final int missingDurationSec = windowCount.missingDuration.inSeconds;
+    final double coverage = (windowDurationSec - missingDurationSec) / windowDurationSec;
+
+    // Calculate actual fps over the covered period
+    final int coveredDurationSec = windowDurationSec - missingDurationSec;
+    final double actualFps = coveredDurationSec > 0 ? windowCount.frameCount / coveredDurationSec : windowCount.fps;
+
     return core_domain.TelemetryPayload(
       session: windowCount.session,
       sequence: windowCount.sequence,
@@ -44,9 +55,9 @@ class WindowResultMapper {
       frameCount: windowCount.frameCount,
       missingSec: windowCount.missingDuration.inSeconds,
       confidence: windowCount.confidence,
-      isPartial: windowCount.coverageRatio < 1.0,
-      coverage: windowCount.coverageRatio,
-      fps: windowCount.fps,
+      isPartial: windowCount.doneRatio < 1.0,
+      coverage: coverage,
+      fps: actualFps,
       areas: areas,
     );
   }

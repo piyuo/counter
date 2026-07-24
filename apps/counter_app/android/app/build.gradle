@@ -13,6 +13,9 @@ if (keystorePropertiesFile.exists()) {
 println "Keystore path: " + keystorePropertiesFile.absolutePath
 
 android {
+    println "compileSdk = ${flutter.compileSdkVersion}"
+    println "targetSdk = ${flutter.targetSdkVersion}"
+
     namespace = "com.piyuo.counter"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion

@@ -4,8 +4,7 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/app_shell/app_router.dart';
 import 'package:counter_app/app_shell/app_theme.dart';
-import 'package:counter_app/boot/boot_notifier.dart';
-import 'package:counter_app/vision/vision_session_bootstrap.dart';
+import 'package:counter_app/app_shell/device_not_supported_screen.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
@@ -32,9 +31,13 @@ class _AppShellState extends ConsumerState<AppShell> {
   @override
   void initState() {
     super.initState();
-    // Start the boot sequence. BootNotifier orchestrates hardware + app-flow
-    // checks and drives SystemLifecycleNotifier transitions via dispatch().
-    ref.read(bootProvider);
+
+    Future.microtask(() {
+      // Start the boot sequence. boot() orchestrates hardware + app-flow
+      // checks and drives SystemLifecycleNotifier transitions via dispatch().
+      ref.read(core_domain.appProvider.notifier).boot();
+    });
+
     // delay to avoid busy state when open project
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
@@ -54,7 +57,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       appkit.Localization.delegate,
       vision.Localization.delegate,
       GlobalMaterialLocalizations.delegate,
-      //      GlobalCupertinoLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ];
 
@@ -70,22 +73,32 @@ class _AppShellState extends ConsumerState<AppShell> {
     final systemLifecycle = ref.watch(core_domain.systemLifecycleProvider);
     final defaultLocale = widget.locale ?? appkit.localeSystem;
 
-    return VisionSessionBootstrap(
-      child: ToastificationWrapper(
-        child: AppTheme(
-          child: MaterialApp(
-            navigatorKey: navigatorKey,
-            debugShowCheckedModeBanner: false,
-            locale: defaultLocale,
-            localizationsDelegates: appLocaleDelegates,
-            supportedLocales: shared_l10n.Localization.supportedLocales,
-            localeResolutionCallback: appkit.localeResolutionCallback,
-            theme: AppTheme.themeData,
-            initialRoute: '/',
-            onGenerateRoute: (routeSettings) {
-              return AppRouter.onGenerateRoute(routeSettings, ref, appLocaleDelegates);
-            },
-          ),
+    if (systemLifecycle == core_domain.SystemLifecycle.systemDeviceNotSupported()) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: defaultLocale,
+        localizationsDelegates: appLocaleDelegates,
+        supportedLocales: shared_l10n.Localization.supportedLocales,
+        localeResolutionCallback: appkit.localeResolutionCallback,
+        theme: AppTheme.themeData,
+        home: const DeviceNotSupportedScreen(),
+      );
+    }
+
+    return ToastificationWrapper(
+      child: AppTheme(
+        child: MaterialApp(
+          navigatorKey: navigatorKey,
+          debugShowCheckedModeBanner: false,
+          locale: defaultLocale,
+          localizationsDelegates: appLocaleDelegates,
+          supportedLocales: shared_l10n.Localization.supportedLocales,
+          localeResolutionCallback: appkit.localeResolutionCallback,
+          theme: AppTheme.themeData,
+          initialRoute: '/',
+          onGenerateRoute: (routeSettings) {
+            return AppRouter.onGenerateRoute(routeSettings, ref, appLocaleDelegates);
+          },
         ),
       ),
     );

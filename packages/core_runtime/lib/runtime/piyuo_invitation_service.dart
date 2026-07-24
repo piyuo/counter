@@ -1,9 +1,6 @@
 // TOC:
 //  - RemoteInvitationService: validates codes and fetches invitation JSON from the remote server
 
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:core_domain/core_domain.dart' as core_domain;
 
 class PiyuoInvitationService implements core_domain.InvitationService {
@@ -22,7 +19,7 @@ class PiyuoInvitationService implements core_domain.InvitationService {
   Future<core_domain.InvitationResult> download(String code) async {
     // todo: remote this result for test
     return core_domain.InvitationSuccess(core_domain.createDummyInvitation());
-
+    /*
     final normalised = code.toLowerCase();
     final uri = Uri.https('piyuo.com', '/invitation/$normalised');
     try {
@@ -56,6 +53,6 @@ class PiyuoInvitationService implements core_domain.InvitationService {
       return const core_domain.InvitationFailure(core_domain.InvitationError.invalidFormat);
     } catch (_) {
       return const core_domain.InvitationFailure(core_domain.InvitationError.unknown);
-    }
+    }*/
   }
 }

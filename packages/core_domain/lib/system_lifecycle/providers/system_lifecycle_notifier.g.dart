@@ -42,7 +42,7 @@ final class SystemLifecycleNotifierProvider
 }
 
 String _$systemLifecycleNotifierHash() =>
-    r'b89bdfe85f5552f0b8293f8ccee3d5c40a0ba0cf';
+    r'9f38571a07f985c51497c744bb446d8ef4a5a2e4';
 
 abstract class _$SystemLifecycleNotifier extends $Notifier<SystemLifecycle> {
   SystemLifecycle build();

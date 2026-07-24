@@ -44,7 +44,7 @@ void main() {
       });
 
       test('systemError → null', () {
-        expect(rule.evaluate(_ctx(const SystemLifecycle.systemError('fatal error'))), isNull);
+        expect(rule.evaluate(_ctx(const SystemLifecycle.systemDeviceNotSupported())), isNull);
       });
     });
   });

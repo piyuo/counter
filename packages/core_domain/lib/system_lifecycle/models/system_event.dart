@@ -12,5 +12,5 @@ sealed class SystemEvent with _$SystemEvent {
   const factory SystemEvent.hardwareCheckPassed() = HardwareCheckPassed;
 
   /// camera is missing
-  const factory SystemEvent.cameraMissing() = CameraMissing;
+  const factory SystemEvent.deviceNotSupported() = DeviceNotSupported;
 }
