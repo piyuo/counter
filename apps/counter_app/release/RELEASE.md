@@ -16,6 +16,9 @@ Fastlane.
 
 - Confirm `apps/counter_app/pubspec.yaml` contains the version you intend to
   release.
+- Commit any intended changes to `apps/counter_app/.build_number` (managed by
+  Fastlane) and confirm it exists. This file tracks the build number across all
+  platforms and is incremented during the release process.
 - Install the required local tooling: Flutter, Xcode and its command-line
   tools, Ruby and Bundler.
 - Ensure `apps/counter_app/.env` is present and contains the values required by
@@ -40,7 +43,7 @@ Fastlane.
 
    ```sh
    cd apps/counter_app
-   ./release/build_fastlane_metadata.sh
+   ./release/build_metadata.sh
    ```
 
 4. Review the generated metadata under `ios/fastlane/metadata/`,
@@ -76,6 +79,12 @@ The script releases platforms in this order:
 3. macOS: builds the Flutter macOS release, then runs the macOS Fastlane
    release lane.
 
+During each release, Fastlane reads the current build number from
+`apps/counter_app/.build_number`, increments it, and stores the new value
+back to the file. This incremented build number is applied to all platforms
+and submitted to the app stores. Commit the updated `.build_number` file when
+finishing the release branch.
+
 The script exits immediately after a platform fails. Earlier successful uploads
 are not rolled back automatically; inspect the relevant store console and rerun
 the required platform release only after correcting the failure.
@@ -92,11 +101,14 @@ the required platform release only after correcting the failure.
 
 ## Finish the Release Branch
 
-Commit the intended release metadata and create a pull request back to `main`.
-Use this title format:
+Commit the updated `.build_number` file and any other release metadata changes.
+Create a pull request back to `main` with this title format:
 
 ```text
 chore(store): release <version>
 ```
 
 Example: `chore(store): release 1.2.0`
+
+Include the updated `.build_number` in your commit so the build number
+progression is tracked in version control across all platforms.

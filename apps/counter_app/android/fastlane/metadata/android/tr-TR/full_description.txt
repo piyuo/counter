@@ -1,0 +1,15 @@
+Piyuo Counter, gizlilik-odaklı, cihaz üzerinde çalışan yapay zeka ile yaya ve araç trafiğini anlamanıza yardımcı olur.
+
+İzlemek istediğiniz yere bir telefon veya kamera yerleştirin. Piyuo Counter, insanları ve araçları algılayarak, geçişler, girişler, çıkışlar, işgal ve ortalama kalış süresi dahil anonim trafik özetleri oluşturur.
+
+Gizlilik önceliklidir. Tüm yapay zeka işlemleri cihazınızda gerçekleşir. Videolar, görüntüler ve ses hiçbir zaman cihazınızdan ayrılmaz. Piyuo Counter yüz tanıması yapmaz, yalnızca hareket düzenlerini analiz eder.
+
+Özellikler
+
+• Yapay zeka destekli yaya ve araç sayımı
+• 5 dakikalık özetlerle anonim trafik analizi
+• İnternet bağlantısı olmadan çalışır
+• Yalnızca yerel cihaz modu, yükleme yok
+• Sürekli 24/7 izleme için tasarlandı
+
+Perakende mağazaları, ofisler, restoranlar, sergiler ve halka açık alanlar için ideal.

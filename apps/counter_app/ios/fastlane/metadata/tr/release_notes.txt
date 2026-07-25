@@ -1,3 +1,0 @@
-Yeni İyileştirmeler
-
-- Geliştirilmiş Tespit Modeli: Yaya ve araç tespiti için önemli ölçüde daha iyi doğruluk ve daha hızlı performans sunan yeni, daha gelişmiş bir tespit modeli entegre edildi.

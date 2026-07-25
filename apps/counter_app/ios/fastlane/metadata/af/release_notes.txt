@@ -1,3 +1,0 @@
-Nuwe Verbeterings
-
-- Verbeterde Deteksiemodel: 'n Nuwe, gevorderde deteksiemodel is geïntegreer wat aansienlik beter akkuraatheid en vinniger werkverrigting bied vir voetganger- en voertuigdeteksie.

@@ -1,1 +1,0 @@
-IA,peatones,detección,seguimiento

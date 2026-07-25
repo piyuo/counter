@@ -1,1 +1,1 @@
-AI,pedoni,rilevamento,tracciamento
+visitatore,conteggio,veicolo,vendita al dettaglio,negozio,ristorante,pedone

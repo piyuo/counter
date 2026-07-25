@@ -1,3 +1,0 @@
-Përmirësime të reja
-
-- Model i përmirësuar zbulimi: U integrua një model i ri, më i avancuar zbulimi që ofron saktësi dukshëm më të mirë dhe performancë më të shpejtë për zbulimin e këmbësorëve dhe automjeteve.

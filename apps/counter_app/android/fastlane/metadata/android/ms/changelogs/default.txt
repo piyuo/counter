@@ -1,3 +1,5 @@
-Penambahbaikan Baharu
+## Penambahan Baharu
 
-- Model Pengesanan yang Dipertingkatkan: Mengintegrasikan model pengesanan baharu yang lebih maju yang memberikan ketepatan yang jauh lebih baik dan prestasi yang lebih pantas untuk pengesanan pejalan kaki dan kenderaan.
+* Enjin pembilang direka semula untuk ketepatan dan keandalan yang lebih baik.
+* Peningkatan prestasi pengesanan untuk pejalan kaki dan kenderaan.
+* Penambahan prestasi umum dan pembaikan pepijat.

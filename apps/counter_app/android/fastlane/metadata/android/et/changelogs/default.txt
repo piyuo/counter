@@ -1,3 +1,0 @@
-Uued täiustused
-
-- Täiustatud tuvastusmudel: Integreeritud uus, arenenum tuvastusmudel, mis pakub märkimisväärselt paremat täpsust ja kiiremat jõudlust jalakäijate ja sõidukite tuvastamisel.

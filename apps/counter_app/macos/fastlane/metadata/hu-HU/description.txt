@@ -1,22 +1,15 @@
-Ez egy alkalmazás, amely automatikusan felismeri és megszámlálja a gyalogosokat, nem igényel internetkapcsolatot, és a telepítés után azonnal használható.
+A Piyuo Counter segít megérteni a gyalogos és járműforgalmat az adatvédelmet előtérbe helyező, eszközön futó mesterséges intelligencia segítségével.
 
-Funkciók áttekintése
-- Valós idejű emberszámlálás: A rendszer felismeri a képernyőn áthaladó embereket és automatikusan összegzi a számlálást.
-- Offline használat: Minden funkció helyileg működhet internetkapcsolat nélkül.
-- Több képernyőforrás: Támogatja a beépített kamerákat, streaming videót és külső kamerákat (különböző támogatás a platformtól függően).
-- Hosszú távú felvétel: 24 órán át folyamatosan rögzíthet és bármely időszakra lekérdezheti az adatokat.
+Helyezzen el egy telefont vagy kamerát a monitorozni kívánt helyen. A Piyuo Counter érzékeli az embereket és a járműveket, majd anonim forgalmi összefoglalókat hoz létre, beleértve az áthaladásokat, bejutásokat, kijutásokat, foglaltságot és átlagos tartózkodási időt.
 
-Használat
-1. Irányítsa a kamerát a figyelni kívánt átjáróra vagy bejáratra.
-2. Nyissa meg a projektet és válassza ki a képernyőforrást.
-3. Indítás után a rendszer automatikusan felismeri és számlálja.
+Az adatvédelem az első. Az összes mesterséges intelligencia feldolgozás az eszközön történik. A videók, képek és hang soha nem hagyják el az eszközt. A Piyuo Counter nem azonosít személyeket és nem használ arcfelismerést — csak a mozgási mintákat elemzi.
 
-Megjegyzések
-- A számlálás pontosságát befolyásolja a szög, világítás, akadályok stb. Ajánlott a kamera helyzetét a tényleges körülményeknek megfelelően beállítani.
-- Bár nem 100%-ban pontos, a következetes AI modell használata csökkenti az emberi hibát.
-- Minden adatfeldolgozás helyileg történik - nincsenek képek vagy adatok feltöltve.
+Jellemzők
 
-Alkalmas forgatókönyvek
-- Gyalogos forgalom megértése terekben (például bejáratok, folyosók, kiállítási területek).
-- Kutatás, eseménytervezés vagy napi megfigyelés.
-- További hardvereszközök nélkül azonnal használhatóvá válik.
+• Mesterséges intelligencia által működtetett gyalogos és járműszámlálás
+• Anonim forgalmi adatok 5 perces összefoglalóval
+• Internetkapcsolat nélkül működik
+• Csak helyi eszköz mód, feltöltés nélkül
+• 24/7 folyamatos felügyelethez tervezve
+
+Ideális kiskereskedelmi üzletekhez, irodákhoz, éttermekhez, kiállításokhoz és közterületekhez.

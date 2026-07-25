@@ -1,22 +1,15 @@
-Dit is een app die automatisch voetgangers kan detecteren en tellen, geen internetverbinding vereist en direct na installatie gebruikt kan worden.
+Piyuo Counter helpt u voetgangers- en voertuigverkeer te begrijpen met privacy-gerichte, apparaatgebaseerde AI.
 
-Functieoverzicht
-- Realtime personen tellen: Het systeem detecteert mensen die door het scherm lopen en telt automatisch het totaal.
-- Offline gebruik: Alle functies kunnen lokaal draaien zonder internetverbinding.
-- Meerdere schermbronnen: Ondersteunt ingebouwde camera's, streaming video en externe camera's (verschillende ondersteuning afhankelijk van platform).
-- Langetermijnopname: Kan 24 uur continu opnemen en data opvragen voor elke tijdsperiode.
+Plaats een telefoon of camera waar u wilt bewaken. Piyuo Counter detecteert mensen en voertuigen en maakt anonieme verkeerssamenvattingen inclusief passages, in- en uitgangen, bezetting en gemiddelde verblijftijd.
 
-Hoe te gebruiken
-1. Richt de camera op de doorgang of ingang die je wilt monitoren.
-2. Open het project en selecteer de schermbron.
-3. Na het starten zal het systeem automatisch detecteren en tellen.
+Privacy gaat eerst. Alle AI-verwerking vindt plaats op uw apparaat. Video's, afbeeldingen en audio verlaten uw apparaat nooit. Piyuo Counter herkent geen gezichten en analyseert alleen bewegingspatronen.
 
-Opmerkingen
-- Telnauwkeurigheid wordt beïnvloed door hoek, belichting, obstakels, enz. Het wordt aanbevolen om de camerapositie aan te passen op basis van werkelijke omstandigheden.
-- Hoewel het niet 100% nauwkeurig is, vermindert het gebruik van een consistent AI-model menselijke fouten.
-- Alle dataverwerking wordt lokaal voltooid - geen afbeeldingen of data worden geüpload.
+Functies
 
-Geschikte scenario's
-- Begrijpen van voetgangersverkeer in ruimtes (zoals ingangen, gangen, tentoonstellingsgebieden).
-- Onderzoek, evenementenplanning of dagelijkse observatie.
-- Kan direct beginnen met gebruiken zonder extra hardwareapparatuur.
+• AI-aangedreven voetgangers- en voertuigtellingen
+• Anoniem verkeersinsicht met 5-minuutsamenvattingen
+• Werkt zonder internetverbinding
+• Alleen lokale apparaatmodus, geen uploads
+• Ontworpen voor continue 24/7-bewaking
+
+Perfect voor winkels, kantoren, restaurants, tentoonstellingen en openbare ruimtes.

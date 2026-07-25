@@ -1,1 +1,1 @@
-Comptez les piétons avec IA
+Comprendre le trafic piétonnier

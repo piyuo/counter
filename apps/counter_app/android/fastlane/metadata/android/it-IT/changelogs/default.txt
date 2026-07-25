@@ -1,3 +1,5 @@
-Nuovi miglioramenti
+## Nuovi miglioramenti
 
-- Modello di rilevamento migliorato: Integrato un nuovo modello di rilevamento più avanzato che offre precisione significativamente migliore e prestazioni più veloci per il rilevamento di pedoni e veicoli.
+* Motore di conteggio riprogettato per una migliore precisione e affidabilità.
+* Prestazioni di rilevamento migliorate per pedoni e veicoli.
+* Miglioramenti generali delle prestazioni e correzioni di bug.

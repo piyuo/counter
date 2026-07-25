@@ -1,3 +1,0 @@
-Nuovi miglioramenti
-
-- Modello di rilevamento migliorato: Integrato un nuovo modello di rilevamento più avanzato che offre precisione significativamente migliore e prestazioni più veloci per il rilevamento di pedoni e veicoli.

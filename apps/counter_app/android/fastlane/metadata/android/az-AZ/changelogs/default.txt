@@ -1,3 +1,0 @@
-Yeni Təkmilləşdirmələr
-
-- Təkmilləşdirilmiş Aşkarlama Modeli: Piyada və nəqliyyat vasitələrinin aşkarlanması üçün əhəmiyyətli dərəcədə yaxşı dəqiqlik və daha sürətli performans təqdim edən yeni, daha qabaqcıl aşkarlama modeli inteqrasiya edilmişdir.

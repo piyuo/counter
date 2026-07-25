@@ -1,3 +1,5 @@
-Nuevas mejoras
+## Nuevas mejoras
 
-- Modelo de detección mejorado: Se ha integrado un nuevo modelo de detección más avanzado que ofrece una precisión significativamente mejor y un rendimiento más rápido para la detección de peatones y vehículos.
+* Motor de conteo rediseñado para mejorar la precisión y confiabilidad.
+* Rendimiento mejorado de detección para peatones y vehículos.
+* Mejoras generales de rendimiento y correcciones de errores.

@@ -1,3 +1,5 @@
-Új fejlesztések
+## Új fejlesztések
 
-- Továbbfejlesztett észlelési modell: Új, fejlettebb észlelési modellt integráltunk, amely jelentősen jobb pontosságot és gyorsabb teljesítményt nyújt a gyalogosok és járművek észlelésében.
+* Az számláló motor újratervezése a jobb pontosság és megbízhatóság érdekében.
+* Javított detektálási teljesítmény a gyalogosok és járművek számára.
+* Általános teljesítménybeli javítások és hibajavítások.

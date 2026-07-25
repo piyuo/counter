@@ -1,1 +1,1 @@
-AI,gyalogosok,felismerés,követés
+látogató,számlálás,jármű,kiskereskedelem,üzlet,étterem,gyalogos

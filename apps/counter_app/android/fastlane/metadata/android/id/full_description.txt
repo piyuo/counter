@@ -1,22 +1,15 @@
-Ini adalah aplikasi yang dapat secara otomatis mendeteksi dan menghitung pejalan kaki, tidak memerlukan koneksi internet, dan dapat digunakan segera setelah instalasi.
+Piyuo Counter membantu Anda memahami lalu lintas pejalan kaki dan kendaraan dengan AI perangkat yang memprioritaskan privasi.
 
-Gambaran Fitur
-- Penghitungan orang real-time: Sistem mendeteksi orang yang berjalan melewati layar dan secara otomatis menjumlahkan hitungan.
-- Penggunaan offline: Semua fungsi dapat berjalan secara lokal tanpa koneksi internet.
-- Sumber layar beragam: Mendukung kamera bawaan, video streaming, dan kamera eksternal (dukungan berbeda tergantung platform).
-- Perekaman jangka panjang: Dapat merekam secara terus-menerus selama 24 jam dan menanyakan data untuk periode waktu apa pun.
+Letakkan telepon atau kamera di lokasi yang ingin Anda pantau. Piyuo Counter mendeteksi orang dan kendaraan, kemudian membuat ringkasan lalu lintas anonim termasuk lewatan, masuk, keluar, okupansi, dan waktu tinggal rata-rata.
 
-Cara Menggunakan
-1. Arahkan kamera ke lorong atau pintu masuk yang ingin Anda pantau.
-2. Buka proyek dan pilih sumber layar.
-3. Setelah dimulai, sistem akan secara otomatis mendeteksi dan menghitung.
+Privasi didahulukan. Semua pemrosesan AI terjadi di perangkat Anda. Video, gambar, dan audio tidak pernah meninggalkan perangkat Anda. Piyuo Counter tidak mengidentifikasi wajah, hanya menganalisis pola gerakan.
 
-Catatan
-- Akurasi penghitungan dipengaruhi oleh sudut, pencahayaan, penghalang, dll. Disarankan untuk menyesuaikan posisi kamera berdasarkan kondisi aktual.
-- Meskipun tidak 100% akurat, menggunakan model AI yang konsisten mengurangi kesalahan manusia.
-- Semua pemrosesan data diselesaikan secara lokal - tidak ada gambar atau data yang diunggah.
+Fitur
 
-Skenario yang Cocok
-- Memahami lalu lintas pejalan kaki di ruang (seperti pintu masuk, koridor, area pameran).
-- Penelitian, perencanaan acara, atau observasi harian.
-- Dapat mulai digunakan segera tanpa peralatan perangkat keras tambahan.
+• Penghitungan pejalan kaki dan kendaraan bertenaga AI
+• Wawasan lalu lintas anonim dengan ringkasan 5 menit
+• Bekerja tanpa koneksi Internet
+• Mode perangkat lokal saja tanpa unggahan
+• Dirancang untuk pemantauan berkelanjutan 24/7
+
+Sempurna untuk toko retail, kantor, restoran, pameran, dan ruang publik.
