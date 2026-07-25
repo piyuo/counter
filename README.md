@@ -1,22 +1,155 @@
-# Counter - AI-Powered Pedestrian Counter
+# Piyuo Counter
 
-An intelligent mobile application that uses AI to automatically count pedestrians through your phone's camera. Perfect for monitoring foot traffic without manual intervention.
+Turn your phone into a privacy-first AI traffic counter.
 
-## Features
+Piyuo Counter uses on-device artificial intelligence to detect and track pedestrians or vehicles, transforming live camera video into anonymous traffic statistics. Instead of storing or uploading video recordings, the app generates privacy-preserving traffic summaries that help you understand foot traffic while respecting people's privacy.
 
-- **AI-Powered Recognition**: Advanced computer vision technology for accurate pedestrian detection
-- **Automatic Counting**: No manual input required - just point and count
-- **Offline Operation**: Works without internet connection
-- **Real-time Processing**: Instant pedestrian detection and counting
-- **Cross-Platform**: Available on iOS, Android, and Windows
+Everything runs directly on your device. No internet connection is required for counting, and videos, images, audio, and biometric data never leave your device.
 
-## Use Cases
+---
 
-- Retail foot traffic analysis
-- Event attendance monitoring
-- Public space usage statistics
-- Research and urban planning
-- Security and crowd management
+## Key Features
+
+### Privacy-First by Design
+
+- AI processing runs entirely on your device
+- No video recordings are uploaded
+- No images leave your device
+- No audio is recorded or transmitted
+- Re-ID embeddings are used only temporarily in memory to improve tracking accuracy and are never stored or transmitted
+- Optional **Local Device Only** mode keeps all traffic data on your device
+
+---
+
+### AI Pedestrian & Vehicle Counting
+
+Automatically detect and count:
+
+- Pedestrians
+- Vehicles
+
+Track traffic using AI object detection and object tracking to produce reliable traffic statistics over time.
+
+---
+
+### Privacy-Preserving Traffic Summaries
+
+Instead of storing continuous tracking data, Piyuo Counter creates anonymous 5-minute traffic summaries that may include:
+
+- Pass-bys
+- Entries
+- Exits
+- Average occupancy
+- Peak occupancy
+- Average stay time
+- Maximum stay time
+
+These aggregated summaries provide meaningful traffic insights without exposing individual movements.
+
+---
+
+### Flexible Data Storage
+
+Choose the mode that best fits your privacy requirements.
+
+#### Local Device Only
+
+- No traffic data is uploaded
+- Summaries remain on your device
+- Automatically retained for up to 7 days
+
+#### Piyuo Cloud (Optional)
+
+- Only anonymous traffic summaries are uploaded
+- Uploads occur in hourly batches
+- If the device is offline, summaries remain on the device and are uploaded automatically once a connection is available
+- Videos, images, audio, and AI tracking data are never uploaded
+
+---
+
+### Works Offline
+
+- No internet connection required for AI counting
+- Continue collecting traffic statistics even when offline
+- Cloud synchronization automatically resumes when connectivity returns
+
+---
+
+### Multiple Video Sources
+
+Depending on your platform, Piyuo Counter supports:
+
+- Built-in camera
+- RTSP/IP cameras
+- Network video streams
+- External USB cameras (platform dependent)
+
+---
+
+### Continuous Operation
+
+Designed for long-running traffic monitoring.
+
+- Continuous operation
+- Historical traffic reports
+- Search traffic data by date and time
+- Suitable for unattended deployments
+
+---
+
+## How It Works
+
+1. Position your camera toward the area you want to monitor.
+2. Select your video source.
+3. Start counting.
+4. Piyuo Counter continuously analyzes the video using on-device AI.
+5. Every five minutes, the app generates an anonymous traffic summary.
+6. If Piyuo Cloud is enabled, summaries are uploaded hourly. Otherwise, they remain only on your device.
+
+---
+
+## Suitable For
+
+- Retail stores
+- Shopping centers
+- Building entrances
+- Offices
+- Schools
+- Museums
+- Exhibitions
+- Public facilities
+- Event organizers
+- Transportation hubs
+- Research projects
+
+---
+
+## Important Notes
+
+- Counting accuracy depends on camera placement, lighting, viewing angle, and scene conditions.
+- AI estimates may not be perfectly accurate in every situation, but consistent automated counting helps reduce manual counting errors.
+- Piyuo Counter is designed to measure traffic trends rather than identify individuals.
+
+---
+
+## Privacy Commitment
+
+Your privacy comes first.
+
+Piyuo Counter never uploads:
+
+- Video
+- Images
+- Audio
+- Face recognition data
+- Re-ID embeddings
+- Personally identifiable information (PII)
+
+Re-ID embeddings are used only temporarily in memory to improve object tracking. They are never written to disk, transmitted, reused across sessions, or used to identify individuals.
+
+The app is designed to measure traffic—not people.
+
+Only anonymous, aggregated traffic statistics are optionally synchronized to Piyuo Cloud, and only when cloud synchronization is enabled.
 
 ## Download
 

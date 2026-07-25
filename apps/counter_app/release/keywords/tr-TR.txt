@@ -1,0 +1,1 @@
+ziyaretçi,sayma,araç,perakende,mağaza,restoran,yaya

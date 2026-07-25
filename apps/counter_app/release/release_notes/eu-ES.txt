@@ -1,3 +1,0 @@
-Hobekuntza berriak
-
-- Detekzio eredu hobetua: Detekzio eredu berri eta aurreratuagoa integratu da, oinezkoak eta ibilgailuak detektatzeko zehaztasun nabarmen hobea eta errendimendu azkarragoa eskaintzen duena.

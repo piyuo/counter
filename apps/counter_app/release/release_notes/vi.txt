@@ -1,3 +1,5 @@
-Cải tiến mới
+## Cải tiến mới
 
-- Mô hình phát hiện nâng cao: Tích hợp mô hình phát hiện mới, tiên tiến hơn mang lại độ chính xác tốt hơn đáng kể và hiệu suất nhanh hơn cho việc phát hiện người đi bộ và phương tiện.
+* Thiết kế lại công cụ đếm để cải thiện độ chính xác và độ tin cậy.
+* Tăng cường hiệu suất phát hiện cho người đi bộ và phương tiện.
+* Cải tiến hiệu suất chung và sửa lỗi.

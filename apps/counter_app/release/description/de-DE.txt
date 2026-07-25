@@ -1,22 +1,15 @@
-Diese App kann automatisch Fußgänger erkennen und zählen, benötigt keine Internetverbindung und kann sofort nach der Installation verwendet werden.
+Piyuo Counter hilft Ihnen, Fußgänger- und Fahrzeugverkehr mit datenschutzorientierter KI auf dem Gerät zu verstehen.
 
-Funktionsübersicht
-- Echtzeit-Personenzählung: Das System erkennt Personen, die über den Bildschirm gehen, und zählt automatisch die Gesamtzahl.
-- Offline-Nutzung: Alle Funktionen können lokal ohne Internetverbindung ausgeführt werden.
-- Mehrere Bildschirmquellen: Unterstützt eingebaute Kameras, Streaming-Video und externe Kameras.
-- Langzeitaufzeichnung: Kann 24 Stunden kontinuierlich aufzeichnen und Daten für jeden Zeitraum abfragen.
+Platzieren Sie ein Smartphone oder eine Kamera zur Überwachung. Piyuo Counter erkennt Personen und Fahrzeuge und erstellt anonyme Verkehrszusammenfassungen mit Vorbeigang, Ein- und Ausfahrten, Auslastung und durchschnittlicher Verweildauer.
 
-Verwendung
-1. Richten Sie die Kamera auf den Durchgang oder Eingang, den Sie überwachen möchten.
-2. Öffnen Sie das Projekt und wählen Sie die Bildschirmquelle.
-3. Nach dem Start erkennt und zählt das System automatisch.
+Datenschutz geht vor. Die gesamte KI-Verarbeitung erfolgt auf Ihrem Gerät. Videos, Bilder und Audio verlassen Ihr Gerät nicht. Piyuo Counter erkennt keine Gesichter und analysiert nur Bewegungsmuster.
 
-Hinweise
-- Die Zählgenauigkeit wird durch Winkel, Beleuchtung, Hindernisse usw. beeinflusst. Es wird empfohlen, die Kameraposition basierend auf den tatsächlichen Bedingungen anzupassen.
-- Obwohl nicht 100% genau, reduziert die Verwendung eines konsistenten KI-Modells menschliche Fehler.
-- Alle Datenverarbeitung erfolgt lokal - keine Bilder oder Daten werden hochgeladen.
+Funktionen
 
-Geeignete Szenarien
-- Verständnis des Fußgängerverkehrs in Räumen (wie Eingänge, Korridore, Ausstellungsbereiche).
-- Forschung, Eventplanung oder tägliche Beobachtung.
-- Kann sofort ohne zusätzliche Hardware-Ausrüstung verwendet werden.
+• KI-gesteuerte Fußgänger- und Fahrzeugzählung
+• Anonyme Verkehrseinsichten in 5-Minuten-Zusammenfassungen
+• Funktioniert ohne Internetverbindung
+• Reiner Modus für lokale Geräte ohne Uploads
+• Konzipiert für 24/7 kontinuierliche Überwachung
+
+Ideal für Einzelhandelsgeschäfte, Büros, Restaurants, Ausstellungen und öffentliche Räume.

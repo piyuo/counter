@@ -1,22 +1,15 @@
-Este é um aplicativo que pode detectar e contar automaticamente pedestres, não requer conexão com a internet e pode ser usado imediatamente após a instalação.
+Piyuo Counter ajuda você a entender o fluxo de pedestres e veículos com IA no dispositivo e privacidade em primeiro lugar.
 
-Visão geral dos recursos
-- Contagem de pessoas em tempo real: O sistema detecta pessoas caminhando pela tela e automaticamente totaliza a contagem.
-- Uso offline: Todas as funções podem executar localmente sem conexão com a internet.
-- Múltiplas fontes de tela: Suporta câmeras integradas, vídeo streaming e câmeras externas (suporte diferente dependendo da plataforma).
-- Gravação de longo prazo: Pode gravar continuamente por 24 horas e consultar dados para qualquer período de tempo.
+Coloque um telefone ou câmera onde deseja monitorar. Piyuo Counter detecta pessoas e veículos, gerando resumos anônimos de tráfego incluindo passagens, entradas, saídas, ocupação e tempo médio de permanência.
 
-Como usar
-1. Aponte a câmera para a passagem ou entrada que você quer monitorar.
-2. Abra o projeto e selecione a fonte da tela.
-3. Após iniciar, o sistema detectará e contará automaticamente.
+Privacidade em primeiro lugar. Todo processamento de IA ocorre no seu dispositivo. Vídeos, imagens e áudio nunca saem do seu dispositivo. Piyuo Counter não identifica pessoas nem usa reconhecimento facial — apenas analisa padrões de movimento.
 
-Observações
-- A precisão da contagem é afetada por ângulo, iluminação, obstruções, etc. É recomendado ajustar a posição da câmera com base nas condições reais.
-- Embora não seja 100% preciso, usar um modelo de IA consistente reduz o erro humano.
-- Todo o processamento de dados é concluído localmente - nenhuma imagem ou dados são enviados.
+Recursos
 
-Cenários adequados
-- Entender o tráfego de pedestres em espaços (como entradas, corredores, áreas de exposição).
-- Pesquisa, planejamento de eventos ou observação diária.
-- Pode começar a usar imediatamente sem equipamentos de hardware adicionais.
+• Contagem de pedestres e veículos por IA
+• Análises de tráfego anônimas com resumos a cada 5 minutos
+• Funciona sem conexão com Internet
+• Modo apenas dispositivo local sem uploads
+• Projetado para monitoramento contínuo 24/7
+
+Perfeito para lojas, escritórios, restaurantes, exposições e espaços públicos.

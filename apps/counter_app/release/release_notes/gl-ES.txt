@@ -1,3 +1,0 @@
-Melloras novas
-
-- Modelo de detección mellorado: Integróse un novo modelo de detección máis avanzado que ofrece unha precisión significativamente mellor e un rendemento máis rápido para a detección de peóns e vehículos.
