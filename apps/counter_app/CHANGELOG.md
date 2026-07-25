@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/piyuo/counter/compare/counter_app-v1.2.0...counter_app-v1.2.1) (2026-07-25)
+
+
+### Bug Fixes
+
+* hourly upload data does not execute as expected [#198](https://github.com/piyuo/counter/issues/198) ([000526e](https://github.com/piyuo/counter/commit/000526e7d0421b732c2f5d4943f8cefbf00e1c1f))
+
 ## [1.2.0](https://github.com/piyuo/counter/compare/counter_app-v1.1.2...counter_app-v1.2.0) (2026-06-30)
 
 
