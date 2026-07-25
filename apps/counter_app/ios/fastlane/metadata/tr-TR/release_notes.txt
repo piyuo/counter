@@ -1,0 +1,5 @@
+## Yeni İyileştirmeler
+
+* Sayma motoru yeniden tasarlandı, doğruluk ve güvenilirlik artırıldı.
+* Yayalar ve araçlar için geliştirilmiş algılama performansı.
+* Genel performans iyileştirmeleri ve hata düzeltmeleri.

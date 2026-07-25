@@ -1,3 +1,5 @@
-Nouvelles améliorations
+## Nouvelles améliorations
 
-- Modèle de détection amélioré : Intégration d'un nouveau modèle de détection plus avancé offrant une précision nettement supérieure et des performances plus rapides pour la détection des piétons et des véhicules.
+* Moteur de comptage repensé pour améliorer la précision et la fiabilité.
+* Performance améliorée de détection pour les piétons et les véhicules.
+* Améliorations de performance générales et corrections de bogues.

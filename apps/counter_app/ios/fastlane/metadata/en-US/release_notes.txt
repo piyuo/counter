@@ -1,3 +1,5 @@
-New Improvements
+## New Improvements
 
-- Enhanced Detection Model: Integrated a new, more advanced detection model that delivers significantly better accuracy and faster performance for pedestrian and vehicle detection.
+* Redesigned the counting engine for improved accuracy and reliability.
+* Enhanced detection performance for both pedestrians and vehicles.
+* General performance improvements and bug fixes.

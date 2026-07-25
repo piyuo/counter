@@ -1,3 +1,0 @@
-Millores noves
-
-- Model de detecció millorat: S'ha integrat un model de detecció nou i més avançat que ofereix una precisió significativament millor i un rendiment més ràpid per a la detecció de vianants i vehicles.

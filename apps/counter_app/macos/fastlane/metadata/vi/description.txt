@@ -1,22 +1,15 @@
-Đây là một ứng dụng có thể tự động phát hiện và đếm người đi bộ, không cần kết nối internet và có thể sử dụng ngay sau khi cài đặt.
+Piyuo Counter giúp bạn hiểu lưu lượng người bộ hành và hoạt động phương tiện với AI trên thiết bị ưu tiên riêng tư.
 
-Tổng quan tính năng
-- Đếm người thời gian thực: Hệ thống phát hiện những người đi qua màn hình và tự động tổng hợp số lượng.
-- Sử dụng ngoại tuyến: Tất cả các chức năng có thể chạy cục bộ mà không cần kết nối internet.
-- Nhiều nguồn màn hình: Hỗ trợ camera tích hợp, video streaming và camera ngoài (hỗ trợ khác nhau tùy thuộc vào nền tảng).
-- Ghi âm dài hạn: Có thể ghi liên tục trong 24 giờ và truy vấn dữ liệu cho bất kỳ khoảng thời gian nào.
+Đặt điện thoại hoặc camera nơi bạn muốn giám sát. Piyuo Counter phát hiện người và phương tiện, tạo tóm tắt lưu lượng ẩn danh bao gồm đi qua, vào, ra, tỷ lệ chiếm dụng và thời gian lưu lại trung bình.
 
-Cách sử dụng
-1. Hướng camera về lối đi hoặc lối vào mà bạn muốn giám sát.
-2. Mở dự án và chọn nguồn màn hình.
-3. Sau khi bắt đầu, hệ thống sẽ tự động phát hiện và đếm.
+Riêng tư là tiên phong. Tất cả xử lý AI diễn ra trên thiết bị của bạn. Video, hình ảnh và âm thanh không bao giờ rời khỏi thiết bị của bạn. Piyuo Counter không nhận dạng khuôn mặt, chỉ phân tích các mô hình chuyển động.
 
-Ghi chú
-- Độ chính xác của việc đếm bị ảnh hưởng bởi góc độ, ánh sáng, chướng ngại vật, v.v. Được khuyến nghị điều chỉnh vị trí camera dựa trên điều kiện thực tế.
-- Mặc dù không chính xác 100%, việc sử dụng mô hình AI nhất quán giảm lỗi của con người.
-- Tất cả xử lý dữ liệu được hoàn thành cục bộ - không có hình ảnh hoặc dữ liệu nào được tải lên.
+Tính năng
 
-Tình huống phù hợp
-- Hiểu lưu lượng người đi bộ trong không gian (như lối vào, hành lang, khu vực triển lãm).
-- Nghiên cứu, lập kế hoạch sự kiện hoặc quan sát hàng ngày.
-- Có thể bắt đầu sử dụng ngay mà không cần thiết bị phần cứng bổ sung.
+• Đếm người bộ hành và phương tiện do AI hỗ trợ
+• Thông tin lưu lượng ẩn danh với tóm tắt 5 phút
+• Hoạt động mà không cần kết nối Internet
+• Chế độ thiết bị cục bộ chỉ có, không tải lên
+• Được thiết kế để giám sát liên tục 24/7
+
+Hoàn hảo cho các cửa hàng bán lẻ, văn phòng, nhà hàng, triển lãm và không gian công cộng.

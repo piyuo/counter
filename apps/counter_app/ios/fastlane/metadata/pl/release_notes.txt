@@ -1,3 +1,0 @@
-Nowe ulepszenia
-
-- Ulepszony model wykrywania: Zintegrowano nowy, bardziej zaawansowany model wykrywania, który zapewnia znacznie lepszą dokładność i szybsze działanie w wykrywaniu pieszych i pojazdów.

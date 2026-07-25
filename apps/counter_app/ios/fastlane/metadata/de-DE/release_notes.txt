@@ -1,3 +1,5 @@
-Neue Verbesserungen
+## Neue Verbesserungen
 
-- Verbessertes Erkennungsmodell: Ein neues, fortschrittlicheres Erkennungsmodell wurde integriert, das deutlich bessere Genauigkeit und schnellere Leistung bei der Erkennung von Fußgängern und Fahrzeugen bietet.
+* Neu gestaltete Zählmaschine für verbesserte Genauigkeit und Zuverlässigkeit.
+* Verbesserte Erkennungsleistung für Fußgänger und Fahrzeuge.
+* Allgemeine Leistungsverbesserungen und Fehlerbehebungen.

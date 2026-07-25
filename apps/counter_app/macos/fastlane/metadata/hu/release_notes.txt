@@ -1,3 +1,0 @@
-Új fejlesztések
-
-- Továbbfejlesztett észlelési modell: Új, fejlettebb észlelési modellt integráltunk, amely jelentősen jobb pontosságot és gyorsabb teljesítményt nyújt a gyalogosok és járművek észlelésében.

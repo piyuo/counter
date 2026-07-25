@@ -1,22 +1,15 @@
-This is an app that can automatically detect and count pedestrians, requires no internet connection, and can be used immediately after installation.
+Piyuo Counter helps you understand foot traffic and vehicle activity with privacy-first, on-device AI.
 
-Feature Overview
-- Real-time people counting: The system detects people walking through the screen and automatically totals the count.
-- Offline use: All functions can run locally without internet connection.
-- Multiple screen sources: Supports built-in cameras, streaming video, and external cameras (different support depending on platform).
-- Long-term recording: Can record continuously for 24 hours and query data for any time period.
+Place a phone or camera where you want to monitor. Piyuo Counter detects people and vehicles, then creates anonymous traffic summaries including pass-bys, entries, exits, occupancy, and average stay time.
 
-How to Use
-1. Point the camera at the passageway or entrance you want to monitor.
-2. Open the project and select the screen source.
-3. After starting, the system will automatically detect and count.
+Privacy comes first. All AI processing happens on your device. Videos, images, and audio never leave your device. Piyuo Counter does not identify people or use facial recognition — it only analyzes movement patterns.
 
-Notes
-- Counting accuracy is affected by angle, lighting, obstructions, etc. It's recommended to adjust camera position based on actual conditions.
-- While not 100% accurate, using a consistent AI model reduces human error.
-- All data processing is completed locally - no images or data are uploaded.
+Features
 
-Suitable Scenarios
-- Understanding foot traffic in spaces (such as entrances, corridors, exhibition areas).
-- Research, event planning, or daily observation.
-- Can start using immediately without additional hardware equipment.
+• AI-powered pedestrian and vehicle counting
+• Anonymous traffic insights with 5-minute summaries
+• Works without internet connection
+• Local Device Only mode with no uploads
+• Designed for continuous 24/7 monitoring
+
+Perfect for retail stores, offices, restaurants, exhibitions, and public spaces.

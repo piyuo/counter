@@ -1,1 +1,1 @@
-KI,Fußgänger,Erkennung,Verfolgung
+Besucher,Zähler,Fahrzeug,Einzelhandel,Geschäft,Restaurant,Fußgänger

@@ -1,0 +1,15 @@
+Piyuo Counter pomaga Ci zrozumieć ruch pieszych i pojazdów za pomocą sztucznej inteligencji działającej na urządzeniu z priorytetem prywatności.
+
+Umieść telefon lub kamerę w miejscu, które chcesz monitorować. Piyuo Counter wykrywa osoby i pojazdy, a następnie tworzy anonimowe podsumowania ruchu obejmujące przejścia, wejścia, wyjścia, zajętość i średni czas pobytu.
+
+Prywatność przede wszystkim. Całe przetwarzanie AI odbywa się na Twoim urządzeniu. Filmy wideo, obrazy i dźwięk nigdy nie opuszczają Twojego urządzenia. Piyuo Counter nie rozpoznaje twarzy, a jedynie analizuje wzorce ruchu.
+
+Funkcje
+
+• Liczenie pieszych i pojazdów zasilane sztuczną inteligencją
+• Anonimowe wglądy w ruch z podsumowaniami co 5 minut
+• Działa bez połączenia z Internetem
+• Tryb tylko urządzenia lokalnego bez przesyłania
+• Zaprojektowany do ciągłego monitorowania 24/7
+
+Idealne dla sklepów detalicznych, biur, restauracji, wystaw i przestrzeni publicznych.

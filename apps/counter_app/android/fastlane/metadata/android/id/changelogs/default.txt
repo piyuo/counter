@@ -1,3 +1,5 @@
-Peningkatan Baru
+## Perbaikan Baru
 
-- Model Deteksi yang Ditingkatkan: Mengintegrasikan model deteksi baru yang lebih canggih yang memberikan akurasi jauh lebih baik dan performa lebih cepat untuk deteksi pejalan kaki dan kendaraan.
+* Mesin penghitung dirancang ulang untuk akurasi dan keandalan yang lebih baik.
+* Peningkatan kinerja deteksi untuk pejalan kaki dan kendaraan.
+* Peningkatan kinerja umum dan perbaikan bug.

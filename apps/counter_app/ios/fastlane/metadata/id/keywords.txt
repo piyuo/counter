@@ -1,1 +1,1 @@
-AI,pejalan,deteksi,pelacakan
+pengunjung,penghitungan,kendaraan,ritel,toko,restoran,pejalan kaki

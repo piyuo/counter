@@ -1,1 +1,1 @@
-AI,người đi bộ,phát hiện,theo dõi
+khách,đếm,xe,bán lẻ,cửa hàng,nhà hàng,người đi bộ

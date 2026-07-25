@@ -1,3 +1,0 @@
-Nye forbedringer
-
-- Forbedret detektionsmodel: Integreret en ny, mere avanceret detektionsmodel, der leverer markant bedre nøjagtighed og hurtigere ydeevne til genkendelse af fodgængere og køretøjer.

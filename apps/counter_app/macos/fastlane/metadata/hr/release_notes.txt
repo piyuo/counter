@@ -1,3 +1,0 @@
-Nova poboljšanja
-
-- Poboljšani model detekcije: Integriran je novi, napredniji model detekcije koji pruža znatno bolju točnost i brže performanse za detekciju pješaka i vozila.

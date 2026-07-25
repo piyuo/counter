@@ -1,1 +1,1 @@
-AI,pedestrian,detection,tracking
+visitor,counting,vehicle,retail,store,restaurant,pedestrian

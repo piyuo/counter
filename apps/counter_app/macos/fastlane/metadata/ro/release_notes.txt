@@ -1,3 +1,5 @@
-Îmbunătățiri noi
+## Noi îmbunătățiri
 
-- Model de detectare îmbunătățit: A fost integrat un model de detectare nou, mai avansat, care oferă o precizie semnificativ mai bună și performanțe mai rapide pentru detectarea pietonilor și a vehiculelor.
+* Motor de numărare reproiectat pentru precizie și fiabilitate îmbunătățite.
+* Performanță de detecție îmbunătățită pentru pietoni și vehicule.
+* Îmbunătățiri generale de performanță și corecturi de bug-uri.

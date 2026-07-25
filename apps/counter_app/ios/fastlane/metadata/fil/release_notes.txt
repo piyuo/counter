@@ -1,3 +1,0 @@
-Mga Bagong Pagpapabuti
-
-- Pinabuting Detection Model: Isinama ang bagong, mas advanced na detection model na nagbibigay ng mas mahusay na katumpakan at mas mabilis na performance para sa pagtuklas ng tao at sasakyan.

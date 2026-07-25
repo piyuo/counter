@@ -1,3 +1,0 @@
-Nová vylepšení
-
-- Vylepšený model detekce: Byl integrován nový, pokročilejší model detekce, který poskytuje výrazně lepší přesnost a rychlejší výkon při detekci chodců a vozidel.

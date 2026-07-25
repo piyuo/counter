@@ -1,0 +1,5 @@
+## Nowe ulepszenia
+
+* Przeprojektowany silnik liczący dla lepszej dokładności i niezawodności.
+* Ulepszona wydajność detekcji dla pieszych i pojazdów.
+* Ogólne ulepszenia wydajności i poprawki błędów.

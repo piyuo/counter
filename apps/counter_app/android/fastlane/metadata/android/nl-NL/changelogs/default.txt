@@ -1,3 +1,5 @@
-Nieuwe verbeteringen
+## Nieuwe verbeteringen
 
-- Verbeterd detectiemodel: Een nieuw, geavanceerder detectiemodel geïntegreerd dat aanzienlijk betere nauwkeurigheid en snellere prestaties biedt voor detectie van voetgangers en voertuigen.
+* Tellingsmotor opnieuw ontworpen voor verbeterde nauwkeurigheid en betrouwbaarheid.
+* Verbeterde detectieprestaties voor voetgangers en voertuigen.
+* Algemene prestatieverbeteringen en bugfixes.
