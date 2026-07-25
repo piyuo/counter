@@ -1,1 +1,1 @@
-AI,pietoni,detectare,urmărire
+vizitator,numărare,vehicul,comerț cu amănuntul,magazin,restaurant,pieton

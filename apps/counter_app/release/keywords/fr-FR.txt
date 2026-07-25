@@ -1,1 +1,1 @@
-IA,piétons,détection,suivi
+visiteur,comptage,véhicule,vente au détail,magasin,restaurant,piéton

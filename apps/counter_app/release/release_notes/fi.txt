@@ -1,3 +1,0 @@
-Uusia parannuksia
-
-- Parannettu tunnistusmalli: Integroitu uusi, kehittyneempi tunnistusmalli, joka tarjoaa merkittävästi paremman tarkkuuden ja nopeamman suorituskyvyn jalankulkijoiden ja ajoneuvojen tunnistamisessa.

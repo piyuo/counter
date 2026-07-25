@@ -1,1 +1,1 @@
-AI,voetgangers,detectie,tracking
+bezoeker,telling,voertuig,detailhandel,winkel,restaurant,voetganger
