@@ -6,7 +6,7 @@ echo "Loading environment..."
 set -a && source .env && set +a
 
 echo "Building Flutter android release..."
-flutter build appbundle --release
+flutter build appbundle --release --target-platform android-arm64
 # This step prepares the Flutter side of your android app and is required.
 
 #cleanup android locales
