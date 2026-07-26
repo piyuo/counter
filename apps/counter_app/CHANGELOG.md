@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/piyuo/counter/compare/counter_app-v1.2.1...counter_app-v1.3.0) (2026-07-26)
+
+
+### Features
+
+* optimize release file size [#205](https://github.com/piyuo/counter/issues/205) ([5bdbbc9](https://github.com/piyuo/counter/commit/5bdbbc9ae23b76bd799ca176a8855f29adb4f4d5))
+
 ## [1.2.1](https://github.com/piyuo/counter/compare/counter_app-v1.2.0...counter_app-v1.2.1) (2026-07-25)
 
 
