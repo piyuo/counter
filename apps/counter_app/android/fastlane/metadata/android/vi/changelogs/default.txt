@@ -1,5 +1,3 @@
-## Cải tiến mới
+## Những cải tiến mới
 
-* Thiết kế lại công cụ đếm để cải thiện độ chính xác và độ tin cậy.
-* Tăng cường hiệu suất phát hiện cho người đi bộ và phương tiện.
-* Cải tiến hiệu suất chung và sửa lỗi.
+* Giảm kích thước phiên bản ứng dụng xuống một nửa, tải xuống nhanh hơn và sử dụng bộ nhớ ít hơn.

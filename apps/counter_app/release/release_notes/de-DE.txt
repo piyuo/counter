@@ -1,5 +1,3 @@
 ## Neue Verbesserungen
 
-* Neu gestaltete Zählmaschine für verbesserte Genauigkeit und Zuverlässigkeit.
-* Verbesserte Erkennungsleistung für Fußgänger und Fahrzeuge.
-* Allgemeine Leistungsverbesserungen und Fehlerbehebungen.
+* Die Größe der App-Veröffentlichung wurde halbiert, um schnellere Downloads und geringere Speichernutzung zu ermöglichen.

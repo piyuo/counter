@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# build_metadata.sh
+# build_fastlane_metadata.sh
 # Script to copy locale translation files to fastlane metadata directories
 # Author: Generated script for Counter app
-# Usage: ./build_metadata.sh
+# Usage: ./build_fastlane_metadata.sh
 
 set -e  # Exit on any error
 

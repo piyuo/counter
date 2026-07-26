@@ -1,5 +1,3 @@
 ## Új fejlesztések
 
-* Az számláló motor újratervezése a jobb pontosság és megbízhatóság érdekében.
-* Javított detektálási teljesítmény a gyalogosok és járművek számára.
-* Általános teljesítménybeli javítások és hibajavítások.
+* Az alkalmazás kiadásának mérete feleződött, amely gyorsabb letöltést és alacsonyabb tárolóhasználatot biztosít.

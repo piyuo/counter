@@ -1,5 +1,3 @@
 ## Yeni İyileştirmeler
 
-* Sayma motoru yeniden tasarlandı, doğruluk ve güvenilirlik artırıldı.
-* Yayalar ve araçlar için geliştirilmiş algılama performansı.
-* Genel performans iyileştirmeleri ve hata düzeltmeleri.
+* Uygulama sürümü boyutu yarıya indirildi. Daha hızlı indirmeler ve daha az depolama alanı kullanımı.

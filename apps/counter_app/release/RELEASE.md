@@ -43,7 +43,7 @@ Fastlane.
 
    ```sh
    cd apps/counter_app
-   ./release/build_metadata.sh
+   ./release/build_fastlane_metadata.sh
    ```
 
 4. Review the generated metadata under `ios/fastlane/metadata/`,

@@ -1,5 +1,3 @@
 ## Nieuwe verbeteringen
 
-* Tellingsmotor opnieuw ontworpen voor verbeterde nauwkeurigheid en betrouwbaarheid.
-* Verbeterde detectieprestaties voor voetgangers en voertuigen.
-* Algemene prestatieverbeteringen en bugfixes.
+* De grootte van de app-release is gehalveerd voor snellere downloads en lager opslaggebruik.

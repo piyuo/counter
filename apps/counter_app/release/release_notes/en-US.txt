@@ -1,5 +1,3 @@
 ## New Improvements
 
-* Redesigned the counting engine for improved accuracy and reliability.
-* Enhanced detection performance for both pedestrians and vehicles.
-* General performance improvements and bug fixes.
+* Cut app release size in half for quicker downloads and lower storage usage.

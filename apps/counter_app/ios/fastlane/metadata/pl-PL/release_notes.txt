@@ -1,5 +1,3 @@
 ## Nowe ulepszenia
 
-* Przeprojektowany silnik liczący dla lepszej dokładności i niezawodności.
-* Ulepszona wydajność detekcji dla pieszych i pojazdów.
-* Ogólne ulepszenia wydajności i poprawki błędów.
+* Rozmiar wydania aplikacji zmniejszono o połowę, aby przyspieszyć pobieranie i zmniejszyć użycie pamięci.

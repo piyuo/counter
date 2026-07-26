@@ -1,5 +1,3 @@
 ## Nuovi miglioramenti
 
-* Motore di conteggio riprogettato per una migliore precisione e affidabilità.
-* Prestazioni di rilevamento migliorate per pedoni e veicoli.
-* Miglioramenti generali delle prestazioni e correzioni di bug.
+* La dimensione della versione dell'app è stata ridotta della metà per download più veloci e minore utilizzo di archiviazione.
