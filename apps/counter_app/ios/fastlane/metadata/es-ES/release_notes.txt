@@ -1,5 +1,3 @@
 ## Nuevas mejoras
 
-* Motor de conteo rediseñado para mejorar la precisión y confiabilidad.
-* Rendimiento mejorado de detección para peatones y vehículos.
-* Mejoras generales de rendimiento y correcciones de errores.
+* El tamaño de la versión de la app se ha reducido a la mitad, permitiendo descargas más rápidas y menor uso de almacenamiento.

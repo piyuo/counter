@@ -1,5 +1,3 @@
-## Noi îmbunătățiri
+## Îmbunătățiri noi
 
-* Motor de numărare reproiectat pentru precizie și fiabilitate îmbunătățite.
-* Performanță de detecție îmbunătățită pentru pietoni și vehicule.
-* Îmbunătățiri generale de performanță și corecturi de bug-uri.
+* Dimensiunea versiunii aplicației a fost redusă la jumătate pentru descărcări mai rapide și utilizare mai mică a stocării.

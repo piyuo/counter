@@ -1,5 +1,3 @@
-## Penambahan Baharu
+## Penambahbaikan Baharu
 
-* Enjin pembilang direka semula untuk ketepatan dan keandalan yang lebih baik.
-* Peningkatan prestasi pengesanan untuk pejalan kaki dan kenderaan.
-* Penambahan prestasi umum dan pembaikan pepijat.
+* Saiz keluaran aplikasi telah dikurangkan separuh untuk muat turun yang lebih pantas dan penggunaan storan yang lebih rendah.

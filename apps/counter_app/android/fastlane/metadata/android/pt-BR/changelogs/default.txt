@@ -1,5 +1,3 @@
 ## Novas melhorias
 
-* Motor de contagem redesenhado para melhor precisão e confiabilidade.
-* Desempenho de detecção aprimorado para pedestres e veículos.
-* Melhorias gerais de desempenho e correções de bugs.
+* O tamanho da versão do app foi reduzido pela metade para downloads mais rápidos e menor uso de armazenamento.

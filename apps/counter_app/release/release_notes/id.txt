@@ -1,5 +1,3 @@
-## Perbaikan Baru
+## Peningkatan Baru
 
-* Mesin penghitung dirancang ulang untuk akurasi dan keandalan yang lebih baik.
-* Peningkatan kinerja deteksi untuk pejalan kaki dan kendaraan.
-* Peningkatan kinerja umum dan perbaikan bug.
+* Ukuran rilis aplikasi diperkecil setengahnya untuk unduhan lebih cepat dan penggunaan penyimpanan lebih rendah.
