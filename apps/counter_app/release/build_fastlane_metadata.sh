@@ -33,6 +33,43 @@ RELEASE_NOTES_DIR="$RELEASE_DIR/release_notes"
 total_locales=0
 success_count=0
 error_count=0
+skipped_apple_locales=()
+
+# -----------------------------------------------------------------------
+# Android (Google Play) -> Apple (App Store Connect) locale folder mapping
+# Your source .txt files are named using the Android/Google Play locale
+# (e.g. description/zh-CN.txt). Android metadata keeps that name as-is.
+# iOS/macOS metadata folders need the Apple-style locale name instead.
+#
+# Locales not present in this map are assumed to already match
+# (e.g. en-US, de-DE, fr-FR, es-ES, pt-BR, nl-NL, th, vi, id, ms, ro, uk, he).
+# -----------------------------------------------------------------------
+# NOTE: macOS ships with bash 3.2, which does not support associative
+# arrays (declare -A). This uses a case statement instead so the script
+# runs on both macOS's default bash and newer bash/Linux without changes.
+
+# Returns the Apple locale name for a given Android locale via stdout.
+# Returns "SKIP" (and prints nothing meaningful) if Apple doesn't support it.
+resolve_apple_locale() {
+    local android_locale="$1"
+
+    case "$android_locale" in
+        zh-CN) echo "zh-Hans" ;;
+        zh-TW) echo "zh-Hant" ;;
+        ja-JP) echo "ja" ;;
+        ko-KR) echo "ko" ;;
+        it-IT) echo "it" ;;
+        ru-RU) echo "ru" ;;
+        tr-TR) echo "tr" ;;
+        pl-PL) echo "pl" ;;
+        hu-HU) echo "hu" ;;
+        el-GR) echo "el" ;;
+        ar) echo "ar-SA" ;;
+        bn-BD) echo "bn-BD" ;;
+        fa|sr|my-MM) echo "SKIP" ;;
+        *) echo "$android_locale" ;; # No mapping needed - already matches Apple's format
+    esac
+}
 
 echo -e "${BLUE}=== Fastlane Metadata Builder ===${NC}"
 echo -e "${BLUE}Copying translation files to fastlane metadata directories${NC}"
@@ -100,28 +137,47 @@ process_locale() {
     local locale_success=0
     local locale_errors=0
 
-    echo -e "${CYAN}Processing locale: $locale${NC}"
+    local apple_locale
+    apple_locale="$(resolve_apple_locale "$locale")"
+
+    local apple_supported=true
+    if [ "$apple_locale" == "SKIP" ]; then
+        apple_supported=false
+        skipped_apple_locales+=("$locale")
+    fi
+
+    if [ "$apple_supported" = true ] && [ "$apple_locale" != "$locale" ]; then
+        echo -e "${CYAN}Processing locale: $locale ${YELLOW}(Apple: $apple_locale)${NC}"
+    else
+        echo -e "${CYAN}Processing locale: $locale${NC}"
+    fi
+
+    if [ "$apple_supported" = false ]; then
+        echo -e "${YELLOW}  ⚠ Not supported by App Store - skipping iOS/macOS, Android only${NC}"
+    fi
 
     # Define target directories for this locale
-    local ios_locale_dir="$IOS_METADATA_DIR/$locale"
-    local macos_locale_dir="$MACOS_METADATA_DIR/$locale"
+    local ios_locale_dir="$IOS_METADATA_DIR/$apple_locale"
+    local macos_locale_dir="$MACOS_METADATA_DIR/$apple_locale"
     local android_locale_dir="$ANDROID_METADATA_DIR/$locale"
 
     # 1. Process description files
     local desc_file="$DESCRIPTION_DIR/$locale.txt"
     if [ -f "$desc_file" ]; then
         # iOS description
-        if copy_file "$desc_file" "$ios_locale_dir/description.txt" "iOS" "description"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
-        fi
+        if [ "$apple_supported" = true ]; then
+            if copy_file "$desc_file" "$ios_locale_dir/description.txt" "iOS" "description"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
 
-        # macOS description
-        if copy_file "$desc_file" "$macos_locale_dir/description.txt" "macOS" "description"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
+            # macOS description
+            if copy_file "$desc_file" "$macos_locale_dir/description.txt" "macOS" "description"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
         fi
 
         # Android description
@@ -137,18 +193,20 @@ process_locale() {
     # 2. Process keywords files (iOS and macOS only)
     local keywords_file="$KEYWORDS_DIR/$locale.txt"
     if [ -f "$keywords_file" ]; then
-        # iOS keywords
-        if copy_file "$keywords_file" "$ios_locale_dir/keywords.txt" "iOS" "keywords"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
-        fi
+        if [ "$apple_supported" = true ]; then
+            # iOS keywords
+            if copy_file "$keywords_file" "$ios_locale_dir/keywords.txt" "iOS" "keywords"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
 
-        # macOS keywords
-        if copy_file "$keywords_file" "$macos_locale_dir/keywords.txt" "macOS" "keywords"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
+            # macOS keywords
+            if copy_file "$keywords_file" "$macos_locale_dir/keywords.txt" "macOS" "keywords"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
         fi
     else
         echo -e "${YELLOW}  ⚠ Keywords file not found: $keywords_file${NC}"
@@ -157,18 +215,20 @@ process_locale() {
     # 3. Process subtitle files
     local subtitle_file="$SUBTITLE_DIR/$locale.txt"
     if [ -f "$subtitle_file" ]; then
-        # iOS subtitle
-        if copy_file "$subtitle_file" "$ios_locale_dir/subtitle.txt" "iOS" "subtitle"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
-        fi
+        if [ "$apple_supported" = true ]; then
+            # iOS subtitle
+            if copy_file "$subtitle_file" "$ios_locale_dir/subtitle.txt" "iOS" "subtitle"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
 
-        # macOS subtitle
-        if copy_file "$subtitle_file" "$macos_locale_dir/subtitle.txt" "macOS" "subtitle"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
+            # macOS subtitle
+            if copy_file "$subtitle_file" "$macos_locale_dir/subtitle.txt" "macOS" "subtitle"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
         fi
 
         # Android subtitle (short_description)
@@ -184,18 +244,20 @@ process_locale() {
     # 4. Process release notes files
     local release_notes_file="$RELEASE_NOTES_DIR/$locale.txt"
     if [ -f "$release_notes_file" ]; then
-        # iOS release notes
-        if copy_file "$release_notes_file" "$ios_locale_dir/release_notes.txt" "iOS" "release_notes"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
-        fi
+        if [ "$apple_supported" = true ]; then
+            # iOS release notes
+            if copy_file "$release_notes_file" "$ios_locale_dir/release_notes.txt" "iOS" "release_notes"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
 
-        # macOS release notes
-        if copy_file "$release_notes_file" "$macos_locale_dir/release_notes.txt" "macOS" "release_notes"; then
-            ((locale_success++))
-        else
-            ((locale_errors++))
+            # macOS release notes
+            if copy_file "$release_notes_file" "$macos_locale_dir/release_notes.txt" "macOS" "release_notes"; then
+                ((locale_success++))
+            else
+                ((locale_errors++))
+            fi
         fi
 
         # Android release notes (requires changelogs directory)
@@ -268,6 +330,10 @@ echo -e "${BLUE}=== Summary ===${NC}"
 echo -e "Total locales processed: $total_locales"
 echo -e "${GREEN}Total successful operations: $success_count${NC}"
 
+if [ ${#skipped_apple_locales[@]} -gt 0 ]; then
+    echo -e "${YELLOW}Locales skipped for iOS/macOS (not supported by App Store): ${skipped_apple_locales[*]}${NC}"
+fi
+
 if [ $error_count -gt 0 ]; then
     echo -e "${RED}Total errors: $error_count${NC}"
     echo -e "${YELLOW}Please check the error messages above${NC}"
@@ -283,6 +349,7 @@ echo -e "  • description/[locale].txt → iOS/macOS: description.txt, Android:
 echo -e "  • keywords/[locale].txt → iOS/macOS: keywords.txt (Android: not used)"
 echo -e "  • subtitle/[locale].txt → iOS/macOS: subtitle.txt, Android: short_description.txt"
 echo -e "  • release_notes/[locale].txt → iOS/macOS: release_notes.txt, Android: changelogs/default.txt"
+echo -e "  • iOS/macOS folder names use Apple locale codes (e.g. zh-CN → zh-Hans); Android keeps the original Google Play locale name"
 
 echo ""
 echo -e "${BLUE}Next steps:${NC}"

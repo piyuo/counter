@@ -38,12 +38,21 @@ platform :mac do
     build_app(
       workspace: "Counter.xcworkspace",
       scheme: "Runner",
-      export_method: "app-store"
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "com.piyuo.counter" => "macOS App Store Connect"
+        }
+      }
     )
 
     # 7. Upload the app to App Store Connect
     upload_to_app_store(
-      precheck_include_in_app_purchases: false
+      precheck_include_in_app_purchases: false,
+      support_url: {
+        'default' => 'https://piyuo.com'
+      }
     )
   end
 end
