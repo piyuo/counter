@@ -195,8 +195,8 @@ class _StatusIconWithTime extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, color: color, size: 18),
-        const SizedBox(width: 6),
+        Icon(icon, color: color, size: 14),
+        const SizedBox(width: 4),
         Text(timeLabel, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey)),
       ],
     );

@@ -100,3 +100,6 @@ Before finishing, verify that:
 - ✓ All files are UTF-8 encoded.
 - ✓ Every translated file satisfies the 500-character limit.
 - ✓ Product names (`Piyuo`, `Piyuo Counter`) remain unchanged.
+- Max length is 30 characters, please keep subtitle under 30 characters at all locales, you can use
+- release/check_subtitle_length.sh
+- to print out all txt file that is over 30 characters limit
