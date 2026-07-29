@@ -23,10 +23,7 @@ platform :ios do
 
     # 3. Increment the counter
     next_build_number = current_build + 1
-    UI.message("Shared Global Build Number: #{current_build} ──> Incrementing to: #{next_build_number}")
 
-    # 4. Save the new build number back to the root text file immediately
-    File.write(build_num_file, next_build_number.to_s)
 
     # 5. Inject the build number into your Xcode project configurations
     increment_build_number(
@@ -34,16 +31,35 @@ platform :ios do
       build_number: next_build_number
     )
 
+    # Fetch and install the iOS profile
+    get_provisioning_profile(
+      app_identifier: "com.piyuo.counter",
+    )
+
     # 6. Build the app with the newly incremented build number
     build_app(
       workspace: "Counter.xcworkspace",
       scheme: "Runner",
-      export_method: "app-store"
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "manual",
+        provisioningProfiles: {
+          "com.piyuo.counter" => Actions.lane_context[SharedValues::SIGH_NAME]
+        }
+      }
     )
 
     # 7. Upload the app to App Store Connect
     upload_to_app_store(
-      precheck_include_in_app_purchases: false
+      #submit_for_review: false,
+      precheck_include_in_app_purchases: false,
+      support_url: {
+        'default' => 'https://piyuo.com'
+      },
+      copyright: "#{Time.now.year} Chien-Chih Liu"
     )
+
+    File.write(build_num_file, next_build_number.to_s)
+    UI.message("Shared Global Build Number: #{current_build} ──> Incrementing to: #{next_build_number}")
   end
 end
