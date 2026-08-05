@@ -21,13 +21,13 @@ if(DEFINED VISION_REQUIRED_DLLS)
   foreach(dll ${VISION_REQUIRED_DLLS})
     if(EXISTS "${dll}")
       add_custom_command(
-        TARGET ${BINARY_NAME} # ✅ 用變數
+        TARGET ${BINARY_NAME}
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
         "${dll}"
-        "$<TARGET_FILE_DIR:${BINARY_NAME}>" # ✅ 也改這裡
+        "$<TARGET_FILE_DIR:${BINARY_NAME}>"
       )
-      message("Scheduled DLL copy: ${dll} to $<TARGET_FILE_DIR:${BINARY_NAME}>")
+      message("Scheduled DLL copy: ${dll} to ${CMAKE_CURRENT_BINARY_DIR}")
     else()
       message(WARNING "DLL not found: ${dll}")
     endif()

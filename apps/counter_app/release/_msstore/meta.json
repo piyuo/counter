@@ -1,0 +1,29 @@
+{
+  "Id": "1152921505701573419",
+  "Listings": {
+    "en-us": {
+      "BaseListing": {
+        "Keywords": [
+          "Pedestrian Counter AI",
+          "People Counting App",
+          "Foot Traffic Analytics",
+          "AI Object Detection",
+          "Retail Location Analysis",
+          "CCTV People Counter",
+          "Video Analytics Tool"
+        ],
+        "Description": "Piyuo Counter is an innovative pedestrian detection application designed for users who need accurate foot traffic monitoring. Using advanced AI object detection and tracking technology, this app provides precise counting of pedestrians in various environments without requiring internet connectivity.\n\nWhether you're a business owner researching potential store locations, an urban planner studying movement patterns, or a researcher collecting data, Piyuo Counter delivers consistent and reliable people counting through your device's GPU/NPU processing power.\n\nSimply connect a webcam, use a live stream URL, or upload video files as your source. The intuitive interface makes pedestrian counting accessible to everyone - just position your camera, start the detection, and let the AI do the counting for you.\n\nEliminate the inconsistencies of manual counting methods with Piyuo Counter's standardized AI detection model. Ideal for retail entrepreneurs evaluating locations, urban planners analyzing traffic patterns, or anyone needing accurate pedestrian flow metrics.\n\nPiyuo Counter transforms complex computer vision technology into an easy-to-use tool for all your people counting needs.",
+        "Features": [
+          "Real-time pedestrian detection and counting using advanced AI models",
+          "Additional detection capabilities for vehicles and bicycles",
+          "Offline operation - no internet connection required for image recognition",
+          "Flexible input options: webcam, RTSP streaming, or network cameras",
+          "ible input options: webcam, RTSP streaming, or network cameras Continuous 24-hour monitoring with comprehensive data logging"
+        ],
+        "ReleaseNotes": "",
+        "ShortDescription": "Your offline AI pedestrian counting expert. Get accurate foot traffic data without internet. Detects people, vehicles, bikes via webcams, streams, files. Easy analysis for business & planning."
+      },
+      "PlatformOverrides": {}
+    }
+  }
+}

@@ -10,18 +10,22 @@ List<RouteBase> get $appRoutes => [$onboardingRouteData, $cTARouteData];
 
 RouteBase get $onboardingRouteData => GoRouteData.$route(
   path: '/onboarding',
+  hasOverriddenOnExit: false,
   factory: $OnboardingRouteData._fromState,
   routes: [
     GoRouteData.$route(
       path: '1',
+      hasOverriddenOnExit: false,
       factory: $Onboarding1RouteData._fromState,
       routes: [
         GoRouteData.$route(
           path: '2',
+          hasOverriddenOnExit: false,
           factory: $Onboarding2RouteData._fromState,
           routes: [
             GoRouteData.$route(
               path: 'system',
+              hasOverriddenOnExit: false,
               factory: $SystemRouteData._fromState,
             ),
           ],
@@ -117,38 +121,53 @@ mixin $SystemRouteData on GoRouteData {
 
 RouteBase get $cTARouteData => GoRouteData.$route(
   path: '/cta',
+  hasOverriddenOnExit: false,
   factory: $CTARouteData._fromState,
   routes: [
     GoRouteData.$route(
       path: 'piyuo-subscription',
+      hasOverriddenOnExit: false,
       factory: $PiyuoSubscriptionRouteData._fromState,
     ),
     GoRouteData.$route(
       path: 'server-subscription',
+      hasOverriddenOnExit: false,
       factory: $ServerSubscriptionRouteData._fromState,
     ),
     GoRouteData.$route(
       path: 'invitation',
+      hasOverriddenOnExit: false,
       factory: $InvitationRouteData._fromState,
       routes: [
         GoRouteData.$route(
           path: 'success',
+          hasOverriddenOnExit: false,
           factory: $InvitationSuccessRouteData._fromState,
         ),
       ],
     ),
-    GoRouteData.$route(path: 'piyuo', factory: $PiyuoRouteData._fromState),
+    GoRouteData.$route(
+      path: 'piyuo',
+      hasOverriddenOnExit: false,
+      factory: $PiyuoRouteData._fromState,
+    ),
     GoRouteData.$route(
       path: 'server',
+      hasOverriddenOnExit: false,
       factory: $ServerRouteData._fromState,
       routes: [
         GoRouteData.$route(
           path: 'success',
+          hasOverriddenOnExit: false,
           factory: $ServerSuccessRouteData._fromState,
         ),
       ],
     ),
-    GoRouteData.$route(path: 'demo', factory: $DemoRouteData._fromState),
+    GoRouteData.$route(
+      path: 'demo',
+      hasOverriddenOnExit: false,
+      factory: $DemoRouteData._fromState,
+    ),
   ],
 );
 

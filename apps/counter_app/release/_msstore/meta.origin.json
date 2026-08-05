@@ -1,0 +1,2038 @@
+{
+  "Id": "1152921505701573419",
+  "ApplicationCategory": "Productivity",
+  "Pricing": {
+    "TrialPeriod": "NoFreeTrial",
+    "MarketSpecificPricings": {
+      "LB": "NotAvailable",
+      "EH": "NotAvailable"
+    },
+    "PriceId": "Free",
+    "IsAdvancedPricingModel": true
+  },
+  "Visibility": "Public",
+  "TargetPublishMode": "Immediate",
+  "TargetPublishDate": "1601-01-01T00:00:00Z",
+  "Listings": {
+    "en-us": {
+      "BaseListing": {
+        "Keywords": [
+          "Pedestrian Counter AI",
+          "People Counting App",
+          "Foot Traffic Analytics",
+          "AI Object Detection",
+          "Retail Location Analysis",
+          "CCTV People Counter",
+          "Video Analytics Tool"
+        ],
+        "Description": "Piyuo Counter is an innovative pedestrian detection application designed for users who need accurate foot traffic monitoring. Using advanced AI object detection and tracking technology, this app provides precise counting of pedestrians in various environments without 
+requiring internet connectivity.\n\nWhether you\u0027re a business owner researching potential store locations, an urban planner studying movement patterns, or a researcher collecting data, Piyuo Counter delivers consistent and reliable people counting through your device\u0027s GPU/NPU 
+processing power.\n\nSimply connect a webcam, use a live stream URL, or upload video files as your source. The intuitive interface makes pedestrian counting accessible to everyone - just position your camera, start the detection, and let the AI do the counting for you.\n\nEliminate the 
+inconsistencies of manual counting methods with Piyuo Counter\u0027s standardized AI detection model. Ideal for retail entrepreneurs evaluating locations, urban planners analyzing traffic patterns, or anyone needing accurate pedestrian flow metrics.\n\nPiyuo Counter transforms complex 
+computer vision technology into an easy-to-use tool for all your people counting needs.",
+        "Features": [
+          "Real-time pedestrian detection and counting using advanced AI models",
+          "Additional detection capabilities for vehicles and bicycles",
+          "Offline operation - no internet connection required for image recognition",
+          "Flexible input options: webcam, RTSP streaming, or network cameras",
+          "ible input options: webcam, RTSP streaming, or network cameras Continuous 24-hour monitoring with comprehensive data logging"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287158",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287184",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287762",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287770",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287745",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287746",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "Your offline AI pedestrian counting expert. Get accurate foot traffic data without internet. Detects people, vehicles, bikes via webcams, streams, files. Easy analysis for business \u0026 planning.",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "zh-hans": {
+      "BaseListing": {
+        "Keywords": [
+          "\u4EBA\u6D41\u91CF\u7EDF\u8BA1\u5DE5\u5177",
+          "\u5546\u94FA\u9009\u5740\u5206\u6790\u5DE5\u5177",
+          "\u884C\u4EBA\u8BA1\u6570\u5668",
+          "AI\u8BC6\u522B",
+          "\u5BA2\u6D41\u5206\u6790",
+          "\u89C6\u9891\u76D1\u63A7\u8BA1\u6570",
+          "\u7269\u4F53\u68C0\u6D4B"
+        ],
+        "Description": "Piyuo Counter \u662F\u4E00\u6B3E\u521B\u65B0\u7684\u884C\u4EBA\u68C0\u6D4B\u5E94\u7528\uFF0C\u4E13\u4E3A\u9700\u8981\u7CBE\u786E\u76D1\u6D4B\u4EBA\u6D41\u91CF\u7684\u7528\u6237\u8BBE\u8BA1\u3002\u4F7F\u7528\u5148\u8FDB\u7684 AI 
+\u7269\u4F53\u68C0\u6D4B\u548C\u8DDF\u8E2A\u6280\u672F\uFF0C\u672C\u5E94\u7528\u80FD\u5728\u5404\u79CD\u73AF\u5883\u4E2D\u7CBE\u786E\u8BA1\u6570\u884C\u4EBA\uFF0C\u4E14\u65E0\u9700\u8054\u7F51\u5373\u53EF\u4F7F\u7528\u3002\n\u65E0\u8BBA\u60A8\u662F\u6B63\u5728\u7814\u7A76\u6F5C\u5728\u5E97\u
+9762\u4F4D\u7F6E\u7684\u4F01\u4E1A\u4E3B\uFF0C\u7814\u7A76\u4EBA\u6D41\u6A21\u5F0F\u7684\u57CE\u5E02\u89C4\u5212\u5E08\uFF0C\u8FD8\u662F\u6536\u96C6\u6570\u636E\u7684\u7814\u7A76\u4EBA\u5458\uFF0CPiyuo Counter \u90FD\u80FD\u901A\u8FC7\u8BBE\u5907\u7684 GPU/NPU 
+\u5904\u7406\u80FD\u529B\u63D0\u4F9B\u7A33\u5B9A\u53EF\u9760\u7684\u4EBA\u6570\u7EDF\u8BA1\u3002\n\u53EA\u9700\u8FDE\u63A5\u7F51\u7EDC\u6444\u50CF\u5934\uFF0C\u4F7F\u7528\u76F4\u64AD\u6D41 
+URL\uFF0C\u6216\u4E0A\u4F20\u89C6\u9891\u6587\u4EF6\u4F5C\u4E3A\u6E90\u3002\u76F4\u89C2\u7684\u754C\u9762\u4F7F\u884C\u4EBA\u8BA1\u6570\u53D8\u5F97\u7B80\u5355\u6613\u7528 - \u53EA\u9700\u653E\u7F6E\u597D\u6444\u50CF\u5934\uFF0C\u542F\u52A8\u68C0\u6D4B\uFF0C\u8BA9 AI 
+\u4E3A\u60A8\u5B8C\u6210\u8BA1\u6570\u5DE5\u4F5C\u3002\nPiyuo Counter \u7684\u6807\u51C6\u5316 AI 
+\u68C0\u6D4B\u6A21\u578B\u6D88\u9664\u4E86\u4EBA\u5DE5\u8BA1\u6570\u65B9\u6CD5\u7684\u4E0D\u4E00\u81F4\u6027\u3002\u5B83\u975E\u5E38\u9002\u5408\u8BC4\u4F30\u5730\u70B9\u7684\u96F6\u552E\u4F01\u4E1A\u5BB6\uFF0C\u5206\u6790\u4EA4\u901A\u6A21\u5F0F\u7684\u57CE\u5E02\u89C4\u5212\u5E08\uFF0C\u62
+16\u4EFB\u4F55\u9700\u8981\u7CBE\u786E\u884C\u4EBA\u6D41\u91CF\u6307\u6807\u7684\u4EBA\u58EB\u3002\nPiyuo Counter 
+\u5C06\u590D\u6742\u7684\u8BA1\u7B97\u673A\u89C6\u89C9\u6280\u672F\u8F6C\u53D8\u4E3A\u4E00\u6B3E\u6613\u7528\u5DE5\u5177\uFF0C\u6EE1\u8DB3\u60A8\u7684\u5404\u79CD\u4EBA\u6D41\u8BA1\u6570\u9700\u6C42\u3002",
+        "Features": [
+          "\u4F7F\u7528\u5148\u8FDB AI \u6A21\u578B\u7684\u5B9E\u65F6\u884C\u4EBA\u68C0\u6D4B\u4E0E\u8BA1\u6570",
+          "\u9644\u52A0\u7684\u8F66\u8F86\u548C\u81EA\u884C\u8F66\u68C0\u6D4B\u529F\u80FD",
+          "\u79BB\u7EBF\u64CD\u4F5C - \u56FE\u50CF\u8BC6\u522B\u65E0\u9700\u7F51\u7EDC\u8FDE\u63A5",
+          "\u7075\u6D3B\u7684\u8F93\u5165\u9009\u9879\uFF1A\u7F51\u7EDC\u6444\u50CF\u5934\u3001RTSP \u6D41\u6216\u7F51\u7EDC\u6444\u50CF\u673A",
+          "24 \u5C0F\u65F6\u8FDE\u7EED\u76D1\u63A7\u4E0E\u5168\u9762\u6570\u636E\u8BB0\u5F55"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287990",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287991",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287992",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287928",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287993",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020287929",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "zh-hant": {
+      "BaseListing": {
+        "Keywords": [
+          "\u4EBA\u6D41\u91CF\u7D71\u8A08\u5DE5\u5177",
+          "AI \u884C\u4EBA\u5075\u6E2C\u8EDF\u9AD4",
+          "\u5BA2\u6D41\u91CF\u5206\u6790\u7CFB\u7D71",
+          "\u667A\u6167\u5F71\u50CF\u76E3\u63A7\u8A08\u6578",
+          "\u5546\u5E97\u9078\u5740\u5206\u6790\u5DE5\u5177",
+          "\u96E2\u7DDA\u4EBA\u6578\u7D71\u8A08\u8EDF\u9AD4",
+          "\u5373\u6642\u884C\u4EBA\u8A08\u6578\u61C9\u7528"
+        ],
+        "Description": "Piyuo Counter \u662F\u4E00\u6B3E\u5275\u65B0\u7684\u884C\u4EBA\u5075\u6E2C\u61C9\u7528\u7A0B\u5F0F\uFF0C\u5C08\u70BA\u9700\u8981\u7CBE\u78BA\u76E3\u6E2C\u4EBA\u6D41\u91CF\u7684\u7528\u6236\u8A2D\u8A08\u3002\u900F\u904E\u5148\u9032\u7684 AI 
+\u7269\u4EF6\u5075\u6E2C\u8207\u8FFD\u8E64\u6280\u8853\uFF0C\u672C\u61C9\u7528\u7A0B\u5F0F\u80FD\u5728\u5404\u7A2E\u74B0\u5883\u4E2D\u7CBE\u78BA\u8A08\u7B97\u884C\u4EBA\u6578\u91CF\uFF0C\u4E14\u7121\u9700\u7DB2\u8DEF\u9023\u7DDA\u5373\u53EF\u904B\u4F5C\u3002\n\u7121\u8AD6\u60A8\u662F\u6B63\u
+5728\u8A55\u4F30\u6F5B\u5728\u5E97\u9762\u4F4D\u7F6E\u7684\u5546\u5BB6\u3001\u7814\u7A76\u4EBA\u6D41\u6A21\u5F0F\u7684\u90FD\u5E02\u898F\u5283\u5E2B\uFF0C\u6216\u662F\u6536\u96C6\u8CC7\u6599\u7684\u7814\u7A76\u4EBA\u54E1\uFF0CPiyuo Counter \u90FD\u80FD\u900F\u904E\u60A8\u88DD\u7F6E\u7684 
+GPU/NPU 
+\u904B\u7B97\u80FD\u529B\u63D0\u4F9B\u7A69\u5B9A\u4E14\u53EF\u9760\u7684\u4EBA\u6578\u7D71\u8A08\u3002\n\u53EA\u9700\u9023\u63A5\u7DB2\u8DEF\u651D\u5F71\u6A5F\u3001\u4F7F\u7528\u76F4\u64AD\u4E32\u6D41\u7DB2\u5740\u6216\u4E0A\u50B3\u5F71\u7247\u6A94\u6848\u4F5C\u70BA\u4F86\u6E90\u3002\u76F4\u
+89BA\u5F0F\u754C\u9762\u8B93\u884C\u4EBA\u8A08\u6578\u8B8A\u5F97\u7C21\u55AE\u6613\u7528 - \u53EA\u8981\u653E\u597D\u651D\u5F71\u6A5F\uFF0C\u555F\u52D5\u5075\u6E2C\uFF0C\u8B93 AI \u70BA\u60A8\u5B8C\u6210\u8A08\u6578\u5DE5\u4F5C\u3002\nPiyuo Counter \u7684\u6A19\u6E96\u5316 AI 
+\u5075\u6E2C\u6A21\u578B\u6D88\u9664\u4E86\u4EBA\u5DE5\u8A08\u6578\u65B9\u6CD5\u7684\u4E0D\u4E00\u81F4\u6027\u3002\u5B83\u975E\u5E38\u9069\u5408\u8A55\u4F30\u5730\u9EDE\u7684\u96F6\u552E\u696D\u8005\u3001\u5206\u6790\u4EBA\u6D41\u6A21\u5F0F\u7684\u57CE\u5E02\u898F\u5283\u5E2B\uFF0C\u6216\u4E
+FB\u4F55\u9700\u8981\u7CBE\u78BA\u884C\u4EBA\u6D41\u91CF\u6578\u64DA\u7684\u4EBA\u58EB\u3002\nPiyuo Counter 
+\u5C07\u8907\u96DC\u7684\u96FB\u8166\u8996\u89BA\u6280\u8853\u8F49\u5316\u70BA\u4E00\u6B3E\u5BB9\u6613\u4F7F\u7528\u7684\u5DE5\u5177\uFF0C\u6EFF\u8DB3\u60A8\u6240\u6709\u7684\u4EBA\u6D41\u8A08\u6578\u9700\u6C42\u3002",
+        "Features": [
+          "\u4F7F\u7528\u5148\u9032 AI \u6A21\u578B\u7684\u5373\u6642\u884C\u4EBA\u5075\u6E2C\u8207\u8A08\u6578",
+          "\u9644\u52A0\u7684\u8ECA\u8F1B\u548C\u81EA\u884C\u8ECA\u5075\u6E2C\u529F\u80FD",
+          "\u96E2\u7DDA\u64CD\u4F5C - \u5F71\u50CF\u8FA8\u8B58\u7121\u9700\u7DB2\u8DEF\u9023\u7DDA",
+          "\u591A\u5143\u8F38\u5165\u9078\u9805\uFF1A\u7DB2\u8DEF\u651D\u5F71\u6A5F\u3001RTSP \u4E32\u6D41\u6216\u7DB2\u8DEF\u651D\u50CF\u6A5F",
+          "24 \u5C0F\u6642\u9023\u7E8C\u76E3\u63A7\u8207\u5B8C\u6574\u8CC7\u6599\u8A18\u9304"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020288068",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020288069",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020288094",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300399",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300630",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300631",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ar": {
+      "BaseListing": {
+        "Keywords": [
+          "\u0639\u062F\u0627\u062F \u0627\u0644\u0645\u0634\u0627\u0629 \u0627\u0644\u0630\u0643\u064A",
+          "\u062A\u062D\u0644\u064A\u0644 \u062D\u0631\u0643\u0629 \u0627\u0644\u0645\u0631\u0648\u0631",
+          "\u0639\u062F \u0627\u0644\u0623\u0634\u062E\u0627\u0635 \u0622\u0644\u064A\u064B\u0627",
+          "\u0643\u0627\u0645\u064A\u0631\u0627\u062A \u0627\u0644\u0645\u0631\u0627\u0642\u0628\u0629 \u0648\u0627\u0644\u0625\u062D\u0635\u0627\u0621",
+          "\u062A\u062D\u0644\u064A\u0644 \u0645\u0648\u0627\u0642\u0639 \u0627\u0644\u0645\u062A\u0627\u062C\u0631",
+          "\u0625\u062D\u0635\u0627\u0621 \u0627\u0644\u0632\u0648\u0627\u0631",
+          "\u062A\u0642\u0646\u064A\u0629 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0644\u0644\u0639\u062F"
+        ],
+        "Description": "\u0639\u062F\u0627\u062F \u0628\u064A\u064A\u0648 \u0647\u0648 \u062A\u0637\u0628\u064A\u0642 \u0645\u0628\u062A\u0643\u0631 \u0644\u0627\u0643\u062A\u0634\u0627\u0641 \u0627\u0644\u0645\u0634\u0627\u0629 \u0645\u0635\u0645\u0645 
+\u0644\u0644\u0645\u0633\u062A\u062E\u062F\u0645\u064A\u0646 \u0627\u0644\u0630\u064A\u0646 \u064A\u062D\u062A\u0627\u062C\u0648\u0646 \u0625\u0644\u0649 \u0645\u0631\u0627\u0642\u0628\u0629 \u062F\u0642\u064A\u0642\u0629 \u0644\u062D\u0631\u0643\u0629 \u0627\u0644\u0645\u0631\u0648\u0631. 
+\u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u062A\u0642\u0646\u064A\u0629 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0627\u0644\u0645\u062A\u0642\u062F\u0645\u0629 \u0644\u0644\u0643\u0634\u0641 \u0639\u0646 
+\u0627\u0644\u0623\u062C\u0633\u0627\u0645 \u0648\u062A\u062A\u0628\u0639\u0647\u0627\u060C \u064A\u0648\u0641\u0631 \u0647\u0630\u0627 \u0627\u0644\u062A\u0637\u0628\u064A\u0642 \u0639\u062F\u064B\u0627 \u062F\u0642\u064A\u0642\u064B\u0627 \u0644\u0644\u0645\u0634\u0627\u0629 \u0641\u064A 
+\u0645\u062E\u062A\u0644\u0641 \u0627\u0644\u0628\u064A\u0626\u0627\u062A \u062F\u0648\u0646 \u0627\u0644\u062D\u0627\u062C\u0629 \u0625\u0644\u0649 \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0628\u0627\u0644\u0625\u0646\u062A\u0631\u0646\u062A.\n\u0633\u0648\u0627\u0621 \u0643\u0646\u062A
+\u0635\u0627\u062D\u0628 \u0639\u0645\u0644 \u062A\u0628\u062D\u062B \u0639\u0646 \u0645\u0648\u0627\u0642\u0639 \u0645\u062D\u062A\u0645\u0644\u0629 \u0644\u0645\u062A\u062C\u0631\u0643\u060C \u0623\u0648 \u0645\u062E\u0637\u0637 \u0645\u062F\u0646 \u062A\u062F\u0631\u0633 
+\u0623\u0646\u0645\u0627\u0637 \u0627\u0644\u062D\u0631\u0643\u0629\u060C \u0623\u0648 \u0628\u0627\u062D\u062B \u064A\u062C\u0645\u0639 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A\u060C \u064A\u0642\u062F\u0645 \u0639\u062F\u0627\u062F \u0628\u064A\u064A\u0648 \u0639\u062F\u064B\u0627 
+\u0645\u0648\u062B\u0648\u0642\u064B\u0627 \u0648\u0645\u062A\u0633\u0642\u064B\u0627 \u0644\u0644\u0623\u0634\u062E\u0627\u0635 \u0645\u0646 \u062E\u0644\u0627\u0644 \u0642\u0648\u0629 \u0645\u0639\u0627\u0644\u062C\u0629 \u0648\u062D\u062F\u0629 \u0645\u0639\u0627\u0644\u062C\u0629 
+\u0627\u0644\u0631\u0633\u0648\u0645\u0627\u062A/\u0648\u062D\u062F\u0629 \u0645\u0639\u0627\u0644\u062C\u0629 \u0627\u0644\u0634\u0628\u0643\u0627\u062A \u0627\u0644\u0639\u0635\u0628\u064A\u0629 \u0641\u064A \u062C\u0647\u0627\u0632\u0643.\n\u0645\u0627 \u0639\u0644\u064A\u0643 
+\u0633\u0648\u0649 \u062A\u0648\u0635\u064A\u0644 \u0643\u0627\u0645\u064A\u0631\u0627 \u0648\u064A\u0628\u060C \u0623\u0648 \u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0639\u0646\u0648\u0627\u0646 URL \u0644\u0628\u062B \u0645\u0628\u0627\u0634\u0631\u060C \u0623\u0648 
+\u062A\u062D\u0645\u064A\u0644 \u0645\u0644\u0641\u0627\u062A \u0641\u064A\u062F\u064A\u0648 \u0643\u0645\u0635\u062F\u0631. \u062A\u062C\u0639\u0644 \u0627\u0644\u0648\u0627\u062C\u0647\u0629 \u0627\u0644\u0628\u062F\u064A\u0647\u064A\u0629 \u0639\u062F \u0627\u0644\u0645\u0634\u0627\u0629 
+\u0641\u064A \u0645\u062A\u0646\u0627\u0648\u0644 \u0627\u0644\u062C\u0645\u064A\u0639 - \u0645\u0627 \u0639\u0644\u064A\u0643 \u0633\u0648\u0649 \u0648\u0636\u0639 \u0627\u0644\u0643\u0627\u0645\u064A\u0631\u0627 \u0641\u064A \u0645\u0648\u0642\u0639\u0647\u0627\u060C 
+\u0648\u0628\u062F\u0621 \u0627\u0644\u0643\u0634\u0641\u060C \u0648\u0627\u0644\u0633\u0645\u0627\u062D \u0644\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0628\u0627\u0644\u0639\u062F \u0646\u064A\u0627\u0628\u0629 
+\u0639\u0646\u0643.\n\u062A\u062E\u0644\u0635 \u0645\u0646 \u062A\u0646\u0627\u0642\u0636\u0627\u062A \u0637\u0631\u0642 \u0627\u0644\u0639\u062F \u0627\u0644\u064A\u062F\u0648\u064A\u0629 \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0646\u0645\u0648\u0630\u062C 
+\u0627\u0644\u0643\u0634\u0641 \u0627\u0644\u0645\u0648\u062D\u062F \u0644\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0641\u064A \u0639\u062F\u0627\u062F \u0628\u064A\u064A\u0648. \u0645\u062B\u0627\u0644\u064A \u0644\u0631\u0648\u0627\u062F 
+\u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0641\u064A \u0645\u062C\u0627\u0644 \u0627\u0644\u062A\u062C\u0632\u0626\u0629 \u0627\u0644\u0630\u064A\u0646 \u064A\u0642\u064A\u0651\u0645\u0648\u0646 \u0627\u0644\u0645\u0648\u0627\u0642\u0639\u060C \u0648\u0645\u062E\u0637\u0637\u064A 
+\u0627\u0644\u0645\u062F\u0646 \u0627\u0644\u0630\u064A\u0646 \u064A\u062D\u0644\u0644\u0648\u0646 \u0623\u0646\u0645\u0627\u0637 \u062D\u0631\u0643\u0629 \u0627\u0644\u0645\u0631\u0648\u0631\u060C \u0623\u0648 \u0623\u064A \u0634\u062E\u0635 \u064A\u062D\u062A\u0627\u062C \u0625\u0644\u0649
+\u0645\u0642\u0627\u064A\u064A\u0633 \u062F\u0642\u064A\u0642\u0629 \u0644\u062A\u062F\u0641\u0642 \u0627\u0644\u0645\u0634\u0627\u0629.\n\u064A\u062D\u0648\u0644 \u0639\u062F\u0627\u062F \u0628\u064A\u064A\u0648 \u062A\u0642\u0646\u064A\u0629 \u0627\u0644\u0631\u0624\u064A\u0629 
+\u0627\u0644\u062D\u0627\u0633\u0648\u0628\u064A\u0629 \u0627\u0644\u0645\u0639\u0642\u062F\u0629 \u0625\u0644\u0649 \u0623\u062F\u0627\u0629 \u0633\u0647\u0644\u0629 \u0627\u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0644\u062A\u0644\u0628\u064A\u0629 \u062C\u0645\u064A\u0639 
+\u0627\u062D\u062A\u064A\u0627\u062C\u0627\u062A \u0639\u062F \u0627\u0644\u0623\u0634\u062E\u0627\u0635.",
+        "Features": [
+          "\u0643\u0634\u0641 \u0648\u0639\u062F \u0627\u0644\u0645\u0634\u0627\u0629 \u0641\u064A \u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0641\u0639\u0644\u064A \u0628\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0646\u0645\u0627\u0630\u062C \u0627\u0644\u0630\u0643\u0627\u0621 
+\u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0627\u0644\u0645\u062A\u0642\u062F\u0645\u0629",
+          "\u0642\u062F\u0631\u0627\u062A \u0643\u0634\u0641 \u0625\u0636\u0627\u0641\u064A\u0629 \u0644\u0644\u0645\u0631\u0643\u0628\u0627\u062A \u0648\u0627\u0644\u062F\u0631\u0627\u062C\u0627\u062A",
+          "\u0627\u0644\u062A\u0634\u063A\u064A\u0644 \u062F\u0648\u0646 \u0627\u062A\u0635\u0627\u0644 \u0628\u0627\u0644\u0625\u0646\u062A\u0631\u0646\u062A - \u0644\u0627 \u062D\u0627\u062C\u0629 \u0644\u0644\u0627\u062A\u0635\u0627\u0644 
+\u0628\u0627\u0644\u0625\u0646\u062A\u0631\u0646\u062A \u0644\u0644\u062A\u0639\u0631\u0641 \u0639\u0644\u0649 \u0627\u0644\u0635\u0648\u0631",
+          "\u062E\u064A\u0627\u0631\u0627\u062A \u0625\u062F\u062E\u0627\u0644 \u0645\u0631\u0646\u0629: \u0643\u0627\u0645\u064A\u0631\u0627 \u0648\u064A\u0628\u060C \u0628\u062B RTSP\u060C \u0623\u0648 \u0643\u0627\u0645\u064A\u0631\u0627\u062A \u0634\u0628\u0643\u0629",
+          "\u0645\u0631\u0627\u0642\u0628\u0629 \u0645\u0633\u062A\u0645\u0631\u0629 \u0639\u0644\u0649 \u0645\u062F\u0627\u0631 24 \u0633\u0627\u0639\u0629 \u0645\u0639 \u062A\u0633\u062C\u064A\u0644 \u0628\u064A\u0627\u0646\u0627\u062A \u0634\u0627\u0645\u0644"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300632",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300633",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300634",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300635",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300636",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300637",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "cs": {
+      "BaseListing": {
+        "Keywords": [
+          "Po\u010D\u00EDt\u00E1n\u00ED chodc\u016F AI",
+          "Anal\u00FDza pohybu osob",
+          "Sledov\u00E1n\u00ED n\u00E1v\u0161t\u011Bvnosti",
+          "Detekce osob kamerou",
+          "Maloobchodn\u00ED anal\u00FDza",
+          "Po\u010D\u00EDtadlo lid\u00ED offline",
+          "Sledov\u00E1n\u00ED frekvence osob"
+        ],
+        "Description": "Piyuo Counter je inovativn\u00ED aplikace pro detekci chodc\u016F, navr\u017Een\u00E1 pro u\u017Eivatele, kte\u0159\u00ED pot\u0159ebuj\u00ED p\u0159esn\u00E9 sledov\u00E1n\u00ED pohybu osob. D\u00EDky pokro\u010Dil\u00E9 technologii AI pro detekci a 
+sledov\u00E1n\u00ED objekt\u016F poskytuje tato aplikace p\u0159esn\u00E9 po\u010D\u00EDt\u00E1n\u00ED chodc\u016F v r\u016Fzn\u00FDch prost\u0159ed\u00EDch bez nutnosti p\u0159ipojen\u00ED k internetu.\nA\u0165 u\u017E jste majitel podniku zkoumaj\u00EDc\u00ED potenci\u00E1ln\u00ED lokality
+pro obchod, m\u011Bstsk\u00FD pl\u00E1nova\u010D studuj\u00EDc\u00ED vzorce pohybu, nebo v\u00FDzkumn\u00EDk sb\u00EDraj\u00EDc\u00ED data, Piyuo Counter zaji\u0161\u0165uje konzistentn\u00ED a spolehliv\u00E9 po\u010D\u00EDt\u00E1n\u00ED osob prost\u0159ednictv\u00EDm 
+v\u00FDpo\u010Detn\u00EDho v\u00FDkonu GPU/NPU va\u0161eho za\u0159\u00EDzen\u00ED.\nSta\u010D\u00ED p\u0159ipojit webkameru, pou\u017E\u00EDt URL \u017Eiv\u00E9ho p\u0159enosu nebo nahr\u00E1t video soubory jako zdroj. Intuitivn\u00ED rozhran\u00ED \u010Din\u00ED 
+po\u010D\u00EDt\u00E1n\u00ED chodc\u016F dostupn\u00E9 pro ka\u017Ed\u00E9ho - sta\u010D\u00ED um\u00EDstit kameru, spustit detekci a nechat AI, aby po\u010D\u00EDtala za v\u00E1s.\nOdstra\u0148te nep\u0159esnosti ru\u010Dn\u00EDch metod po\u010D\u00EDt\u00E1n\u00ED s pomoc\u00ED 
+standardizovan\u00E9ho AI detek\u010Dn\u00EDho modelu Piyuo Counter. Ide\u00E1ln\u00ED pro podnikatele v maloobchod\u011B hodnot\u00EDc\u00ED lokality, m\u011Bstsk\u00E9 pl\u00E1nova\u010De analyzuj\u00EDc\u00ED dopravn\u00ED vzorce nebo kohokoliv, kdo pot\u0159ebuje p\u0159esn\u00E9 metriky
+pohybu chodc\u016F.\nPiyuo Counter p\u0159em\u011B\u0148uje slo\u017Eitou technologii po\u010D\u00EDta\u010Dov\u00E9ho vid\u011Bn\u00ED na snadno pou\u017Eiteln\u00FD n\u00E1stroj pro v\u0161echny va\u0161e pot\u0159eby po\u010D\u00EDt\u00E1n\u00ED osob.",
+        "Features": [
+          "Detekce a po\u010D\u00EDt\u00E1n\u00ED chodc\u016F v re\u00E1ln\u00E9m \u010Dase pomoc\u00ED pokro\u010Dil\u00FDch AI model\u016F",
+          "Dal\u0161\u00ED mo\u017Enosti detekce pro vozidla a j\u00EDzdn\u00ED kola",
+          "Offline provoz - pro rozpozn\u00E1v\u00E1n\u00ED obrazu nen\u00ED nutn\u00E9 p\u0159ipojen\u00ED k internetu",
+          "Flexibiln\u00ED mo\u017Enosti vstupu: webkamera, RTSP streaming nebo s\u00ED\u0165ov\u00E9 kamery",
+          "Nep\u0159etr\u017Eit\u00E9 24hodinov\u00E9 monitorov\u00E1n\u00ED s komplexn\u00EDm zaznamen\u00E1v\u00E1n\u00EDm dat"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300644",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300645",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300646",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300647",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300648",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300649",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "nl": {
+      "BaseListing": {
+        "Keywords": [
+          "Voetgangerstelling AI",
+          "Personenteller Applicatie",
+          "Voetgangersstroomanalyse",
+          "Slimme Bezoekerstelling",
+          "Winkellocatie Analyse",
+          "Voetgangersdetectie Software",
+          "AI Tellingssysteem"
+        ],
+        "Description": "Piyuo Counter is een innovatieve voetgangerstellingsapplicatie ontworpen voor gebruikers die nauwkeurige metingen van voetgangersstromen nodig hebben. Met geavanceerde AI-objectdetectie en -tracking biedt deze app precieze tellingen van voetgangers in verschillende 
+omgevingen zonder internetverbinding te vereisen.\nOf u nu een ondernemer bent die potenti\u00EBle winkellocaties onderzoekt, een stedenbouwkundige die bewegingspatronen bestudeert, of een onderzoeker die gegevens verzamelt, Piyuo Counter levert consistente en betrouwbare personentellingen 
+via de GPU/NPU-verwerkingskracht van uw apparaat.\nSluit eenvoudig een webcam aan, gebruik een livestream-URL of upload videobestanden als bron. De intu\u00EFtieve interface maakt voetgangerstellingen voor iedereen toegankelijk - plaats uw camera, start de detectie en laat de AI het telwerk 
+voor u doen.\nElimineer de inconsistenties van handmatige telmethoden met het gestandaardiseerde AI-detectiemodel van Piyuo Counter. Ideaal voor retailers die locaties evalueren, stedenbouwkundigen die verkeerspatronen analyseren, of iedereen die nauwkeurige voetgangersstroomgegevens nodig 
+heeft.\nPiyuo Counter transformeert complexe computervisietechnologie in een gebruiksvriendelijk hulpmiddel voor al uw personentellingsbehoeften.",
+        "Features": [
+          "Realtime voetgangersdetectie en -telling met geavanceerde AI-modellen",
+          "Extra detectiemogelijkheden voor voertuigen en fietsen",
+          "Offline werking - geen internetverbinding vereist voor beeldherkenning",
+          "Flexibele invoermogelijkheden: webcam, RTSP-streaming of netwerkcamera\u0027s",
+          "Continue 24-uurs monitoring met uitgebreide gegevensregistratie"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300656",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300657",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300658",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300659",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300660",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300661",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "en-gb": {
+      "BaseListing": {
+        "Keywords": [
+          "People Counting Software",
+          "Footfall Analytics",
+          "Pedestrian Tracker",
+          "CCTV Analytics Tool",
+          "AI Traffic Counter",
+          "Retail Visitor Counting",
+          "Shop Footfall Monitor"
+        ],
+        "Description": "Piyuo Counter is an innovative pedestrian detection application designed for users requiring accurate foot traffic monitoring. Using advanced AI object detection and tracking technology, this app provides precise counting of pedestrians in various environments without
+needing an internet connection.\nWhether you\u0027re a shop owner researching potential retail locations, a town planner studying movement patterns, or a researcher collecting data, Piyuo Counter delivers consistent and reliable people counting through your device\u0027s GPU/NPU processing 
+power.\nSimply connect a webcam, use a live stream URL, or upload video files as your source. The intuitive interface makes pedestrian counting accessible to everyone - just position your camera, start the detection, and let the AI do the counting for you.\nEliminate the inconsistencies of 
+manual counting methods with Piyuo Counter\u0027s standardised AI detection model. Ideal for retail entrepreneurs evaluating locations, urban planners analysing pedestrian flow, or anyone needing accurate foot traffic metrics.\nPiyuo Counter transforms complex computer vision technology into
+an easy-to-use tool for all your people counting needs.",
+        "Features": [
+          "Real-time pedestrian detection and counting using advanced AI models",
+          "Additional detection capabilities for vehicles and bicycles",
+          "Offline operation - no internet connection required for image recognition",
+          "Flexible input options: webcam, RTSP streaming, or network cameras",
+          "Continuous 24-hour monitoring with comprehensive data logging"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300674",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300675",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300676",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300677",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300678",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300679",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "fr": {
+      "BaseListing": {
+        "Keywords": [
+          "Compteur pi\u00E9tons IA",
+          "Appli comptage personnes",
+          "Analyse flux pi\u00E9tons",
+          "D\u00E9tection objets IA",
+          "Analyse emplacement magasin",
+          "Compteur personnes CCTV",
+          "Outil analyse vid\u00E9o"
+        ],
+        "Description": "Piyuo Counter est une application innovante de d\u00E9tection de pi\u00E9tons con\u00E7ue pour les utilisateurs ayant besoin d\u0027une surveillance pr\u00E9cise du flux pi\u00E9tonnier. Utilisant une technologie avanc\u00E9e de d\u00E9tection et de suivi 
+d\u0027objets par IA, cette application permet un comptage pr\u00E9cis des pi\u00E9tons dans divers environnements sans n\u00E9cessiter de connexion internet.\n\nQue vous soyez propri\u00E9taire d\u0027entreprise \u00E9tudiant de potentiels emplacements de magasin, urbaniste analysant les 
+sch\u00E9mas de d\u00E9placement, ou chercheur collectant des donn\u00E9es, Piyuo Counter offre un comptage de personnes coh\u00E9rent et fiable gr\u00E2ce \u00E0 la puissance de traitement GPU/NPU de votre appareil.\n\nConnectez simplement une webcam, utilisez une URL de flux en direct, ou 
+t\u00E9l\u00E9chargez des fichiers vid\u00E9o comme source. L\u0027interface intuitive rend le comptage de pi\u00E9tons accessible \u00E0 tous - positionnez simplement votre cam\u00E9ra, lancez la d\u00E9tection, et laissez l\u0027IA faire le comptage pour vous.\n\n\u00C9liminez les 
+incoh\u00E9rences des m\u00E9thodes de comptage manuelles gr\u00E2ce au mod\u00E8le de d\u00E9tection IA standardis\u00E9 de Piyuo Counter. Id\u00E9al pour les entrepreneurs du commerce de d\u00E9tail \u00E9valuant des emplacements, les urbanistes analysant les sch\u00E9mas de circulation, 
+ou toute personne ayant besoin de m\u00E9triques pr\u00E9cises sur le flux pi\u00E9tonnier.\n\nPiyuo Counter transforme une technologie complexe de vision par ordinateur en un outil facile \u00E0 utiliser pour tous vos besoins de comptage de personnes.",
+        "Features": [
+          "D\u00E9tection et comptage de pi\u00E9tons en temps r\u00E9el utilisant des mod\u00E8les IA avanc\u00E9s",
+          "Capacit\u00E9s de d\u00E9tection suppl\u00E9mentaires pour les v\u00E9hicules et les v\u00E9los",
+          "Fonctionnement hors ligne - aucune connexion internet requise pour la reconnaissance d\u0027image",
+          "Options d\u0027entr\u00E9e flexibles : webcam, flux RTSP, ou cam\u00E9ras r\u00E9seau",
+          "Surveillance continue 24h/24 avec enregistrement complet des donn\u00E9es"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300686",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300687",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300688",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300689",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300690",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300691",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "de": {
+      "BaseListing": {
+        "Keywords": [
+          "Passantenz\u00E4hler KI",
+          "Personenz\u00E4hler App",
+          "Besucherfrequenz",
+          "KI Objekterkennung",
+          "Standortanalyse Einzelhandel",
+          "Video \u00DCberwachung Z\u00E4hler",
+          "Videoanalyse Tool"
+        ],
+        "Description": "Piyuo Counter ist eine innovative Anwendung zur Passantenerkennung, entwickelt f\u00FCr Nutzer, die eine genaue \u00DCberwachung des Fu\u00DFg\u00E4ngerverkehrs ben\u00F6tigen. Mithilfe fortschrittlicher KI-Objekterkennungs- und -Tracking-Technologie bietet diese App 
+pr\u00E4zises Z\u00E4hlen von Passanten in verschiedenen Umgebungen, ganz ohne Internetverbindung.\n\nOb Sie Gesch\u00E4ftsinhaber sind, der potenzielle Ladenstandorte recherchiert, Stadtplaner, der Bewegungsmuster studiert, oder Forscher, der Daten sammelt \u2013 Piyuo Counter liefert 
+konsistente und zuverl\u00E4ssige Personenz\u00E4hlungen durch die Verarbeitungsleistung der GPU/NPU Ihres Ger\u00E4ts.\n\nVerbinden Sie einfach eine Webcam, nutzen Sie eine Live-Stream-URL oder laden Sie Videodateien als Quelle hoch. Die intuitive Benutzeroberfl\u00E4che macht die 
+Passantenz\u00E4hlung f\u00FCr jedermann zug\u00E4nglich \u2013 positionieren Sie einfach Ihre Kamera, starten Sie die Erkennung und lassen Sie die KI die Z\u00E4hlung f\u00FCr Sie \u00FCbernehmen.\n\nBeseitigen Sie die Ungenauigkeiten manueller Z\u00E4hlmethoden mit dem standardisierten 
+KI-Erkennungsmodell von Piyuo Counter. Ideal f\u00FCr Einzelhandelsunternehmer, die Standorte bewerten, Stadtplaner, die Verkehrsstr\u00F6me analysieren, oder jeden, der genaue Kennzahlen zum Fu\u00DFg\u00E4ngeraufkommen ben\u00F6tigt.\n\nPiyuo Counter verwandelt komplexe 
+Computer-Vision-Technologie in ein einfach zu bedienendes Werkzeug f\u00FCr all Ihre Personenz\u00E4hlungsanforderungen.",
+        "Features": [
+          "Echtzeit-Passantenerkennung und -z\u00E4hlung mittels fortschrittlicher KI-Modelle",
+          "Zus\u00E4tzliche Erkennungsfunktionen f\u00FCr Fahrzeuge und Fahrr\u00E4der",
+          "Offline-Betrieb \u2013 keine Internetverbindung f\u00FCr Bilderkennung erforderlich",
+          "Flexible Eingabeoptionen: Webcam, RTSP-Streaming oder Netzwerkkameras",
+          "Kontinuierliche 24-Stunden-\u00DCberwachung mit umfassender Datenprotokollierung"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300698",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300699",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300700",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300701",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300702",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300703",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "el": {
+      "BaseListing": {
+        "Keywords": [
+          "\u03BC\u03B5\u03C4\u03C1\u03B7\u03C4\u03AE\u03C2 \u03C0\u03B5\u03B6\u03CE\u03BD AI",
+          "\u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03B1\u03C4\u03CC\u03BC\u03C9\u03BD",
+          "\u03B1\u03BD\u03AC\u03BB\u03C5\u03C3\u03B7 \u03C0\u03B5\u03B6\u03CE\u03BD",
+          "\u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7 AI",
+          "\u03B1\u03BD\u03AC\u03BB\u03C5\u03C3\u03B7 \u03BB\u03B9\u03B1\u03BD\u03B9\u03BA\u03AE\u03C2",
+          "\u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03BA\u03AC\u03BC\u03B5\u03C1\u03B1\u03C2",
+          "\u03B5\u03C1\u03B3\u03B1\u03BB\u03B5\u03AF\u03BF \u03B2\u03AF\u03BD\u03C4\u03B5\u03BF"
+        ],
+        "Description": "\u03A4\u03BF Piyuo Counter \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BC\u03B9\u03B1 \u03BA\u03B1\u03B9\u03BD\u03BF\u03C4\u03CC\u03BC\u03BF\u03C2 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE \u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7\u03C2 
+\u03C0\u03B5\u03B6\u03CE\u03BD, \u03C3\u03C7\u03B5\u03B4\u03B9\u03B1\u03C3\u03BC\u03AD\u03BD\u03B7 \u03B3\u03B9\u03B1 \u03C7\u03C1\u03AE\u03C3\u03C4\u03B5\u03C2 \u03C0\u03BF\u03C5 \u03C7\u03C1\u03B5\u03B9\u03AC\u03B6\u03BF\u03BD\u03C4\u03B1\u03B9 \u03B1\u03BA\u03C1\u03B9\u03B2\u03AE 
+\u03C0\u03B1\u03C1\u03B1\u03BA\u03BF\u03BB\u03BF\u03CD\u03B8\u03B7\u03C3\u03B7 \u03C4\u03B7\u03C2 \u03BA\u03AF\u03BD\u03B7\u03C3\u03B7\u03C2 \u03C4\u03C9\u03BD \u03C0\u03B5\u03B6\u03CE\u03BD. \u03A7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03CE\u03BD\u03C4\u03B1\u03C2 
+\u03C0\u03C1\u03BF\u03B7\u03B3\u03BC\u03AD\u03BD\u03B7 \u03C4\u03B5\u03C7\u03BD\u03BF\u03BB\u03BF\u03B3\u03AF\u03B1 \u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7\u03C2 \u03BA\u03B1\u03B9 \u03C0\u03B1\u03C1\u03B1\u03BA\u03BF\u03BB\u03BF\u03CD\u03B8\u03B7\u03C3\u03B7\u03C2 
+\u03B1\u03BD\u03C4\u03B9\u03BA\u03B5\u03B9\u03BC\u03AD\u03BD\u03C9\u03BD AI, \u03B1\u03C5\u03C4\u03AE \u03B7 \u03B5\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE \u03C0\u03B1\u03C1\u03AD\u03C7\u03B5\u03B9 \u03B1\u03BA\u03C1\u03B9\u03B2\u03AE 
+\u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03C0\u03B5\u03B6\u03CE\u03BD \u03C3\u03B5 \u03B4\u03B9\u03AC\u03C6\u03BF\u03C1\u03B1 \u03C0\u03B5\u03C1\u03B9\u03B2\u03AC\u03BB\u03BB\u03BF\u03BD\u03C4\u03B1, \u03C7\u03C9\u03C1\u03AF\u03C2 \u03BD\u03B1 
+\u03B1\u03C0\u03B1\u03B9\u03C4\u03B5\u03AF\u03C4\u03B1\u03B9 \u03C3\u03CD\u03BD\u03B4\u03B5\u03C3\u03B7 \u03C3\u03C4\u03BF \u03B4\u03B9\u03B1\u03B4\u03AF\u03BA\u03C4\u03C5\u03BF.\n\n\u0395\u03AF\u03C4\u03B5 \u03B5\u03AF\u03C3\u03C4\u03B5 
+\u03B9\u03B4\u03B9\u03BF\u03BA\u03C4\u03AE\u03C4\u03B7\u03C2 \u03B5\u03C0\u03B9\u03C7\u03B5\u03AF\u03C1\u03B7\u03C3\u03B7\u03C2 \u03C0\u03BF\u03C5 \u03B5\u03C1\u03B5\u03C5\u03BD\u03AC \u03C0\u03B9\u03B8\u03B1\u03BD\u03AD\u03C2 \u03C4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C3\u03AF\u03B5\u03C2 
+\u03BA\u03B1\u03C4\u03B1\u03C3\u03C4\u03B7\u03BC\u03AC\u03C4\u03C9\u03BD, \u03C0\u03BF\u03BB\u03B5\u03BF\u03B4\u03CC\u03BC\u03BF\u03C2 \u03C0\u03BF\u03C5 \u03BC\u03B5\u03BB\u03B5\u03C4\u03AC \u03C0\u03C1\u03CC\u03C4\u03C5\u03C0\u03B1 \u03BA\u03AF\u03BD\u03B7\u03C3\u03B7\u03C2, 
+\u03B5\u03AF\u03C4\u03B5 \u03B5\u03C1\u03B5\u03C5\u03BD\u03B7\u03C4\u03AE\u03C2 \u03C0\u03BF\u03C5 \u03C3\u03C5\u03BB\u03BB\u03AD\u03B3\u03B5\u03B9 \u03B4\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1, \u03C4\u03BF Piyuo Counter \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C1\u03B5\u03B9 
+\u03C3\u03C5\u03BD\u03B5\u03C7\u03AE \u03BA\u03B1\u03B9 \u03B1\u03BE\u03B9\u03CC\u03C0\u03B9\u03C3\u03C4\u03B7 \u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03B1\u03C4\u03CC\u03BC\u03C9\u03BD, \u03B1\u03BE\u03B9\u03BF\u03C0\u03BF\u03B9\u03CE\u03BD\u03C4\u03B1\u03C2 
+\u03C4\u03B7\u03BD \u03B5\u03C0\u03B5\u03BE\u03B5\u03C1\u03B3\u03B1\u03C3\u03C4\u03B9\u03BA\u03AE \u03B9\u03C3\u03C7\u03CD \u03C4\u03B7\u03C2 GPU/NPU \u03C4\u03B7\u03C2 \u03C3\u03C5\u03C3\u03BA\u03B5\u03C5\u03AE\u03C2 \u03C3\u03B1\u03C2.\n\n\u0391\u03C0\u03BB\u03CE\u03C2 
+\u03C3\u03C5\u03BD\u03B4\u03AD\u03C3\u03C4\u03B5 \u03BC\u03B9\u03B1 \u03BA\u03AC\u03BC\u03B5\u03C1\u03B1 web, \u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03AE\u03C3\u03C4\u03B5 \u03BC\u03B9\u03B1 \u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 URL 
+\u03B6\u03C9\u03BD\u03C4\u03B1\u03BD\u03AE\u03C2 \u03C1\u03BF\u03AE\u03C2 \u03AE \u03B1\u03BD\u03B5\u03B2\u03AC\u03C3\u03C4\u03B5 \u03B1\u03C1\u03C7\u03B5\u03AF\u03B1 \u03B2\u03AF\u03BD\u03C4\u03B5\u03BF \u03C9\u03C2 \u03C0\u03B7\u03B3\u03AE. \u0397 
+\u03B4\u03B9\u03B1\u03B9\u03C3\u03B8\u03B7\u03C4\u03B9\u03BA\u03AE \u03B4\u03B9\u03B5\u03C0\u03B1\u03C6\u03AE \u03BA\u03B1\u03B8\u03B9\u03C3\u03C4\u03AC \u03C4\u03B7\u03BD \u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03C0\u03B5\u03B6\u03CE\u03BD 
+\u03C0\u03C1\u03BF\u03C3\u03B2\u03AC\u03C3\u03B9\u03BC\u03B7 \u03C3\u03B5 \u03CC\u03BB\u03BF\u03C5\u03C2 \u2013 \u03B1\u03C0\u03BB\u03CE\u03C2 \u03C4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C4\u03AE\u03C3\u03C4\u03B5 \u03C4\u03B7\u03BD \u03BA\u03AC\u03BC\u03B5\u03C1\u03AC \u03C3\u03B1\u03C2, 
+\u03BE\u03B5\u03BA\u03B9\u03BD\u03AE\u03C3\u03C4\u03B5 \u03C4\u03B7\u03BD \u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7 \u03BA\u03B1\u03B9 \u03B1\u03C6\u03AE\u03C3\u03C4\u03B5 \u03C4\u03B7\u03BD AI \u03BD\u03B1 \u03BA\u03AC\u03BD\u03B5\u03B9 \u03C4\u03B7\u03BD 
+\u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03B3\u03B9\u03B1 \u03B5\u03C3\u03AC\u03C2.\n\n\u0395\u03BE\u03B1\u03BB\u03B5\u03AF\u03C8\u03C4\u03B5 \u03C4\u03B9\u03C2 \u03B1\u03BD\u03B1\u03BA\u03C1\u03AF\u03B2\u03B5\u03B9\u03B5\u03C2 \u03C4\u03C9\u03BD 
+\u03C7\u03B5\u03B9\u03C1\u03BF\u03BA\u03AF\u03BD\u03B7\u03C4\u03C9\u03BD \u03BC\u03B5\u03B8\u03CC\u03B4\u03C9\u03BD \u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7\u03C2 \u03BC\u03B5 \u03C4\u03BF \u03C4\u03C5\u03C0\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03BF 
+\u03BC\u03BF\u03BD\u03C4\u03AD\u03BB\u03BF \u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7\u03C2 AI \u03C4\u03BF\u03C5 Piyuo Counter. \u0399\u03B4\u03B1\u03BD\u03B9\u03BA\u03CC \u03B3\u03B9\u03B1 \u03BB\u03B9\u03B1\u03BD\u03BF\u03C0\u03C9\u03BB\u03B7\u03C4\u03AD\u03C2 
+\u03C0\u03BF\u03C5 \u03B1\u03BE\u03B9\u03BF\u03BB\u03BF\u03B3\u03BF\u03CD\u03BD \u03C4\u03BF\u03C0\u03BF\u03B8\u03B5\u03C3\u03AF\u03B5\u03C2, \u03C0\u03BF\u03BB\u03B5\u03BF\u03B4\u03CC\u03BC\u03BF\u03C5\u03C2 \u03C0\u03BF\u03C5 \u03B1\u03BD\u03B1\u03BB\u03CD\u03BF\u03C5\u03BD 
+\u03C0\u03C1\u03CC\u03C4\u03C5\u03C0\u03B1 \u03BA\u03AF\u03BD\u03B7\u03C3\u03B7\u03C2 \u03AE \u03BF\u03C0\u03BF\u03B9\u03BF\u03BD\u03B4\u03AE\u03C0\u03BF\u03C4\u03B5 \u03C7\u03C1\u03B5\u03B9\u03AC\u03B6\u03B5\u03C4\u03B1\u03B9 \u03B1\u03BA\u03C1\u03B9\u03B2\u03B5\u03AF\u03C2 
+\u03BC\u03B5\u03C4\u03C1\u03AE\u03C3\u03B5\u03B9\u03C2 \u03C1\u03BF\u03AE\u03C2 \u03C0\u03B5\u03B6\u03CE\u03BD.\n\n\u03A4\u03BF Piyuo Counter \u03BC\u03B5\u03C4\u03B1\u03C4\u03C1\u03AD\u03C0\u03B5\u03B9 \u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03BB\u03BF\u03BA\u03B7 
+\u03C4\u03B5\u03C7\u03BD\u03BF\u03BB\u03BF\u03B3\u03AF\u03B1 \u03CC\u03C1\u03B1\u03C3\u03B7\u03C2 \u03C5\u03C0\u03BF\u03BB\u03BF\u03B3\u03B9\u03C3\u03C4\u03CE\u03BD \u03C3\u03B5 \u03AD\u03BD\u03B1 \u03B5\u03CD\u03C7\u03C1\u03B7\u03C3\u03C4\u03BF 
+\u03B5\u03C1\u03B3\u03B1\u03BB\u03B5\u03AF\u03BF \u03B3\u03B9\u03B1 \u03CC\u03BB\u03B5\u03C2 \u03C4\u03B9\u03C2 \u03B1\u03BD\u03AC\u03B3\u03BA\u03B5\u03C2 \u03C3\u03B1\u03C2 \u03C3\u03C4\u03B7\u03BD \u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 
+\u03B1\u03C4\u03CC\u03BC\u03C9\u03BD.",
+        "Features": [
+          "\u0391\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7 \u03BA\u03B1\u03B9 \u03BA\u03B1\u03C4\u03B1\u03BC\u03AD\u03C4\u03C1\u03B7\u03C3\u03B7 \u03C0\u03B5\u03B6\u03CE\u03BD \u03C3\u03B5 \u03C0\u03C1\u03B1\u03B3\u03BC\u03B1\u03C4\u03B9\u03BA\u03CC \u03C7\u03C1\u03CC\u03BD\u03BF 
+\u03C7\u03C1\u03B7\u03C3\u03B9\u03BC\u03BF\u03C0\u03BF\u03B9\u03CE\u03BD\u03C4\u03B1\u03C2 \u03C0\u03C1\u03BF\u03B7\u03B3\u03BC\u03AD\u03BD\u03B1 \u03BC\u03BF\u03BD\u03C4\u03AD\u03BB\u03B1 AI",
+          "\u03A0\u03C1\u03CC\u03C3\u03B8\u03B5\u03C4\u03B5\u03C2 \u03B4\u03C5\u03BD\u03B1\u03C4\u03CC\u03C4\u03B7\u03C4\u03B5\u03C2 \u03B1\u03BD\u03AF\u03C7\u03BD\u03B5\u03C5\u03C3\u03B7\u03C2 \u03B3\u03B9\u03B1 \u03BF\u03C7\u03AE\u03BC\u03B1\u03C4\u03B1 \u03BA\u03B1\u03B9 
+\u03C0\u03BF\u03B4\u03AE\u03BB\u03B1\u03C4\u03B1",
+          "\u039B\u03B5\u03B9\u03C4\u03BF\u03C5\u03C1\u03B3\u03AF\u03B1 \u03B5\u03BA\u03C4\u03CC\u03C2 \u03C3\u03CD\u03BD\u03B4\u03B5\u03C3\u03B7\u03C2 - \u03B4\u03B5\u03BD \u03B1\u03C0\u03B1\u03B9\u03C4\u03B5\u03AF\u03C4\u03B1\u03B9 \u03C3\u03CD\u03BD\u03B4\u03B5\u03C3\u03B7 
+\u03C3\u03C4\u03BF \u03B4\u03B9\u03B1\u03B4\u03AF\u03BA\u03C4\u03C5\u03BF \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03B1\u03BD\u03B1\u03B3\u03BD\u03CE\u03C1\u03B9\u03C3\u03B7 \u03B5\u03B9\u03BA\u03CC\u03BD\u03B1\u03C2",
+          "\u0395\u03C5\u03AD\u03BB\u03B9\u03BA\u03C4\u03B5\u03C2 \u03B5\u03C0\u03B9\u03BB\u03BF\u03B3\u03AD\u03C2 \u03B5\u03B9\u03C3\u03CC\u03B4\u03BF\u03C5: \u03BA\u03AC\u03BC\u03B5\u03C1\u03B1 web, \u03C1\u03BF\u03AE RTSP \u03AE \u03BA\u03AC\u03BC\u03B5\u03C1\u03B5\u03C2 
+\u03B4\u03B9\u03BA\u03C4\u03CD\u03BF\u03C5",
+          "\u03A3\u03C5\u03BD\u03B5\u03C7\u03AE\u03C2 \u03C0\u03B1\u03C1\u03B1\u03BA\u03BF\u03BB\u03BF\u03CD\u03B8\u03B7\u03C3\u03B7 24 \u03C9\u03C1\u03CE\u03BD \u03BC\u03B5 \u03B5\u03BA\u03C4\u03B5\u03BD\u03AE \u03BA\u03B1\u03C4\u03B1\u03B3\u03C1\u03B1\u03C6\u03AE 
+\u03B4\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03C9\u03BD"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300704",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300705",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300706",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300707",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300708",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300709",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "hu": {
+      "BaseListing": {
+        "Keywords": [
+          "Gyalogos sz\u00E1ml\u00E1l\u00F3",
+          "AI alap\u00FA sz\u00E1ml\u00E1l\u00E1s",
+          "Forgalom elemz\u00E9s",
+          "Kamer\u00E1s sz\u00E1ml\u00E1l\u00E1s",
+          "\u00DCzlet forgalom",
+          "Objektum \u00E9rz\u00E9kel\u00E9s",
+          "AI megfigyel\u00E9s"
+        ],
+        "Description": "A Piyuo Counter egy innovat\u00EDv gyalogos\u00E9rz\u00E9kel\u0151 alkalmaz\u00E1s, amelyet a pontos forgalomsz\u00E1ml\u00E1l\u00E1sra szorul\u00F3 felhaszn\u00E1l\u00F3k sz\u00E1m\u00E1ra fejlesztettek ki. Fejlett mesters\u00E9ges intelligencia (AI) alap\u00FA 
+t\u00E1rgy\u00E9rz\u00E9kel\u00E9si \u00E9s k\u00F6vet\u00E9si technol\u00F3gi\u00E1t haszn\u00E1lva az alkalmaz\u00E1s pontosan sz\u00E1molja a gyalogosokat k\u00FCl\u00F6nf\u00E9le k\u00F6rnyezetekben, internetkapcsolat n\u00E9lk\u00FCl.\n\nLegyen sz\u00F3 ak\u00E1r 
+\u00FCzlettulajdonosr\u00F3l, aki potenci\u00E1lis \u00FCzlethelysz\u00EDneket kutat, v\u00E1rosi tervez\u0151r\u0151l, aki mozg\u00E1si mint\u00E1kat vizsg\u00E1l, vagy kutat\u00F3r\u00F3l, aki adatokat gy\u0171jt, a Piyuo Counter eszk\u00F6z\u00E9nek GPU/NPU feldolgoz\u00E1si 
+teljes\u00EDtm\u00E9ny\u00E9t kihaszn\u00E1lva biztos\u00EDt konzisztens \u00E9s megb\u00EDzhat\u00F3 emberi sz\u00E1ml\u00E1l\u00E1st.\n\nEgyszer\u0171en csatlakoztasson egy webkamer\u00E1t, haszn\u00E1ljon \u00E9l\u0151 k\u00F6zvet\u00EDt\u00E9si URL-t, vagy t\u00F6lts\u00F6n fel 
+videof\u00E1jlokat forr\u00E1sk\u00E9nt. Az intuit\u00EDv kezel\u0151fel\u00FClet mindenki sz\u00E1m\u00E1ra el\u00E9rhet\u0151v\u00E9 teszi a gyalogos sz\u00E1ml\u00E1l\u00E1st \u2013 csak helyezze el a kamer\u00E1j\u00E1t, ind\u00EDtsa el az \u00E9rz\u00E9kel\u00E9st, \u00E9s hagyja, hogy 
+az AI v\u00E9gezze a sz\u00E1ml\u00E1l\u00E1st \u00D6n helyett.\n\nSz\u00FCntesse meg a k\u00E9zi sz\u00E1ml\u00E1l\u00E1si m\u00F3dszerek pontatlans\u00E1gait a Piyuo Counter szabv\u00E1nyos\u00EDtott AI \u00E9rz\u00E9kel\u00E9si modellj\u00E9vel. Ide\u00E1lis kiskereskedelmi 
+v\u00E1llalkoz\u00F3k sz\u00E1m\u00E1ra a helysz\u00EDnek \u00E9rt\u00E9kel\u00E9s\u00E9hez, v\u00E1rosi tervez\u0151knek a forgalmi mint\u00E1k elemz\u00E9s\u00E9hez, vagy b\u00E1rkinek, akinek pontos gyalogosforgalmi adatokra van sz\u00FCks\u00E9ge.\n\nA Piyuo Counter a komplex 
+sz\u00E1m\u00EDt\u00F3g\u00E9pes l\u00E1t\u00E1stechnol\u00F3gi\u00E1t k\u00F6nnyen haszn\u00E1lhat\u00F3 eszk\u00F6zz\u00E9 alak\u00EDtja az \u00F6sszes emberi sz\u00E1ml\u00E1l\u00E1si ig\u00E9nye sz\u00E1m\u00E1ra.",
+        "Features": [
+          "Val\u00F3s idej\u0171 gyalogos\u00E9rz\u00E9kel\u00E9s \u00E9s sz\u00E1ml\u00E1l\u00E1s fejlett AI modellek haszn\u00E1lat\u00E1val",
+          "Tov\u00E1bbi \u00E9rz\u00E9kel\u00E9si k\u00E9pess\u00E9gek j\u00E1rm\u0171vek \u00E9s ker\u00E9kp\u00E1rok sz\u00E1m\u00E1ra",
+          "Offline m\u0171k\u00F6d\u00E9s \u2013 nincs sz\u00FCks\u00E9g internetkapcsolatra a k\u00E9pfelismer\u00E9shez",
+          "Rugalmas bemeneti opci\u00F3k: webkamera, RTSP streamel\u00E9s vagy h\u00E1l\u00F3zati kamer\u00E1k",
+          "Folyamatos 24 \u00F3r\u00E1s megfigyel\u00E9s \u00E1tfog\u00F3 adatr\u00F6gz\u00EDt\u00E9ssel"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300716",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300717",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300718",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300719",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300720",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300721",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ru": {
+      "BaseListing": {
+        "Keywords": [
+          "\u0421\u0447\u0435\u0442\u0447\u0438\u043A \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043E\u0432 \u0418\u0418",
+          "\u041F\u043E\u0434\u0441\u0447\u0435\u0442 \u043F\u043E\u0441\u0435\u0442\u0438\u0442\u0435\u043B\u0435\u0439",
+          "\u0410\u043D\u0430\u043B\u0438\u0437 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043D\u043E\u0433\u043E \u043F\u043E\u0442\u043E\u043A\u0430",
+          "\u0412\u0438\u0434\u0435\u043E\u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430 \u0442\u0440\u0430\u0444\u0438\u043A\u0430",
+          "\u0420\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u0432\u0430\u043D\u0438\u0435 \u043E\u0431\u044A\u0435\u043A\u0442\u043E\u0432",
+          "\u041C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433 \u043F\u0440\u043E\u0445\u043E\u0434\u0438\u043C\u043E\u0441\u0442\u0438",
+          "\u0411\u0438\u0437\u043D\u0435\u0441-\u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0430"
+        ],
+        "Description": "Piyuo Counter \u2013 \u0438\u043D\u043D\u043E\u0432\u0430\u0446\u0438\u043E\u043D\u043D\u043E\u0435 \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0434\u043B\u044F \u043F\u043E\u0434\u0441\u0447\u0435\u0442\u0430 
+\u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043E\u0432, \u0440\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u0430\u043D\u043D\u043E\u0435 \u0434\u043B\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u0439, \u043A\u043E\u0442\u043E\u0440\u044B\u043C 
+\u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C \u0442\u043E\u0447\u043D\u044B\u0439 \u043C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043D\u043E\u0433\u043E \u0442\u0440\u0430\u0444\u0438\u043A\u0430. 
+\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u044F \u043F\u0435\u0440\u0435\u0434\u043E\u0432\u044B\u0435 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438 \u0438\u0441\u043A\u0443\u0441\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0433\u043E 
+\u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442\u0430 \u0434\u043B\u044F \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u0438\u044F \u0438 \u043E\u0442\u0441\u043B\u0435\u0436\u0438\u0432\u0430\u043D\u0438\u044F \u043E\u0431\u044A\u0435\u043A\u0442\u043E\u0432, 
+\u044D\u0442\u043E \u043F\u0440\u0438\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0438\u0432\u0430\u0435\u0442 \u0442\u043E\u0447\u043D\u044B\u0439 \u043F\u043E\u0434\u0441\u0447\u0435\u0442 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043E\u0432 
+\u0432 \u0440\u0430\u0437\u043B\u0438\u0447\u043D\u044B\u0445 \u0443\u0441\u043B\u043E\u0432\u0438\u044F\u0445 \u0431\u0435\u0437 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0441\u0442\u0438 \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F \u043A 
+\u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442\u0443.\n\u041D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0442\u043E\u0433\u043E, \u044F\u0432\u043B\u044F\u0435\u0442\u0435\u0441\u044C \u043B\u0438 \u0432\u044B 
+\u0432\u043B\u0430\u0434\u0435\u043B\u044C\u0446\u0435\u043C \u0431\u0438\u0437\u043D\u0435\u0441\u0430, \u0438\u0437\u0443\u0447\u0430\u044E\u0449\u0438\u043C \u043F\u043E\u0442\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u043C\u0435\u0441\u0442\u0430 \u0434\u043B\u044F 
+\u0440\u0430\u0437\u043C\u0435\u0449\u0435\u043D\u0438\u044F \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430, \u0433\u0440\u0430\u0434\u043E\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u0435\u043C, \u0430\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u0443\u044E\u0449\u0438\u043C 
+\u0441\u0445\u0435\u043C\u044B \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F, \u0438\u043B\u0438 \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u0435\u043C, \u0441\u043E\u0431\u0438\u0440\u0430\u044E\u0449\u0438\u043C \u0434\u0430\u043D\u043D\u044B\u0435, Piyuo 
+Counter \u043E\u0431\u0435\u0441\u043F\u0435\u0447\u0438\u0432\u0430\u0435\u0442 \u0441\u0442\u0430\u0431\u0438\u043B\u044C\u043D\u044B\u0439 \u0438 \u043D\u0430\u0434\u0435\u0436\u043D\u044B\u0439 \u043F\u043E\u0434\u0441\u0447\u0435\u0442 \u043B\u044E\u0434\u0435\u0439 
+\u0431\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u044F \u0432\u044B\u0447\u0438\u0441\u043B\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u043C\u043E\u0449\u043D\u043E\u0441\u0442\u0438 GPU/NPU \u0432\u0430\u0448\u0435\u0433\u043E 
+\u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430.\n\u041F\u0440\u043E\u0441\u0442\u043E \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u0432\u0435\u0431-\u043A\u0430\u043C\u0435\u0440\u0443, \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 
+URL-\u0430\u0434\u0440\u0435\u0441 \u043F\u0440\u044F\u043C\u043E\u0439 \u0442\u0440\u0430\u043D\u0441\u043B\u044F\u0446\u0438\u0438 \u0438\u043B\u0438 \u0437\u0430\u0433\u0440\u0443\u0437\u0438\u0442\u0435 \u0432\u0438\u0434\u0435\u043E\u0444\u0430\u0439\u043B\u044B \u0432 
+\u043A\u0430\u0447\u0435\u0441\u0442\u0432\u0435 \u0438\u0441\u0442\u043E\u0447\u043D\u0438\u043A\u0430. \u0418\u043D\u0442\u0443\u0438\u0442\u0438\u0432\u043D\u043E \u043F\u043E\u043D\u044F\u0442\u043D\u044B\u0439 \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441 
+\u0434\u0435\u043B\u0430\u0435\u0442 \u043F\u043E\u0434\u0441\u0447\u0435\u0442 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043E\u0432 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u043C \u0434\u043B\u044F \u043A\u0430\u0436\u0434\u043E\u0433\u043E \u2013 
+\u043F\u0440\u043E\u0441\u0442\u043E \u0440\u0430\u0441\u043F\u043E\u043B\u043E\u0436\u0438\u0442\u0435 \u043A\u0430\u043C\u0435\u0440\u0443, \u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u0438\u0435 \u0438 
+\u043F\u043E\u0437\u0432\u043E\u043B\u044C\u0442\u0435 \u0418\u0418 \u0432\u044B\u043F\u043E\u043B\u043D\u0438\u0442\u044C \u043F\u043E\u0434\u0441\u0447\u0435\u0442 \u0437\u0430 \u0432\u0430\u0441.\n\u0423\u0441\u0442\u0440\u0430\u043D\u0438\u0442\u0435 
+\u043D\u0435\u043F\u043E\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C \u0440\u0443\u0447\u043D\u044B\u0445 \u043C\u0435\u0442\u043E\u0434\u043E\u0432 \u043F\u043E\u0434\u0441\u0447\u0435\u0442\u0430 \u0441 
+\u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u043E\u0439 \u043C\u043E\u0434\u0435\u043B\u0438 \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u0438\u044F Piyuo Counter. 
+\u0418\u0434\u0435\u0430\u043B\u044C\u043D\u043E \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442 \u0434\u043B\u044F \u043F\u0440\u0435\u0434\u043F\u0440\u0438\u043D\u0438\u043C\u0430\u0442\u0435\u043B\u0435\u0439 \u0440\u043E\u0437\u043D\u0438\u0447\u043D\u043E\u0439 
+\u0442\u043E\u0440\u0433\u043E\u0432\u043B\u0438, \u043E\u0446\u0435\u043D\u0438\u0432\u0430\u044E\u0449\u0438\u0445 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044F, 
+\u0433\u0440\u0430\u0434\u043E\u0441\u0442\u0440\u043E\u0438\u0442\u0435\u043B\u0435\u0439, \u0430\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u0443\u044E\u0449\u0438\u0445 \u0441\u0445\u0435\u043C\u044B \u0442\u0440\u0430\u0444\u0438\u043A\u0430, \u0438\u043B\u0438 
+\u043B\u044E\u0431\u043E\u0433\u043E, \u043A\u043E\u043C\u0443 \u043D\u0443\u0436\u043D\u044B \u0442\u043E\u0447\u043D\u044B\u0435 \u043F\u043E\u043A\u0430\u0437\u0430\u0442\u0435\u043B\u0438 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043D\u043E\u0433\u043E 
+\u043F\u043E\u0442\u043E\u043A\u0430.\nPiyuo Counter \u043F\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0441\u043B\u043E\u0436\u043D\u0443\u044E \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u044E 
+\u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u043D\u043E\u0433\u043E \u0437\u0440\u0435\u043D\u0438\u044F \u0432 \u043F\u0440\u043E\u0441\u0442\u043E\u0439 \u0432 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0438 
+\u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442 \u0434\u043B\u044F \u0432\u0441\u0435\u0445 \u0432\u0430\u0448\u0438\u0445 \u043F\u043E\u0442\u0440\u0435\u0431\u043D\u043E\u0441\u0442\u0435\u0439 \u0432 \u043F\u043E\u0434\u0441\u0447\u0435\u0442\u0435 
+\u043B\u044E\u0434\u0435\u0439.",
+        "Features": [
+          "\u041E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u0438\u0435 \u0438 \u043F\u043E\u0434\u0441\u0447\u0435\u0442 \u043F\u0435\u0448\u0435\u0445\u043E\u0434\u043E\u0432 \u0432 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C \u0432\u0440\u0435\u043C\u0435\u043D\u0438 \u0441 
+\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435\u043C \u043F\u0435\u0440\u0435\u0434\u043E\u0432\u044B\u0445 \u043C\u043E\u0434\u0435\u043B\u0435\u0439 \u0418\u0418",
+          "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u0438 \u043E\u0431\u043D\u0430\u0440\u0443\u0436\u0435\u043D\u0438\u044F 
+\u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\u043D\u044B\u0445 \u0441\u0440\u0435\u0434\u0441\u0442\u0432 \u0438 \u0432\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434\u043E\u0432",
+          "\u0410\u0432\u0442\u043E\u043D\u043E\u043C\u043D\u0430\u044F \u0440\u0430\u0431\u043E\u0442\u0430 \u2013 \u043D\u0435 \u0442\u0440\u0435\u0431\u0443\u0435\u0442\u0441\u044F \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435 \u043A 
+\u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442\u0443 \u0434\u043B\u044F \u0440\u0430\u0441\u043F\u043E\u0437\u043D\u0430\u0432\u0430\u043D\u0438\u044F \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0439",
+          "\u0413\u0438\u0431\u043A\u0438\u0435 \u0432\u0430\u0440\u0438\u0430\u043D\u0442\u044B \u0432\u0432\u043E\u0434\u0430: \u0432\u0435\u0431-\u043A\u0430\u043C\u0435\u0440\u0430, \u043F\u043E\u0442\u043E\u043A\u043E\u0432\u043E\u0435 \u0432\u0435\u0449\u0430\u043D\u0438\u0435 RTSP 
+\u0438\u043B\u0438 \u0441\u0435\u0442\u0435\u0432\u044B\u0435 \u043A\u0430\u043C\u0435\u0440\u044B",
+          "\u041D\u0435\u043F\u0440\u0435\u0440\u044B\u0432\u043D\u044B\u0439 24-\u0447\u0430\u0441\u043E\u0432\u043E\u0439 \u043C\u043E\u043D\u0438\u0442\u043E\u0440\u0438\u043D\u0433 \u0441 \u043A\u043E\u043C\u043F\u043B\u0435\u043A\u0441\u043D\u044B\u043C 
+\u0436\u0443\u0440\u043D\u0430\u043B\u043E\u043C \u0434\u0430\u043D\u043D\u044B\u0445"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300722",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300723",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300724",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300725",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300726",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300727",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "vi": {
+      "BaseListing": {
+        "Keywords": [
+          "Dem nguoi AI",
+          "Ung dung dem luu luong",
+          "Phan tich giao thong chan",
+          "Phan tich cua hang",
+          "Dem nguoi camera",
+          "Cong cu video AI"
+        ],
+        "Description": "Piyuo Counter l\u00E0 \u1EE9ng d\u1EE5ng \u0111\u1EBFm ng\u01B0\u1EDDi \u0111i b\u1ED9 s\u00E1ng t\u1EA1o \u0111\u01B0\u1EE3c thi\u1EBFt k\u1EBF cho nh\u1EEFng ng\u01B0\u1EDDi c\u1EA7n gi\u00E1m s\u00E1t l\u01B0u l\u01B0\u1EE3ng giao th\u00F4ng ch\u00E2n ch\u00EDnh 
+x\u00E1c. S\u1EED d\u1EE5ng c\u00F4ng ngh\u1EC7 ph\u00E1t hi\u1EC7n v\u00E0 theo d\u00F5i \u0111\u1ED1i t\u01B0\u1EE3ng AI ti\u00EAn ti\u1EBFn, \u1EE9ng d\u1EE5ng n\u00E0y cung c\u1EA5p kh\u1EA3 n\u0103ng \u0111\u1EBFm ch\u00EDnh x\u00E1c ng\u01B0\u1EDDi \u0111i b\u1ED9 trong nhi\u1EC1u 
+m\u00F4i tr\u01B0\u1EDDng kh\u00E1c nhau m\u00E0 kh\u00F4ng c\u1EA7n k\u1EBFt n\u1ED1i internet.\n\nCho d\u00F9 b\u1EA1n l\u00E0 ch\u1EE7 doanh nghi\u1EC7p \u0111ang nghi\u00EAn c\u1EE9u c\u00E1c \u0111\u1ECBa \u0111i\u1EC3m c\u1EEDa h\u00E0ng ti\u1EC1m n\u0103ng, nh\u00E0 quy ho\u1EA1ch 
+\u0111\u00F4 th\u1ECB \u0111ang nghi\u00EAn c\u1EE9u c\u00E1c m\u1EABu di chuy\u1EC3n hay nh\u00E0 nghi\u00EAn c\u1EE9u \u0111ang thu th\u1EADp d\u1EEF li\u1EC7u, Piyuo Counter \u0111\u1EC1u cung c\u1EA5p kh\u1EA3 n\u0103ng \u0111\u1EBFm ng\u01B0\u1EDDi nh\u1EA5t qu\u00E1n v\u00E0 
+\u0111\u00E1ng tin c\u1EADy th\u00F4ng qua s\u1EE9c m\u1EA1nh x\u1EED l\u00FD GPU/NPU c\u1EE7a thi\u1EBFt b\u1ECB c\u1EE7a b\u1EA1n.\n\nCh\u1EC9 c\u1EA7n k\u1EBFt n\u1ED1i webcam, s\u1EED d\u1EE5ng URL lu\u1ED3ng tr\u1EF1c ti\u1EBFp ho\u1EB7c t\u1EA3i l\u00EAn c\u00E1c t\u1EC7p video 
+l\u00E0m ngu\u1ED3n. Giao di\u1EC7n tr\u1EF1c quan gi\u00FAp vi\u1EC7c \u0111\u1EBFm ng\u01B0\u1EDDi \u0111i b\u1ED9 d\u1EC5 d\u00E0ng v\u1EDBi m\u1ECDi ng\u01B0\u1EDDi - ch\u1EC9 c\u1EA7n \u0111\u1ECBnh v\u1ECB camera c\u1EE7a b\u1EA1n, b\u1EAFt \u0111\u1EA7u ph\u00E1t hi\u1EC7n v\u00E0 
+\u0111\u1EC3 AI th\u1EF1c hi\u1EC7n vi\u1EC7c \u0111\u1EBFm cho b\u1EA1n.\n\nLo\u1EA1i b\u1ECF s\u1EF1 kh\u00F4ng nh\u1EA5t qu\u00E1n c\u1EE7a c\u00E1c ph\u01B0\u01A1ng ph\u00E1p \u0111\u1EBFm th\u1EE7 c\u00F4ng v\u1EDBi m\u00F4 h\u00ECnh ph\u00E1t hi\u1EC7n AI ti\u00EAu chu\u1EA9n h\u00F3a 
+c\u1EE7a Piyuo Counter. L\u00FD t\u01B0\u1EDFng cho c\u00E1c doanh nh\u00E2n b\u00E1n l\u1EBB \u0111\u00E1nh gi\u00E1 \u0111\u1ECBa \u0111i\u1EC3m, nh\u00E0 quy ho\u1EA1ch \u0111\u00F4 th\u1ECB ph\u00E2n t\u00EDch m\u1EABu giao th\u00F4ng ho\u1EB7c b\u1EA5t k\u1EF3 ai c\u1EA7n c\u00E1c 
+ch\u1EC9 s\u1ED1 l\u01B0u l\u01B0\u1EE3ng ng\u01B0\u1EDDi \u0111i b\u1ED9 ch\u00EDnh x\u00E1c.\n\nPiyuo Counter bi\u1EBFn c\u00F4ng ngh\u1EC7 th\u1ECB gi\u00E1c m\u00E1y t\u00EDnh ph\u1EE9c t\u1EA1p th\u00E0nh m\u1ED9t c\u00F4ng c\u1EE5 d\u1EC5 s\u1EED d\u1EE5ng cho m\u1ECDi nhu c\u1EA7u 
+\u0111\u1EBFm ng\u01B0\u1EDDi c\u1EE7a b\u1EA1n.",
+        "Features": [
+          "Ph\u00E1t hi\u1EC7n v\u00E0 \u0111\u1EBFm ng\u01B0\u1EDDi \u0111i b\u1ED9 theo th\u1EDDi gian th\u1EF1c b\u1EB1ng c\u00E1c m\u00F4 h\u00ECnh AI ti\u00EAn ti\u1EBFn",
+          "Kh\u1EA3 n\u0103ng ph\u00E1t hi\u1EC7n b\u1ED5 sung cho xe c\u1ED9 v\u00E0 xe \u0111\u1EA1p",
+          "Ho\u1EA1t \u0111\u1ED9ng ngo\u1EA1i tuy\u1EBFn - kh\u00F4ng c\u1EA7n k\u1EBFt n\u1ED1i internet \u0111\u1EC3 nh\u1EADn d\u1EA1ng h\u00ECnh \u1EA3nh",
+          "C\u00E1c t\u00F9y ch\u1ECDn \u0111\u1EA7u v\u00E0o linh ho\u1EA1t: webcam, lu\u1ED3ng RTSP ho\u1EB7c camera m\u1EA1ng",
+          "Gi\u00E1m s\u00E1t li\u00EAn t\u1EE5c 24 gi\u1EDD v\u1EDBi t\u00EDnh n\u0103ng ghi nh\u1EADt k\u00FD d\u1EEF li\u1EC7u to\u00E0n di\u1EC7n"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300728",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300729",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300730",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300731",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300732",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300733",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "id": {
+      "BaseListing": {
+        "Keywords": [
+          "Penghitung Pejalan Kaki AI",
+          "Aplikasi Hitung Pengunjung",
+          "Analisis Lalu Lintas Toko",
+          "Deteksi Objek Pintar",
+          "Alat Analisis Video CCTV",
+          "Monitor Keramaian Toko"
+        ],
+        "Description": "Piyuo Counter adalah aplikasi deteksi pejalan kaki inovatif yang dirancang untuk pengguna yang membutuhkan pemantauan lalu lintas pejalan kaki secara akurat. Menggunakan teknologi deteksi dan pelacakan objek AI canggih, aplikasi ini memberikan penghitungan pejalan 
+kaki yang tepat di berbagai lingkungan tanpa memerlukan koneksi internet.\nBaik Anda seorang pemilik bisnis yang meneliti lokasi toko potensial, perencana kota yang mempelajari pola pergerakan, atau peneliti yang mengumpulkan data, Piyuo Counter memberikan penghitungan orang yang konsisten 
+dan andal melalui kekuatan pemrosesan GPU/NPU perangkat Anda.\nCukup hubungkan webcam, gunakan URL streaming langsung, atau unggah file video sebagai sumber Anda. Antarmuka yang intuitif membuat penghitungan pejalan kaki dapat diakses oleh semua orang - cukup posisikan kamera Anda, mulai 
+deteksi, dan biarkan AI melakukan penghitungan untuk Anda.\nHilangkan ketidakkonsistenan metode penghitungan manual dengan model deteksi AI terstandarisasi Piyuo Counter. Ideal untuk pengusaha ritel yang mengevaluasi lokasi, perencana kota yang menganalisis pola lalu lintas, atau siapa saja 
+yang membutuhkan metrik aliran pejalan kaki yang akurat.\nPiyuo Counter mengubah teknologi computer vision yang kompleks menjadi alat yang mudah digunakan untuk semua kebutuhan penghitungan orang Anda.",
+        "Features": [
+          "Deteksi dan penghitungan pejalan kaki secara real-time menggunakan model AI canggih",
+          "Kemampuan deteksi tambahan untuk kendaraan dan sepeda",
+          "Operasi offline - tidak memerlukan koneksi internet untuk pengenalan gambar",
+          "Pilihan input fleksibel: webcam, streaming RTSP, atau kamera jaringan",
+          "Pemantauan 24 jam terus-menerus dengan pencatatan data komprehensif"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300832",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300833",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300834",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300835",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300836",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300837",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "it": {
+      "BaseListing": {
+        "Keywords": [
+          "Contapersone Intelligente",
+          "Analisi Flusso Pedonale",
+          "Conteggio Automatico Pedoni",
+          "Rilevamento IA Negozio",
+          "Monitoraggio Traffico Pedonale",
+          "Analisi Video Pedoni",
+          "Contatore Video Intelligente"
+        ],
+        "Description": "Piyuo Counter \u00E8 un\u0027applicazione innovativa per il rilevamento dei pedoni, progettata per chi necessita di un monitoraggio accurato del flusso pedonale. Utilizzando tecnologie avanzate di intelligenza artificiale per il rilevamento e il tracciamento degli 
+oggetti, questa app fornisce un conteggio preciso dei pedoni in vari ambienti senza richiedere connessione a Internet.\nChe tu sia un imprenditore alla ricerca di potenziali location per il tuo negozio, un urbanista che studia i modelli di movimento, o un ricercatore che raccoglie dati, 
+Piyuo Counter offre un conteggio affidabile delle persone attraverso la potenza di elaborazione GPU/NPU del tuo dispositivo.\nBasta collegare una webcam, utilizzare un URL di streaming live o caricare file video come fonte. L\u0027interfaccia intuitiva rende il conteggio dei pedoni 
+accessibile a tutti: posiziona semplicemente la telecamera, avvia il rilevamento e lascia che l\u0027IA faccia il conteggio per te.\nElimina le incongruenze dei metodi di conteggio manuale con il modello di rilevamento AI standardizzato di Piyuo Counter. Ideale per imprenditori del commercio
+che valutano nuove location, urbanisti che analizzano i flussi di traffico o chiunque necessiti di metriche accurate sul flusso pedonale.\nPiyuo Counter trasforma una complessa tecnologia di visione artificiale in uno strumento facile da usare per tutte le tue esigenze di conteggio delle 
+persone.",
+        "Features": [
+          "Rilevamento e conteggio dei pedoni in tempo reale utilizzando modelli di IA avanzati",
+          "Capacit\u00E0 aggiuntive di rilevamento per veicoli e biciclette",
+          "Funzionamento offline - nessuna connessione Internet richiesta per il riconoscimento delle immagini",
+          "Opzioni di input flessibili: webcam, streaming RTSP o telecamere di rete",
+          "Monitoraggio continuo 24 ore su 24 con registrazione completa dei dati"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300734",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300735",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300736",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300737",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300738",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300739",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ja": {
+      "BaseListing": {
+        "Keywords": [
+          "\u4EBA\u6D41\u30AB\u30A6\u30F3\u30C8\u30A2\u30D7\u30EA",
+          "AI\u6B69\u884C\u8005\u691C\u77E5",
+          "\u901A\u884C\u91CF\u5206\u6790\u30C4\u30FC\u30EB",
+          "\u5E97\u8217\u7ACB\u5730\u8ABF\u67FB",
+          "\u9632\u72AF\u30AB\u30E1\u30E9\u4EBA\u6570\u8A08\u6E2C",
+          "\u30EA\u30A2\u30EB\u30BF\u30A4\u30E0\u4EBA\u6570\u30AB\u30A6\u30F3\u30C8",
+          "\u30AA\u30D5\u30E9\u30A4\u30F3\u753B\u50CF\u89E3\u6790"
+        ],
+        "Description": "Piyuo Counter 
+\u306F\u3001\u6B63\u78BA\u306A\u6B69\u884C\u8005\u30AB\u30A6\u30F3\u30C8\u304C\u5FC5\u8981\u306A\u30E6\u30FC\u30B6\u30FC\u5411\u3051\u306E\u9769\u65B0\u7684\u306A\u6B69\u884C\u8005\u691C\u51FA\u30A2\u30D7\u30EA\u30B1\u30FC\u30B7\u30E7\u30F3\u3067\u3059\u3002\u9AD8\u5EA6\u306AAI\u7269\u4F53\u
+691C\u51FA\u30FB\u8FFD\u8DE1\u6280\u8853\u3092\u4F7F\u7528\u3057\u3001\u30A4\u30F3\u30BF\u30FC\u30CD\u30C3\u30C8\u63A5\u7D9A\u306A\u3057\u3067\u3055\u307E\u3056\u307E\u306A\u74B0\u5883\u3067\u306E\u6B63\u78BA\u306A\u4EBA\u6570\u30AB\u30A6\u30F3\u30C8\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002
+\n\u65B0\u898F\u5E97\u8217\u306E\u51FA\u5E97\u5834\u6240\u3092\u8ABF\u67FB\u3059\u308B\u5E97\u8217\u30AA\u30FC\u30CA\u30FC\u3001\u4EBA\u306E\u6D41\u308C\u3092\u7814\u7A76\u3059\u308B\u90FD\u5E02\u8A08\u753B\u8005\u3001\u307E\u305F\u306F\u30C7\u30FC\u30BF\u53CE\u96C6\u3092\u884C\u3046\u7814\u
+7A76\u8005\u306E\u65B9\u3005\u306B\u3001Piyuo 
+Counter\u306F\u30C7\u30D0\u30A4\u30B9\u306EGPU/NPU\u51E6\u7406\u80FD\u529B\u3092\u901A\u3058\u3066\u4E00\u8CAB\u6027\u306E\u3042\u308B\u4FE1\u983C\u6027\u306E\u9AD8\u3044\u4EBA\u6570\u30AB\u30A6\u30F3\u30C8\u3092\u63D0\u4F9B\u3057\u307E\u3059\u3002\n\u30A6\u30A7\u30D6\u30AB\u30E1\u30E9\u306E
+\u63A5\u7D9A\u3001\u30E9\u30A4\u30D6\u30B9\u30C8\u30EA\u30FC\u30E0URL\u306E\u4F7F\u7528\u3001\u307E\u305F\u306F\u30D3\u30C7\u30AA\u30D5\u30A1\u30A4\u30EB\u306E\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3092\u5165\u529B\u30BD\u30FC\u30B9\u3068\u3057\u3066\u7C21\u5358\u306B\u8A2D\u5B9A\u3067\u304D\
+u307E\u3059\u3002\u76F4\u611F\u7684\u306A\u30A4\u30F3\u30BF\u30FC\u30D5\u30A7\u30FC\u30B9\u306B\u3088\u308A\u3001\u30AB\u30E1\u30E9\u3092\u914D\u7F6E\u3057\u3066AI\u691C\u51FA\u3092\u958B\u59CB\u3059\u308B\u3060\u3051\u3067\u3001\u8AB0\u3067\u3082\u7C21\u5358\u306B\u6B69\u884C\u8005\u30AB\u3
+0A6\u30F3\u30C8\u3092\u884C\u3046\u3053\u3068\u304C\u3067\u304D\u307E\u3059\u3002\nPiyuo 
+Counter\u306E\u6A19\u6E96\u5316\u3055\u308C\u305FAI\u691C\u51FA\u30E2\u30C7\u30EB\u306B\u3088\u308A\u3001\u624B\u52D5\u30AB\u30A6\u30F3\u30C8\u65B9\u6CD5\u306E\u4E0D\u4E00\u81F4\u3092\u89E3\u6D88\u3057\u307E\u3059\u3002\u5C0F\u58F2\u5E97\u306E\u7ACB\u5730\u8A55\u4FA1\u3001\u90FD\u5E02\u8A08\
+u753B\u8005\u306E\u4EA4\u901A\u30D1\u30BF\u30FC\u30F3\u5206\u6790\u3001\u6B63\u78BA\u306A\u6B69\u884C\u8005\u6D41\u91CF\u6E2C\u5B9A\u304C\u5FC5\u8981\u306A\u65B9\u3005\u306B\u6700\u9069\u3067\u3059\u3002\nPiyuo 
+Counter\u306F\u8907\u96D1\u306A\u30B3\u30F3\u30D4\u30E5\u30FC\u30BF\u30D3\u30B8\u30E7\u30F3\u6280\u8853\u3092\u3001\u3042\u3089\u3086\u308B\u4EBA\u6570\u30AB\u30A6\u30F3\u30C8\u306E\u30CB\u30FC\u30BA\u306B\u5BFE\u5FDC\u3059\u308B\u4F7F\u3044\u3084\u3059\u3044\u30C4\u30FC\u30EB\u306B\u5909\u6
+3DB\u3057\u307E\u3059\u3002",
+        "Features": [
+          "\u9AD8\u5EA6\u306AAI\u30E2\u30C7\u30EB\u3092\u4F7F\u7528\u3057\u305F\u30EA\u30A2\u30EB\u30BF\u30A4\u30E0\u6B69\u884C\u8005\u691C\u51FA\u3068\u30AB\u30A6\u30F3\u30C8",
+          "\u8ECA\u4E21\u3084\u81EA\u8EE2\u8ECA\u306E\u8FFD\u52A0\u691C\u51FA\u6A5F\u80FD",
+          "\u30AA\u30D5\u30E9\u30A4\u30F3\u64CD\u4F5C - \u753B\u50CF\u8A8D\u8B58\u306B\u30A4\u30F3\u30BF\u30FC\u30CD\u30C3\u30C8\u63A5\u7D9A\u4E0D\u8981",
+          "\u67D4\u8EDF\u306A\u5165\u529B\u30AA\u30D7\u30B7\u30E7\u30F3\uFF1A\u30A6\u30A7\u30D6\u30AB\u30E1\u30E9\u3001RTSP\u30B9\u30C8\u30EA\u30FC\u30DF\u30F3\u30B0\u3001\u307E\u305F\u306F\u30CD\u30C3\u30C8\u30EF\u30FC\u30AF\u30AB\u30E1\u30E9",
+          "\u5305\u62EC\u7684\u306A\u30C7\u30FC\u30BF\u30ED\u30B0\u8A18\u9332\u306B\u3088\u308B24\u6642\u9593\u9023\u7D9A\u30E2\u30CB\u30BF\u30EA\u30F3\u30B0"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300740",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300741",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300742",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300743",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300744",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300745",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ko": {
+      "BaseListing": {
+        "Keywords": [
+          "\uC720\uB3D9\uC778\uAD6C \uBD84\uC11D\uAE30",
+          "AI \uBCF4\uD589\uC790 \uCE74\uC6B4\uD305",
+          "\uB9E4\uC7A5 \uC704\uCE58 \uBD84\uC11D \uB3C4\uAD6C",
+          "CCTV \uC778\uC6D0\uC218 \uCE21\uC815",
+          "\uC2E4\uC2DC\uAC04 \uAD50\uD1B5\uB7C9 \uBAA8\uB2C8\uD130\uB9C1",
+          "\uC624\uD504\uB77C\uC778 \uC601\uC0C1\uBD84\uC11D",
+          "\uC2A4\uB9C8\uD2B8 \uCE74\uC6B4\uD130 \uC571"
+        ],
+        "Description": "Piyuo Counter\uB294 \uC815\uD655\uD55C \uC720\uB3D9\uC778\uAD6C \uBAA8\uB2C8\uD130\uB9C1\uC774 \uD544\uC694\uD55C \uC0AC\uC6A9\uC790\uB97C \uC704\uD574 \uC124\uACC4\uB41C \uD601\uC2E0\uC801\uC778 \uBCF4\uD589\uC790 \uAC10\uC9C0 
+\uC560\uD50C\uB9AC\uCF00\uC774\uC158\uC785\uB2C8\uB2E4. \uACE0\uAE09 AI \uAC1D\uCCB4 \uAC10\uC9C0 \uBC0F \uCD94\uC801 \uAE30\uC220\uC744 \uC0AC\uC6A9\uD558\uC5EC \uC778\uD130\uB137 \uC5F0\uACB0 \uC5C6\uC774\uB3C4 \uB2E4\uC591\uD55C \uD658\uACBD\uC5D0\uC11C \uC815\uD655\uD55C 
+\uBCF4\uD589\uC790 \uC218\uB97C \uACC4\uC0B0\uD569\uB2C8\uB2E4.\n\uBE44\uC988\uB2C8\uC2A4 \uC18C\uC720\uC790\uB85C\uC11C \uC7A0\uC7AC\uC801\uC778 \uB9E4\uC7A5 \uC704\uCE58\uB97C \uC870\uC0AC\uD558\uAC70\uB098, \uB3C4\uC2DC \uACC4\uD68D\uC790\uB85C\uC11C \uC774\uB3D9 \uD328\uD134\uC744 
+\uC5F0\uAD6C\uD558\uAC70\uB098, \uB370\uC774\uD130\uB97C \uC218\uC9D1\uD558\uB294 \uC5F0\uAD6C\uC6D0\uC774\uB77C\uBA74 Piyuo Counter\uAC00 \uC7A5\uCE58\uC758 GPU/NPU \uCC98\uB9AC \uB2A5\uB825\uC744 \uD1B5\uD574 \uC77C\uAD00\uB418\uACE0 \uC2E0\uB8B0\uD560 \uC218 \uC788\uB294 \uC778\uC6D0 
+\uACC4\uC218\uB97C \uC81C\uACF5\uD569\uB2C8\uB2E4.\n\uC6F9\uCEA0\uC744 \uC5F0\uACB0\uD558\uAC70\uB098, \uC2E4\uC2DC\uAC04 \uC2A4\uD2B8\uB9BC URL\uC744 \uC0AC\uC6A9\uD558\uAC70\uB098, \uB3D9\uC601\uC0C1 \uD30C\uC77C\uC744 \uC18C\uC2A4\uB85C \uC5C5\uB85C\uB4DC\uD558\uAE30\uB9CC \uD558\uBA74 
+\uB429\uB2C8\uB2E4. \uC9C1\uAD00\uC801\uC778 \uC778\uD130\uD398\uC774\uC2A4\uB85C \uBCF4\uD589\uC790 \uACC4\uC218\uAC00 \uBAA8\uB4E0 \uC0AC\uC6A9\uC790\uC5D0\uAC8C \uC811\uADFC \uAC00\uB2A5\uD574\uC9D1\uB2C8\uB2E4 - \uCE74\uBA54\uB77C\uB97C \uC704\uCE58\uC2DC\uD0A4\uACE0, \uAC10\uC9C0\uB97C 
+\uC2DC\uC791\uD558\uBA74 AI\uAC00 \uC790\uB3D9\uC73C\uB85C \uACC4\uC218\uD569\uB2C8\uB2E4.\nPiyuo Counter\uC758 \uD45C\uC900\uD654\uB41C AI \uAC10\uC9C0 \uBAA8\uB378\uB85C \uC218\uB3D9 \uACC4\uC218 \uBC29\uBC95\uC758 \uBD88\uC77C\uCE58\uB97C \uC81C\uAC70\uD558\uC138\uC694. \uC704\uCE58\uB97C
+\uD3C9\uAC00\uD558\uB294 \uC18C\uB9E4 \uAE30\uC5C5\uAC00, \uAD50\uD1B5 \uD328\uD134\uC744 \uBD84\uC11D\uD558\uB294 \uB3C4\uC2DC \uACC4\uD68D\uC790 \uB610\uB294 \uC815\uD655\uD55C \uBCF4\uD589\uC790 \uD750\uB984 \uC9C0\uD45C\uAC00 \uD544\uC694\uD55C \uBAA8\uB4E0 \uC0AC\uC6A9\uC790\uC5D0\uAC8C
+\uC774\uC0C1\uC801\uC785\uB2C8\uB2E4.\nPiyuo Counter\uB294 \uBCF5\uC7A1\uD55C \uCEF4\uD4E8\uD130 \uBE44\uC804 \uAE30\uC220\uC744 \uBAA8\uB4E0 \uC778\uC6D0 \uACC4\uC218 \uC694\uAD6C \uC0AC\uD56D\uC744 \uC704\uD55C \uC0AC\uC6A9\uD558\uAE30 \uC26C\uC6B4 \uB3C4\uAD6C\uB85C 
+\uBCC0\uD658\uD569\uB2C8\uB2E4.",
+        "Features": [
+          "\uACE0\uAE09 AI \uBAA8\uB378\uC744 \uC0AC\uC6A9\uD55C \uC2E4\uC2DC\uAC04 \uBCF4\uD589\uC790 \uAC10\uC9C0 \uBC0F \uACC4\uC218",
+          "\uCC28\uB7C9 \uBC0F \uC790\uC804\uAC70\uC5D0 \uB300\uD55C \uCD94\uAC00 \uAC10\uC9C0 \uAE30\uB2A5",
+          "\uC624\uD504\uB77C\uC778 \uC791\uB3D9 - \uC774\uBBF8\uC9C0 \uC778\uC2DD\uC5D0 \uC778\uD130\uB137 \uC5F0\uACB0 \uD544\uC694 \uC5C6\uC74C",
+          "\uC720\uC5F0\uD55C \uC785\uB825 \uC635\uC158: \uC6F9\uCEA0, RTSP \uC2A4\uD2B8\uB9AC\uBC0D \uB610\uB294 \uB124\uD2B8\uC6CC\uD06C \uCE74\uBA54\uB77C",
+          "\uC885\uD569\uC801\uC778 \uB370\uC774\uD130 \uB85C\uAE45\uACFC \uD568\uAED8 24\uC2DC\uAC04 \uC5F0\uC18D \uBAA8\uB2C8\uD130\uB9C1"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300746",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300747",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300748",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300749",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300750",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300751",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ms": {
+      "BaseListing": {
+        "Keywords": [
+          "Pengira Orang AI",
+          "Aplikasi Kira Pejalan Kaki",
+          "Analisis Trafik Kedai",
+          "Pengesanan Objek AI",
+          "Kira Pelanggan Premis",
+          "Pemantau CCTV",
+          "Alat Analisis Video"
+        ],
+        "Description": "Piyuo Counter ialah aplikasi pengesanan pejalan kaki inovatif yang direka untuk pengguna yang memerlukan pemantauan trafik kaki yang tepat. Menggunakan teknologi pengesanan dan penjejakan objek AI termaju, aplikasi ini memberikan kiraan tepat pejalan kaki dalam 
+pelbagai persekitaran tanpa memerlukan sambungan internet.\nSama ada anda pemilik perniagaan yang mengkaji lokasi kedai berpotensi, perancang bandar yang mengkaji corak pergerakan, atau penyelidik yang mengumpul data, Piyuo Counter memberikan kiraan orang yang konsisten dan boleh dipercayai 
+melalui kuasa pemprosesan GPU/NPU peranti anda.\nHanya sambungkan kamera web, gunakan URL strim langsung, atau muat naik fail video sebagai sumber anda. Antara muka yang intuitif menjadikan pengiraan pejalan kaki mudah diakses oleh semua - hanya letakkan kamera anda, mulakan pengesanan, dan 
+biarkan AI menghitung untuk anda.\nHapuskan ketidakkonsistenan kaedah pengiraan manual dengan model pengesanan AI Piyuo Counter yang standard. Sesuai untuk usahawan runcit yang menilai lokasi, perancang bandar yang menganalisis corak trafik, atau sesiapa yang memerlukan metrik aliran pejalan
+kaki yang tepat.\nPiyuo Counter mengubah teknologi penglihatan komputer yang kompleks menjadi alat mudah untuk semua keperluan pengiraan orang anda.",
+        "Features": [
+          "Pengesanan dan pengiraan pejalan kaki masa nyata menggunakan model AI termaju",
+          "Keupayaan pengesanan tambahan untuk kenderaan dan basikal",
+          "Operasi luar talian - tiada sambungan internet diperlukan untuk pengecaman imej",
+          "Pilihan input fleksibel: kamera web, penstriman RTSP, atau kamera rangkaian",
+          "Pemantauan berterusan 24 jam dengan log data komprehensif"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300752",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300753",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300754",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300755",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300756",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300757",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "pl": {
+      "BaseListing": {
+        "Keywords": [
+          "Licznik Pieszych AI",
+          "Analiza Ruchu Pieszych",
+          "Wykrywanie Os\u00F3b AI",
+          "Monitoring Klient\u00F3w",
+          "Analiza Lokalizacji Sklepu",
+          "Liczenie Os\u00F3b Kamera",
+          "Analityka Wideo"
+        ],
+        "Description": "Piyuo Counter to innowacyjna aplikacja do wykrywania pieszych, stworzona dla u\u017Cytkownik\u00F3w potrzebuj\u0105cych dok\u0142adnego monitorowania ruchu. Wykorzystuj\u0105c zaawansowan\u0105 technologi\u0119 wykrywania i \u015Bledzenia obiekt\u00F3w AI, aplikacja 
+zapewnia precyzyjne liczenie pieszych w r\u00F3\u017Cnych \u015Brodowiskach bez konieczno\u015Bci po\u0142\u0105czenia z internetem.\nNiezale\u017Cnie od tego, czy jeste\u015B w\u0142a\u015Bcicielem firmy badaj\u0105cym potencjalne lokalizacje sklep\u00F3w, urbanist\u0105 analizuj\u0105cym 
+wzorce ruchu, czy naukowcem zbieraj\u0105cym dane, Piyuo Counter dostarcza sp\u00F3jne i niezawodne liczenie os\u00F3b dzi\u0119ki mocy obliczeniowej GPU/NPU Twojego urz\u0105dzenia.\nWystarczy pod\u0142\u0105czy\u0107 kamer\u0119 internetow\u0105, u\u017Cy\u0107 adresu URL transmisji na 
+\u017Cywo lub przes\u0142a\u0107 pliki wideo jako \u017Ar\u00F3d\u0142o. Intuicyjny interfejs sprawia, \u017Ce liczenie pieszych jest dost\u0119pne dla ka\u017Cdego - wystarczy ustawi\u0107 kamer\u0119, rozpocz\u0105\u0107 wykrywanie i pozwoli\u0107 sztucznej inteligencji na 
+liczenie.\nWyeliminuj nie\u015Bcis\u0142o\u015Bci r\u0119cznych metod liczenia dzi\u0119ki standardowemu modelowi wykrywania AI Piyuo Counter. Idealny dla przedsi\u0119biorc\u00F3w oceniaj\u0105cych lokalizacje, urbanist\u00F3w analizuj\u0105cych wzorce ruchu lub ka\u017Cdego, kto potrzebuje
+dok\u0142adnych danych o przep\u0142ywie pieszych.\nPiyuo Counter przekszta\u0142ca z\u0142o\u017Con\u0105 technologi\u0119 wizji komputerowej w \u0142atwe w u\u017Cyciu narz\u0119dzie do wszystkich potrzeb zwi\u0105zanych z liczeniem os\u00F3b.",
+        "Features": [
+          "Wykrywanie i liczenie pieszych w czasie rzeczywistym wykorzystuj\u0105ce zaawansowane modele AI",
+          "Dodatkowe mo\u017Cliwo\u015Bci wykrywania pojazd\u00F3w i rower\u00F3w",
+          "Dzia\u0142anie offline - brak wymagania po\u0142\u0105czenia internetowego do rozpoznawania obraz\u00F3w",
+          "Elastyczne opcje wej\u015Bciowe: kamera internetowa, streaming RTSP lub kamery sieciowe",
+          "Ci\u0105g\u0142e monitorowanie przez 24 godziny z kompleksowym rejestrowaniem danych"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300764",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300765",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300766",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300767",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300768",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300769",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "pt-br": {
+      "BaseListing": {
+        "Keywords": [
+          "Contador de Pedestres IA",
+          "An\u00E1lise de Fluxo de Pessoas",
+          "Contagem Inteligente Varejo",
+          "IA Detec\u00E7\u00E3o de Objetos",
+          "An\u00E1lise de Tr\u00E1fego Loja"
+        ],
+        "Description": "O Piyuo Counter \u00E9 um aplicativo inovador de detec\u00E7\u00E3o de pedestres projetado para usu\u00E1rios que precisam de monitoramento preciso de tr\u00E1fego de pessoas. Usando tecnologia avan\u00E7ada de IA para detec\u00E7\u00E3o e rastreamento de objetos, 
+este aplicativo fornece contagem precisa de pedestres em diversos ambientes sem necessidade de conex\u00E3o com a internet.\nSeja voc\u00EA um empres\u00E1rio pesquisando potenciais localiza\u00E7\u00F5es para sua loja, um planejador urbano estudando padr\u00F5es de movimento, ou um 
+pesquisador coletando dados, o Piyuo Counter oferece contagem de pessoas consistente e confi\u00E1vel atrav\u00E9s do poder de processamento GPU/NPU do seu dispositivo.\nSimplesmente conecte uma webcam, use uma URL de transmiss\u00E3o ao vivo ou fa\u00E7a upload de arquivos de v\u00EDdeo 
+como fonte. A interface intuitiva torna a contagem de pedestres acess\u00EDvel a todos - basta posicionar sua c\u00E2mera, iniciar a detec\u00E7\u00E3o e deixar a IA fazer a contagem para voc\u00EA.\nElimine as inconsist\u00EAncias dos m\u00E9todos manuais de contagem com o modelo de 
+detec\u00E7\u00E3o padronizado por IA do Piyuo Counter. Ideal para empreendedores do varejo avaliando localiza\u00E7\u00F5es, planejadores urbanos analisando padr\u00F5es de tr\u00E1fego ou qualquer pessoa que necessite de m\u00E9tricas precisas de fluxo de pedestres.\nO Piyuo Counter 
+transforma a complexa tecnologia de vis\u00E3o computacional em uma ferramenta f\u00E1cil de usar para todas as suas necessidades de contagem de pessoas.",
+        "Features": [
+          "Detec\u00E7\u00E3o e contagem de pedestres em tempo real usando modelos avan\u00E7ados de IA",
+          "Capacidades adicionais de detec\u00E7\u00E3o para ve\u00EDculos e bicicletas",
+          "Opera\u00E7\u00E3o offline - n\u00E3o requer conex\u00E3o com internet para reconhecimento de imagem",
+          "Op\u00E7\u00F5es flex\u00EDveis de entrada: webcam, streaming RTSP ou c\u00E2meras de rede",
+          "Monitoramento cont\u00EDnuo de 24 horas com registro de dados abrangente"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300838",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300839",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300840",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300841",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300842",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300843",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "es": {
+      "BaseListing": {
+        "Keywords": [
+          "Contador Peatones IA",
+          "Conteo Personas App",
+          "An\u00E1lisis Tr\u00E1fico Peatonal",
+          "Detecci\u00F3n Objetos IA",
+          "An\u00E1lisis Ubicaci\u00F3n Negocio",
+          "Contador CCTV Personas",
+          "Herramienta Video An\u00E1lisis"
+        ],
+        "Description": "Piyuo Counter es una innovadora aplicaci\u00F3n de detecci\u00F3n de peatones dise\u00F1ada para usuarios que necesitan un monitoreo preciso del flujo de personas. Utilizando tecnolog\u00EDa avanzada de detecci\u00F3n y seguimiento de objetos por IA, esta 
+aplicaci\u00F3n proporciona un conteo exacto de peatones en diversos entornos sin necesidad de conexi\u00F3n a internet.\n\nYa sea propietario de un negocio investigando posibles ubicaciones para tiendas, un urbanista estudiando patrones de movimiento, o un investigador recopilando datos, 
+Piyuo Counter ofrece un conteo de personas consistente y confiable aprovechando la capacidad de procesamiento GPU/NPU de tu dispositivo.\n\nSimplemente conecta una c\u00E1mara web, usa una URL de transmisi\u00F3n en vivo, o carga archivos de video como fuente. La interfaz intuitiva hace que 
+el conteo de peatones sea accesible para todos; solo posiciona tu c\u00E1mara, inicia la detecci\u00F3n y deja que la IA haga el conteo por ti.\n\nElimina las inconsistencias de los m\u00E9todos de conteo manual con el modelo de detecci\u00F3n por IA estandarizado de Piyuo Counter. Ideal 
+para emprendedores minoristas que eval\u00FAan ubicaciones, urbanistas que analizan patrones de tr\u00E1fico, o cualquier persona que necesite m\u00E9tricas precisas de flujo peatonal.\n\nPiyuo Counter transforma la compleja tecnolog\u00EDa de visi\u00F3n por computadora en una herramienta 
+f\u00E1cil de usar para todas tus necesidades de conteo de personas.",
+        "Features": [
+          "Detecci\u00F3n y conteo de peatones en tiempo real usando modelos avanzados de IA.",
+          "Capacidades de detecci\u00F3n adicionales para veh\u00EDculos y bicicletas.",
+          "Operaci\u00F3n sin conexi\u00F3n: no se requiere conexi\u00F3n a internet para el reconocimiento de im\u00E1genes.",
+          "Opciones de entrada flexibles: c\u00E1mara web, transmisi\u00F3n RTSP o c\u00E1maras de red.",
+          "Monitoreo continuo las 24 horas con registro completo de datos."
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300782",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300783",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300784",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300785",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300786",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300787",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "th": {
+      "BaseListing": {
+        "Keywords": [
+          "\u0E19\u0E31\u0E1A\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32",
+          "\u0E41\u0E2D\u0E1B\u0E19\u0E31\u0E1A\u0E04\u0E19",
+          "\u0E27\u0E34\u0E40\u0E04\u0E23\u0E32\u0E30\u0E2B\u0E4C\u0E04\u0E19\u0E2A\u0E31\u0E0D\u0E08\u0E23",
+          "AI \u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A\u0E27\u0E31\u0E15\u0E16\u0E38",
+          "\u0E27\u0E34\u0E40\u0E04\u0E23\u0E32\u0E30\u0E2B\u0E4C\u0E17\u0E33\u0E40\u0E25",
+          "\u0E19\u0E31\u0E1A\u0E04\u0E19 CCTV",
+          "\u0E27\u0E34\u0E40\u0E04\u0E23\u0E32\u0E30\u0E2B\u0E4C\u0E27\u0E34\u0E14\u0E35\u0E42\u0E2D"
+        ],
+        "Description": "Piyuo Counter 
+\u0E04\u0E37\u0E2D\u0E41\u0E2D\u0E1B\u0E1E\u0E25\u0E34\u0E40\u0E04\u0E0A\u0E31\u0E19\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E19\u0E27\u0E31\u0E15\u0E01\u0E23\u0E23\u0E21\u0E43\u0E2B\u0E
+21\u0E48 
+\u0E2D\u0E2D\u0E01\u0E41\u0E1A\u0E1A\u0E21\u0E32\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E
+2A\u0E31\u0E0D\u0E08\u0E23\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33 
+\u0E14\u0E49\u0E27\u0E22\u0E40\u0E17\u0E04\u0E42\u0E19\u0E42\u0E25\u0E22\u0E35\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A\u0E41\u0E25\u0E30\u0E15\u0E34\u0E14\u0E15\u0E32\u0E21\u0E27\u0E31\u0E15\u0E16\u0E38\u0E14\u0E49\u0E27\u0E22 AI \u0E02\u0E31\u0E49\u0E19\u0E2A\u0E39\u0E07
+\u0E41\u0E2D\u0E1B\u0E19\u0E35\u0E49\u0E43\u0E2B\u0E49\u0E01\u0E32\u0E23\u0E19\u0E31\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32\u0E17\u0E35\u0E48\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33\u0E43\u0E19\u0E2A\u0E20\u0E32\u0E1E\u0E41\u0E27\u0E14\u0E
+25\u0E49\u0E2D\u0E21\u0E17\u0E35\u0E48\u0E2B\u0E25\u0E32\u0E01\u0E2B\u0E25\u0E32\u0E22\u0E42\u0E14\u0E22\u0E44\u0E21\u0E48\u0E08\u0E33\u0E40\u0E1B\u0E47\u0E19\u0E15\u0E49\u0E2D\u0E07\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E2D\u0E34\u0E19\u0E40\u0E17\u0E2D\u0E23\u0E4C\u0E40\u
+0E19\u0E47\u0E15\n\n\u0E44\u0E21\u0E48\u0E27\u0E48\u0E32\u0E04\u0E38\u0E13\u0E08\u0E30\u0E40\u0E1B\u0E47\u0E19\u0E40\u0E08\u0E49\u0E32\u0E02\u0E2D\u0E07\u0E18\u0E38\u0E23\u0E01\u0E34\u0E08\u0E17\u0E35\u0E48\u0E01\u0E33\u0E25\u0E31\u0E07\u0E04\u0E49\u0E19\u0E04\u0E27\u0E49\u0E32\u0E17\u0E33\u
+0E40\u0E25\u0E23\u0E49\u0E32\u0E19\u0E04\u0E49\u0E32\u0E17\u0E35\u0E48\u0E40\u0E1B\u0E47\u0E19\u0E44\u0E1B\u0E44\u0E14\u0E49 
+\u0E19\u0E31\u0E01\u0E27\u0E32\u0E07\u0E1C\u0E31\u0E07\u0E40\u0E21\u0E37\u0E2D\u0E07\u0E17\u0E35\u0E48\u0E28\u0E36\u0E01\u0E29\u0E32\u0E1E\u0E24\u0E15\u0E34\u0E01\u0E23\u0E23\u0E21\u0E01\u0E32\u0E23\u0E40\u0E04\u0E25\u0E37\u0E48\u0E2D\u0E19\u0E22\u0E49\u0E32\u0E22 
+\u0E2B\u0E23\u0E37\u0E2D\u0E19\u0E31\u0E01\u0E27\u0E34\u0E08\u0E31\u0E22\u0E17\u0E35\u0E48\u0E01\u0E33\u0E25\u0E31\u0E07\u0E23\u0E27\u0E1A\u0E23\u0E27\u0E21\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25 Piyuo Counter 
+\u0E21\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0E19\u0E31\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E19\u0E17\u0E35\u0E48\u0E2A\u0E21\u0E48\u0E33\u0E40\u0E2A\u0E21\u0E2D\u0E41\u0E25\u0E30\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E16\u0E37\u0E2D\u0E44\u0E14\u0E49\u0E1C\u0E48\u0E32\u0E19\u0E1E\u0E25\u0E31\u0E
+07\u0E01\u0E32\u0E23\u0E1B\u0E23\u0E30\u0E21\u0E27\u0E25\u0E1C\u0E25 GPU/NPU 
+\u0E02\u0E2D\u0E07\u0E2D\u0E38\u0E1B\u0E01\u0E23\u0E13\u0E4C\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\n\n\u0E40\u0E1E\u0E35\u0E22\u0E07\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E27\u0E47\u0E1A\u0E41\u0E04\u0E21 \u0E43\u0E0A\u0E49 URL \u0E2A\u0E15\u0E23\u0E35\u0E21\u0E2A\u0E14
+\u0E2B\u0E23\u0E37\u0E2D\u0E2D\u0E31\u0E1B\u0E42\u0E2B\u0E25\u0E14\u0E44\u0E1F\u0E25\u0E4C\u0E27\u0E34\u0E14\u0E35\u0E42\u0E2D\u0E40\u0E1B\u0E47\u0E19\u0E41\u0E2B\u0E25\u0E48\u0E07\u0E17\u0E35\u0E48\u0E21\u0E32 
+\u0E2D\u0E34\u0E19\u0E40\u0E17\u0E2D\u0E23\u0E4C\u0E40\u0E1F\u0E0B\u0E17\u0E35\u0E48\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E07\u0E48\u0E32\u0E22\u0E17\u0E33\u0E43\u0E2B\u0E49\u0E01\u0E32\u0E23\u0E19\u0E31\u0E1A\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32\u0E40\u0E02\u0E49\u0E
+32\u0E16\u0E36\u0E07\u0E44\u0E14\u0E49\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E17\u0E38\u0E01\u0E04\u0E19 \u0E40\u0E1E\u0E35\u0E22\u0E07\u0E27\u0E32\u0E07\u0E01\u0E25\u0E49\u0E2D\u0E07\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13 
+\u0E40\u0E23\u0E34\u0E48\u0E21\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A \u0E41\u0E25\u0E30\u0E1B\u0E25\u0E48\u0E2D\u0E22\u0E43\u0E2B\u0E49 AI 
+\u0E17\u0E33\u0E01\u0E32\u0E23\u0E19\u0E31\u0E1A\u0E43\u0E2B\u0E49\u0E04\u0E38\u0E13\n\n\u0E02\u0E08\u0E31\u0E14\u0E04\u0E27\u0E32\u0E21\u0E44\u0E21\u0E48\u0E2A\u0E2D\u0E14\u0E04\u0E25\u0E49\u0E2D\u0E07\u0E02\u0E2D\u0E07\u0E27\u0E34\u0E18\u0E35\u0E01\u0E32\u0E23\u0E19\u0E31\u0E1A\u0E41\u0E1A
+\u0E1A\u0E41\u0E21\u0E19\u0E19\u0E27\u0E25\u0E14\u0E49\u0E27\u0E22\u0E42\u0E21\u0E40\u0E14\u0E25\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A AI \u0E17\u0E35\u0E48\u0E44\u0E14\u0E49\u0E21\u0E32\u0E15\u0E23\u0E10\u0E32\u0E19\u0E02\u0E2D\u0E07 Piyuo Counter 
+\u0E40\u0E2B\u0E21\u0E32\u0E30\u0E2D\u0E22\u0E48\u0E32\u0E07\u0E22\u0E34\u0E48\u0E07\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E1B\u0E23\u0E30\u0E01\u0E2D\u0E1A\u0E01\u0E32\u0E23\u0E04\u0E49\u0E32\u0E1B\u0E25\u0E35\u0E01\u0E17\u0E35\u0E48\u0E1B\u0E23\u0E30\u0E40\u0E21\u0E34\u0E
+19\u0E17\u0E33\u0E40\u0E25\u0E17\u0E35\u0E48\u0E15\u0E31\u0E49\u0E07 
+\u0E19\u0E31\u0E01\u0E27\u0E32\u0E07\u0E1C\u0E31\u0E07\u0E40\u0E21\u0E37\u0E2D\u0E07\u0E17\u0E35\u0E48\u0E27\u0E34\u0E40\u0E04\u0E23\u0E32\u0E30\u0E2B\u0E4C\u0E23\u0E39\u0E1B\u0E41\u0E1A\u0E1A\u0E01\u0E32\u0E23\u0E08\u0E23\u0E32\u0E08\u0E23 
+\u0E2B\u0E23\u0E37\u0E2D\u0E43\u0E04\u0E23\u0E01\u0E47\u0E15\u0E32\u0E21\u0E17\u0E35\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E40\u0E21\u0E15\u0E23\u0E34\u0E01\u0E01\u0E32\u0E23\u0E44\u0E2B\u0E25\u0E02\u0E2D\u0E07\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32\u0E17\u0E
+35\u0E48\u0E41\u0E21\u0E48\u0E19\u0E22\u0E33\n\nPiyuo Counter 
+\u0E40\u0E1B\u0E25\u0E35\u0E48\u0E22\u0E19\u0E40\u0E17\u0E04\u0E42\u0E19\u0E42\u0E25\u0E22\u0E35\u0E04\u0E2D\u0E21\u0E1E\u0E34\u0E27\u0E40\u0E15\u0E2D\u0E23\u0E4C\u0E27\u0E34\u0E17\u0E31\u0E28\u0E19\u0E4C\u0E17\u0E35\u0E48\u0E0B\u0E31\u0E1A\u0E0B\u0E49\u0E2D\u0E19\u0E43\u0E2B\u0E49\u0E40\u0E
+1B\u0E47\u0E19\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E21\u0E37\u0E2D\u0E17\u0E35\u0E48\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19\u0E07\u0E48\u0E32\u0E22\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E17\u0E38\u0E01\u0E04\u0E27\u0E32\u0E21\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E43\u0E19\u0E01\u
+0E32\u0E23\u0E19\u0E31\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13",
+        "Features": [
+          
+"\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A\u0E41\u0E25\u0E30\u0E19\u0E31\u0E1A\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E19\u0E40\u0E14\u0E34\u0E19\u0E40\u0E17\u0E49\u0E32\u0E41\u0E1A\u0E1A\u0E40\u0E23\u0E35\u0E22\u0E25\u0E44\u0E17\u0E21\u0E4C\u0E42\u0E14\u0E22\u0E43\u0E0A\u0E49\u0E42\u0E21\u0
+E40\u0E14\u0E25 AI \u0E02\u0E31\u0E49\u0E19\u0E2A\u0E39\u0E07",
+          
+"\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E43\u0E19\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E08\u0E31\u0E1A\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E40\u0E15\u0E34\u0E21\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E22\u0E32\u0E19\u0E1E\u0E32\u0E2B\u0E19\u0E30\u0E41\u0E25\u0E30\u0
+E08\u0E31\u0E01\u0E23\u0E22\u0E32\u0E19",
+          "\u0E01\u0E32\u0E23\u0E17\u0E33\u0E07\u0E32\u0E19\u0E41\u0E1A\u0E1A\u0E2D\u0E2D\u0E1F\u0E44\u0E25\u0E19\u0E4C \u2013 
+\u0E44\u0E21\u0E48\u0E08\u0E33\u0E40\u0E1B\u0E47\u0E19\u0E15\u0E49\u0E2D\u0E07\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E2D\u0E34\u0E19\u0E40\u0E17\u0E2D\u0E23\u0E4C\u0E40\u0E19\u0E47\u0E15\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E08\u0E14\u0E08\u0E33\u0E20\u0E
+32\u0E1E",
+          "\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2D\u0E34\u0E19\u0E1E\u0E38\u0E15\u0E17\u0E35\u0E48\u0E22\u0E37\u0E14\u0E2B\u0E22\u0E38\u0E48\u0E19: \u0E40\u0E27\u0E47\u0E1A\u0E41\u0E04\u0E21, \u0E01\u0E32\u0E23\u0E2A\u0E15\u0E23\u0E35\u0E21 RTSP, 
+\u0E2B\u0E23\u0E37\u0E2D\u0E01\u0E25\u0E49\u0E2D\u0E07\u0E40\u0E04\u0E23\u0E37\u0E2D\u0E02\u0E48\u0E32\u0E22",
+          "\u0E01\u0E32\u0E23\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E15\u0E48\u0E2D\u0E40\u0E19\u0E37\u0E48\u0E2D\u0E07 24 
+\u0E0A\u0E31\u0E48\u0E27\u0E42\u0E21\u0E07\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E01\u0E32\u0E23\u0E1A\u0E31\u0E19\u0E17\u0E36\u0E01\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E17\u0E35\u0E48\u0E04\u0E23\u0E2D\u0E1A\u0E04\u0E25\u0E38\u0E21"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300800",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300801",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300802",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300803",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300804",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300805",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "tr": {
+      "BaseListing": {
+        "Keywords": [
+          "Yaya Sayac\u0131",
+          "Ki\u015Fi Sayma",
+          "Trafik Analizi",
+          "Yapay Zeka Alg\u0131lama",
+          "Ma\u011Faza Konum Analizi",
+          "CCTV Say\u0131c\u0131",
+          "Video Analizi"
+        ],
+        "Description": "Piyuo Counter, yaya trafi\u011Fi izleme ihtiyac\u0131 olan kullan\u0131c\u0131lar i\u00E7in tasarlanm\u0131\u015F yenilik\u00E7i bir yaya alg\u0131lama uygulamas\u0131d\u0131r. Geli\u015Fmi\u015F yapay zeka nesne alg\u0131lama ve takip teknolojisini kullanan bu 
+uygulama, \u00E7e\u015Fitli ortamlardaki yayalar\u0131 internet ba\u011Flant\u0131s\u0131 gerektirmeden hassas bir \u015Fekilde sayar.\n\n\u0130ster potansiyel ma\u011Faza konumlar\u0131n\u0131 ara\u015Ft\u0131ran bir i\u015Fletme sahibi, ister hareket desenlerini inceleyen bir \u015Fehir 
+planlamac\u0131s\u0131, ister veri toplayan bir ara\u015Ft\u0131rmac\u0131 olun, Piyuo Counter cihaz\u0131n\u0131z\u0131n GPU/NPU i\u015Flem g\u00FCc\u00FC arac\u0131l\u0131\u011F\u0131yla tutarl\u0131 ve g\u00FCvenilir ki\u015Fi say\u0131m\u0131 sunar.\n\nKaynak olarak sadece bir web 
+kameras\u0131 ba\u011Flay\u0131n, canl\u0131 yay\u0131n URL\u0027si kullan\u0131n veya video dosyalar\u0131n\u0131 y\u00FCkleyin. Sezgisel aray\u00FCz\u00FC yaya say\u0131m\u0131n\u0131 herkes i\u00E7in eri\u015Filebilir k\u0131lar; sadece kameran\u0131z\u0131 konumland\u0131r\u0131n, 
+alg\u0131lamay\u0131 ba\u015Flat\u0131n ve yapay zekan\u0131n sizin i\u00E7in say\u0131m yapmas\u0131na izin verin.\n\nPiyuo Counter\u0027\u0131n standartla\u015Ft\u0131r\u0131lm\u0131\u015F yapay zeka alg\u0131lama modeliyle manuel say\u0131m y\u00F6ntemlerinin 
+tutars\u0131zl\u0131klar\u0131n\u0131 ortadan kald\u0131r\u0131n. Ma\u011Faza konumlar\u0131n\u0131 de\u011Ferlendiren perakende giri\u015Fimcileri, trafik desenlerini analiz eden \u015Fehir planlamac\u0131lar\u0131 veya do\u011Fru yaya ak\u0131\u015F\u0131 metriklerine ihtiya\u00E7 duyan 
+herkes i\u00E7in idealdir.\n\nPiyuo Counter, karma\u015F\u0131k bilgisayar g\u00F6r\u00FC\u015F\u00FC teknolojisini t\u00FCm ki\u015Fi say\u0131m ihtiya\u00E7lar\u0131n\u0131z i\u00E7in kullan\u0131m\u0131 kolay bir araca d\u00F6n\u00FC\u015Ft\u00FCr\u00FCr.",
+        "Features": [
+          "Geli\u015Fmi\u015F yapay zeka modelleri kullanarak ger\u00E7ek zamanl\u0131 yaya alg\u0131lama ve sayma",
+          "Ara\u00E7lar ve bisikletler i\u00E7in ek alg\u0131lama yetenekleri",
+          "\u00C7evrimd\u0131\u015F\u0131 \u00E7al\u0131\u015Fma - g\u00F6r\u00FCnt\u00FC tan\u0131ma i\u00E7in internet ba\u011Flant\u0131s\u0131 gerekmez",
+          "Esnek giri\u015F se\u00E7enekleri: web kameras\u0131, RTSP ak\u0131\u015F\u0131 veya a\u011F kameralar\u0131",
+          "Kapsaml\u0131 veri kayd\u0131 ile s\u00FCrekli 24 saat izleme"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300806",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300807",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300808",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300809",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300810",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300811",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "uk": {
+      "BaseListing": {
+        "Keywords": [
+          "\u043F\u0456\u0448\u043E\u0445\u0456\u0434\u043D\u0438\u0439 \u043B\u0456\u0447\u0438\u043B\u044C\u043D\u0438\u043A",
+          "\u043B\u0456\u0447\u0438\u043B\u044C\u043D\u0438\u043A \u043B\u044E\u0434\u0435\u0439",
+          "\u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u0432\u0456\u0434\u0432\u0456\u0434\u0443\u0432\u0430\u0447\u0456\u0432",
+          "\u0432\u0456\u0434\u0435\u043E\u0430\u043D\u0430\u043B\u0456\u0442\u0438\u043A\u0430",
+          "\u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u0428\u0406",
+          "\u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u0442\u0440\u0430\u0444\u0456\u043A\u0443",
+          "\u0430\u043D\u0430\u043B\u0456\u0437 \u043B\u043E\u043A\u0430\u0446\u0456\u0439"
+        ],
+        "Description": "Piyuo Counter \u2013 \u0446\u0435 \u0456\u043D\u043D\u043E\u0432\u0430\u0446\u0456\u0439\u043D\u0438\u0439 \u0434\u043E\u0434\u0430\u0442\u043E\u043A \u0434\u043B\u044F \u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F 
+\u043F\u0456\u0448\u043E\u0445\u043E\u0434\u0456\u0432, \u0440\u043E\u0437\u0440\u043E\u0431\u043B\u0435\u043D\u0438\u0439 \u0434\u043B\u044F \u043A\u043E\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0456\u0432, \u044F\u043A\u0438\u043C \u043F\u043E\u0442\u0440\u0456\u0431\u0435\u043D 
+\u0442\u043E\u0447\u043D\u0438\u0439 \u043C\u043E\u043D\u0456\u0442\u043E\u0440\u0438\u043D\u0433 \u043F\u0456\u0448\u043E\u0445\u0456\u0434\u043D\u043E\u0433\u043E \u0442\u0440\u0430\u0444\u0456\u043A\u0443. 
+\u0412\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u044E\u0447\u0438 \u043F\u0435\u0440\u0435\u0434\u043E\u0432\u0443 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u044E \u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u0442\u0430 
+\u0432\u0456\u0434\u0441\u0442\u0435\u0436\u0435\u043D\u043D\u044F \u043E\u0431\u0027\u0454\u043A\u0442\u0456\u0432 \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0456 \u0448\u0442\u0443\u0447\u043D\u043E\u0433\u043E \u0456\u043D\u0442\u0435\u043B\u0435\u043A\u0442\u0443, \u0446\u0435\u0439 
+\u0434\u043E\u0434\u0430\u0442\u043E\u043A \u0437\u0430\u0431\u0435\u0437\u043F\u0435\u0447\u0443\u0454 \u0442\u043E\u0447\u043D\u0438\u0439 \u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043F\u0456\u0448\u043E\u0445\u043E\u0434\u0456\u0432 \u0443 
+\u0440\u0456\u0437\u043D\u0438\u0445 \u0441\u0435\u0440\u0435\u0434\u043E\u0432\u0438\u0449\u0430\u0445, \u043D\u0435 \u0432\u0438\u043C\u0430\u0433\u0430\u044E\u0447\u0438 \u043F\u0456\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044F \u0434\u043E 
+\u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442\u0443.\n\n\u041D\u0435\u0437\u0430\u043B\u0435\u0436\u043D\u043E \u0432\u0456\u0434 \u0442\u043E\u0433\u043E, \u0447\u0438 \u0432\u0438 \u0432\u043B\u0430\u0441\u043D\u0438\u043A \u0431\u0456\u0437\u043D\u0435\u0441\u0443, 
+\u044F\u043A\u0438\u0439 \u0434\u043E\u0441\u043B\u0456\u0434\u0436\u0443\u0454 \u043F\u043E\u0442\u0435\u043D\u0446\u0456\u0439\u043D\u0456 \u043C\u0456\u0441\u0446\u044F \u0440\u043E\u0437\u0442\u0430\u0448\u0443\u0432\u0430\u043D\u043D\u044F 
+\u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0456\u0432, \u043C\u0456\u0441\u044C\u043A\u0438\u0439 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043B\u044C\u043D\u0438\u043A, \u0449\u043E \u0432\u0438\u0432\u0447\u0430\u0454 \u0441\u0445\u0435\u043C\u0438 
+\u043F\u0435\u0440\u0435\u043C\u0456\u0449\u0435\u043D\u043D\u044F, \u0430\u0431\u043E \u0434\u043E\u0441\u043B\u0456\u0434\u043D\u0438\u043A, \u044F\u043A\u0438\u0439 \u0437\u0431\u0438\u0440\u0430\u0454 \u0434\u0430\u043D\u0456, Piyuo Counter 
+\u0437\u0430\u0431\u0435\u0437\u043F\u0435\u0447\u0443\u0454 \u043F\u043E\u0441\u043B\u0456\u0434\u043E\u0432\u043D\u0438\u0439 \u0456 \u043D\u0430\u0434\u0456\u0439\u043D\u0438\u0439 \u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043B\u044E\u0434\u0435\u0439 
+\u0437\u0430\u0432\u0434\u044F\u043A\u0438 \u043E\u0431\u0447\u0438\u0441\u043B\u044E\u0432\u0430\u043B\u044C\u043D\u0456\u0439 \u043F\u043E\u0442\u0443\u0436\u043D\u043E\u0441\u0442\u0456 GPU/NPU \u0432\u0430\u0448\u043E\u0433\u043E 
+\u043F\u0440\u0438\u0441\u0442\u0440\u043E\u044E.\n\n\u041F\u0440\u043E\u0441\u0442\u043E \u043F\u0456\u0434\u043A\u043B\u044E\u0447\u0456\u0442\u044C \u0432\u0435\u0431-\u043A\u0430\u043C\u0435\u0440\u0443, \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0439\u0442\u0435
+URL-\u0430\u0434\u0440\u0435\u0441\u0443 \u043F\u0440\u044F\u043C\u043E\u0433\u043E \u043F\u043E\u0442\u043E\u043A\u0443 \u0430\u0431\u043E \u0437\u0430\u0432\u0430\u043D\u0442\u0430\u0436\u0442\u0435 \u0432\u0456\u0434\u0435\u043E\u0444\u0430\u0439\u043B\u0438 \u044F\u043A 
+\u0434\u0436\u0435\u0440\u0435\u043B\u043E. \u0406\u043D\u0442\u0443\u0457\u0442\u0438\u0432\u043D\u043E \u0437\u0440\u043E\u0437\u0443\u043C\u0456\u043B\u0438\u0439 \u0456\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0440\u043E\u0431\u0438\u0442\u044C 
+\u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043F\u0456\u0448\u043E\u0445\u043E\u0434\u0456\u0432 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0438\u043C \u0434\u043B\u044F \u043A\u043E\u0436\u043D\u043E\u0433\u043E \u2013 \u043F\u0440\u043E\u0441\u0442\u043E 
+\u0440\u043E\u0437\u0442\u0430\u0448\u0443\u0439\u0442\u0435 \u043A\u0430\u043C\u0435\u0440\u0443, \u0437\u0430\u043F\u0443\u0441\u0442\u0456\u0442\u044C \u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F, \u0456 \u0434\u043E\u0437\u0432\u043E\u043B\u044C\u0442\u0435 
+\u0448\u0442\u0443\u0447\u043D\u043E\u043C\u0443 \u0456\u043D\u0442\u0435\u043B\u0435\u043A\u0442\u0443 \u0432\u0438\u043A\u043E\u043D\u0430\u0442\u0438 \u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u0437\u0430 \u0432\u0430\u0441.\n\n\u0423\u0441\u0443\u043D\u044C\u0442\u0435
+\u043D\u0435\u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u043E\u0441\u0442\u0456 \u0440\u0443\u0447\u043D\u0438\u0445 \u043C\u0435\u0442\u043E\u0434\u0456\u0432 \u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043A\u0443 \u0437\u0430 
+\u0434\u043E\u043F\u043E\u043C\u043E\u0433\u043E\u044E \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u0438\u0437\u043E\u0432\u0430\u043D\u043E\u0457 \u043C\u043E\u0434\u0435\u043B\u0456 \u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F AI \u0443 Piyuo Counter. 
+\u0406\u0434\u0435\u0430\u043B\u044C\u043D\u043E \u043F\u0456\u0434\u0445\u043E\u0434\u0438\u0442\u044C \u0434\u043B\u044F \u0440\u043E\u0437\u0434\u0440\u0456\u0431\u043D\u0438\u0445 \u043F\u0456\u0434\u043F\u0440\u0438\u0454\u043C\u0446\u0456\u0432, \u044F\u043A\u0456 
+\u043E\u0446\u0456\u043D\u044E\u044E\u0442\u044C \u043B\u043E\u043A\u0430\u0446\u0456\u0457, \u043C\u0456\u0441\u044C\u043A\u0438\u0445 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043B\u044C\u043D\u0438\u043A\u0456\u0432, \u044F\u043A\u0456 
+\u0430\u043D\u0430\u043B\u0456\u0437\u0443\u044E\u0442\u044C \u0441\u0445\u0435\u043C\u0438 \u0442\u0440\u0430\u0444\u0456\u043A\u0443, \u0430\u0431\u043E \u0431\u0443\u0434\u044C-\u043A\u043E\u0433\u043E, \u043A\u043E\u043C\u0443 \u043F\u043E\u0442\u0440\u0456\u0431\u043D\u0456 
+\u0442\u043E\u0447\u043D\u0456 \u043C\u0435\u0442\u0440\u0438\u043A\u0438 \u043F\u043E\u0442\u043E\u043A\u0443 \u043F\u0456\u0448\u043E\u0445\u043E\u0434\u0456\u0432.\n\nPiyuo Counter \u043F\u0435\u0440\u0435\u0442\u0432\u043E\u0440\u044E\u0454 \u0441\u043A\u043B\u0430\u0434\u043D\u0443 
+\u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0456\u044E \u043A\u043E\u043C\u043F\u0027\u044E\u0442\u0435\u0440\u043D\u043E\u0433\u043E \u0437\u043E\u0440\u0443 \u043D\u0430 \u043F\u0440\u043E\u0441\u0442\u0438\u0439 \u0443 
+\u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u0430\u043D\u043D\u0456 \u0456\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442 \u0434\u043B\u044F \u0432\u0441\u0456\u0445 \u0432\u0430\u0448\u0438\u0445 \u043F\u043E\u0442\u0440\u0435\u0431 \u0443 
+\u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043A\u0443 \u043B\u044E\u0434\u0435\u0439.",
+        "Features": [
+          "\u0412\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u0442\u0430 \u043F\u0456\u0434\u0440\u0430\u0445\u0443\u043D\u043E\u043A \u043F\u0456\u0448\u043E\u0445\u043E\u0434\u0456\u0432 \u0443 \u0440\u0435\u0430\u043B\u044C\u043D\u043E\u043C\u0443 \u0447\u0430\u0441\u0456 
+\u0437\u0430 \u0434\u043E\u043F\u043E\u043C\u043E\u0433\u043E\u044E \u043F\u0435\u0440\u0435\u0434\u043E\u0432\u0438\u0445 \u043C\u043E\u0434\u0435\u043B\u0435\u0439 \u0428\u0406",
+          "\u0414\u043E\u0434\u0430\u0442\u043A\u043E\u0432\u0456 \u043C\u043E\u0436\u043B\u0438\u0432\u043E\u0441\u0442\u0456 \u0432\u0438\u044F\u0432\u043B\u0435\u043D\u043D\u044F \u0442\u0440\u0430\u043D\u0441\u043F\u043E\u0440\u0442\u043D\u0438\u0445 
+\u0437\u0430\u0441\u043E\u0431\u0456\u0432 \u0442\u0430 \u0432\u0435\u043B\u043E\u0441\u0438\u043F\u0435\u0434\u0456\u0432",
+          "\u0420\u043E\u0431\u043E\u0442\u0430 \u0432 \u0430\u0432\u0442\u043E\u043D\u043E\u043C\u043D\u043E\u043C\u0443 \u0440\u0435\u0436\u0438\u043C\u0456 \u2013 \u043D\u0435 \u043F\u043E\u0442\u0440\u0456\u0431\u043D\u0435 
+\u043F\u0456\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u043D\u044F \u0434\u043E \u0406\u043D\u0442\u0435\u0440\u043D\u0435\u0442\u0443 \u0434\u043B\u044F \u0440\u043E\u0437\u043F\u0456\u0437\u043D\u0430\u0432\u0430\u043D\u043D\u044F \u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u044C",
+          "\u0413\u043D\u0443\u0447\u043A\u0456 \u0432\u0430\u0440\u0456\u0430\u043D\u0442\u0438 \u0432\u0432\u0435\u0434\u0435\u043D\u043D\u044F: \u0432\u0435\u0431-\u043A\u0430\u043C\u0435\u0440\u0430, RTSP-\u043F\u043E\u0442\u0456\u043A \u0430\u0431\u043E 
+\u043C\u0435\u0440\u0435\u0436\u0435\u0432\u0456 \u043A\u0430\u043C\u0435\u0440\u0438",
+          "\u0411\u0435\u0437\u043F\u0435\u0440\u0435\u0440\u0432\u043D\u0438\u0439 24-\u0433\u043E\u0434\u0438\u043D\u043D\u0438\u0439 \u043C\u043E\u043D\u0456\u0442\u043E\u0440\u0438\u043D\u0433 \u0456\u0437 \u0434\u0435\u0442\u0430\u043B\u044C\u043D\u0438\u043C 
+\u0432\u0435\u0434\u0435\u043D\u043D\u044F\u043C \u0436\u0443\u0440\u043D\u0430\u043B\u0443 \u0434\u0430\u043D\u0438\u0445"
+        ],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.55\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300812",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 5.50.37\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300813",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.30.08\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300814",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.31.48\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300815",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.27.41\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300816",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "Screenshot 2025-04-22 at 8.29.44\u202FPM.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700020300817",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    }
+  },
+  "HardwarePreferences": [],
+  "AutomaticBackupEnabled": true,
+  "CanInstallOnRemovableMedia": true,
+  "IsGameDvrEnabled": false,
+  "GamingOptions": [
+    {
+      "Genres": [],
+      "IsLocalMultiplayer": false,
+      "IsLocalCooperative": false,
+      "IsOnlineMultiplayer": false,
+      "IsOnlineCooperative": false,
+      "IsBroadcastingPrivilegeGranted": true,
+      "IsCrossPlayEnabled": false,
+      "KinectDataForExternal": "Disabled"
+    }
+  ],
+  "HasExternalInAppProducts": false,
+  "MeetAccessibilityGuidelines": false,
+  "NotesForCertification": "Hello Review Team,\n\nThis application does not require usernames or passwords and does not use background audio. It is a standalone app and does not depend on other products or services.\n\nThis app is designed for pedestrian counting and supports the following 
+three input sources for testing:\n\n[Testing Webcam]\n\nLaunch the app.\nSelect \u0022Webcam\u0022 as the source to use your computer\u0027s camera.\nThe app will automatically start detecting and counting pedestrians in the live feed.\n\n\n[Testing Live Stream URL Input]\n\nLaunch the 
+app.\nSelect \u0022Live stream URL\u0022 as the source.\nEnter the following URL: https://cdn-004.whatsupcams.com/hls/hr_pula06.m3u8\nThe app will automatically start detecting and counting pedestrians in the live stream.\n\n\n[Testing File Input]\nFirst, please download the demo video from 
+the following link:\nhttps://piyuo.com/test/1.mp4\n\nLaunch the app.\nSelect \u0022File\u0022 as the source.\nUse the file selection dialog to choose the downloaded \u00221.mp4\u0022 file.\nThe app will automatically start detecting and counting pedestrians in the video.\n\nThank you for 
+your time and assistance with the review process.",
+  "Status": "PendingCommit",
+  "StatusDetails": {
+    "Errors": [],
+    "Warnings": [
+      {
+        "Code": "SalesUnsupportedWarning",
+        "Details": "The sales resource is no longer supported. To view or edit the sales data for this submission, use the Dev Center dashboard."
+      }
+    ],
+    "CertificationReports": []
+  },
+  "FileUploadUrl": null,
+  "ApplicationPackages": [
+    {
+      "FileName": "counter.msix",
+      "FileStatus": "Uploaded",
+      "Id": "2000000000087661240",
+      "Version": "1.0.6.0",
+      "Architecture": "x64",
+      "Languages": [
+        "en-US"
+      ],
+      "Capabilities": [
+        "internetClient",
+        "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe",
+        "runFullTrust",
+        "webcam"
+      ],
+      "MinimumDirectXVersion": "None",
+      "MinimumSystemRam": "None"
+    }
+  ],
+  "PackageDeliveryOptions": {
+    "PackageRollout": {
+      "IsPackageRollout": false,
+      "PackageRolloutPercentage": 0,
+      "PackageRolloutStatus": "PackageRolloutNotStarted",
+      "FallbackSubmissionId": "0"
+    },
+    "IsMandatoryUpdate": false,
+    "MandatoryUpdateEffectiveDate": "1601-01-01T00:00:00Z"
+  },
+  "EnterpriseLicensing": "Online",
+  "AllowMicrosoftDecideAppAvailabilityToFutureDeviceFamilies": true,
+  "AllowTargetFutureDeviceFamilies": {
+    "Desktop": true,
+    "Mobile": false,
+    "Xbox": false,
+    "Team": false,
+    "Holographic": false,
+    "7": false
+  },
+  "FriendlyName": "Submission 3",
+  "Trailers": []
+}
