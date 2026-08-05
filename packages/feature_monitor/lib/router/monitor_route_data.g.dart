@@ -8,8 +8,11 @@ part of 'monitor_route_data.dart';
 
 List<RouteBase> get $appRoutes => [$dummyRouteData, $visionRouteData];
 
-RouteBase get $dummyRouteData =>
-    GoRouteData.$route(path: '/', factory: $DummyRouteData._fromState);
+RouteBase get $dummyRouteData => GoRouteData.$route(
+  path: '/',
+  hasOverriddenOnExit: false,
+  factory: $DummyRouteData._fromState,
+);
 
 mixin $DummyRouteData on GoRouteData {
   static DummyRouteData _fromState(GoRouterState state) =>
@@ -32,8 +35,11 @@ mixin $DummyRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $visionRouteData =>
-    GoRouteData.$route(path: '/vision', factory: $VisionRouteData._fromState);
+RouteBase get $visionRouteData => GoRouteData.$route(
+  path: '/vision',
+  hasOverriddenOnExit: false,
+  factory: $VisionRouteData._fromState,
+);
 
 mixin $VisionRouteData on GoRouteData {
   static VisionRouteData _fromState(GoRouterState state) =>

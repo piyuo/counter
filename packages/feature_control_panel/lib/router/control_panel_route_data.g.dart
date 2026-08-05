@@ -28,8 +28,11 @@ List<RouteBase> get $appRoutes => [
   $deviceNotSupportedRouteData,
 ];
 
-RouteBase get $loadingRouteData =>
-    GoRouteData.$route(path: '/', factory: $LoadingRouteData._fromState);
+RouteBase get $loadingRouteData => GoRouteData.$route(
+  path: '/',
+  hasOverriddenOnExit: false,
+  factory: $LoadingRouteData._fromState,
+);
 
 mixin $LoadingRouteData on GoRouteData {
   static LoadingRouteData _fromState(GoRouterState state) =>
@@ -52,8 +55,11 @@ mixin $LoadingRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $startRouteData =>
-    GoRouteData.$route(path: '/start', factory: $StartRouteData._fromState);
+RouteBase get $startRouteData => GoRouteData.$route(
+  path: '/start',
+  hasOverriddenOnExit: false,
+  factory: $StartRouteData._fromState,
+);
 
 mixin $StartRouteData on GoRouteData {
   static StartRouteData _fromState(GoRouterState state) =>
@@ -78,6 +84,7 @@ mixin $StartRouteData on GoRouteData {
 
 RouteBase get $settingsRouteData => GoRouteData.$route(
   path: '/settings',
+  hasOverriddenOnExit: false,
   factory: $SettingsRouteData._fromState,
 );
 
@@ -104,6 +111,7 @@ mixin $SettingsRouteData on GoRouteData {
 
 RouteBase get $settingsPiyuoRouteData => GoRouteData.$route(
   path: '/settings/piyuo',
+  hasOverriddenOnExit: false,
   factory: $SettingsPiyuoRouteData._fromState,
 );
 
@@ -130,6 +138,7 @@ mixin $SettingsPiyuoRouteData on GoRouteData {
 
 RouteBase get $settingsServerRouteData => GoRouteData.$route(
   path: '/settings/server',
+  hasOverriddenOnExit: false,
   factory: $SettingsServerRouteData._fromState,
 );
 
@@ -156,6 +165,7 @@ mixin $SettingsServerRouteData on GoRouteData {
 
 RouteBase get $settingsLocalRouteData => GoRouteData.$route(
   path: '/settings/local',
+  hasOverriddenOnExit: false,
   factory: $SettingsLocalRouteData._fromState,
 );
 
@@ -180,8 +190,11 @@ mixin $SettingsLocalRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $aboutRouteData =>
-    GoRouteData.$route(path: '/about', factory: $AboutRouteData._fromState);
+RouteBase get $aboutRouteData => GoRouteData.$route(
+  path: '/about',
+  hasOverriddenOnExit: false,
+  factory: $AboutRouteData._fromState,
+);
 
 mixin $AboutRouteData on GoRouteData {
   static AboutRouteData _fromState(GoRouterState state) =>
@@ -206,6 +219,7 @@ mixin $AboutRouteData on GoRouteData {
 
 RouteBase get $buildInfoRouteData => GoRouteData.$route(
   path: '/build-info',
+  hasOverriddenOnExit: false,
   factory: $BuildInfoRouteData._fromState,
 );
 
@@ -232,6 +246,7 @@ mixin $BuildInfoRouteData on GoRouteData {
 
 RouteBase get $detectionRouteData => GoRouteData.$route(
   path: '/detection',
+  hasOverriddenOnExit: false,
   factory: $DetectionRouteData._fromState,
 );
 
@@ -256,8 +271,11 @@ mixin $DetectionRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $targetRouteData =>
-    GoRouteData.$route(path: '/target', factory: $TargetRouteData._fromState);
+RouteBase get $targetRouteData => GoRouteData.$route(
+  path: '/target',
+  hasOverriddenOnExit: false,
+  factory: $TargetRouteData._fromState,
+);
 
 mixin $TargetRouteData on GoRouteData {
   static TargetRouteData _fromState(GoRouterState state) =>
@@ -282,6 +300,7 @@ mixin $TargetRouteData on GoRouteData {
 
 RouteBase get $uploadLogsRouteData => GoRouteData.$route(
   path: '/upload-logs',
+  hasOverriddenOnExit: false,
   factory: $UploadLogsRouteData._fromState,
 );
 
@@ -308,6 +327,7 @@ mixin $UploadLogsRouteData on GoRouteData {
 
 RouteBase get $uploadLogDetailRouteData => GoRouteData.$route(
   path: '/upload-logs/detail/:attemptedAtMs/:successFlag',
+  hasOverriddenOnExit: false,
   factory: $UploadLogDetailRouteData._fromState,
 );
 
@@ -341,6 +361,7 @@ mixin $UploadLogDetailRouteData on GoRouteData {
 
 RouteBase get $recentPayloadsRouteData => GoRouteData.$route(
   path: '/recent-payloads',
+  hasOverriddenOnExit: false,
   factory: $RecentPayloadsRouteData._fromState,
 );
 
@@ -367,6 +388,7 @@ mixin $RecentPayloadsRouteData on GoRouteData {
 
 RouteBase get $recentPayloadHourRouteData => GoRouteData.$route(
   path: '/recent-payloads/hour/:slotMs',
+  hasOverriddenOnExit: false,
   factory: $RecentPayloadHourRouteData._fromState,
 );
 
@@ -399,6 +421,7 @@ mixin $RecentPayloadHourRouteData on GoRouteData {
 
 RouteBase get $recentPayloadDetailRouteData => GoRouteData.$route(
   path: '/recent-payloads/payload/:payloadId',
+  hasOverriddenOnExit: false,
   factory: $RecentPayloadDetailRouteData._fromState,
 );
 
@@ -432,6 +455,7 @@ mixin $RecentPayloadDetailRouteData on GoRouteData {
 
 RouteBase get $languageRouteData => GoRouteData.$route(
   path: '/language',
+  hasOverriddenOnExit: false,
   factory: $LanguageRouteData._fromState,
 );
 
@@ -458,6 +482,7 @@ mixin $LanguageRouteData on GoRouteData {
 
 RouteBase get $liveUrlRouteData => GoRouteData.$route(
   path: '/live-url',
+  hasOverriddenOnExit: false,
   factory: $LiveUrlRouteData._fromState,
 );
 
@@ -484,6 +509,7 @@ mixin $LiveUrlRouteData on GoRouteData {
 
 RouteBase get $videoSourcesRouteData => GoRouteData.$route(
   path: '/video-sources',
+  hasOverriddenOnExit: false,
   factory: $VideoSourcesRouteData._fromState,
 );
 
@@ -510,6 +536,7 @@ mixin $VideoSourcesRouteData on GoRouteData {
 
 RouteBase get $deviceNotSupportedRouteData => GoRouteData.$route(
   path: '/device-not-supported',
+  hasOverriddenOnExit: false,
   factory: $DeviceNotSupportedRouteData._fromState,
 );
 
