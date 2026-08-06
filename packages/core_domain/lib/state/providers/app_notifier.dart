@@ -57,6 +57,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
 
     repo = ref.read(appStateRepositoryProvider);
     var loadedState = await repo.load();
+    final persistedState = loadedState;
     // Auto-generate a stable device ID on first boot or after a data reset.
     if (loadedState.deviceId.isEmpty) {
       // first boot or after a data reset
@@ -76,7 +77,9 @@ class AppNotifier extends _$AppNotifier implements AppController {
     }
     // prepare video source
     loadedState = await _prepareDefaultVideoSource(loadedState);
-    await repo.save(loadedState);
+    if (loadedState != persistedState) {
+      await repo.save(loadedState);
+    }
 
     await ref.read(appRuntimeProvider.notifier).loadBearerToken(loadedState.dataServerSelection);
     return loadedState;

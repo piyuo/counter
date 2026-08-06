@@ -48,7 +48,7 @@ abstract class _$AppRuntimeNotifier extends $Notifier<AppRuntimeState> {
   AppRuntimeState build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AppRuntimeState, AppRuntimeState>;
     final element =
         ref.element
@@ -58,6 +58,6 @@ abstract class _$AppRuntimeNotifier extends $Notifier<AppRuntimeState> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

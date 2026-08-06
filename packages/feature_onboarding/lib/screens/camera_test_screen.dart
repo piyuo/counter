@@ -37,7 +37,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
   }
 
   /// Callback when the test finishes.
-  void onTestFinished(String errorMessage, vision.VisionPerformance performance) {
+  void onTestFinished(int errorCode, String errorMessage, vision.VisionPerformance performance) {
     setState(() {
       isTestStarting = false;
       if (errorMessage.isEmpty) {

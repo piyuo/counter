@@ -4,8 +4,8 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_control_panel/utils/telemetry_error_code_helper.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
@@ -42,7 +42,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
     final appState = await ref.read(core_domain.appProvider.future);
     if (!mounted) return;
     if (appState.hasDataServer == false) {
-      await showMessageDialog(context.l.upload_screen_no_data_server);
+      appkit.showMessage(message: context.l.upload_screen_no_data_server);
       return;
     }
 
@@ -60,16 +60,16 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
           if (telemetryService.lastError != null) {
             errorMessage += '\n${telemetryService.lastError}';
           }
-          await showMessageDialog(errorMessage, title: telemetryService.url);
+          appkit.showMessage(message: errorMessage, title: telemetryService.url);
           return;
         }
-        await showMessageDialog(telemetryService.lastError ?? context.l.telemetry_error_http_unknown_error);
+        appkit.showMessage(message: telemetryService.lastError ?? context.l.telemetry_error_http_unknown_error);
         return;
       }
-      await showMessageDialog(context.l.upload_screen_upload_success);
+      appkit.showMessage(message: context.l.upload_screen_upload_success);
     } catch (error) {
       if (!mounted) return;
-      await showMessageDialog('$error', title: telemetryService.url);
+      appkit.showMessage(message: '$error', title: telemetryService.url);
     } finally {
       if (mounted) {
         setState(() {
@@ -156,7 +156,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                       final fullLog = await queue.fetchUploadLogById(entry.value[i].id);
                       if (!mounted) return;
                       if (fullLog == null) {
-                        await showMessageDialog(context.l.upload_screen_log_not_exists);
+                        appkit.showMessage(message: context.l.upload_screen_log_not_exists);
                         return;
                       }
                       ref.push(core_domain.OpenUploadLogDetail(log: fullLog));

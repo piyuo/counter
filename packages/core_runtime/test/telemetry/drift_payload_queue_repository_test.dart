@@ -33,7 +33,7 @@ core_domain.TelemetryPayload _payload(String id, {DateTime? startUtc}) {
     startUtc: resolvedStartUtc,
     startBusiness: startBusiness,
     businessDate: businessDate,
-    session: 'session-1',
+    session: id,
     sequence: 1,
     frameCount: 0,
     missingSec: 0,
@@ -44,6 +44,8 @@ core_domain.TelemetryPayload _payload(String id, {DateTime? startUtc}) {
     areas: const [],
   );
 }
+
+String _id(String session) => '$session-1';
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -79,7 +81,7 @@ void main() {
       await repo.enqueue(_payload('p1'));
       final rows = await repo.fetchReady();
       expect(rows.length, 1);
-      expect(rows.first.id, 'p1');
+      expect(rows.first.id, _id('p1'));
     });
 
     test('enqueue round-trips the payload JSON correctly', () async {
@@ -89,15 +91,15 @@ void main() {
       expect(getPayloadId(row.payload), getPayloadId(original));
     });
 
-    test('enqueue is idempotent when payloadId already exists', () async {
+    test('enqueue throws when payloadId already exists', () async {
       final duplicate = _payload('dup-1');
       await repo.enqueue(duplicate);
 
-      await repo.enqueue(duplicate);
+      await expectLater(repo.enqueue(duplicate), throwsA(isA<Exception>()));
 
       expect(await repo.pendingCount(), 1);
       final rows = await repo.fetchReady(limit: 10);
-      expect(rows.where((row) => row.id == 'dup-1').length, 1);
+      expect(rows.where((row) => row.id == _id('dup-1')).length, 1);
     });
 
     // -----------------------------------------------------------------------
@@ -107,11 +109,11 @@ void main() {
     test('fetchReady excludes rows that are delivered', () async {
       await repo.enqueue(_payload('pending'));
       await repo.enqueue(_payload('delivered'));
-      await repo.markUploadedBatch(['delivered']);
+      await repo.markUploadedBatch([_id('delivered')]);
 
       final rows = await repo.fetchReady();
-      expect(rows.any((r) => r.id == 'pending'), isTrue);
-      expect(rows.any((r) => r.id == 'delivered'), isFalse);
+      expect(rows.any((r) => r.id == _id('pending')), isTrue);
+      expect(rows.any((r) => r.id == _id('delivered')), isFalse);
     });
 
     test('fetchReady returns at most [limit] items', () async {
@@ -129,23 +131,23 @@ void main() {
       await repo.enqueue(_payload('second'));
 
       final rows = await repo.fetchReady();
-      expect(rows.first.id, 'first');
-      expect(rows.last.id, 'second');
+      expect(rows.first.id, _id('first'));
+      expect(rows.last.id, _id('second'));
     });
 
     test('TelemetryQueue helper predicates match delivered state', () async {
       await repo.enqueue(_payload('pending'));
       await repo.enqueue(_payload('delivered'));
       await repo.enqueue(_payload('recent-delivered'));
-      await repo.markUploadedBatch(['delivered', 'recent-delivered']);
+      await repo.markUploadedBatch([_id('delivered'), _id('recent-delivered')]);
 
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals('pending'))).write(
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('pending')))).write(
         TelemetryQueueCompanion(
           createdAtMs: Value(DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch),
         ),
       );
 
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals('delivered'))).write(
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('delivered')))).write(
         TelemetryQueueCompanion(
           uploadedAtMs: Value(DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch),
         ),
@@ -171,16 +173,16 @@ void main() {
         db().telemetryQueue,
       )..where((t) => t.isUploadedAfter(tenDaysAgoMs))).get();
 
-      expect(pendingRows.map((row) => row.id), contains('pending'));
-      expect(pendingRows.map((row) => row.id), isNot(contains('delivered')));
-      expect(pendingRows.map((row) => row.id), isNot(contains('recent-delivered')));
-      expect(deliveredRows.map((row) => row.id), contains('delivered'));
-      expect(deliveredRows.map((row) => row.id), contains('recent-delivered'));
-      expect(deliveredRows.map((row) => row.id), isNot(contains('pending')));
-      expect(createdBeforeRows.map((row) => row.id), contains('pending'));
-      expect(createdBeforeRows.map((row) => row.id), isNot(contains('recent-delivered')));
-      expect(deliveredAfterRows.map((row) => row.id), contains('recent-delivered'));
-      expect(deliveredAfterRows.map((row) => row.id), isNot(contains('pending')));
+      expect(pendingRows.map((row) => row.id), contains(_id('pending')));
+      expect(pendingRows.map((row) => row.id), isNot(contains(_id('delivered'))));
+      expect(pendingRows.map((row) => row.id), isNot(contains(_id('recent-delivered'))));
+      expect(deliveredRows.map((row) => row.id), contains(_id('delivered')));
+      expect(deliveredRows.map((row) => row.id), contains(_id('recent-delivered')));
+      expect(deliveredRows.map((row) => row.id), isNot(contains(_id('pending'))));
+      expect(createdBeforeRows.map((row) => row.id), contains(_id('pending')));
+      expect(createdBeforeRows.map((row) => row.id), isNot(contains(_id('recent-delivered'))));
+      expect(deliveredAfterRows.map((row) => row.id), contains(_id('recent-delivered')));
+      expect(deliveredAfterRows.map((row) => row.id), isNot(contains(_id('pending'))));
     });
 
     // -----------------------------------------------------------------------
@@ -197,15 +199,15 @@ void main() {
       await repo.enqueue(_payload('p2'));
       await repo.enqueue(_payload('p3'));
 
-      await repo.markUploadedBatch(['p1', 'p3']);
+      await repo.markUploadedBatch([_id('p1'), _id('p3')]);
 
       final ready = await repo.fetchReady(limit: 10);
-      expect(ready.map((r) => r.id), ['p2']);
+      expect(ready.map((r) => r.id), [_id('p2')]);
       expect(await repo.pendingCount(), 1);
 
       final available = await repo.fetchRecent(daysBack: 7);
-      final p1 = available.firstWhere((row) => row.id == 'p1');
-      final p3 = available.firstWhere((row) => row.id == 'p3');
+      final p1 = available.firstWhere((row) => row.id == _id('p1'));
+      final p3 = available.firstWhere((row) => row.id == _id('p3'));
       expect(p1.isUploaded, isTrue);
       expect(p3.isUploaded, isTrue);
     });
@@ -243,20 +245,20 @@ void main() {
     test('pruneExpired removes rows older than cutoff regardless of delivery state', () async {
       await repo.enqueue(_payload('old-pending'));
       await repo.enqueue(_payload('old-delivered'));
-      await repo.markUploadedBatch(['old-delivered']);
+      await repo.markUploadedBatch([_id('old-delivered')]);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db().update(
-        db().telemetryQueue,
-      )..where((t) => t.id.equals('old-pending'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
-      await (db().update(
-        db().telemetryQueue,
-      )..where((t) => t.id.equals('old-delivered'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
+        TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)),
+      );
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
+        TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)),
+      );
 
       await repo.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final available = await repo.fetchRecent(daysBack: 30);
-      expect(available.any((r) => r.id == 'old-delivered'), isFalse);
+      expect(available.any((r) => r.id == _id('old-delivered')), isFalse);
       expect(await repo.pendingCount(), 0);
     });
 
@@ -272,20 +274,20 @@ void main() {
       await repo.enqueue(_payload('p1'));
       await repo.enqueue(_payload('p2'));
       expect(await repo.pendingCount(), 2);
-      await repo.markUploadedBatch(['p1']);
+      await repo.markUploadedBatch([_id('p1')]);
       expect(await repo.pendingCount(), 1);
     });
 
     test('fetchRecent returns rows created within daysBack', () async {
       await repo.enqueue(_payload('delivered'));
       await repo.enqueue(_payload('pending'));
-      await repo.markUploadedBatch(['delivered']);
+      await repo.markUploadedBatch([_id('delivered')]);
 
       final rows = await repo.fetchRecent(daysBack: 7);
-      expect(rows.map((row) => row.id), containsAll(<String>['delivered', 'pending']));
+      expect(rows.map((row) => row.id), containsAll(<String>[_id('delivered'), _id('pending')]));
 
-      final delivered = rows.firstWhere((row) => row.id == 'delivered');
-      final pending = rows.firstWhere((row) => row.id == 'pending');
+      final delivered = rows.firstWhere((row) => row.id == _id('delivered'));
+      final pending = rows.firstWhere((row) => row.id == _id('pending'));
       expect(delivered.isUploaded, isTrue);
       expect(delivered.uploadedAtUtc, isNotNull);
       expect(pending.isUploaded, isFalse);
@@ -295,23 +297,23 @@ void main() {
     test('fetchRecent excludes rows older than daysBack by createdAt', () async {
       await repo.enqueue(_payload('old-pending'));
       await repo.enqueue(_payload('old-delivered'));
-      await repo.markUploadedBatch(['old-delivered']);
+      await repo.markUploadedBatch([_id('old-delivered')]);
       await repo.enqueue(_payload('recent-pending'));
 
       final elevenDaysAgoMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db().update(
-        db().telemetryQueue,
-      )..where((t) => t.id.equals('old-pending'))).write(TelemetryQueueCompanion(createdAtMs: Value(elevenDaysAgoMs)));
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals('old-delivered'))).write(
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
+        TelemetryQueueCompanion(createdAtMs: Value(elevenDaysAgoMs)),
+      );
+      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
         TelemetryQueueCompanion(createdAtMs: Value(elevenDaysAgoMs)),
       );
 
       final rows = await repo.fetchRecent(daysBack: 7);
       final ids = rows.map((row) => row.id).toList();
 
-      expect(ids, contains('recent-pending'));
-      expect(ids, isNot(contains('old-pending')));
-      expect(ids, isNot(contains('old-delivered')));
+      expect(ids, contains(_id('recent-pending')));
+      expect(ids, isNot(contains(_id('old-pending'))));
+      expect(ids, isNot(contains(_id('old-delivered'))));
     });
 
     test('appendUploadLog + fetchRecentUploadLogs stores and reads newest-first rows', () async {
@@ -343,7 +345,8 @@ void main() {
     });
 
     test('appendUploadLog reuses the same hour/status bucket on repeated failure retries', () async {
-      final attempt = DateTime.utc(2026, 5, 19, 12, 1);
+      final currentUtc = DateTime.now().toUtc();
+      final attempt = DateTime.utc(currentUtc.year, currentUtc.month, currentUtc.day, currentUtc.hour, 1);
 
       await repo.appendUploadLog(
         core_domain.UploadLog(
@@ -375,7 +378,8 @@ void main() {
     });
 
     test('appendUploadLog keeps separate success and failure buckets in the same hour', () async {
-      final attempt = DateTime.utc(2026, 5, 19, 12, 1);
+      final currentUtc = DateTime.now().toUtc();
+      final attempt = DateTime.utc(currentUtc.year, currentUtc.month, currentUtc.day, currentUtc.hour, 1);
 
       await repo.appendUploadLog(
         core_domain.UploadLog(

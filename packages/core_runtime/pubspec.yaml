@@ -16,38 +16,38 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.2.0
+      ref: v3.5.0
   flutter_vision:
     path: ../../../flutter-vision
-  camera: ^0.11.3+1
-  camera_macos: ^0.0.9
+  camera: ^0.12.0+2
+  camera_macos: ^0.1.0
   camera_windows: ^0.2.6+4
-  json_annotation: ^4.10.0
-  flutter_riverpod: ^3.2.1
-  riverpod_annotation: ^4.0.2
+  json_annotation: ^4.12.0
+  flutter_riverpod: ^3.3.2 # block by analyzer
+  riverpod_annotation: ^4.0.3 # block by analyzer
   universal_platform: ^1.1.0
   shared_preferences: ^2.5.4
   freezed_annotation: ^3.1.0
-  app_links: ^6.4.0
-  flutter_secure_storage: ^9.2.4
-  drift: ^2.26.0
-  drift_flutter: ^0.2.0
-  http: ^1.1.0
-  uuid: ^4.3.0
+  app_links: ^7.2.1
+  flutter_secure_storage: ^10.3.1
+  drift: ^2.34.3
+  drift_flutter: ^0.3.1
+  http: ^1.6.0
+  uuid: ^4.6.0
   path: ^1.9.1
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.6.3
+  mockito: ^5.6.4
   flutter_lints: ^6.0.0
-  analyzer: ^9.0.0
-  riverpod_generator: ^4.0.3
+  analyzer: ^12.1.0
+  riverpod_generator: ^4.0.4 # block by analyzer
   freezed: ^3.2.5
-  drift_dev: ^2.26.0
-  json_serializable: ^6.12.0
-  build_runner: ^2.11.1
+  drift_dev: ^2.33.0
+  json_serializable: ^6.14.1
+  build_runner: ^2.15.1
   json_schema: ^5.1.5
 
 # The following section is specific to Flutter packages.

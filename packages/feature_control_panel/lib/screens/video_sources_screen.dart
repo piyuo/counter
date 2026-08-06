@@ -6,8 +6,8 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:feature_control_panel/utils/video_source_name.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
@@ -148,7 +148,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
           return;
         case ImportedVideoPickStatus.permissionDenied:
           if (context.mounted) {
-            await showMessageDialog(context.l.video_sources_screen_photos_denied_msg);
+            appkit.showMessage(message: context.l.video_sources_screen_photos_denied_msg);
           }
           return;
         case ImportedVideoPickStatus.selected:
@@ -163,7 +163,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
       }
     } catch (error) {
       if (context.mounted) {
-        await showMessageDialog(context.l.video_sources_screen_import_error);
+        appkit.showMessage(message: context.l.video_sources_screen_import_error);
       }
     } finally {
       if (mounted) {

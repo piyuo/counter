@@ -145,7 +145,7 @@ core_domain.TelemetryPayload _createTestPayload({
     startUtc: startUtc,
     startBusiness: startBusiness,
     businessDate: businessDate,
-    session: 'session-1',
+    session: payloadId,
     sequence: 1,
     frameCount: 100,
     missingSec: 0,

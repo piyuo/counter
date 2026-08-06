@@ -1,9 +1,9 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\Users\79108\flutter
-FLUTTER_APPLICATION_PATH=C:\dropbox\counter
-FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=C:\dropbox\counter\ios\Flutter\ephemeral\Packages\.packages\FlutterFramework
+FLUTTER_ROOT=/Users/cc/flutter
+FLUTTER_APPLICATION_PATH=/Users/cc/Dropbox/counter
+FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=/Users/cc/Dropbox/counter/ios/Flutter/ephemeral/Packages/.packages/FlutterFramework
 COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=lib\main.dart
+FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1

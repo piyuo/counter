@@ -2,8 +2,8 @@
 // - resendQueuedPayloads: shared resend flow for queued telemetry payloads
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
@@ -14,7 +14,7 @@ Future<bool> resendQueuedPayloads({
   String emptySelectionMessage = 'Select at least one payload first.',
 }) async {
   if (payloads.isEmpty) {
-    await showMessageDialog(emptySelectionMessage);
+    appkit.showMessage(message: emptySelectionMessage);
     return false;
   }
 
@@ -28,18 +28,18 @@ Future<bool> resendQueuedPayloads({
 
     if (!success) {
       if (telemetryService.lastError == null) {
-        await showMessageDialog('Resend failed due to an unknown error.');
+        appkit.showMessage(message: 'Resend failed due to an unknown error.');
       } else {
-        await showMessageDialog('Resend failed: ${telemetryService.lastError}');
+        appkit.showMessage(message: 'Resend failed: ${telemetryService.lastError}');
       }
       return false;
     }
 
-    await showMessageDialog('Resent ${resendPayloads.length} payload(s).');
+    appkit.showMessage(message: 'Resent ${resendPayloads.length} payload(s).');
     return true;
   } catch (error) {
     if (context.mounted) {
-      await showMessageDialog('Resend failed: $error');
+      appkit.showMessage(message: 'Resend failed: $error');
     }
     return false;
   }

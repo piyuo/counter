@@ -39,7 +39,11 @@ void main() {
     test('flush applies server detection/detectionParams/deliveryConfig overrides to AppState', () async {
       final repo = _FakeAppStateRepository(const core_domain.AppState(deviceId: 'device-1'));
       final container = ProviderContainer(
-        overrides: [core_domain.appStateRepositoryProvider.overrideWith((ref) => repo)],
+        overrides: [
+          core_domain.appStateRepositoryProvider.overrideWith((ref) => repo),
+          core_domain.hardwareCapabilityServiceProvider.overrideWith((ref) => _FakeHardwareCapabilityService()),
+          core_domain.authStorageServiceProvider.overrideWith((ref) => _FakeAuthStorageService()),
+        ],
       );
       addTearDown(container.dispose);
 
@@ -111,7 +115,11 @@ void main() {
       final initialState = const core_domain.AppState(deviceId: 'device-1');
       final repo = _FakeAppStateRepository(initialState);
       final container = ProviderContainer(
-        overrides: [core_domain.appStateRepositoryProvider.overrideWith((ref) => repo)],
+        overrides: [
+          core_domain.appStateRepositoryProvider.overrideWith((ref) => repo),
+          core_domain.hardwareCapabilityServiceProvider.overrideWith((ref) => _FakeHardwareCapabilityService()),
+          core_domain.authStorageServiceProvider.overrideWith((ref) => _FakeAuthStorageService()),
+        ],
       );
       addTearDown(container.dispose);
 
@@ -354,6 +362,42 @@ class _CountingSuccessTransport implements core_domain.TelemetryTransport {
   }) async {
     sendCount += 1;
     return const core_domain.TelemetryResponse(v: 1, ok: true, data: core_domain.ServerData());
+  }
+}
+
+class _FakeHardwareCapabilityService implements core_domain.HardwareCapabilityService {
+  @override
+  Future<List<core_domain.VideoSource>> getAvailableCameras() async => [];
+
+  @override
+  Future<core_domain.VideoSource?> getDefaultVideoSource() async => null;
+
+  @override
+  Future<bool> hasCameraVideoSource() async => false;
+
+  @override
+  Future<bool> isVideoSourceValid(core_domain.VideoSource videoSource) async => false;
+}
+
+class _FakeAuthStorageService implements core_domain.AuthStorageService {
+  final Map<String, String> _values = {};
+
+  @override
+  Future<String> get(String key) async => _values[key] ?? '';
+
+  @override
+  Future<void> remove(String key) async {
+    _values.remove(key);
+  }
+
+  @override
+  Future<void> reset() async {
+    _values.clear();
+  }
+
+  @override
+  Future<void> set(String key, String value) async {
+    _values[key] = value;
   }
 }
 

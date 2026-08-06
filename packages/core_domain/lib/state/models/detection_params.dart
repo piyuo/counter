@@ -87,8 +87,9 @@ abstract class DetectionParams with _$DetectionParams {
     @Default(2.0) double trackletEdgeOverrideTimeSec,
 
     /// Minimum continuous in-area duration, in seconds, before a track
-    /// contributes to `stayCount` in window counting.
-    @Default(600) int stayThresholdSeconds, // stay over ten minutes to count as a stay
+    /// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
+    @Default(300) int stayThresholdSeconds,
+
     /// Minimum continuous absence duration, in seconds, before a previously
     /// in-area track contributes to `disappearCount` in window counting.
     /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear

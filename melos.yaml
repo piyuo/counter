@@ -3,3 +3,13 @@ name: counter
 packages:
   - apps/**
   - packages/**
+
+scripts:
+  test:
+    run: flutter test
+    packageFilters:
+      scope:
+        - counter_app
+        - core_domain
+        - core_runtime
+        - feature_control_panel

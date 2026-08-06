@@ -1,5 +1,4 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_pip/feature_pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
@@ -90,7 +89,7 @@ class _PiyuoScreenState extends ConsumerState<PersonalPiyuoScreen> {
               icon: const Icon(Icons.copy),
               onPressed: () async {
                 Clipboard.setData(ClipboardData(text: _cloudUrlController.text));
-                await pip.showMessageDialog(context.l.piyuo_server_screen_copy_success);
+                appkit.showMessage(message: context.l.piyuo_server_screen_copy_success);
               },
             ),
           ),
