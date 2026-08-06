@@ -4,9 +4,9 @@
 // Sections:
 //   - InvitationScreen widget
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_pip/feature_pip.dart' as pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../widgets/onboarding_scaffold.dart';
@@ -70,7 +70,7 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
     final invitationService = ref.read(core_domain.invitationServiceProvider);
     if (!invitationService.isValidCode(code)) {
       final message = getMessageByInvitationError(core_domain.InvitationError.invalidFormat);
-      await pip.showMessageDialog(message);
+      appkit.showMessage(message: message);
       return;
     }
 
@@ -83,7 +83,7 @@ class _InvitationScreenState extends ConsumerState<InvitationScreen> {
     if (!mounted) return;
     if (result is core_domain.InvitationFailure) {
       final message = getMessageByInvitationError(result.error, serverCode: result.serverCode);
-      await pip.showMessageDialog(message);
+      appkit.showMessage(message: message);
       setState(() {
         _isValidating = false;
       });

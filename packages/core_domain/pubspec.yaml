@@ -11,27 +11,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  json_annotation: ^4.10.0
-  flutter_riverpod: ^3.2.1
-  riverpod_annotation: ^4.0.2
+  json_annotation: ^4.12.0
+  flutter_riverpod: ^3.3.2 # block by analyzer
+  riverpod_annotation: ^4.0.3 # block by analyzer
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.2.0
+      ref: v3.5.0
   freezed_annotation: ^3.1.0
-  uuid: ^4.5.1
+  uuid: ^4.6.0
   riverpod: ^3.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.6.3
+  mockito: ^5.6.4
   flutter_lints: ^6.0.0
-  analyzer: ^9.0.0
-  riverpod_generator: ^4.0.3
+  analyzer: ^12.1.0
+  riverpod_generator: ^4.0.4 # block by analyzer
   freezed: ^3.2.5
-  json_serializable: ^6.12.0
-  build_runner: ^2.11.1
+  json_serializable: ^6.14.1
+  build_runner: ^2.15.1
 
 
 flutter:
+  uses-material-design: true

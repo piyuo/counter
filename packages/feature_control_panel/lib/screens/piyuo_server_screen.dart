@@ -1,8 +1,8 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
-import 'package:feature_pip/widgets/show_message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
@@ -95,7 +95,7 @@ class _SettingsPiyuoScreenState extends ConsumerState<PiyuoServerScreen> {
                           child: OutlinedButton.icon(
                             onPressed: () async {
                               Clipboard.setData(ClipboardData(text: _cloudUrlController.text.trim()));
-                              await showMessageDialog(context.l.piyuo_server_screen_copy_success);
+                              appkit.showMessage(message: context.l.piyuo_server_screen_copy_success);
                               if (!mounted) return;
                             },
                             icon: const Icon(Icons.copy),

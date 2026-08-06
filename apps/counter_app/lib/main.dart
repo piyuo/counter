@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
-import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
-import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
@@ -16,8 +14,6 @@ void main() async {
   late core_runtime.TelemetryDatabaseFun dbFactory;
   appkit.appRun(
     preInitCallback: () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      await LiquidGlassWidgets.initialize();
       final appSupportDir = await getApplicationSupportDirectory();
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
@@ -99,7 +95,7 @@ void main() async {
           return service;
         }),
       ],
-      child: LiquidGlassWidgets.wrap(appkit.LocaleAwareWidget(builder: (locale) => AppShell(locale: locale))),
+      child: appkit.LocaleAwareWidget(builder: (locale) => AppShell(locale: locale)),
     ),
   );
 }

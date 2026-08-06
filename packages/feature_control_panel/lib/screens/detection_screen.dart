@@ -362,7 +362,7 @@ class _DetectionToggleTile extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(title, style: Theme.of(context).textTheme.titleSmall)),
-              CupertinoSwitch(value: value, onChanged: onChanged, activeColor: Theme.of(context).colorScheme.primary),
+              CupertinoSwitch(value: value, onChanged: onChanged),
             ],
           ),
           const SizedBox(height: 8),

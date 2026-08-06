@@ -22,5 +22,6 @@ class HttpUrlValidatorService implements core_domain.UrlValidatorService {
       return 'The URL must start with http:// or https://.';
     }
     return null;
+    /* do not test the http, for now ,validate only test url format, since we allow user user specific a url even when server is not in place*/
   }
 }

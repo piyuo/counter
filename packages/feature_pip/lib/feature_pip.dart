@@ -8,4 +8,3 @@ export 'widgets/pip_panel.dart';
 export 'widgets/pip_scaffold.dart';
 export 'widgets/pip_screen.dart';
 export 'widgets/pip_sliding.dart';
-export 'widgets/show_message_dialog.dart';

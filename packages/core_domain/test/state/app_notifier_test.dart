@@ -23,11 +23,13 @@ void main() {
       final repo = _FakeAppStateRepository(const AppState(deviceId: 'device-id'));
       final tokenService = _FakeTokenGeneratorService('unused-token');
       final authStorage = _FakeAuthStorageService();
+      final hardwareService = _FakeHardwareCapabilityService();
       final container = ProviderContainer(
         overrides: [
           appStateRepositoryProvider.overrideWith((ref) => repo),
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
+          hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
         ],
       );
       addTearDown(container.dispose);
@@ -50,11 +52,13 @@ void main() {
       final repo = _FakeAppStateRepository(const AppState(deviceId: 'device-id'));
       final tokenService = _FakeTokenGeneratorService('unused-token');
       final authStorage = _FakeAuthStorageService();
+      final hardwareService = _FakeHardwareCapabilityService();
       final container = ProviderContainer(
         overrides: [
           appStateRepositoryProvider.overrideWith((ref) => repo),
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
+          hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
         ],
       );
       addTearDown(container.dispose);
@@ -80,11 +84,13 @@ void main() {
       );
       final tokenService = _FakeTokenGeneratorService('unused-token');
       final authStorage = _FakeAuthStorageService();
+      final hardwareService = _FakeHardwareCapabilityService();
       final container = ProviderContainer(
         overrides: [
           appStateRepositoryProvider.overrideWith((ref) => repo),
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
+          hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
         ],
       );
       addTearDown(container.dispose);
@@ -102,10 +108,14 @@ void main() {
     test('applyServerConfigOverrides() applies only non-null fields in one save', () async {
       final repo = _FakeAppStateRepository(const AppState(deviceId: 'device-id'));
       final tokenService = _FakeTokenGeneratorService('unused-token');
+      final hardwareService = _FakeHardwareCapabilityService();
+      final authStorage = _FakeAuthStorageService();
       final container = ProviderContainer(
         overrides: [
           appStateRepositoryProvider.overrideWith((ref) => repo),
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
+          hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
+          authStorageServiceProvider.overrideWith((ref) => authStorage),
         ],
       );
       addTearDown(container.dispose);
@@ -161,6 +171,20 @@ class _FakeTokenGeneratorService implements TokenGeneratorService {
     callCount += 1;
     return token;
   }
+}
+
+class _FakeHardwareCapabilityService implements HardwareCapabilityService {
+  @override
+  Future<List<VideoSource>> getAvailableCameras() async => [];
+
+  @override
+  Future<VideoSource?> getDefaultVideoSource() async => null;
+
+  @override
+  Future<bool> hasCameraVideoSource() async => false;
+
+  @override
+  Future<bool> isVideoSourceValid(VideoSource videoSource) async => false;
 }
 
 class _FakeAuthStorageService implements AuthStorageService {

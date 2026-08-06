@@ -18,14 +18,10 @@ mixin _$AppState {
 /// auto-generated unique device ID, sent to backend as a safety identifier
  String get deviceId;/// if dataServerSelection is unspecified, then app need run onboarding flow to let user select a data server.
 @JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection get dataServerSelection;/// personal subscription plan, use piyuo.com backend, setup by user.
- PersonalPiyuoServer? get personalPiyuoServer;// will be assign when first boot, 'https://piyuo.com/api/v1/$random'
-/// personal subscription plan, use their own backend, setup by user.
- PersonalCustomServer? get personalCustomServer;// will be assign when first boot, 'http://localhost:3000'
-/// business subscription plan, use piyuo.com backend, setup by invitation.
- BusinessPiyuoServer? get businessPiyuoServer;// assign by invitation, e.g. 'https://piyuo.com/api/v1'
-/// business subscription plan, use their own backend, setup by invitation.
- BusinessCustomServer? get businessCustomServer;// assign by invitation, e.g. 'http://localhost:3000'
-/// how to upload data to remote server/
+ PersonalPiyuoServer? get personalPiyuoServer;/// personal subscription plan, use their own backend, setup by user.
+ PersonalCustomServer? get personalCustomServer;/// business subscription plan, use piyuo.com backend, setup by invitation.
+ BusinessPiyuoServer? get businessPiyuoServer;/// business subscription plan, use their own backend, setup by invitation.
+ BusinessCustomServer? get businessCustomServer;/// how to upload data to remote server/
  UploadConfig get uploadConfig;/// Vision input selection.
 ///
 /// Stored as a flat AppState field rather than inside a nested vision-session
@@ -295,16 +291,12 @@ class _AppState extends AppState {
 @override@JsonKey(unknownEnumValue: DataServerSelection.unspecified) final  DataServerSelection dataServerSelection;
 /// personal subscription plan, use piyuo.com backend, setup by user.
 @override final  PersonalPiyuoServer? personalPiyuoServer;
-// will be assign when first boot, 'https://piyuo.com/api/v1/$random'
 /// personal subscription plan, use their own backend, setup by user.
 @override final  PersonalCustomServer? personalCustomServer;
-// will be assign when first boot, 'http://localhost:3000'
 /// business subscription plan, use piyuo.com backend, setup by invitation.
 @override final  BusinessPiyuoServer? businessPiyuoServer;
-// assign by invitation, e.g. 'https://piyuo.com/api/v1'
 /// business subscription plan, use their own backend, setup by invitation.
 @override final  BusinessCustomServer? businessCustomServer;
-// assign by invitation, e.g. 'http://localhost:3000'
 /// how to upload data to remote server/
 @override@JsonKey() final  UploadConfig uploadConfig;
 /// Vision input selection.

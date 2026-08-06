@@ -308,13 +308,9 @@ class BusinessPiyuoServer extends DataServer {
   factory BusinessPiyuoServer.fromJson(Map<String, dynamic> json) => _$BusinessPiyuoServerFromJson(json);
 
  final  String url;
-// where to send data, e.g. https://piyuo.com/api/v1
  final  String projectId;
-// for business Piyuo to identify the project, e.g. "1234-1234-1234-1234"
  final  String projectName;
-// for display only, e.g. "My First Store"
  final  String assignedId;
-// for business Piyuo to identify the device, e.g. "abcd-1234-abcd-5678"
  final  String assignedName;
 
 @JsonKey(name: 'runtimeType')
@@ -466,13 +462,9 @@ class BusinessCustomServer extends DataServer {
   factory BusinessCustomServer.fromJson(Map<String, dynamic> json) => _$BusinessCustomServerFromJson(json);
 
  final  String url;
-// where to send data, e.g. https://piyuo.com/api/v1
  final  String projectId;
-// for business Piyuo to identify the project, e.g. "1234-1234-1234-1234"
  final  String projectName;
-// for display only, e.g. "My First Store"
  final  String assignedId;
-// for business Piyuo to identify the device, e.g. "abcd-1234-abcd-5678"
  final  String assignedName;
 
 @JsonKey(name: 'runtimeType')

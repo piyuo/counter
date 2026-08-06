@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/app_shell/app_router.dart';
 import 'package:counter_app/app_shell/app_theme.dart';
-import 'package:counter_app/app_shell/device_not_supported_screen.dart';
+import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
@@ -25,9 +25,6 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
-  /// the navigator key to keep the navigator state from switch between side and floating layout
-  final navigatorKey = GlobalKey<NavigatorState>();
-
   @override
   void initState() {
     super.initState();
@@ -75,6 +72,7 @@ class _AppShellState extends ConsumerState<AppShell> {
 
     if (systemLifecycle == core_domain.SystemLifecycle.systemDeviceNotSupported()) {
       return MaterialApp(
+        navigatorKey: appkit.navigatorKey,
         debugShowCheckedModeBanner: false,
         locale: defaultLocale,
         localizationsDelegates: appLocaleDelegates,
@@ -88,7 +86,7 @@ class _AppShellState extends ConsumerState<AppShell> {
     return ToastificationWrapper(
       child: AppTheme(
         child: MaterialApp(
-          navigatorKey: navigatorKey,
+          navigatorKey: appkit.navigatorKey,
           debugShowCheckedModeBanner: false,
           locale: defaultLocale,
           localizationsDelegates: appLocaleDelegates,

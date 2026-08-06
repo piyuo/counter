@@ -47,7 +47,7 @@ abstract class _$AppFlowNotifier extends $Notifier<AppFlow> {
   AppFlow build();
   @$mustCallSuper
   @override
-  void runBuild() {
+  WhenComplete runBuild() {
     final ref = this.ref as $Ref<AppFlow, AppFlow>;
     final element =
         ref.element
@@ -57,6 +57,6 @@ abstract class _$AppFlowNotifier extends $Notifier<AppFlow> {
               Object?,
               Object?
             >;
-    element.handleCreate(ref, build);
+    return element.handleCreate(ref, build);
   }
 }

@@ -23,11 +23,11 @@
 //  - Paths are the single source of truth; ControlPanelRoutes only keeps root/start/liveStreamOnly.
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:counter_app/app_shell/device_not_supported_screen.dart';
 import 'package:feature_control_panel/screens/about_screen.dart';
 import 'package:feature_control_panel/screens/build_info_screen.dart';
 import 'package:feature_control_panel/screens/custom_server_screen.dart';
 import 'package:feature_control_panel/screens/detection_screen.dart';
+import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
 import 'package:feature_control_panel/screens/language_screen.dart';
 import 'package:feature_control_panel/screens/loading_screen.dart';
 import 'package:feature_control_panel/screens/payload_detail_screen.dart';

@@ -4,7 +4,6 @@ import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class SettingsScreen extends ConsumerWidget {
@@ -155,22 +154,9 @@ class SettingsScreen extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    final confirmed = await GlassDialog.show<bool>(
-                      context: context,
+                    final confirmed = await appkit.showConfirm(
                       title: context.l.settings_screen_reset_all_data_title,
                       message: context.l.settings_screen_reset_all_data_body,
-                      actions: [
-                        GlassDialogAction(
-                          label: MaterialLocalizations.of(context).cancelButtonLabel,
-                          onPressed: () => Navigator.of(context, rootNavigator: true).pop(false),
-                        ),
-                        GlassDialogAction(
-                          label: context.l.detection_screen_reset,
-                          isPrimary: true,
-                          isDestructive: true,
-                          onPressed: () => Navigator.of(context, rootNavigator: true).pop(true),
-                        ),
-                      ],
                     );
                     if (confirmed != true) return;
                     await ref.read(core_domain.resetAppProvider.notifier).reset();

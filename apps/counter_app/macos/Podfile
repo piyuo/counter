@@ -29,6 +29,7 @@ flutter_macos_podfile_setup
 target 'Counter' do
   use_frameworks!
   use_modular_headers!
+  inhibit_all_warnings! # Silences warnings from pods (like Sentry)
 
   flutter_install_all_macos_pods File.dirname(File.realpath(__FILE__))
   target 'CounterTests' do

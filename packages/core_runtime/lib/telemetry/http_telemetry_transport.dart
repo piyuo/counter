@@ -33,22 +33,20 @@ class HttpTelemetryTransport implements core_domain.TelemetryTransport {
     try {
       final response = await _client.post(Uri.parse(url), headers: headers, body: body);
       if (response.statusCode < 200 || response.statusCode >= 300) {
-        appkit.logError(
+        // don't log error, cause this is expected to happen sometimes (e.g. 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server Error)
+        appkit.logDebug(
           '[HttpTelemetryTransport] '
           '${response.statusCode} (${response.reasonPhrase ?? 'Unknown error'}) ',
         );
-        return _errorEnvelope(
-          errorCode: core_domain.TelemetryErrorCode.httpErrorStatus,
-          error:
-              '${response.statusCode} ${response.reasonPhrase ?? 'Unknown error'} ${response.body.isNotEmpty ? response.body : ''}',
-        );
+        return _errorEnvelope(errorCode: core_domain.TelemetryErrorCode.httpErrorStatus, error: 'http_non_success');
       }
 
       return _successEnvelope(response.body);
     } catch (error) {
       final classified = _classifyException(error);
-      appkit.logError('[HttpTelemetryTransport] $classified ($error)');
-      return _errorEnvelope(errorCode: classified);
+      // don't log error, cause this is expected to happen sometimes (e.g. 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server Error)
+      appkit.logDebug('[HttpTelemetryTransport] $classified ($error)');
+      return _errorEnvelope(errorCode: classified, error: 'transport_exception');
     }
   }
 

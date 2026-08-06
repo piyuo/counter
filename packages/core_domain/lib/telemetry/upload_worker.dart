@@ -93,7 +93,11 @@ class UploadWorker {
 
     // check for a configured backend; if none, return early (no-op).
     final session = await _sessionResolver();
-    assert(session != null, 'UploadWorker.run() called but no backend is configured; check sessionResolver');
+    if (session == null) {
+      isLastUploadSuccess = false;
+      lastError = 'No backend is configured';
+      return false;
+    }
 
     while (true) {
       final batch = await queue.fetchReady(limit: kMaxBatchSize);
@@ -107,7 +111,7 @@ class UploadWorker {
         lastErrorCode = null;
         lastUrl = null;
         final uploaded = await _deliverBatch(
-          session: session!,
+          session: session,
           payloads: group.map((p) => p.payload).toList(growable: false),
           onSuccess: () async {
             await queue.markUploadedBatch(group.map((item) => item.id).toList(growable: false));
@@ -157,7 +161,7 @@ class UploadWorker {
   }) async {
     lastUrl = getUrlFromDataServer(session.dataServer);
     if (lastUrl == null) {
-      appkit.logError('[UploadWorker] no URL for data server ${session.dataServer}');
+      assert(false, '[UploadWorker] no URL for data server ${session.dataServer}');
       return false;
     }
     int sizeKb = 0;
@@ -185,7 +189,6 @@ class UploadWorker {
           errorCode: response.errorCode,
           error: response.error,
         );
-        //        appkit.logError('[UploadWorker] rejected ${payloads.length} payload(s), $sizeKb KB  ${response.error}');
         return false;
       }
       await responseWorker.process(response);
@@ -208,7 +211,7 @@ class UploadWorker {
         errorCode: TelemetryErrorCode.httpUnknownError,
         error: '$error\n$stackTrace',
       );
-      appkit.logError('[UploadWorker] failed: $error');
+      appkit.logDebug('[UploadWorker] failed: $error');
       return false;
     }
   }

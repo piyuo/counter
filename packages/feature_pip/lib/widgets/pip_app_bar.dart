@@ -10,7 +10,7 @@ import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 /// Wraps [_AppBar] and adds [automaticallyImplyLeading]: when true (the
 /// default) and no [leading] is provided, a back [GlassButton] is shown
 /// automatically whenever the current route can be popped.
-class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
+class PipAppBar extends StatefulWidget implements PreferredSizeWidget {
   const PipAppBar({
     super.key,
     this.title,
@@ -46,29 +46,56 @@ class PipAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   @override
+  State<PipAppBar> createState() => _PipAppBarState();
+}
+
+class _PipAppBarState extends State<PipAppBar> {
+  /// Guards against multiple `pop()` calls while the first pop is being
+  /// processed. A second tap can otherwise occur before the navigation stack
+  /// has finished updating, potentially causing:
+  /// `GoError: There is nothing to pop`.
+  ///
+  /// No reset is needed: a successful `pop()` removes this screen (and this
+  /// `PipAppBar` instance) from the tree, disposing this state along with it.
+  bool _isPopping = false;
+
+  void _handleBack(BuildContext context) {
+    if (_isPopping) return;
+    if (!context.canPop()) return;
+
+    _isPopping = true;
+    context.pop();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Widget? effectiveLeading = leading;
-    if (effectiveLeading == null && automaticallyImplyLeading) {
-      final router = GoRouter.of(context);
-      final canPop = router.canPop();
-      if (canPop) {
+    Widget? effectiveLeading = widget.leading;
+
+    if (effectiveLeading == null && widget.automaticallyImplyLeading) {
+      if (context.canPop()) {
         effectiveLeading = Padding(
           padding: const EdgeInsets.only(left: 8),
-          child: GlassButton(width: 44, height: 44, onTap: () => router.pop(), icon: Icon(Icons.arrow_back_ios_new)),
+          child: GlassButton(
+            width: 44,
+            height: 44,
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onTap: () => _handleBack(context),
+          ),
         );
       }
     }
 
     final List<Widget> effectiveActions = [
-      if (onSearch != null) GlassButton(width: 44, height: 44, onTap: onSearch!, icon: Icon(Icons.search)),
-      ...?actions,
+      if (widget.onSearch != null)
+        GlassButton(width: 44, height: 44, onTap: widget.onSearch!, icon: const Icon(Icons.search)),
+      ...?widget.actions,
     ];
 
     return _AppBar(
-      preferredSize: preferredSize,
-      title: title,
+      preferredSize: widget.preferredSize,
+      title: widget.title,
       leading: effectiveLeading,
-      backgroundColor: backgroundColor,
+      backgroundColor: widget.backgroundColor,
       actions: effectiveActions.isEmpty ? null : effectiveActions,
     );
   }

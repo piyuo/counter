@@ -22,8 +22,7 @@ mixin _$DetectionParams {
 /// and [trackHighThresh] are only used in the second, low-confidence pass.
  double get trackLowThresh;/// Minimum confidence required to start a brand new track after association.
 /// This is checked after all matching passes complete.
- double get newTrackThresh;// Seconds a track may stay Lost before removal, measured via steady_clock
- double get maxTimeLostSec;/// Maximum fused association cost accepted by linear assignment in the first
+ double get newTrackThresh; double get maxTimeLostSec;/// Maximum fused association cost accepted by linear assignment in the first
 /// high-confidence association pass. Lower costs are better; larger values
 /// make that pass more permissive. This does not affect the later
 /// low-confidence and unconfirmed passes, which use fixed thresholds.
@@ -52,17 +51,13 @@ mixin _$DetectionParams {
 /// conservative.
  bool get preferAppearanceFallbackOnLowIou;/// Minimum elapsed wall-clock time, in seconds, since the track started
 /// before assigning a user-visible `trackletId`.
- double get trackletMinPresenceTimeSec;// Edge margin, in pixels. Objects detected within this distance from
-// the frame boundary are not considered valid until they move away from
-// the edge.
- int get trackletEdgeMargin;/// After the normal minimum-presence-time gate has been satisfied, allow
+ double get trackletMinPresenceTimeSec; int get trackletEdgeMargin;/// After the normal minimum-presence-time gate has been satisfied, allow
 /// `trackletId` assignment even if the track center is still inside the
 /// edge zone once elapsed time reaches this threshold. Set to `0` to
 /// disable this edge-zone override.
  double get trackletEdgeOverrideTimeSec;/// Minimum continuous in-area duration, in seconds, before a track
 /// contributes to `stayCount` in window counting.
- int get stayThresholdSeconds;// stay over ten minutes to count as a stay
-/// Minimum continuous absence duration, in seconds, before a previously
+ int get stayThresholdSeconds;/// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.
 /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear
  int get disappearThresholdSeconds;
@@ -286,7 +281,6 @@ class _DetectionParams extends DetectionParams {
 /// Minimum confidence required to start a brand new track after association.
 /// This is checked after all matching passes complete.
 @override@JsonKey() final  double newTrackThresh;
-// Seconds a track may stay Lost before removal, measured via steady_clock
 @override@JsonKey() final  double maxTimeLostSec;
 /// Maximum fused association cost accepted by linear assignment in the first
 /// high-confidence association pass. Lower costs are better; larger values
@@ -324,9 +318,6 @@ class _DetectionParams extends DetectionParams {
 /// Minimum elapsed wall-clock time, in seconds, since the track started
 /// before assigning a user-visible `trackletId`.
 @override@JsonKey() final  double trackletMinPresenceTimeSec;
-// Edge margin, in pixels. Objects detected within this distance from
-// the frame boundary are not considered valid until they move away from
-// the edge.
 @override@JsonKey() final  int trackletEdgeMargin;
 /// After the normal minimum-presence-time gate has been satisfied, allow
 /// `trackletId` assignment even if the track center is still inside the
@@ -336,7 +327,6 @@ class _DetectionParams extends DetectionParams {
 /// Minimum continuous in-area duration, in seconds, before a track
 /// contributes to `stayCount` in window counting.
 @override@JsonKey() final  int stayThresholdSeconds;
-// stay over ten minutes to count as a stay
 /// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.
 /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear

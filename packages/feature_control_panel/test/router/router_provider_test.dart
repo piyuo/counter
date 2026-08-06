@@ -240,11 +240,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenSettings());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings');
+      expect(router.state.uri.path, '/settings');
     });
 
     testWidgets('OpenAbout causes navigation to /about', (tester) async {
@@ -260,11 +261,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenAbout());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/about');
+      expect(router.state.uri.path, '/about');
     });
 
     testWidgets('OpenSettingsPiyuo causes navigation to /settings/piyuo', (tester) async {
@@ -280,11 +282,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenSettingsPiyuo());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings/piyuo');
+      expect(router.state.uri.path, '/settings/piyuo');
     });
 
     testWidgets('OpenSettingsServer causes navigation to /settings/server', (tester) async {
@@ -300,11 +303,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenSettingsServer());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/settings/server');
+      expect(router.state.uri.path, '/settings/server');
     });
 
     testWidgets('OpenDetectionParams causes navigation to /detection', (tester) async {
@@ -320,11 +324,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenDetection());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/detection');
+      expect(router.state.uri.path, '/detection');
     });
 
     testWidgets('OpenDeliveryConfig causes navigation to /delivery-config', (tester) async {
@@ -340,11 +345,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenDeliveryConfig());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/delivery-config');
+      expect(router.state.uri.path, '/delivery-config');
     });
 
     testWidgets('OpenUploadLogs causes navigation to /upload-logs', (tester) async {
@@ -360,11 +366,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenUploadLogs());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/upload-logs');
+      expect(router.state.uri.path, '/upload-logs');
     });
 
     testWidgets('OpenRecentPayloads causes navigation to /recent-payloads', (tester) async {
@@ -380,11 +387,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenPayloadsRecent());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads');
+      expect(router.state.uri.path, '/recent-payloads');
     });
 
     testWidgets('OpenRecentPayloadHour causes navigation to /recent-payloads/hour/:slotMs', (tester) async {
@@ -400,11 +408,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenPayloadsHour(slotMs: 123));
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads/hour/123');
+      expect(router.state.uri.path, '/recent-payloads/hour/123');
     });
 
     testWidgets('OpenRecentPayloadDetail causes navigation to /recent-payloads/payload/:payloadId', (tester) async {
@@ -420,11 +429,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenPayloadDetail(payloadId: 'abc-123'));
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/recent-payloads/payload/abc-123');
+      expect(router.state.uri.path, '/recent-payloads/payload/abc-123');
     });
 
     testWidgets('emitting two events navigates to the last destination', (tester) async {
@@ -440,12 +450,13 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenSettings());
       bus.push(const core_domain.OpenAbout());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/about');
+      expect(router.state.uri.path, '/about');
     });
 
     testWidgets('no event keeps router on root', (tester) async {
@@ -463,7 +474,7 @@ void main() {
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, '/');
+      expect(router.state.uri.path, '/');
     });
 
     testWidgets('OpenOnboarding causes navigation to /onboarding', (tester) async {
@@ -483,7 +494,7 @@ void main() {
       bus.push(const core_domain.OpenOnboarding());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding);
     });
 
     testWidgets('OpenOnboarding1 causes navigation to /onboarding/1', (tester) async {
@@ -503,7 +514,7 @@ void main() {
       bus.push(const core_domain.OpenOnboarding1());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding1);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding1);
     });
 
     testWidgets('OpenOnboarding2 causes navigation to /onboarding/1/2', (tester) async {
@@ -523,7 +534,7 @@ void main() {
       bus.push(const core_domain.OpenOnboarding2());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.onboarding2);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding2);
     });
 
     testWidgets('OpenOnboardingCTA causes navigation to /onboarding/1/2/cta', (tester) async {
@@ -543,7 +554,7 @@ void main() {
       bus.push(const core_domain.OpenOnboardingCTA());
       await tester.pumpAndSettle();
 
-      expect(router.routerDelegate.currentConfiguration.uri.path, core_domain.OnboardingRoutes.cta);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.cta);
     });
 
     testWidgets('OpenOnboardingInvitation causes navigation to onboarding invitation path', (tester) async {
@@ -559,14 +570,12 @@ void main() {
       });
 
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
 
       bus.push(const core_domain.OpenOnboardingInvitation(token: 'invite-token'));
       await tester.pumpAndSettle();
 
-      expect(
-        router.routerDelegate.currentConfiguration.uri.toString(),
-        '${core_domain.OnboardingRoutes.ctaInvitation}?token=invite-token',
-      );
+      expect(router.state.uri.toString(), '${core_domain.OnboardingRoutes.ctaInvitation}?token=invite-token');
     });
   });
 }

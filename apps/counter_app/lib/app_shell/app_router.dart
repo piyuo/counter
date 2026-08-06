@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:counter_app/app_shell/device_not_supported_screen.dart';
 import 'package:feature_control_panel/feature_control_panel.dart' as feature_control_panel;
+import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
 import 'package:feature_monitor/feature_monitor.dart' as feature_monitor;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 
@@ -37,18 +36,16 @@ class AppRouter {
             _ => null,
           };
 
-          return appkit.GlobalContext(
-            child: vision.VisionLifecycle(
-              child: feature_pip.PipScreen(
-                deviceOrientation: deviceOrientation,
-                //                isDeviceLockToPortrait: ref.watch(core_domain.portraitOrientationProvider),
-                isVideoLockToHorizontal: isLockToHorizontal,
-                slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
-                  key: _controlPanelKey,
-                  appLocaleDelegates: appLocaleDelegates,
-                ),
-                builder: (isSideLayout) => feature_monitor.MonitorShell(),
+          return vision.VisionLifecycle(
+            child: feature_pip.PipScreen(
+              deviceOrientation: deviceOrientation,
+              //                isDeviceLockToPortrait: ref.watch(core_domain.portraitOrientationProvider),
+              isVideoLockToHorizontal: isLockToHorizontal,
+              slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
+                key: _controlPanelKey,
+                appLocaleDelegates: appLocaleDelegates,
               ),
+              builder: (isSideLayout) => feature_monitor.MonitorShell(),
             ),
           );
         });
