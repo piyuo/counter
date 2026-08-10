@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/piyuo/counter/compare/counter_app-v1.3.0...counter_app-v1.4.0) (2026-08-10)
+
+
+### Features
+
+* optimize ui for mobile devices [#210](https://github.com/piyuo/counter/issues/210) ([90c35c3](https://github.com/piyuo/counter/commit/90c35c318fd4d1a53e9b8b92efcf48ad5fe2afd1))
+
+
+### Bug Fixes
+
+* Null check operator used on a null value [#223](https://github.com/piyuo/counter/issues/223) ([90b0b51](https://github.com/piyuo/counter/commit/90b0b51658c057f358d0aedff8c5775843b0032f))
+
 ## [1.3.0](https://github.com/piyuo/counter/compare/counter_app-v1.2.1...counter_app-v1.3.0) (2026-07-26)
 
 
