@@ -1,3 +1,5 @@
 ## Neue Verbesserungen
 
-* Die Größe der App-Veröffentlichung wurde halbiert, um schnellere Downloads und geringere Speichernutzung zu ermöglichen.
+* Bessere Stabilität: Fehlerhafte Abstürze beim Drücken der Zurück-Taste oder am Ende eines Videos behoben.
+* Kamerabehebung: Problem behoben, bei dem die App abstürzen konnte, wenn die Kameraberechtigung nicht erteilt wurde.
+* Verbesserte Diagnose: Zusätzliche Startdiagnose hinzugefügt, um Probleme auf Windows-Computern schneller zu beheben.

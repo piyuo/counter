@@ -11,21 +11,21 @@ platform :ios do
       key_content: ENV["APP_STORE_CONNECT_KEY_CONTENT"]
     )
 
-    # 1. Path pointing to the project root relative to ios/fastlane/
-    build_num_file = "../../.build_number"
+    # Path pointing to the project root relative to ios/fastlane/
+    build_num_file = "../../.build_number_ios"
 
-    # 2. Read the current tracking number or start at 0 if it doesn't exist
+    # Read the current tracking number or start at 0 if it doesn't exist
     if File.exist?(build_num_file)
       current_build = File.read(build_num_file).strip.to_i
     else
       current_build = 0
     end
 
-    # 3. Increment the counter
+    # Increment the counter
     next_build_number = current_build + 1
 
 
-    # 5. Inject the build number into your Xcode project configurations
+    # Inject the build number into your Xcode project configurations
     increment_build_number(
       xcodeproj: "Counter.xcodeproj",
       build_number: next_build_number
@@ -36,7 +36,7 @@ platform :ios do
       app_identifier: "com.piyuo.counter",
     )
 
-    # 6. Build the app with the newly incremented build number
+    # Build the app with the newly incremented build number
     build_app(
       workspace: "Counter.xcworkspace",
       scheme: "Runner",
@@ -49,9 +49,9 @@ platform :ios do
       }
     )
 
-    # 7. Upload the app to App Store Connect
+    # Upload the app to App Store Connect
     upload_to_app_store(
-      #submit_for_review: false,
+      submit_for_review: true,
       precheck_include_in_app_purchases: false,
       support_url: {
         'default' => 'https://piyuo.com'

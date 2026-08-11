@@ -1,3 +1,5 @@
 ## Nieuwe verbeteringen
 
-* De grootte van de app-release is gehalveerd voor snellere downloads en lager opslaggebruik.
+* Betere stabiliteit: Onverwachte crashes verholpen wanneer u de knop Terug gebruikt of wanneer een video eindigt.
+* Camerareparatie: Een probleem opgelost waarbij de app kon vastlopen als cameratoestemming niet werd verleend.
+* Verbeterde diagnostiek: Extra startdiagnostiek toegevoegd om problemen sneller op Windows-computers op te lossen.

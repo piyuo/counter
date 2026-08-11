@@ -1,3 +1,5 @@
-## Penambahbaikan Baharu
+## Penambahbaikan Baru
 
-* Saiz keluaran aplikasi telah dikurangkan separuh untuk muat turun yang lebih pantas dan penggunaan storan yang lebih rendah.
+* Kestabilan Lebih Baik: Diperbetulkan kegagalan yang tidak dijangka semasa menggunakan butang kembali atau apabila video berakhir.
+* Pembaikan Kamera: Menyelesaikan masalah di mana aplikasi boleh mogok jika kebenaran kamera tidak diberikan.
+* Diagnosis Dipertingkat: Menambah diagnosis permulaan tambahan untuk membantu mendiagnosis dan mengatasi masalah dengan lebih cepat pada komputer Windows.

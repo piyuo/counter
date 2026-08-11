@@ -1,3 +1,5 @@
 ## Peningkatan Baru
 
-* Ukuran rilis aplikasi diperkecil setengahnya untuk unduhan lebih cepat dan penggunaan penyimpanan lebih rendah.
+* Stabilitas Lebih Baik: Memperbaiki kerusakan yang tidak terduga saat menggunakan tombol kembali atau saat mencapai akhir video.
+* Perbaikan Kamera: Menyelesaikan masalah di mana aplikasi dapat mogok jika izin kamera tidak diberikan.
+* Diagnostik Ditingkatkan: Menambahkan diagnostik startup tambahan untuk membantu mendiagnosis dan mengatasi masalah lebih cepat pada komputer Windows.

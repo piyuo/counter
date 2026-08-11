@@ -1,3 +1,5 @@
 ## Nuovi miglioramenti
 
-* La dimensione della versione dell'app è stata ridotta della metà per download più veloci e minore utilizzo di archiviazione.
+* Migliore stabilità: Corretto l'arresto imprevisto durante l'uso del pulsante indietro o al termine di un video.
+* Correzione fotocamera: Risolto un problema per cui l'app poteva arrestarsi se il permesso della fotocamera non era concesso.
+* Diagnostica migliorata: Aggiunta diagnostica di avvio supplementare per aiutare la risoluzione dei problemi più velocemente su computer Windows.

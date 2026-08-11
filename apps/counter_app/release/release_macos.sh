@@ -13,6 +13,16 @@ echo "Running Fastlane release..."
 cd macos/fastlane
 bundle exec fastlane mac release
 cd ../..
+
+# Upload debug symbols to Sentry
+echo "Uploading information to Sentry..."
+sentry-cli debug-files upload \
+  --org "$SENTRY_ORG" \
+  --project "$SENTRY_PROJECT" \
+  --type dsym \
+  --wait \
+  build/macos/Build/Products/Release/*.dSYM
+
 rm -rf build/macos
 rm -rf macos/Piyuo\ Counter.app
 rm -f macos/Piyuo\ Counter.app.dSYM.zip

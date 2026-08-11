@@ -1,3 +1,5 @@
 ## Nouvelles améliorations
 
-* La taille de la version de l'app a été réduite de moitié pour des téléchargements plus rapides et une consommation de stockage inférieure.
+* Meilleure stabilité : Correction des plantages inattendus lors de l'utilisation du bouton retour ou à la fin d'une vidéo.
+* Correction de la caméra : Résolution du problème où l'application pouvait planter si la permission d'accès à la caméra n'était pas accordée.
+* Diagnostics améliorés : Ajout de diagnostics de démarrage supplémentaires pour aider au diagnostic et résolution plus rapide sur les ordinateurs Windows.
