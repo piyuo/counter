@@ -1,3 +1,5 @@
 ## Nuevas mejoras
 
-* El tamaño de la versión de la app se ha reducido a la mitad, permitiendo descargas más rápidas y menor uso de almacenamiento.
+* Mejor estabilidad: Se corrigieron los bloqueos inesperados al usar el botón atrás o al finalizar un video.
+* Corrección de cámara: Se resolvió un problema donde la aplicación podría bloquearse si no se otorgaba permiso de cámara.
+* Diagnósticos mejorados: Se agregó diagnóstico de inicio adicional para ayudar a solucionar problemas más rápidamente en computadoras Windows.

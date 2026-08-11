@@ -1,3 +1,5 @@
-## Những cải tiến mới
+## Cải tiến mới
 
-* Giảm kích thước phiên bản ứng dụng xuống một nửa, tải xuống nhanh hơn và sử dụng bộ nhớ ít hơn.
+* Ổn định hơn: Đã sửa các lỗi không mong muốn khi sử dụng nút quay lại hoặc khi kết thúc video.
+* Sửa lỗi camera: Đã giải quyết vấn đề ứng dụng gặp sự cố nếu không được cấp quyền camera.
+* Chẩn đoán được cải thiện: Thêm chẩn đoán khởi động bổ sung để giúp khắc phục sự cố nhanh hơn trên máy tính Windows.

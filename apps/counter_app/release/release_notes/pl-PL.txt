@@ -1,3 +1,5 @@
 ## Nowe ulepszenia
 
-* Rozmiar wydania aplikacji zmniejszono o połowę, aby przyspieszyć pobieranie i zmniejszyć użycie pamięci.
+* Lepsza stabilność: Naprawiono nieoczekiwane awarie podczas używania przycisku wstecz lub zakończenia wideo.
+* Naprawa aparatu: Rozwiązano problem, w którym aplikacja mogła ulec awarii, jeśli zezwolenie na dostęp do aparatu nie zostało przyznane.
+* Ulepszona diagnostyka: Dodana dodatkowa diagnostyka uruchamiania, aby pomóc w szybszym diagnozowaniu i rozwiązywaniu problemów na komputerach z systemem Windows.

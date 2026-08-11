@@ -13,6 +13,18 @@ echo "Running Fastlane release..."
 cd ios/fastlane
 bundle exec fastlane ios release
 cd ../..
+
+# Upload debug symbols to Sentry
+find build/ios/Release-iphoneos \
+  -name "*.dSYM" \
+  -print0 |
+xargs -0 sentry-cli debug-files upload \
+  --org "$SENTRY_ORG" \
+  --project "$SENTRY_PROJECT" \
+  --type dsym \
+  --wait
+
+
 rm -rf build/ios
 rm -f ios/Counter.ipa
 rm -f ios/Counter.app.dSYM.zip

@@ -1,3 +1,5 @@
-## Îmbunătățiri noi
+## Noi îmbunătățiri
 
-* Dimensiunea versiunii aplicației a fost redusă la jumătate pentru descărcări mai rapide și utilizare mai mică a stocării.
+* Stabilitate mai bună: Corectate blocarile neașteptate la butonul Înapoi sau la finalizarea unui videoclip.
+* Reparație cameră: Rezolvat problemă dacă permisiunea camerei nu era acordată.
+* Diagnostică îmbunătățită: Adăugată diagnostică suplimentară la pornire pentru rezolvarea problemelor mai rapid pe Windows.
