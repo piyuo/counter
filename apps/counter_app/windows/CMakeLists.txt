@@ -1,4 +1,5 @@
-# Project-level configuration.
+# windows/CMakeLists.txt
+
 cmake_minimum_required(VERSION 3.14)
 project(counter LANGUAGES CXX)
 
@@ -34,19 +35,27 @@ set(CMAKE_CXX_FLAGS_PROFILE "${CMAKE_CXX_FLAGS_RELEASE}")
 # Use Unicode for all projects.
 add_definitions(-DUNICODE -D_UNICODE)
 
-# Compilation settings that should be applied to most targets.
-#
-# Be cautious about adding new options here, as plugins use this function by
-# default. In most cases, you should add new options to specific targets instead
-# of modifying this function.
 function(APPLY_STANDARD_SETTINGS TARGET)
   target_compile_features(${TARGET} PUBLIC cxx_std_17)
 
-  # ingore warning as error /WX
   target_compile_options(${TARGET} PRIVATE /W4 /wd"4100")
   target_compile_options(${TARGET} PRIVATE /EHsc)
   target_compile_definitions(${TARGET} PRIVATE "_HAS_EXCEPTIONS=0")
   target_compile_options(${TARGET} PRIVATE /MD)
+
+  # Generate PDB files for Release/Profile builds.
+  # The binaries remain optimized Release/Profile builds.
+  if(MSVC)
+    target_compile_options(${TARGET} PRIVATE
+      $<$<CONFIG:Release>:/Zi>
+      $<$<CONFIG:Profile>:/Zi>
+    )
+
+    target_link_options(${TARGET} PRIVATE
+      $<$<CONFIG:Release>:/DEBUG>
+      $<$<CONFIG:Profile>:/DEBUG>
+    )
+  endif()
 endfunction()
 
 # Flutter library and tool build rules.

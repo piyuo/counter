@@ -105,7 +105,6 @@ msix_config:
   identity_name: ChienChihLiu.PiyuoCounter
   publisher: CN=4E0B764E-190D-4BDE-B39C-9A76760C7B84
   publisher_display_name: Chien Chih Liu
-  #msix_version: 1.3.0.0 - disable to use version on top
   display_name: Piyuo Counter
   logo_path: assets/icon/icon.png
   capabilities: internetClient, webcam

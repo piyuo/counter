@@ -1,0 +1,1 @@
+Using get_meta.sh to get meta from our submission, and then we cen update the release notes and update back
