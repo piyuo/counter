@@ -63,6 +63,7 @@
         "libui",
         "module",
         "msix",
+        "msstore",
         "multipart",
         "myapp",
         "navs",

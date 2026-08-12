@@ -1,5 +1,18 @@
 {
-  "Id": "1152921505701573419",
+  "Id": "1152921505701635660",
+  "ApplicationCategory": "Productivity",
+  "Pricing": {
+    "TrialPeriod": "NoFreeTrial",
+    "MarketSpecificPricings": {
+      "LB": "NotAvailable",
+      "EH": "NotAvailable"
+    },
+    "PriceId": "Free",
+    "IsAdvancedPricingModel": true
+  },
+  "Visibility": "Public",
+  "TargetPublishMode": "Immediate",
+  "TargetPublishDate": "1601-01-01T00:00:00Z",
   "Listings": {
     "en-us": {
       "BaseListing": {
@@ -12,18 +25,1882 @@
           "CCTV People Counter",
           "Video Analytics Tool"
         ],
-        "Description": "Piyuo Counter is an innovative pedestrian detection application designed for users who need accurate foot traffic monitoring. Using advanced AI object detection and tracking technology, this app provides precise counting of pedestrians in various environments without requiring internet connectivity.\n\nWhether you're a business owner researching potential store locations, an urban planner studying movement patterns, or a researcher collecting data, Piyuo Counter delivers consistent and reliable people counting through your device's GPU/NPU processing power.\n\nSimply connect a webcam, use a live stream URL, or upload video files as your source. The intuitive interface makes pedestrian counting accessible to everyone - just position your camera, start the detection, and let the AI do the counting for you.\n\nEliminate the inconsistencies of manual counting methods with Piyuo Counter's standardized AI detection model. Ideal for retail entrepreneurs evaluating locations, urban planners analyzing traffic patterns, or anyone needing accurate pedestrian flow metrics.\n\nPiyuo Counter transforms complex computer vision technology into an easy-to-use tool for all your people counting needs.",
-        "Features": [
-          "Real-time pedestrian detection and counting using advanced AI models",
-          "Additional detection capabilities for vehicles and bicycles",
-          "Offline operation - no internet connection required for image recognition",
-          "Flexible input options: webcam, RTSP streaming, or network cameras",
-          "ible input options: webcam, RTSP streaming, or network cameras Continuous 24-hour monitoring with comprehensive data logging"
-        ],
+        "Description": "Piyuo Counter helps you understand foot traffic and vehicle activity with privacy-first, on-device AI.\n\nPlace a phone or camera where you want to monitor. Piyuo Counter detects people and vehicles, then creates anonymous traffic summaries including pass-bys, entries, exits, occupancy, and average stay time.\n\nPrivacy comes first. All AI processing happens on your device. Videos, images, and audio never leave your device. Piyuo Counter does not identify people or use facial recognition — it only analyzes movement patterns.\n\nFeatures\n\n• AI-powered pedestrian and vehicle counting\n• Anonymous traffic insights with 5-minute summaries\n• Works without internet connection\n• Local Device Only mode with no uploads\n• Designed for continuous 24/7 monitoring\n\nPerfect for retail stores, offices, restaurants, exhibitions, and public spaces.",
+        "Features": [],
         "ReleaseNotes": "",
-        "ShortDescription": "Your offline AI pedestrian counting expert. Get accurate foot traffic data without internet. Detects people, vehicles, bikes via webcams, streams, files. Easy analysis for business & planning."
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597010",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597057",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026595564",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597105",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597058",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597148",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597226",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597071",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "Your offline AI pedestrian counting expert. Get accurate foot traffic data without internet. Detects people, vehicles, bikes via webcams, streams, files. Easy analysis for business & planning.",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "zh-hans": {
+      "BaseListing": {
+        "Keywords": [
+          "人流量统计工具",
+          "商铺选址分析工具",
+          "行人计数器",
+          "AI识别",
+          "客流分析",
+          "视频监控计数",
+          "物体检测"
+        ],
+        "Description": "Piyuo Counter 通过隐私优先、设备端 AI 帮助您理解行人流量和车辆活动。\n\n放置手机或摄像头在监控位置。Piyuo Counter 检测行人和车辆，生成匿名流量摘要，包括经过次数、出入人数、占用率和平均停留时间。\n\n隐私至上。所有 AI 处理均在设备上进行。视频、图像和音频绝不离开您的设备。Piyuo Counter 不进行人脸识别，仅分析运动模式。\n\n功能\n\n• 由 AI 驱动的行人和车辆计数\n• 匿名流量分析，5 分钟摘要更新\n• 无需互联网连接即可工作\n• 本地设备专用模式，无上传数据\n• 设计用于全天候 24/7 监控\n\n适用于零售店、办公室、餐厅、展览和公共场所。",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596941",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596942",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597310",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597311",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597312",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597313",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597314",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596735",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "zh-hant": {
+      "BaseListing": {
+        "Keywords": [
+          "人流量統計工具",
+          "AI 行人偵測軟體",
+          "客流量分析系統",
+          "智慧影像監控計數",
+          "商店選址分析工具",
+          "離線人數統計軟體",
+          "即時行人計數應用"
+        ],
+        "Description": "Piyuo Counter 讓您透過隱私優先、裝置端 AI 了解行人流量和車輛活動。\n\n放置手機或攝像頭監控所需位置。Piyuo Counter 偵測人員和車輛，產生匿名流量摘要，包含經過次數、進出人數、佔用率和平均停留時間。\n\n隱私第一。所有 AI 處理均在裝置上進行。影片、圖像和音訊絕不離開您的裝置。Piyuo Counter 不會辨識人臉，僅分析移動模式。\n\n功能\n\n• 由 AI 驅動的行人和車輛計數\n• 匿名流量分析，5 分鐘摘要更新\n• 無須網際網路連線即可運作\n• 本機裝置專用模式，不上傳資料\n• 設計用於全天候 24/7 監控\n\n適用於零售店、辦公室、餐廳、展覽和公共場所。",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596736",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597315",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597316",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596737",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596057",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597349",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596058",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596738",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ar": {
+      "BaseListing": {
+        "Keywords": [
+          "عداد المشاة الذكي",
+          "تحليل حركة المرور",
+          "عد الأشخاص آليًا",
+          "كاميرات المراقبة والإحصاء",
+          "تحليل مواقع المتاجر",
+          "إحصاء الزوار",
+          "تقنية الذكاء الاصطناعي للعد"
+        ],
+        "Description": "يساعدك Piyuo Counter على فهم حركة المشاة والمركبات باستخدام الذكاء الاصطناعي على الجهاز مع إعطاء الأولوية للخصوصية.\n\nضع هاتفاً أو كاميرا في المكان الذي تريد مراقبته. يكتشف Piyuo Counter الأشخاص والمركبات، ثم ينشئ ملخصات حركة مرور مجهولة الهوية تتضمن المرور والدخول والخروج والإشغال ومتوسط مدة الإقامة.\n\nالخصوصية أولاً. تتم معالجة الذكاء الاصطناعي بالكامل على جهازك. لا تترك مقاطع الفيديو والصور والصوت أبداً جهازك. لا يحدد Piyuo Counter الأشخاص ولا يستخدم التعرف على الوجه — فهو يحلل فقط أنماط الحركة.\n\nالميزات\n\n• عد المشاة والمركبات بقوة الذكاء الاصطناعي\n• رؤى حركة المرور المجهولة مع ملخصات كل 5 دقائق\n• يعمل بدون اتصال بالإنترنت\n• وضع الجهاز المحلي فقط بدون تحميلات\n• مصمم للمراقبة المستمرة 24/7\n\nمثالي للمتاجر والمكاتب والمطاعم والمعارض والأماكن العامة.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597237",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597299",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597300",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597301",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596939",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596940",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597302",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597303",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "nl": {
+      "BaseListing": {
+        "Keywords": [
+          "Voetgangerstelling AI",
+          "Personenteller Applicatie",
+          "Voetgangersstroomanalyse",
+          "Slimme Bezoekerstelling",
+          "Winkellocatie Analyse",
+          "Voetgangersdetectie Software",
+          "AI Tellingssysteem"
+        ],
+        "Description": "Piyuo Counter helpt u voetgangers- en voertuigverkeer te begrijpen met privacy-gerichte, apparaatgebaseerde AI.\n\nPlaats een telefoon of camera waar u wilt bewaken. Piyuo Counter detecteert mensen en voertuigen en maakt anonieme verkeerssamenvattingen inclusief passages, in- en uitgangen, bezetting en gemiddelde verblijftijd.\n\nPrivacy gaat eerst. Alle AI-verwerking vindt plaats op uw apparaat. Video's, afbeeldingen en audio verlaten uw apparaat nooit. Piyuo Counter herkent geen gezichten en analyseert alleen bewegingspatronen.\n\nFuncties\n\n• AI-aangedreven voetgangers- en voertuigtellingen\n• Anoniem verkeersinsicht met 5-minuutsamenvattingen\n• Werkt zonder internetverbinding\n• Alleen lokale apparaatmodus, geen uploads\n• Ontworpen voor continue 24/7-bewaking\n\nPerfect voor winkels, kantoren, restaurants, tentoonstellingen en openbare ruimtes.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596739",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596740",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597261",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597262",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597263",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596741",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596742",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596743",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "fr": {
+      "BaseListing": {
+        "Keywords": [
+          "Compteur piétons IA",
+          "Appli comptage personnes",
+          "Analyse flux piétons",
+          "Détection objets IA",
+          "Analyse emplacement magasin",
+          "Compteur personnes CCTV",
+          "Outil analyse vidéo"
+        ],
+        "Description": "Piyuo Counter vous aide à comprendre le trafic piétonnier et routier avec une IA privilégiant la confidentialité et fonctionnant localement.\n\nPlacez un téléphone ou une caméra à l'endroit à surveiller. Piyuo Counter détecte les personnes et les véhicules, puis crée des résumés anonymes du trafic incluant les passages, les entrées, les sorties, l'occupation et le temps de séjour moyen.\n\nLa confidentialité d'abord. Tout le traitement par IA se fait sur votre appareil. Les vidéos, images et audio ne quittent jamais votre appareil. Piyuo Counter n'identifie pas les visages et analyse uniquement les motifs de mouvement.\n\nCaractéristiques\n\n• Comptage des piétons et véhicules par IA\n• Analyses de trafic anonymes résumées toutes les 5 minutes\n• Fonctionne sans connexion Internet\n• Mode appareil local uniquement, sans partage de données\n• Conçu pour surveillance continue 24/7\n\nIdéal pour les magasins, bureaux, restaurants, expositions et espaces publics.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597264",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597379",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596745",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597350",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596746",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596747",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597238",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597239",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "de": {
+      "BaseListing": {
+        "Keywords": [
+          "Passantenzähler KI",
+          "Personenzähler App",
+          "Besucherfrequenz",
+          "KI Objekterkennung",
+          "Standortanalyse Einzelhandel",
+          "Video Überwachung Zähler",
+          "Videoanalyse Tool"
+        ],
+        "Description": "Piyuo Counter hilft Ihnen, Fußgänger- und Fahrzeugverkehr mit datenschutzorientierter KI auf dem Gerät zu verstehen.\n\nPlatzieren Sie ein Smartphone oder eine Kamera zur Überwachung. Piyuo Counter erkennt Personen und Fahrzeuge und erstellt anonyme Verkehrszusammenfassungen mit Vorbeigang, Ein- und Ausfahrten, Auslastung und durchschnittlicher Verweildauer.\n\nDatenschutz geht vor. Die gesamte KI-Verarbeitung erfolgt auf Ihrem Gerät. Videos, Bilder und Audio verlassen Ihr Gerät nicht. Piyuo Counter erkennt keine Gesichter und analysiert nur Bewegungsmuster.\n\nFunktionen\n\n• KI-gesteuerte Fußgänger- und Fahrzeugzählung\n• Anonyme Verkehrseinsichten in 5-Minuten-Zusammenfassungen\n• Funktioniert ohne Internetverbindung\n• Reiner Modus für lokale Geräte ohne Uploads\n• Konzipiert für 24/7 kontinuierliche Überwachung\n\nIdeal für Einzelhandelsgeschäfte, Büros, Restaurants, Ausstellungen und öffentliche Räume.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597351",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597352",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597380",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597353",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597240",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597381",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597354",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597355",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "el": {
+      "BaseListing": {
+        "Keywords": [
+          "μετρητής πεζών AI",
+          "καταμέτρηση ατόμων",
+          "ανάλυση πεζών",
+          "ανίχνευση AI",
+          "ανάλυση λιανικής",
+          "καταμέτρηση κάμερας",
+          "εργαλείο βίντεο"
+        ],
+        "Description": "Το Piyuo Counter σας βοηθά να κατανοήσετε την κίνηση πεζών και οχημάτων με τεχνητή νοημοσύνη στη συσκευή που δίνει προτεραιότητα στην ιδιωτικότητα.\n\nΤοποθετήστε ένα τηλέφωνο ή κάμερα όπου θέλετε να παρακολουθείτε. Το Piyuo Counter ανιχνεύει ανθρώπους και οχήματα, στη συνέχεια δημιουργεί ανώνυμες περιλήψεις κυκλοφορίας, συμπεριλαμβανομένων διακοπών, εισόδων, εξόδων, κατάληψης και μέσου χρόνου παραμονής.\n\nΗ ιδιωτικότητα πρώτα. Όλη η επεξεργασία τεχνητής νοημοσύνης γίνεται στη συσκευή σας. Τα βίντεο, οι εικόνες και το ήχο δεν φεύγουν ποτέ από τη συσκευή σας. Το Piyuo Counter δεν αναγνωρίζει πρόσωπα και χρησιμοποιεί μόνο ανάλυση προτύπων κίνησης.\n\nΧαρακτηριστικά\n\n• Μέτρηση πεζών και οχημάτων με τεχνητή νοημοσύνη\n• Ανώνυμες πληροφορίες κυκλοφορίας με περιλήψεις 5 λεπτών\n• Λειτουργεί χωρίς σύνδεση στο Διαδίκτυο\n• Μόνο τοπική λειτουργία συσκευής χωρίς μεταφόρτωση\n• Σχεδιασμένο για συνεχή παρακολούθηση 24/7\n\nΙδανικό για καταστήματα λιανικής, γραφεία, εστιατόρια, εκθέσεις και δημόσιους χώρους.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597356",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597357",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597358",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597382",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597359",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597383",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597384",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597360",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "he": {
+      "BaseListing": {
+        "Keywords": [
+          "ספירת הולכי רגל AI",
+          "אפליקציית ספירת אנשים",
+          "ניתוח תנועת קונים",
+          "זיהוי אובייקטים AI",
+          "ניתוח מיקום חנות",
+          "ספירת אנשים CCTV"
+        ],
+        "Description": "Piyuo Counter עוזר לך להבין תנועת הולכי רגל וכלי רכב עם בינה מלאכותית על ההתקן עם עדיפות לפרטיות.\n\nהנח טלפון או מצלמה במקום שברצונך לנטר. Piyuo Counter מגלה אנשים וכלי רכב, ואז יוצר סיכומי תנועה אנונימיים הכוללים מעברים, כניסות, יציאות, תפוסה וממוצע זמן שהייה.\n\nהפרטיות קודמת. כל עיבוד בינה מלאכותית מתרחש בהתקן שלך. וידאו, תמונות וקול לעולם אינם משאירים את ההתקן שלך. Piyuo Counter אינו מזהה אנשים ואינו משתמש בהכרה פנים — הוא רק מנתח דפוסי תנועה.\n\nתכונות\n\n• ספירת הולכי רגל וכלי רכב מונעת בינה מלאכותית\n• תובנות תנועה אנונימיות עם סיכומים כל 5 דקות\n• עובד ללא חיבור אינטרנט\n• מצב התקן מקומי בלבד ללא העלאות\n• עוצב לניטור מתמשך 24/7\n\nמושלם לחנויות קמעוניות, משרדים, מסעדות, תערוכות ומרחבים ציבוריים.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597385",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597386",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597361",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597241",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597362",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597242",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597387",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597243",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "hu": {
+      "BaseListing": {
+        "Keywords": [
+          "Gyalogos számláló",
+          "AI alapú számlálás",
+          "Forgalom elemzés",
+          "Kamerás számlálás",
+          "Üzlet forgalom",
+          "Objektum érzékelés",
+          "AI megfigyelés"
+        ],
+        "Description": "A Piyuo Counter segít megérteni a gyalogos és járműforgalmat az adatvédelmet előtérbe helyező, eszközön futó mesterséges intelligencia segítségével.\n\nHelyezzen el egy telefont vagy kamerát a monitorozni kívánt helyen. A Piyuo Counter érzékeli az embereket és a járműveket, majd anonim forgalmi összefoglalókat hoz létre, beleértve az áthaladásokat, bejutásokat, kijutásokat, foglaltságot és átlagos tartózkodási időt.\n\nAz adatvédelem az első. Az összes mesterséges intelligencia feldolgozás az eszközön történik. A videók, képek és hang soha nem hagyják el az eszközt. A Piyuo Counter nem azonosít személyeket és nem használ arcfelismerést — csak a mozgási mintákat elemzi.\n\nJellemzők\n\n• Mesterséges intelligencia által működtetett gyalogos és járműszámlálás\n• Anonim forgalmi adatok 5 perces összefoglalóval\n• Internetkapcsolat nélkül működik\n• Csak helyi eszköz mód, feltöltés nélkül\n• 24/7 folyamatos felügyelethez tervezve\n\nIdeális kiskereskedelmi üzletekhez, irodákhoz, éttermekhez, kiállításokhoz és közterületekhez.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597244",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597245",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597388",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597363",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597389",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597246",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597247",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597265",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ru": {
+      "BaseListing": {
+        "Keywords": [
+          "Счетчик пешеходов ИИ",
+          "Подсчет посетителей",
+          "Анализ пешеходного потока",
+          "Видеоаналитика трафика",
+          "Распознавание объектов",
+          "Мониторинг проходимости",
+          "Бизнес-аналитика"
+        ],
+        "Description": "Piyuo Counter помогает вам понять пешеходный и транспортный трафик с помощью ИИ на устройстве с приоритетом конфиденциальности.\n\nПоместите телефон или камеру в место мониторинга. Piyuo Counter распознает людей и транспортные средства, создавая анонимные сводки трафика, включая проходы, входы, выходы, занятость и среднее время пребывания.\n\nКонфиденциальность в приоритете. Вся обработка ИИ происходит на вашем устройстве. Видео, изображения и аудио никогда не покидают ваше устройство. Piyuo Counter не идентифицирует лица, а только анализирует паттерны движения.\n\nВозможности\n\n• Подсчет пешеходов и транспорта на основе ИИ\n• Анонимная аналитика трафика с резюме каждые 5 минут\n• Работает без подключения к Интернету\n• Режим только локального устройства без загрузок\n• Разработан для круглосуточного мониторинга 24/7\n\nИдеально для розничных магазинов, офисов, ресторанов, выставок и общественных мест.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597375",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597376",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597397",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597398",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596694",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596921",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596695",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596922",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "vi": {
+      "BaseListing": {
+        "Keywords": [
+          "Dem nguoi AI",
+          "Ung dung dem luu luong",
+          "Phan tich giao thong chan",
+          "Phan tich cua hang"
+        ],
+        "Description": "Piyuo Counter giúp bạn hiểu lưu lượng người bộ hành và hoạt động phương tiện với AI trên thiết bị ưu tiên riêng tư.\n\nĐặt điện thoại hoặc camera nơi bạn muốn giám sát. Piyuo Counter phát hiện người và phương tiện, tạo tóm tắt lưu lượng ẩn danh bao gồm đi qua, vào, ra, tỷ lệ chiếm dụng và thời gian lưu lại trung bình.\n\nRiêng tư là tiên phong. Tất cả xử lý AI diễn ra trên thiết bị của bạn. Video, hình ảnh và âm thanh không bao giờ rời khỏi thiết bị của bạn. Piyuo Counter không nhận dạng khuôn mặt, chỉ phân tích các mô hình chuyển động.\n\nTính năng\n\n• Đếm người bộ hành và phương tiện do AI hỗ trợ\n• Thông tin lưu lượng ẩn danh với tóm tắt 5 phút\n• Hoạt động mà không cần kết nối Internet\n• Chế độ thiết bị cục bộ chỉ có, không tải lên\n• Được thiết kế để giám sát liên tục 24/7\n\nHoàn hảo cho các cửa hàng bán lẻ, văn phòng, nhà hàng, triển lãm và không gian công cộng.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597072",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597511",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596710",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597512",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597074",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597075",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597590",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597253",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "id": {
+      "BaseListing": {
+        "Keywords": [
+          "Penghitung Pejalan Kaki AI",
+          "Aplikasi Hitung Pengunjung",
+          "Analisis Lalu Lintas Toko",
+          "Deteksi Objek Pintar",
+          "Alat Analisis Video CCTV",
+          "Monitor Keramaian Toko"
+        ],
+        "Description": "Piyuo Counter membantu Anda memahami lalu lintas pejalan kaki dan kendaraan dengan AI perangkat yang memprioritaskan privasi.\n\nLetakkan telepon atau kamera di lokasi yang ingin Anda pantau. Piyuo Counter mendeteksi orang dan kendaraan, kemudian membuat ringkasan lalu lintas anonim termasuk lewatan, masuk, keluar, okupansi, dan waktu tinggal rata-rata.\n\nPrivasi didahulukan. Semua pemrosesan AI terjadi di perangkat Anda. Video, gambar, dan audio tidak pernah meninggalkan perangkat Anda. Piyuo Counter tidak mengidentifikasi wajah, hanya menganalisis pola gerakan.\n\nFitur\n\n• Penghitungan pejalan kaki dan kendaraan bertenaga AI\n• Wawasan lalu lintas anonim dengan ringkasan 5 menit\n• Bekerja tanpa koneksi Internet\n• Mode perangkat lokal saja tanpa unggahan\n• Dirancang untuk pemantauan berkelanjutan 24/7\n\nSempurna untuk toko retail, kantor, restoran, pameran, dan ruang publik.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597248",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597249",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597364",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597250",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597365",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597366",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596943",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596944",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "it": {
+      "BaseListing": {
+        "Keywords": [
+          "Contapersone Intelligente",
+          "Analisi Flusso Pedonale",
+          "Conteggio Automatico Pedoni",
+          "Rilevamento IA Negozio",
+          "Monitoraggio Traffico Pedonale",
+          "Analisi Video Pedoni",
+          "Contatore Video Intelligente"
+        ],
+        "Description": "Piyuo Counter ti aiuta a comprendere il traffico pedonale e veicolare con IA privata e sul dispositivo.\n\nPosiziona un telefono o una fotocamera dove desideri monitorare. Piyuo Counter rileva persone e veicoli, creando riepiloghi traffico anonimi che includono passaggi, ingressi, uscite, occupazione e tempo medio di permanenza.\n\nLa privacy è la priorità. Tutto l'elaborazione IA avviene sul tuo dispositivo. Video, immagini e audio non lasciano mai il tuo dispositivo. Piyuo Counter non identifica volti e analizza solo i pattern di movimento.\n\nCaratteristiche\n\n• Conteggio pedonale e veicolare tramite IA\n• Analisi traffico anonime con riepiloghi ogni 5 minuti\n• Funziona senza connessione Internet\n• Modalità solo dispositivo locale senza upload\n• Progettato per monitoraggio continuo 24/7\n\nPerfetto per negozi, uffici, ristoranti, mostre e spazi pubblici.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596945",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597320",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597321",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596946",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597323",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597324",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597325",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596947",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ja": {
+      "BaseListing": {
+        "Keywords": [
+          "人流カウントアプリ",
+          "AI歩行者検知",
+          "通行量分析ツール",
+          "店舗立地調査",
+          "防犯カメラ人数計測",
+          "リアルタイム人数カウント",
+          "オフライン画像解析"
+        ],
+        "Description": "Piyuo Counter は、プライバシーファースト・デバイスベースの AI で、歩行者と車両の流れを把握するのに役立ちます。\n\n監視したい場所にスマートフォンまたはカメラを設置 します。Piyuo Counter が人と車を検出し、通過、進入、出口、占有率、平均滞在時間を含む匿名のトラフィックサマリーを作成します。\n\nプライバシーが最優先。すべての AI 処理はデバイス上で行われます。動画、画像、音声はデバイスから出ません。Piyuo Counter は顔認識を使用せず、動きのパターンのみ分析します。\n\n機能\n\n• AI 対応の歩行者・車両計数\n• 5 分単位の匿名トラフィック分析\n• インターネット接続なしで動作\n• ローカルデバイスのみモード、アップロードなし\n• 24/7 連続監視用に設計\n\n小売店、オフィス、レストラン、展示会、公共スペースに最適。",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596948",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596949",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597326",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596952",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597327",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597328",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597329",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596953",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ko": {
+      "BaseListing": {
+        "Keywords": [
+          "유동인구 분석기",
+          "AI 보행자 카운팅",
+          "매장 위치 분석 도구",
+          "CCTV 인원수 측정",
+          "실시간 교통량 모니터링",
+          "오프라인 영상분석",
+          "스마트 카운터 앱"
+        ],
+        "Description": "Piyuo Counter는 프라이버시 우선의 온디바이스 AI로 보행자 및 차량 통행량을 파악하는 데 도움이 됩니다.\n\n모니터링할 위치에 스마트폰 또는 카메라를 배치합니다. Piyuo Counter는 사람과 차량을 감지하고 통과, 진입, 퇴출, 점유율 및 평균 체류 시간을 포함한 익명 트래픽 요약을 생성합니다.\n\n프라이버시가 최우선입니다. 모든 AI 처리는 기기에서 이루어집니다. 동영상, 이미지 및 오디오는 기기를 떠나지 않습니다. Piyuo Counter는 얼굴 인식을 사용하지 않으며 동작 패턴만 분석합니다.\n\n기능\n\n• AI 기반 보행자 및 차량 계수\n• 5분 단위 익명 트래픽 통계\n• 인터넷 연결 없이 작동\n• 로컬 기기 전용 모드, 업로드 없음\n• 24/7 연속 모니터링용 설계\n\n소매점, 사무실, 식당, 전시회, 공공장소에 최적입니다.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596954",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596955",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597330",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597331",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597332",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597335",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597336",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597337",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ms": {
+      "BaseListing": {
+        "Keywords": [
+          "Pengira Orang AI",
+          "Aplikasi Kira Pejalan Kaki",
+          "Analisis Trafik Kedai",
+          "Pengesanan Objek AI",
+          "Kira Pelanggan Premis",
+          "Pemantau CCTV",
+          "Alat Analisis Video"
+        ],
+        "Description": "Piyuo Counter membantu anda memahami aliran pejalan kaki dan aktiviti kenderaan dengan AI pada peranti yang mengutamakan privasi.\n\nLetakkan telefon atau kamera di lokasi yang ingin anda pantau. Piyuo Counter mengesan orang dan kenderaan, kemudian mencipta ringkasan trafik tanpa nama termasuk lintasan, masuk, keluar, penghunian, dan purata masa tinggal.\n\nPrivasi dahulu. Semua pemprosesan AI berlaku di peranti anda. Video, imej dan audio tidak pernah meninggalkan peranti anda. Piyuo Counter tidak mengenal pasti wajah, hanya menganalisis corak pergerakan.\n\nCiri-ciri\n\n• Penghitungan pejalan kaki dan kenderaan yang dikuasai AI\n• Pandangan trafik tanpa nama dengan ringkasan 5 minit\n• Berfungsi tanpa sambungan Internet\n• Mod peranti tempatan sahaja tanpa muat naik\n• Dirancang untuk pemantauan berterusan 24/7\n\nSempurna untuk kedai ritel, pejabat, restoran, pameran dan ruang awam.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596958",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597338",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597339",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597340",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597341",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597439",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597390",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597342",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "pl": {
+      "BaseListing": {
+        "Keywords": [
+          "Licznik Pieszych AI",
+          "Analiza Ruchu Pieszych",
+          "Wykrywanie Osób AI",
+          "Monitoring Klientów",
+          "Analiza Lokalizacji Sklepu",
+          "Liczenie Osób Kamera",
+          "Analityka Wideo"
+        ],
+        "Description": "Piyuo Counter pomaga Ci zrozumieć ruch pieszych i pojazdów za pomocą sztucznej inteligencji działającej na urządzeniu z priorytetem prywatności.\n\nUmieść telefon lub kamerę w miejscu, które chcesz monitorować. Piyuo Counter wykrywa osoby i pojazdy, a następnie tworzy anonimowe podsumowania ruchu obejmujące przejścia, wejścia, wyjścia, zajętość i średni czas pobytu.\n\nPrywatność przede wszystkim. Całe przetwarzanie AI odbywa się na Twoim urządzeniu. Filmy wideo, obrazy i dźwięk nigdy nie opuszczają Twojego urządzenia. Piyuo Counter nie rozpoznaje twarzy, a jedynie analizuje wzorce ruchu.\n\nFunkcje\n\n• Liczenie pieszych i pojazdów zasilane sztuczną inteligencją\n• Anonimowe wglądy w ruch z podsumowaniami co 5 minut\n• Działa bez połączenia z Internetem\n• Tryb tylko urządzenia lokalnego bez przesyłania\n• Zaprojektowany do ciągłego monitorowania 24/7\n\nIdealne dla sklepów detalicznych, biur, restauracji, wystaw i przestrzeni publicznych.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597391",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597343",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597392",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596691",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597393",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597344",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597394",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597345",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "pt-br": {
+      "BaseListing": {
+        "Keywords": [
+          "Contador de Pedestres IA",
+          "Análise de Fluxo de Pessoas",
+          "Contagem Inteligente Varejo",
+          "IA Detecção de Objetos",
+          "Análise de Tráfego Loja"
+        ],
+        "Description": "Piyuo Counter ajuda você a entender o fluxo de pedestres e veículos com IA no dispositivo e privacidade em primeiro lugar.\n\nColoque um telefone ou câmera onde deseja monitorar. Piyuo Counter detecta pessoas e veículos, gerando resumos anônimos de tráfego incluindo passagens, entradas, saídas, ocupação e tempo médio de permanência.\n\nPrivacidade em primeiro lugar. Todo processamento de IA ocorre no seu dispositivo. Vídeos, imagens e áudio nunca saem do seu dispositivo. Piyuo Counter não identifica pessoas nem usa reconhecimento facial — apenas analisa padrões de movimento.\n\nRecursos\n\n• Contagem de pedestres e veículos por IA\n• Análises de tráfego anônimas com resumos a cada 5 minutos\n• Funciona sem conexão com Internet\n• Modo apenas dispositivo local sem uploads\n• Projetado para monitoramento contínuo 24/7\n\nPerfeito para lojas, escritórios, restaurantes, exposições e espaços públicos.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597346",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597395",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597347",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597396",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597348",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597469",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597440",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597441",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "ro": {
+      "BaseListing": {
+        "Keywords": [
+          "Numărare Pietoni Inteligență Artificială",
+          "Aplicație Monitorizare Trafic",
+          "Analiză Flux Pietonal",
+          "Detector Persoane AI",
+          "Analiză Locație Retail",
+          "Numărător Digital Pietoni"
+        ],
+        "Description": "Piyuo Counter vă ajută să înțelegeți traficul de pietoni și vehicule cu IA pe dispozitiv care prioritizează confidențialitatea.\n\nPlasați un telefon sau o cameră unde doriți să monitorizați. Piyuo Counter detectează persoane și vehicule, creând rezumate de trafic anonime inclusiv treceri, intrări, ieșiri, ocupare și timp mediu de ședere.\n\nConfidențialitatea este prioritară. Toată procesarea IA se întâmplă pe dispozitivul dvs. Videoclipuri, imagini și audio nu părăsesc niciodată dispozitivul dvs. Piyuo Counter nu identifică oameni și nu utilizează recunoașterea facială — doar analizează modelele de mișcare.\n\nCaracteristici\n\n• Numărare pietoni și vehicule bazată pe IA\n• Informații anonime de trafic cu rezumate la 5 minute\n• Funcționează fără conexiune la Internet\n• Modul doar dispozitiv local fără încărcări\n• Conceput pentru monitorizare continuă 24/7\n\nPerfect pentru magazine, birouri, restaurante, expoziții și spații publice.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597367",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597368",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597369",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597370",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597371",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597372",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597373",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597374",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "es-es": {
+      "BaseListing": {
+        "Keywords": [
+          "Contador Peatones IA",
+          "Conteo Personas App",
+          "Análisis Tráfico Peatonal",
+          "Detección Objetos IA",
+          "Flujo Peatonal",
+          "Contador CCTV",
+          "Analítica Vídeo"
+        ],
+        "Description": "Piyuo Counter te ayuda a entender el tráfico peatonal y vehicular con IA en dispositivo y enfoque en privacidad.\n\nColoca un teléfono o cámara en el lugar que deseas monitorear. Piyuo Counter detecta personas y vehículos, generando resúmenes anónimos de tráfico incluyendo pasadas, entradas, salidas, ocupación y tiempo promedio de permanencia.\n\nLa privacidad es lo primero. Todo el procesamiento de IA ocurre en tu dispositivo. Videos, imágenes y audio nunca salen de tu dispositivo. Piyuo Counter no identifica rostros, solo analiza patrones de movimiento.\n\nCaracterísticas\n\n• Conteo de peatones y vehículos impulsado por IA\n• Estadísticas anónimas de tráfico con resúmenes cada 5 minutos\n• Funciona sin conexión a Internet\n• Modo solo dispositivo local sin envíos de datos\n• Diseñado para monitoreo continuo 24/7\n\nPerfecto para tiendas, oficinas, restaurantes, exposiciones y espacios públicos.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596696",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597442",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596698",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597443",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596699",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596700",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597410",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596702",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "th": {
+      "BaseListing": {
+        "Keywords": [
+          "นับคนเดินเท้า",
+          "แอปนับคน",
+          "วิเคราะห์คนสัญจร",
+          "AI ตรวจจับวัตถุ",
+          "วิเคราะห์ทำเล",
+          "นับคน CCTV",
+          "วิเคราะห์วิดีโอ"
+        ],
+        "Description": "Piyuo Counter ช่วยให้คุณเข้าใจการจราจรของคนและรถยนต์ด้วย AI บนอุปกรณ์ที่มีลำดับความสำคัญด้านความเป็นส่วนตัว\n\nว างโทรศัพท์หรือกล้องที่ตำแหน่งที่คุณต้องการติดตามพฤติกรรม Piyuo Counter ตรวจสอบคนและรถยนต์ จากนั้นสร้างสรุปการจราจรแบบไม่ระบุตัวตนที่รวมถึงการผ่านไป การเข้า ออก อัตราการครอบครอง และระยะเวลาเฉลี่ย\n\nความเป็นส่วนตัวมาก่อน การประมวลผล AI ทั้งหมดเกิดขึ้นบนอุปกรณ์ของคุณ วิดีโอ รูปภาพ และเสียงไม่เคยออกจากอุปกรณ์ Piyuo Counter ไม่สามารถระบุตัวตนของบุคคล และวิเคราะห์เฉพาะรูปแบบการเคลื่อนไหวเท่านั้น\n\nลักษ ณะเด่น\n\n• การนับคนและรถยนต์ด้วย AI\n• สรุปการจราจรที่ไม่ระบุตัวตนทุก 5 นาที\n• ทำงานได้โดยไม่ต้องเชื่อมต่ออินเทอร์เน็ต\n• โหมดอุปกรณ์ท้องถิ่นเท่านั้นไม่มีการอัปโหลด\n• ออกแบบให้สำหรับการติดตามต่อเนื่อง 24/7\n\nเหมาะสำหรับร้านค้า สำนักงาน ร้านอาหาร นิทรรศการ และสถานที่สาธารณะ",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596757",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596758",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596706",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596759",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597405",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597406",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597407",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597529",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "tr": {
+      "BaseListing": {
+        "Keywords": [
+          "Yaya Sayacı",
+          "Kişi Sayma",
+          "Trafik Analizi",
+          "Yapay Zeka Algılama",
+          "Mağaza Konum Analizi",
+          "CCTV Sayıcı",
+          "Video Analizi"
+        ],
+        "Description": "Piyuo Counter, gizlilik-odaklı, cihaz üzerinde çalışan yapay zeka ile yaya ve araç trafiğini anlamanıza yardımcı olur.\n\nİzlemek istediğiniz yere bir telefon veya kamera yerleştirin. Piyuo Counter, insanları ve araçları algılayarak, geçişler, girişler, çıkışlar, işgal ve ortalama kalış süresi dahil anonim trafik özetleri oluşturur.\n\nGizlilik önceliklidir. Tüm yapay zeka işlemleri cihazınızda gerçekleşir. Videolar, görüntüler ve ses hiçbir zaman cihazınızdan ayrılmaz. Piyuo Counter yüz tanıması yapmaz, yalnızca hareket düzenlerini analiz eder.\n\nÖzellikler\n\n• Yapay zeka destekli yaya ve araç sayımı\n• 5 dakikalık özetlerle anonim trafik analizi\n• İnternet bağlantısı olmadan çalışır\n• Yalnızca yerel cihaz modu, yükleme yok\n• Sürekli 24/7 izleme için tasarlandı\n\nPerakende mağazaları, ofisler, restoranlar, sergiler ve halka açık alanlar için ideal.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596923",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597500",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597501",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597502",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597266",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597267",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597268",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597251",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
+      },
+      "PlatformOverrides": {}
+    },
+    "uk": {
+      "BaseListing": {
+        "Keywords": [
+          "пішохідний лічильник",
+          "лічильник людей",
+          "підрахунок відвідувачів",
+          "відеоаналітика",
+          "виявлення ШІ",
+          "підрахунок трафіку",
+          "аналіз локацій"
+        ],
+        "Description": "Piyuo Counter допомагає вам розуміти пішохідний та транспортний трафік за допомогою ШІ на пристрої з пріоритетом конфіденційності.\n\nРозмістіть телефон або камеру в місці, де ви хочете здійснювати моніторинг. Piyuo Counter визначає людей і транспортні засоби, створюючи анонімні звіти про трафік, включаючи проходи, входи, виходи, заповненість та середній час перебування.\n\nКонфіденційність - на першому місці. Вся обробка ШІ відбувається на вашому пристрої. Відео, зображення та аудіо ніколи не залишають ваш пристрій. Piyuo Counter не ідентифікує людей та не використовує розпізнавання обличчя — лише аналізує закономірності руху.\n\nФункції\n\n• Підрахунок пішоходів і транспортних засобів на основі ШІ\n• Анонімна аналітика трафіку з резюме кожні 5 хвилин\n• Працює без підключення до Інтернету\n• Режим тільки локального пристрою без завантаження\n• Розроблено для безперервного моніторингу 24/7\n\nІдеально для магазинів, офісів, ресторанів, виставок та громадських місць.",
+        "Features": [],
+        "ReleaseNotes": "",
+        "Images": [
+          {
+            "FileName": "a.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596926",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "b.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597505",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "c.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596928",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "d.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597508",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "e.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596707",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "f.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597559",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "g.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026596708",
+            "ImageType": "Screenshot"
+          },
+          {
+            "FileName": "h.png",
+            "FileStatus": "Uploaded",
+            "Id": "1152922700026597510",
+            "ImageType": "Screenshot"
+          }
+        ],
+        "RecommendedHardware": [],
+        "MinimumHardware": [],
+        "Title": "Piyuo Counter",
+        "LicenseTerms": "https://piyuo.com/terms/",
+        "CopyrightAndTrademarkInfo": "2026 Chien-Chih Liu",
+        "ShortDescription": "",
+        "ShortTitle": "",
+        "VoiceTitle": "",
+        "DevStudio": "https://piyuo.com"
       },
       "PlatformOverrides": {}
     }
-  }
+  },
+  "HardwarePreferences": [],
+  "AutomaticBackupEnabled": true,
+  "CanInstallOnRemovableMedia": true,
+  "IsGameDvrEnabled": false,
+  "GamingOptions": [
+    {
+      "Genres": [],
+      "IsLocalMultiplayer": false,
+      "IsLocalCooperative": false,
+      "IsOnlineMultiplayer": false,
+      "IsOnlineCooperative": false,
+      "IsBroadcastingPrivilegeGranted": true,
+      "IsCrossPlayEnabled": false,
+      "KinectDataForExternal": "Disabled"
+    }
+  ],
+  "HasExternalInAppProducts": false,
+  "MeetAccessibilityGuidelines": false,
+  "NotesForCertification": "Hello Review Team,\n\nThis application does not require usernames or passwords and does not use background audio. It is a standalone app and does not depend on other products or services.\n\nThis app is designed for pedestrian counting and supports the following three input sources for testing:\n\n[Testing Webcam]\n\nLaunch the app.\nSelect \"Webcam\" as the source to use your computer's camera.\nThe app will automatically start detecting and counting pedestrians in the live feed.\n\n\n[Testing Live Stream URL Input]\n\nLaunch the app.\nSelect \"Live stream URL\" as the source.\nEnter the following URL: https://cdn-004.whatsupcams.com/hls/hr_pula06.m3u8\nThe app will automatically start detecting and counting pedestrians in the live stream.\n\n\n[Testing File Input]\nFirst, please download the demo video from the following link:\nhttps://piyuo.com/test/1.mp4\n\nLaunch the app.\nSelect \"File\" as the source.\nUse the file selection dialog to choose the downloaded \"1.mp4\" file.\nThe app will automatically start detecting and counting pedestrians in the video.\n\nThank you for your time and assistance with the review process.",
+  "Status": "Certification",
+  "StatusDetails": {
+    "Errors": [],
+    "Warnings": [
+      {
+        "Code": "SalesUnsupportedWarning",
+        "Details": "The sales resource is no longer supported. To view or edit the sales data for this submission, use the Dev Center dashboard."
+      }
+    ],
+    "CertificationReports": []
+  },
+  "FileUploadUrl": null,
+  "ApplicationPackages": [
+    {
+      "FileName": "counter_app.msix",
+      "FileStatus": "Uploaded",
+      "Id": "2000000000097124960",
+      "Version": "1.4.0.0",
+      "Architecture": "x64",
+      "Languages": [
+        "en-US"
+      ],
+      "Capabilities": [
+        "internetClient",
+        "Microsoft.storeFilter.core.notSupported_8wekyb3d8bbwe",
+        "runFullTrust",
+        "webcam"
+      ],
+      "MinimumDirectXVersion": "None",
+      "MinimumSystemRam": "None"
+    }
+  ],
+  "PackageDeliveryOptions": {
+    "PackageRollout": {
+      "IsPackageRollout": false,
+      "PackageRolloutPercentage": 0,
+      "PackageRolloutStatus": "PackageRolloutNotStarted",
+      "FallbackSubmissionId": "0"
+    },
+    "IsMandatoryUpdate": false,
+    "MandatoryUpdateEffectiveDate": "1601-01-01T00:00:00Z"
+  },
+  "EnterpriseLicensing": "Online",
+  "AllowMicrosoftDecideAppAvailabilityToFutureDeviceFamilies": true,
+  "AllowTargetFutureDeviceFamilies": {
+    "Desktop": true,
+    "Mobile": false,
+    "Xbox": false,
+    "Team": false,
+    "Holographic": false
+  },
+  "FriendlyName": "Submission 4",
+  "Trailers": []
 }
