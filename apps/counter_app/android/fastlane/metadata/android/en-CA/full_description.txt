@@ -1,0 +1,15 @@
+Piyuo Counter helps you understand foot traffic and vehicle activity with privacy-first, on-device AI.
+
+Place a phone or camera where you want to monitor. Piyuo Counter detects people and vehicles, then creates anonymous traffic summaries including pass-bys, entries, exits, occupancy, and average stay time.
+
+Privacy comes first. All AI processing happens on your device. Videos, images, and audio never leave your device. Piyuo Counter does not identify people or use facial recognition — it only analyzes movement patterns.
+
+Features
+
+• AI-powered pedestrian and vehicle counting
+• Anonymous traffic insights with 5-minute summaries
+• Works without internet connection
+• Local Device Only mode with no uploads
+• Designed for continuous 24/7 monitoring
+
+Perfect for retail stores, offices, restaurants, exhibitions, and public spaces.

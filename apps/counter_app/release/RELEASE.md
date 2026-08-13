@@ -16,15 +16,14 @@ Fastlane.
 
 - Confirm `apps/counter_app/pubspec.yaml` contains the version you intend to
   release.
-- Commit any intended changes to `apps/counter_app/.build_number` (managed by
-  Fastlane) and confirm it exists. This file tracks the build number across all
-  platforms and is incremented during the release process.
 - Install the required local tooling: Flutter, Xcode and its command-line
   tools, Ruby and Bundler.
-- Ensure `apps/counter_app/.env` is present and contains the values required by
-  the iOS, macOS, and Android Fastlane lanes.
+- Ensure `apps/counter_app/.env` is present and only contains the values required by
+  the app. not the value for fastlane, fastlane will use .env in the root.
 - Ensure the App Store Connect and Google Play credentials used by Fastlane are
   available locally. Do not commit credentials or `.env` files.
+- update build_release_notes.txt and let agent to execute build_release_notes.md and run build_fastlane_metadata.sh
+- cd /apps/counter_app and run "release/release_***.sh" to release
 
 ## Prepare Store Metadata
 

@@ -1,0 +1,1 @@
+besøgende,tælling,køretøj,detailhandel,butik,restaurant,gængere

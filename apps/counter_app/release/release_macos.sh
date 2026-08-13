@@ -7,7 +7,6 @@ set -a && source ../../.env && set +a
 
 echo "Building Flutter macOS release..."
 flutter build macos --release
-# This step prepares the Flutter side of your macOS app and is required before Fastlane can archive the app via Xcode.
 
 echo "Running Fastlane release..."
 cd macos/fastlane
@@ -16,12 +15,16 @@ cd ../..
 
 # Upload debug symbols to Sentry
 echo "Uploading information to Sentry..."
-sentry-cli debug-files upload \
+find "build/macos/Counter.xcarchive/dSYMs" \
+  -name "*.dSYM" \
+  -print0 |
+xargs -0 sentry-cli debug-files upload \
   --org "$SENTRY_ORG" \
   --project "$SENTRY_PROJECT" \
   --type dsym \
-  --wait \
-  build/macos/Build/Products/Release/*.dSYM
+  --wait
+
+echo "macOS debug symbols uploaded successfully."
 
 rm -rf build/macos
 rm -rf macos/Piyuo\ Counter.app

@@ -1,5 +1,3 @@
-## New Improvements
+## Bug Fixes
 
-* Better Stability: Fixed unexpected crashes when using the back button or when reaching the end of a video.
-* Camera Fix: Resolved an issue where the app could crash if camera permission wasn't granted.
-* Improved Diagnostics: Added extra startup diagnostics to help troubleshoot and resolve issues faster on Windows computers.
+* Fixed a crash that could occur when the app becomes inactive or moves to the background.

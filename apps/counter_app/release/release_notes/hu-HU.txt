@@ -1,5 +1,3 @@
-## Új fejlesztések
+## Hibajavítások
 
-* Jobb stabilitás: Kijavítottuk a váratlan összeomlásokat, amelyek a vissza gomb használatakor vagy a videó végén fordultak elő.
-* Kamerajavítás: Megoldottuk azt a problémát, amikor az alkalmazás összeomolhat, ha a kamerához nincs engedély.
-* Fejlesztett diagnosztika: Extra indítási diagnosztikát adtunk hozzá, hogy gyorsabban lehessen elhárítani a Windows-számítógépeken lévő problémákat.
+* Kijavítottunk egy hibát, amely előfordulhatott, amikor az alkalmazás inaktívvá válik vagy a háttérbe kerül.

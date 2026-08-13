@@ -1,5 +1,3 @@
-## Nouvelles améliorations
+## Corrections de bogues
 
-* Meilleure stabilité : Correction des plantages inattendus lors de l'utilisation du bouton retour ou à la fin d'une vidéo.
-* Correction de la caméra : Résolution du problème où l'application pouvait planter si la permission d'accès à la caméra n'était pas accordée.
-* Diagnostics améliorés : Ajout de diagnostics de démarrage supplémentaires pour aider au diagnostic et résolution plus rapide sur les ordinateurs Windows.
+* Correction d'un crash qui pouvait se produire lorsque l'app devient inactive ou se déplace en arrière-plan.

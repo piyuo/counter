@@ -1,5 +1,3 @@
-## Noi îmbunătățiri
+## Repairății bug
 
-* Stabilitate mai bună: Corectate blocarile neașteptate la butonul Înapoi sau la finalizarea unui videoclip.
-* Reparație cameră: Rezolvat problemă dacă permisiunea camerei nu era acordată.
-* Diagnostică îmbunătățită: Adăugată diagnostică suplimentară la pornire pentru rezolvarea problemelor mai rapid pe Windows.
+* Am remediat o cădere care putea apărea atunci când aplicația devine inactivă sau se mută în fundal.

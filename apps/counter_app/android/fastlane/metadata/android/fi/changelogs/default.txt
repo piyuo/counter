@@ -1,0 +1,3 @@
+## Virheiden korjaukset
+
+* Korjattu kaatuminen, joka saattoi tapahtua sovelluksen ollessa passiivinen tai siirtyessä taustalle.

@@ -1,0 +1,15 @@
+Piyuo Counter vous aide à comprendre le trafic piétonnier et l'activité véhiculaire avec une IA respectueuse de la vie privée et s'exécutant sur votre appareil.
+
+Placez un téléphone ou une caméra où vous voulez surveiller. Piyuo Counter détecte les personnes et les véhicules, puis crée des résumés anonymes du trafic incluant les passages, entrées, sorties, l'occupation et la durée moyenne de séjour.
+
+La confidentialité en premier. Tout le traitement de l'IA se fait sur votre appareil. Les vidéos, images et audio ne quittent jamais votre appareil. Piyuo Counter n'identifie pas les personnes et n'utilise pas la reconnaissance faciale — il analyse uniquement les modèles de mouvement.
+
+Fonctionnalités
+
+• Comptage des piétons et des véhicules alimenté par l'IA
+• Aperçus anonymes du trafic avec résumés de 5 minutes
+• Fonctionne sans connexion Internet
+• Mode Local Device Only sans téléchargements
+• Conçu pour la surveillance continue 24h/24, 7j/7
+
+Parfait pour les magasins de détail, les bureaux, les restaurants, les expositions et les espaces publics.

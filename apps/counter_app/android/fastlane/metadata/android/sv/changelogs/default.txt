@@ -1,0 +1,3 @@
+## Felkorrigeringar
+
+* Åtgärdade ett krasj som kunde uppstå när appen blir inaktiv eller flyttas till bakgrunden.

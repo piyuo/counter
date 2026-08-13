@@ -1,5 +1,3 @@
-## Nieuwe verbeteringen
+## Bugfixes
 
-* Betere stabiliteit: Onverwachte crashes verholpen wanneer u de knop Terug gebruikt of wanneer een video eindigt.
-* Camerareparatie: Een probleem opgelost waarbij de app kon vastlopen als cameratoestemming niet werd verleend.
-* Verbeterde diagnostiek: Extra startdiagnostiek toegevoegd om problemen sneller op Windows-computers op te lossen.
+* Een crash opgelost die kon optreden wanneer de app inactief wordt of naar de achtergrond verplaatst.

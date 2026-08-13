@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane mac release
 ```
 
-Push a new release build to the Apple App Store(macos)
+Push a new release build to the Apple App Store (macOS)
 
 ----
 

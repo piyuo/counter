@@ -1,5 +1,3 @@
-## Neue Verbesserungen
+## Fehlerbehebungen
 
-* Bessere Stabilität: Fehlerhafte Abstürze beim Drücken der Zurück-Taste oder am Ende eines Videos behoben.
-* Kamerabehebung: Problem behoben, bei dem die App abstürzen konnte, wenn die Kameraberechtigung nicht erteilt wurde.
-* Verbesserte Diagnose: Zusätzliche Startdiagnose hinzugefügt, um Probleme auf Windows-Computern schneller zu beheben.
+* Behoben: Absturz, der auftreten konnte, wenn die App inaktiv wird oder in den Hintergrund verschoben wird.

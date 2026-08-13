@@ -1,5 +1,3 @@
-## Cải tiến mới
+## Sửa lỗi
 
-* Ổn định hơn: Đã sửa các lỗi không mong muốn khi sử dụng nút quay lại hoặc khi kết thúc video.
-* Sửa lỗi camera: Đã giải quyết vấn đề ứng dụng gặp sự cố nếu không được cấp quyền camera.
-* Chẩn đoán được cải thiện: Thêm chẩn đoán khởi động bổ sung để giúp khắc phục sự cố nhanh hơn trên máy tính Windows.
+* Sửa một lỗi có thể xảy ra khi ứng dụng trở nên không hoạt động hoặc chuyển sang nền.

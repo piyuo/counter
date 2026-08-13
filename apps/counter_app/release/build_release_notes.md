@@ -21,23 +21,22 @@ Then create one translated file for every locale listed below, using the locale 
 ## Locales
 
 ```
-en-US
-zh-TW
-zh-CN
+en-US, en-AU, en-CA, en-GB
+zh-TW, zh-CN
 ja-JP
 ko-KR
 de-DE
-fr-FR
-es-ES
+fr-FR, fr-CA
+es-ES, es-MX
 it-IT
-pt-BR
+pt-BR, pt-PT
 ru-RU
 tr-TR
 th
 vi
 id
 ms
-hi-IN
+hi, hi-IN
 nl-NL
 pl-PL
 ro
@@ -50,6 +49,14 @@ he
 sr
 bn-BD
 my-MM
+ca
+hr
+cs
+da
+fi
+no
+sk
+sv
 ```
 
 ## Translation Guidelines
