@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/piyuo/counter/compare/counter_app-v1.4.0...counter_app-v1.4.1) (2026-08-13)
+
+
+### Bug Fixes
+
+* crash when app paused in flutter_vision [#250](https://github.com/piyuo/counter/issues/250) ([5d704af](https://github.com/piyuo/counter/commit/5d704aff65f1052ca55dfe6cb4d79fbc78a96e43))
+
 ## [1.4.0](https://github.com/piyuo/counter/compare/counter_app-v1.3.0...counter_app-v1.4.0) (2026-08-10)
 
 
