@@ -3,7 +3,7 @@
 #!/bin/bash
 set -e  # Exit immediately on error
 echo "Loading environment..."
-set -a && source .env && set +a
+set -a && source ../../.env && set +a
 
 echo "Building Flutter android release..."
 flutter build appbundle --release --target-platform android-arm64

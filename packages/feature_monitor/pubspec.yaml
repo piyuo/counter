@@ -18,7 +18,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.5.0
+      ref: v3.7.0
   flutter_riverpod: ^3.3.2 # block by analyzer
   riverpod_annotation: ^4.0.3 # block by analyzer
   go_router: ^17.4.0
