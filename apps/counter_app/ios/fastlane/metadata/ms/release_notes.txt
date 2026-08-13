@@ -1,5 +1,3 @@
-## Penambahbaikan Baru
+## Pembaikan Pepijat
 
-* Kestabilan Lebih Baik: Diperbetulkan kegagalan yang tidak dijangka semasa menggunakan butang kembali atau apabila video berakhir.
-* Pembaikan Kamera: Menyelesaikan masalah di mana aplikasi boleh mogok jika kebenaran kamera tidak diberikan.
-* Diagnosis Dipertingkat: Menambah diagnosis permulaan tambahan untuk membantu mendiagnosis dan mengatasi masalah dengan lebih cepat pada komputer Windows.
+* Membaiki ranap yang boleh berlaku apabila apl menjadi tidak aktif atau berpindah ke latar belakang.

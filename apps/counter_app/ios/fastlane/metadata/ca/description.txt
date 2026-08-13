@@ -1,0 +1,15 @@
+Piyuo Counter t'ajuda a entendre el tràfic de vianants i l'activitat de vehicles amb una IA respectuosa de la privacitat que funciona al dispositiu.
+
+Col·loca un telèfon o una càmera on vulgis monitorar. Piyuo Counter detecta persones i vehicles, llavors crea resums de tràfic anònims incloent passades, entrades, sortides, ocupació i temps promig de permanència.
+
+La privacitat és el primer. Tot el processament de l'IA ocorre al teu dispositiu. Els vídeos, imatges i àudio mai abandonen el teu dispositiu. Piyuo Counter no identifica persones ni utilitza reconeixement facial — només analitza patrons de moviment.
+
+Característiques
+
+• Comptatge de vianants i vehicles alimentat per IA
+• Informació de tràfic anònima amb resums de 5 minuts
+• Funciona sense connexió a Internet
+• Mode de dispositiu local solament sense pujades
+• Dissenyat per a monitoratge continu 24/7
+
+Perfecte per a botigues minoristes, oficines, restaurants, exposicions i espais públics.

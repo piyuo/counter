@@ -1,5 +1,3 @@
-## Peningkatan Baru
+## Perbaikan Bug
 
-* Stabilitas Lebih Baik: Memperbaiki kerusakan yang tidak terduga saat menggunakan tombol kembali atau saat mencapai akhir video.
-* Perbaikan Kamera: Menyelesaikan masalah di mana aplikasi dapat mogok jika izin kamera tidak diberikan.
-* Diagnostik Ditingkatkan: Menambahkan diagnostik startup tambahan untuk membantu mendiagnosis dan mengatasi masalah lebih cepat pada komputer Windows.
+* Memperbaiki crash yang dapat terjadi saat aplikasi menjadi tidak aktif atau bergerak ke latar belakang.

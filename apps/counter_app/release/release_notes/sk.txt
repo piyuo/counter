@@ -1,0 +1,3 @@
+## Opravy chýb
+
+* Opravená chyba, ktorá sa mohla vyskytnúť, keď sa aplikácia stane neaktívnou alebo prejde do pozadia.

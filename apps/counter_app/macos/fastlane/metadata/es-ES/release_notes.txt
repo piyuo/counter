@@ -1,5 +1,3 @@
-## Nuevas mejoras
+## Correcciones de errores
 
-* Mejor estabilidad: Se corrigieron los bloqueos inesperados al usar el botón atrás o al finalizar un video.
-* Corrección de cámara: Se resolvió un problema donde la aplicación podría bloquearse si no se otorgaba permiso de cámara.
-* Diagnósticos mejorados: Se agregó diagnóstico de inicio adicional para ayudar a solucionar problemas más rápidamente en computadoras Windows.
+* Corregido un crash que pod?a ocurrir cuando la app se vuelve inactiva o se mueve al fondo.

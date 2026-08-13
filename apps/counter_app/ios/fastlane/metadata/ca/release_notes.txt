@@ -1,0 +1,3 @@
+## Correccions d'errors
+
+* S'ha corregit un error que podia ocórrer quan l'aplicació es torna inactiva o es mou al fons.

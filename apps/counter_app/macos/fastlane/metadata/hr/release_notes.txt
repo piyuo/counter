@@ -1,0 +1,3 @@
+## Ispravke grešaka
+
+* Ispravljena greška koja je mogla nastati kada aplikacija postane neaktivna ili se prebaci u pozadinu.

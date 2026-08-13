@@ -1,0 +1,1 @@
+visitante,contagem,veículo,retalho,loja,restaurante,peão

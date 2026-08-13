@@ -1,0 +1,15 @@
+Piyuo Counter ti pomôže pochopiť pešiu a vozidlovú aktivitu pomocou AI zameranej na súkromie, ktorá beží na vašom zariadení.
+
+Umiestnite telefón alebo kameru tam, kde chcete monitorovať. Piyuo Counter detekuje ľudí a vozidlá, potom vytvárajú anonymné zhrnutia premávky vrátane prijazdov, vstupov, výstupov, obsadenosti a priemerného času pobytu.
+
+Súkromie je na prvom mieste. Všetko spracovanie AI sa uskutočňuje na vašom zariadení. Videá, obrázky a zvuk nikdy neopúšťajú vaše zariadenie. Piyuo Counter neidentifikuje ľudí ani nepoužíva rozpoznávanie tváre — iba analyzuje vzorce pohybu.
+
+Funkcie
+
+• Počítanie chodcov a vozidiel poháňané AI
+• Anonymný prehľad premávky s 5-minútovými zhrnutiami
+• Funguje bez internetového pripojenia
+• Režim iba lokálneho zariadenia bez nahrávania
+• Navrhnuté na nepretržité 24/7 monitorovanie
+
+Ideálne pre maloobchodné obchody, kancelárie, reštaurácie, výstavy a verejné priestory.

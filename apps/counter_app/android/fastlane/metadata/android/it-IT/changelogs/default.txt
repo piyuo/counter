@@ -1,5 +1,3 @@
-## Nuovi miglioramenti
+## Correzioni di bug
 
-* Migliore stabilità: Corretto l'arresto imprevisto durante l'uso del pulsante indietro o al termine di un video.
-* Correzione fotocamera: Risolto un problema per cui l'app poteva arrestarsi se il permesso della fotocamera non era concesso.
-* Diagnostica migliorata: Aggiunta diagnostica di avvio supplementare per aiutare la risoluzione dei problemi più velocemente su computer Windows.
+* Corretto un crash che poteva verificarsi quando l'app diventa inattiva o si sposta sullo sfondo.

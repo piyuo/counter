@@ -1,0 +1,15 @@
+Piyuo Counter auttaa sinua ymmärtämään jalan- ja ajoneuvoliikenteen yksityisyyden ensisijaisesti käsittelevän, laitteella toimivan tekoälyn avulla.
+
+Sijoita puhelin tai kamera paikkaan, jossa haluat valvoa. Piyuo Counter havaitsee ihmiset ja ajoneuvot ja luo sitten anonyymin liikenneyhteenvedon, joka sisältää ohitukset, sisään- ja poistumisen, käyttöasteen ja keskimääräisen oleskeluajan.
+
+Yksityisyys on ensimmäinen. Kaikki tekoälyn käsittely tapahtuu laitteellasi. Videot, kuvat ja ääni eivät koskaan lähde laitteeltasi. Piyuo Counter ei tunnista ihmisiä tai käytä kasvojentunnistusta — se vain analysoi liikkumismalleja.
+
+Ominaisuudet
+
+• Tekoälyllä ohjattu jalankulkijoiden ja ajoneuvojen laskenta
+• Anonyymi liikennetieto 5 minuutin yhteenvedoilla
+• Toimii ilman Internet-yhteyttä
+• Paikallisen laitteen tila ilman latauksia
+• Suunniteltu jatkuvaan 24/7-valvontaan
+
+Sopii hyvin vähittäiskauppoihin, toimistoihin, ravintoloihin, näyttelyihin ja julkisiin tiloihin.

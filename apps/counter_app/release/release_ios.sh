@@ -1,21 +1,22 @@
 # release/release_ios.sh
-# This script builds the Flutter ios application and prepares it for release.
+
 #!/bin/bash
-set -e  # Exit immediately on error
+set -e
+
 echo "Loading environment..."
 set -a && source ../../.env && set +a
 
 echo "Building Flutter ios release..."
 flutter build ios --release
-# This step prepares the Flutter side of your ios app and is required before Fastlane can archive the app via Xcode.
 
 echo "Running Fastlane release..."
 cd ios/fastlane
 bundle exec fastlane ios release
 cd ../..
 
-# Upload debug symbols to Sentry
-find build/ios/Release-iphoneos \
+echo "Uploading iOS debug symbols to Sentry..."
+
+find build/ios/Counter.xcarchive/dSYMs \
   -name "*.dSYM" \
   -print0 |
 xargs -0 sentry-cli debug-files upload \
@@ -24,6 +25,7 @@ xargs -0 sentry-cli debug-files upload \
   --type dsym \
   --wait
 
+echo "iOS debug symbols uploaded successfully."
 
 rm -rf build/ios
 rm -f ios/Counter.ipa

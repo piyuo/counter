@@ -1,0 +1,15 @@
+Piyuo Counter hjælper dig med at forstå gang- og køretøjsaktivitet med privatlivsbeskyttende AI, der køres på din enhed.
+
+Placer en telefon eller kamera, hvor du vil overvåge. Piyuo Counter registrerer mennesker og køretøjer og opretter derefter anonyme trafiksammenfattelser, herunder forbikørsler, ind- og udgange, belægning og gennemsnitlig opholdsvarighed.
+
+Privatlivet kommer først. Hele AI-behandlingen foregår på din enhed. Videoer, billeder og lyd forlader aldrig din enhed. Piyuo Counter identificerer ikke mennesker eller bruger ansigtsgenkendelsenel — det analyserer kun bevægelsesmønstre.
+
+Funktioner
+
+• AI-drevet fodgænger- og køretøjstælling
+• Anonyme trafikinsights med 5-minutters resuméer
+• Fungerer uden internetforbindelse
+• Lokalt enhed tilstand uden uploads
+• Designet til kontinuerlig 24/7 overvågning
+
+Perfekt til detailbutikker, kontorer, restauranter, udstillinger og offentlige rum.

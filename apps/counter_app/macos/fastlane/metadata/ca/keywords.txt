@@ -1,0 +1,1 @@
+visitant,comptatge,vehicle,comerç,botiga,restaurant,vianant

@@ -1,5 +1,3 @@
-## Yeni Geliştirmeler
+## Hata Düzeltmeleri
 
-* Daha İyi Stabilite: Geri düğmesi kullanılırken veya bir video sonlandığında oluşan beklenmeyen çökmeler düzeltildi.
-* Kamera Düzeltmesi: Kamera izni verilmediğinde uygulamanın çökebileceği bir sorun çözüldü.
-* Geliştirilmiş Tanılama: Windows bilgisayarlarında sorunları teşhis etmeye ve daha hızlı çözmeye yardımcı olmak için ek başlangıç tanılaması eklendi.
+* Uygulama etkin olmayan duruma geçtiğinde veya arka plana taşındığında oluşabilecek kilitlenmeyi düzelttik.

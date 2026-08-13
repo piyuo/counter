@@ -1,0 +1,1 @@
+visiteur,comptage,véhicule,commerce,magasin,restaurant,piéton
