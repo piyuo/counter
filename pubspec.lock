@@ -538,11 +538,11 @@ packages:
     dependency: transitive
     description:
       path: "."
-      ref: "v3.5.0"
-      resolved-ref: "29aceffb34d877c2602796a618db254ad231a4ad"
+      ref: "v3.7.0"
+      resolved-ref: "0b79aa878bbbe0942fcb1e2334e2e7fb4f77a5ed"
       url: "https://github.com/piyuo/flutter-appkit.git"
     source: git
-    version: "3.5.0"
+    version: "3.7.0"
   flutter_colorpicker:
     dependency: transitive
     description:

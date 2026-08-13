@@ -30,7 +30,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.5.0
+      ref: v3.7.0
   universal_platform: ^1.1.0
   nested: ^1.0.0
   path: ^1.9.0
@@ -93,6 +93,8 @@ flutter:
       - assets/icon/
       - assets/images/
       - .env # support sentry
+  config:
+    enable-lldb-debugging: false
 
 flutter_native_splash:
   color: "#181743"
