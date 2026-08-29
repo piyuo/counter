@@ -25,7 +25,7 @@ String buildVideoSourceShortName(BuildContext context, core_domain.VideoSource v
     core_domain.CameraVideoSource() => context.l.video_sources_camera,
     core_domain.WebcamVideoSource() => context.l.video_sources_webcam,
     core_domain.FileVideoSource() => context.l.video_sources_file,
-    core_domain.LiveVideoSource() => context.l.video_sources_live_stream,
+    core_domain.LiveVideoSource() => context.l.metric_live,
     core_domain.UnspecifiedVideoSource() => 'Unspecified',
   };
 }

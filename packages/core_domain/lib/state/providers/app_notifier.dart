@@ -75,7 +75,6 @@ class AppNotifier extends _$AppNotifier implements AppController {
         personalCustomServer: PersonalCustomServer(url: 'http://localhost:3000'),
       );
     }
-    // prepare video source
     loadedState = await _prepareDefaultVideoSource(loadedState);
     if (loadedState != persistedState) {
       await repo.save(loadedState);
@@ -155,13 +154,19 @@ class AppNotifier extends _$AppNotifier implements AppController {
   }
 
   @override
-  Future<void> reset() async {
+  Future<bool> reset() async {
     await ref.read(visionRuntimeServiceProvider).stop();
     final hardwareService = ref.read(hardwareCapabilityServiceProvider);
     final defaultVideoSource = await hardwareService.getDefaultVideoSource();
     final freshState = AppState(videoSource: defaultVideoSource ?? VideoSource.unspecified());
     state = AsyncData(freshState);
     await repo.reset();
+    if (defaultVideoSource == null) {
+      final lifecycleController = ref.read(systemLifecycleProvider.notifier);
+      lifecycleController.dispatch(const SystemEvent.deviceNotSupported());
+      return false;
+    }
+    return true;
   }
 
   @override
@@ -186,17 +191,27 @@ class AppNotifier extends _$AppNotifier implements AppController {
     if (!appRuntimeState.isVisionRunning) {
       return;
     }
-
-    if (current.videoSource.runtimeType == videoSource.runtimeType) {
+    final visionRuntimeService = ref.read(visionRuntimeServiceProvider);
+    final isVideoTypeChanged = await visionRuntimeService.isVideoTypeChanged(videoSource);
+    if (isVideoTypeChanged == false) {
+      appkit.logInfo('[AppNotifier] Video source type unchanged, current: ${current.videoSource}, new: $videoSource');
       // If the source type is the same, we can change the input without restarting the runtime
-      await ref.read(visionRuntimeServiceProvider).setVideoSource(videoSource);
+      await visionRuntimeService.setVideoSource(videoSource);
       return;
     }
+    appkit.logInfo('[AppNotifier] Video source type changed, current: ${current.videoSource}, new: $videoSource');
     await _restartVision();
   }
 
   Future<void> _restartVision() async {
     final currentState = await future;
+
+    if (!currentState.hasVideoSource) {
+      final lifecycleController = ref.read(systemLifecycleProvider.notifier);
+      lifecycleController.dispatch(const SystemEvent.deviceNotSupported());
+      return;
+    }
+
     appkit.logInfo('[AppNotifier] Restarting vision runtime with video source: ${currentState.videoSource}');
     await ref.read(visionRuntimeServiceProvider).stop();
     await ref
