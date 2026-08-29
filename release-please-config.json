@@ -4,7 +4,8 @@
     "apps/counter_app": {
       "release-type": "dart",
       "package-name": "counter_app",
-      "changelog-path": "CHANGELOG.md"
+      "changelog-path": "CHANGELOG.md",
+      "additional-paths": ["packages/"]
     }
   }
 }
