@@ -33,7 +33,9 @@ class ResetAppNotifier extends _$ResetAppNotifier implements ResetAppController 
     await ref.read(appRuntimeProvider.notifier).reset();
     await ref.read(telemetryQueueRepositoryProvider).reset();
     await ref.read(authStorageServiceProvider).reset();
-    await ref.read(appProvider.notifier).reset(); // reset state and repo
-    ref.read(appFlowProvider.notifier).dispatch(const AppFlowEvent.onboardingNeeded());
+    final ok = await ref.read(appProvider.notifier).reset(); // reset state and repo
+    if (ok) {
+      ref.read(appFlowProvider.notifier).dispatch(const AppFlowEvent.onboardingNeeded());
+    }
   }
 }

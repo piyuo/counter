@@ -132,6 +132,24 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   }
 
   @override
+  Future<bool> isVideoTypeChanged(core_domain.VideoSource videoSource) async {
+    if (_activeController == null) {
+      appkit.logDebug('[VisionRuntime] isVideoTypeChanged called before start()');
+      return false;
+    }
+    final currentInput = _activeController!.getInput();
+    if (currentInput == null) {
+      return false;
+    }
+
+    final newInput = await _buildVisionInput(videoSource);
+    if (currentInput.getInputType() != newInput.getInputType()) {
+      return true;
+    }
+    return false;
+  }
+
+  @override
   Future<void> setVideoSource(core_domain.VideoSource videoSource) async {
     if (_activeController == null) {
       appkit.logDebug('[VisionRuntime] setVideoSource called before start()');

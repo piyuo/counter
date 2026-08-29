@@ -37,7 +37,7 @@ class SystemLifecycleNotifier extends _$SystemLifecycleNotifier implements Syste
   SystemLifecycle _reduce(SystemLifecycle current, SystemEvent event) {
     return switch ((current, event)) {
       (Booting(), const SystemEvent.hardwareCheckInitiated()) => const CheckingHardware(),
-      (CheckingHardware(), const SystemEvent.deviceNotSupported()) => const SystemDeviceNotSupported(),
+      (_, const SystemEvent.deviceNotSupported()) => const SystemDeviceNotSupported(),
       (CheckingHardware(), const SystemEvent.hardwareCheckPassed()) => const SystemReady(),
       _ => current,
     };

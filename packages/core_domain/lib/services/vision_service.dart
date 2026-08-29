@@ -21,6 +21,8 @@ abstract class VisionService {
 
   Future<void> setVideoSource(VideoSource videoSource);
 
+  Future<bool> isVideoTypeChanged(VideoSource videoSource);
+
   Future<void> setParams(DetectionParams detectionParams);
 
   /// Sets the visibility of the track ID overlay in the video feed.
