@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/piyuo/counter/compare/counter_app-v1.4.1...counter_app-v1.5.0) (2026-08-30)
+
+
+### Miscellaneous Chores
+
+* **counter_app:** Synchronize piyuo-counter-workspace versions
+
 ## [1.4.1](https://github.com/piyuo/counter/compare/counter_app-v1.4.0...counter_app-v1.4.1) (2026-08-13)
 
 
