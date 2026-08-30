@@ -1,3 +1,8 @@
-## Virheiden korjaukset
+## Virheenkorjaukset
 
-* Korjattu kaatuminen, joka saattoi tapahtua sovelluksen ollessa passiivinen tai siirtyessä taustalle.
+* Korjattu kaatuminen, jota saattoi esiintyä videostriimiä suljettaessa.
+* Korjattu ajoittainen ongelma, jossa kameran kääntäminen käänsi videon virheellisesti pystysuunnassa.
+
+# Parannukset
+
+* Käynnistyssuorituskykyä optimoitu, jotta sovellus käynnistyy nopeammin.

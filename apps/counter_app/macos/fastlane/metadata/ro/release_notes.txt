@@ -1,3 +1,8 @@
-## Repairății bug
+## Remedieri de erori
 
-* Am remediat o cădere care putea apărea atunci când aplicația devine inactivă sau se mută în fundal.
+* A fost rezolvată o blocare care putea apărea la închiderea unui flux video.
+* A fost remediată o problemă intermitentă în care rotirea camerei inversa incorect videoclipul pe verticală.
+
+# Îmbunătățiri
+
+* Performanța de pornire a fost optimizată pentru o deschidere mai rapidă a aplicației.

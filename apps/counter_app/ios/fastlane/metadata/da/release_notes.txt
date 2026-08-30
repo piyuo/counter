@@ -1,3 +1,8 @@
 ## Fejlrettelser
 
-* Rettede fejl der kunne opstå, når appen bliver inaktiv eller flyttes til baggrunden.
+* Løst et nedbrud, der kunne opstå, når en videostream blev lukket.
+* Løst et periodisk problem, hvor kameraets rotation fejlagtigt vendte videoen lodret.
+
+# Forbedringer
+
+* Optimeret opstartsydelsen, så appen åbner hurtigere.

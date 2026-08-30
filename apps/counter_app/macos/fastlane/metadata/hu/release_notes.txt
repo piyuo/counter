@@ -1,3 +1,8 @@
 ## Hibajavítások
 
-* Kijavítottunk egy hibát, amely előfordulhatott, amikor az alkalmazás inaktívvá válik vagy a háttérbe kerül.
+* Kijavítottunk egy összeomlást, amely videofolyam bezárásakor fordulhatott elő.
+* Kijavítottunk egy időszakos hibát, amely miatt a kamera forgatásakor a videó tévesen függőlegesen tükröződött.
+
+# Fejlesztések
+
+* Optimalizáltuk az indítási teljesítményt, hogy az app gyorsabban induljon.

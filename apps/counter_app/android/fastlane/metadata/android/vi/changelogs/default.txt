@@ -1,3 +1,8 @@
 ## Sửa lỗi
 
-* Sửa một lỗi có thể xảy ra khi ứng dụng trở nên không hoạt động hoặc chuyển sang nền.
+* Đã khắc phục sự cố ứng dụng bị crash khi đóng luồng video.
+* Đã sửa lỗi thỉnh thoảng khiến video bị lật ngược theo chiều dọc không đúng khi xoay camera.
+
+# Cải tiến
+
+* Tối ưu hiệu suất khởi động để ứng dụng mở nhanh hơn.

@@ -1,3 +1,8 @@
 ## Feilrettinger
 
-* Fikset en krasjfeil som kunne oppstå når appen blir inaktiv eller flyttes til bakgrunnen.
+* Løst en krasj som kunne oppstå når en videostrøm ble lukket.
+* Løst et periodisk problem der rotasjon av kameraet feilaktig snudde videoen vertikalt.
+
+# Forbedringer
+
+* Optimalisert oppstartsytelsen for raskere åpning av appen.

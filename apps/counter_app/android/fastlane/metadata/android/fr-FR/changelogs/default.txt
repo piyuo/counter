@@ -1,3 +1,8 @@
-## Corrections de bogues
+## Corrections de bugs
 
-* Correction d'un crash qui pouvait se produire lorsque l'app devient inactive ou se déplace en arrière-plan.
+* Correction d'un plantage pouvant survenir à la fermeture d'un flux vidéo.
+* Correction d'un problème intermittent où la rotation de la caméra retournait la vidéo verticalement par erreur.
+
+# Améliorations
+
+* Optimisation des performances de démarrage pour un lancement plus rapide de l'app.

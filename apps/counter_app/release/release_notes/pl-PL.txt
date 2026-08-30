@@ -1,3 +1,8 @@
 ## Poprawki błędów
 
-* Naprawiono błąd, który mógł się pojawić, gdy aplikacja staje się nieaktywna lub przechodzi w tło.
+* Naprawiono awarię, która mogła wystąpić podczas zamykania strumienia wideo.
+* Naprawiono sporadyczny problem, w którym obrót kamery błędnie odwracał wideo w pionie.
+
+# Ulepszenia
+
+* Zoptymalizowano wydajność uruchamiania, aby aplikacja otwierała się szybciej.

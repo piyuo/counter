@@ -1,3 +1,0 @@
-## Correcciones de errores
-
-* Se corrigió un crash que podría ocurrir cuando la app se vuelve inactiva o se mueve al fondo.

@@ -9,6 +9,7 @@ Fastlane.
 - Merge the Release Please pull request into `main`. This updates the app
   version in `pubspec.yaml` and the application changelog.
 - Create a release issue and branch. For example:
+  branch name example:  chore(store): release 1.5.0 #<issue-number>
 
   ```sh
   ./scripts/start_issue.sh <issue-number>

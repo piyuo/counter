@@ -1,3 +1,8 @@
 ## Opravy chýb
 
-* Opravená chyba, ktorá sa mohla vyskytnúť, keď sa aplikácia stane neaktívnou alebo prejde do pozadia.
+* Bola opravená chyba, ktorá mohla spôsobiť pád aplikácie pri zatváraní video streamu.
+* Bola opravená občasná chyba, pri ktorej otočenie fotoaparátu nesprávne prevrátilo video zvisle.
+
+# Vylepšenia
+
+* Bol optimalizovaný výkon pri spúšťaní, aby sa aplikácia otvárala rýchlejšie.
