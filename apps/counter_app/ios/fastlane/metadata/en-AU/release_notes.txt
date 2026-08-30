@@ -1,3 +1,8 @@
 ## Bug Fixes
 
-* Fixed a crash that could occur when the app becomes inactive or moves to the background.
+* Resolved a crash that could occur when closing a video stream.
+* Fixed an intermittent issue where camera rotation would incorrectly flip the video vertically.
+
+# Enhancements
+
+* Optimised startup performance for faster app loading.

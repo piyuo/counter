@@ -12,6 +12,7 @@ environment:
 dependencies:
   feature_pip: any
   core_domain: any
+  shared_l10n: any
   flutter:
     sdk: flutter
   flutter_vision:
@@ -27,7 +28,6 @@ dependencies:
   universal_platform: ^1.1.0
   pinput: ^6.0.2
   liquid_glass_widgets: ^0.29.2
-  shared_l10n: ^0.0.1
 
 dev_dependencies:
   flutter_test:

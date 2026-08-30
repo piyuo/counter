@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   camera: ^0.12.0+2
-  core_domain: ^0.0.1
+  core_domain: any
   flutter:
     sdk: flutter
   flutter_vision:

@@ -107,3 +107,9 @@ Before finishing, verify that:
 - ✓ All files are UTF-8 encoded.
 - ✓ Every translated file satisfies the 500-character limit.
 - ✓ Product names (`Piyuo`, `Piyuo Counter`) remain unchanged.
+
+## When you done, run
+
+app/counter_app/release/build_fastlane_metadata.sh
+
+to update fastlane metata

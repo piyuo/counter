@@ -1,3 +1,8 @@
-## Исправљања грешака
+## Ispravke grešaka
 
-* Исправљена грешка која је могла да се догоди када апликација постане неактивна или се премести у позадину.
+* Rešen je pad aplikacije do kojeg je moglo doći prilikom zatvaranja video strima.
+* Ispravljen je povremeni problem gde je rotacija kamere pogrešno okretala video uspravno.
+
+# Poboljšanja
+
+* Optimizovane su performanse pokretanja radi bržeg otvaranja aplikacije.

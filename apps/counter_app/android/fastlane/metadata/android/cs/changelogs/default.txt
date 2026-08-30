@@ -1,3 +1,0 @@
-## Opravy chyb
-
-* Opravena chyba, která se mohla vyskytovat, když se aplikace stane neaktivní nebo přejde na pozadí.

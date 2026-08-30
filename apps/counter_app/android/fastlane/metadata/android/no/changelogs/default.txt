@@ -1,3 +1,0 @@
-## Feilrettinger
-
-* Fikset en krasjfeil som kunne oppstå når appen blir inaktiv eller flyttes til bakgrunnen.

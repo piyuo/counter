@@ -1,3 +1,8 @@
 ## Pembaikan Pepijat
 
-* Membaiki ranap yang boleh berlaku apabila apl menjadi tidak aktif atau berpindah ke latar belakang.
+* Membaiki ranap yang boleh berlaku semasa menutup strim video.
+* Membaiki masalah sekali-sekala apabila putaran kamera menyebabkan video terbalik secara menegak dengan tidak betul.
+
+# Penambahbaikan
+
+* Mengoptimumkan prestasi permulaan supaya aplikasi terbuka lebih pantas.

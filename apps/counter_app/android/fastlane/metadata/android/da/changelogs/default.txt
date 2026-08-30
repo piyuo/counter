@@ -1,3 +1,0 @@
-## Fejlrettelser
-
-* Rettede fejl der kunne opstå, når appen bliver inaktiv eller flyttes til baggrunden.
