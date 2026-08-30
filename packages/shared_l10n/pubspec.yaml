@@ -1,6 +1,6 @@
 name: shared_l10n
 description: "Centralize localization for package in the project."
-version: 1.4.1
+version: 1.5.0
 resolution: workspace
 
 environment:
