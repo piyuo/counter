@@ -1,6 +1,5 @@
 {
   "plugins": [
-    "dart-workspace",
     {
       "type": "linked-versions",
       "groupName": "piyuo-counter-workspace",
