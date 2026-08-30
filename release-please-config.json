@@ -4,14 +4,14 @@
       "type": "linked-versions",
       "groupName": "piyuo-counter-workspace",
       "components": [
-        "apps/counter_app",
-        "packages/core_domain",
-        "packages/core_runtime",
-        "packages/feature_control_panel",
-        "packages/feature_monitor",
-        "packages/feature_onboarding",
-        "packages/feature_pip",
-        "packages/shared_l10n"
+        "counter_app",
+        "core_domain",
+        "core_runtime",
+        "feature_control_panel",
+        "feature_monitor",
+        "feature_onboarding",
+        "feature_pip",
+        "shared_l10n"
       ]
     }
   ],
