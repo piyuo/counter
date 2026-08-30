@@ -1,3 +1,10 @@
 {
-  "apps/counter_app": "1.4.1"
+  "apps/counter_app": "1.4.1",
+  "packages/core_domain": "1.4.1",
+  "packages/core_runtime": "1.4.1",
+  "packages/feature_control_panel": "1.4.1",
+  "packages/feature_monitor": "1.4.1",
+  "packages/feature_onboarding": "1.4.1",
+  "packages/feature_pip": "1.4.1",
+  "packages/shared_l10n": "1.4.1"
 }
