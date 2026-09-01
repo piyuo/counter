@@ -1,8 +1,3 @@
 ## Correccions d'errors
 
-* S'ha corregit una fallada que podia produir-se en tancar una transmissió de vídeo.
-* S'ha corregit un problema intermitent en què la rotació de la càmera girava incorrectament el vídeo en vertical.
-
-# Millores
-
-* S'ha optimitzat el rendiment d'inici perquè l'app s'obri més ràpid.
+* S'ha corregit un problema que feia que l'app es tanqués inesperadament en iniciar-se.

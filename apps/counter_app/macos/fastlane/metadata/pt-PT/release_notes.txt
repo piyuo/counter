@@ -1,8 +1,3 @@
 ## Correções de erros
 
-* Foi corrigida uma falha que podia ocorrer ao fechar um stream de vídeo.
-* Foi corrigido um problema intermitente em que a rotação da câmara invertia o vídeo verticalmente por engano.
-
-# Melhorias
-
-* Foi otimizado o desempenho de arranque para que a app abra mais depressa.
+* Foi corrigido um problema que fazia a aplicação fechar inesperadamente ao iniciar.

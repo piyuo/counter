@@ -1,8 +1,3 @@
 ## Feilrettinger
 
-* Løst en krasj som kunne oppstå når en videostrøm ble lukket.
-* Løst et periodisk problem der rotasjon av kameraet feilaktig snudde videoen vertikalt.
-
-# Forbedringer
-
-* Optimalisert oppstartsytelsen for raskere åpning av appen.
+* Løst et problem som kunne føre til at appen krasjet uventet ved oppstart.

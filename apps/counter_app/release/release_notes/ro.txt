@@ -1,8 +1,3 @@
 ## Remedieri de erori
 
-* A fost rezolvată o blocare care putea apărea la închiderea unui flux video.
-* A fost remediată o problemă intermitentă în care rotirea camerei inversa incorect videoclipul pe verticală.
-
-# Îmbunătățiri
-
-* Performanța de pornire a fost optimizată pentru o deschidere mai rapidă a aplicației.
+* A fost rezolvată o problemă care făcea ca aplicația să se închidă neașteptat la pornire.

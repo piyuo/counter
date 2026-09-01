@@ -1,8 +1,3 @@
 ## Hata Düzeltmeleri
 
-* Bir video akışı kapatılırken oluşabilen çökme sorunu giderildi.
-* Kamera döndürüldüğünde videonun bazen yanlışlıkla dikey olarak ters dönmesine neden olan sorun düzeltildi.
-
-# İyileştirmeler
-
-* Uygulamanın daha hızlı açılması için başlangıç performansı optimize edildi.
+* Uygulamanın başlatılırken beklenmedik şekilde kapanmasına neden olan sorun giderildi.

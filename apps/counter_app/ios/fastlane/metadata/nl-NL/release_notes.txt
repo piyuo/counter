@@ -1,8 +1,3 @@
 ## Bugfixes
 
-* Een crash opgelost die kon optreden bij het sluiten van een videostream.
-* Een incidenteel probleem opgelost waarbij het draaien van de camera de video onterecht verticaal omdraaide.
-
-# Verbeteringen
-
-* De opstartprestaties geoptimaliseerd voor een snellere start van de app.
+* Een probleem opgelost waardoor de app onverwacht kon crashen bij het opstarten.

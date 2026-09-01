@@ -1,8 +1,3 @@
 ## Perbaikan Bug
 
-* Memperbaiki crash yang bisa terjadi saat menutup streaming video.
-* Memperbaiki masalah sesekali saat rotasi kamera membuat video terbalik secara vertikal secara tidak benar.
-
-# Peningkatan
-
-* Mengoptimalkan performa startup agar aplikasi terbuka lebih cepat.
+* Memperbaiki masalah yang menyebabkan aplikasi tiba-tiba tertutup saat dibuka.

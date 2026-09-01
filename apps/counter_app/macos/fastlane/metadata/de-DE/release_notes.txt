@@ -1,8 +1,3 @@
 ## Fehlerbehebungen
 
-* Ein Absturz beim Schließen eines Videostreams wurde behoben.
-* Ein Problem behoben, bei dem die Kamerarotation das Video gelegentlich fälschlicherweise vertikal gespiegelt hat.
-
-# Verbesserungen
-
-* Die Startleistung wurde optimiert, damit die App schneller startet.
+* Ein Problem behoben, das dazu führte, dass die App beim Start unerwartet abstürzte.
