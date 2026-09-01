@@ -671,7 +671,7 @@ packages:
       path: "../flutter-vision"
       relative: true
     source: path
-    version: "2.5.1+16"
+    version: "2.6.0+17"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

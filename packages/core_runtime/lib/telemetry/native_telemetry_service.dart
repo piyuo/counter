@@ -12,12 +12,12 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/foundation.dart';
 
-import 'drift_payload_queue_repository.dart';
+import 'drift_telemetry_queue.dart';
 import 'http_telemetry_transport.dart';
 import 'json_payload_serializer.dart';
 
 /// Concrete [core_domain.TelemetryService] that wires together:
-/// - Drift SQLite queue ([DriftPayloadQueueRepository])
+/// - Drift SQLite queue ([DriftTelemetryQueue])
 /// - JSON serialization ([JsonPayloadSerializer])
 /// - HTTP transport ([HttpTelemetryTransport])
 /// - Wall-clock aligned periodic upload driven by [core_domain.UploadConfig]
@@ -38,7 +38,7 @@ class NativeTelemetryService implements core_domain.TelemetryService {
     required Future<core_domain.UploadConfig> Function() uploadConfigResolver,
     required Future<core_domain.UploadSession?> Function() sessionResolver,
     core_domain.ServerConfigOverrideApplier? onServerConfigOverride,
-    required core_domain.TelemetryQueueRepository queue,
+    required core_domain.TelemetryQueue queue,
     core_domain.PayloadSerializer? serializer,
     core_domain.TelemetryTransport? transport,
     core_domain.ResponseWorker? responseWorker,

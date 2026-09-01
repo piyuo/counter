@@ -14,12 +14,12 @@ import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
-import 'telemetry_database.dart';
+import 'drift_telemetry_database.dart';
 
-/// SQLite-backed implementation of [core_domain.TelemetryQueueRepository] built
+/// SQLite-backed implementation of [core_domain.TelemetryQueue] built
 /// on Drift.  All timestamps are stored as UTC milliseconds since epoch.
-class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepository {
-  DriftPayloadQueueRepository(this._dbFactory);
+class DriftTelemetryQueue implements core_domain.TelemetryQueue {
+  DriftTelemetryQueue(this._dbFactory);
 
   final TelemetryDatabaseFun _dbFactory;
 
@@ -32,8 +32,12 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
     final startLocalHm = _formatLocalHourMinute(payload.startUtc);
     final encodedJson = jsonEncode(payload.toJson());
-    await _dbFactory()
-        .into(_dbFactory().telemetryQueue)
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available , probably in reset state, ignore operation
+    }
+    await db
+        .into(db.telemetryQueue)
         // Detection engine payload IDs are unique; if a duplicate appears,
         // keep the existing row as-is (do not reset/overwrite upload state).
         .insert(
@@ -54,10 +58,14 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   /// rows are included if createdAtMs is after the cutoff.
   @override
   Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 7}) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return []; // db is not available, return empty list
+    }
     // Availability is based on enqueue time only.
     final cutoffMs = DateTime.now().toUtc().subtract(Duration(days: daysBack)).millisecondsSinceEpoch;
     final rows =
-        await (_dbFactory().select(_dbFactory().telemetryQueue)
+        await (db.select(db.telemetryQueue)
               ..where((t) => t.createdAtMs.isBiggerThanValue(cutoffMs))
               ..orderBy([(t) => OrderingTerm.desc(t.createdAtMs)]))
             .get();
@@ -69,8 +77,12 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   /// Excludes payloads where uploadedAtMs is set.
   @override
   Future<List<core_domain.QueuedPayload>> fetchReady({int limit = 10}) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return []; // db is not available, return empty list
+    }
     final rows =
-        await (_dbFactory().select(_dbFactory().telemetryQueue)
+        await (db.select(db.telemetryQueue)
               ..where((t) => t.isPending)
               // Oldest first — ensures no payload is starved during retries.
               ..orderBy([(t) => OrderingTerm.asc(t.createdAtMs)])
@@ -81,9 +93,13 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
 
   @override
   Future<void> appendUploadLog(core_domain.UploadLog log) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available, ignore operation
+    }
     final attemptedAtUtc = log.attemptedAtUtc.toUtc();
-    await _dbFactory()
-        .into(_dbFactory().telemetryUploadLog)
+    await db
+        .into(db.telemetryUploadLog)
         .insertOnConflictUpdate(
           TelemetryUploadLogCompanion.insert(
             id: Value(log.id),
@@ -99,9 +115,13 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
 
   @override
   Future<List<core_domain.UploadLogList>> fetchRecentUploadLogs({int daysBack = 7, int limit = 500}) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return []; // db is not available, return empty list
+    }
     final cutoffMs = DateTime.now().toUtc().subtract(Duration(days: daysBack)).millisecondsSinceEpoch;
     final rows =
-        await (_dbFactory().select(_dbFactory().telemetryUploadLog)
+        await (db.select(db.telemetryUploadLog)
               ..where((t) => t.isAttemptedAfter(cutoffMs))
               ..orderBy([(t) => OrderingTerm.desc(t.attemptedAtMs)])
               ..limit(limit))
@@ -111,16 +131,22 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
 
   @override
   Future<core_domain.UploadLog?> fetchUploadLogById(int id) async {
-    final row = await (_dbFactory().select(
-      _dbFactory().telemetryUploadLog,
-    )..where((t) => t.id.equals(id))).getSingleOrNull();
+    final db = _dbFactory();
+    if (db == null) {
+      return null; // db is not available
+    }
+    final row = await (db.select(db.telemetryUploadLog)..where((t) => t.id.equals(id))).getSingleOrNull();
     return row == null ? null : _toUploadLog(row);
   }
 
   @override
   Future<void> pruneUploadLogs(DateTime before) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available, ignore operation
+    }
     final beforeMs = before.toUtc().millisecondsSinceEpoch;
-    await (_dbFactory().delete(_dbFactory().telemetryUploadLog)..where((t) => t.isAttemptedBefore(beforeMs))).go();
+    await (db.delete(db.telemetryUploadLog)..where((t) => t.isAttemptedBefore(beforeMs))).go();
   }
 
   /// Removes all payload rows enqueued before [before].
@@ -129,26 +155,38 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   /// Expiry is based only on `createdAtMs`, regardless of upload status.
   @override
   Future<void> pruneExpired(DateTime before) async {
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available, ignore operation
+    }
     final beforeMs = before.toUtc().millisecondsSinceEpoch;
-    await (_dbFactory().delete(_dbFactory().telemetryQueue)..where((t) => t.isCreatedBefore(beforeMs))).go();
+    await (db.delete(db.telemetryQueue)..where((t) => t.isCreatedBefore(beforeMs))).go();
   }
 
   @override
   Future<void> markUploadedBatch(List<String> ids) async {
     if (ids.isEmpty) return; // Avoid unnecessary database call
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available, ignore operation
+    }
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
     // Batch update all payloads in a single WHERE IN clause for efficiency.
-    await (_dbFactory().update(
-      _dbFactory().telemetryQueue,
+    await (db.update(
+      db.telemetryQueue,
     )..where((t) => t.id.isIn(ids))).write(TelemetryQueueCompanion(uploadedAtMs: Value(nowMs)));
   }
 
   @override
   Future<int> pendingCount() async {
+    final db = _dbFactory();
+    if (db == null) {
+      return 0; // db is not available, return 0 pending count
+    }
     final count = countAll();
-    final query = _dbFactory().selectOnly(_dbFactory().telemetryQueue)
+    final query = db.selectOnly(db.telemetryQueue)
       ..addColumns([count])
-      ..where(_dbFactory().telemetryQueue.isPending);
+      ..where(db.telemetryQueue.isPending);
     return await query.map((row) => row.read(count) ?? 0).getSingle();
   }
 
@@ -159,7 +197,11 @@ class DriftPayloadQueueRepository implements core_domain.TelemetryQueueRepositor
   /// This is useful for clearing accumulated telemetry data and starting fresh.
   @override
   Future<void> reset() async {
-    await _dbFactory().reset();
+    final db = _dbFactory();
+    if (db == null) {
+      return; // db is not available , probably in reset state, ignore operation
+    }
+    await db.reset();
     appkit.logInfo('[TelemetryQueue] telemetry database reset');
   }
 

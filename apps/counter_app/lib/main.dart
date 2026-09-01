@@ -17,7 +17,7 @@ void main() async {
       final appSupportDir = await getApplicationSupportDirectory();
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
-      dbFactory = await core_runtime.TelemetryDatabase.open(filePath: telemetryDbPath);
+      dbFactory = await core_runtime.DriftTelemetryDatabase.open(filePath: telemetryDbPath);
     },
     ProviderScope(
       //observers: [appkit.riverpodObserver()],
@@ -45,13 +45,13 @@ void main() async {
           unawaited(appLinkService.init());
           return appLinkService;
         }),
-        core_domain.telemetryQueueRepositoryProvider.overrideWith((ref) {
-          return core_runtime.DriftPayloadQueueRepository(dbFactory);
+        core_domain.telemetryQueueProvider.overrideWith((ref) {
+          return core_runtime.DriftTelemetryQueue(dbFactory);
         }),
         core_domain.telemetryServiceProvider.overrideWith((ref) {
           ref.keepAlive();
           final service = core_runtime.NativeTelemetryService(
-            queue: ref.read(core_domain.telemetryQueueRepositoryProvider),
+            queue: ref.read(core_domain.telemetryQueueProvider),
             onServerConfigOverride: ({detectionType, detectionParams, deliveryConfig}) async {
               await ref
                   .read(core_domain.appProvider.notifier)

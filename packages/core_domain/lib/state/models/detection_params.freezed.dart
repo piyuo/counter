@@ -56,7 +56,7 @@ mixin _$DetectionParams {
 /// edge zone once elapsed time reaches this threshold. Set to `0` to
 /// disable this edge-zone override.
  double get trackletEdgeOverrideTimeSec;/// Minimum continuous in-area duration, in seconds, before a track
-/// contributes to `stayCount` in window counting.
+/// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
  int get stayThresholdSeconds;/// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.
 /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear
@@ -268,7 +268,7 @@ return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,
 @JsonSerializable()
 
 class _DetectionParams extends DetectionParams {
-  const _DetectionParams({this.trackHighThresh = 0.6, this.trackLowThresh = 0.05, this.newTrackThresh = 0.75, this.maxTimeLostSec = 3, this.maxMatchDistance = 0.9, this.proximityThresh = 0.95, this.appearanceThresh = 0.5, this.lambda = 0.990, this.softMotionGating = true, this.preferAppearanceFallbackOnLowIou = true, this.trackletMinPresenceTimeSec = 1, this.trackletEdgeMargin = 32, this.trackletEdgeOverrideTimeSec = 2.0, this.stayThresholdSeconds = 600, this.disappearThresholdSeconds = 7}): super._();
+  const _DetectionParams({this.trackHighThresh = 0.6, this.trackLowThresh = 0.05, this.newTrackThresh = 0.75, this.maxTimeLostSec = 3, this.maxMatchDistance = 0.9, this.proximityThresh = 0.95, this.appearanceThresh = 0.5, this.lambda = 0.990, this.softMotionGating = true, this.preferAppearanceFallbackOnLowIou = true, this.trackletMinPresenceTimeSec = 1, this.trackletEdgeMargin = 32, this.trackletEdgeOverrideTimeSec = 2.0, this.stayThresholdSeconds = 300, this.disappearThresholdSeconds = 7}): super._();
   factory _DetectionParams.fromJson(Map<String, dynamic> json) => _$DetectionParamsFromJson(json);
 
 /// Detection confidence required to enter the first, high-confidence
@@ -325,7 +325,7 @@ class _DetectionParams extends DetectionParams {
 /// disable this edge-zone override.
 @override@JsonKey() final  double trackletEdgeOverrideTimeSec;
 /// Minimum continuous in-area duration, in seconds, before a track
-/// contributes to `stayCount` in window counting.
+/// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
 @override@JsonKey() final  int stayThresholdSeconds;
 /// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.

@@ -28,7 +28,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
   }
 
   Future<List<core_domain.UploadLogList>> _loadRecentLogs() {
-    final queue = ref.read(core_domain.telemetryQueueRepositoryProvider);
+    final queue = ref.read(core_domain.telemetryQueueProvider);
     return queue.fetchRecentUploadLogs(daysBack: 7, limit: 24 * 7);
   }
 
@@ -152,7 +152,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                       ],
                     ),
                     onTap: () async {
-                      final queue = ref.read(core_domain.telemetryQueueRepositoryProvider);
+                      final queue = ref.read(core_domain.telemetryQueueProvider);
                       final fullLog = await queue.fetchUploadLogById(entry.value[i].id);
                       if (!mounted) return;
                       if (fullLog == null) {

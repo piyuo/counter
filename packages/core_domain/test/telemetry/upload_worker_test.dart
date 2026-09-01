@@ -20,8 +20,8 @@ import 'package:core_domain/telemetry/models/telemetry_response.dart';
 import 'package:core_domain/telemetry/models/upload_log.dart';
 import 'package:core_domain/telemetry/models/upload_log_list.dart';
 import 'package:core_domain/telemetry/models/upload_session.dart';
-import 'package:core_domain/telemetry/services/payload_queue_repository.dart';
 import 'package:core_domain/telemetry/services/payload_serializer.dart';
+import 'package:core_domain/telemetry/services/telemetry_queue.dart';
 import 'package:core_domain/telemetry/services/telemetry_transport.dart';
 import 'package:core_domain/telemetry/upload_worker.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -51,7 +51,7 @@ TelemetryPayload _payload(String id, {String? businessDate, int year = 2026, int
 }
 
 /// [createdAt] defaults to a far-future date (2099) so it is never pruned by
-/// [TelemetryQueueRepository.pruneExpired] in tests that use [_config] defaults.
+/// [TelemetryQueue.pruneExpired] in tests that use [_config] defaults.
 QueuedPayload _pending(String id, {DateTime? createdAt, TelemetryPayload? payload}) =>
     QueuedPayload(id: id, payload: payload ?? _payload(id), createdAtUtc: createdAt ?? DateTime.utc(2099, 1, 1));
 
@@ -69,7 +69,7 @@ UploadSession _config() => UploadSession(
 // Stub implementations
 // ---------------------------------------------------------------------------
 
-class _StubQueue implements TelemetryQueueRepository {
+class _StubQueue implements TelemetryQueue {
   final _rows = <QueuedPayload>[];
   final _deliveryLogsById = <int, UploadLog>{};
   final _successfulIds = <String>{};

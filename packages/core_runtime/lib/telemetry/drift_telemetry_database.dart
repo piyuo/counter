@@ -11,7 +11,7 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
 part 'telemetry_database.g.dart';
 
-typedef TelemetryDatabaseFun = TelemetryDatabase Function();
+typedef TelemetryDatabaseFun = DriftTelemetryDatabase? Function();
 
 // Set to true to enable verbose Drift logging for debugging.
 const _kEnableDriftLogging = false;
@@ -109,8 +109,8 @@ class TelemetryUploadLog extends Table {
 }
 
 @DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog])
-class TelemetryDatabase extends _$TelemetryDatabase {
-  TelemetryDatabase._internal(super.executor, {required this.filePath});
+class DriftTelemetryDatabase extends _$TelemetryDatabase {
+  DriftTelemetryDatabase._internal(super.executor, {required this.filePath});
 
   /// Path to the database file on disk. Used for logging and deletion.
   final String filePath;
@@ -158,10 +158,10 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   );
 
   /// Singleton instance of the database. Lazily initialized on first open.
-  static TelemetryDatabase? _db;
+  static DriftTelemetryDatabase? _db;
 
   /// Returns a function that returns the singleton database instance.
-  static TelemetryDatabaseFun dbFactory = () => _db!;
+  static TelemetryDatabaseFun dbFactory = () => _db;
 
   /// Opens the database at an explicit filesystem path.
   ///
@@ -172,7 +172,7 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   /// Transient errors (file locks, I/O, permissions) are rethrown.
   static Future<TelemetryDatabaseFun> open({required String filePath}) async {
     appkit.logDebug('[Telemetry] open database: $filePath');
-    _db = TelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
+    _db = DriftTelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
     try {
       // NativeDatabase is lazy — probe forces the real connection so corruption
       // is detected here rather than silently failing on first production query.
@@ -183,7 +183,7 @@ class TelemetryDatabase extends _$TelemetryDatabase {
         appkit.logError('[Telemetry] database corrupted, recreating: $error', stackTrace: stackTrace);
         await _db!.close();
         await removeFile(filePath: filePath);
-        _db = TelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
+        _db = DriftTelemetryDatabase._internal(_openExecutor(filePath), filePath: filePath);
         return dbFactory;
       } else {
         appkit.logError('[Telemetry] transient error opening database, rethrowing: $error', stackTrace: stackTrace);
@@ -207,7 +207,13 @@ class TelemetryDatabase extends _$TelemetryDatabase {
   /// After this call, this database instance is permanently unusable.
   /// Create a new TelemetryDatabase by calling [open].
   Future<void> reset() async {
-    await close();
+    final oldDb = _db;
+    _db = null;
+    if (oldDb != null) {
+      await oldDb.close();
+    }
+    // sleep for 2 seconds to ensure the file is released before deletion. This is a workaround for occasional file-locking issues on some platforms.
+    await Future.delayed(const Duration(seconds: 2));
     await removeFile(filePath: filePath);
     await open(filePath: filePath);
   }

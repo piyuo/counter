@@ -1,10 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'telemetry_database.dart';
+part of 'drift_telemetry_database.dart';
 
 // ignore_for_file: type=lint
-class $TelemetryQueueTable extends TelemetryQueue
-    with TableInfo<$TelemetryQueueTable, TelemetryQueueData> {
+class $TelemetryQueueTable extends TelemetryQueue with TableInfo<$TelemetryQueueTable, TelemetryQueueData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -18,21 +17,16 @@ class $TelemetryQueueTable extends TelemetryQueue
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _serializedPayloadMeta = const VerificationMeta(
-    'serializedPayload',
-  );
+  static const VerificationMeta _serializedPayloadMeta = const VerificationMeta('serializedPayload');
   @override
-  late final GeneratedColumn<String> serializedPayload =
-      GeneratedColumn<String>(
-        'serialized_payload',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
-  static const VerificationMeta _createdAtMsMeta = const VerificationMeta(
-    'createdAtMs',
+  late final GeneratedColumn<String> serializedPayload = GeneratedColumn<String>(
+    'serialized_payload',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
   );
+  static const VerificationMeta _createdAtMsMeta = const VerificationMeta('createdAtMs');
   @override
   late final GeneratedColumn<int> createdAtMs = GeneratedColumn<int>(
     'created_at_ms',
@@ -41,9 +35,7 @@ class $TelemetryQueueTable extends TelemetryQueue
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _startMsMeta = const VerificationMeta(
-    'startMs',
-  );
+  static const VerificationMeta _startMsMeta = const VerificationMeta('startMs');
   @override
   late final GeneratedColumn<int> startMs = GeneratedColumn<int>(
     'start_ms',
@@ -52,9 +44,7 @@ class $TelemetryQueueTable extends TelemetryQueue
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _uploadedAtMsMeta = const VerificationMeta(
-    'uploadedAtMs',
-  );
+  static const VerificationMeta _uploadedAtMsMeta = const VerificationMeta('uploadedAtMs');
   @override
   late final GeneratedColumn<int> uploadedAtMs = GeneratedColumn<int>(
     'delivered_at_ms',
@@ -64,23 +54,14 @@ class $TelemetryQueueTable extends TelemetryQueue
     requiredDuringInsert: false,
   );
   @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    serializedPayload,
-    createdAtMs,
-    startMs,
-    uploadedAtMs,
-  ];
+  List<GeneratedColumn> get $columns => [id, serializedPayload, createdAtMs, startMs, uploadedAtMs];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'telemetry_queue';
   @override
-  VerificationContext validateIntegrity(
-    Insertable<TelemetryQueueData> instance, {
-    bool isInserting = false,
-  }) {
+  VerificationContext validateIntegrity(Insertable<TelemetryQueueData> instance, {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
@@ -91,40 +72,25 @@ class $TelemetryQueueTable extends TelemetryQueue
     if (data.containsKey('serialized_payload')) {
       context.handle(
         _serializedPayloadMeta,
-        serializedPayload.isAcceptableOrUnknown(
-          data['serialized_payload']!,
-          _serializedPayloadMeta,
-        ),
+        serializedPayload.isAcceptableOrUnknown(data['serialized_payload']!, _serializedPayloadMeta),
       );
     } else if (isInserting) {
       context.missing(_serializedPayloadMeta);
     }
     if (data.containsKey('created_at_ms')) {
-      context.handle(
-        _createdAtMsMeta,
-        createdAtMs.isAcceptableOrUnknown(
-          data['created_at_ms']!,
-          _createdAtMsMeta,
-        ),
-      );
+      context.handle(_createdAtMsMeta, createdAtMs.isAcceptableOrUnknown(data['created_at_ms']!, _createdAtMsMeta));
     } else if (isInserting) {
       context.missing(_createdAtMsMeta);
     }
     if (data.containsKey('start_ms')) {
-      context.handle(
-        _startMsMeta,
-        startMs.isAcceptableOrUnknown(data['start_ms']!, _startMsMeta),
-      );
+      context.handle(_startMsMeta, startMs.isAcceptableOrUnknown(data['start_ms']!, _startMsMeta));
     } else if (isInserting) {
       context.missing(_startMsMeta);
     }
     if (data.containsKey('delivered_at_ms')) {
       context.handle(
         _uploadedAtMsMeta,
-        uploadedAtMs.isAcceptableOrUnknown(
-          data['delivered_at_ms']!,
-          _uploadedAtMsMeta,
-        ),
+        uploadedAtMs.isAcceptableOrUnknown(data['delivered_at_ms']!, _uploadedAtMsMeta),
       );
     }
     return context;
@@ -136,26 +102,14 @@ class $TelemetryQueueTable extends TelemetryQueue
   TelemetryQueueData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return TelemetryQueueData(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}id'],
-      )!,
+      id: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}id'])!,
       serializedPayload: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}serialized_payload'],
       )!,
-      createdAtMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}created_at_ms'],
-      )!,
-      startMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}start_ms'],
-      )!,
-      uploadedAtMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}delivered_at_ms'],
-      ),
+      createdAtMs: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}created_at_ms'])!,
+      startMs: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}start_ms'])!,
+      uploadedAtMs: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}delivered_at_ms']),
     );
   }
 
@@ -165,8 +119,7 @@ class $TelemetryQueueTable extends TelemetryQueue
   }
 }
 
-class TelemetryQueueData extends DataClass
-    implements Insertable<TelemetryQueueData> {
+class TelemetryQueueData extends DataClass implements Insertable<TelemetryQueueData> {
   /// UUID v4 string; primary key. Matches [core_domain.TelemetryPayload.payloadId].
   final String id;
   final String serializedPayload;
@@ -207,16 +160,11 @@ class TelemetryQueueData extends DataClass
       serializedPayload: Value(serializedPayload),
       createdAtMs: Value(createdAtMs),
       startMs: Value(startMs),
-      uploadedAtMs: uploadedAtMs == null && nullToAbsent
-          ? const Value.absent()
-          : Value(uploadedAtMs),
+      uploadedAtMs: uploadedAtMs == null && nullToAbsent ? const Value.absent() : Value(uploadedAtMs),
     );
   }
 
-  factory TelemetryQueueData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
+  factory TelemetryQueueData.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return TelemetryQueueData(
       id: serializer.fromJson<String>(json['id']),
@@ -254,16 +202,10 @@ class TelemetryQueueData extends DataClass
   TelemetryQueueData copyWithCompanion(TelemetryQueueCompanion data) {
     return TelemetryQueueData(
       id: data.id.present ? data.id.value : this.id,
-      serializedPayload: data.serializedPayload.present
-          ? data.serializedPayload.value
-          : this.serializedPayload,
-      createdAtMs: data.createdAtMs.present
-          ? data.createdAtMs.value
-          : this.createdAtMs,
+      serializedPayload: data.serializedPayload.present ? data.serializedPayload.value : this.serializedPayload,
+      createdAtMs: data.createdAtMs.present ? data.createdAtMs.value : this.createdAtMs,
       startMs: data.startMs.present ? data.startMs.value : this.startMs,
-      uploadedAtMs: data.uploadedAtMs.present
-          ? data.uploadedAtMs.value
-          : this.uploadedAtMs,
+      uploadedAtMs: data.uploadedAtMs.present ? data.uploadedAtMs.value : this.uploadedAtMs,
     );
   }
 
@@ -280,8 +222,7 @@ class TelemetryQueueData extends DataClass
   }
 
   @override
-  int get hashCode =>
-      Object.hash(id, serializedPayload, createdAtMs, startMs, uploadedAtMs);
+  int get hashCode => Object.hash(id, serializedPayload, createdAtMs, startMs, uploadedAtMs);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -408,9 +349,7 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     type: DriftSqlType.int,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _successMeta = const VerificationMeta(
-    'success',
-  );
+  static const VerificationMeta _successMeta = const VerificationMeta('success');
   @override
   late final GeneratedColumn<bool> success = GeneratedColumn<bool>(
     'success',
@@ -418,13 +357,9 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     false,
     type: DriftSqlType.bool,
     requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'CHECK ("success" IN (0, 1))',
-    ),
+    defaultConstraints: GeneratedColumn.constraintIsAlways('CHECK ("success" IN (0, 1))'),
   );
-  static const VerificationMeta _attemptedAtMsMeta = const VerificationMeta(
-    'attemptedAtMs',
-  );
+  static const VerificationMeta _attemptedAtMsMeta = const VerificationMeta('attemptedAtMs');
   @override
   late final GeneratedColumn<int> attemptedAtMs = GeneratedColumn<int>(
     'attempted_at_ms',
@@ -433,9 +368,7 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _payloadSizeKbMeta = const VerificationMeta(
-    'payloadSizeKb',
-  );
+  static const VerificationMeta _payloadSizeKbMeta = const VerificationMeta('payloadSizeKb');
   @override
   late final GeneratedColumn<int> payloadSizeKb = GeneratedColumn<int>(
     'size_kb',
@@ -444,9 +377,7 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     type: DriftSqlType.int,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _payloadCountMeta = const VerificationMeta(
-    'payloadCount',
-  );
+  static const VerificationMeta _payloadCountMeta = const VerificationMeta('payloadCount');
   @override
   late final GeneratedColumn<int> payloadCount = GeneratedColumn<int>(
     'payload_count',
@@ -456,9 +387,7 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
-  static const VerificationMeta _retryCountMeta = const VerificationMeta(
-    'retryCount',
-  );
+  static const VerificationMeta _retryCountMeta = const VerificationMeta('retryCount');
   @override
   late final GeneratedColumn<int> retryCount = GeneratedColumn<int>(
     'retry_count',
@@ -478,80 +407,45 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
     requiredDuringInsert: false,
   );
   @override
-  List<GeneratedColumn> get $columns => [
-    id,
-    success,
-    attemptedAtMs,
-    payloadSizeKb,
-    payloadCount,
-    retryCount,
-    error,
-  ];
+  List<GeneratedColumn> get $columns => [id, success, attemptedAtMs, payloadSizeKb, payloadCount, retryCount, error];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
   static const String $name = 'telemetry_upload_log';
   @override
-  VerificationContext validateIntegrity(
-    Insertable<TelemetryUploadLogData> instance, {
-    bool isInserting = false,
-  }) {
+  VerificationContext validateIntegrity(Insertable<TelemetryUploadLogData> instance, {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('success')) {
-      context.handle(
-        _successMeta,
-        success.isAcceptableOrUnknown(data['success']!, _successMeta),
-      );
+      context.handle(_successMeta, success.isAcceptableOrUnknown(data['success']!, _successMeta));
     } else if (isInserting) {
       context.missing(_successMeta);
     }
     if (data.containsKey('attempted_at_ms')) {
       context.handle(
         _attemptedAtMsMeta,
-        attemptedAtMs.isAcceptableOrUnknown(
-          data['attempted_at_ms']!,
-          _attemptedAtMsMeta,
-        ),
+        attemptedAtMs.isAcceptableOrUnknown(data['attempted_at_ms']!, _attemptedAtMsMeta),
       );
     } else if (isInserting) {
       context.missing(_attemptedAtMsMeta);
     }
     if (data.containsKey('size_kb')) {
-      context.handle(
-        _payloadSizeKbMeta,
-        payloadSizeKb.isAcceptableOrUnknown(
-          data['size_kb']!,
-          _payloadSizeKbMeta,
-        ),
-      );
+      context.handle(_payloadSizeKbMeta, payloadSizeKb.isAcceptableOrUnknown(data['size_kb']!, _payloadSizeKbMeta));
     } else if (isInserting) {
       context.missing(_payloadSizeKbMeta);
     }
     if (data.containsKey('payload_count')) {
-      context.handle(
-        _payloadCountMeta,
-        payloadCount.isAcceptableOrUnknown(
-          data['payload_count']!,
-          _payloadCountMeta,
-        ),
-      );
+      context.handle(_payloadCountMeta, payloadCount.isAcceptableOrUnknown(data['payload_count']!, _payloadCountMeta));
     }
     if (data.containsKey('retry_count')) {
-      context.handle(
-        _retryCountMeta,
-        retryCount.isAcceptableOrUnknown(data['retry_count']!, _retryCountMeta),
-      );
+      context.handle(_retryCountMeta, retryCount.isAcceptableOrUnknown(data['retry_count']!, _retryCountMeta));
     }
     if (data.containsKey('error')) {
-      context.handle(
-        _errorMeta,
-        error.isAcceptableOrUnknown(data['error']!, _errorMeta),
-      );
+      context.handle(_errorMeta, error.isAcceptableOrUnknown(data['error']!, _errorMeta));
     }
     return context;
   }
@@ -562,34 +456,13 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
   TelemetryUploadLogData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return TelemetryUploadLogData(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      success: attachedDatabase.typeMapping.read(
-        DriftSqlType.bool,
-        data['${effectivePrefix}success'],
-      )!,
-      attemptedAtMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}attempted_at_ms'],
-      )!,
-      payloadSizeKb: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}size_kb'],
-      )!,
-      payloadCount: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}payload_count'],
-      )!,
-      retryCount: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}retry_count'],
-      )!,
-      error: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}error'],
-      ),
+      id: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      success: attachedDatabase.typeMapping.read(DriftSqlType.bool, data['${effectivePrefix}success'])!,
+      attemptedAtMs: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}attempted_at_ms'])!,
+      payloadSizeKb: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}size_kb'])!,
+      payloadCount: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}payload_count'])!,
+      retryCount: attachedDatabase.typeMapping.read(DriftSqlType.int, data['${effectivePrefix}retry_count'])!,
+      error: attachedDatabase.typeMapping.read(DriftSqlType.string, data['${effectivePrefix}error']),
     );
   }
 
@@ -599,8 +472,7 @@ class $TelemetryUploadLogTable extends TelemetryUploadLog
   }
 }
 
-class TelemetryUploadLogData extends DataClass
-    implements Insertable<TelemetryUploadLogData> {
+class TelemetryUploadLogData extends DataClass implements Insertable<TelemetryUploadLogData> {
   /// Semantic primary key in UTC hour/status format: yyyyMMddHHs.
   ///
   /// Success digit:
@@ -659,16 +531,11 @@ class TelemetryUploadLogData extends DataClass
       payloadSizeKb: Value(payloadSizeKb),
       payloadCount: Value(payloadCount),
       retryCount: Value(retryCount),
-      error: error == null && nullToAbsent
-          ? const Value.absent()
-          : Value(error),
+      error: error == null && nullToAbsent ? const Value.absent() : Value(error),
     );
   }
 
-  factory TelemetryUploadLogData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
+  factory TelemetryUploadLogData.fromJson(Map<String, dynamic> json, {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return TelemetryUploadLogData(
       id: serializer.fromJson<int>(json['id']),
@@ -715,18 +582,10 @@ class TelemetryUploadLogData extends DataClass
     return TelemetryUploadLogData(
       id: data.id.present ? data.id.value : this.id,
       success: data.success.present ? data.success.value : this.success,
-      attemptedAtMs: data.attemptedAtMs.present
-          ? data.attemptedAtMs.value
-          : this.attemptedAtMs,
-      payloadSizeKb: data.payloadSizeKb.present
-          ? data.payloadSizeKb.value
-          : this.payloadSizeKb,
-      payloadCount: data.payloadCount.present
-          ? data.payloadCount.value
-          : this.payloadCount,
-      retryCount: data.retryCount.present
-          ? data.retryCount.value
-          : this.retryCount,
+      attemptedAtMs: data.attemptedAtMs.present ? data.attemptedAtMs.value : this.attemptedAtMs,
+      payloadSizeKb: data.payloadSizeKb.present ? data.payloadSizeKb.value : this.payloadSizeKb,
+      payloadCount: data.payloadCount.present ? data.payloadCount.value : this.payloadCount,
+      retryCount: data.retryCount.present ? data.retryCount.value : this.retryCount,
       error: data.error.present ? data.error.value : this.error,
     );
   }
@@ -746,15 +605,7 @@ class TelemetryUploadLogData extends DataClass
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    success,
-    attemptedAtMs,
-    payloadSizeKb,
-    payloadCount,
-    retryCount,
-    error,
-  );
+  int get hashCode => Object.hash(id, success, attemptedAtMs, payloadSizeKb, payloadCount, retryCount, error);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -768,8 +619,7 @@ class TelemetryUploadLogData extends DataClass
           other.error == this.error);
 }
 
-class TelemetryUploadLogCompanion
-    extends UpdateCompanion<TelemetryUploadLogData> {
+class TelemetryUploadLogCompanion extends UpdateCompanion<TelemetryUploadLogData> {
   final Value<int> id;
   final Value<bool> success;
   final Value<int> attemptedAtMs;
@@ -883,8 +733,7 @@ abstract class _$TelemetryDatabase extends GeneratedDatabase {
   _$TelemetryDatabase(QueryExecutor e) : super(e);
   $TelemetryDatabaseManager get managers => $TelemetryDatabaseManager(this);
   late final $TelemetryQueueTable telemetryQueue = $TelemetryQueueTable(this);
-  late final $TelemetryUploadLogTable telemetryUploadLog =
-      $TelemetryUploadLogTable(this);
+  late final $TelemetryUploadLogTable telemetryUploadLog = $TelemetryUploadLogTable(this);
   late final Index telemetryQueuePendingReadyIdx = Index(
     'telemetry_queue_pending_ready_idx',
     'CREATE INDEX telemetry_queue_pending_ready_idx ON telemetry_queue (created_at_ms) WHERE delivered_at_ms IS NULL',
@@ -902,8 +751,7 @@ abstract class _$TelemetryDatabase extends GeneratedDatabase {
     'CREATE INDEX telemetry_upload_logs_attempted_at_success_idx ON telemetry_upload_log (attempted_at_ms DESC, success)',
   );
   @override
-  Iterable<TableInfo<Table, Object?>> get allTables =>
-      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
+  Iterable<TableInfo<Table, Object?>> get allTables => allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     telemetryQueue,
@@ -934,8 +782,7 @@ typedef $$TelemetryQueueTableUpdateCompanionBuilder =
       Value<int> rowid,
     });
 
-class $$TelemetryQueueTableFilterComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
+class $$TelemetryQueueTableFilterComposer extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableFilterComposer({
     required super.$db,
     required super.$table,
@@ -943,34 +790,22 @@ class $$TelemetryQueueTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<String> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<String> get serializedPayload =>
+      $composableBuilder(column: $table.serializedPayload, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get createdAtMs => $composableBuilder(
-    column: $table.createdAtMs,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get createdAtMs =>
+      $composableBuilder(column: $table.createdAtMs, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get startMs => $composableBuilder(
-    column: $table.startMs,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get startMs =>
+      $composableBuilder(column: $table.startMs, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get uploadedAtMs => $composableBuilder(
-    column: $table.uploadedAtMs,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get uploadedAtMs =>
+      $composableBuilder(column: $table.uploadedAtMs, builder: (column) => ColumnFilters(column));
 }
 
-class $$TelemetryQueueTableOrderingComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
+class $$TelemetryQueueTableOrderingComposer extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableOrderingComposer({
     required super.$db,
     required super.$table,
@@ -978,34 +813,22 @@ class $$TelemetryQueueTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<String> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<String> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<String> get serializedPayload =>
+      $composableBuilder(column: $table.serializedPayload, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get createdAtMs => $composableBuilder(
-    column: $table.createdAtMs,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get createdAtMs =>
+      $composableBuilder(column: $table.createdAtMs, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get startMs => $composableBuilder(
-    column: $table.startMs,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get startMs =>
+      $composableBuilder(column: $table.startMs, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get uploadedAtMs => $composableBuilder(
-    column: $table.uploadedAtMs,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get uploadedAtMs =>
+      $composableBuilder(column: $table.uploadedAtMs, builder: (column) => ColumnOrderings(column));
 }
 
-class $$TelemetryQueueTableAnnotationComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
+class $$TelemetryQueueTableAnnotationComposer extends Composer<_$TelemetryDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableAnnotationComposer({
     required super.$db,
     required super.$table,
@@ -1013,26 +836,16 @@ class $$TelemetryQueueTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<String> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
+  GeneratedColumn<String> get id => $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
-    builder: (column) => column,
-  );
+  GeneratedColumn<String> get serializedPayload =>
+      $composableBuilder(column: $table.serializedPayload, builder: (column) => column);
 
-  GeneratedColumn<int> get createdAtMs => $composableBuilder(
-    column: $table.createdAtMs,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get createdAtMs => $composableBuilder(column: $table.createdAtMs, builder: (column) => column);
 
-  GeneratedColumn<int> get startMs =>
-      $composableBuilder(column: $table.startMs, builder: (column) => column);
+  GeneratedColumn<int> get startMs => $composableBuilder(column: $table.startMs, builder: (column) => column);
 
-  GeneratedColumn<int> get uploadedAtMs => $composableBuilder(
-    column: $table.uploadedAtMs,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get uploadedAtMs => $composableBuilder(column: $table.uploadedAtMs, builder: (column) => column);
 }
 
 class $$TelemetryQueueTableTableManager
@@ -1046,30 +859,18 @@ class $$TelemetryQueueTableTableManager
           $$TelemetryQueueTableAnnotationComposer,
           $$TelemetryQueueTableCreateCompanionBuilder,
           $$TelemetryQueueTableUpdateCompanionBuilder,
-          (
-            TelemetryQueueData,
-            BaseReferences<
-              _$TelemetryDatabase,
-              $TelemetryQueueTable,
-              TelemetryQueueData
-            >,
-          ),
+          (TelemetryQueueData, BaseReferences<_$TelemetryDatabase, $TelemetryQueueTable, TelemetryQueueData>),
           TelemetryQueueData,
           PrefetchHooks Function()
         > {
-  $$TelemetryQueueTableTableManager(
-    _$TelemetryDatabase db,
-    $TelemetryQueueTable table,
-  ) : super(
+  $$TelemetryQueueTableTableManager(_$TelemetryDatabase db, $TelemetryQueueTable table)
+    : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$TelemetryQueueTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$TelemetryQueueTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$TelemetryQueueTableAnnotationComposer($db: db, $table: table),
+          createFilteringComposer: () => $$TelemetryQueueTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () => $$TelemetryQueueTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () => $$TelemetryQueueTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<String> id = const Value.absent(),
@@ -1102,9 +903,7 @@ class $$TelemetryQueueTableTableManager
                 uploadedAtMs: uploadedAtMs,
                 rowid: rowid,
               ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
+          withReferenceMapper: (p0) => p0.map((e) => (e.readTable(table), BaseReferences(db, table, e))).toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -1120,14 +919,7 @@ typedef $$TelemetryQueueTableProcessedTableManager =
       $$TelemetryQueueTableAnnotationComposer,
       $$TelemetryQueueTableCreateCompanionBuilder,
       $$TelemetryQueueTableUpdateCompanionBuilder,
-      (
-        TelemetryQueueData,
-        BaseReferences<
-          _$TelemetryDatabase,
-          $TelemetryQueueTable,
-          TelemetryQueueData
-        >,
-      ),
+      (TelemetryQueueData, BaseReferences<_$TelemetryDatabase, $TelemetryQueueTable, TelemetryQueueData>),
       TelemetryQueueData,
       PrefetchHooks Function()
     >;
@@ -1152,8 +944,7 @@ typedef $$TelemetryUploadLogTableUpdateCompanionBuilder =
       Value<String?> error,
     });
 
-class $$TelemetryUploadLogTableFilterComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
+class $$TelemetryUploadLogTableFilterComposer extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableFilterComposer({
     required super.$db,
     required super.$table,
@@ -1161,44 +952,28 @@ class $$TelemetryUploadLogTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<bool> get success => $composableBuilder(
-    column: $table.success,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<bool> get success =>
+      $composableBuilder(column: $table.success, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get attemptedAtMs => $composableBuilder(
-    column: $table.attemptedAtMs,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get attemptedAtMs =>
+      $composableBuilder(column: $table.attemptedAtMs, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get payloadSizeKb => $composableBuilder(
-    column: $table.payloadSizeKb,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get payloadSizeKb =>
+      $composableBuilder(column: $table.payloadSizeKb, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get payloadCount => $composableBuilder(
-    column: $table.payloadCount,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get payloadCount =>
+      $composableBuilder(column: $table.payloadCount, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<int> get retryCount => $composableBuilder(
-    column: $table.retryCount,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<int> get retryCount =>
+      $composableBuilder(column: $table.retryCount, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get error => $composableBuilder(
-    column: $table.error,
-    builder: (column) => ColumnFilters(column),
-  );
+  ColumnFilters<String> get error =>
+      $composableBuilder(column: $table.error, builder: (column) => ColumnFilters(column));
 }
 
-class $$TelemetryUploadLogTableOrderingComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
+class $$TelemetryUploadLogTableOrderingComposer extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableOrderingComposer({
     required super.$db,
     required super.$table,
@@ -1206,44 +981,28 @@ class $$TelemetryUploadLogTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get id => $composableBuilder(column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<bool> get success => $composableBuilder(
-    column: $table.success,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<bool> get success =>
+      $composableBuilder(column: $table.success, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get attemptedAtMs => $composableBuilder(
-    column: $table.attemptedAtMs,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get attemptedAtMs =>
+      $composableBuilder(column: $table.attemptedAtMs, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get payloadSizeKb => $composableBuilder(
-    column: $table.payloadSizeKb,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get payloadSizeKb =>
+      $composableBuilder(column: $table.payloadSizeKb, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get payloadCount => $composableBuilder(
-    column: $table.payloadCount,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get payloadCount =>
+      $composableBuilder(column: $table.payloadCount, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<int> get retryCount => $composableBuilder(
-    column: $table.retryCount,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<int> get retryCount =>
+      $composableBuilder(column: $table.retryCount, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get error => $composableBuilder(
-    column: $table.error,
-    builder: (column) => ColumnOrderings(column),
-  );
+  ColumnOrderings<String> get error =>
+      $composableBuilder(column: $table.error, builder: (column) => ColumnOrderings(column));
 }
 
-class $$TelemetryUploadLogTableAnnotationComposer
-    extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
+class $$TelemetryUploadLogTableAnnotationComposer extends Composer<_$TelemetryDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableAnnotationComposer({
     required super.$db,
     required super.$table,
@@ -1251,34 +1010,21 @@ class $$TelemetryUploadLogTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
+  GeneratedColumn<int> get id => $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<bool> get success =>
-      $composableBuilder(column: $table.success, builder: (column) => column);
+  GeneratedColumn<bool> get success => $composableBuilder(column: $table.success, builder: (column) => column);
 
-  GeneratedColumn<int> get attemptedAtMs => $composableBuilder(
-    column: $table.attemptedAtMs,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get attemptedAtMs =>
+      $composableBuilder(column: $table.attemptedAtMs, builder: (column) => column);
 
-  GeneratedColumn<int> get payloadSizeKb => $composableBuilder(
-    column: $table.payloadSizeKb,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get payloadSizeKb =>
+      $composableBuilder(column: $table.payloadSizeKb, builder: (column) => column);
 
-  GeneratedColumn<int> get payloadCount => $composableBuilder(
-    column: $table.payloadCount,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get payloadCount => $composableBuilder(column: $table.payloadCount, builder: (column) => column);
 
-  GeneratedColumn<int> get retryCount => $composableBuilder(
-    column: $table.retryCount,
-    builder: (column) => column,
-  );
+  GeneratedColumn<int> get retryCount => $composableBuilder(column: $table.retryCount, builder: (column) => column);
 
-  GeneratedColumn<String> get error =>
-      $composableBuilder(column: $table.error, builder: (column) => column);
+  GeneratedColumn<String> get error => $composableBuilder(column: $table.error, builder: (column) => column);
 }
 
 class $$TelemetryUploadLogTableTableManager
@@ -1294,31 +1040,19 @@ class $$TelemetryUploadLogTableTableManager
           $$TelemetryUploadLogTableUpdateCompanionBuilder,
           (
             TelemetryUploadLogData,
-            BaseReferences<
-              _$TelemetryDatabase,
-              $TelemetryUploadLogTable,
-              TelemetryUploadLogData
-            >,
+            BaseReferences<_$TelemetryDatabase, $TelemetryUploadLogTable, TelemetryUploadLogData>,
           ),
           TelemetryUploadLogData,
           PrefetchHooks Function()
         > {
-  $$TelemetryUploadLogTableTableManager(
-    _$TelemetryDatabase db,
-    $TelemetryUploadLogTable table,
-  ) : super(
+  $$TelemetryUploadLogTableTableManager(_$TelemetryDatabase db, $TelemetryUploadLogTable table)
+    : super(
         TableManagerState(
           db: db,
           table: table,
-          createFilteringComposer: () =>
-              $$TelemetryUploadLogTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$TelemetryUploadLogTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$TelemetryUploadLogTableAnnotationComposer(
-                $db: db,
-                $table: table,
-              ),
+          createFilteringComposer: () => $$TelemetryUploadLogTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () => $$TelemetryUploadLogTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () => $$TelemetryUploadLogTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
@@ -1355,9 +1089,7 @@ class $$TelemetryUploadLogTableTableManager
                 retryCount: retryCount,
                 error: error,
               ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
+          withReferenceMapper: (p0) => p0.map((e) => (e.readTable(table), BaseReferences(db, table, e))).toList(),
           prefetchHooksCallback: null,
         ),
       );
@@ -1373,14 +1105,7 @@ typedef $$TelemetryUploadLogTableProcessedTableManager =
       $$TelemetryUploadLogTableAnnotationComposer,
       $$TelemetryUploadLogTableCreateCompanionBuilder,
       $$TelemetryUploadLogTableUpdateCompanionBuilder,
-      (
-        TelemetryUploadLogData,
-        BaseReferences<
-          _$TelemetryDatabase,
-          $TelemetryUploadLogTable,
-          TelemetryUploadLogData
-        >,
-      ),
+      (TelemetryUploadLogData, BaseReferences<_$TelemetryDatabase, $TelemetryUploadLogTable, TelemetryUploadLogData>),
       TelemetryUploadLogData,
       PrefetchHooks Function()
     >;
@@ -1388,8 +1113,7 @@ typedef $$TelemetryUploadLogTableProcessedTableManager =
 class $TelemetryDatabaseManager {
   final _$TelemetryDatabase _db;
   $TelemetryDatabaseManager(this._db);
-  $$TelemetryQueueTableTableManager get telemetryQueue =>
-      $$TelemetryQueueTableTableManager(_db, _db.telemetryQueue);
+  $$TelemetryQueueTableTableManager get telemetryQueue => $$TelemetryQueueTableTableManager(_db, _db.telemetryQueue);
   $$TelemetryUploadLogTableTableManager get telemetryUploadLog =>
       $$TelemetryUploadLogTableTableManager(_db, _db.telemetryUploadLog);
 }
