@@ -15,8 +15,8 @@ import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/telemetry/models/telemetry_payload.dart';
-import 'package:core_runtime/telemetry/drift_payload_queue_repository.dart';
-import 'package:core_runtime/telemetry/telemetry_database.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_queue.dart';
 import 'package:drift/drift.dart' hide isNull, isNotNull;
 import 'package:flutter_test/flutter_test.dart';
 
@@ -53,20 +53,20 @@ String _id(String session) => '$session-1';
 
 void main() {
   late TelemetryDatabaseFun db;
-  late DriftPayloadQueueRepository repo;
+  late DriftTelemetryQueue repo;
   late Directory tempDir;
   late String dbPath;
 
   setUp(() async {
     tempDir = await Directory.systemTemp.createTemp('drift_payload_queue_repository_test_');
     dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_test.db';
-    db = await TelemetryDatabase.open(filePath: dbPath);
-    repo = DriftPayloadQueueRepository(db);
+    db = await DriftTelemetryDatabase.open(filePath: dbPath);
+    repo = DriftTelemetryQueue(db);
   });
 
   tearDown(() async {
-    await db().close();
-    await TelemetryDatabase.removeFile(filePath: dbPath);
+    await db()!.close();
+    await DriftTelemetryDatabase.removeFile(filePath: dbPath);
     if (await tempDir.exists()) {
       await tempDir.delete(recursive: true);
     }
@@ -141,13 +141,13 @@ void main() {
       await repo.enqueue(_payload('recent-delivered'));
       await repo.markUploadedBatch([_id('delivered'), _id('recent-delivered')]);
 
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('pending')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('pending')))).write(
         TelemetryQueueCompanion(
           createdAtMs: Value(DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch),
         ),
       );
 
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('delivered')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('delivered')))).write(
         TelemetryQueueCompanion(
           uploadedAtMs: Value(DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch),
         ),
@@ -157,20 +157,20 @@ void main() {
       final beforeMs = DateTime.now().toUtc().subtract(const Duration(days: 10)).millisecondsSinceEpoch;
 
       final pendingRows =
-          await (db().select(db().telemetryQueue)
+          await (db()!.select(db()!.telemetryQueue)
                 ..where((t) => t.isPending)
                 ..orderBy([(t) => OrderingTerm.asc(t.createdAtMs)]))
               .get();
       final deliveredRows =
-          await (db().select(db().telemetryQueue)
+          await (db()!.select(db()!.telemetryQueue)
                 ..where((t) => t.isUploaded)
                 ..orderBy([(t) => OrderingTerm.asc(t.createdAtMs)]))
               .get();
-      final createdBeforeRows = await (db().select(
-        db().telemetryQueue,
+      final createdBeforeRows = await (db()!.select(
+        db()!.telemetryQueue,
       )..where((t) => t.isCreatedBefore(beforeMs))).get();
-      final deliveredAfterRows = await (db().select(
-        db().telemetryQueue,
+      final deliveredAfterRows = await (db()!.select(
+        db()!.telemetryQueue,
       )..where((t) => t.isUploadedAfter(tenDaysAgoMs))).get();
 
       expect(pendingRows.map((row) => row.id), contains(_id('pending')));
@@ -248,10 +248,10 @@ void main() {
       await repo.markUploadedBatch([_id('old-delivered')]);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
         TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)),
       );
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
         TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)),
       );
 
@@ -301,10 +301,10 @@ void main() {
       await repo.enqueue(_payload('recent-pending'));
 
       final elevenDaysAgoMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('old-pending')))).write(
         TelemetryQueueCompanion(createdAtMs: Value(elevenDaysAgoMs)),
       );
-      await (db().update(db().telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
+      await (db()!.update(db()!.telemetryQueue)..where((t) => t.id.equals(_id('old-delivered')))).write(
         TelemetryQueueCompanion(createdAtMs: Value(elevenDaysAgoMs)),
       );
 
@@ -437,8 +437,8 @@ void main() {
 
     test('fetchRecentUploadLogs excludes rows older than daysBack', () async {
       final oldAttemptMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await db()
-          .into(db().telemetryUploadLog)
+      await db()!
+          .into(db()!.telemetryUploadLog)
           .insert(
             TelemetryUploadLogCompanion.insert(
               id: const Value(2000010100),
@@ -465,8 +465,8 @@ void main() {
 
     test('pruneUploadLogs removes rows older than the cutoff', () async {
       final oldAttemptMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await db()
-          .into(db().telemetryUploadLog)
+      await db()!
+          .into(db()!.telemetryUploadLog)
           .insert(
             TelemetryUploadLogCompanion.insert(
               id: const Value(2000010100),
@@ -487,7 +487,7 @@ void main() {
 
       await repo.pruneUploadLogs(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
-      final rows = await db().select(db().telemetryUploadLog).get();
+      final rows = await db()!.select(db()!.telemetryUploadLog).get();
       expect(rows.length, 1);
       expect(rows.single.attemptedAtMs, isNot(oldAttemptMs));
     });

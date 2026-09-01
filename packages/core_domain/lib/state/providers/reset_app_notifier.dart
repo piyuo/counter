@@ -8,7 +8,7 @@ import 'package:core_domain/services/auth_storage_service.dart';
 import 'package:core_domain/services/vision_service.dart';
 import 'package:core_domain/state/providers/app_notifier.dart';
 import 'package:core_domain/state/providers/app_runtime_notifier.dart';
-import 'package:core_domain/telemetry/services/payload_queue_repository.dart';
+import 'package:core_domain/telemetry/services/telemetry_queue.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -25,13 +25,12 @@ class ResetAppNotifier extends _$ResetAppNotifier implements ResetAppController 
 
   @override
   Future<void> reset() async {
-    // reset device locale to system default
     await ref.read(appkit.localeProvider.notifier).set(null);
 
     // turn off vision session first
     await ref.read(visionRuntimeServiceProvider).stop();
     await ref.read(appRuntimeProvider.notifier).reset();
-    await ref.read(telemetryQueueRepositoryProvider).reset();
+    await ref.read(telemetryQueueProvider).reset();
     await ref.read(authStorageServiceProvider).reset();
     final ok = await ref.read(appProvider.notifier).reset(); // reset state and repo
     if (ok) {

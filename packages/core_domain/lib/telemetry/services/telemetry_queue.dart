@@ -9,9 +9,9 @@ import '../models/telemetry_payload.dart';
 import '../models/upload_log.dart';
 import '../models/upload_log_list.dart';
 
-part 'payload_queue_repository.g.dart';
+part 'telemetry_queue.g.dart';
 
-abstract class TelemetryQueueRepository {
+abstract class TelemetryQueue {
   /// Persists [payload] so it will be uploaded on the next [UploadWorker]
   /// run.
   ///
@@ -70,6 +70,6 @@ abstract class TelemetryQueueRepository {
 }
 
 @riverpod
-TelemetryQueueRepository telemetryQueueRepository(Ref ref) {
-  throw UnimplementedError('telemetryQueueRepositoryProvider must be overridden');
+TelemetryQueue telemetryQueue(Ref ref) {
+  throw UnimplementedError('telemetryQueueProvider must be overridden');
 }

@@ -8,27 +8,27 @@
 import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/telemetry/drift_payload_queue_repository.dart';
-import 'package:core_runtime/telemetry/telemetry_database.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_queue.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DriftPayloadQueueRepository - fetchRecent Benchmark', () {
     late TelemetryDatabaseFun db;
-    late DriftPayloadQueueRepository repository;
+    late DriftTelemetryQueue repository;
     late Directory tempDir;
     late String dbPath;
 
     setUp(() async {
       tempDir = await Directory.systemTemp.createTemp('drift_payload_queue_benchmark_test_');
       dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_benchmark.db';
-      db = await TelemetryDatabase.open(filePath: dbPath);
-      repository = DriftPayloadQueueRepository(db);
+      db = await DriftTelemetryDatabase.open(filePath: dbPath);
+      repository = DriftTelemetryQueue(db);
     });
 
     tearDown(() async {
-      await db().close();
-      await TelemetryDatabase.removeFile(filePath: dbPath);
+      await db()!.close();
+      await DriftTelemetryDatabase.removeFile(filePath: dbPath);
       if (await tempDir.exists()) {
         await tempDir.delete(recursive: true);
       }

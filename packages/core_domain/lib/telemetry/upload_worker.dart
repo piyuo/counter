@@ -37,7 +37,7 @@ class UploadWorker {
   }) : _sessionResolver = sessionResolver;
 
   /// Persistent queue of payloads awaiting upload.
-  final TelemetryQueueRepository queue;
+  final TelemetryQueue queue;
 
   /// Encodes payloads to bytes for transmission.
   final PayloadSerializer serializer;

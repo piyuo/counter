@@ -9,10 +9,10 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/telemetry/drift_payload_queue_repository.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/telemetry/drift_telemetry_queue.dart';
 import 'package:core_runtime/telemetry/http_telemetry_transport.dart';
 import 'package:core_runtime/telemetry/native_telemetry_service.dart';
-import 'package:core_runtime/telemetry/telemetry_database.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,11 +21,11 @@ import 'package:http/http.dart' as http;
 Future<TelemetryDatabaseFun> _openTempTelemetryDb() async {
   final tempDir = await Directory.systemTemp.createTemp('native_telemetry_service_integration_test_');
   final dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_test.db';
-  final db = await TelemetryDatabase.open(filePath: dbPath);
+  final db = await DriftTelemetryDatabase.open(filePath: dbPath);
 
   addTearDown(() async {
-    await db().close();
-    await TelemetryDatabase.removeFile(filePath: dbPath);
+    await db()!.close();
+    await DriftTelemetryDatabase.removeFile(filePath: dbPath);
     if (await tempDir.exists()) {
       await tempDir.delete(recursive: true);
     }
@@ -180,7 +180,7 @@ void main() {
 
     test('flush marks delivered history and pruneExpired applies retention on Drift queue', () async {
       final db = await _openTempTelemetryDb();
-      final queue = DriftPayloadQueueRepository(db);
+      final queue = DriftTelemetryQueue(db);
 
       final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
@@ -219,8 +219,8 @@ void main() {
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
-      await (db().update(
-        db().telemetryQueue,
+      await (db()!.update(
+        db()!.telemetryQueue,
       )..where((t) => t.id.equals('session-1-1'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
@@ -231,7 +231,7 @@ void main() {
 
     test('repeated flush does not resend already-delivered payload', () async {
       final db = await _openTempTelemetryDb();
-      final queue = DriftPayloadQueueRepository(db);
+      final queue = DriftTelemetryQueue(db);
       final transport = _CountingSuccessTransport();
 
       final service = NativeTelemetryService(
@@ -276,7 +276,7 @@ void main() {
 
     test('pruneExpired keeps recent payloads and does not remove pending payloads', () async {
       final db = await _openTempTelemetryDb();
-      final queue = DriftPayloadQueueRepository(db);
+      final queue = DriftTelemetryQueue(db);
       final service = NativeTelemetryService(
         uploadConfigResolver: () async => const core_domain.UploadConfig(),
         sessionResolver: () async => const core_domain.UploadSession(
@@ -420,7 +420,7 @@ class _FakeAppStateRepository implements core_domain.AppStateRepository {
   }
 }
 
-class _ReadyOnceQueue implements core_domain.TelemetryQueueRepository {
+class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   _ReadyOnceQueue(this.pending);
 
   final core_domain.QueuedPayload pending;

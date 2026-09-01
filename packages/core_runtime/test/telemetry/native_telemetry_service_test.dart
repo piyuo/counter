@@ -16,7 +16,7 @@ import 'package:flutter_test/flutter_test.dart';
 // Stubs
 // ---------------------------------------------------------------------------
 
-class _StubQueue implements core_domain.TelemetryQueueRepository {
+class _StubQueue implements core_domain.TelemetryQueue {
   final _rows = <core_domain.QueuedPayload>[];
   int fetchReadyCalls = 0;
 

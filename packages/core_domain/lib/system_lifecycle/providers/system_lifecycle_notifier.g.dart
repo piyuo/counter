@@ -8,12 +8,33 @@ part of 'system_lifecycle_notifier.dart';
 
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, type=warning
+/// Riverpod notifier managing the system lifecycle state machine.
+///
+/// Tracks application state transitions from booting through hardware validation
+/// to either ready or device-not-supported states. Uses pattern matching for
+/// state reduction and logs all transitions for debugging purposes.
+///
+/// This notifier is kept alive across the app lifetime (keepAlive: true).
 
 @ProviderFor(SystemLifecycleNotifier)
 final systemLifecycleProvider = SystemLifecycleNotifierProvider._();
 
+/// Riverpod notifier managing the system lifecycle state machine.
+///
+/// Tracks application state transitions from booting through hardware validation
+/// to either ready or device-not-supported states. Uses pattern matching for
+/// state reduction and logs all transitions for debugging purposes.
+///
+/// This notifier is kept alive across the app lifetime (keepAlive: true).
 final class SystemLifecycleNotifierProvider
     extends $NotifierProvider<SystemLifecycleNotifier, SystemLifecycle> {
+  /// Riverpod notifier managing the system lifecycle state machine.
+  ///
+  /// Tracks application state transitions from booting through hardware validation
+  /// to either ready or device-not-supported states. Uses pattern matching for
+  /// state reduction and logs all transitions for debugging purposes.
+  ///
+  /// This notifier is kept alive across the app lifetime (keepAlive: true).
   SystemLifecycleNotifierProvider._()
     : super(
         from: null,
@@ -42,7 +63,15 @@ final class SystemLifecycleNotifierProvider
 }
 
 String _$systemLifecycleNotifierHash() =>
-    r'9f38571a07f985c51497c744bb446d8ef4a5a2e4';
+    r'e97afaa946d3abefe3c4c086820501d8b1066104';
+
+/// Riverpod notifier managing the system lifecycle state machine.
+///
+/// Tracks application state transitions from booting through hardware validation
+/// to either ready or device-not-supported states. Uses pattern matching for
+/// state reduction and logs all transitions for debugging purposes.
+///
+/// This notifier is kept alive across the app lifetime (keepAlive: true).
 
 abstract class _$SystemLifecycleNotifier extends $Notifier<SystemLifecycle> {
   SystemLifecycle build();
