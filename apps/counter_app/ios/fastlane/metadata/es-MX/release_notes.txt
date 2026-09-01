@@ -1,8 +1,3 @@
 ## Corrección de errores
 
-* Se solucionó un cierre inesperado que podía ocurrir al cerrar una transmisión de video.
-* Se corrigió un problema intermitente donde la rotación de la cámara volteaba el video verticalmente de forma incorrecta.
-
-# Mejoras
-
-* Se optimizó el rendimiento de inicio para que la app abra más rápido.
+* Se solucionó un cierre inesperado que podía ocurrir al iniciar la app.

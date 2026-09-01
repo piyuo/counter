@@ -1,8 +1,3 @@
 ## Corrections de bugs
 
-* Correction d'un plantage pouvant survenir à la fermeture d'un flux vidéo.
-* Correction d'un problème intermittent où la rotation de la caméra retournait la vidéo verticalement par erreur.
-
-# Améliorations
-
-* Optimisation des performances de démarrage pour un lancement plus rapide de l'app.
+* Correction d'un plantage inattendu de l'app au démarrage.

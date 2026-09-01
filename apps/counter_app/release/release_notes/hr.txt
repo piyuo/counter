@@ -1,8 +1,3 @@
 ## Ispravci grešaka
 
-* Otklonjen je pad aplikacije koji se mogao dogoditi prilikom zatvaranja video streama.
-* Otklonjen je povremeni problem zbog kojeg je rotacija kamere pogrešno okretala video okomito.
-
-# Poboljšanja
-
-* Optimizirane su performanse pokretanja kako bi se aplikacija brže otvarala.
+* Otklonjen je problem koji je uzrokovao neočekivano zatvaranje aplikacije prilikom pokretanja.

@@ -1,8 +1,3 @@
 ## Felkorrigeringar
 
-* Åtgärdat en krasch som kunde uppstå när en videoström stängdes.
-* Åtgärdat ett återkommande problem där kamerarotation felaktigt vände videon vertikalt.
-
-# Förbättringar
-
-* Optimerad startprestanda för snabbare app-start.
+* Åtgärdat ett problem som kunde få appen att krascha oväntat vid start.
