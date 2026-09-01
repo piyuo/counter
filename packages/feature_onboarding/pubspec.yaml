@@ -1,6 +1,6 @@
 name: feature_onboarding
 description: "onboarding when user start app for the firs time."
-version: 1.5.0
+version: 1.5.1
 resolution: workspace
 publish_to: none
 

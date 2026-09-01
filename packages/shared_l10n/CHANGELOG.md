@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/piyuo/counter/compare/shared_l10n-v1.5.0...shared_l10n-v1.5.1) (2026-09-01)
+
+
+### Miscellaneous Chores
+
+* **shared_l10n:** Synchronize piyuo-counter-workspace versions
+
 ## [1.5.0](https://github.com/piyuo/counter/compare/shared_l10n-v1.4.1...shared_l10n-v1.5.0) (2026-08-30)
 
 
