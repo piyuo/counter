@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/piyuo/counter/compare/feature_control_panel-v1.5.0...feature_control_panel-v1.5.1) (2026-09-01)
+
+
+### Bug Fixes
+
+* macos app crash on arm64 [#273](https://github.com/piyuo/counter/issues/273) ([f8b7434](https://github.com/piyuo/counter/commit/f8b74340664cf36b84ca6444674ae8d14c90de31))
+
 ## [1.5.0](https://github.com/piyuo/counter/compare/feature_control_panel-v1.4.1...feature_control_panel-v1.5.0) (2026-08-30)
 
 
