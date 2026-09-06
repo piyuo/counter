@@ -1,6 +1,6 @@
 name: core_runtime
 description: "runtime implementation for counter domain"
-version: 1.5.1
+version: 1.5.2
 resolution: workspace
 publish_to: none
 

@@ -1,6 +1,6 @@
 name: core_domain
 description: "Business login and state machine for counter app."
-version: 1.5.1
+version: 1.5.2
 resolution: workspace
 publish_to: none
 

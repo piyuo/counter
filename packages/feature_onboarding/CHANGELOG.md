@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.2](https://github.com/piyuo/counter/compare/feature_onboarding-v1.5.1...feature_onboarding-v1.5.2) (2026-09-06)
+
+
+### Bug Fixes
+
+* riverpod ref unmounted state error [#286](https://github.com/piyuo/counter/issues/286) ([b5ab3f0](https://github.com/piyuo/counter/commit/b5ab3f0d4e6c07e5464e0e5fc1e2f1959d2c414a))
+
 ## [1.5.1](https://github.com/piyuo/counter/compare/feature_onboarding-v1.5.0...feature_onboarding-v1.5.1) (2026-09-01)
 
 

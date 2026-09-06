@@ -1,6 +1,6 @@
 name: feature_pip
 description: "Picture in picture UI"
-version: 1.5.1
+version: 1.5.2
 resolution: workspace
 publish_to: none
 
