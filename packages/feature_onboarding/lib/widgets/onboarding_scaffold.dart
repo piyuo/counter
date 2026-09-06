@@ -24,6 +24,7 @@ class OnboardingScaffold extends ConsumerWidget {
     this.nextButtonAction = NextButtonAction.next,
     this.automaticallyImplyLeading = true,
     this.title,
+    this.popEnabled = true,
     super.key,
   });
 
@@ -40,6 +41,8 @@ class OnboardingScaffold extends ConsumerWidget {
   final NextButtonAction nextButtonAction;
 
   final String? title;
+
+  final bool popEnabled;
 
   /// Whether to show a back button automatically when the navigator can pop.
   ///
@@ -72,8 +75,8 @@ class OnboardingScaffold extends ConsumerWidget {
         effectiveLeading = Padding(
           padding: const EdgeInsets.only(left: 8),
           child: TextButton(
-            onPressed: () => router.pop(),
-            child: Text(context.l.onboarding_back_action, style: TextStyle(fontSize: 18, color: Colors.blue)),
+            onPressed: popEnabled ? () => router.pop() : null,
+            child: Text(context.l.onboarding_back_action, style: TextStyle(fontSize: 18)),
           ),
         );
       }

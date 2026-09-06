@@ -93,7 +93,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       return;
     }
 
-    await _restartVision();
+    await _startVision();
     ref.read(appRuntimeProvider.notifier).setIsVisionRunning(true);
   }
 
@@ -200,10 +200,10 @@ class AppNotifier extends _$AppNotifier implements AppController {
       return;
     }
     appkit.logInfo('[AppNotifier] Video source type changed, current: ${current.videoSource}, new: $videoSource');
-    await _restartVision();
+    await _startVision();
   }
 
-  Future<void> _restartVision() async {
+  Future<void> _startVision() async {
     final currentState = await future;
 
     if (!currentState.hasVideoSource) {
@@ -212,7 +212,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       return;
     }
 
-    appkit.logInfo('[AppNotifier] Restarting vision runtime with video source: ${currentState.videoSource}');
+    appkit.logInfo('[AppNotifier] Starting vision runtime with video source: ${currentState.videoSource}');
     await ref.read(visionRuntimeServiceProvider).stop();
     await ref
         .read(visionRuntimeServiceProvider)
@@ -239,7 +239,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     if (!appRuntimeState.isVisionRunning) {
       return;
     }
-    await _restartVision();
+    await _startVision();
   }
 
   @override

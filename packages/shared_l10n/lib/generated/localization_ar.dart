@@ -633,6 +633,10 @@ class LocalizationAr extends Localization {
       'استغرق الاتصال وقتاً طويلاً للاستجابة. تحقق من اتصال الإنترنت وحاول مرة أخرى.';
 
   @override
+  String get telemetry_error_database_error =>
+      'فشلت عملية الكتابة في قاعدة البيانات.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'تعذر العثور على عنوان الخادم. تحقق من اتصال الإنترنت أو رابط الخادم.';
 
@@ -659,6 +663,9 @@ class LocalizationAr extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'حدث خطأ ما أثناء إرسال البيانات. حاول مرة أخرى.';
+
+  @override
+  String get telemetry_error_unknown_error => 'حدث خطأ غير متوقع.';
 
   @override
   String get terms => 'شروط الخدمة';

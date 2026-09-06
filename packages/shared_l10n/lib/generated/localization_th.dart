@@ -638,6 +638,10 @@ class LocalizationTh extends Localization {
       'การเชื่อมต่อใช้เวลาตอบสนองนานเกินไป โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง';
 
   @override
+  String get telemetry_error_database_error =>
+      'การเขียนข้อมูลลงฐานข้อมูลล้มเหลว';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'ไม่พบที่อยู่เซิร์ฟเวอร์ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตหรือ URL ของเซิร์ฟเวอร์';
 
@@ -664,6 +668,9 @@ class LocalizationTh extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'เกิดข้อผิดพลาดขณะส่งข้อมูล โปรดลองอีกครั้ง';
+
+  @override
+  String get telemetry_error_unknown_error => 'เกิดข้อผิดพลาดที่ไม่คาดคิด';
 
   @override
   String get terms => 'ข้อกำหนดการให้บริการ';

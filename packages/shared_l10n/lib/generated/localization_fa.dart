@@ -641,6 +641,10 @@ class LocalizationFa extends Localization {
       'پاسخ‌دهی اتصال بیش از حد طول کشید. لطفاً اتصال اینترنت خود را بررسی کرده و دوباره تلاش کنید.';
 
   @override
+  String get telemetry_error_database_error =>
+      'نوشتن در پایگاه داده ناموفق بود.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'آدرس سرور یافت نشد. لطفاً اتصال اینترنت یا آدرس سرور را بررسی کنید.';
 
@@ -667,6 +671,9 @@ class LocalizationFa extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'هنگام ارسال داده مشکلی پیش آمد. لطفاً دوباره تلاش کنید.';
+
+  @override
+  String get telemetry_error_unknown_error => 'خطای غیرمنتظره‌ای رخ داد.';
 
   @override
   String get terms => 'شرایط استفاده از خدمات';

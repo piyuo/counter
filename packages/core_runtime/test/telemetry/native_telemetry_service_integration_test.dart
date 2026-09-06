@@ -399,6 +399,9 @@ class _FakeAuthStorageService implements core_domain.AuthStorageService {
   Future<void> set(String key, String value) async {
     _values[key] = value;
   }
+
+  @override
+  Future<bool> isExists(String key) async => _values.containsKey(key);
 }
 
 class _FakeAppStateRepository implements core_domain.AppStateRepository {

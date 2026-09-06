@@ -1272,6 +1272,12 @@ abstract class Localization {
   /// **'The connection took too long to respond. Please check your internet connection and try again.'**
   String get telemetry_error_connection_timeout;
 
+  /// No description provided for @telemetry_error_database_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to write to the database.'**
+  String get telemetry_error_database_error;
+
   /// No description provided for @telemetry_error_dns_lookup_failed.
   ///
   /// In en, this message translates to:
@@ -1313,6 +1319,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Something went wrong while sending data. Please try again.'**
   String get telemetry_error_transport_exception;
+
+  /// No description provided for @telemetry_error_unknown_error.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred.'**
+  String get telemetry_error_unknown_error;
 
   /// No description provided for @terms.
   ///

@@ -86,11 +86,40 @@ class UploadWorker {
   ///
   /// Returns `false` when no backend is configured or when any batch fails.
   Future<bool> run() async {
-    // Prune stale items first so they don't count against the batch limit.
-    final nowUtc = DateTime.now().toUtc();
-    await queue.pruneExpired(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
-    await queue.pruneUploadLogs(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
+    try {
+      final nowUtc = DateTime.now().toUtc();
+      await queue.pruneExpired(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
+      await queue.pruneUploadLogs(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
+    } catch (error) {
+      await _recordUploadOutcome(
+        success: false,
+        attemptedAt: DateTime.now().toUtc(),
+        payloadSizeKb: 0,
+        payloadCount: 0,
+        errorCode: TelemetryErrorCode.databaseError,
+        error: '$error',
+      );
+      appkit.logDebug('[UploadWorker] pruneExpired failed: $error');
+      return false;
+    }
 
+    try {
+      return await _run();
+    } catch (error) {
+      await _recordUploadOutcome(
+        success: false,
+        attemptedAt: DateTime.now().toUtc(),
+        payloadSizeKb: 0,
+        payloadCount: 0,
+        errorCode: TelemetryErrorCode.unknownError,
+        error: '$error',
+      );
+      appkit.logDebug('[UploadWorker] run failed: $error');
+      return false;
+    }
+  }
+
+  Future<bool> _run() async {
     // check for a configured backend; if none, return early (no-op).
     final session = await _sessionResolver();
     if (session == null) {
@@ -165,55 +194,42 @@ class UploadWorker {
       return false;
     }
     int sizeKb = 0;
-    try {
-      final body = serializer.serialize(
-        payloads,
-        schemaVersion: TelemetryPayload.schemaVersion,
-        deviceId: session.deviceId,
-        projectId: getProjectIdFromDataServer(session.dataServer),
-        assignId: getAssignedIdFromDataServer(session.dataServer),
-      );
-      sizeKb = (body.length / 1024).round();
-      final response = await transport.send(
-        url: lastUrl!,
-        bearerToken: session.bearerToken,
-        body: body,
-        contentType: serializer.contentType,
-      );
-      if (!response.ok) {
-        await _recordUploadOutcome(
-          success: false,
-          attemptedAt: DateTime.now().toUtc(),
-          payloadSizeKb: sizeKb,
-          payloadCount: payloads.length,
-          errorCode: response.errorCode,
-          error: response.error,
-        );
-        return false;
-      }
-      await responseWorker.process(response);
-
-      if (onSuccess != null) await onSuccess();
-      await _recordUploadOutcome(
-        success: true,
-        attemptedAt: DateTime.now().toUtc(),
-        payloadSizeKb: sizeKb,
-        payloadCount: payloads.length,
-      );
-      appkit.logInfo('[Telemetry] Uploaded batch of ${payloads.length} payload(s), $sizeKb KB');
-      return true;
-    } catch (error, stackTrace) {
+    final body = serializer.serialize(
+      payloads,
+      schemaVersion: TelemetryPayload.schemaVersion,
+      deviceId: session.deviceId,
+      projectId: getProjectIdFromDataServer(session.dataServer),
+      assignId: getAssignedIdFromDataServer(session.dataServer),
+    );
+    sizeKb = (body.length / 1024).round();
+    final response = await transport.send(
+      url: lastUrl!,
+      bearerToken: session.bearerToken,
+      body: body,
+      contentType: serializer.contentType,
+    );
+    if (!response.ok) {
       await _recordUploadOutcome(
         success: false,
         attemptedAt: DateTime.now().toUtc(),
         payloadSizeKb: sizeKb,
         payloadCount: payloads.length,
-        errorCode: TelemetryErrorCode.httpUnknownError,
-        error: '$error\n$stackTrace',
+        errorCode: response.errorCode,
+        error: response.error,
       );
-      appkit.logDebug('[UploadWorker] failed: $error');
       return false;
     }
+    await responseWorker.process(response);
+
+    if (onSuccess != null) await onSuccess();
+    await _recordUploadOutcome(
+      success: true,
+      attemptedAt: DateTime.now().toUtc(),
+      payloadSizeKb: sizeKb,
+      payloadCount: payloads.length,
+    );
+    appkit.logInfo('[Telemetry] Uploaded batch of ${payloads.length} payload(s), $sizeKb KB');
+    return true;
   }
 
   /// Records an upload attempt outcome by updating worker status and persisting to database.
@@ -242,16 +258,22 @@ class UploadWorker {
     }
 
     // Persist the outcome to the queue for diagnostics/UI history.
-    await queue.appendUploadLog(
-      UploadLog(
-        id: id,
-        attemptedAtUtc: attemptedAt,
-        success: success,
-        payloadSizeKb: payloadSizeKb,
-        payloadCount: payloadCount,
-        retryCount: retryCount,
-        error: error,
-      ),
-    );
+    try {
+      await queue.appendUploadLog(
+        UploadLog(
+          id: id,
+          attemptedAtUtc: attemptedAt,
+          success: success,
+          payloadSizeKb: payloadSizeKb,
+          payloadCount: payloadCount,
+          retryCount: retryCount,
+          error: error,
+        ),
+      );
+    } catch (error) {
+      // it it not critical error, sometime database locked by os, when backup or other operations are happening.
+      // just print the warning and continue
+      appkit.logWarning('[UploadWorker] appendUploadLog failed: $error');
+    }
   }
 }

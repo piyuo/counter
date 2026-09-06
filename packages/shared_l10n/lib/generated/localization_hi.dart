@@ -638,6 +638,10 @@ class LocalizationHi extends Localization {
       'कनेक्शन को प्रतिक्रिया देने में बहुत समय लगा। कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।';
 
   @override
+  String get telemetry_error_database_error =>
+      'डेटाबेस में लिखने में विफल रहा।';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'सर्वर का पता नहीं मिला। कृपया अपना इंटरनेट कनेक्शन या सर्वर URL जांचें।';
 
@@ -664,6 +668,9 @@ class LocalizationHi extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'डेटा भेजते समय कुछ गड़बड़ हुई। कृपया पुनः प्रयास करें।';
+
+  @override
+  String get telemetry_error_unknown_error => 'एक अप्रत्याशित त्रुटि हुई।';
 
   @override
   String get terms => 'सेवा की शर्तें';

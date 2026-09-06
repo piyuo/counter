@@ -643,6 +643,10 @@ class LocalizationSr extends Localization {
       'Веза је предуго чекала на одговор. Проверите интернет везу и покушајте поново.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Упис у базу података није успео.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Адреса сервера није пронађена. Проверите интернет везу или URL сервера.';
 
@@ -669,6 +673,9 @@ class LocalizationSr extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Нешто је пошло по злу приликом слања података. Покушајте поново.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Дошло је до неочекиване грешке.';
 
   @override
   String get terms => 'Uslovi korišćenja';

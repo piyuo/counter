@@ -62,4 +62,7 @@ class _FakeAuthStorageService implements AuthStorageService {
   Future<void> reset() async {
     store.clear();
   }
+
+  @override
+  Future<bool> isExists(String key) async => store.containsKey(key);
 }

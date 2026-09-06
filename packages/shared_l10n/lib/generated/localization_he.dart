@@ -632,6 +632,9 @@ class LocalizationHe extends Localization {
       'החיבור התעכב יותר מדי בתגובה. בדוק את חיבור האינטרנט שלך ונסה שוב.';
 
   @override
+  String get telemetry_error_database_error => 'הכתיבה למסד הנתונים נכשלה.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'לא ניתן היה למצוא את כתובת השרת. בדוק את חיבור האינטרנט או את כתובת ה-URL של השרת.';
 
@@ -658,6 +661,9 @@ class LocalizationHe extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'משהו השתבש בעת שליחת הנתונים. נסה שוב.';
+
+  @override
+  String get telemetry_error_unknown_error => 'אירעה שגיאה בלתי צפויה.';
 
   @override
   String get terms => 'תנאי השירות';

@@ -643,6 +643,10 @@ class LocalizationMy extends Localization {
       'ချိတ်ဆက်မှု တုံ့ပြန်ရန် အချိန်ကြာလွန်းသည်။ သင့်အင်တာနက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။';
 
   @override
+  String get telemetry_error_database_error =>
+      'ဒေတာဘေ့စ်သို့ ရေးသားခြင်း မအောင်မြင်ပါ။';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'ဆာဗာ လိပ်စာကို ရှာမတွေ့ပါ။ သင့်အင်တာနက် ချိတ်ဆက်မှု သို့မဟုတ် ဆာဗာ URL ကို စစ်ဆေးပါ။';
 
@@ -669,6 +673,10 @@ class LocalizationMy extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'ဒေတာပို့ဆောင်နေစဉ် အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။ ထပ်စမ်းကြည့်ပါ။';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'မမျှော်လင့်ထားသော အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။';
 
   @override
   String get terms => 'ဝန်ဆောင်မှု စည်းမျဉ်းများ';

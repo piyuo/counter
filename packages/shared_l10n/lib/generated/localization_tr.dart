@@ -640,6 +640,10 @@ class LocalizationTr extends Localization {
       'Bağlantının yanıt vermesi çok uzun sürdü. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Veritabanına yazma işlemi başarısız oldu.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Sunucu adresi bulunamadı. Lütfen internet bağlantınızı veya sunucu URL\'sini kontrol edin.';
 
@@ -666,6 +670,9 @@ class LocalizationTr extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Veri gönderilirken bir sorun oluştu. Lütfen tekrar deneyin.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Beklenmeyen bir hata oluştu.';
 
   @override
   String get terms => 'Hizmet Koşulları';

@@ -645,6 +645,10 @@ class LocalizationDe extends Localization {
       'Die Verbindung hat zu lange für eine Antwort gebraucht. Bitte überprüfe deine Internetverbindung und versuche es erneut.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Der Schreibvorgang in der Datenbank ist fehlgeschlagen.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Serveradresse konnte nicht gefunden werden. Bitte überprüfe deine Internetverbindung oder die Server-URL.';
 
@@ -671,6 +675,10 @@ class LocalizationDe extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Beim Senden der Daten ist ein Fehler aufgetreten. Bitte versuche es erneut.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Ein unerwarteter Fehler ist aufgetreten.';
 
   @override
   String get terms => 'Nutzungsbedingungen';

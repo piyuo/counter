@@ -642,6 +642,10 @@ class LocalizationRu extends Localization {
       'Время ожидания ответа истекло. Проверьте подключение к интернету и повторите попытку.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Не удалось выполнить запись в базу данных.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Не удалось найти адрес сервера. Проверьте подключение к интернету или URL сервера.';
 
@@ -668,6 +672,10 @@ class LocalizationRu extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'При отправке данных что-то пошло не так. Повторите попытку.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Произошла непредвиденная ошибка.';
 
   @override
   String get terms => 'Условия использования';

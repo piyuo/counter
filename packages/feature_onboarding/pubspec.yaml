@@ -8,7 +8,6 @@ environment:
   sdk: ^3.11.0
   flutter: ">=1.17.0"
 
-
 dependencies:
   feature_pip: any
   core_domain: any
@@ -20,23 +19,23 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.7.0
-  flutter_riverpod: ^3.3.2 # block by analyzer
-  riverpod_annotation: ^4.0.3 # block by analyzer
-  go_router: ^17.4.0
+      ref: v3.8.1
+  flutter_riverpod: ^3.4.2 # block by analyzer
+  riverpod_annotation: ^4.0.6 # block by analyzer
+  go_router: ^18.0.0
   carousel_slider: ^5.1.2
   universal_platform: ^1.1.0
   pinput: ^6.0.2
-  liquid_glass_widgets: ^0.29.2
+  liquid_glass_widgets: ^1.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^5.6.4
+  mockito: ^5.8.1
   flutter_lints: ^6.0.0
-  analyzer: ^12.1.0
-  riverpod_generator: ^4.0.4 # block by analyzer
-  build_runner: ^2.15.1
+  analyzer: ^13.3.0
+  riverpod_generator: ^4.0.8 # block by analyzer
+  build_runner: ^2.16.0
   go_router_builder: ^4.2.1
 
 # For information on the generic Dart part of this file, see the

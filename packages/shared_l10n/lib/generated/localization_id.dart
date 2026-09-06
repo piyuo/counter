@@ -640,6 +640,9 @@ class LocalizationId extends Localization {
       'Koneksi memerlukan waktu terlalu lama untuk merespons. Periksa koneksi internet Anda dan coba lagi.';
 
   @override
+  String get telemetry_error_database_error => 'Gagal menulis ke database.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Alamat server tidak ditemukan. Periksa koneksi internet atau URL server Anda.';
 
@@ -666,6 +669,9 @@ class LocalizationId extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Terjadi kesalahan saat mengirim data. Silakan coba lagi.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Terjadi kesalahan tak terduga.';
 
   @override
   String get terms => 'Syarat Layanan';
