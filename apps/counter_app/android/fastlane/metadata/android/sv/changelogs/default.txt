@@ -1,3 +1,0 @@
-## Felkorrigeringar
-
-* Åtgärdat ett problem som kunde få appen att krascha oväntat vid start.

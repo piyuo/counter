@@ -1,3 +1,0 @@
-## Fejlrettelser
-
-* Løst et problem, der kunne få appen til at gå ned uventet ved opstart.

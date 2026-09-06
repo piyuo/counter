@@ -1,3 +1,4 @@
-## Correzioni di bug
+## Correzioni di errori
 
-* Risolto un arresto anomalo imprevisto che poteva verificarsi all'avvio dell'app.
+* Stabilità migliorata: Corretto un problema dove i flussi video potevano bloccarsi quando l'app viene messa in background.
+* Impostazioni server corrette: Corretto un errore del database che si verificava quando si salvavano i token per server personalizzati.

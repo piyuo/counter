@@ -1,3 +1,4 @@
 ## Opravy chyb
 
-* Byla opravena chyba, která způsobovala neočekávané ukončení aplikace při spuštění.
+* Vylepšená stabilita aplikace: Vyřešen problém, kdy mohly video streamy selhat při přesunutí aplikace na pozadí.
+* Oprava nastavení serveru: Vyřešena chyba databáze, která se vyskytovala při ukládání tokenů pro vlastní servery.

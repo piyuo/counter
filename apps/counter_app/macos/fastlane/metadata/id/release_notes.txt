@@ -1,3 +1,4 @@
 ## Perbaikan Bug
 
-* Memperbaiki masalah yang menyebabkan aplikasi tiba-tiba tertutup saat dibuka.
+* Stabilitas Aplikasi Ditingkatkan: Memperbaiki masalah di mana aliran video dapat mogok saat menempatkan aplikasi di latar belakang.
+* Pengaturan Server Diperbaiki: Memperbaiki kesalahan basis data yang terjadi saat menyimpan token untuk server kustom.

@@ -1,3 +1,4 @@
 ## Fejlrettelser
 
-* Løst et problem, der kunne få appen til at gå ned uventet ved opstart.
+* Forbedret app-stabilitet: Løst et problem, hvor videostrømme kunne gå ned når appen sættes i baggrunden.
+* Serverindstillinger rettet: Løst en databasefejl, der opstod ved gemning af tokens til brugerdefinerede servere.

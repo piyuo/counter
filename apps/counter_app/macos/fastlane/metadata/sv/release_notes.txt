@@ -1,3 +1,4 @@
-## Felkorrigeringar
+## Felrättningar
 
-* Åtgärdat ett problem som kunde få appen att krascha oväntat vid start.
+* Förbättrad app-stabilitet: Löst ett problem där videoströmmar kunde krascha när appen placerades i bakgrunden.
+* Serverinställningar korrigerade: Löst ett databasfel som uppstod vid sparande av token för anpassade servrar.

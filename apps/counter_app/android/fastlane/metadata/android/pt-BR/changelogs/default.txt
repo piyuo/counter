@@ -1,3 +1,4 @@
 ## Correções de bugs
 
-* Corrigimos um problema que fazia o app fechar inesperadamente ao iniciar.
+* Estabilidade melhorada: Corrigido um problema onde transmissões de vídeo poderiam travar ao colocar o app em background.
+* Configuração do servidor corrigida: Corrigido um erro de banco de dados que ocorria ao salvar tokens para servidores customizados.

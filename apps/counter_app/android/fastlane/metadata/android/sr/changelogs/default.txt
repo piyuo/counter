@@ -1,3 +1,4 @@
 ## Ispravke grešaka
 
-* Otklonjen je problem koji je izazivao neočekivano zatvaranje aplikacije prilikom pokretanja.
+* Poboljšana stabilnost aplikacije: Ispravljena je greška gde su video tokovi mogli da se sruše kada se aplikacija prebaci u pozadinu.
+* Ispravka postavki servera: Ispravljena je greška baze podataka koja se javlja pri čuvanju tokena za prilagođene servere.

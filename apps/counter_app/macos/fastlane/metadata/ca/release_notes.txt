@@ -1,3 +1,4 @@
-## Correccions d'errors
+## Correccions de bugs
 
-* S'ha corregit un problema que feia que l'app es tanqués inesperadament en iniciar-se.
+* Estabilitat millorada: S'ha corregit un problema on els fluxos de vídeo podien bloquejar-se en posar l'app en segon pla.
+* Configuració del servidor corregida: S'ha corregit un error de base de dades que es produïa en guardar tokens per a servidors personalitzats.

@@ -1,3 +1,4 @@
-## Feilrettinger
+## Feilrettelser
 
-* Løst et problem som kunne føre til at appen krasjet uventet ved oppstart.
+* Forbedret app-stabilitet: Løst et problem der videostrømmer kunne krasje når appen settes i bakgrunnen.
+* Serverinnstillinger fikset: Løst en databasefeil som oppstod ved lagring av tokens for egendefinerte servere.

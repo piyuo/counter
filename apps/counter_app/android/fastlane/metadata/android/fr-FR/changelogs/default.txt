@@ -1,3 +1,4 @@
-## Corrections de bugs
+## Corrections de bogues
 
-* Correction d'un plantage inattendu de l'app au démarrage.
+* Stabilité améliorée : correction d'un problème où les flux vidéo pouvaient se bloquer en mettant l'app en arrière-plan.
+* Paramètres serveur corrigés : correction d'une erreur de base de données lors de la sauvegarde de jetons pour les serveurs personnalisés.

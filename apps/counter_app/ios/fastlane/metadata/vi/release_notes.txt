@@ -1,3 +1,4 @@
 ## Sửa lỗi
 
-* Đã khắc phục sự cố khiến ứng dụng bị thoát đột ngột khi khởi động.
+* Cải thiện tính ổn định ứng dụng: Sửa chữa sự cố video stream có thể bị sập khi đặt ứng dụng vào nền.
+* Sửa chữa cài đặt máy chủ: Sửa chữa lỗi cơ sở dữ liệu xảy ra khi lưu token cho các máy chủ tùy chỉnh.

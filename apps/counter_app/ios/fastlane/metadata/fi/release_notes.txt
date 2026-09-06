@@ -1,3 +1,4 @@
-## Virheenkorjaukset
+## Virhekorjaukset
 
-* Korjattu ongelma, joka saattoi aiheuttaa sovelluksen odottamattoman kaatumisen käynnistyksen yhteydessä.
+* Parannettu sovellusvakaus: Korjattu ongelma, jossa videovirrat voivat kaatua, kun sovellusta siirretään taustalle.
+* Palvelimen asetukset korjattu: Korjattu tietokantavirhe, joka ilmeni tallennettaessa tunnuksia mukautetuille palvelimille.
