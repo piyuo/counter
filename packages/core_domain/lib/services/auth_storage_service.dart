@@ -15,6 +15,9 @@ abstract class AuthStorageService {
 
   /// Clears all stored tokens.
   Future<void> reset();
+
+  /// Returns whether a value is currently stored for [key].
+  Future<bool> isExists(String key);
 }
 
 @riverpod

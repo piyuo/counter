@@ -649,6 +649,10 @@ class LocalizationFr extends Localization {
       'La connexion a mis trop de temps à répondre. Vérifiez votre connexion internet et réessayez.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Échec de l\'écriture dans la base de données.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Impossible de trouver l\'adresse du serveur. Vérifiez votre connexion internet ou l\'URL du serveur.';
 
@@ -675,6 +679,10 @@ class LocalizationFr extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Un problème est survenu lors de l\'envoi des données. Réessayez.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Une erreur inattendue est survenue.';
 
   @override
   String get terms => 'Conditions d\'utilisation';

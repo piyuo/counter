@@ -647,6 +647,10 @@ class LocalizationHu extends Localization {
       'A kapcsolat túl sokáig nem válaszolt. Ellenőrizd az internetkapcsolatot, majd próbáld újra.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Az adatbázisba történő írás sikertelen volt.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'A szerver címe nem található. Ellenőrizd az internetkapcsolatot vagy a szerver URL-jét.';
 
@@ -673,6 +677,9 @@ class LocalizationHu extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Hiba történt az adatok küldése közben. Próbáld újra.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Váratlan hiba történt.';
 
   @override
   String get terms => 'Szolgáltatási feltételek';

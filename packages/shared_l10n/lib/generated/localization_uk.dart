@@ -641,6 +641,10 @@ class LocalizationUk extends Localization {
       'З\'єднання занадто довго не відповідало. Перевірте підключення до інтернету та повторіть спробу.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Не вдалося виконати запис до бази даних.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Не вдалося знайти адресу сервера. Перевірте підключення до інтернету або URL сервера.';
 
@@ -667,6 +671,9 @@ class LocalizationUk extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Під час надсилання даних щось пішло не так. Спробуйте ще раз.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Сталася неочікувана помилка.';
 
   @override
   String get terms => 'Умови користування сервісом';

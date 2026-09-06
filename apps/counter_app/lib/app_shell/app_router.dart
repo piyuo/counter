@@ -29,7 +29,7 @@ class AppRouter {
         return buildRoute((_) {
           final deviceOrientation = ref.watch(vision.deviceRotationProvider).orientation;
           // only watch lockOrientation in visState
-          final lockOrientation = ref.watch(vision.visionProvider.select((state) => state.lockOrientation));
+          final lockOrientation = ref.watch(vision.orientationProvider.select((state) => state.lockOrientation));
           final isLockToHorizontal = switch (lockOrientation) {
             vision.LockOrientation.portrait => false,
             vision.LockOrientation.landscape => true,

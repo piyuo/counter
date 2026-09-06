@@ -12,6 +12,7 @@ abstract class AppRuntimeController {
   Future<void> saveBearerToken(DataServerSelection selection, String token);
   Future<void> clearBearerToken();
   Future<void> loadBearerToken(DataServerSelection selection);
+  Future<int> personalCustomServerTokenLength();
   Future<void> reset();
 }
 
@@ -66,5 +67,13 @@ class AppRuntimeNotifier extends _$AppRuntimeNotifier implements AppRuntimeContr
   @override
   Future<void> reset() async {
     state = const AppRuntimeState();
+  }
+
+  @override
+  Future<int> personalCustomServerTokenLength() async {
+    final storedToken = await ref
+        .read(authStorageServiceProvider)
+        .get(getKeyFromDataServerSelection(DataServerSelection.personalCustom));
+    return storedToken.length;
   }
 }

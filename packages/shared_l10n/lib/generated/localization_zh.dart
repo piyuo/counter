@@ -602,6 +602,9 @@ class LocalizationZh extends Localization {
   String get telemetry_error_connection_timeout => '連線回應時間過長，請檢查網路連線後再試一次。';
 
   @override
+  String get telemetry_error_database_error => '資料庫寫入失敗。';
+
+  @override
   String get telemetry_error_dns_lookup_failed => '找不到伺服器位址，請檢查網路連線或伺服器網址。';
 
   @override
@@ -621,6 +624,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get telemetry_error_transport_exception => '傳送資料時發生問題，請再試一次。';
+
+  @override
+  String get telemetry_error_unknown_error => '發生未預期的錯誤。';
 
   @override
   String get terms => '服務條款';
@@ -1355,6 +1361,9 @@ class LocalizationZhCn extends LocalizationZh {
   String get telemetry_error_connection_timeout => '连接响应时间过长，请检查网络连接后重试。';
 
   @override
+  String get telemetry_error_database_error => '数据库写入失败。';
+
+  @override
   String get telemetry_error_dns_lookup_failed => '找不到服务器地址，请检查网络连接或服务器网址。';
 
   @override
@@ -1374,6 +1383,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get telemetry_error_transport_exception => '发送数据时出现问题，请重试。';
+
+  @override
+  String get telemetry_error_unknown_error => '发生意外错误。';
 
   @override
   String get terms => '服务条款';

@@ -18,14 +18,14 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.7.0
-  flutter_riverpod: ^3.3.2 # block by analyzer
-  riverpod_annotation: ^4.0.3 # block by analyzer
-  go_router: ^17.4.0
+      ref: v3.8.1
+  flutter_riverpod: ^3.4.2 # block by analyzer
+  riverpod_annotation: ^4.0.6 # block by analyzer
+  go_router: ^18.0.0
   universal_platform: ^1.1.0
 
 dev_dependencies:
-  build_runner: ^2.15.1
+  build_runner: ^2.16.0
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0

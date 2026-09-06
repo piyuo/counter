@@ -644,6 +644,10 @@ class LocalizationPl extends Localization {
       'Połączenie zbyt długo nie odpowiadało. Sprawdź połączenie internetowe i spróbuj ponownie.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Zapis do bazy danych nie powiódł się.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Nie znaleziono adresu serwera. Sprawdź połączenie internetowe lub adres URL serwera.';
 
@@ -670,6 +674,9 @@ class LocalizationPl extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Coś poszło nie tak podczas wysyłania danych. Spróbuj ponownie.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Wystąpił nieoczekiwany błąd.';
 
   @override
   String get terms => 'Warunki korzystania z usługi';

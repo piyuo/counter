@@ -639,6 +639,10 @@ class LocalizationVi extends Localization {
       'Kết nối phản hồi quá lâu. Vui lòng kiểm tra kết nối internet và thử lại.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Ghi vào cơ sở dữ liệu không thành công.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Không tìm thấy địa chỉ máy chủ. Vui lòng kiểm tra kết nối internet hoặc URL máy chủ.';
 
@@ -665,6 +669,9 @@ class LocalizationVi extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Đã xảy ra sự cố khi gửi dữ liệu. Vui lòng thử lại.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Đã xảy ra lỗi không mong muốn.';
 
   @override
   String get terms => 'Điều khoản dịch vụ';

@@ -634,6 +634,10 @@ class LocalizationEn extends Localization {
       'The connection took too long to respond. Please check your internet connection and try again.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Failed to write to the database.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Couldn\'t find the server address. Please check your internet connection or the server URL.';
 
@@ -660,6 +664,9 @@ class LocalizationEn extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Something went wrong while sending data. Please try again.';
+
+  @override
+  String get telemetry_error_unknown_error => 'An unexpected error occurred.';
 
   @override
   String get terms => 'Terms of Service';

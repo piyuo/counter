@@ -26,6 +26,10 @@ extension TelemetryErrorCodeL10n on core_domain.TelemetryErrorCode {
         return context.l.telemetry_error_transport_exception;
       case core_domain.TelemetryErrorCode.httpUnknownError:
         return context.l.telemetry_error_http_unknown_error;
+      case core_domain.TelemetryErrorCode.databaseError:
+        return context.l.telemetry_error_database_error;
+      case core_domain.TelemetryErrorCode.unknownError:
+        return context.l.telemetry_error_unknown_error;
     }
   }
 }

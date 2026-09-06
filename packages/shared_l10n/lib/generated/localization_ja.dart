@@ -620,6 +620,9 @@ class LocalizationJa extends Localization {
       '接続の応答に時間がかかりすぎました。インターネット接続を確認して、もう一度お試しください。';
 
   @override
+  String get telemetry_error_database_error => 'データベースへの書き込みに失敗しました。';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'サーバーのアドレスが見つかりませんでした。インターネット接続またはサーバーURLを確認してください。';
 
@@ -644,6 +647,9 @@ class LocalizationJa extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'データの送信中に問題が発生しました。もう一度お試しください。';
+
+  @override
+  String get telemetry_error_unknown_error => '予期しないエラーが発生しました。';
 
   @override
   String get terms => '利用規約';

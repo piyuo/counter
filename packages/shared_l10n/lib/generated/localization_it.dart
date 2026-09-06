@@ -644,6 +644,10 @@ class LocalizationIt extends Localization {
       'La connessione ha impiegato troppo tempo a rispondere. Controlla la connessione internet e riprova.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Scrittura nel database non riuscita.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Impossibile trovare l\'indirizzo del server. Controlla la connessione internet o l\'URL del server.';
 
@@ -670,6 +674,10 @@ class LocalizationIt extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Si è verificato un problema durante l\'invio dei dati. Riprova.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Si è verificato un errore imprevisto.';
 
   @override
   String get terms => 'Termini di servizio';

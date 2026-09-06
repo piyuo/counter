@@ -618,6 +618,9 @@ class LocalizationKo extends Localization {
       '연결 응답 시간이 너무 오래 걸렸습니다. 인터넷 연결을 확인한 후 다시 시도하세요.';
 
   @override
+  String get telemetry_error_database_error => '데이터베이스 쓰기에 실패했습니다.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       '서버 주소를 찾을 수 없습니다. 인터넷 연결 또는 서버 URL을 확인하세요.';
 
@@ -643,6 +646,9 @@ class LocalizationKo extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       '데이터를 전송하는 중 문제가 발생했습니다. 다시 시도하세요.';
+
+  @override
+  String get telemetry_error_unknown_error => '예기치 않은 오류가 발생했습니다.';
 
   @override
   String get terms => '서비스 이용약관';

@@ -15,22 +15,24 @@ class CameraTestScreen extends ConsumerStatefulWidget {
 }
 
 class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
+  late final vision.CompatibilityNotifier compatibilityNotifier;
+
+  bool isTestStarting = false;
+  String? testSuccessFPS;
+  String? testErrorMessage;
+
   @override
   void initState() {
     super.initState();
+
+    // Cache the notifier while the widget is mounted.
+    // Do not use ref during/after dispose or after the route has been popped.
+    compatibilityNotifier = ref.read(vision.compatibilityProvider.notifier);
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  bool isTestStarting = false;
-  String? testSuccessMessage;
-  String? testErrorMessage;
-
-  // Callback for the compatibility test
   void onTestStarted() {
+    if (!mounted) return;
+
     setState(() {
       isTestStarting = true;
     });
@@ -38,28 +40,39 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
 
   /// Callback when the test finishes.
   void onTestFinished(int errorCode, String errorMessage, vision.VisionPerformance performance) {
+    if (!mounted) return;
+
     setState(() {
       isTestStarting = false;
+
       if (errorMessage.isEmpty) {
-        testSuccessMessage = 'FPS: ${performance.fps}';
+        testSuccessFPS = 'FPS: ${performance.fps}';
         testErrorMessage = null;
       } else {
         testErrorMessage = errorMessage;
-        testSuccessMessage = null;
+        testSuccessFPS = null;
       }
     });
+  }
+
+  Future<void> stopAndGoToNext() async {
+    await compatibilityNotifier.stop();
+
+    if (!context.mounted) return;
+
+    ref.go(const core_domain.OpenOnboardingCTA());
   }
 
   @override
   Widget build(BuildContext context) {
     final compatibilityState = ref.watch(vision.compatibilityProvider);
-    final isStarting = compatibilityState.isStarting;
+    final isStarting = compatibilityState.isStart;
 
     Widget getLine1() {
-      if (compatibilityState.status == vision.TestStatus.none ||
-          compatibilityState.status == vision.TestStatus.starting) {
+      if (compatibilityState.status == vision.TestStatus.none) {
         return Text(context.l.camera_test_screen_help, textAlign: TextAlign.center);
       }
+
       if (testErrorMessage != null) {
         return Text(
           "${context.l.camera_test_screen_test_failed} $testErrorMessage",
@@ -67,74 +80,79 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
           textAlign: TextAlign.center,
         );
       }
-      if (compatibilityState.status == vision.TestStatus.started) {
+
+      if (compatibilityState.status == vision.TestStatus.start) {
         return Text(context.l.camera_test_screen_instruction, textAlign: TextAlign.center);
       }
+
       return const SizedBox.shrink();
     }
 
     Widget getLine2() {
-      if (compatibilityState.status == vision.TestStatus.none ||
-          compatibilityState.status == vision.TestStatus.starting) {
-        return Text(context.l.camera_test_screen_start, textAlign: TextAlign.center, style: TextStyle(fontSize: 14));
+      if (compatibilityState.status == vision.TestStatus.none) {
+        return Text(
+          context.l.camera_test_screen_start,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 14),
+        );
       }
+
       if (testErrorMessage != null) {
         return const SizedBox.shrink();
       }
 
-      if (testSuccessMessage != null) {
+      if (testSuccessFPS != null) {
         return Column(
           children: [
             Text(
-              "${context.l.camera_test_screen_test_passed} $testSuccessMessage",
+              context.l.camera_test_screen_test_passed,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.green, fontSize: 32, fontWeight: FontWeight.bold),
             ),
+            Text(testSuccessFPS!, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
             TextButton(
-              onPressed: () async {
-                await ref.read(vision.compatibilityProvider.notifier).stop();
-                ref.go(const core_domain.OpenOnboardingCTA());
-              },
+              onPressed: stopAndGoToNext,
               child: Text(
                 context.l.camera_test_screen_next,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.blue, fontSize: 14),
+                style: const TextStyle(color: Colors.blue, fontSize: 18),
               ),
             ),
           ],
         );
       }
-      if (compatibilityState.status == vision.TestStatus.started) {
+
+      if (compatibilityState.status == vision.TestStatus.start) {
         return Text(context.l.camera_test_screen_wait, textAlign: TextAlign.center);
       }
+
       return const SizedBox.shrink();
     }
 
     return PopScope(
-      canPop: !isStarting,
+      // Prevent the route from being popped before stop() completes.
+      canPop: false,
       onPopInvokedWithResult: (bool didPop, result) async {
+        if (didPop) {
+          return;
+        }
+
         if (isStarting) {
           appkit.logDebug('[CompatibilityExample] blocked pop - system still starting up.');
           return;
         }
 
-        Future.microtask(() {
-          ref.read(vision.compatibilityProvider.notifier).stop();
-        });
+        await compatibilityNotifier.stop();
 
-        if (!didPop && context.mounted) {
-          Navigator.pop(context);
-        }
+        if (!context.mounted) return;
+
+        Navigator.pop(context);
       },
       child: OnboardingScaffold(
         title: context.l.camera_test_screen_title,
         nextButtonAction: NextButtonAction.next,
-        onNextButtonPressed: testSuccessMessage == null
-            ? null
-            : () async {
-                await ref.read(vision.compatibilityProvider.notifier).stop();
-                ref.go(const core_domain.OpenOnboardingCTA());
-              },
+        onNextButtonPressed: testSuccessFPS == null ? null : stopAndGoToNext,
+        popEnabled: !isTestStarting,
         builder: (context) => [
           getLine1(),
           const SizedBox(height: 12),

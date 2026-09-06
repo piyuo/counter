@@ -640,6 +640,10 @@ class LocalizationMs extends Localization {
       'Sambungan mengambil masa terlalu lama untuk bertindak balas. Sila semak sambungan internet anda dan cuba lagi.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Gagal menulis ke pangkalan data.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Alamat pelayan tidak dapat ditemui. Sila semak sambungan internet atau URL pelayan anda.';
 
@@ -666,6 +670,9 @@ class LocalizationMs extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Sesuatu tidak kena semasa menghantar data. Sila cuba lagi.';
+
+  @override
+  String get telemetry_error_unknown_error => 'Ralat tidak dijangka berlaku.';
 
   @override
   String get terms => 'Terma Perkhidmatan';

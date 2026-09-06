@@ -637,6 +637,10 @@ class LocalizationBn extends Localization {
       'সংযোগ সাড়া দিতে অনেক সময় নিয়েছে। আপনার ইন্টারনেট সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।';
 
   @override
+  String get telemetry_error_database_error =>
+      'ডেটাবেসে লেখার সময় ব্যর্থ হয়েছে।';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'সার্ভারের ঠিকানা খুঁজে পাওয়া যায়নি। আপনার ইন্টারনেট সংযোগ বা সার্ভার URL পরীক্ষা করুন।';
 
@@ -663,6 +667,9 @@ class LocalizationBn extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'ডেটা পাঠানোর সময় কিছু ভুল হয়েছে। আবার চেষ্টা করুন।';
+
+  @override
+  String get telemetry_error_unknown_error => 'একটি অপ্রত্যাশিত ত্রুটি ঘটেছে।';
 
   @override
   String get terms => 'পরিষেবার শর্তাবলী';

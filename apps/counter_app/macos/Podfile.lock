@@ -6,9 +6,6 @@ PODS:
   - EigenCocoa (3.4.0)
   - file_selector_macos (0.0.1):
     - FlutterMacOS
-  - flutter_secure_storage_darwin (10.0.0):
-    - Flutter
-    - FlutterMacOS
   - flutter_vision (1.0.0):
     - EigenCocoa (~> 3.4.0)
     - FlutterMacOS
@@ -16,7 +13,7 @@ PODS:
   - package_info_plus (0.0.1):
     - FlutterMacOS
   - Sentry/HybridSDK (8.58.4)
-  - sentry_flutter (9.26.0):
+  - sentry_flutter (9.29.0):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.4)
@@ -27,14 +24,11 @@ PODS:
     - FlutterMacOS
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
-  - wakelock_plus (0.0.1):
-    - FlutterMacOS
 
 DEPENDENCIES:
   - app_links (from `Flutter/ephemeral/.symlinks/plugins/app_links/macos`)
   - camera_macos (from `Flutter/ephemeral/.symlinks/plugins/camera_macos/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
-  - flutter_secure_storage_darwin (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_darwin/darwin`)
   - flutter_vision (from `Flutter/ephemeral/.symlinks/plugins/flutter_vision/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - package_info_plus (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus/macos`)
@@ -42,7 +36,6 @@ DEPENDENCIES:
   - share_plus (from `Flutter/ephemeral/.symlinks/plugins/share_plus/macos`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
-  - wakelock_plus (from `Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos`)
 
 SPEC REPOS:
   trunk:
@@ -56,8 +49,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/camera_macos/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
-  flutter_secure_storage_darwin:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_darwin/darwin
   flutter_vision:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_vision/macos
   FlutterMacOS:
@@ -72,24 +63,20 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
-  wakelock_plus:
-    :path: Flutter/ephemeral/.symlinks/plugins/wakelock_plus/macos
 
 SPEC CHECKSUMS:
   app_links: c3185399a5cabc2e610ee5ad52fb7269b84ff869
   camera_macos: e59487ffa5d7c3c1db8f071e891cc4d0c2ffffd4
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   file_selector_macos: 3e56eaea051180007b900eacb006686fd54da150
-  flutter_secure_storage_darwin: 557817588b80e60213cbecb573c45c76b788018d
   flutter_vision: 2fba88b9eb3f0b037ed12c67d9521d251d556f4d
-  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
-  sentry_flutter: f4f1705e60a09e77c0023934a23fcf841e0515b3
+  sentry_flutter: a8a05a0bd928d60d0d37540ddfec7768ce9e3723
   share_plus: 1fa619de8392a4398bfaf176d441853922614e89
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   url_launcher_macos: 175a54c831f4375a6cf895875f716ee5af3888ce
-  wakelock_plus: 9d63063ffb7af1c215209769067c57103bde719d
 
 PODFILE CHECKSUM: be5b68d50650f50fcc868ed21e30ffd7544fb508
 

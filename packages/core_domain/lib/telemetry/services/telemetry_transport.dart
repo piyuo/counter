@@ -19,6 +19,8 @@ enum TelemetryErrorCode {
   httpErrorStatus,
   transportException,
   httpUnknownError,
+  databaseError,
+  unknownError,
 }
 
 /// Low-level transport that delivers serialized bytes to the backend.

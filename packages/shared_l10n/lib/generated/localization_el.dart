@@ -646,6 +646,10 @@ class LocalizationEl extends Localization {
       'Η σύνδεση καθυστέρησε πολύ να ανταποκριθεί. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο και δοκιμάστε ξανά.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Η εγγραφή στη βάση δεδομένων απέτυχε.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Δεν βρέθηκε η διεύθυνση του διακομιστή. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο ή τη διεύθυνση URL.';
 
@@ -672,6 +676,10 @@ class LocalizationEl extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Κάτι πήγε στραβά κατά την αποστολή δεδομένων. Δοκιμάστε ξανά.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Παρουσιάστηκε ένα απρόσμενο σφάλμα.';
 
   @override
   String get terms => 'Όροι Παροχής Υπηρεσιών';

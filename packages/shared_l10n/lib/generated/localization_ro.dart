@@ -646,6 +646,10 @@ class LocalizationRo extends Localization {
       'Conexiunea a durat prea mult să răspundă. Verifică conexiunea la internet și încearcă din nou.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Scrierea în baza de date a eșuat.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Adresa serverului nu a fost găsită. Verifică conexiunea la internet sau URL-ul serverului.';
 
@@ -672,6 +676,9 @@ class LocalizationRo extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Ceva nu a funcționat la trimiterea datelor. Încearcă din nou.';
+
+  @override
+  String get telemetry_error_unknown_error => 'A apărut o eroare neașteptată.';
 
   @override
   String get terms => 'Termeni de utilizare';

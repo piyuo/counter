@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class _SettingsServerScreenState extends ConsumerState<CustomServerScreen> {
   //late int _selectedCadenceMin;
   String? _urlError;
   bool _isSaving = false;
+  String _bearerTokenPlaceholder = '';
 
   @override
   void initState() {
@@ -34,6 +37,14 @@ class _SettingsServerScreenState extends ConsumerState<CustomServerScreen> {
     _serverUrlController = TextEditingController(text: existingUrl);
     _bearerTokenController = TextEditingController();
     _serverUrlController.addListener(_clearError);
+    unawaited(_initBearerTokenPlaceholder());
+  }
+
+  Future<void> _initBearerTokenPlaceholder() async {
+    final bearerTokenLength = await ref.read(core_domain.appRuntimeProvider.notifier).personalCustomServerTokenLength();
+    setState(() {
+      _bearerTokenPlaceholder = '*' * bearerTokenLength;
+    });
   }
 
   /*
@@ -107,7 +118,7 @@ class _SettingsServerScreenState extends ConsumerState<CustomServerScreen> {
                     // don't translate this label, it's a technical term
                     Text('Bearer Token (Optional)', style: Theme.of(context).textTheme.titleSmall),
                     const SizedBox(height: 10),
-                    GlassTextField(controller: _bearerTokenController),
+                    GlassTextField(controller: _bearerTokenController, placeholder: _bearerTokenPlaceholder),
                     /*const SizedBox(height: 16),
                     Text(
                       context.l.settings_server_screen_delivery_cadence_label,

@@ -643,6 +643,10 @@ class LocalizationNl extends Localization {
       'De verbinding reageerde te traag. Controleer je internetverbinding en probeer het opnieuw.';
 
   @override
+  String get telemetry_error_database_error =>
+      'Schrijven naar de database is mislukt.';
+
+  @override
   String get telemetry_error_dns_lookup_failed =>
       'Serveradres niet gevonden. Controleer je internetverbinding of de server-URL.';
 
@@ -669,6 +673,10 @@ class LocalizationNl extends Localization {
   @override
   String get telemetry_error_transport_exception =>
       'Er is iets misgegaan bij het verzenden van gegevens. Probeer het opnieuw.';
+
+  @override
+  String get telemetry_error_unknown_error =>
+      'Er is een onverwachte fout opgetreden.';
 
   @override
   String get terms => 'Servicevoorwaarden';
