@@ -1,3 +1,4 @@
 ## Correções de erros
 
-* Foi corrigido um problema que fazia a aplicação fechar inesperadamente ao iniciar.
+* Estabilidade melhorada: Corrigido um problema onde as transmissões de vídeo podiam falhar ao colocar a app em segundo plano.
+* Configuração do servidor corrigida: Corrigido um erro na base de dados que ocorria ao guardar tokens para servidores personalizados.

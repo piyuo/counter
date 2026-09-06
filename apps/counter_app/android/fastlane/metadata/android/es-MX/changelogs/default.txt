@@ -1,3 +1,0 @@
-## Corrección de errores
-
-* Se solucionó un cierre inesperado que podía ocurrir al iniciar la app.

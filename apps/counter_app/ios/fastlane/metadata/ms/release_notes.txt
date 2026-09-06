@@ -1,3 +1,4 @@
-## Pembaikan Pepijat
+## Pembetulan Pepijat
 
-* Membaiki masalah yang menyebabkan aplikasi ranap secara tiba-tiba semasa dimulakan.
+* Kestabilan Aplikasi Ditingkatkan: Memperbaiki masalah di mana aliran video dapat mogok apabila meletakkan aplikasi di latar belakang.
+* Tetapan Pelayan Diperbaiki: Memperbaiki ralat pangkalan data yang terjadi apabila menyimpan token untuk pelayan tersuai.

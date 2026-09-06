@@ -1,3 +1,4 @@
 ## Bugfixes
 
-* Een probleem opgelost waardoor de app onverwacht kon crashen bij het opstarten.
+* Verbeterde app-stabiliteit: Een probleem opgelost waarbij videostreams kunnen vastlopen wanneer de app op de achtergrond staat.
+* Serverinstellingen hersteld: Een databasefout opgelost die optrad bij het opslaan van tokens voor aangepaste servers.

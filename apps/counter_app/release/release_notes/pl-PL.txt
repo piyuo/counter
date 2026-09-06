@@ -1,3 +1,4 @@
 ## Poprawki błędów
 
-* Naprawiono problem powodujący nieoczekiwane zamykanie się aplikacji podczas uruchamiania.
+* Zwiększona stabilność aplikacji: Naprawiono problem, w którym strumienie wideo mogły ulec awarii po przeniesieniu aplikacji na tło.
+* Naprawiono ustawienia serwera: Naprawiono błąd bazy danych, który występował podczas zapisywania tokenów dla serwerów niestandardowych.

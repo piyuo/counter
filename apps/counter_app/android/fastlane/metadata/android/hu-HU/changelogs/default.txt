@@ -1,3 +1,4 @@
 ## Hibajavítások
 
-* Kijavítottunk egy hibát, amely miatt az app indításkor váratlanul összeomlott.
+* Javított alkalmazásstabilítás: Kijavítva egy hiba, ahol a videófolyamok összeomolhattak, ha az alkalmazást a háttérbe helyezték.
+* Szerver-beállítások javítása: Kijavítva egy adatbázis-hiba, amely egyéni szerverek tokenjeinek mentésekor lépett fel.

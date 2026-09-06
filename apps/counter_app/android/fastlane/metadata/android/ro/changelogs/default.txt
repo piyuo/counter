@@ -1,3 +1,4 @@
-## Remedieri de erori
+## Corecții de erori
 
-* A fost rezolvată o problemă care făcea ca aplicația să se închidă neașteptat la pornire.
+* Stabilitate îmbunătățită: Corectată o problemă unde fluxurile video puteau se bloca când aplicația este mutată în fundal.
+* Corecție setări server: Corectată o eroare de bază de date care apărea la salvarea tokenurilor pentru servere personalizate.

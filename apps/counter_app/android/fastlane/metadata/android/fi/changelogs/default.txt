@@ -1,3 +1,0 @@
-## Virheenkorjaukset
-
-* Korjattu ongelma, joka saattoi aiheuttaa sovelluksen odottamattoman kaatumisen käynnistyksen yhteydessä.

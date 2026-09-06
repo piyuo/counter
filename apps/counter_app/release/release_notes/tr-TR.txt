@@ -1,3 +1,4 @@
 ## Hata Düzeltmeleri
 
-* Uygulamanın başlatılırken beklenmedik şekilde kapanmasına neden olan sorun giderildi.
+* Geliştirilmiş Uygulama Kararlılığı: Uygulamanın arka plana alınması sırasında video akışlarının kilitlenme sorunu düzeltildi.
+* Sunucu Ayarları Düzeltildi: Özel sunucular için jetonlar kaydedilirken oluşan veritabanı hatası düzeltildi.

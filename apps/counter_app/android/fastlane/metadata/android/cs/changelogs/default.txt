@@ -1,3 +1,0 @@
-## Opravy chyb
-
-* Byla opravena chyba, která způsobovala neočekávané ukončení aplikace při spuštění.

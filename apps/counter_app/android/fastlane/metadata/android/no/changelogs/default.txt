@@ -1,3 +1,0 @@
-## Feilrettinger
-
-* Løst et problem som kunne føre til at appen krasjet uventet ved oppstart.
