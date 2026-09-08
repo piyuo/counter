@@ -14,19 +14,19 @@ RouteBase get $onboardingRouteData => GoRouteData.$route(
   factory: $OnboardingRouteData._fromState,
   routes: [
     GoRouteData.$route(
-      path: '1',
+      path: 'intro_privacy',
       hasOverriddenOnExit: false,
-      factory: $Onboarding1RouteData._fromState,
+      factory: $OnboardingIntroPrivacyRouteData._fromState,
       routes: [
         GoRouteData.$route(
-          path: '2',
+          path: 'intro_collect',
           hasOverriddenOnExit: false,
-          factory: $Onboarding2RouteData._fromState,
+          factory: $OnboardingIntroCollectRouteData._fromState,
           routes: [
             GoRouteData.$route(
-              path: 'system',
+              path: 'camera_test',
               hasOverriddenOnExit: false,
-              factory: $SystemRouteData._fromState,
+              factory: $CameraTestRouteData._fromState,
             ),
           ],
         ),
@@ -56,33 +56,12 @@ mixin $OnboardingRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin $Onboarding1RouteData on GoRouteData {
-  static Onboarding1RouteData _fromState(GoRouterState state) =>
-      const Onboarding1RouteData();
+mixin $OnboardingIntroPrivacyRouteData on GoRouteData {
+  static OnboardingIntroPrivacyRouteData _fromState(GoRouterState state) =>
+      const OnboardingIntroPrivacyRouteData();
 
   @override
-  String get location => GoRouteData.$location('/onboarding/1');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $Onboarding2RouteData on GoRouteData {
-  static Onboarding2RouteData _fromState(GoRouterState state) =>
-      const Onboarding2RouteData();
-
-  @override
-  String get location => GoRouteData.$location('/onboarding/1/2');
+  String get location => GoRouteData.$location('/onboarding/intro_privacy');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -98,12 +77,36 @@ mixin $Onboarding2RouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin $SystemRouteData on GoRouteData {
-  static SystemRouteData _fromState(GoRouterState state) =>
-      const SystemRouteData();
+mixin $OnboardingIntroCollectRouteData on GoRouteData {
+  static OnboardingIntroCollectRouteData _fromState(GoRouterState state) =>
+      const OnboardingIntroCollectRouteData();
 
   @override
-  String get location => GoRouteData.$location('/onboarding/1/2/system');
+  String get location =>
+      GoRouteData.$location('/onboarding/intro_privacy/intro_collect');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $CameraTestRouteData on GoRouteData {
+  static CameraTestRouteData _fromState(GoRouterState state) =>
+      const CameraTestRouteData();
+
+  @override
+  String get location => GoRouteData.$location(
+    '/onboarding/intro_privacy/intro_collect/camera_test',
+  );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -125,48 +128,50 @@ RouteBase get $cTARouteData => GoRouteData.$route(
   factory: $CTARouteData._fromState,
   routes: [
     GoRouteData.$route(
-      path: 'piyuo-subscription',
+      path: 'cta_subscription',
       hasOverriddenOnExit: false,
-      factory: $PiyuoSubscriptionRouteData._fromState,
+      factory: $SubscriptionRouteData._fromState,
     ),
     GoRouteData.$route(
-      path: 'server-subscription',
-      hasOverriddenOnExit: false,
-      factory: $ServerSubscriptionRouteData._fromState,
-    ),
-    GoRouteData.$route(
-      path: 'invitation',
+      path: 'cta_invitation',
       hasOverriddenOnExit: false,
       factory: $InvitationRouteData._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'success',
+          path: 'cta_invitation_success',
           hasOverriddenOnExit: false,
           factory: $InvitationSuccessRouteData._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
-      path: 'piyuo',
+      path: 'cta_personal_piyuo',
       hasOverriddenOnExit: false,
-      factory: $PiyuoRouteData._fromState,
-    ),
-    GoRouteData.$route(
-      path: 'server',
-      hasOverriddenOnExit: false,
-      factory: $ServerRouteData._fromState,
+      factory: $PersonalPiyuoRouteData._fromState,
       routes: [
         GoRouteData.$route(
-          path: 'success',
+          path: 'cta_personal_piyuo_success',
           hasOverriddenOnExit: false,
-          factory: $ServerSuccessRouteData._fromState,
+          factory: $PersonalPiyuoSuccessRouteData._fromState,
         ),
       ],
     ),
     GoRouteData.$route(
-      path: 'demo',
+      path: 'cta_personal_custom',
       hasOverriddenOnExit: false,
-      factory: $DemoRouteData._fromState,
+      factory: $PersonalCustomRouteData._fromState,
+      routes: [
+        GoRouteData.$route(
+          path: 'cta_personal_custom_success',
+          hasOverriddenOnExit: false,
+          factory: $PersonalCustomSuccessRouteData._fromState,
+        ),
+      ],
+    ),
+    GoRouteData.$route(
+      path: 'cta_local_only',
+      hasOverriddenOnExit: false,
+      factory: $LocalOnlyRouteData._fromState,
     ),
   ],
 );
@@ -191,33 +196,17 @@ mixin $CTARouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin $PiyuoSubscriptionRouteData on GoRouteData {
-  static PiyuoSubscriptionRouteData _fromState(GoRouterState state) =>
-      const PiyuoSubscriptionRouteData();
+mixin $SubscriptionRouteData on GoRouteData {
+  static SubscriptionRouteData _fromState(GoRouterState state) =>
+      SubscriptionRouteData(nextPage: state.uri.queryParameters['next-page']!);
+
+  SubscriptionRouteData get _self => this as SubscriptionRouteData;
 
   @override
-  String get location => GoRouteData.$location('/cta/piyuo-subscription');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $ServerSubscriptionRouteData on GoRouteData {
-  static ServerSubscriptionRouteData _fromState(GoRouterState state) =>
-      const ServerSubscriptionRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/cta/server-subscription');
+  String get location => GoRouteData.$location(
+    '/cta/cta_subscription',
+    queryParams: {'next-page': _self.nextPage},
+  );
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -241,7 +230,7 @@ mixin $InvitationRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location(
-    '/cta/invitation',
+    '/cta/cta_invitation',
     queryParams: {if (_self.token != null) 'token': _self.token},
   );
 
@@ -266,7 +255,8 @@ mixin $InvitationSuccessRouteData on GoRouteData {
   InvitationSuccessRouteData get _self => this as InvitationSuccessRouteData;
 
   @override
-  String get location => GoRouteData.$location('/cta/invitation/success');
+  String get location =>
+      GoRouteData.$location('/cta/cta_invitation/cta_invitation_success');
 
   @override
   void go(BuildContext context) => context.go(location, extra: _self.$extra);
@@ -284,33 +274,12 @@ mixin $InvitationSuccessRouteData on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin $PiyuoRouteData on GoRouteData {
-  static PiyuoRouteData _fromState(GoRouterState state) =>
-      const PiyuoRouteData();
+mixin $PersonalPiyuoRouteData on GoRouteData {
+  static PersonalPiyuoRouteData _fromState(GoRouterState state) =>
+      const PersonalPiyuoRouteData();
 
   @override
-  String get location => GoRouteData.$location('/cta/piyuo');
-
-  @override
-  void go(BuildContext context) => context.go(location);
-
-  @override
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  @override
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  @override
-  void replace(BuildContext context) => context.replace(location);
-}
-
-mixin $ServerRouteData on GoRouteData {
-  static ServerRouteData _fromState(GoRouterState state) =>
-      const ServerRouteData();
-
-  @override
-  String get location => GoRouteData.$location('/cta/server');
+  String get location => GoRouteData.$location('/cta/cta_personal_piyuo');
 
   @override
   void go(BuildContext context) => context.go(location);
@@ -326,15 +295,16 @@ mixin $ServerRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin $ServerSuccessRouteData on GoRouteData {
-  static ServerSuccessRouteData _fromState(GoRouterState state) =>
-      ServerSuccessRouteData(url: state.uri.queryParameters['url']!);
+mixin $PersonalPiyuoSuccessRouteData on GoRouteData {
+  static PersonalPiyuoSuccessRouteData _fromState(GoRouterState state) =>
+      PersonalPiyuoSuccessRouteData(url: state.uri.queryParameters['url']!);
 
-  ServerSuccessRouteData get _self => this as ServerSuccessRouteData;
+  PersonalPiyuoSuccessRouteData get _self =>
+      this as PersonalPiyuoSuccessRouteData;
 
   @override
   String get location => GoRouteData.$location(
-    '/cta/server/success',
+    '/cta/cta_personal_piyuo/cta_personal_piyuo_success',
     queryParams: {'url': _self.url},
   );
 
@@ -352,11 +322,60 @@ mixin $ServerSuccessRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin $DemoRouteData on GoRouteData {
-  static DemoRouteData _fromState(GoRouterState state) => const DemoRouteData();
+mixin $PersonalCustomRouteData on GoRouteData {
+  static PersonalCustomRouteData _fromState(GoRouterState state) =>
+      const PersonalCustomRouteData();
 
   @override
-  String get location => GoRouteData.$location('/cta/demo');
+  String get location => GoRouteData.$location('/cta/cta_personal_custom');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $PersonalCustomSuccessRouteData on GoRouteData {
+  static PersonalCustomSuccessRouteData _fromState(GoRouterState state) =>
+      PersonalCustomSuccessRouteData(url: state.uri.queryParameters['url']!);
+
+  PersonalCustomSuccessRouteData get _self =>
+      this as PersonalCustomSuccessRouteData;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/cta/cta_personal_custom/cta_personal_custom_success',
+    queryParams: {'url': _self.url},
+  );
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+mixin $LocalOnlyRouteData on GoRouteData {
+  static LocalOnlyRouteData _fromState(GoRouterState state) =>
+      const LocalOnlyRouteData();
+
+  @override
+  String get location => GoRouteData.$location('/cta/cta_local_only');
 
   @override
   void go(BuildContext context) => context.go(location);

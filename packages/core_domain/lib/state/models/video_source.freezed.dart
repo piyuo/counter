@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'video_source.dart';
@@ -9,6 +9,7 @@ part of 'video_source.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 VideoSource _$VideoSourceFromJson(
@@ -58,7 +59,7 @@ mixin _$VideoSource {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoSource);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is VideoSource);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -67,7 +68,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VideoSource()';
+    return 'VideoSource()';
 }
 
 
@@ -231,7 +232,7 @@ return live(_that.url);case _:
 @JsonSerializable()
 
 class UnspecifiedVideoSource extends VideoSource {
-  const UnspecifiedVideoSource({final  String? $type}): $type = $type ?? 'unspecified',super._();
+  const UnspecifiedVideoSource({ String? $type}): $type = $type ?? 'unspecified',super._();
   factory UnspecifiedVideoSource.fromJson(Map<String, dynamic> json) => _$UnspecifiedVideoSourceFromJson(json);
 
 
@@ -248,7 +249,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UnspecifiedVideoSource);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is UnspecifiedVideoSource);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -257,7 +258,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'VideoSource.unspecified()';
+    return 'VideoSource.unspecified()';
 }
 
 
@@ -270,7 +271,7 @@ String toString() {
 @JsonSerializable()
 
 class CameraVideoSource extends VideoSource {
-  const CameraVideoSource({required this.cameraIndex, required this.isFaceFront, final  String? $type}): $type = $type ?? 'camera',super._();
+  const CameraVideoSource({required this.cameraIndex, required this.isFaceFront,  String? $type}): $type = $type ?? 'camera',super._();
   factory CameraVideoSource.fromJson(Map<String, dynamic> json) => _$CameraVideoSourceFromJson(json);
 
  final  int cameraIndex;
@@ -293,16 +294,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraVideoSource&&(identical(other.cameraIndex, cameraIndex) || other.cameraIndex == cameraIndex)&&(identical(other.isFaceFront, isFaceFront) || other.isFaceFront == isFaceFront));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CameraVideoSource&&(identical(other.cameraIndex, cameraIndex) || other.cameraIndex == cameraIndex)&&(identical(other.isFaceFront, isFaceFront) || other.isFaceFront == isFaceFront));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,cameraIndex,isFaceFront);
+int get hashCode {
+    return Object.hash(runtimeType,cameraIndex,isFaceFront);
+}
 
 @override
 String toString() {
-  return 'VideoSource.camera(cameraIndex: $cameraIndex, isFaceFront: $isFaceFront)';
+    return 'VideoSource.camera(cameraIndex: $cameraIndex, isFaceFront: $isFaceFront)';
 }
 
 
@@ -345,7 +348,7 @@ as bool,
 @JsonSerializable()
 
 class WebcamVideoSource extends VideoSource {
-  const WebcamVideoSource({required this.webcamIndex, final  String? $type}): $type = $type ?? 'webcam',super._();
+  const WebcamVideoSource({required this.webcamIndex,  String? $type}): $type = $type ?? 'webcam',super._();
   factory WebcamVideoSource.fromJson(Map<String, dynamic> json) => _$WebcamVideoSourceFromJson(json);
 
  final  int webcamIndex;
@@ -367,16 +370,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WebcamVideoSource&&(identical(other.webcamIndex, webcamIndex) || other.webcamIndex == webcamIndex));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is WebcamVideoSource&&(identical(other.webcamIndex, webcamIndex) || other.webcamIndex == webcamIndex));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,webcamIndex);
+int get hashCode {
+    return Object.hash(runtimeType,webcamIndex);
+}
 
 @override
 String toString() {
-  return 'VideoSource.webcam(webcamIndex: $webcamIndex)';
+    return 'VideoSource.webcam(webcamIndex: $webcamIndex)';
 }
 
 
@@ -418,7 +423,7 @@ as int,
 @JsonSerializable()
 
 class FileVideoSource extends VideoSource {
-  const FileVideoSource({required this.path, final  String? $type}): $type = $type ?? 'file',super._();
+  const FileVideoSource({required this.path,  String? $type}): $type = $type ?? 'file',super._();
   factory FileVideoSource.fromJson(Map<String, dynamic> json) => _$FileVideoSourceFromJson(json);
 
  final  String path;
@@ -440,16 +445,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FileVideoSource&&(identical(other.path, path) || other.path == path));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is FileVideoSource&&(identical(other.path, path) || other.path == path));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,path);
+int get hashCode {
+    return Object.hash(runtimeType,path);
+}
 
 @override
 String toString() {
-  return 'VideoSource.file(path: $path)';
+    return 'VideoSource.file(path: $path)';
 }
 
 
@@ -491,7 +498,7 @@ as String,
 @JsonSerializable()
 
 class LiveVideoSource extends VideoSource {
-  const LiveVideoSource({required this.url, final  String? $type}): $type = $type ?? 'live',super._();
+  const LiveVideoSource({required this.url,  String? $type}): $type = $type ?? 'live',super._();
   factory LiveVideoSource.fromJson(Map<String, dynamic> json) => _$LiveVideoSourceFromJson(json);
 
  final  String url;
@@ -513,16 +520,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LiveVideoSource&&(identical(other.url, url) || other.url == url));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is LiveVideoSource&&(identical(other.url, url) || other.url == url));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url);
+int get hashCode {
+    return Object.hash(runtimeType,url);
+}
 
 @override
 String toString() {
-  return 'VideoSource.live(url: $url)';
+    return 'VideoSource.live(url: $url)';
 }
 
 

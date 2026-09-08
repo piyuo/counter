@@ -10,9 +10,9 @@ class OnboardingRoutes {
   const OnboardingRoutes._();
 
   static const String onboarding = '/onboarding';
-  static const String onboarding1 = '/onboarding/1';
-  static const String onboarding2 = '/onboarding/1/2';
-  static const String system = '/onboarding/1/2/system';
+  static const String onboardingIntroPrivacy = '/onboarding/intro_privacy';
+  static const String onboardingIntroCollect = '/onboarding/intro_privacy/intro_collect';
+  static const String cameraTest = '/onboarding/intro_privacy/intro_collect/camera_test';
   static const String cta = '/cta';
-  static const String ctaInvitation = '/cta/invitation';
+  static const String ctaInvitation = '/cta/cta_invitation';
 }

@@ -14,6 +14,7 @@ export 'navigation/rules/control_panel_app_flow_rule.dart';
 export 'navigation/rules/control_panel_system_lifecycle_rule.dart';
 export 'navigation/rules/monitor_app_flow_rule.dart';
 export 'navigation/rules/monitor_system_lifecycle_rule.dart';
+export 'services/analytic_service.dart';
 export 'services/app_link_service.dart';
 export 'services/auth_storage_service.dart';
 export 'services/hardware_capability_service.dart';

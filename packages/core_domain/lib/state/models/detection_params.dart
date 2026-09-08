@@ -121,4 +121,26 @@ abstract class DetectionParams with _$DetectionParams {
       disappearThresholdSeconds: 7,
     );
   }
+
+  String difference(DetectionParams other) {
+    final differences = <String>[];
+    if (trackHighThresh != other.trackHighThresh) differences.add('trackHighThresh');
+    if (trackLowThresh != other.trackLowThresh) differences.add('trackLowThresh');
+    if (newTrackThresh != other.newTrackThresh) differences.add('newTrackThresh');
+    if (maxTimeLostSec != other.maxTimeLostSec) differences.add('maxTimeLostSec');
+    if (maxMatchDistance != other.maxMatchDistance) differences.add('maxMatchDistance');
+    if (proximityThresh != other.proximityThresh) differences.add('proximityThresh');
+    if (appearanceThresh != other.appearanceThresh) differences.add('appearanceThresh');
+    if (lambda != other.lambda) differences.add('lambda');
+    if (softMotionGating != other.softMotionGating) differences.add('softMotionGating');
+    if (preferAppearanceFallbackOnLowIou != other.preferAppearanceFallbackOnLowIou)
+      differences.add('preferAppearanceFallbackOnLowIou');
+    if (trackletMinPresenceTimeSec != other.trackletMinPresenceTimeSec) differences.add('trackletMinPresenceTimeSec');
+    if (trackletEdgeMargin != other.trackletEdgeMargin) differences.add('trackletEdgeMargin');
+    if (trackletEdgeOverrideTimeSec != other.trackletEdgeOverrideTimeSec)
+      differences.add('trackletEdgeOverrideTimeSec');
+    if (stayThresholdSeconds != other.stayThresholdSeconds) differences.add('stayThresholdSeconds');
+    if (disappearThresholdSeconds != other.disappearThresholdSeconds) differences.add('disappearThresholdSeconds');
+    return differences.join(', ');
+  }
 }

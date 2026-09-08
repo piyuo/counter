@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'invitation.dart';
@@ -9,6 +9,7 @@ part of 'invitation.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $InvitationCopyWith<Invitation> get copyWith => _$InvitationCopyWithImpl<Invitat
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Invitation&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig));
+  final _this = this as Invitation;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Invitation&&(identical(other.instruction, _this.instruction) || other.instruction == _this.instruction)&&(identical(other.bearerToken, _this.bearerToken) || other.bearerToken == _this.bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, _this.businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, _this.businessCustomServer)&&(identical(other.detection, _this.detection) || other.detection == _this.detection)&&(identical(other.detectionParams, _this.detectionParams) || other.detectionParams == _this.detectionParams)&&(identical(other.uploadConfig, _this.uploadConfig) || other.uploadConfig == _this.uploadConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,instruction,bearerToken,const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),detection,detectionParams,uploadConfig);
+int get hashCode {
+  final _this = this as Invitation;
+  return Object.hash(runtimeType,_this.instruction,_this.bearerToken,const DeepCollectionEquality().hash(_this.businessPiyuoServer),const DeepCollectionEquality().hash(_this.businessCustomServer),_this.detection,_this.detectionParams,_this.uploadConfig);
+}
 
 @override
 String toString() {
-  return 'Invitation(instruction: $instruction, bearerToken: $bearerToken, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, detection: $detection, detectionParams: $detectionParams, uploadConfig: $uploadConfig)';
+  final _this = this as Invitation;
+  return 'Invitation(instruction: ${_this.instruction}, bearerToken: ${_this.bearerToken}, businessPiyuoServer: ${_this.businessPiyuoServer}, businessCustomServer: ${_this.businessCustomServer}, detection: ${_this.detection}, detectionParams: ${_this.detectionParams}, uploadConfig: ${_this.uploadConfig})';
 }
 
 
@@ -66,7 +72,7 @@ class _$InvitationCopyWithImpl<$Res>
 /// Create a copy of Invitation
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? instruction = null,Object? bearerToken = null,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? detection = freezed,Object? detectionParams = freezed,Object? uploadConfig = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(Invitation(
 instruction: null == instruction ? _self.instruction : instruction // ignore: cast_nullable_to_non_nullable
 as String,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
 as String,businessPiyuoServer: freezed == businessPiyuoServer ? _self.businessPiyuoServer : businessPiyuoServer // ignore: cast_nullable_to_non_nullable
@@ -275,16 +281,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Invitation&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Invitation&&(identical(other.instruction, instruction) || other.instruction == instruction)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,instruction,bearerToken,const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),detection,detectionParams,uploadConfig);
+int get hashCode {
+    return Object.hash(runtimeType,instruction,bearerToken,const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),detection,detectionParams,uploadConfig);
+}
 
 @override
 String toString() {
-  return 'Invitation(instruction: $instruction, bearerToken: $bearerToken, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, detection: $detection, detectionParams: $detectionParams, uploadConfig: $uploadConfig)';
+    return 'Invitation(instruction: $instruction, bearerToken: $bearerToken, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, detection: $detection, detectionParams: $detectionParams, uploadConfig: $uploadConfig)';
 }
 
 

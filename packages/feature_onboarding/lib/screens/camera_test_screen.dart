@@ -36,6 +36,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
     setState(() {
       isTestStarting = true;
     });
+    ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.TestStartEvent());
   }
 
   /// Callback when the test finishes.
@@ -48,18 +49,29 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
       if (errorMessage.isEmpty) {
         testSuccessFPS = 'FPS: ${performance.fps}';
         testErrorMessage = null;
-      } else {
-        testErrorMessage = errorMessage;
-        testSuccessFPS = null;
+        ref
+            .read(core_domain.analyticsServiceProvider)
+            .logEvent(
+              core_domain.TestPassEvent(
+                frameReadTimeMS: performance.frameReadTimeMS,
+                detectionTimeMS: performance.detectionTimeMS,
+                reIDTimeMS: performance.reIDTimeMS,
+                trackingTimeMS: performance.trackingTimeMS,
+              ),
+            );
+        return;
       }
+      testErrorMessage = errorMessage;
+      testSuccessFPS = null;
+      ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.TestFailEvent(errorMessage: errorMessage));
     });
   }
 
   Future<void> stopAndGoToNext() async {
     await compatibilityNotifier.stop();
-
     if (!context.mounted) return;
 
+    await ref.read(core_domain.appProvider.notifier).completeCameraTest();
     ref.go(const core_domain.OpenOnboardingCTA());
   }
 

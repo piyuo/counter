@@ -36,24 +36,34 @@ sealed class AppState with _$AppState {
     /// auto-generated unique device ID, sent to backend as a safety identifier
     @Default('') String deviceId,
 
+    /// add boolean flag to indicate if the app has completed its camera test
+    @Default(false) bool hasCompletedCameraTest,
+
     /// if dataServerSelection is unspecified, then app need run onboarding flow to let user select a data server.
     @Default(DataServerSelection.unspecified)
     @JsonKey(unknownEnumValue: DataServerSelection.unspecified)
     DataServerSelection dataServerSelection,
 
     /// personal subscription plan, use piyuo.com backend, setup by user.
-    PersonalPiyuoServer? personalPiyuoServer, // will be assign when first boot, 'https://piyuo.com/api/v1/$random'
+    // will be assign when first boot, 'https://piyuo.com/api/v1/$random'
+    @Default(null) PersonalPiyuoServer? personalPiyuoServer,
+
     /// personal subscription plan, use their own backend, setup by user.
-    PersonalCustomServer? personalCustomServer, // will be assign when first boot, 'http://localhost:3000'
+    /// will be assign when first boot,'http://localhost:3000'
+    @Default(null) PersonalCustomServer? personalCustomServer,
+
     /// business subscription plan, use piyuo.com backend, setup by invitation.
-    BusinessPiyuoServer? businessPiyuoServer, // assign by invitation, e.g. 'https://piyuo.com/api/v1'
+    /// assign by invitation, e.g. 'https://piyuo.com/api/v1'
+    @Default(null) BusinessPiyuoServer? businessPiyuoServer,
+
     /// business subscription plan, use their own backend, setup by invitation.
-    BusinessCustomServer? businessCustomServer, // assign by invitation, e.g. 'http://localhost:3000'
+    /// assign by invitation, e.g. 'http://localhost:3000'
+    @Default(null) BusinessCustomServer? businessCustomServer,
+
     /// how to upload data to remote server/
     @Default(UploadConfig()) UploadConfig uploadConfig,
 
     /// Vision input selection.
-    ///
     /// Stored as a flat AppState field rather than inside a nested vision-session
     /// object because source, detection, and params can each change independently.
     @Default(VideoSource.unspecified()) @JsonKey(name: 'videoSource') VideoSource videoSource,

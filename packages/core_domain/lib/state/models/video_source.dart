@@ -32,3 +32,13 @@ sealed class VideoSource with _$VideoSource {
 
   bool get hasMadeDecision => this is! UnspecifiedVideoSource;
 }
+
+String getVideoSourceName(VideoSource source) {
+  return switch (source) {
+    UnspecifiedVideoSource() => 'unspecified',
+    CameraVideoSource() => 'camera',
+    WebcamVideoSource() => 'webcam',
+    FileVideoSource() => 'file',
+    LiveVideoSource() => 'live',
+  };
+}

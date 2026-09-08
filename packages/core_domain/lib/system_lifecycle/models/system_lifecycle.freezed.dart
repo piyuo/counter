@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'system_lifecycle.dart';
@@ -9,6 +9,7 @@ part of 'system_lifecycle.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$SystemLifecycle {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemLifecycle);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemLifecycle);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle()';
+    return 'SystemLifecycle()';
 }
 
 
@@ -197,7 +198,7 @@ class Booting implements SystemLifecycle {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Booting);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is Booting);
 }
 
 
@@ -206,7 +207,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle.booting()';
+    return 'SystemLifecycle.booting()';
 }
 
 
@@ -229,7 +230,7 @@ class CheckingHardware implements SystemLifecycle {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingHardware);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingHardware);
 }
 
 
@@ -238,7 +239,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle.checkingHardware()';
+    return 'SystemLifecycle.checkingHardware()';
 }
 
 
@@ -261,7 +262,7 @@ class SystemReady implements SystemLifecycle {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemReady);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemReady);
 }
 
 
@@ -270,7 +271,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle.systemReady()';
+    return 'SystemLifecycle.systemReady()';
 }
 
 
@@ -293,7 +294,7 @@ class SystemDeviceNotSupported implements SystemLifecycle {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemDeviceNotSupported);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemDeviceNotSupported);
 }
 
 
@@ -302,7 +303,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemLifecycle.systemDeviceNotSupported()';
+    return 'SystemLifecycle.systemDeviceNotSupported()';
 }
 
 

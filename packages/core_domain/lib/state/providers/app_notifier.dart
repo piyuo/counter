@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:core_domain/app_flow/models/app_flow.dart';
 import 'package:core_domain/app_flow/models/app_flow_event.dart';
 import 'package:core_domain/app_flow/providers/app_flow_notifier.dart';
+import 'package:core_domain/services/analytic_service.dart';
 import 'package:core_domain/services/hardware_capability_service.dart';
 import 'package:core_domain/services/token_generator_service.dart';
 import 'package:core_domain/services/vision_service.dart';
@@ -45,6 +46,7 @@ abstract class AppController {
     UploadConfig? deliveryConfig,
   });
   Future<void> reset();
+  Future<void> completeCameraTest();
 }
 
 @Riverpod(keepAlive: true)
@@ -58,10 +60,11 @@ class AppNotifier extends _$AppNotifier implements AppController {
     repo = ref.read(appStateRepositoryProvider);
     var loadedState = await repo.load();
     final persistedState = loadedState;
+
     // Auto-generate a stable device ID on first boot or after a data reset.
     if (loadedState.deviceId.isEmpty) {
       // first boot or after a data reset
-      loadedState = loadedState.copyWith();
+      ref.read(analyticsServiceProvider).logEvent(NewDeviceEvent());
       // random url for personal piyuo.com endpoint, setup by user
       final random = ref.read(tokenGeneratorServiceProvider).generate();
       // Auto-generate a stable per-device upload jitter (0–180 s) on first boot.
@@ -154,22 +157,6 @@ class AppNotifier extends _$AppNotifier implements AppController {
   }
 
   @override
-  Future<bool> reset() async {
-    await ref.read(visionRuntimeServiceProvider).stop();
-    final hardwareService = ref.read(hardwareCapabilityServiceProvider);
-    final defaultVideoSource = await hardwareService.getDefaultVideoSource();
-    final freshState = AppState(videoSource: defaultVideoSource ?? VideoSource.unspecified());
-    state = AsyncData(freshState);
-    await repo.reset();
-    if (defaultVideoSource == null) {
-      final lifecycleController = ref.read(systemLifecycleProvider.notifier);
-      lifecycleController.dispatch(const SystemEvent.deviceNotSupported());
-      return false;
-    }
-    return true;
-  }
-
-  @override
   Future<void> clearInterestAreas() async {
     final current = await future;
     final updated = current.copyWith(interestAreas: []);
@@ -189,8 +176,10 @@ class AppNotifier extends _$AppNotifier implements AppController {
 
     final appRuntimeState = ref.read(appRuntimeProvider);
     if (!appRuntimeState.isVisionRunning) {
+      appkit.logWarning('[AppNotifier] Vision runtime is not running, cannot set video source.');
       return;
     }
+    ref.read(analyticsServiceProvider).logEvent(SetSourceEvent(source: getVideoSourceName(videoSource)));
     final visionRuntimeService = ref.read(visionRuntimeServiceProvider);
     final isVideoTypeChanged = await visionRuntimeService.isVideoTypeChanged(videoSource);
     if (isVideoTypeChanged == false) {
@@ -235,6 +224,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     state = AsyncData(updated);
     await repo.save(updated);
 
+    await ref.read(analyticsServiceProvider).logEvent(SetTargetEvent(target: detectionType.toString()));
     final appRuntimeState = ref.read(appRuntimeProvider);
     if (!appRuntimeState.isVisionRunning) {
       return;
@@ -248,6 +238,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final updated = current.copyWith(detectionParams: detectionParams);
     state = AsyncData(updated);
     await repo.save(updated);
+
     final appRuntimeState = ref.read(appRuntimeProvider);
     if (!appRuntimeState.isVisionRunning) {
       return;
@@ -278,6 +269,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final updated = current.copyWith(dataServerSelection: DataServerSelection.personalPiyuo);
     await ref.read(appRuntimeProvider.notifier).clearBearerToken(); // no bearer token for personal piyuo server
     await _saveUpdatedState(updated);
+    ref.read(analyticsServiceProvider).logEvent(SelectPersonalPiyuoEvent());
   }
 
   @override
@@ -291,6 +283,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       personalCustomServer: PersonalCustomServer(url: url),
     );
     await _saveUpdatedState(updated);
+    ref.read(analyticsServiceProvider).logEvent(SelectPersonalCustomEvent());
   }
 
   @override
@@ -305,6 +298,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       businessPiyuoServer: server,
     );
     await _saveUpdatedState(updated);
+    ref.read(analyticsServiceProvider).logEvent(SelectBusinessPiyuoEvent());
   }
 
   @override
@@ -319,6 +313,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       businessCustomServer: server,
     );
     await _saveUpdatedState(updated);
+    ref.read(analyticsServiceProvider).logEvent(SelectBusinessCustomEvent());
   }
 
   @override
@@ -329,6 +324,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     }
     final updated = current.copyWith(dataServerSelection: DataServerSelection.noDataServer);
     await _saveUpdatedState(updated);
+    ref.read(analyticsServiceProvider).logEvent(SelectNoDataServerEvent());
   }
 
   @override
@@ -357,5 +353,33 @@ class AppNotifier extends _$AppNotifier implements AppController {
     state = AsyncData(updated);
     repo.save(updated);
     ref.read(visionRuntimeServiceProvider).setTrackIdVisible(isVisible);
+  }
+
+  @override
+  Future<void> reset() async {
+    final currentState = state.requireValue;
+
+    // Preserve values that should survive reset.
+    final deviceId = currentState.deviceId;
+    final hasCompletedCameraTest = currentState.hasCompletedCameraTest;
+    final videoSource = currentState.videoSource;
+
+    await ref.read(visionRuntimeServiceProvider).stop();
+    final newState = AppState(
+      deviceId: deviceId,
+      hasCompletedCameraTest: hasCompletedCameraTest,
+      videoSource: videoSource,
+    );
+    state = AsyncData(newState);
+    await repo.save(newState);
+    await ref.read(analyticsServiceProvider).logEvent(ResetEvent());
+  }
+
+  @override
+  Future<void> completeCameraTest() async {
+    final current = state.requireValue;
+    final updated = current.copyWith(hasCompletedCameraTest: true);
+    state = AsyncData(updated);
+    await repo.save(updated);
   }
 }

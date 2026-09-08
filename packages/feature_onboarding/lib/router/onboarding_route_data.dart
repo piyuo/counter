@@ -41,12 +41,12 @@ part 'onboarding_route_data.g.dart';
 @TypedGoRoute<OnboardingRouteData>(
   path: '/onboarding',
   routes: [
-    TypedGoRoute<Onboarding1RouteData>(
-      path: '1',
+    TypedGoRoute<OnboardingIntroPrivacyRouteData>(
+      path: 'intro_privacy',
       routes: [
-        TypedGoRoute<Onboarding2RouteData>(
-          path: '2',
-          routes: [TypedGoRoute<SystemRouteData>(path: 'system')],
+        TypedGoRoute<OnboardingIntroCollectRouteData>(
+          path: 'intro_collect',
+          routes: [TypedGoRoute<CameraTestRouteData>(path: 'camera_test')],
         ),
       ],
     ),
@@ -59,22 +59,22 @@ class OnboardingRouteData extends GoRouteData with $OnboardingRouteData {
   Widget build(BuildContext context, GoRouterState state) => OnboardingScreen();
 }
 
-class Onboarding1RouteData extends GoRouteData with $Onboarding1RouteData {
-  const Onboarding1RouteData();
+class OnboardingIntroPrivacyRouteData extends GoRouteData with $OnboardingIntroPrivacyRouteData {
+  const OnboardingIntroPrivacyRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => Onboarding1Screen();
 }
 
-class Onboarding2RouteData extends GoRouteData with $Onboarding2RouteData {
-  const Onboarding2RouteData();
+class OnboardingIntroCollectRouteData extends GoRouteData with $OnboardingIntroCollectRouteData {
+  const OnboardingIntroCollectRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => Onboarding2Screen();
 }
 
-class SystemRouteData extends GoRouteData with $SystemRouteData {
-  const SystemRouteData();
+class CameraTestRouteData extends GoRouteData with $CameraTestRouteData {
+  const CameraTestRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const CameraTestScreen();
@@ -83,18 +83,20 @@ class SystemRouteData extends GoRouteData with $SystemRouteData {
 @TypedGoRoute<CTARouteData>(
   path: '/cta',
   routes: [
-    TypedGoRoute<PiyuoSubscriptionRouteData>(path: 'piyuo-subscription'),
-    TypedGoRoute<ServerSubscriptionRouteData>(path: 'server-subscription'),
+    TypedGoRoute<SubscriptionRouteData>(path: 'cta_subscription'),
     TypedGoRoute<InvitationRouteData>(
-      path: 'invitation',
-      routes: [TypedGoRoute<InvitationSuccessRouteData>(path: 'success')],
+      path: 'cta_invitation',
+      routes: [TypedGoRoute<InvitationSuccessRouteData>(path: 'cta_invitation_success')],
     ),
-    TypedGoRoute<PiyuoRouteData>(path: 'piyuo'),
-    TypedGoRoute<ServerRouteData>(
-      path: 'server',
-      routes: [TypedGoRoute<ServerSuccessRouteData>(path: 'success')],
+    TypedGoRoute<PersonalPiyuoRouteData>(
+      path: 'cta_personal_piyuo',
+      routes: [TypedGoRoute<PersonalPiyuoSuccessRouteData>(path: 'cta_personal_piyuo_success')],
     ),
-    TypedGoRoute<DemoRouteData>(path: 'demo'),
+    TypedGoRoute<PersonalCustomRouteData>(
+      path: 'cta_personal_custom',
+      routes: [TypedGoRoute<PersonalCustomSuccessRouteData>(path: 'cta_personal_custom_success')],
+    ),
+    TypedGoRoute<LocalOnlyRouteData>(path: 'cta_local_only'),
   ],
 )
 class CTARouteData extends GoRouteData with $CTARouteData {
@@ -124,22 +126,15 @@ class InvitationSuccessRouteData extends GoRouteData with $InvitationSuccessRout
   Widget build(BuildContext context, GoRouterState state) => InvitationSuccessScreen(invitation: $extra!);
 }
 
-class PiyuoRouteData extends GoRouteData with $PiyuoRouteData {
-  const PiyuoRouteData();
+class PersonalPiyuoRouteData extends GoRouteData with $PersonalPiyuoRouteData {
+  const PersonalPiyuoRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const PersonalPiyuoScreen();
 }
 
-class ServerRouteData extends GoRouteData with $ServerRouteData {
-  const ServerRouteData();
-
-  @override
-  Widget build(BuildContext context, GoRouterState state) => const PersonalCustomScreen();
-}
-
-class ServerSuccessRouteData extends GoRouteData with $ServerSuccessRouteData {
-  const ServerSuccessRouteData({required this.url});
+class PersonalPiyuoSuccessRouteData extends GoRouteData with $PersonalPiyuoSuccessRouteData {
+  const PersonalPiyuoSuccessRouteData({required this.url});
 
   /// The server URL appended as a query parameter.
   final String url;
@@ -148,22 +143,34 @@ class ServerSuccessRouteData extends GoRouteData with $ServerSuccessRouteData {
   Widget build(BuildContext context, GoRouterState state) => PersonalCustomSuccessScreen(url: url);
 }
 
-class PiyuoSubscriptionRouteData extends GoRouteData with $PiyuoSubscriptionRouteData {
-  const PiyuoSubscriptionRouteData();
+class PersonalCustomRouteData extends GoRouteData with $PersonalCustomRouteData {
+  const PersonalCustomRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SubscriptionScreen(nextPage: 'piyuo');
+  Widget build(BuildContext context, GoRouterState state) => const PersonalCustomScreen();
 }
 
-class ServerSubscriptionRouteData extends GoRouteData with $ServerSubscriptionRouteData {
-  const ServerSubscriptionRouteData();
+class PersonalCustomSuccessRouteData extends GoRouteData with $PersonalCustomSuccessRouteData {
+  const PersonalCustomSuccessRouteData({required this.url});
+
+  /// The server URL appended as a query parameter.
+  final String url;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const SubscriptionScreen(nextPage: 'server');
+  Widget build(BuildContext context, GoRouterState state) => PersonalCustomSuccessScreen(url: url);
 }
 
-class DemoRouteData extends GoRouteData with $DemoRouteData {
-  const DemoRouteData();
+class SubscriptionRouteData extends GoRouteData with $SubscriptionRouteData {
+  const SubscriptionRouteData({required this.nextPage});
+
+  final String nextPage;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => SubscriptionScreen(nextPage: nextPage);
+}
+
+class LocalOnlyRouteData extends GoRouteData with $LocalOnlyRouteData {
+  const LocalOnlyRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const LocalScreen();

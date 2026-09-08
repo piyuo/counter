@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_flow.dart';
@@ -9,6 +9,7 @@ part of 'app_flow.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppFlow);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is AppFlow);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow()';
+    return 'AppFlow()';
 }
 
 
@@ -203,7 +204,7 @@ class WaitingForStart implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is WaitingForStart);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is WaitingForStart);
 }
 
 
@@ -212,7 +213,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.waitingForStart()';
+    return 'AppFlow.waitingForStart()';
 }
 
 
@@ -235,7 +236,7 @@ class CheckingDataServer implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingDataServer);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckingDataServer);
 }
 
 
@@ -244,7 +245,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.checkingDataServer()';
+    return 'AppFlow.checkingDataServer()';
 }
 
 
@@ -267,7 +268,7 @@ class OnboardingBegin implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingBegin);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingBegin);
 }
 
 
@@ -276,7 +277,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.onboardingBegin()';
+    return 'AppFlow.onboardingBegin()';
 }
 
 
@@ -299,7 +300,7 @@ class OnboardingByInvitation implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingByInvitation);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingByInvitation);
 }
 
 
@@ -308,7 +309,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.onboardingByInvitation()';
+    return 'AppFlow.onboardingByInvitation()';
 }
 
 
@@ -331,7 +332,7 @@ class SessionRunning implements AppFlow {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SessionRunning);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SessionRunning);
 }
 
 
@@ -340,7 +341,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AppFlow.sessionRunning()';
+    return 'AppFlow.sessionRunning()';
 }
 
 

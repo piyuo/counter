@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'telemetry_response.dart';
@@ -9,6 +9,7 @@ part of 'telemetry_response.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $TelemetryResponseCopyWith<TelemetryResponse> get copyWith => _$TelemetryRespons
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.errorCode, errorCode) || other.errorCode == errorCode)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
+  final _this = this as TelemetryResponse;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryResponse&&(identical(other.v, _this.v) || other.v == _this.v)&&(identical(other.ok, _this.ok) || other.ok == _this.ok)&&(identical(other.errorCode, _this.errorCode) || other.errorCode == _this.errorCode)&&(identical(other.error, _this.error) || other.error == _this.error)&&(identical(other.data, _this.data) || other.data == _this.data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,v,ok,errorCode,error,data);
+int get hashCode {
+  final _this = this as TelemetryResponse;
+  return Object.hash(runtimeType,_this.v,_this.ok,_this.errorCode,_this.error,_this.data);
+}
 
 @override
 String toString() {
-  return 'TelemetryResponse(v: $v, ok: $ok, errorCode: $errorCode, error: $error, data: $data)';
+  final _this = this as TelemetryResponse;
+  return 'TelemetryResponse(v: ${_this.v}, ok: ${_this.ok}, errorCode: ${_this.errorCode}, error: ${_this.error}, data: ${_this.data})';
 }
 
 
@@ -66,7 +72,7 @@ class _$TelemetryResponseCopyWithImpl<$Res>
 /// Create a copy of TelemetryResponse
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? v = null,Object? ok = null,Object? errorCode = freezed,Object? error = freezed,Object? data = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(TelemetryResponse(
 v: null == v ? _self.v : v // ignore: cast_nullable_to_non_nullable
 as int,ok: null == ok ? _self.ok : ok // ignore: cast_nullable_to_non_nullable
 as bool,errorCode: freezed == errorCode ? _self.errorCode : errorCode // ignore: cast_nullable_to_non_nullable
@@ -247,16 +253,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.errorCode, errorCode) || other.errorCode == errorCode)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryResponse&&(identical(other.v, v) || other.v == v)&&(identical(other.ok, ok) || other.ok == ok)&&(identical(other.errorCode, errorCode) || other.errorCode == errorCode)&&(identical(other.error, error) || other.error == error)&&(identical(other.data, data) || other.data == data));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,v,ok,errorCode,error,data);
+int get hashCode {
+    return Object.hash(runtimeType,v,ok,errorCode,error,data);
+}
 
 @override
 String toString() {
-  return 'TelemetryResponse(v: $v, ok: $ok, errorCode: $errorCode, error: $error, data: $data)';
+    return 'TelemetryResponse(v: $v, ok: $ok, errorCode: $errorCode, error: $error, data: $data)';
 }
 
 
@@ -327,16 +335,21 @@ $ServerDataCopyWith<ServerData> get copyWith => _$ServerDataCopyWithImpl<ServerD
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerData&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig)&&(identical(other.config, config) || other.config == config));
+  final _this = this as ServerData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerData&&(identical(other.detection, _this.detection) || other.detection == _this.detection)&&(identical(other.detectionParams, _this.detectionParams) || other.detectionParams == _this.detectionParams)&&(identical(other.deliveryConfig, _this.deliveryConfig) || other.deliveryConfig == _this.deliveryConfig)&&(identical(other.config, _this.config) || other.config == _this.config));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,detection,detectionParams,deliveryConfig,config);
+int get hashCode {
+  final _this = this as ServerData;
+  return Object.hash(runtimeType,_this.detection,_this.detectionParams,_this.deliveryConfig,_this.config);
+}
 
 @override
 String toString() {
-  return 'ServerData(detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig, config: $config)';
+  final _this = this as ServerData;
+  return 'ServerData(detection: ${_this.detection}, detectionParams: ${_this.detectionParams}, deliveryConfig: ${_this.deliveryConfig}, config: ${_this.config})';
 }
 
 
@@ -365,7 +378,7 @@ class _$ServerDataCopyWithImpl<$Res>
 /// Create a copy of ServerData
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? detection = freezed,Object? detectionParams = freezed,Object? deliveryConfig = freezed,Object? config = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ServerData(
 detection: freezed == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
 as DetectionType?,detectionParams: freezed == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as DetectionParams?,deliveryConfig: freezed == deliveryConfig ? _self.deliveryConfig : deliveryConfig // ignore: cast_nullable_to_non_nullable
@@ -580,16 +593,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerData&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig)&&(identical(other.config, config) || other.config == config));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerData&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig)&&(identical(other.config, config) || other.config == config));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,detection,detectionParams,deliveryConfig,config);
+int get hashCode {
+    return Object.hash(runtimeType,detection,detectionParams,deliveryConfig,config);
+}
 
 @override
 String toString() {
-  return 'ServerData(detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig, config: $config)';
+    return 'ServerData(detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig, config: $config)';
 }
 
 
@@ -695,16 +710,21 @@ $ServerConfigCopyWith<ServerConfig> get copyWith => _$ServerConfigCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerConfig&&(identical(other.uploadIntervalSec, uploadIntervalSec) || other.uploadIntervalSec == uploadIntervalSec)&&const DeepCollectionEquality().equals(other.detectionParams, detectionParams));
+  final _this = this as ServerConfig;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ServerConfig&&(identical(other.uploadIntervalSec, _this.uploadIntervalSec) || other.uploadIntervalSec == _this.uploadIntervalSec)&&const DeepCollectionEquality().equals(other.detectionParams, _this.detectionParams));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uploadIntervalSec,const DeepCollectionEquality().hash(detectionParams));
+int get hashCode {
+  final _this = this as ServerConfig;
+  return Object.hash(runtimeType,_this.uploadIntervalSec,const DeepCollectionEquality().hash(_this.detectionParams));
+}
 
 @override
 String toString() {
-  return 'ServerConfig(uploadIntervalSec: $uploadIntervalSec, detectionParams: $detectionParams)';
+  final _this = this as ServerConfig;
+  return 'ServerConfig(uploadIntervalSec: ${_this.uploadIntervalSec}, detectionParams: ${_this.detectionParams})';
 }
 
 
@@ -733,7 +753,7 @@ class _$ServerConfigCopyWithImpl<$Res>
 /// Create a copy of ServerConfig
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? uploadIntervalSec = freezed,Object? detectionParams = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(ServerConfig(
 uploadIntervalSec: freezed == uploadIntervalSec ? _self.uploadIntervalSec : uploadIntervalSec // ignore: cast_nullable_to_non_nullable
 as int?,detectionParams: freezed == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>?,
@@ -877,7 +897,7 @@ return $default(_that.uploadIntervalSec,_that.detectionParams);case _:
 @JsonSerializable()
 
 class _ServerConfig implements ServerConfig {
-  const _ServerConfig({this.uploadIntervalSec, final  Map<String, dynamic>? detectionParams}): _detectionParams = detectionParams;
+  const _ServerConfig({this.uploadIntervalSec,  Map<String, dynamic>? detectionParams}): _detectionParams = detectionParams;
   factory _ServerConfig.fromJson(Map<String, dynamic> json) => _$ServerConfigFromJson(json);
 
 @override final  int? uploadIntervalSec;
@@ -904,16 +924,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerConfig&&(identical(other.uploadIntervalSec, uploadIntervalSec) || other.uploadIntervalSec == uploadIntervalSec)&&const DeepCollectionEquality().equals(other._detectionParams, _detectionParams));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ServerConfig&&(identical(other.uploadIntervalSec, uploadIntervalSec) || other.uploadIntervalSec == uploadIntervalSec)&&const DeepCollectionEquality().equals(other.detectionParams, _detectionParams));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,uploadIntervalSec,const DeepCollectionEquality().hash(_detectionParams));
+int get hashCode {
+    return Object.hash(runtimeType,uploadIntervalSec,const DeepCollectionEquality().hash(_detectionParams));
+}
 
 @override
 String toString() {
-  return 'ServerConfig(uploadIntervalSec: $uploadIntervalSec, detectionParams: $detectionParams)';
+    return 'ServerConfig(uploadIntervalSec: $uploadIntervalSec, detectionParams: $detectionParams)';
 }
 
 

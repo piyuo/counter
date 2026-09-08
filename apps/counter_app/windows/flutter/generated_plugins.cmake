@@ -6,6 +6,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   app_links
   camera_windows
   file_selector_windows
+  firebase_core
   flutter_vision
   permission_handler_windows
   sentry_flutter

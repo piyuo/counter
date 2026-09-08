@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "339726104003",
+    "project_id": "counter-964dc",
+    "storage_bucket": "counter-964dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339726104003:android:30a83c0a5f86ed18e37976",
+        "android_client_info": {
+          "package_name": "com.piyuo.counter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjnK_AJijWwqQdpIKJzGJzcJZbvicFJAM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

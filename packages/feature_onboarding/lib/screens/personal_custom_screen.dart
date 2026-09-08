@@ -74,7 +74,7 @@ class _PersonalCustomServerScreenState extends ConsumerState<PersonalCustomScree
               final appController = ref.read(core_domain.appProvider.notifier);
               // no bearer token when onboarding, user can add it later in settings if needed
               await appController.selectPersonalCustomServer(serverUrl, '');
-              ref.go(core_domain.OpenOnboardingServerSuccess(url: serverUrl));
+              ref.go(core_domain.OpenOnboardingPersonalCustomSuccess(url: serverUrl));
             },
 
       builder: (context) => [

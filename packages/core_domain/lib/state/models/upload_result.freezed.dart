@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'upload_result.dart';
@@ -9,6 +9,7 @@ part of 'upload_result.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $UploadResultCopyWith<UploadResult> get copyWith => _$UploadResultCopyWithImpl<U
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is UploadResult&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.message, message) || other.message == message)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig));
+  final _this = this as UploadResult;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UploadResult&&(identical(other.isSuccess, _this.isSuccess) || other.isSuccess == _this.isSuccess)&&(identical(other.message, _this.message) || other.message == _this.message)&&(identical(other.detection, _this.detection) || other.detection == _this.detection)&&(identical(other.detectionParams, _this.detectionParams) || other.detectionParams == _this.detectionParams)&&(identical(other.deliveryConfig, _this.deliveryConfig) || other.deliveryConfig == _this.deliveryConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isSuccess,message,detection,detectionParams,deliveryConfig);
+int get hashCode {
+  final _this = this as UploadResult;
+  return Object.hash(runtimeType,_this.isSuccess,_this.message,_this.detection,_this.detectionParams,_this.deliveryConfig);
+}
 
 @override
 String toString() {
-  return 'UploadResult(isSuccess: $isSuccess, message: $message, detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig)';
+  final _this = this as UploadResult;
+  return 'UploadResult(isSuccess: ${_this.isSuccess}, message: ${_this.message}, detection: ${_this.detection}, detectionParams: ${_this.detectionParams}, deliveryConfig: ${_this.deliveryConfig})';
 }
 
 
@@ -66,7 +72,7 @@ class _$UploadResultCopyWithImpl<$Res>
 /// Create a copy of UploadResult
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? isSuccess = null,Object? message = freezed,Object? detection = freezed,Object? detectionParams = freezed,Object? deliveryConfig = freezed,}) {
-  return _then(_self.copyWith(
+  return _then(UploadResult(
 isSuccess: null == isSuccess ? _self.isSuccess : isSuccess // ignore: cast_nullable_to_non_nullable
 as bool,message: freezed == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String?,detection: freezed == detection ? _self.detection : detection // ignore: cast_nullable_to_non_nullable
@@ -271,16 +277,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UploadResult&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.message, message) || other.message == message)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _UploadResult&&(identical(other.isSuccess, isSuccess) || other.isSuccess == isSuccess)&&(identical(other.message, message) || other.message == message)&&(identical(other.detection, detection) || other.detection == detection)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.deliveryConfig, deliveryConfig) || other.deliveryConfig == deliveryConfig));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,isSuccess,message,detection,detectionParams,deliveryConfig);
+int get hashCode {
+    return Object.hash(runtimeType,isSuccess,message,detection,detectionParams,deliveryConfig);
+}
 
 @override
 String toString() {
-  return 'UploadResult(isSuccess: $isSuccess, message: $message, detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig)';
+    return 'UploadResult(isSuccess: $isSuccess, message: $message, detection: $detection, detectionParams: $detectionParams, deliveryConfig: $deliveryConfig)';
 }
 
 

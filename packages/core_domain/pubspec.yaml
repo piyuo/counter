@@ -17,7 +17,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.8.1
+      ref: v3.8.2
   freezed_annotation: ^3.1.0
   uuid: ^4.6.0
   riverpod: ^3.2.1

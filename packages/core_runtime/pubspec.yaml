@@ -16,12 +16,12 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.8.1
+      ref: v3.8.2
   flutter_vision:
     path: ../../../flutter-vision
-  camera: ^0.12.0+2
-  camera_macos: ^0.1.0
-  camera_windows: ^0.2.6+4
+  camera: ^0.12.1
+  camera_macos: ^0.1.1
+  camera_windows: ^0.2.6+5
   json_annotation: ^4.12.0
   flutter_riverpod: ^3.4.2 # block by analyzer
   riverpod_annotation: ^4.0.6 # block by analyzer
@@ -36,7 +36,7 @@ dependencies:
   uuid: ^4.6.0
   path: ^1.9.1
   path_provider: ^2.1.6
-
+  ambilytics: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -10,7 +10,6 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/onboarding_scaffold.dart';
 
-//todo: make sure DPA" (Data Processing Agreement), is in terms of service and privacy policy, and add a link to it in the UI. This is important for legal compliance and user trust."Piyuo Cloud only processes anonymized aggregate counts. We store device identifiers only for subscription validation. We do not store, view, or share raw video or biometric data."
 // Technical Metadata: To ensure service reliability, Piyuo Cloud processes technical 'heartbeat' signals and error logs. This data is used solely for service monitoring and debugging and is not linked to any natural person's identity."
 class CTAScreen extends ConsumerStatefulWidget {
   const CTAScreen({super.key});
@@ -49,16 +48,16 @@ class _CTAScreenState extends ConsumerState<CTAScreen> {
                   body: context.l.cta_screen_piyuo_help,
                   isPremium: true,
                   onTap: () => core_domain.isFlagSubscriptionEnabled
-                      ? ref.go(const core_domain.OpenOnboardingPiyuoSubscription())
-                      : ref.go(const core_domain.OpenOnboardingPiyuo()),
+                      ? ref.go(const core_domain.OpenOnboardingSubscription()) // pay first
+                      : ref.go(const core_domain.OpenOnboardingPersonalPiyuo()),
                 ),
               _DecisionTile(
                 title: context.l.cta_screen_custom,
                 body: context.l.cta_screen_custom_help,
                 isPremium: true,
                 onTap: () => core_domain.isFlagSubscriptionEnabled
-                    ? ref.go(const core_domain.OpenOnboardingServerSubscription())
-                    : ref.go(const core_domain.OpenOnboardingServer()),
+                    ? ref.go(const core_domain.OpenOnboardingSubscription()) // pay first
+                    : ref.go(const core_domain.OpenOnboardingPersonalCustom()),
               ),
             ],
           ),
