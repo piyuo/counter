@@ -42,7 +42,7 @@ final class FlutterVisionServiceProvider
 }
 
 String _$flutterVisionServiceHash() =>
-    r'19e9322e4201d3e56036cc2541b175efb955f0f0';
+    r'b7b6738b591c1f469be6d8a569fedf0d8e460400';
 
 abstract class _$FlutterVisionService extends $Notifier<void> {
   void build();

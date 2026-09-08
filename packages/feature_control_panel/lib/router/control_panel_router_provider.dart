@@ -39,10 +39,11 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
     pendingPreviousFlow = prev;
     notifier.value++;
   });
-
+  final analyticsService = ref.read(core_domain.analyticsServiceProvider);
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
     refreshListenable: notifier,
+    observers: [analyticsService.createNavigatorObserver()],
     routes: [...$appRoutes, ...feature_onboarding.$appRoutes],
     redirect: (context, state) {
       // Use read inside redirect to avoid recreating the router on every rebuild.

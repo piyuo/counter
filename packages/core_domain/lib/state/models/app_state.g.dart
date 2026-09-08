@@ -8,6 +8,7 @@ part of 'app_state.dart';
 
 _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   deviceId: json['deviceId'] as String? ?? '',
+  hasCompletedCameraTest: json['hasCompletedCameraTest'] as bool? ?? false,
   dataServerSelection:
       $enumDecodeNullable(
         _$DataServerSelectionEnumMap,
@@ -60,6 +61,7 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
 
 Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'deviceId': instance.deviceId,
+  'hasCompletedCameraTest': instance.hasCompletedCameraTest,
   'dataServerSelection':
       _$DataServerSelectionEnumMap[instance.dataServerSelection]!,
   'personalPiyuoServer': instance.personalPiyuoServer,

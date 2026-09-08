@@ -1,4 +1,5 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_onboarding/widgets/onboarding_util.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -93,7 +94,8 @@ class OnboardingScaffold extends ConsumerWidget {
                 padding: EdgeInsetsGeometry.only(right: 8),
                 child: TextButton(
                   onPressed: () {
-                    ref.go(const core_domain.OpenOnboardingSystem());
+                    ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.SkipIntroEvent());
+                    goToCameraTestOrAction(ref);
                   },
                   child: Text(context.l.onboarding_skip_action, style: TextStyle(fontSize: 18, color: Colors.blue)),
                 ),

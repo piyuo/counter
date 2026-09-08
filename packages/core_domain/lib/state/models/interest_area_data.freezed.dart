@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'interest_area_data.dart';
@@ -9,6 +9,7 @@ part of 'interest_area_data.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -28,16 +29,21 @@ $InterestAreaDataCopyWith<InterestAreaData> get copyWith => _$InterestAreaDataCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InterestAreaData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color)&&const DeepCollectionEquality().equals(other.points, points)&&(identical(other.enabled, enabled) || other.enabled == enabled));
+  final _this = this as InterestAreaData;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InterestAreaData&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.color, _this.color) || other.color == _this.color)&&const DeepCollectionEquality().equals(other.points, _this.points)&&(identical(other.enabled, _this.enabled) || other.enabled == _this.enabled));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,color,const DeepCollectionEquality().hash(points),enabled);
+int get hashCode {
+  final _this = this as InterestAreaData;
+  return Object.hash(runtimeType,_this.id,_this.name,_this.color,const DeepCollectionEquality().hash(_this.points),_this.enabled);
+}
 
 @override
 String toString() {
-  return 'InterestAreaData(id: $id, name: $name, color: $color, points: $points, enabled: $enabled)';
+  final _this = this as InterestAreaData;
+  return 'InterestAreaData(id: ${_this.id}, name: ${_this.name}, color: ${_this.color}, points: ${_this.points}, enabled: ${_this.enabled})';
 }
 
 
@@ -66,7 +72,7 @@ class _$InterestAreaDataCopyWithImpl<$Res>
 /// Create a copy of InterestAreaData
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? color = null,Object? points = null,Object? enabled = null,}) {
-  return _then(_self.copyWith(
+  return _then(InterestAreaData(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
@@ -213,7 +219,7 @@ return $default(_that.id,_that.name,_that.color,_that.points,_that.enabled);case
 @JsonSerializable()
 
 class _InterestAreaData extends InterestAreaData {
-  const _InterestAreaData({required this.id, this.name = '', this.color = 0x00000000, final  List<PointData> points = const [], this.enabled = true}): _points = points,super._();
+  const _InterestAreaData({required this.id, this.name = '', this.color = 0x00000000,  List<PointData> points = const [], this.enabled = true}): _points = points,super._();
   factory _InterestAreaData.fromJson(Map<String, dynamic> json) => _$InterestAreaDataFromJson(json);
 
 @override final  int id;
@@ -241,16 +247,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _InterestAreaData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color)&&const DeepCollectionEquality().equals(other._points, _points)&&(identical(other.enabled, enabled) || other.enabled == enabled));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _InterestAreaData&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.color, color) || other.color == color)&&const DeepCollectionEquality().equals(other.points, _points)&&(identical(other.enabled, enabled) || other.enabled == enabled));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,color,const DeepCollectionEquality().hash(_points),enabled);
+int get hashCode {
+    return Object.hash(runtimeType,id,name,color,const DeepCollectionEquality().hash(_points),enabled);
+}
 
 @override
 String toString() {
-  return 'InterestAreaData(id: $id, name: $name, color: $color, points: $points, enabled: $enabled)';
+    return 'InterestAreaData(id: $id, name: $name, color: $color, points: $points, enabled: $enabled)';
 }
 
 

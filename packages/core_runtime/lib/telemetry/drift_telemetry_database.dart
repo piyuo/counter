@@ -9,7 +9,7 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
-part 'telemetry_database.g.dart';
+part 'drift_telemetry_database.g.dart';
 
 typedef TelemetryDatabaseFun = DriftTelemetryDatabase? Function();
 
@@ -109,7 +109,7 @@ class TelemetryUploadLog extends Table {
 }
 
 @DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog])
-class DriftTelemetryDatabase extends _$TelemetryDatabase {
+class DriftTelemetryDatabase extends _$DriftTelemetryDatabase {
   DriftTelemetryDatabase._internal(super.executor, {required this.filePath});
 
   /// Path to the database file on disk. Used for logging and deletion.

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'telemetry_payload.dart';
@@ -9,6 +9,7 @@ part of 'telemetry_payload.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -55,16 +56,21 @@ $TelemetryPayloadCopyWith<TelemetryPayload> get copyWith => _$TelemetryPayloadCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryPayload&&(identical(other.session, session) || other.session == session)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.startBusiness, startBusiness) || other.startBusiness == startBusiness)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingSec, missingSec) || other.missingSec == missingSec)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverage, coverage) || other.coverage == coverage)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other.areas, areas));
+  final _this = this as TelemetryPayload;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TelemetryPayload&&(identical(other.session, _this.session) || other.session == _this.session)&&(identical(other.sequence, _this.sequence) || other.sequence == _this.sequence)&&(identical(other.startUtc, _this.startUtc) || other.startUtc == _this.startUtc)&&(identical(other.startBusiness, _this.startBusiness) || other.startBusiness == _this.startBusiness)&&(identical(other.businessDate, _this.businessDate) || other.businessDate == _this.businessDate)&&(identical(other.frameCount, _this.frameCount) || other.frameCount == _this.frameCount)&&(identical(other.missingSec, _this.missingSec) || other.missingSec == _this.missingSec)&&(identical(other.confidence, _this.confidence) || other.confidence == _this.confidence)&&(identical(other.isPartial, _this.isPartial) || other.isPartial == _this.isPartial)&&(identical(other.coverage, _this.coverage) || other.coverage == _this.coverage)&&(identical(other.fps, _this.fps) || other.fps == _this.fps)&&const DeepCollectionEquality().equals(other.areas, _this.areas));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,session,sequence,startUtc,startBusiness,businessDate,frameCount,missingSec,confidence,isPartial,coverage,fps,const DeepCollectionEquality().hash(areas));
+int get hashCode {
+  final _this = this as TelemetryPayload;
+  return Object.hash(runtimeType,_this.session,_this.sequence,_this.startUtc,_this.startBusiness,_this.businessDate,_this.frameCount,_this.missingSec,_this.confidence,_this.isPartial,_this.coverage,_this.fps,const DeepCollectionEquality().hash(_this.areas));
+}
 
 @override
 String toString() {
-  return 'TelemetryPayload(session: $session, sequence: $sequence, startUtc: $startUtc, startBusiness: $startBusiness, businessDate: $businessDate, frameCount: $frameCount, missingSec: $missingSec, confidence: $confidence, isPartial: $isPartial, coverage: $coverage, fps: $fps, areas: $areas)';
+  final _this = this as TelemetryPayload;
+  return 'TelemetryPayload(session: ${_this.session}, sequence: ${_this.sequence}, startUtc: ${_this.startUtc}, startBusiness: ${_this.startBusiness}, businessDate: ${_this.businessDate}, frameCount: ${_this.frameCount}, missingSec: ${_this.missingSec}, confidence: ${_this.confidence}, isPartial: ${_this.isPartial}, coverage: ${_this.coverage}, fps: ${_this.fps}, areas: ${_this.areas})';
 }
 
 
@@ -93,7 +99,7 @@ class _$TelemetryPayloadCopyWithImpl<$Res>
 /// Create a copy of TelemetryPayload
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? session = null,Object? sequence = null,Object? startUtc = null,Object? startBusiness = null,Object? businessDate = null,Object? frameCount = null,Object? missingSec = null,Object? confidence = null,Object? isPartial = null,Object? coverage = null,Object? fps = null,Object? areas = null,}) {
-  return _then(_self.copyWith(
+  return _then(TelemetryPayload(
 session: null == session ? _self.session : session // ignore: cast_nullable_to_non_nullable
 as String,sequence: null == sequence ? _self.sequence : sequence // ignore: cast_nullable_to_non_nullable
 as int,startUtc: null == startUtc ? _self.startUtc : startUtc // ignore: cast_nullable_to_non_nullable
@@ -241,7 +247,7 @@ return $default(_that.session,_that.sequence,_that.startUtc,_that.startBusiness,
 @JsonSerializable()
 
 class _TelemetryPayload implements TelemetryPayload {
-  const _TelemetryPayload({required this.session, required this.sequence, required this.startUtc, required this.startBusiness, required this.businessDate, required this.frameCount, required this.missingSec, @RoundedDouble2() required this.confidence, required this.isPartial, @RoundedDouble2() required this.coverage, @RoundedDouble2() required this.fps, required final  List<AreaPayload> areas}): _areas = areas;
+  const _TelemetryPayload({required this.session, required this.sequence, required this.startUtc, required this.startBusiness, required this.businessDate, required this.frameCount, required this.missingSec, @RoundedDouble2() required this.confidence, required this.isPartial, @RoundedDouble2() required this.coverage, @RoundedDouble2() required this.fps, required  List<AreaPayload> areas}): _areas = areas;
   factory _TelemetryPayload.fromJson(Map<String, dynamic> json) => _$TelemetryPayloadFromJson(json);
 
 /// Identifier of the counting session this observation window belongs to.
@@ -304,16 +310,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryPayload&&(identical(other.session, session) || other.session == session)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.startBusiness, startBusiness) || other.startBusiness == startBusiness)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingSec, missingSec) || other.missingSec == missingSec)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverage, coverage) || other.coverage == coverage)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other._areas, _areas));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _TelemetryPayload&&(identical(other.session, session) || other.session == session)&&(identical(other.sequence, sequence) || other.sequence == sequence)&&(identical(other.startUtc, startUtc) || other.startUtc == startUtc)&&(identical(other.startBusiness, startBusiness) || other.startBusiness == startBusiness)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.missingSec, missingSec) || other.missingSec == missingSec)&&(identical(other.confidence, confidence) || other.confidence == confidence)&&(identical(other.isPartial, isPartial) || other.isPartial == isPartial)&&(identical(other.coverage, coverage) || other.coverage == coverage)&&(identical(other.fps, fps) || other.fps == fps)&&const DeepCollectionEquality().equals(other.areas, _areas));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,session,sequence,startUtc,startBusiness,businessDate,frameCount,missingSec,confidence,isPartial,coverage,fps,const DeepCollectionEquality().hash(_areas));
+int get hashCode {
+    return Object.hash(runtimeType,session,sequence,startUtc,startBusiness,businessDate,frameCount,missingSec,confidence,isPartial,coverage,fps,const DeepCollectionEquality().hash(_areas));
+}
 
 @override
 String toString() {
-  return 'TelemetryPayload(session: $session, sequence: $sequence, startUtc: $startUtc, startBusiness: $startBusiness, businessDate: $businessDate, frameCount: $frameCount, missingSec: $missingSec, confidence: $confidence, isPartial: $isPartial, coverage: $coverage, fps: $fps, areas: $areas)';
+    return 'TelemetryPayload(session: $session, sequence: $sequence, startUtc: $startUtc, startBusiness: $startBusiness, businessDate: $businessDate, frameCount: $frameCount, missingSec: $missingSec, confidence: $confidence, isPartial: $isPartial, coverage: $coverage, fps: $fps, areas: $areas)';
 }
 
 
@@ -394,16 +402,21 @@ $AreaPayloadCopyWith<AreaPayload> get copyWith => _$AreaPayloadCopyWithImpl<Area
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
+  final _this = this as AreaPayload;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaPayload&&(identical(other.areaId, _this.areaId) || other.areaId == _this.areaId)&&(identical(other.areaName, _this.areaName) || other.areaName == _this.areaName)&&(identical(other.passBy, _this.passBy) || other.passBy == _this.passBy)&&(identical(other.stay, _this.stay) || other.stay == _this.stay)&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&(identical(other.exit, _this.exit) || other.exit == _this.exit)&&(identical(other.appear, _this.appear) || other.appear == _this.appear)&&(identical(other.disappear, _this.disappear) || other.disappear == _this.disappear)&&(identical(other.avgOccupancy, _this.avgOccupancy) || other.avgOccupancy == _this.avgOccupancy)&&(identical(other.maxOccupancy, _this.maxOccupancy) || other.maxOccupancy == _this.maxOccupancy)&&(identical(other.avgDwellSec, _this.avgDwellSec) || other.avgDwellSec == _this.avgDwellSec)&&(identical(other.maxDwellSec, _this.maxDwellSec) || other.maxDwellSec == _this.maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,areaId,areaName,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
+int get hashCode {
+  final _this = this as AreaPayload;
+  return Object.hash(runtimeType,_this.areaId,_this.areaName,_this.passBy,_this.stay,_this.entry,_this.exit,_this.appear,_this.disappear,_this.avgOccupancy,_this.maxOccupancy,_this.avgDwellSec,_this.maxDwellSec);
+}
 
 @override
 String toString() {
-  return 'AreaPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
+  final _this = this as AreaPayload;
+  return 'AreaPayload(areaId: ${_this.areaId}, areaName: ${_this.areaName}, passBy: ${_this.passBy}, stay: ${_this.stay}, entry: ${_this.entry}, exit: ${_this.exit}, appear: ${_this.appear}, disappear: ${_this.disappear}, avgOccupancy: ${_this.avgOccupancy}, maxOccupancy: ${_this.maxOccupancy}, avgDwellSec: ${_this.avgDwellSec}, maxDwellSec: ${_this.maxDwellSec})';
 }
 
 
@@ -432,7 +445,7 @@ class _$AreaPayloadCopyWithImpl<$Res>
 /// Create a copy of AreaPayload
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stay = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? avgOccupancy = null,Object? maxOccupancy = null,Object? avgDwellSec = null,Object? maxDwellSec = null,}) {
-  return _then(_self.copyWith(
+  return _then(AreaPayload(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
 as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
@@ -624,16 +637,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stay, stay) || other.stay == stay)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.avgOccupancy, avgOccupancy) || other.avgOccupancy == avgOccupancy)&&(identical(other.maxOccupancy, maxOccupancy) || other.maxOccupancy == maxOccupancy)&&(identical(other.avgDwellSec, avgDwellSec) || other.avgDwellSec == avgDwellSec)&&(identical(other.maxDwellSec, maxDwellSec) || other.maxDwellSec == maxDwellSec));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,areaId,areaName,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
+int get hashCode {
+    return Object.hash(runtimeType,areaId,areaName,passBy,stay,entry,exit,appear,disappear,avgOccupancy,maxOccupancy,avgDwellSec,maxDwellSec);
+}
 
 @override
 String toString() {
-  return 'AreaPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
+    return 'AreaPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stay: $stay, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, avgOccupancy: $avgOccupancy, maxOccupancy: $maxOccupancy, avgDwellSec: $avgDwellSec, maxDwellSec: $maxDwellSec)';
 }
 
 

@@ -26,16 +26,16 @@ platform :mac do
 
     # Inject the build number into the Xcode project configurations
     increment_build_number(
-      xcodeproj: "Counter.xcodeproj",
+      xcodeproj: "Runner.xcodeproj",
       build_number: next_build_number
     )
 
     # Build the app with the newly incremented build number.
     # Keep the archive so its exact dSYMs can be uploaded to Sentry.
     build_app(
-      workspace: "Counter.xcworkspace",
+      workspace: "Runner.xcworkspace",
       scheme: "Runner",
-      archive_path: "../build/macos/Counter.xcarchive",
+      archive_path: "../build/macos/Runner.xcarchive",
       export_method: "app-store",
       export_options: {
         signingStyle: "manual",

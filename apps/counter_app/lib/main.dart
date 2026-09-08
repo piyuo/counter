@@ -1,13 +1,16 @@
 import 'dart:async';
 
+//import 'package:ambilytics/ambilytics.dart' as ambilytics;
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'analytics_initializer.dart';
 import 'app_shell/app_shell.dart';
 
 void main() async {
@@ -18,10 +21,20 @@ void main() async {
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
       dbFactory = await core_runtime.DriftTelemetryDatabase.open(filePath: telemetryDbPath);
+      await initializeAnalytics();
     },
+
     ProviderScope(
       //observers: [appkit.riverpodObserver()],
       overrides: [
+        core_domain.analyticsServiceProvider.overrideWith((ref) {
+          final analyticService = ref.read(core_runtime.ambilyticsAnalyticServiceProvider.notifier);
+          if (!kDebugMode) {
+            analyticService.setEnabled(true);
+          }
+          return analyticService;
+        }),
+
         core_domain.appStateRepositoryProvider.overrideWith((ref) => core_runtime.SharedPrefsAppStateRepository()),
         core_domain.authStorageServiceProvider.overrideWith((ref) => core_runtime.SecureAuthStorageService()),
         core_domain.hardwareCapabilityServiceProvider.overrideWith((ref) {

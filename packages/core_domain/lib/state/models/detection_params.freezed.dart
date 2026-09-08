@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'detection_params.dart';
@@ -9,6 +9,7 @@ part of 'detection_params.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 
@@ -73,16 +74,21 @@ $DetectionParamsCopyWith<DetectionParams> get copyWith => _$DetectionParamsCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionParams&&(identical(other.trackHighThresh, trackHighThresh) || other.trackHighThresh == trackHighThresh)&&(identical(other.trackLowThresh, trackLowThresh) || other.trackLowThresh == trackLowThresh)&&(identical(other.newTrackThresh, newTrackThresh) || other.newTrackThresh == newTrackThresh)&&(identical(other.maxTimeLostSec, maxTimeLostSec) || other.maxTimeLostSec == maxTimeLostSec)&&(identical(other.maxMatchDistance, maxMatchDistance) || other.maxMatchDistance == maxMatchDistance)&&(identical(other.proximityThresh, proximityThresh) || other.proximityThresh == proximityThresh)&&(identical(other.appearanceThresh, appearanceThresh) || other.appearanceThresh == appearanceThresh)&&(identical(other.lambda, lambda) || other.lambda == lambda)&&(identical(other.softMotionGating, softMotionGating) || other.softMotionGating == softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, trackletEdgeMargin) || other.trackletEdgeMargin == trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, stayThresholdSeconds) || other.stayThresholdSeconds == stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, disappearThresholdSeconds) || other.disappearThresholdSeconds == disappearThresholdSeconds));
+  final _this = this as DetectionParams;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionParams&&(identical(other.trackHighThresh, _this.trackHighThresh) || other.trackHighThresh == _this.trackHighThresh)&&(identical(other.trackLowThresh, _this.trackLowThresh) || other.trackLowThresh == _this.trackLowThresh)&&(identical(other.newTrackThresh, _this.newTrackThresh) || other.newTrackThresh == _this.newTrackThresh)&&(identical(other.maxTimeLostSec, _this.maxTimeLostSec) || other.maxTimeLostSec == _this.maxTimeLostSec)&&(identical(other.maxMatchDistance, _this.maxMatchDistance) || other.maxMatchDistance == _this.maxMatchDistance)&&(identical(other.proximityThresh, _this.proximityThresh) || other.proximityThresh == _this.proximityThresh)&&(identical(other.appearanceThresh, _this.appearanceThresh) || other.appearanceThresh == _this.appearanceThresh)&&(identical(other.lambda, _this.lambda) || other.lambda == _this.lambda)&&(identical(other.softMotionGating, _this.softMotionGating) || other.softMotionGating == _this.softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, _this.preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == _this.preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, _this.trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == _this.trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, _this.trackletEdgeMargin) || other.trackletEdgeMargin == _this.trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, _this.trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == _this.trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, _this.stayThresholdSeconds) || other.stayThresholdSeconds == _this.stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, _this.disappearThresholdSeconds) || other.disappearThresholdSeconds == _this.disappearThresholdSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,trackHighThresh,trackLowThresh,newTrackThresh,maxTimeLostSec,maxMatchDistance,proximityThresh,appearanceThresh,lambda,softMotionGating,preferAppearanceFallbackOnLowIou,trackletMinPresenceTimeSec,trackletEdgeMargin,trackletEdgeOverrideTimeSec,stayThresholdSeconds,disappearThresholdSeconds);
+int get hashCode {
+  final _this = this as DetectionParams;
+  return Object.hash(runtimeType,_this.trackHighThresh,_this.trackLowThresh,_this.newTrackThresh,_this.maxTimeLostSec,_this.maxMatchDistance,_this.proximityThresh,_this.appearanceThresh,_this.lambda,_this.softMotionGating,_this.preferAppearanceFallbackOnLowIou,_this.trackletMinPresenceTimeSec,_this.trackletEdgeMargin,_this.trackletEdgeOverrideTimeSec,_this.stayThresholdSeconds,_this.disappearThresholdSeconds);
+}
 
 @override
 String toString() {
-  return 'DetectionParams(trackHighThresh: $trackHighThresh, trackLowThresh: $trackLowThresh, newTrackThresh: $newTrackThresh, maxTimeLostSec: $maxTimeLostSec, maxMatchDistance: $maxMatchDistance, proximityThresh: $proximityThresh, appearanceThresh: $appearanceThresh, lambda: $lambda, softMotionGating: $softMotionGating, preferAppearanceFallbackOnLowIou: $preferAppearanceFallbackOnLowIou, trackletMinPresenceTimeSec: $trackletMinPresenceTimeSec, trackletEdgeMargin: $trackletEdgeMargin, trackletEdgeOverrideTimeSec: $trackletEdgeOverrideTimeSec, stayThresholdSeconds: $stayThresholdSeconds, disappearThresholdSeconds: $disappearThresholdSeconds)';
+  final _this = this as DetectionParams;
+  return 'DetectionParams(trackHighThresh: ${_this.trackHighThresh}, trackLowThresh: ${_this.trackLowThresh}, newTrackThresh: ${_this.newTrackThresh}, maxTimeLostSec: ${_this.maxTimeLostSec}, maxMatchDistance: ${_this.maxMatchDistance}, proximityThresh: ${_this.proximityThresh}, appearanceThresh: ${_this.appearanceThresh}, lambda: ${_this.lambda}, softMotionGating: ${_this.softMotionGating}, preferAppearanceFallbackOnLowIou: ${_this.preferAppearanceFallbackOnLowIou}, trackletMinPresenceTimeSec: ${_this.trackletMinPresenceTimeSec}, trackletEdgeMargin: ${_this.trackletEdgeMargin}, trackletEdgeOverrideTimeSec: ${_this.trackletEdgeOverrideTimeSec}, stayThresholdSeconds: ${_this.stayThresholdSeconds}, disappearThresholdSeconds: ${_this.disappearThresholdSeconds})';
 }
 
 
@@ -111,7 +117,7 @@ class _$DetectionParamsCopyWithImpl<$Res>
 /// Create a copy of DetectionParams
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? trackHighThresh = null,Object? trackLowThresh = null,Object? newTrackThresh = null,Object? maxTimeLostSec = null,Object? maxMatchDistance = null,Object? proximityThresh = null,Object? appearanceThresh = null,Object? lambda = null,Object? softMotionGating = null,Object? preferAppearanceFallbackOnLowIou = null,Object? trackletMinPresenceTimeSec = null,Object? trackletEdgeMargin = null,Object? trackletEdgeOverrideTimeSec = null,Object? stayThresholdSeconds = null,Object? disappearThresholdSeconds = null,}) {
-  return _then(_self.copyWith(
+  return _then(DetectionParams(
 trackHighThresh: null == trackHighThresh ? _self.trackHighThresh : trackHighThresh // ignore: cast_nullable_to_non_nullable
 as double,trackLowThresh: null == trackLowThresh ? _self.trackLowThresh : trackLowThresh // ignore: cast_nullable_to_non_nullable
 as double,newTrackThresh: null == newTrackThresh ? _self.newTrackThresh : newTrackThresh // ignore: cast_nullable_to_non_nullable
@@ -345,16 +351,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetectionParams&&(identical(other.trackHighThresh, trackHighThresh) || other.trackHighThresh == trackHighThresh)&&(identical(other.trackLowThresh, trackLowThresh) || other.trackLowThresh == trackLowThresh)&&(identical(other.newTrackThresh, newTrackThresh) || other.newTrackThresh == newTrackThresh)&&(identical(other.maxTimeLostSec, maxTimeLostSec) || other.maxTimeLostSec == maxTimeLostSec)&&(identical(other.maxMatchDistance, maxMatchDistance) || other.maxMatchDistance == maxMatchDistance)&&(identical(other.proximityThresh, proximityThresh) || other.proximityThresh == proximityThresh)&&(identical(other.appearanceThresh, appearanceThresh) || other.appearanceThresh == appearanceThresh)&&(identical(other.lambda, lambda) || other.lambda == lambda)&&(identical(other.softMotionGating, softMotionGating) || other.softMotionGating == softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, trackletEdgeMargin) || other.trackletEdgeMargin == trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, stayThresholdSeconds) || other.stayThresholdSeconds == stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, disappearThresholdSeconds) || other.disappearThresholdSeconds == disappearThresholdSeconds));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetectionParams&&(identical(other.trackHighThresh, trackHighThresh) || other.trackHighThresh == trackHighThresh)&&(identical(other.trackLowThresh, trackLowThresh) || other.trackLowThresh == trackLowThresh)&&(identical(other.newTrackThresh, newTrackThresh) || other.newTrackThresh == newTrackThresh)&&(identical(other.maxTimeLostSec, maxTimeLostSec) || other.maxTimeLostSec == maxTimeLostSec)&&(identical(other.maxMatchDistance, maxMatchDistance) || other.maxMatchDistance == maxMatchDistance)&&(identical(other.proximityThresh, proximityThresh) || other.proximityThresh == proximityThresh)&&(identical(other.appearanceThresh, appearanceThresh) || other.appearanceThresh == appearanceThresh)&&(identical(other.lambda, lambda) || other.lambda == lambda)&&(identical(other.softMotionGating, softMotionGating) || other.softMotionGating == softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, trackletEdgeMargin) || other.trackletEdgeMargin == trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, stayThresholdSeconds) || other.stayThresholdSeconds == stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, disappearThresholdSeconds) || other.disappearThresholdSeconds == disappearThresholdSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,trackHighThresh,trackLowThresh,newTrackThresh,maxTimeLostSec,maxMatchDistance,proximityThresh,appearanceThresh,lambda,softMotionGating,preferAppearanceFallbackOnLowIou,trackletMinPresenceTimeSec,trackletEdgeMargin,trackletEdgeOverrideTimeSec,stayThresholdSeconds,disappearThresholdSeconds);
+int get hashCode {
+    return Object.hash(runtimeType,trackHighThresh,trackLowThresh,newTrackThresh,maxTimeLostSec,maxMatchDistance,proximityThresh,appearanceThresh,lambda,softMotionGating,preferAppearanceFallbackOnLowIou,trackletMinPresenceTimeSec,trackletEdgeMargin,trackletEdgeOverrideTimeSec,stayThresholdSeconds,disappearThresholdSeconds);
+}
 
 @override
 String toString() {
-  return 'DetectionParams(trackHighThresh: $trackHighThresh, trackLowThresh: $trackLowThresh, newTrackThresh: $newTrackThresh, maxTimeLostSec: $maxTimeLostSec, maxMatchDistance: $maxMatchDistance, proximityThresh: $proximityThresh, appearanceThresh: $appearanceThresh, lambda: $lambda, softMotionGating: $softMotionGating, preferAppearanceFallbackOnLowIou: $preferAppearanceFallbackOnLowIou, trackletMinPresenceTimeSec: $trackletMinPresenceTimeSec, trackletEdgeMargin: $trackletEdgeMargin, trackletEdgeOverrideTimeSec: $trackletEdgeOverrideTimeSec, stayThresholdSeconds: $stayThresholdSeconds, disappearThresholdSeconds: $disappearThresholdSeconds)';
+    return 'DetectionParams(trackHighThresh: $trackHighThresh, trackLowThresh: $trackLowThresh, newTrackThresh: $newTrackThresh, maxTimeLostSec: $maxTimeLostSec, maxMatchDistance: $maxMatchDistance, proximityThresh: $proximityThresh, appearanceThresh: $appearanceThresh, lambda: $lambda, softMotionGating: $softMotionGating, preferAppearanceFallbackOnLowIou: $preferAppearanceFallbackOnLowIou, trackletMinPresenceTimeSec: $trackletMinPresenceTimeSec, trackletEdgeMargin: $trackletEdgeMargin, trackletEdgeOverrideTimeSec: $trackletEdgeOverrideTimeSec, stayThresholdSeconds: $stayThresholdSeconds, disappearThresholdSeconds: $disappearThresholdSeconds)';
 }
 
 

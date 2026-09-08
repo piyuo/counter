@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'system_event.dart';
@@ -9,6 +9,7 @@ part of 'system_event.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -20,7 +21,7 @@ mixin _$SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemEvent);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is SystemEvent);
 }
 
 
@@ -29,7 +30,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent()';
+    return 'SystemEvent()';
 }
 
 
@@ -191,7 +192,7 @@ class HardwareCheckInitiated implements SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HardwareCheckInitiated);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is HardwareCheckInitiated);
 }
 
 
@@ -200,7 +201,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent.hardwareCheckInitiated()';
+    return 'SystemEvent.hardwareCheckInitiated()';
 }
 
 
@@ -223,7 +224,7 @@ class HardwareCheckPassed implements SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HardwareCheckPassed);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is HardwareCheckPassed);
 }
 
 
@@ -232,7 +233,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent.hardwareCheckPassed()';
+    return 'SystemEvent.hardwareCheckPassed()';
 }
 
 
@@ -255,7 +256,7 @@ class DeviceNotSupported implements SystemEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceNotSupported);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DeviceNotSupported);
 }
 
 
@@ -264,7 +265,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SystemEvent.deviceNotSupported()';
+    return 'SystemEvent.deviceNotSupported()';
 }
 
 

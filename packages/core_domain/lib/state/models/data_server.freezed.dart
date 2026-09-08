@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'data_server.dart';
@@ -9,6 +9,7 @@ part of 'data_server.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 DataServer _$DataServerFromJson(
@@ -58,7 +59,7 @@ mixin _$DataServer {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DataServer);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DataServer);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -67,7 +68,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DataServer()';
+    return 'DataServer()';
 }
 
 
@@ -231,7 +232,7 @@ return noDataServer();case _:
 @JsonSerializable()
 
 class PersonalPiyuoServer extends DataServer {
-  const PersonalPiyuoServer({required this.url, final  String? $type}): $type = $type ?? 'personalPiyuo',super._();
+  const PersonalPiyuoServer({required this.url,  String? $type}): $type = $type ?? 'personalPiyuo',super._();
   factory PersonalPiyuoServer.fromJson(Map<String, dynamic> json) => _$PersonalPiyuoServerFromJson(json);
 
  final  String url;
@@ -253,16 +254,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonalPiyuoServer&&(identical(other.url, url) || other.url == url));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonalPiyuoServer&&(identical(other.url, url) || other.url == url));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url);
+int get hashCode {
+    return Object.hash(runtimeType,url);
+}
 
 @override
 String toString() {
-  return 'DataServer.personalPiyuo(url: $url)';
+    return 'DataServer.personalPiyuo(url: $url)';
 }
 
 
@@ -304,7 +307,7 @@ as String,
 @JsonSerializable()
 
 class BusinessPiyuoServer extends DataServer {
-  const BusinessPiyuoServer({required this.url, required this.projectId, required this.projectName, required this.assignedId, required this.assignedName, final  String? $type}): $type = $type ?? 'businessPiyuo',super._();
+  const BusinessPiyuoServer({required this.url, required this.projectId, required this.projectName, required this.assignedId, required this.assignedName,  String? $type}): $type = $type ?? 'businessPiyuo',super._();
   factory BusinessPiyuoServer.fromJson(Map<String, dynamic> json) => _$BusinessPiyuoServerFromJson(json);
 
  final  String url;
@@ -330,16 +333,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BusinessPiyuoServer&&(identical(other.url, url) || other.url == url)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.projectName, projectName) || other.projectName == projectName)&&(identical(other.assignedId, assignedId) || other.assignedId == assignedId)&&(identical(other.assignedName, assignedName) || other.assignedName == assignedName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is BusinessPiyuoServer&&(identical(other.url, url) || other.url == url)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.projectName, projectName) || other.projectName == projectName)&&(identical(other.assignedId, assignedId) || other.assignedId == assignedId)&&(identical(other.assignedName, assignedName) || other.assignedName == assignedName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,projectId,projectName,assignedId,assignedName);
+int get hashCode {
+    return Object.hash(runtimeType,url,projectId,projectName,assignedId,assignedName);
+}
 
 @override
 String toString() {
-  return 'DataServer.businessPiyuo(url: $url, projectId: $projectId, projectName: $projectName, assignedId: $assignedId, assignedName: $assignedName)';
+    return 'DataServer.businessPiyuo(url: $url, projectId: $projectId, projectName: $projectName, assignedId: $assignedId, assignedName: $assignedName)';
 }
 
 
@@ -385,7 +390,7 @@ as String,
 @JsonSerializable()
 
 class PersonalCustomServer extends DataServer {
-  const PersonalCustomServer({required this.url, final  String? $type}): $type = $type ?? 'personalCustom',super._();
+  const PersonalCustomServer({required this.url,  String? $type}): $type = $type ?? 'personalCustom',super._();
   factory PersonalCustomServer.fromJson(Map<String, dynamic> json) => _$PersonalCustomServerFromJson(json);
 
  final  String url;
@@ -407,16 +412,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonalCustomServer&&(identical(other.url, url) || other.url == url));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonalCustomServer&&(identical(other.url, url) || other.url == url));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url);
+int get hashCode {
+    return Object.hash(runtimeType,url);
+}
 
 @override
 String toString() {
-  return 'DataServer.personalCustom(url: $url)';
+    return 'DataServer.personalCustom(url: $url)';
 }
 
 
@@ -458,7 +465,7 @@ as String,
 @JsonSerializable()
 
 class BusinessCustomServer extends DataServer {
-  const BusinessCustomServer({required this.url, required this.projectId, required this.projectName, required this.assignedId, required this.assignedName, final  String? $type}): $type = $type ?? 'businessCustom',super._();
+  const BusinessCustomServer({required this.url, required this.projectId, required this.projectName, required this.assignedId, required this.assignedName,  String? $type}): $type = $type ?? 'businessCustom',super._();
   factory BusinessCustomServer.fromJson(Map<String, dynamic> json) => _$BusinessCustomServerFromJson(json);
 
  final  String url;
@@ -484,16 +491,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is BusinessCustomServer&&(identical(other.url, url) || other.url == url)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.projectName, projectName) || other.projectName == projectName)&&(identical(other.assignedId, assignedId) || other.assignedId == assignedId)&&(identical(other.assignedName, assignedName) || other.assignedName == assignedName));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is BusinessCustomServer&&(identical(other.url, url) || other.url == url)&&(identical(other.projectId, projectId) || other.projectId == projectId)&&(identical(other.projectName, projectName) || other.projectName == projectName)&&(identical(other.assignedId, assignedId) || other.assignedId == assignedId)&&(identical(other.assignedName, assignedName) || other.assignedName == assignedName));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,url,projectId,projectName,assignedId,assignedName);
+int get hashCode {
+    return Object.hash(runtimeType,url,projectId,projectName,assignedId,assignedName);
+}
 
 @override
 String toString() {
-  return 'DataServer.businessCustom(url: $url, projectId: $projectId, projectName: $projectName, assignedId: $assignedId, assignedName: $assignedName)';
+    return 'DataServer.businessCustom(url: $url, projectId: $projectId, projectName: $projectName, assignedId: $assignedId, assignedName: $assignedName)';
 }
 
 
@@ -539,7 +548,7 @@ as String,
 @JsonSerializable()
 
 class NoDataServer extends DataServer {
-  const NoDataServer({final  String? $type}): $type = $type ?? 'noDataServer',super._();
+  const NoDataServer({ String? $type}): $type = $type ?? 'noDataServer',super._();
   factory NoDataServer.fromJson(Map<String, dynamic> json) => _$NoDataServerFromJson(json);
 
 
@@ -556,7 +565,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NoDataServer);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is NoDataServer);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -565,7 +574,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DataServer.noDataServer()';
+    return 'DataServer.noDataServer()';
 }
 
 

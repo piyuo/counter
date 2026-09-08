@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_runtime_state.dart';
@@ -9,6 +9,7 @@ part of 'app_runtime_state.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
@@ -25,16 +26,21 @@ $AppRuntimeStateCopyWith<AppRuntimeState> get copyWith => _$AppRuntimeStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.isVisionRunning, isVisionRunning) || other.isVisionRunning == isVisionRunning)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken));
+  final _this = this as AppRuntimeState;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppRuntimeState&&(identical(other.developMode, _this.developMode) || other.developMode == _this.developMode)&&(identical(other.isVisionRunning, _this.isVisionRunning) || other.isVisionRunning == _this.isVisionRunning)&&(identical(other.bearerToken, _this.bearerToken) || other.bearerToken == _this.bearerToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,developMode,isVisionRunning,bearerToken);
+int get hashCode {
+  final _this = this as AppRuntimeState;
+  return Object.hash(runtimeType,_this.developMode,_this.isVisionRunning,_this.bearerToken);
+}
 
 @override
 String toString() {
-  return 'AppRuntimeState(developMode: $developMode, isVisionRunning: $isVisionRunning, bearerToken: $bearerToken)';
+  final _this = this as AppRuntimeState;
+  return 'AppRuntimeState(developMode: ${_this.developMode}, isVisionRunning: ${_this.isVisionRunning}, bearerToken: ${_this.bearerToken})';
 }
 
 
@@ -63,7 +69,7 @@ class _$AppRuntimeStateCopyWithImpl<$Res>
 /// Create a copy of AppRuntimeState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? developMode = null,Object? isVisionRunning = null,Object? bearerToken = null,}) {
-  return _then(_self.copyWith(
+  return _then(AppRuntimeState(
 developMode: null == developMode ? _self.developMode : developMode // ignore: cast_nullable_to_non_nullable
 as bool,isVisionRunning: null == isVisionRunning ? _self.isVisionRunning : isVisionRunning // ignore: cast_nullable_to_non_nullable
 as bool,bearerToken: null == bearerToken ? _self.bearerToken : bearerToken // ignore: cast_nullable_to_non_nullable
@@ -219,16 +225,18 @@ _$AppRuntimeStateCopyWith<_AppRuntimeState> get copyWith => __$AppRuntimeStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.isVisionRunning, isVisionRunning) || other.isVisionRunning == isVisionRunning)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppRuntimeState&&(identical(other.developMode, developMode) || other.developMode == developMode)&&(identical(other.isVisionRunning, isVisionRunning) || other.isVisionRunning == isVisionRunning)&&(identical(other.bearerToken, bearerToken) || other.bearerToken == bearerToken));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,developMode,isVisionRunning,bearerToken);
+int get hashCode {
+    return Object.hash(runtimeType,developMode,isVisionRunning,bearerToken);
+}
 
 @override
 String toString() {
-  return 'AppRuntimeState(developMode: $developMode, isVisionRunning: $isVisionRunning, bearerToken: $bearerToken)';
+    return 'AppRuntimeState(developMode: $developMode, isVisionRunning: $isVisionRunning, bearerToken: $bearerToken)';
 }
 
 

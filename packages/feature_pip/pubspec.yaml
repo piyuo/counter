@@ -15,7 +15,7 @@ dependencies:
   flutter_appkit:
     git:
       url: https://github.com/piyuo/flutter-appkit.git
-      ref: v3.8.1
+      ref: v3.8.2
   liquid_glass_widgets: ^1.2.3
   flutter_riverpod: ^3.4.2 # block by analyzer
   riverpod_annotation: ^4.0.6 # block by analyzer

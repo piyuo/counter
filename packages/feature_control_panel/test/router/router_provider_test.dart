@@ -106,19 +106,20 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenAbout() => '/about',
       core_domain.OpenBuildInfo() => '/build-info',
       core_domain.OpenOnboarding() => core_domain.OnboardingRoutes.onboarding,
-      core_domain.OpenOnboarding1() => core_domain.OnboardingRoutes.onboarding1,
-      core_domain.OpenOnboarding2() => core_domain.OnboardingRoutes.onboarding2,
-      core_domain.OpenOnboardingSystem() => core_domain.OnboardingRoutes.system,
+      core_domain.OpenOnboarding1() => core_domain.OnboardingRoutes.onboardingIntroPrivacy,
+      core_domain.OpenOnboarding2() => core_domain.OnboardingRoutes.onboardingIntroCollect,
+      core_domain.OpenOnboardingCameraTest() => core_domain.OnboardingRoutes.cameraTest,
       core_domain.OpenOnboardingCTA() => core_domain.OnboardingRoutes.cta,
-      core_domain.OpenOnboardingPiyuoSubscription() => '${core_domain.OnboardingRoutes.cta}/piyuo-subscription',
-      core_domain.OpenOnboardingServerSubscription() => '${core_domain.OnboardingRoutes.cta}/server-subscription',
-      core_domain.OpenOnboardingPiyuo() => '${core_domain.OnboardingRoutes.cta}/piyuo',
-      core_domain.OpenOnboardingServer() => '${core_domain.OnboardingRoutes.cta}/server',
-      core_domain.OpenOnboardingServerSuccess(url: final url) => Uri(
-        path: '${core_domain.OnboardingRoutes.cta}/server/success',
+      core_domain.OpenOnboardingSubscription() => '${core_domain.OnboardingRoutes.cta}/cta_subscription',
+      core_domain.OpenOnboardingPersonalPiyuo() => '${core_domain.OnboardingRoutes.cta}/cta_personal_piyuo',
+      core_domain.OpenOnboardingPersonalPiyuoSuccess() =>
+        '${core_domain.OnboardingRoutes.cta}/cta_personal_piyuo_success',
+      core_domain.OpenOnboardingPersonalCustom() => '${core_domain.OnboardingRoutes.cta}/cta_personal_custom',
+      core_domain.OpenOnboardingPersonalCustomSuccess(url: final url) => Uri(
+        path: '${core_domain.OnboardingRoutes.cta}/cta_personal_custom/cta_personal_custom_success',
         queryParameters: {'url': url},
       ).toString(),
-      core_domain.OpenOnboardingLocal() => '${core_domain.OnboardingRoutes.cta}/demo',
+      core_domain.OpenOnboardingLocal() => '${core_domain.OnboardingRoutes.cta}/cta_localOnly',
       core_domain.OpenOnboardingInvitation(token: final token) =>
         token != null
             ? '${core_domain.OnboardingRoutes.ctaInvitation}?token=$token'
@@ -497,7 +498,7 @@ void main() {
       expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding);
     });
 
-    testWidgets('OpenOnboarding1 causes navigation to /onboarding/1', (tester) async {
+    testWidgets('OpenOnboarding1 causes navigation to /onboarding/intro_privacy', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
@@ -514,10 +515,10 @@ void main() {
       bus.push(const core_domain.OpenOnboarding1());
       await tester.pumpAndSettle();
 
-      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding1);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboardingIntroPrivacy);
     });
 
-    testWidgets('OpenOnboarding2 causes navigation to /onboarding/1/2', (tester) async {
+    testWidgets('OpenOnboarding2 causes navigation to /onboarding/intro_privacy/intro_collect', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
@@ -534,10 +535,10 @@ void main() {
       bus.push(const core_domain.OpenOnboarding2());
       await tester.pumpAndSettle();
 
-      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboarding2);
+      expect(router.state.uri.path, core_domain.OnboardingRoutes.onboardingIntroCollect);
     });
 
-    testWidgets('OpenOnboardingCTA causes navigation to /onboarding/1/2/cta', (tester) async {
+    testWidgets('OpenOnboardingCTA causes navigation to /onboarding/intro_privacy/intro_collect/cta', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 

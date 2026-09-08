@@ -1,4 +1,4 @@
-import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_onboarding/widgets/onboarding_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
@@ -13,7 +13,7 @@ class Onboarding2Screen extends ConsumerWidget {
     return OnboardingScaffold(
       title: context.l.onboarding_intro_title3,
       showSkipIntro: true,
-      onNextButtonPressed: () => ref.go(const core_domain.OpenOnboardingSystem()),
+      onNextButtonPressed: () => goToCameraTestOrAction(ref),
       builder: (context) => [
         Text(
           context.l.onboarding_intro_text3.replaceAll('\\n', '\n\n'),

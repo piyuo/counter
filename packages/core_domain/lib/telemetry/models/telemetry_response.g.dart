@@ -40,6 +40,8 @@ const _$TelemetryErrorCodeEnumMap = {
   TelemetryErrorCode.httpErrorStatus: 'httpErrorStatus',
   TelemetryErrorCode.transportException: 'transportException',
   TelemetryErrorCode.httpUnknownError: 'httpUnknownError',
+  TelemetryErrorCode.databaseError: 'databaseError',
+  TelemetryErrorCode.unknownError: 'unknownError',
 };
 
 _ServerData _$ServerDataFromJson(Map<String, dynamic> json) => _ServerData(

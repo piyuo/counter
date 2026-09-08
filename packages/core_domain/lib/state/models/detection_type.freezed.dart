@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // coverage:ignore-file
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'detection_type.dart';
@@ -9,6 +9,7 @@ part of 'detection_type.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 T _$identity<T>(T value) => value;
 DetectionType _$DetectionTypeFromJson(
@@ -46,7 +47,7 @@ mixin _$DetectionType {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionType);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionType);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -55,7 +56,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DetectionType()';
+    return 'DetectionType()';
 }
 
 
@@ -201,7 +202,7 @@ return vehicle();case _:
 @JsonSerializable()
 
 class DetectionHuman extends DetectionType {
-  const DetectionHuman({final  String? $type}): $type = $type ?? 'human',super._();
+  const DetectionHuman({ String? $type}): $type = $type ?? 'human',super._();
   factory DetectionHuman.fromJson(Map<String, dynamic> json) => _$DetectionHumanFromJson(json);
 
 
@@ -218,7 +219,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionHuman);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionHuman);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -227,7 +228,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DetectionType.human()';
+    return 'DetectionType.human()';
 }
 
 
@@ -240,7 +241,7 @@ String toString() {
 @JsonSerializable()
 
 class DetectionVehicle extends DetectionType {
-  const DetectionVehicle({final  String? $type}): $type = $type ?? 'vehicle',super._();
+  const DetectionVehicle({ String? $type}): $type = $type ?? 'vehicle',super._();
   factory DetectionVehicle.fromJson(Map<String, dynamic> json) => _$DetectionVehicleFromJson(json);
 
 
@@ -257,7 +258,7 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionVehicle);
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionVehicle);
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -266,7 +267,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'DetectionType.vehicle()';
+    return 'DetectionType.vehicle()';
 }
 
 

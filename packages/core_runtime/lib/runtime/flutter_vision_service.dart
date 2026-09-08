@@ -26,6 +26,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   ProviderSubscription<List<vision.InterestArea>>? _interestAreaSubscription;
 
   List<vision.InterestArea> _interestAreas = const [];
+  DateTime? _startTime;
 
   @override
   void build() {
@@ -56,7 +57,14 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   Future<void> stop() async {
     final controller = _activeController;
     _activeController = null;
-
+    // Calculate and log usage duration
+    if (_startTime != null) {
+      final lastUsageDuration = DateTime.now().difference(_startTime!);
+      ref
+          .read(core_domain.analyticsServiceProvider)
+          .logEvent(core_domain.VisionStopEvent(usageDuration: lastUsageDuration));
+      _startTime = null;
+    }
     await _stopTelemetryBridge();
     await controller?.stop();
   }
@@ -70,12 +78,18 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     required bool isTrackIdVisible,
   }) async {
     _interestAreas = interestAreaDatas.map((data) => data.toInterestArea()).toList();
+    _startTime = DateTime.now();
+    appkit.logDebug('[VisionRuntime] Vision service started');
+
     await _restartWithConfig(
       videoSource: videoSource,
       detection: detectionType,
       detectionParams: detectionParams,
       isTrackIdVisible: isTrackIdVisible,
     );
+    ref
+        .read(core_domain.analyticsServiceProvider)
+        .logEvent(core_domain.VisionStartEvent(source: core_domain.getVideoSourceName(videoSource)));
   }
 
   Future<vision.VisionInput> _buildVisionInput(core_domain.VideoSource videoSource) async {
