@@ -1,4 +1,3 @@
-## Pembetulan Pepijat
+## Pembaikan Ralat
 
-* Kestabilan Aplikasi Ditingkatkan: Memperbaiki masalah di mana aliran video dapat mogok apabila meletakkan aplikasi di latar belakang.
-* Tetapan Pelayan Diperbaiki: Memperbaiki ralat pangkalan data yang terjadi apabila menyimpan token untuk pelayan tersuai.
+* Ketahanan Device ID: Telah membetulkan masalah di mana menetapkan semula aplikasi secara tidak diduga menghasilkan Device ID baharu. Device ID kini kekal tetap selepas penetapan semula.

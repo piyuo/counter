@@ -1,4 +1,3 @@
 ## Poprawki błędów
 
-* Zwiększona stabilność aplikacji: Naprawiono problem, w którym strumienie wideo mogły ulec awarii po przeniesieniu aplikacji na tło.
-* Naprawiono ustawienia serwera: Naprawiono błąd bazy danych, który występował podczas zapisywania tokenów dla serwerów niestandardowych.
+* Trwałość Device ID: Naprawiono problem, w którym resetowanie aplikacji nieoczekiwanie generowało nowy Device ID. Identyfikator Device ID pozostaje teraz trwały po resetowaniu.

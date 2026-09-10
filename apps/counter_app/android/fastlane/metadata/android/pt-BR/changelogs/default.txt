@@ -1,4 +1,3 @@
 ## Correções de bugs
 
-* Estabilidade melhorada: Corrigido um problema onde transmissões de vídeo poderiam travar ao colocar o app em background.
-* Configuração do servidor corrigida: Corrigido um erro de banco de dados que ocorria ao salvar tokens para servidores customizados.
+* Persistência de Device ID: Corrigido um problema em que redefinir o app gerava inesperadamente um novo Device ID. Agora o Device ID permanece constante após a redefinição.

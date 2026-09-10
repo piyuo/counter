@@ -1,5 +1,7 @@
-import 'package:ambilytics/ambilytics.dart' as ambilytics;
+import 'package:core_runtime/core_runtime.dart' as core_runtime;
+import 'package:feature_analytic/feature_analytic.dart' as feature_analytic;
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:universal_platform/universal_platform.dart';
 
 import 'firebase_options.dart';
 
@@ -12,21 +14,27 @@ Future<void> initializeAnalytics() async {
     return;
   }
   try {
-    await ambilytics.initAnalytics(
-      disableAnalytics: true,
-      firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+    // Firebase Analytics only supports Android, iOS, macOS and web; Windows and
+    // Linux fall back to the pure-HTTP GA4 Measurement Protocol backend.
+    final supportsFirebase = !UniversalPlatform.isWindows && !UniversalPlatform.isLinux;
+
+    await feature_analytic.initAnalytics(
+      nativeBackend: supportsFirebase
+          ? core_runtime.FirebaseAnalyticsBackend(firebaseOptions: DefaultFirebaseOptions.currentPlatform)
+          : null,
       measurementId: measurementId,
       apiSecret: apiSecret,
     );
 
-    if (!ambilytics.isAmbilyticsInitialized) {
+    if (!feature_analytic.isAnalyticsInitialized) {
       appkit.logWarning(
         '[Analytics] initialization failed: '
-        '${ambilytics.initError}',
+        '${feature_analytic.analyticsInitError}',
       );
       return;
     }
-    appkit.logInfo('[Analytics] initialized successfully.');
+    final backend = feature_analytic.nativeBackend != null ? 'Firebase Analytics' : 'Measurement Protocol (HTTP)';
+    appkit.logInfo('[Analytics] initialized successfully using $backend.');
   } catch (error, stackTrace) {
     appkit.logWarning('[Analytics] initialization error: $error\n$stackTrace');
   }

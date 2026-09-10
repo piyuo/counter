@@ -1,4 +1,3 @@
 ## Hibajavítások
 
-* Javított alkalmazásstabilítás: Kijavítva egy hiba, ahol a videófolyamok összeomolhattak, ha az alkalmazást a háttérbe helyezték.
-* Szerver-beállítások javítása: Kijavítva egy adatbázis-hiba, amely egyéni szerverek tokenjeinek mentésekor lépett fel.
+* Device ID-kereskedelem: Kijavított egy problémát, amelyben az alkalmazás visszaállítása váratlanul egy új Device ID-t hozott létre. Az Device ID mostantól az alaphelyzetbe állítás után is véglegesen megmarad.

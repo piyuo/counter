@@ -1,4 +1,3 @@
 ## Opravy chýb
 
-* Vylepšená stabilita aplikácie: Vyriešený problém, kde mohli video streamy zlyhať pri presunutí aplikácie do pozadia.
-* Oprava nastavení servera: Vyriešená chyba databázy, ktorá sa vyskytovala pri ukladaní tokenov pre vlastné servery.
+* Trvalosť Device ID: Bola opravená chyba, pri ktorej resetovanie aplikácie nečakane vygenerovalo nové Device ID. Device ID teraz zostáva trvalý po resetovaní.
