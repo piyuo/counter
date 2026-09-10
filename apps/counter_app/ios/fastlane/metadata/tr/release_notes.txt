@@ -1,4 +1,3 @@
 ## Hata Düzeltmeleri
 
-* Geliştirilmiş Uygulama Kararlılığı: Uygulamanın arka plana alınması sırasında video akışlarının kilitlenme sorunu düzeltildi.
-* Sunucu Ayarları Düzeltildi: Özel sunucular için jetonlar kaydedilirken oluşan veritabanı hatası düzeltildi.
+* Device ID Kalıcılığı: Uygulamayı sıfırlarken beklenmedik şekilde yeni bir Device ID oluşturan sorun düzeltildi. Device ID artık sıfırlamadan sonra kalıcı kalır.

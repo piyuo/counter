@@ -1,4 +1,3 @@
-## Virhekorjaukset
+## Virheen korjaukset
 
-* Parannettu sovellusvakaus: Korjattu ongelma, jossa videovirrat voivat kaatua, kun sovellusta siirretään taustalle.
-* Palvelimen asetukset korjattu: Korjattu tietokantavirhe, joka ilmeni tallennettaessa tunnuksia mukautetuille palvelimille.
+* Device ID-pysyvyys: Korjattiin ongelma, jossa sovelluksen nollaaminen aiheutti odottamattomasti uuden Device ID:n luomisen. Device ID pysyy nyt pysyvänä nollaamisen jälkeen.

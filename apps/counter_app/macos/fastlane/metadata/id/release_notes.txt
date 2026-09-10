@@ -1,4 +1,3 @@
 ## Perbaikan Bug
 
-* Stabilitas Aplikasi Ditingkatkan: Memperbaiki masalah di mana aliran video dapat mogok saat menempatkan aplikasi di latar belakang.
-* Pengaturan Server Diperbaiki: Memperbaiki kesalahan basis data yang terjadi saat menyimpan token untuk server kustom.
+* Persistensi Device ID: Memperbaiki masalah di mana mengatur ulang aplikasi secara tidak terduga menghasilkan Device ID baru. Device ID sekarang tetap permanen setelah pengaturan ulang.

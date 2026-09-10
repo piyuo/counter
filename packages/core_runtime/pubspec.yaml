@@ -36,7 +36,9 @@ dependencies:
   uuid: ^4.6.0
   path: ^1.9.1
   path_provider: ^2.1.6
-  ambilytics: ^1.2.0
+  feature_analytic: any
+  firebase_core: ^4.14.0
+  firebase_analytics: ^12.5.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

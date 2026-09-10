@@ -1,6 +1,5 @@
 import 'dart:async';
 
-//import 'package:ambilytics/ambilytics.dart' as ambilytics;
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:flutter/foundation.dart';
@@ -28,10 +27,9 @@ void main() async {
       //observers: [appkit.riverpodObserver()],
       overrides: [
         core_domain.analyticsServiceProvider.overrideWith((ref) {
-          final analyticService = ref.read(core_runtime.ambilyticsAnalyticServiceProvider.notifier);
-          if (!kDebugMode) {
-            analyticService.setEnabled(true);
-          }
+          final analyticService = ref.read(core_runtime.featureAnalyticServiceProvider.notifier);
+          if (!kDebugMode) {}
+          analyticService.setEnabled(true);
           return analyticService;
         }),
 

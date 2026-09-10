@@ -54,7 +54,8 @@ dependencies:
   toastification: ^3.2.0
   go_router: ^18.0.0
   liquid_glass_widgets: ^1.2.3
-  ambilytics: ^1.2.0
+  feature_analytic: any
+  firebase_core: ^4.14.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

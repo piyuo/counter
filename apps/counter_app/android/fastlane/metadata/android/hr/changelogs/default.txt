@@ -1,4 +1,3 @@
 ## Ispravke grešaka
 
-* Poboljšana stabilnost aplikacije: Ispravljena je greška gdje su video tokovi mogli slomiti se kada se aplikacija postavi u pozadinu.
-* Ispravka postavki poslužitelja: Ispravljena je greška baze podataka koja se javila pri spremanju tokena za prilagođene poslužitelje.
+* Trajnost Device ID-a: Ispravljeni su greške gdje je ponovno postavljanje aplikacije neočekivano generisalo novi Device ID. Device ID sada ostaje trajno nakon ponovno postavljanja.

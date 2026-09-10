@@ -1,4 +1,3 @@
 ## Bug Fixes
 
-* Improved App Stability: Fixed an issue where video streams could crash when putting the app in the background.
-* Server Settings Fix: Fixed a database error that occurred when saving tokens for custom servers.
+* Device ID Persistence: Fixed an issue where resetting the app unexpectedly generated a new Device ID. The Device ID now remains permanent across resets.

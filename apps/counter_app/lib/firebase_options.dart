@@ -3,23 +3,12 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
-/// Default [FirebaseOptions] for use with your Firebase apps.
+/// We edit this file only return macos/ios/android , and remove web/windows/linux support cause Firebase won't support them.
 ///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return macos;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,15 +17,8 @@ class DefaultFirebaseOptions {
         return ios;
       case TargetPlatform.macOS:
         return macos;
-      case TargetPlatform.windows:
-        return windows;
-      case TargetPlatform.linux:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
       default:
-        throw UnsupportedError('DefaultFirebaseOptions are not supported for this platform.');
+        return macos;
     }
   }
 
@@ -64,15 +46,5 @@ class DefaultFirebaseOptions {
     projectId: 'counter-964dc',
     storageBucket: 'counter-964dc.firebasestorage.app',
     iosBundleId: 'com.piyuo.counter',
-  );
-
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDVg0pMo4lJcIttCSZXeNiZc-74Ekudn7Y',
-    appId: '1:339726104003:web:c83fe6078e21b8a7e37976',
-    messagingSenderId: '339726104003',
-    projectId: 'counter-964dc',
-    authDomain: 'counter-964dc.firebaseapp.com',
-    storageBucket: 'counter-964dc.firebasestorage.app',
-    measurementId: 'G-EQE0F62MMG',
   );
 }

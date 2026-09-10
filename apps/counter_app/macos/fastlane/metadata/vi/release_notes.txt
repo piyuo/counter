@@ -1,4 +1,3 @@
 ## Sửa lỗi
 
-* Cải thiện tính ổn định ứng dụng: Sửa chữa sự cố video stream có thể bị sập khi đặt ứng dụng vào nền.
-* Sửa chữa cài đặt máy chủ: Sửa chữa lỗi cơ sở dữ liệu xảy ra khi lưu token cho các máy chủ tùy chỉnh.
+* Tính liên tục của Device ID: Đã sửa lỗi mà việc đặt lại ứng dụng tạo Device ID mới một cách bất ngờ. Device ID hiện sẽ vẫn tồn tại vĩnh viễn sau khi đặt lại.

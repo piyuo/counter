@@ -1,4 +1,3 @@
-## Feilrettelser
+## Feilrettinger
 
-* Forbedret app-stabilitet: Løst et problem der videostrømmer kunne krasje når appen settes i bakgrunnen.
-* Serverinnstillinger fikset: Løst en databasefeil som oppstod ved lagring av tokens for egendefinerte servere.
+* Device ID-persistens: Rettet et problem der tilbakestilling av appen uventet genererte en ny Device ID. Device ID forblir nå permanent etter tilbakestilling.

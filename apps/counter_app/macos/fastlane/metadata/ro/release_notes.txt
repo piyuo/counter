@@ -1,4 +1,3 @@
-## Corecții de erori
+## Corecții de bug
 
-* Stabilitate îmbunătățită: Corectată o problemă unde fluxurile video puteau se bloca când aplicația este mutată în fundal.
-* Corecție setări server: Corectată o eroare de bază de date care apărea la salvarea tokenurilor pentru servere personalizate.
+* Persistența Device ID: Am rezolvat problema în care resetarea aplicației genera în mod neașteptat un nou Device ID. Device ID rămâne acum permanent după resetare.
