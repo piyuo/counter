@@ -1,6 +1,6 @@
 name: feature_monitor
 description: "The monitor to preview video."
-version: 1.5.2
+version: 1.5.3
 resolution: workspace
 publish_to: none
 

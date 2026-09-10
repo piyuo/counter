@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/piyuo/counter/compare/feature_pip-v1.5.2...feature_pip-v1.5.3) (2026-09-10)
+
+
+### Bug Fixes
+
+* add firebase analytics [#308](https://github.com/piyuo/counter/issues/308) ([479aabd](https://github.com/piyuo/counter/commit/479aabd5c375359b94eadcf9af95d4126eec9d32))
+
 ## [1.5.2](https://github.com/piyuo/counter/compare/feature_pip-v1.5.1...feature_pip-v1.5.2) (2026-09-06)
 
 
