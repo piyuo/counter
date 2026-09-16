@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/piyuo/counter/compare/feature_monitor-v1.5.3...feature_monitor-v1.5.4) (2026-09-16)
+
+
+### Miscellaneous Chores
+
+* **feature_monitor:** Synchronize piyuo-counter-workspace versions
+
 ## [1.5.3](https://github.com/piyuo/counter/compare/feature_monitor-v1.5.2...feature_monitor-v1.5.3) (2026-09-10)
 
 

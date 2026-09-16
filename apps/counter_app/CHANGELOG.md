@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.4](https://github.com/piyuo/counter/compare/counter_app-v1.5.3...counter_app-v1.5.4) (2026-09-16)
+
+
+### Bug Fixes
+
+* control center rotation on mobile [#315](https://github.com/piyuo/counter/issues/315) ([65cf723](https://github.com/piyuo/counter/commit/65cf723fbc2cda9300ed53e78834298599c2d4d1))
+
 ## [1.5.3](https://github.com/piyuo/counter/compare/counter_app-v1.5.2...counter_app-v1.5.3) (2026-09-10)
 
 
