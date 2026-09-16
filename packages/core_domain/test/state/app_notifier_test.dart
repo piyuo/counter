@@ -7,6 +7,7 @@
 //  - applyServerConfigOverrides() applies non-null server fields atomically
 
 import 'package:core_domain/core_domain.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -30,6 +31,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
+          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -59,6 +61,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
+          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -91,6 +94,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
+          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -116,6 +120,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
+          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -216,4 +221,24 @@ class _FakeAuthStorageService implements AuthStorageService {
 
   @override
   Future<bool> isExists(String key) async => store.containsKey(key);
+}
+
+class _FakeAnalyticsService implements AnalyticsService {
+  @override
+  Future<void> logEvent(AnalyticsEvent event) async {
+    // No-op for testing
+  }
+
+  @override
+  NavigatorObserver createNavigatorObserver() {
+    return NavigatorObserver();
+  }
+
+  @override
+  bool get isEnabled => false;
+
+  @override
+  void setEnabled(bool enabled) {
+    // No-op for testing
+  }
 }

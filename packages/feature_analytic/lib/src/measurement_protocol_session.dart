@@ -43,7 +43,7 @@ class MeasurementProtocolSession {
     final defParams = <String, Object?>{
       'engagement_time_msec': DateTime.now().toUtc().difference(sessionStarted).inMilliseconds,
       'session_id': sessionId,
-      if (params != null) ...params,
+      ...?params,
     };
 
     final body = jsonEncode({

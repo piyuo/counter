@@ -77,7 +77,8 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
     // Release the lock as soon as the user leaves the onboarding subtree.
     final isOnboarding =
         path == core_domain.OnboardingRoutes.onboarding ||
-        path.startsWith('${core_domain.OnboardingRoutes.onboarding}/');
+        path.startsWith(core_domain.OnboardingRoutes.cta) ||
+        path.startsWith(core_domain.OnboardingRoutes.onboarding);
     pipController.setIsLockedOpen(isOnboarding);
   }
 

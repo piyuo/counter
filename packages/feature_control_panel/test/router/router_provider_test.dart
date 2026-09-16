@@ -20,6 +20,21 @@ import 'package:go_router/go_router.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
+/// A stub AnalyticsService for testing.
+class _StubAnalyticsService implements core_domain.AnalyticsService {
+  @override
+  bool get isEnabled => false;
+
+  @override
+  NavigatorObserver createNavigatorObserver() => NavigatorObserver();
+
+  @override
+  Future<void> logEvent(core_domain.AnalyticsEvent event) async {}
+
+  @override
+  void setEnabled(bool enabled) {}
+}
+
 /// A [ProviderContainer] with the minimum overrides needed to prevent
 /// [systemLifecycleProvider] and [appFlowProvider] from running their
 /// full boot sequence.
@@ -31,6 +46,7 @@ ProviderContainer _makeContainer({
     overrides: [
       core_domain.systemLifecycleProvider.overrideWithValue(lifecycle),
       core_domain.appFlowProvider.overrideWithValue(flow),
+      core_domain.analyticsServiceProvider.overrideWithValue(_StubAnalyticsService()),
     ],
   );
 }

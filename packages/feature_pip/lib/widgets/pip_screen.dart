@@ -39,13 +39,7 @@ double _kSidebarPanelWidth = 460;
 
 /// Picture in Picture screen
 class PipScreen extends ConsumerWidget {
-  const PipScreen({
-    required this.builder,
-    required this.slidingBuilder,
-    required this.isVideoLockToHorizontal,
-    this.deviceOrientation,
-    super.key,
-  });
+  const PipScreen({required this.builder, required this.slidingBuilder, this.rotationOrientation, super.key});
 
   /// the main screen builder
   final Widget Function(bool isSideLayout) builder;
@@ -53,9 +47,7 @@ class PipScreen extends ConsumerWidget {
   /// the sliding builder
   final Widget Function(bool) slidingBuilder;
 
-  final bool? isVideoLockToHorizontal;
-
-  final DeviceOrientation? deviceOrientation;
+  final DeviceOrientation? rotationOrientation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -249,16 +241,9 @@ class PipScreen extends ConsumerWidget {
                     return buildSlidingLayout(isHorizontal: false);
                   }
 
-                  if (isVideoLockToHorizontal == true) {
-                    return buildSlidingLayout(isHorizontal: true);
-                  }
-                  if (isVideoLockToHorizontal == false) {
-                    return buildSlidingLayout(isHorizontal: false);
-                  }
-
-                  if (deviceOrientation == DeviceOrientation.landscapeLeft) {
+                  if (rotationOrientation == DeviceOrientation.landscapeLeft) {
                     return buildSliding270();
-                  } else if (deviceOrientation == DeviceOrientation.landscapeRight) {
+                  } else if (rotationOrientation == DeviceOrientation.landscapeRight) {
                     return buildSliding90();
                   }
 
@@ -272,20 +257,3 @@ class PipScreen extends ConsumerWidget {
     );
   }
 }
-
-/*
-          buildSliding0() {
-            const top = 70.0;
-            return AnimatedPositioned(
-              duration: _animationDuration,
-              top: top,
-              height: constraints.maxHeight - top,
-              left: 0,
-              right: 0,
-              child: PipSliding(
-                isLockedOpen: isLockedOpen,
-                minHeight: _slidingPanelMinHeight + safePadding.bottom,
-                builder: slidingBuilder,
-              ),
-            );
-          }*/

@@ -51,7 +51,7 @@ void main() {
       expect(inv.businessCustomServer!.assignedId, 'assign123');
       expect(inv.bearerToken, 'token');
       expect(inv.instruction, 'Test');
-      expect(inv.detectionParams!.stayThresholdSeconds, 15);
+      expect(inv.detectionParams!.stayThresholdSeconds, 300);
       expect(inv.detectionParams!.disappearThresholdSeconds, 7);
     });
   });
