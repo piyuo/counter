@@ -1,3 +1,3 @@
-## Pembaikan Ralat
+## Pembaikan Pepijat
 
-* Ketahanan Device ID: Telah membetulkan masalah di mana menetapkan semula aplikasi secara tidak diduga menghasilkan Device ID baharu. Device ID kini kekal tetap selepas penetapan semula.
+* Membetulkan skrin hitam sekali-sekali semasa main balik video strim.

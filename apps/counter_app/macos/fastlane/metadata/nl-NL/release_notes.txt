@@ -1,3 +1,3 @@
 ## Bugfixes
 
-* Device ID-persistentie: Een probleem opgelost waarbij het opnieuw instellen van de app onverwacht een nieuwe Device ID genereerde. De Device ID blijft nu permanent na het opnieuw instellen.
+* Vast gesteld zwart scherm tijdens videostream afspelen.

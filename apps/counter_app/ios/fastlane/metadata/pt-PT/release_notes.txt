@@ -1,3 +1,3 @@
 ## Correções de bugs
 
-* Persistência de Device ID: Corrigido um problema onde repor a aplicação gerava inesperadamente um novo Device ID. O Device ID agora permanece constante após a reposição.
+* Corrigido ecrã preto ocasional durante a reprodução de vídeo.

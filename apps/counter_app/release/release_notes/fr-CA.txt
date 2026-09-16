@@ -1,3 +1,3 @@
-## Corrections de bugs
+## Corrections de bogues
 
-* Persistance du Device ID : Correction d'un problème où la réinitialisation de l'application générait une nouvelle Device ID de manière inattendue. La Device ID reste désormais permanente après la réinitialisation.
+* Correction de l'écran noir occasionnel lors de la lecture du flux vidéo.

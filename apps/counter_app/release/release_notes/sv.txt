@@ -1,3 +1,3 @@
 ## Felkorrigeringar
 
-* Device ID-beständighet: Korrigerade ett problem där återställning av appen oväntat genererade ett nytt Device ID. Device ID förblir nu permanent efter återställning.
+* Åtgärdade intermittent svart skärm under videoströmsuppspelning.

@@ -16,7 +16,7 @@ class FeatureAnalyticObserver extends RouteObserver<ModalRoute<dynamic>> {
     this.routeFilter = defaultRouteFilter,
     this.alwaysSendScreenViewCust = false,
     void Function(Object error)? onError,
-  }) : assert(isAnalyticsInitialized, 'Analytics must be initialized first') {
+  }) {
     _nativeObserver = nativeBackend?.createNavigatorObserver(
       nameExtractor: nameExtractor,
       routeFilter: routeFilter,

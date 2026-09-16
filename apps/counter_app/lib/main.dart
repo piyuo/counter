@@ -20,7 +20,9 @@ void main() async {
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
       dbFactory = await core_runtime.DriftTelemetryDatabase.open(filePath: telemetryDbPath);
-      await initializeAnalytics();
+      if (!kDebugMode) {
+        await initializeAnalytics();
+      }
     },
 
     ProviderScope(
@@ -28,8 +30,6 @@ void main() async {
       overrides: [
         core_domain.analyticsServiceProvider.overrideWith((ref) {
           final analyticService = ref.read(core_runtime.featureAnalyticServiceProvider.notifier);
-          if (!kDebugMode) {}
-          analyticService.setEnabled(true);
           return analyticService;
         }),
 

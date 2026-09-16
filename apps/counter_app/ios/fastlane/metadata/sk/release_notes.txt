@@ -1,3 +1,3 @@
 ## Opravy chýb
 
-* Trvalosť Device ID: Bola opravená chyba, pri ktorej resetovanie aplikácie nečakane vygenerovalo nové Device ID. Device ID teraz zostáva trvalý po resetovaní.
+* Opravená príležitostne sa vyskytujúca čierna obrazovka počas prehrávanie videa.

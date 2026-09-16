@@ -1,3 +1,3 @@
-## Correccions d'errors
+## Correccions de errors
 
-* Persistència de Device ID: S'ha corregit un problema en el qual el reinici de l'app generava inesperadament un nou Device ID. El Device ID ara es manté permanent després del reinici.
+* Corregida la pantalla negra ocasional durant la reproducció de vídeo en directe.

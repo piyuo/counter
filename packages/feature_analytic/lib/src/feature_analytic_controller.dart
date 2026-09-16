@@ -77,7 +77,7 @@ Future<void> initAnalytics({
   String? userId,
 }) async {
   if (_initialized) return;
-
+  _disabled = false; // init will enable analytics
   try {
     WidgetsFlutterBinding.ensureInitialized();
     if (nativeBackend != null) {
@@ -91,7 +91,6 @@ Future<void> initAnalytics({
         if (sendAppLaunch) {
           _sendAppLaunchEvent();
         }
-        _disabled = false;
         return;
       } catch (e) {
         // Fall back to the Measurement Protocol (pure HTTP, works everywhere).
