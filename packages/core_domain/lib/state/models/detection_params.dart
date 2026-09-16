@@ -133,12 +133,14 @@ abstract class DetectionParams with _$DetectionParams {
     if (appearanceThresh != other.appearanceThresh) differences.add('appearanceThresh');
     if (lambda != other.lambda) differences.add('lambda');
     if (softMotionGating != other.softMotionGating) differences.add('softMotionGating');
-    if (preferAppearanceFallbackOnLowIou != other.preferAppearanceFallbackOnLowIou)
+    if (preferAppearanceFallbackOnLowIou != other.preferAppearanceFallbackOnLowIou) {
       differences.add('preferAppearanceFallbackOnLowIou');
+    }
     if (trackletMinPresenceTimeSec != other.trackletMinPresenceTimeSec) differences.add('trackletMinPresenceTimeSec');
     if (trackletEdgeMargin != other.trackletEdgeMargin) differences.add('trackletEdgeMargin');
-    if (trackletEdgeOverrideTimeSec != other.trackletEdgeOverrideTimeSec)
+    if (trackletEdgeOverrideTimeSec != other.trackletEdgeOverrideTimeSec) {
       differences.add('trackletEdgeOverrideTimeSec');
+    }
     if (stayThresholdSeconds != other.stayThresholdSeconds) differences.add('stayThresholdSeconds');
     if (disappearThresholdSeconds != other.disappearThresholdSeconds) differences.add('disappearThresholdSeconds');
     return differences.join(', ');

@@ -10,7 +10,6 @@ export 'runtime/piyuo_invitation_service.dart';
 export 'runtime/random_token_generator_service.dart';
 export 'runtime/secure_auth_storage_service.dart';
 export 'runtime/shared_prefs_repository.dart';
-export 'runtime/system_chrome_portrait_orientation_service.dart';
 export 'telemetry/drift_telemetry_database.dart';
 export 'telemetry/drift_telemetry_queue.dart';
 export 'telemetry/http_telemetry_transport.dart';

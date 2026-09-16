@@ -39,9 +39,6 @@ void main() async {
           final cameraDeviceController = ref.read(vision.cameraDeviceProvider.notifier);
           return core_runtime.NativeHardwareCapabilityService(cameraDeviceController);
         }),
-        core_domain.portraitOrientationServiceProvider.overrideWith(
-          (ref) => core_runtime.SystemChromePortraitOrientationService(),
-        ),
         core_domain.visionRuntimeServiceProvider.overrideWith(
           (ref) => ref.read(core_runtime.flutterVisionServiceProvider.notifier),
         ),

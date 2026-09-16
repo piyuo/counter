@@ -53,8 +53,7 @@ class Firebase {
       late final String platformString;
       if (defaultTargetPlatform == TargetPlatform.android) {
         platformString = 'android';
-      } else if (defaultTargetPlatform == TargetPlatform.iOS ||
-          defaultTargetPlatform == TargetPlatform.macOS) {
+      } else if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
         platformString = 'ios';
       } else {
         // We use 'web' as the default platform for unknown platforms.
@@ -94,7 +93,6 @@ class Firebase {
     return FirebaseApp._(app);
   }
 
-  // TODO(rrousselGit): remove ==/hashCode
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) {

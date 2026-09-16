@@ -75,10 +75,7 @@ class OnboardingScaffold extends ConsumerWidget {
       if (canPop) {
         effectiveLeading = Padding(
           padding: const EdgeInsets.only(left: 8),
-          child: TextButton(
-            onPressed: popEnabled ? () => router.pop() : null,
-            child: Text(context.l.onboarding_back_action, style: TextStyle(fontSize: 18)),
-          ),
+          child: _OnboardingBackButton(popEnabled: popEnabled),
         );
       }
     }
@@ -172,6 +169,42 @@ class OnboardingScaffold extends ConsumerWidget {
           );
         },
       ),
+    );
+  }
+}
+
+/// Back button used in [OnboardingScaffold]'s leading slot.
+///
+/// Re-checks [GoRouter.canPop] at tap time (not just at build time) and
+/// guards against a second tap firing before the first pop is processed —
+/// both of which can otherwise throw `GoError: There is nothing to pop`
+/// when the button is double-tapped or the stack changes right before the
+/// tap lands.
+class _OnboardingBackButton extends StatefulWidget {
+  const _OnboardingBackButton({required this.popEnabled});
+
+  final bool popEnabled;
+
+  @override
+  State<_OnboardingBackButton> createState() => _OnboardingBackButtonState();
+}
+
+class _OnboardingBackButtonState extends State<_OnboardingBackButton> {
+  bool _handled = false;
+
+  void _handlePop() {
+    if (_handled) return;
+    final router = GoRouter.of(context);
+    if (!router.canPop()) return;
+    _handled = true;
+    router.pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: widget.popEnabled ? _handlePop : null,
+      child: Text(context.l.onboarding_back_action, style: const TextStyle(fontSize: 18)),
     );
   }
 }

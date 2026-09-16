@@ -27,20 +27,10 @@ class AppRouter {
       case '/':
       default:
         return buildRoute((_) {
-          final deviceOrientation = ref.watch(vision.deviceRotationProvider).orientation;
-          // only watch lockOrientation in visState
-          final lockOrientation = ref.watch(vision.orientationProvider.select((state) => state.lockOrientation));
-          final isLockToHorizontal = switch (lockOrientation) {
-            vision.LockOrientation.portrait => false,
-            vision.LockOrientation.landscape => true,
-            _ => null,
-          };
-
+          final rotationOrientation = ref.watch(vision.deviceRotationProvider).orientation;
           return vision.VisionLifecycle(
             child: feature_pip.PipScreen(
-              deviceOrientation: deviceOrientation,
-              //                isDeviceLockToPortrait: ref.watch(core_domain.portraitOrientationProvider),
-              isVideoLockToHorizontal: isLockToHorizontal,
+              rotationOrientation: rotationOrientation,
               slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
                 key: _controlPanelKey,
                 appLocaleDelegates: appLocaleDelegates,
