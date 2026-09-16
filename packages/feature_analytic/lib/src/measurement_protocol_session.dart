@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:http/http.dart' as http;
 
 import 'predefined_events.dart';
@@ -31,14 +32,12 @@ class MeasurementProtocolSession {
   /// Sends an event to the analytics service.
   /// [eventName] is the name of the event. Max length is 40 characters.
   /// [params] is a Map of additional parameters to attach to the event.
-  void sendEvent(String eventName, Map<String, Object?>? params) {
-    assert(!reservedGa4Events.contains(eventName), '"$eventName" is a reserved GA4 event name');
+  Future<void> sendEvent(String eventName, Map<String, Object?>? params) async {
+    assert(!reservedGa4Events.contains(eventName));
     if (reservedGa4Events.contains(eventName)) return;
-    assert(eventName.length <= 40, 'Event name should be at most 40 characters long');
-    assert(
-      eventName.isNotEmpty && RegExp(r'^[a-zA-Z][a-zA-Z0-9_]*$').hasMatch(eventName),
-      'Event name should start with a letter and contain only letters, numbers, and underscores.',
-    );
+
+    assert(eventName.length <= 40);
+    assert(eventName.isNotEmpty && RegExp(r'^[a-zA-Z][a-zA-Z0-9_]*$').hasMatch(eventName));
 
     final defParams = <String, Object?>{
       'engagement_time_msec': DateTime.now().toUtc().difference(sessionStarted).inMilliseconds,
@@ -59,13 +58,30 @@ class MeasurementProtocolSession {
       'Accept-Language': PlatformDispatcher.instance.locale.toLanguageTag(),
     };
 
-    http.post(
-      Uri.parse(
-        'https://www.google-analytics.com/${useValidationServer ? 'debug/' : ''}mp/collect'
-        '?measurement_id=$measurementId&api_secret=$apiSecret',
-      ),
-      headers: headers,
-      body: body,
-    );
+    try {
+      final response = await http.post(
+        Uri.parse(
+          'https://www.google-analytics.com/'
+          '${useValidationServer ? 'debug/' : ''}mp/collect'
+          '?measurement_id=$measurementId&api_secret=$apiSecret',
+        ),
+        headers: headers,
+        body: body,
+      );
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        return;
+      }
+
+      appkit.logDebug(
+        'GA4 Measurement Protocol failed: '
+        '${response.statusCode} ${response.body}',
+      );
+
+      return;
+    } catch (e, stackTrace) {
+      appkit.logDebug('GA4 Measurement Protocol error: $e');
+      debugPrintStack(stackTrace: stackTrace);
+    }
   }
 }

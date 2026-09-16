@@ -1,3 +1,3 @@
 ## Correzioni di bug
 
-* Persistenza di Device ID: Corretto un problema in cui il ripristino dell'app generava inaspettatamente un nuovo Device ID. Il Device ID ora rimane permanente dopo il ripristino.
+* Corretta la schermata nera occasionale durante la riproduzione di flussi video.

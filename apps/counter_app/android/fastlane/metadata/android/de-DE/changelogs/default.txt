@@ -1,4 +1,3 @@
 ## Fehlerbehebungen
 
-* Verbesserte App-Stabilität: Ein Problem behoben, bei dem Videoströme abstürzen können, wenn die App in den Hintergrund verschoben wird.
-* Server-Einstellungen korrigiert: Ein Datenbankfehler behoben, der beim Speichern von Token für benutzerdefinierte Server auftrat.
+* Gelegentlicher schwarzer Bildschirm bei der Videowiedergabe wurde behoben.

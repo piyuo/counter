@@ -1,3 +1,3 @@
 ## Hata Düzeltmeleri
 
-* Device ID Kalıcılığı: Uygulamayı sıfırlarken beklenmedik şekilde yeni bir Device ID oluşturan sorun düzeltildi. Device ID artık sıfırlamadan sonra kalıcı kalır.
+* Video akışı oynatırken nadiren meydana gelen siyah ekran sorununu düzelttik.
