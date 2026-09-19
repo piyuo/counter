@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,37 @@ class LocalizationPl extends Localization {
       'Zlicza osoby lub pojazdy, które opuściły ten obszar podczas bieżącego okna zliczania.\\n\\nWyjście jest liczone, gdy osoba lub pojazd przemieszcza się z wnętrza obszaru na zewnątrz.';
 
   @override
+  String get interest_areas_screen_add_area => 'Dodaj obszar';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Dodaj nowy obszar';
+
+  @override
+  String get interest_areas_screen_add_point => 'Dodaj punkt';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Dodaj punkt obszaru';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Usuń obszar';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Usuń wybrany obszar';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Usuń punkt';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Usuń wybrany punkt';
+
+  @override
+  String get interest_areas_screen_reset => 'Resetuj';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Usuń wszystkie istniejące obszary zainteresowania';
+
+  @override
   String get language_screen_language => 'Język';
 
   @override
@@ -319,6 +351,28 @@ class LocalizationPl extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter będzie działać całkowicie na tym urządzeniu.\\nStatystyki ruchu będą przechowywane tylko na tym urządzeniu i nie będą przesyłane.\\nPóźniej możesz połączyć się z Piyuo Cloud lub własnym serwerem w Ustawieniach.';
+
+  @override
+  String get main_screen_about => 'O aplikacji';
+
+  @override
+  String get main_screen_interest_area => 'Obszar Zainteresowania';
+
+  @override
+  String get main_screen_server_none =>
+      'Dane są przechowywane tylko na tym urządzeniu';
+
+  @override
+  String get main_screen_server_personal => 'Dane są przesyłane co godzinę do';
+
+  @override
+  String get main_screen_settings => 'Ustawienia';
+
+  @override
+  String get main_screen_upload_logs => 'Prześlij logi';
+
+  @override
+  String get main_screen_video_sources => 'Źródła wideo';
 
   @override
   String get maximum_occupancy => 'Maksymalna liczba osób';
@@ -364,6 +418,9 @@ class LocalizationPl extends Localization {
   @override
   String get metrics_counting_window =>
       'Statystyki dla każdego 5-minutowego okresu';
+
+  @override
+  String get occupancy => 'Aktualna liczba';
 
   @override
   String get onboarding_back_action => 'Wstecz';
@@ -586,25 +643,6 @@ class LocalizationPl extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Subskrypcja';
-
-  @override
-  String get start_screen_about => 'O aplikacji';
-
-  @override
-  String get start_screen_server_none =>
-      'Dane są przechowywane tylko na tym urządzeniu';
-
-  @override
-  String get start_screen_server_personal => 'Dane są przesyłane co godzinę do';
-
-  @override
-  String get start_screen_settings => 'Ustawienia';
-
-  @override
-  String get start_screen_upload_logs => 'Prześlij logi';
-
-  @override
-  String get start_screen_video_sources => 'Źródła wideo';
 
   @override
   String get stayed => 'Pozostali';

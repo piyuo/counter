@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,37 @@ class LocalizationFa extends Localization {
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی از این ناحیه خارج شده‌اند محاسبه می‌کند.\\n\\nخروج زمانی شمارش می‌شود که یک فرد یا وسیله نقلیه از داخل ناحیه به خارج آن حرکت کند.';
 
   @override
+  String get interest_areas_screen_add_area => 'افزودن ناحیه';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'افزودن ناحیه جدید';
+
+  @override
+  String get interest_areas_screen_add_point => 'افزودن نقطه';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'افزودن نقطه به ناحیه';
+
+  @override
+  String get interest_areas_screen_remove_area => 'حذف ناحیه';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'حذف ناحیه انتخاب‌شده';
+
+  @override
+  String get interest_areas_screen_remove_point => 'حذف نقطه';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'حذف نقطه انتخاب‌شده';
+
+  @override
+  String get interest_areas_screen_reset => 'بازنشانی';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'حذف همه مناطق مورد علاقه موجود';
+
+  @override
   String get language_screen_language => 'زبان';
 
   @override
@@ -320,6 +352,29 @@ class LocalizationFa extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter به‌طور کامل روی این دستگاه اجرا می‌شود.\\nآمار تردد فقط روی این دستگاه ذخیره می‌شود و بارگذاری نخواهد شد.\\nبعداً می‌توانید از بخش تنظیمات به Piyuo Cloud یا سرور خود متصل شوید.';
+
+  @override
+  String get main_screen_about => 'درباره';
+
+  @override
+  String get main_screen_interest_area => 'ناحیه مورد علاقه';
+
+  @override
+  String get main_screen_server_none =>
+      'داده‌ها فقط روی این دستگاه ذخیره می‌شوند';
+
+  @override
+  String get main_screen_server_personal =>
+      'داده‌ها هر ساعت در این آدرس بارگذاری می‌شوند:';
+
+  @override
+  String get main_screen_settings => 'تنظیمات';
+
+  @override
+  String get main_screen_upload_logs => 'بارگذاری گزارش‌ها';
+
+  @override
+  String get main_screen_video_sources => 'منابع ویدیو';
 
   @override
   String get maximum_occupancy => 'حداکثر تعداد';
@@ -364,6 +419,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get metrics_counting_window => 'آمار برای هر بازه ۵ دقیقه‌ای';
+
+  @override
+  String get occupancy => 'تعداد فعلی';
 
   @override
   String get onboarding_back_action => 'بازگشت';
@@ -583,26 +641,6 @@ class LocalizationFa extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'اشتراک';
-
-  @override
-  String get start_screen_about => 'درباره';
-
-  @override
-  String get start_screen_server_none =>
-      'داده‌ها فقط روی این دستگاه ذخیره می‌شوند';
-
-  @override
-  String get start_screen_server_personal =>
-      'داده‌ها هر ساعت در این آدرس بارگذاری می‌شوند:';
-
-  @override
-  String get start_screen_settings => 'تنظیمات';
-
-  @override
-  String get start_screen_upload_logs => 'بارگذاری گزارش‌ها';
-
-  @override
-  String get start_screen_video_sources => 'منابع ویدیو';
 
   @override
   String get stayed => 'ماندند';

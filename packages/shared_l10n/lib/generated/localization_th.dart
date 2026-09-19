@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -303,6 +304,36 @@ class LocalizationTh extends Localization {
       'นับจำนวนคนหรือยานพาหนะที่ออกจากพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nจะนับ 1 ครั้งเมื่อคนหรือยานพาหนะเคลื่อนที่จากภายในพื้นที่ออกไปภายนอก';
 
   @override
+  String get interest_areas_screen_add_area => 'เพิ่มพื้นที่';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'เพิ่มพื้นที่ใหม่';
+
+  @override
+  String get interest_areas_screen_add_point => 'เพิ่มจุด';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'เพิ่มจุดพื้นที่';
+
+  @override
+  String get interest_areas_screen_remove_area => 'ลบพื้นที่';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'ลบพื้นที่ที่เลือก';
+
+  @override
+  String get interest_areas_screen_remove_point => 'ลบจุด';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'ลบจุดที่เลือก';
+
+  @override
+  String get interest_areas_screen_reset => 'รีเซ็ต';
+
+  @override
+  String get interest_areas_screen_reset_tip => 'ลบพื้นที่สนใจที่มีอยู่ทั้งหมด';
+
+  @override
   String get language_screen_language => 'ภาษา';
 
   @override
@@ -318,6 +349,28 @@ class LocalizationTh extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter จะทำงานทั้งหมดบนอุปกรณ์นี้\\nสถิติการสัญจรจะถูกเก็บไว้บนอุปกรณ์นี้เท่านั้น และจะไม่อัปโหลด\\nคุณสามารถเชื่อมต่อกับ Piyuo Cloud หรือเซิร์ฟเวอร์ของคุณเองได้ภายหลังใน Settings';
+
+  @override
+  String get main_screen_about => 'เกี่ยวกับ';
+
+  @override
+  String get main_screen_interest_area => 'พื้นที่สนใจ';
+
+  @override
+  String get main_screen_server_none =>
+      'ข้อมูลจะถูกเก็บไว้ในอุปกรณ์นี้เท่านั้น';
+
+  @override
+  String get main_screen_server_personal => 'อัปโหลดข้อมูลทุกชั่วโมงไปยัง';
+
+  @override
+  String get main_screen_settings => 'การตั้งค่า';
+
+  @override
+  String get main_screen_upload_logs => 'อัปโหลดบันทึก';
+
+  @override
+  String get main_screen_video_sources => 'แหล่งวิดีโอ';
 
   @override
   String get maximum_occupancy => 'จำนวนสูงสุด';
@@ -362,6 +415,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get metrics_counting_window => 'สถิติสำหรับทุกช่วงเวลา 5 นาที';
+
+  @override
+  String get occupancy => 'จำนวนปัจจุบัน';
 
   @override
   String get onboarding_back_action => 'ย้อนกลับ';
@@ -582,25 +638,6 @@ class LocalizationTh extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'การสมัครสมาชิก';
-
-  @override
-  String get start_screen_about => 'เกี่ยวกับ';
-
-  @override
-  String get start_screen_server_none =>
-      'ข้อมูลจะถูกเก็บไว้ในอุปกรณ์นี้เท่านั้น';
-
-  @override
-  String get start_screen_server_personal => 'อัปโหลดข้อมูลทุกชั่วโมงไปยัง';
-
-  @override
-  String get start_screen_settings => 'การตั้งค่า';
-
-  @override
-  String get start_screen_upload_logs => 'อัปโหลดบันทึก';
-
-  @override
-  String get start_screen_video_sources => 'แหล่งวิดีโอ';
 
   @override
   String get stayed => 'อยู่ต่อ';

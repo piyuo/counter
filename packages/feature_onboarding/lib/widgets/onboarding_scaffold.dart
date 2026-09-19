@@ -91,7 +91,7 @@ class OnboardingScaffold extends ConsumerWidget {
                 padding: EdgeInsetsGeometry.only(right: 8),
                 child: TextButton(
                   onPressed: () {
-                    ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.SkipIntroEvent());
+                    ref.read(core_domain.usageServiceProvider).logEvent(core_domain.SkipIntroEvent());
                     goToCameraTestOrAction(ref);
                   },
                   child: Text(context.l.onboarding_skip_action, style: TextStyle(fontSize: 18, color: Colors.blue)),
@@ -125,9 +125,8 @@ class OnboardingScaffold extends ConsumerWidget {
                       if (title != null)
                         Text(
                           title!,
-                          style: Theme.of(innerContext).textTheme.titleLarge!.copyWith(
-                            color: nextButtonAction == NextButtonAction.start ? Colors.green : null,
-                          ),
+                          style: Theme.of(innerContext).textTheme.titleLarge!
+                              .copyWith(color: nextButtonAction == NextButtonAction.start ? Colors.green : null),
                         ),
                       const SizedBox(height: 8.0),
                       ...builder(innerContext),

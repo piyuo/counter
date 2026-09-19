@@ -5,13 +5,14 @@ publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ^3.11.0
+  sdk: ^3.13.3
   flutter: ">=1.17.0"
 
 dependencies:
   core_domain: any
   core_runtime: any
   feature_onboarding: any
+  feature_counting: any
   feature_pip: any
   shared_l10n: any
   flutter:

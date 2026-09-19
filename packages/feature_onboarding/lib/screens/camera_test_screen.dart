@@ -36,7 +36,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
     setState(() {
       isTestStarting = true;
     });
-    ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.TestStartEvent());
+    ref.read(core_domain.usageServiceProvider).logEvent(core_domain.TestStartEvent());
   }
 
   /// Callback when the test finishes.
@@ -50,7 +50,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
         testSuccessFPS = 'FPS: ${performance.fps}';
         testErrorMessage = null;
         ref
-            .read(core_domain.analyticsServiceProvider)
+            .read(core_domain.usageServiceProvider)
             .logEvent(
               core_domain.TestPassEvent(
                 frameReadTimeMS: performance.frameReadTimeMS,
@@ -63,7 +63,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
       }
       testErrorMessage = errorMessage;
       testSuccessFPS = null;
-      ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.TestFailEvent(errorMessage: errorMessage));
+      ref.read(core_domain.usageServiceProvider).logEvent(core_domain.TestFailEvent(errorMessage: errorMessage));
     });
   }
 

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -296,6 +297,36 @@ class LocalizationJa extends Localization {
       '現在の集計時間内にこのエリアから出た人や車両をカウントします。\\n\\n人や車両がエリア内から外へ移動したときに1回カウントされます。';
 
   @override
+  String get interest_areas_screen_add_area => 'エリア追加';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新しいエリアを追加';
+
+  @override
+  String get interest_areas_screen_add_point => 'ポイント追加';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'エリアポイントを追加';
+
+  @override
+  String get interest_areas_screen_remove_area => 'エリア削除';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '選択したエリアを削除';
+
+  @override
+  String get interest_areas_screen_remove_point => 'ポイント削除';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '選択したポイントを削除';
+
+  @override
+  String get interest_areas_screen_reset => 'リセット';
+
+  @override
+  String get interest_areas_screen_reset_tip => '既存のすべての関心エリアを削除';
+
+  @override
   String get language_screen_language => '言語';
 
   @override
@@ -311,6 +342,27 @@ class LocalizationJa extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter はこの端末だけで動作します。\\n交通統計データはこの端末のみに保存され、アップロードされません。\\n後から設定で Piyuo Cloud またはご自身のサーバーに接続できます。';
+
+  @override
+  String get main_screen_about => 'アプリについて';
+
+  @override
+  String get main_screen_interest_area => '関心エリア';
+
+  @override
+  String get main_screen_server_none => 'データはこの端末にのみ保存されます';
+
+  @override
+  String get main_screen_server_personal => 'データは1時間ごとにアップロードされます';
+
+  @override
+  String get main_screen_settings => '設定';
+
+  @override
+  String get main_screen_upload_logs => 'ログをアップロード';
+
+  @override
+  String get main_screen_video_sources => 'ビデオソース';
 
   @override
   String get maximum_occupancy => '最大人数';
@@ -355,6 +407,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get metrics_counting_window => '5分ごとの統計データ';
+
+  @override
+  String get occupancy => '現在の数';
 
   @override
   String get onboarding_back_action => '戻る';
@@ -566,24 +621,6 @@ class LocalizationJa extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'サブスクリプション';
-
-  @override
-  String get start_screen_about => 'アプリについて';
-
-  @override
-  String get start_screen_server_none => 'データはこの端末にのみ保存されます';
-
-  @override
-  String get start_screen_server_personal => 'データは1時間ごとにアップロードされます';
-
-  @override
-  String get start_screen_settings => '設定';
-
-  @override
-  String get start_screen_upload_logs => 'ログをアップロード';
-
-  @override
-  String get start_screen_video_sources => 'ビデオソース';
 
   @override
   String get stayed => '滞在';

@@ -21,7 +21,7 @@ import 'package:go_router/go_router.dart';
 // ---------------------------------------------------------------------------
 
 /// A stub AnalyticsService for testing.
-class _StubAnalyticsService implements core_domain.AnalyticsService {
+class _StubAnalyticsService implements core_domain.UsageService {
   @override
   bool get isEnabled => false;
 
@@ -29,7 +29,7 @@ class _StubAnalyticsService implements core_domain.AnalyticsService {
   NavigatorObserver createNavigatorObserver() => NavigatorObserver();
 
   @override
-  Future<void> logEvent(core_domain.AnalyticsEvent event) async {}
+  Future<void> logEvent(core_domain.UsageEvent event) async {}
 
   @override
   void setEnabled(bool enabled) {}
@@ -46,7 +46,7 @@ ProviderContainer _makeContainer({
     overrides: [
       core_domain.systemLifecycleProvider.overrideWithValue(lifecycle),
       core_domain.appFlowProvider.overrideWithValue(flow),
-      core_domain.analyticsServiceProvider.overrideWithValue(_StubAnalyticsService()),
+      core_domain.usageServiceProvider.overrideWithValue(_StubAnalyticsService()),
     ],
   );
 }
@@ -148,6 +148,7 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenLiveUrl() => '/live-url',
       core_domain.OpenTarget() => '/target',
       core_domain.OpenUploadLogDetail() => '/upload-logs',
+      core_domain.OpenInterestAreas() => '/interest-areas',
     };
     if (path == null) return;
     switch (action) {

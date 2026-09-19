@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -302,6 +303,37 @@ class LocalizationVi extends Localization {
       'Đếm số người hoặc phương tiện rời khỏi khu vực này trong cửa sổ đếm hiện tại.\\n\\nMột lượt ra được tính khi người hoặc phương tiện di chuyển từ trong khu vực ra bên ngoài.';
 
   @override
+  String get interest_areas_screen_add_area => 'Thêm khu vực';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Thêm khu vực mới';
+
+  @override
+  String get interest_areas_screen_add_point => 'Thêm điểm';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Thêm điểm khu vực';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Xóa khu vực';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Xóa khu vực đã chọn';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Xóa điểm';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Xóa điểm đã chọn';
+
+  @override
+  String get interest_areas_screen_reset => 'Đặt lại';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Xóa tất cả khu vực quan tâm hiện có';
+
+  @override
   String get language_screen_language => 'Ngôn ngữ';
 
   @override
@@ -318,6 +350,28 @@ class LocalizationVi extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter sẽ chạy hoàn toàn trên thiết bị này.\\nThống kê lưu lượng sẽ chỉ được lưu trên thiết bị này và không được tải lên.\\nBạn có thể kết nối với Piyuo Cloud hoặc máy chủ của mình sau trong Cài đặt.';
+
+  @override
+  String get main_screen_about => 'Giới thiệu';
+
+  @override
+  String get main_screen_interest_area => 'Khu vực Quan tâm';
+
+  @override
+  String get main_screen_server_none =>
+      'Dữ liệu chỉ được lưu trên thiết bị này';
+
+  @override
+  String get main_screen_server_personal => 'Dữ liệu được tải lên mỗi giờ tới';
+
+  @override
+  String get main_screen_settings => 'Cài đặt';
+
+  @override
+  String get main_screen_upload_logs => 'Tải nhật ký lên';
+
+  @override
+  String get main_screen_video_sources => 'Nguồn video';
 
   @override
   String get maximum_occupancy => 'Số lượng tối đa';
@@ -362,6 +416,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get metrics_counting_window => 'Thống kê cho mỗi khoảng 5 phút';
+
+  @override
+  String get occupancy => 'Số lượng hiện tại';
 
   @override
   String get onboarding_back_action => 'Quay lại';
@@ -582,25 +639,6 @@ class LocalizationVi extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Gói đăng ký';
-
-  @override
-  String get start_screen_about => 'Giới thiệu';
-
-  @override
-  String get start_screen_server_none =>
-      'Dữ liệu chỉ được lưu trên thiết bị này';
-
-  @override
-  String get start_screen_server_personal => 'Dữ liệu được tải lên mỗi giờ tới';
-
-  @override
-  String get start_screen_settings => 'Cài đặt';
-
-  @override
-  String get start_screen_upload_logs => 'Tải nhật ký lên';
-
-  @override
-  String get start_screen_video_sources => 'Nguồn video';
 
   @override
   String get stayed => 'Ở lại';

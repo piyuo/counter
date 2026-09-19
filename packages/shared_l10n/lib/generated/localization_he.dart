@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -302,6 +303,37 @@ class LocalizationHe extends Localization {
       'סופר אנשים או כלי רכב שיצאו מאזור זה במהלך חלון הספירה הנוכחי.\\n\\nיציאה נספרת כאשר אדם או כלי רכב עוברים מתוך האזור אל מחוצה לו.';
 
   @override
+  String get interest_areas_screen_add_area => 'הוסף אזור';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'הוסף אזור חדש';
+
+  @override
+  String get interest_areas_screen_add_point => 'הוסף נקודה';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'הוסף נקודת אזור';
+
+  @override
+  String get interest_areas_screen_remove_area => 'הסר אזור';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'הסר אזור נבחר';
+
+  @override
+  String get interest_areas_screen_remove_point => 'הסר נקודה';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'הסר נקודה נבחרת';
+
+  @override
+  String get interest_areas_screen_reset => 'איפוס';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'הסר את כל אזורי העניין הקיימים';
+
+  @override
   String get language_screen_language => 'שפה';
 
   @override
@@ -317,6 +349,27 @@ class LocalizationHe extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter יפעל כולו במכשיר זה.\\nנתוני הסטטיסטיקה יישמרו במכשיר זה בלבד ולא יועלו.\\nבהמשך תוכל להתחבר ל-Piyuo Cloud או לשרת שלך דרך ההגדרות.';
+
+  @override
+  String get main_screen_about => 'אודות';
+
+  @override
+  String get main_screen_interest_area => 'אזור עניין';
+
+  @override
+  String get main_screen_server_none => 'הנתונים נשמרים במכשיר זה בלבד';
+
+  @override
+  String get main_screen_server_personal => 'הנתונים מועלים מדי שעה אל';
+
+  @override
+  String get main_screen_settings => 'הגדרות';
+
+  @override
+  String get main_screen_upload_logs => 'העלאת יומנים';
+
+  @override
+  String get main_screen_video_sources => 'מקורות וידאו';
 
   @override
   String get maximum_occupancy => 'תפוסה מרבית';
@@ -361,6 +414,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get metrics_counting_window => 'סטטיסטיקות לכל פרק זמן של 5 דקות';
+
+  @override
+  String get occupancy => 'מספר נוכחי';
 
   @override
   String get onboarding_back_action => 'חזרה';
@@ -576,24 +632,6 @@ class LocalizationHe extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'מינוי';
-
-  @override
-  String get start_screen_about => 'אודות';
-
-  @override
-  String get start_screen_server_none => 'הנתונים נשמרים במכשיר זה בלבד';
-
-  @override
-  String get start_screen_server_personal => 'הנתונים מועלים מדי שעה אל';
-
-  @override
-  String get start_screen_settings => 'הגדרות';
-
-  @override
-  String get start_screen_upload_logs => 'העלאת יומנים';
-
-  @override
-  String get start_screen_video_sources => 'מקורות וידאו';
 
   @override
   String get stayed => 'שהו';

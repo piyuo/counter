@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -303,6 +304,37 @@ class LocalizationMs extends Localization {
       'Mengira bilangan orang atau kenderaan yang keluar dari kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSatu keluar dikira apabila seseorang atau kenderaan bergerak dari dalam kawasan ke luar kawasan.';
 
   @override
+  String get interest_areas_screen_add_area => 'Tambah kawasan';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Tambah kawasan baharu';
+
+  @override
+  String get interest_areas_screen_add_point => 'Tambah titik';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Tambah titik kawasan';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Buang kawasan';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Buang kawasan terpilih';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Buang titik';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Buang titik terpilih';
+
+  @override
+  String get interest_areas_screen_reset => 'Set semula';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Buang semua kawasan minat sedia ada';
+
+  @override
   String get language_screen_language => 'Bahasa';
 
   @override
@@ -319,6 +351,27 @@ class LocalizationMs extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter akan berjalan sepenuhnya pada peranti ini.\\nStatistik trafik hanya disimpan pada peranti ini dan tidak akan dimuat naik.\\nAnda boleh menyambung ke Piyuo Cloud atau pelayan sendiri kemudian melalui Tetapan.';
+
+  @override
+  String get main_screen_about => 'Tentang';
+
+  @override
+  String get main_screen_interest_area => 'Kawasan Minat';
+
+  @override
+  String get main_screen_server_none => 'Data disimpan pada peranti ini sahaja';
+
+  @override
+  String get main_screen_server_personal => 'Data dimuat naik setiap jam ke';
+
+  @override
+  String get main_screen_settings => 'Tetapan';
+
+  @override
+  String get main_screen_upload_logs => 'Muat Naik Log';
+
+  @override
+  String get main_screen_video_sources => 'Sumber video';
 
   @override
   String get maximum_occupancy => 'Bilangan Maksimum';
@@ -363,6 +416,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get metrics_counting_window => 'Statistik bagi setiap tempoh 5 minit';
+
+  @override
+  String get occupancy => 'Bilangan Semasa';
 
   @override
   String get onboarding_back_action => 'Kembali';
@@ -583,25 +639,6 @@ class LocalizationMs extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Langganan';
-
-  @override
-  String get start_screen_about => 'Tentang';
-
-  @override
-  String get start_screen_server_none =>
-      'Data disimpan pada peranti ini sahaja';
-
-  @override
-  String get start_screen_server_personal => 'Data dimuat naik setiap jam ke';
-
-  @override
-  String get start_screen_settings => 'Tetapan';
-
-  @override
-  String get start_screen_upload_logs => 'Muat Naik Log';
-
-  @override
-  String get start_screen_video_sources => 'Sumber video';
 
   @override
   String get stayed => 'Kekal';

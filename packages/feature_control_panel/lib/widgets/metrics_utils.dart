@@ -3,25 +3,25 @@ import 'package:feature_control_panel/widgets/metric_activity.dart';
 import 'package:feature_control_panel/widgets/metric_hero.dart';
 import 'package:feature_control_panel/widgets/metric_statistics.dart';
 import 'package:feature_control_panel/widgets/metrics_cards.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
 
 List<MetricCardData> mapVisionMetricsToCardData(
   BuildContext context, {
-  required vision.WindowCountState windowCount,
-  required vision.InterestAreaState areaState,
+  required feature_counting.WindowCountState windowCount,
+  required feature_counting.InterestAreaState areaState,
   required String countAvgOccLabel,
   required String countMaxOccLabel,
   required String countAvgDwellLabel,
   required String countMaxDwellLabel,
 }) {
   final orderedAreas = [
-    (id: vision.kGlobalAreaId, name: ''),
-    for (final area in areaState.activeAreas) (id: area.id, name: area.name),
+    (id: feature_counting.kGlobalAreaId, name: ''),
+    for (final area in areaState.areas) (id: area.id, name: area.name),
   ];
 
-  final areaColors = {for (final area in areaState.activeAreas) area.id: area.color};
+  final areaColors = {for (final area in areaState.areas) area.id: area.color};
 
   final panels = <MetricCardData>[];
 
@@ -32,11 +32,13 @@ List<MetricCardData> mapVisionMetricsToCardData(
       continue;
     }
 
-    final valueColor = area.id == vision.kGlobalAreaId ? Colors.lightBlue : (areaColors[area.id] ?? Colors.lightBlue);
+    final valueColor = area.id == feature_counting.kGlobalAreaId
+        ? Colors.lightBlue
+        : (areaColors[area.id] ?? Colors.lightBlue);
 
     panels.add(
       MetricCardData(
-        title: area.id == vision.kGlobalAreaId ? null : area.name,
+        title: area.id == feature_counting.kGlobalAreaId ? null : area.name,
         valueColor: valueColor,
 
         hero: HeroMetricData(

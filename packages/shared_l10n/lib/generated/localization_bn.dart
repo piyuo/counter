@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -302,6 +303,38 @@ class LocalizationBn extends Localization {
       'বর্তমান গণনা সময়সীমায় এই এলাকা থেকে বের হয়ে যাওয়া মানুষ বা যানবাহনের সংখ্যা গণনা করে。\\n\\nকোনো ব্যক্তি বা যানবাহন এলাকার ভেতর থেকে বাইরে গেলে একটি প্রস্থান গণনা করা হয়।';
 
   @override
+  String get interest_areas_screen_add_area => 'এলাকা যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'নতুন এলাকা যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_point => 'পয়েন্ট যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'এলাকায় পয়েন্ট যোগ করুন';
+
+  @override
+  String get interest_areas_screen_remove_area => 'এলাকা মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'নির্বাচিত এলাকা মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_point => 'পয়েন্ট মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'নির্বাচিত পয়েন্ট মুছুন';
+
+  @override
+  String get interest_areas_screen_reset => 'রিসেট';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'বিদ্যমান সব আগ্রহের এলাকা মুছুন';
+
+  @override
   String get language_screen_language => 'ভাষা';
 
   @override
@@ -317,6 +350,27 @@ class LocalizationBn extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter সম্পূর্ণভাবে এই ডিভাইসেই চলবে।\\nট্রাফিক পরিসংখ্যান শুধু এই ডিভাইসেই সংরক্ষণ হবে এবং আপলোড করা হবে না।\\nপরে Settings থেকে Piyuo Cloud বা নিজের সার্ভারের সাথে সংযোগ করতে পারবেন।';
+
+  @override
+  String get main_screen_about => 'সম্পর্কে';
+
+  @override
+  String get main_screen_interest_area => 'আগ্রহের এলাকা';
+
+  @override
+  String get main_screen_server_none => 'ডেটা শুধু এই ডিভাইসেই সংরক্ষিত থাকবে';
+
+  @override
+  String get main_screen_server_personal => 'ডেটা প্রতি ঘণ্টায় আপলোড করা হয়';
+
+  @override
+  String get main_screen_settings => 'সেটিংস';
+
+  @override
+  String get main_screen_upload_logs => 'লগ আপলোড করুন';
+
+  @override
+  String get main_screen_video_sources => 'ভিডিও উৎস';
 
   @override
   String get maximum_occupancy => 'সর্বোচ্চ উপস্থিতি';
@@ -361,6 +415,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get metrics_counting_window => 'প্রতি ৫ মিনিটের পরিসংখ্যান';
+
+  @override
+  String get occupancy => 'বর্তমান সংখ্যা';
 
   @override
   String get onboarding_back_action => 'ফিরে যান';
@@ -580,24 +637,6 @@ class LocalizationBn extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'সাবস্ক্রিপশন';
-
-  @override
-  String get start_screen_about => 'সম্পর্কে';
-
-  @override
-  String get start_screen_server_none => 'ডেটা শুধু এই ডিভাইসেই সংরক্ষিত থাকবে';
-
-  @override
-  String get start_screen_server_personal => 'ডেটা প্রতি ঘণ্টায় আপলোড করা হয়';
-
-  @override
-  String get start_screen_settings => 'সেটিংস';
-
-  @override
-  String get start_screen_upload_logs => 'লগ আপলোড করুন';
-
-  @override
-  String get start_screen_video_sources => 'ভিডিও উৎস';
 
   @override
   String get stayed => 'থেকেছে';
