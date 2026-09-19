@@ -4,9 +4,9 @@ import 'dart:math';
 import 'package:core_domain/app_flow/models/app_flow.dart';
 import 'package:core_domain/app_flow/models/app_flow_event.dart';
 import 'package:core_domain/app_flow/providers/app_flow_notifier.dart';
-import 'package:core_domain/services/analytic_service.dart';
 import 'package:core_domain/services/hardware_capability_service.dart';
 import 'package:core_domain/services/token_generator_service.dart';
+import 'package:core_domain/services/usage_service.dart';
 import 'package:core_domain/services/vision_service.dart';
 import 'package:core_domain/state/models/app_state.dart';
 import 'package:core_domain/state/models/data_server.dart';
@@ -64,7 +64,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     // Auto-generate a stable device ID on first boot or after a data reset.
     if (loadedState.deviceId.isEmpty) {
       // first boot or after a data reset
-      ref.read(analyticsServiceProvider).logEvent(NewDeviceEvent());
+      ref.read(usageServiceProvider).logEvent(NewDeviceEvent());
       // random url for personal piyuo.com endpoint, setup by user
       final random = ref.read(tokenGeneratorServiceProvider).generate();
       // Auto-generate a stable per-device upload jitter (0–180 s) on first boot.
@@ -179,7 +179,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       appkit.logWarning('[AppNotifier] Vision runtime is not running, cannot set video source.');
       return;
     }
-    ref.read(analyticsServiceProvider).logEvent(SetSourceEvent(source: getVideoSourceName(videoSource)));
+    ref.read(usageServiceProvider).logEvent(SetSourceEvent(source: getVideoSourceName(videoSource)));
     final visionRuntimeService = ref.read(visionRuntimeServiceProvider);
     final isVideoTypeChanged = await visionRuntimeService.isVideoTypeChanged(videoSource);
     if (isVideoTypeChanged == false) {
@@ -224,7 +224,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     state = AsyncData(updated);
     await repo.save(updated);
 
-    await ref.read(analyticsServiceProvider).logEvent(SetTargetEvent(target: detectionType.toString()));
+    await ref.read(usageServiceProvider).logEvent(SetTargetEvent(target: detectionType.toString()));
     final appRuntimeState = ref.read(appRuntimeProvider);
     if (!appRuntimeState.isVisionRunning) {
       return;
@@ -269,7 +269,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final updated = current.copyWith(dataServerSelection: DataServerSelection.personalPiyuo);
     await ref.read(appRuntimeProvider.notifier).clearBearerToken(); // no bearer token for personal piyuo server
     await _saveUpdatedState(updated);
-    ref.read(analyticsServiceProvider).logEvent(SelectPersonalPiyuoEvent());
+    ref.read(usageServiceProvider).logEvent(SelectPersonalPiyuoEvent());
   }
 
   @override
@@ -283,7 +283,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       personalCustomServer: PersonalCustomServer(url: url),
     );
     await _saveUpdatedState(updated);
-    ref.read(analyticsServiceProvider).logEvent(SelectPersonalCustomEvent());
+    ref.read(usageServiceProvider).logEvent(SelectPersonalCustomEvent());
   }
 
   @override
@@ -298,7 +298,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       businessPiyuoServer: server,
     );
     await _saveUpdatedState(updated);
-    ref.read(analyticsServiceProvider).logEvent(SelectBusinessPiyuoEvent());
+    ref.read(usageServiceProvider).logEvent(SelectBusinessPiyuoEvent());
   }
 
   @override
@@ -313,7 +313,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       businessCustomServer: server,
     );
     await _saveUpdatedState(updated);
-    ref.read(analyticsServiceProvider).logEvent(SelectBusinessCustomEvent());
+    ref.read(usageServiceProvider).logEvent(SelectBusinessCustomEvent());
   }
 
   @override
@@ -324,7 +324,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     }
     final updated = current.copyWith(dataServerSelection: DataServerSelection.noDataServer);
     await _saveUpdatedState(updated);
-    ref.read(analyticsServiceProvider).logEvent(SelectNoDataServerEvent());
+    ref.read(usageServiceProvider).logEvent(SelectNoDataServerEvent());
   }
 
   @override
@@ -372,7 +372,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     );
     state = AsyncData(newState);
     await repo.save(newState);
-    await ref.read(analyticsServiceProvider).logEvent(ResetEvent());
+    await ref.read(usageServiceProvider).logEvent(ResetEvent());
   }
 
   @override

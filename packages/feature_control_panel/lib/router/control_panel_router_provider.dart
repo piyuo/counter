@@ -39,7 +39,7 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
     pendingPreviousFlow = prev;
     notifier.value++;
   });
-  final analyticsService = ref.read(core_domain.analyticsServiceProvider);
+  final analyticsService = ref.read(core_domain.usageServiceProvider);
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
     refreshListenable: notifier,

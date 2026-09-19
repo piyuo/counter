@@ -13,3 +13,12 @@ scripts:
         - core_domain
         - core_runtime
         - feature_control_panel
+        - feature_control_counting
+        - feature_control_analytics
+        - feature_control_counting
+        - feature_control_insight
+        - feature_control_monitor
+        - feature_control_onboarding
+        - feature_control_pip
+        - feature_control_usage
+        - shared_l10n

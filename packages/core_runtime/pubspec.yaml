@@ -5,7 +5,7 @@ resolution: workspace
 publish_to: none
 
 environment:
-  sdk: ^3.11.0
+  sdk: ^3.13.3
   flutter: ">=1.17.0"
 
 dependencies:
@@ -36,7 +36,7 @@ dependencies:
   uuid: ^4.6.0
   path: ^1.9.1
   path_provider: ^2.1.6
-  feature_analytic: any
+  feature_usage: any
   firebase_core: ^4.14.0
   firebase_analytics: ^12.5.0
 dev_dependencies:

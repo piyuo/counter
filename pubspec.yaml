@@ -6,19 +6,24 @@ workspace:
   - apps/counter_app
   - packages/core_domain
   - packages/core_runtime
-  - packages/feature_analytic
+  - packages/feature_analytics
+  - packages/feature_counting
+  - packages/feature_insight
+  - packages/feature_usage
   - packages/feature_control_panel
   - packages/feature_monitor
   - packages/feature_onboarding
   - packages/feature_pip
   - packages/shared_l10n
 dev_dependencies:
-  melos: ^7.4.0
+  melos: ^8.8.0
+
 
 # Vendored copy of firebase_core with the "windows" plugin platform stripped, so
 # `flutter build windows` never tries to download/link the Firebase C++ SDK.
 # See third_party/firebase_core/README.md.
 dependency_overrides:
+  cli_util: ^0.6.0 # melos required higher version, but flutter_launcher_icons like 0.4.1 , so we lock at higher version
   firebase_core:
     path: third_party/firebase_core
 

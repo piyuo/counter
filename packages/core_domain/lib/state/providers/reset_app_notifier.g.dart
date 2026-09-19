@@ -41,7 +41,7 @@ final class ResetAppNotifierProvider
   }
 }
 
-String _$resetAppNotifierHash() => r'c0fa6073818ecff462f1b1a91a29b36e3132cb24';
+String _$resetAppNotifierHash() => r'654f813e8b3d56c1609aa0197f0cbdc0dfdd5a43';
 
 abstract class _$ResetAppNotifier extends $Notifier<void> {
   void build();

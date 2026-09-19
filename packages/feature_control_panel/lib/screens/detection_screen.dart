@@ -131,7 +131,7 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                             setState(() {
                               ref.read(core_domain.appProvider.notifier).setTrackIdVisible(value);
                               if (value) {
-                                ref.read(core_domain.analyticsServiceProvider).logEvent(core_domain.ShowTrackIdEvent());
+                                ref.read(core_domain.usageServiceProvider).logEvent(core_domain.ShowTrackIdEvent());
                               }
                             });
                           },

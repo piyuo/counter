@@ -9,8 +9,8 @@ import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-import 'analytics_initializer.dart';
 import 'app_shell/app_shell.dart';
+import 'usage_initializer.dart';
 
 void main() async {
   late core_runtime.TelemetryDatabaseFun dbFactory;
@@ -21,16 +21,15 @@ void main() async {
       final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
       dbFactory = await core_runtime.DriftTelemetryDatabase.open(filePath: telemetryDbPath);
       if (!kDebugMode) {
-        await initializeAnalytics();
+        await initializeUsage();
       }
     },
 
     ProviderScope(
       //observers: [appkit.riverpodObserver()],
       overrides: [
-        core_domain.analyticsServiceProvider.overrideWith((ref) {
-          final analyticService = ref.read(core_runtime.featureAnalyticServiceProvider.notifier);
-          return analyticService;
+        core_domain.usageServiceProvider.overrideWith((ref) {
+          return ref.read(core_runtime.featureUsageServiceProvider.notifier);
         }),
 
         core_domain.appStateRepositoryProvider.overrideWith((ref) => core_runtime.SharedPrefsAppStateRepository()),

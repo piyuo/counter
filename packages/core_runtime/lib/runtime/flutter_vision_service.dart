@@ -61,7 +61,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     if (_startTime != null) {
       final lastUsageDuration = DateTime.now().difference(_startTime!);
       ref
-          .read(core_domain.analyticsServiceProvider)
+          .read(core_domain.usageServiceProvider)
           .logEvent(core_domain.VisionStopEvent(usageDuration: lastUsageDuration));
       _startTime = null;
     }
@@ -88,7 +88,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
       isTrackIdVisible: isTrackIdVisible,
     );
     ref
-        .read(core_domain.analyticsServiceProvider)
+        .read(core_domain.usageServiceProvider)
         .logEvent(core_domain.VisionStartEvent(source: core_domain.getVideoSourceName(videoSource)));
   }
 

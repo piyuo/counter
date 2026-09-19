@@ -8,7 +8,7 @@ PODS:
     - FlutterMacOS
   - Firebase/CoreOnly (12.18.0):
     - FirebaseCore (~> 12.18.0)
-  - firebase_analytics (12.5.0):
+  - firebase_analytics (12.6.0):
     - firebase_core
     - FirebaseAnalytics (= 12.18.0)
     - FlutterMacOS
@@ -106,7 +106,7 @@ PODS:
     - FlutterMacOS
   - PromisesObjC (2.4.1)
   - Sentry/HybridSDK (8.58.4)
-  - sentry_flutter (9.29.0):
+  - sentry_flutter (9.30.0):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.4)
@@ -178,7 +178,7 @@ SPEC CHECKSUMS:
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   file_selector_macos: 3e56eaea051180007b900eacb006686fd54da150
   Firebase: 5523dd53ebe603451b4e1befcd99fa20a5c015cd
-  firebase_analytics: f0b14a3865f0f3a4ea578db8a98c3e0eb6b4ee00
+  firebase_analytics: 8a1b642b7220119a24836de981c2ac579782fd36
   firebase_core: 78db4ffa2483f5e2de9eb8a69b544c9e98ff64e3
   FirebaseAnalytics: 651ecdc96c7dd8df0c15d55b6c6b70f78c2987b9
   FirebaseCore: 96787d19ee32dc2242cc487b301bc616afeb398b
@@ -192,7 +192,7 @@ SPEC CHECKSUMS:
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
   PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
-  sentry_flutter: a8a05a0bd928d60d0d37540ddfec7768ce9e3723
+  sentry_flutter: fefcc8a0130c0374f830b7904f82afb8f0607cb4
   share_plus: 1fa619de8392a4398bfaf176d441853922614e89
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   url_launcher_macos: 175a54c831f4375a6cf895875f716ee5af3888ce
