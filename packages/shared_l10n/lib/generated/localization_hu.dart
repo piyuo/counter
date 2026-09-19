@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -306,6 +307,39 @@ class LocalizationHu extends Localization {
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt elhagyták ezt a területet.\\n\\nKilépés akkor kerül számításra, amikor egy személy vagy jármű a területen belülről kifelé mozog.';
 
   @override
+  String get interest_areas_screen_add_area => 'Terület hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Új terület hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_point => 'Pont hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Terület pont hozzáadása';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Terület eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Kijelölt terület eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Pont eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Kijelölt pont eltávolítása';
+
+  @override
+  String get interest_areas_screen_reset => 'Visszaállítás';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Az összes meglévő érdeklődési terület eltávolítása';
+
+  @override
   String get language_screen_language => 'Nyelv';
 
   @override
@@ -321,6 +355,29 @@ class LocalizationHu extends Localization {
   @override
   String get local_screen_text =>
       'A Piyuo Counter teljes egészében ezen az eszközön fut.\\nA forgalmi statisztikák csak ezen az eszközön lesznek tárolva, és nem kerülnek feltöltésre.\\nKésőbb a Beállításokban csatlakozhat a Piyuo Cloudhoz vagy saját szerveréhez.';
+
+  @override
+  String get main_screen_about => 'Névjegy';
+
+  @override
+  String get main_screen_interest_area => 'Érdeklődési Terület';
+
+  @override
+  String get main_screen_server_none =>
+      'Az adatok csak ezen az eszközön maradnak';
+
+  @override
+  String get main_screen_server_personal =>
+      'Az adatok óránként kerülnek feltöltésre ide';
+
+  @override
+  String get main_screen_settings => 'Beállítások';
+
+  @override
+  String get main_screen_upload_logs => 'Naplók feltöltése';
+
+  @override
+  String get main_screen_video_sources => 'Videóforrások';
 
   @override
   String get maximum_occupancy => 'Maximális létszám';
@@ -366,6 +423,9 @@ class LocalizationHu extends Localization {
   @override
   String get metrics_counting_window =>
       'Statisztikák minden 5 perces időszakhoz';
+
+  @override
+  String get occupancy => 'Jelenlegi darabszám';
 
   @override
   String get onboarding_back_action => 'Vissza';
@@ -588,26 +648,6 @@ class LocalizationHu extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Előfizetés';
-
-  @override
-  String get start_screen_about => 'Névjegy';
-
-  @override
-  String get start_screen_server_none =>
-      'Az adatok csak ezen az eszközön maradnak';
-
-  @override
-  String get start_screen_server_personal =>
-      'Az adatok óránként kerülnek feltöltésre ide';
-
-  @override
-  String get start_screen_settings => 'Beállítások';
-
-  @override
-  String get start_screen_upload_logs => 'Naplók feltöltése';
-
-  @override
-  String get start_screen_video_sources => 'Videóforrások';
 
   @override
   String get stayed => 'Tartózkodott';

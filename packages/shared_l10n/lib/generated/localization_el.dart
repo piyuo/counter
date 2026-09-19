@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,39 @@ class LocalizationEl extends Localization {
       'Μετρά τα άτομα ή τα οχήματα που εξήλθαν από αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΜια έξοδος καταγράφεται όταν ένα άτομο ή όχημα μετακινείται από το εσωτερικό προς το εξωτερικό της περιοχής.';
 
   @override
+  String get interest_areas_screen_add_area => 'Προσθήκη περιοχής';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Προσθήκη νέας περιοχής';
+
+  @override
+  String get interest_areas_screen_add_point => 'Προσθήκη σημείου';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Προσθήκη σημείου περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Αφαίρεση περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Αφαίρεση επιλεγμένης περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Αφαίρεση σημείου';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Αφαίρεση επιλεγμένου σημείου';
+
+  @override
+  String get interest_areas_screen_reset => 'Επαναφορά';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Αφαίρεση όλων των υπαρχόντων περιοχών ενδιαφέροντος';
+
+  @override
   String get language_screen_language => 'Γλώσσα';
 
   @override
@@ -320,6 +354,29 @@ class LocalizationEl extends Localization {
   @override
   String get local_screen_text =>
       'Το Piyuo Counter θα εκτελείται εξ ολοκλήρου σε αυτή τη συσκευή.\\nΤα στατιστικά κίνησης θα αποθηκεύονται μόνο σε αυτή τη συσκευή και δεν θα μεταφορτώνονται.\\nΜπορείτε αργότερα να συνδεθείτε στο Piyuo Cloud ή στον δικό σας διακομιστή από τις Ρυθμίσεις.';
+
+  @override
+  String get main_screen_about => 'Σχετικά';
+
+  @override
+  String get main_screen_interest_area => 'Περιοχή Ενδιαφέροντος';
+
+  @override
+  String get main_screen_server_none =>
+      'Τα δεδομένα αποθηκεύονται μόνο σε αυτήν τη συσκευή';
+
+  @override
+  String get main_screen_server_personal =>
+      'Τα δεδομένα μεταφορτώνονται κάθε ώρα στο';
+
+  @override
+  String get main_screen_settings => 'Ρυθμίσεις';
+
+  @override
+  String get main_screen_upload_logs => 'Μεταφόρτωση αρχείων καταγραφής';
+
+  @override
+  String get main_screen_video_sources => 'Πηγές βίντεο';
 
   @override
   String get maximum_occupancy => 'Μέγιστη πληρότητα';
@@ -364,6 +421,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get metrics_counting_window => 'Στατιστικά για κάθε περίοδο 5 λεπτών';
+
+  @override
+  String get occupancy => 'Τρέχων αριθμός';
 
   @override
   String get onboarding_back_action => 'Πίσω';
@@ -587,26 +647,6 @@ class LocalizationEl extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Συνδρομή';
-
-  @override
-  String get start_screen_about => 'Σχετικά';
-
-  @override
-  String get start_screen_server_none =>
-      'Τα δεδομένα αποθηκεύονται μόνο σε αυτήν τη συσκευή';
-
-  @override
-  String get start_screen_server_personal =>
-      'Τα δεδομένα μεταφορτώνονται κάθε ώρα στο';
-
-  @override
-  String get start_screen_settings => 'Ρυθμίσεις';
-
-  @override
-  String get start_screen_upload_logs => 'Μεταφόρτωση αρχείων καταγραφής';
-
-  @override
-  String get start_screen_video_sources => 'Πηγές βίντεο';
 
   @override
   String get stayed => 'Παρέμειναν';

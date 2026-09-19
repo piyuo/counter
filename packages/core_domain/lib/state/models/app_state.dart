@@ -21,7 +21,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'data_server.dart';
 import 'detection_params.dart';
 import 'detection_type.dart';
-import 'interest_area_data.dart';
+import 'interest_area.dart';
 import 'upload_config.dart';
 import 'video_source.dart';
 
@@ -93,7 +93,7 @@ sealed class AppState with _$AppState {
     /// Stored as domain models that can be serialized to JSON. At runtime,
     /// these are converted to flutter_vision's InterestArea instances when
     /// configuring the vision session.
-    @Default([]) List<InterestAreaData> interestAreas,
+    @Default([]) List<InterestArea> interestAreas,
 
     /// Whether track IDs should be visible in the detection output.
     @Default(false) bool isTrackIdVisible,

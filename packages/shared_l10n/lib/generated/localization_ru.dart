@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -302,6 +303,39 @@ class LocalizationRu extends Localization {
       'Подсчитывает людей или транспортные средства, покинувших эту область в течение текущего окна подсчета.\\n\\nВыход учитывается, когда человек или транспортное средство перемещается изнутри области наружу.';
 
   @override
+  String get interest_areas_screen_add_area => 'Добавить область';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Добавить новую область';
+
+  @override
+  String get interest_areas_screen_add_point => 'Добавить точку';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Добавить точку области';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Удалить область';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Удалить выбранную область';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Удалить точку';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Удалить выбранную точку';
+
+  @override
+  String get interest_areas_screen_reset => 'Сбросить';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Удалить все существующие зоны интереса';
+
+  @override
   String get language_screen_language => 'Язык';
 
   @override
@@ -319,6 +353,28 @@ class LocalizationRu extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter будет работать полностью на этом устройстве.\\nСтатистика трафика будет храниться только на этом устройстве и не будет загружаться.\\nПозже вы сможете подключиться к Piyuo Cloud или своему серверу через Настройки.';
+
+  @override
+  String get main_screen_about => 'О программе';
+
+  @override
+  String get main_screen_interest_area => 'Область интереса';
+
+  @override
+  String get main_screen_server_none =>
+      'Данные хранятся только на этом устройстве';
+
+  @override
+  String get main_screen_server_personal => 'Данные загружаются каждый час на';
+
+  @override
+  String get main_screen_settings => 'Настройки';
+
+  @override
+  String get main_screen_upload_logs => 'Загрузить журналы';
+
+  @override
+  String get main_screen_video_sources => 'Источники видео';
 
   @override
   String get maximum_occupancy => 'Максимальная заполняемость';
@@ -364,6 +420,9 @@ class LocalizationRu extends Localization {
   @override
   String get metrics_counting_window =>
       'Статистика для каждого 5-минутного периода';
+
+  @override
+  String get occupancy => 'Текущее количество';
 
   @override
   String get onboarding_back_action => 'Назад';
@@ -585,25 +644,6 @@ class LocalizationRu extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Подписка';
-
-  @override
-  String get start_screen_about => 'О программе';
-
-  @override
-  String get start_screen_server_none =>
-      'Данные хранятся только на этом устройстве';
-
-  @override
-  String get start_screen_server_personal => 'Данные загружаются каждый час на';
-
-  @override
-  String get start_screen_settings => 'Настройки';
-
-  @override
-  String get start_screen_upload_logs => 'Загрузить журналы';
-
-  @override
-  String get start_screen_video_sources => 'Источники видео';
 
   @override
   String get stayed => 'Остались';

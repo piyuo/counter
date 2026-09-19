@@ -48,6 +48,12 @@ class OpenSettings extends NavigationEvent {
   String? get path => '/settings';
 }
 
+class OpenInterestAreas extends NavigationEvent {
+  const OpenInterestAreas();
+  @override
+  String? get path => '/interest-areas';
+}
+
 class OpenSettingsPiyuo extends NavigationEvent {
   const OpenSettingsPiyuo();
   @override

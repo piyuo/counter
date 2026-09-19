@@ -1,0 +1,21 @@
+name: feature_usage
+description: "Cross-platform analytics with a pluggable native backend (e.g. Firebase Analytics) plus a built-in GA4 Measurement Protocol HTTP fallback. Has no dependency on any Firebase package."
+version: 1.5.4
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.3
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.6.0
+  shared_preferences: ^2.5.5
+  uuid: ^4.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

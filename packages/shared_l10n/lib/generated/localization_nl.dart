@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -303,6 +304,39 @@ class LocalizationNl extends Localization {
       'Telt mensen of voertuigen die tijdens het huidige telvenster dit gebied hebben verlaten.\\n\\nEen vertrek wordt geteld wanneer een persoon of voertuig van binnen het gebied naar buiten beweegt.';
 
   @override
+  String get interest_areas_screen_add_area => 'Gebied toevoegen';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Nieuw gebied toevoegen';
+
+  @override
+  String get interest_areas_screen_add_point => 'Punt toevoegen';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Gebiedspunt toevoegen';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Gebied verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Geselecteerd gebied verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Punt verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Geselecteerd punt verwijderen';
+
+  @override
+  String get interest_areas_screen_reset => 'Reset';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Alle bestaande interessegebieden verwijderen';
+
+  @override
   String get language_screen_language => 'Taal';
 
   @override
@@ -319,6 +353,29 @@ class LocalizationNl extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter werkt volledig op dit apparaat.\\nVerkeersstatistieken worden alleen op dit apparaat opgeslagen en niet geüpload.\\nU kunt later via Instellingen verbinding maken met Piyuo Cloud of uw eigen server.';
+
+  @override
+  String get main_screen_about => 'Over';
+
+  @override
+  String get main_screen_interest_area => 'Interessegebied';
+
+  @override
+  String get main_screen_server_none =>
+      'Gegevens worden alleen op dit apparaat opgeslagen';
+
+  @override
+  String get main_screen_server_personal =>
+      'Gegevens worden elk uur geüpload naar';
+
+  @override
+  String get main_screen_settings => 'Instellingen';
+
+  @override
+  String get main_screen_upload_logs => 'Logboeken uploaden';
+
+  @override
+  String get main_screen_video_sources => 'Videobronnen';
 
   @override
   String get maximum_occupancy => 'Maximale bezetting';
@@ -364,6 +421,9 @@ class LocalizationNl extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistieken voor elke periode van 5 minuten';
+
+  @override
+  String get occupancy => 'Huidig aantal';
 
   @override
   String get onboarding_back_action => 'Terug';
@@ -584,26 +644,6 @@ class LocalizationNl extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Abonnement';
-
-  @override
-  String get start_screen_about => 'Over';
-
-  @override
-  String get start_screen_server_none =>
-      'Gegevens worden alleen op dit apparaat opgeslagen';
-
-  @override
-  String get start_screen_server_personal =>
-      'Gegevens worden elk uur geüpload naar';
-
-  @override
-  String get start_screen_settings => 'Instellingen';
-
-  @override
-  String get start_screen_upload_logs => 'Logboeken uploaden';
-
-  @override
-  String get start_screen_video_sources => 'Videobronnen';
 
   @override
   String get stayed => 'Verbleven';

@@ -6,7 +6,7 @@ PODS:
   - EigenCocoa (3.4.0)
   - Firebase/CoreOnly (12.18.0):
     - FirebaseCore (~> 12.18.0)
-  - firebase_analytics (12.5.0):
+  - firebase_analytics (12.6.0):
     - firebase_core
     - FirebaseAnalytics (= 12.18.0)
     - Flutter
@@ -115,7 +115,7 @@ PODS:
   - sensors_plus (0.0.1):
     - Flutter
   - Sentry/HybridSDK (8.58.4)
-  - sentry_flutter (9.29.0):
+  - sentry_flutter (9.30.0):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.4)
@@ -193,7 +193,7 @@ SPEC CHECKSUMS:
   camera_avfoundation: 769d252259fa21e39ada7399c9dc9c0921af8165
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   Firebase: 5523dd53ebe603451b4e1befcd99fa20a5c015cd
-  firebase_analytics: 894010794ae817b324e9726024db763607942220
+  firebase_analytics: 3bb05d2ab2b4ba9e4ff0810ac75865e2b15a914d
   firebase_core: 9bb8d013f9b36a31d32e34629e5348dd51d8e35e
   FirebaseAnalytics: 651ecdc96c7dd8df0c15d55b6c6b70f78c2987b9
   FirebaseCore: 96787d19ee32dc2242cc487b301bc616afeb398b
@@ -211,7 +211,7 @@ SPEC CHECKSUMS:
   PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
   sensors_plus: c218c5335a0c9169ad70dfcb51b96cc395b3406a
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
-  sentry_flutter: a8a05a0bd928d60d0d37540ddfec7768ce9e3723
+  sentry_flutter: fefcc8a0130c0374f830b7904f82afb8f0607cb4
   share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa

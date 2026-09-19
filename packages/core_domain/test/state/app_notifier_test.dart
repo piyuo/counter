@@ -31,7 +31,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
-          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
+          usageServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -61,7 +61,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
-          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
+          usageServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -94,7 +94,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
-          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
+          usageServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -120,7 +120,7 @@ void main() {
           tokenGeneratorServiceProvider.overrideWith((ref) => tokenService),
           hardwareCapabilityServiceProvider.overrideWith((ref) => hardwareService),
           authStorageServiceProvider.overrideWith((ref) => authStorage),
-          analyticsServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
+          usageServiceProvider.overrideWith((ref) => _FakeAnalyticsService()),
         ],
       );
       addTearDown(container.dispose);
@@ -223,9 +223,9 @@ class _FakeAuthStorageService implements AuthStorageService {
   Future<bool> isExists(String key) async => store.containsKey(key);
 }
 
-class _FakeAnalyticsService implements AnalyticsService {
+class _FakeAnalyticsService implements UsageService {
   @override
-  Future<void> logEvent(AnalyticsEvent event) async {
+  Future<void> logEvent(UsageEvent event) async {
     // No-op for testing
   }
 

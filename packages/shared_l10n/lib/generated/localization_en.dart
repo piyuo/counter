@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -302,6 +303,37 @@ class LocalizationEn extends Localization {
       'Counts people or vehicles that left this area during the current counting window.\\n\\nAn exit is counted when a person or vehicle moves from inside the area to outside.';
 
   @override
+  String get interest_areas_screen_add_area => 'Add area';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Add area';
+
+  @override
+  String get interest_areas_screen_add_point => 'Add point';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Add area point';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Remove area';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Remove selected area';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Remove point';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Remove selected point';
+
+  @override
+  String get interest_areas_screen_reset => 'Reset';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Remove all existing interest areas';
+
+  @override
   String get language_screen_language => 'Language';
 
   @override
@@ -317,6 +349,27 @@ class LocalizationEn extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter will run entirely on this device.\\nTraffic statistics will be stored on this device only and won\'t be uploaded.\\nYou can connect to Piyuo Cloud or your own server later in Settings.';
+
+  @override
+  String get main_screen_about => 'About';
+
+  @override
+  String get main_screen_interest_area => 'Interest Area';
+
+  @override
+  String get main_screen_server_none => 'Stored on this device only';
+
+  @override
+  String get main_screen_server_personal => 'Data uploads hourly to';
+
+  @override
+  String get main_screen_settings => 'Settings';
+
+  @override
+  String get main_screen_upload_logs => 'Upload Logs';
+
+  @override
+  String get main_screen_video_sources => 'Video Sources';
 
   @override
   String get maximum_occupancy => 'Maximum Occupancy';
@@ -361,6 +414,9 @@ class LocalizationEn extends Localization {
 
   @override
   String get metrics_counting_window => 'Statistics for Each 5-Minute Period';
+
+  @override
+  String get occupancy => 'Current Count';
 
   @override
   String get onboarding_back_action => 'Back';
@@ -578,24 +634,6 @@ class LocalizationEn extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Subscription';
-
-  @override
-  String get start_screen_about => 'About';
-
-  @override
-  String get start_screen_server_none => 'Stored on this device only';
-
-  @override
-  String get start_screen_server_personal => 'Data uploads hourly to';
-
-  @override
-  String get start_screen_settings => 'Settings';
-
-  @override
-  String get start_screen_upload_logs => 'Upload Logs';
-
-  @override
-  String get start_screen_video_sources => 'Video Sources';
 
   @override
   String get stayed => 'Stayed';

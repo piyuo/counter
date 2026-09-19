@@ -4,7 +4,7 @@
 
 import 'package:core_domain/state/models/detection_params.dart';
 import 'package:core_domain/state/models/detection_type.dart';
-import 'package:core_domain/state/models/interest_area_data.dart';
+import 'package:core_domain/state/models/interest_area.dart';
 import 'package:core_domain/state/models/video_source.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,7 +15,7 @@ abstract class VisionService {
     required VideoSource videoSource,
     required DetectionType detectionType,
     required DetectionParams detectionParams,
-    required List<InterestAreaData> interestAreaDatas,
+    required List<InterestArea> interestAreaDatas,
     required bool isTrackIdVisible,
   });
 

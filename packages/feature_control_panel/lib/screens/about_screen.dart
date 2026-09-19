@@ -1,4 +1,5 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
@@ -120,7 +121,7 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                       ListTile(
                         title: Text("End Counting Window and Enqueue"),
                         onTap: () {
-                          ref.read(vision.windowCountProvider.notifier).debugForceWindowEnd();
+                          ref.read(feature_counting.windowCountProvider.notifier).debugForceWindowEnd();
                         },
                       ),
                     if (_versionTapCount >= 10)

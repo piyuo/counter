@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,38 @@ class LocalizationRo extends Localization {
       'Numără persoanele sau vehiculele care au ieșit din această zonă în timpul ferestrei curente de numărare.\\n\\nO ieșire este înregistrată atunci când o persoană sau un vehicul se deplasează din interiorul zonei spre exterior.';
 
   @override
+  String get interest_areas_screen_add_area => 'Adaugă zonă';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Adaugă zonă nouă';
+
+  @override
+  String get interest_areas_screen_add_point => 'Adaugă punct';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Adaugă punct zonă';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Elimină zona';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Elimină zona selectată';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Elimină punct';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Elimină punctul selectat';
+
+  @override
+  String get interest_areas_screen_reset => 'Resetare';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Elimină toate zonele de interes existente';
+
+  @override
   String get language_screen_language => 'Limbă';
 
   @override
@@ -320,6 +353,29 @@ class LocalizationRo extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter va funcționa în întregime pe acest dispozitiv.\\nStatisticile de trafic vor fi stocate doar pe acest dispozitiv și nu vor fi încărcate.\\nMai târziu vă puteți conecta la Piyuo Cloud sau la propriul server din Setări.';
+
+  @override
+  String get main_screen_about => 'Despre';
+
+  @override
+  String get main_screen_interest_area => 'Zonă de Interes';
+
+  @override
+  String get main_screen_server_none =>
+      'Datele sunt stocate doar pe acest dispozitiv';
+
+  @override
+  String get main_screen_server_personal =>
+      'Datele sunt încărcate la fiecare oră către';
+
+  @override
+  String get main_screen_settings => 'Setări';
+
+  @override
+  String get main_screen_upload_logs => 'Încarcă jurnalele';
+
+  @override
+  String get main_screen_video_sources => 'Surse video';
 
   @override
   String get maximum_occupancy => 'Număr maxim de persoane';
@@ -365,6 +421,9 @@ class LocalizationRo extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistici pentru fiecare perioadă de 5 minute';
+
+  @override
+  String get occupancy => 'Număr curent';
 
   @override
   String get onboarding_back_action => 'Înapoi';
@@ -587,26 +646,6 @@ class LocalizationRo extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Abonament';
-
-  @override
-  String get start_screen_about => 'Despre';
-
-  @override
-  String get start_screen_server_none =>
-      'Datele sunt stocate doar pe acest dispozitiv';
-
-  @override
-  String get start_screen_server_personal =>
-      'Datele sunt încărcate la fiecare oră către';
-
-  @override
-  String get start_screen_settings => 'Setări';
-
-  @override
-  String get start_screen_upload_logs => 'Încarcă jurnalele';
-
-  @override
-  String get start_screen_video_sources => 'Surse video';
 
   @override
   String get stayed => 'Rămași';

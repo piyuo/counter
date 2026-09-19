@@ -29,7 +29,7 @@ class SettingsScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
         child: Column(
           children: [
-            feature_pip.PipHeader(icon: Icons.settings, title: context.l.start_screen_settings),
+            feature_pip.PipHeader(icon: Icons.settings, title: context.l.main_screen_settings),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Align(

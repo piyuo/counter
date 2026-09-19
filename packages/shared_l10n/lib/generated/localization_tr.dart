@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,37 @@ class LocalizationTr extends Localization {
       'Bu alandan geçerli sayım penceresi sırasında çıkan kişi veya araçları sayar.\\n\\nBir kişi veya araç alanın içinden dışına geçtiğinde bir çıkış sayılır.';
 
   @override
+  String get interest_areas_screen_add_area => 'Alan ekle';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Yeni alan ekle';
+
+  @override
+  String get interest_areas_screen_add_point => 'Nokta ekle';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Alan noktası ekle';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Alanı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Seçili alanı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Noktayı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Seçili noktayı kaldır';
+
+  @override
+  String get interest_areas_screen_reset => 'Sıfırla';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Mevcut tüm ilgi alanlarını kaldır';
+
+  @override
   String get language_screen_language => 'Dil';
 
   @override
@@ -319,6 +351,28 @@ class LocalizationTr extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter tamamen bu cihazda çalışacaktır.\\nTrafik istatistikleri yalnızca bu cihazda saklanacak ve yüklenmeyecektir.\\nDaha sonra Ayarlar\'dan Piyuo Cloud veya kendi sunucunuza bağlanabilirsiniz.';
+
+  @override
+  String get main_screen_about => 'Hakkında';
+
+  @override
+  String get main_screen_interest_area => 'İlgi Alanı';
+
+  @override
+  String get main_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';
+
+  @override
+  String get main_screen_server_personal =>
+      'Veriler her saat şu adrese yüklenir';
+
+  @override
+  String get main_screen_settings => 'Ayarlar';
+
+  @override
+  String get main_screen_upload_logs => 'Bağlantı günlüklerini yükle';
+
+  @override
+  String get main_screen_video_sources => 'Video kaynakları';
 
   @override
   String get maximum_occupancy => 'Maksimum Kişi Sayısı';
@@ -364,6 +418,9 @@ class LocalizationTr extends Localization {
   @override
   String get metrics_counting_window =>
       'Her 5 dakikalık dönem için istatistikler';
+
+  @override
+  String get occupancy => 'Güncel Sayı';
 
   @override
   String get onboarding_back_action => 'Geri';
@@ -583,25 +640,6 @@ class LocalizationTr extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Abonelik';
-
-  @override
-  String get start_screen_about => 'Hakkında';
-
-  @override
-  String get start_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';
-
-  @override
-  String get start_screen_server_personal =>
-      'Veriler her saat şu adrese yüklenir';
-
-  @override
-  String get start_screen_settings => 'Ayarlar';
-
-  @override
-  String get start_screen_upload_logs => 'Bağlantı günlüklerini yükle';
-
-  @override
-  String get start_screen_video_sources => 'Video kaynakları';
 
   @override
   String get stayed => 'Kaldı';

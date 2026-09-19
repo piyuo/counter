@@ -1,0 +1,278 @@
+// InterestAreaToolbarOverlay widget
+//  Toolbar panel
+
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
+
+import '../../../core_domain/lib/controller/vision_notifier.dart';
+import '../../../core_domain/lib/l10n/l10n.dart';
+import '../../../core_domain/lib/util/floating_draggable.dart';
+import 'interest_area.dart';
+import 'interest_area_notifier.dart';
+
+const _toolbarWidth = 215.0;
+
+class InterestAreaToolbarOverlay extends ConsumerWidget {
+  const InterestAreaToolbarOverlay({
+    required this.child,
+    super.key,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final areaState = ref.watch(interestAreaProvider);
+
+    if (!areaState.isEditing) {
+      return child;
+    }
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return FloatingDraggable(
+          mainScreenWidget: child,
+          floatingWidget: const _InterestAreaToolbarPanel(),
+          dx: constraints.maxWidth - _toolbarWidth - 20, // 20 for padding
+          dy: 52,
+          floatingWidgetWidth: _toolbarWidth,
+          layoutWidth: constraints.maxWidth,
+          layoutHeight: constraints.maxHeight,
+        );
+      },
+    );
+  }
+}
+
+class _InterestAreaToolbarPanel extends ConsumerStatefulWidget {
+  const _InterestAreaToolbarPanel();
+
+  @override
+  ConsumerState<_InterestAreaToolbarPanel> createState() => _InterestAreaToolbarPanelState();
+}
+
+class _InterestAreaToolbarPanelState extends ConsumerState<_InterestAreaToolbarPanel> {
+  final _nameController = TextEditingController();
+  int? _lastSelectedAreaId;
+  bool _isFolded = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final areaState = ref.watch(interestAreaProvider);
+
+    final canRemoveArea = areaState.selectedAreaId != null;
+    final canAddPoint = areaState.selectedAreaId != null;
+    final canRemovePoint = areaState.selectedPointIndex != null;
+
+    // Update text controller when selected area changes
+    if (areaState.selectedAreaId != _lastSelectedAreaId) {
+      _lastSelectedAreaId = areaState.selectedAreaId;
+      if (areaState.selectedAreaId != null) {
+        final selectedArea = areaState.editingAreas.firstWhere(
+          (area) => area.id == areaState.selectedAreaId,
+          orElse: () => InterestArea(id: 0, name: '', points: const []),
+        );
+        _nameController.text = selectedArea.name;
+      } else {
+        _nameController.clear();
+      }
+    }
+
+    Future<void> handleFinishEditing() async {
+      final areaState = ref.read(interestAreaProvider);
+      if (!areaState.isEditing) {
+        return;
+      }
+      final visionController = ref.read(visionProvider.notifier);
+      await visionController.setPaused(false);
+      ref.read(interestAreaProvider.notifier).finishEditing();
+    }
+
+    Widget buildActionButton({
+      required IconData icon,
+      required String tooltip,
+      required String label,
+      VoidCallback? onPressed,
+      bool isEmphasized = false,
+    }) {
+      final foregroundColor = isEmphasized ? Colors.white : Colors.black;
+      final disabledColor = Colors.grey.shade700;
+
+      return SizedBox(
+        width: double.infinity,
+        child: Material(
+          color: isEmphasized ? Colors.blue.shade800 : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(12),
+            onTap: onPressed,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    icon,
+                    size: 26,
+                    color: onPressed == null ? disabledColor : foregroundColor,
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    label,
+                    style: TextStyle(
+                      color: onPressed == null ? disabledColor : foregroundColor,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return GlassContainer(
+      settings: LiquidGlassSettings(
+        glassColor: const Color.fromARGB(110, 255, 255, 255),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(_isFolded ? Icons.unfold_more : Icons.unfold_less, color: Colors.grey.shade900),
+                  onPressed: () {
+                    setState(() {
+                      _isFolded = !_isFolded;
+                    });
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.close, color: Colors.grey.shade900),
+                  tooltip: context.l.area_cancel,
+                  onPressed: () async {
+                    final areaState = ref.read(interestAreaProvider);
+                    if (!areaState.isEditing) {
+                      return;
+                    }
+                    await ref.read(visionProvider.notifier).setPaused(false); // todo: consider not to pause
+                    ref.read(interestAreaProvider.notifier).cancelEditing();
+                  },
+                ),
+              ],
+            ),
+            if (!_isFolded)
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.only(right: 2),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (canRemoveArea)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                          child: TextField(
+                            controller: _nameController,
+                            decoration: InputDecoration(
+                              labelText: context.l.area_name,
+                              labelStyle: TextStyle(color: Colors.grey.shade800),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(color: Colors.grey.shade400),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(8),
+                                borderSide: BorderSide(color: Colors.blue.shade800, width: 2),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                            ),
+                            style: const TextStyle(fontSize: 14, color: Colors.black),
+                            onChanged: (value) {
+                              ref.read(interestAreaProvider.notifier).updateSelectedAreaName(value);
+                            },
+                          ),
+                        ),
+                      if (canRemoveArea) const SizedBox(height: 10),
+                      buildActionButton(
+                          icon: Icons.add,
+                          tooltip: context.l.area_add_area_tip,
+                          label: context.l.area_add_area,
+                          onPressed: () {
+                            final state = ref.read(visionProvider);
+                            final videoWidth = state.videoWidth;
+                            final videoHeight = state.videoHeight;
+                            final areaState = ref.read(interestAreaProvider);
+                            final areaNotifier = ref.read(interestAreaProvider.notifier);
+                            if (areaState.isEditing) {
+                              areaNotifier.newArea(videoWidth, videoHeight);
+                            }
+                          }),
+                      const SizedBox(height: 6),
+                      buildActionButton(
+                        icon: Icons.remove,
+                        tooltip: context.l.area_remove_area_tip,
+                        label: context.l.area_remove_area,
+                        onPressed: !canRemoveArea
+                            ? null
+                            : () {
+                                ref.read(interestAreaProvider.notifier).removeSelectedArea();
+                              },
+                      ),
+                      const SizedBox(height: 6),
+                      buildActionButton(
+                        icon: Icons.add_circle_outline,
+                        tooltip: context.l.area_add_point_tip,
+                        label: context.l.area_add_point,
+                        onPressed: !canAddPoint
+                            ? null
+                            : () {
+                                ref.read(interestAreaProvider.notifier).addPointToArea();
+                              },
+                      ),
+                      const SizedBox(height: 6),
+                      buildActionButton(
+                        icon: Icons.remove_circle_outline,
+                        tooltip: context.l.area_remove_point_tip,
+                        label: context.l.area_remove_point,
+                        onPressed: !canRemovePoint
+                            ? null
+                            : () {
+                                ref.read(interestAreaProvider.notifier).removeSelectedPoint();
+                              },
+                      ),
+                      const SizedBox(height: 10),
+                      buildActionButton(
+                        icon: Icons.check,
+                        tooltip: context.l.area_save_tip,
+                        label: context.l.area_save,
+                        isEmphasized: true,
+                        onPressed: handleFinishEditing,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}

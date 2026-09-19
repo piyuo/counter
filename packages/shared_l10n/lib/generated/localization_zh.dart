@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -287,6 +288,36 @@ class LocalizationZh extends Localization {
       '統計目前計數期間內離開此區域的人員或車輛數量。\\n\\n當人員或車輛從區域內移動到區域外時，會計為一次離開。';
 
   @override
+  String get interest_areas_screen_add_area => '新增區域';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新增新區域';
+
+  @override
+  String get interest_areas_screen_add_point => '新增點';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '新增區域點';
+
+  @override
+  String get interest_areas_screen_remove_area => '移除區域';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '移除所選區域';
+
+  @override
+  String get interest_areas_screen_remove_point => '移除點';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '移除所選點';
+
+  @override
+  String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_tip => '移除所有現有的興趣區域';
+
+  @override
   String get language_screen_language => '語言';
 
   @override
@@ -302,6 +333,27 @@ class LocalizationZh extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter 將完全在此裝置上運作。\\n流量統計資料只會儲存在此裝置上，不會上傳。\\n之後您可以在「設定」中連接 Piyuo Cloud 或自己的伺服器。';
+
+  @override
+  String get main_screen_about => '關於';
+
+  @override
+  String get main_screen_interest_area => '感興趣區域';
+
+  @override
+  String get main_screen_server_none => '資料僅儲存在此裝置上';
+
+  @override
+  String get main_screen_server_personal => '資料每小時上傳至';
+
+  @override
+  String get main_screen_settings => '設定';
+
+  @override
+  String get main_screen_upload_logs => '上傳記錄';
+
+  @override
+  String get main_screen_video_sources => '視訊來源';
 
   @override
   String get maximum_occupancy => '最大人数';
@@ -346,6 +398,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get metrics_counting_window => '每 5 分鐘產生一次的統計資料';
+
+  @override
+  String get occupancy => '目前數量';
 
   @override
   String get onboarding_back_action => '返回';
@@ -551,24 +606,6 @@ class LocalizationZh extends Localization {
 
   @override
   String get settings_screen_subscription_title => '訂閱';
-
-  @override
-  String get start_screen_about => '關於';
-
-  @override
-  String get start_screen_server_none => '資料僅儲存在此裝置上';
-
-  @override
-  String get start_screen_server_personal => '資料每小時上傳至';
-
-  @override
-  String get start_screen_settings => '設定';
-
-  @override
-  String get start_screen_upload_logs => '上傳記錄';
-
-  @override
-  String get start_screen_video_sources => '視訊來源';
 
   @override
   String get stayed => '停留';
@@ -1046,6 +1083,36 @@ class LocalizationZhCn extends LocalizationZh {
       '统计当前计数窗口期间离开此区域的人员或车辆数量。\\n\\n当人员或车辆从区域内移动到区域外时，计为一次离开。';
 
   @override
+  String get interest_areas_screen_add_area => '新增区域';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新增新区域';
+
+  @override
+  String get interest_areas_screen_add_point => '新增点';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '新增区域点';
+
+  @override
+  String get interest_areas_screen_remove_area => '移除区域';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '移除所选区域';
+
+  @override
+  String get interest_areas_screen_remove_point => '移除点';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '移除所选点';
+
+  @override
+  String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_tip => '移除所有现有的兴趣区域';
+
+  @override
   String get language_screen_language => '语言';
 
   @override
@@ -1061,6 +1128,27 @@ class LocalizationZhCn extends LocalizationZh {
   @override
   String get local_screen_text =>
       'Piyuo Counter 将完全在此设备上运行。\\n流量统计数据只会保存在此设备上，不会上传。\\n之后您可以在“设置”中连接 Piyuo Cloud 或自己的服务器。';
+
+  @override
+  String get main_screen_about => '关于';
+
+  @override
+  String get main_screen_interest_area => '感兴趣区域';
+
+  @override
+  String get main_screen_server_none => '数据仅保存在此设备上';
+
+  @override
+  String get main_screen_server_personal => '数据每小时上传至';
+
+  @override
+  String get main_screen_settings => '设置';
+
+  @override
+  String get main_screen_upload_logs => '上传日志';
+
+  @override
+  String get main_screen_video_sources => '视频来源';
 
   @override
   String get maximum_occupancy => '最大人数';
@@ -1105,6 +1193,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get metrics_counting_window => '每 5 分钟生成一次的统计数据';
+
+  @override
+  String get occupancy => '当前数量';
 
   @override
   String get onboarding_back_action => '返回';
@@ -1310,24 +1401,6 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get settings_screen_subscription_title => '订阅';
-
-  @override
-  String get start_screen_about => '关于';
-
-  @override
-  String get start_screen_server_none => '数据仅保存在此设备上';
-
-  @override
-  String get start_screen_server_personal => '数据每小时上传至';
-
-  @override
-  String get start_screen_settings => '设置';
-
-  @override
-  String get start_screen_upload_logs => '上传日志';
-
-  @override
-  String get start_screen_video_sources => '视频来源';
 
   @override
   String get stayed => '停留';

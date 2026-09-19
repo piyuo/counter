@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -303,6 +304,37 @@ class LocalizationSr extends Localization {
       'Broji ljude ili vozila koja su izašla iz ove oblasti tokom trenutnog perioda brojanja.\\n\\nIzlazak se računa kada se osoba ili vozilo kreće iz unutrašnjosti oblasti ka spolja.';
 
   @override
+  String get interest_areas_screen_add_area => 'Dodaj oblast';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Dodaj novu oblast';
+
+  @override
+  String get interest_areas_screen_add_point => 'Dodaj tačku';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Dodaj tačku oblasti';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Ukloni oblast';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Ukloni izabranu oblast';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Ukloni tačku';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Ukloni izabranu tačku';
+
+  @override
+  String get interest_areas_screen_reset => 'Resetuj';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Ukloni sve postojeće oblasti interesovanja';
+
+  @override
   String get language_screen_language => 'Jezik';
 
   @override
@@ -319,6 +351,28 @@ class LocalizationSr extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter će raditi u potpunosti na ovom uređaju.\\nStatistika saobraćaja biće sačuvana samo na ovom uređaju i neće se otpremati.\\nKasnije se možete povezati sa Piyuo Cloud ili svojim serverom u Podešavanjima.';
+
+  @override
+  String get main_screen_about => 'O programu';
+
+  @override
+  String get main_screen_interest_area => 'Oblast interesovanja';
+
+  @override
+  String get main_screen_server_none => 'Podaci se čuvaju samo na ovom uređaju';
+
+  @override
+  String get main_screen_server_personal =>
+      'Podaci se otpremaju svakog sata na';
+
+  @override
+  String get main_screen_settings => 'Podešavanja';
+
+  @override
+  String get main_screen_upload_logs => 'Otpremi zapisnike';
+
+  @override
+  String get main_screen_video_sources => 'Izvori videa';
 
   @override
   String get maximum_occupancy => 'Maksimalna popunjenost';
@@ -364,6 +418,9 @@ class LocalizationSr extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistika za svaki period od 5 minuta';
+
+  @override
+  String get occupancy => 'Тренутни број';
 
   @override
   String get onboarding_back_action => 'Nazad';
@@ -584,26 +641,6 @@ class LocalizationSr extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Pretplata';
-
-  @override
-  String get start_screen_about => 'O programu';
-
-  @override
-  String get start_screen_server_none =>
-      'Podaci se čuvaju samo na ovom uređaju';
-
-  @override
-  String get start_screen_server_personal =>
-      'Podaci se otpremaju svakog sata na';
-
-  @override
-  String get start_screen_settings => 'Podešavanja';
-
-  @override
-  String get start_screen_upload_logs => 'Otpremi zapisnike';
-
-  @override
-  String get start_screen_video_sources => 'Izvori videa';
 
   @override
   String get stayed => 'Ostali';

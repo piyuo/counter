@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -294,6 +295,36 @@ class LocalizationKo extends Localization {
       '현재 집계 시간 동안 이 영역을 벗어난 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량이 영역 안에서 밖으로 이동하면 한 번의 이탈로 계산됩니다.';
 
   @override
+  String get interest_areas_screen_add_area => '영역 추가';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '새 영역 추가';
+
+  @override
+  String get interest_areas_screen_add_point => '포인트 추가';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '영역 포인트 추가';
+
+  @override
+  String get interest_areas_screen_remove_area => '영역 제거';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '선택한 영역 제거';
+
+  @override
+  String get interest_areas_screen_remove_point => '포인트 제거';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '선택한 포인트 제거';
+
+  @override
+  String get interest_areas_screen_reset => '초기화';
+
+  @override
+  String get interest_areas_screen_reset_tip => '기존의 모든 관심 영역 제거';
+
+  @override
   String get language_screen_language => '언어';
 
   @override
@@ -309,6 +340,27 @@ class LocalizationKo extends Localization {
   @override
   String get local_screen_text =>
       'Piyuo Counter는 이 기기에서만 실행됩니다.\\n통행 통계는 이 기기에만 저장되며 업로드되지 않습니다.\\n나중에 설정에서 Piyuo Cloud 또는 자체 서버에 연결할 수 있습니다.';
+
+  @override
+  String get main_screen_about => '정보';
+
+  @override
+  String get main_screen_interest_area => '관심 영역';
+
+  @override
+  String get main_screen_server_none => '데이터는 이 기기에만 저장됩니다';
+
+  @override
+  String get main_screen_server_personal => '데이터가 매시간 다음으로 업로드됩니다';
+
+  @override
+  String get main_screen_settings => '설정';
+
+  @override
+  String get main_screen_upload_logs => '로그 업로드';
+
+  @override
+  String get main_screen_video_sources => '비디오 소스';
 
   @override
   String get maximum_occupancy => '최대 인원';
@@ -353,6 +405,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get metrics_counting_window => '5분마다 생성되는 통계';
+
+  @override
+  String get occupancy => '현재 개수';
 
   @override
   String get onboarding_back_action => '뒤로';
@@ -564,24 +619,6 @@ class LocalizationKo extends Localization {
 
   @override
   String get settings_screen_subscription_title => '구독';
-
-  @override
-  String get start_screen_about => '정보';
-
-  @override
-  String get start_screen_server_none => '데이터는 이 기기에만 저장됩니다';
-
-  @override
-  String get start_screen_server_personal => '데이터가 매시간 다음으로 업로드됩니다';
-
-  @override
-  String get start_screen_settings => '설정';
-
-  @override
-  String get start_screen_upload_logs => '로그 업로드';
-
-  @override
-  String get start_screen_video_sources => '비디오 소스';
 
   @override
   String get stayed => '머무름';

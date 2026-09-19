@@ -9,6 +9,7 @@ part of 'control_panel_route_data.dart';
 List<RouteBase> get $appRoutes => [
   $loadingRouteData,
   $startRouteData,
+  $interestAreasRouteData,
   $settingsRouteData,
   $settingsPiyuoRouteData,
   $settingsServerRouteData,
@@ -67,6 +68,33 @@ mixin $StartRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/start');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $interestAreasRouteData => GoRouteData.$route(
+  path: '/interest-areas',
+  hasOverriddenOnExit: false,
+  factory: $InterestAreasRouteData._fromState,
+);
+
+mixin $InterestAreasRouteData on GoRouteData {
+  static InterestAreasRouteData _fromState(GoRouterState state) =>
+      const InterestAreasRouteData();
+
+  @override
+  String get location => GoRouteData.$location('/interest-areas');
 
   @override
   void go(BuildContext context) => context.go(location);

@@ -48,7 +48,7 @@ class _VideoSourcesScreenState extends ConsumerState<VideoSourcesScreen> {
           padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
           child: Column(
             children: [
-              feature_pip.PipHeader(icon: Icons.video_camera_back, title: context.l.start_screen_video_sources),
+              feature_pip.PipHeader(icon: Icons.video_camera_back, title: context.l.main_screen_video_sources),
               feature_pip.PipPanel(
                 child: Column(
                   children: [

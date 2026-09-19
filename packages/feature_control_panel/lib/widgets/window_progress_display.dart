@@ -5,8 +5,8 @@
 import 'dart:math' as math;
 
 import 'package:feature_control_panel/utils/format_percent.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:primer_progress_bar/primer_progress_bar.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
@@ -19,7 +19,7 @@ class WindowProgressDisplay extends StatelessWidget {
     super.key,
   });
 
-  final vision.WindowCountState? windowCount;
+  final feature_counting.WindowCountState? windowCount;
 
   final Offset offset;
   final bool lightOutMode;
@@ -78,9 +78,8 @@ class WindowProgressDisplay extends StatelessWidget {
               children: [
                 Theme(
                   data: Theme.of(context).copyWith(
-                    textTheme: Theme.of(
-                      context,
-                    ).textTheme.apply(bodyColor: Colors.grey.shade700, displayColor: Colors.grey.shade700),
+                    textTheme: Theme.of(context).textTheme
+                        .apply(bodyColor: Colors.grey.shade700, displayColor: Colors.grey.shade700),
                   ),
                   child: PrimerProgressBar(
                     segments: progressSegments,
