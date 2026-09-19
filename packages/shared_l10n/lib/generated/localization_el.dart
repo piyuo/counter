@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -322,6 +323,26 @@ class LocalizationEl extends Localization {
       'Το Piyuo Counter θα εκτελείται εξ ολοκλήρου σε αυτή τη συσκευή.\\nΤα στατιστικά κίνησης θα αποθηκεύονται μόνο σε αυτή τη συσκευή και δεν θα μεταφορτώνονται.\\nΜπορείτε αργότερα να συνδεθείτε στο Piyuo Cloud ή στον δικό σας διακομιστή από τις Ρυθμίσεις.';
 
   @override
+  String get main_screen_about => 'Σχετικά';
+
+  @override
+  String get main_screen_server_none =>
+      'Τα δεδομένα αποθηκεύονται μόνο σε αυτήν τη συσκευή';
+
+  @override
+  String get main_screen_server_personal =>
+      'Τα δεδομένα μεταφορτώνονται κάθε ώρα στο';
+
+  @override
+  String get main_screen_settings => 'Ρυθμίσεις';
+
+  @override
+  String get main_screen_upload_logs => 'Μεταφόρτωση αρχείων καταγραφής';
+
+  @override
+  String get main_screen_video_sources => 'Πηγές βίντεο';
+
+  @override
   String get maximum_occupancy => 'Μέγιστη πληρότητα';
 
   @override
@@ -587,26 +608,6 @@ class LocalizationEl extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Συνδρομή';
-
-  @override
-  String get start_screen_about => 'Σχετικά';
-
-  @override
-  String get start_screen_server_none =>
-      'Τα δεδομένα αποθηκεύονται μόνο σε αυτήν τη συσκευή';
-
-  @override
-  String get start_screen_server_personal =>
-      'Τα δεδομένα μεταφορτώνονται κάθε ώρα στο';
-
-  @override
-  String get start_screen_settings => 'Ρυθμίσεις';
-
-  @override
-  String get start_screen_upload_logs => 'Μεταφόρτωση αρχείων καταγραφής';
-
-  @override
-  String get start_screen_video_sources => 'Πηγές βίντεο';
 
   @override
   String get stayed => 'Παρέμειναν';

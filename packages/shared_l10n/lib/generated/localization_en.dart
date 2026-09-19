@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -319,6 +320,24 @@ class LocalizationEn extends Localization {
       'Piyuo Counter will run entirely on this device.\\nTraffic statistics will be stored on this device only and won\'t be uploaded.\\nYou can connect to Piyuo Cloud or your own server later in Settings.';
 
   @override
+  String get main_screen_about => 'About';
+
+  @override
+  String get main_screen_server_none => 'Stored on this device only';
+
+  @override
+  String get main_screen_server_personal => 'Data uploads hourly to';
+
+  @override
+  String get main_screen_settings => 'Settings';
+
+  @override
+  String get main_screen_upload_logs => 'Upload Logs';
+
+  @override
+  String get main_screen_video_sources => 'Video Sources';
+
+  @override
   String get maximum_occupancy => 'Maximum Occupancy';
 
   @override
@@ -578,24 +597,6 @@ class LocalizationEn extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Subscription';
-
-  @override
-  String get start_screen_about => 'About';
-
-  @override
-  String get start_screen_server_none => 'Stored on this device only';
-
-  @override
-  String get start_screen_server_personal => 'Data uploads hourly to';
-
-  @override
-  String get start_screen_settings => 'Settings';
-
-  @override
-  String get start_screen_upload_logs => 'Upload Logs';
-
-  @override
-  String get start_screen_video_sources => 'Video Sources';
 
   @override
   String get stayed => 'Stayed';

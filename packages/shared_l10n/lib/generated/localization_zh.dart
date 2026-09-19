@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -304,6 +305,24 @@ class LocalizationZh extends Localization {
       'Piyuo Counter 將完全在此裝置上運作。\\n流量統計資料只會儲存在此裝置上，不會上傳。\\n之後您可以在「設定」中連接 Piyuo Cloud 或自己的伺服器。';
 
   @override
+  String get main_screen_about => '關於';
+
+  @override
+  String get main_screen_server_none => '資料僅儲存在此裝置上';
+
+  @override
+  String get main_screen_server_personal => '資料每小時上傳至';
+
+  @override
+  String get main_screen_settings => '設定';
+
+  @override
+  String get main_screen_upload_logs => '上傳記錄';
+
+  @override
+  String get main_screen_video_sources => '視訊來源';
+
+  @override
   String get maximum_occupancy => '最大人数';
 
   @override
@@ -551,24 +570,6 @@ class LocalizationZh extends Localization {
 
   @override
   String get settings_screen_subscription_title => '訂閱';
-
-  @override
-  String get start_screen_about => '關於';
-
-  @override
-  String get start_screen_server_none => '資料僅儲存在此裝置上';
-
-  @override
-  String get start_screen_server_personal => '資料每小時上傳至';
-
-  @override
-  String get start_screen_settings => '設定';
-
-  @override
-  String get start_screen_upload_logs => '上傳記錄';
-
-  @override
-  String get start_screen_video_sources => '視訊來源';
 
   @override
   String get stayed => '停留';
@@ -1063,6 +1064,24 @@ class LocalizationZhCn extends LocalizationZh {
       'Piyuo Counter 将完全在此设备上运行。\\n流量统计数据只会保存在此设备上，不会上传。\\n之后您可以在“设置”中连接 Piyuo Cloud 或自己的服务器。';
 
   @override
+  String get main_screen_about => '关于';
+
+  @override
+  String get main_screen_server_none => '数据仅保存在此设备上';
+
+  @override
+  String get main_screen_server_personal => '数据每小时上传至';
+
+  @override
+  String get main_screen_settings => '设置';
+
+  @override
+  String get main_screen_upload_logs => '上传日志';
+
+  @override
+  String get main_screen_video_sources => '视频来源';
+
+  @override
   String get maximum_occupancy => '最大人数';
 
   @override
@@ -1310,24 +1329,6 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get settings_screen_subscription_title => '订阅';
-
-  @override
-  String get start_screen_about => '关于';
-
-  @override
-  String get start_screen_server_none => '数据仅保存在此设备上';
-
-  @override
-  String get start_screen_server_personal => '数据每小时上传至';
-
-  @override
-  String get start_screen_settings => '设置';
-
-  @override
-  String get start_screen_upload_logs => '上传日志';
-
-  @override
-  String get start_screen_video_sources => '视频来源';
 
   @override
   String get stayed => '停留';

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -321,6 +322,24 @@ class LocalizationId extends Localization {
       'Piyuo Counter akan berjalan sepenuhnya di perangkat ini.\\nStatistik lalu lintas hanya akan disimpan di perangkat ini dan tidak akan diunggah.\\nNanti Anda dapat menghubungkan Piyuo Cloud atau server Anda sendiri melalui Pengaturan.';
 
   @override
+  String get main_screen_about => 'Tentang';
+
+  @override
+  String get main_screen_server_none => 'Data hanya disimpan di perangkat ini';
+
+  @override
+  String get main_screen_server_personal => 'Data diunggah setiap jam ke';
+
+  @override
+  String get main_screen_settings => 'Pengaturan';
+
+  @override
+  String get main_screen_upload_logs => 'Unggah Log';
+
+  @override
+  String get main_screen_video_sources => 'Sumber video';
+
+  @override
   String get maximum_occupancy => 'Jumlah Maksimum';
 
   @override
@@ -583,24 +602,6 @@ class LocalizationId extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Langganan';
-
-  @override
-  String get start_screen_about => 'Tentang';
-
-  @override
-  String get start_screen_server_none => 'Data hanya disimpan di perangkat ini';
-
-  @override
-  String get start_screen_server_personal => 'Data diunggah setiap jam ke';
-
-  @override
-  String get start_screen_settings => 'Pengaturan';
-
-  @override
-  String get start_screen_upload_logs => 'Unggah Log';
-
-  @override
-  String get start_screen_video_sources => 'Sumber video';
 
   @override
   String get stayed => 'Tinggal';

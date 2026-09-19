@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -321,6 +322,24 @@ class LocalizationMs extends Localization {
       'Piyuo Counter akan berjalan sepenuhnya pada peranti ini.\\nStatistik trafik hanya disimpan pada peranti ini dan tidak akan dimuat naik.\\nAnda boleh menyambung ke Piyuo Cloud atau pelayan sendiri kemudian melalui Tetapan.';
 
   @override
+  String get main_screen_about => 'Tentang';
+
+  @override
+  String get main_screen_server_none => 'Data disimpan pada peranti ini sahaja';
+
+  @override
+  String get main_screen_server_personal => 'Data dimuat naik setiap jam ke';
+
+  @override
+  String get main_screen_settings => 'Tetapan';
+
+  @override
+  String get main_screen_upload_logs => 'Muat Naik Log';
+
+  @override
+  String get main_screen_video_sources => 'Sumber video';
+
+  @override
   String get maximum_occupancy => 'Bilangan Maksimum';
 
   @override
@@ -583,25 +602,6 @@ class LocalizationMs extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Langganan';
-
-  @override
-  String get start_screen_about => 'Tentang';
-
-  @override
-  String get start_screen_server_none =>
-      'Data disimpan pada peranti ini sahaja';
-
-  @override
-  String get start_screen_server_personal => 'Data dimuat naik setiap jam ke';
-
-  @override
-  String get start_screen_settings => 'Tetapan';
-
-  @override
-  String get start_screen_upload_logs => 'Muat Naik Log';
-
-  @override
-  String get start_screen_video_sources => 'Sumber video';
 
   @override
   String get stayed => 'Kekal';

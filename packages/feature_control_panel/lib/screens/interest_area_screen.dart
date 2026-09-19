@@ -1,0 +1,87 @@
+import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:feature_control_panel/widgets/selection_checkbox.dart';
+import 'package:feature_pip/feature_pip.dart' as feature_pip;
+import 'package:flutter/material.dart';
+import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
+
+class InterestAreasScreen extends ConsumerWidget {
+  const InterestAreasScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    if (appState == null) {
+      return const SizedBox.shrink();
+    }
+    final localization = appkit.Localization.of(context);
+    final currentLocalDisplayLabel = localization.language;
+
+    final isPedestrian = switch (appState.detectionType) {
+      core_domain.DetectionVehicle() => false,
+      _ => true,
+    };
+
+    return feature_pip.PipScaffold(
+      builder: (scrollController) => SingleChildScrollView(
+        controller: scrollController,
+        padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
+        child: Column(
+          children: [
+            feature_pip.PipHeader(icon: Icons.crop_square, title: context.l.main_screen_settings), // todo: translation
+            feature_pip.PipPanel(
+              child: Column(
+                children: [
+                  if (core_domain.isFlagPiyuoCloudEnabled)
+                    ListTile(
+                      leading: _selectionCheckbox(
+                        context,
+                        selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
+                      ),
+                      title: Text(context.l.settings_screen_piyuo_title),
+                      subtitle: Text(context.l.settings_screen_piyuo_subtitle, style: TextStyle(fontSize: 12)),
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        ref.push(const core_domain.OpenSettingsPiyuo());
+                      },
+                    ),
+                  ListTile(
+                    leading: _selectionCheckbox(
+                      context,
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
+                    ),
+                    title: Text(context.l.settings_screen_custom_title),
+                    subtitle: Text(context.l.settings_screen_custom_subtitle, style: TextStyle(fontSize: 12)),
+                    selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      ref.push(const core_domain.OpenSettingsServer());
+                    },
+                  ),
+                  ListTile(
+                    leading: _selectionCheckbox(context, selected: appState.isLocalDeviceOnly),
+                    title: Text(context.l.settings_screen_local_title),
+                    subtitle: Text(context.l.settings_screen_local_subtitle, style: TextStyle(fontSize: 12)),
+                    selected: appState.isLocalDeviceOnly,
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () async {
+                      ref.push(const core_domain.OpenSettingsLocal());
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _selectionCheckbox(BuildContext context, {required bool selected}) {
+    return IgnorePointer(
+      child: SelectionCheckbox(value: selected, onChanged: (_) {}),
+    );
+  }
+}

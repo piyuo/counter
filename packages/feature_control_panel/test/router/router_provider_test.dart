@@ -148,6 +148,7 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenLiveUrl() => '/live-url',
       core_domain.OpenTarget() => '/target',
       core_domain.OpenUploadLogDetail() => '/upload-logs',
+      core_domain.OpenInterestAreas() => '/interest-areas',
     };
     if (path == null) return;
     switch (action) {

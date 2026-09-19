@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -323,6 +324,26 @@ class LocalizationHu extends Localization {
       'A Piyuo Counter teljes egészében ezen az eszközön fut.\\nA forgalmi statisztikák csak ezen az eszközön lesznek tárolva, és nem kerülnek feltöltésre.\\nKésőbb a Beállításokban csatlakozhat a Piyuo Cloudhoz vagy saját szerveréhez.';
 
   @override
+  String get main_screen_about => 'Névjegy';
+
+  @override
+  String get main_screen_server_none =>
+      'Az adatok csak ezen az eszközön maradnak';
+
+  @override
+  String get main_screen_server_personal =>
+      'Az adatok óránként kerülnek feltöltésre ide';
+
+  @override
+  String get main_screen_settings => 'Beállítások';
+
+  @override
+  String get main_screen_upload_logs => 'Naplók feltöltése';
+
+  @override
+  String get main_screen_video_sources => 'Videóforrások';
+
+  @override
   String get maximum_occupancy => 'Maximális létszám';
 
   @override
@@ -588,26 +609,6 @@ class LocalizationHu extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Előfizetés';
-
-  @override
-  String get start_screen_about => 'Névjegy';
-
-  @override
-  String get start_screen_server_none =>
-      'Az adatok csak ezen az eszközön maradnak';
-
-  @override
-  String get start_screen_server_personal =>
-      'Az adatok óránként kerülnek feltöltésre ide';
-
-  @override
-  String get start_screen_settings => 'Beállítások';
-
-  @override
-  String get start_screen_upload_logs => 'Naplók feltöltése';
-
-  @override
-  String get start_screen_video_sources => 'Videóforrások';
 
   @override
   String get stayed => 'Tartózkodott';

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -322,6 +323,25 @@ class LocalizationMy extends Localization {
       'Piyuo Counter သည် ဤစက်တွင်သာ အပြည့်အဝ လုပ်ဆောင်မည်ဖြစ်သည်။\\nသွားလာမှု စာရင်းအင်းများကို ဤစက်တွင်သာ သိမ်းဆည်းမည်ဖြစ်ပြီး တင်ပို့မည်မဟုတ်ပါ။\\nနောက်ပိုင်းတွင် Settings မှ Piyuo Cloud သို့မဟုတ် သင့်ကိုယ်ပိုင်ဆာဗာသို့ ချိတ်ဆက်နိုင်ပါသည်။';
 
   @override
+  String get main_screen_about => 'အကြောင်း';
+
+  @override
+  String get main_screen_server_none => 'ဒေတာကို ဤစက်တွင်သာ သိမ်းဆည်းထားမည်';
+
+  @override
+  String get main_screen_server_personal =>
+      'ဒေတာများကို တစ်နာရီတစ်ကြိမ် အပ်လုဒ်လုပ်သည်';
+
+  @override
+  String get main_screen_settings => 'ဆက်တင်များ';
+
+  @override
+  String get main_screen_upload_logs => 'မှတ်တမ်းများ အပ်လုဒ်လုပ်ရန်';
+
+  @override
+  String get main_screen_video_sources => 'ဗီဒီယိုရင်းမြစ်များ';
+
+  @override
   String get maximum_occupancy => 'အများဆုံးရှိနေသူ数';
 
   @override
@@ -585,25 +605,6 @@ class LocalizationMy extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'စာရင်းသွင်းမှု';
-
-  @override
-  String get start_screen_about => 'အကြောင်း';
-
-  @override
-  String get start_screen_server_none => 'ဒေတာကို ဤစက်တွင်သာ သိမ်းဆည်းထားမည်';
-
-  @override
-  String get start_screen_server_personal =>
-      'ဒေတာများကို တစ်နာရီတစ်ကြိမ် အပ်လုဒ်လုပ်သည်';
-
-  @override
-  String get start_screen_settings => 'ဆက်တင်များ';
-
-  @override
-  String get start_screen_upload_logs => 'မှတ်တမ်းများ အပ်လုဒ်လုပ်ရန်';
-
-  @override
-  String get start_screen_video_sources => 'ဗီဒီယိုရင်းမြစ်များ';
 
   @override
   String get stayed => 'နေခဲ့သည်';

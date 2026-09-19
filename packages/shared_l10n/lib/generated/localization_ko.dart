@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -311,6 +312,24 @@ class LocalizationKo extends Localization {
       'Piyuo Counter는 이 기기에서만 실행됩니다.\\n통행 통계는 이 기기에만 저장되며 업로드되지 않습니다.\\n나중에 설정에서 Piyuo Cloud 또는 자체 서버에 연결할 수 있습니다.';
 
   @override
+  String get main_screen_about => '정보';
+
+  @override
+  String get main_screen_server_none => '데이터는 이 기기에만 저장됩니다';
+
+  @override
+  String get main_screen_server_personal => '데이터가 매시간 다음으로 업로드됩니다';
+
+  @override
+  String get main_screen_settings => '설정';
+
+  @override
+  String get main_screen_upload_logs => '로그 업로드';
+
+  @override
+  String get main_screen_video_sources => '비디오 소스';
+
+  @override
   String get maximum_occupancy => '최대 인원';
 
   @override
@@ -564,24 +583,6 @@ class LocalizationKo extends Localization {
 
   @override
   String get settings_screen_subscription_title => '구독';
-
-  @override
-  String get start_screen_about => '정보';
-
-  @override
-  String get start_screen_server_none => '데이터는 이 기기에만 저장됩니다';
-
-  @override
-  String get start_screen_server_personal => '데이터가 매시간 다음으로 업로드됩니다';
-
-  @override
-  String get start_screen_settings => '설정';
-
-  @override
-  String get start_screen_upload_logs => '로그 업로드';
-
-  @override
-  String get start_screen_video_sources => '비디오 소스';
 
   @override
   String get stayed => '머무름';

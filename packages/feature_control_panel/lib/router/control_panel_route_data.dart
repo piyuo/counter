@@ -28,14 +28,15 @@ import 'package:feature_control_panel/screens/build_info_screen.dart';
 import 'package:feature_control_panel/screens/custom_server_screen.dart';
 import 'package:feature_control_panel/screens/detection_screen.dart';
 import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
+import 'package:feature_control_panel/screens/interest_area_screen.dart';
 import 'package:feature_control_panel/screens/language_screen.dart';
 import 'package:feature_control_panel/screens/loading_screen.dart';
+import 'package:feature_control_panel/screens/main_screen.dart';
 import 'package:feature_control_panel/screens/payload_detail_screen.dart';
 import 'package:feature_control_panel/screens/payloads_hour_screen.dart';
 import 'package:feature_control_panel/screens/payloads_recent_screen.dart';
 import 'package:feature_control_panel/screens/piyuo_server_screen.dart';
 import 'package:feature_control_panel/screens/settings_screen.dart';
-import 'package:feature_control_panel/screens/start_screen.dart';
 import 'package:feature_control_panel/screens/target_screen.dart';
 import 'package:feature_control_panel/screens/upload_detail_screen.dart';
 import 'package:feature_control_panel/screens/upload_logs_screen.dart';
@@ -61,7 +62,15 @@ class StartRouteData extends GoRouteData with $StartRouteData {
   const StartRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const StartScreen();
+  Widget build(BuildContext context, GoRouterState state) => const MainScreen();
+}
+
+@TypedGoRoute<InterestAreasRouteData>(path: '/interest-areas')
+class InterestAreasRouteData extends GoRouteData with $InterestAreasRouteData {
+  const InterestAreasRouteData();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) => const InterestAreasScreen();
 }
 
 @TypedGoRoute<SettingsRouteData>(path: '/settings')

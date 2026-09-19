@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -320,6 +321,25 @@ class LocalizationTh extends Localization {
       'Piyuo Counter จะทำงานทั้งหมดบนอุปกรณ์นี้\\nสถิติการสัญจรจะถูกเก็บไว้บนอุปกรณ์นี้เท่านั้น และจะไม่อัปโหลด\\nคุณสามารถเชื่อมต่อกับ Piyuo Cloud หรือเซิร์ฟเวอร์ของคุณเองได้ภายหลังใน Settings';
 
   @override
+  String get main_screen_about => 'เกี่ยวกับ';
+
+  @override
+  String get main_screen_server_none =>
+      'ข้อมูลจะถูกเก็บไว้ในอุปกรณ์นี้เท่านั้น';
+
+  @override
+  String get main_screen_server_personal => 'อัปโหลดข้อมูลทุกชั่วโมงไปยัง';
+
+  @override
+  String get main_screen_settings => 'การตั้งค่า';
+
+  @override
+  String get main_screen_upload_logs => 'อัปโหลดบันทึก';
+
+  @override
+  String get main_screen_video_sources => 'แหล่งวิดีโอ';
+
+  @override
   String get maximum_occupancy => 'จำนวนสูงสุด';
 
   @override
@@ -582,25 +602,6 @@ class LocalizationTh extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'การสมัครสมาชิก';
-
-  @override
-  String get start_screen_about => 'เกี่ยวกับ';
-
-  @override
-  String get start_screen_server_none =>
-      'ข้อมูลจะถูกเก็บไว้ในอุปกรณ์นี้เท่านั้น';
-
-  @override
-  String get start_screen_server_personal => 'อัปโหลดข้อมูลทุกชั่วโมงไปยัง';
-
-  @override
-  String get start_screen_settings => 'การตั้งค่า';
-
-  @override
-  String get start_screen_upload_logs => 'อัปโหลดบันทึก';
-
-  @override
-  String get start_screen_video_sources => 'แหล่งวิดีโอ';
 
   @override
   String get stayed => 'อยู่ต่อ';

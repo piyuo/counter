@@ -7,6 +7,7 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_control_panel/utils/video_source_name.dart';
 import 'package:feature_control_panel/widgets/clickable_url.dart';
 import 'package:feature_control_panel/widgets/metrics_dashboard.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,8 +17,8 @@ import 'package:universal_platform/universal_platform.dart';
 
 import '../providers/app_version_provider.dart';
 
-class StartScreen extends ConsumerWidget {
-  const StartScreen({super.key});
+class MainScreen extends ConsumerWidget {
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,20 +29,20 @@ class StartScreen extends ConsumerWidget {
 
     final appVersion = ref.watch(appVersionProvider).asData?.value ?? '';
     final telemetry = ref.watch(core_domain.telemetryServiceProvider);
-    final areaState = ref.watch(vision.interestAreaProvider);
+    final areaState = ref.watch(feature_counting.interestAreaProvider);
 
     final serverTitle = switch (appState.dataServerSelection) {
       core_domain.DataServerSelection.unspecified => '',
       core_domain.DataServerSelection.noDataServer => '',
       core_domain.DataServerSelection.businessPiyuo => appState.businessPiyuoServer?.projectName ?? '???',
       core_domain.DataServerSelection.businessCustom => appState.businessCustomServer?.projectName ?? '???',
-      core_domain.DataServerSelection.personalPiyuo => context.l.start_screen_server_personal,
-      core_domain.DataServerSelection.personalCustom => context.l.start_screen_server_personal,
+      core_domain.DataServerSelection.personalPiyuo => context.l.main_screen_server_personal,
+      core_domain.DataServerSelection.personalCustom => context.l.main_screen_server_personal,
     };
 
     final serverSubTitle = switch (appState.dataServerSelection) {
       core_domain.DataServerSelection.unspecified => '',
-      core_domain.DataServerSelection.noDataServer => context.l.start_screen_server_none,
+      core_domain.DataServerSelection.noDataServer => context.l.main_screen_server_none,
       core_domain.DataServerSelection.personalPiyuo => appState.personalPiyuoServer?.url ?? '',
       core_domain.DataServerSelection.personalCustom => appState.personalCustomServer?.url ?? '',
       core_domain.DataServerSelection.businessPiyuo => appState.businessPiyuoServer?.assignedName ?? '',
@@ -93,7 +94,7 @@ class StartScreen extends ConsumerWidget {
                     if (appState.hasDataServer)
                       ListTile(
                         leading: Icon(Icons.timelapse),
-                        title: Text(context.l.start_screen_upload_logs),
+                        title: Text(context.l.main_screen_upload_logs),
                         trailing: ValueListenableBuilder<DateTime?>(
                           valueListenable: telemetry.nextUploadTimeListenable,
                           builder: (context, nextUpload, child) => Row(
@@ -113,7 +114,7 @@ class StartScreen extends ConsumerWidget {
                       ),
                     ListTile(
                       leading: Icon(Icons.video_camera_back),
-                      title: Text(context.l.start_screen_video_sources),
+                      title: Text(context.l.main_screen_video_sources),
                       trailing: Wrap(
                         children: [
                           Text(
@@ -130,7 +131,7 @@ class StartScreen extends ConsumerWidget {
                     ),
                     ListTile(
                       leading: Icon(Icons.settings),
-                      title: Text(context.l.start_screen_settings),
+                      title: Text(context.l.main_screen_settings),
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
@@ -147,8 +148,23 @@ class StartScreen extends ConsumerWidget {
                       },
                     ),
                     ListTile(
+                      leading: Icon(Icons.crop_square),
+                      title: Text('Interest Areas'), // todo: translation
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        final interestAreaController = ref.read(feature_counting.interestAreaProvider.notifier);
+                        final visionState = ref.watch(vision.visionProvider);
+                        interestAreaController.startEditing(
+                          videoWidth: visionState.videoWidth,
+                          videoHeight: visionState.videoHeight,
+                        );
+
+                        ref.push(const core_domain.OpenInterestAreas());
+                      },
+                    ),
+                    ListTile(
                       leading: Icon(Icons.info),
-                      title: Text(context.l.start_screen_about),
+                      title: Text(context.l.main_screen_about),
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
@@ -177,9 +193,8 @@ class StartScreen extends ConsumerWidget {
     if (value == null) return '--';
     final local = value.toLocal();
     final alwaysUse24HourFormat = MediaQuery.maybeOf(context)?.alwaysUse24HourFormat ?? false;
-    return MaterialLocalizations.of(
-      context,
-    ).formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: alwaysUse24HourFormat);
+    return MaterialLocalizations.of(context)
+        .formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: alwaysUse24HourFormat);
   }
 }
 

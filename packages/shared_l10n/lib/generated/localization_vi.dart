@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -320,6 +321,25 @@ class LocalizationVi extends Localization {
       'Piyuo Counter sẽ chạy hoàn toàn trên thiết bị này.\\nThống kê lưu lượng sẽ chỉ được lưu trên thiết bị này và không được tải lên.\\nBạn có thể kết nối với Piyuo Cloud hoặc máy chủ của mình sau trong Cài đặt.';
 
   @override
+  String get main_screen_about => 'Giới thiệu';
+
+  @override
+  String get main_screen_server_none =>
+      'Dữ liệu chỉ được lưu trên thiết bị này';
+
+  @override
+  String get main_screen_server_personal => 'Dữ liệu được tải lên mỗi giờ tới';
+
+  @override
+  String get main_screen_settings => 'Cài đặt';
+
+  @override
+  String get main_screen_upload_logs => 'Tải nhật ký lên';
+
+  @override
+  String get main_screen_video_sources => 'Nguồn video';
+
+  @override
   String get maximum_occupancy => 'Số lượng tối đa';
 
   @override
@@ -582,25 +602,6 @@ class LocalizationVi extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Gói đăng ký';
-
-  @override
-  String get start_screen_about => 'Giới thiệu';
-
-  @override
-  String get start_screen_server_none =>
-      'Dữ liệu chỉ được lưu trên thiết bị này';
-
-  @override
-  String get start_screen_server_personal => 'Dữ liệu được tải lên mỗi giờ tới';
-
-  @override
-  String get start_screen_settings => 'Cài đặt';
-
-  @override
-  String get start_screen_upload_logs => 'Tải nhật ký lên';
-
-  @override
-  String get start_screen_video_sources => 'Nguồn video';
 
   @override
   String get stayed => 'Ở lại';

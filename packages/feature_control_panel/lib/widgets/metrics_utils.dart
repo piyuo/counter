@@ -3,14 +3,15 @@ import 'package:feature_control_panel/widgets/metric_activity.dart';
 import 'package:feature_control_panel/widgets/metric_hero.dart';
 import 'package:feature_control_panel/widgets/metric_statistics.dart';
 import 'package:feature_control_panel/widgets/metrics_cards.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter/material.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
 
 List<MetricCardData> mapVisionMetricsToCardData(
   BuildContext context, {
-  required vision.WindowCountState windowCount,
-  required vision.InterestAreaState areaState,
+  required feature_counting.WindowCountState windowCount,
+  required feature_counting.InterestAreaState areaState,
   required String countAvgOccLabel,
   required String countMaxOccLabel,
   required String countAvgDwellLabel,

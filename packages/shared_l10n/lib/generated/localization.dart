@@ -696,6 +696,42 @@ abstract class Localization {
   /// **'Piyuo Counter will run entirely on this device.\\nTraffic statistics will be stored on this device only and won\'t be uploaded.\\nYou can connect to Piyuo Cloud or your own server later in Settings.'**
   String get local_screen_text;
 
+  /// No description provided for @main_screen_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get main_screen_about;
+
+  /// No description provided for @main_screen_server_none.
+  ///
+  /// In en, this message translates to:
+  /// **'Stored on this device only'**
+  String get main_screen_server_none;
+
+  /// No description provided for @main_screen_server_personal.
+  ///
+  /// In en, this message translates to:
+  /// **'Data uploads hourly to'**
+  String get main_screen_server_personal;
+
+  /// No description provided for @main_screen_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get main_screen_settings;
+
+  /// No description provided for @main_screen_upload_logs.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload Logs'**
+  String get main_screen_upload_logs;
+
+  /// No description provided for @main_screen_video_sources.
+  ///
+  /// In en, this message translates to:
+  /// **'Video Sources'**
+  String get main_screen_video_sources;
+
   /// No description provided for @maximum_occupancy.
   ///
   /// In en, this message translates to:
@@ -1175,42 +1211,6 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Subscription'**
   String get settings_screen_subscription_title;
-
-  /// No description provided for @start_screen_about.
-  ///
-  /// In en, this message translates to:
-  /// **'About'**
-  String get start_screen_about;
-
-  /// No description provided for @start_screen_server_none.
-  ///
-  /// In en, this message translates to:
-  /// **'Stored on this device only'**
-  String get start_screen_server_none;
-
-  /// No description provided for @start_screen_server_personal.
-  ///
-  /// In en, this message translates to:
-  /// **'Data uploads hourly to'**
-  String get start_screen_server_personal;
-
-  /// No description provided for @start_screen_settings.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings'**
-  String get start_screen_settings;
-
-  /// No description provided for @start_screen_upload_logs.
-  ///
-  /// In en, this message translates to:
-  /// **'Upload Logs'**
-  String get start_screen_upload_logs;
-
-  /// No description provided for @start_screen_video_sources.
-  ///
-  /// In en, this message translates to:
-  /// **'Video Sources'**
-  String get start_screen_video_sources;
 
   /// No description provided for @stayed.
   ///

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -319,6 +320,24 @@ class LocalizationAr extends Localization {
       'سيعمل Piyuo Counter بالكامل على هذا الجهاز.\\nسيتم حفظ إحصاءات الحركة على هذا الجهاز فقط ولن يتم رفعها.\\nيمكنك الاتصال بـ Piyuo Cloud أو بخادمك الخاص لاحقًا من الإعدادات.';
 
   @override
+  String get main_screen_about => 'حول';
+
+  @override
+  String get main_screen_server_none => 'تُحفظ البيانات على هذا الجهاز فقط';
+
+  @override
+  String get main_screen_server_personal => 'يتم رفع البيانات كل ساعة إلى';
+
+  @override
+  String get main_screen_settings => 'الإعدادات';
+
+  @override
+  String get main_screen_upload_logs => 'رفع السجلات';
+
+  @override
+  String get main_screen_video_sources => 'مصادر الفيديو';
+
+  @override
   String get maximum_occupancy => 'أقصى إشغال';
 
   @override
@@ -578,24 +597,6 @@ class LocalizationAr extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'الاشتراك';
-
-  @override
-  String get start_screen_about => 'حول';
-
-  @override
-  String get start_screen_server_none => 'تُحفظ البيانات على هذا الجهاز فقط';
-
-  @override
-  String get start_screen_server_personal => 'يتم رفع البيانات كل ساعة إلى';
-
-  @override
-  String get start_screen_settings => 'الإعدادات';
-
-  @override
-  String get start_screen_upload_logs => 'رفع السجلات';
-
-  @override
-  String get start_screen_video_sources => 'مصادر الفيديو';
 
   @override
   String get stayed => 'بقي';

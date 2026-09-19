@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -322,6 +323,26 @@ class LocalizationFa extends Localization {
       'Piyuo Counter به‌طور کامل روی این دستگاه اجرا می‌شود.\\nآمار تردد فقط روی این دستگاه ذخیره می‌شود و بارگذاری نخواهد شد.\\nبعداً می‌توانید از بخش تنظیمات به Piyuo Cloud یا سرور خود متصل شوید.';
 
   @override
+  String get main_screen_about => 'درباره';
+
+  @override
+  String get main_screen_server_none =>
+      'داده‌ها فقط روی این دستگاه ذخیره می‌شوند';
+
+  @override
+  String get main_screen_server_personal =>
+      'داده‌ها هر ساعت در این آدرس بارگذاری می‌شوند:';
+
+  @override
+  String get main_screen_settings => 'تنظیمات';
+
+  @override
+  String get main_screen_upload_logs => 'بارگذاری گزارش‌ها';
+
+  @override
+  String get main_screen_video_sources => 'منابع ویدیو';
+
+  @override
   String get maximum_occupancy => 'حداکثر تعداد';
 
   @override
@@ -583,26 +604,6 @@ class LocalizationFa extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'اشتراک';
-
-  @override
-  String get start_screen_about => 'درباره';
-
-  @override
-  String get start_screen_server_none =>
-      'داده‌ها فقط روی این دستگاه ذخیره می‌شوند';
-
-  @override
-  String get start_screen_server_personal =>
-      'داده‌ها هر ساعت در این آدرس بارگذاری می‌شوند:';
-
-  @override
-  String get start_screen_settings => 'تنظیمات';
-
-  @override
-  String get start_screen_upload_logs => 'بارگذاری گزارش‌ها';
-
-  @override
-  String get start_screen_video_sources => 'منابع ویدیو';
 
   @override
   String get stayed => 'ماندند';

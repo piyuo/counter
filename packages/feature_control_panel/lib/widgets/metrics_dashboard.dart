@@ -6,10 +6,10 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_control_panel/widgets/metrics_cards.dart';
 import 'package:feature_control_panel/widgets/metrics_utils.dart';
 import 'package:feature_control_panel/widgets/window_progress_display.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:intl/intl.dart';
 import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
@@ -19,11 +19,11 @@ const _kWhiteBoardColor = Color(0xFFF5F5F5);
 class MetricsDashboard extends ConsumerWidget {
   const MetricsDashboard({required this.areaState, super.key});
 
-  final vision.InterestAreaState areaState;
+  final feature_counting.InterestAreaState areaState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final windowCount = ref.watch(vision.windowCountProvider);
+    final windowCount = ref.watch(feature_counting.windowCountProvider);
     if (windowCount.isSessionReady == false) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 40.0),

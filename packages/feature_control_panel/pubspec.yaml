@@ -12,6 +12,7 @@ dependencies:
   core_domain: any
   core_runtime: any
   feature_onboarding: any
+  feature_counting: any
   feature_pip: any
   shared_l10n: any
   flutter:

@@ -192,7 +192,7 @@ class _UploadLogsScreenState extends ConsumerState<UploadLogsScreen> {
                 valueListenable: telemetry.nextUploadTimeListenable,
                 builder: (context, nextUpload, child) => feature_pip.PipHeader(
                   icon: Icons.timelapse,
-                  title: context.l.start_screen_upload_logs,
+                  title: context.l.main_screen_upload_logs,
                   subtitle: _buildNextUploadLabel(nextUpload),
                 ),
               ),

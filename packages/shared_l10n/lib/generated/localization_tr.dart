@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'localization.dart';
 
 // ignore_for_file: type=lint
@@ -321,6 +322,25 @@ class LocalizationTr extends Localization {
       'Piyuo Counter tamamen bu cihazda çalışacaktır.\\nTrafik istatistikleri yalnızca bu cihazda saklanacak ve yüklenmeyecektir.\\nDaha sonra Ayarlar\'dan Piyuo Cloud veya kendi sunucunuza bağlanabilirsiniz.';
 
   @override
+  String get main_screen_about => 'Hakkında';
+
+  @override
+  String get main_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';
+
+  @override
+  String get main_screen_server_personal =>
+      'Veriler her saat şu adrese yüklenir';
+
+  @override
+  String get main_screen_settings => 'Ayarlar';
+
+  @override
+  String get main_screen_upload_logs => 'Bağlantı günlüklerini yükle';
+
+  @override
+  String get main_screen_video_sources => 'Video kaynakları';
+
+  @override
   String get maximum_occupancy => 'Maksimum Kişi Sayısı';
 
   @override
@@ -583,25 +603,6 @@ class LocalizationTr extends Localization {
 
   @override
   String get settings_screen_subscription_title => 'Abonelik';
-
-  @override
-  String get start_screen_about => 'Hakkında';
-
-  @override
-  String get start_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';
-
-  @override
-  String get start_screen_server_personal =>
-      'Veriler her saat şu adrese yüklenir';
-
-  @override
-  String get start_screen_settings => 'Ayarlar';
-
-  @override
-  String get start_screen_upload_logs => 'Bağlantı günlüklerini yükle';
-
-  @override
-  String get start_screen_video_sources => 'Video kaynakları';
 
   @override
   String get stayed => 'Kaldı';
