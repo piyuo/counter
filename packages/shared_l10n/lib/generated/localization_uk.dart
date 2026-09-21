@@ -303,6 +303,31 @@ class LocalizationUk extends Localization {
       'Підраховує людей або транспортні засоби, які вийшли з цієї зони під час поточного вікна підрахунку.\\n\\nВихід враховується, коли людина або транспортний засіб переміщується зсередини зони назовні.';
 
   @override
+  String get interest_areas_screen_add_area => 'Додати область';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Додати нову область';
+
+  @override
+  String get interest_areas_screen_add_point => 'Додати точку';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Додати точку області';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Видалити область';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Видалити вибрану область';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Видалити точку';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Видалити вибрану точку';
+
+  @override
   String get language_screen_language => 'Мова';
 
   @override
@@ -323,6 +348,9 @@ class LocalizationUk extends Localization {
 
   @override
   String get main_screen_about => 'Про програму';
+
+  @override
+  String get main_screen_interest_area => 'Область інтересу';
 
   @override
   String get main_screen_server_none =>

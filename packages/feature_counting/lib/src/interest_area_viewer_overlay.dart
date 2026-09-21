@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vision/src/l10n/l10n.dart';
-import 'package:flutter_vision/src/window_count/window_count.dart' as window_count;
 
 import 'interest_area.dart';
 import 'interest_area_notifier.dart';
 import 'interest_area_utils.dart';
+import 'window_count.dart';
 
 class InterestAreaViewerOverlay extends ConsumerWidget {
   const InterestAreaViewerOverlay({
@@ -24,7 +23,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
   final double videoHeight;
 
   final double rotationDegrees;
-  final window_count.WindowCountState? countState;
+  final WindowCountState? countState;
 
   final bool isIPadLandscape;
 
@@ -50,13 +49,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
         fontWeight: FontWeight.w800,
         fontFeatures: const [FontFeature.tabularFigures()],
         decoration: TextDecoration.none,
-        shadows: [
-          Shadow(
-            color: Colors.black.withValues(alpha: 0.6),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        shadows: [Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 6, offset: const Offset(0, 2))],
       );
     }
 
@@ -82,11 +75,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
               area.name,
               style: TextStyle(
                 shadows: [
-                  Shadow(
-                    color: Colors.black.withValues(alpha: 0.6),
-                    blurRadius: 6,
-                    offset: const Offset(0, 2),
-                  ),
+                  Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 6, offset: const Offset(0, 2)),
                 ],
                 color: Colors.white,
                 fontSize: 14,
@@ -98,14 +87,10 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              context.l.occupancy,
+              "context.l.occupancy", // todo: translation
               style: TextStyle(
                 shadows: [
-                  Shadow(
-                    color: Colors.black.withValues(alpha: 0.6),
-                    blurRadius: 6,
-                    offset: const Offset(0, 2),
-                  ),
+                  Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 6, offset: const Offset(0, 2)),
                 ],
                 color: Colors.white,
                 fontSize: 14,
@@ -122,7 +107,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
               softWrap: false,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-            )
+            ),
           ],
         );
       }
@@ -135,11 +120,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
         child: Center(
           child: SizedBox(
             width: rect.width,
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.center,
-              child: buildLabelContent(),
-            ),
+            child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.center, child: buildLabelContent()),
           ),
         ),
       );
@@ -158,11 +139,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
           child: Center(
             child: SizedBox(
               width: rect.width,
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.center,
-                child: buildLabelContent(),
-              ),
+              child: FittedBox(fit: BoxFit.scaleDown, alignment: Alignment.center, child: buildLabelContent()),
             ),
           ),
         ),
@@ -173,10 +150,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
       children: [
         IgnorePointer(
           child: CustomPaint(
-            size: Size(
-              displayWidth,
-              displayHeight,
-            ),
+            size: Size(displayWidth, displayHeight),
             painter: _InterestAreaViewerPainter(
               videoWidth: videoWidth,
               videoHeight: videoHeight,

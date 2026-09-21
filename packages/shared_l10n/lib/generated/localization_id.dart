@@ -304,6 +304,31 @@ class LocalizationId extends Localization {
       'Menghitung orang atau kendaraan yang keluar dari area ini selama jendela penghitungan saat ini.\\n\\nSatu keluar dihitung saat seseorang atau kendaraan berpindah dari dalam area ke luar area.';
 
   @override
+  String get interest_areas_screen_add_area => 'Tambah area';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Tambah area baru';
+
+  @override
+  String get interest_areas_screen_add_point => 'Tambah titik';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Tambah titik area';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Hapus area';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Hapus area yang dipilih';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Hapus titik';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Hapus titik yang dipilih';
+
+  @override
   String get language_screen_language => 'Bahasa';
 
   @override
@@ -323,6 +348,9 @@ class LocalizationId extends Localization {
 
   @override
   String get main_screen_about => 'Tentang';
+
+  @override
+  String get main_screen_interest_area => 'Area Minat';
 
   @override
   String get main_screen_server_none => 'Data hanya disimpan di perangkat ini';

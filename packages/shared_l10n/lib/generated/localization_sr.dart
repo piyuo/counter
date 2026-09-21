@@ -304,6 +304,30 @@ class LocalizationSr extends Localization {
       'Broji ljude ili vozila koja su izašla iz ove oblasti tokom trenutnog perioda brojanja.\\n\\nIzlazak se računa kada se osoba ili vozilo kreće iz unutrašnjosti oblasti ka spolja.';
 
   @override
+  String get interest_areas_screen_add_area => 'Dodaj oblast';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Dodaj novu oblast';
+
+  @override
+  String get interest_areas_screen_add_point => 'Dodaj tačku';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Dodaj tačku oblasti';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Ukloni oblast';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Ukloni izabranu oblast';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Ukloni tačku';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Ukloni izabranu tačku';
+
+  @override
   String get language_screen_language => 'Jezik';
 
   @override
@@ -323,6 +347,9 @@ class LocalizationSr extends Localization {
 
   @override
   String get main_screen_about => 'O programu';
+
+  @override
+  String get main_screen_interest_area => 'Oblast interesovanja';
 
   @override
   String get main_screen_server_none => 'Podaci se čuvaju samo na ovom uređaju';

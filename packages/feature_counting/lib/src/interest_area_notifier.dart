@@ -56,9 +56,7 @@ class InterestAreaNotifier extends _$InterestAreaNotifier implements InterestAre
   }
 
   void startEditing({required int videoWidth, required int videoHeight}) {
-    final areas = state.activeAreas.isEmpty
-        ? <InterestArea>[_buildDefaultArea(videoWidth, videoHeight)]
-        : List<InterestArea>.from(state.activeAreas).take(maxEditingAreas).toList();
+    final areas = List<InterestArea>.from(state.activeAreas).take(maxEditingAreas).toList();
     final firstPoints = areas.isNotEmpty ? areas.first.points : const <Offset>[];
     state = state.copyWith(
       isEditing: true,

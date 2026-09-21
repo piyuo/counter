@@ -305,6 +305,31 @@ class LocalizationRo extends Localization {
       'Numără persoanele sau vehiculele care au ieșit din această zonă în timpul ferestrei curente de numărare.\\n\\nO ieșire este înregistrată atunci când o persoană sau un vehicul se deplasează din interiorul zonei spre exterior.';
 
   @override
+  String get interest_areas_screen_add_area => 'Adaugă zonă';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Adaugă zonă nouă';
+
+  @override
+  String get interest_areas_screen_add_point => 'Adaugă punct';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Adaugă punct zonă';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Elimină zona';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Elimină zona selectată';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Elimină punct';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Elimină punctul selectat';
+
+  @override
   String get language_screen_language => 'Limbă';
 
   @override
@@ -324,6 +349,9 @@ class LocalizationRo extends Localization {
 
   @override
   String get main_screen_about => 'Despre';
+
+  @override
+  String get main_screen_interest_area => 'Zonă de Interes';
 
   @override
   String get main_screen_server_none =>

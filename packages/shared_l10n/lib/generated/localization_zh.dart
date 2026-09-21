@@ -288,6 +288,30 @@ class LocalizationZh extends Localization {
       '統計目前計數期間內離開此區域的人員或車輛數量。\\n\\n當人員或車輛從區域內移動到區域外時，會計為一次離開。';
 
   @override
+  String get interest_areas_screen_add_area => '新增區域';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新增新區域';
+
+  @override
+  String get interest_areas_screen_add_point => '新增點';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '新增區域點';
+
+  @override
+  String get interest_areas_screen_remove_area => '移除區域';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '移除所選區域';
+
+  @override
+  String get interest_areas_screen_remove_point => '移除點';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '移除所選點';
+
+  @override
   String get language_screen_language => '語言';
 
   @override
@@ -306,6 +330,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get main_screen_about => '關於';
+
+  @override
+  String get main_screen_interest_area => '感興趣區域';
 
   @override
   String get main_screen_server_none => '資料僅儲存在此裝置上';
@@ -1047,6 +1074,30 @@ class LocalizationZhCn extends LocalizationZh {
       '统计当前计数窗口期间离开此区域的人员或车辆数量。\\n\\n当人员或车辆从区域内移动到区域外时，计为一次离开。';
 
   @override
+  String get interest_areas_screen_add_area => '新增区域';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新增新区域';
+
+  @override
+  String get interest_areas_screen_add_point => '新增点';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '新增区域点';
+
+  @override
+  String get interest_areas_screen_remove_area => '移除区域';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '移除所选区域';
+
+  @override
+  String get interest_areas_screen_remove_point => '移除点';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '移除所选点';
+
+  @override
   String get language_screen_language => '语言';
 
   @override
@@ -1065,6 +1116,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get main_screen_about => '关于';
+
+  @override
+  String get main_screen_interest_area => '感兴趣区域';
 
   @override
   String get main_screen_server_none => '数据仅保存在此设备上';

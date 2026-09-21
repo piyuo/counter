@@ -305,6 +305,32 @@ class LocalizationEl extends Localization {
       'Μετρά τα άτομα ή τα οχήματα που εξήλθαν από αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΜια έξοδος καταγράφεται όταν ένα άτομο ή όχημα μετακινείται από το εσωτερικό προς το εξωτερικό της περιοχής.';
 
   @override
+  String get interest_areas_screen_add_area => 'Προσθήκη περιοχής';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Προσθήκη νέας περιοχής';
+
+  @override
+  String get interest_areas_screen_add_point => 'Προσθήκη σημείου';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Προσθήκη σημείου περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Αφαίρεση περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Αφαίρεση επιλεγμένης περιοχής';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Αφαίρεση σημείου';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Αφαίρεση επιλεγμένου σημείου';
+
+  @override
   String get language_screen_language => 'Γλώσσα';
 
   @override
@@ -324,6 +350,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get main_screen_about => 'Σχετικά';
+
+  @override
+  String get main_screen_interest_area => 'Περιοχή Ενδιαφέροντος';
 
   @override
   String get main_screen_server_none =>

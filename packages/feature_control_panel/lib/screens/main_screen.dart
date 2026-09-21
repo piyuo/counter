@@ -149,7 +149,7 @@ class MainScreen extends ConsumerWidget {
                     ),
                     ListTile(
                       leading: Icon(Icons.crop_square),
-                      title: Text('Interest Areas'), // todo: translation
+                      title: Text(context.l.main_screen_interest_area),
                       trailing: Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         final interestAreaController = ref.read(feature_counting.interestAreaProvider.notifier);

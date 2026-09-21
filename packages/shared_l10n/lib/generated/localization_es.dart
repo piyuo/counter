@@ -305,6 +305,32 @@ class LocalizationEs extends Localization {
       'Cuenta las personas o vehículos que salieron de esta área durante la ventana de conteo actual.\\n\\nSe cuenta una salida cuando una persona o vehículo pasa del interior al exterior del área.';
 
   @override
+  String get interest_areas_screen_add_area => 'Añadir área';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Añadir nueva área';
+
+  @override
+  String get interest_areas_screen_add_point => 'Añadir punto';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Añadir punto de área';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Eliminar área';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Eliminar área seleccionada';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Eliminar punto';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Eliminar punto seleccionado';
+
+  @override
   String get language_screen_language => 'Idioma';
 
   @override
@@ -324,6 +350,9 @@ class LocalizationEs extends Localization {
 
   @override
   String get main_screen_about => 'Acerca de';
+
+  @override
+  String get main_screen_interest_area => 'Área de Interés';
 
   @override
   String get main_screen_server_none =>

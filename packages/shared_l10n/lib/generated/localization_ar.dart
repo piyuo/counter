@@ -303,6 +303,30 @@ class LocalizationAr extends Localization {
       'يحسب عدد الأشخاص أو المركبات التي غادرت هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب الخروج عندما ينتقل شخص أو مركبة من داخل المنطقة إلى خارجها.';
 
   @override
+  String get interest_areas_screen_add_area => 'إضافة منطقة';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'إضافة منطقة جديدة';
+
+  @override
+  String get interest_areas_screen_add_point => 'إضافة نقطة';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'إضافة نقطة للمنطقة';
+
+  @override
+  String get interest_areas_screen_remove_area => 'إزالة منطقة';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'إزالة المنطقة المحددة';
+
+  @override
+  String get interest_areas_screen_remove_point => 'إزالة نقطة';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'إزالة النقطة المحددة';
+
+  @override
   String get language_screen_language => 'اللغة';
 
   @override
@@ -321,6 +345,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get main_screen_about => 'حول';
+
+  @override
+  String get main_screen_interest_area => 'منطقة الاهتمام';
 
   @override
   String get main_screen_server_none => 'تُحفظ البيانات على هذا الجهاز فقط';

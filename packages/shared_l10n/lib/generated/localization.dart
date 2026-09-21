@@ -666,6 +666,54 @@ abstract class Localization {
   /// **'Counts people or vehicles that left this area during the current counting window.\\n\\nAn exit is counted when a person or vehicle moves from inside the area to outside.'**
   String get exited_help;
 
+  /// No description provided for @interest_areas_screen_add_area.
+  ///
+  /// In en, this message translates to:
+  /// **'Add area'**
+  String get interest_areas_screen_add_area;
+
+  /// No description provided for @interest_areas_screen_add_area_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add area'**
+  String get interest_areas_screen_add_area_tip;
+
+  /// No description provided for @interest_areas_screen_add_point.
+  ///
+  /// In en, this message translates to:
+  /// **'Add point'**
+  String get interest_areas_screen_add_point;
+
+  /// No description provided for @interest_areas_screen_add_point_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Add area point'**
+  String get interest_areas_screen_add_point_tip;
+
+  /// No description provided for @interest_areas_screen_remove_area.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove area'**
+  String get interest_areas_screen_remove_area;
+
+  /// No description provided for @interest_areas_screen_remove_area_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove selected area'**
+  String get interest_areas_screen_remove_area_tip;
+
+  /// No description provided for @interest_areas_screen_remove_point.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove point'**
+  String get interest_areas_screen_remove_point;
+
+  /// No description provided for @interest_areas_screen_remove_point_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove selected point'**
+  String get interest_areas_screen_remove_point_tip;
+
   /// No description provided for @language_screen_language.
   ///
   /// In en, this message translates to:
@@ -701,6 +749,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'About'**
   String get main_screen_about;
+
+  /// No description provided for @main_screen_interest_area.
+  ///
+  /// In en, this message translates to:
+  /// **'Interest Area'**
+  String get main_screen_interest_area;
 
   /// No description provided for @main_screen_server_none.
   ///

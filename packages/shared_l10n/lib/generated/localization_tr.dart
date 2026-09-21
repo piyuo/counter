@@ -305,6 +305,30 @@ class LocalizationTr extends Localization {
       'Bu alandan geçerli sayım penceresi sırasında çıkan kişi veya araçları sayar.\\n\\nBir kişi veya araç alanın içinden dışına geçtiğinde bir çıkış sayılır.';
 
   @override
+  String get interest_areas_screen_add_area => 'Alan ekle';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Yeni alan ekle';
+
+  @override
+  String get interest_areas_screen_add_point => 'Nokta ekle';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Alan noktası ekle';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Alanı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Seçili alanı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Noktayı kaldır';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Seçili noktayı kaldır';
+
+  @override
   String get language_screen_language => 'Dil';
 
   @override
@@ -323,6 +347,9 @@ class LocalizationTr extends Localization {
 
   @override
   String get main_screen_about => 'Hakkında';
+
+  @override
+  String get main_screen_interest_area => 'İlgi Alanı';
 
   @override
   String get main_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';

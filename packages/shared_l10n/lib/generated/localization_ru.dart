@@ -303,6 +303,32 @@ class LocalizationRu extends Localization {
       'Подсчитывает людей или транспортные средства, покинувших эту область в течение текущего окна подсчета.\\n\\nВыход учитывается, когда человек или транспортное средство перемещается изнутри области наружу.';
 
   @override
+  String get interest_areas_screen_add_area => 'Добавить область';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Добавить новую область';
+
+  @override
+  String get interest_areas_screen_add_point => 'Добавить точку';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Добавить точку области';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Удалить область';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Удалить выбранную область';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Удалить точку';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Удалить выбранную точку';
+
+  @override
   String get language_screen_language => 'Язык';
 
   @override
@@ -323,6 +349,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get main_screen_about => 'О программе';
+
+  @override
+  String get main_screen_interest_area => 'Область интереса';
 
   @override
   String get main_screen_server_none =>

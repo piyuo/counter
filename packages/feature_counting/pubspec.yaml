@@ -19,6 +19,7 @@ dependencies:
   flutter_riverpod: ^3.4.3
   flutter_vision:
     path: ../../../flutter-vision
+  intl: ^0.20.3
   riverpod_annotation: ^4.0.7
   universal_platform: ^1.1.0
 

@@ -303,6 +303,30 @@ class LocalizationHe extends Localization {
       'סופר אנשים או כלי רכב שיצאו מאזור זה במהלך חלון הספירה הנוכחי.\\n\\nיציאה נספרת כאשר אדם או כלי רכב עוברים מתוך האזור אל מחוצה לו.';
 
   @override
+  String get interest_areas_screen_add_area => 'הוסף אזור';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'הוסף אזור חדש';
+
+  @override
+  String get interest_areas_screen_add_point => 'הוסף נקודה';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'הוסף נקודת אזור';
+
+  @override
+  String get interest_areas_screen_remove_area => 'הסר אזור';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'הסר אזור נבחר';
+
+  @override
+  String get interest_areas_screen_remove_point => 'הסר נקודה';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'הסר נקודה נבחרת';
+
+  @override
   String get language_screen_language => 'שפה';
 
   @override
@@ -321,6 +345,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get main_screen_about => 'אודות';
+
+  @override
+  String get main_screen_interest_area => 'אזור עניין';
 
   @override
   String get main_screen_server_none => 'הנתונים נשמרים במכשיר זה בלבד';

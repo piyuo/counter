@@ -304,6 +304,30 @@ class LocalizationTh extends Localization {
       'นับจำนวนคนหรือยานพาหนะที่ออกจากพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nจะนับ 1 ครั้งเมื่อคนหรือยานพาหนะเคลื่อนที่จากภายในพื้นที่ออกไปภายนอก';
 
   @override
+  String get interest_areas_screen_add_area => 'เพิ่มพื้นที่';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'เพิ่มพื้นที่ใหม่';
+
+  @override
+  String get interest_areas_screen_add_point => 'เพิ่มจุด';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'เพิ่มจุดพื้นที่';
+
+  @override
+  String get interest_areas_screen_remove_area => 'ลบพื้นที่';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'ลบพื้นที่ที่เลือก';
+
+  @override
+  String get interest_areas_screen_remove_point => 'ลบจุด';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'ลบจุดที่เลือก';
+
+  @override
   String get language_screen_language => 'ภาษา';
 
   @override
@@ -322,6 +346,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get main_screen_about => 'เกี่ยวกับ';
+
+  @override
+  String get main_screen_interest_area => 'พื้นที่สนใจ';
 
   @override
   String get main_screen_server_none =>

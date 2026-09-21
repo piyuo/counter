@@ -304,6 +304,32 @@ class LocalizationNl extends Localization {
       'Telt mensen of voertuigen die tijdens het huidige telvenster dit gebied hebben verlaten.\\n\\nEen vertrek wordt geteld wanneer een persoon of voertuig van binnen het gebied naar buiten beweegt.';
 
   @override
+  String get interest_areas_screen_add_area => 'Gebied toevoegen';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Nieuw gebied toevoegen';
+
+  @override
+  String get interest_areas_screen_add_point => 'Punt toevoegen';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Gebiedspunt toevoegen';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Gebied verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Geselecteerd gebied verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Punt verwijderen';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Geselecteerd punt verwijderen';
+
+  @override
   String get language_screen_language => 'Taal';
 
   @override
@@ -323,6 +349,9 @@ class LocalizationNl extends Localization {
 
   @override
   String get main_screen_about => 'Over';
+
+  @override
+  String get main_screen_interest_area => 'Interessegebied';
 
   @override
   String get main_screen_server_none =>

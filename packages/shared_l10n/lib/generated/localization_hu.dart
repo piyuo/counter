@@ -307,6 +307,32 @@ class LocalizationHu extends Localization {
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt elhagyták ezt a területet.\\n\\nKilépés akkor kerül számításra, amikor egy személy vagy jármű a területen belülről kifelé mozog.';
 
   @override
+  String get interest_areas_screen_add_area => 'Terület hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Új terület hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_point => 'Pont hozzáadása';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Terület pont hozzáadása';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Terület eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Kijelölt terület eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Pont eltávolítása';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Kijelölt pont eltávolítása';
+
+  @override
   String get language_screen_language => 'Nyelv';
 
   @override
@@ -325,6 +351,9 @@ class LocalizationHu extends Localization {
 
   @override
   String get main_screen_about => 'Névjegy';
+
+  @override
+  String get main_screen_interest_area => 'Érdeklődési Terület';
 
   @override
   String get main_screen_server_none =>

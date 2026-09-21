@@ -304,6 +304,30 @@ class LocalizationMs extends Localization {
       'Mengira bilangan orang atau kenderaan yang keluar dari kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSatu keluar dikira apabila seseorang atau kenderaan bergerak dari dalam kawasan ke luar kawasan.';
 
   @override
+  String get interest_areas_screen_add_area => 'Tambah kawasan';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Tambah kawasan baharu';
+
+  @override
+  String get interest_areas_screen_add_point => 'Tambah titik';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Tambah titik kawasan';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Buang kawasan';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Buang kawasan terpilih';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Buang titik';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Buang titik terpilih';
+
+  @override
   String get language_screen_language => 'Bahasa';
 
   @override
@@ -323,6 +347,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get main_screen_about => 'Tentang';
+
+  @override
+  String get main_screen_interest_area => 'Kawasan Minat';
 
   @override
   String get main_screen_server_none => 'Data disimpan pada peranti ini sahaja';

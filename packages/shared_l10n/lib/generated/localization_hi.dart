@@ -305,6 +305,30 @@ class LocalizationHi extends Localization {
       'वर्तमान गणना अवधि के दौरान इस क्षेत्र से बाहर जाने वाले लोगों या वाहनों की संख्या गिनता है।\\n\\nजब कोई व्यक्ति या वाहन क्षेत्र के अंदर से बाहर जाता है, तो एक निकास गिना जाता है।';
 
   @override
+  String get interest_areas_screen_add_area => 'क्षेत्र जोड़ें';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'नया क्षेत्र जोड़ें';
+
+  @override
+  String get interest_areas_screen_add_point => 'बिंदु जोड़ें';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'क्षेत्र बिंदु जोड़ें';
+
+  @override
+  String get interest_areas_screen_remove_area => 'क्षेत्र हटाएं';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'चयनित क्षेत्र हटाएं';
+
+  @override
+  String get interest_areas_screen_remove_point => 'बिंदु हटाएं';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'चयनित बिंदु हटाएं';
+
+  @override
   String get language_screen_language => 'भाषा';
 
   @override
@@ -325,6 +349,9 @@ class LocalizationHi extends Localization {
 
   @override
   String get main_screen_about => 'जानकारी';
+
+  @override
+  String get main_screen_interest_area => 'रुचि क्षेत्र';
 
   @override
   String get main_screen_server_none =>

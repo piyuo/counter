@@ -1,9 +1,9 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_control_panel/widgets/selection_checkbox.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class InterestAreasScreen extends ConsumerWidget {
@@ -15,73 +15,100 @@ class InterestAreasScreen extends ConsumerWidget {
     if (appState == null) {
       return const SizedBox.shrink();
     }
-    final localization = appkit.Localization.of(context);
-    final currentLocalDisplayLabel = localization.language;
+    final areaState = ref.watch(feature_counting.interestAreaProvider);
+    final canAddArea = areaState.editingAreas.length < feature_counting.InterestAreaNotifier.maxEditingAreas;
+    final canRemoveArea = areaState.selectedAreaId != null;
+    final canAddPoint = areaState.selectedAreaId != null;
+    final canRemovePoint = areaState.selectedPointIndex != null;
 
-    final isPedestrian = switch (appState.detectionType) {
-      core_domain.DetectionVehicle() => false,
-      _ => true,
-    };
+    return PopScope(
+      onPopInvokedWithResult: (bool didPop, result) async {
+        final areaState = ref.read(feature_counting.interestAreaProvider);
+        if (!areaState.isEditing) {
+          return;
+        }
+        ref.read(feature_counting.interestAreaProvider.notifier).finishEditing();
 
-    return feature_pip.PipScaffold(
-      builder: (scrollController) => SingleChildScrollView(
-        controller: scrollController,
-        padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
-        child: Column(
-          children: [
-            feature_pip.PipHeader(icon: Icons.crop_square, title: context.l.main_screen_settings), // todo: translation
-            feature_pip.PipPanel(
-              child: Column(
-                children: [
-                  if (core_domain.isFlagPiyuoCloudEnabled)
+        // If pop hasn't happened yet, manually trigger it
+        if (!didPop && context.mounted) {
+          Navigator.pop(context);
+        }
+      },
+      child: feature_pip.PipScaffold(
+        builder: (scrollController) => SingleChildScrollView(
+          controller: scrollController,
+          padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
+          child: Column(
+            children: [
+              feature_pip.PipHeader(icon: Icons.crop_square, title: context.l.main_screen_interest_area),
+              feature_pip.PipPanel(
+                child: Column(
+                  children: [
+                    // Add new interest area
                     ListTile(
-                      leading: _selectionCheckbox(
-                        context,
-                        selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
-                      ),
-                      title: Text(context.l.settings_screen_piyuo_title),
-                      subtitle: Text(context.l.settings_screen_piyuo_subtitle, style: TextStyle(fontSize: 12)),
-                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
-                      trailing: const Icon(Icons.arrow_forward_ios),
+                      enabled: canAddArea,
+                      leading: Icon(Icons.add),
+                      title: Text(context.l.interest_areas_screen_add_area),
+                      subtitle: Text(context.l.interest_areas_screen_add_area_tip),
+                      trailing: const SizedBox.shrink(),
                       onTap: () {
-                        ref.push(const core_domain.OpenSettingsPiyuo());
+                        final visionState = ref.read(vision.visionProvider);
+                        final videoWidth = visionState.videoWidth;
+                        final videoHeight = visionState.videoHeight;
+                        final areaNotifier = ref.read(feature_counting.interestAreaProvider.notifier);
+                        areaNotifier.newArea(videoWidth, videoHeight);
                       },
                     ),
-                  ListTile(
-                    leading: _selectionCheckbox(
-                      context,
-                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
+                    // remove interest area
+                    ListTile(
+                      enabled: canRemoveArea,
+                      leading: Icon(Icons.remove),
+                      title: Text(context.l.interest_areas_screen_remove_area),
+                      subtitle: Text(context.l.interest_areas_screen_remove_area_tip),
+                      trailing: const SizedBox.shrink(),
+                      onTap: !canRemoveArea
+                          ? null
+                          : () {
+                              ref.read(feature_counting.interestAreaProvider.notifier).removeSelectedArea();
+                            },
                     ),
-                    title: Text(context.l.settings_screen_custom_title),
-                    subtitle: Text(context.l.settings_screen_custom_subtitle, style: TextStyle(fontSize: 12)),
-                    selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      ref.push(const core_domain.OpenSettingsServer());
-                    },
-                  ),
-                  ListTile(
-                    leading: _selectionCheckbox(context, selected: appState.isLocalDeviceOnly),
-                    title: Text(context.l.settings_screen_local_title),
-                    subtitle: Text(context.l.settings_screen_local_subtitle, style: TextStyle(fontSize: 12)),
-                    selected: appState.isLocalDeviceOnly,
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () async {
-                      ref.push(const core_domain.OpenSettingsLocal());
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              feature_pip.PipPanel(
+                child: Column(
+                  children: [
+                    ListTile(
+                      enabled: canAddPoint,
+                      leading: Icon(Icons.add_circle_outline),
+                      title: Text(context.l.interest_areas_screen_add_point),
+                      subtitle: Text(context.l.interest_areas_screen_add_point_tip),
+                      trailing: const SizedBox.shrink(),
+                      onTap: !canAddPoint
+                          ? null
+                          : () {
+                              ref.read(feature_counting.interestAreaProvider.notifier).addPointToArea();
+                            },
+                    ),
+                    ListTile(
+                      enabled: canRemovePoint,
+                      leading: Icon(Icons.remove_circle_outline),
+                      title: Text(context.l.interest_areas_screen_remove_point),
+                      subtitle: Text(context.l.interest_areas_screen_remove_point_tip),
+                      trailing: const SizedBox.shrink(),
+                      onTap: !canRemovePoint
+                          ? null
+                          : () {
+                              ref.read(feature_counting.interestAreaProvider.notifier).removeSelectedPoint();
+                            },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  Widget _selectionCheckbox(BuildContext context, {required bool selected}) {
-    return IgnorePointer(
-      child: SelectionCheckbox(value: selected, onChanged: (_) {}),
     );
   }
 }

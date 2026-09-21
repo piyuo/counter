@@ -305,6 +305,30 @@ class LocalizationMy extends Localization {
       'လက်ရှိရေတွက်သည့်အချိန်အတွင်း ဤဧရိယာမှ ထွက်သွားသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nလူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီးသည် ဧရိယာအတွင်းမှ အပြင်သို့ ရွှေ့လျားသောအခါ ထွက်ခွာမှုတစ်ကြိမ်အဖြစ် ရေတွက်သည်။';
 
   @override
+  String get interest_areas_screen_add_area => 'ဧရိယာထည့်';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'ဧရိယာအသစ်ထည့်';
+
+  @override
+  String get interest_areas_screen_add_point => 'အမှတ်ထည့်';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'ဧရိယာအမှတ်ထည့်';
+
+  @override
+  String get interest_areas_screen_remove_area => 'ဧရိယာဖျက်';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'ရွေးထားသော ဧရိယာဖျက်';
+
+  @override
+  String get interest_areas_screen_remove_point => 'အမှတ်ဖျက်';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'ရွေးထားသော အမှတ်ဖျက်';
+
+  @override
   String get language_screen_language => 'ဘာသာစကား';
 
   @override
@@ -324,6 +348,9 @@ class LocalizationMy extends Localization {
 
   @override
   String get main_screen_about => 'အကြောင်း';
+
+  @override
+  String get main_screen_interest_area => 'စိတ်ဝင်စားသော ဧရိယာ';
 
   @override
   String get main_screen_server_none => 'ဒေတာကို ဤစက်တွင်သာ သိမ်းဆည်းထားမည်';

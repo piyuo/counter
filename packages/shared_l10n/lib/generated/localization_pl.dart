@@ -305,6 +305,30 @@ class LocalizationPl extends Localization {
       'Zlicza osoby lub pojazdy, które opuściły ten obszar podczas bieżącego okna zliczania.\\n\\nWyjście jest liczone, gdy osoba lub pojazd przemieszcza się z wnętrza obszaru na zewnątrz.';
 
   @override
+  String get interest_areas_screen_add_area => 'Dodaj obszar';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Dodaj nowy obszar';
+
+  @override
+  String get interest_areas_screen_add_point => 'Dodaj punkt';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Dodaj punkt obszaru';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Usuń obszar';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Usuń wybrany obszar';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Usuń punkt';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Usuń wybrany punkt';
+
+  @override
   String get language_screen_language => 'Język';
 
   @override
@@ -323,6 +347,9 @@ class LocalizationPl extends Localization {
 
   @override
   String get main_screen_about => 'O aplikacji';
+
+  @override
+  String get main_screen_interest_area => 'Obszar Zainteresowania';
 
   @override
   String get main_screen_server_none =>

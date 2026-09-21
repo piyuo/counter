@@ -303,6 +303,30 @@ class LocalizationVi extends Localization {
       'Đếm số người hoặc phương tiện rời khỏi khu vực này trong cửa sổ đếm hiện tại.\\n\\nMột lượt ra được tính khi người hoặc phương tiện di chuyển từ trong khu vực ra bên ngoài.';
 
   @override
+  String get interest_areas_screen_add_area => 'Thêm khu vực';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Thêm khu vực mới';
+
+  @override
+  String get interest_areas_screen_add_point => 'Thêm điểm';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Thêm điểm khu vực';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Xóa khu vực';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'Xóa khu vực đã chọn';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Xóa điểm';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'Xóa điểm đã chọn';
+
+  @override
   String get language_screen_language => 'Ngôn ngữ';
 
   @override
@@ -322,6 +346,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get main_screen_about => 'Giới thiệu';
+
+  @override
+  String get main_screen_interest_area => 'Khu vực Quan tâm';
 
   @override
   String get main_screen_server_none =>

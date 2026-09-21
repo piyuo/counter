@@ -306,6 +306,32 @@ class LocalizationDe extends Localization {
       'Zählt Personen oder Fahrzeuge, die diesen Bereich während des aktuellen Zählfensters verlassen haben.\\n\\nEin Austritt wird gezählt, wenn sich eine Person oder ein Fahrzeug von innerhalb des Bereichs nach außerhalb bewegt.';
 
   @override
+  String get interest_areas_screen_add_area => 'Bereich hinzufügen';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'Neuen Bereich hinzufügen';
+
+  @override
+  String get interest_areas_screen_add_point => 'Punkt hinzufügen';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'Bereichspunkt hinzufügen';
+
+  @override
+  String get interest_areas_screen_remove_area => 'Bereich entfernen';
+
+  @override
+  String get interest_areas_screen_remove_area_tip =>
+      'Ausgewählten Bereich entfernen';
+
+  @override
+  String get interest_areas_screen_remove_point => 'Punkt entfernen';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'Ausgewählten Punkt entfernen';
+
+  @override
   String get language_screen_language => 'Sprache';
 
   @override
@@ -325,6 +351,9 @@ class LocalizationDe extends Localization {
 
   @override
   String get main_screen_about => 'Über';
+
+  @override
+  String get main_screen_interest_area => 'Interessenbereich';
 
   @override
   String get main_screen_server_none =>

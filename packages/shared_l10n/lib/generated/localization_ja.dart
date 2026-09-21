@@ -297,6 +297,30 @@ class LocalizationJa extends Localization {
       '現在の集計時間内にこのエリアから出た人や車両をカウントします。\\n\\n人や車両がエリア内から外へ移動したときに1回カウントされます。';
 
   @override
+  String get interest_areas_screen_add_area => 'エリア追加';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '新しいエリアを追加';
+
+  @override
+  String get interest_areas_screen_add_point => 'ポイント追加';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'エリアポイントを追加';
+
+  @override
+  String get interest_areas_screen_remove_area => 'エリア削除';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '選択したエリアを削除';
+
+  @override
+  String get interest_areas_screen_remove_point => 'ポイント削除';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '選択したポイントを削除';
+
+  @override
   String get language_screen_language => '言語';
 
   @override
@@ -315,6 +339,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get main_screen_about => 'アプリについて';
+
+  @override
+  String get main_screen_interest_area => '関心エリア';
 
   @override
   String get main_screen_server_none => 'データはこの端末にのみ保存されます';

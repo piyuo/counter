@@ -305,6 +305,30 @@ class LocalizationFa extends Localization {
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی از این ناحیه خارج شده‌اند محاسبه می‌کند.\\n\\nخروج زمانی شمارش می‌شود که یک فرد یا وسیله نقلیه از داخل ناحیه به خارج آن حرکت کند.';
 
   @override
+  String get interest_areas_screen_add_area => 'افزودن ناحیه';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'افزودن ناحیه جدید';
+
+  @override
+  String get interest_areas_screen_add_point => 'افزودن نقطه';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'افزودن نقطه به ناحیه';
+
+  @override
+  String get interest_areas_screen_remove_area => 'حذف ناحیه';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'حذف ناحیه انتخاب‌شده';
+
+  @override
+  String get interest_areas_screen_remove_point => 'حذف نقطه';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => 'حذف نقطه انتخاب‌شده';
+
+  @override
   String get language_screen_language => 'زبان';
 
   @override
@@ -324,6 +348,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get main_screen_about => 'درباره';
+
+  @override
+  String get main_screen_interest_area => 'ناحیه مورد علاقه';
 
   @override
   String get main_screen_server_none =>

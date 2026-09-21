@@ -303,6 +303,31 @@ class LocalizationBn extends Localization {
       'বর্তমান গণনা সময়সীমায় এই এলাকা থেকে বের হয়ে যাওয়া মানুষ বা যানবাহনের সংখ্যা গণনা করে。\\n\\nকোনো ব্যক্তি বা যানবাহন এলাকার ভেতর থেকে বাইরে গেলে একটি প্রস্থান গণনা করা হয়।';
 
   @override
+  String get interest_areas_screen_add_area => 'এলাকা যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_area_tip => 'নতুন এলাকা যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_point => 'পয়েন্ট যোগ করুন';
+
+  @override
+  String get interest_areas_screen_add_point_tip => 'এলাকায় পয়েন্ট যোগ করুন';
+
+  @override
+  String get interest_areas_screen_remove_area => 'এলাকা মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => 'নির্বাচিত এলাকা মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_point => 'পয়েন্ট মুছুন';
+
+  @override
+  String get interest_areas_screen_remove_point_tip =>
+      'নির্বাচিত পয়েন্ট মুছুন';
+
+  @override
   String get language_screen_language => 'ভাষা';
 
   @override
@@ -321,6 +346,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get main_screen_about => 'সম্পর্কে';
+
+  @override
+  String get main_screen_interest_area => 'আগ্রহের এলাকা';
 
   @override
   String get main_screen_server_none => 'ডেটা শুধু এই ডিভাইসেই সংরক্ষিত থাকবে';

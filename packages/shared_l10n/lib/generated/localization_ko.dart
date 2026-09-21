@@ -295,6 +295,30 @@ class LocalizationKo extends Localization {
       '현재 집계 시간 동안 이 영역을 벗어난 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량이 영역 안에서 밖으로 이동하면 한 번의 이탈로 계산됩니다.';
 
   @override
+  String get interest_areas_screen_add_area => '영역 추가';
+
+  @override
+  String get interest_areas_screen_add_area_tip => '새 영역 추가';
+
+  @override
+  String get interest_areas_screen_add_point => '포인트 추가';
+
+  @override
+  String get interest_areas_screen_add_point_tip => '영역 포인트 추가';
+
+  @override
+  String get interest_areas_screen_remove_area => '영역 제거';
+
+  @override
+  String get interest_areas_screen_remove_area_tip => '선택한 영역 제거';
+
+  @override
+  String get interest_areas_screen_remove_point => '포인트 제거';
+
+  @override
+  String get interest_areas_screen_remove_point_tip => '선택한 포인트 제거';
+
+  @override
   String get language_screen_language => '언어';
 
   @override
@@ -313,6 +337,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get main_screen_about => '정보';
+
+  @override
+  String get main_screen_interest_area => '관심 영역';
 
   @override
   String get main_screen_server_none => '데이터는 이 기기에만 저장됩니다';

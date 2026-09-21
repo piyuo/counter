@@ -68,125 +68,143 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
 
     final notifier = ref.read(interestAreaProvider.notifier);
 
-    Widget editor = GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTapDown: (details) {
-        _lastVisionPoint = screenToVision(
-          details.localPosition,
-          isIPadLandscape: widget.isIPadLandscape,
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        );
-        final hitPoint = _findVertexHit(
-          details.localPosition,
-          areaState.editingAreas,
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          _selectionHitRadius,
-          isIPadLandscape: widget.isIPadLandscape,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        );
+    Widget editor = LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
+        final screenHeight = constraints.maxHeight;
 
-        if (hitPoint != null) {
-          notifier.selectPoint(hitPoint.areaId, hitPoint.pointIndex);
-          return;
-        }
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (details) {
+            _lastVisionPoint = screenToVision(
+              details.localPosition,
+              isIPadLandscape: widget.isIPadLandscape,
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            );
+            final hitPoint = _findVertexHit(
+              details.localPosition,
+              areaState.editingAreas,
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              _selectionHitRadius,
+              isIPadLandscape: widget.isIPadLandscape,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            );
 
-        final hitAreaId = _findAreaHit(_lastVisionPoint!, areaState.editingAreas);
-        if (hitAreaId != null) {
-          notifier.selectArea(hitAreaId);
-        } else {
-          notifier.clearSelection();
-        }
+            if (hitPoint != null) {
+              notifier.selectPoint(hitPoint.areaId, hitPoint.pointIndex);
+              return;
+            }
+
+            final hitAreaId = _findAreaHit(_lastVisionPoint!, areaState.editingAreas);
+            if (hitAreaId != null) {
+              notifier.selectArea(hitAreaId);
+            } else {
+              notifier.clearSelection();
+            }
+          },
+          onPanStart: (details) {
+            final startVision = screenToVision(
+              details.localPosition,
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              isIPadLandscape: widget.isIPadLandscape,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            );
+            _lastVisionPoint = startVision;
+
+            final hitPoint = _findVertexHit(
+              details.localPosition,
+              areaState.editingAreas,
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              _selectionHitRadius,
+              isIPadLandscape: widget.isIPadLandscape,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            );
+            if (hitPoint != null) {
+              notifier.selectPoint(hitPoint.areaId, hitPoint.pointIndex);
+              _dragMode = _DragMode.point;
+              return;
+            }
+
+            final hitAreaId = _findAreaHit(startVision, areaState.editingAreas);
+            if (hitAreaId != null) {
+              notifier.selectArea(hitAreaId);
+              _dragMode = _DragMode.area;
+              return;
+            }
+
+            _dragMode = _DragMode.none;
+          },
+          onPanUpdate: (details) {
+            // Check if the drag point is within screen bounds to prevent moving areas off-screen
+            if (details.localPosition.dx < 0 ||
+                details.localPosition.dx > screenWidth ||
+                details.localPosition.dy < 0 ||
+                details.localPosition.dy > screenHeight) {
+              // Drag point is off-screen, stop the drag
+              _dragMode = _DragMode.none;
+              _lastVisionPoint = null;
+              return;
+            }
+
+            if (_lastVisionPoint == null) return;
+            final currentVision = screenToVision(
+              details.localPosition,
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              isIPadLandscape: widget.isIPadLandscape,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            );
+            final delta = currentVision - _lastVisionPoint!;
+            _lastVisionPoint = currentVision;
+
+            switch (_dragMode) {
+              case _DragMode.point:
+                notifier.moveSelectedPoint(delta);
+                break;
+              case _DragMode.area:
+                notifier.moveSelectedArea(delta);
+                break;
+              case _DragMode.none:
+                break;
+            }
+          },
+          onPanEnd: (_) {
+            _dragMode = _DragMode.none;
+            _lastVisionPoint = null;
+          },
+          child: CustomPaint(
+            size: Size(widget.displayWidth, widget.displayHeight),
+            painter: _InterestAreaEditorPainter(
+              videoWidth: widget.videoWidth,
+              videoHeight: widget.videoHeight,
+              areas: areaState.editingAreas,
+              rotationDegrees: widget.rotationDegrees,
+              selectedAreaId: areaState.selectedAreaId,
+              selectedPointIndex: areaState.selectedPointIndex,
+              isMobile: UniversalPlatform.isIOS || UniversalPlatform.isAndroid,
+              isIPadLandscape: widget.isIPadLandscape,
+              displayWidth: widget.displayWidth,
+              displayHeight: widget.displayHeight,
+              displayScale: widget.displayScale,
+            ),
+          ),
+        );
       },
-      onPanStart: (details) {
-        final startVision = screenToVision(
-          details.localPosition,
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          isIPadLandscape: widget.isIPadLandscape,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        );
-        _lastVisionPoint = startVision;
-
-        final hitPoint = _findVertexHit(
-          details.localPosition,
-          areaState.editingAreas,
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          _selectionHitRadius,
-          isIPadLandscape: widget.isIPadLandscape,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        );
-        if (hitPoint != null) {
-          notifier.selectPoint(hitPoint.areaId, hitPoint.pointIndex);
-          _dragMode = _DragMode.point;
-          return;
-        }
-
-        final hitAreaId = _findAreaHit(startVision, areaState.editingAreas);
-        if (hitAreaId != null) {
-          notifier.selectArea(hitAreaId);
-          _dragMode = _DragMode.area;
-          return;
-        }
-
-        _dragMode = _DragMode.none;
-      },
-      onPanUpdate: (details) {
-        if (_lastVisionPoint == null) return;
-        final currentVision = screenToVision(
-          details.localPosition,
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          isIPadLandscape: widget.isIPadLandscape,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        );
-        final delta = currentVision - _lastVisionPoint!;
-        _lastVisionPoint = currentVision;
-
-        switch (_dragMode) {
-          case _DragMode.point:
-            notifier.moveSelectedPoint(delta);
-            break;
-          case _DragMode.area:
-            notifier.moveSelectedArea(delta);
-            break;
-          case _DragMode.none:
-            break;
-        }
-      },
-      onPanEnd: (_) {
-        _dragMode = _DragMode.none;
-        _lastVisionPoint = null;
-      },
-      child: CustomPaint(
-        size: Size(widget.displayWidth, widget.displayHeight),
-        painter: _InterestAreaEditorPainter(
-          videoWidth: widget.videoWidth,
-          videoHeight: widget.videoHeight,
-          areas: areaState.editingAreas,
-          rotationDegrees: widget.rotationDegrees,
-          selectedAreaId: areaState.selectedAreaId,
-          selectedPointIndex: areaState.selectedPointIndex,
-          isMobile: UniversalPlatform.isIOS || UniversalPlatform.isAndroid,
-          isIPadLandscape: widget.isIPadLandscape,
-          displayWidth: widget.displayWidth,
-          displayHeight: widget.displayHeight,
-          displayScale: widget.displayScale,
-        ),
-      ),
     );
 
     return editor;
@@ -287,11 +305,7 @@ class _InterestAreaEditorPainter extends CustomPainter {
     }
   }
 
-  void _drawAreaLabel(
-    Canvas canvas,
-    TextPainter textPainter,
-    InterestArea area,
-  ) {
+  void _drawAreaLabel(Canvas canvas, TextPainter textPainter, InterestArea area) {
     if (!area.enabled || area.points.isEmpty) return;
 
     final bounds = visionPolygonToScreenBounds(
@@ -303,26 +317,20 @@ class _InterestAreaEditorPainter extends CustomPainter {
       displayHeight: displayHeight,
       displayScale: displayScale,
     );
-    final topCenter = Offset(bounds.center.dx, bounds.top);
+    final center = bounds.center;
     textPainter.text = TextSpan(
       text: area.name,
       style: TextStyle(
         color: Colors.white,
         fontSize: 18,
         fontWeight: FontWeight.w700,
-        shadows: [
-          Shadow(
-            color: Colors.black.withValues(alpha: 0.6),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        shadows: [Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 4, offset: const Offset(0, 2))],
       ),
     );
     textPainter.layout();
 
-    final labelLeft = topCenter.dx - (textPainter.width / 2);
-    final labelTop = (topCenter.dy - textPainter.height - 6).clamp(0.0, double.infinity).toDouble();
+    final labelLeft = center.dx - (textPainter.width / 2);
+    final labelTop = center.dy - (textPainter.height / 2);
     final paddingHorizontal = 15;
     final paddingVertical = 7;
     final backgroundRect = Rect.fromLTWH(
@@ -377,11 +385,7 @@ class _PointHit {
   final int pointIndex;
 }
 
-enum _DragMode {
-  none,
-  area,
-  point,
-}
+enum _DragMode { none, area, point }
 
 _PointHit? _findVertexHit(
   Offset tapPosition,
