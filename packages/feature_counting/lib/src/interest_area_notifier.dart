@@ -225,10 +225,15 @@ class InterestAreaNotifier extends _$InterestAreaNotifier implements InterestAre
   }
 
   void updateSelectedAreaName(String newName) {
-    if (!state.isEditing) return;
     final selectedId = state.selectedAreaId;
     if (selectedId == null) return;
-    final index = state.editingAreas.indexWhere((area) => area.id == selectedId);
+    updateAreaName(selectedId, newName);
+  }
+
+  /// Updates the name of an area regardless of selection, used by the inline label editor.
+  void updateAreaName(int areaId, String newName) {
+    if (!state.isEditing) return;
+    final index = state.editingAreas.indexWhere((area) => area.id == areaId);
     if (index == -1) return;
     final area = state.editingAreas[index];
     final updated = area.copyWith(name: newName);
