@@ -330,6 +330,13 @@ class LocalizationRo extends Localization {
       'Elimină punctul selectat';
 
   @override
+  String get interest_areas_screen_reset => 'Resetare';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Elimină toate zonele de interes existente';
+
+  @override
   String get language_screen_language => 'Limbă';
 
   @override
@@ -414,6 +421,9 @@ class LocalizationRo extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistici pentru fiecare perioadă de 5 minute';
+
+  @override
+  String get occupancy => 'Număr curent';
 
   @override
   String get onboarding_back_action => 'Înapoi';

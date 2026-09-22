@@ -329,6 +329,13 @@ class LocalizationTr extends Localization {
   String get interest_areas_screen_remove_point_tip => 'Seçili noktayı kaldır';
 
   @override
+  String get interest_areas_screen_reset => 'Sıfırla';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Mevcut tüm ilgi alanlarını kaldır';
+
+  @override
   String get language_screen_language => 'Dil';
 
   @override
@@ -411,6 +418,9 @@ class LocalizationTr extends Localization {
   @override
   String get metrics_counting_window =>
       'Her 5 dakikalık dönem için istatistikler';
+
+  @override
+  String get occupancy => 'Güncel Sayı';
 
   @override
   String get onboarding_back_action => 'Geri';

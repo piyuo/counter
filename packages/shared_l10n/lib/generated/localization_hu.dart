@@ -333,6 +333,13 @@ class LocalizationHu extends Localization {
       'Kijelölt pont eltávolítása';
 
   @override
+  String get interest_areas_screen_reset => 'Visszaállítás';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Az összes meglévő érdeklődési terület eltávolítása';
+
+  @override
   String get language_screen_language => 'Nyelv';
 
   @override
@@ -416,6 +423,9 @@ class LocalizationHu extends Localization {
   @override
   String get metrics_counting_window =>
       'Statisztikák minden 5 perces időszakhoz';
+
+  @override
+  String get occupancy => 'Jelenlegi darabszám';
 
   @override
   String get onboarding_back_action => 'Vissza';

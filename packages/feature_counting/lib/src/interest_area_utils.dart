@@ -4,13 +4,14 @@
 // 1. Coordinate conversions
 // ============================================================================
 
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 
 /// Convert vision coordinates to screen coordinates.
 /// When displayWidth/displayHeight/displayScale are provided, uses those instead of previewConstraints.
 /// This is needed for landscape rotation where dimensions are swapped.
-Offset visionToScreen(
-  Offset visionPoint, {
+core_domain.PointData visionToScreen(
+  core_domain.PointData visionPoint, {
   required bool isIPadLandscape,
   required double videoWidth,
   required double videoHeight,
@@ -34,11 +35,11 @@ Offset visionToScreen(
   // Calculate offset to center the video within the canvas
   final offsetX = (displayWidth - videoDisplayWidth) / 2;
   final offsetY = (displayHeight - videoDisplayHeight) / 2;
-  return Offset(offsetX + screenX, offsetY + screenY);
+  return core_domain.PointData(dx: offsetX + screenX, dy: offsetY + screenY);
 }
 
-Offset screenToVision(
-  Offset screenPoint, {
+core_domain.PointData screenToVision(
+  core_domain.PointData screenPoint, {
   required bool isIPadLandscape,
   required double videoWidth,
   required double videoHeight,
@@ -50,7 +51,7 @@ Offset screenToVision(
   final centerX = isIPadLandscape ? videoHeight / 2 : videoWidth / 2;
   final centerY = isIPadLandscape ? videoWidth / 2 : videoHeight / 2;
 
-  final center = Offset(centerX, centerY);
+  final center = core_domain.PointData(dx: centerX, dy: centerY);
 
   // Calculate actual video display dimensions after scaling
   final videoDisplayWidth = centerX * 2 * displayScale;
@@ -63,14 +64,11 @@ Offset screenToVision(
   final adjustedX = screenPoint.dx - offsetX;
   final adjustedY = screenPoint.dy - offsetY;
 
-  return Offset(
-    center.dx - (adjustedX / displayScale),
-    center.dy - (adjustedY / displayScale),
-  );
+  return core_domain.PointData(dx: center.dx - (adjustedX / displayScale), dy: center.dy - (adjustedY / displayScale));
 }
 
 Path visionPolygonToPath(
-  List<Offset> points, {
+  List<core_domain.PointData> points, {
   required bool isIPadLandscape,
   required double videoWidth,
   required double videoHeight,
@@ -79,15 +77,17 @@ Path visionPolygonToPath(
   required double displayScale,
 }) {
   final screenPoints = points
-      .map((point) => visionToScreen(
-            point,
-            isIPadLandscape: isIPadLandscape,
-            videoWidth: videoWidth,
-            videoHeight: videoHeight,
-            displayWidth: displayWidth,
-            displayHeight: displayHeight,
-            displayScale: displayScale,
-          ))
+      .map(
+        (point) => visionToScreen(
+          point,
+          isIPadLandscape: isIPadLandscape,
+          videoWidth: videoWidth,
+          videoHeight: videoHeight,
+          displayWidth: displayWidth,
+          displayHeight: displayHeight,
+          displayScale: displayScale,
+        ),
+      )
       .toList();
   final path = Path();
   if (screenPoints.isEmpty) return path;
@@ -100,7 +100,7 @@ Path visionPolygonToPath(
 }
 
 Rect visionPolygonToScreenBounds(
-  List<Offset> points, {
+  List<core_domain.PointData> points, {
   required bool isIPadLandscape,
   required double videoWidth,
   required double videoHeight,
@@ -110,15 +110,17 @@ Rect visionPolygonToScreenBounds(
 }) {
   if (points.isEmpty) return Rect.zero;
   final screenPoints = points
-      .map((point) => visionToScreen(
-            point,
-            isIPadLandscape: isIPadLandscape,
-            videoWidth: videoWidth,
-            videoHeight: videoHeight,
-            displayWidth: displayWidth,
-            displayHeight: displayHeight,
-            displayScale: displayScale,
-          ))
+      .map(
+        (point) => visionToScreen(
+          point,
+          isIPadLandscape: isIPadLandscape,
+          videoWidth: videoWidth,
+          videoHeight: videoHeight,
+          displayWidth: displayWidth,
+          displayHeight: displayHeight,
+          displayScale: displayScale,
+        ),
+      )
       .toList();
   var minX = screenPoints.first.dx;
   var maxX = screenPoints.first.dx;

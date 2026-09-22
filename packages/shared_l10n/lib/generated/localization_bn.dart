@@ -328,6 +328,13 @@ class LocalizationBn extends Localization {
       'নির্বাচিত পয়েন্ট মুছুন';
 
   @override
+  String get interest_areas_screen_reset => 'রিসেট';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'বিদ্যমান সব আগ্রহের এলাকা মুছুন';
+
+  @override
   String get language_screen_language => 'ভাষা';
 
   @override
@@ -408,6 +415,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get metrics_counting_window => 'প্রতি ৫ মিনিটের পরিসংখ্যান';
+
+  @override
+  String get occupancy => 'বর্তমান সংখ্যা';
 
   @override
   String get onboarding_back_action => 'ফিরে যান';

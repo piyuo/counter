@@ -1,8 +1,8 @@
-import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:feature_usage/feature_usage.dart' as feature_usage;
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:universal_platform/universal_platform.dart';
 
+import 'firebase_analytics_backend.dart';
 import 'firebase_options.dart';
 
 Future<void> initializeUsage() async {
@@ -20,7 +20,7 @@ Future<void> initializeUsage() async {
 
     await feature_usage.initUsage(
       nativeBackend: supportsFirebase
-          ? core_runtime.FirebaseAnalyticsBackend(firebaseOptions: DefaultFirebaseOptions.currentPlatform)
+          ? FirebaseAnalyticsBackend(firebaseOptions: DefaultFirebaseOptions.currentPlatform)
           : null,
       measurementId: measurementId,
       apiSecret: apiSecret,

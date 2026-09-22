@@ -153,7 +153,7 @@ class MainScreen extends ConsumerWidget {
                       trailing: Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         final interestAreaController = ref.read(feature_counting.interestAreaProvider.notifier);
-                        final visionState = ref.watch(vision.visionProvider);
+                        final visionState = ref.read(vision.visionProvider);
                         interestAreaController.startEditing(
                           videoWidth: visionState.videoWidth,
                           videoHeight: visionState.videoHeight,

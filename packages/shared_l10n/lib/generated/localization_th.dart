@@ -328,6 +328,12 @@ class LocalizationTh extends Localization {
   String get interest_areas_screen_remove_point_tip => 'ลบจุดที่เลือก';
 
   @override
+  String get interest_areas_screen_reset => 'รีเซ็ต';
+
+  @override
+  String get interest_areas_screen_reset_tip => 'ลบพื้นที่สนใจที่มีอยู่ทั้งหมด';
+
+  @override
   String get language_screen_language => 'ภาษา';
 
   @override
@@ -409,6 +415,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get metrics_counting_window => 'สถิติสำหรับทุกช่วงเวลา 5 นาที';
+
+  @override
+  String get occupancy => 'จำนวนปัจจุบัน';
 
   @override
   String get onboarding_back_action => 'ย้อนกลับ';

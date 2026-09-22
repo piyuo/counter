@@ -327,6 +327,13 @@ class LocalizationVi extends Localization {
   String get interest_areas_screen_remove_point_tip => 'Xóa điểm đã chọn';
 
   @override
+  String get interest_areas_screen_reset => 'Đặt lại';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Xóa tất cả khu vực quan tâm hiện có';
+
+  @override
   String get language_screen_language => 'Ngôn ngữ';
 
   @override
@@ -409,6 +416,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get metrics_counting_window => 'Thống kê cho mỗi khoảng 5 phút';
+
+  @override
+  String get occupancy => 'Số lượng hiện tại';
 
   @override
   String get onboarding_back_action => 'Quay lại';

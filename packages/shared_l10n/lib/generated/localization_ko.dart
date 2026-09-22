@@ -319,6 +319,12 @@ class LocalizationKo extends Localization {
   String get interest_areas_screen_remove_point_tip => '선택한 포인트 제거';
 
   @override
+  String get interest_areas_screen_reset => '초기화';
+
+  @override
+  String get interest_areas_screen_reset_tip => '기존의 모든 관심 영역 제거';
+
+  @override
   String get language_screen_language => '언어';
 
   @override
@@ -399,6 +405,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get metrics_counting_window => '5분마다 생성되는 통계';
+
+  @override
+  String get occupancy => '현재 개수';
 
   @override
   String get onboarding_back_action => '뒤로';

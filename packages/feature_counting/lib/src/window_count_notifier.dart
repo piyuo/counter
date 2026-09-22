@@ -14,21 +14,21 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import 'interest_area.dart';
-import 'interest_area_notifier.dart';
-import 'interest_area_state.dart';
-import 'window_count_state.dart';
 import 'area_tracker.dart';
 import 'count_window_aggregator.dart';
 import 'count_window_scheduler.dart';
 import 'frame_gap_tracker.dart';
+import 'interest_area_notifier.dart';
+import 'interest_area_state.dart';
 import 'session_cursor.dart';
+import 'window_count_state.dart';
 
 part 'window_count_notifier.g.dart';
 
@@ -36,7 +36,7 @@ abstract interface class WindowCountController {
   void processFrame(
     List<vision.TrackedObject> tracks, {
     required double rotationDegrees,
-    List<InterestArea>? areasForTest,
+    List<core_domain.InterestArea>? areasForTest,
   });
 }
 
@@ -88,7 +88,7 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
   }
 
   // Cached provider values used in _processFrame to avoid per-frame lookups.
-  List<InterestArea> _activeAreasCache = const [];
+  List<core_domain.InterestArea> _activeAreasCache = const [];
   ProviderSubscription<InterestAreaState>? _interestAreaSubscription;
 
   final DateTime Function()? _nowProvider;
@@ -312,7 +312,7 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
     );
   }
 
-  void onAreasChanged(List<InterestArea> areas) {
+  void onAreasChanged(List<core_domain.InterestArea> areas) {
     _areaTrackers.clear();
     for (final area in areas) {
       _areaTrackers[area.id] = AreaTracker.local(
@@ -330,7 +330,7 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
 
   /// Compares two lists of [InterestArea] objects for equality.
   /// Returns true if areas have changed, false if they're the same.
-  bool _areasHaveChanged(List<InterestArea> newAreas) {
+  bool _areasHaveChanged(List<core_domain.InterestArea> newAreas) {
     if (newAreas.length != _activeAreasCache.length) return true;
     for (int i = 0; i < newAreas.length; i++) {
       if (newAreas[i] != _activeAreasCache[i]) return true;
@@ -420,7 +420,7 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
   void processFrame(
     List<vision.TrackedObject> tracks, {
     required double rotationDegrees,
-    List<InterestArea>? areasForTest,
+    List<core_domain.InterestArea>? areasForTest,
   }) {
     // Helper to test whether a point (typically the center of a detected
     // bounding box) lies inside an `InterestArea`.
@@ -440,7 +440,7 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
     //   the image center reference for display (see TrackedObjectOverlay /
     //   interest_area_utils) rather than truly rotating points, so tracked
     //   object centers and area points are already directly comparable there.
-    bool areaContains(InterestArea area, Offset point) {
+    bool areaContains(core_domain.InterestArea area, core_domain.PointData point) {
       final isSwappedRenderMode = UniversalPlatform.isIOS && _isLandscapeOrientation();
       if (rotationDegrees == 0.0 || isSwappedRenderMode) {
         final result = area.contains(point);
@@ -497,8 +497,8 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
         tracks,
         aggregator,
         frameTimestampUtc: now,
-        checkContains: (t) => areaContains(area, t.center),
-        checkInitialContains: (t) => areaContains(area, t.initialCenter),
+        checkContains: (t) => areaContains(area, core_domain.PointData.fromOffset(t.center)),
+        checkInitialContains: (t) => areaContains(area, core_domain.PointData.fromOffset(t.initialCenter)),
       );
     }
 
@@ -584,12 +584,15 @@ class WindowCountNotifier extends _$WindowCountNotifier implements WindowCountCo
   ///
   /// Used to inverse-rotate tracked object centers from image coordinates
   /// back to screen coordinates for proper containment testing.
-  Offset _rotatePoint(Offset point, double degrees) {
+  core_domain.PointData _rotatePoint(core_domain.PointData point, double degrees) {
     if (degrees == 0) return point;
     final radians = degrees * (math.pi / 180);
     final cosValue = math.cos(radians);
     final sinValue = math.sin(radians);
-    return Offset(point.dx * cosValue - point.dy * sinValue, point.dx * sinValue + point.dy * cosValue);
+    return core_domain.PointData(
+      dx: point.dx * cosValue - point.dy * sinValue,
+      dy: point.dx * sinValue + point.dy * cosValue,
+    );
   }
 
   CountWindowAggregator _buildDefaultAggregator() {

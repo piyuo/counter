@@ -331,6 +331,13 @@ class LocalizationEl extends Localization {
       'Αφαίρεση επιλεγμένου σημείου';
 
   @override
+  String get interest_areas_screen_reset => 'Επαναφορά';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Αφαίρεση όλων των υπαρχόντων περιοχών ενδιαφέροντος';
+
+  @override
   String get language_screen_language => 'Γλώσσα';
 
   @override
@@ -414,6 +421,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get metrics_counting_window => 'Στατιστικά για κάθε περίοδο 5 λεπτών';
+
+  @override
+  String get occupancy => 'Τρέχων αριθμός';
 
   @override
   String get onboarding_back_action => 'Πίσω';

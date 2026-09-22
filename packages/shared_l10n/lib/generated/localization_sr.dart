@@ -328,6 +328,13 @@ class LocalizationSr extends Localization {
   String get interest_areas_screen_remove_point_tip => 'Ukloni izabranu tačku';
 
   @override
+  String get interest_areas_screen_reset => 'Resetuj';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Ukloni sve postojeće oblasti interesovanja';
+
+  @override
   String get language_screen_language => 'Jezik';
 
   @override
@@ -411,6 +418,9 @@ class LocalizationSr extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistika za svaki period od 5 minuta';
+
+  @override
+  String get occupancy => 'Тренутни број';
 
   @override
   String get onboarding_back_action => 'Nazad';

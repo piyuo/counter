@@ -5,7 +5,6 @@ import 'package:feature_control_panel/widgets/metric_statistics.dart';
 import 'package:feature_control_panel/widgets/metrics_cards.dart';
 import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter/material.dart';
-import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:shared_l10n/shared_l10n.dart';
 
 List<MetricCardData> mapVisionMetricsToCardData(
@@ -18,7 +17,7 @@ List<MetricCardData> mapVisionMetricsToCardData(
   required String countMaxDwellLabel,
 }) {
   final orderedAreas = [
-    (id: vision.kGlobalAreaId, name: ''),
+    (id: feature_counting.kGlobalAreaId, name: ''),
     for (final area in areaState.activeAreas) (id: area.id, name: area.name),
   ];
 
@@ -33,11 +32,13 @@ List<MetricCardData> mapVisionMetricsToCardData(
       continue;
     }
 
-    final valueColor = area.id == vision.kGlobalAreaId ? Colors.lightBlue : (areaColors[area.id] ?? Colors.lightBlue);
+    final valueColor = area.id == feature_counting.kGlobalAreaId
+        ? Colors.lightBlue
+        : (areaColors[area.id] ?? Colors.lightBlue);
 
     panels.add(
       MetricCardData(
-        title: area.id == vision.kGlobalAreaId ? null : area.name,
+        title: area.id == feature_counting.kGlobalAreaId ? null : area.name,
         valueColor: valueColor,
 
         hero: HeroMetricData(

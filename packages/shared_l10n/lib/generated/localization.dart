@@ -714,6 +714,18 @@ abstract class Localization {
   /// **'Remove selected point'**
   String get interest_areas_screen_remove_point_tip;
 
+  /// No description provided for @interest_areas_screen_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get interest_areas_screen_reset;
+
+  /// No description provided for @interest_areas_screen_reset_tip.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all existing interest areas'**
+  String get interest_areas_screen_reset_tip;
+
   /// No description provided for @language_screen_language.
   ///
   /// In en, this message translates to:
@@ -869,6 +881,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Statistics for Each 5-Minute Period'**
   String get metrics_counting_window;
+
+  /// No description provided for @occupancy.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Count'**
+  String get occupancy;
 
   /// No description provided for @onboarding_back_action.
   ///

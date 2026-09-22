@@ -5,11 +5,11 @@
 // 2. Editor painter
 // ============================================================================
 
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:universal_platform/universal_platform.dart';
 
-import 'interest_area.dart';
 import 'interest_area_notifier.dart';
 import 'interest_area_utils.dart';
 
@@ -51,7 +51,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
   static const double _mobileSelectionHitRadius = 40.0;
 
   _DragMode _dragMode = _DragMode.none;
-  Offset? _lastVisionPoint;
+  core_domain.PointData? _lastVisionPoint;
 
   double get _selectionHitRadius {
     return (UniversalPlatform.isIOS || UniversalPlatform.isAndroid)
@@ -77,7 +77,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
           behavior: HitTestBehavior.opaque,
           onTapDown: (details) {
             _lastVisionPoint = screenToVision(
-              details.localPosition,
+              core_domain.PointData.fromOffset(details.localPosition),
               isIPadLandscape: widget.isIPadLandscape,
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
@@ -86,7 +86,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
               displayScale: widget.displayScale,
             );
             final hitPoint = _findVertexHit(
-              details.localPosition,
+              core_domain.PointData.fromOffset(details.localPosition),
               areaState.editingAreas,
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
@@ -111,7 +111,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
           },
           onPanStart: (details) {
             final startVision = screenToVision(
-              details.localPosition,
+              core_domain.PointData.fromOffset(details.localPosition),
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
               isIPadLandscape: widget.isIPadLandscape,
@@ -122,7 +122,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
             _lastVisionPoint = startVision;
 
             final hitPoint = _findVertexHit(
-              details.localPosition,
+              core_domain.PointData.fromOffset(details.localPosition),
               areaState.editingAreas,
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
@@ -161,7 +161,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
 
             if (_lastVisionPoint == null) return;
             final currentVision = screenToVision(
-              details.localPosition,
+              core_domain.PointData.fromOffset(details.localPosition),
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
               isIPadLandscape: widget.isIPadLandscape,
@@ -190,6 +190,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
           child: CustomPaint(
             size: Size(widget.displayWidth, widget.displayHeight),
             painter: _InterestAreaEditorPainter(
+              context: context,
               videoWidth: widget.videoWidth,
               videoHeight: widget.videoHeight,
               areas: areaState.editingAreas,
@@ -213,6 +214,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
 
 class _InterestAreaEditorPainter extends CustomPainter {
   const _InterestAreaEditorPainter({
+    required this.context,
     required this.areas,
     required this.rotationDegrees,
     required this.selectedAreaId,
@@ -226,7 +228,8 @@ class _InterestAreaEditorPainter extends CustomPainter {
     required this.videoHeight,
   });
 
-  final List<InterestArea> areas;
+  final BuildContext context;
+  final List<core_domain.InterestArea> areas;
   final double rotationDegrees;
   final int? selectedAreaId;
   final int? selectedPointIndex;
@@ -237,22 +240,26 @@ class _InterestAreaEditorPainter extends CustomPainter {
   final double displayWidth;
   final double displayHeight;
   final double displayScale;
+  static TextPainter? _textPainter;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final textPainter = TextPainter(textDirection: TextDirection.ltr);
+    if (_textPainter == null) {
+      final textDirection = Directionality.of(context);
+      _textPainter ??= TextPainter(textDirection: textDirection);
+    }
 
     for (final area in areas) {
       final isSelected = area.id == selectedAreaId;
       _drawArea(canvas, area, isSelected: isSelected);
-      _drawAreaLabel(canvas, textPainter, area);
+      _drawAreaLabel(canvas, _textPainter!, area);
       if (isSelected) {
         _drawSelection(canvas, area);
       }
     }
   }
 
-  void _drawArea(Canvas canvas, InterestArea area, {required bool isSelected}) {
+  void _drawArea(Canvas canvas, core_domain.InterestArea area, {required bool isSelected}) {
     final color = area.color.withValues(alpha: area.enabled ? 0.7 : 0.3);
     final path = visionPolygonToPath(
       area.points,
@@ -280,7 +287,7 @@ class _InterestAreaEditorPainter extends CustomPainter {
     canvas.drawPath(path, strokePaint);
   }
 
-  void _drawSelection(Canvas canvas, InterestArea area) {
+  void _drawSelection(Canvas canvas, core_domain.InterestArea area) {
     for (var i = 0; i < area.points.length; i++) {
       final point = visionToScreen(
         area.points[i],
@@ -296,7 +303,7 @@ class _InterestAreaEditorPainter extends CustomPainter {
       final unselectedRadius = isMobile ? 10.0 : 8.0;
       final selectedRadius = isMobile ? 15.0 : 12.0;
       canvas.drawCircle(
-        point,
+        point.offset,
         isSelectedPoint ? selectedRadius : unselectedRadius,
         Paint()
           ..color = isSelectedPoint ? Colors.yellow : area.color
@@ -305,7 +312,7 @@ class _InterestAreaEditorPainter extends CustomPainter {
     }
   }
 
-  void _drawAreaLabel(Canvas canvas, TextPainter textPainter, InterestArea area) {
+  void _drawAreaLabel(Canvas canvas, TextPainter textPainter, core_domain.InterestArea area) {
     if (!area.enabled || area.points.isEmpty) return;
 
     final bounds = visionPolygonToScreenBounds(
@@ -388,8 +395,8 @@ class _PointHit {
 enum _DragMode { none, area, point }
 
 _PointHit? _findVertexHit(
-  Offset tapPosition,
-  List<InterestArea> areas,
+  core_domain.PointData tapPosition,
+  List<core_domain.InterestArea> areas,
   double radius, {
   required double videoWidth,
   required double videoHeight,
@@ -417,7 +424,7 @@ _PointHit? _findVertexHit(
   return null;
 }
 
-int? _findAreaHit(Offset tapVision, List<InterestArea> areas) {
+int? _findAreaHit(core_domain.PointData tapVision, List<core_domain.InterestArea> areas) {
   for (final area in areas) {
     if (area.contains(tapVision)) {
       return area.id;

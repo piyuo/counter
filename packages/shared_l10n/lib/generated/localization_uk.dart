@@ -328,6 +328,13 @@ class LocalizationUk extends Localization {
   String get interest_areas_screen_remove_point_tip => 'Видалити вибрану точку';
 
   @override
+  String get interest_areas_screen_reset => 'Скинути';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Видалити всі наявні зони інтересу';
+
+  @override
   String get language_screen_language => 'Мова';
 
   @override
@@ -412,6 +419,9 @@ class LocalizationUk extends Localization {
   @override
   String get metrics_counting_window =>
       'Статистика для кожного 5-хвилинного періоду';
+
+  @override
+  String get occupancy => 'Поточна кількість';
 
   @override
   String get onboarding_back_action => 'Назад';

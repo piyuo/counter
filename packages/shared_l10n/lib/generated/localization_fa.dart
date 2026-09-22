@@ -329,6 +329,13 @@ class LocalizationFa extends Localization {
   String get interest_areas_screen_remove_point_tip => 'حذف نقطه انتخاب‌شده';
 
   @override
+  String get interest_areas_screen_reset => 'بازنشانی';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'حذف همه مناطق مورد علاقه موجود';
+
+  @override
   String get language_screen_language => 'زبان';
 
   @override
@@ -412,6 +419,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get metrics_counting_window => 'آمار برای هر بازه ۵ دقیقه‌ای';
+
+  @override
+  String get occupancy => 'تعداد فعلی';
 
   @override
   String get onboarding_back_action => 'بازگشت';

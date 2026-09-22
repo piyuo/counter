@@ -312,6 +312,12 @@ class LocalizationZh extends Localization {
   String get interest_areas_screen_remove_point_tip => '移除所選點';
 
   @override
+  String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_tip => '移除所有現有的興趣區域';
+
+  @override
   String get language_screen_language => '語言';
 
   @override
@@ -392,6 +398,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get metrics_counting_window => '每 5 分鐘產生一次的統計資料';
+
+  @override
+  String get occupancy => '目前數量';
 
   @override
   String get onboarding_back_action => '返回';
@@ -1098,6 +1107,12 @@ class LocalizationZhCn extends LocalizationZh {
   String get interest_areas_screen_remove_point_tip => '移除所选点';
 
   @override
+  String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_tip => '移除所有现有的兴趣区域';
+
+  @override
   String get language_screen_language => '语言';
 
   @override
@@ -1178,6 +1193,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get metrics_counting_window => '每 5 分钟生成一次的统计数据';
+
+  @override
+  String get occupancy => '当前数量';
 
   @override
   String get onboarding_back_action => '返回';

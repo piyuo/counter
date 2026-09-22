@@ -329,6 +329,13 @@ class LocalizationRu extends Localization {
       'Удалить выбранную точку';
 
   @override
+  String get interest_areas_screen_reset => 'Сбросить';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Удалить все существующие зоны интереса';
+
+  @override
   String get language_screen_language => 'Язык';
 
   @override
@@ -413,6 +420,9 @@ class LocalizationRu extends Localization {
   @override
   String get metrics_counting_window =>
       'Статистика для каждого 5-минутного периода';
+
+  @override
+  String get occupancy => 'Текущее количество';
 
   @override
   String get onboarding_back_action => 'Назад';

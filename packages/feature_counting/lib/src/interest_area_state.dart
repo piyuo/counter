@@ -1,6 +1,5 @@
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
-
-import 'interest_area.dart';
 
 @immutable
 class InterestAreaState {
@@ -14,22 +13,22 @@ class InterestAreaState {
     required this.selectedPointIndex,
   });
 
-  final List<InterestArea> activeAreas;
-  final List<InterestArea> editingAreas;
+  final List<core_domain.InterestArea> activeAreas;
+  final List<core_domain.InterestArea> editingAreas;
   final bool isEditing;
   final int? selectedAreaId;
   final int? selectedPointIndex;
 
   const InterestAreaState.initial()
-      : activeAreas = const [],
-        editingAreas = const [],
-        isEditing = false,
-        selectedAreaId = null,
-        selectedPointIndex = null;
+    : activeAreas = const [],
+      editingAreas = const [],
+      isEditing = false,
+      selectedAreaId = null,
+      selectedPointIndex = null;
 
   InterestAreaState copyWith({
-    List<InterestArea>? activeAreas,
-    List<InterestArea>? editingAreas,
+    List<core_domain.InterestArea>? activeAreas,
+    List<core_domain.InterestArea>? editingAreas,
     bool? isEditing,
     Object? selectedAreaId = _unset,
     Object? selectedPointIndex = _unset,

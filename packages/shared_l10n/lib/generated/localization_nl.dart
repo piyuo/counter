@@ -330,6 +330,13 @@ class LocalizationNl extends Localization {
       'Geselecteerd punt verwijderen';
 
   @override
+  String get interest_areas_screen_reset => 'Reset';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Alle bestaande interessegebieden verwijderen';
+
+  @override
   String get language_screen_language => 'Taal';
 
   @override
@@ -414,6 +421,9 @@ class LocalizationNl extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistieken voor elke periode van 5 minuten';
+
+  @override
+  String get occupancy => 'Huidig aantal';
 
   @override
   String get onboarding_back_action => 'Terug';

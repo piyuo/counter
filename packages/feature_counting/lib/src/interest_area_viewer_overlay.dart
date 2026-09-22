@@ -1,7 +1,8 @@
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_l10n/shared_l10n.dart';
 
-import 'interest_area.dart';
 import 'interest_area_notifier.dart';
 import 'interest_area_utils.dart';
 import 'window_count.dart';
@@ -53,7 +54,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
       );
     }
 
-    Widget buildAreaCountLabel(InterestArea area) {
+    Widget buildAreaCountLabel(core_domain.InterestArea area) {
       final rect = visionPolygonToScreenBounds(
         area.points,
         videoWidth: videoWidth,
@@ -87,7 +88,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "context.l.occupancy", // todo: translation
+              context.l.occupancy,
               style: TextStyle(
                 shadows: [
                   Shadow(color: Colors.black.withValues(alpha: 0.6), blurRadius: 6, offset: const Offset(0, 2)),
@@ -183,7 +184,7 @@ class _InterestAreaViewerPainter extends CustomPainter {
 
   final double videoWidth;
   final double videoHeight;
-  final List<InterestArea> areas;
+  final List<core_domain.InterestArea> areas;
   final bool isIPadLandscape;
   final double displayWidth;
   final double displayHeight;

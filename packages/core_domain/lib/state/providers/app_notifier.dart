@@ -12,7 +12,7 @@ import 'package:core_domain/state/models/app_state.dart';
 import 'package:core_domain/state/models/data_server.dart';
 import 'package:core_domain/state/models/detection_params.dart';
 import 'package:core_domain/state/models/detection_type.dart';
-import 'package:core_domain/state/models/interest_area_data.dart';
+import 'package:core_domain/state/models/interest_area.dart';
 import 'package:core_domain/state/models/upload_config.dart';
 import 'package:core_domain/state/models/video_source.dart';
 import 'package:core_domain/state/providers/app_runtime_notifier.dart';
@@ -34,7 +34,7 @@ abstract class AppController {
   Future<void> setVideoSource(VideoSource videoSource);
   Future<void> setDetectionType(DetectionType detectionType);
   Future<void> setDetectionParams(DetectionParams detectionParams);
-  Future<void> saveInterestAreaDatas(List<InterestAreaData> areas);
+  Future<void> saveInterestAreaDatas(List<InterestArea> areas);
   Future<void> selectPersonalPiyuoServer();
   Future<void> selectPersonalCustomServer(String url, String token);
   Future<void> selectBusinessPiyuoServer(BusinessPiyuoServer server, String token);
@@ -247,7 +247,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
   }
 
   @override
-  Future<void> saveInterestAreaDatas(List<InterestAreaData> areas) async {
+  Future<void> saveInterestAreaDatas(List<InterestArea> areas) async {
     final current = await future;
     final updated = current.copyWith(interestAreas: areas);
     state = AsyncData(updated);

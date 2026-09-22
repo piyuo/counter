@@ -9,7 +9,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  collection: ^1.19.1
+  core_domain: any
+  shared_l10n: any
   flutter:
     sdk: flutter
   flutter_appkit:
@@ -20,6 +21,7 @@ dependencies:
   flutter_vision:
     path: ../../../flutter-vision
   intl: ^0.20.3
+  collection: ^1.19.1
   riverpod_annotation: ^4.0.7
   universal_platform: ^1.1.0
 

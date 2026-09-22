@@ -321,6 +321,12 @@ class LocalizationJa extends Localization {
   String get interest_areas_screen_remove_point_tip => '選択したポイントを削除';
 
   @override
+  String get interest_areas_screen_reset => 'リセット';
+
+  @override
+  String get interest_areas_screen_reset_tip => '既存のすべての関心エリアを削除';
+
+  @override
   String get language_screen_language => '言語';
 
   @override
@@ -401,6 +407,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get metrics_counting_window => '5分ごとの統計データ';
+
+  @override
+  String get occupancy => '現在の数';
 
   @override
   String get onboarding_back_action => '戻る';

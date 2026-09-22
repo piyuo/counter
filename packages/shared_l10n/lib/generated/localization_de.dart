@@ -332,6 +332,13 @@ class LocalizationDe extends Localization {
       'Ausgewählten Punkt entfernen';
 
   @override
+  String get interest_areas_screen_reset => 'Zurücksetzen';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Alle vorhandenen Interessenbereiche entfernen';
+
+  @override
   String get language_screen_language => 'Sprache';
 
   @override
@@ -415,6 +422,9 @@ class LocalizationDe extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistiken für jeden 5-Minuten-Zeitraum';
+
+  @override
+  String get occupancy => 'Aktuelle Anzahl';
 
   @override
   String get onboarding_back_action => 'Zurück';

@@ -53,7 +53,7 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   uploadJitterSec: (json['uploadJitterSec'] as num?)?.toInt() ?? 0,
   interestAreas:
       (json['interestAreas'] as List<dynamic>?)
-          ?.map((e) => InterestAreaData.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => InterestArea.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
   isTrackIdVisible: json['isTrackIdVisible'] as bool? ?? false,

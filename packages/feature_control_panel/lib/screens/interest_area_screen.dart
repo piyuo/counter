@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
@@ -27,7 +29,9 @@ class InterestAreasScreen extends ConsumerWidget {
         if (!areaState.isEditing) {
           return;
         }
-        ref.read(feature_counting.interestAreaProvider.notifier).finishEditing();
+        final areas = ref.read(feature_counting.interestAreaProvider.notifier).finishEditing();
+        final appController = ref.read(core_domain.appProvider.notifier);
+        unawaited(appController.saveInterestAreaDatas(areas));
 
         // If pop hasn't happened yet, manually trigger it
         if (!didPop && context.mounted) {
@@ -101,6 +105,22 @@ class InterestAreasScreen extends ConsumerWidget {
                           : () {
                               ref.read(feature_counting.interestAreaProvider.notifier).removeSelectedPoint();
                             },
+                    ),
+                  ],
+                ),
+              ),
+              feature_pip.PipPanel(
+                child: Column(
+                  children: [
+                    ListTile(
+                      enabled: canAddPoint,
+                      leading: Icon(Icons.restore),
+                      title: Text(context.l.interest_areas_screen_reset),
+                      subtitle: Text(context.l.interest_areas_screen_reset_tip),
+                      trailing: const SizedBox.shrink(),
+                      onTap: () {
+                        ref.read(feature_counting.interestAreaProvider.notifier).reset();
+                      },
                     ),
                   ],
                 ),

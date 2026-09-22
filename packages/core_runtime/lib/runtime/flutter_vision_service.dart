@@ -9,6 +9,7 @@ import 'dart:async';
 import 'package:camera/camera.dart';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart';
+import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
@@ -21,11 +22,11 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   FlutterVisionService();
 
   vision.VisionController? _activeController;
-  StreamSubscription<vision.WindowCountState>? _snapshotSubscription;
+  StreamSubscription<feature_counting.WindowCountState>? _snapshotSubscription;
   bool _telemetryUploadStarted = false;
-  ProviderSubscription<List<vision.InterestArea>>? _interestAreaSubscription;
+  ProviderSubscription<List<core_domain.InterestArea>>? _interestAreaSubscription;
 
-  List<vision.InterestArea> _interestAreas = const [];
+  List<core_domain.InterestArea> _interestAreas = const [];
   DateTime? _startTime;
 
   @override
@@ -36,8 +37,8 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
       _interestAreaSubscription = null;
     });
 
-    _interestAreaSubscription ??= ref.container.listen<List<vision.InterestArea>>(
-      vision.interestAreaProvider.select((state) => state.activeAreas),
+    _interestAreaSubscription ??= ref.container.listen<List<core_domain.InterestArea>>(
+      feature_counting.interestAreaProvider.select((state) => state.activeAreas),
       (_, activeAreas) {
         if (_interestAreas == activeAreas) {
           return;
@@ -46,7 +47,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
 
         if (_activeController != null) {
           final appController = ref.read(core_domain.appProvider.notifier);
-          unawaited(appController.saveInterestAreaDatas(activeAreas.map((area) => area.toInterestAreaData()).toList()));
+          unawaited(appController.saveInterestAreaDatas(activeAreas));
         }
       },
       fireImmediately: true,
@@ -57,6 +58,8 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   Future<void> stop() async {
     final controller = _activeController;
     _activeController = null;
+    ref.read(feature_counting.windowCountProvider.notifier).stop();
+    ref.read(feature_counting.interestAreaProvider.notifier).stop();
     // Calculate and log usage duration
     if (_startTime != null) {
       final lastUsageDuration = DateTime.now().difference(_startTime!);
@@ -74,10 +77,10 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     required core_domain.VideoSource videoSource,
     required core_domain.DetectionType detectionType,
     required core_domain.DetectionParams detectionParams,
-    required List<core_domain.InterestAreaData> interestAreaDatas,
+    required List<core_domain.InterestArea> interestAreaDatas,
     required bool isTrackIdVisible,
   }) async {
-    _interestAreas = interestAreaDatas.map((data) => data.toInterestArea()).toList();
+    _interestAreas = interestAreaDatas;
     _startTime = DateTime.now();
     appkit.logDebug('[VisionRuntime] Vision service started');
 
@@ -122,18 +125,35 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   }) async {
     await stop();
 
+    // count controller
+    final countController = ref.read(feature_counting.windowCountProvider.notifier);
+    countController.setThresholdSeconds(
+      stayThresholdSeconds: detectionParams.stayThresholdSeconds,
+      disappearThresholdSeconds: detectionParams.disappearThresholdSeconds,
+    );
+    countController.start();
+
+    final interestAreaController = ref.read(feature_counting.interestAreaProvider.notifier);
+    interestAreaController.start(_interestAreas);
+
     final detectionModel = await _buildDetectionModel(detection);
     //    final reidModel = await _buildReidModel(detection);
     final visionParams = detectionParamsToVisionParams(detectionParams);
 
     _activeController = ref.read(vision.visionProvider.notifier);
     final visionInput = await _buildVisionInput(videoSource);
+    _activeController!.setEventCallback((event) {
+      countController.handleEvent(event);
+    });
+    _activeController!.setTrackedObjectsCallback((List<vision.TrackedObject> trackedObjects, double rotationDegrees) {
+      countController.processFrame(trackedObjects, rotationDegrees: rotationDegrees);
+    });
+
     await _activeController!.start(
       detectionModel: detectionModel,
       //reidModel: reidModel,
       params: visionParams,
       input: visionInput,
-      interestAreas: _interestAreas,
       isTrackIdVisible: isTrackIdVisible,
     );
 
@@ -181,6 +201,12 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     }
     final newParams = detectionParamsToVisionParams(detectionParams);
     await _activeController!.setParams(newParams);
+
+    final countController = ref.read(feature_counting.windowCountProvider.notifier);
+    countController.setThresholdSeconds(
+      stayThresholdSeconds: detectionParams.stayThresholdSeconds,
+      disappearThresholdSeconds: detectionParams.disappearThresholdSeconds,
+    );
   }
 
   @override
@@ -215,7 +241,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     final appState = await ref.read(core_domain.appProvider.future);
     final mapper = WindowResultMapper(deviceId: appState.deviceId);
 
-    _snapshotSubscription = ref.read(vision.windowCountProvider.notifier).snapshots.listen((snapshot) {
+    _snapshotSubscription = ref.read(feature_counting.windowCountProvider.notifier).snapshots.listen((snapshot) {
       unawaited(_enqueueWindowResult(snapshot, mapper));
     });
 
@@ -225,7 +251,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     }
   }
 
-  Future<void> _enqueueWindowResult(vision.WindowCountState snapshot, WindowResultMapper mapper) async {
+  Future<void> _enqueueWindowResult(feature_counting.WindowCountState snapshot, WindowResultMapper mapper) async {
     try {
       final payload = mapper.map(snapshot);
       await ref.read(core_domain.telemetryServiceProvider).enqueue(payload);

@@ -329,6 +329,13 @@ class LocalizationId extends Localization {
       'Hapus titik yang dipilih';
 
   @override
+  String get interest_areas_screen_reset => 'Atur ulang';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'Hapus semua area minat yang ada';
+
+  @override
   String get language_screen_language => 'Bahasa';
 
   @override
@@ -411,6 +418,9 @@ class LocalizationId extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistik untuk setiap periode 5 menit';
+
+  @override
+  String get occupancy => 'Jumlah Semasa';
 
   @override
   String get onboarding_back_action => 'Kembali';

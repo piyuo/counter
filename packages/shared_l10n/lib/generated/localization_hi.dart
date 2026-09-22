@@ -329,6 +329,12 @@ class LocalizationHi extends Localization {
   String get interest_areas_screen_remove_point_tip => 'चयनित बिंदु हटाएं';
 
   @override
+  String get interest_areas_screen_reset => 'रीसेट करें';
+
+  @override
+  String get interest_areas_screen_reset_tip => 'सभी मौजूदा रुचि क्षेत्र हटाएं';
+
+  @override
   String get language_screen_language => 'भाषा';
 
   @override
@@ -412,6 +418,9 @@ class LocalizationHi extends Localization {
 
   @override
   String get metrics_counting_window => 'हर 5 मिनट की अवधि के आँकड़े';
+
+  @override
+  String get occupancy => 'वर्तमान संख्या';
 
   @override
   String get onboarding_back_action => 'वापस';

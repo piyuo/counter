@@ -1,7 +1,7 @@
 import 'dart:ffi' as ffi;
 
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:fake_async/fake_async.dart';
-import 'package:feature_counting/src/interest_area.dart';
 import 'package:feature_counting/src/window_count_notifier.dart';
 import 'package:feature_counting/src/window_count_state.dart';
 import 'package:flutter/material.dart';
@@ -253,10 +253,15 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 42,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(20, 0), Offset(20, 20), Offset(0, 20)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
       );
 
       final enterTrack = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(100, 100));
@@ -290,10 +295,15 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 7,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(20, 0), Offset(20, 20), Offset(0, 20)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
       );
 
       final insideTrack = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
@@ -325,10 +335,15 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 9,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(20, 0), Offset(20, 20), Offset(0, 20)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
       );
 
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
@@ -575,10 +590,15 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 1,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(100, 0), Offset(100, 100), Offset(0, 100)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 100, dy: 0),
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 0, dy: 100),
+        ],
       );
 
       final track1 = buildTrack(trackId: 1, center: const Offset(50, 50), initialCenter: const Offset(50, 50));
@@ -613,15 +633,25 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area1 = InterestArea(
+      final area1 = core_domain.InterestArea(
         id: 1,
         name: 'zone1',
-        points: const [Offset(0, 0), Offset(50, 0), Offset(50, 50), Offset(0, 50)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 50, dy: 0),
+          core_domain.PointData(dx: 50, dy: 50),
+          core_domain.PointData(dx: 0, dy: 50),
+        ],
       );
-      final area2 = InterestArea(
+      final area2 = core_domain.InterestArea(
         id: 2,
         name: 'zone2',
-        points: const [Offset(100, 100), Offset(150, 100), Offset(150, 150), Offset(100, 150)],
+        points: const [
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 150, dy: 100),
+          core_domain.PointData(dx: 150, dy: 150),
+          core_domain.PointData(dx: 100, dy: 150),
+        ],
       );
 
       final track1 = buildTrack(trackId: 1, center: const Offset(25, 25), initialCenter: const Offset(25, 25));
@@ -679,10 +709,15 @@ void main() {
       final results = <WindowCountState>[];
       final sub = n.snapshots.listen(results.add);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 1,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(100, 0), Offset(100, 100), Offset(0, 100)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 100, dy: 0),
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 0, dy: 100),
+        ],
       );
 
       final track = buildTrack(trackId: 1, center: const Offset(50, 50), initialCenter: const Offset(50, 50));
@@ -712,10 +747,15 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area = InterestArea(
+      final area = core_domain.InterestArea(
         id: 1,
         name: 'zone',
-        points: const [Offset(0, 0), Offset(100, 0), Offset(100, 100), Offset(0, 100)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 100, dy: 0),
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 0, dy: 100),
+        ],
       );
 
       final track = buildTrack(trackId: 1, center: const Offset(50, 50), initialCenter: const Offset(50, 50));
@@ -742,15 +782,25 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area1 = InterestArea(
+      final area1 = core_domain.InterestArea(
         id: 1,
         name: 'zone1',
-        points: const [Offset(0, 0), Offset(50, 0), Offset(50, 50), Offset(0, 50)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 50, dy: 0),
+          core_domain.PointData(dx: 50, dy: 50),
+          core_domain.PointData(dx: 0, dy: 50),
+        ],
       );
-      final area2 = InterestArea(
+      final area2 = core_domain.InterestArea(
         id: 2,
         name: 'zone2',
-        points: const [Offset(100, 100), Offset(150, 100), Offset(150, 150), Offset(100, 150)],
+        points: const [
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 150, dy: 100),
+          core_domain.PointData(dx: 150, dy: 150),
+          core_domain.PointData(dx: 100, dy: 150),
+        ],
       );
 
       final track1 = buildTrack(trackId: 1, center: const Offset(25, 25), initialCenter: const Offset(25, 25));
@@ -777,15 +827,25 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final area1 = InterestArea(
+      final area1 = core_domain.InterestArea(
         id: 1,
         name: 'zone1',
-        points: const [Offset(0, 0), Offset(50, 0), Offset(50, 50), Offset(0, 50)],
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 50, dy: 0),
+          core_domain.PointData(dx: 50, dy: 50),
+          core_domain.PointData(dx: 0, dy: 50),
+        ],
       );
-      final area2 = InterestArea(
+      final area2 = core_domain.InterestArea(
         id: 2,
         name: 'zone2',
-        points: const [Offset(100, 100), Offset(150, 100), Offset(150, 150), Offset(100, 150)],
+        points: const [
+          core_domain.PointData(dx: 100, dy: 100),
+          core_domain.PointData(dx: 150, dy: 100),
+          core_domain.PointData(dx: 150, dy: 150),
+          core_domain.PointData(dx: 100, dy: 150),
+        ],
       );
 
       final track1 = buildTrack(trackId: 1, center: const Offset(25, 25), initialCenter: const Offset(25, 25));

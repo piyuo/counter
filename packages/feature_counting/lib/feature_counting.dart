@@ -1,4 +1,3 @@
-export 'src/interest_area.dart';
 export 'src/interest_area_editor_overlay.dart';
 export 'src/interest_area_notifier.dart';
 export 'src/interest_area_state.dart';

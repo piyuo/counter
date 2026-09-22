@@ -329,6 +329,13 @@ class LocalizationMy extends Localization {
   String get interest_areas_screen_remove_point_tip => 'ရွေးထားသော အမှတ်ဖျက်';
 
   @override
+  String get interest_areas_screen_reset => 'ပြန်လည်သတ်မှတ်ရန်';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'ရှိပြီးသား စိတ်ဝင်စားမှုနယ်မြေများအားလုံးကို ဖျက်ရန်';
+
+  @override
   String get language_screen_language => 'ဘာသာစကား';
 
   @override
@@ -412,6 +419,9 @@ class LocalizationMy extends Localization {
   @override
   String get metrics_counting_window =>
       '၅ မိနစ်တစ်ကြိမ် ထုတ်ပေးသော စာရင်းအင်းများ';
+
+  @override
+  String get occupancy => 'လက်ရှိ အရေအတွက်';
 
   @override
   String get onboarding_back_action => 'နောက်သို့';

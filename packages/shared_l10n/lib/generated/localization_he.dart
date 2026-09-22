@@ -327,6 +327,13 @@ class LocalizationHe extends Localization {
   String get interest_areas_screen_remove_point_tip => 'הסר נקודה נבחרת';
 
   @override
+  String get interest_areas_screen_reset => 'איפוס';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'הסר את כל אזורי העניין הקיימים';
+
+  @override
   String get language_screen_language => 'שפה';
 
   @override
@@ -407,6 +414,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get metrics_counting_window => 'סטטיסטיקות לכל פרק זמן של 5 דקות';
+
+  @override
+  String get occupancy => 'מספר נוכחי';
 
   @override
   String get onboarding_back_action => 'חזרה';

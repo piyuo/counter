@@ -27,7 +27,7 @@ export 'state/models/app_state.dart';
 export 'state/models/data_server.dart';
 export 'state/models/detection_params.dart';
 export 'state/models/detection_type.dart';
-export 'state/models/interest_area_data.dart';
+export 'state/models/interest_area.dart';
 export 'state/models/invitation.dart';
 export 'state/models/point_data.dart';
 export 'state/models/upload_config.dart';

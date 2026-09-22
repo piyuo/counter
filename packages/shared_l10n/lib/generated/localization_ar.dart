@@ -327,6 +327,13 @@ class LocalizationAr extends Localization {
   String get interest_areas_screen_remove_point_tip => 'إزالة النقطة المحددة';
 
   @override
+  String get interest_areas_screen_reset => 'إعادة تعيين';
+
+  @override
+  String get interest_areas_screen_reset_tip =>
+      'إزالة جميع مناطق الاهتمام الحالية';
+
+  @override
   String get language_screen_language => 'اللغة';
 
   @override
@@ -407,6 +414,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get metrics_counting_window => 'إحصاءات لكل فترة مدتها 5 دقائق';
+
+  @override
+  String get occupancy => 'العدد الحالي';
 
   @override
   String get onboarding_back_action => 'رجوع';

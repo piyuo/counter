@@ -1,5 +1,5 @@
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:feature_counting/src/count_window_aggregator.dart';
-import 'package:feature_counting/src/interest_area.dart';
 import 'package:feature_counting/src/window_count_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -18,10 +18,15 @@ void main() {
       missingDuration: Duration.zero,
     );
 
-    final area = InterestArea(
+    final area = core_domain.InterestArea(
       id: 1,
       name: 'zone',
-      points: const [Offset(0, 0), Offset(10, 0), Offset(10, 10), Offset(0, 10)],
+      points: const [
+        core_domain.PointData(dx: 0, dy: 0),
+        core_domain.PointData(dx: 10, dy: 0),
+        core_domain.PointData(dx: 10, dy: 10),
+        core_domain.PointData(dx: 0, dy: 10),
+      ],
     );
 
     accumulator.incrementEvent(area.id, EventType.passBy);
@@ -139,7 +144,15 @@ void main() {
       missingDuration: Duration.zero,
     );
 
-    final area = InterestArea(id: 2, name: 'zone-2', points: const [Offset(0, 0), Offset(2, 0), Offset(2, 2)]);
+    final area = core_domain.InterestArea(
+      id: 2,
+      name: 'zone-2',
+      points: const [
+        core_domain.PointData(dx: 0, dy: 0),
+        core_domain.PointData(dx: 2, dy: 0),
+        core_domain.PointData(dx: 2, dy: 2),
+      ],
+    );
 
     // avgOccupancy is computed as a simple average across occupancy samples:
     // (1 + 3) / 2 = 2
