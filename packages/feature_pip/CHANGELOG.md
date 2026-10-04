@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/piyuo/counter/compare/feature_pip-v1.5.4...feature_pip-v1.6.0) (2026-10-04)
+
+
+### Features
+
+* support interest areas in counting engine [#327](https://github.com/piyuo/counter/issues/327) ([ee789c5](https://github.com/piyuo/counter/commit/ee789c5a16664c69702cf3d82f73cb5196b3dabf))
+
 ## [1.5.4](https://github.com/piyuo/counter/compare/feature_pip-v1.5.3...feature_pip-v1.5.4) (2026-09-16)
 
 
