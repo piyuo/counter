@@ -122,7 +122,7 @@ flow states. Acts as a gate: the user cannot bypass onboarding.
 
 ## Plugin Registry
 
-Rules are assembled in `feature_control_panel/lib/router/route_rules_provider.dart`:
+Rules are assembled in `counter_app/lib/router/route_rules_provider.dart`:
 
 ```dart
 final routeRulesProvider = Provider<List<RouteRule>>((ref) {
@@ -184,7 +184,7 @@ ref.read(navigationEventBusProvider).add(const OpenAbout());
 
 ### How the router reacts
 
-In `feature_control_panel/lib/router/router_provider.dart` the router
+In `counter_app/lib/router/router_provider.dart` the router
 subscribes once at construction:
 
 ```dart

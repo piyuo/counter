@@ -38,6 +38,11 @@ void main() async {
           final cameraDeviceController = ref.read(vision.cameraDeviceProvider.notifier);
           return core_runtime.NativeHardwareCapabilityService(cameraDeviceController);
         }),
+        core_domain.observationServiceProvider.overrideWith(
+          (ref) => ref.read(core_runtime.observationProvider.notifier),
+        ),
+        core_domain.analyticsServiceProvider.overrideWith((ref) => ref.read(core_runtime.analyticsProvider.notifier)),
+        core_domain.insightServiceProvider.overrideWith((ref) => ref.read(core_runtime.insightProvider.notifier)),
         core_domain.visionRuntimeServiceProvider.overrideWith(
           (ref) => ref.read(core_runtime.flutterVisionServiceProvider.notifier),
         ),

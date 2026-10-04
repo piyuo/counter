@@ -316,6 +316,10 @@ class LocalizationSr extends Localization {
   String get interest_areas_screen_add_point_tip => 'Dodaj tačku oblasti';
 
   @override
+  String get interest_areas_screen_help =>
+      'Nacrtajte do 2 oblasti interesovanja da biste pratili aktivnosti, kao što su prolazak, ulasci i izlasci.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Ukloni oblast';
 
   @override
@@ -329,6 +333,10 @@ class LocalizationSr extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Resetuj';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Da li ste sigurni da želite da uklonite sve oblasti interesovanja?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -356,7 +364,10 @@ class LocalizationSr extends Localization {
   String get main_screen_about => 'O programu';
 
   @override
-  String get main_screen_interest_area => 'Oblast interesovanja';
+  String get main_screen_interest_area_empty => 'Dodaj';
+
+  @override
+  String get main_screen_interest_areas => 'Oblasti interesovanja';
 
   @override
   String get main_screen_server_none => 'Podaci se čuvaju samo na ovom uređaju';

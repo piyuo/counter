@@ -5,7 +5,7 @@
 //  - Routing logic is handled by the RouteDecisionEngine + rule plugins.
 //  - This class is intentionally a constants-only namespace.
 //  - Only paths used by redirect rules (core_domain) live here.
-//    All other paths are owned by typed RouteData classes in feature_control_panel.
+//    All other paths are owned by typed RouteData classes in counter_app.
 
 /// Named path constants used by redirect rules in core_domain.
 ///

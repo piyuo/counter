@@ -316,6 +316,10 @@ class LocalizationTh extends Localization {
   String get interest_areas_screen_add_point_tip => 'เพิ่มจุดพื้นที่';
 
   @override
+  String get interest_areas_screen_help =>
+      'วาดพื้นที่สนใจได้สูงสุด 2 พื้นที่เพื่อติดตามกิจกรรม เช่น การเดินผ่าน การเข้า และการออก';
+
+  @override
   String get interest_areas_screen_remove_area => 'ลบพื้นที่';
 
   @override
@@ -329,6 +333,10 @@ class LocalizationTh extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'รีเซ็ต';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'คุณแน่ใจหรือไม่ว่าต้องการลบพื้นที่สนใจทั้งหมด?';
 
   @override
   String get interest_areas_screen_reset_tip => 'ลบพื้นที่สนใจที่มีอยู่ทั้งหมด';
@@ -354,7 +362,10 @@ class LocalizationTh extends Localization {
   String get main_screen_about => 'เกี่ยวกับ';
 
   @override
-  String get main_screen_interest_area => 'พื้นที่สนใจ';
+  String get main_screen_interest_area_empty => 'เพิ่ม';
+
+  @override
+  String get main_screen_interest_areas => 'พื้นที่สนใจ';
 
   @override
   String get main_screen_server_none =>

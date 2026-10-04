@@ -317,6 +317,10 @@ class LocalizationRo extends Localization {
   String get interest_areas_screen_add_point_tip => 'Adaugă punct zonă';
 
   @override
+  String get interest_areas_screen_help =>
+      'Desenați până la 2 zone de interes pentru a urmări activitatea, cum ar fi trecerile, intrările și ieșirile.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Elimină zona';
 
   @override
@@ -331,6 +335,10 @@ class LocalizationRo extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Resetare';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Sigur doriți să eliminați toate zonele de interes?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -358,7 +366,10 @@ class LocalizationRo extends Localization {
   String get main_screen_about => 'Despre';
 
   @override
-  String get main_screen_interest_area => 'Zonă de Interes';
+  String get main_screen_interest_area_empty => 'Adaugă';
+
+  @override
+  String get main_screen_interest_areas => 'Zone de Interes';
 
   @override
   String get main_screen_server_none =>

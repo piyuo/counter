@@ -316,6 +316,10 @@ class LocalizationId extends Localization {
   String get interest_areas_screen_add_point_tip => 'Tambah titik area';
 
   @override
+  String get interest_areas_screen_help =>
+      'Gambar hingga 2 area minat untuk melacak aktivitas, seperti orang yang lewat, masuk, dan keluar.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Hapus area';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationId extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Atur ulang';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Anda yakin ingin menghapus semua area minat?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -357,7 +365,10 @@ class LocalizationId extends Localization {
   String get main_screen_about => 'Tentang';
 
   @override
-  String get main_screen_interest_area => 'Area Minat';
+  String get main_screen_interest_area_empty => 'Tambah';
+
+  @override
+  String get main_screen_interest_areas => 'Area Minat';
 
   @override
   String get main_screen_server_none => 'Data hanya disimpan di perangkat ini';

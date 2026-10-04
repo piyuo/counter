@@ -300,6 +300,9 @@ class LocalizationZh extends Localization {
   String get interest_areas_screen_add_point_tip => '新增區域點';
 
   @override
+  String get interest_areas_screen_help => '繪製最多 2 個感興趣區域，以追蹤經過、進入和離開等活動。';
+
+  @override
   String get interest_areas_screen_remove_area => '移除區域';
 
   @override
@@ -313,6 +316,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_confirm => '確定要移除所有感興趣區域嗎？';
 
   @override
   String get interest_areas_screen_reset_tip => '移除所有現有的興趣區域';
@@ -338,7 +344,10 @@ class LocalizationZh extends Localization {
   String get main_screen_about => '關於';
 
   @override
-  String get main_screen_interest_area => '感興趣區域';
+  String get main_screen_interest_area_empty => '新增';
+
+  @override
+  String get main_screen_interest_areas => '感興趣區域';
 
   @override
   String get main_screen_server_none => '資料僅儲存在此裝置上';
@@ -1095,6 +1104,9 @@ class LocalizationZhCn extends LocalizationZh {
   String get interest_areas_screen_add_point_tip => '新增区域点';
 
   @override
+  String get interest_areas_screen_help => '绘制最多 2 个感兴趣区域，以跟踪经过、进入和离开等活动。';
+
+  @override
   String get interest_areas_screen_remove_area => '移除区域';
 
   @override
@@ -1108,6 +1120,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get interest_areas_screen_reset => '重置';
+
+  @override
+  String get interest_areas_screen_reset_confirm => '确定要移除所有感兴趣区域吗？';
 
   @override
   String get interest_areas_screen_reset_tip => '移除所有现有的兴趣区域';
@@ -1133,7 +1148,10 @@ class LocalizationZhCn extends LocalizationZh {
   String get main_screen_about => '关于';
 
   @override
-  String get main_screen_interest_area => '感兴趣区域';
+  String get main_screen_interest_area_empty => '添加';
+
+  @override
+  String get main_screen_interest_areas => '感兴趣区域';
 
   @override
   String get main_screen_server_none => '数据仅保存在此设备上';

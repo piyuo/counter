@@ -5,9 +5,8 @@
 // server can de-duplicate retried deliveries.
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:feature_counting/feature_counting.dart' as feature_counting;
 
-/// Converts a [feature_counting.WindowCountState] produced by the detection engine into the
+/// Converts a [WindowCountState] produced by the detection engine into the
 /// [core_domain.TelemetryPayload] wire model used by the delivery pipeline.
 class WindowResultMapper {
   const WindowResultMapper({required this.deviceId});
@@ -15,7 +14,7 @@ class WindowResultMapper {
   /// Opaque device identifier included in every payload.
   final String deviceId;
 
-  core_domain.TelemetryPayload map(feature_counting.WindowCountState windowCount) {
+  core_domain.TelemetryPayload map(core_domain.ObservationState windowCount) {
     final areas = windowCount.areas.entries.map((entry) {
       final m = entry.value;
       return core_domain.AreaPayload(

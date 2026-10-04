@@ -316,6 +316,10 @@ class LocalizationPt extends Localization {
   String get interest_areas_screen_add_point_tip => 'Adicionar ponto de área';
 
   @override
+  String get interest_areas_screen_help =>
+      'Desenhe até 2 áreas de interesse para acompanhar atividades, como passagens, entradas e saídas.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Remover área';
 
   @override
@@ -331,6 +335,10 @@ class LocalizationPt extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Redefinir';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Tem certeza de que deseja remover todas as áreas de interesse?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -358,7 +366,10 @@ class LocalizationPt extends Localization {
   String get main_screen_about => 'Sobre';
 
   @override
-  String get main_screen_interest_area => 'Área de Interesse';
+  String get main_screen_interest_area_empty => 'Adicionar';
+
+  @override
+  String get main_screen_interest_areas => 'Áreas de Interesse';
 
   @override
   String get main_screen_server_none =>

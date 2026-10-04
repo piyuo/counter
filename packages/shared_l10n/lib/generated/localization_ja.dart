@@ -309,6 +309,10 @@ class LocalizationJa extends Localization {
   String get interest_areas_screen_add_point_tip => 'エリアポイントを追加';
 
   @override
+  String get interest_areas_screen_help =>
+      '最大2つの関心エリアを描画して、通過、入場、退出などのアクティビティを追跡できます。';
+
+  @override
   String get interest_areas_screen_remove_area => 'エリア削除';
 
   @override
@@ -322,6 +326,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'リセット';
+
+  @override
+  String get interest_areas_screen_reset_confirm => 'すべての関心エリアを削除してもよろしいですか？';
 
   @override
   String get interest_areas_screen_reset_tip => '既存のすべての関心エリアを削除';
@@ -347,7 +354,10 @@ class LocalizationJa extends Localization {
   String get main_screen_about => 'アプリについて';
 
   @override
-  String get main_screen_interest_area => '関心エリア';
+  String get main_screen_interest_area_empty => '追加';
+
+  @override
+  String get main_screen_interest_areas => '関心エリア';
 
   @override
   String get main_screen_server_none => 'データはこの端末にのみ保存されます';

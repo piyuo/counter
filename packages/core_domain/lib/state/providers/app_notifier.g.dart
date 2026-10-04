@@ -33,7 +33,7 @@ final class AppNotifierProvider
   AppNotifier create() => AppNotifier();
 }
 
-String _$appNotifierHash() => r'e04b4e274b1a2d618b1b21dc3abd691b0ff8793f';
+String _$appNotifierHash() => r'7c3435fd8db608642dbe3d26c851d03f30098ca4';
 
 abstract class _$AppNotifier extends $AsyncNotifier<AppState> {
   FutureOr<AppState> build();

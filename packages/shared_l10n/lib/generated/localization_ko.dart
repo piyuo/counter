@@ -307,6 +307,10 @@ class LocalizationKo extends Localization {
   String get interest_areas_screen_add_point_tip => '영역 포인트 추가';
 
   @override
+  String get interest_areas_screen_help =>
+      '최대 2개의 관심 영역을 그려 통과, 입장 및 퇴장과 같은 활동을 추적하세요.';
+
+  @override
   String get interest_areas_screen_remove_area => '영역 제거';
 
   @override
@@ -320,6 +324,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get interest_areas_screen_reset => '초기화';
+
+  @override
+  String get interest_areas_screen_reset_confirm => '모든 관심 영역을 제거하시겠습니까?';
 
   @override
   String get interest_areas_screen_reset_tip => '기존의 모든 관심 영역 제거';
@@ -345,7 +352,10 @@ class LocalizationKo extends Localization {
   String get main_screen_about => '정보';
 
   @override
-  String get main_screen_interest_area => '관심 영역';
+  String get main_screen_interest_area_empty => '추가';
+
+  @override
+  String get main_screen_interest_areas => '관심 영역';
 
   @override
   String get main_screen_server_none => '데이터는 이 기기에만 저장됩니다';

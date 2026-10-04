@@ -315,6 +315,10 @@ class LocalizationBn extends Localization {
   String get interest_areas_screen_add_point_tip => 'এলাকায় পয়েন্ট যোগ করুন';
 
   @override
+  String get interest_areas_screen_help =>
+      'আগ্রহের সর্বোচ্চ ২টি এলাকা আঁকুন, যেমন পাশ দিয়ে যাওয়া, প্রবেশ এবং প্রস্থান কার্যকলাপ ট্র্যাক করতে।';
+
+  @override
   String get interest_areas_screen_remove_area => 'এলাকা মুছুন';
 
   @override
@@ -329,6 +333,10 @@ class LocalizationBn extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'রিসেট';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'আপনি কি সব আগ্রহের এলাকা মুছে ফেলতে চান?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -355,7 +363,10 @@ class LocalizationBn extends Localization {
   String get main_screen_about => 'সম্পর্কে';
 
   @override
-  String get main_screen_interest_area => 'আগ্রহের এলাকা';
+  String get main_screen_interest_area_empty => 'যোগ করুন';
+
+  @override
+  String get main_screen_interest_areas => 'আগ্রহের এলাকাসমূহ';
 
   @override
   String get main_screen_server_none => 'ডেটা শুধু এই ডিভাইসেই সংরক্ষিত থাকবে';

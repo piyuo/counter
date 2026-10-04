@@ -7,9 +7,6 @@
         "counter_app",
         "core_domain",
         "core_runtime",
-        "feature_control_panel",
-        "feature_monitor",
-        "feature_onboarding",
         "feature_pip",
         "shared_l10n"
       ]
@@ -28,18 +25,6 @@
     "packages/core_runtime": {
       "release-type": "dart",
       "package-name": "core_runtime"
-    },
-    "packages/feature_control_panel": {
-      "release-type": "dart",
-      "package-name": "feature_control_panel"
-    },
-    "packages/feature_monitor": {
-      "release-type": "dart",
-      "package-name": "feature_monitor"
-    },
-    "packages/feature_onboarding": {
-      "release-type": "dart",
-      "package-name": "feature_onboarding"
     },
     "packages/feature_pip": {
       "release-type": "dart",

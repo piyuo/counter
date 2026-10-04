@@ -316,6 +316,10 @@ class LocalizationNl extends Localization {
   String get interest_areas_screen_add_point_tip => 'Gebiedspunt toevoegen';
 
   @override
+  String get interest_areas_screen_help =>
+      'Teken maximaal 2 interessegebieden om activiteiten zoals langslopen, binnenkomen en vertrekken bij te houden.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Gebied verwijderen';
 
   @override
@@ -331,6 +335,10 @@ class LocalizationNl extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Reset';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Weet u zeker dat u alle interessegebieden wilt verwijderen?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -358,7 +366,10 @@ class LocalizationNl extends Localization {
   String get main_screen_about => 'Over';
 
   @override
-  String get main_screen_interest_area => 'Interessegebied';
+  String get main_screen_interest_area_empty => 'Toevoegen';
+
+  @override
+  String get main_screen_interest_areas => 'Interessegebieden';
 
   @override
   String get main_screen_server_none =>

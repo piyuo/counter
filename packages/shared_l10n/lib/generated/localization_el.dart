@@ -317,6 +317,10 @@ class LocalizationEl extends Localization {
   String get interest_areas_screen_add_point_tip => 'Προσθήκη σημείου περιοχής';
 
   @override
+  String get interest_areas_screen_help =>
+      'Σχεδιάστε έως και 2 περιοχές ενδιαφέροντος για να παρακολουθείτε δραστηριότητες, όπως διελεύσεις, εισόδους και εξόδους.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Αφαίρεση περιοχής';
 
   @override
@@ -332,6 +336,10 @@ class LocalizationEl extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Επαναφορά';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Είστε βέβαιοι ότι θέλετε να αφαιρέσετε όλες τις περιοχές ενδιαφέροντος;';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -359,7 +367,10 @@ class LocalizationEl extends Localization {
   String get main_screen_about => 'Σχετικά';
 
   @override
-  String get main_screen_interest_area => 'Περιοχή Ενδιαφέροντος';
+  String get main_screen_interest_area_empty => 'Προσθήκη';
+
+  @override
+  String get main_screen_interest_areas => 'Περιοχές Ενδιαφέροντος';
 
   @override
   String get main_screen_server_none =>

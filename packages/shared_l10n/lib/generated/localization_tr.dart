@@ -317,6 +317,10 @@ class LocalizationTr extends Localization {
   String get interest_areas_screen_add_point_tip => 'Alan noktası ekle';
 
   @override
+  String get interest_areas_screen_help =>
+      'En fazla 2 ilgi alanı çizerek geçiş, giriş ve çıkış gibi aktiviteleri takip edin.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Alanı kaldır';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationTr extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Sıfırla';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Tüm ilgi alanlarını kaldırmak istediğinizden emin misiniz?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -356,7 +364,10 @@ class LocalizationTr extends Localization {
   String get main_screen_about => 'Hakkında';
 
   @override
-  String get main_screen_interest_area => 'İlgi Alanı';
+  String get main_screen_interest_area_empty => 'Ekle';
+
+  @override
+  String get main_screen_interest_areas => 'İlgi Alanları';
 
   @override
   String get main_screen_server_none => 'Veriler yalnızca bu cihazda saklanır';

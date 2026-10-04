@@ -317,6 +317,10 @@ class LocalizationPl extends Localization {
   String get interest_areas_screen_add_point_tip => 'Dodaj punkt obszaru';
 
   @override
+  String get interest_areas_screen_help =>
+      'Narysuj maksymalnie 2 obszary zainteresowania, aby śledzić aktywność, taką jak przechodzenie obok, wejścia i wyjścia.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Usuń obszar';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationPl extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Resetuj';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Czy na pewno chcesz usunąć wszystkie obszary zainteresowania?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -356,7 +364,10 @@ class LocalizationPl extends Localization {
   String get main_screen_about => 'O aplikacji';
 
   @override
-  String get main_screen_interest_area => 'Obszar Zainteresowania';
+  String get main_screen_interest_area_empty => 'Dodaj';
+
+  @override
+  String get main_screen_interest_areas => 'Obszary Zainteresowania';
 
   @override
   String get main_screen_server_none =>
