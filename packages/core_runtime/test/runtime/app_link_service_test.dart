@@ -9,7 +9,7 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/runtime/native_app_link_service.dart';
+import 'package:core_runtime/services/native_app_link_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 

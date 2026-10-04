@@ -11,7 +11,7 @@
 
 import 'dart:convert';
 
-import 'package:core_runtime/runtime/secure_auth_storage_service.dart';
+import 'package:core_runtime/services/secure_auth_storage_service.dart';
 import 'package:cryptography/cryptography.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';

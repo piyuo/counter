@@ -6,7 +6,7 @@
 //  - reset removes the stored key
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/runtime/shared_prefs_repository.dart';
+import 'package:core_runtime/services/shared_prefs_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

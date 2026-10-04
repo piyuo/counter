@@ -1,15 +1,14 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:feature_control_panel/feature_control_panel.dart' as feature_control_panel;
-import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
-import 'package:feature_monitor/feature_monitor.dart' as feature_monitor;
+import 'package:counter_app/control_panel/device_not_supported_screen.dart';
+import 'package:counter_app/control_panel/widgets/control_panel_shell.dart';
+import 'package:counter_app/monitor/widgets/monitor_shell.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 
 /// Global key for the control panel shell state,  make sure only one instance of control panel shell in the app, otherwise it may cause unexpected behavior.
-final GlobalKey<feature_control_panel.ControlPanelShellState> _controlPanelKey =
-    GlobalKey<feature_control_panel.ControlPanelShellState>();
+final GlobalKey<ControlPanelShellState> _controlPanelKey = GlobalKey<ControlPanelShellState>();
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(
@@ -31,11 +30,9 @@ class AppRouter {
           return vision.VisionLifecycle(
             child: feature_pip.PipScreen(
               rotationOrientation: rotationOrientation,
-              slidingBuilder: (isPanelOpened) => feature_control_panel.ControlPanelShell(
-                key: _controlPanelKey,
-                appLocaleDelegates: appLocaleDelegates,
-              ),
-              builder: (isSideLayout) => feature_monitor.MonitorShell(),
+              slidingBuilder: (isPanelOpened) =>
+                  ControlPanelShell(key: _controlPanelKey, appLocaleDelegates: appLocaleDelegates),
+              builder: (isSideLayout) => MonitorShell(),
             ),
           );
         });

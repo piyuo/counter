@@ -5,44 +5,43 @@
 //  - WindowResultMapper — map: propagates deviceId
 //  - WindowResultMapper — map: handles empty areas map
 
+import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:core_runtime/telemetry/window_result_mapper.dart';
-import 'package:feature_counting/feature_counting.dart' as feature_counting;
 import 'package:flutter_test/flutter_test.dart';
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-feature_counting.WindowCountState _result({Map<int, feature_counting.AreaMetrics>? areas}) =>
-    feature_counting.WindowCountState(
-      startUtc: DateTime.utc(2026, 3, 1, 10, 0),
-      startBusiness: DateTime(2026, 3, 1, 10, 0),
-      session: 'session-1',
-      sequence: 1,
-      frameCount: 7200,
-      confidence: 87.5,
-      areas:
-          areas ??
-          {
-            1: feature_counting.AreaMetrics(
-              areaId: 1,
-              areaName: 'Area 1',
-              passBy: 5,
-              entry: 3,
-              exit: 2,
-              avgOccupancy: 1.5,
-              maxOccupancy: 4,
-              avgDwellSec: 45.0,
-              maxDwellSec: 200,
-            ),
-          },
-      missingDuration: const Duration(seconds: 72),
-      doneRatio: 0,
-      inProgressRatio: 1,
-      missingRatio: 0,
-      fps: 20,
-    );
+core_domain.ObservationState _result({Map<int, core_domain.AreaMetrics>? areas}) => core_domain.ObservationState(
+  startUtc: DateTime.utc(2026, 3, 1, 10, 0),
+  startBusiness: DateTime(2026, 3, 1, 10, 0),
+  session: 'session-1',
+  sequence: 1,
+  frameCount: 7200,
+  confidence: 87.5,
+  areas:
+      areas ??
+      {
+        1: core_domain.AreaMetrics(
+          areaId: 1,
+          areaName: 'Area 1',
+          passBy: 5,
+          entry: 3,
+          exit: 2,
+          avgOccupancy: 1.5,
+          maxOccupancy: 4,
+          avgDwellSec: 45.0,
+          maxDwellSec: 200,
+        ),
+      },
+  missingDuration: const Duration(seconds: 72),
+  doneRatio: 0,
+  inProgressRatio: 1,
+  missingRatio: 0,
+  fps: 20,
+);
 
 // ---------------------------------------------------------------------------
 // Tests
@@ -73,7 +72,7 @@ void main() {
     test('generates a unique payloadId on each call', () {
       // Use different sequence numbers to generate different payloadIds
       final result1 = _result();
-      final result2 = feature_counting.WindowCountState(
+      final result2 = core_domain.ObservationState(
         startUtc: result1.startUtc,
         startBusiness: result1.startBusiness,
         session: result1.session,
@@ -121,7 +120,7 @@ void main() {
     test('maps multiple areas', () {
       final result = _result(
         areas: {
-          1: feature_counting.AreaMetrics(
+          1: core_domain.AreaMetrics(
             areaId: 1,
             areaName: 'Area 1',
             passBy: 1,
@@ -132,7 +131,7 @@ void main() {
             avgDwellSec: 10.0,
             maxDwellSec: 20,
           ),
-          2: feature_counting.AreaMetrics(
+          2: core_domain.AreaMetrics(
             areaId: 2,
             areaName: 'Area 2',
             passBy: 2,

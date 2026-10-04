@@ -317,6 +317,10 @@ class LocalizationMy extends Localization {
   String get interest_areas_screen_add_point_tip => 'ဧရိယာအမှတ်ထည့်';
 
   @override
+  String get interest_areas_screen_help =>
+      'လှုပ်ရှားမှုများကို ခြေရာခံရန် စိတ်ဝင်စားသောဧရိယာ ၂ ခုအထိ ရေးဆွဲနိုင်သည်။ ဥပမာ ဖြတ်သန်းသွားလာမှု၊ ဝင်ရောက်မှုနှင့် ထွက်ခွာမှုများ။';
+
+  @override
   String get interest_areas_screen_remove_area => 'ဧရိယာဖျက်';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationMy extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'ပြန်လည်သတ်မှတ်ရန်';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'စိတ်ဝင်စားသော ဧရိယာအားလုံးကို ဖျက်လိုပါသလား။';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -357,7 +365,10 @@ class LocalizationMy extends Localization {
   String get main_screen_about => 'အကြောင်း';
 
   @override
-  String get main_screen_interest_area => 'စိတ်ဝင်စားသော ဧရိယာ';
+  String get main_screen_interest_area_empty => 'ထည့်ရန်';
+
+  @override
+  String get main_screen_interest_areas => 'စိတ်ဝင်စားသော ဧရိယာများ';
 
   @override
   String get main_screen_server_none => 'ဒေတာကို ဤစက်တွင်သာ သိမ်းဆည်းထားမည်';

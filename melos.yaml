@@ -12,7 +12,6 @@ scripts:
         - counter_app
         - core_domain
         - core_runtime
-        - feature_control_panel
         - feature_control_counting
         - feature_control_analytics
         - feature_control_counting

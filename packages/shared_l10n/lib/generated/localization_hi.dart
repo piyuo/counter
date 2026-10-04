@@ -317,6 +317,10 @@ class LocalizationHi extends Localization {
   String get interest_areas_screen_add_point_tip => 'क्षेत्र बिंदु जोड़ें';
 
   @override
+  String get interest_areas_screen_help =>
+      'अधिकतम 2 रुचि क्षेत्र बनाएं और गतिविधि को ट्रैक करें, जैसे पास-बाय, प्रवेश और निकास।';
+
+  @override
   String get interest_areas_screen_remove_area => 'क्षेत्र हटाएं';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationHi extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'रीसेट करें';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'क्या आप वाकई सभी रुचि क्षेत्रों को हटाना चाहते हैं?';
 
   @override
   String get interest_areas_screen_reset_tip => 'सभी मौजूदा रुचि क्षेत्र हटाएं';
@@ -357,7 +365,10 @@ class LocalizationHi extends Localization {
   String get main_screen_about => 'जानकारी';
 
   @override
-  String get main_screen_interest_area => 'रुचि क्षेत्र';
+  String get main_screen_interest_area_empty => 'जोड़ें';
+
+  @override
+  String get main_screen_interest_areas => 'रुचि क्षेत्र';
 
   @override
   String get main_screen_server_none =>

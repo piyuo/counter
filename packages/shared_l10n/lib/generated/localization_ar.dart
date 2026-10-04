@@ -315,6 +315,10 @@ class LocalizationAr extends Localization {
   String get interest_areas_screen_add_point_tip => 'إضافة نقطة للمنطقة';
 
   @override
+  String get interest_areas_screen_help =>
+      'ارسم ما يصل إلى منطقتين للاهتمام لتتبع النشاط، مثل المرور والدخول والخروج.';
+
+  @override
   String get interest_areas_screen_remove_area => 'إزالة منطقة';
 
   @override
@@ -328,6 +332,10 @@ class LocalizationAr extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'إعادة تعيين';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'هل أنت متأكد من رغبتك في إزالة جميع مناطق الاهتمام؟';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -354,7 +362,10 @@ class LocalizationAr extends Localization {
   String get main_screen_about => 'حول';
 
   @override
-  String get main_screen_interest_area => 'منطقة الاهتمام';
+  String get main_screen_interest_area_empty => 'إضافة';
+
+  @override
+  String get main_screen_interest_areas => 'مناطق الاهتمام';
 
   @override
   String get main_screen_server_none => 'تُحفظ البيانات على هذا الجهاز فقط';

@@ -318,6 +318,10 @@ class LocalizationDe extends Localization {
   String get interest_areas_screen_add_point_tip => 'Bereichspunkt hinzufügen';
 
   @override
+  String get interest_areas_screen_help =>
+      'Zeichnen Sie bis zu 2 Interessenbereiche, um Aktivitäten wie Vorbeigehen, Eintritte und Austritte zu verfolgen.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Bereich entfernen';
 
   @override
@@ -333,6 +337,10 @@ class LocalizationDe extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Zurücksetzen';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Möchten Sie wirklich alle Interessenbereiche entfernen?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -360,7 +368,10 @@ class LocalizationDe extends Localization {
   String get main_screen_about => 'Über';
 
   @override
-  String get main_screen_interest_area => 'Interessenbereich';
+  String get main_screen_interest_area_empty => 'Hinzufügen';
+
+  @override
+  String get main_screen_interest_areas => 'Interessenbereiche';
 
   @override
   String get main_screen_server_none =>

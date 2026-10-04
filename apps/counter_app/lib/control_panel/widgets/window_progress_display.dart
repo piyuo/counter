@@ -1,0 +1,207 @@
+// 1. MetricsDisplay widget
+// 2. _ClampedOffset — offset widget clamped within screen bounds
+// 3. _MeasureSize — measures child widget size after layout
+
+import 'dart:math' as math;
+
+import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:counter_app/control_panel/utils/format_percent.dart';
+import 'package:flutter/material.dart';
+import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
+import 'package:primer_progress_bar/primer_progress_bar.dart';
+import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
+
+class WindowProgressDisplay extends StatelessWidget {
+  const WindowProgressDisplay({
+    required this.windowCount,
+    this.offset = Offset.zero,
+    this.lightOutMode = false,
+    super.key,
+  });
+
+  final core_domain.ObservationState? windowCount;
+
+  final Offset offset;
+  final bool lightOutMode;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget content;
+
+    final currentWindowCount = windowCount;
+
+    if (currentWindowCount == null) {
+      return Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white, size: 54));
+    }
+    final donePercent = currentWindowCount.donePercent.clamp(0.0, 100.0);
+    final inProgressPercent = currentWindowCount.inProgressPercent.clamp(0.0, 100.0);
+    final missingPercent = currentWindowCount.missingPercent.clamp(0.0, 100.0);
+    final doneSegmentValue = donePercent.round().clamp(0, 100);
+    final inProgressSegmentValue = inProgressPercent.round().clamp(0, 100 - doneSegmentValue);
+    final missingSegmentValue = 100 - doneSegmentValue - inProgressSegmentValue;
+    final progressSegments = [
+      Segment(
+        value: doneSegmentValue,
+        color: Colors.lightBlue,
+        label: Text(context.l.metrics_counting_done, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, donePercent), style: TextStyle(fontSize: 9)),
+      ),
+      Segment(
+        value: inProgressSegmentValue,
+        color: Colors.grey.shade300,
+        label: Text(context.l.metrics_counting_in_progress, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, inProgressPercent), style: TextStyle(fontSize: 9)),
+      ),
+      Segment(
+        value: missingSegmentValue,
+        color: Colors.orange.shade300,
+        label: Text(context.l.metrics_counting_missing, style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, missingPercent), style: TextStyle(fontSize: 9)),
+      ),
+    ];
+
+    content = Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 6),
+          child: DefaultTextStyle(
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              decoration: TextDecoration.none,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Theme(
+                  data: Theme.of(context).copyWith(
+                    textTheme: Theme.of(
+                      context,
+                    ).textTheme.apply(bodyColor: Colors.grey.shade700, displayColor: Colors.grey.shade700),
+                  ),
+                  child: PrimerProgressBar(
+                    segments: progressSegments,
+                    maxTotalValue: 100,
+                    barStyle: const SegmentedBarStyle(padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4)),
+                    legendStyle: const SegmentedBarLegendStyle(
+                      spacing: 0,
+                      padding: EdgeInsets.symmetric(horizontal: 0, vertical: 4),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+
+    final mediaPadding = MediaQuery.paddingOf(context);
+    return Center(
+      child: _ClampedOffset(
+        offset: offset,
+        padding: EdgeInsets.only(
+          left: mediaPadding.left + 12,
+          right: mediaPadding.right + 12,
+          top: mediaPadding.top + 12,
+          bottom: mediaPadding.bottom + 12,
+        ),
+        child: content,
+      ),
+    );
+  }
+}
+
+// ============================================================================
+// 2. _ClampedOffset — offset widget clamped within screen bounds
+// ============================================================================
+
+class _ClampedOffset extends StatefulWidget {
+  const _ClampedOffset({required this.offset, required this.padding, required this.child});
+
+  final Offset offset;
+  final EdgeInsets padding;
+  final Widget child;
+
+  @override
+  State<_ClampedOffset> createState() => _ClampedOffsetState();
+}
+
+class _ClampedOffsetState extends State<_ClampedOffset> {
+  Size _childSize = Size.zero;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth.isFinite ? constraints.maxWidth : 0.0;
+        final maxHeight = constraints.maxHeight.isFinite ? constraints.maxHeight : 0.0;
+
+        final usableWidth = math.max(0.0, maxWidth - widget.padding.left - widget.padding.right);
+        final usableHeight = math.max(0.0, maxHeight - widget.padding.top - widget.padding.bottom);
+
+        final maxX = math.max(0.0, (usableWidth - _childSize.width) / 2);
+        final maxY = math.max(0.0, (usableHeight - _childSize.height) / 2);
+
+        final clampedOffset = Offset(widget.offset.dx.clamp(-maxX, maxX), widget.offset.dy.clamp(-maxY, maxY));
+
+        return Transform.translate(
+          offset: clampedOffset,
+          child: _MeasureSize(
+            onChange: (size) {
+              if (!mounted) return;
+              if (size != _childSize) setState(() => _childSize = size);
+            },
+            child: widget.child,
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ============================================================================
+// 3. _MeasureSize — measures child widget size after layout
+// ============================================================================
+
+class _MeasureSize extends StatefulWidget {
+  const _MeasureSize({required this.onChange, required this.child});
+
+  final ValueChanged<Size> onChange;
+  final Widget child;
+
+  @override
+  State<_MeasureSize> createState() => _MeasureSizeState();
+}
+
+class _MeasureSizeState extends State<_MeasureSize> {
+  final _key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _notifySize());
+  }
+
+  @override
+  void didUpdateWidget(covariant _MeasureSize oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _notifySize());
+  }
+
+  void _notifySize() {
+    final context = _key.currentContext;
+    if (context == null) return;
+    final box = context.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize) return;
+    widget.onChange(box.size);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(key: _key, child: widget.child);
+  }
+}

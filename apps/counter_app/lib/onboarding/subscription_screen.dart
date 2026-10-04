@@ -1,0 +1,155 @@
+// ===============================================
+// Module: subscription_screen.dart
+// Description: Option 2 subscription screen
+//
+// Sections:
+//   - SubscriptionScreen widget
+//   - _FeatureRow widget
+// ===============================================
+import 'package:flutter/material.dart';
+
+import 'widgets/onboarding_scaffold.dart';
+
+class SubscriptionScreen extends StatelessWidget {
+  const SubscriptionScreen({required this.nextPage, super.key});
+
+  final String nextPage;
+
+  void _launchTerms() {}
+
+  void _launchPrivacy() {}
+
+  void _restorePurchases() {}
+
+  @override
+  Widget build(BuildContext context) {
+    final Color muted = Colors.grey;
+    return OnboardingScaffold(
+      title: 'Founding Member Rate',
+      builder: (context) => [
+        Icon(Icons.star_border, size: 64.0, color: Colors.green),
+        const SizedBox(height: 12.0),
+        const Text(
+          'Founding Member Rate',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16.0),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(16.0),
+            border: Border.all(color: Colors.grey.shade400),
+          ),
+          child: Column(
+            children: [
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: '\$9.99',
+                      style: TextStyle(fontSize: 28.0, color: muted, decoration: TextDecoration.lineThrough),
+                    ),
+                    const TextSpan(text: ' '),
+                    const TextSpan(
+                      text: '\$4.99',
+                      style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+                    ),
+                    TextSpan(
+                      text: ' / month',
+                      style: TextStyle(fontSize: 16.0, color: muted),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12.0),
+        const Text(
+          '50% off the standard \$9.99 rate, locked in forever',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 13.0),
+        ),
+        const SizedBox(height: 20.0),
+        const _FeatureRow(text: 'Continuous 5-minute Data Sync'),
+        const _FeatureRow(text: 'Custom Endpoint & Piyuo Cloud CSV'),
+        const _FeatureRow(text: 'One active counting device'),
+        const _FeatureRow(text: 'Add more devices anytime as your business grows'),
+        const _FeatureRow(text: 'GDPR & CCPA compliant'),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: _launchTerms,
+                    child: const Text('Terms', style: TextStyle(fontSize: 12)),
+                  ),
+                  const Text(' • ', style: TextStyle(color: Colors.grey)),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: _launchPrivacy,
+                    child: const Text('Privacy', style: TextStyle(fontSize: 12)),
+                  ),
+                  const Text(' • ', style: TextStyle(color: Colors.grey)),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
+                    onPressed: _restorePurchases,
+                    child: const Text('Restore Purchase', style: TextStyle(fontSize: 12)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Subscription automatically renews monthly.\nCancel anytime in your App Store settings.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _FeatureRow extends StatelessWidget {
+  const _FeatureRow({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Icon(Icons.check_circle, size: 18.0, color: Colors.green),
+          const SizedBox(width: 8.0),
+          Expanded(
+            child: Text(text, style: const TextStyle(fontSize: 14.0, color: Colors.grey)),
+          ),
+        ],
+      ),
+    );
+  }
+}

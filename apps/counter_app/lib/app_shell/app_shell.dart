@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/app_shell/app_router.dart';
 import 'package:counter_app/app_shell/app_theme.dart';
-import 'package:feature_control_panel/screens/device_not_supported_screen.dart';
+import 'package:counter_app/control_panel/device_not_supported_screen.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;

@@ -315,6 +315,10 @@ class LocalizationHe extends Localization {
   String get interest_areas_screen_add_point_tip => 'הוסף נקודת אזור';
 
   @override
+  String get interest_areas_screen_help =>
+      'צייר עד 2 אזורי עניין כדי לעקוב אחר פעילות, כגון מעבר, כניסות ויציאות.';
+
+  @override
   String get interest_areas_screen_remove_area => 'הסר אזור';
 
   @override
@@ -328,6 +332,10 @@ class LocalizationHe extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'איפוס';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'האם אתה בטוח שברצונך להסיר את כל אזורי העניין?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -354,7 +362,10 @@ class LocalizationHe extends Localization {
   String get main_screen_about => 'אודות';
 
   @override
-  String get main_screen_interest_area => 'אזור עניין';
+  String get main_screen_interest_area_empty => 'הוסף';
+
+  @override
+  String get main_screen_interest_areas => 'אזורי עניין';
 
   @override
   String get main_screen_server_none => 'הנתונים נשמרים במכשיר זה בלבד';

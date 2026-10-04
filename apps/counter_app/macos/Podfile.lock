@@ -106,7 +106,7 @@ PODS:
     - FlutterMacOS
   - PromisesObjC (2.4.1)
   - Sentry/HybridSDK (8.58.4)
-  - sentry_flutter (9.30.0):
+  - sentry_flutter (9.30.1):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.4)
@@ -192,7 +192,7 @@ SPEC CHECKSUMS:
   package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
   PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
-  sentry_flutter: fefcc8a0130c0374f830b7904f82afb8f0607cb4
+  sentry_flutter: 781bc6b289ab7a51ca0707ba9de66ff4693d4e85
   share_plus: 1fa619de8392a4398bfaf176d441853922614e89
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   url_launcher_macos: 175a54c831f4375a6cf895875f716ee5af3888ce

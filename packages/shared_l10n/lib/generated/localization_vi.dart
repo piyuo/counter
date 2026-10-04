@@ -315,6 +315,10 @@ class LocalizationVi extends Localization {
   String get interest_areas_screen_add_point_tip => 'Thêm điểm khu vực';
 
   @override
+  String get interest_areas_screen_help =>
+      'Vẽ tối đa 2 khu vực quan tâm để theo dõi hoạt động, chẳng hạn như đi ngang qua, vào và ra.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Xóa khu vực';
 
   @override
@@ -328,6 +332,10 @@ class LocalizationVi extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Đặt lại';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Bạn có chắc chắn muốn xóa tất cả các khu vực quan tâm không?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -355,7 +363,10 @@ class LocalizationVi extends Localization {
   String get main_screen_about => 'Giới thiệu';
 
   @override
-  String get main_screen_interest_area => 'Khu vực Quan tâm';
+  String get main_screen_interest_area_empty => 'Thêm';
+
+  @override
+  String get main_screen_interest_areas => 'Khu vực Quan tâm';
 
   @override
   String get main_screen_server_none =>

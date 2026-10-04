@@ -319,6 +319,10 @@ class LocalizationHu extends Localization {
   String get interest_areas_screen_add_point_tip => 'Terület pont hozzáadása';
 
   @override
+  String get interest_areas_screen_help =>
+      'Rajzoljon legfeljebb 2 érdeklődési területet az olyan tevékenységek követéséhez, mint az elhaladás, a belépések és a kilépések.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Terület eltávolítása';
 
   @override
@@ -334,6 +338,10 @@ class LocalizationHu extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Visszaállítás';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Biztosan eltávolítja az összes érdeklődési területet?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -360,7 +368,10 @@ class LocalizationHu extends Localization {
   String get main_screen_about => 'Névjegy';
 
   @override
-  String get main_screen_interest_area => 'Érdeklődési Terület';
+  String get main_screen_interest_area_empty => 'Hozzáadás';
+
+  @override
+  String get main_screen_interest_areas => 'Érdeklődési Területek';
 
   @override
   String get main_screen_server_none =>

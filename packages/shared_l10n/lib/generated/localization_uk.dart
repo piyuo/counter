@@ -315,6 +315,10 @@ class LocalizationUk extends Localization {
   String get interest_areas_screen_add_point_tip => 'Додати точку області';
 
   @override
+  String get interest_areas_screen_help =>
+      'Намалюйте до 2 областей інтересу, щоб відстежувати активність, наприклад проходи повз, входи та виходи.';
+
+  @override
   String get interest_areas_screen_remove_area => 'Видалити область';
 
   @override
@@ -329,6 +333,10 @@ class LocalizationUk extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'Скинути';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'Ви впевнені, що хочете видалити всі області інтересу?';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -357,7 +365,10 @@ class LocalizationUk extends Localization {
   String get main_screen_about => 'Про програму';
 
   @override
-  String get main_screen_interest_area => 'Область інтересу';
+  String get main_screen_interest_area_empty => 'Додати';
+
+  @override
+  String get main_screen_interest_areas => 'Області інтересу';
 
   @override
   String get main_screen_server_none =>

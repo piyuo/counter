@@ -317,6 +317,10 @@ class LocalizationFa extends Localization {
   String get interest_areas_screen_add_point_tip => 'افزودن نقطه به ناحیه';
 
   @override
+  String get interest_areas_screen_help =>
+      'حداکثر ۲ ناحیه مورد علاقه برای ردیابی فعالیت، مانند عبور، ورود و خروج، رسم کنید.';
+
+  @override
   String get interest_areas_screen_remove_area => 'حذف ناحیه';
 
   @override
@@ -330,6 +334,10 @@ class LocalizationFa extends Localization {
 
   @override
   String get interest_areas_screen_reset => 'بازنشانی';
+
+  @override
+  String get interest_areas_screen_reset_confirm =>
+      'آیا مطمئن هستید که می‌خواهید همه نواحی مورد علاقه را حذف کنید؟';
 
   @override
   String get interest_areas_screen_reset_tip =>
@@ -357,7 +365,10 @@ class LocalizationFa extends Localization {
   String get main_screen_about => 'درباره';
 
   @override
-  String get main_screen_interest_area => 'ناحیه مورد علاقه';
+  String get main_screen_interest_area_empty => 'افزودن';
+
+  @override
+  String get main_screen_interest_areas => 'نواحی مورد علاقه';
 
   @override
   String get main_screen_server_none =>

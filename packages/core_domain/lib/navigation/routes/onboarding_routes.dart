@@ -5,7 +5,7 @@
 //  - Only constants referenced by core_domain rule engine and
 //    ControlPanelRouterProvider belong here.
 //  - All other route paths are owned by go_router_builder typed routes
-//    in feature_onboarding (onboarding_route_data.dart).
+//    in counter_app (onboarding_route_data.dart).
 class OnboardingRoutes {
   const OnboardingRoutes._();
 

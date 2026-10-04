@@ -690,6 +690,12 @@ abstract class Localization {
   /// **'Add area point'**
   String get interest_areas_screen_add_point_tip;
 
+  /// No description provided for @interest_areas_screen_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Draw up to 2 interest areas to track activity, such as pass-by, entries, and exits.'**
+  String get interest_areas_screen_help;
+
   /// No description provided for @interest_areas_screen_remove_area.
   ///
   /// In en, this message translates to:
@@ -719,6 +725,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Reset'**
   String get interest_areas_screen_reset;
+
+  /// No description provided for @interest_areas_screen_reset_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to remove all interest areas?'**
+  String get interest_areas_screen_reset_confirm;
 
   /// No description provided for @interest_areas_screen_reset_tip.
   ///
@@ -762,11 +774,17 @@ abstract class Localization {
   /// **'About'**
   String get main_screen_about;
 
-  /// No description provided for @main_screen_interest_area.
+  /// No description provided for @main_screen_interest_area_empty.
   ///
   /// In en, this message translates to:
-  /// **'Interest Area'**
-  String get main_screen_interest_area;
+  /// **'Add'**
+  String get main_screen_interest_area_empty;
+
+  /// No description provided for @main_screen_interest_areas.
+  ///
+  /// In en, this message translates to:
+  /// **'Interest Areas'**
+  String get main_screen_interest_areas;
 
   /// No description provided for @main_screen_server_none.
   ///
