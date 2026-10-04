@@ -1,3 +1,3 @@
-## Naprawy błędów
+## Ulepszenia
 
-* Naprawiono okazjonalnie pojawiający się czarny ekran podczas odtwarzania strumienia wideo.
+* Twórz własne obszary zainteresowania, aby liczyć osoby lub pojazdy w wybranych miejscach.

@@ -1,3 +1,3 @@
-## Correzioni di bug
+## Miglioramenti
 
-* Corretta la schermata nera occasionale durante la riproduzione di flussi video.
+* Crea aree di interesse personalizzate per contare persone o veicoli in zone specifiche.

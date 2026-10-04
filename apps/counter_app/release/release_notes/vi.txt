@@ -1,3 +1,3 @@
-## Sửa lỗi
+## Cải tiến
 
-* Sửa lỗi màn hình đen thỉnh thoảng trong quá trình phát video trực tuyến.
+* Tạo vùng quan tâm tùy chỉnh để đếm người hoặc phương tiện trong các khu vực cụ thể.

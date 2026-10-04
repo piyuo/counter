@@ -1,3 +1,3 @@
-## Fejlfixe
+## Forbedringer
 
-* Rettet lejlighedsvis sort skærm under afspilning af videostream.
+* Opret brugerdefinerede interesseområder for at tælle personer eller køretøjer i bestemte områder.

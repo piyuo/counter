@@ -1,3 +1,3 @@
-## Bug Fixes
+## Enhancements
 
-* Fix occasional black screen during video stream playback..
+* Create custom Interest Areas to count people or vehicles in specific areas.

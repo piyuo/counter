@@ -115,7 +115,7 @@ PODS:
   - sensors_plus (0.0.1):
     - Flutter
   - Sentry/HybridSDK (8.58.4)
-  - sentry_flutter (9.30.0):
+  - sentry_flutter (9.30.1):
     - Flutter
     - FlutterMacOS
     - Sentry/HybridSDK (= 8.58.4)
@@ -211,8 +211,8 @@ SPEC CHECKSUMS:
   PromisesObjC: 752c3227f599e3467650e47ea36f433eeb10c273
   sensors_plus: c218c5335a0c9169ad70dfcb51b96cc395b3406a
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
-  sentry_flutter: fefcc8a0130c0374f830b7904f82afb8f0607cb4
-  share_plus: 8b6f8b3447e494cca5317c8c3073de39b3600d1f
+  sentry_flutter: 781bc6b289ab7a51ca0707ba9de66ff4693d4e85
+  share_plus: 796a4b55a883a34f4f1ff7bbd19436879a5055db
   shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
 
