@@ -1,3 +1,3 @@
-## Felkorrigeringar
+## Förbättringar
 
-* Åtgärdade intermittent svart skärm under videoströmsuppspelning.
+* Skapa anpassade intresseområden för att räkna personer eller fordon i specifika områden.

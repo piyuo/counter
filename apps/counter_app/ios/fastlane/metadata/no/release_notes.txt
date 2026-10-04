@@ -1,3 +1,3 @@
-## Feilreparasjoner
+## Forbedringer
 
-* Rettet ocasjonelt svart skjerm under videostrøm-avspilling.
+* Opprett egendefinerte interesseområder for å telle personer eller kjøretøy i bestemte områder.

@@ -1,3 +1,3 @@
-## Perbaikan Bug
+## Peningkatan
 
-* Memperbaiki layar hitam yang sesekali muncul saat pemutaran video stream.
+* Buat Area Minat khusus untuk menghitung orang atau kendaraan di area tertentu.
