@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/piyuo/counter/compare/counter_app-v1.6.0...counter_app-v1.6.1) (2026-10-05)
+
+
+### Bug Fixes
+
+* router not configure correctly [#336](https://github.com/piyuo/counter/issues/336) ([c5e363c](https://github.com/piyuo/counter/commit/c5e363c9a9308cdcf3aa7b550cb5e51372318013))
+
 ## [1.6.0](https://github.com/piyuo/counter/compare/counter_app-v1.5.4...counter_app-v1.6.0) (2026-10-04)
 
 
