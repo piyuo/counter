@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/piyuo/counter/compare/core_runtime-v1.6.0...core_runtime-v1.6.1) (2026-10-05)
+
+
+### Miscellaneous Chores
+
+* **core_runtime:** Synchronize piyuo-counter-workspace versions
+
 ## [1.6.0](https://github.com/piyuo/counter/compare/core_runtime-v1.5.4...core_runtime-v1.6.0) (2026-10-04)
 
 

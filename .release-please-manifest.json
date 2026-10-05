@@ -1,7 +1,7 @@
 {
-  "apps/counter_app": "1.6.0",
-  "packages/core_domain": "1.6.0",
-  "packages/core_runtime": "1.6.0",
-  "packages/feature_pip": "1.6.0",
-  "packages/shared_l10n": "1.6.0"
+  "apps/counter_app": "1.6.1",
+  "packages/core_domain": "1.6.1",
+  "packages/core_runtime": "1.6.1",
+  "packages/feature_pip": "1.6.1",
+  "packages/shared_l10n": "1.6.1"
 }

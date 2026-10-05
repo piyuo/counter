@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/piyuo/counter/compare/feature_pip-v1.6.0...feature_pip-v1.6.1) (2026-10-05)
+
+
+### Miscellaneous Chores
+
+* **feature_pip:** Synchronize piyuo-counter-workspace versions
+
 ## [1.6.0](https://github.com/piyuo/counter/compare/feature_pip-v1.5.4...feature_pip-v1.6.0) (2026-10-04)
 
 

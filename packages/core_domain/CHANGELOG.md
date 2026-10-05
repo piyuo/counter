@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/piyuo/counter/compare/core_domain-v1.6.0...core_domain-v1.6.1) (2026-10-05)
+
+
+### Miscellaneous Chores
+
+* **core_domain:** Synchronize piyuo-counter-workspace versions
+
 ## [1.6.0](https://github.com/piyuo/counter/compare/core_domain-v1.5.4...core_domain-v1.6.0) (2026-10-04)
 
 
