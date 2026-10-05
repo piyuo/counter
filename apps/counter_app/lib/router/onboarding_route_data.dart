@@ -36,6 +36,8 @@ import 'package:counter_app/onboarding/subscription_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'cupertino_route_data.dart';
+
 part 'onboarding_route_data.g.dart';
 
 @TypedGoRoute<OnboardingRouteData>(
@@ -52,28 +54,28 @@ part 'onboarding_route_data.g.dart';
     ),
   ],
 )
-class OnboardingRouteData extends GoRouteData with $OnboardingRouteData {
+class OnboardingRouteData extends CupertinoRouteData with $OnboardingRouteData {
   const OnboardingRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => OnboardingScreen();
 }
 
-class OnboardingIntroPrivacyRouteData extends GoRouteData with $OnboardingIntroPrivacyRouteData {
+class OnboardingIntroPrivacyRouteData extends CupertinoRouteData with $OnboardingIntroPrivacyRouteData {
   const OnboardingIntroPrivacyRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => Onboarding1Screen();
 }
 
-class OnboardingIntroCollectRouteData extends GoRouteData with $OnboardingIntroCollectRouteData {
+class OnboardingIntroCollectRouteData extends CupertinoRouteData with $OnboardingIntroCollectRouteData {
   const OnboardingIntroCollectRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => Onboarding2Screen();
 }
 
-class CameraTestRouteData extends GoRouteData with $CameraTestRouteData {
+class CameraTestRouteData extends CupertinoRouteData with $CameraTestRouteData {
   const CameraTestRouteData();
 
   @override
@@ -99,14 +101,14 @@ class CameraTestRouteData extends GoRouteData with $CameraTestRouteData {
     TypedGoRoute<LocalOnlyRouteData>(path: 'cta_local_only'),
   ],
 )
-class CTARouteData extends GoRouteData with $CTARouteData {
+class CTARouteData extends CupertinoRouteData with $CTARouteData {
   const CTARouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const CTAScreen();
 }
 
-class InvitationRouteData extends GoRouteData with $InvitationRouteData {
+class InvitationRouteData extends CupertinoRouteData with $InvitationRouteData {
   const InvitationRouteData({this.token});
 
   /// Optional deep-link token appended as a query parameter.
@@ -116,7 +118,7 @@ class InvitationRouteData extends GoRouteData with $InvitationRouteData {
   Widget build(BuildContext context, GoRouterState state) => const InvitationScreen();
 }
 
-class InvitationSuccessRouteData extends GoRouteData with $InvitationSuccessRouteData {
+class InvitationSuccessRouteData extends CupertinoRouteData with $InvitationSuccessRouteData {
   const InvitationSuccessRouteData({this.$extra});
 
   /// The validated invitation — passed via router.push extra, never serialize to the URL.
@@ -126,14 +128,14 @@ class InvitationSuccessRouteData extends GoRouteData with $InvitationSuccessRout
   Widget build(BuildContext context, GoRouterState state) => InvitationSuccessScreen(invitation: $extra!);
 }
 
-class PersonalPiyuoRouteData extends GoRouteData with $PersonalPiyuoRouteData {
+class PersonalPiyuoRouteData extends CupertinoRouteData with $PersonalPiyuoRouteData {
   const PersonalPiyuoRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const PersonalPiyuoScreen();
 }
 
-class PersonalPiyuoSuccessRouteData extends GoRouteData with $PersonalPiyuoSuccessRouteData {
+class PersonalPiyuoSuccessRouteData extends CupertinoRouteData with $PersonalPiyuoSuccessRouteData {
   const PersonalPiyuoSuccessRouteData({required this.url});
 
   /// The server URL appended as a query parameter.
@@ -143,14 +145,14 @@ class PersonalPiyuoSuccessRouteData extends GoRouteData with $PersonalPiyuoSucce
   Widget build(BuildContext context, GoRouterState state) => PersonalCustomSuccessScreen(url: url);
 }
 
-class PersonalCustomRouteData extends GoRouteData with $PersonalCustomRouteData {
+class PersonalCustomRouteData extends CupertinoRouteData with $PersonalCustomRouteData {
   const PersonalCustomRouteData();
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const PersonalCustomScreen();
 }
 
-class PersonalCustomSuccessRouteData extends GoRouteData with $PersonalCustomSuccessRouteData {
+class PersonalCustomSuccessRouteData extends CupertinoRouteData with $PersonalCustomSuccessRouteData {
   const PersonalCustomSuccessRouteData({required this.url});
 
   /// The server URL appended as a query parameter.
@@ -160,7 +162,7 @@ class PersonalCustomSuccessRouteData extends GoRouteData with $PersonalCustomSuc
   Widget build(BuildContext context, GoRouterState state) => PersonalCustomSuccessScreen(url: url);
 }
 
-class SubscriptionRouteData extends GoRouteData with $SubscriptionRouteData {
+class SubscriptionRouteData extends CupertinoRouteData with $SubscriptionRouteData {
   const SubscriptionRouteData({required this.nextPage});
 
   final String nextPage;
@@ -169,7 +171,7 @@ class SubscriptionRouteData extends GoRouteData with $SubscriptionRouteData {
   Widget build(BuildContext context, GoRouterState state) => SubscriptionScreen(nextPage: nextPage);
 }
 
-class LocalOnlyRouteData extends GoRouteData with $LocalOnlyRouteData {
+class LocalOnlyRouteData extends CupertinoRouteData with $LocalOnlyRouteData {
   const LocalOnlyRouteData();
 
   @override

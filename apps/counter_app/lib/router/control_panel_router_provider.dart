@@ -16,6 +16,7 @@ import 'package:go_router/go_router.dart';
 
 import 'control_panel_route_data.dart';
 import 'control_panel_route_rules_provider.dart';
+import 'onboarding_route_data.dart' as onboarding_route_data;
 
 final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, initialLocation) {
   // Create a notifier to trigger router refreshes for state-driven routing.
@@ -39,11 +40,13 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
     notifier.value++;
   });
   final analyticsService = ref.read(core_domain.usageServiceProvider);
+  final controlPanelRoutes = $appRoutes;
+  final onboardingRoutes = onboarding_route_data.$appRoutes;
   final router = GoRouter(
     initialLocation: initialLocation ?? '/',
     refreshListenable: notifier,
     observers: [analyticsService.createNavigatorObserver()],
-    routes: [...$appRoutes, ...$appRoutes],
+    routes: [...controlPanelRoutes, ...onboardingRoutes],
     redirect: (context, state) {
       // Use read inside redirect to avoid recreating the router on every rebuild.
       final engine = ref.read(controlPanelRouteDecisionEngineProvider);
@@ -67,7 +70,9 @@ final controlPanelRouterProvider = Provider.family<GoRouter, String?>((ref, init
   );
 
   void onRouteChanged() {
-    final path = router.state.uri.path;
+    final config = router.routerDelegate.currentConfiguration;
+    if (config.isEmpty) return;
+    final path = config.uri.path;
     lastCommittedPath = path;
     final pipController = ref.read(feature_pip.pipProvider.notifier);
     pipController.onRouteChanged(path);
