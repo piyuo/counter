@@ -1,3 +1,3 @@
-## Ulepszenia
+## Poprawki błędów
 
-* Twórz własne obszary zainteresowania, aby liczyć osoby lub pojazdy w wybranych miejscach.
+* Naprawiono problem, który mógł powodować awarię aplikacji przy pierwszym uruchomieniu.

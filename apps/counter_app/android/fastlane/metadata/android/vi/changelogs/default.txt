@@ -1,3 +1,3 @@
-## Cải tiến
+## Sửa lỗi
 
-* Tạo vùng quan tâm tùy chỉnh để đếm người hoặc phương tiện trong các khu vực cụ thể.
+* Đã khắc phục lỗi có thể khiến ứng dụng gặp sự cố khi khởi chạy lần đầu.

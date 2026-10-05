@@ -15,7 +15,7 @@ cd ../..
 
 # Upload debug symbols to Sentry
 echo "Uploading information to Sentry..."
-find "build/macos/Counter.xcarchive/dSYMs" \
+find "build/macos/Runner.xcarchive/dSYMs" \
   -name "*.dSYM" \
   -print0 |
 xargs -0 sentry-cli debug-files upload \

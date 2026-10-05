@@ -1,3 +1,3 @@
-## İyileştirmeler
+## Hata düzeltmeleri
 
-* Belirli alanlardaki insanları veya araçları saymak için özel ilgi alanları oluşturun.
+* Uygulamanın ilk açılışta çökmesine neden olabilecek bir sorun düzeltildi.

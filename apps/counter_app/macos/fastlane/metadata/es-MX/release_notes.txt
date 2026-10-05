@@ -1,3 +1,3 @@
-## Mejoras
+## Corrección de errores
 
-* Crea áreas de interés personalizadas para contar personas o vehículos en zonas específicas.
+* Se corrigió un problema que podía hacer que la app se cerrara al iniciarse por primera vez.

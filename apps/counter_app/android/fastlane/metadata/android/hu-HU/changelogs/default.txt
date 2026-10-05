@@ -1,3 +1,3 @@
-## Fejlesztések
+## Hibajavítások
 
-* Hozzon létre egyéni érdeklődési területeket az adott területen tartózkodó emberek vagy járművek számlálásához.
+* Javítottunk egy hibát, amely miatt az app összeomolhatott az első indításkor.
