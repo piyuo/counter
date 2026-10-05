@@ -1,3 +1,3 @@
-## Vylepšenia
+## Opravy chýb
 
-* Vytvorte vlastné oblasti záujmu na počítanie ľudí alebo vozidiel v konkrétnych oblastiach.
+* Opravili sme problém, ktorý mohol spôsobiť zlyhanie aplikácie pri prvom spustení.

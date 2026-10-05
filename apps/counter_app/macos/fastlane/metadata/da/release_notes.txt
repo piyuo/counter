@@ -1,3 +1,3 @@
-## Forbedringer
+## Fejlrettelser
 
-* Opret brugerdefinerede interesseområder for at tælle personer eller køretøjer i bestemte områder.
+* Rettet et problem, der kunne få appen til at gå ned ved første start.

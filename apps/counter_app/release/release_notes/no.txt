@@ -1,3 +1,3 @@
-## Forbedringer
+## Feilrettinger
 
-* Opprett egendefinerte interesseområder for å telle personer eller kjøretøy i bestemte områder.
+* Rettet et problem som kunne føre til at appen krasjet ved første oppstart.

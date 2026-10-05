@@ -16,7 +16,7 @@ cd ../..
 
 echo "Uploading iOS debug symbols to Sentry..."
 
-find build/ios/Counter.xcarchive/dSYMs \
+find build/ios/Runner.xcarchive/dSYMs \
   -name "*.dSYM" \
   -print0 |
 xargs -0 sentry-cli debug-files upload \
