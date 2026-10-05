@@ -46,11 +46,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../control_panel/local_only_screen.dart';
+import 'cupertino_route_data.dart';
 
 part 'control_panel_route_data.g.dart';
 
 @TypedGoRoute<LoadingRouteData>(path: '/')
-class LoadingRouteData extends GoRouteData with $LoadingRouteData {
+class LoadingRouteData extends CupertinoRouteData with $LoadingRouteData {
   const LoadingRouteData();
 
   @override
@@ -58,7 +59,7 @@ class LoadingRouteData extends GoRouteData with $LoadingRouteData {
 }
 
 @TypedGoRoute<StartRouteData>(path: '/start')
-class StartRouteData extends GoRouteData with $StartRouteData {
+class StartRouteData extends CupertinoRouteData with $StartRouteData {
   const StartRouteData();
 
   @override
@@ -66,7 +67,7 @@ class StartRouteData extends GoRouteData with $StartRouteData {
 }
 
 @TypedGoRoute<InterestAreasRouteData>(path: '/interest-areas')
-class InterestAreasRouteData extends GoRouteData with $InterestAreasRouteData {
+class InterestAreasRouteData extends CupertinoRouteData with $InterestAreasRouteData {
   const InterestAreasRouteData();
 
   @override
@@ -74,7 +75,7 @@ class InterestAreasRouteData extends GoRouteData with $InterestAreasRouteData {
 }
 
 @TypedGoRoute<SettingsRouteData>(path: '/settings')
-class SettingsRouteData extends GoRouteData with $SettingsRouteData {
+class SettingsRouteData extends CupertinoRouteData with $SettingsRouteData {
   const SettingsRouteData();
 
   @override
@@ -82,7 +83,7 @@ class SettingsRouteData extends GoRouteData with $SettingsRouteData {
 }
 
 @TypedGoRoute<SettingsPiyuoRouteData>(path: '/settings/piyuo')
-class SettingsPiyuoRouteData extends GoRouteData with $SettingsPiyuoRouteData {
+class SettingsPiyuoRouteData extends CupertinoRouteData with $SettingsPiyuoRouteData {
   const SettingsPiyuoRouteData();
 
   @override
@@ -90,7 +91,7 @@ class SettingsPiyuoRouteData extends GoRouteData with $SettingsPiyuoRouteData {
 }
 
 @TypedGoRoute<SettingsServerRouteData>(path: '/settings/server')
-class SettingsServerRouteData extends GoRouteData with $SettingsServerRouteData {
+class SettingsServerRouteData extends CupertinoRouteData with $SettingsServerRouteData {
   const SettingsServerRouteData();
 
   @override
@@ -98,7 +99,7 @@ class SettingsServerRouteData extends GoRouteData with $SettingsServerRouteData 
 }
 
 @TypedGoRoute<SettingsLocalRouteData>(path: '/settings/local')
-class SettingsLocalRouteData extends GoRouteData with $SettingsLocalRouteData {
+class SettingsLocalRouteData extends CupertinoRouteData with $SettingsLocalRouteData {
   const SettingsLocalRouteData();
 
   @override
@@ -106,7 +107,7 @@ class SettingsLocalRouteData extends GoRouteData with $SettingsLocalRouteData {
 }
 
 @TypedGoRoute<AboutRouteData>(path: '/about')
-class AboutRouteData extends GoRouteData with $AboutRouteData {
+class AboutRouteData extends CupertinoRouteData with $AboutRouteData {
   const AboutRouteData();
 
   @override
@@ -114,7 +115,7 @@ class AboutRouteData extends GoRouteData with $AboutRouteData {
 }
 
 @TypedGoRoute<BuildInfoRouteData>(path: '/build-info')
-class BuildInfoRouteData extends GoRouteData with $BuildInfoRouteData {
+class BuildInfoRouteData extends CupertinoRouteData with $BuildInfoRouteData {
   const BuildInfoRouteData();
 
   @override
@@ -122,7 +123,7 @@ class BuildInfoRouteData extends GoRouteData with $BuildInfoRouteData {
 }
 
 @TypedGoRoute<DetectionRouteData>(path: '/detection')
-class DetectionRouteData extends GoRouteData with $DetectionRouteData {
+class DetectionRouteData extends CupertinoRouteData with $DetectionRouteData {
   const DetectionRouteData();
 
   @override
@@ -130,7 +131,7 @@ class DetectionRouteData extends GoRouteData with $DetectionRouteData {
 }
 
 @TypedGoRoute<TargetRouteData>(path: '/target')
-class TargetRouteData extends GoRouteData with $TargetRouteData {
+class TargetRouteData extends CupertinoRouteData with $TargetRouteData {
   const TargetRouteData();
 
   @override
@@ -138,7 +139,7 @@ class TargetRouteData extends GoRouteData with $TargetRouteData {
 }
 
 @TypedGoRoute<UploadLogsRouteData>(path: '/upload-logs')
-class UploadLogsRouteData extends GoRouteData with $UploadLogsRouteData {
+class UploadLogsRouteData extends CupertinoRouteData with $UploadLogsRouteData {
   const UploadLogsRouteData();
 
   @override
@@ -146,7 +147,7 @@ class UploadLogsRouteData extends GoRouteData with $UploadLogsRouteData {
 }
 
 @TypedGoRoute<UploadLogDetailRouteData>(path: '/upload-logs/detail/:attemptedAtMs/:successFlag')
-class UploadLogDetailRouteData extends GoRouteData with $UploadLogDetailRouteData {
+class UploadLogDetailRouteData extends CupertinoRouteData with $UploadLogDetailRouteData {
   const UploadLogDetailRouteData({required this.attemptedAtMs, required this.successFlag});
 
   final int attemptedAtMs;
@@ -160,7 +161,7 @@ class UploadLogDetailRouteData extends GoRouteData with $UploadLogDetailRouteDat
 }
 
 @TypedGoRoute<RecentPayloadsRouteData>(path: '/recent-payloads')
-class RecentPayloadsRouteData extends GoRouteData with $RecentPayloadsRouteData {
+class RecentPayloadsRouteData extends CupertinoRouteData with $RecentPayloadsRouteData {
   const RecentPayloadsRouteData();
 
   @override
@@ -168,7 +169,7 @@ class RecentPayloadsRouteData extends GoRouteData with $RecentPayloadsRouteData 
 }
 
 @TypedGoRoute<RecentPayloadHourRouteData>(path: '/recent-payloads/hour/:slotMs')
-class RecentPayloadHourRouteData extends GoRouteData with $RecentPayloadHourRouteData {
+class RecentPayloadHourRouteData extends CupertinoRouteData with $RecentPayloadHourRouteData {
   const RecentPayloadHourRouteData({required this.slotMs});
 
   final int slotMs;
@@ -178,7 +179,7 @@ class RecentPayloadHourRouteData extends GoRouteData with $RecentPayloadHourRout
 }
 
 @TypedGoRoute<RecentPayloadDetailRouteData>(path: '/recent-payloads/payload/:payloadId')
-class RecentPayloadDetailRouteData extends GoRouteData with $RecentPayloadDetailRouteData {
+class RecentPayloadDetailRouteData extends CupertinoRouteData with $RecentPayloadDetailRouteData {
   const RecentPayloadDetailRouteData({required this.payloadId});
 
   final String payloadId;
@@ -188,7 +189,7 @@ class RecentPayloadDetailRouteData extends GoRouteData with $RecentPayloadDetail
 }
 
 @TypedGoRoute<LanguageRouteData>(path: '/language')
-class LanguageRouteData extends GoRouteData with $LanguageRouteData {
+class LanguageRouteData extends CupertinoRouteData with $LanguageRouteData {
   const LanguageRouteData();
 
   @override
@@ -196,7 +197,7 @@ class LanguageRouteData extends GoRouteData with $LanguageRouteData {
 }
 
 @TypedGoRoute<LiveUrlRouteData>(path: '/live-url')
-class LiveUrlRouteData extends GoRouteData with $LiveUrlRouteData {
+class LiveUrlRouteData extends CupertinoRouteData with $LiveUrlRouteData {
   const LiveUrlRouteData();
 
   @override
@@ -204,7 +205,7 @@ class LiveUrlRouteData extends GoRouteData with $LiveUrlRouteData {
 }
 
 @TypedGoRoute<VideoSourcesRouteData>(path: '/video-sources')
-class VideoSourcesRouteData extends GoRouteData with $VideoSourcesRouteData {
+class VideoSourcesRouteData extends CupertinoRouteData with $VideoSourcesRouteData {
   const VideoSourcesRouteData();
 
   @override
@@ -212,7 +213,7 @@ class VideoSourcesRouteData extends GoRouteData with $VideoSourcesRouteData {
 }
 
 @TypedGoRoute<DeviceNotSupportedRouteData>(path: '/device-not-supported')
-class DeviceNotSupportedRouteData extends GoRouteData with $DeviceNotSupportedRouteData {
+class DeviceNotSupportedRouteData extends CupertinoRouteData with $DeviceNotSupportedRouteData {
   const DeviceNotSupportedRouteData();
 
   @override
