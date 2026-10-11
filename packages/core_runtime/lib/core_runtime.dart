@@ -17,4 +17,3 @@ export 'telemetry/drift_telemetry_queue.dart';
 export 'telemetry/http_telemetry_transport.dart';
 export 'telemetry/json_payload_serializer.dart';
 export 'telemetry/native_telemetry_service.dart';
-export 'telemetry/window_result_mapper.dart';

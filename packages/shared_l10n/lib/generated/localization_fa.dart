@@ -202,17 +202,17 @@ class LocalizationFa extends Localization {
       'برای نمایش شناسه‌های تتبع منحصر به‌فرد برای هر کائنی که تتبع می‌شود، این گزینه را فعال کنید.';
 
   @override
-  String get detection_screen_stay => 'زمان ماندن';
+  String get detection_screen_stagnant => 'زمان ماندن';
 
   @override
-  String get detection_screen_stay_help =>
-      'مدت زمانی که یک شیء باید در محدوده بماند تا به‌عنوان ماندن شمارش شود.';
+  String get detection_screen_stagnant_help =>
+      'مدت زمانی که یک شیء باید در محدوده بماند تا ماندن به حساب بیاید.';
 
   @override
-  String get detection_screen_stay_max_label => 'با تأخیر';
+  String get detection_screen_stagnant_max_label => 'با تأخیر';
 
   @override
-  String get detection_screen_stay_min_label => 'فوری';
+  String get detection_screen_stagnant_min_label => 'فوری';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -654,10 +654,10 @@ class LocalizationFa extends Localization {
   String get settings_screen_subscription_title => 'اشتراک';
 
   @override
-  String get stayed => 'ماندند';
+  String get stagnanted => 'ماندند';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که حداقل به مدت زمان ماندگاری تنظیم‌شده در این ناحیه باقی مانده‌اند محاسبه می‌کند.\\n\\nزمان ماندگاری پیش‌فرض ۱۵ ثانیه است و در تنظیمات قابل تغییر است.';
 
   @override

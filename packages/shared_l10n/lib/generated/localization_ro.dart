@@ -202,17 +202,17 @@ class LocalizationRo extends Localization {
       'Activați această opțiune pentru a afișa ID-uri de urmărire unice pentru fiecare obiect urmărit.';
 
   @override
-  String get detection_screen_stay => 'Timp de staționare';
+  String get detection_screen_stagnant => 'Timp de staționare';
 
   @override
-  String get detection_screen_stay_help =>
-      'Cât timp trebuie să rămână un obiect în zonă înainte de a fi considerat staționare.';
+  String get detection_screen_stagnant_help =>
+      'Cât timp trebuie să rămână un obiect în zonă pentru a fi considerat staționare.';
 
   @override
-  String get detection_screen_stay_max_label => 'Întârziat';
+  String get detection_screen_stagnant_max_label => 'Întârziat';
 
   @override
-  String get detection_screen_stay_min_label => 'Imediat';
+  String get detection_screen_stagnant_min_label => 'Imediat';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -659,10 +659,10 @@ class LocalizationRo extends Localization {
   String get settings_screen_subscription_title => 'Abonament';
 
   @override
-  String get stayed => 'Rămași';
+  String get stagnanted => 'Rămași';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Numără persoanele sau vehiculele care au rămas în această zonă cel puțin timpul de staționare configurat.\\n\\nTimpul implicit de staționare este de 15 secunde și poate fi modificat din Setări.';
 
   @override

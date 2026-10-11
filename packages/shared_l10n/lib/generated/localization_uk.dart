@@ -201,17 +201,17 @@ class LocalizationUk extends Localization {
       'Увімкніть цей параметр, щоб відобразити унікальні ID відстеження для кожного об\'єкта, який відслідковується.';
 
   @override
-  String get detection_screen_stay => 'Час перебування';
+  String get detection_screen_stagnant => 'Час перебування';
 
   @override
-  String get detection_screen_stay_help =>
-      'Скільки часу об\'єкт має перебувати в зоні, перш ніж буде зарахований як перебування.';
+  String get detection_screen_stagnant_help =>
+      'Скільки часу об\'єкт має перебувати в зоні, щоб його зарахували як перебування.';
 
   @override
-  String get detection_screen_stay_max_label => 'Із затримкою';
+  String get detection_screen_stagnant_max_label => 'Із затримкою';
 
   @override
-  String get detection_screen_stay_min_label => 'Миттєво';
+  String get detection_screen_stagnant_min_label => 'Миттєво';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -655,10 +655,10 @@ class LocalizationUk extends Localization {
   String get settings_screen_subscription_title => 'Підписка';
 
   @override
-  String get stayed => 'Залишилися';
+  String get stagnanted => 'Залишилися';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Підраховує людей або транспортні засоби, які перебували в цій зоні щонайменше протягом заданого часу перебування.\\n\\nТиповий час перебування становить 15 секунд і може бути змінений в Налаштуваннях.';
 
   @override

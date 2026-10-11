@@ -11,7 +11,7 @@ _DetectionParams _$DetectionParamsFromJson(Map<String, dynamic> json) =>
       trackHighThresh: (json['trackHighThresh'] as num?)?.toDouble() ?? 0.6,
       trackLowThresh: (json['trackLowThresh'] as num?)?.toDouble() ?? 0.05,
       newTrackThresh: (json['newTrackThresh'] as num?)?.toDouble() ?? 0.75,
-      maxTimeLostSec: (json['maxTimeLostSec'] as num?)?.toDouble() ?? 3,
+      maxTimeLostSeconds: (json['maxTimeLostSeconds'] as num?)?.toDouble() ?? 3,
       maxMatchDistance: (json['maxMatchDistance'] as num?)?.toDouble() ?? 0.9,
       proximityThresh: (json['proximityThresh'] as num?)?.toDouble() ?? 0.95,
       appearanceThresh: (json['appearanceThresh'] as num?)?.toDouble() ?? 0.5,
@@ -19,13 +19,13 @@ _DetectionParams _$DetectionParamsFromJson(Map<String, dynamic> json) =>
       softMotionGating: json['softMotionGating'] as bool? ?? true,
       preferAppearanceFallbackOnLowIou:
           json['preferAppearanceFallbackOnLowIou'] as bool? ?? true,
-      trackletMinPresenceTimeSec:
-          (json['trackletMinPresenceTimeSec'] as num?)?.toDouble() ?? 1,
+      trackletMinPresenceTimeSeconds:
+          (json['trackletMinPresenceTimeSeconds'] as num?)?.toDouble() ?? 1,
       trackletEdgeMargin: (json['trackletEdgeMargin'] as num?)?.toInt() ?? 32,
-      trackletEdgeOverrideTimeSec:
-          (json['trackletEdgeOverrideTimeSec'] as num?)?.toDouble() ?? 2.0,
-      stayThresholdSeconds:
-          (json['stayThresholdSeconds'] as num?)?.toInt() ?? 300,
+      trackletEdgeOverrideTimeSeconds:
+          (json['trackletEdgeOverrideTimeSeconds'] as num?)?.toDouble() ?? 2.0,
+      stagnantThresholdSeconds:
+          (json['stagnantThresholdSeconds'] as num?)?.toInt() ?? 300,
       disappearThresholdSeconds:
           (json['disappearThresholdSeconds'] as num?)?.toInt() ?? 7,
     );
@@ -36,16 +36,16 @@ Map<String, dynamic> _$DetectionParamsToJson(
   'trackHighThresh': instance.trackHighThresh,
   'trackLowThresh': instance.trackLowThresh,
   'newTrackThresh': instance.newTrackThresh,
-  'maxTimeLostSec': instance.maxTimeLostSec,
+  'maxTimeLostSeconds': instance.maxTimeLostSeconds,
   'maxMatchDistance': instance.maxMatchDistance,
   'proximityThresh': instance.proximityThresh,
   'appearanceThresh': instance.appearanceThresh,
   'lambda': instance.lambda,
   'softMotionGating': instance.softMotionGating,
   'preferAppearanceFallbackOnLowIou': instance.preferAppearanceFallbackOnLowIou,
-  'trackletMinPresenceTimeSec': instance.trackletMinPresenceTimeSec,
+  'trackletMinPresenceTimeSeconds': instance.trackletMinPresenceTimeSeconds,
   'trackletEdgeMargin': instance.trackletEdgeMargin,
-  'trackletEdgeOverrideTimeSec': instance.trackletEdgeOverrideTimeSec,
-  'stayThresholdSeconds': instance.stayThresholdSeconds,
+  'trackletEdgeOverrideTimeSeconds': instance.trackletEdgeOverrideTimeSeconds,
+  'stagnantThresholdSeconds': instance.stagnantThresholdSeconds,
   'disappearThresholdSeconds': instance.disappearThresholdSeconds,
 };

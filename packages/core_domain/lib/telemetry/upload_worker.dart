@@ -33,8 +33,8 @@ class UploadWorker {
     /// Returns the current [UploadConfig], or null when no backend is
     /// configured (e.g. first-run, unspecified backend).  Run is a no-op when
     /// null is returned.
-    required Future<UploadSession?> Function() sessionResolver,
-  }) : _sessionResolver = sessionResolver;
+    required this._sessionResolver,
+  });
 
   /// Persistent queue of payloads awaiting upload.
   final TelemetryQueue queue;
@@ -68,16 +68,16 @@ class UploadWorker {
 
   String? lastUrl;
 
-  /// Groups [items] by businessDate, preserving oldest-first order within each group.
-  /// Returns an ordered list of groups so earlier dates are uploaded first.
-  List<List<QueuedPayload>> _splitByBusinessDate(List<QueuedPayload> items) {
-    final Map<String, List<QueuedPayload>> grouped = {};
+  /// Groups [items] by integer business date, preserving order within each group.
+  /// Returns groups in chronological order so earlier dates are uploaded first.
+  List<List<QueuedObservation>> splitByDate(List<QueuedObservation> items) {
+    final Map<int, List<QueuedObservation>> grouped = {};
     for (final item in items) {
-      final date = item.payload.businessDate;
+      final date = item.observation.dateKey;
       (grouped[date] ??= []).add(item);
     }
-    // Preserve chronological order of dates.
-    return grouped.values.toList();
+    final dates = grouped.keys.toList()..sort();
+    return dates.map((date) => grouped[date]!).toList(growable: false);
   }
 
   /// Drains the queue in batches until empty or until a transport error occurs.
@@ -91,7 +91,7 @@ class UploadWorker {
       await queue.pruneExpired(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
       await queue.pruneUploadLogs(nowUtc.subtract(Duration(days: kPayloadRetentionDays)));
     } catch (error) {
-      await _recordUploadOutcome(
+      await recordUploadOutcome(
         success: false,
         attemptedAt: DateTime.now().toUtc(),
         payloadSizeKb: 0,
@@ -106,7 +106,7 @@ class UploadWorker {
     try {
       return await _run();
     } catch (error) {
-      await _recordUploadOutcome(
+      await recordUploadOutcome(
         success: false,
         attemptedAt: DateTime.now().toUtc(),
         payloadSizeKb: 0,
@@ -132,18 +132,20 @@ class UploadWorker {
       final batch = await queue.fetchReady(limit: kMaxBatchSize);
       if (batch.isEmpty) break;
 
-      // Split by businessDate — server requires all payloads in a batch share the same date.
-      final dateGroups = _splitByBusinessDate(batch);
+      // Split by business date — server requires all payloads in a batch share the same date.
+      final dateGroups = splitByDate(batch);
       for (final group in dateGroups) {
-        appkit.logInfo('[UploadWorker] uploading ${group.length} payload(s) for ${group.first.payload.businessDate}');
+        appkit.logInfo(
+          '[UploadWorker] uploading ${group.length} observation(s) for ${group.first.observation.businessDate}',
+        );
         lastError = null;
         lastErrorCode = null;
         lastUrl = null;
-        final uploaded = await _deliverBatch(
+        final uploaded = await deliverBatch(
           session: session,
-          payloads: group.map((p) => p.payload).toList(growable: false),
+          observations: group.map((p) => p.observation).toList(growable: false),
           onSuccess: () async {
-            await queue.markUploadedBatch(group.map((item) => item.id).toList(growable: false));
+            await queue.markUploadedBatch(group.map((item) => item.observation.id).toList(growable: false));
           },
         );
         if (!uploaded) {
@@ -155,14 +157,14 @@ class UploadWorker {
     return true;
   }
 
-  /// Sends [payloads] directly to backend in config-sized batches.
+  /// Sends [observation] directly to backend in config-sized batches.
   ///
   /// This bypasses queue persistence and is intended for user-triggered resend
   /// flows where payloads are explicitly selected from history.
   ///
   /// Returns true when all batches are uploaded successfully.
-  Future<bool> sendPayloadsDirect(List<TelemetryPayload> payloads) async {
-    if (payloads.isEmpty) return true;
+  Future<bool> sendObservationDirect(List<Observation> observation) async {
+    if (observation.isEmpty) return true;
 
     final session = await _sessionResolver();
     assert(
@@ -170,12 +172,12 @@ class UploadWorker {
       'UploadWorker.sendPayloadsDirect() called but no backend is configured; check sessionResolver',
     );
 
-    final batchSize = kMaxBatchSize <= 0 ? payloads.length : kMaxBatchSize;
+    final batchSize = kMaxBatchSize <= 0 ? observation.length : kMaxBatchSize;
     var cursor = 0;
-    while (cursor < payloads.length) {
-      final end = math.min(cursor + batchSize, payloads.length);
-      final chunk = payloads.sublist(cursor, end);
-      final uploaded = await _deliverBatch(session: session!, payloads: chunk);
+    while (cursor < observation.length) {
+      final end = math.min(cursor + batchSize, observation.length);
+      final chunk = observation.sublist(cursor, end);
+      final uploaded = await deliverBatch(session: session!, observations: chunk);
       if (!uploaded) return false;
       cursor = end;
     }
@@ -183,9 +185,9 @@ class UploadWorker {
     return true;
   }
 
-  Future<bool> _deliverBatch({
+  Future<bool> deliverBatch({
     required UploadSession session,
-    required List<TelemetryPayload> payloads,
+    required List<Observation> observations,
     Future<void> Function()? onSuccess,
   }) async {
     lastUrl = getUrlFromDataServer(session.dataServer);
@@ -195,8 +197,7 @@ class UploadWorker {
     }
     int sizeKb = 0;
     final body = serializer.serialize(
-      payloads,
-      schemaVersion: TelemetryPayload.schemaVersion,
+      observations,
       deviceId: session.deviceId,
       projectId: getProjectIdFromDataServer(session.dataServer),
       assignId: getAssignedIdFromDataServer(session.dataServer),
@@ -209,11 +210,11 @@ class UploadWorker {
       contentType: serializer.contentType,
     );
     if (!response.ok) {
-      await _recordUploadOutcome(
+      await recordUploadOutcome(
         success: false,
         attemptedAt: DateTime.now().toUtc(),
         payloadSizeKb: sizeKb,
-        payloadCount: payloads.length,
+        payloadCount: observations.length,
         errorCode: response.errorCode,
         error: response.error,
       );
@@ -222,13 +223,13 @@ class UploadWorker {
     await responseWorker.process(response);
 
     if (onSuccess != null) await onSuccess();
-    await _recordUploadOutcome(
+    await recordUploadOutcome(
       success: true,
       attemptedAt: DateTime.now().toUtc(),
       payloadSizeKb: sizeKb,
-      payloadCount: payloads.length,
+      payloadCount: observations.length,
     );
-    appkit.logInfo('[Telemetry] Uploaded batch of ${payloads.length} payload(s), $sizeKb KB');
+    appkit.logInfo('[Telemetry] Uploaded batch of ${observations.length} payload(s), $sizeKb KB');
     return true;
   }
 
@@ -236,7 +237,7 @@ class UploadWorker {
   ///
   /// This combines updating internal state fields with logging the attempt to the queue,
   /// ensuring status and persistence are always kept in sync.
-  Future<void> _recordUploadOutcome({
+  Future<void> recordUploadOutcome({
     required DateTime attemptedAt,
     required bool success,
     required int payloadSizeKb,

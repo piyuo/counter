@@ -2,12 +2,11 @@
 //  - JsonPayloadSerializer: encodes payload batches as compact UTF-8 JSON
 
 import 'dart:convert';
-import 'dart:math' as math;
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/foundation.dart';
 
-/// Serializes a batch of [TelemetryPayload]s to a UTF-8 encoded JSON array.
+/// Serializes a batch of [Observation]s to a UTF-8 encoded JSON array.
 class JsonPayloadSerializer implements core_domain.PayloadSerializer {
   const JsonPayloadSerializer();
 
@@ -18,20 +17,12 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
 
   @override
   Uint8List serialize(
-    List<core_domain.TelemetryPayload> payloads, {
-    required int schemaVersion, // the json schema version to use for the payloads, e.g. 1
+    List<core_domain.Observation> observations, {
     required String deviceId, // the device ID to include in the payloads, e.g. "041bfec6-8923-4b09-be5f-0fd11d3df7f5"
     String? projectId, // the project ID to include in the payloads, e.g. "my-project-id", this value is from invitation
     String? assignId, // the assign ID to include in the payloads, e.g. "my-assign-id", this value is from invitation
   }) {
-    final payloadJson = payloads.map(_toTransportJson).toList(growable: false);
-    final json = {
-      'schema': schemaVersion,
-      'deviceId': deviceId,
-      'projectId': ?projectId,
-      'assignId': ?assignId,
-      'payloads': payloadJson,
-    };
+    final json = toJson(observations, deviceId: deviceId, projectId: projectId, assignId: assignId);
     final serialized = Uint8List.fromList(_encoder.convert(json));
 
     if (kDebugMode) {
@@ -41,51 +32,25 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
     return serialized;
   }
 
-  Map<String, dynamic> _toTransportJson(core_domain.TelemetryPayload payload) {
-    final normalized = jsonDecode(jsonEncode(payload.toJson())) as Map<String, dynamic>;
-    return _roundJsonMap(normalized);
+  /// Builds the JSON upload envelope before UTF-8 encoding.
+  Map<String, dynamic> toJson(
+    List<core_domain.Observation> observations, {
+    required String deviceId,
+    String? projectId,
+    String? assignId,
+  }) {
+    final observationsJson = observations.map(_toTransportJson).toList(growable: false);
+    return {
+      'schema': core_domain.kSchemaVersion,
+      'deviceId': deviceId,
+      'projectId': ?projectId,
+      'assignId': ?assignId,
+      'observations': observationsJson,
+    };
   }
 
-  Map<String, dynamic> _roundJsonMap(Map<String, dynamic> json) {
-    return {for (final entry in json.entries) entry.key: _roundJsonValue(entry.value, key: entry.key)};
-  }
-
-  Object? _roundJsonValue(Object? value, {String? key}) {
-    if (value is double) {
-      return _roundDouble(value, decimals: _decimalsForKey(key));
-    }
-
-    if (value is Map<String, dynamic>) {
-      return _roundJsonMap(value);
-    }
-
-    if (value is List) {
-      return value.map((item) => _roundJsonValue(item)).toList(growable: false);
-    }
-
-    return value;
-  }
-
-  int _decimalsForKey(String? key) {
-    switch (key) {
-      case 'coverage':
-        return 2;
-      case 'fps':
-        return 1;
-      case 'avgDwellSec':
-        return 1;
-      default:
-        return 2;
-    }
-  }
-
-  double _roundDouble(double value, {required int decimals}) {
-    if (!value.isFinite) {
-      return value;
-    }
-
-    final factor = math.pow(10, decimals).toDouble();
-    return (value * factor).round() / factor;
+  Map<String, dynamic> _toTransportJson(core_domain.Observation observation) {
+    return jsonDecode(jsonEncode(observation.toJson())) as Map<String, dynamic>;
   }
 
   String _printJson(Map<String, dynamic> json) {

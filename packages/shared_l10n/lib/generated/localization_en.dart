@@ -201,17 +201,17 @@ class LocalizationEn extends Localization {
       'Enable this option to show unique track IDs for each tracked object.';
 
   @override
-  String get detection_screen_stay => 'Stay Time';
+  String get detection_screen_stagnant => 'Dwell Time';
 
   @override
-  String get detection_screen_stay_help =>
-      'How long an object must remain in the area before it is counted as a stay.';
+  String get detection_screen_stagnant_help =>
+      'How long an object must stay in the area to count as dwelling.';
 
   @override
-  String get detection_screen_stay_max_label => 'Delayed';
+  String get detection_screen_stagnant_max_label => 'Delayed';
 
   @override
-  String get detection_screen_stay_min_label => 'Instant';
+  String get detection_screen_stagnant_min_label => 'Instant';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -647,10 +647,10 @@ class LocalizationEn extends Localization {
   String get settings_screen_subscription_title => 'Subscription';
 
   @override
-  String get stayed => 'Stayed';
+  String get stagnanted => 'Stayed';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.';
 
   @override

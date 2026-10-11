@@ -201,17 +201,17 @@ class LocalizationVi extends Localization {
       'Bật tùy chọn này để hiển thị ID theo dõi duy nhất cho từng đối tượng được theo dõi.';
 
   @override
-  String get detection_screen_stay => 'Thời gian lưu lại';
+  String get detection_screen_stagnant => 'Thời gian lưu lại';
 
   @override
-  String get detection_screen_stay_help =>
-      'Đối tượng phải ở trong khu vực bao lâu trước khi được tính là lưu lại.';
+  String get detection_screen_stagnant_help =>
+      'Đối tượng phải ở trong khu vực bao lâu thì được tính là lưu lại.';
 
   @override
-  String get detection_screen_stay_max_label => 'Trì hoãn';
+  String get detection_screen_stagnant_max_label => 'Trì hoãn';
 
   @override
-  String get detection_screen_stay_min_label => 'Ngay lập tức';
+  String get detection_screen_stagnant_min_label => 'Ngay lập tức';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -652,10 +652,10 @@ class LocalizationVi extends Localization {
   String get settings_screen_subscription_title => 'Gói đăng ký';
 
   @override
-  String get stayed => 'Ở lại';
+  String get stagnanted => 'Ở lại';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Đếm số người hoặc phương tiện ở trong khu vực này ít nhất bằng Thời gian lưu được thiết lập.\\n\\nThời gian lưu mặc định là 15 giây và có thể thay đổi trong Cài đặt.';
 
   @override

@@ -34,6 +34,30 @@ Future<TelemetryDatabaseFun> _openTempTelemetryDb() async {
   return db;
 }
 
+core_domain.Observation _observation({required DateTime startUtc}) {
+  final startBusiness = startUtc.toLocal();
+  return core_domain.Observation(
+    granularity: core_domain.ObservationGranularity.minutes5,
+    year: startBusiness.year,
+    month: startBusiness.month,
+    day: startBusiness.day,
+    hour: startBusiness.hour,
+    minute: startBusiness.minute,
+    frameCount: 0,
+    confidenceRatioSum: 0,
+    confidenceSampleCount: 0,
+    confidenceRatio: 0,
+    coveredSeconds: 1,
+    expectedSeconds: 1,
+    coverageRatio: 1,
+    areas: const [],
+  );
+}
+
+int _observationId({required DateTime startUtc}) => _observation(startUtc: startUtc).id;
+
+String _payloadId({required DateTime startUtc}) => _observationId(startUtc: startUtc).toString();
+
 void main() {
   group('NativeTelemetryService integration', () {
     test('flush applies server detection/detectionParams/deliveryConfig overrides to AppState', () async {
@@ -46,24 +70,9 @@ void main() {
         ],
       );
       addTearDown(container.dispose);
-
       final queue = _ReadyOnceQueue(
-        core_domain.QueuedPayload(
-          id: 'p1',
-          payload: core_domain.TelemetryPayload(
-            startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-            startBusiness: DateTime(2026, 1, 1, 0, 0),
-            businessDate: '2026-01-01',
-            session: 'session-1',
-            sequence: 1,
-            frameCount: 0,
-            missingSec: 0,
-            confidence: 0.0,
-            isPartial: false,
-            coverage: 1.0,
-            fps: 0.0,
-            areas: const [],
-          ),
+        core_domain.QueuedObservation(
+          observation: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)),
           createdAtUtc: DateTime.utc(2026, 1, 1, 0, 0),
         ),
       );
@@ -108,7 +117,7 @@ void main() {
       expect(state.detectionType, const core_domain.DetectionType.vehicle());
       expect(state.detectionParams.trackHighThresh, 0.77);
       expect(state.uploadConfig.wallClockCadenceMin, 15);
-      expect(queue.markedSuccessIds, ['p1']);
+      expect(queue.markedSuccessIds, [_observationId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))]);
     });
 
     test('flush with malformed JSON still marks success and keeps AppState unchanged', () async {
@@ -124,22 +133,8 @@ void main() {
       addTearDown(container.dispose);
 
       final queue = _ReadyOnceQueue(
-        core_domain.QueuedPayload(
-          id: 'p2',
-          payload: core_domain.TelemetryPayload(
-            startUtc: DateTime.utc(2026, 1, 1, 0, 5),
-            startBusiness: DateTime(2026, 1, 1, 0, 5),
-            businessDate: '2026-01-01',
-            session: 'session-1',
-            sequence: 1,
-            frameCount: 0,
-            missingSec: 0,
-            confidence: 0.0,
-            isPartial: false,
-            coverage: 1.0,
-            fps: 0.0,
-            areas: const [],
-          ),
+        core_domain.QueuedObservation(
+          observation: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 5)),
           createdAtUtc: DateTime.utc(2026, 1, 1, 0, 0),
         ),
       );
@@ -175,7 +170,7 @@ void main() {
 
       final state = await container.read(core_domain.appProvider.future);
       expect(state, initialState);
-      expect(queue.markedSuccessIds, ['p2']);
+      expect(queue.markedSuccessIds, [_observationId(startUtc: DateTime.utc(2026, 1, 1, 0, 5))]);
     });
 
     test('flush marks delivered history and pruneExpired applies retention on Drift queue', () async {
@@ -195,38 +190,24 @@ void main() {
         transport: const _NoopSuccessTransport(),
       );
 
-      await service.enqueue(
-        core_domain.TelemetryPayload(
-          startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          startBusiness: DateTime(2026, 1, 1, 0, 0),
-          businessDate: '2026-01-01',
-          session: 'session-1',
-          sequence: 1,
-          frameCount: 0,
-          missingSec: 0,
-          confidence: 0.0,
-          isPartial: false,
-          coverage: 1.0,
-          fps: 0.0,
-          areas: const [],
-        ),
-      );
+      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
 
       await service.uploadNow();
 
       final availableBeforePrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableBeforePrune.map((p) => p.id), contains('session-1-1'));
+      final payloadId = _payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0));
+      expect(availableBeforePrune.map((p) => p.observation.id.toString()), contains(payloadId));
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
       await (db()!.update(
         db()!.telemetryQueue,
-      )..where((t) => t.id.equals('session-1-1'))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
+      )..where((t) => t.id.equals(payloadId))).write(TelemetryQueueCompanion(createdAtMs: Value(oldCreatedMs)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final availableAfterPrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableAfterPrune.map((p) => p.id), isNot(contains('session-1-1')));
+      expect(availableAfterPrune.map((p) => p.observation.id.toString()), isNot(contains(payloadId)));
     });
 
     test('repeated flush does not resend already-delivered payload', () async {
@@ -247,22 +228,7 @@ void main() {
         transport: transport,
       );
 
-      await service.enqueue(
-        core_domain.TelemetryPayload(
-          startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          startBusiness: DateTime(2026, 1, 1, 0, 0),
-          businessDate: '2026-01-01',
-          session: 'session-1',
-          sequence: 1,
-          frameCount: 0,
-          missingSec: 0,
-          confidence: 0.0,
-          isPartial: false,
-          coverage: 1.0,
-          fps: 0.0,
-          areas: const [],
-        ),
-      );
+      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
 
       await service.uploadNow();
       await service.uploadNow();
@@ -270,8 +236,8 @@ void main() {
       expect(transport.sendCount, 1);
       expect(await queue.pendingCount(), 0);
       final available = await queue.fetchRecent(daysBack: 7);
-      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.id);
-      expect(delivered, contains('session-1-1'));
+      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.observation.id.toString());
+      expect(delivered, contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
     });
 
     test('pruneExpired keeps recent payloads and does not remove pending payloads', () async {
@@ -291,48 +257,24 @@ void main() {
       );
 
       // First payload is delivered via flush.
-      await service.enqueue(
-        core_domain.TelemetryPayload(
-          startUtc: DateTime.utc(2026, 1, 1, 0, 0),
-          startBusiness: DateTime(2026, 1, 1, 0, 0),
-          businessDate: '2026-01-01',
-          session: 'session-1',
-          sequence: 1,
-          frameCount: 0,
-          missingSec: 0,
-          confidence: 0.0,
-          isPartial: false,
-          coverage: 1.0,
-          fps: 0.0,
-          areas: const [],
-        ),
-      );
+      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
       await service.uploadNow();
 
       // Second payload remains pending (not flushed).
-      await service.enqueue(
-        core_domain.TelemetryPayload(
-          startUtc: DateTime.utc(2026, 1, 1, 1, 0),
-          startBusiness: DateTime(2026, 1, 1, 1, 0),
-          businessDate: '2026-01-01',
-          session: 'session-1',
-          sequence: 2,
-          frameCount: 0,
-          missingSec: 0,
-          confidence: 0.0,
-          isPartial: false,
-          coverage: 1.0,
-          fps: 0.0,
-          areas: const [],
-        ),
-      );
+      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 1, 0)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final available = await queue.fetchRecent(daysBack: 7);
       final pending = await queue.fetchReady(limit: 10);
-      expect(available.map((p) => p.id), contains('session-1-1'));
-      expect(pending.map((p) => p.id), contains('session-1-2'));
+      expect(
+        available.map((p) => p.observation.id.toString()),
+        contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))),
+      );
+      expect(
+        pending.map((p) => p.observation.id.toString()),
+        contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 1, 0))),
+      );
       expect(await queue.pendingCount(), 1);
     });
   });
@@ -426,15 +368,15 @@ class _FakeAppStateRepository implements core_domain.AppStateRepository {
 class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   _ReadyOnceQueue(this.pending);
 
-  final core_domain.QueuedPayload pending;
+  final core_domain.QueuedObservation pending;
   bool _returned = false;
-  final List<String> markedSuccessIds = [];
+  final List<int> markedSuccessIds = [];
 
   @override
-  Future<void> enqueue(core_domain.TelemetryPayload payload) async {}
+  Future<void> enqueue(core_domain.Observation observation) async {}
 
   @override
-  Future<List<core_domain.QueuedPayload>> fetchReady({int limit = 10}) async {
+  Future<List<core_domain.QueuedObservation>> fetchReady({int limit = 10}) async {
     if (_returned) return const [];
     _returned = true;
     return [pending];
@@ -460,7 +402,7 @@ class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   Future<void> pruneExpired(DateTime before) async {}
 
   @override
-  Future<void> markUploadedBatch(List<String> ids) async {
+  Future<void> markUploadedBatch(List<int> ids) async {
     markedSuccessIds.addAll(ids);
   }
 
@@ -468,7 +410,7 @@ class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   Future<int> pendingCount() async => _returned ? 0 : 1;
 
   @override
-  Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 10}) async {
+  Future<List<core_domain.QueuedObservation>> fetchRecent({int daysBack = 10}) async {
     return _returned ? const [] : [pending];
   }
 
@@ -484,16 +426,15 @@ class _JsonSerializer implements core_domain.PayloadSerializer {
 
   @override
   List<int> serialize(
-    List<core_domain.TelemetryPayload> payloads, {
-    required int schemaVersion,
+    List<core_domain.Observation> observations, {
     required String deviceId,
     String? projectId,
     String? assignId,
   }) {
     final body = <String, Object?>{
-      'schema': schemaVersion,
+      'schema': core_domain.kSchemaVersion,
       'deviceId': deviceId,
-      'payloads': payloads.map((p) => p.toJson()).toList(growable: false),
+      'observations': observations.map((p) => p.toJson()).toList(growable: false),
     };
     return utf8.encode(jsonEncode(body));
   }

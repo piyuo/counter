@@ -195,17 +195,17 @@ class LocalizationKo extends Localization {
       '이 옵션을 활성화하여 추적된 각 객체에 대한 고유한 추적 ID를 표시합니다.';
 
   @override
-  String get detection_screen_stay => '체류 시간';
+  String get detection_screen_stagnant => '체류 시간';
 
   @override
-  String get detection_screen_stay_help =>
-      '객체가 체류로 계산되기 전에 영역 안에 머물러야 하는 시간입니다.';
+  String get detection_screen_stagnant_help =>
+      '객체가 체류로 계산되려면 영역 안에 머물러야 하는 시간입니다.';
 
   @override
-  String get detection_screen_stay_max_label => '지연';
+  String get detection_screen_stagnant_max_label => '지연';
 
   @override
-  String get detection_screen_stay_min_label => '즉시';
+  String get detection_screen_stagnant_min_label => '즉시';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -631,10 +631,10 @@ class LocalizationKo extends Localization {
   String get settings_screen_subscription_title => '구독';
 
   @override
-  String get stayed => '머무름';
+  String get stagnanted => '머무름';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       '설정된 체류 시간 이상 이 영역에 머문 사람이나 차량의 수를 계산합니다.\\n\\n기본 체류 시간은 15초이며 설정에서 변경할 수 있습니다.';
 
   @override

@@ -202,17 +202,17 @@ class LocalizationFr extends Localization {
       'Activez cette option pour afficher les ID de suivi uniques de chaque objet suivi.';
 
   @override
-  String get detection_screen_stay => 'Temps de présence';
+  String get detection_screen_stagnant => 'Temps de présence';
 
   @override
-  String get detection_screen_stay_help =>
-      'Temps pendant lequel un objet doit rester dans la zone avant d\'être compté comme présence.';
+  String get detection_screen_stagnant_help =>
+      'Durée pendant laquelle un objet doit rester dans la zone pour compter comme présence.';
 
   @override
-  String get detection_screen_stay_max_label => 'Retardé';
+  String get detection_screen_stagnant_max_label => 'Retardé';
 
   @override
-  String get detection_screen_stay_min_label => 'Immédiat';
+  String get detection_screen_stagnant_min_label => 'Immédiat';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -663,10 +663,10 @@ class LocalizationFr extends Localization {
   String get settings_screen_subscription_title => 'Abonnement';
 
   @override
-  String get stayed => 'Restés';
+  String get stagnanted => 'Restés';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Compte les personnes ou les véhicules restés dans cette zone pendant au moins la durée de présence configurée.\\n\\nLa durée de présence par défaut est de 15 secondes et peut être modifiée dans les paramètres.';
 
   @override

@@ -6,12 +6,10 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:counter_app/control_panel/widgets/metrics_cards.dart';
 import 'package:counter_app/control_panel/widgets/metrics_utils.dart';
-import 'package:counter_app/control_panel/widgets/window_progress_display.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:liquid_glass_widgets/liquid_glass_widgets.dart';
 import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 const _kWhiteBoardColor = Color(0xFFF5F5F5);
@@ -23,19 +21,15 @@ class MetricsDashboard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final observationState = ref.watch(core_runtime.observationProvider);
-    if (observationState.isSessionReady == false) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40.0),
-        child: Center(child: GlassProgressIndicator.circular(size: 36)),
-      );
-    }
+    final observation = ref.watch(core_runtime.observationProvider);
+    final windowStart = observation.dateTime;
+    final windowEnd = windowStart.add(core_domain.kWindowDuration);
 
     final locale = Localizations.localeOf(context).toString();
 
     final panels = mapVisionMetricsToCardData(
       context,
-      windowCount: observationState,
+      observation: observation,
       areaState: areaState,
       countAvgOccLabel: context.l.average_occupancy,
       countMaxOccLabel: context.l.maximum_occupancy,
@@ -55,7 +49,7 @@ class MetricsDashboard extends ConsumerWidget {
                 leading: Icon(Icons.access_time, color: Colors.grey.shade800),
                 contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 title: Text(
-                  '${DateFormat.jm(locale).format(observationState.startUtc.toLocal())} - ${DateFormat.jm(locale).format(observationState.endUtc.toLocal())}',
+                  '${DateFormat.jm(locale).format(windowStart)} - ${DateFormat.jm(locale).format(windowEnd)}',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade900),
                 ),
                 trailing: Row(
@@ -70,7 +64,6 @@ class MetricsDashboard extends ConsumerWidget {
                   ref.push(const core_domain.OpenPayloadsRecent());
                 },
               ),
-              WindowProgressDisplay(windowCount: observationState),
             ],
           ),
         ),

@@ -4,6 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Invitation', () {
+    test('reads legacy stagnant threshold JSON and writes the renamed key', () {
+      final params = core_domain.DetectionParams.fromJson({'stagnantThresholdSeconds': 123});
+
+      expect(params.stagnantThresholdSeconds, 123);
+      expect(params.toJson(), containsPair('stagnantThresholdSeconds', 123));
+      expect(params.toJson().containsKey('stagnantThresholdSeconds'), isFalse);
+    });
+
     test('constructs with required fields', () {
       const inv = core_domain.Invitation(
         businessCustomServer: core_domain.BusinessCustomServer(
@@ -51,7 +59,7 @@ void main() {
       expect(inv.businessCustomServer!.assignedId, 'assign123');
       expect(inv.bearerToken, 'token');
       expect(inv.instruction, 'Test');
-      expect(inv.detectionParams!.stayThresholdSeconds, 300);
+      expect(inv.detectionParams!.stagnantThresholdSeconds, 300);
       expect(inv.detectionParams!.disappearThresholdSeconds, 7);
     });
   });

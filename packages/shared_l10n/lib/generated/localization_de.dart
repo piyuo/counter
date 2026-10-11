@@ -203,17 +203,17 @@ class LocalizationDe extends Localization {
       'Aktivieren Sie diese Option, um eindeutige Verfolgungs-IDs für jedes verfolgtes Objekt anzuzeigen.';
 
   @override
-  String get detection_screen_stay => 'Verweildauer';
+  String get detection_screen_stagnant => 'Verweildauer';
 
   @override
-  String get detection_screen_stay_help =>
-      'Wie lange ein Objekt im Bereich bleiben muss, bevor es als Aufenthalt gezählt wird.';
+  String get detection_screen_stagnant_help =>
+      'Wie lange ein Objekt im Bereich bleiben muss, um als Aufenthalt zu zählen.';
 
   @override
-  String get detection_screen_stay_max_label => 'Verzögert';
+  String get detection_screen_stagnant_max_label => 'Verzögert';
 
   @override
-  String get detection_screen_stay_min_label => 'Sofort';
+  String get detection_screen_stagnant_min_label => 'Sofort';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -659,10 +659,10 @@ class LocalizationDe extends Localization {
   String get settings_screen_subscription_title => 'Abonnement';
 
   @override
-  String get stayed => 'Verweilt';
+  String get stagnanted => 'Verweilt';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Zählt Personen oder Fahrzeuge, die mindestens die eingestellte Verweildauer in diesem Bereich geblieben sind.\\n\\nDie Standard-Verweildauer beträgt 15 Sekunden und kann in den Einstellungen geändert werden.';
 
   @override

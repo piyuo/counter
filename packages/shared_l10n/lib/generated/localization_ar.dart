@@ -201,17 +201,17 @@ class LocalizationAr extends Localization {
       'تفعيل هذا الخيار لإظهار معرّفات التتبع الفريدة لكل كائن يتم تتبعه.';
 
   @override
-  String get detection_screen_stay => 'Stay Time';
+  String get detection_screen_stagnant => 'مدة البقاء';
 
   @override
-  String get detection_screen_stay_help =>
-      'المدة التي يجب أن يبقى فيها الكائن داخل المنطقة قبل احتسابه كحالة بقاء.';
+  String get detection_screen_stagnant_help =>
+      'المدة التي يجب أن يبقى فيها الكائن في المنطقة حتى يُحتسب كبقاء.';
 
   @override
-  String get detection_screen_stay_max_label => 'متأخر';
+  String get detection_screen_stagnant_max_label => 'متأخر';
 
   @override
-  String get detection_screen_stay_min_label => 'فوري';
+  String get detection_screen_stagnant_min_label => 'فوري';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -647,10 +647,10 @@ class LocalizationAr extends Localization {
   String get settings_screen_subscription_title => 'الاشتراك';
 
   @override
-  String get stayed => 'بقي';
+  String get stagnanted => 'بقي';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'يحسب عدد الأشخاص أو المركبات التي بقيت داخل هذه المنطقة لمدة لا تقل عن مدة البقاء المحددة.\\n\\nمدة البقاء الافتراضية هي 15 ثانية ويمكن تغييرها في الإعدادات.';
 
   @override

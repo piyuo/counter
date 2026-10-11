@@ -7,7 +7,7 @@ part 'observation_service.g.dart';
 /// It processes these frames and emits observation states in 5-minute window aligned to wall clock.
 abstract class ObservationService {
   /// snapshots emits when 5-minutes window finalized..
-  Stream<core_domain.ObservationState> get snapshots;
+  Stream<core_domain.Observation> get snapshots;
 
   /// Starts the observation service and begins processing frames.
   void start();
@@ -25,7 +25,7 @@ abstract class ObservationService {
   void resume();
 
   /// Sets the threshold durations for stay and disappear events.
-  void setThresholdSeconds({int? stayThresholdSeconds, int? disappearThresholdSeconds});
+  void setThresholdSeconds({int? stagnantThresholdSeconds, int? disappearThresholdSeconds});
 }
 
 @riverpod

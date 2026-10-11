@@ -30,7 +30,7 @@ const _kEnableDriftLogging = false;
   ON telemetry_queue (created_at_ms);
 ''')
 class TelemetryQueue extends Table {
-  /// UUID v4 string; primary key. Matches [core_domain.TelemetryPayload.payloadId].
+  /// UUID v4 string; primary key. Matches [core_domain.Observation.id].
   TextColumn get id => text()();
   TextColumn get serializedPayload => text()();
 
@@ -38,6 +38,7 @@ class TelemetryQueue extends Table {
   IntColumn get createdAtMs => integer()();
 
   /// Milliseconds since epoch — observed window start time (UTC).
+  @Deprecated('startMs is deprecated')
   IntColumn get startMs => integer()();
 
   /// Milliseconds since epoch — when this item was successfully uploaded.

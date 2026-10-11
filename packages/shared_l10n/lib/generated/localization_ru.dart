@@ -201,17 +201,17 @@ class LocalizationRu extends Localization {
       'Включите этот параметр, чтобы отобразить уникальные ID отслеживания для каждого отслеживаемого объекта.';
 
   @override
-  String get detection_screen_stay => 'Время пребывания';
+  String get detection_screen_stagnant => 'Время пребывания';
 
   @override
-  String get detection_screen_stay_help =>
-      'Сколько времени объект должен оставаться в зоне, прежде чем будет засчитан как пребывание.';
+  String get detection_screen_stagnant_help =>
+      'Сколько времени объект должен находиться в зоне, чтобы это засчитали как пребывание.';
 
   @override
-  String get detection_screen_stay_max_label => 'С задержкой';
+  String get detection_screen_stagnant_max_label => 'С задержкой';
 
   @override
-  String get detection_screen_stay_min_label => 'Мгновенно';
+  String get detection_screen_stagnant_min_label => 'Мгновенно';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -657,10 +657,10 @@ class LocalizationRu extends Localization {
   String get settings_screen_subscription_title => 'Подписка';
 
   @override
-  String get stayed => 'Остались';
+  String get stagnanted => 'Остались';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Подсчитывает людей или транспортные средства, которые находились в этой области не менее заданного времени пребывания.\\n\\nПо умолчанию время пребывания составляет 15 секунд и может быть изменено в настройках.';
 
   @override

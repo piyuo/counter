@@ -6,16 +6,16 @@
 //  - UploadWorker — run(): drains multiple batches until queue is empty
 //  - UploadWorker — run(): keeps failed items pending for later attempts
 //  - UploadWorker — run(): stops after first transport failure
-//  - UploadWorker — run(): groups payloads by businessDate
+//  - UploadWorker — run(): groups payloads by business date
 //  - UploadWorker — run(): processes date groups in order
 //  - UploadWorker — run(): stops on first date group failure
 //  - UploadWorker — sendPayloadsDirect(): sends selected payloads immediately
 //  - UploadWorker — status attributes: initial state, success, rejection, exception, discard
 
+import 'package:core_domain/model/observation.dart';
 import 'package:core_domain/state/models/data_server.dart';
 import 'package:core_domain/state/models/upload_config.dart';
-import 'package:core_domain/telemetry/models/queued_payload.dart';
-import 'package:core_domain/telemetry/models/telemetry_payload.dart';
+import 'package:core_domain/telemetry/models/queued_observation.dart';
 import 'package:core_domain/telemetry/models/telemetry_response.dart';
 import 'package:core_domain/telemetry/models/upload_log.dart';
 import 'package:core_domain/telemetry/models/upload_log_list.dart';
@@ -30,30 +30,36 @@ import 'package:flutter_test/flutter_test.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/// Creates a minimal [TelemetryPayload] using [id] as the payloadId.
-/// Optionally specify [businessDate] (defaults to '2026-01-01').
-TelemetryPayload _payload(String id, {String? businessDate, int year = 2026, int month = 1, int day = 1}) {
-  final date = businessDate ?? '$year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}';
-  return TelemetryPayload(
-    startUtc: DateTime.utc(year, month, day),
-    startBusiness: DateTime(year, month, day),
-    businessDate: date,
-    session: 'session-1',
-    sequence: 1,
-    frameCount: 0,
-    missingSec: 0,
-    confidence: 0.0,
-    isPartial: false,
-    coverage: 1.0,
-    fps: 0,
+/// Creates a minimal [Observation] for the given integer business date.
+Observation _observation({int date = 20260101, int time = 0}) {
+  return Observation(
+    granularity: ObservationGranularity.minutes5,
+    year: date ~/ 10000,
+    month: date ~/ 100 % 100,
+    day: date % 100,
+    hour: time ~/ 100,
+    minute: time % 100,
+    confidenceRatioSum: 0,
+    confidenceSampleCount: 0,
+    confidenceRatio: 0,
+    coveredSeconds: 0,
+    expectedSeconds: 0,
+    coverageRatio: 0,
     areas: const [],
+    frameCount: 0,
   );
 }
 
 /// [createdAt] defaults to a far-future date (2099) so it is never pruned by
 /// [TelemetryQueue.pruneExpired] in tests that use [_config] defaults.
-QueuedPayload _pending(String id, {DateTime? createdAt, TelemetryPayload? payload}) =>
-    QueuedPayload(id: id, payload: payload ?? _payload(id), createdAtUtc: createdAt ?? DateTime.utc(2099, 1, 1));
+QueuedObservation _pending(String testSeed, {DateTime? createdAt, Observation? observation}) {
+  final seedMinutes = testSeed.codeUnits.fold<int>(0, (total, unit) => total + unit) % 1440;
+  final time = (seedMinutes ~/ 60) * 100 + seedMinutes % 60;
+  return QueuedObservation(
+    observation: observation ?? _observation(time: time),
+    createdAtUtc: createdAt ?? DateTime.utc(2099, 1, 1),
+  );
+}
 
 /// A persisted [UploadConfig] with small limits to keep tests concise.
 UploadConfig _deliveryConfig() => UploadConfig();
@@ -70,21 +76,21 @@ UploadSession _config() => UploadSession(
 // ---------------------------------------------------------------------------
 
 class _StubQueue implements TelemetryQueue {
-  final _rows = <QueuedPayload>[];
+  final _rows = <QueuedObservation>[];
   final _deliveryLogsById = <int, UploadLog>{};
-  final _successfulIds = <String>{};
+  final _successfulIds = <int>{};
   DateTime? lastPrunedBefore;
   DateTime? lastDeliveryLogPrunedBefore;
 
-  void seed(QueuedPayload row) => _rows.add(row);
+  void seed(QueuedObservation row) => _rows.add(row);
 
   @override
-  Future<void> enqueue(TelemetryPayload payload) async {
-    _rows.add(_pending(getPayloadId(payload)));
+  Future<void> enqueue(Observation observation) async {
+    _rows.add(_pending(observation.id.toString(), observation: observation));
   }
 
   @override
-  Future<List<QueuedPayload>> fetchReady({int limit = 10}) async {
+  Future<List<QueuedObservation>> fetchReady({int limit = 10}) async {
     return _rows.take(limit).toList();
   }
 
@@ -124,9 +130,9 @@ class _StubQueue implements TelemetryQueue {
   }
 
   @override
-  Future<void> markUploadedBatch(List<String> ids) async {
+  Future<void> markUploadedBatch(List<int> ids) async {
     _successfulIds.addAll(ids);
-    _rows.removeWhere((p) => ids.contains(p.id));
+    _rows.removeWhere((p) => ids.contains(p.observation.id));
   }
 
   @override
@@ -139,7 +145,7 @@ class _StubQueue implements TelemetryQueue {
   Future<int> pendingCount() async => _rows.length;
 
   @override
-  Future<List<QueuedPayload>> fetchRecent({int daysBack = 7}) async => List.of(_rows);
+  Future<List<QueuedObservation>> fetchRecent({int daysBack = 7}) async => List.of(_rows);
 
   @override
   Future<void> reset() async {
@@ -166,17 +172,18 @@ class _ThrowingTransport implements TelemetryTransport {
 }
 
 class _StubSerializer implements PayloadSerializer {
+  final List<List<Observation>> serializedObservations = [];
+  String? lastDeviceId;
+
   @override
   String get contentType => 'application/json';
 
   @override
-  List<int> serialize(
-    List<TelemetryPayload> payloads, {
-    required int schemaVersion,
-    required String deviceId,
-    String? projectId,
-    String? assignId,
-  }) => [1, 2, 3];
+  List<int> serialize(List<Observation> observations, {required String deviceId, String? projectId, String? assignId}) {
+    serializedObservations.add(observations);
+    lastDeviceId = deviceId;
+    return [1, 2, 3];
+  }
 }
 
 class _StubTransport implements TelemetryTransport {
@@ -184,6 +191,9 @@ class _StubTransport implements TelemetryTransport {
   bool shouldFail = false;
   int? failOnCallNumber;
   final List<List<int>> receivedBodies = [];
+  String? lastUrl;
+  String? lastBearerToken;
+  String? lastContentType;
 
   @override
   Future<TelemetryResponse> send({
@@ -194,6 +204,9 @@ class _StubTransport implements TelemetryTransport {
   }) async {
     callCount++;
     receivedBodies.add(body);
+    lastUrl = url;
+    lastBearerToken = bearerToken;
+    lastContentType = contentType;
     if (shouldFail || (failOnCallNumber != null && callCount == failOnCallNumber)) {
       return const TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null);
     }
@@ -219,6 +232,80 @@ UploadWorker _worker(
 // ---------------------------------------------------------------------------
 
 void main() {
+  group('UploadWorker.splitByDate', () {
+    final worker = _worker(_StubQueue(), _StubSerializer(), _StubTransport());
+
+    test('returns no groups for empty input', () {
+      expect(worker.splitByDate([]), isEmpty);
+    });
+
+    test('sorts groups chronologically and preserves order within each group', () {
+      final items = [
+        _pending('later', observation: _observation(date: 20260103)),
+        _pending('earlier-first', observation: _observation(date: 20260101)),
+        _pending('middle', observation: _observation(date: 20260102)),
+        _pending('earlier-second', observation: _observation(date: 20260101, time: 1)),
+      ];
+
+      final groups = worker.splitByDate(items);
+
+      expect(groups.map((group) => group.map((item) => item.observation.id).toList()).toList(), [
+        [items[1].observation.id, items[3].observation.id],
+        [items[2].observation.id],
+        [items[0].observation.id],
+      ]);
+    });
+  });
+
+  group('UploadWorker.deliverBatch', () {
+    test('serializes and sends the batch, then runs onSuccess', () async {
+      final queue = _StubQueue();
+      final serializer = _StubSerializer();
+      final transport = _StubTransport();
+      final worker = _worker(queue, serializer, transport);
+      final observations = [_observation(date: 20260101, time: 100)];
+      var onSuccessCalled = false;
+
+      final uploaded = await worker.deliverBatch(
+        session: _config(),
+        observations: observations,
+        onSuccess: () async => onSuccessCalled = true,
+      );
+
+      expect(uploaded, isTrue);
+      expect(serializer.serializedObservations.single, observations);
+      expect(serializer.lastDeviceId, 'device-1');
+      expect(transport.callCount, 1);
+      expect(transport.lastUrl, 'https://example.com/api');
+      expect(transport.lastBearerToken, 'tok_test');
+      expect(transport.receivedBodies.single, [1, 2, 3]);
+      expect(transport.lastContentType, 'application/json');
+      expect(onSuccessCalled, isTrue);
+      expect(worker.isLastUploadSuccess, isTrue);
+      expect(queue._deliveryLogsById.values.single.payloadCount, 1);
+    });
+
+    test('does not run onSuccess and records the failure when transport rejects', () async {
+      final queue = _StubQueue();
+      final transport = _StubTransport()..shouldFail = true;
+      final worker = _worker(queue, _StubSerializer(), transport);
+      var onSuccessCalled = false;
+
+      final uploaded = await worker.deliverBatch(
+        session: _config(),
+        observations: [_observation()],
+        onSuccess: () async => onSuccessCalled = true,
+      );
+
+      expect(uploaded, isFalse);
+      expect(onSuccessCalled, isFalse);
+      expect(worker.isLastUploadSuccess, isFalse);
+      expect(worker.lastError, 'transport_exception');
+      expect(queue._deliveryLogsById.values.single.success, isFalse);
+      expect(queue._deliveryLogsById.values.single.payloadCount, 1);
+    });
+  });
+
   group('UploadWorker', () {
     // -----------------------------------------------------------------------
     // no-op cases
@@ -349,47 +436,60 @@ void main() {
     });
 
     // -----------------------------------------------------------------------
-    // businessDate grouping
+    // Integer business-date grouping
     // -----------------------------------------------------------------------
 
-    test('run() groups payloads by businessDate and sends each date group separately', () async {
+    test('run() groups payloads by business date and sends each date group separately', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', payload: _payload('p1', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p2', payload: _payload('p2', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p3', payload: _payload('p3', year: 2026, month: 1, day: 2)))
-        ..seed(_pending('p4', payload: _payload('p4', year: 2026, month: 1, day: 3)));
+        ..seed(_pending('p1', observation: _observation(date: 20260101)))
+        ..seed(_pending('p2', observation: _observation(date: 20260101, time: 1)))
+        ..seed(_pending('p3', observation: _observation(date: 20260102)))
+        ..seed(_pending('p4', observation: _observation(date: 20260103)));
       final transport = _StubTransport();
       final worker = _worker(queue, _StubSerializer(), transport);
 
       final success = await worker.run();
 
       expect(success, isTrue);
-      // Should make 3 transport calls: one for each unique businessDate (Jan 1, Jan 2, Jan 3)
+      // Should make 3 transport calls: one for each unique business date.
       expect(transport.callCount, 3);
       expect(await queue.pendingCount(), 0);
     });
 
-    test('run() processes date groups in chronological order', () async {
+    test('run() orders date groups chronologically and preserves order within each date', () async {
       final queue = _StubQueue()
-        // Insert in mixed order - worker should still process oldest first
-        ..seed(_pending('p3', payload: _payload('p3', year: 2026, month: 1, day: 3)))
-        ..seed(_pending('p1', payload: _payload('p1', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p2', payload: _payload('p2', year: 2026, month: 1, day: 2)));
+        // Date groups are sorted, while items within each group keep queue order.
+        ..seed(_pending('p3', observation: _observation(date: 20260103, time: 300)))
+        ..seed(_pending('p1a', observation: _observation(date: 20260101, time: 100)))
+        ..seed(_pending('p2', observation: _observation(date: 20260102, time: 200)))
+        ..seed(_pending('p1b', observation: _observation(date: 20260101, time: 105)));
       final transport = _StubTransport();
-      final worker = _worker(queue, _StubSerializer(), transport);
+      final serializer = _StubSerializer();
+      final worker = _worker(queue, serializer, transport);
 
       final success = await worker.run();
 
       expect(success, isTrue);
       expect(transport.callCount, 3);
+      expect(serializer.serializedObservations.map((group) => group.first.dateKey), [20260101, 20260102, 20260103]);
+      expect(
+        serializer.serializedObservations
+            .map((group) => group.map((observation) => observation.timeKey).toList())
+            .toList(),
+        [
+          [100, 105],
+          [200],
+          [300],
+        ],
+      );
       // All should be uploaded
       expect(await queue.pendingCount(), 0);
     });
 
     test('run() keeps all payloads pending when first date group fails', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', payload: _payload('p1', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p2', payload: _payload('p2', year: 2026, month: 1, day: 2)));
+        ..seed(_pending('p1', observation: _observation(date: 20260101)))
+        ..seed(_pending('p2', observation: _observation(date: 20260102)));
       final transport = _StubTransport()..failOnCallNumber = 1; // Fail on first call
       final worker = _worker(queue, _StubSerializer(), transport);
 
@@ -402,9 +502,9 @@ void main() {
 
     test('run() handles multiple payloads with same date in one batch', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', payload: _payload('p1', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p2', payload: _payload('p2', year: 2026, month: 1, day: 1)))
-        ..seed(_pending('p3', payload: _payload('p3', year: 2026, month: 1, day: 1)));
+        ..seed(_pending('p1', observation: _observation(date: 20260101)))
+        ..seed(_pending('p2', observation: _observation(date: 20260101, time: 1)))
+        ..seed(_pending('p3', observation: _observation(date: 20260101, time: 2)));
       final transport = _StubTransport();
       final worker = _worker(queue, _StubSerializer(), transport);
 
@@ -424,7 +524,7 @@ void main() {
       final transport = _StubTransport();
       final worker = _worker(_StubQueue(), _StubSerializer(), transport, config: _config());
 
-      final success = await worker.sendPayloadsDirect([_payload('d1'), _payload('d2'), _payload('d3')]);
+      final success = await worker.sendObservationDirect([_observation(), _observation(), _observation()]);
 
       expect(success, isTrue);
       expect(transport.callCount, 1);
@@ -435,7 +535,7 @@ void main() {
       final transport = _StubTransport()..shouldFail = true;
       final worker = _worker(_StubQueue(), _StubSerializer(), transport, config: _config());
 
-      final success = await worker.sendPayloadsDirect([_payload('d1'), _payload('d2'), _payload('d3')]);
+      final success = await worker.sendObservationDirect([_observation(), _observation(), _observation()]);
 
       expect(success, isFalse);
       expect(transport.callCount, 1);

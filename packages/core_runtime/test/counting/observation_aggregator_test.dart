@@ -1,6 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/model/observation_state.dart';
-import 'package:core_runtime/observation/count_window_aggregator.dart';
+import 'package:core_domain/model/observation.dart';
+import 'package:core_runtime/observation/observation_aggregator.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 String _testAreaNameResolver(int areaId) {
@@ -8,12 +8,14 @@ String _testAreaNameResolver(int areaId) {
   return 'Area $areaId';
 }
 
+AreaMetrics _area(Observation observation, int areaId) =>
+    observation.areas.singleWhere((metrics) => metrics.areaId == areaId);
+
 void main() {
   test('snapshot builds per-area and global metrics', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -34,56 +36,59 @@ void main() {
     accumulator.incrementEvent(area.id, EventType.exit);
     accumulator.incrementEvent(area.id, EventType.appear);
     accumulator.incrementEvent(area.id, EventType.disappear);
-    accumulator.incrementEvent(area.id, EventType.stay);
+    accumulator.incrementEvent(area.id, EventType.stagnant);
     accumulator.incrementEvent(kGlobalAreaId, EventType.passBy);
     accumulator.incrementEvent(kGlobalAreaId, EventType.entry);
     accumulator.incrementEvent(kGlobalAreaId, EventType.exit);
     accumulator.incrementEvent(kGlobalAreaId, EventType.appear);
     accumulator.incrementEvent(kGlobalAreaId, EventType.disappear);
-    accumulator.incrementEvent(kGlobalAreaId, EventType.stay);
+    accumulator.incrementEvent(kGlobalAreaId, EventType.stagnant);
 
     accumulator.addStateSample(area.id, 2, 2000, 3000, 2);
     accumulator.addStateSample(kGlobalAreaId, 5, 1000, 5000, 5);
 
     final result = accumulator.snapshot();
 
-    expect(result.missingDuration, Duration.zero);
     expect(result.frameCount, 0);
-    expect(result.fps, 0.0);
-    expect(result.confidence, 0.0);
+    expect(result.confidenceRatio, 0.0);
+    expect(result.confidenceRatioSum, 0);
+    expect(result.confidenceSampleCount, 0);
 
-    final areaMetrics = result.areas[area.id]!;
+    final areaMetrics = _area(result, area.id);
     expect(areaMetrics.passBy, 1);
     expect(areaMetrics.entry, 1);
     expect(areaMetrics.exit, 1);
     expect(areaMetrics.appear, 1);
     expect(areaMetrics.disappear, 1);
-    expect(areaMetrics.stay, 1);
-    expect(areaMetrics.currentOccupancy, 2);
-    expect(areaMetrics.avgOccupancy, 2);
-    expect(areaMetrics.maxOccupancy, 2);
-    expect(areaMetrics.avgDwellSec, 1.5);
-    expect(areaMetrics.maxDwellSec, 2);
+    expect(areaMetrics.stagnant, 1);
+    expect(areaMetrics.occupancySampleCount, 1);
+    expect(areaMetrics.occupancySampleSum, 2);
+    expect(areaMetrics.occupancyAvg, 2);
+    expect(areaMetrics.occupancyMax, 2);
+    expect(areaMetrics.occupancyLast, 2);
+    expect(areaMetrics.dwellSumSeconds, 3);
+    expect(areaMetrics.dwellSampleCount, 2);
+    expect(areaMetrics.dwellAvgSeconds, 1.5);
+    expect(areaMetrics.dwellMaxSeconds, 2);
 
-    final globalMetrics = result.areas[kGlobalAreaId]!;
+    final globalMetrics = _area(result, kGlobalAreaId);
     expect(globalMetrics.passBy, 1);
     expect(globalMetrics.entry, 0);
     expect(globalMetrics.exit, 0);
     expect(globalMetrics.appear, 1);
     expect(globalMetrics.disappear, 1);
-    expect(globalMetrics.stay, 1);
-    expect(globalMetrics.currentOccupancy, 5);
-    expect(globalMetrics.avgOccupancy, 5);
-    expect(globalMetrics.maxOccupancy, 5);
-    expect(globalMetrics.avgDwellSec, 1.0);
-    expect(globalMetrics.maxDwellSec, 1);
+    expect(globalMetrics.stagnant, 1);
+    expect(globalMetrics.occupancyAvg, 5);
+    expect(globalMetrics.occupancyMax, 5);
+    expect(globalMetrics.occupancyLast, 5);
+    expect(globalMetrics.dwellAvgSeconds, 1.0);
+    expect(globalMetrics.dwellMaxSeconds, 1);
   });
 
   test('snapshot has empty areas when no events/state were recorded', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -94,9 +99,8 @@ void main() {
 
   test('ensureStateSample adds an empty area state row', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -104,26 +108,29 @@ void main() {
     accumulator.ensureStateSample(7);
 
     final result = accumulator.snapshot();
-    final metrics = result.areas[7]!;
+    final metrics = _area(result, 7);
 
     expect(metrics.passBy, 0);
     expect(metrics.entry, 0);
     expect(metrics.exit, 0);
     expect(metrics.appear, 0);
     expect(metrics.disappear, 0);
-    expect(metrics.stay, 0);
-    expect(metrics.currentOccupancy, 0);
-    expect(metrics.avgOccupancy, 0.0);
-    expect(metrics.maxOccupancy, 0);
-    expect(metrics.avgDwellSec, 0.0);
-    expect(metrics.maxDwellSec, 0);
+    expect(metrics.stagnant, 0);
+    expect(metrics.occupancyLast, 0);
+    expect(metrics.occupancySampleCount, 0);
+    expect(metrics.occupancySampleSum, 0);
+    expect(metrics.occupancyAvg, 0.0);
+    expect(metrics.occupancyMax, 0);
+    expect(metrics.dwellSumSeconds, 0);
+    expect(metrics.dwellSampleCount, 0);
+    expect(metrics.dwellAvgSeconds, 0.0);
+    expect(metrics.dwellMaxSeconds, 0);
   });
 
   test('coverage ratio accumulates valid missing durations', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -132,14 +139,15 @@ void main() {
     accumulator.addMissingDuration(const Duration(seconds: 45));
 
     final result = accumulator.snapshot();
-    expect(result.missingDuration, const Duration(seconds: 75));
+    expect(result.coveredSeconds, 225);
+    expect(result.expectedSeconds, 300);
+    expect(result.coverageRatio, 0.75);
   });
 
   test('state sample aggregation computes averages and max across samples', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -154,28 +162,31 @@ void main() {
       ],
     );
 
-    // avgOccupancy is computed as a simple average across occupancy samples:
+    // occupancyAvg is computed as a simple average across occupancy samples:
     // (1 + 3) / 2 = 2
-    // avgDwellSec = (2000 + 4000 + 1000) / 3 / 1000 = 2.333...
-    // maxDwellSec = max(3000, 7000) ms -> 7 sec
+    // dwellAvgSeconds = (2000 + 4000 + 1000) / 3 / 1000 = 2.333...
+    // dwellMaxSeconds = max(3000, 7000) ms -> 7 sec
     accumulator.addStateSample(area.id, 1, 3000, 6000, 2);
     accumulator.addStateSample(area.id, 3, 7000, 1000, 1);
 
     final result = accumulator.snapshot();
-    final areaMetrics = result.areas[area.id]!;
+    final areaMetrics = _area(result, area.id);
 
-    expect(areaMetrics.currentOccupancy, 3);
-    expect(areaMetrics.avgOccupancy, 2.0);
-    expect(areaMetrics.maxOccupancy, 3);
-    expect(areaMetrics.avgDwellSec, closeTo(2.333333333, 1e-9));
-    expect(areaMetrics.maxDwellSec, 7);
+    expect(areaMetrics.occupancySampleCount, 2);
+    expect(areaMetrics.occupancySampleSum, 4);
+    expect(areaMetrics.occupancyAvg, 2.0);
+    expect(areaMetrics.occupancyMax, 3);
+    expect(areaMetrics.occupancyLast, 3);
+    expect(areaMetrics.dwellSumSeconds, 7);
+    expect(areaMetrics.dwellSampleCount, 3);
+    expect(areaMetrics.dwellAvgSeconds, closeTo(2.333333333, 1e-9));
+    expect(areaMetrics.dwellMaxSeconds, 7);
   });
 
   test('processed frame count and effective FPS are tracked', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
@@ -186,38 +197,38 @@ void main() {
 
     final result = accumulator.snapshot();
     expect(result.frameCount, 3);
-    expect(result.fps, closeTo(0.01, 1e-9));
   });
 
   test('average confidence is aggregated across tracked-object samples', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
       startBusiness: start.toLocal(),
       missingDuration: Duration.zero,
     );
 
-    accumulator.addConfidenceAggregate(confidenceSum: 180, sampleCount: 2);
-    accumulator.addConfidenceAggregate(confidenceSum: 50, sampleCount: 1);
+    accumulator.addConfidenceAggregate(confidenceRatioSum: 1.8025, sampleCount: 2);
+    accumulator.addConfidenceAggregate(confidenceRatioSum: 0.50125, sampleCount: 1);
 
     final result = accumulator.snapshot();
-    expect(result.confidence, closeTo(76.6666666667, 1e-9));
+    expect(result.confidenceRatio, closeTo(0.767916666667, 1e-9));
+    expect(result.confidenceRatioSum, 2.30375);
+    expect(result.confidenceSampleCount, 3);
   });
 
-  test('snapshot carries session metadata', () {
-    final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-    final accumulator = CountWindowAggregator(
+  test('snapshot returns an observation with business-time components', () {
+    final startBusiness = DateTime(2026, 1, 1, 10, 0, 0);
+    final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
-      startUtc: start,
-      startBusiness: start.toLocal(),
-      session: 'CAMERA_260101_100000_abcd',
-      sequence: 3,
+      startBusiness: startBusiness,
       missingDuration: Duration.zero,
     );
 
     final result = accumulator.snapshot();
-    expect(result.session, 'CAMERA_260101_100000_abcd');
-    expect(result.sequence, 3);
+    expect(result.year, 2026);
+    expect(result.month, 1);
+    expect(result.day, 1);
+    expect(result.hour, 10);
+    expect(result.minute, 0);
   });
 }

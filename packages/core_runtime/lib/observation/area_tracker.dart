@@ -7,7 +7,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 
-import 'count_window_aggregator.dart';
+import 'observation_aggregator.dart';
 
 /// Maximum number of track IDs kept per history set to bound memory usage.
 const int kMaxTrackHistory = 5000;
@@ -19,7 +19,7 @@ const int kMaxTrackHistory = 5000;
 /// enter/exit events.
 class AreaTracker {
   final int? areaId;
-  Duration stayThreshold;
+  Duration stagnantThreshold;
   Duration disappearThreshold;
 
   /// True for the special global tracker.
@@ -48,9 +48,9 @@ class AreaTracker {
   // Latest frame occupancy for this area.
   int _currentOccupancy = 0;
 
-  AreaTracker.global({this.stayThreshold = Duration.zero, this.disappearThreshold = Duration.zero}) : areaId = null;
+  AreaTracker.global({this.stagnantThreshold = Duration.zero, this.disappearThreshold = Duration.zero}) : areaId = null;
 
-  AreaTracker.local(int this.areaId, {this.stayThreshold = Duration.zero, this.disappearThreshold = Duration.zero});
+  AreaTracker.local(int this.areaId, {this.stagnantThreshold = Duration.zero, this.disappearThreshold = Duration.zero});
 
   /// Current frame occupancy for this area.
   int get currentOccupancy => _currentOccupancy;
@@ -59,8 +59,8 @@ class AreaTracker {
   int get totalCount => _contactedTracks.length;
 
   /// Updates runtime thresholds for stay/disappear events.
-  void configureThresholds({required Duration stayThreshold, required Duration disappearThreshold}) {
-    this.stayThreshold = stayThreshold;
+  void configureThresholds({required Duration stagnantThreshold, required Duration disappearThreshold}) {
+    this.stagnantThreshold = stagnantThreshold;
     this.disappearThreshold = disappearThreshold;
   }
 
@@ -80,7 +80,7 @@ class AreaTracker {
 
   void processFrame<T>(
     List<T> tracks,
-    CountWindowAggregator aggregator, {
+    ObservationAggregator aggregator, {
     DateTime? frameTimestampUtc,
     required bool Function(vision.TrackedObject) checkContains,
     required bool Function(vision.TrackedObject) checkInitialContains,
@@ -89,16 +89,16 @@ class AreaTracker {
 
     // Per-frame metrics that are forwarded into window-level state aggregation.
     int occupancy = 0;
-    double sumDwellMs = 0.0;
+    int sumDwellSeconds = 0;
     int dwellTrackCount = 0;
-    double maxDwellMs = 0;
+    int maxDwellSeconds = 0;
     final currentInsideTrackIds = <int>{};
 
     for (final track in tracks) {
       if (track is! vision.TrackedObject) continue;
       final isInsideCurrent = checkContains(track);
       if (!isInsideCurrent) {
-        // exit: initial inside, current outside
+        // Exit from this local area: initially inside, currently outside.
         if (!isGlobal && checkInitialContains(track)) {
           _recordUniqueEvent(_exitedTracks, track.trackId, aggregator, EventType.exit);
         }
@@ -110,11 +110,11 @@ class AreaTracker {
       _insideSinceByTrackId.putIfAbsent(track.trackId, () => nowUtc);
       _pendingDisappearSinceByTrackId.remove(track.trackId);
       occupancy++;
-      final trackDwellMs = track.stayDuration.inMilliseconds.toDouble();
-      sumDwellMs += trackDwellMs;
+      final trackDwellSeconds = track.dwellDuration.inSeconds;
+      sumDwellSeconds += trackDwellSeconds;
       dwellTrackCount++;
-      if (trackDwellMs > maxDwellMs) {
-        maxDwellMs = trackDwellMs;
+      if (trackDwellSeconds > maxDwellSeconds) {
+        maxDwellSeconds = trackDwellSeconds;
       }
 
       // first_contact: current inside
@@ -126,12 +126,12 @@ class AreaTracker {
       }
 
       final insideSince = _insideSinceByTrackId[track.trackId];
-      if (insideSince != null && nowUtc.difference(insideSince) >= stayThreshold) {
-        _recordUniqueEvent(_stayedTracks, track.trackId, aggregator, EventType.stay);
+      if (insideSince != null && nowUtc.difference(insideSince) >= stagnantThreshold) {
+        _recordUniqueEvent(_stayedTracks, track.trackId, aggregator, EventType.stagnant);
       }
 
       if (!isGlobal) {
-        // enter: initial outside, current inside
+        // Entry into this local area: initially outside, currently inside.
         final isInsideInitial = checkInitialContains(track);
         if (!isInsideInitial) {
           _recordUniqueEvent(_enteredTracks, track.trackId, aggregator, EventType.entry);
@@ -159,11 +159,11 @@ class AreaTracker {
     _previousInsideTrackIds = currentInsideTrackIds;
 
     _currentOccupancy = occupancy;
-    aggregator.addStateSample(_effectiveAreaId, occupancy, maxDwellMs, sumDwellMs, dwellTrackCount);
+    aggregator.addStateSample(_effectiveAreaId, occupancy, maxDwellSeconds, sumDwellSeconds, dwellTrackCount);
   }
 
   /// Records pass-by on first contact and refreshes recency on repeated contact.
-  void _recordPassBy(int trackId, CountWindowAggregator aggregator) {
+  void _recordPassBy(int trackId, ObservationAggregator aggregator) {
     if (_contactedTracks.add(trackId)) {
       aggregator.incrementEvent(_effectiveAreaId, EventType.passBy);
       _trimHistory(_contactedTracks);
@@ -175,7 +175,7 @@ class AreaTracker {
     _contactedTracks.add(trackId);
   }
 
-  void _recordUniqueEvent(Set<int> history, int trackId, CountWindowAggregator aggregator, EventType event) {
+  void _recordUniqueEvent(Set<int> history, int trackId, ObservationAggregator aggregator, EventType event) {
     // For one-shot event semantics we only deduped and cap memory.
     // We intentionally do not refresh recency for existing track IDs here.
     if (!history.add(trackId)) return;

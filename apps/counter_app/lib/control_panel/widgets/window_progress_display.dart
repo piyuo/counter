@@ -9,7 +9,6 @@ import 'package:counter_app/control_panel/utils/format_percent.dart';
 import 'package:flutter/material.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:primer_progress_bar/primer_progress_bar.dart';
-import 'package:shared_l10n/shared_l10n.dart' as shared_l10n;
 
 class WindowProgressDisplay extends StatelessWidget {
   const WindowProgressDisplay({
@@ -19,7 +18,7 @@ class WindowProgressDisplay extends StatelessWidget {
     super.key,
   });
 
-  final core_domain.ObservationState? windowCount;
+  final core_domain.Observation? windowCount;
 
   final Offset offset;
   final bool lightOutMode;
@@ -33,30 +32,12 @@ class WindowProgressDisplay extends StatelessWidget {
     if (currentWindowCount == null) {
       return Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white, size: 54));
     }
-    final donePercent = currentWindowCount.donePercent.clamp(0.0, 100.0);
-    final inProgressPercent = currentWindowCount.inProgressPercent.clamp(0.0, 100.0);
-    final missingPercent = currentWindowCount.missingPercent.clamp(0.0, 100.0);
-    final doneSegmentValue = donePercent.round().clamp(0, 100);
-    final inProgressSegmentValue = inProgressPercent.round().clamp(0, 100 - doneSegmentValue);
-    final missingSegmentValue = 100 - doneSegmentValue - inProgressSegmentValue;
+    final coveragePercent = (currentWindowCount.coverageRatio * 100).clamp(0.0, 100.0);
     final progressSegments = [
       Segment(
-        value: doneSegmentValue,
+        value: coveragePercent.round().clamp(0, 100).toInt(),
         color: Colors.lightBlue,
-        label: Text(context.l.metrics_counting_done, style: TextStyle(fontSize: 9)),
-        valueLabel: Text(formatPercent(context, donePercent), style: TextStyle(fontSize: 9)),
-      ),
-      Segment(
-        value: inProgressSegmentValue,
-        color: Colors.grey.shade300,
-        label: Text(context.l.metrics_counting_in_progress, style: TextStyle(fontSize: 9)),
-        valueLabel: Text(formatPercent(context, inProgressPercent), style: TextStyle(fontSize: 9)),
-      ),
-      Segment(
-        value: missingSegmentValue,
-        color: Colors.orange.shade300,
-        label: Text(context.l.metrics_counting_missing, style: TextStyle(fontSize: 9)),
-        valueLabel: Text(formatPercent(context, missingPercent), style: TextStyle(fontSize: 9)),
+        valueLabel: Text(formatPercent(context, coveragePercent), style: TextStyle(fontSize: 9)),
       ),
     ];
 

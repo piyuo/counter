@@ -45,7 +45,7 @@ final class InterestAreaNotifierProvider
 }
 
 String _$interestAreaNotifierHash() =>
-    r'780529c9714a63be4c5e36ae79ea7b3fe2aebdb5';
+    r'4347cd207b39d35e2cb89655db2bb0041cece4c8';
 
 abstract class _$InterestAreaNotifier
     extends $Notifier<core_domain.InterestAreaState> {

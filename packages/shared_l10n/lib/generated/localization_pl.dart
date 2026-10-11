@@ -202,17 +202,17 @@ class LocalizationPl extends Localization {
       'Włącz tę opcję, aby wyświetlić unikalne identyfikatory śledzenia dla każdego śledzonego obiektu.';
 
   @override
-  String get detection_screen_stay => 'Czas pobytu';
+  String get detection_screen_stagnant => 'Czas pobytu';
 
   @override
-  String get detection_screen_stay_help =>
-      'Jak długo obiekt musi pozostać w obszarze, zanim zostanie uznany za pobyt.';
+  String get detection_screen_stagnant_help =>
+      'Jak długo obiekt musi pozostać w obszarze, aby zostać uznany za pobyt.';
 
   @override
-  String get detection_screen_stay_max_label => 'Opóźnione';
+  String get detection_screen_stagnant_max_label => 'Opóźnione';
 
   @override
-  String get detection_screen_stay_min_label => 'Natychmiast';
+  String get detection_screen_stagnant_min_label => 'Natychmiast';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -656,10 +656,10 @@ class LocalizationPl extends Localization {
   String get settings_screen_subscription_title => 'Subskrypcja';
 
   @override
-  String get stayed => 'Pozostali';
+  String get stagnanted => 'Pozostali';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Zlicza osoby lub pojazdy, które pozostały w tym obszarze przez co najmniej ustawiony czas przebywania.\\n\\nDomyślny czas przebywania wynosi 15 sekund i można go zmienić w Ustawieniach.';
 
   @override

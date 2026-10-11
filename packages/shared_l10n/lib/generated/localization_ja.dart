@@ -196,17 +196,17 @@ class LocalizationJa extends Localization {
       'このオプションを有効にして、追跡される各オブジェクトの一意なトラック ID を表示します。';
 
   @override
-  String get detection_screen_stay => '滞在時間';
+  String get detection_screen_stagnant => '滞在時間';
 
   @override
-  String get detection_screen_stay_help =>
-      '物体が滞在としてカウントされるまでにエリア内に留まる必要がある時間です。';
+  String get detection_screen_stagnant_help =>
+      '物体がエリア内に留まり、滞在としてカウントされるまでの時間です。';
 
   @override
-  String get detection_screen_stay_max_label => '遅延';
+  String get detection_screen_stagnant_max_label => '遅延';
 
   @override
-  String get detection_screen_stay_min_label => '即時';
+  String get detection_screen_stagnant_min_label => '即時';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -633,10 +633,10 @@ class LocalizationJa extends Localization {
   String get settings_screen_subscription_title => 'サブスクリプション';
 
   @override
-  String get stayed => '滞在';
+  String get stagnanted => '滞在';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       '設定された滞在時間以上、このエリア内にとどまった人や車両をカウントします。\\n\\n初期設定の滞在時間は15秒で、設定から変更できます。';
 
   @override

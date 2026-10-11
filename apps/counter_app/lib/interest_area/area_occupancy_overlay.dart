@@ -12,11 +12,11 @@ import 'area_painting.dart';
 import 'area_viewport.dart';
 
 class AreaOccupancyOverlay extends StatelessWidget {
-  const AreaOccupancyOverlay({required this.viewport, required this.areas, required this.observationState, super.key});
+  const AreaOccupancyOverlay({required this.viewport, required this.areas, required this.observation, super.key});
 
   final AreaViewport viewport;
   final List<core_domain.InterestArea> areas;
-  final core_domain.ObservationState? observationState;
+  final core_domain.Observation? observation;
 
   static const double _blockGap = 4.0;
 
@@ -36,7 +36,7 @@ class AreaOccupancyOverlay extends StatelessWidget {
 
   Widget _buildOccupancyBlock(BuildContext context, core_domain.InterestArea area) {
     final pill = AreaLabelLayout.backgroundRect(viewport, area, Directionality.of(context));
-    final occupancy = observationState?.areas[area.id]?.currentOccupancy ?? -1;
+    final occupancy = observation?.areas.where((metrics) => metrics.areaId == area.id).firstOrNull?.occupancyLast ?? -1;
 
     final anchored = Positioned(
       left: pill.center.dx,

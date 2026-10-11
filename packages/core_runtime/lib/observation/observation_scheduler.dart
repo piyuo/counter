@@ -11,7 +11,7 @@ import 'clock_jump_detector.dart';
 import 'window_boundary_timer.dart';
 
 // Callbacks
-typedef CountWindowCallback = void Function(DateTime startUtc, DateTime startBusiness, Duration missingDuration);
+typedef WindowCallback = void Function(DateTime startBusiness, Duration missingDuration);
 
 /// Drives 5-minute pedestrian-counting windows aligned to the wall clock
 /// (e.g. 4:00–4:05, 4:05–4:10, …) and tracks missing coverage so that the
@@ -36,7 +36,7 @@ typedef CountWindowCallback = void Function(DateTime startUtc, DateTime startBus
 /// Internally uses composition with [ClockJumpDetector] and
 /// [WindowBoundaryTimer]. In-window missing-duration tracking is handled by
 /// the owning notifier via [FrameGapTracker].
-class CountWindowScheduler {
+class ObservationScheduler {
   // Thresholds
 
   /// Gaps between consecutive windows smaller than this are considered seamless
@@ -71,21 +71,20 @@ class CountWindowScheduler {
 
   /// Called when a new 5-minute window opens.
   ///
-  /// - [startUtc] — the UTC start of the new window
   /// - [startBusiness] — the business-time start of the new window
   /// - [missingDuration] — how long this window had been running before the
   ///   first frame arrived (zero for the first window, for seamless rollovers,
   ///   or when the source restarts exactly at a boundary). Represents coverage
   ///   loss at the start of the window: `nowUtc − startUtc`.
-  final CountWindowCallback onWindowStart;
+  final WindowCallback onWindowStart;
 
   /// Called when the current window closes cleanly at the 5-minute boundary.
   /// The caller should finalize and persist the window data.
-  final CountWindowCallback onWindowEnd;
+  final WindowCallback onWindowEnd;
 
   // Constructor & static clock
 
-  CountWindowScheduler({
+  ObservationScheduler({
     required this.onWindowStart,
     required this.onWindowEnd,
     DateTime Function()? nowProvider,
@@ -137,7 +136,7 @@ class CountWindowScheduler {
   /// state so the caller can reopen a fresh window via [ensureWindowActive].
   void debugForceWindowEnd() {
     if (_windowStartLocal == null || _windowEndLocal == null) return;
-    onWindowEnd(_windowStartLocal!.toUtc(), _windowStartLocal!, getMissingAtStart(_now()));
+    onWindowEnd(_windowStartLocal!, getMissingAtStart(_now()));
     _windowStartLocal = null;
   }
 
@@ -153,11 +152,11 @@ class CountWindowScheduler {
         now.isAfter(_windowEndLocal!) ||
         now.isAtSameMomentAs(_windowEndLocal!)) {
       if (_windowStartLocal != null) {
-        onWindowEnd(_windowStartLocal!.toUtc(), _windowStartLocal!, getMissingAtStart(now));
+        onWindowEnd(_windowStartLocal!, getMissingAtStart(now));
       }
       // Store as local time to maintain the invariant that _windowStartLocal is always local
       _windowStartLocal = createStartLocal(now);
-      onWindowStart(_windowStartLocal!.toUtc(), _windowStartLocal!, getMissingAtStart(now));
+      onWindowStart(_windowStartLocal!, getMissingAtStart(now));
     }
   }
 

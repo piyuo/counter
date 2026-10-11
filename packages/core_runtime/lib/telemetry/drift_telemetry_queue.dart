@@ -3,14 +3,13 @@
 //
 // Storage notes:
 //  - All timestamps are stored as UTC milliseconds-since-epoch integers.
-//  - Serialized payload (JSON) is stored verbatim from TelemetryPayload.toJson().
+//  - Serialized payload (JSON) is stored verbatim from Observation.toJson().
 //  - startMs store payload window bounds for event-time inspection.
 //  - All payload rows (pending or uploaded) are retained for 7 days.
 
 import 'dart:convert';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
@@ -25,13 +24,13 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
 
   /// Enqueues [payload] for upload.
   ///
-  /// Idempotent on duplicate [core_domain.TelemetryPayload.payloadId].
+  /// Idempotent on duplicate [core_domain.Observation.id].
   /// Duplicate rows are ignored to preserve existing upload state.
   @override
-  Future<void> enqueue(core_domain.TelemetryPayload payload) async {
+  Future<void> enqueue(core_domain.Observation observation) async {
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final startLocalHm = _formatLocalHourMinute(payload.startUtc);
-    final encodedJson = jsonEncode(payload.toJson());
+    final id = observation.id.toString();
+    final encodedJson = jsonEncode(observation.toJson());
     final db = _dbFactory();
     if (db == null) {
       return; // db is not available , probably in reset state, ignore operation
@@ -41,15 +40,10 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
         // Detection engine payload IDs are unique; if a duplicate appears,
         // keep the existing row as-is (do not reset/overwrite upload state).
         .insert(
-          TelemetryQueueCompanion.insert(
-            id: getPayloadId(payload),
-            serializedPayload: encodedJson,
-            createdAtMs: nowMs,
-            startMs: payload.startUtc.toUtc().millisecondsSinceEpoch,
-          ),
-          mode: InsertMode.insertOrAbort, // let it abort  if something  is wrong, other options may hide errors
+          TelemetryQueueCompanion.insert(id: id, serializedPayload: encodedJson, createdAtMs: nowMs, startMs: 0),
+          mode: InsertMode.insertOrIgnore,
         );
-    appkit.logDebug('[TelemetryQueue] add payload: $startLocalHm');
+    appkit.logDebug('[TelemetryQueue] add payload: $id');
   }
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
@@ -57,7 +51,7 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
   /// Upload status is not part of this filter. Both pending and uploaded
   /// rows are included if createdAtMs is after the cutoff.
   @override
-  Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 7}) async {
+  Future<List<core_domain.QueuedObservation>> fetchRecent({int daysBack = 7}) async {
     final db = _dbFactory();
     if (db == null) {
       return []; // db is not available, return empty list
@@ -76,7 +70,7 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
   /// been successfully uploaded.
   /// Excludes payloads where uploadedAtMs is set.
   @override
-  Future<List<core_domain.QueuedPayload>> fetchReady({int limit = 10}) async {
+  Future<List<core_domain.QueuedObservation>> fetchReady({int limit = 10}) async {
     final db = _dbFactory();
     if (db == null) {
       return []; // db is not available, return empty list
@@ -164,13 +158,14 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
   }
 
   @override
-  Future<void> markUploadedBatch(List<String> ids) async {
-    if (ids.isEmpty) return; // Avoid unnecessary database call
+  Future<void> markUploadedBatch(List<int> observationIds) async {
+    if (observationIds.isEmpty) return; // Avoid unnecessary database call
     final db = _dbFactory();
     if (db == null) {
       return; // db is not available, ignore operation
     }
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
+    final ids = observationIds.map((id) => id.toString()).toList(growable: false);
     // Batch update all payloads in a single WHERE IN clause for efficiency.
     await (db.update(
       db.telemetryQueue,
@@ -205,23 +200,30 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
     appkit.logInfo('[TelemetryQueue] telemetry database reset');
   }
 
-  String _formatLocalHourMinute(DateTime utcTime) {
-    final local = utcTime.toLocal();
-    final hour = local.hour.toString().padLeft(2, '0');
-    final minute = local.minute.toString().padLeft(2, '0');
-    return '$hour:$minute';
-  }
-
-  /// Converts a Drift row to a domain [core_domain.QueuedPayload].
-  core_domain.QueuedPayload _toModel(TelemetryQueueData row) {
-    return core_domain.QueuedPayload(
-      id: row.id,
-      payload: core_domain.TelemetryPayload.fromJson(jsonDecode(row.serializedPayload) as Map<String, dynamic>),
+  /// Converts a Drift row to a domain [core_domain.QueuedObservation].
+  core_domain.QueuedObservation _toModel(TelemetryQueueData row) {
+    final storedJson = jsonDecode(row.serializedPayload) as Map<String, dynamic>;
+    final observationJson = storedJson['observation'] as Map<String, dynamic>?;
+    final observation = observationJson == null
+        ? core_domain.Observation.fromJson(storedJson)
+        : _decodeLegacyObservation(observationJson, storedJson['occupancies'] as Map<String, dynamic>?);
+    return core_domain.QueuedObservation(
+      observation: observation,
       createdAtUtc: DateTime.fromMillisecondsSinceEpoch(row.createdAtMs, isUtc: true),
       uploadedAtUtc: row.uploadedAtMs == null
           ? null
           : DateTime.fromMillisecondsSinceEpoch(row.uploadedAtMs!, isUtc: true),
     );
+  }
+
+  core_domain.Observation _decodeLegacyObservation(Map<String, dynamic> json, Map<String, dynamic>? occupancies) {
+    final areas = (json['areas'] as List<dynamic>).map((value) {
+      final area = Map<String, dynamic>.from(value as Map);
+      final areaId = area['areaId'].toString();
+      area.putIfAbsent('lastOccupancy', () => (occupancies?[areaId] as num?)?.toInt() ?? 0);
+      return area;
+    }).toList();
+    return core_domain.Observation.fromJson({...json, 'areas': areas});
   }
 
   core_domain.UploadLog _toUploadLog(TelemetryUploadLogData row) {

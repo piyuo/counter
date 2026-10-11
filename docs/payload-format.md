@@ -1,6 +1,6 @@
 # Piyuo Counter Payload Format
 
-Version: Schema 1
+Version: Schema 2
 
 ---
 
@@ -8,21 +8,21 @@ Version: Schema 1
 
 Piyuo Counter performs all AI detection and tracking locally on the device.
 
-To protect privacy, the application **never uploads video, images, or object identities**. Instead, it summarizes AI detection results into **5-minute counting windows**. Each summary is called a **Payload**.
+To protect privacy, the application **never uploads video, images, or object identities**. Instead, it summarizes AI detection results into **5-minute counting windows**. Each summary is an **Observation**.
 
-Every hour, the device uploads all payloads generated during that hour as a single JSON document.
+Every hour, the device uploads all observations generated during that hour as a single JSON document.
 
 For example:
 
-| Time          | Generated                       |
-| ------------- | ------------------------------- |
-| 07:00 – 07:05 | Payload #1                      |
-| 07:05 – 07:10 | Payload #2                      |
-| ...           | ...                             |
-| 07:55 – 08:00 | Payload #12                     |
-| 08:00         | Upload all 12 payloads together |
+| Time          | Generated                           |
+| ------------- | ----------------------------------- |
+| 07:00 – 07:05 | Observation #1                      |
+| 07:05 – 07:10 | Observation #2                      |
+| ...           | ...                                 |
+| 07:55 – 08:00 | Observation #12                     |
+| 08:00         | Upload all 12 observations together |
 
-If the device is offline, payloads remain safely stored on the device and will be uploaded automatically when connectivity is restored.
+If the device is offline, observations remain safely stored on the device and will be uploaded automatically when connectivity is restored.
 
 ---
 
@@ -47,37 +47,44 @@ Only aggregated statistics are transmitted.
 
 ```json
 {
-  "schema": 1,
+  "schema": 2,
   "deviceId": "041bfec6-8923-4b09-be5f-0fd11d3df7f5",
-  "payloads": [
+  "observations": [
     {
-      "session": "2607131922",
-      "sequence": 1,
-      "startUtc": "2026-07-14T02:20:00.000Z",
-      "startBusiness": "2026-07-13T19:20:00.000",
-      "businessDate": "2026-07-13",
-      "frameCount": 2963,
-      "missingSec": 177,
-      "confidence": 86.92,
-      "isPartial": true,
-      "coverage": 0.41,
-      "fps": 24.2,
+      "granularity": "minutes5",
+      "year": 2026,
+      "month": 7,
+      "day": 13,
+      "hour": 19,
+      "minute": 20,
+      "confidenceRatioSum": 2572.21,
+      "confidenceSampleCount": 2963,
+      "confidenceRatio": 0.87,
+      "coveredSeconds": 123,
+      "expectedSeconds": 300,
+      "coverageRatio": 0.41,
       "areas": [
         {
           "areaId": 0,
           "areaName": "Global",
           "passBy": 1,
-          "stay": 0,
+          "stagnant": 0,
           "entry": 0,
           "exit": 0,
           "appear": 0,
           "disappear": 0,
-          "avgOccupancy": 0.99,
-          "maxOccupancy": 1,
-          "avgDwellSec": 60.7,
-          "maxDwellSec": 122.0
+          "occupancySampleCount": 2963,
+          "occupancySampleSum": 2933,
+          "occupancyAvg": 0.99,
+          "occupancyMax": 1,
+          "occupancyLast": 1,
+          "dwellSumSeconds": 6070,
+          "dwellSampleCount": 100,
+          "dwellAvgSeconds": 60.7,
+          "dwellMaxSeconds": 122.0
         }
-      ]
+      ],
+      "frameCount": 2963
     }
   ]
 }
@@ -87,82 +94,85 @@ Only aggregated statistics are transmitted.
 
 ## Top-Level Object
 
-| Field     | Type             | Required | Description                                                              |
-| --------- | ---------------- | :------: | ------------------------------------------------------------------------ |
-| schema    | Integer          |   Yes    | Payload format version.                                                  |
-| deviceId  | String           |   Yes    | Unique identifier of the device generating the payload.                  |
-| projectId | String           |    No    | Project identifier assigned to the device. Present only when configured. |
-| assignId  | String           |    No    | Assignment identifier. Present only when configured.                     |
-| payloads  | Array\<Payload\> |   Yes    | List of 5-minute payloads included in this upload.                       |
+| Field        | Type                 | Description                                                              |
+| ------------ | -------------------- | ------------------------------------------------------------------------ |
+| schema       | Integer              | Payload format version.                                                  |
+| deviceId     | String               | Unique identifier of the device generating the observations.             |
+| projectId    | String               | Project identifier assigned to the device. Present only when configured. |
+| assignId     | String               | Assignment identifier. Present only when configured.                     |
+| observations | Array\<Observation\> | List of 5-minute observations included in this upload.                   |
 
 ---
 
-## Payload Object
+## Observation Object
 
-Each payload represents one **5-minute counting window**.
+Each observation represents one **5-minute counting window**.
 
-| Field         | Type                    | Required | Description                                                                 |
-| ------------- | ----------------------- | :------: | --------------------------------------------------------------------------- |
-| session       | String                  |   Yes    | Counting session identifier.                                                |
-| sequence      | Integer                 |   Yes    | Sequential payload number within the session. Starts at 1.                  |
-| startUtc      | String (ISO-8601 UTC)   |   Yes    | Start time of the counting window in UTC.                                   |
-| startBusiness | String (ISO-8601 Local) |   Yes    | Start time using the business timezone.                                     |
-| businessDate  | String                  |   Yes    | Business date in `YYYY-MM-DD` format.                                       |
-| frameCount    | Integer                 |   Yes    | Total video frames processed during this window.                            |
-| missingSec    | Integer                 |   Yes    | Total seconds of missing video input during this window.                    |
-| confidence    | Number                  |   Yes    | Average AI detection confidence (percentage).                               |
-| isPartial     | Boolean                 |   Yes    | Indicates whether the window ended before completing the full five minutes. |
-| coverage      | Number                  |   Yes    | Fraction of the window containing valid detection data (0.0–1.0).           |
-| fps           | Number                  |   Yes    | Average processed frames per second during valid periods.                   |
-| areas         | Array\<Area\>           |   Yes    | Statistics for each configured area.                                        |
+| Field                 | Type          | Description                                                                       |
+| --------------------- | ------------- | --------------------------------------------------------------------------------- |
+| granularity           | String        | Aggregation interval; uploads contain `minutes5`.                                 |
+| year                  | Integer       | Four-digit business year.                                                         |
+| month                 | Integer       | Business month, from 1 to 12.                                                     |
+| day                   | Integer       | Business day of month.                                                            |
+| hour                  | Integer       | Business hour, from 0 to 23.                                                      |
+| minute                | Integer       | Business minute.                                                                  |
+| confidenceRatioSum  | Number        | Sum of tracked-object confidence ratios (each 0–1), preserving fractional values. |
+| confidenceSampleCount | Integer       | Number of tracked-object confidence samples.                                      |
+| confidenceRatio       | Number        | Confidence ratio derived from sum and count; rounded to at most 2 decimal places. |
+| coveredSeconds        | Integer       | Seconds with valid detection data in this observation.                            |
+| expectedSeconds       | Integer       | Expected duration, in seconds, for this observation.                              |
+| coverageRatio         | Number        | Valid-data fraction derived from seconds; rounded to at most 2 decimal places.    |
+| areas                 | Array\<Area\> | Additive metrics for each configured area.                                        |
+| frameCount            | Integer       | Total video frames processed during this observation.                             |
 
 ---
 
 ## Area Object
 
-Each payload contains one or more area objects.
+Each observation contains one or more area objects.
 
 Area **0** always represents the **Global** area covering the entire camera view.
 
 Additional configured interest areas are included after the global area.
 
-| Field        | Type    | Required | Description                                                      |
-| ------------ | ------- | :------: | ---------------------------------------------------------------- |
-| areaId       | Integer |   Yes    | Area identifier. Area `0` always represents the global area.     |
-| areaName     | String  |   Yes    | Configured area name.                                            |
-| passBy       | Integer |   Yes    | Number of objects that passed through without entering the area. |
-| stay         | Integer |   Yes    | Number of objects classified as staying within the area.         |
-| entry        | Integer |   Yes    | Number of objects entering the area.                             |
-| exit         | Integer |   Yes    | Number of objects leaving the area.                              |
-| appear       | Integer |   Yes    | Number of newly detected objects appearing in the area.          |
-| disappear    | Integer |   Yes    | Number of tracked objects disappearing from the area.            |
-| avgOccupancy | Number  |   Yes    | Average occupancy during the counting window.                    |
-| maxOccupancy | Integer |   Yes    | Highest occupancy observed during the counting window.           |
-| avgDwellSec  | Number  |   Yes    | Average dwell time in seconds.                                   |
-| maxDwellSec  | Number  |   Yes    | Maximum dwell time in seconds.                                   |
+| Field                | Type    | Description                                                                               |
+| -------------------- | ------- | ----------------------------------------------------------------------------------------- |
+| areaId               | Integer | Area identifier. Area `0` always represents the global area.                              |
+| areaName             | String  | Configured area name.                                                                     |
+| passBy               | Integer | Unique tracks that contacted the area.                                                    |
+| stagnant             | Integer | Unique tracks that met the configured stay threshold.                                     |
+| entry                | Integer | Tracks first observed outside and later inside.                                           |
+| exit                 | Integer | Tracks first observed inside and later outside.                                           |
+| appear               | Integer | Newly detected tracks appearing in the area.                                              |
+| disappear            | Integer | Tracks lost after last being seen in the area.                                            |
+| occupancySampleCount | Integer | Number of occupancy samples.                                                              |
+| occupancySampleSum   | Integer | Sum of occupancy samples.                                                                 |
+| occupancyAvg         | Number  | Average occupancy derived from sample sum and count; rounded to at most 2 decimal places. |
+| occupancyMax         | Integer | Highest occupancy sample.                                                                 |
+| occupancyLast        | Integer | Most recent occupancy sample for this area.                                               |
+| dwellSumSeconds      | Integer | Sum of dwell durations in seconds.                                                        |
+| dwellSampleCount     | Integer | Number of dwell samples.                                                                  |
+| dwellAvgSeconds      | Number  | Average dwell seconds derived from sum and count; rounded to at most 2 decimal places.    |
+| dwellMaxSeconds      | Number  | Maximum dwell duration in seconds.                                                        |
 
 ---
 
 ## Upload Behavior
 
-- One payload represents one 5-minute counting window.
-- A normal hour produces **12 payloads**.
-- Multiple payloads are uploaded together in a single HTTP request.
-- Payloads are uploaded approximately once per hour.
-- If uploading fails, payloads remain on the device and are retried automatically.
-- Payloads are uploaded in chronological order.
+- One observation represents one 5-minute counting window.
+- A normal hour produces **12 observations**.
+- Multiple observations are uploaded together in a single HTTP request.
+- Observations are uploaded approximately once per hour.
+- If uploading fails, observations remain on the device and are retried automatically.
+- Observations are uploaded in chronological order.
 
 ---
 
-## Time Fields
+## Time Components
 
-Three time fields are included for different purposes.
-
-| Field         | Purpose                                                                               |
-| ------------- | ------------------------------------------------------------------------------------- |
-| startUtc      | Canonical timestamp used for synchronization and ordering across devices.             |
-| startBusiness | Local business time used for reports and analytics.                                   |
-| businessDate  | Business day derived from `startBusiness`, simplifying grouping and database queries. |
+`year`, `month`, `day`, `hour`, and `minute` use the monitored location's
+business wall clock. On daylight-saving fall-back nights, a local time can
+occur twice; the first saved observation wins.
 
 ---
 
@@ -170,24 +180,20 @@ Three time fields are included for different purposes.
 
 The following fields help evaluate the quality of each counting window.
 
-| Field      | Description                                                                        |
-| ---------- | ---------------------------------------------------------------------------------- |
-| frameCount | Total processed frames. Higher values generally indicate more complete processing. |
-| missingSec | Total duration of missing camera input.                                            |
-| coverage   | Portion of the 5-minute window containing valid detection data.                    |
-| confidence | Average AI confidence across tracked objects.                                      |
-| fps        | Average processing speed during valid periods.                                     |
-| isPartial  | Indicates the counting window ended early.                                         |
+| Fields                                       | Description                                                                        |
+| -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| confidenceRatioSum / confidenceSampleCount | Values used to derive confidenceRatio as a 0–1 average.                            |
+| coveredSeconds / expectedSeconds             | Values used to derive coverageRatio across aggregated observations.                |
+| frameCount                                   | Total processed frames. Higher values generally indicate more complete processing. |
 
 ---
 
 ## Notes
 
-- All timestamps use ISO-8601 format.
-- `startUtc` always uses UTC (`Z` suffix).
-- `startBusiness` uses the configured business timezone.
+- Dates and times use the monitored location's business wall clock.
 - Numeric values may contain decimal fractions where appropriate.
-- Future schema versions will increment the `schema` field while maintaining backward compatibility whenever possible.
+- Convenience averages are transmitted; sums and counts remain the source of truth.
+- Future schema versions will increment the `schema` field.
 
 ---
 
@@ -196,9 +202,13 @@ The following fields help evaluate the quality of each counting window.
 Current payload schema:
 
 ``` bash
-schema = 1
+schema = 2
 ```
 
 Servers should validate the `schema` field before processing uploaded data.
+
+Schema 2 uses the per-area `stagnant` event-count field, explicit second and
+ratio names, and date/time components. Optional convenience averages are
+included; sums and counts remain the source of truth.
 
 Future versions may introduce additional fields while preserving compatibility with previous schema versions whenever practical.

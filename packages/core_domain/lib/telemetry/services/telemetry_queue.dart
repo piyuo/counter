@@ -2,10 +2,10 @@
 //  - TelemetryQueueRepository: abstract persistent queue contract
 //  - telemetryQueueRepositoryProvider: Riverpod provider (overridden in core_runtime)
 
+import 'package:core_domain/model/observation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../models/queued_payload.dart';
-import '../models/telemetry_payload.dart';
+import '../models/queued_observation.dart';
 import '../models/upload_log.dart';
 import '../models/upload_log_list.dart';
 
@@ -16,19 +16,19 @@ abstract class TelemetryQueue {
   /// run.
   ///
   /// Idempotent when another row already exists with the same
-  /// [TelemetryPayload.payloadId].
-  Future<void> enqueue(TelemetryPayload payload);
+  /// [Observation.id].
+  Future<void> enqueue(Observation observation);
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
   ///
   /// Upload status is not part of this filter. Both pending and uploaded
   /// rows are included if createdAtMs is after the cutoff.
-  Future<List<QueuedPayload>> fetchRecent({int daysBack = 7});
+  Future<List<QueuedObservation>> fetchRecent({int daysBack = 7});
 
   /// Returns up to [limit] payloads that are pending upload.
   ///
   /// Excludes payloads already uploaded.
-  Future<List<QueuedPayload>> fetchReady({int limit = 10});
+  Future<List<QueuedObservation>> fetchReady({int limit = 10});
 
   /// Persists one upload-attempt status record.
   ///
@@ -51,7 +51,7 @@ abstract class TelemetryQueue {
 
   /// Marks multiple payloads as successfully uploaded in a single batch operation.
   /// Efficiently handles typical batches (1008 items) using SQL WHERE IN clause.
-  Future<void> markUploadedBatch(List<String> ids);
+  Future<void> markUploadedBatch(List<int> observationIds);
 
   /// Removes all payload rows enqueued before [before].
   ///

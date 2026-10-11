@@ -201,17 +201,17 @@ class LocalizationBn extends Localization {
       'এই বিকল্পটি সক্রিয় করুন প্রতিটি ট্র্যাক করা অবজেক্টের জন্য অনন্য ট্র্যাক আইডি দেখাতে।';
 
   @override
-  String get detection_screen_stay => 'থাকার সময়';
+  String get detection_screen_stagnant => 'থাকার সময়';
 
   @override
-  String get detection_screen_stay_help =>
-      'কোনো বস্তুকে অবস্থানকারী হিসেবে গণনা করার আগে কতক্ষণ এলাকায় থাকতে হবে।';
+  String get detection_screen_stagnant_help =>
+      'কোনো বস্তু এলাকায় কতক্ষণ থাকলে তা থাকা হিসেবে গণনা হবে।';
 
   @override
-  String get detection_screen_stay_max_label => 'বিলম্বিত';
+  String get detection_screen_stagnant_max_label => 'বিলম্বিত';
 
   @override
-  String get detection_screen_stay_min_label => 'তাৎক্ষণিক';
+  String get detection_screen_stagnant_min_label => 'তাৎক্ষণিক';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -650,10 +650,10 @@ class LocalizationBn extends Localization {
   String get settings_screen_subscription_title => 'সাবস্ক্রিপশন';
 
   @override
-  String get stayed => 'থেকেছে';
+  String get stagnanted => 'থেকেছে';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'গণনা করে কতজন মানুষ বা কতটি যানবাহন এই এলাকায় নির্ধারিত ন্যূনতম অবস্থান সময় পর্যন্ত ছিল।\\n\\nডিফল্ট Stay Time হলো ১৫ সেকেন্ড, যা Settings থেকে পরিবর্তন করা যায়।';
 
   @override

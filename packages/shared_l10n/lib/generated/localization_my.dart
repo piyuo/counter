@@ -202,17 +202,17 @@ class LocalizationMy extends Localization {
       'ခြေရာခံထားသော အရာတစ်ခုစီအတွက် အနုကျ ခြေရာခံ အည်ဝယ်များကို ပြရန် ဤရွေးချယ်မှုကို အစုံအလင်ဖြင့် အသုံးပြုပါ။';
 
   @override
-  String get detection_screen_stay => 'နေချိန်';
+  String get detection_screen_stagnant => 'နေချိန်';
 
   @override
-  String get detection_screen_stay_help =>
+  String get detection_screen_stagnant_help =>
       'အရာဝတ္ထုကို နေထိုင်မှုအဖြစ် ရေတွက်ရန် ဧရိယာအတွင်း ဘယ်လောက်ကြာကြာ ရှိနေရမည်ကို သတ်မှတ်ပါ။';
 
   @override
-  String get detection_screen_stay_max_label => 'နှောင့်နှေး';
+  String get detection_screen_stagnant_max_label => 'နှောင့်နှေး';
 
   @override
-  String get detection_screen_stay_min_label => 'ချက်ချင်း';
+  String get detection_screen_stagnant_min_label => 'ချက်ချင်း';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -655,10 +655,10 @@ class LocalizationMy extends Localization {
   String get settings_screen_subscription_title => 'စာရင်းသွင်းမှု';
 
   @override
-  String get stayed => 'နေခဲ့သည်';
+  String get stagnanted => 'နေခဲ့သည်';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'သတ်မှတ်ထားသော နေထိုင်ချိန်အနည်းဆုံးအထိ ဤဧရိယာတွင် ရှိနေသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nမူလ Stay Time သည် ၁၅ စက္ကန့်ဖြစ်ပြီး Settings တွင် ပြောင်းလဲနိုင်သည်။';
 
   @override

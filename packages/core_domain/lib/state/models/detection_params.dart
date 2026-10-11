@@ -30,7 +30,7 @@ abstract class DetectionParams with _$DetectionParams {
     @Default(0.75) double newTrackThresh,
 
     // Seconds a track may stay Lost before removal, measured via steady_clock
-    @Default(3) double maxTimeLostSec,
+    @Default(3) double maxTimeLostSeconds,
 
     /// Maximum fused association cost accepted by linear assignment in the first
     /// high-confidence association pass. Lower costs are better; larger values
@@ -73,7 +73,7 @@ abstract class DetectionParams with _$DetectionParams {
 
     /// Minimum elapsed wall-clock time, in seconds, since the track started
     /// before assigning a user-visible `trackletId`.
-    @Default(1) double trackletMinPresenceTimeSec,
+    @Default(1) double trackletMinPresenceTimeSeconds,
 
     // Edge margin, in pixels. Objects detected within this distance from
     // the frame boundary are not considered valid until they move away from
@@ -84,11 +84,11 @@ abstract class DetectionParams with _$DetectionParams {
     /// `trackletId` assignment even if the track center is still inside the
     /// edge zone once elapsed time reaches this threshold. Set to `0` to
     /// disable this edge-zone override.
-    @Default(2.0) double trackletEdgeOverrideTimeSec,
+    @Default(2.0) double trackletEdgeOverrideTimeSeconds,
 
     /// Minimum continuous in-area duration, in seconds, before a track
-    /// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
-    @Default(300) int stayThresholdSeconds,
+    /// contributes to `stagnant` in observation. default change to 300 seconds to reflect some one stop and buy things
+    @Default(300) int stagnantThresholdSeconds,
 
     /// Minimum continuous absence duration, in seconds, before a previously
     /// in-area track contributes to `disappearCount` in window counting.
@@ -107,17 +107,17 @@ abstract class DetectionParams with _$DetectionParams {
       trackHighThresh: 0.75,
       trackLowThresh: 0.20,
       newTrackThresh: 0.70,
-      maxTimeLostSec: 5,
+      maxTimeLostSeconds: 5,
       maxMatchDistance: 0.9,
       proximityThresh: 0.95,
       appearanceThresh: 0.25,
       lambda: 0.80,
       softMotionGating: true,
       preferAppearanceFallbackOnLowIou: true,
-      trackletMinPresenceTimeSec: 0.2,
+      trackletMinPresenceTimeSeconds: 0.2,
       trackletEdgeMargin: 32,
-      trackletEdgeOverrideTimeSec: 2.0,
-      stayThresholdSeconds: 600, // 10 minutes count as stay
+      trackletEdgeOverrideTimeSeconds: 2.0,
+      stagnantThresholdSeconds: 600, // 10 minutes count as stay
       disappearThresholdSeconds: 7,
     );
   }
@@ -127,7 +127,7 @@ abstract class DetectionParams with _$DetectionParams {
     if (trackHighThresh != other.trackHighThresh) differences.add('trackHighThresh');
     if (trackLowThresh != other.trackLowThresh) differences.add('trackLowThresh');
     if (newTrackThresh != other.newTrackThresh) differences.add('newTrackThresh');
-    if (maxTimeLostSec != other.maxTimeLostSec) differences.add('maxTimeLostSec');
+    if (maxTimeLostSeconds != other.maxTimeLostSeconds) differences.add('maxTimeLostSeconds');
     if (maxMatchDistance != other.maxMatchDistance) differences.add('maxMatchDistance');
     if (proximityThresh != other.proximityThresh) differences.add('proximityThresh');
     if (appearanceThresh != other.appearanceThresh) differences.add('appearanceThresh');
@@ -136,12 +136,14 @@ abstract class DetectionParams with _$DetectionParams {
     if (preferAppearanceFallbackOnLowIou != other.preferAppearanceFallbackOnLowIou) {
       differences.add('preferAppearanceFallbackOnLowIou');
     }
-    if (trackletMinPresenceTimeSec != other.trackletMinPresenceTimeSec) differences.add('trackletMinPresenceTimeSec');
-    if (trackletEdgeMargin != other.trackletEdgeMargin) differences.add('trackletEdgeMargin');
-    if (trackletEdgeOverrideTimeSec != other.trackletEdgeOverrideTimeSec) {
-      differences.add('trackletEdgeOverrideTimeSec');
+    if (trackletMinPresenceTimeSeconds != other.trackletMinPresenceTimeSeconds) {
+      differences.add('trackletMinPresenceTimeSeconds');
     }
-    if (stayThresholdSeconds != other.stayThresholdSeconds) differences.add('stayThresholdSeconds');
+    if (trackletEdgeMargin != other.trackletEdgeMargin) differences.add('trackletEdgeMargin');
+    if (trackletEdgeOverrideTimeSeconds != other.trackletEdgeOverrideTimeSeconds) {
+      differences.add('trackletEdgeOverrideTimeSeconds');
+    }
+    if (stagnantThresholdSeconds != other.stagnantThresholdSeconds) differences.add('stagnantThresholdSeconds');
     if (disappearThresholdSeconds != other.disappearThresholdSeconds) differences.add('disappearThresholdSeconds');
     return differences.join(', ');
   }

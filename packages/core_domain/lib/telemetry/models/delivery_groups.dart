@@ -5,16 +5,33 @@
 //  - payload-id helper: UUID generation for resend payload cloning
 //  - duration formatting helpers for payload detail presentation
 
-import 'queued_payload.dart';
+import 'queued_observation.dart';
 
 enum DeliveryStatus { allDelivered, partiallyDelivered, noneDelivered }
 
-/// Payloads grouped into one start-hour slot in local time.
-class DeliveryHourGroup {
-  const DeliveryHourGroup({required this.startHourLocal, required this.payloads});
+typedef DeliveryDateKey = ({int year, int month, int day});
+typedef DeliveryHourKey = ({int year, int month, int day, int hour});
 
-  final DateTime startHourLocal;
-  final List<QueuedPayload> payloads;
+/// Payloads grouped into one business-local date and hour.
+class DeliveryHourGroup {
+  const DeliveryHourGroup({
+    required this.year,
+    required this.month,
+    required this.day,
+    required this.hour,
+    required this.payloads,
+  });
+
+  final int year;
+  final int month;
+  final int day;
+  final int hour;
+
+  DeliveryHourKey get hourKey => (year: year, month: month, day: day, hour: hour);
+
+  DateTime get datetime => DateTime(year, month, day, hour);
+
+  final List<QueuedObservation> payloads;
 
   /// Number of delivered payloads in this slot.
   int get deliveredCount => payloads.where((p) => p.isUploaded).length;
@@ -25,10 +42,7 @@ class DeliveryHourGroup {
   /// Whether this slot represents the current date and hour in local time.
   bool get isCurrent {
     final now = DateTime.now();
-    return startHourLocal.year == now.year &&
-        startHourLocal.month == now.month &&
-        startHourLocal.day == now.day &&
-        startHourLocal.hour == now.hour;
+    return year == now.year && month == now.month && day == now.day && hour == now.hour;
   }
 
   /// The delivery status of all payloads in this slot.
@@ -39,12 +53,18 @@ class DeliveryHourGroup {
   }
 }
 
-/// A local calendar day containing its hour-level delivery groups.
+/// A business-local calendar day containing its hour-level delivery groups.
 class DeliveryDateGroup {
-  const DeliveryDateGroup({required this.dayLocal, required this.hours});
+  const DeliveryDateGroup({required this.year, required this.month, required this.day, required this.hours});
 
-  final DateTime dayLocal;
+  final int year;
+  final int month;
+  final int day;
   final List<DeliveryHourGroup> hours;
+
+  DeliveryDateKey get dateKey => (year: year, month: month, day: day);
+
+  DateTime get datetime => DateTime(year, month, day);
 
   /// Number of delivered payloads in this day.
   int get deliveredCount => hours.fold(0, (sum, hour) => sum + hour.deliveredCount);
@@ -55,7 +75,7 @@ class DeliveryDateGroup {
   /// Whether this group represents the current local calendar day.
   bool get isCurrent {
     final now = DateTime.now();
-    return dayLocal.year == now.year && dayLocal.month == now.month && dayLocal.day == now.day;
+    return year == now.year && month == now.month && day == now.day;
   }
 
   /// The delivery status of all payloads in this day.
@@ -71,75 +91,69 @@ class DeliveryDateGroup {
 /// Groups queue payloads by local delivery day, sorted newest day first.
 ///
 /// Within each day, start-hour groups are sorted newest hour first.
-List<DeliveryDateGroup> groupByDeliveryDate(List<QueuedPayload> payloads) {
+List<DeliveryDateGroup> groupByDeliveryDate(List<QueuedObservation> payloads) {
   final hourGroups = groupByStartHour(payloads);
-  final byDay = <DateTime, List<DeliveryHourGroup>>{};
+  final byDate = <DeliveryDateKey, List<DeliveryHourGroup>>{};
 
   for (final hour in hourGroups) {
-    final day = dayStartLocal(hour.startHourLocal);
-    byDay.putIfAbsent(day, () => <DeliveryHourGroup>[]).add(hour);
+    final date = (year: hour.year, month: hour.month, day: hour.day);
+    byDate.putIfAbsent(date, () => <DeliveryHourGroup>[]).add(hour);
   }
 
-  return byDay.entries
-      .map(
-        (entry) => DeliveryDateGroup(
-          dayLocal: entry.key,
-          hours: [...entry.value]..sort((a, b) => b.startHourLocal.compareTo(a.startHourLocal)),
-        ),
-      )
-      .toList()
-    ..sort((a, b) => b.dayLocal.compareTo(a.dayLocal));
+  return byDate.entries.map((entry) {
+    final firstHour = entry.value.first;
+    return DeliveryDateGroup(
+      year: firstHour.year,
+      month: firstHour.month,
+      day: firstHour.day,
+      hours: [...entry.value]..sort((a, b) => b.hour.compareTo(a.hour)),
+    );
+  }).toList()..sort((a, b) => DateTime(b.year, b.month, b.day).compareTo(DateTime(a.year, a.month, a.day)));
 }
 
 /// Groups queue payloads by local start-hour slot, sorted newest slot first.
 ///
-/// Payloads inside a slot are sorted by `payload.startUtc` ascending.
-List<DeliveryHourGroup> groupByStartHour(List<QueuedPayload> payloads) {
-  final buckets = <DateTime, List<QueuedPayload>>{};
+/// Payloads inside a slot are sorted by their business time ascending.
+List<DeliveryHourGroup> groupByStartHour(List<QueuedObservation> payloads) {
+  final buckets = <DeliveryHourKey, List<QueuedObservation>>{};
   for (final pendingPayload in payloads) {
-    final slot = startHourSlotLocal(pendingPayload.payload.startUtc);
-    buckets.putIfAbsent(slot, () => <QueuedPayload>[]).add(pendingPayload);
+    final observation = pendingPayload.observation;
+    final hour = (year: observation.year, month: observation.month, day: observation.day, hour: observation.hour);
+    buckets.putIfAbsent(hour, () => <QueuedObservation>[]).add(pendingPayload);
   }
 
-  return buckets.entries
-      .map(
-        (entry) => DeliveryHourGroup(
-          startHourLocal: entry.key,
-          payloads: [...entry.value]..sort((a, b) => a.payload.startUtc.compareTo(b.payload.startUtc)),
-        ),
-      )
-      .toList()
-    ..sort((a, b) => b.startHourLocal.compareTo(a.startHourLocal));
+  return buckets.entries.map((entry) {
+      final observation = entry.value.first.observation;
+      return DeliveryHourGroup(
+        year: observation.year,
+        month: observation.month,
+        day: observation.day,
+        hour: observation.hour,
+        payloads: [...entry.value]..sort((a, b) => a.observation.timeKey.compareTo(b.observation.timeKey)),
+      );
+    }).toList()
+    ..sort((a, b) => DateTime(b.year, b.month, b.day, b.hour).compareTo(DateTime(a.year, a.month, a.day, a.hour)));
 }
 
-/// Converts a UTC start timestamp to its local start-hour slot.
-DateTime startHourSlotLocal(DateTime utcTime) {
-  final local = utcTime.toLocal();
-  return DateTime(local.year, local.month, local.day, local.hour);
-}
-
-/// Converts an observation end UTC timestamp to its local end-hour slot.
-///
-/// Exact hour timestamps stay in the same hour; otherwise they roll to next hour.
-DateTime endHourSlotLocal(DateTime utcTime) {
-  final local = utcTime.toLocal();
-  final floor = DateTime(local.year, local.month, local.day, local.hour);
-  final isExactHour = local.minute == 0 && local.second == 0 && local.millisecond == 0 && local.microsecond == 0;
-  return isExactHour ? floor : floor.add(const Duration(hours: 1));
-}
-
-/// Finds the start-hour group matching [slotMs], or null if not present.
-DeliveryHourGroup? findStartHourGroupBySlotMs(List<QueuedPayload> payloads, int slotMs) {
+/// Finds a start-hour group by its business date and hour components.
+DeliveryHourGroup? findStartHourGroup(
+  List<QueuedObservation> payloads, {
+  required int year,
+  required int month,
+  required int day,
+  required int hour,
+}) {
+  final key = (year: year, month: month, day: day, hour: hour);
   for (final group in groupByStartHour(payloads)) {
-    if (group.startHourLocal.millisecondsSinceEpoch == slotMs) return group;
+    if (group.hourKey == key) return group;
   }
   return null;
 }
 
 /// Finds one pending payload by [payloadId], or null when missing.
-QueuedPayload? findPendingPayloadById(List<QueuedPayload> payloads, String payloadId) {
+QueuedObservation? findPendingPayloadById(List<QueuedObservation> payloads, String payloadId) {
   for (final pendingPayload in payloads) {
-    if (pendingPayload.id == payloadId) return pendingPayload;
+    if (pendingPayload.observation.id.toString() == payloadId) return pendingPayload;
   }
   return null;
 }
@@ -148,36 +162,33 @@ QueuedPayload? findPendingPayloadById(List<QueuedPayload> payloads, String paylo
 ///
 /// Day selections include all hour rows for that day; otherwise selected hours
 /// are included individually. Rows are deduplicated by payload ID.
-List<QueuedPayload> collectSelectedPayloads(
+List<QueuedObservation> collectSelectedPayloads(
   List<DeliveryDateGroup> dateGroups, {
-  required bool Function(DateTime dayLocal) isDaySelected,
-  required bool Function(DateTime hourLocal) isHourSelected,
+  required bool Function(DeliveryDateGroup day) isDaySelected,
+  required bool Function(DeliveryHourGroup hour) isHourSelected,
 }) {
-  final byPayloadId = <String, QueuedPayload>{};
+  final byPayloadId = <int, QueuedObservation>{};
 
   for (final day in dateGroups) {
-    if (isDaySelected(day.dayLocal)) {
+    if (isDaySelected(day)) {
       for (final hour in day.hours) {
         for (final payload in hour.payloads) {
-          byPayloadId[payload.id] = payload;
+          byPayloadId[payload.observation.id] = payload;
         }
       }
       continue;
     }
 
     for (final hour in day.hours) {
-      if (!isHourSelected(hour.startHourLocal)) continue;
+      if (!isHourSelected(hour)) continue;
       for (final payload in hour.payloads) {
-        byPayloadId[payload.id] = payload;
+        byPayloadId[payload.observation.id] = payload;
       }
     }
   }
 
   return byPayloadId.values.toList();
 }
-
-/// Returns the local calendar-day boundary (00:00) for [localTime].
-DateTime dayStartLocal(DateTime localTime) => DateTime(localTime.year, localTime.month, localTime.day);
 
 /// Formats seconds as compact UI text (`Xs` or `M:SS`).
 String formatSeconds(int totalSeconds) {

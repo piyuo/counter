@@ -10,10 +10,10 @@ import 'area_painting.dart';
 import 'area_viewport.dart';
 
 class InterestAreaViewerOverlay extends ConsumerWidget {
-  const InterestAreaViewerOverlay({required this.viewport, required this.observationState, super.key});
+  const InterestAreaViewerOverlay({required this.viewport, required this.observation, super.key});
 
   final AreaViewport viewport;
-  final core_domain.ObservationState? observationState;
+  final core_domain.Observation? observation;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,7 +34,7 @@ class InterestAreaViewerOverlay extends ConsumerWidget {
             ),
           ),
         ),
-        AreaOccupancyOverlay(viewport: viewport, areas: areaState.areas, observationState: observationState),
+        AreaOccupancyOverlay(viewport: viewport, areas: areaState.areas, observation: observation),
       ],
     );
   }

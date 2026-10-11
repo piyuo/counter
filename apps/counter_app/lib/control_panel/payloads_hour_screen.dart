@@ -1,5 +1,5 @@
 // TOC:
-// - RecentHourDetailScreen: payload list for one start-hour group routed by slotMs with selection + resend
+// - RecentHourDetailScreen: payload list for one business hour with selection + resend
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/control_panel/widgets/payloads_screen_helper.dart';
@@ -13,48 +13,53 @@ import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.d
 import 'package:shared_l10n/shared_l10n.dart';
 
 class PayloadsHourScreen extends ConsumerStatefulWidget {
-  const PayloadsHourScreen({required this.slotMs, super.key});
+  const PayloadsHourScreen({required this.year, required this.month, required this.day, required this.hour, super.key});
 
-  final int slotMs;
+  final int year;
+  final int month;
+  final int day;
+  final int hour;
 
   @override
   ConsumerState<PayloadsHourScreen> createState() => _RecentPayloadsHourScreenState();
 }
 
 class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
-  final Set<String> _selectedPayloadIds = <String>{};
+  final Set<int> _selectedObservationIds = <int>{};
   bool _isResending = false;
 
-  bool _isPayloadSelected(String payloadId) => _selectedPayloadIds.contains(payloadId);
+  bool _isObservationSelected(int observationId) => _selectedObservationIds.contains(observationId);
 
-  void _togglePayloadSelection(String payloadId, bool selected) {
+  void _togglePayloadSelection(int observationId, bool selected) {
     setState(() {
       if (selected) {
-        _selectedPayloadIds.add(payloadId);
+        _selectedObservationIds.add(observationId);
       } else {
-        _selectedPayloadIds.remove(payloadId);
+        _selectedObservationIds.remove(observationId);
       }
     });
   }
 
-  Future<void> _resendSelectedPayloads(List<core_domain.QueuedPayload> payloads) async {
-    final selectedPayloads = payloads.where((pending) => _isPayloadSelected(pending.id)).toList(growable: false);
+  Future<void> _resendSelectedObservations(List<core_domain.QueuedObservation> observations) async {
+    final selectedObservations = observations
+        .where((pending) => _isObservationSelected(pending.observation.id))
+        .toList(growable: false);
 
     setState(() {
       _isResending = true;
     });
 
     try {
-      final resent = await resendQueuedPayloads(
+      final resent = await resendQueuedObservations(
         context: context,
         telemetryService: ref.read(core_domain.telemetryServiceProvider),
-        payloads: selectedPayloads,
+        observations: selectedObservations,
         emptySelectionMessage: context.l.payloads_screen_select_first,
       );
       if (!mounted || !resent) return;
 
       setState(() {
-        _selectedPayloadIds.clear();
+        _selectedObservationIds.clear();
       });
     } finally {
       if (mounted) {
@@ -83,11 +88,17 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
           ? null
           : feature_pip.PipActionButton(
               label: context.l.payloads_screen_resend,
-              onPressed: (_isResending || _selectedPayloadIds.isEmpty)
+              onPressed: (_isResending || _selectedObservationIds.isEmpty)
                   ? null
                   : () async {
                       final payloads = await ref.read(recentPayloadsProvider.future);
-                      final group = core_domain.findStartHourGroupBySlotMs(payloads, widget.slotMs);
+                      final group = core_domain.findStartHourGroup(
+                        payloads,
+                        year: widget.year,
+                        month: widget.month,
+                        day: widget.day,
+                        hour: widget.hour,
+                      );
                       if (!context.mounted) return;
                       if (group == null) {
                         ScaffoldMessenger.of(
@@ -95,7 +106,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                         ).showSnackBar(SnackBar(content: Text(context.l.payloads_screen_hour_not_exists)));
                         return;
                       }
-                      await _resendSelectedPayloads(group.payloads);
+                      await _resendSelectedObservations(group.payloads);
                     },
             ),
       builder: (scrollController) => payloadsAsync.when(
@@ -107,7 +118,13 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
           ),
         ),
         data: (payloads) {
-          final group = core_domain.findStartHourGroupBySlotMs(payloads, widget.slotMs);
+          final group = core_domain.findStartHourGroup(
+            payloads,
+            year: widget.year,
+            month: widget.month,
+            day: widget.day,
+            hour: widget.hour,
+          );
           if (group == null) {
             return Center(child: Text(context.l.payloads_screen_hour_not_exists));
           }
@@ -119,8 +136,8 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
               children: [
                 feature_pip.PipHeader(
                   icon: Icons.bar_chart,
-                  title: dayFmt.format(group.startHourLocal),
-                  subtitle: hourFmt.format(group.startHourLocal),
+                  title: dayFmt.format(DateTime(group.year, group.month, group.day)),
+                  subtitle: hourFmt.format(DateTime(group.year, group.month, group.day, group.hour)),
                 ),
                 feature_pip.PipPanel(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -129,17 +146,17 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                       for (var i = 0; i < group.payloads.length; i++) ...[
                         ListTile(
                           leading: SelectionCheckbox(
-                            value: _isPayloadSelected(group.payloads[i].id),
-                            onChanged: (value) => _togglePayloadSelection(group.payloads[i].id, value == true),
+                            value: _isObservationSelected(group.payloads[i].observation.id),
+                            onChanged: (value) =>
+                                _togglePayloadSelection(group.payloads[i].observation.id, value == true),
                           ),
-                          title: Text(
-                            '${payloadTimeFmt.format(group.payloads[i].payload.startUtc.toLocal())} - '
-                            '${payloadTimeFmt.format(core_domain.getPayloadEndUtc(group.payloads[i].payload).toLocal())}',
-                          ),
+                          title: Text(formatObservationWindow(group.payloads[i].observation, payloadTimeFmt)),
                           subtitle: Text(payloadDeliveryStatusDescription(context, group.payloads[i], payloadTimeFmt)),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
-                            ref.push(core_domain.OpenPayloadDetail(payloadId: group.payloads[i].id));
+                            ref.push(
+                              core_domain.OpenPayloadDetail(payloadId: group.payloads[i].observation.id.toString()),
+                            );
                           },
                         ),
                         if (i < group.payloads.length - 1) const Divider(height: 1),

@@ -10,7 +10,7 @@
 //  - UploadLogsRouteData: typed route for '/upload-logs'
 //  - UploadLogDetailRouteData: typed route for '/upload-logs/detail/:attemptedAtMs/:successFlag'
 //  - RecentPayloadsRouteData: typed route for '/recent-payloads'
-//  - RecentPayloadHourRouteData: typed route for '/recent-payloads/hour/:slotMs'
+//  - RecentPayloadHourRouteData: typed route for '/recent-payloads/hour/:year/:month/:day/:hour'
 //  - RecentPayloadDetailRouteData: typed route for '/recent-payloads/payload/:payloadId'
 //  - LanguageRouteData: typed route for '/language'
 //  - LiveUrlRouteData: typed route for '/live-url'
@@ -168,14 +168,18 @@ class RecentPayloadsRouteData extends CupertinoRouteData with $RecentPayloadsRou
   Widget build(BuildContext context, GoRouterState state) => const PayloadsRecentScreen();
 }
 
-@TypedGoRoute<RecentPayloadHourRouteData>(path: '/recent-payloads/hour/:slotMs')
+@TypedGoRoute<RecentPayloadHourRouteData>(path: '/recent-payloads/hour/:year/:month/:day/:hour')
 class RecentPayloadHourRouteData extends CupertinoRouteData with $RecentPayloadHourRouteData {
-  const RecentPayloadHourRouteData({required this.slotMs});
+  const RecentPayloadHourRouteData({required this.year, required this.month, required this.day, required this.hour});
 
-  final int slotMs;
+  final int year;
+  final int month;
+  final int day;
+  final int hour;
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => PayloadsHourScreen(slotMs: slotMs);
+  Widget build(BuildContext context, GoRouterState state) =>
+      PayloadsHourScreen(year: year, month: month, day: day, hour: hour);
 }
 
 @TypedGoRoute<RecentPayloadDetailRouteData>(path: '/recent-payloads/payload/:payloadId')

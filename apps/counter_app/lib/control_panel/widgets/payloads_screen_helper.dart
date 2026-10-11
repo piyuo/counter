@@ -7,20 +7,21 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-Future<bool> resendQueuedPayloads({
+//todo: localize messages
+Future<bool> resendQueuedObservations({
   required BuildContext context,
   required core_domain.TelemetryService telemetryService,
-  required List<core_domain.QueuedPayload> payloads,
+  required List<core_domain.QueuedObservation> observations,
   String emptySelectionMessage = 'Select at least one payload first.',
 }) async {
-  if (payloads.isEmpty) {
+  if (observations.isEmpty) {
     appkit.showMessage(message: emptySelectionMessage);
     return false;
   }
 
   try {
-    final resendPayloads = payloads.map((pending) => pending.payload).toList(growable: false);
-    final success = await telemetryService.sendNow(resendPayloads);
+    final resendObservations = observations.map((pending) => pending.observation).toList(growable: false);
+    final success = await telemetryService.sendNow(resendObservations);
 
     if (!context.mounted) {
       return false;
@@ -35,7 +36,7 @@ Future<bool> resendQueuedPayloads({
       return false;
     }
 
-    appkit.showMessage(message: 'Resent ${resendPayloads.length} payload(s).');
+    appkit.showMessage(message: 'Resent ${resendObservations.length} observation(s).');
     return true;
   } catch (error) {
     if (context.mounted) {
@@ -45,7 +46,17 @@ Future<bool> resendQueuedPayloads({
   }
 }
 
-String payloadDeliveryStatusDescription(BuildContext context, core_domain.QueuedPayload queued, DateFormat timeFmt) {
+String formatObservationWindow(core_domain.Observation observation, DateFormat formatter) {
+  final start = observation.dateTime;
+  final end = start.add(core_domain.kWindowDuration);
+  return '${formatter.format(start)} - ${formatter.format(end)}';
+}
+
+String payloadDeliveryStatusDescription(
+  BuildContext context,
+  core_domain.QueuedObservation queued,
+  DateFormat timeFmt,
+) {
   if (queued.isUploaded) {
     return '${context.l.payloads_screen_delivered} ${timeFmt.format(queued.uploadedAtUtc!.toLocal())}';
   }

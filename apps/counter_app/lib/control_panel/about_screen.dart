@@ -1,6 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -106,7 +107,7 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
               ),
             ),
 
-            if (_versionTapCount >= 10)
+            if (kDebugMode || _versionTapCount >= 10)
               feature_pip.PipPanel(
                 child: Column(
                   children: [
@@ -117,21 +118,19 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                         ref.push(const core_domain.OpenBuildInfo());
                       },
                     ),
-                    if (_versionTapCount >= 10)
-                      ListTile(
-                        title: Text("End Counting Window and Enqueue"),
-                        onTap: () {
-                          ref.read(core_runtime.observationProvider.notifier).debugForceWindowEnd();
-                        },
-                      ),
-                    if (_versionTapCount >= 10)
-                      ListTile(
-                        title: Text('Run Upload Worker (Debug)'),
-                        onTap: () async {
-                          final telemetryService = ref.read(core_domain.telemetryServiceProvider);
-                          await telemetryService.uploadNow();
-                        },
-                      ),
+                    ListTile(
+                      title: Text("End Counting Window and Enqueue"),
+                      onTap: () {
+                        ref.read(core_runtime.observationProvider.notifier).debugForceWindowEnd();
+                      },
+                    ),
+                    ListTile(
+                      title: Text('Run Upload Worker (Debug)'),
+                      onTap: () async {
+                        final telemetryService = ref.read(core_domain.telemetryServiceProvider);
+                        await telemetryService.uploadNow();
+                      },
+                    ),
                   ],
                 ),
               ),

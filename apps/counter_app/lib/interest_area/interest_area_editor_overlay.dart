@@ -192,7 +192,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
   Widget build(BuildContext context) {
     // Whether the editor is shown is decided by the parent (from the notifier's isEditing).
     final areaState = ref.watch(core_runtime.interestAreaProvider);
-    final observationState = ref.watch(core_runtime.observationProvider);
+    final observation = ref.watch(core_runtime.observationProvider);
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -217,7 +217,7 @@ class _InterestAreaEditorOverlayState extends ConsumerState<InterestAreaEditorOv
                   editingLabelAreaId: _editingLabelAreaId,
                 ),
               ),
-              AreaOccupancyOverlay(viewport: _viewport, areas: areaState.areas, observationState: observationState),
+              AreaOccupancyOverlay(viewport: _viewport, areas: areaState.areas, observation: observation),
               if (_buildLabelEditor(areaState.areas) case final labelEditor?) labelEditor,
             ],
           ),

@@ -204,17 +204,17 @@ class LocalizationHu extends Localization {
       'Engedélyezze ezt az opciót az egyes követett objektumok egyedi nyomon követési azonosítóinak megjelenítéséhez.';
 
   @override
-  String get detection_screen_stay => 'Tartózkodási idő';
+  String get detection_screen_stagnant => 'Tartózkodási idő';
 
   @override
-  String get detection_screen_stay_help =>
+  String get detection_screen_stagnant_help =>
       'Mennyi ideig kell egy objektumnak a területen maradnia, hogy tartózkodásnak számítson.';
 
   @override
-  String get detection_screen_stay_max_label => 'Késleltetett';
+  String get detection_screen_stagnant_max_label => 'Késleltetett';
 
   @override
-  String get detection_screen_stay_min_label => 'Azonnali';
+  String get detection_screen_stagnant_min_label => 'Azonnali';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -661,10 +661,10 @@ class LocalizationHu extends Localization {
   String get settings_screen_subscription_title => 'Előfizetés';
 
   @override
-  String get stayed => 'Tartózkodott';
+  String get stagnanted => 'Tartózkodott';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek legalább a beállított tartózkodási ideig ezen a területen maradtak.\\n\\nAz alapértelmezett tartózkodási idő 15 másodperc, amely a Beállításokban módosítható.';
 
   @override

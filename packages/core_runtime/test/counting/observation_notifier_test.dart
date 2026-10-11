@@ -1,7 +1,7 @@
 import 'dart:ffi' as ffi;
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/model/observation_state.dart';
+import 'package:core_domain/model/observation.dart';
 import 'package:core_runtime/observation/interest_area_notifier.dart';
 import 'package:core_runtime/observation/observation_notifier.dart';
 import 'package:fake_async/fake_async.dart';
@@ -14,7 +14,7 @@ vision.TrackedObject buildTrack({required int trackId, required Offset center, r
   return vision.TrackedObject.create(
     trackId: trackId,
     box: Rect.fromLTWH(center.dx, center.dy, 0, 0),
-    confidence: 90,
+    confidenceRatio: 0.9,
     classId: 0,
     embeddingColor: const Color(0xFF000000),
     activated: true,
@@ -55,7 +55,7 @@ ProviderContainer makeContainer(
         () => ObservationNotifier(
           nowProvider: () => base.add(async.elapsed),
           monotonicNowProvider: () => async.elapsed,
-          stayThresholdSeconds: stayThresholdSeconds,
+          stagnantThresholdSeconds: stayThresholdSeconds,
           disappearThresholdSeconds: disappearThresholdSeconds,
         ),
       ),
@@ -70,7 +70,31 @@ ObservationNotifier notifier(ProviderContainer container) {
   return controller;
 }
 
-ObservationState? state(ProviderContainer container) => container.read(observationProvider);
+core_domain.Observation? state(ProviderContainer container) => container.read(observationProvider);
+
+core_domain.AreaMetrics _area(core_domain.Observation payload, int areaId) =>
+    payload.areas.singleWhere((metrics) => metrics.areaId == areaId);
+
+int _windowStart(core_domain.Observation payload) => payload.hour * 100 + payload.minute;
+
+int _windowEnd(core_domain.Observation payload) {
+  final dateTime = payload.dateTime;
+  final end = DateTime.utc(
+    dateTime.year,
+    dateTime.month,
+    dateTime.day,
+    dateTime.hour,
+    dateTime.minute,
+  ).add(const Duration(minutes: 5));
+  return end.hour * 100 + end.minute;
+}
+
+int _businessTime(DateTime utcTime) {
+  final localTime = utcTime.toLocal();
+  return localTime.hour * 100 + localTime.minute;
+}
+
+int _missingSeconds(core_domain.Observation payload) => payload.expectedSeconds - payload.coveredSeconds;
 
 void setAreas(ProviderContainer container, List<core_domain.InterestArea> areas) {
   container.read(interestAreaProvider.notifier).setAreas(areas);
@@ -129,28 +153,28 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       pumpFrames(n, async, const Duration(minutes: 3));
 
       expect(results.length, 1);
-      expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-      expect(results.first.endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+      expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+      expect(_windowEnd(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
       sub.cancel();
     });
   });
 
-  test('finalized windows increment session sequence within a session', () {
+  test('finalized windows identify consecutive window times', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
       final container = makeContainer(async, base);
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -158,9 +182,8 @@ void main() {
       pumpFrames(n, async, const Duration(minutes: 5));
 
       expect(results.length, 2);
-      expect(results[0].sequence, 1);
-      expect(results[1].sequence, 2);
-      expect(results[0].session, results[1].session);
+      expect(_windowStart(results[0]), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+      expect(_windowStart(results[1]), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
       sub.cancel();
     });
@@ -173,7 +196,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       n.resume();
@@ -181,7 +204,7 @@ void main() {
       pumpFrames(n, async, const Duration(minutes: 5));
 
       expect(results, isNotEmpty);
-      expect(results.first.sequence, 1);
+      expect(results.first.hour * 100 + results.first.minute, _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
 
       sub.cancel();
     });
@@ -194,7 +217,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -203,8 +226,8 @@ void main() {
       async.elapse(const Duration(minutes: 3));
 
       expect(results.length, 1);
-      expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-      expect(results.first.endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+      expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+      expect(_windowEnd(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
       sub.cancel();
     });
@@ -217,7 +240,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -258,7 +281,7 @@ void main() {
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.startUtc, DateTime.utc(2026, 1, 1, 10, 30, 0));
+      expect(_windowStart(activeWindow!), _businessTime(DateTime.utc(2026, 1, 1, 10, 30, 0)));
     });
   });
 
@@ -288,17 +311,15 @@ void main() {
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
 
-      final areaMetrics = activeWindow!.areas[area.id];
-      expect(areaMetrics, isNotNull);
-      expect(areaMetrics!.passBy, 1);
+      final areaMetrics = _area(activeWindow!, area.id);
+      expect(areaMetrics.passBy, 1);
       expect(areaMetrics.entry, 1);
       expect(areaMetrics.exit, 1);
       expect(areaMetrics.appear, 0);
       expect(areaMetrics.disappear, 0);
 
-      final globalMetrics = activeWindow.areas[kGlobalAreaId];
-      expect(globalMetrics, isNotNull);
-      expect(globalMetrics!.passBy, 2);
+      final globalMetrics = _area(activeWindow, kGlobalAreaId);
+      expect(globalMetrics.passBy, 2);
       expect(globalMetrics.appear, 2);
       expect(globalMetrics.disappear, 0);
     });
@@ -328,19 +349,19 @@ void main() {
 
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, [insideTrack], [area], 0.0);
-      expect(state(container)!.areas[area.id]!.stay, 0);
+      expect(_area(state(container)!, area.id).stagnant, 0);
 
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, [insideTrack], [area], 0.0);
-      expect(state(container)!.areas[area.id]!.stay, 1);
+      expect(_area(state(container)!, area.id).stagnant, 1);
 
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, const [], [area], 0.0);
-      expect(state(container)!.areas[area.id]!.disappear, 0);
+      expect(_area(state(container)!, area.id).disappear, 0);
 
       async.elapse(const Duration(seconds: 2));
       processTestFrame(container, n, const [], [area], 0.0);
-      expect(state(container)!.areas[area.id]!.disappear, 1);
+      expect(_area(state(container)!, area.id).disappear, 1);
     });
   });
 
@@ -368,20 +389,20 @@ void main() {
       async.elapse(const Duration(seconds: 3));
       processTestFrame(container, n, [track], [area], 0.0);
 
-      expect(state(container)!.areas[area.id]!.stay, 0);
+      expect(_area(state(container)!, area.id).stagnant, 0);
 
-      n.setThresholdSeconds(stayThresholdSeconds: 2, disappearThresholdSeconds: 1);
+      n.setThresholdSeconds(stagnantThresholdSeconds: 2, disappearThresholdSeconds: 1);
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, [track], [area], 0.0);
 
-      expect(state(container)!.areas[area.id]!.stay, 1);
+      expect(_area(state(container)!, area.id).stagnant, 1);
 
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, const [], [area], 0.0);
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, const [], [area], 0.0);
 
-      expect(state(container)!.areas[area.id]!.disappear, 1);
+      expect(_area(state(container)!, area.id).disappear, 1);
     });
   });
 
@@ -392,7 +413,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -400,8 +421,8 @@ void main() {
       async.elapse(const Duration(minutes: 3));
 
       expect(results.length, 1);
-      expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-      expect(results.first.endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+      expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+      expect(_windowEnd(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
       sub.cancel();
     });
@@ -416,7 +437,7 @@ void main() {
 
       processTestFrame(container, n, const [], const [], 0.0);
       expect(state(container), isNotNull);
-      expect(state(container)!.missingDuration, const Duration(minutes: 2));
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 2).inSeconds);
 
       n.pause();
 
@@ -424,14 +445,14 @@ void main() {
 
       final stalledState = state(container);
       expect(stalledState, isNotNull);
-      expect(stalledState!.missingDuration, const Duration(minutes: 2, seconds: 2));
+      expect(_missingSeconds(stalledState!), const Duration(minutes: 2, seconds: 2).inSeconds);
 
       n.resume();
       async.elapse(const Duration(seconds: 2));
 
       final recoveredState = state(container);
       expect(recoveredState, isNotNull);
-      expect(recoveredState!.missingDuration, const Duration(minutes: 2, seconds: 2));
+      expect(_missingSeconds(recoveredState!), const Duration(minutes: 2, seconds: 2).inSeconds);
     });
   });
 
@@ -447,13 +468,13 @@ void main() {
 
       async.elapse(const Duration(seconds: 3));
       expect(state(container), isNotNull);
-      expect(state(container)!.missingDuration, const Duration(minutes: 2, seconds: 3));
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 2, seconds: 3).inSeconds);
 
       n.resume();
       async.elapse(const Duration(seconds: 2));
 
       expect(state(container), isNotNull);
-      expect(state(container)!.missingDuration, const Duration(minutes: 2, seconds: 3));
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 2, seconds: 3).inSeconds);
     });
   });
 
@@ -464,7 +485,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -487,7 +508,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -498,14 +519,14 @@ void main() {
       expect(results.length, 1);
       // First finalized window includes its own start-gap (10:00 -> 10:04:50)
       // plus the 10-second boundary-crossing frame gap (10:04:50 -> 10:05:00).
-      expect(results.first.missingDuration, const Duration(minutes: 5));
+      expect(_missingSeconds(results.first), const Duration(minutes: 5).inSeconds);
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.startUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+      expect(_windowStart(activeWindow!), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
       // Boundary timer opens the new window at 10:05:00, so start-gap is zero.
       // Only the 20-second frame gap (10:05:00 -> 10:05:20) is accumulated.
-      expect(activeWindow.missingDuration, const Duration(seconds: 20));
+      expect(_missingSeconds(activeWindow), const Duration(seconds: 20).inSeconds);
 
       sub.cancel();
     });
@@ -518,7 +539,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -539,7 +560,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0); // opens window 10:00–10:05
@@ -553,7 +574,7 @@ void main() {
       // Prior windows finalize on schedule; fresh window also finalizes when it rolls over.
       pumpFrames(n, async, const Duration(minutes: 5));
       expect(results, isNotEmpty);
-      expect(results.last.startUtc, DateTime.utc(2026, 1, 1, 11, 0, 0));
+      expect(_windowStart(results.last), _businessTime(DateTime.utc(2026, 1, 1, 11, 0, 0)));
 
       sub.cancel();
     });
@@ -566,7 +587,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
@@ -594,7 +615,7 @@ void main() {
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.startUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+      expect(_windowStart(activeWindow!), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
     });
   });
 
@@ -633,11 +654,11 @@ void main() {
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.areas[area.id]!.currentOccupancy, 1);
-      expect(activeWindow.areas[area.id]!.maxOccupancy, 2);
-      expect(activeWindow.areas[area.id]!.avgOccupancy, closeTo(1.5, 0.0001));
+      expect(_area(activeWindow!, area.id).occupancyLast, 1);
+      expect(_area(activeWindow, area.id).occupancyMax, 2);
+      expect(_area(activeWindow, area.id).occupancyAvg, closeTo(1.5, 0.0001));
       expect(activeWindow.frameCount, 2);
-      expect(activeWindow.confidence, 90.0);
+      expect(activeWindow.confidenceRatio, 0.9);
     });
   });
 
@@ -681,8 +702,8 @@ void main() {
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.areas[area1.id]!.passBy, 1);
-      expect(activeWindow.areas[area2.id]!.passBy, 1);
+      expect(_area(activeWindow!, area1.id).passBy, 1);
+      expect(_area(activeWindow, area2.id).passBy, 1);
     });
   });
 
@@ -697,20 +718,20 @@ void main() {
         trackId: 1,
         center: const Offset(10, 10),
         initialCenter: const Offset(10, 10),
-      ).copyWith(confidence: 80, activated: true);
+      ).copyWith(confidenceRatio: 0.8, activated: true);
 
       final inactiveTrack = buildTrack(
         trackId: 2,
         center: const Offset(20, 20),
         initialCenter: const Offset(20, 20),
-      ).copyWith(confidence: 20, activated: false);
+      ).copyWith(confidenceRatio: 0.2, activated: false);
 
       processTestFrame(container, n, [activeTrack, inactiveTrack], const [], 0.0);
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
       expect(activeWindow!.frameCount, 1);
-      expect(activeWindow.confidence, 80.0);
+      expect(activeWindow.confidenceRatio, 0.8);
     });
   });
 
@@ -721,7 +742,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
 
-      final results = <ObservationState>[];
+      final results = <core_domain.Observation>[];
       final sub = n.snapshots.listen(results.add);
 
       final area = core_domain.InterestArea(
@@ -741,15 +762,15 @@ void main() {
       async.elapse(const Duration(minutes: 5));
 
       expect(results.length, 1);
-      expect(results.first.areas[area.id]!.passBy, 1);
-      expect(results.first.areas[area.id]!.entry, 0);
+      expect(_area(results.first, area.id).passBy, 1);
+      expect(_area(results.first, area.id).entry, 0);
 
       processTestFrame(container, n, [track], [area], 0.0);
       async.elapse(const Duration(minutes: 5));
 
       expect(results.length, 2);
-      expect(results[1].areas[area.id]!.passBy, 0);
-      expect(results[1].areas[area.id]!.entry, 0);
+      expect(_area(results[1], area.id).passBy, 0);
+      expect(_area(results[1], area.id).entry, 0);
 
       sub.cancel();
     });
@@ -784,8 +805,6 @@ void main() {
       expect(n.getTotalCount(area.id), 0);
       expect(n.getCurrentCount(area.id), 0);
       final resetState = state(container)!;
-      expect(resetState.session, isEmpty);
-      expect(resetState.sequence, 0);
       expect(resetState.areas, isEmpty);
     });
   });
@@ -879,7 +898,7 @@ void main() {
 
       final activeWindow = state(container);
       expect(activeWindow, isNotNull);
-      expect(activeWindow!.areas[area2.id]!.passBy, 1);
+      expect(_area(activeWindow!, area2.id).passBy, 1);
     });
   });
 
@@ -891,7 +910,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
@@ -901,7 +920,7 @@ void main() {
         async.flushMicrotasks();
 
         expect(results.length, 1);
-        expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
+        expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
 
         sub.cancel();
       });
@@ -914,7 +933,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
@@ -929,8 +948,8 @@ void main() {
 
         // Natural boundary fires and emits a second snapshot
         expect(results.length, 2);
-        expect(results[1].startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-        expect(results[1].endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+        expect(_windowStart(results[1]), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+        expect(_windowEnd(results[1]), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
         sub.cancel();
       });
@@ -965,7 +984,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         // No processFrame call → _currentAggregator is null AND state is null
@@ -984,7 +1003,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
@@ -996,7 +1015,7 @@ void main() {
         async.flushMicrotasks();
 
         expect(results.length, 1);
-        expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
+        expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
 
         sub.cancel();
       });
@@ -1009,7 +1028,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
@@ -1023,7 +1042,7 @@ void main() {
         expect(results.length, 3);
         // All three snapshots share the same window start
         for (final r in results) {
-          expect(r.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
+          expect(_windowStart(r), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
         }
 
         sub.cancel();
@@ -1039,7 +1058,7 @@ void main() {
         addTearDown(container.dispose);
         final n = notifier(container);
 
-        final results = <ObservationState>[];
+        final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
@@ -1048,13 +1067,13 @@ void main() {
         async.flushMicrotasks();
 
         expect(results.length, 1, reason: 'force-end should finalize immediately via onWindowEnd');
-        expect(results.first.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-        expect(results.first.endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+        expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+        expect(_windowEnd(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
         final current = state(container);
         expect(current, isNotNull, reason: 'A fresh window should be opened for continued counting');
-        expect(current!.startUtc, DateTime.utc(2026, 1, 1, 10, 0, 0));
-        expect(current.endUtc, DateTime.utc(2026, 1, 1, 10, 5, 0));
+        expect(_windowStart(current!), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
+        expect(_windowEnd(current), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
 
         sub.cancel();
       });

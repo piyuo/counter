@@ -201,17 +201,17 @@ class LocalizationTh extends Localization {
       'เปิดใช้งานตัวเลือกนี้เพื่อแสดง Track ID ที่ไม่ซ้ำกันสำหรับแต่ละวัตถุที่ติดตาม';
 
   @override
-  String get detection_screen_stay => 'เวลาพักอยู่';
+  String get detection_screen_stagnant => 'เวลาพักอยู่';
 
   @override
-  String get detection_screen_stay_help =>
+  String get detection_screen_stagnant_help =>
       'วัตถุต้องอยู่ในพื้นที่นานเท่าใดก่อนที่จะนับเป็นการหยุดอยู่';
 
   @override
-  String get detection_screen_stay_max_label => 'หน่วงเวลา';
+  String get detection_screen_stagnant_max_label => 'หน่วงเวลา';
 
   @override
-  String get detection_screen_stay_min_label => 'ทันที';
+  String get detection_screen_stagnant_min_label => 'ทันที';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -651,10 +651,10 @@ class LocalizationTh extends Localization {
   String get settings_screen_subscription_title => 'การสมัครสมาชิก';
 
   @override
-  String get stayed => 'อยู่ต่อ';
+  String get stagnanted => 'อยู่ต่อ';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'นับจำนวนคนหรือยานพาหนะที่อยู่ในพื้นที่นี้อย่างน้อยตามเวลาพักที่กำหนด\\n\\nค่าเริ่มต้นของเวลาพักคือ 15 วินาที และสามารถเปลี่ยนได้ใน Settings';
 
   @override

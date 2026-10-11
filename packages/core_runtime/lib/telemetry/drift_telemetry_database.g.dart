@@ -167,7 +167,7 @@ class $TelemetryQueueTable extends TelemetryQueue
 
 class TelemetryQueueData extends DataClass
     implements Insertable<TelemetryQueueData> {
-  /// UUID v4 string; primary key. Matches [core_domain.TelemetryPayload.payloadId].
+  /// UUID v4 string; primary key. Matches [core_domain.Observation.id].
   final String id;
   final String serializedPayload;
 

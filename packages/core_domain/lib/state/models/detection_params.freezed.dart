@@ -23,7 +23,7 @@ mixin _$DetectionParams {
 /// and [trackHighThresh] are only used in the second, low-confidence pass.
  double get trackLowThresh;/// Minimum confidence required to start a brand new track after association.
 /// This is checked after all matching passes complete.
- double get newTrackThresh; double get maxTimeLostSec;/// Maximum fused association cost accepted by linear assignment in the first
+ double get newTrackThresh; double get maxTimeLostSeconds;/// Maximum fused association cost accepted by linear assignment in the first
 /// high-confidence association pass. Lower costs are better; larger values
 /// make that pass more permissive. This does not affect the later
 /// low-confidence and unconfirmed passes, which use fixed thresholds.
@@ -52,13 +52,13 @@ mixin _$DetectionParams {
 /// conservative.
  bool get preferAppearanceFallbackOnLowIou;/// Minimum elapsed wall-clock time, in seconds, since the track started
 /// before assigning a user-visible `trackletId`.
- double get trackletMinPresenceTimeSec; int get trackletEdgeMargin;/// After the normal minimum-presence-time gate has been satisfied, allow
+ double get trackletMinPresenceTimeSeconds; int get trackletEdgeMargin;/// After the normal minimum-presence-time gate has been satisfied, allow
 /// `trackletId` assignment even if the track center is still inside the
 /// edge zone once elapsed time reaches this threshold. Set to `0` to
 /// disable this edge-zone override.
- double get trackletEdgeOverrideTimeSec;/// Minimum continuous in-area duration, in seconds, before a track
-/// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
- int get stayThresholdSeconds;/// Minimum continuous absence duration, in seconds, before a previously
+ double get trackletEdgeOverrideTimeSeconds;/// Minimum continuous in-area duration, in seconds, before a track
+/// contributes to `stagnant` in observation. default change to 300 seconds to reflect some one stop and buy things
+ int get stagnantThresholdSeconds;/// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.
 /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear
  int get disappearThresholdSeconds;
@@ -75,20 +75,20 @@ $DetectionParamsCopyWith<DetectionParams> get copyWith => _$DetectionParamsCopyW
 @override
 bool operator ==(Object other) {
   final _this = this as DetectionParams;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionParams&&(identical(other.trackHighThresh, _this.trackHighThresh) || other.trackHighThresh == _this.trackHighThresh)&&(identical(other.trackLowThresh, _this.trackLowThresh) || other.trackLowThresh == _this.trackLowThresh)&&(identical(other.newTrackThresh, _this.newTrackThresh) || other.newTrackThresh == _this.newTrackThresh)&&(identical(other.maxTimeLostSec, _this.maxTimeLostSec) || other.maxTimeLostSec == _this.maxTimeLostSec)&&(identical(other.maxMatchDistance, _this.maxMatchDistance) || other.maxMatchDistance == _this.maxMatchDistance)&&(identical(other.proximityThresh, _this.proximityThresh) || other.proximityThresh == _this.proximityThresh)&&(identical(other.appearanceThresh, _this.appearanceThresh) || other.appearanceThresh == _this.appearanceThresh)&&(identical(other.lambda, _this.lambda) || other.lambda == _this.lambda)&&(identical(other.softMotionGating, _this.softMotionGating) || other.softMotionGating == _this.softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, _this.preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == _this.preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, _this.trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == _this.trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, _this.trackletEdgeMargin) || other.trackletEdgeMargin == _this.trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, _this.trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == _this.trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, _this.stayThresholdSeconds) || other.stayThresholdSeconds == _this.stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, _this.disappearThresholdSeconds) || other.disappearThresholdSeconds == _this.disappearThresholdSeconds));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetectionParams&&(identical(other.trackHighThresh, _this.trackHighThresh) || other.trackHighThresh == _this.trackHighThresh)&&(identical(other.trackLowThresh, _this.trackLowThresh) || other.trackLowThresh == _this.trackLowThresh)&&(identical(other.newTrackThresh, _this.newTrackThresh) || other.newTrackThresh == _this.newTrackThresh)&&(identical(other.maxTimeLostSeconds, _this.maxTimeLostSeconds) || other.maxTimeLostSeconds == _this.maxTimeLostSeconds)&&(identical(other.maxMatchDistance, _this.maxMatchDistance) || other.maxMatchDistance == _this.maxMatchDistance)&&(identical(other.proximityThresh, _this.proximityThresh) || other.proximityThresh == _this.proximityThresh)&&(identical(other.appearanceThresh, _this.appearanceThresh) || other.appearanceThresh == _this.appearanceThresh)&&(identical(other.lambda, _this.lambda) || other.lambda == _this.lambda)&&(identical(other.softMotionGating, _this.softMotionGating) || other.softMotionGating == _this.softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, _this.preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == _this.preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSeconds, _this.trackletMinPresenceTimeSeconds) || other.trackletMinPresenceTimeSeconds == _this.trackletMinPresenceTimeSeconds)&&(identical(other.trackletEdgeMargin, _this.trackletEdgeMargin) || other.trackletEdgeMargin == _this.trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSeconds, _this.trackletEdgeOverrideTimeSeconds) || other.trackletEdgeOverrideTimeSeconds == _this.trackletEdgeOverrideTimeSeconds)&&(identical(other.stagnantThresholdSeconds, _this.stagnantThresholdSeconds) || other.stagnantThresholdSeconds == _this.stagnantThresholdSeconds)&&(identical(other.disappearThresholdSeconds, _this.disappearThresholdSeconds) || other.disappearThresholdSeconds == _this.disappearThresholdSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as DetectionParams;
-  return Object.hash(runtimeType,_this.trackHighThresh,_this.trackLowThresh,_this.newTrackThresh,_this.maxTimeLostSec,_this.maxMatchDistance,_this.proximityThresh,_this.appearanceThresh,_this.lambda,_this.softMotionGating,_this.preferAppearanceFallbackOnLowIou,_this.trackletMinPresenceTimeSec,_this.trackletEdgeMargin,_this.trackletEdgeOverrideTimeSec,_this.stayThresholdSeconds,_this.disappearThresholdSeconds);
+  return Object.hash(runtimeType,_this.trackHighThresh,_this.trackLowThresh,_this.newTrackThresh,_this.maxTimeLostSeconds,_this.maxMatchDistance,_this.proximityThresh,_this.appearanceThresh,_this.lambda,_this.softMotionGating,_this.preferAppearanceFallbackOnLowIou,_this.trackletMinPresenceTimeSeconds,_this.trackletEdgeMargin,_this.trackletEdgeOverrideTimeSeconds,_this.stagnantThresholdSeconds,_this.disappearThresholdSeconds);
 }
 
 @override
 String toString() {
   final _this = this as DetectionParams;
-  return 'DetectionParams(trackHighThresh: ${_this.trackHighThresh}, trackLowThresh: ${_this.trackLowThresh}, newTrackThresh: ${_this.newTrackThresh}, maxTimeLostSec: ${_this.maxTimeLostSec}, maxMatchDistance: ${_this.maxMatchDistance}, proximityThresh: ${_this.proximityThresh}, appearanceThresh: ${_this.appearanceThresh}, lambda: ${_this.lambda}, softMotionGating: ${_this.softMotionGating}, preferAppearanceFallbackOnLowIou: ${_this.preferAppearanceFallbackOnLowIou}, trackletMinPresenceTimeSec: ${_this.trackletMinPresenceTimeSec}, trackletEdgeMargin: ${_this.trackletEdgeMargin}, trackletEdgeOverrideTimeSec: ${_this.trackletEdgeOverrideTimeSec}, stayThresholdSeconds: ${_this.stayThresholdSeconds}, disappearThresholdSeconds: ${_this.disappearThresholdSeconds})';
+  return 'DetectionParams(trackHighThresh: ${_this.trackHighThresh}, trackLowThresh: ${_this.trackLowThresh}, newTrackThresh: ${_this.newTrackThresh}, maxTimeLostSeconds: ${_this.maxTimeLostSeconds}, maxMatchDistance: ${_this.maxMatchDistance}, proximityThresh: ${_this.proximityThresh}, appearanceThresh: ${_this.appearanceThresh}, lambda: ${_this.lambda}, softMotionGating: ${_this.softMotionGating}, preferAppearanceFallbackOnLowIou: ${_this.preferAppearanceFallbackOnLowIou}, trackletMinPresenceTimeSeconds: ${_this.trackletMinPresenceTimeSeconds}, trackletEdgeMargin: ${_this.trackletEdgeMargin}, trackletEdgeOverrideTimeSeconds: ${_this.trackletEdgeOverrideTimeSeconds}, stagnantThresholdSeconds: ${_this.stagnantThresholdSeconds}, disappearThresholdSeconds: ${_this.disappearThresholdSeconds})';
 }
 
 
@@ -99,7 +99,7 @@ abstract mixin class $DetectionParamsCopyWith<$Res>  {
   factory $DetectionParamsCopyWith(DetectionParams value, $Res Function(DetectionParams) _then) = _$DetectionParamsCopyWithImpl;
 @useResult
 $Res call({
- double trackHighThresh, double trackLowThresh, double newTrackThresh, double maxTimeLostSec, double maxMatchDistance, double proximityThresh, double appearanceThresh, double lambda, bool softMotionGating, bool preferAppearanceFallbackOnLowIou, double trackletMinPresenceTimeSec, int trackletEdgeMargin, double trackletEdgeOverrideTimeSec, int stayThresholdSeconds, int disappearThresholdSeconds
+ double trackHighThresh, double trackLowThresh, double newTrackThresh, double maxTimeLostSeconds, double maxMatchDistance, double proximityThresh, double appearanceThresh, double lambda, bool softMotionGating, bool preferAppearanceFallbackOnLowIou, double trackletMinPresenceTimeSeconds, int trackletEdgeMargin, double trackletEdgeOverrideTimeSeconds, int stagnantThresholdSeconds, int disappearThresholdSeconds
 });
 
 
@@ -116,22 +116,22 @@ class _$DetectionParamsCopyWithImpl<$Res>
 
 /// Create a copy of DetectionParams
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? trackHighThresh = null,Object? trackLowThresh = null,Object? newTrackThresh = null,Object? maxTimeLostSec = null,Object? maxMatchDistance = null,Object? proximityThresh = null,Object? appearanceThresh = null,Object? lambda = null,Object? softMotionGating = null,Object? preferAppearanceFallbackOnLowIou = null,Object? trackletMinPresenceTimeSec = null,Object? trackletEdgeMargin = null,Object? trackletEdgeOverrideTimeSec = null,Object? stayThresholdSeconds = null,Object? disappearThresholdSeconds = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? trackHighThresh = null,Object? trackLowThresh = null,Object? newTrackThresh = null,Object? maxTimeLostSeconds = null,Object? maxMatchDistance = null,Object? proximityThresh = null,Object? appearanceThresh = null,Object? lambda = null,Object? softMotionGating = null,Object? preferAppearanceFallbackOnLowIou = null,Object? trackletMinPresenceTimeSeconds = null,Object? trackletEdgeMargin = null,Object? trackletEdgeOverrideTimeSeconds = null,Object? stagnantThresholdSeconds = null,Object? disappearThresholdSeconds = null,}) {
   return _then(DetectionParams(
 trackHighThresh: null == trackHighThresh ? _self.trackHighThresh : trackHighThresh // ignore: cast_nullable_to_non_nullable
 as double,trackLowThresh: null == trackLowThresh ? _self.trackLowThresh : trackLowThresh // ignore: cast_nullable_to_non_nullable
 as double,newTrackThresh: null == newTrackThresh ? _self.newTrackThresh : newTrackThresh // ignore: cast_nullable_to_non_nullable
-as double,maxTimeLostSec: null == maxTimeLostSec ? _self.maxTimeLostSec : maxTimeLostSec // ignore: cast_nullable_to_non_nullable
+as double,maxTimeLostSeconds: null == maxTimeLostSeconds ? _self.maxTimeLostSeconds : maxTimeLostSeconds // ignore: cast_nullable_to_non_nullable
 as double,maxMatchDistance: null == maxMatchDistance ? _self.maxMatchDistance : maxMatchDistance // ignore: cast_nullable_to_non_nullable
 as double,proximityThresh: null == proximityThresh ? _self.proximityThresh : proximityThresh // ignore: cast_nullable_to_non_nullable
 as double,appearanceThresh: null == appearanceThresh ? _self.appearanceThresh : appearanceThresh // ignore: cast_nullable_to_non_nullable
 as double,lambda: null == lambda ? _self.lambda : lambda // ignore: cast_nullable_to_non_nullable
 as double,softMotionGating: null == softMotionGating ? _self.softMotionGating : softMotionGating // ignore: cast_nullable_to_non_nullable
 as bool,preferAppearanceFallbackOnLowIou: null == preferAppearanceFallbackOnLowIou ? _self.preferAppearanceFallbackOnLowIou : preferAppearanceFallbackOnLowIou // ignore: cast_nullable_to_non_nullable
-as bool,trackletMinPresenceTimeSec: null == trackletMinPresenceTimeSec ? _self.trackletMinPresenceTimeSec : trackletMinPresenceTimeSec // ignore: cast_nullable_to_non_nullable
+as bool,trackletMinPresenceTimeSeconds: null == trackletMinPresenceTimeSeconds ? _self.trackletMinPresenceTimeSeconds : trackletMinPresenceTimeSeconds // ignore: cast_nullable_to_non_nullable
 as double,trackletEdgeMargin: null == trackletEdgeMargin ? _self.trackletEdgeMargin : trackletEdgeMargin // ignore: cast_nullable_to_non_nullable
-as int,trackletEdgeOverrideTimeSec: null == trackletEdgeOverrideTimeSec ? _self.trackletEdgeOverrideTimeSec : trackletEdgeOverrideTimeSec // ignore: cast_nullable_to_non_nullable
-as double,stayThresholdSeconds: null == stayThresholdSeconds ? _self.stayThresholdSeconds : stayThresholdSeconds // ignore: cast_nullable_to_non_nullable
+as int,trackletEdgeOverrideTimeSeconds: null == trackletEdgeOverrideTimeSeconds ? _self.trackletEdgeOverrideTimeSeconds : trackletEdgeOverrideTimeSeconds // ignore: cast_nullable_to_non_nullable
+as double,stagnantThresholdSeconds: null == stagnantThresholdSeconds ? _self.stagnantThresholdSeconds : stagnantThresholdSeconds // ignore: cast_nullable_to_non_nullable
 as int,disappearThresholdSeconds: null == disappearThresholdSeconds ? _self.disappearThresholdSeconds : disappearThresholdSeconds // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -218,10 +218,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSec,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSec,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSec,  int stayThresholdSeconds,  int disappearThresholdSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSeconds,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSeconds,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSeconds,  int stagnantThresholdSeconds,  int disappearThresholdSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DetectionParams() when $default != null:
-return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSec,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSec,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSec,_that.stayThresholdSeconds,_that.disappearThresholdSeconds);case _:
+return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSeconds,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSeconds,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSeconds,_that.stagnantThresholdSeconds,_that.disappearThresholdSeconds);case _:
   return orElse();
 
 }
@@ -239,10 +239,10 @@ return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSec,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSec,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSec,  int stayThresholdSeconds,  int disappearThresholdSeconds)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSeconds,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSeconds,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSeconds,  int stagnantThresholdSeconds,  int disappearThresholdSeconds)  $default,) {final _that = this;
 switch (_that) {
 case _DetectionParams():
-return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSec,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSec,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSec,_that.stayThresholdSeconds,_that.disappearThresholdSeconds);case _:
+return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSeconds,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSeconds,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSeconds,_that.stagnantThresholdSeconds,_that.disappearThresholdSeconds);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -259,10 +259,10 @@ return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSec,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSec,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSec,  int stayThresholdSeconds,  int disappearThresholdSeconds)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double trackHighThresh,  double trackLowThresh,  double newTrackThresh,  double maxTimeLostSeconds,  double maxMatchDistance,  double proximityThresh,  double appearanceThresh,  double lambda,  bool softMotionGating,  bool preferAppearanceFallbackOnLowIou,  double trackletMinPresenceTimeSeconds,  int trackletEdgeMargin,  double trackletEdgeOverrideTimeSeconds,  int stagnantThresholdSeconds,  int disappearThresholdSeconds)?  $default,) {final _that = this;
 switch (_that) {
 case _DetectionParams() when $default != null:
-return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSec,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSec,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSec,_that.stayThresholdSeconds,_that.disappearThresholdSeconds);case _:
+return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,_that.maxTimeLostSeconds,_that.maxMatchDistance,_that.proximityThresh,_that.appearanceThresh,_that.lambda,_that.softMotionGating,_that.preferAppearanceFallbackOnLowIou,_that.trackletMinPresenceTimeSeconds,_that.trackletEdgeMargin,_that.trackletEdgeOverrideTimeSeconds,_that.stagnantThresholdSeconds,_that.disappearThresholdSeconds);case _:
   return null;
 
 }
@@ -274,7 +274,7 @@ return $default(_that.trackHighThresh,_that.trackLowThresh,_that.newTrackThresh,
 @JsonSerializable()
 
 class _DetectionParams extends DetectionParams {
-  const _DetectionParams({this.trackHighThresh = 0.6, this.trackLowThresh = 0.05, this.newTrackThresh = 0.75, this.maxTimeLostSec = 3, this.maxMatchDistance = 0.9, this.proximityThresh = 0.95, this.appearanceThresh = 0.5, this.lambda = 0.990, this.softMotionGating = true, this.preferAppearanceFallbackOnLowIou = true, this.trackletMinPresenceTimeSec = 1, this.trackletEdgeMargin = 32, this.trackletEdgeOverrideTimeSec = 2.0, this.stayThresholdSeconds = 300, this.disappearThresholdSeconds = 7}): super._();
+  const _DetectionParams({this.trackHighThresh = 0.6, this.trackLowThresh = 0.05, this.newTrackThresh = 0.75, this.maxTimeLostSeconds = 3, this.maxMatchDistance = 0.9, this.proximityThresh = 0.95, this.appearanceThresh = 0.5, this.lambda = 0.990, this.softMotionGating = true, this.preferAppearanceFallbackOnLowIou = true, this.trackletMinPresenceTimeSeconds = 1, this.trackletEdgeMargin = 32, this.trackletEdgeOverrideTimeSeconds = 2.0, this.stagnantThresholdSeconds = 300, this.disappearThresholdSeconds = 7}): super._();
   factory _DetectionParams.fromJson(Map<String, dynamic> json) => _$DetectionParamsFromJson(json);
 
 /// Detection confidence required to enter the first, high-confidence
@@ -287,7 +287,7 @@ class _DetectionParams extends DetectionParams {
 /// Minimum confidence required to start a brand new track after association.
 /// This is checked after all matching passes complete.
 @override@JsonKey() final  double newTrackThresh;
-@override@JsonKey() final  double maxTimeLostSec;
+@override@JsonKey() final  double maxTimeLostSeconds;
 /// Maximum fused association cost accepted by linear assignment in the first
 /// high-confidence association pass. Lower costs are better; larger values
 /// make that pass more permissive. This does not affect the later
@@ -323,16 +323,16 @@ class _DetectionParams extends DetectionParams {
 @override@JsonKey() final  bool preferAppearanceFallbackOnLowIou;
 /// Minimum elapsed wall-clock time, in seconds, since the track started
 /// before assigning a user-visible `trackletId`.
-@override@JsonKey() final  double trackletMinPresenceTimeSec;
+@override@JsonKey() final  double trackletMinPresenceTimeSeconds;
 @override@JsonKey() final  int trackletEdgeMargin;
 /// After the normal minimum-presence-time gate has been satisfied, allow
 /// `trackletId` assignment even if the track center is still inside the
 /// edge zone once elapsed time reaches this threshold. Set to `0` to
 /// disable this edge-zone override.
-@override@JsonKey() final  double trackletEdgeOverrideTimeSec;
+@override@JsonKey() final  double trackletEdgeOverrideTimeSeconds;
 /// Minimum continuous in-area duration, in seconds, before a track
-/// contributes to `stayCount` in window counting. default change to 300 seconds to reflect some one stop and buy things
-@override@JsonKey() final  int stayThresholdSeconds;
+/// contributes to `stagnant` in observation. default change to 300 seconds to reflect some one stop and buy things
+@override@JsonKey() final  int stagnantThresholdSeconds;
 /// Minimum continuous absence duration, in seconds, before a previously
 /// in-area track contributes to `disappearCount` in window counting.
 /// so a n object that made disappear must first pass the trackBuffer value to become lost then over disappearThresholdSeconds to count as a disappear to be disappear
@@ -351,18 +351,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetectionParams&&(identical(other.trackHighThresh, trackHighThresh) || other.trackHighThresh == trackHighThresh)&&(identical(other.trackLowThresh, trackLowThresh) || other.trackLowThresh == trackLowThresh)&&(identical(other.newTrackThresh, newTrackThresh) || other.newTrackThresh == newTrackThresh)&&(identical(other.maxTimeLostSec, maxTimeLostSec) || other.maxTimeLostSec == maxTimeLostSec)&&(identical(other.maxMatchDistance, maxMatchDistance) || other.maxMatchDistance == maxMatchDistance)&&(identical(other.proximityThresh, proximityThresh) || other.proximityThresh == proximityThresh)&&(identical(other.appearanceThresh, appearanceThresh) || other.appearanceThresh == appearanceThresh)&&(identical(other.lambda, lambda) || other.lambda == lambda)&&(identical(other.softMotionGating, softMotionGating) || other.softMotionGating == softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSec, trackletMinPresenceTimeSec) || other.trackletMinPresenceTimeSec == trackletMinPresenceTimeSec)&&(identical(other.trackletEdgeMargin, trackletEdgeMargin) || other.trackletEdgeMargin == trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSec, trackletEdgeOverrideTimeSec) || other.trackletEdgeOverrideTimeSec == trackletEdgeOverrideTimeSec)&&(identical(other.stayThresholdSeconds, stayThresholdSeconds) || other.stayThresholdSeconds == stayThresholdSeconds)&&(identical(other.disappearThresholdSeconds, disappearThresholdSeconds) || other.disappearThresholdSeconds == disappearThresholdSeconds));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetectionParams&&(identical(other.trackHighThresh, trackHighThresh) || other.trackHighThresh == trackHighThresh)&&(identical(other.trackLowThresh, trackLowThresh) || other.trackLowThresh == trackLowThresh)&&(identical(other.newTrackThresh, newTrackThresh) || other.newTrackThresh == newTrackThresh)&&(identical(other.maxTimeLostSeconds, maxTimeLostSeconds) || other.maxTimeLostSeconds == maxTimeLostSeconds)&&(identical(other.maxMatchDistance, maxMatchDistance) || other.maxMatchDistance == maxMatchDistance)&&(identical(other.proximityThresh, proximityThresh) || other.proximityThresh == proximityThresh)&&(identical(other.appearanceThresh, appearanceThresh) || other.appearanceThresh == appearanceThresh)&&(identical(other.lambda, lambda) || other.lambda == lambda)&&(identical(other.softMotionGating, softMotionGating) || other.softMotionGating == softMotionGating)&&(identical(other.preferAppearanceFallbackOnLowIou, preferAppearanceFallbackOnLowIou) || other.preferAppearanceFallbackOnLowIou == preferAppearanceFallbackOnLowIou)&&(identical(other.trackletMinPresenceTimeSeconds, trackletMinPresenceTimeSeconds) || other.trackletMinPresenceTimeSeconds == trackletMinPresenceTimeSeconds)&&(identical(other.trackletEdgeMargin, trackletEdgeMargin) || other.trackletEdgeMargin == trackletEdgeMargin)&&(identical(other.trackletEdgeOverrideTimeSeconds, trackletEdgeOverrideTimeSeconds) || other.trackletEdgeOverrideTimeSeconds == trackletEdgeOverrideTimeSeconds)&&(identical(other.stagnantThresholdSeconds, stagnantThresholdSeconds) || other.stagnantThresholdSeconds == stagnantThresholdSeconds)&&(identical(other.disappearThresholdSeconds, disappearThresholdSeconds) || other.disappearThresholdSeconds == disappearThresholdSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,trackHighThresh,trackLowThresh,newTrackThresh,maxTimeLostSec,maxMatchDistance,proximityThresh,appearanceThresh,lambda,softMotionGating,preferAppearanceFallbackOnLowIou,trackletMinPresenceTimeSec,trackletEdgeMargin,trackletEdgeOverrideTimeSec,stayThresholdSeconds,disappearThresholdSeconds);
+    return Object.hash(runtimeType,trackHighThresh,trackLowThresh,newTrackThresh,maxTimeLostSeconds,maxMatchDistance,proximityThresh,appearanceThresh,lambda,softMotionGating,preferAppearanceFallbackOnLowIou,trackletMinPresenceTimeSeconds,trackletEdgeMargin,trackletEdgeOverrideTimeSeconds,stagnantThresholdSeconds,disappearThresholdSeconds);
 }
 
 @override
 String toString() {
-    return 'DetectionParams(trackHighThresh: $trackHighThresh, trackLowThresh: $trackLowThresh, newTrackThresh: $newTrackThresh, maxTimeLostSec: $maxTimeLostSec, maxMatchDistance: $maxMatchDistance, proximityThresh: $proximityThresh, appearanceThresh: $appearanceThresh, lambda: $lambda, softMotionGating: $softMotionGating, preferAppearanceFallbackOnLowIou: $preferAppearanceFallbackOnLowIou, trackletMinPresenceTimeSec: $trackletMinPresenceTimeSec, trackletEdgeMargin: $trackletEdgeMargin, trackletEdgeOverrideTimeSec: $trackletEdgeOverrideTimeSec, stayThresholdSeconds: $stayThresholdSeconds, disappearThresholdSeconds: $disappearThresholdSeconds)';
+    return 'DetectionParams(trackHighThresh: $trackHighThresh, trackLowThresh: $trackLowThresh, newTrackThresh: $newTrackThresh, maxTimeLostSeconds: $maxTimeLostSeconds, maxMatchDistance: $maxMatchDistance, proximityThresh: $proximityThresh, appearanceThresh: $appearanceThresh, lambda: $lambda, softMotionGating: $softMotionGating, preferAppearanceFallbackOnLowIou: $preferAppearanceFallbackOnLowIou, trackletMinPresenceTimeSeconds: $trackletMinPresenceTimeSeconds, trackletEdgeMargin: $trackletEdgeMargin, trackletEdgeOverrideTimeSeconds: $trackletEdgeOverrideTimeSeconds, stagnantThresholdSeconds: $stagnantThresholdSeconds, disappearThresholdSeconds: $disappearThresholdSeconds)';
 }
 
 
@@ -373,7 +373,7 @@ abstract mixin class _$DetectionParamsCopyWith<$Res> implements $DetectionParams
   factory _$DetectionParamsCopyWith(_DetectionParams value, $Res Function(_DetectionParams) _then) = __$DetectionParamsCopyWithImpl;
 @override @useResult
 $Res call({
- double trackHighThresh, double trackLowThresh, double newTrackThresh, double maxTimeLostSec, double maxMatchDistance, double proximityThresh, double appearanceThresh, double lambda, bool softMotionGating, bool preferAppearanceFallbackOnLowIou, double trackletMinPresenceTimeSec, int trackletEdgeMargin, double trackletEdgeOverrideTimeSec, int stayThresholdSeconds, int disappearThresholdSeconds
+ double trackHighThresh, double trackLowThresh, double newTrackThresh, double maxTimeLostSeconds, double maxMatchDistance, double proximityThresh, double appearanceThresh, double lambda, bool softMotionGating, bool preferAppearanceFallbackOnLowIou, double trackletMinPresenceTimeSeconds, int trackletEdgeMargin, double trackletEdgeOverrideTimeSeconds, int stagnantThresholdSeconds, int disappearThresholdSeconds
 });
 
 
@@ -390,22 +390,22 @@ class __$DetectionParamsCopyWithImpl<$Res>
 
 /// Create a copy of DetectionParams
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? trackHighThresh = null,Object? trackLowThresh = null,Object? newTrackThresh = null,Object? maxTimeLostSec = null,Object? maxMatchDistance = null,Object? proximityThresh = null,Object? appearanceThresh = null,Object? lambda = null,Object? softMotionGating = null,Object? preferAppearanceFallbackOnLowIou = null,Object? trackletMinPresenceTimeSec = null,Object? trackletEdgeMargin = null,Object? trackletEdgeOverrideTimeSec = null,Object? stayThresholdSeconds = null,Object? disappearThresholdSeconds = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? trackHighThresh = null,Object? trackLowThresh = null,Object? newTrackThresh = null,Object? maxTimeLostSeconds = null,Object? maxMatchDistance = null,Object? proximityThresh = null,Object? appearanceThresh = null,Object? lambda = null,Object? softMotionGating = null,Object? preferAppearanceFallbackOnLowIou = null,Object? trackletMinPresenceTimeSeconds = null,Object? trackletEdgeMargin = null,Object? trackletEdgeOverrideTimeSeconds = null,Object? stagnantThresholdSeconds = null,Object? disappearThresholdSeconds = null,}) {
   return _then(_DetectionParams(
 trackHighThresh: null == trackHighThresh ? _self.trackHighThresh : trackHighThresh // ignore: cast_nullable_to_non_nullable
 as double,trackLowThresh: null == trackLowThresh ? _self.trackLowThresh : trackLowThresh // ignore: cast_nullable_to_non_nullable
 as double,newTrackThresh: null == newTrackThresh ? _self.newTrackThresh : newTrackThresh // ignore: cast_nullable_to_non_nullable
-as double,maxTimeLostSec: null == maxTimeLostSec ? _self.maxTimeLostSec : maxTimeLostSec // ignore: cast_nullable_to_non_nullable
+as double,maxTimeLostSeconds: null == maxTimeLostSeconds ? _self.maxTimeLostSeconds : maxTimeLostSeconds // ignore: cast_nullable_to_non_nullable
 as double,maxMatchDistance: null == maxMatchDistance ? _self.maxMatchDistance : maxMatchDistance // ignore: cast_nullable_to_non_nullable
 as double,proximityThresh: null == proximityThresh ? _self.proximityThresh : proximityThresh // ignore: cast_nullable_to_non_nullable
 as double,appearanceThresh: null == appearanceThresh ? _self.appearanceThresh : appearanceThresh // ignore: cast_nullable_to_non_nullable
 as double,lambda: null == lambda ? _self.lambda : lambda // ignore: cast_nullable_to_non_nullable
 as double,softMotionGating: null == softMotionGating ? _self.softMotionGating : softMotionGating // ignore: cast_nullable_to_non_nullable
 as bool,preferAppearanceFallbackOnLowIou: null == preferAppearanceFallbackOnLowIou ? _self.preferAppearanceFallbackOnLowIou : preferAppearanceFallbackOnLowIou // ignore: cast_nullable_to_non_nullable
-as bool,trackletMinPresenceTimeSec: null == trackletMinPresenceTimeSec ? _self.trackletMinPresenceTimeSec : trackletMinPresenceTimeSec // ignore: cast_nullable_to_non_nullable
+as bool,trackletMinPresenceTimeSeconds: null == trackletMinPresenceTimeSeconds ? _self.trackletMinPresenceTimeSeconds : trackletMinPresenceTimeSeconds // ignore: cast_nullable_to_non_nullable
 as double,trackletEdgeMargin: null == trackletEdgeMargin ? _self.trackletEdgeMargin : trackletEdgeMargin // ignore: cast_nullable_to_non_nullable
-as int,trackletEdgeOverrideTimeSec: null == trackletEdgeOverrideTimeSec ? _self.trackletEdgeOverrideTimeSec : trackletEdgeOverrideTimeSec // ignore: cast_nullable_to_non_nullable
-as double,stayThresholdSeconds: null == stayThresholdSeconds ? _self.stayThresholdSeconds : stayThresholdSeconds // ignore: cast_nullable_to_non_nullable
+as int,trackletEdgeOverrideTimeSeconds: null == trackletEdgeOverrideTimeSeconds ? _self.trackletEdgeOverrideTimeSeconds : trackletEdgeOverrideTimeSeconds // ignore: cast_nullable_to_non_nullable
+as double,stagnantThresholdSeconds: null == stagnantThresholdSeconds ? _self.stagnantThresholdSeconds : stagnantThresholdSeconds // ignore: cast_nullable_to_non_nullable
 as int,disappearThresholdSeconds: null == disappearThresholdSeconds ? _self.disappearThresholdSeconds : disappearThresholdSeconds // ignore: cast_nullable_to_non_nullable
 as int,
   ));

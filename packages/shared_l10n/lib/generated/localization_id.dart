@@ -201,17 +201,17 @@ class LocalizationId extends Localization {
       'Aktifkan opsi ini untuk menampilkan ID pelacakan unik untuk setiap objek yang dilacak.';
 
   @override
-  String get detection_screen_stay => 'Waktu Tinggal';
+  String get detection_screen_stagnant => 'Waktu Tinggal';
 
   @override
-  String get detection_screen_stay_help =>
-      'Berapa lama objek harus berada di area sebelum dihitung sebagai tinggal.';
+  String get detection_screen_stagnant_help =>
+      'Berapa lama objek harus berada di area agar dihitung sebagai tinggal.';
 
   @override
-  String get detection_screen_stay_max_label => 'Tertunda';
+  String get detection_screen_stagnant_max_label => 'Tertunda';
 
   @override
-  String get detection_screen_stay_min_label => 'Instan';
+  String get detection_screen_stagnant_min_label => 'Instan';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -653,10 +653,10 @@ class LocalizationId extends Localization {
   String get settings_screen_subscription_title => 'Langganan';
 
   @override
-  String get stayed => 'Tinggal';
+  String get stagnanted => 'Tinggal';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Menghitung orang atau kendaraan yang tetap berada di area ini setidaknya selama Waktu Tinggal yang ditentukan.\\n\\nWaktu Tinggal bawaan adalah 15 detik dan dapat diubah di Pengaturan.';
 
   @override

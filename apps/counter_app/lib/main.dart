@@ -94,16 +94,6 @@ void main() async {
               );
             },
           );
-
-          ref.listen(core_domain.appProvider, (previous, next) {
-            final previousConfig = previous?.asData?.value.uploadConfig;
-            final nextConfig = next.asData?.value.uploadConfig;
-
-            if (nextConfig != null && previousConfig != nextConfig) {
-              service.refreshSchedule();
-            }
-          });
-
           return service;
         }),
       ],

@@ -69,9 +69,11 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
 
   Future<void> stopAndGoToNext() async {
     await compatibilityNotifier.stop();
-    if (!context.mounted) return;
+    if (!mounted) return;
 
     await ref.read(core_domain.appProvider.notifier).completeCameraTest();
+    if (!mounted) return;
+
     ref.go(const core_domain.OpenOnboardingCTA());
   }
 
@@ -155,9 +157,7 @@ class _CameraTestScreenState extends ConsumerState<CameraTestScreen> {
         }
 
         await compatibilityNotifier.stop();
-
         if (!context.mounted) return;
-
         Navigator.pop(context);
       },
       child: OnboardingScaffold(

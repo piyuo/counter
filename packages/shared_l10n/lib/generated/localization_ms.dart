@@ -201,17 +201,17 @@ class LocalizationMs extends Localization {
       'Aktifkan pilihan ini untuk menampilkan ID penjejakan unik untuk setiap objek yang dijejaki.';
 
   @override
-  String get detection_screen_stay => 'Tempoh Tinggal';
+  String get detection_screen_stagnant => 'Tempoh Tinggal';
 
   @override
-  String get detection_screen_stay_help =>
-      'Berapa lama objek mesti berada dalam kawasan sebelum dikira sebagai tinggal.';
+  String get detection_screen_stagnant_help =>
+      'Berapa lama objek mesti berada dalam kawasan untuk dikira sebagai tinggal.';
 
   @override
-  String get detection_screen_stay_max_label => 'Ditunda';
+  String get detection_screen_stagnant_max_label => 'Ditunda';
 
   @override
-  String get detection_screen_stay_min_label => 'Serta-merta';
+  String get detection_screen_stagnant_min_label => 'Serta-merta';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -652,10 +652,10 @@ class LocalizationMs extends Localization {
   String get settings_screen_subscription_title => 'Langganan';
 
   @override
-  String get stayed => 'Kekal';
+  String get stagnanted => 'Kekal';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Mengira bilangan orang atau kenderaan yang berada di kawasan ini sekurang-kurangnya selama Tempoh Tinggal yang ditetapkan.\\n\\nTempoh Tinggal lalai ialah 15 saat dan boleh diubah dalam Tetapan.';
 
   @override

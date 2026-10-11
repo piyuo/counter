@@ -1,0 +1,44 @@
+{
+  "schema": 2,
+  "deviceId": "041bfec6-8923-4b09-be5f-0fd11d3df7f5",
+  "projectId": "project-001",
+  "assignId": "assign-001",
+  "observations": [
+    {
+      "granularity": "minutes5",
+      "year": 2026,
+      "month": 7,
+      "day": 13,
+      "hour": 19,
+      "minute": 20,
+      "confidenceRatioSum": 2572.21,
+      "confidenceSampleCount": 2963,
+      "confidenceRatio": 0.87,
+      "coveredSeconds": 123,
+      "expectedSeconds": 300,
+      "coverageRatio": 0.41,
+      "areas": [
+        {
+          "areaId": 0,
+          "areaName": "Global",
+          "passBy": 1,
+          "stagnant": 0,
+          "entry": 0,
+          "exit": 0,
+          "appear": 0,
+          "disappear": 0,
+          "occupancySampleCount": 2963,
+          "occupancySampleSum": 2933,
+          "occupancyAvg": 0.99,
+          "occupancyMax": 1,
+          "occupancyLast": 1,
+          "dwellSumSeconds": 6070,
+          "dwellSampleCount": 100,
+          "dwellAvgSeconds": 60.7,
+          "dwellMaxSeconds": 122.0
+        }
+      ],
+      "frameCount": 2963
+    }
+  ]
+}

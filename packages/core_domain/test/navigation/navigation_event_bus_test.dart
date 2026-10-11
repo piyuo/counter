@@ -135,6 +135,12 @@ void main() {
   });
 
   group('AppNavigationEvent subtypes', () {
+    test('OpenPayloadsHour path uses explicit date and hour components', () {
+      const event = OpenPayloadsHour(year: 2026, month: 1, day: 2, hour: 10);
+
+      expect(event.path, '/recent-payloads/hour/2026/1/2/10');
+    });
+
     test('OpenSettings is an AppNavigationEvent', () {
       expect(const OpenSettings(), isA<NavigationEvent>());
     });

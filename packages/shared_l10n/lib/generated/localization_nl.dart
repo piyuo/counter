@@ -201,17 +201,17 @@ class LocalizationNl extends Localization {
       'Schakel deze optie in om unieke track-ID\'s weer te geven voor elk gevolgd object.';
 
   @override
-  String get detection_screen_stay => 'Verblijftijd';
+  String get detection_screen_stagnant => 'Verblijftijd';
 
   @override
-  String get detection_screen_stay_help =>
-      'Hoe lang een object in het gebied moet blijven voordat het als verblijf wordt geteld.';
+  String get detection_screen_stagnant_help =>
+      'Hoe lang een object in het gebied moet blijven om als verblijf te tellen.';
 
   @override
-  String get detection_screen_stay_max_label => 'Vertraagd';
+  String get detection_screen_stagnant_max_label => 'Vertraagd';
 
   @override
-  String get detection_screen_stay_min_label => 'Direct';
+  String get detection_screen_stagnant_min_label => 'Direct';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -657,10 +657,10 @@ class LocalizationNl extends Localization {
   String get settings_screen_subscription_title => 'Abonnement';
 
   @override
-  String get stayed => 'Verbleven';
+  String get stagnanted => 'Verbleven';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Telt mensen of voertuigen die ten minste de ingestelde verblijftijd in dit gebied zijn gebleven.\\n\\nDe standaard verblijftijd is 15 seconden en kan worden gewijzigd in Instellingen.';
 
   @override

@@ -6,10 +6,10 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final recentPayloadsProvider = StreamProvider.autoDispose<List<core_domain.QueuedPayload>>((ref) async* {
+final recentPayloadsProvider = StreamProvider.autoDispose<List<core_domain.QueuedObservation>>((ref) async* {
   final repository = ref.read(core_domain.telemetryQueueProvider);
 
-  Future<List<core_domain.QueuedPayload>> safeFetch() async {
+  Future<List<core_domain.QueuedObservation>> safeFetch() async {
     return await repository.fetchRecent(daysBack: 7);
   }
 

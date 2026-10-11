@@ -1,5 +1,5 @@
-import 'package:core_domain/model/observation_state.dart';
-import 'package:core_runtime/observation/count_window_scheduler.dart';
+import 'package:core_domain/model/observation.dart';
+import 'package:core_runtime/observation/observation_scheduler.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -12,28 +12,22 @@ void main() {
         Duration currentMonotonic = Duration.zero;
 
         bool windowStarted = false;
-        DateTime? windowStart;
-        DateTime? windowStartBusiness;
         Duration missingAtStart = Duration.zero;
 
-        final scheduler = CountWindowScheduler(
+        final scheduler = ObservationScheduler(
           nowProvider: () => currentNow!,
           monotonicNowProvider: () => currentMonotonic,
-          onWindowStart: (startUtc, startBusiness, missing) {
+          onWindowStart: (startBusiness, missing) {
             windowStarted = true;
-            windowStart = startUtc;
-            windowStartBusiness = startBusiness;
             missingAtStart = missing;
           },
-          onWindowEnd: (_, __, ___) {},
+          onWindowEnd: (_, _) {},
         );
 
         scheduler.start();
         scheduler.ensureWindowActive();
 
         expect(windowStarted, true);
-        expect(windowStart, DateTime.utc(2024, 1, 1, 10, 0, 0));
-        expect(windowStartBusiness!.toUtc(), windowStart); // Local time should convert back to same UTC
         expect(scheduler.windowEndUtc, DateTime.utc(2024, 1, 1, 10, 5, 0));
         expect(missingAtStart, Duration.zero, reason: "First window started exactly at boundary, so start-gap is zero");
 
@@ -43,8 +37,6 @@ void main() {
 
         async.elapse(const Duration(minutes: 5, seconds: 1));
 
-        expect(windowStart, DateTime.utc(2024, 1, 1, 10, 5, 0));
-        expect(windowStartBusiness!.toUtc(), windowStart); // Local time should convert back to same UTC
         expect(scheduler.windowEndUtc, DateTime.utc(2024, 1, 1, 10, 10, 0));
         expect(missingAtStart, Duration.zero, reason: "Continuous rollover has no missing duration");
 
@@ -56,11 +48,11 @@ void main() {
       final now = DateTime.utc(2024, 1, 1, 10, 0, 0);
       var startCount = 0;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => now,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, ___) => startCount++,
-        onWindowEnd: (_, __, ___) {},
+        onWindowStart: (_, _) => startCount++,
+        onWindowEnd: (_, _) {},
       );
 
       scheduler.ensureWindowActive();
@@ -81,14 +73,14 @@ void main() {
         bool started = false;
         Duration? missingAtStart;
 
-        final scheduler = CountWindowScheduler(
+        final scheduler = ObservationScheduler(
           nowProvider: () => currentNow,
           monotonicNowProvider: () => currentMonotonic,
-          onWindowStart: (_, __, missing) {
+          onWindowStart: (_, missing) {
             started = true;
             missingAtStart = missing;
           },
-          onWindowEnd: (_, __, ___) {},
+          onWindowEnd: (_, _) {},
         );
 
         scheduler.ensureWindowActive();
@@ -118,11 +110,11 @@ void main() {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       Duration? reportedMissingAtStart;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, missing) => reportedMissingAtStart = missing,
-        onWindowEnd: (_, __, ___) {},
+        onWindowStart: (_, missing) => reportedMissingAtStart = missing,
+        onWindowEnd: (_, _) {},
       );
 
       // First window starts at 10:00
@@ -143,11 +135,11 @@ void main() {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       Duration? missingAtStart;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, missing) => missingAtStart = missing,
-        onWindowEnd: (_, __, ___) {},
+        onWindowStart: (_, missing) => missingAtStart = missing,
+        onWindowEnd: (_, _) {},
       );
 
       scheduler.ensureWindowActive();
@@ -170,11 +162,11 @@ void main() {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       var startCount = 0;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, ___) => startCount++,
-        onWindowEnd: (_, __, ___) {},
+        onWindowStart: (_, _) => startCount++,
+        onWindowEnd: (_, _) {},
       );
 
       scheduler.ensureWindowActive();
@@ -195,11 +187,11 @@ void main() {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       var endCount = 0;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, ___) {},
-        onWindowEnd: (_, __, ___) => endCount++,
+        onWindowStart: (_, _) {},
+        onWindowEnd: (_, _) => endCount++,
       );
 
       scheduler.ensureWindowActive();
@@ -217,11 +209,11 @@ void main() {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       var endCount = 0;
 
-      final scheduler = CountWindowScheduler(
+      final scheduler = ObservationScheduler(
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
-        onWindowStart: (_, __, ___) {},
-        onWindowEnd: (_, __, ___) => endCount++,
+        onWindowStart: (_, _) {},
+        onWindowEnd: (_, _) => endCount++,
       );
 
       scheduler.debugForceWindowEnd();
@@ -237,26 +229,26 @@ void main() {
     test('createStartLocal snaps down to nearest 5-minute boundary in local time', () {
       // createStartLocal always returns local time
       expect(
-        CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 0, 0)).toUtc(),
+        ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 0, 0)).toUtc(),
         DateTime.utc(2024, 1, 1, 10, 0, 0),
       );
       expect(
-        CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 3, 42)).toUtc(),
+        ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 3, 42)).toUtc(),
         DateTime.utc(2024, 1, 1, 10, 0, 0),
       );
       expect(
-        CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 59, 59)).toUtc(),
+        ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 59, 59)).toUtc(),
         DateTime.utc(2024, 1, 1, 10, 55, 0),
       );
     });
 
     test('createStartLocal + kWindowDuration returns end for current window', () {
       // createStartLocal returns local time, convert to UTC for comparison
-      final start1 = CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 0, 0));
+      final start1 = ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 0, 0));
       expect(start1.add(kWindowDuration).toUtc(), DateTime.utc(2024, 1, 1, 10, 5, 0));
-      final start2 = CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 3, 42));
+      final start2 = ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 3, 42));
       expect(start2.add(kWindowDuration).toUtc(), DateTime.utc(2024, 1, 1, 10, 5, 0));
-      final start3 = CountWindowScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 59, 59));
+      final start3 = ObservationScheduler.createStartLocal(DateTime.utc(2024, 1, 1, 10, 59, 59));
       expect(start3.add(kWindowDuration).toUtc(), DateTime.utc(2024, 1, 1, 11, 0, 0));
     });
   });

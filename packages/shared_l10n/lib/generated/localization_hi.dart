@@ -202,17 +202,17 @@ class LocalizationHi extends Localization {
       'इस विकल्प को सक्षम करें ताकि प्रत्येक ट्रैक की गई वस्तु के लिए अद्वितीय ट्रैक आईडी दिखाई दे।';
 
   @override
-  String get detection_screen_stay => 'रुकने का समय';
+  String get detection_screen_stagnant => 'रुकने का समय';
 
   @override
-  String get detection_screen_stay_help =>
-      'किसी वस्तु को रुकना माने जाने से पहले उसे क्षेत्र में कितनी देर रहना होगा।';
+  String get detection_screen_stagnant_help =>
+      'किसी वस्तु को क्षेत्र में कितनी देर रुकना होगा ताकि उसे रुकना गिना जाए।';
 
   @override
-  String get detection_screen_stay_max_label => 'विलंबित';
+  String get detection_screen_stagnant_max_label => 'विलंबित';
 
   @override
-  String get detection_screen_stay_min_label => 'तुरंत';
+  String get detection_screen_stagnant_min_label => 'तुरंत';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -650,10 +650,10 @@ class LocalizationHi extends Localization {
   String get settings_screen_subscription_title => 'सदस्यता';
 
   @override
-  String get stayed => 'रुके';
+  String get stagnanted => 'रुके';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'इस क्षेत्र में कम से कम निर्धारित ठहराव समय तक रुके लोगों या वाहनों की संख्या गिनता है।\\n\\nडिफ़ॉल्ट Stay Time 15 सेकंड है और इसे Settings में बदला जा सकता है।';
 
   @override

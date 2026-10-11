@@ -201,17 +201,17 @@ class LocalizationSr extends Localization {
       'Omogućite ovu opciju da prikazuje jedinstvene ID-je praćenja za svaki praćeni objekat.';
 
   @override
-  String get detection_screen_stay => 'Vreme zadržavanja';
+  String get detection_screen_stagnant => 'Vreme zadržavanja';
 
   @override
-  String get detection_screen_stay_help =>
-      'Koliko dugo objekat mora ostati u području pre nego što se računa kao zadržavanje.';
+  String get detection_screen_stagnant_help =>
+      'Koliko dugo objekat mora ostati u području da bi se računao kao zadržavanje.';
 
   @override
-  String get detection_screen_stay_max_label => 'Odloženo';
+  String get detection_screen_stagnant_max_label => 'Odloženo';
 
   @override
-  String get detection_screen_stay_min_label => 'Odmah';
+  String get detection_screen_stagnant_min_label => 'Odmah';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -654,10 +654,10 @@ class LocalizationSr extends Localization {
   String get settings_screen_subscription_title => 'Pretplata';
 
   @override
-  String get stayed => 'Ostali';
+  String get stagnanted => 'Ostali';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Broji ljude ili vozila koja su ostala u ovoj oblasti najmanje tokom podešenog vremena zadržavanja.\\n\\nPodrazumevano vreme zadržavanja je 15 sekundi i može se promeniti u Podešavanjima.';
 
   @override

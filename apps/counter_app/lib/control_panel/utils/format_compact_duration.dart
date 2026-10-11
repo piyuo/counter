@@ -19,20 +19,19 @@ class DurationParts {
   String toString() => 'DurationParts(days: $days, hours: $hours, minutes: $minutes, seconds: $seconds)';
 }
 
-/// Splits [totalSeconds] into day/hour/minute/second components.
-/// Rounds to the nearest whole second first (away from zero, per
-/// [double.round] semantics) before splitting.
-DurationParts breakdownDuration(double totalSeconds) {
-  final total = totalSeconds.round();
-  return DurationParts(total ~/ 86400, (total % 86400) ~/ 3600, (total % 3600) ~/ 60, total % 60);
-}
+/// Splits whole [totalSeconds] into day/hour/minute/second components.
+DurationParts breakdownDuration(int totalSeconds) => DurationParts(
+  totalSeconds ~/ 86400,
+  (totalSeconds % 86400) ~/ 3600,
+  (totalSeconds % 3600) ~/ 60,
+  totalSeconds % 60,
+);
 
 /// Formats [totalSeconds] into a compact, localized, at-most-two-unit
 /// string suitable for tight UI space (e.g. "2m 45s", "1d", "23h 59m").
 ///
 /// Tiers:
-/// - < 60s          -> seconds only, with fractional seconds shown to two
-///   decimal places
+/// - < 60s          -> whole seconds only
 /// - < 1 hour        -> minutes [+ seconds if seconds != 0]
 /// - < 1 day         -> hours [+ minutes if minutes != 0]
 /// - >= 1 day        -> days [+ hours if hours != 0]
@@ -41,8 +40,8 @@ DurationParts breakdownDuration(double totalSeconds) {
 /// a pure function: no widget tree dependency, trivially unit-testable, and
 /// usable outside of build methods (isolates, background formatting, etc).
 /// At call sites, pass `context.l` — e.g. `formatCompactDuration(context.l, seconds)`.
-String formatCompactDuration(Localization l10n, double totalSeconds) {
-  final total = totalSeconds.round();
+String formatCompactDuration(Localization l10n, int totalSeconds) {
+  final total = totalSeconds;
   final p = breakdownDuration(totalSeconds);
 
   String unit(String pattern, Object value) => pattern.replaceAll('%s', value.toString());
@@ -51,10 +50,7 @@ String formatCompactDuration(Localization l10n, double totalSeconds) {
       l10n.durationTwoUnit.replaceFirst('%first', first).replaceFirst('%second', second);
 
   if (total < 60) {
-    final seconds = totalSeconds == totalSeconds.truncateToDouble()
-        ? totalSeconds.toStringAsFixed(0)
-        : totalSeconds.toStringAsFixed(2);
-    return unit(l10n.durationSecondsShort, seconds);
+    return unit(l10n.durationSecondsShort, total);
   } else if (total < 3600) {
     if (p.seconds == 0) return unit(l10n.durationMinutesShort, p.minutes);
     return twoUnit(unit(l10n.durationMinutesShort, p.minutes), unit(l10n.durationSecondsShort, p.seconds));

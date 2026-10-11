@@ -202,17 +202,17 @@ class LocalizationIt extends Localization {
       'Abilita questa opzione per mostrare ID di tracciamento univoci per ogni oggetto tracciato.';
 
   @override
-  String get detection_screen_stay => 'Tempo di permanenza';
+  String get detection_screen_stagnant => 'Tempo di permanenza';
 
   @override
-  String get detection_screen_stay_help =>
-      'Quanto tempo un oggetto deve rimanere nell\'area prima di essere conteggiato come permanenza.';
+  String get detection_screen_stagnant_help =>
+      'Per quanto tempo un oggetto deve restare nell\'area per essere conteggiato come permanenza.';
 
   @override
-  String get detection_screen_stay_max_label => 'Ritardato';
+  String get detection_screen_stagnant_max_label => 'Ritardato';
 
   @override
-  String get detection_screen_stay_min_label => 'Immediato';
+  String get detection_screen_stagnant_min_label => 'Immediato';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -658,10 +658,10 @@ class LocalizationIt extends Localization {
   String get settings_screen_subscription_title => 'Abbonamento';
 
   @override
-  String get stayed => 'Rimasti';
+  String get stagnanted => 'Rimasti';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Conta le persone o i veicoli rimasti in quest\'area per almeno il Tempo di Permanenza configurato.\\n\\nIl Tempo di Permanenza predefinito è di 15 secondi e può essere modificato nelle Impostazioni.';
 
   @override

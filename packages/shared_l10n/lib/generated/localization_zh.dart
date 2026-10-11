@@ -190,16 +190,16 @@ class LocalizationZh extends Localization {
   String get detection_screen_show_track_id_help => '啟用此選項可顯示每個追蹤物體的唯一追蹤 ID。';
 
   @override
-  String get detection_screen_stay => '停留時間';
+  String get detection_screen_stagnant => '停留時間';
 
   @override
-  String get detection_screen_stay_help => '物件必須在區域內停留多久才會被計為一次停留。';
+  String get detection_screen_stagnant_help => '物件必須在區域內停留多久，才會被計為一次停留。';
 
   @override
-  String get detection_screen_stay_max_label => '延後';
+  String get detection_screen_stagnant_max_label => '延後';
 
   @override
-  String get detection_screen_stay_min_label => '立即';
+  String get detection_screen_stagnant_min_label => '立即';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -617,10 +617,10 @@ class LocalizationZh extends Localization {
   String get settings_screen_subscription_title => '訂閱';
 
   @override
-  String get stayed => '停留';
+  String get stagnanted => '停留';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       '統計在此區域內停留時間達到設定值的人員或車輛數量。\\n\\n預設停留時間為 15 秒，可在設定中修改。';
 
   @override
@@ -994,16 +994,16 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_show_track_id_help => '启用此选项以显示每个被跟踪对象的唯一跟踪 ID。';
 
   @override
-  String get detection_screen_stay => '停留时间';
+  String get detection_screen_stagnant => '停留时间';
 
   @override
-  String get detection_screen_stay_help => '对象必须在区域内停留多久才会被计为一次停留。';
+  String get detection_screen_stagnant_help => '对象必须在区域内停留多久，才会被计为一次停留。';
 
   @override
-  String get detection_screen_stay_max_label => '延迟';
+  String get detection_screen_stagnant_max_label => '延迟';
 
   @override
-  String get detection_screen_stay_min_label => '立即';
+  String get detection_screen_stagnant_min_label => '立即';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -1421,10 +1421,10 @@ class LocalizationZhCn extends LocalizationZh {
   String get settings_screen_subscription_title => '订阅';
 
   @override
-  String get stayed => '停留';
+  String get stagnanted => '停留';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       '统计在此区域内停留时间达到设定停留时间的人员或车辆数量。\\n\\n默认停留时间为15秒，可在设置中修改。';
 
   @override

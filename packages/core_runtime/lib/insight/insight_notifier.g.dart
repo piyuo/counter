@@ -13,14 +13,14 @@ part of 'insight_notifier.dart';
 final insightProvider = InsightNotifierProvider._();
 
 final class InsightNotifierProvider
-    extends $NotifierProvider<InsightNotifier, InsightState> {
+    extends $NotifierProvider<InsightNotifier, core_domain.InsightState> {
   InsightNotifierProvider._()
     : super(
         from: null,
         argument: null,
         retry: null,
         name: r'insightProvider',
-        isAutoDispose: true,
+        isAutoDispose: false,
         dependencies: null,
         $allTransitiveDependencies: null,
       );
@@ -33,27 +33,28 @@ final class InsightNotifierProvider
   InsightNotifier create() => InsightNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(InsightState value) {
+  Override overrideWithValue(core_domain.InsightState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<InsightState>(value),
+      providerOverride: $SyncValueProvider<core_domain.InsightState>(value),
     );
   }
 }
 
-String _$insightNotifierHash() => r'92019eca94d39fb5c560573a7e6ad7694ea98ce8';
+String _$insightNotifierHash() => r'5dfb85467b4f6de246b3b340b3d0f9ca77cdcb9d';
 
-abstract class _$InsightNotifier extends $Notifier<InsightState> {
-  InsightState build();
+abstract class _$InsightNotifier extends $Notifier<core_domain.InsightState> {
+  core_domain.InsightState build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
-    final ref = this.ref as $Ref<InsightState, InsightState>;
+    final ref =
+        this.ref as $Ref<core_domain.InsightState, core_domain.InsightState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<InsightState, InsightState>,
-              InsightState,
+              AnyNotifier<core_domain.InsightState, core_domain.InsightState>,
+              core_domain.InsightState,
               Object?,
               Object?
             >;

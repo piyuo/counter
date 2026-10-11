@@ -415,7 +415,7 @@ mixin $RecentPayloadsRouteData on GoRouteData {
 }
 
 RouteBase get $recentPayloadHourRouteData => GoRouteData.$route(
-  path: '/recent-payloads/hour/:slotMs',
+  path: '/recent-payloads/hour/:year/:month/:day/:hour',
   hasOverriddenOnExit: false,
   factory: $RecentPayloadHourRouteData._fromState,
 );
@@ -423,14 +423,17 @@ RouteBase get $recentPayloadHourRouteData => GoRouteData.$route(
 mixin $RecentPayloadHourRouteData on GoRouteData {
   static RecentPayloadHourRouteData _fromState(GoRouterState state) =>
       RecentPayloadHourRouteData(
-        slotMs: int.parse(state.pathParameters['slotMs']!),
+        year: int.parse(state.pathParameters['year']!),
+        month: int.parse(state.pathParameters['month']!),
+        day: int.parse(state.pathParameters['day']!),
+        hour: int.parse(state.pathParameters['hour']!),
       );
 
   RecentPayloadHourRouteData get _self => this as RecentPayloadHourRouteData;
 
   @override
   String get location => GoRouteData.$location(
-    '/recent-payloads/hour/${Uri.encodeComponent(_self.slotMs.toString())}',
+    '/recent-payloads/hour/${Uri.encodeComponent(_self.year.toString())}/${Uri.encodeComponent(_self.month.toString())}/${Uri.encodeComponent(_self.day.toString())}/${Uri.encodeComponent(_self.hour.toString())}',
   );
 
   @override

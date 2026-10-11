@@ -35,13 +35,13 @@ class PayloadDetailScreen extends ConsumerStatefulWidget {
 class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
   bool _isResending = false;
 
-  Future<void> _resend(core_domain.QueuedPayload pendingPayload) async {
+  Future<void> _resend(core_domain.QueuedObservation pendingPayload) async {
     setState(() => _isResending = true);
     try {
-      await resendQueuedPayloads(
+      await resendQueuedObservations(
         context: context,
         telemetryService: ref.read(core_domain.telemetryServiceProvider),
-        payloads: [pendingPayload],
+        observations: [pendingPayload],
       );
     } finally {
       if (mounted) setState(() => _isResending = false);
@@ -88,12 +88,13 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
             return Center(child: Text(context.l.payloads_screen_payload_not_exists));
           }
 
-          final payload = pendingPayload.payload;
-          final start = payload.startUtc.toLocal();
+          final observation = pendingPayload.observation;
+          final start = observation.dateTime;
           final locale = Localizations.localeOf(context).toString();
           final dayFmt = DateFormat.yMMMMd(locale);
           final hourFmt = DateFormat.jm(locale);
-          final coveragePercent = (payload.coverage * 100.0).clamp(0.0, 100.0);
+          final coveragePercent = (observation.coverageRatio * 100.0).clamp(0.0, 100.0);
+          final missingSeconds = observation.missingSeconds;
 
           return ListView(
             controller: scrollController,
@@ -104,12 +105,12 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                 title: '${dayFmt.format(start)} ${hourFmt.format(start)}',
                 subtitle: payloadDeliveryStatusDescription(context, pendingPayload, hourFmt),
               ),
-              _SectionHeader('${payload.session}  #${payload.sequence}'),
+              _SectionHeader('ID ${observation.id}'),
               _SummaryTile(
                 label: context.l.payloads_screen_coverage,
                 value: formatPercent(context, coveragePercent),
                 valueColor: _percentColor(coveragePercent),
-                subtitle: payload.isPartial ? context.l.payloads_screen_partial : null,
+                subtitle: coveragePercent < 100 ? context.l.payloads_screen_partial : null,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -124,19 +125,22 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              _SummaryTile(label: context.l.payloads_screen_process_fps, value: payload.fps.toStringAsFixed(2)),
+              _SummaryTile(
+                label: context.l.payloads_screen_process_fps,
+                value: (observation.frameCount / core_domain.kWindowDuration.inSeconds).toStringAsFixed(2),
+              ),
               _SummaryTile(
                 label: context.l.payloads_screen_confidence,
-                value: formatPercent(context, payload.confidence),
-                valueColor: _percentColor(payload.confidence),
+                value: formatPercent(context, observation.confidenceRatio * 100),
+                valueColor: _percentColor(observation.confidenceRatio * 100),
               ),
-              _SummaryTile(label: context.l.payloads_screen_frame_processed, value: '${payload.frameCount}'),
+              _SummaryTile(label: context.l.payloads_screen_frame_processed, value: '${observation.frameCount}'),
               _SummaryTile(
                 label: context.l.payloads_screen_missing_time,
-                value: formatCompactDuration(context.l, payload.missingSec.toDouble()),
+                value: formatCompactDuration(context.l, missingSeconds),
               ),
               Divider(height: 32, color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
-              for (var i = 0; i < payload.areas.length; i++) ...[
+              for (var i = 0; i < observation.areas.length; i++) ...[
                 if (i > 0)
                   Divider(
                     height: 24,
@@ -144,7 +148,7 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                     endIndent: 16,
                     color: Theme.of(context).dividerColor.withValues(alpha: 0.4),
                   ),
-                _AreaListItem(area: payload.areas[i]),
+                _AreaListItem(area: observation.areas[i]),
               ],
               const SizedBox(height: 24),
             ],
@@ -241,7 +245,7 @@ class _SummaryTile extends StatelessWidget {
 class _AreaListItem extends StatelessWidget {
   const _AreaListItem({required this.area});
 
-  final core_domain.AreaPayload area;
+  final core_domain.AreaMetrics area;
 
   @override
   Widget build(BuildContext context) {
@@ -251,8 +255,8 @@ class _AreaListItem extends StatelessWidget {
         _SectionHeader('${context.l.payloads_screen_area} ${area.areaId}'),
         _MetricRow(label: context.l.passed_by, value: '${area.passBy}', icon: Icons.moving, iconColor: Colors.blueGrey),
         _MetricRow(
-          label: context.l.stayed,
-          value: '${area.stay}',
+          label: context.l.stagnanted,
+          value: '${area.stagnant}',
           icon: Icons.accessibility_new_outlined,
           iconColor: Colors.blue.shade600,
         ),
@@ -270,10 +274,13 @@ class _AreaListItem extends StatelessWidget {
         ),
         _MetricRow(label: context.l.appeared, value: '${area.appear}'),
         _MetricRow(label: context.l.disappeared, value: '${area.disappear}'),
-        _MetricRow(label: context.l.average_occupancy, value: area.avgOccupancy.toStringAsFixed(2)),
-        _MetricRow(label: context.l.maximum_occupancy, value: '${area.maxOccupancy}'),
-        _MetricRow(label: context.l.average_stay, value: formatCompactDuration(context.l, area.avgDwellSec)),
-        _MetricRow(label: context.l.maximum_stay, value: formatCompactDuration(context.l, area.maxDwellSec)),
+        _MetricRow(label: context.l.average_occupancy, value: area.occupancyAvg.toStringAsFixed(2)),
+        _MetricRow(label: context.l.maximum_occupancy, value: '${area.occupancyMax}'),
+        _MetricRow(
+          label: context.l.average_stay,
+          value: formatCompactDuration(context.l, area.dwellAvgSeconds.round()),
+        ),
+        _MetricRow(label: context.l.maximum_stay, value: formatCompactDuration(context.l, area.dwellMaxSeconds)),
       ],
     );
   }

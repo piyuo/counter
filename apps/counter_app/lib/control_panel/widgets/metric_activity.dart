@@ -38,7 +38,7 @@ class MetricEvents extends StatelessWidget {
               child: _MetricItem(value: data.passBy, label: context.l.passed_by, valueColor: valueColor),
             ),
             Expanded(
-              child: _MetricItem(value: data.stayed, label: context.l.stayed, valueColor: valueColor),
+              child: _MetricItem(value: data.stayed, label: context.l.stagnanted, valueColor: valueColor),
             ),
             Expanded(
               child: _MetricItem(value: data.entered, label: context.l.entered, valueColor: valueColor),
@@ -101,7 +101,7 @@ class _MetricItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<String, String> infoContent = {
       context.l.passed_by: context.l.passed_by_help,
-      context.l.stayed: context.l.stayed_help,
+      context.l.stagnanted: context.l.stagnanted_help,
       context.l.entered: context.l.entered_help,
       context.l.exited: context.l.exited_help,
       context.l.appeared: context.l.appeared_help,

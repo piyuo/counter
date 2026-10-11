@@ -25,9 +25,19 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
+  StreamSubscription<dynamic>? _observationSubscription;
+
+  @override
+  void dispose() {
+    _observationSubscription?.cancel();
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
+
+    _listenToObservations();
 
     Future.microtask(() {
       // Start the boot sequence. boot() orchestrates hardware + app-flow
@@ -47,6 +57,36 @@ class _AppShellState extends ConsumerState<AppShell> {
     });
   }
 
+  void _listenToObservations() {
+    final observationService = ref.read(core_domain.observationServiceProvider);
+    final telemetryService = ref.read(core_domain.telemetryServiceProvider);
+    final analyticsService = ref.read(core_domain.analyticsServiceProvider);
+
+    _observationSubscription = observationService.snapshots.listen((snapshot) {
+      unawaited(_processObservation(snapshot, telemetryService, analyticsService));
+    });
+  }
+
+  Future<void> _processObservation(dynamic snapshot, dynamic telemetryService, dynamic analyticsService) async {
+    try {
+      await analyticsService.add(snapshot);
+    } catch (error, stackTrace) {
+      appkit.logDebug(
+        '[app_shell] Failed to add analytics observation: $error, '
+        'stack trace: $stackTrace',
+      );
+    }
+
+    try {
+      await telemetryService.enqueue(snapshot);
+    } catch (error, stackTrace) {
+      appkit.logDebug(
+        '[app_shell] Failed to enqueue telemetry payload: $error, '
+        'stack trace: $stackTrace',
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final appLocaleDelegates = [
@@ -62,6 +102,15 @@ class _AppShellState extends ConsumerState<AppShell> {
     ref.listen<core_domain.AppFlow>(core_domain.appFlowProvider, (previous, next) {
       if (previous is core_domain.OnboardingBegin && next is core_domain.SessionRunning) {
         ref.read(feature_pip.pipProvider.notifier).slideUp(feature_pip.SlidingPanelState.halfOpen);
+      }
+    });
+
+    ref.listen(core_domain.appProvider, (previous, next) {
+      final previousConfig = previous?.asData?.value.uploadConfig;
+      final nextConfig = next.asData?.value.uploadConfig;
+
+      if (nextConfig != null && previousConfig != nextConfig) {
+        ref.read(core_domain.telemetryServiceProvider).refreshSchedule();
       }
     });
 

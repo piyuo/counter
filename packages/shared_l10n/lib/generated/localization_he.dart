@@ -201,17 +201,17 @@ class LocalizationHe extends Localization {
       'הפעל אפשרות זו כדי להציג מזהי עקיבה ייחודיים לכל אובייקט שעוקב אחריו.';
 
   @override
-  String get detection_screen_stay => 'זמן שהייה';
+  String get detection_screen_stagnant => 'זמן שהייה';
 
   @override
-  String get detection_screen_stay_help =>
-      'משך הזמן שאובייקט חייב להישאר באזור לפני שייחשב כשהייה.';
+  String get detection_screen_stagnant_help =>
+      'כמה זמן אובייקט צריך להישאר באזור כדי להיחשב כשהייה.';
 
   @override
-  String get detection_screen_stay_max_label => 'מושהה';
+  String get detection_screen_stagnant_max_label => 'מושהה';
 
   @override
-  String get detection_screen_stay_min_label => 'מיידי';
+  String get detection_screen_stagnant_min_label => 'מיידי';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -645,10 +645,10 @@ class LocalizationHe extends Localization {
   String get settings_screen_subscription_title => 'מינוי';
 
   @override
-  String get stayed => 'שהו';
+  String get stagnanted => 'שהו';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'סופר אנשים או כלי רכב שנשארו באזור זה לפחות למשך זמן השהייה שהוגדר.\\n\\nברירת המחדל של זמן השהייה היא 15 שניות וניתן לשנות אותה בהגדרות.';
 
   @override

@@ -6,6 +6,16 @@ in this file.
 The format follows a simple versioning strategy based on the `schema`
 field included in every upload.
 
+## Schema 2 (2026-10-09)
+
+### Changes
+
+-   Renamed the per-area event-count field from `dwell` to `stagnant`.
+-   Replaced packed `granularity`, `date`, and `time` fields with business-time components.
+-   Added an explicit per-payload `granularity` field.
+-   Added optional `confidence`, `coverage`, `avgOccupancy`, and `avgDwell` values.
+-   Updated `payload-schema-v2.json` and `payload-example-v2.json`.
+
 ------------------------------------------------------------------------
 
 ## Schema 1 (2026-07-14)

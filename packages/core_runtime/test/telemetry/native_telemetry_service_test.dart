@@ -8,7 +8,6 @@
 import 'dart:async';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/telemetry/models/telemetry_payload.dart';
 import 'package:core_runtime/telemetry/native_telemetry_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -17,22 +16,20 @@ import 'package:flutter_test/flutter_test.dart';
 // ---------------------------------------------------------------------------
 
 class _StubQueue implements core_domain.TelemetryQueue {
-  final _rows = <core_domain.QueuedPayload>[];
+  final _rows = <core_domain.QueuedObservation>[];
   int fetchReadyCalls = 0;
 
-  void seed(core_domain.TelemetryPayload payload) {
-    _rows.add(
-      core_domain.QueuedPayload(id: getPayloadId(payload), payload: payload, createdAtUtc: DateTime.utc(2099, 1, 1)),
-    );
+  void seed(core_domain.Observation observation) {
+    _rows.add(core_domain.QueuedObservation(observation: observation, createdAtUtc: DateTime.utc(2099, 1, 1)));
   }
 
   @override
-  Future<void> enqueue(core_domain.TelemetryPayload payload) async {
-    seed(payload);
+  Future<void> enqueue(core_domain.Observation observation) async {
+    seed(observation);
   }
 
   @override
-  Future<List<core_domain.QueuedPayload>> fetchReady({int limit = 10}) async {
+  Future<List<core_domain.QueuedObservation>> fetchReady({int limit = 10}) async {
     fetchReadyCalls += 1;
     return _rows.take(limit).toList(growable: false);
   }
@@ -57,15 +54,15 @@ class _StubQueue implements core_domain.TelemetryQueue {
   Future<void> pruneExpired(DateTime before) async {}
 
   @override
-  Future<void> markUploadedBatch(List<String> ids) async {
-    _rows.removeWhere((row) => ids.contains(row.id));
+  Future<void> markUploadedBatch(List<int> observationIds) async {
+    _rows.removeWhere((row) => observationIds.contains(row.observation.id));
   }
 
   @override
   Future<int> pendingCount() async => _rows.length;
 
   @override
-  Future<List<core_domain.QueuedPayload>> fetchRecent({int daysBack = 7}) async {
+  Future<List<core_domain.QueuedObservation>> fetchRecent({int daysBack = 7}) async {
     return const [];
   }
 
@@ -82,8 +79,7 @@ class _StubSerializer implements core_domain.PayloadSerializer {
 
   @override
   List<int> serialize(
-    List<core_domain.TelemetryPayload> payloads, {
-    required int schemaVersion,
+    List<core_domain.Observation> observations, {
     required String deviceId,
     String? projectId,
     String? assignId,
@@ -131,19 +127,21 @@ void main() {
   group('NativeTelemetryService', () {
     _StubQueue makeQueue() => _StubQueue();
 
-    core_domain.TelemetryPayload makePayload(String id) {
-      return core_domain.TelemetryPayload(
-        startUtc: DateTime.utc(2026, 1, 1),
-        startBusiness: DateTime(2026, 1, 1),
-        businessDate: '2026-01-01',
-        session: 'session-1',
-        sequence: 1,
+    core_domain.Observation makeObservation() {
+      return core_domain.Observation(
+        granularity: core_domain.ObservationGranularity.minutes5,
+        year: 2026,
+        month: 1,
+        day: 1,
+        hour: 0,
+        minute: 0,
         frameCount: 0,
-        missingSec: 0,
-        confidence: 0.0,
-        isPartial: false,
-        coverage: 1.0,
-        fps: 0.0,
+        confidenceRatioSum: 0,
+        confidenceSampleCount: 0,
+        confidenceRatio: 0,
+        coveredSeconds: 0,
+        expectedSeconds: 0,
+        coverageRatio: 0,
         areas: const [],
       );
     }
@@ -201,22 +199,7 @@ void main() {
       final queue = makeQueue();
       final svc = makeService(queue: queue);
 
-      await svc.enqueue(
-        core_domain.TelemetryPayload(
-          startUtc: DateTime.utc(2026, 1, 1),
-          startBusiness: DateTime(2026, 1, 1),
-          businessDate: '2026-01-01',
-          session: 'session-1',
-          sequence: 1,
-          frameCount: 0,
-          missingSec: 0,
-          confidence: 0.0,
-          isPartial: false,
-          coverage: 1.0,
-          fps: 0.0,
-          areas: const [],
-        ),
-      );
+      await svc.enqueue(makeObservation());
 
       expect(await queue.pendingCount(), 1);
     });
@@ -236,7 +219,7 @@ void main() {
     });
 
     test('flush returns false when delivery fails and leaves payload pending', () async {
-      final queue = makeQueue()..seed(makePayload('p1'));
+      final queue = makeQueue()..seed(makeObservation());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
       ]);
@@ -374,7 +357,7 @@ void main() {
 
     test('failed run keeps payload pending', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makePayload('p1'));
+      final queue = makeQueue()..seed(makeObservation());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
       ]);
@@ -394,7 +377,7 @@ void main() {
 
     test('session unavailable leaves payload pending', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makePayload('p1'));
+      final queue = makeQueue()..seed(makeObservation());
       final svc = makeService(config: null, queue: queue, nowProvider: () => fakeNow);
 
       await svc.runScheduledUploadForTest();
@@ -406,7 +389,7 @@ void main() {
 
     test('failed run is retried by next scheduled run', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makePayload('p1'));
+      final queue = makeQueue()..seed(makeObservation());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
         const core_domain.TelemetryResponse(v: 1, ok: true, data: core_domain.ServerData()),

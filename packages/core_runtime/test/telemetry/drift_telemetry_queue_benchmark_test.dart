@@ -43,19 +43,14 @@ void main() {
       print('\n=== fetchRecent STRESS TEST ===');
       print('Inserting $totalPayloads payloads over $daysBack days...');
 
-      // Insert payloads
+      // Benchmark payload insertion and fetch throughput.
       stopwatch.start();
       final now = DateTime.now().toUtc();
       for (int day = 0; day < daysBack; day++) {
         for (int hour = 0; hour < 24; hour++) {
           for (int minute = 0; minute < 12; minute++) {
             final createdAt = now.subtract(Duration(days: day, hours: hour, minutes: minute * 5));
-            final payload = _createTestPayload(
-              payloadId: 'payload-${day * 24 * 12 + hour * 12 + minute}',
-              startUtc: createdAt,
-              endUtc: createdAt.add(const Duration(minutes: 5)),
-            );
-            await repository.enqueue(payload);
+            await repository.enqueue(_createTestObservation(startUtc: createdAt));
           }
         }
       }
@@ -101,12 +96,7 @@ void main() {
         for (int hour = 0; hour < 24; hour++) {
           for (int minute = 0; minute < 12; minute++) {
             final createdAt = now.subtract(Duration(days: day, hours: hour, minutes: minute * 5));
-            final payload = _createTestPayload(
-              payloadId: 'payload-${day * 24 * 12 + hour * 12 + minute}',
-              startUtc: createdAt,
-              endUtc: createdAt.add(const Duration(minutes: 5)),
-            );
-            await repository.enqueue(payload);
+            await repository.enqueue(_createTestObservation(startUtc: createdAt));
           }
         }
       }
@@ -114,7 +104,7 @@ void main() {
       // Mark half as delivered
       final allPayloads = await repository.fetchRecent(daysBack: daysBack);
       final half = (allPayloads.length / 2).ceil();
-      final deliveredIds = allPayloads.take(half).map((p) => p.id).toList();
+      final deliveredIds = allPayloads.take(half).map((p) => p.observation.id).toList();
       await repository.markUploadedBatch(deliveredIds);
 
       // Fetch again
@@ -132,37 +122,42 @@ void main() {
   });
 }
 
-/// Creates a realistic test telemetry payload with all required fields
-core_domain.TelemetryPayload _createTestPayload({
-  required String payloadId,
-  required DateTime startUtc,
-  required DateTime endUtc,
-}) {
+/// Creates a realistic test observation with all required fields.
+core_domain.Observation _createTestObservation({required DateTime startUtc}) {
   final startBusiness = startUtc.toLocal();
-  final businessDate =
-      '${startBusiness.year.toString().padLeft(4, '0')}-${startBusiness.month.toString().padLeft(2, '0')}-${startBusiness.day.toString().padLeft(2, '0')}';
-  return core_domain.TelemetryPayload(
-    startUtc: startUtc,
-    startBusiness: startBusiness,
-    businessDate: businessDate,
-    session: payloadId,
-    sequence: 1,
+  return core_domain.Observation(
+    granularity: core_domain.ObservationGranularity.minutes5,
+    year: startBusiness.year,
+    month: startBusiness.month,
+    day: startBusiness.day,
+    hour: startBusiness.hour,
+    minute: startBusiness.minute,
     frameCount: 100,
-    missingSec: 0,
-    confidence: 0.95,
-    isPartial: false,
-    coverage: 1.0,
-    fps: 30.0,
-    areas: [
-      core_domain.AreaPayload(
+    confidenceRatioSum: 0.95,
+    confidenceSampleCount: 1,
+    confidenceRatio: 95,
+    coveredSeconds: 1,
+    expectedSeconds: 1,
+    coverageRatio: 1,
+    areas: const [
+      core_domain.AreaMetrics(
         areaId: 1,
+        areaName: 'Area 1',
         passBy: 5,
+        stagnant: 0,
         entry: 3,
         exit: 2,
-        avgOccupancy: 0.5,
-        maxOccupancy: 3,
-        avgDwellSec: 2.5,
-        maxDwellSec: 5,
+        appear: 0,
+        disappear: 0,
+        occupancySampleSum: 1,
+        occupancySampleCount: 2,
+        occupancyAvg: 0.5,
+        occupancyMax: 3,
+        occupancyLast: 1,
+        dwellSumSeconds: 5,
+        dwellSampleCount: 2,
+        dwellAvgSeconds: 2.5,
+        dwellMaxSeconds: 5,
       ),
     ],
   );

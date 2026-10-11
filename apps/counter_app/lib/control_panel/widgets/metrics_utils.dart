@@ -8,7 +8,7 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 List<MetricCardData> mapVisionMetricsToCardData(
   BuildContext context, {
-  required core_domain.ObservationState windowCount,
+  required core_domain.Observation observation,
   required core_domain.InterestAreaState areaState,
   required String countAvgOccLabel,
   required String countMaxOccLabel,
@@ -21,12 +21,10 @@ List<MetricCardData> mapVisionMetricsToCardData(
   ];
 
   final areaColors = {for (final area in areaState.areas) area.id: area.color};
-
   final panels = <MetricCardData>[];
 
   for (final area in orderedAreas) {
-    final metrics = windowCount.areas[area.id];
-
+    final metrics = observation.areas.where((e) => e.areaId == area.id).firstOrNull;
     if (metrics == null) {
       continue;
     }
@@ -41,14 +39,14 @@ List<MetricCardData> mapVisionMetricsToCardData(
         valueColor: valueColor,
 
         hero: HeroMetricData(
-          value: '${metrics.currentOccupancy}',
+          value: '${metrics.occupancyLast}',
           label: context.l.current_occupancy,
           valueColor: Colors.grey.shade900,
         ),
 
         activity: ActivityMetricData(
           passBy: '${metrics.passBy}',
-          stayed: '${metrics.stay}',
+          stayed: '${metrics.stagnant}',
           entered: '${metrics.entry}',
           exited: '${metrics.exit}',
         ),
@@ -56,10 +54,10 @@ List<MetricCardData> mapVisionMetricsToCardData(
         details: DetailMetricData(appeared: '${metrics.appear}', disappeared: '${metrics.disappear}'),
 
         summary: SummaryMetricData(
-          avgOccupancy: metrics.avgOccupancy.toStringAsFixed(1),
-          maxOccupancy: '${metrics.maxOccupancy}',
-          avgDwell: metrics.avgDwellSec,
-          maxDwell: metrics.maxDwellSec,
+          avgOccupancy: metrics.occupancyAvg.toStringAsFixed(1),
+          maxOccupancy: '${metrics.occupancyMax}',
+          avgDwellSeconds: metrics.dwellAvgSeconds,
+          maxDwellSeconds: metrics.dwellMaxSeconds,
         ),
       ),
     );
@@ -68,20 +66,20 @@ List<MetricCardData> mapVisionMetricsToCardData(
   return panels;
 }
 
-List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.AreaPayload> areas}) {
+List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.AreaMetrics> areas}) {
   final orderedAreas = [...areas]..sort((a, b) => a.areaId.compareTo(b.areaId));
 
   return [
     for (final area in orderedAreas)
       MetricCardData(
-        title: area.areaId == -1 ? null : 'Area ${area.areaId}',
+        title: area.areaId == core_domain.kGlobalAreaId ? null : 'Area ${area.areaId}',
         valueColor: Colors.white,
 
         hero: HeroMetricData(value: '-', label: 'Occupancy', valueColor: Colors.grey.shade900),
 
         activity: ActivityMetricData(
           passBy: '${area.passBy}',
-          stayed: '${area.stay}',
+          stayed: '${area.stagnant}',
           entered: '${area.entry}',
           exited: '${area.exit}',
         ),
@@ -89,10 +87,10 @@ List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.Area
         details: DetailMetricData(appeared: '${area.appear}', disappeared: '${area.disappear}'),
 
         summary: SummaryMetricData(
-          avgOccupancy: area.avgOccupancy.toStringAsFixed(1),
-          maxOccupancy: '${area.maxOccupancy}',
-          avgDwell: area.avgDwellSec,
-          maxDwell: area.maxDwellSec,
+          avgOccupancy: area.occupancyAvg.toStringAsFixed(1),
+          maxOccupancy: '${area.occupancyMax}',
+          avgDwellSeconds: area.dwellAvgSeconds,
+          maxDwellSeconds: area.dwellMaxSeconds,
         ),
       ),
   ];

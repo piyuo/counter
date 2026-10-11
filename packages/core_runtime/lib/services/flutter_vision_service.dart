@@ -20,7 +20,6 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
   FlutterVisionService();
 
   vision.VisionController? _activeController;
-  StreamSubscription<core_domain.ObservationState>? _snapshotSubscription;
   bool _telemetryUploadStarted = false;
 
   List<core_domain.InterestArea> _interestAreas = const [];
@@ -47,7 +46,10 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
           .logEvent(core_domain.VisionStopEvent(usageDuration: lastUsageDuration));
       _startTime = null;
     }
-    await _stopTelemetryBridge();
+    if (_telemetryUploadStarted) {
+      ref.read(core_domain.telemetryServiceProvider).stopPeriodicUpload();
+      _telemetryUploadStarted = false;
+    }
     await controller?.stop();
   }
 
@@ -105,7 +107,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     await stop();
     final observationService = ref.read(core_domain.observationServiceProvider);
     observationService.setThresholdSeconds(
-      stayThresholdSeconds: detectionParams.stayThresholdSeconds,
+      stagnantThresholdSeconds: detectionParams.stagnantThresholdSeconds,
       disappearThresholdSeconds: detectionParams.disappearThresholdSeconds,
     );
     observationService.start();
@@ -154,7 +156,10 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     );
 
     try {
-      await _ensureTelemetryBridgeStarted();
+      if (!_telemetryUploadStarted) {
+        ref.read(core_domain.telemetryServiceProvider).startPeriodicUpload();
+        _telemetryUploadStarted = true;
+      }
     } catch (error, stackTrace) {
       appkit.logWarning('[VisionRuntime] Failed to start telemetry bridge: $error');
       appkit.logDebug('[VisionRuntime] Telemetry bridge error stack trace: $stackTrace');
@@ -200,7 +205,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
 
     final countController = ref.read(observationProvider.notifier);
     countController.setThresholdSeconds(
-      stayThresholdSeconds: detectionParams.stayThresholdSeconds,
+      stagnantThresholdSeconds: detectionParams.stagnantThresholdSeconds,
       disappearThresholdSeconds: detectionParams.disappearThresholdSeconds,
     );
   }
@@ -229,43 +234,4 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     };
   }
 */
-  Future<void> _ensureTelemetryBridgeStarted() async {
-    if (_snapshotSubscription != null) {
-      return;
-    }
-
-    final appState = await ref.read(core_domain.appProvider.future);
-    final mapper = WindowResultMapper(deviceId: appState.deviceId);
-
-    _snapshotSubscription = ref.read(observationProvider.notifier).snapshots.listen((snapshot) {
-      unawaited(_enqueueWindowResult(snapshot, mapper));
-    });
-
-    if (!_telemetryUploadStarted) {
-      ref.read(core_domain.telemetryServiceProvider).startPeriodicUpload();
-      _telemetryUploadStarted = true;
-    }
-  }
-
-  Future<void> _enqueueWindowResult(core_domain.ObservationState snapshot, WindowResultMapper mapper) async {
-    try {
-      final payload = mapper.map(snapshot);
-      await ref.read(core_domain.telemetryServiceProvider).enqueue(payload);
-    } catch (error, stackTrace) {
-      appkit.logDebug(
-        '[VisionRuntime] Failed to enqueue telemetry payload from window result: $error, stack trace: $stackTrace',
-      );
-    }
-  }
-
-  Future<void> _stopTelemetryBridge() async {
-    final subscription = _snapshotSubscription;
-    _snapshotSubscription = null;
-    await subscription?.cancel();
-
-    if (_telemetryUploadStarted) {
-      ref.read(core_domain.telemetryServiceProvider).stopPeriodicUpload();
-      _telemetryUploadStarted = false;
-    }
-  }
 }

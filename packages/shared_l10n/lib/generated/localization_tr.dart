@@ -202,17 +202,17 @@ class LocalizationTr extends Localization {
       'Bu seçeneği etkinleştirerek, izlenen her nesne için benzersiz track ID\'lerini görüntüleyin.';
 
   @override
-  String get detection_screen_stay => 'Kalma Süresi';
+  String get detection_screen_stagnant => 'Kalma Süresi';
 
   @override
-  String get detection_screen_stay_help =>
+  String get detection_screen_stagnant_help =>
       'Bir nesnenin kalma olarak sayılması için alanda ne kadar süre kalması gerektiğini belirler.';
 
   @override
-  String get detection_screen_stay_max_label => 'Gecikmeli';
+  String get detection_screen_stagnant_max_label => 'Gecikmeli';
 
   @override
-  String get detection_screen_stay_min_label => 'Anında';
+  String get detection_screen_stagnant_min_label => 'Anında';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -653,10 +653,10 @@ class LocalizationTr extends Localization {
   String get settings_screen_subscription_title => 'Abonelik';
 
   @override
-  String get stayed => 'Kaldı';
+  String get stagnanted => 'Kaldı';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Bu alanda en az ayarlanan Bekleme Süresi kadar kalan kişi veya araçları sayar.\\n\\nVarsayılan Bekleme Süresi 15 saniyedir ve Ayarlar\'dan değiştirilebilir.';
 
   @override

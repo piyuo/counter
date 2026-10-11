@@ -16,7 +16,7 @@ class VisionScreen extends ConsumerWidget {
     final appRuntimeState = ref.watch(core_domain.appRuntimeProvider);
     final showSplash = !appRuntimeState.isVisionRunning;
     final isEditingAreas = ref.watch(core_runtime.interestAreaProvider.select((state) => state.isEditing));
-    final observationState = ref.watch(core_runtime.observationProvider);
+    final observation = ref.watch(core_runtime.observationProvider);
 
     return Stack(
       children: [
@@ -52,7 +52,7 @@ class VisionScreen extends ConsumerWidget {
 
                 return isEditingAreas
                     ? InterestAreaEditorOverlay(viewport: viewport)
-                    : InterestAreaViewerOverlay(viewport: viewport, observationState: observationState);
+                    : InterestAreaViewerOverlay(viewport: viewport, observation: observation);
               },
         ),
       ],

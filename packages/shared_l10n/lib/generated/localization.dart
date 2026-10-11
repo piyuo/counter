@@ -486,29 +486,29 @@ abstract class Localization {
   /// **'Enable this option to show unique track IDs for each tracked object.'**
   String get detection_screen_show_track_id_help;
 
-  /// No description provided for @detection_screen_stay.
+  /// No description provided for @detection_screen_stagnant.
   ///
   /// In en, this message translates to:
-  /// **'Stay Time'**
-  String get detection_screen_stay;
+  /// **'Dwell Time'**
+  String get detection_screen_stagnant;
 
-  /// No description provided for @detection_screen_stay_help.
+  /// No description provided for @detection_screen_stagnant_help.
   ///
   /// In en, this message translates to:
-  /// **'How long an object must remain in the area before it is counted as a stay.'**
-  String get detection_screen_stay_help;
+  /// **'How long an object must stay in the area to count as dwelling.'**
+  String get detection_screen_stagnant_help;
 
-  /// No description provided for @detection_screen_stay_max_label.
+  /// No description provided for @detection_screen_stagnant_max_label.
   ///
   /// In en, this message translates to:
   /// **'Delayed'**
-  String get detection_screen_stay_max_label;
+  String get detection_screen_stagnant_max_label;
 
-  /// No description provided for @detection_screen_stay_min_label.
+  /// No description provided for @detection_screen_stagnant_min_label.
   ///
   /// In en, this message translates to:
   /// **'Instant'**
-  String get detection_screen_stay_min_label;
+  String get detection_screen_stagnant_min_label;
 
   /// No description provided for @detection_screen_stay_threshold.
   ///
@@ -1302,17 +1302,17 @@ abstract class Localization {
   /// **'Subscription'**
   String get settings_screen_subscription_title;
 
-  /// No description provided for @stayed.
+  /// No description provided for @stagnanted.
   ///
   /// In en, this message translates to:
   /// **'Stayed'**
-  String get stayed;
+  String get stagnanted;
 
-  /// No description provided for @stayed_help.
+  /// No description provided for @stagnanted_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.'**
-  String get stayed_help;
+  String get stagnanted_help;
 
   /// No description provided for @target_pedestrian.
   ///

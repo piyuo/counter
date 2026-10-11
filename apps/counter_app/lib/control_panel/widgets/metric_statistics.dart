@@ -8,14 +8,14 @@ class SummaryMetricData {
   const SummaryMetricData({
     required this.avgOccupancy,
     required this.maxOccupancy,
-    required this.avgDwell,
-    required this.maxDwell,
+    required this.avgDwellSeconds,
+    required this.maxDwellSeconds,
   });
 
   final String avgOccupancy;
   final String maxOccupancy;
-  final double avgDwell;
-  final double maxDwell;
+  final double avgDwellSeconds;
+  final int maxDwellSeconds;
 }
 
 class MetricStatistics extends StatelessWidget {
@@ -48,12 +48,12 @@ class MetricStatistics extends StatelessWidget {
           const Divider(height: 12, color: Colors.black26, thickness: 0.5),
           _SummaryRow(
             label: context.l.average_stay,
-            value: formatCompactDuration(context.l, data.avgDwell),
+            value: formatCompactDuration(context.l, data.avgDwellSeconds.round()),
             valueColor: valueColor,
           ),
           _SummaryRow(
             label: context.l.maximum_stay,
-            value: formatCompactDuration(context.l, data.maxDwell),
+            value: formatCompactDuration(context.l, data.maxDwellSeconds),
             valueColor: valueColor,
           ),
         ],

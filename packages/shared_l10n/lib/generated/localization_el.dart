@@ -203,17 +203,17 @@ class LocalizationEl extends Localization {
       'Ενεργοποιήστε αυτήν την επιλογή για να εμfανίσετε μοναδικά ID παρακολούθησης για κάθε παρακολουθούμενο αντικείμενο.';
 
   @override
-  String get detection_screen_stay => 'Χρόνος παραμονής';
+  String get detection_screen_stagnant => 'Χρόνος παραμονής';
 
   @override
-  String get detection_screen_stay_help =>
-      'Πόσο πρέπει να παραμείνει ένα αντικείμενο στην περιοχή πριν υπολογιστεί ως παραμονή.';
+  String get detection_screen_stagnant_help =>
+      'Πόση ώρα πρέπει να μείνει ένα αντικείμενο στην περιοχή για να μετρηθεί ως παραμονή.';
 
   @override
-  String get detection_screen_stay_max_label => 'Καθυστερημένο';
+  String get detection_screen_stagnant_max_label => 'Καθυστερημένο';
 
   @override
-  String get detection_screen_stay_min_label => 'Άμεσο';
+  String get detection_screen_stagnant_min_label => 'Άμεσο';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -660,10 +660,10 @@ class LocalizationEl extends Localization {
   String get settings_screen_subscription_title => 'Συνδρομή';
 
   @override
-  String get stayed => 'Παρέμειναν';
+  String get stagnanted => 'Παρέμειναν';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Μετρά άτομα ή οχήματα που παρέμειναν σε αυτή την περιοχή για τουλάχιστον τον καθορισμένο χρόνο παραμονής.\\n\\nΟ προεπιλεγμένος χρόνος παραμονής είναι 15 δευτερόλεπτα και μπορεί να αλλάξει από τις Ρυθμίσεις.';
 
   @override

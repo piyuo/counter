@@ -65,7 +65,7 @@ GoRouter _buildTestRouter() {
       GoRoute(path: '/delivery-config', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/upload-logs', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/recent-payloads', builder: (_, _) => const SizedBox()),
-      GoRoute(path: '/recent-payloads/hour/:slotMs', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/recent-payloads/hour/:year/:month/:day/:hour', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/recent-payloads/payload/:payloadId', builder: (_, _) => const SizedBox()),
       GoRoute(
         path: core_domain.OnboardingRoutes.onboarding,
@@ -117,7 +117,8 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenDeliveryConfig() => '/delivery-config',
       core_domain.OpenUploadLogs() => '/upload-logs',
       core_domain.OpenPayloadsRecent() => '/recent-payloads',
-      core_domain.OpenPayloadsHour(slotMs: final slotMs) => '/recent-payloads/hour/$slotMs',
+      core_domain.OpenPayloadsHour(year: final year, month: final month, day: final day, hour: final hour) =>
+        '/recent-payloads/hour/$year/$month/$day/$hour',
       core_domain.OpenPayloadDetail(payloadId: final payloadId) => '/recent-payloads/payload/$payloadId',
       core_domain.OpenAbout() => '/about',
       core_domain.OpenBuildInfo() => '/build-info',
@@ -413,7 +414,7 @@ void main() {
       expect(router.state.uri.path, '/recent-payloads');
     });
 
-    testWidgets('OpenRecentPayloadHour causes navigation to /recent-payloads/hour/:slotMs', (tester) async {
+    testWidgets('OpenRecentPayloadHour navigates using date and hour components', (tester) async {
       final container = ProviderContainer();
       addTearDown(container.dispose);
 
@@ -428,10 +429,10 @@ void main() {
       await tester.pumpWidget(MaterialApp.router(routerConfig: router));
       await tester.pump();
 
-      bus.push(const core_domain.OpenPayloadsHour(slotMs: 123));
+      bus.push(const core_domain.OpenPayloadsHour(year: 2026, month: 1, day: 2, hour: 10));
       await tester.pumpAndSettle();
 
-      expect(router.state.uri.path, '/recent-payloads/hour/123');
+      expect(router.state.uri.path, '/recent-payloads/hour/2026/1/2/10');
     });
 
     testWidgets('OpenRecentPayloadDetail causes navigation to /recent-payloads/payload/:payloadId', (tester) async {

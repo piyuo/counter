@@ -201,17 +201,17 @@ class LocalizationPt extends Localization {
       'Ative essa opção para mostrar IDs de rastreamento exclusivos para cada objeto rastreado.';
 
   @override
-  String get detection_screen_stay => 'Tempo de permanência';
+  String get detection_screen_stagnant => 'Tempo de permanência';
 
   @override
-  String get detection_screen_stay_help =>
-      'Por quanto tempo um objeto deve permanecer na área antes de ser contado como permanência.';
+  String get detection_screen_stagnant_help =>
+      'Por quanto tempo um objeto deve ficar na área para contar como permanência.';
 
   @override
-  String get detection_screen_stay_max_label => 'Atrasado';
+  String get detection_screen_stagnant_max_label => 'Atrasado';
 
   @override
-  String get detection_screen_stay_min_label => 'Imediato';
+  String get detection_screen_stagnant_min_label => 'Imediato';
 
   @override
   String get detection_screen_stay_threshold =>
@@ -657,10 +657,10 @@ class LocalizationPt extends Localization {
   String get settings_screen_subscription_title => 'Assinatura';
 
   @override
-  String get stayed => 'Permaneceram';
+  String get stagnanted => 'Permaneceram';
 
   @override
-  String get stayed_help =>
+  String get stagnanted_help =>
       'Conta pessoas ou veículos que permaneceram nesta área por pelo menos o Tempo de Permanência configurado.\\n\\nO Tempo de Permanência padrão é de 15 segundos e pode ser alterado nas Configurações.';
 
   @override

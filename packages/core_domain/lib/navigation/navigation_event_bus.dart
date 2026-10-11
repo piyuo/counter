@@ -122,12 +122,15 @@ class OpenPayloadsRecent extends NavigationEvent {
 
 /// Request to navigate to one recent payload delivery-hour group.
 class OpenPayloadsHour extends NavigationEvent {
-  const OpenPayloadsHour({required this.slotMs});
+  const OpenPayloadsHour({required this.year, required this.month, required this.day, required this.hour});
 
-  final int slotMs;
+  final int year;
+  final int month;
+  final int day;
+  final int hour;
 
   @override
-  String? get path => '/recent-payloads/hour/$slotMs';
+  String? get path => '/recent-payloads/hour/$year/$month/$day/$hour';
 }
 
 /// Request to navigate to one recent payload detail.

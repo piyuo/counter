@@ -20,8 +20,8 @@ class PayloadsRecentScreen extends ConsumerStatefulWidget {
 }
 
 class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
-  final Set<DateTime> _selectedDays = <DateTime>{};
-  final Set<DateTime> _selectedHours = <DateTime>{};
+  final Set<core_domain.DeliveryDateKey> _selectedDays = <core_domain.DeliveryDateKey>{};
+  final Set<core_domain.DeliveryHourKey> _selectedHours = <core_domain.DeliveryHourKey>{};
   bool _isResending = false;
 
   Widget _buildDayCheckbox(core_domain.DeliveryDateGroup dateGroup) {
@@ -34,25 +34,25 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
 
   Widget _buildHourCheckbox(core_domain.DeliveryHourGroup hourGroup) {
     return SelectionCheckbox(
-      value: _isHourSelected(hourGroup.startHourLocal),
+      value: _isHourSelected(hourGroup),
       onChanged: (value) => _toggleHourSelection(hourGroup, value == true),
     );
   }
 
-  bool _isDaySelected(DateTime dayLocal) => _selectedDays.contains(core_domain.dayStartLocal(dayLocal));
+  bool _isDaySelected(core_domain.DeliveryDateGroup day) => _selectedDays.contains(day.dateKey);
 
-  bool _isHourSelected(DateTime hourLocal) => _selectedHours.contains(hourLocal);
+  bool _isHourSelected(core_domain.DeliveryHourGroup hour) => _selectedHours.contains(hour.hourKey);
 
   bool? _dayCheckboxValue(core_domain.DeliveryDateGroup dateGroup) {
-    final daySelected = _isDaySelected(dateGroup.dayLocal);
+    final daySelected = _isDaySelected(dateGroup);
     if (daySelected) return true;
-    final anyHourSelected = dateGroup.hours.any((h) => _isHourSelected(h.startHourLocal));
+    final anyHourSelected = dateGroup.hours.any(_isHourSelected);
     return anyHourSelected ? null : false;
   }
 
   void _toggleDaySelection(core_domain.DeliveryDateGroup dateGroup, bool selected) {
     setState(() {
-      final dayKey = core_domain.dayStartLocal(dateGroup.dayLocal);
+      final dayKey = dateGroup.dateKey;
       if (selected) {
         _selectedDays.add(dayKey);
       } else {
@@ -64,9 +64,9 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
   void _toggleHourSelection(core_domain.DeliveryHourGroup hourGroup, bool selected) {
     setState(() {
       if (selected) {
-        _selectedHours.add(hourGroup.startHourLocal);
+        _selectedHours.add(hourGroup.hourKey);
       } else {
-        _selectedHours.remove(hourGroup.startHourLocal);
+        _selectedHours.remove(hourGroup.hourKey);
       }
     });
   }
@@ -74,11 +74,11 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
   int _selectionCount(List<core_domain.DeliveryDateGroup> dateGroups) {
     var count = 0;
     for (final day in dateGroups) {
-      if (_isDaySelected(day.dayLocal)) {
+      if (_isDaySelected(day)) {
         count += day.hours.length;
         continue;
       }
-      count += day.hours.where((h) => _isHourSelected(h.startHourLocal)).length;
+      count += day.hours.where(_isHourSelected).length;
     }
     return count;
   }
@@ -95,10 +95,10 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
     });
 
     try {
-      final resent = await resendQueuedPayloads(
+      final resent = await resendQueuedObservations(
         context: context,
         telemetryService: ref.read(core_domain.telemetryServiceProvider),
-        payloads: selectedPayloads,
+        observations: selectedPayloads,
         emptySelectionMessage: context.l.payloads_screen_select_first,
       );
       if (!mounted || !resent) return;
@@ -173,19 +173,24 @@ class _RecentScreenState extends ConsumerState<PayloadsRecentScreen> {
                       maintainState: true,
                       initiallyExpanded: i == 0,
                       leading: _buildDayCheckbox(dateGroups[i]),
-                      title: Text(dayFmt.format(dateGroups[i].dayLocal)),
+                      title: Text(dayFmt.format(dateGroups[i].datetime)),
                       subtitle: Text(dayDeliveryStatusDescription(context, dateGroups[i])),
                       children: [
                         for (final hourGroup in dateGroups[i].hours)
                           ListTile(
                             contentPadding: const EdgeInsets.only(left: 42, right: 16),
                             leading: _buildHourCheckbox(hourGroup),
-                            title: Text(hourFmt.format(hourGroup.startHourLocal)),
+                            title: Text(hourFmt.format(hourGroup.datetime)),
                             subtitle: Text(hourDeliveryStatusDescription(context, hourGroup)),
                             trailing: const Icon(Icons.arrow_forward_ios),
                             onTap: () {
                               ref.push(
-                                core_domain.OpenPayloadsHour(slotMs: hourGroup.startHourLocal.millisecondsSinceEpoch),
+                                core_domain.OpenPayloadsHour(
+                                  year: hourGroup.year,
+                                  month: hourGroup.month,
+                                  day: hourGroup.day,
+                                  hour: hourGroup.hour,
+                                ),
                               );
                             },
                           ),

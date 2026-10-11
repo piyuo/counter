@@ -8,11 +8,11 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('detectionParamsToVisionParams', () {
     test('forwards counting thresholds to VisionParams', () {
-      const detectionParams = core_domain.DetectionParams(stayThresholdSeconds: 42, disappearThresholdSeconds: 9);
+      const detectionParams = core_domain.DetectionParams(stagnantThresholdSeconds: 42, disappearThresholdSeconds: 9);
 
       final visionParams = detectionParamsToVisionParams(detectionParams);
 
-      expect(visionParams.stayThresholdSeconds, 42);
+      expect(visionParams.stagnantThresholdSeconds, 42);
       expect(visionParams.disappearThresholdSeconds, 9);
     });
   });
