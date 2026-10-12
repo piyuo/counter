@@ -1,4 +1,5 @@
 export 'analytics/analytics_notifier.dart';
+export 'database/app_database.dart';
 export 'insight/insight_notifier.dart';
 export 'observation/interest_area_notifier.dart';
 export 'observation/observation_notifier.dart';
@@ -12,7 +13,6 @@ export 'services/piyuo_invitation_service.dart';
 export 'services/random_token_generator_service.dart';
 export 'services/secure_auth_storage_service.dart';
 export 'services/shared_prefs_repository.dart';
-export 'telemetry/drift_telemetry_database.dart';
 export 'telemetry/drift_telemetry_queue.dart';
 export 'telemetry/http_telemetry_transport.dart';
 export 'telemetry/json_payload_serializer.dart';

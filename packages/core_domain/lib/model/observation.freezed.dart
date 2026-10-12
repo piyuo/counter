@@ -274,14 +274,14 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 @JsonSerializable()
 
 class _Observation extends Observation {
-  const _Observation({required this.granularity, required this.year, required this.month, required this.day, required this.hour, required this.minute, @RoundedDouble() required this.confidenceRatioSum, required this.confidenceSampleCount, @RoundedDouble() required this.confidenceRatio, required this.coveredSeconds, required this.expectedSeconds, @RoundedDouble() required this.coverageRatio, required  List<AreaMetrics> areas, required this.frameCount}): _areas = areas,super._();
+  const _Observation({this.granularity = ObservationGranularity.minutes5, required this.year, required this.month, required this.day, required this.hour, required this.minute, @RoundedDouble() required this.confidenceRatioSum, required this.confidenceSampleCount, @RoundedDouble() required this.confidenceRatio, required this.coveredSeconds, required this.expectedSeconds, @RoundedDouble() required this.coverageRatio, required  List<AreaMetrics> areas, required this.frameCount}): _areas = areas,super._();
   factory _Observation.fromJson(Map<String, dynamic> json) => _$ObservationFromJson(json);
 
 /// Aggregation interval represented by this observation.
 ///
 /// Determines which of [hour] and [minute] are used (see the table on
 /// [year]).
-@override final  ObservationGranularity granularity;
+@override@JsonKey() final  ObservationGranularity granularity;
 /// Identifies the date represented by this observation.
 ///
 /// Business (local wall-clock) date. See "Time basis and DST" at the top

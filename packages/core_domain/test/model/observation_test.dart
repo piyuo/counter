@@ -129,12 +129,12 @@ void main() {
         'hour: 3',
         'minute: 4',
         'frameCount: 19',
-        'confidenceRatioSum: 0.123456',
+        'confidenceRatioSum: 0.12',
         'confidenceSampleCount: 16',
-        'confidenceRatio: 0.234567',
+        'confidenceRatio: 0.23',
         'expectedSeconds: 18',
         'coveredSeconds: 17',
-        'coverageRatio: 0.345678',
+        'coverageRatio: 0.35',
       ]) {
         expect(observationString, contains(field));
       }
@@ -152,12 +152,12 @@ void main() {
         'disappear: 8',
         'occupancySampleCount: 9',
         'occupancySampleSum: 10',
-        'occupancyAvg: 1.2345',
+        'occupancyAvg: 1.23',
         'occupancyMax: 11',
         'occupancyLast: 12',
         'dwellSumSeconds: 13',
         'dwellSampleCount: 14',
-        'dwellAvgSeconds: 2.3456',
+        'dwellAvgSeconds: 2.35',
         'dwellMaxSeconds: 15',
       ]) {
         expect(areaString, contains(field));
@@ -314,5 +314,31 @@ void main() {
     final observation = _observation(year: 2026, month: 1, day: 3);
 
     expect(observation.businessDate, '2026-01-03');
+  });
+
+  test('businessDateTime formats each observation granularity', () {
+    final observations = [
+      (_observation(year: 2026, month: 1, day: 3, hour: 4, minute: 5), '2026-01-03 04:05'),
+      (
+        _observation(year: 2026, month: 1, day: 3, hour: 4, minute: -1, granularity: ObservationGranularity.hour),
+        '2026-01-03 04:00',
+      ),
+      (
+        _observation(year: 2026, month: 1, day: 3, hour: -1, minute: -1, granularity: ObservationGranularity.day),
+        '2026-01-03 00:00',
+      ),
+      (
+        _observation(year: 2026, month: 1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.month),
+        '2026-01',
+      ),
+      (
+        _observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.year),
+        '2026',
+      ),
+    ];
+
+    for (final (observation, expected) in observations) {
+      expect(observation.businessDateTime, expected);
+    }
   });
 }

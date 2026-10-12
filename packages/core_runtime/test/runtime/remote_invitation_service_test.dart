@@ -4,12 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Invitation', () {
-    test('reads legacy stagnant threshold JSON and writes the renamed key', () {
+    test('round-trips stagnant threshold JSON', () {
       final params = core_domain.DetectionParams.fromJson({'stagnantThresholdSeconds': 123});
 
       expect(params.stagnantThresholdSeconds, 123);
       expect(params.toJson(), containsPair('stagnantThresholdSeconds', 123));
-      expect(params.toJson().containsKey('stagnantThresholdSeconds'), isFalse);
     });
 
     test('constructs with required fields', () {

@@ -24,7 +24,7 @@ class _StubQueue implements core_domain.TelemetryQueue {
   }
 
   @override
-  Future<void> enqueue(core_domain.Observation observation) async {
+  Future<void> add(core_domain.Observation observation) async {
     seed(observation);
   }
 

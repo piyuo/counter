@@ -17,7 +17,7 @@ abstract class TelemetryQueue {
   ///
   /// Idempotent when another row already exists with the same
   /// [Observation.id].
-  Future<void> enqueue(Observation observation);
+  Future<void> add(Observation observation);
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
   ///

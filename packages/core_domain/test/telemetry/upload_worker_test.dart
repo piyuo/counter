@@ -85,7 +85,7 @@ class _StubQueue implements TelemetryQueue {
   void seed(QueuedObservation row) => _rows.add(row);
 
   @override
-  Future<void> enqueue(Observation observation) async {
+  Future<void> add(Observation observation) async {
     _rows.add(_pending(observation.id.toString(), observation: observation));
   }
 

@@ -76,7 +76,7 @@ sealed class Observation with _$Observation {
     ///
     /// Determines which of [hour] and [minute] are used (see the table on
     /// [year]).
-    required ObservationGranularity granularity,
+    @Default(ObservationGranularity.minutes5) ObservationGranularity granularity,
 
     /// Identifies the date represented by this observation.
     ///
@@ -196,6 +196,21 @@ sealed class Observation with _$Observation {
       '${year.toString().padLeft(4, '0')}-'
           '${month.toString().padLeft(2, '0')}-'
           '${day.toString().padLeft(2, '0')}',
+
+    ObservationGranularity.month =>
+      '${year.toString().padLeft(4, '0')}-'
+          '${month.toString().padLeft(2, '0')}',
+
+    ObservationGranularity.year => year.toString().padLeft(4, '0'),
+  };
+
+  String get businessDateTime => switch (granularity) {
+    ObservationGranularity.minutes5 || ObservationGranularity.hour || ObservationGranularity.day =>
+      '${year.toString().padLeft(4, '0')}-'
+          '${month.toString().padLeft(2, '0')}-'
+          '${day.toString().padLeft(2, '0')} '
+          '${(hour >= 0 ? hour : 0).toString().padLeft(2, '0')}:'
+          '${(minute >= 0 ? minute : 0).toString().padLeft(2, '0')}',
 
     ObservationGranularity.month =>
       '${year.toString().padLeft(4, '0')}-'

@@ -13,13 +13,13 @@ import 'app_shell/app_shell.dart';
 import 'usage_initializer.dart';
 
 void main() async {
-  late core_runtime.TelemetryDatabaseFun dbFactory;
+  late core_runtime.AppDatabaseFun dbFactory;
   appkit.appRun(
     preInitCallback: () async {
       final appSupportDir = await getApplicationSupportDirectory();
       await appSupportDir.create(recursive: true); // ensure the directory exists before trying to open the DB
-      final telemetryDbPath = p.join(appSupportDir.path, 'telemetry.db');
-      dbFactory = await core_runtime.DriftTelemetryDatabase.open(filePath: telemetryDbPath);
+      final appDbPath = p.join(appSupportDir.path, 'app.db');
+      dbFactory = await core_runtime.AppDatabase.open(filePath: appDbPath);
       if (!kDebugMode) {
         await initializeUsage();
       }

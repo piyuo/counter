@@ -7,10 +7,12 @@ part of 'observation.dart';
 // **************************************************************************
 
 _Observation _$ObservationFromJson(Map<String, dynamic> json) => _Observation(
-  granularity: $enumDecode(
-    _$ObservationGranularityEnumMap,
-    json['granularity'],
-  ),
+  granularity:
+      $enumDecodeNullable(
+        _$ObservationGranularityEnumMap,
+        json['granularity'],
+      ) ??
+      ObservationGranularity.minutes5,
   year: (json['year'] as num).toInt(),
   month: (json['month'] as num).toInt(),
   day: (json['day'] as num).toInt(),

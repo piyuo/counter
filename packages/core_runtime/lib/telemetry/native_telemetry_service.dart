@@ -79,7 +79,7 @@ class NativeTelemetryService implements core_domain.TelemetryService {
   ValueListenable<DateTime?> get nextUploadTimeListenable => _nextUploadTimeNotifier;
 
   @override
-  Future<void> enqueue(core_domain.Observation observation) => _worker.queue.enqueue(observation);
+  Future<void> enqueue(core_domain.Observation observation) => _worker.queue.add(observation);
 
   @override
   Future<bool> sendNow(List<core_domain.Observation> observations) => _worker.sendObservationDirect(observations);

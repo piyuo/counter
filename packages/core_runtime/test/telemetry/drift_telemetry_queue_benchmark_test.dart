@@ -8,13 +8,13 @@
 import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/database/app_database.dart';
 import 'package:core_runtime/telemetry/drift_telemetry_queue.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DriftPayloadQueueRepository - fetchRecent Benchmark', () {
-    late TelemetryDatabaseFun db;
+    late AppDatabaseFun db;
     late DriftTelemetryQueue repository;
     late Directory tempDir;
     late String dbPath;
@@ -22,13 +22,13 @@ void main() {
     setUp(() async {
       tempDir = await Directory.systemTemp.createTemp('drift_payload_queue_benchmark_test_');
       dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_benchmark.db';
-      db = await DriftTelemetryDatabase.open(filePath: dbPath);
+      db = await AppDatabase.open(filePath: dbPath);
       repository = DriftTelemetryQueue(db);
     });
 
     tearDown(() async {
       await db()!.close();
-      await DriftTelemetryDatabase.removeFile(filePath: dbPath);
+      await AppDatabase.removeFile(filePath: dbPath);
       if (await tempDir.exists()) {
         await tempDir.delete(recursive: true);
       }
@@ -50,7 +50,7 @@ void main() {
         for (int hour = 0; hour < 24; hour++) {
           for (int minute = 0; minute < 12; minute++) {
             final createdAt = now.subtract(Duration(days: day, hours: hour, minutes: minute * 5));
-            await repository.enqueue(_createTestObservation(startUtc: createdAt));
+            await repository.add(_createTestObservation(startUtc: createdAt));
           }
         }
       }
@@ -96,7 +96,7 @@ void main() {
         for (int hour = 0; hour < 24; hour++) {
           for (int minute = 0; minute < 12; minute++) {
             final createdAt = now.subtract(Duration(days: day, hours: hour, minutes: minute * 5));
-            await repository.enqueue(_createTestObservation(startUtc: createdAt));
+            await repository.add(_createTestObservation(startUtc: createdAt));
           }
         }
       }

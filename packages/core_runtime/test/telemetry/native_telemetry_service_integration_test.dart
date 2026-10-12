@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/database/app_database.dart';
 import 'package:core_runtime/telemetry/drift_telemetry_queue.dart';
 import 'package:core_runtime/telemetry/http_telemetry_transport.dart';
 import 'package:core_runtime/telemetry/native_telemetry_service.dart';
@@ -18,14 +18,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-Future<TelemetryDatabaseFun> _openTempTelemetryDb() async {
+Future<AppDatabaseFun> _openTempTelemetryDb() async {
   final tempDir = await Directory.systemTemp.createTemp('native_telemetry_service_integration_test_');
   final dbPath = '${tempDir.path}${Platform.pathSeparator}telemetry_test.db';
-  final db = await DriftTelemetryDatabase.open(filePath: dbPath);
+  final db = await AppDatabase.open(filePath: dbPath);
 
   addTearDown(() async {
     await db()!.close();
-    await DriftTelemetryDatabase.removeFile(filePath: dbPath);
+    await AppDatabase.removeFile(filePath: dbPath);
     if (await tempDir.exists()) {
       await tempDir.delete(recursive: true);
     }
@@ -56,7 +56,7 @@ core_domain.Observation _observation({required DateTime startUtc}) {
 
 int _observationId({required DateTime startUtc}) => _observation(startUtc: startUtc).id;
 
-String _payloadId({required DateTime startUtc}) => _observationId(startUtc: startUtc).toString();
+int _payloadId({required DateTime startUtc}) => _observationId(startUtc: startUtc);
 
 void main() {
   group('NativeTelemetryService integration', () {
@@ -196,7 +196,7 @@ void main() {
 
       final availableBeforePrune = await queue.fetchRecent(daysBack: 7);
       final payloadId = _payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0));
-      expect(availableBeforePrune.map((p) => p.observation.id.toString()), contains(payloadId));
+      expect(availableBeforePrune.map((p) => p.observation.id), contains(payloadId));
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
@@ -207,7 +207,7 @@ void main() {
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final availableAfterPrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableAfterPrune.map((p) => p.observation.id.toString()), isNot(contains(payloadId)));
+      expect(availableAfterPrune.map((p) => p.observation.id), isNot(contains(payloadId)));
     });
 
     test('repeated flush does not resend already-delivered payload', () async {
@@ -236,7 +236,7 @@ void main() {
       expect(transport.sendCount, 1);
       expect(await queue.pendingCount(), 0);
       final available = await queue.fetchRecent(daysBack: 7);
-      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.observation.id.toString());
+      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.observation.id);
       expect(delivered, contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
     });
 
@@ -267,14 +267,8 @@ void main() {
 
       final available = await queue.fetchRecent(daysBack: 7);
       final pending = await queue.fetchReady(limit: 10);
-      expect(
-        available.map((p) => p.observation.id.toString()),
-        contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))),
-      );
-      expect(
-        pending.map((p) => p.observation.id.toString()),
-        contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 1, 0))),
-      );
+      expect(available.map((p) => p.observation.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
+      expect(pending.map((p) => p.observation.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 1, 0))));
       expect(await queue.pendingCount(), 1);
     });
   });
@@ -373,7 +367,7 @@ class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   final List<int> markedSuccessIds = [];
 
   @override
-  Future<void> enqueue(core_domain.Observation observation) async {}
+  Future<void> add(core_domain.Observation observation) async {}
 
   @override
   Future<List<core_domain.QueuedObservation>> fetchReady({int limit = 10}) async {

@@ -44,8 +44,8 @@ void main() {
     accumulator.incrementEvent(kGlobalAreaId, EventType.disappear);
     accumulator.incrementEvent(kGlobalAreaId, EventType.stagnant);
 
-    accumulator.addStateSample(area.id, 2, 2000, 3000, 2);
-    accumulator.addStateSample(kGlobalAreaId, 5, 1000, 5000, 5);
+    accumulator.addStateSample(area.id, 2, 2, 3, 2);
+    accumulator.addStateSample(kGlobalAreaId, 5, 1, 5, 5);
 
     final result = accumulator.snapshot();
 
@@ -164,10 +164,10 @@ void main() {
 
     // occupancyAvg is computed as a simple average across occupancy samples:
     // (1 + 3) / 2 = 2
-    // dwellAvgSeconds = (2000 + 4000 + 1000) / 3 / 1000 = 2.333...
-    // dwellMaxSeconds = max(3000, 7000) ms -> 7 sec
-    accumulator.addStateSample(area.id, 1, 3000, 6000, 2);
-    accumulator.addStateSample(area.id, 3, 7000, 1000, 1);
+    // dwellAvgSeconds = (6 + 1) / 3 = 2.333...
+    // dwellMaxSeconds = max(3, 7) = 7 sec
+    accumulator.addStateSample(area.id, 1, 3, 6, 2);
+    accumulator.addStateSample(area.id, 3, 7, 1, 1);
 
     final result = accumulator.snapshot();
     final areaMetrics = _area(result, area.id);

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'drift_telemetry_database.dart';
+part of 'app_database.dart';
 
 // ignore_for_file: type=lint
 class $TelemetryQueueTable extends TelemetryQueue
@@ -11,42 +11,39 @@ class $TelemetryQueueTable extends TelemetryQueue
   $TelemetryQueueTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
     'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _dataMeta = const VerificationMeta('data');
+  @override
+  late final GeneratedColumn<String> data = GeneratedColumn<String>(
+    'data',
     aliasedName,
     false,
     type: DriftSqlType.string,
     requiredDuringInsert: true,
   );
-  static const VerificationMeta _serializedPayloadMeta = const VerificationMeta(
-    'serializedPayload',
+  static const VerificationMeta _schemaVersionMeta = const VerificationMeta(
+    'schemaVersion',
   );
   @override
-  late final GeneratedColumn<String> serializedPayload =
-      GeneratedColumn<String>(
-        'serialized_payload',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
+  late final GeneratedColumn<int> schemaVersion = GeneratedColumn<int>(
+    'schema_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
   static const VerificationMeta _createdAtMsMeta = const VerificationMeta(
     'createdAtMs',
   );
   @override
   late final GeneratedColumn<int> createdAtMs = GeneratedColumn<int>(
     'created_at_ms',
-    aliasedName,
-    false,
-    type: DriftSqlType.int,
-    requiredDuringInsert: true,
-  );
-  static const VerificationMeta _startMsMeta = const VerificationMeta(
-    'startMs',
-  );
-  @override
-  late final GeneratedColumn<int> startMs = GeneratedColumn<int>(
-    'start_ms',
     aliasedName,
     false,
     type: DriftSqlType.int,
@@ -66,9 +63,9 @@ class $TelemetryQueueTable extends TelemetryQueue
   @override
   List<GeneratedColumn> get $columns => [
     id,
-    serializedPayload,
+    data,
+    schemaVersion,
     createdAtMs,
-    startMs,
     uploadedAtMs,
   ];
   @override
@@ -85,19 +82,25 @@ class $TelemetryQueueTable extends TelemetryQueue
     final data = instance.toColumns(true);
     if (data.containsKey('id')) {
       context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
     }
-    if (data.containsKey('serialized_payload')) {
+    if (data.containsKey('data')) {
       context.handle(
-        _serializedPayloadMeta,
-        serializedPayload.isAcceptableOrUnknown(
-          data['serialized_payload']!,
-          _serializedPayloadMeta,
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dataMeta);
+    }
+    if (data.containsKey('schema_version')) {
+      context.handle(
+        _schemaVersionMeta,
+        schemaVersion.isAcceptableOrUnknown(
+          data['schema_version']!,
+          _schemaVersionMeta,
         ),
       );
     } else if (isInserting) {
-      context.missing(_serializedPayloadMeta);
+      context.missing(_schemaVersionMeta);
     }
     if (data.containsKey('created_at_ms')) {
       context.handle(
@@ -109,14 +112,6 @@ class $TelemetryQueueTable extends TelemetryQueue
       );
     } else if (isInserting) {
       context.missing(_createdAtMsMeta);
-    }
-    if (data.containsKey('start_ms')) {
-      context.handle(
-        _startMsMeta,
-        startMs.isAcceptableOrUnknown(data['start_ms']!, _startMsMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_startMsMeta);
     }
     if (data.containsKey('delivered_at_ms')) {
       context.handle(
@@ -137,20 +132,20 @@ class $TelemetryQueueTable extends TelemetryQueue
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return TelemetryQueueData(
       id: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
+        DriftSqlType.int,
         data['${effectivePrefix}id'],
       )!,
-      serializedPayload: attachedDatabase.typeMapping.read(
+      data: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
-        data['${effectivePrefix}serialized_payload'],
+        data['${effectivePrefix}data'],
+      )!,
+      schemaVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}schema_version'],
       )!,
       createdAtMs: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
         data['${effectivePrefix}created_at_ms'],
-      )!,
-      startMs: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}start_ms'],
       )!,
       uploadedAtMs: attachedDatabase.typeMapping.read(
         DriftSqlType.int,
@@ -167,15 +162,17 @@ class $TelemetryQueueTable extends TelemetryQueue
 
 class TelemetryQueueData extends DataClass
     implements Insertable<TelemetryQueueData> {
-  /// UUID v4 string; primary key. Matches [core_domain.Observation.id].
-  final String id;
-  final String serializedPayload;
+  /// observation id like 202006112230
+  final int id;
+
+  /// Serialized observation JSON.
+  final String data;
+
+  /// Version of the persisted document format.
+  final int schemaVersion;
 
   /// Milliseconds since epoch — when this item was first enqueued.
   final int createdAtMs;
-
-  /// Milliseconds since epoch — observed window start time (UTC).
-  final int startMs;
 
   /// Milliseconds since epoch — when this item was successfully uploaded.
   /// NULL if not yet uploaded.
@@ -183,18 +180,18 @@ class TelemetryQueueData extends DataClass
   final int? uploadedAtMs;
   const TelemetryQueueData({
     required this.id,
-    required this.serializedPayload,
+    required this.data,
+    required this.schemaVersion,
     required this.createdAtMs,
-    required this.startMs,
     this.uploadedAtMs,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<String>(id);
-    map['serialized_payload'] = Variable<String>(serializedPayload);
+    map['id'] = Variable<int>(id);
+    map['data'] = Variable<String>(data);
+    map['schema_version'] = Variable<int>(schemaVersion);
     map['created_at_ms'] = Variable<int>(createdAtMs);
-    map['start_ms'] = Variable<int>(startMs);
     if (!nullToAbsent || uploadedAtMs != null) {
       map['delivered_at_ms'] = Variable<int>(uploadedAtMs);
     }
@@ -204,9 +201,9 @@ class TelemetryQueueData extends DataClass
   TelemetryQueueCompanion toCompanion(bool nullToAbsent) {
     return TelemetryQueueCompanion(
       id: Value(id),
-      serializedPayload: Value(serializedPayload),
+      data: Value(data),
+      schemaVersion: Value(schemaVersion),
       createdAtMs: Value(createdAtMs),
-      startMs: Value(startMs),
       uploadedAtMs: uploadedAtMs == null && nullToAbsent
           ? const Value.absent()
           : Value(uploadedAtMs),
@@ -219,10 +216,10 @@ class TelemetryQueueData extends DataClass
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return TelemetryQueueData(
-      id: serializer.fromJson<String>(json['id']),
-      serializedPayload: serializer.fromJson<String>(json['serializedPayload']),
+      id: serializer.fromJson<int>(json['id']),
+      data: serializer.fromJson<String>(json['data']),
+      schemaVersion: serializer.fromJson<int>(json['schemaVersion']),
       createdAtMs: serializer.fromJson<int>(json['createdAtMs']),
-      startMs: serializer.fromJson<int>(json['startMs']),
       uploadedAtMs: serializer.fromJson<int?>(json['uploadedAtMs']),
     );
   }
@@ -230,37 +227,37 @@ class TelemetryQueueData extends DataClass
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<String>(id),
-      'serializedPayload': serializer.toJson<String>(serializedPayload),
+      'id': serializer.toJson<int>(id),
+      'data': serializer.toJson<String>(data),
+      'schemaVersion': serializer.toJson<int>(schemaVersion),
       'createdAtMs': serializer.toJson<int>(createdAtMs),
-      'startMs': serializer.toJson<int>(startMs),
       'uploadedAtMs': serializer.toJson<int?>(uploadedAtMs),
     };
   }
 
   TelemetryQueueData copyWith({
-    String? id,
-    String? serializedPayload,
+    int? id,
+    String? data,
+    int? schemaVersion,
     int? createdAtMs,
-    int? startMs,
     Value<int?> uploadedAtMs = const Value.absent(),
   }) => TelemetryQueueData(
     id: id ?? this.id,
-    serializedPayload: serializedPayload ?? this.serializedPayload,
+    data: data ?? this.data,
+    schemaVersion: schemaVersion ?? this.schemaVersion,
     createdAtMs: createdAtMs ?? this.createdAtMs,
-    startMs: startMs ?? this.startMs,
     uploadedAtMs: uploadedAtMs.present ? uploadedAtMs.value : this.uploadedAtMs,
   );
   TelemetryQueueData copyWithCompanion(TelemetryQueueCompanion data) {
     return TelemetryQueueData(
       id: data.id.present ? data.id.value : this.id,
-      serializedPayload: data.serializedPayload.present
-          ? data.serializedPayload.value
-          : this.serializedPayload,
+      data: data.data.present ? data.data.value : this.data,
+      schemaVersion: data.schemaVersion.present
+          ? data.schemaVersion.value
+          : this.schemaVersion,
       createdAtMs: data.createdAtMs.present
           ? data.createdAtMs.value
           : this.createdAtMs,
-      startMs: data.startMs.present ? data.startMs.value : this.startMs,
       uploadedAtMs: data.uploadedAtMs.present
           ? data.uploadedAtMs.value
           : this.uploadedAtMs,
@@ -271,9 +268,9 @@ class TelemetryQueueData extends DataClass
   String toString() {
     return (StringBuffer('TelemetryQueueData(')
           ..write('id: $id, ')
-          ..write('serializedPayload: $serializedPayload, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
           ..write('createdAtMs: $createdAtMs, ')
-          ..write('startMs: $startMs, ')
           ..write('uploadedAtMs: $uploadedAtMs')
           ..write(')'))
         .toString();
@@ -281,77 +278,69 @@ class TelemetryQueueData extends DataClass
 
   @override
   int get hashCode =>
-      Object.hash(id, serializedPayload, createdAtMs, startMs, uploadedAtMs);
+      Object.hash(id, data, schemaVersion, createdAtMs, uploadedAtMs);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is TelemetryQueueData &&
           other.id == this.id &&
-          other.serializedPayload == this.serializedPayload &&
+          other.data == this.data &&
+          other.schemaVersion == this.schemaVersion &&
           other.createdAtMs == this.createdAtMs &&
-          other.startMs == this.startMs &&
           other.uploadedAtMs == this.uploadedAtMs);
 }
 
 class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
-  final Value<String> id;
-  final Value<String> serializedPayload;
+  final Value<int> id;
+  final Value<String> data;
+  final Value<int> schemaVersion;
   final Value<int> createdAtMs;
-  final Value<int> startMs;
   final Value<int?> uploadedAtMs;
-  final Value<int> rowid;
   const TelemetryQueueCompanion({
     this.id = const Value.absent(),
-    this.serializedPayload = const Value.absent(),
+    this.data = const Value.absent(),
+    this.schemaVersion = const Value.absent(),
     this.createdAtMs = const Value.absent(),
-    this.startMs = const Value.absent(),
     this.uploadedAtMs = const Value.absent(),
-    this.rowid = const Value.absent(),
   });
   TelemetryQueueCompanion.insert({
-    required String id,
-    required String serializedPayload,
+    this.id = const Value.absent(),
+    required String data,
+    required int schemaVersion,
     required int createdAtMs,
-    required int startMs,
     this.uploadedAtMs = const Value.absent(),
-    this.rowid = const Value.absent(),
-  }) : id = Value(id),
-       serializedPayload = Value(serializedPayload),
-       createdAtMs = Value(createdAtMs),
-       startMs = Value(startMs);
+  }) : data = Value(data),
+       schemaVersion = Value(schemaVersion),
+       createdAtMs = Value(createdAtMs);
   static Insertable<TelemetryQueueData> custom({
-    Expression<String>? id,
-    Expression<String>? serializedPayload,
+    Expression<int>? id,
+    Expression<String>? data,
+    Expression<int>? schemaVersion,
     Expression<int>? createdAtMs,
-    Expression<int>? startMs,
     Expression<int>? uploadedAtMs,
-    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
-      if (serializedPayload != null) 'serialized_payload': serializedPayload,
+      if (data != null) 'data': data,
+      if (schemaVersion != null) 'schema_version': schemaVersion,
       if (createdAtMs != null) 'created_at_ms': createdAtMs,
-      if (startMs != null) 'start_ms': startMs,
       if (uploadedAtMs != null) 'delivered_at_ms': uploadedAtMs,
-      if (rowid != null) 'rowid': rowid,
     });
   }
 
   TelemetryQueueCompanion copyWith({
-    Value<String>? id,
-    Value<String>? serializedPayload,
+    Value<int>? id,
+    Value<String>? data,
+    Value<int>? schemaVersion,
     Value<int>? createdAtMs,
-    Value<int>? startMs,
     Value<int?>? uploadedAtMs,
-    Value<int>? rowid,
   }) {
     return TelemetryQueueCompanion(
       id: id ?? this.id,
-      serializedPayload: serializedPayload ?? this.serializedPayload,
+      data: data ?? this.data,
+      schemaVersion: schemaVersion ?? this.schemaVersion,
       createdAtMs: createdAtMs ?? this.createdAtMs,
-      startMs: startMs ?? this.startMs,
       uploadedAtMs: uploadedAtMs ?? this.uploadedAtMs,
-      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -359,22 +348,19 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
     if (id.present) {
-      map['id'] = Variable<String>(id.value);
+      map['id'] = Variable<int>(id.value);
     }
-    if (serializedPayload.present) {
-      map['serialized_payload'] = Variable<String>(serializedPayload.value);
+    if (data.present) {
+      map['data'] = Variable<String>(data.value);
+    }
+    if (schemaVersion.present) {
+      map['schema_version'] = Variable<int>(schemaVersion.value);
     }
     if (createdAtMs.present) {
       map['created_at_ms'] = Variable<int>(createdAtMs.value);
     }
-    if (startMs.present) {
-      map['start_ms'] = Variable<int>(startMs.value);
-    }
     if (uploadedAtMs.present) {
       map['delivered_at_ms'] = Variable<int>(uploadedAtMs.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = Variable<int>(rowid.value);
     }
     return map;
   }
@@ -383,11 +369,10 @@ class TelemetryQueueCompanion extends UpdateCompanion<TelemetryQueueData> {
   String toString() {
     return (StringBuffer('TelemetryQueueCompanion(')
           ..write('id: $id, ')
-          ..write('serializedPayload: $serializedPayload, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
           ..write('createdAtMs: $createdAtMs, ')
-          ..write('startMs: $startMs, ')
-          ..write('uploadedAtMs: $uploadedAtMs, ')
-          ..write('rowid: $rowid')
+          ..write('uploadedAtMs: $uploadedAtMs')
           ..write(')'))
         .toString();
   }
@@ -879,10 +864,9 @@ class TelemetryUploadLogCompanion
   }
 }
 
-abstract class _$DriftTelemetryDatabase extends GeneratedDatabase {
-  _$DriftTelemetryDatabase(QueryExecutor e) : super(e);
-  $DriftTelemetryDatabaseManager get managers =>
-      $DriftTelemetryDatabaseManager(this);
+abstract class _$AppDatabase extends GeneratedDatabase {
+  _$AppDatabase(QueryExecutor e) : super(e);
+  $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $TelemetryQueueTable telemetryQueue = $TelemetryQueueTable(this);
   late final $TelemetryUploadLogTable telemetryUploadLog =
       $TelemetryUploadLogTable(this);
@@ -918,25 +902,23 @@ abstract class _$DriftTelemetryDatabase extends GeneratedDatabase {
 
 typedef $$TelemetryQueueTableCreateCompanionBuilder =
     TelemetryQueueCompanion Function({
-      required String id,
-      required String serializedPayload,
+      Value<int> id,
+      required String data,
+      required int schemaVersion,
       required int createdAtMs,
-      required int startMs,
       Value<int?> uploadedAtMs,
-      Value<int> rowid,
     });
 typedef $$TelemetryQueueTableUpdateCompanionBuilder =
     TelemetryQueueCompanion Function({
-      Value<String> id,
-      Value<String> serializedPayload,
+      Value<int> id,
+      Value<String> data,
+      Value<int> schemaVersion,
       Value<int> createdAtMs,
-      Value<int> startMs,
       Value<int?> uploadedAtMs,
-      Value<int> rowid,
     });
 
 class $$TelemetryQueueTableFilterComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryQueueTable> {
+    extends Composer<_$AppDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableFilterComposer({
     required super.$db,
     required super.$table,
@@ -944,23 +926,23 @@ class $$TelemetryQueueTableFilterComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnFilters<String> get id => $composableBuilder(
+  ColumnFilters<int> get id => $composableBuilder(
     column: $table.id,
     builder: (column) => ColumnFilters(column),
   );
 
-  ColumnFilters<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
+  ColumnFilters<String> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
     builder: (column) => ColumnFilters(column),
   );
 
   ColumnFilters<int> get createdAtMs => $composableBuilder(
     column: $table.createdAtMs,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<int> get startMs => $composableBuilder(
-    column: $table.startMs,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -971,7 +953,7 @@ class $$TelemetryQueueTableFilterComposer
 }
 
 class $$TelemetryQueueTableOrderingComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryQueueTable> {
+    extends Composer<_$AppDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableOrderingComposer({
     required super.$db,
     required super.$table,
@@ -979,23 +961,23 @@ class $$TelemetryQueueTableOrderingComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  ColumnOrderings<String> get id => $composableBuilder(
+  ColumnOrderings<int> get id => $composableBuilder(
     column: $table.id,
     builder: (column) => ColumnOrderings(column),
   );
 
-  ColumnOrderings<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
+  ColumnOrderings<String> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
     builder: (column) => ColumnOrderings(column),
   );
 
   ColumnOrderings<int> get createdAtMs => $composableBuilder(
     column: $table.createdAtMs,
-    builder: (column) => ColumnOrderings(column),
-  );
-
-  ColumnOrderings<int> get startMs => $composableBuilder(
-    column: $table.startMs,
     builder: (column) => ColumnOrderings(column),
   );
 
@@ -1006,7 +988,7 @@ class $$TelemetryQueueTableOrderingComposer
 }
 
 class $$TelemetryQueueTableAnnotationComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryQueueTable> {
+    extends Composer<_$AppDatabase, $TelemetryQueueTable> {
   $$TelemetryQueueTableAnnotationComposer({
     required super.$db,
     required super.$table,
@@ -1014,11 +996,14 @@ class $$TelemetryQueueTableAnnotationComposer
     super.$addJoinBuilderToRootComposer,
     super.$removeJoinBuilderFromRootComposer,
   });
-  GeneratedColumn<String> get id =>
+  GeneratedColumn<int> get id =>
       $composableBuilder(column: $table.id, builder: (column) => column);
 
-  GeneratedColumn<String> get serializedPayload => $composableBuilder(
-    column: $table.serializedPayload,
+  GeneratedColumn<String> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
+
+  GeneratedColumn<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
     builder: (column) => column,
   );
 
@@ -1026,9 +1011,6 @@ class $$TelemetryQueueTableAnnotationComposer
     column: $table.createdAtMs,
     builder: (column) => column,
   );
-
-  GeneratedColumn<int> get startMs =>
-      $composableBuilder(column: $table.startMs, builder: (column) => column);
 
   GeneratedColumn<int> get uploadedAtMs => $composableBuilder(
     column: $table.uploadedAtMs,
@@ -1039,7 +1021,7 @@ class $$TelemetryQueueTableAnnotationComposer
 class $$TelemetryQueueTableTableManager
     extends
         RootTableManager<
-          _$DriftTelemetryDatabase,
+          _$AppDatabase,
           $TelemetryQueueTable,
           TelemetryQueueData,
           $$TelemetryQueueTableFilterComposer,
@@ -1050,7 +1032,7 @@ class $$TelemetryQueueTableTableManager
           (
             TelemetryQueueData,
             BaseReferences<
-              _$DriftTelemetryDatabase,
+              _$AppDatabase,
               $TelemetryQueueTable,
               TelemetryQueueData
             >,
@@ -1059,7 +1041,7 @@ class $$TelemetryQueueTableTableManager
           PrefetchHooks Function()
         > {
   $$TelemetryQueueTableTableManager(
-    _$DriftTelemetryDatabase db,
+    _$AppDatabase db,
     $TelemetryQueueTable table,
   ) : super(
         TableManagerState(
@@ -1073,42 +1055,38 @@ class $$TelemetryQueueTableTableManager
               $$TelemetryQueueTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback:
               ({
-                Value<String> id = const Value.absent(),
-                Value<String> serializedPayload = const Value.absent(),
+                Value<int> id = const Value.absent(),
+                Value<String> data = const Value.absent(),
+                Value<int> schemaVersion = const Value.absent(),
                 Value<int> createdAtMs = const Value.absent(),
-                Value<int> startMs = const Value.absent(),
                 Value<int?> uploadedAtMs = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
               }) => TelemetryQueueCompanion(
                 id: id,
-                serializedPayload: serializedPayload,
+                data: data,
+                schemaVersion: schemaVersion,
                 createdAtMs: createdAtMs,
-                startMs: startMs,
                 uploadedAtMs: uploadedAtMs,
-                rowid: rowid,
               ),
           createCompanionCallback:
               ({
-                required String id,
-                required String serializedPayload,
+                Value<int> id = const Value.absent(),
+                required String data,
+                required int schemaVersion,
                 required int createdAtMs,
-                required int startMs,
                 Value<int?> uploadedAtMs = const Value.absent(),
-                Value<int> rowid = const Value.absent(),
               }) => TelemetryQueueCompanion.insert(
                 id: id,
-                serializedPayload: serializedPayload,
+                data: data,
+                schemaVersion: schemaVersion,
                 createdAtMs: createdAtMs,
-                startMs: startMs,
                 uploadedAtMs: uploadedAtMs,
-                rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
                   e.readTable<$TelemetryQueueTable, TelemetryQueueData>(table),
                   BaseReferences<
-                    _$DriftTelemetryDatabase,
+                    _$AppDatabase,
                     $TelemetryQueueTable,
                     TelemetryQueueData
                   >(db, table, e),
@@ -1122,7 +1100,7 @@ class $$TelemetryQueueTableTableManager
 
 typedef $$TelemetryQueueTableProcessedTableManager =
     ProcessedTableManager<
-      _$DriftTelemetryDatabase,
+      _$AppDatabase,
       $TelemetryQueueTable,
       TelemetryQueueData,
       $$TelemetryQueueTableFilterComposer,
@@ -1132,11 +1110,7 @@ typedef $$TelemetryQueueTableProcessedTableManager =
       $$TelemetryQueueTableUpdateCompanionBuilder,
       (
         TelemetryQueueData,
-        BaseReferences<
-          _$DriftTelemetryDatabase,
-          $TelemetryQueueTable,
-          TelemetryQueueData
-        >,
+        BaseReferences<_$AppDatabase, $TelemetryQueueTable, TelemetryQueueData>,
       ),
       TelemetryQueueData,
       PrefetchHooks Function()
@@ -1163,7 +1137,7 @@ typedef $$TelemetryUploadLogTableUpdateCompanionBuilder =
     });
 
 class $$TelemetryUploadLogTableFilterComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryUploadLogTable> {
+    extends Composer<_$AppDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableFilterComposer({
     required super.$db,
     required super.$table,
@@ -1208,7 +1182,7 @@ class $$TelemetryUploadLogTableFilterComposer
 }
 
 class $$TelemetryUploadLogTableOrderingComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryUploadLogTable> {
+    extends Composer<_$AppDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableOrderingComposer({
     required super.$db,
     required super.$table,
@@ -1253,7 +1227,7 @@ class $$TelemetryUploadLogTableOrderingComposer
 }
 
 class $$TelemetryUploadLogTableAnnotationComposer
-    extends Composer<_$DriftTelemetryDatabase, $TelemetryUploadLogTable> {
+    extends Composer<_$AppDatabase, $TelemetryUploadLogTable> {
   $$TelemetryUploadLogTableAnnotationComposer({
     required super.$db,
     required super.$table,
@@ -1294,7 +1268,7 @@ class $$TelemetryUploadLogTableAnnotationComposer
 class $$TelemetryUploadLogTableTableManager
     extends
         RootTableManager<
-          _$DriftTelemetryDatabase,
+          _$AppDatabase,
           $TelemetryUploadLogTable,
           TelemetryUploadLogData,
           $$TelemetryUploadLogTableFilterComposer,
@@ -1305,7 +1279,7 @@ class $$TelemetryUploadLogTableTableManager
           (
             TelemetryUploadLogData,
             BaseReferences<
-              _$DriftTelemetryDatabase,
+              _$AppDatabase,
               $TelemetryUploadLogTable,
               TelemetryUploadLogData
             >,
@@ -1314,7 +1288,7 @@ class $$TelemetryUploadLogTableTableManager
           PrefetchHooks Function()
         > {
   $$TelemetryUploadLogTableTableManager(
-    _$DriftTelemetryDatabase db,
+    _$AppDatabase db,
     $TelemetryUploadLogTable table,
   ) : super(
         TableManagerState(
@@ -1372,7 +1346,7 @@ class $$TelemetryUploadLogTableTableManager
                     table,
                   ),
                   BaseReferences<
-                    _$DriftTelemetryDatabase,
+                    _$AppDatabase,
                     $TelemetryUploadLogTable,
                     TelemetryUploadLogData
                   >(db, table, e),
@@ -1386,7 +1360,7 @@ class $$TelemetryUploadLogTableTableManager
 
 typedef $$TelemetryUploadLogTableProcessedTableManager =
     ProcessedTableManager<
-      _$DriftTelemetryDatabase,
+      _$AppDatabase,
       $TelemetryUploadLogTable,
       TelemetryUploadLogData,
       $$TelemetryUploadLogTableFilterComposer,
@@ -1397,7 +1371,7 @@ typedef $$TelemetryUploadLogTableProcessedTableManager =
       (
         TelemetryUploadLogData,
         BaseReferences<
-          _$DriftTelemetryDatabase,
+          _$AppDatabase,
           $TelemetryUploadLogTable,
           TelemetryUploadLogData
         >,
@@ -1406,9 +1380,9 @@ typedef $$TelemetryUploadLogTableProcessedTableManager =
       PrefetchHooks Function()
     >;
 
-class $DriftTelemetryDatabaseManager {
-  final _$DriftTelemetryDatabase _db;
-  $DriftTelemetryDatabaseManager(this._db);
+class $AppDatabaseManager {
+  final _$AppDatabase _db;
+  $AppDatabaseManager(this._db);
   $$TelemetryQueueTableTableManager get telemetryQueue =>
       $$TelemetryQueueTableTableManager(_db, _db.telemetryQueue);
   $$TelemetryUploadLogTableTableManager get telemetryUploadLog =>

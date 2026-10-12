@@ -13,7 +13,7 @@
 
 import 'dart:io';
 
-import 'package:core_runtime/telemetry/drift_telemetry_database.dart';
+import 'package:core_runtime/database/app_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -33,7 +33,7 @@ void main() {
     test('open uses explicit file path and creates sqlite file', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_open_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       await db()!.customSelect('SELECT 1').get();
       await db()!.close();
 
@@ -43,7 +43,7 @@ void main() {
     test('open enables WAL journal mode', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_wal_mode_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       final result = await db()!.customSelect('PRAGMA journal_mode').get();
       await db()!.close();
 
@@ -53,7 +53,7 @@ void main() {
     test('open configures busy timeout to 5000 ms', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_busy_timeout_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       final result = await db()!.customSelect('PRAGMA busy_timeout').get();
       await db()!.close();
 
@@ -63,7 +63,7 @@ void main() {
     test('open configures synchronous mode to NORMAL', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_synchronous_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       final result = await db()!.customSelect('PRAGMA synchronous').get();
       await db()!.close();
 
@@ -73,7 +73,7 @@ void main() {
     test('open configures WAL checkpoint and journal size limits', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_wal_limits_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       final checkpointResult = await db()!.customSelect('PRAGMA wal_autocheckpoint').get();
       final limitResult = await db()!.customSelect('PRAGMA journal_size_limit').get();
       await db()!.close();
@@ -88,7 +88,7 @@ void main() {
       // Write garbage bytes — simulates a corrupt DB header.
       await File(filePath).writeAsBytes(List.filled(4096, 0xFF));
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       // If recovery worked the DB is usable and the corrupted file is gone.
       await db()!.customSelect('SELECT 1').get();
       await db()!.close();
@@ -100,12 +100,12 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_wal_test.db';
 
       // Create a valid DB first, then corrupt the WAL file.
-      final good = await DriftTelemetryDatabase.open(filePath: filePath);
+      final good = await AppDatabase.open(filePath: filePath);
       await good()!.customSelect('SELECT 1').get();
       await good()!.close();
       await File('$filePath-wal').writeAsBytes(List.filled(512, 0xFF));
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       await db()!.customSelect('SELECT 1').get();
       await db()!.close();
 
@@ -116,7 +116,7 @@ void main() {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_transient_test.db';
 
       // Create a valid DB first.
-      final good = await DriftTelemetryDatabase.open(filePath: filePath);
+      final good = await AppDatabase.open(filePath: filePath);
       await good()!.customSelect('SELECT 1').get();
       await good()!.close();
 
@@ -127,7 +127,7 @@ void main() {
       await Directory(filePath).create();
 
       // Attempting to open should fail, but not try to delete the directory.
-      expect(() => DriftTelemetryDatabase.open(filePath: filePath), throwsA(isA<Object>()));
+      expect(() => AppDatabase.open(filePath: filePath), throwsA(isA<Object>()));
 
       // Verify the directory is still there (not deleted).
       expect(Directory(filePath).existsSync(), isTrue);
@@ -136,7 +136,7 @@ void main() {
     test('vacuum defragments the database without error', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_vacuum_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       // Vacuum should succeed without error even on an empty database.
       await db()!.vacuum();
       await db()!.close();
@@ -147,13 +147,13 @@ void main() {
     test('remove deletes existing database file', () async {
       final filePath = '${tempDir.path}${Platform.pathSeparator}telemetry_remove_test.db';
 
-      final db = await DriftTelemetryDatabase.open(filePath: filePath);
+      final db = await AppDatabase.open(filePath: filePath);
       await db()!.customSelect('SELECT 1').get();
       await db()!.close();
 
       expect(File(filePath).existsSync(), isTrue);
 
-      await DriftTelemetryDatabase.removeFile(filePath: filePath);
+      await AppDatabase.removeFile(filePath: filePath);
 
       expect(File(filePath).existsSync(), isFalse);
     });
@@ -163,7 +163,7 @@ void main() {
 
       expect(File(filePath).existsSync(), isFalse);
 
-      await DriftTelemetryDatabase.removeFile(filePath: filePath);
+      await AppDatabase.removeFile(filePath: filePath);
 
       expect(File(filePath).existsSync(), isFalse);
     });

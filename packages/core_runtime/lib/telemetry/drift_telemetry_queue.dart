@@ -10,26 +10,27 @@
 import 'dart:convert';
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:core_runtime/database/telemetry_queue.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
-import 'drift_telemetry_database.dart';
+import '../database/app_database.dart';
 
 /// SQLite-backed implementation of [core_domain.TelemetryQueue] built
 /// on Drift.  All timestamps are stored as UTC milliseconds since epoch.
 class DriftTelemetryQueue implements core_domain.TelemetryQueue {
   DriftTelemetryQueue(this._dbFactory);
 
-  final TelemetryDatabaseFun _dbFactory;
+  final AppDatabaseFun _dbFactory;
 
   /// Enqueues [payload] for upload.
   ///
   /// Idempotent on duplicate [core_domain.Observation.id].
   /// Duplicate rows are ignored to preserve existing upload state.
   @override
-  Future<void> enqueue(core_domain.Observation observation) async {
+  Future<void> add(core_domain.Observation observation) async {
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final id = observation.id.toString();
+    final id = observation.id;
     final encodedJson = jsonEncode(observation.toJson());
     final db = _dbFactory();
     if (db == null) {
@@ -40,7 +41,12 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
         // Detection engine payload IDs are unique; if a duplicate appears,
         // keep the existing row as-is (do not reset/overwrite upload state).
         .insert(
-          TelemetryQueueCompanion.insert(id: id, serializedPayload: encodedJson, createdAtMs: nowMs, startMs: 0),
+          TelemetryQueueCompanion.insert(
+            id: Value(id),
+            data: encodedJson,
+            createdAtMs: nowMs,
+            schemaVersion: kTelemetryQueueSchemaVersion,
+          ),
           mode: InsertMode.insertOrIgnore,
         );
     appkit.logDebug('[TelemetryQueue] add payload: $id');
@@ -165,11 +171,10 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
       return; // db is not available, ignore operation
     }
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final ids = observationIds.map((id) => id.toString()).toList(growable: false);
     // Batch update all payloads in a single WHERE IN clause for efficiency.
     await (db.update(
       db.telemetryQueue,
-    )..where((t) => t.id.isIn(ids))).write(TelemetryQueueCompanion(uploadedAtMs: Value(nowMs)));
+    )..where((t) => t.id.isIn(observationIds))).write(TelemetryQueueCompanion(uploadedAtMs: Value(nowMs)));
   }
 
   @override
@@ -202,7 +207,7 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
 
   /// Converts a Drift row to a domain [core_domain.QueuedObservation].
   core_domain.QueuedObservation _toModel(TelemetryQueueData row) {
-    final storedJson = jsonDecode(row.serializedPayload) as Map<String, dynamic>;
+    final storedJson = jsonDecode(row.data) as Map<String, dynamic>;
     final observationJson = storedJson['observation'] as Map<String, dynamic>?;
     final observation = observationJson == null
         ? core_domain.Observation.fromJson(storedJson)
