@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'day_file.dart';
+part of 'day_summary.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_DayFile _$DayFileFromJson(Map<String, dynamic> json) => _DayFile(
+_DaySummary _$DaySummaryFromJson(Map<String, dynamic> json) => _DaySummary(
   year: (json['year'] as num).toInt(),
   month: (json['month'] as num).toInt(),
   day: (json['day'] as num).toInt(),
@@ -21,11 +21,12 @@ _DayFile _$DayFileFromJson(Map<String, dynamic> json) => _DayFile(
   ),
 );
 
-Map<String, dynamic> _$DayFileToJson(_DayFile instance) => <String, dynamic>{
-  'year': instance.year,
-  'month': instance.month,
-  'day': instance.day,
-  'fiveMinuteObservations': instance.fiveMinuteObservations,
-  'hourlyObservations': instance.hourlyObservations,
-  'dailyObservation': instance.dailyObservation,
-};
+Map<String, dynamic> _$DaySummaryToJson(_DaySummary instance) =>
+    <String, dynamic>{
+      'year': instance.year,
+      'month': instance.month,
+      'day': instance.day,
+      'fiveMinuteObservations': instance.fiveMinuteObservations,
+      'hourlyObservations': instance.hourlyObservations,
+      'dailyObservation': instance.dailyObservation,
+    };

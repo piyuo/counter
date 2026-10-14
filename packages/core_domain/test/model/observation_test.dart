@@ -1,6 +1,7 @@
 // TOC
 // 1. Observation derived date/time getters
 
+import 'package:core_domain/model/area_metrics.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -69,18 +70,26 @@ void main() {
         disappear: 0,
         occupancySampleCount: 2,
         occupancySampleSum: 5,
-        occupancyAvg: 2.5,
+        occupancySampleSumSquares: 13,
+        occupancyMean: 2.5,
         occupancyMax: 4,
         occupancyLast: 4,
         dwellSumSeconds: 7,
         dwellSampleCount: 2,
-        dwellAvgSeconds: 3.5,
+        dwellMeanSeconds: 3.5,
         dwellMaxSeconds: 4,
       );
 
-      expect(metrics.occupancyAvg, 2.5);
+      expect(metrics.occupancyMean, 2.5);
       expect(metrics.occupancyLast, 4);
-      expect(metrics.dwellAvgSeconds, 3.5);
+      expect(metrics.dwellMeanSeconds, 3.5);
+      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
+      expect(metrics.presenceTrackCount, 0);
+      expect(metrics.presenceSumSeconds, 0);
+      expect(metrics.presenceMeanSeconds, 0);
+
+      final legacyJson = metrics.toJson()..remove('dwellHistogram');
+      expect(AreaMetrics.fromJson(legacyJson).dwellHistogram, [0, 0, 0, 0, 0]);
     });
 
     test('toString includes every stored observation and area field', () {
@@ -95,12 +104,13 @@ void main() {
         disappear: 8,
         occupancySampleCount: 9,
         occupancySampleSum: 10,
-        occupancyAvg: 1.2345,
+        occupancySampleSumSquares: 42,
+        occupancyMean: 1.2345,
         occupancyMax: 11,
         occupancyLast: 12,
         dwellSumSeconds: 13,
         dwellSampleCount: 14,
-        dwellAvgSeconds: 2.3456,
+        dwellMeanSeconds: 2.3456,
         dwellMaxSeconds: 15,
       );
       const observation = Observation(
@@ -152,12 +162,13 @@ void main() {
         'disappear: 8',
         'occupancySampleCount: 9',
         'occupancySampleSum: 10',
-        'occupancyAvg: 1.23',
+        'occupancySampleSumSquares: 42',
+        'occupancyMean: 1.23',
         'occupancyMax: 11',
         'occupancyLast: 12',
         'dwellSumSeconds: 13',
         'dwellSampleCount: 14',
-        'dwellAvgSeconds: 2.35',
+        'dwellMeanSeconds: 2.35',
         'dwellMaxSeconds: 15',
       ]) {
         expect(areaString, contains(field));
@@ -190,12 +201,13 @@ void main() {
             'disappear': 0,
             'occupancySampleCount': 2,
             'occupancySampleSum': 5,
-            'occupancyAvg': 2.5,
+            'occupancySampleSumSquares': 13,
+            'occupancyMean': 2.5,
             'occupancyMax': 3,
             'occupancyLast': 4,
             'dwellSumSeconds': 7,
             'dwellSampleCount': 2,
-            'dwellAvgSeconds': 3.5,
+            'dwellMeanSeconds': 3.5,
             'dwellMaxSeconds': 4.5,
           },
         ],
@@ -212,29 +224,57 @@ void main() {
       expect(observation.confidenceRatio, 0.752083333333);
       expect(observation.coverageRatio, 0.75);
       expect(metrics.stagnant, 2);
-      expect(metrics.occupancyAvg, 2.5);
-      expect(metrics.dwellAvgSeconds, 3.5);
+      expect(metrics.occupancySampleSumSquares, 13);
+      expect(metrics.occupancyMean, 2.5);
+      expect(metrics.dwellMeanSeconds, 3.5);
       expect(metrics.dwellMaxSeconds, 4);
     });
   });
   group('Observation.id', () {
     test('pads short date and time components', () {
-      final observation = _observation(year: 2026, month: 1, day: 2, hour: 3, minute: 5);
+      final observation = _observation(
+        year: 2026,
+        month: 1,
+        day: 2,
+        hour: 3,
+        minute: 5,
+      );
 
       expect(observation.id, 202601020305);
     });
 
-    test('encodes components set to -1 as zeroes at each aggregation level', () {
-      expect(_observation(year: 2026, month: 6, day: 24, hour: 23, minute: -1).id, 202606242300);
-      expect(_observation(year: 2026, month: 6, day: 24, hour: -1, minute: -1).id, 202606240000);
-      expect(_observation(year: 2026, month: 6, day: -1, hour: -1, minute: -1).id, 202606000000);
-      expect(_observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1).id, 202600000000);
-    });
+    test(
+      'encodes components set to -1 as zeroes at each aggregation level',
+      () {
+        expect(
+          _observation(year: 2026, month: 6, day: 24, hour: 23, minute: -1).id,
+          202606242300,
+        );
+        expect(
+          _observation(year: 2026, month: 6, day: 24, hour: -1, minute: -1).id,
+          202606240000,
+        );
+        expect(
+          _observation(year: 2026, month: 6, day: -1, hour: -1, minute: -1).id,
+          202606000000,
+        );
+        expect(
+          _observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1).id,
+          202600000000,
+        );
+      },
+    );
   });
 
   group('Observation date/time keys', () {
     test('builds date, time, and date-hour keys with padded components', () {
-      final observation = _observation(year: 2026, month: 6, day: 4, hour: 13, minute: 5);
+      final observation = _observation(
+        year: 2026,
+        month: 6,
+        day: 4,
+        hour: 13,
+        minute: 5,
+      );
 
       expect(observation.dateKey, 20260604);
       expect(observation.timeKey, 1305);
@@ -247,7 +287,10 @@ void main() {
 
       expect(observation.granularity, ObservationGranularity.minutes5);
       expect(json['granularity'], 'minutes5');
-      expect(Observation.fromJson({...json}..remove('granularity')).granularity, ObservationGranularity.minutes5);
+      expect(
+        Observation.fromJson({...json}..remove('granularity')).granularity,
+        ObservationGranularity.minutes5,
+      );
     });
 
     test('encodes unavailable components as zeroes', () {
@@ -288,12 +331,13 @@ void main() {
       disappear: 0,
       occupancySampleCount: 0,
       occupancySampleSum: 0,
-      occupancyAvg: 0,
+      occupancySampleSumSquares: 0,
+      occupancyMean: 0,
       occupancyMax: 0,
       occupancyLast: 0,
       dwellSumSeconds: 0,
       dwellSampleCount: 0,
-      dwellAvgSeconds: 0,
+      dwellMeanSeconds: 0,
       dwellMaxSeconds: 0,
     );
     final json = metrics.toJson();
@@ -305,7 +349,13 @@ void main() {
   });
 
   test('dateTime represents the observation local date and time', () {
-    final observation = _observation(year: 2026, month: 6, day: 24, hour: 23, minute: 5);
+    final observation = _observation(
+      year: 2026,
+      month: 6,
+      day: 24,
+      hour: 23,
+      minute: 5,
+    );
 
     expect(observation.dateTime, DateTime(2026, 6, 24, 23, 5));
   });
@@ -318,21 +368,52 @@ void main() {
 
   test('businessDateTime formats each observation granularity', () {
     final observations = [
-      (_observation(year: 2026, month: 1, day: 3, hour: 4, minute: 5), '2026-01-03 04:05'),
       (
-        _observation(year: 2026, month: 1, day: 3, hour: 4, minute: -1, granularity: ObservationGranularity.hour),
+        _observation(year: 2026, month: 1, day: 3, hour: 4, minute: 5),
+        '2026-01-03 04:05',
+      ),
+      (
+        _observation(
+          year: 2026,
+          month: 1,
+          day: 3,
+          hour: 4,
+          minute: -1,
+          granularity: ObservationGranularity.hour,
+        ),
         '2026-01-03 04:00',
       ),
       (
-        _observation(year: 2026, month: 1, day: 3, hour: -1, minute: -1, granularity: ObservationGranularity.day),
+        _observation(
+          year: 2026,
+          month: 1,
+          day: 3,
+          hour: -1,
+          minute: -1,
+          granularity: ObservationGranularity.day,
+        ),
         '2026-01-03 00:00',
       ),
       (
-        _observation(year: 2026, month: 1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.month),
+        _observation(
+          year: 2026,
+          month: 1,
+          day: -1,
+          hour: -1,
+          minute: -1,
+          granularity: ObservationGranularity.month,
+        ),
         '2026-01',
       ),
       (
-        _observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.year),
+        _observation(
+          year: 2026,
+          month: -1,
+          day: -1,
+          hour: -1,
+          minute: -1,
+          granularity: ObservationGranularity.year,
+        ),
         '2026',
       ),
     ];

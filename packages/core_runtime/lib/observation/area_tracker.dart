@@ -14,8 +14,8 @@ const int kMaxTrackHistory = 5000;
 
 /// Tracks per-area counting state and emits aggregated event/state samples.
 ///
-/// Global trackers (areaId = null) only track pass-by, appear/disappear, and
-/// occupancy metrics. Local trackers (areaId != null) additionally emit
+/// Global trackers (areaId = null) track pass-by, appear/disappear, occupancy,
+/// and dwell metrics. Local trackers (areaId != null) additionally emit
 /// enter/exit events.
 class AreaTracker {
   final int? areaId;
@@ -34,7 +34,7 @@ class AreaTracker {
   final Set<int> _contactedTracks = {};
   final Set<int> _appearedTracks = {};
   final Set<int> _disappearedTracks = {};
-  final Set<int> _stayedTracks = {};
+  final Set<int> _stagnantTracks = {};
 
   // Track id -> first timestamp when the track was observed inside continuously.
   final Map<int, DateTime> _insideSinceByTrackId = {};
@@ -71,7 +71,7 @@ class AreaTracker {
     _contactedTracks.clear();
     _appearedTracks.clear();
     _disappearedTracks.clear();
-    _stayedTracks.clear();
+    _stagnantTracks.clear();
     _insideSinceByTrackId.clear();
     _pendingDisappearSinceByTrackId.clear();
     _previousInsideTrackIds = {};
@@ -87,11 +87,8 @@ class AreaTracker {
   }) {
     final nowUtc = (frameTimestampUtc ?? DateTime.now().toUtc()).toUtc();
 
-    // Per-frame metrics that are forwarded into window-level state aggregation.
+    // Occupancy is sampled once per processed frame.
     int occupancy = 0;
-    int sumDwellSeconds = 0;
-    int dwellTrackCount = 0;
-    int maxDwellSeconds = 0;
     final currentInsideTrackIds = <int>{};
 
     for (final track in tracks) {
@@ -110,12 +107,6 @@ class AreaTracker {
       _insideSinceByTrackId.putIfAbsent(track.trackId, () => nowUtc);
       _pendingDisappearSinceByTrackId.remove(track.trackId);
       occupancy++;
-      final trackDwellSeconds = track.dwellDuration.inSeconds;
-      sumDwellSeconds += trackDwellSeconds;
-      dwellTrackCount++;
-      if (trackDwellSeconds > maxDwellSeconds) {
-        maxDwellSeconds = trackDwellSeconds;
-      }
 
       // first_contact: current inside
       _recordPassBy(track.trackId, aggregator);
@@ -127,7 +118,7 @@ class AreaTracker {
 
       final insideSince = _insideSinceByTrackId[track.trackId];
       if (insideSince != null && nowUtc.difference(insideSince) >= stagnantThreshold) {
-        _recordUniqueEvent(_stayedTracks, track.trackId, aggregator, EventType.stagnant);
+        _recordUniqueEvent(_stagnantTracks, track.trackId, aggregator, EventType.stagnant);
       }
 
       if (!isGlobal) {
@@ -152,6 +143,10 @@ class AreaTracker {
       if (nowUtc.difference(entry.value) < disappearThreshold) continue;
 
       _recordUniqueEvent(_disappearedTracks, entry.key, aggregator, EventType.disappear);
+      final insideSince = _insideSinceByTrackId[entry.key];
+      if (insideSince != null) {
+        _recordDwell(entry.value.difference(insideSince), aggregator);
+      }
       _pendingDisappearSinceByTrackId.remove(entry.key);
       _insideSinceByTrackId.remove(entry.key);
     }
@@ -159,7 +154,12 @@ class AreaTracker {
     _previousInsideTrackIds = currentInsideTrackIds;
 
     _currentOccupancy = occupancy;
-    aggregator.addStateSample(_effectiveAreaId, occupancy, maxDwellSeconds, sumDwellSeconds, dwellTrackCount);
+    aggregator.addOccupancySample(_effectiveAreaId, occupancy);
+  }
+
+  void _recordDwell(Duration duration, ObservationAggregator aggregator) {
+    final seconds = (duration.inMilliseconds / 1000).round();
+    aggregator.addDwellSample(_effectiveAreaId, seconds);
   }
 
   /// Records pass-by on first contact and refreshes recency on repeated contact.

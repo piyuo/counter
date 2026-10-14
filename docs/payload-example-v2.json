@@ -29,13 +29,18 @@
           "disappear": 0,
           "occupancySampleCount": 2963,
           "occupancySampleSum": 2933,
-          "occupancyAvg": 0.99,
-          "occupancyMax": 1,
+          "occupancySampleSumSquares": 2935,
+          "occupancyMean": 0.99,
+          "occupancyMax": 2,
           "occupancyLast": 1,
           "dwellSumSeconds": 6070,
           "dwellSampleCount": 100,
-          "dwellAvgSeconds": 60.7,
-          "dwellMaxSeconds": 122.0
+          "dwellMeanSeconds": 60.7,
+          "dwellMaxSeconds": 122,
+          "dwellHistogram": [15, 25, 40, 15, 5],
+          "presenceTrackCount": 0,
+          "presenceSumSeconds": 0,
+          "presenceMeanSeconds": 0.0
         }
       ],
       "frameCount": 2963

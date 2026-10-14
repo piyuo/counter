@@ -19,7 +19,7 @@ class MutableEventCounts {
 /// Resolves an area ID to its human-readable name.
 typedef AreaNameResolver = String Function(int areaId);
 
-/// Aggregates per-area events and occupancy/dwell state within a time window.
+/// Aggregates per-area events, occupancy samples, and finished dwell samples.
 class ObservationAggregator {
   /// Inclusive start timestamp of the aggregation window in business time.
   final DateTime startBusiness;
@@ -27,7 +27,7 @@ class ObservationAggregator {
   // Per-area event counters (pass-by / enter / exit / appear / disappear / stay).
   final Map<int, MutableEventCounts> _eventCounts = {};
 
-  // Per-area running occupancy/dwell metrics.
+  // Per-area running occupancy and finished-dwell metrics.
   final Map<int, StateMetrics> _stateMetrics = {};
 
   // Total duration missing from source frames within this window.
@@ -67,7 +67,10 @@ class ObservationAggregator {
   }
 
   /// Adds aggregated confidence values observed in the current frame.
-  void addConfidenceAggregate({required double confidenceRatioSum, required int sampleCount}) {
+  void addConfidenceAggregate({
+    required double confidenceRatioSum,
+    required int sampleCount,
+  }) {
     if (sampleCount <= 0) return;
     _confidenceRatioSum += confidenceRatioSum;
     _confidenceSampleCount += sampleCount;
@@ -75,7 +78,10 @@ class ObservationAggregator {
 
   /// Increments one event counter for [areaId].
   void incrementEvent(int areaId, EventType event) {
-    final metrics = _eventCounts.putIfAbsent(areaId, () => MutableEventCounts());
+    final metrics = _eventCounts.putIfAbsent(
+      areaId,
+      () => MutableEventCounts(),
+    );
     switch (event) {
       case EventType.passBy:
         metrics.passBy++;
@@ -98,10 +104,16 @@ class ObservationAggregator {
     }
   }
 
-  /// Adds one occupancy/dwell sample for [areaId].
-  void addStateSample(int areaId, int occupancy, int maxDwellSeconds, int sumDwellSeconds, int dwellTrackCount) {
+  /// Adds one frame-level occupancy sample for [areaId].
+  void addOccupancySample(int areaId, int occupancy) {
     final metrics = _stateMetrics.putIfAbsent(areaId, () => StateMetrics());
-    metrics.addSample(occupancy, maxDwellSeconds, sumDwellSeconds, dwellTrackCount);
+    metrics.addOccupancySample(occupancy);
+  }
+
+  /// Adds one finished-visit dwell sample for [areaId], in whole seconds.
+  void addDwellSample(int areaId, int seconds) {
+    final metrics = _stateMetrics.putIfAbsent(areaId, () => StateMetrics());
+    metrics.addDwellSample(seconds);
   }
 
   /// Ensures empty state metrics exist for [areaId].
@@ -123,20 +135,26 @@ class ObservationAggregator {
         areaId: areaId,
         areaName: areaNameResolver(areaId),
         passBy: events.passBy,
-        entry: areaId == core_domain.kGlobalAreaId ? 0 : events.entry, // Force entry to zero for global area
-        exit: areaId == core_domain.kGlobalAreaId ? 0 : events.exit, // Force exit to zero for global area
+        entry: areaId == core_domain.kGlobalAreaId
+            ? 0
+            : events.entry, // Force entry to zero for global area
+        exit: areaId == core_domain.kGlobalAreaId
+            ? 0
+            : events.exit, // Force exit to zero for global area
         appear: events.appear,
         disappear: events.disappear,
         stagnant: events.stagnant,
         occupancySampleCount: metrics.occupancySampleCount,
         occupancySampleSum: metrics.occupancySampleSum,
-        occupancyAvg: metrics.occupancyAvg,
+        occupancySampleSumSquares: metrics.occupancySampleSumSquares,
+        occupancyMean: metrics.occupancyMean,
         occupancyMax: metrics.occupancyMax,
         occupancyLast: metrics.occupancyLast,
         dwellSumSeconds: metrics.dwellSumSeconds,
         dwellSampleCount: metrics.dwellSampleCount,
-        dwellAvgSeconds: metrics.dwellAvgSeconds,
+        dwellMeanSeconds: metrics.dwellMeanSeconds,
         dwellMaxSeconds: metrics.dwellMaxSeconds,
+        dwellHistogram: List<int>.of(metrics.dwellHistogram),
       );
     }
 
@@ -146,7 +164,10 @@ class ObservationAggregator {
 
     final adjustedMissing = _adjustedMissingDuration(_missingDuration);
     final expectedSeconds = core_domain.kWindowDuration.inSeconds;
-    final coveredSeconds = (expectedSeconds - adjustedMissing.inSeconds).clamp(0, expectedSeconds);
+    final coveredSeconds = (expectedSeconds - adjustedMissing.inSeconds).clamp(
+      0,
+      expectedSeconds,
+    );
     final observation = core_domain.Observation(
       granularity: core_domain.ObservationGranularity.minutes5,
       year: startBusiness.year,
@@ -156,10 +177,14 @@ class ObservationAggregator {
       minute: startBusiness.minute,
       confidenceRatioSum: _confidenceRatioSum,
       confidenceSampleCount: _confidenceSampleCount,
-      confidenceRatio: _confidenceSampleCount == 0 ? 0 : _confidenceRatioSum / _confidenceSampleCount,
+      confidenceRatio: _confidenceSampleCount == 0
+          ? 0
+          : _confidenceRatioSum / _confidenceSampleCount,
       coveredSeconds: coveredSeconds,
       expectedSeconds: expectedSeconds,
-      coverageRatio: expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds,
+      coverageRatio: expectedSeconds == 0
+          ? 0
+          : coveredSeconds / expectedSeconds,
       areas: areasList,
       frameCount: _processedFrameCount,
     );
@@ -169,7 +194,10 @@ class ObservationAggregator {
 
   Duration _adjustedMissingDuration(Duration duration) {
     if (duration.isNegative) return Duration.zero;
-    if (duration.inSeconds >= 299) return Duration(seconds: 300); // our counting window is capped at 5 minutes
+    if (duration.inSeconds >= 299)
+      return Duration(
+        seconds: 300,
+      ); // our counting window is capped at 5 minutes
     return duration;
   }
 }
@@ -178,34 +206,56 @@ class ObservationAggregator {
 ///
 /// Occupancy exposes three values:
 /// - occupancyLast: last sampled occupancy
-/// - occupancyAvg: simple sample mean across frames
+/// - occupancyMean: simple sample mean across frames
+/// - occupancyVariance: population variance across samples
 /// - occupancyMax: maximum sampled occupancy
 class StateMetrics {
   int occupancySampleCount = 0;
   int occupancySampleSum = 0;
+  int occupancySampleSumSquares = 0;
   int occupancyMax = 0;
   int occupancyLast = 0;
   int dwellSumSeconds = 0;
   int dwellSampleCount = 0;
   int maxDwellSeconds = 0;
+  final List<int> dwellHistogram = List<int>.filled(
+    core_domain.kDwellBucketCount,
+    0,
+  );
 
-  /// Adds one frame-level sample.
-  void addSample(int occupancy, int maxDwellSeconds, int sumDwellSeconds, int dwellTrackCount) {
+  /// Adds one frame-level occupancy sample.
+  void addOccupancySample(int occupancy) {
     occupancySampleCount++;
     occupancySampleSum += occupancy;
+    occupancySampleSumSquares += occupancy * occupancy;
     if (occupancy > occupancyMax) occupancyMax = occupancy;
     occupancyLast = occupancy;
+  }
 
-    dwellSumSeconds += sumDwellSeconds;
-    dwellSampleCount += dwellTrackCount;
-    if (maxDwellSeconds > this.maxDwellSeconds) this.maxDwellSeconds = maxDwellSeconds;
+  /// Adds one finished-visit dwell sample, in whole seconds.
+  void addDwellSample(int seconds) {
+    final nonNegativeSeconds = seconds < 0 ? 0 : seconds;
+    dwellSumSeconds += nonNegativeSeconds;
+    dwellSampleCount++;
+    if (nonNegativeSeconds > maxDwellSeconds)
+      maxDwellSeconds = nonNegativeSeconds;
+    dwellHistogram[core_domain.dwellBucketIndex(nonNegativeSeconds)]++;
   }
 
   /// Mean occupancy across discrete frame samples (simple average).
-  double get occupancyAvg => occupancySampleCount == 0 ? 0.0 : occupancySampleSum / occupancySampleCount;
+  double get occupancyMean => occupancySampleCount == 0
+      ? 0.0
+      : occupancySampleSum / occupancySampleCount;
+
+  /// Population variance across discrete frame samples.
+  double get occupancyVariance => occupancySampleCount == 0
+      ? 0.0
+      : occupancySampleSumSquares / occupancySampleCount -
+            occupancyMean * occupancyMean;
 
   /// Mean dwell time in seconds across all tracked dwell observations.
-  double get dwellAvgSeconds => dwellSampleCount == 0 ? 0.0 : dwellSumSeconds / dwellSampleCount;
+  double get dwellMeanSeconds =>
+      dwellSampleCount == 0 ? 0.0 : dwellSumSeconds / dwellSampleCount;
 
   /// Max dwell time in rounded seconds.
   int get dwellMaxSeconds => maxDwellSeconds;

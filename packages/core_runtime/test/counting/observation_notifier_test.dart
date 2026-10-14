@@ -656,7 +656,7 @@ void main() {
       expect(activeWindow, isNotNull);
       expect(_area(activeWindow!, area.id).occupancyLast, 1);
       expect(_area(activeWindow, area.id).occupancyMax, 2);
-      expect(_area(activeWindow, area.id).occupancyAvg, closeTo(1.5, 0.0001));
+      expect(_area(activeWindow, area.id).occupancyMean, closeTo(1.5, 0.0001));
       expect(activeWindow.frameCount, 2);
       expect(activeWindow.confidenceRatio, 0.9);
     });

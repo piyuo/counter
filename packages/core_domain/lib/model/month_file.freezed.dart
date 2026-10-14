@@ -16,11 +16,14 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MonthFile {
 
-/// for example: year=2026, month=1, day=12
- int get year; int get month;/// 5-minute observations, to show average count  for every day in this month, 288 per day is expected.
- List<Observation> get dailyObservations;/// Hourly observations, max 24 per day. summarized from the 5-minute observations. missing hours may result in fewer entries.
- List<Observation> get hourlyObservations;/// monthly observation, summarized from the hourly observations.
-/// for example: pass-by: 225 // whole month
+/// for example: year=2026, month=1
+ int get year; int get month;/// Daily observations for this month, up to 31 entries.
+/// Used to compare individual days and calculate daily averages.
+ List<Observation> get dailyObservations;/// Hourly observations for this month, up to 744 entries (31 × 24).
+/// Summarized from the 5-minute observations.
+/// Missing hours may result in fewer entries.
+ List<Observation> get hourlyObservations;/// Monthly observation, summarized from the hourly observations.
+/// Represents the aggregated metrics for the entire month.
  Observation get monthlyObservation;
 /// Create a copy of MonthFile
 /// with the given fields replaced by the non-null parameter values.
@@ -225,29 +228,35 @@ class _MonthFile extends MonthFile {
   const _MonthFile({required this.year, required this.month, required  List<Observation> dailyObservations, required  List<Observation> hourlyObservations, required this.monthlyObservation}): _dailyObservations = dailyObservations,_hourlyObservations = hourlyObservations,super._();
   factory _MonthFile.fromJson(Map<String, dynamic> json) => _$MonthFileFromJson(json);
 
-/// for example: year=2026, month=1, day=12
+/// for example: year=2026, month=1
 @override final  int year;
 @override final  int month;
-/// 5-minute observations, to show average count  for every day in this month, 288 per day is expected.
+/// Daily observations for this month, up to 31 entries.
+/// Used to compare individual days and calculate daily averages.
  final  List<Observation> _dailyObservations;
-/// 5-minute observations, to show average count  for every day in this month, 288 per day is expected.
+/// Daily observations for this month, up to 31 entries.
+/// Used to compare individual days and calculate daily averages.
 @override List<Observation> get dailyObservations {
   if (_dailyObservations is EqualUnmodifiableListView) return _dailyObservations;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_dailyObservations);
 }
 
-/// Hourly observations, max 24 per day. summarized from the 5-minute observations. missing hours may result in fewer entries.
+/// Hourly observations for this month, up to 744 entries (31 × 24).
+/// Summarized from the 5-minute observations.
+/// Missing hours may result in fewer entries.
  final  List<Observation> _hourlyObservations;
-/// Hourly observations, max 24 per day. summarized from the 5-minute observations. missing hours may result in fewer entries.
+/// Hourly observations for this month, up to 744 entries (31 × 24).
+/// Summarized from the 5-minute observations.
+/// Missing hours may result in fewer entries.
 @override List<Observation> get hourlyObservations {
   if (_hourlyObservations is EqualUnmodifiableListView) return _hourlyObservations;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_hourlyObservations);
 }
 
-/// monthly observation, summarized from the hourly observations.
-/// for example: pass-by: 225 // whole month
+/// Monthly observation, summarized from the hourly observations.
+/// Represents the aggregated metrics for the entire month.
 @override final  Observation monthlyObservation;
 
 /// Create a copy of MonthFile

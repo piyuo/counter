@@ -54,9 +54,9 @@ List<MetricCardData> mapVisionMetricsToCardData(
         details: DetailMetricData(appeared: '${metrics.appear}', disappeared: '${metrics.disappear}'),
 
         summary: SummaryMetricData(
-          avgOccupancy: metrics.occupancyAvg.toStringAsFixed(1),
+          avgOccupancy: metrics.occupancyMean.toStringAsFixed(1),
           maxOccupancy: '${metrics.occupancyMax}',
-          avgDwellSeconds: metrics.dwellAvgSeconds,
+          avgDwellSeconds: metrics.dwellMeanSeconds,
           maxDwellSeconds: metrics.dwellMaxSeconds,
         ),
       ),
@@ -87,9 +87,9 @@ List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.Area
         details: DetailMetricData(appeared: '${area.appear}', disappeared: '${area.disappear}'),
 
         summary: SummaryMetricData(
-          avgOccupancy: area.occupancyAvg.toStringAsFixed(1),
+          avgOccupancy: area.occupancyMean.toStringAsFixed(1),
           maxOccupancy: '${area.occupancyMax}',
-          avgDwellSeconds: area.dwellAvgSeconds,
+          avgDwellSeconds: area.dwellMeanSeconds,
           maxDwellSeconds: area.dwellMaxSeconds,
         ),
       ),

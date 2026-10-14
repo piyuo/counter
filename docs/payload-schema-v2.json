@@ -141,6 +141,7 @@
         "disappear",
         "occupancySampleCount",
         "occupancySampleSum",
+        "occupancySampleSumSquares",
         "occupancyMax",
         "occupancyLast",
         "dwellSumSeconds",
@@ -187,7 +188,12 @@
           "type": "integer",
           "minimum": 0
         },
-        "occupancyAvg": {
+        "occupancySampleSumSquares": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of squared occupancy samples. Together with occupancySampleSum and occupancySampleCount, this supports deriving variance."
+        },
+        "occupancyMean": {
           "type": "number",
           "minimum": 0,
           "description": "Average occupancy across occupancy samples, rounded to at most 2 decimal places when serialized."
@@ -208,12 +214,34 @@
           "type": "integer",
           "minimum": 0
         },
-        "dwellAvgSeconds": {
+        "dwellMeanSeconds": {
           "type": "number",
           "minimum": 0,
           "description": "Average dwell duration in seconds, rounded to at most 2 decimal places when serialized."
         },
         "dwellMaxSeconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dwellHistogram": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": "Finished visits by duration bucket in seconds: [0, 5), [5, 15), [15, 60), [60, 300), and [300, infinity). A visit is recorded in the observation where disappearance is confirmed."
+        },
+        "presenceTrackCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "presenceSumSeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "presenceMeanSeconds": {
           "type": "number",
           "minimum": 0
         }

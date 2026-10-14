@@ -3,6 +3,7 @@ export 'app_flow/models/app_flow_event.dart';
 export 'app_flow/providers/app_flow_notifier.dart';
 export 'flag.dart';
 export 'model/analytics_state.dart';
+export 'model/area_metrics.dart';
 export 'model/daily_dashboard.dart';
 export 'model/insight_state.dart';
 export 'model/interest_area_state.dart';

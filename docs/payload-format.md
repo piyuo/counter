@@ -75,12 +75,13 @@ Only aggregated statistics are transmitted.
           "disappear": 0,
           "occupancySampleCount": 2963,
           "occupancySampleSum": 2933,
-          "occupancyAvg": 0.99,
-          "occupancyMax": 1,
+          "occupancySampleSumSquares": 2935,
+          "occupancyMean": 0.99,
+          "occupancyMax": 2,
           "occupancyLast": 1,
           "dwellSumSeconds": 6070,
           "dwellSampleCount": 100,
-          "dwellAvgSeconds": 60.7,
+          "dwellMeanSeconds": 60.7,
           "dwellMaxSeconds": 122.0
         }
       ],
@@ -89,6 +90,8 @@ Only aggregated statistics are transmitted.
   ]
 }
 ```
+
+For this occupancy example, the samples include 31 zeroes, 2,931 ones, and one two. Their sum is 2,933, while their squared sum is 2,935.
 
 ---
 
@@ -116,7 +119,7 @@ Each observation represents one **5-minute counting window**.
 | day                   | Integer       | Business day of month.                                                            |
 | hour                  | Integer       | Business hour, from 0 to 23.                                                      |
 | minute                | Integer       | Business minute.                                                                  |
-| confidenceRatioSum  | Number        | Sum of tracked-object confidence ratios (each 0–1), preserving fractional values. |
+| confidenceRatioSum    | Number        | Sum of tracked-object confidence ratios (each 0–1), preserving fractional values. |
 | confidenceSampleCount | Integer       | Number of tracked-object confidence samples.                                      |
 | confidenceRatio       | Number        | Confidence ratio derived from sum and count; rounded to at most 2 decimal places. |
 | coveredSeconds        | Integer       | Seconds with valid detection data in this observation.                            |
@@ -135,25 +138,35 @@ Area **0** always represents the **Global** area covering the entire camera view
 
 Additional configured interest areas are included after the global area.
 
-| Field                | Type    | Description                                                                               |
-| -------------------- | ------- | ----------------------------------------------------------------------------------------- |
-| areaId               | Integer | Area identifier. Area `0` always represents the global area.                              |
-| areaName             | String  | Configured area name.                                                                     |
-| passBy               | Integer | Unique tracks that contacted the area.                                                    |
-| stagnant             | Integer | Unique tracks that met the configured stay threshold.                                     |
-| entry                | Integer | Tracks first observed outside and later inside.                                           |
-| exit                 | Integer | Tracks first observed inside and later outside.                                           |
-| appear               | Integer | Newly detected tracks appearing in the area.                                              |
-| disappear            | Integer | Tracks lost after last being seen in the area.                                            |
-| occupancySampleCount | Integer | Number of occupancy samples.                                                              |
-| occupancySampleSum   | Integer | Sum of occupancy samples.                                                                 |
-| occupancyAvg         | Number  | Average occupancy derived from sample sum and count; rounded to at most 2 decimal places. |
-| occupancyMax         | Integer | Highest occupancy sample.                                                                 |
-| occupancyLast        | Integer | Most recent occupancy sample for this area.                                               |
-| dwellSumSeconds      | Integer | Sum of dwell durations in seconds.                                                        |
-| dwellSampleCount     | Integer | Number of dwell samples.                                                                  |
-| dwellAvgSeconds      | Number  | Average dwell seconds derived from sum and count; rounded to at most 2 decimal places.    |
-| dwellMaxSeconds      | Number  | Maximum dwell duration in seconds.                                                        |
+| Field                     | Type    | Description                                                                               |
+| ------------------------- | ------- | ----------------------------------------------------------------------------------------- |
+| areaId                    | Integer | Area identifier. Area `0` always represents the global area.                              |
+| areaName                  | String  | Configured area name.                                                                     |
+| passBy                    | Integer | Unique tracks that contacted the area.                                                    |
+| stagnant                  | Integer | Unique tracks that met the configured stay threshold.                                     |
+| entry                     | Integer | Tracks first observed outside and later inside.                                           |
+| exit                      | Integer | Tracks first observed inside and later outside.                                           |
+| appear                    | Integer | Newly detected tracks appearing in the area.                                              |
+| disappear                 | Integer | Tracks lost after last being seen in the area.                                            |
+| occupancySampleCount      | Integer | Number of occupancy samples.                                                              |
+| occupancySampleSum        | Integer | Sum of occupancy samples.                                                                 |
+| occupancySampleSumSquares | Integer | Sum of squared occupancy samples, used with the count and sum to derive variance.         |
+| occupancyMean             | Number  | Average occupancy derived from sample sum and count; rounded to at most 2 decimal places. |
+| occupancyMax              | Integer | Highest occupancy sample.                                                                 |
+| occupancyLast             | Integer | Most recent occupancy sample for this area.                                               |
+| dwellSumSeconds           | Integer | Sum of completed visit durations in whole seconds.                                        |
+| dwellSampleCount          | Integer | Number of completed visits; each visit is recorded once disappearance is confirmed.       |
+| dwellMeanSeconds          | Number  | Average completed visit duration derived from sum and count; rounded to 2 decimal places. |
+| dwellMaxSeconds           | Number  | Longest completed visit in whole seconds.                                                 |
+| dwellHistogram            | Array   | Completed visits in `<5s`, `5-15s`, `15-60s`, `1-5min`, and `>=5min` buckets.             |
+| presenceTrackCount        | Integer | Number of tracks present in the area during this observation.                             |
+| presenceSumSeconds        | Integer | Total track-seconds spent inside the area during this observation.                        |
+| presenceMeanSeconds       | Number  | Average presence duration per present track, rounded to at most 2 decimal places.         |
+
+Each histogram bucket includes its lower edge and excludes its upper edge. A visit is
+attributed to the observation where the disappear threshold is confirmed; time spent
+waiting for that threshold is not included in the visit duration. The histogram is
+optional when reading older payloads and, when present, contains exactly five counts.
 
 ---
 
@@ -180,11 +193,11 @@ occur twice; the first saved observation wins.
 
 The following fields help evaluate the quality of each counting window.
 
-| Fields                                       | Description                                                                        |
-| -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Fields                                     | Description                                                                        |
+| ------------------------------------------ | ---------------------------------------------------------------------------------- |
 | confidenceRatioSum / confidenceSampleCount | Values used to derive confidenceRatio as a 0–1 average.                            |
-| coveredSeconds / expectedSeconds             | Values used to derive coverageRatio across aggregated observations.                |
-| frameCount                                   | Total processed frames. Higher values generally indicate more complete processing. |
+| coveredSeconds / expectedSeconds           | Values used to derive coverageRatio across aggregated observations.                |
+| frameCount                                 | Total processed frames. Higher values generally indicate more complete processing. |
 
 ---
 

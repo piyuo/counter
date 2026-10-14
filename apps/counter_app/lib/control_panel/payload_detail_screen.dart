@@ -274,11 +274,11 @@ class _AreaListItem extends StatelessWidget {
         ),
         _MetricRow(label: context.l.appeared, value: '${area.appear}'),
         _MetricRow(label: context.l.disappeared, value: '${area.disappear}'),
-        _MetricRow(label: context.l.average_occupancy, value: area.occupancyAvg.toStringAsFixed(2)),
+        _MetricRow(label: context.l.average_occupancy, value: area.occupancyMean.toStringAsFixed(2)),
         _MetricRow(label: context.l.maximum_occupancy, value: '${area.occupancyMax}'),
         _MetricRow(
           label: context.l.average_stay,
-          value: formatCompactDuration(context.l, area.dwellAvgSeconds.round()),
+          value: formatCompactDuration(context.l, area.dwellMeanSeconds.round()),
         ),
         _MetricRow(label: context.l.maximum_stay, value: formatCompactDuration(context.l, area.dwellMaxSeconds)),
       ],

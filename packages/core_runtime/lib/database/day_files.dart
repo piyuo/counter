@@ -1,4 +1,4 @@
-// telemetry_queue.dart: Drift table for persisting observation queue items.
+// day_files.dart: Drift table for persisting DayFile documents.
 import 'package:drift/drift.dart';
 
 /// Current version of the serialized telemetry observation format.

@@ -14,6 +14,8 @@ field included in every upload.
 -   Replaced packed `granularity`, `date`, and `time` fields with business-time components.
 -   Added an explicit per-payload `granularity` field.
 -   Added optional `confidence`, `coverage`, `avgOccupancy`, and `avgDwell` values.
+-   Added the optional five-bucket `dwellHistogram` for completed visits.
+-   Documented presence aggregate fields emitted with area metrics.
 -   Updated `payload-schema-v2.json` and `payload-example-v2.json`.
 
 ------------------------------------------------------------------------

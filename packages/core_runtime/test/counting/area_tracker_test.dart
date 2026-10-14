@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:core_domain/model/area_metrics.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:core_runtime/observation/area_tracker.dart';
 import 'package:core_runtime/observation/observation_aggregator.dart';
@@ -26,9 +27,21 @@ void main() {
         startBusiness: now,
         missingDuration: Duration.zero,
       );
-      final tracks = [_createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10))];
+      final tracks = [
+        _createTrack(
+          1,
+          const Offset(10, 10),
+          const Duration(seconds: 1),
+          const Offset(10, 10),
+        ),
+      ];
 
-      globalTracker.processFrame(tracks, aggregator, checkContains: (t) => true, checkInitialContains: (t) => true);
+      globalTracker.processFrame(
+        tracks,
+        aggregator,
+        checkContains: (t) => true,
+        checkInitialContains: (t) => true,
+      );
 
       expect(globalTracker.currentOccupancy, 1);
       expect(globalTracker.totalCount, 1);
@@ -42,66 +55,78 @@ void main() {
       expect(_area(result, kGlobalAreaId).stagnant, 1);
     });
 
-    test('ignores non-tracked objects and continues processing tracked objects', () {
-      final aggregator = _dummyAggregator();
-      final trackedObject = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+    test(
+      'ignores non-tracked objects and continues processing tracked objects',
+      () {
+        final aggregator = _dummyAggregator();
+        final trackedObject = _createTrack(
+          1,
+          const Offset(10, 10),
+          const Duration(seconds: 1),
+          const Offset(10, 10),
+        );
 
-      globalTracker.processFrame<Object>(
-        ['not a tracked object', trackedObject],
-        aggregator,
-        checkContains: (_) => true,
-        checkInitialContains: (_) => true,
-      );
+        globalTracker.processFrame<Object>(
+          ['not a tracked object', trackedObject],
+          aggregator,
+          checkContains: (_) => true,
+          checkInitialContains: (_) => true,
+        );
 
-      expect(globalTracker.currentOccupancy, 1);
-      expect(globalTracker.totalCount, 1);
-      final metrics = _area(aggregator.snapshot(), kGlobalAreaId);
-      expect(metrics.appear, 1);
-      expect(metrics.occupancySampleCount, 1);
-    });
+        expect(globalTracker.currentOccupancy, 1);
+        expect(globalTracker.totalCount, 1);
+        final metrics = _area(aggregator.snapshot(), kGlobalAreaId);
+        expect(metrics.appear, 1);
+        expect(metrics.occupancySampleCount, 1);
+      },
+    );
 
-    test('local tracker processes enter, exit, and pass-by events correctly', () {
-      final now = DateTime.now();
-      final aggregator = ObservationAggregator(
-        areaNameResolver: _testAreaNameResolver,
-        startBusiness: now,
-        missingDuration: Duration.zero,
-      );
+    test(
+      'local tracker processes enter, exit, and pass-by events correctly',
+      () {
+        final now = DateTime.now();
+        final aggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: now,
+          missingDuration: Duration.zero,
+        );
 
-      // 1. Enter and pass_by (initial outside, current inside)
-      final track1 = _createTrack(
-        1,
-        const Offset(10, 10),
-        const Duration(seconds: 1),
-        const Offset(100, 100),
-      ); // checkContains: true, checkInitialContains: false
-      // 2. Exit (initial inside, current outside)
-      final track2 = _createTrack(
-        2,
-        const Offset(100, 100),
-        const Duration(seconds: 1),
-        const Offset(10, 10),
-      ); // checkContains: false, checkInitialContains: true
+        // 1. Enter and pass_by (initial outside, current inside)
+        final track1 = _createTrack(
+          1,
+          const Offset(10, 10),
+          const Duration(seconds: 1),
+          const Offset(100, 100),
+        ); // checkContains: true, checkInitialContains: false
+        // 2. Exit (initial inside, current outside)
+        final track2 = _createTrack(
+          2,
+          const Offset(100, 100),
+          const Duration(seconds: 1),
+          const Offset(10, 10),
+        ); // checkContains: false, checkInitialContains: true
 
-      localTracker.processFrame(
-        [track1, track2],
-        aggregator,
-        checkContains: (t) => t.center == const Offset(10, 10), // Only point (10, 10) is inside
-        checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
-      );
+        localTracker.processFrame(
+          [track1, track2],
+          aggregator,
+          checkContains: (t) =>
+              t.center == const Offset(10, 10), // Only point (10, 10) is inside
+          checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
+        );
 
-      expect(localTracker.currentOccupancy, 1); // Only track1 is inside
+        expect(localTracker.currentOccupancy, 1); // Only track1 is inside
 
-      final result = aggregator.snapshot();
+        final result = aggregator.snapshot();
 
-      final metrics = _area(result, 1);
-      expect(metrics.entry, 1);
-      expect(metrics.exit, 1);
-      expect(metrics.passBy, 1);
-      expect(metrics.appear, 0);
-      expect(metrics.disappear, 0);
-      expect(metrics.stagnant, 1);
-    });
+        final metrics = _area(result, 1);
+        expect(metrics.entry, 1);
+        expect(metrics.exit, 1);
+        expect(metrics.passBy, 1);
+        expect(metrics.appear, 0);
+        expect(metrics.disappear, 0);
+        expect(metrics.stagnant, 1);
+      },
+    );
 
     test('reset clears internal state', () {
       final now = DateTime.now();
@@ -110,9 +135,19 @@ void main() {
         startBusiness: now,
         missingDuration: Duration.zero,
       );
-      final track1 = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+      final track1 = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
-      localTracker.processFrame([track1], aggregator, checkContains: (t) => true, checkInitialContains: (t) => true);
+      localTracker.processFrame(
+        [track1],
+        aggregator,
+        checkContains: (t) => true,
+        checkInitialContains: (t) => true,
+      );
 
       expect(localTracker.currentOccupancy, 1);
       expect(localTracker.totalCount, 1);
@@ -123,41 +158,49 @@ void main() {
       expect(localTracker.totalCount, 0);
     });
 
-    test('local tracker does not double count pass-by and enter across frames', () {
-      final now = DateTime.now();
-      final aggregator = ObservationAggregator(
-        areaNameResolver: _testAreaNameResolver,
-        startBusiness: now,
-        missingDuration: Duration.zero,
-      );
-      final track = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(100, 100));
+    test(
+      'local tracker does not double count pass-by and enter across frames',
+      () {
+        final now = DateTime.now();
+        final aggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: now,
+          missingDuration: Duration.zero,
+        );
+        final track = _createTrack(
+          1,
+          const Offset(10, 10),
+          const Duration(seconds: 1),
+          const Offset(100, 100),
+        );
 
-      // Same track appears inside in consecutive frames.
-      localTracker.processFrame(
-        [track],
-        aggregator,
-        checkContains: (t) => t.center == const Offset(10, 10),
-        checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
-      );
-      localTracker.processFrame(
-        [track],
-        aggregator,
-        checkContains: (t) => t.center == const Offset(10, 10),
-        checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
-      );
+        // Same track appears inside in consecutive frames.
+        localTracker.processFrame(
+          [track],
+          aggregator,
+          checkContains: (t) => t.center == const Offset(10, 10),
+          checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
+        );
+        localTracker.processFrame(
+          [track],
+          aggregator,
+          checkContains: (t) => t.center == const Offset(10, 10),
+          checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
+        );
 
-      final result = aggregator.snapshot();
-      final events = _area(result, 1);
+        final result = aggregator.snapshot();
+        final events = _area(result, 1);
 
-      expect(events.passBy, 1);
-      expect(events.entry, 1);
-      expect(events.exit, 0);
-      expect(events.appear, 0);
-      expect(events.disappear, 0);
-      expect(events.stagnant, 1);
-      expect(localTracker.currentOccupancy, 1);
-      expect(localTracker.totalCount, 1);
-    });
+        expect(events.passBy, 1);
+        expect(events.entry, 1);
+        expect(events.exit, 0);
+        expect(events.appear, 0);
+        expect(events.disappear, 0);
+        expect(events.stagnant, 1);
+        expect(localTracker.currentOccupancy, 1);
+        expect(localTracker.totalCount, 1);
+      },
+    );
 
     test('local tracker does not double count exit across frames', () {
       final now = DateTime.now();
@@ -166,7 +209,12 @@ void main() {
         startBusiness: now,
         missingDuration: Duration.zero,
       );
-      final track = _createTrack(2, const Offset(100, 100), const Duration(seconds: 1), const Offset(10, 10));
+      final track = _createTrack(
+        2,
+        const Offset(100, 100),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
       // Same track appears outside in consecutive frames, started inside.
       localTracker.processFrame(
@@ -201,7 +249,12 @@ void main() {
         startBusiness: now,
         missingDuration: Duration.zero,
       );
-      final insideTrack = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+      final insideTrack = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
       localTracker.processFrame(
         [insideTrack],
@@ -236,7 +289,10 @@ void main() {
     });
 
     test('stayCount honors StayThreshold in seconds', () {
-      final thresholdTracker = AreaTracker.local(1, stagnantThreshold: const Duration(seconds: 2));
+      final thresholdTracker = AreaTracker.local(
+        1,
+        stagnantThreshold: const Duration(seconds: 2),
+      );
       final now = DateTime.now();
       final aggregator = ObservationAggregator(
         areaNameResolver: _testAreaNameResolver,
@@ -244,7 +300,12 @@ void main() {
         missingDuration: Duration.zero,
       );
       final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-      final insideTrack = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+      final insideTrack = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
       thresholdTracker.processFrame(
         [insideTrack],
@@ -277,7 +338,10 @@ void main() {
     });
 
     test('disappearCount honors DisappearThreshold in seconds', () {
-      final thresholdTracker = AreaTracker.local(1, disappearThreshold: const Duration(seconds: 2));
+      final thresholdTracker = AreaTracker.local(
+        1,
+        disappearThreshold: const Duration(seconds: 2),
+      );
       final now = DateTime.now();
       final aggregator = ObservationAggregator(
         areaNameResolver: _testAreaNameResolver,
@@ -285,7 +349,12 @@ void main() {
         missingDuration: Duration.zero,
       );
       final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-      final insideTrack = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+      final insideTrack = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
       thresholdTracker.processFrame(
         [insideTrack],
@@ -317,10 +386,18 @@ void main() {
     });
 
     test('reappearing track restarts disappear threshold', () {
-      final thresholdTracker = AreaTracker.local(1, disappearThreshold: const Duration(seconds: 2));
+      final thresholdTracker = AreaTracker.local(
+        1,
+        disappearThreshold: const Duration(seconds: 2),
+      );
       final aggregator = _dummyAggregator();
       final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
-      final insideTrack = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
+      final insideTrack = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
 
       void processAt(DateTime timestamp, List<vision.TrackedObject> tracks) {
         thresholdTracker.processFrame(
@@ -350,8 +427,18 @@ void main() {
         startBusiness: now,
         missingDuration: Duration.zero,
       );
-      final insideTrack = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
-      final outsideTrack = _createTrack(2, const Offset(100, 100), const Duration(seconds: 1), const Offset(100, 100));
+      final insideTrack = _createTrack(
+        1,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      );
+      final outsideTrack = _createTrack(
+        2,
+        const Offset(100, 100),
+        const Duration(seconds: 1),
+        const Offset(100, 100),
+      );
 
       localTracker.processFrame(
         [insideTrack],
@@ -372,39 +459,119 @@ void main() {
       expect(localTracker.totalCount, 1);
     });
 
-    test('adds occupancy and dwell-time samples to aggregator state', () {
-      final now = DateTime.now();
-      final aggregator = ObservationAggregator(
-        areaNameResolver: _testAreaNameResolver,
-        startBusiness: now,
-        missingDuration: Duration.zero,
-      );
-      final trackA = _createTrack(1, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10));
-      final trackB = _createTrack(2, const Offset(10, 10), const Duration(seconds: 2), const Offset(10, 10));
-      final trackC = _createTrack(3, const Offset(10, 10), const Duration(seconds: 4), const Offset(10, 10));
+    test(
+      'records one rounded dwell sample after disappearance is confirmed',
+      () {
+        final aggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: DateTime.utc(2026, 1, 1, 10),
+          missingDuration: Duration.zero,
+        );
+        final tracker = AreaTracker.local(
+          1,
+          disappearThreshold: const Duration(seconds: 2),
+        );
+        final track = _createTrack(
+          1,
+          const Offset(10, 10),
+          Duration.zero,
+          const Offset(10, 10),
+        );
+        final start = DateTime.utc(2026, 1, 1, 10);
 
-      localTracker.processFrame(
-        [trackA],
-        aggregator,
-        checkContains: (t) => t.center == const Offset(10, 10),
-        checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
-      );
+        void processAt(DateTime timestamp, List<vision.TrackedObject> tracks) {
+          tracker.processFrame(
+            tracks,
+            aggregator,
+            frameTimestampUtc: timestamp,
+            checkContains: (t) => t.center == const Offset(10, 10),
+            checkInitialContains: (t) =>
+                t.initialCenter == const Offset(10, 10),
+          );
+        }
 
-      localTracker.processFrame(
-        [trackB, trackC],
-        aggregator,
-        checkContains: (t) => t.center == const Offset(10, 10),
-        checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
-      );
+        processAt(start, [track]);
+        processAt(start.add(const Duration(milliseconds: 2600)), [track]);
 
-      final result = aggregator.snapshot();
-      final metrics = _area(result, 1);
+        var metrics = _area(aggregator.snapshot(), 1);
+        expect(metrics.occupancySampleCount, 2);
+        expect(metrics.dwellSampleCount, 0);
+        expect(metrics.dwellSumSeconds, 0);
+        expect(metrics.dwellMaxSeconds, 0);
+        expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
 
-      expect(metrics.occupancyAvg, 1.5);
-      expect(metrics.occupancyMax, 2);
-      expect(metrics.dwellAvgSeconds, closeTo(2.3333333, 0.01));
-      expect(metrics.dwellMaxSeconds, 4);
-    });
+        processAt(start.add(const Duration(seconds: 3)), const []);
+        expect(_area(aggregator.snapshot(), 1).dwellSampleCount, 0);
+
+        processAt(start.add(const Duration(seconds: 5)), const []);
+
+        metrics = _area(aggregator.snapshot(), 1);
+        expect(metrics.disappear, 1);
+        expect(metrics.dwellSampleCount, 1);
+        expect(metrics.dwellSumSeconds, 3);
+        expect(metrics.dwellMeanSeconds, 3);
+        expect(metrics.dwellMaxSeconds, 3);
+        expect(metrics.dwellHistogram, [1, 0, 0, 0, 0]);
+      },
+    );
+
+    test(
+      'adds occupancy samples independently from finished dwell samples',
+      () {
+        final now = DateTime.now();
+        final aggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: now,
+          missingDuration: Duration.zero,
+        );
+        final tracker = AreaTracker.local(
+          1,
+          disappearThreshold: const Duration(hours: 1),
+        );
+        final trackA = _createTrack(
+          1,
+          const Offset(10, 10),
+          const Duration(seconds: 1),
+          const Offset(10, 10),
+        );
+        final trackB = _createTrack(
+          2,
+          const Offset(10, 10),
+          const Duration(seconds: 2),
+          const Offset(10, 10),
+        );
+        final trackC = _createTrack(
+          3,
+          const Offset(10, 10),
+          const Duration(seconds: 4),
+          const Offset(10, 10),
+        );
+
+        tracker.processFrame(
+          [trackA],
+          aggregator,
+          checkContains: (t) => t.center == const Offset(10, 10),
+          checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
+        );
+
+        tracker.processFrame(
+          [trackB, trackC],
+          aggregator,
+          checkContains: (t) => t.center == const Offset(10, 10),
+          checkInitialContains: (t) => t.initialCenter == const Offset(10, 10),
+        );
+
+        final result = aggregator.snapshot();
+        final metrics = _area(result, 1);
+
+        expect(metrics.occupancyMean, 1.5);
+        expect(metrics.occupancyMax, 2);
+        expect(metrics.dwellSampleCount, 0);
+        expect(metrics.dwellSumSeconds, 0);
+        expect(metrics.dwellMaxSeconds, 0);
+        expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
+      },
+    );
 
     test('pass-by refresh keeps recently seen track when history trims', () {
       for (var id = 1; id <= kMaxTrackHistory; id++) {
@@ -444,37 +611,44 @@ void main() {
       expect(_area(track1Result, kGlobalAreaId).passBy, 0);
     });
 
-    test('trimHistory caps pass-by history and evicts oldest inserted track', () {
-      for (var id = 1; id <= kMaxTrackHistory + 1; id++) {
-        _processInsideGlobal(globalTracker, id);
-      }
+    test(
+      'trimHistory caps pass-by history and evicts oldest inserted track',
+      () {
+        for (var id = 1; id <= kMaxTrackHistory + 1; id++) {
+          _processInsideGlobal(globalTracker, id);
+        }
 
-      expect(globalTracker.totalCount, kMaxTrackHistory);
+        expect(globalTracker.totalCount, kMaxTrackHistory);
 
-      final now = DateTime.now();
-      final oldestTrackAggregator = ObservationAggregator(
-        areaNameResolver: _testAreaNameResolver,
-        startBusiness: now,
-        missingDuration: Duration.zero,
-      );
-      _processInsideGlobal(globalTracker, 1, oldestTrackAggregator);
-      final oldestTrackResult = oldestTrackAggregator.snapshot();
+        final now = DateTime.now();
+        final oldestTrackAggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: now,
+          missingDuration: Duration.zero,
+        );
+        _processInsideGlobal(globalTracker, 1, oldestTrackAggregator);
+        final oldestTrackResult = oldestTrackAggregator.snapshot();
 
-      // Track 1 should be evicted as the oldest inserted item after overflow.
-      expect(_area(oldestTrackResult, kGlobalAreaId).passBy, 1);
+        // Track 1 should be evicted as the oldest inserted item after overflow.
+        expect(_area(oldestTrackResult, kGlobalAreaId).passBy, 1);
 
-      final now2 = DateTime.now();
-      final newestTrackAggregator = ObservationAggregator(
-        areaNameResolver: _testAreaNameResolver,
-        startBusiness: now2,
-        missingDuration: Duration.zero,
-      );
-      _processInsideGlobal(globalTracker, kMaxTrackHistory + 1, newestTrackAggregator);
-      final newestTrackResult = newestTrackAggregator.snapshot();
+        final now2 = DateTime.now();
+        final newestTrackAggregator = ObservationAggregator(
+          areaNameResolver: _testAreaNameResolver,
+          startBusiness: now2,
+          missingDuration: Duration.zero,
+        );
+        _processInsideGlobal(
+          globalTracker,
+          kMaxTrackHistory + 1,
+          newestTrackAggregator,
+        );
+        final newestTrackResult = newestTrackAggregator.snapshot();
 
-      // Most recently inserted track should still be present.
-      expect(_area(newestTrackResult, kGlobalAreaId).passBy, 0);
-    });
+        // Most recently inserted track should still be present.
+        expect(_area(newestTrackResult, kGlobalAreaId).passBy, 0);
+      },
+    );
   });
 }
 
@@ -492,16 +666,32 @@ ObservationAggregator _dummyAggregator() {
   );
 }
 
-void _processInsideGlobal(AreaTracker tracker, int trackId, [ObservationAggregator? aggregator]) {
+void _processInsideGlobal(
+  AreaTracker tracker,
+  int trackId, [
+  ObservationAggregator? aggregator,
+]) {
   tracker.processFrame(
-    [_createTrack(trackId, const Offset(10, 10), const Duration(seconds: 1), const Offset(10, 10))],
+    [
+      _createTrack(
+        trackId,
+        const Offset(10, 10),
+        const Duration(seconds: 1),
+        const Offset(10, 10),
+      ),
+    ],
     aggregator ?? _dummyAggregator(),
     checkContains: (t) => true,
     checkInitialContains: (t) => true,
   );
 }
 
-vision.TrackedObject _createTrack(int id, Offset position, Duration duration, Offset initialPosition) {
+vision.TrackedObject _createTrack(
+  int id,
+  Offset position,
+  Duration duration,
+  Offset initialPosition,
+) {
   return vision.TrackedObject.create(
     trackId: id,
     box: Rect.fromLTWH(position.dx, position.dy, 0, 0),

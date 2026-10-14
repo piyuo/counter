@@ -8,10 +8,26 @@ String _testAreaNameResolver(int areaId) {
   return 'Area $areaId';
 }
 
-AreaMetrics _area(Observation observation, int areaId) =>
+core_domain.AreaMetrics _area(Observation observation, int areaId) =>
     observation.areas.singleWhere((metrics) => metrics.areaId == areaId);
 
 void main() {
+  test('StateMetrics computes occupancy variance from samples', () {
+    final metrics = StateMetrics();
+
+    expect(metrics.occupancyVariance, 0.0);
+
+    metrics
+      ..addOccupancySample(2)
+      ..addOccupancySample(3)
+      ..addOccupancySample(1);
+
+    expect(metrics.occupancySampleSum, 6);
+    expect(metrics.occupancySampleCount, 3);
+    expect(metrics.occupancySampleSumSquares, 14);
+    expect(metrics.occupancyVariance, closeTo(2 / 3, 1e-9));
+  });
+
   test('snapshot builds per-area and global metrics', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
     final accumulator = ObservationAggregator(
@@ -44,8 +60,11 @@ void main() {
     accumulator.incrementEvent(kGlobalAreaId, EventType.disappear);
     accumulator.incrementEvent(kGlobalAreaId, EventType.stagnant);
 
-    accumulator.addStateSample(area.id, 2, 2, 3, 2);
-    accumulator.addStateSample(kGlobalAreaId, 5, 1, 5, 5);
+    accumulator.addOccupancySample(area.id, 2);
+    accumulator.addDwellSample(area.id, 2);
+    accumulator.addDwellSample(area.id, 1);
+    accumulator.addOccupancySample(kGlobalAreaId, 5);
+    accumulator.addDwellSample(kGlobalAreaId, 1);
 
     final result = accumulator.snapshot();
 
@@ -63,13 +82,15 @@ void main() {
     expect(areaMetrics.stagnant, 1);
     expect(areaMetrics.occupancySampleCount, 1);
     expect(areaMetrics.occupancySampleSum, 2);
-    expect(areaMetrics.occupancyAvg, 2);
+    expect(areaMetrics.occupancySampleSumSquares, 4);
+    expect(areaMetrics.occupancyMean, 2);
     expect(areaMetrics.occupancyMax, 2);
     expect(areaMetrics.occupancyLast, 2);
     expect(areaMetrics.dwellSumSeconds, 3);
     expect(areaMetrics.dwellSampleCount, 2);
-    expect(areaMetrics.dwellAvgSeconds, 1.5);
+    expect(areaMetrics.dwellMeanSeconds, 1.5);
     expect(areaMetrics.dwellMaxSeconds, 2);
+    expect(areaMetrics.dwellHistogram, [2, 0, 0, 0, 0]);
 
     final globalMetrics = _area(result, kGlobalAreaId);
     expect(globalMetrics.passBy, 1);
@@ -78,11 +99,12 @@ void main() {
     expect(globalMetrics.appear, 1);
     expect(globalMetrics.disappear, 1);
     expect(globalMetrics.stagnant, 1);
-    expect(globalMetrics.occupancyAvg, 5);
+    expect(globalMetrics.occupancyMean, 5);
     expect(globalMetrics.occupancyMax, 5);
     expect(globalMetrics.occupancyLast, 5);
-    expect(globalMetrics.dwellAvgSeconds, 1.0);
+    expect(globalMetrics.dwellMeanSeconds, 1.0);
     expect(globalMetrics.dwellMaxSeconds, 1);
+    expect(globalMetrics.dwellHistogram, [1, 0, 0, 0, 0]);
   });
 
   test('snapshot has empty areas when no events/state were recorded', () {
@@ -119,12 +141,14 @@ void main() {
     expect(metrics.occupancyLast, 0);
     expect(metrics.occupancySampleCount, 0);
     expect(metrics.occupancySampleSum, 0);
-    expect(metrics.occupancyAvg, 0.0);
+    expect(metrics.occupancySampleSumSquares, 0);
+    expect(metrics.occupancyMean, 0.0);
     expect(metrics.occupancyMax, 0);
     expect(metrics.dwellSumSeconds, 0);
     expect(metrics.dwellSampleCount, 0);
-    expect(metrics.dwellAvgSeconds, 0.0);
+    expect(metrics.dwellMeanSeconds, 0.0);
     expect(metrics.dwellMaxSeconds, 0);
+    expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
   });
 
   test('coverage ratio accumulates valid missing durations', () {
@@ -144,7 +168,7 @@ void main() {
     expect(result.coverageRatio, 0.75);
   });
 
-  test('state sample aggregation computes averages and max across samples', () {
+  test('occupancy and dwell samples aggregate independently', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
     final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
@@ -162,25 +186,53 @@ void main() {
       ],
     );
 
-    // occupancyAvg is computed as a simple average across occupancy samples:
-    // (1 + 3) / 2 = 2
-    // dwellAvgSeconds = (6 + 1) / 3 = 2.333...
-    // dwellMaxSeconds = max(3, 7) = 7 sec
-    accumulator.addStateSample(area.id, 1, 3, 6, 2);
-    accumulator.addStateSample(area.id, 3, 7, 1, 1);
+    accumulator.addOccupancySample(area.id, 1);
+    accumulator.addOccupancySample(area.id, 3);
+    accumulator.addDwellSample(area.id, 3);
+    accumulator.addDwellSample(area.id, 7);
+    accumulator.addDwellSample(area.id, 1);
 
     final result = accumulator.snapshot();
     final areaMetrics = _area(result, area.id);
 
     expect(areaMetrics.occupancySampleCount, 2);
     expect(areaMetrics.occupancySampleSum, 4);
-    expect(areaMetrics.occupancyAvg, 2.0);
+    expect(areaMetrics.occupancySampleSumSquares, 10);
+    expect(areaMetrics.occupancyMean, 2.0);
     expect(areaMetrics.occupancyMax, 3);
     expect(areaMetrics.occupancyLast, 3);
-    expect(areaMetrics.dwellSumSeconds, 7);
+    expect(areaMetrics.dwellSumSeconds, 11);
     expect(areaMetrics.dwellSampleCount, 3);
-    expect(areaMetrics.dwellAvgSeconds, closeTo(2.333333333, 1e-9));
+    expect(areaMetrics.dwellMeanSeconds, closeTo(3.666666667, 1e-9));
     expect(areaMetrics.dwellMaxSeconds, 7);
+    expect(areaMetrics.dwellHistogram, [2, 1, 0, 0, 0]);
+  });
+
+  test('dwell histogram uses inclusive lower bucket edges', () {
+    final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
+    final accumulator = ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: start.toLocal(),
+      missingDuration: Duration.zero,
+    );
+
+    for (final seconds in [4, 5, 14, 15, 59, 60, 299, 300]) {
+      accumulator.addDwellSample(1, seconds);
+    }
+
+    final metrics = _area(accumulator.snapshot(), 1);
+    expect(metrics.dwellHistogram, [1, 2, 2, 2, 1]);
+    expect(
+      metrics.dwellHistogram.reduce((sum, count) => sum + count),
+      metrics.dwellSampleCount,
+    );
+    expect(metrics.dwellSampleCount, 8);
+    expect(metrics.dwellSumSeconds, 756);
+    expect(metrics.dwellMeanSeconds, 94.5);
+    expect(metrics.dwellMaxSeconds, 300);
+
+    accumulator.addDwellSample(1, 600);
+    expect(metrics.dwellHistogram, [1, 2, 2, 2, 1]);
   });
 
   test('processed frame count and effective FPS are tracked', () {
@@ -207,8 +259,14 @@ void main() {
       missingDuration: Duration.zero,
     );
 
-    accumulator.addConfidenceAggregate(confidenceRatioSum: 1.8025, sampleCount: 2);
-    accumulator.addConfidenceAggregate(confidenceRatioSum: 0.50125, sampleCount: 1);
+    accumulator.addConfidenceAggregate(
+      confidenceRatioSum: 1.8025,
+      sampleCount: 2,
+    );
+    accumulator.addConfidenceAggregate(
+      confidenceRatioSum: 0.50125,
+      sampleCount: 1,
+    );
 
     final result = accumulator.snapshot();
     expect(result.confidenceRatio, closeTo(0.767916666667, 1e-9));
