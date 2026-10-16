@@ -14,8 +14,8 @@ double _round(double value, int places) {
 /// Writes a double rounded to 2 decimals (for example, 0.92 instead of
 /// 0.9222222222). Reading accepts any number.
 ///
-/// Use it only on derived fields (ratios and averages). Do not use it on
-/// sums or counts, which are the source of truth.
+/// Use it on derived fields and fractional wire-format values whose precision
+/// is limited by contract. Keep higher-precision source accumulators internally.
 class RoundedDouble implements JsonConverter<double, dynamic> {
   const RoundedDouble();
 

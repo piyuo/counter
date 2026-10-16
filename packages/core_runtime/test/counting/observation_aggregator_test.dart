@@ -28,6 +28,85 @@ void main() {
     expect(metrics.occupancyVariance, closeTo(2 / 3, 1e-9));
   });
 
+  test('StateMetrics never exposes negative occupancy variance', () {
+    final metrics = StateMetrics()
+      ..occupancySampleCount = 2
+      ..occupancySampleSum = 4
+      ..occupancySampleSumSquares = 7;
+
+    expect(metrics.occupancyVariance, 0.0);
+  });
+
+  test('StateMetrics clamps negative dwell durations to zero', () {
+    final metrics = StateMetrics()..addDwellSample(-5);
+
+    expect(metrics.dwellSampleCount, 1);
+    expect(metrics.dwellSumSeconds, 0);
+    expect(metrics.dwellHistogram, [1, 0, 0, 0, 0]);
+  });
+
+  test('StateMetrics accumulates person-time and distinct tracks', () {
+    final metrics = StateMetrics()
+      ..addPresenceSample({1}, 30000)
+      ..addPresenceSample({1}, 30000);
+
+    expect(metrics.presenceTrackCount, 1);
+    expect(metrics.presenceSumSeconds, 60);
+    expect(metrics.presenceMeanSeconds, 60);
+
+    final twoTracks = StateMetrics()..addPresenceSample({1, 2}, 60000);
+    expect(twoTracks.presenceTrackCount, 2);
+    expect(twoTracks.presenceSumSeconds, 120);
+    expect(twoTracks.presenceMeanSeconds, 60);
+  });
+
+  test('StateMetrics rounds person-seconds once per observation', () {
+    final metrics = StateMetrics()..addPresenceSample({1}, 500);
+
+    expect(metrics.presenceSumSeconds, 1);
+    expect(metrics.presenceMeanSeconds, 1);
+  });
+
+  test('StateMetrics ignores invalid samples and rounds total person-time once', () {
+    final metrics = StateMetrics()
+      ..addPresenceSample({1}, 0)
+      ..addPresenceSample({1}, -1000)
+      ..addPresenceSample({}, 60000);
+
+    expect(metrics.presenceTrackCount, 0);
+    expect(metrics.presenceSumSeconds, 0);
+    expect(metrics.presenceMeanSeconds, 0);
+
+    final rounded = StateMetrics()..addPresenceSample({1, 2}, 500);
+    expect(rounded.presenceTrackCount, 2);
+    expect(rounded.presenceSumSeconds, 1);
+    expect(rounded.presenceMeanSeconds, 0.5);
+  });
+
+  test('snapshot includes presence for each area and global area', () {
+    final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
+    final accumulator = ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: start.toLocal(),
+      missingDuration: Duration.zero,
+    );
+
+    accumulator
+      ..addPresenceSample(1, {11}, 60000)
+      ..addPresenceSample(kGlobalAreaId, {11, 12}, 30000);
+
+    final result = accumulator.snapshot();
+    final local = _area(result, 1);
+    final global = _area(result, kGlobalAreaId);
+
+    expect(local.presenceTrackCount, 1);
+    expect(local.presenceSumSeconds, 60);
+    expect(local.presenceMeanSeconds, 60);
+    expect(global.presenceTrackCount, 2);
+    expect(global.presenceSumSeconds, 60);
+    expect(global.presenceMeanSeconds, 30);
+  });
+
   test('snapshot builds per-area and global metrics', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
     final accumulator = ObservationAggregator(
@@ -168,6 +247,19 @@ void main() {
     expect(result.coverageRatio, 0.75);
   });
 
+  test('coverage clamps at the window length', () {
+    ObservationAggregator make(Duration missing) => ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: DateTime(2026, 1, 1, 10),
+      missingDuration: missing,
+    );
+
+    expect(make(const Duration(seconds: 298)).snapshot().coveredSeconds, 2);
+    expect(make(const Duration(seconds: 299)).snapshot().coveredSeconds, 0);
+    expect(make(const Duration(seconds: 500)).snapshot().coveredSeconds, 0);
+    expect(make(const Duration(seconds: -5)).snapshot().coveredSeconds, 300);
+  });
+
   test('occupancy and dwell samples aggregate independently', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
     final accumulator = ObservationAggregator(
@@ -222,20 +314,27 @@ void main() {
 
     final metrics = _area(accumulator.snapshot(), 1);
     expect(metrics.dwellHistogram, [1, 2, 2, 2, 1]);
-    expect(
-      metrics.dwellHistogram.reduce((sum, count) => sum + count),
-      metrics.dwellSampleCount,
-    );
+    expect(metrics.dwellHistogram.reduce((sum, count) => sum + count), metrics.dwellSampleCount);
     expect(metrics.dwellSampleCount, 8);
     expect(metrics.dwellSumSeconds, 756);
     expect(metrics.dwellMeanSeconds, 94.5);
     expect(metrics.dwellMaxSeconds, 300);
-
-    accumulator.addDwellSample(1, 600);
-    expect(metrics.dwellHistogram, [1, 2, 2, 2, 1]);
   });
 
-  test('processed frame count and effective FPS are tracked', () {
+  test('dwell histogram snapshot is isolated from later samples', () {
+    final accumulator = ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: DateTime(2026, 1, 1, 10),
+      missingDuration: Duration.zero,
+    );
+    accumulator.addDwellSample(1, 5);
+    final histogram = _area(accumulator.snapshot(), 1).dwellHistogram;
+
+    accumulator.addDwellSample(1, 300);
+    expect(histogram, [0, 1, 0, 0, 0]);
+  });
+
+  test('processed frame count is tracked', () {
     final start = DateTime.utc(2026, 1, 1, 10, 0, 0);
     final accumulator = ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
@@ -259,14 +358,8 @@ void main() {
       missingDuration: Duration.zero,
     );
 
-    accumulator.addConfidenceAggregate(
-      confidenceRatioSum: 1.8025,
-      sampleCount: 2,
-    );
-    accumulator.addConfidenceAggregate(
-      confidenceRatioSum: 0.50125,
-      sampleCount: 1,
-    );
+    accumulator.addConfidenceAggregate(confidenceRatioSum: 1.8025, sampleCount: 2);
+    accumulator.addConfidenceAggregate(confidenceRatioSum: 0.50125, sampleCount: 1);
 
     final result = accumulator.snapshot();
     expect(result.confidenceRatio, closeTo(0.767916666667, 1e-9));

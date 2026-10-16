@@ -41,7 +41,7 @@ final class AnalyticsNotifierProvider
   }
 }
 
-String _$analyticsNotifierHash() => r'bc2f91b2c2d93a2210c3390a2c9fbdd04743fc95';
+String _$analyticsNotifierHash() => r'bea79f2f190e9907eede15bc3fd62a2f9372645b';
 
 abstract class _$AnalyticsNotifier
     extends $Notifier<core_domain.AnalyticsState> {

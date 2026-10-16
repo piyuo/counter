@@ -9,7 +9,6 @@ part 'payload_serializer.g.dart';
 
 /// Schema version written by this build.
 ///
-/// v2 uses date/time components and names the per-area event count `stagnant`.
 /// Increment this version for breaking changes to the upload contract.
 const int kSchemaVersion = 2;
 

@@ -31,6 +31,27 @@ Observation _observation({
   );
 }
 
+const _baseAreaMetrics = AreaMetrics(
+  areaId: 1,
+  areaName: 'a',
+  passBy: 0,
+  stagnant: 0,
+  entry: 0,
+  exit: 0,
+  appear: 0,
+  disappear: 0,
+  occupancySampleCount: 0,
+  occupancySampleSum: 0,
+  occupancySampleSumSquares: 0,
+  occupancyMean: 0,
+  occupancyMax: 0,
+  occupancyLast: 0,
+  dwellSampleCount: 0,
+  dwellSumSeconds: 0,
+  dwellMeanSeconds: 0,
+  dwellMaxSeconds: 0,
+);
+
 void main() {
   group('Observation derived metrics', () {
     test('stores confidence and coverage derived from sums and counts', () {
@@ -87,9 +108,6 @@ void main() {
       expect(metrics.presenceTrackCount, 0);
       expect(metrics.presenceSumSeconds, 0);
       expect(metrics.presenceMeanSeconds, 0);
-
-      final legacyJson = metrics.toJson()..remove('dwellHistogram');
-      expect(AreaMetrics.fromJson(legacyJson).dwellHistogram, [0, 0, 0, 0, 0]);
     });
 
     test('toString includes every stored observation and area field', () {
@@ -112,6 +130,10 @@ void main() {
         dwellSampleCount: 14,
         dwellMeanSeconds: 2.3456,
         dwellMaxSeconds: 15,
+        dwellHistogram: [1, 2, 3, 4, 5],
+        presenceTrackCount: 6,
+        presenceSumSeconds: 7,
+        presenceMeanSeconds: 1.1667,
       );
       const observation = Observation(
         granularity: ObservationGranularity.minutes5,
@@ -170,6 +192,10 @@ void main() {
         'dwellSampleCount: 14',
         'dwellMeanSeconds: 2.35',
         'dwellMaxSeconds: 15',
+        'dwellHistogram: [1, 2, 3, 4, 5]',
+        'presenceTrackCount: 6',
+        'presenceSumSeconds: 7',
+        'presenceMeanSeconds: 1.17',
       ]) {
         expect(areaString, contains(field));
       }
@@ -229,52 +255,61 @@ void main() {
       expect(metrics.dwellMeanSeconds, 3.5);
       expect(metrics.dwellMaxSeconds, 4);
     });
+
+    test('default dwell histogram length matches the bucket count', () {
+      expect(_baseAreaMetrics.dwellHistogram.length, kDwellBucketCount);
+    });
+
+    test('JSON round trip keeps dwell and presence fields', () {
+      final metrics = _baseAreaMetrics.copyWith(
+        dwellHistogram: [1, 2, 3, 4, 5],
+        presenceTrackCount: 2,
+        presenceSumSeconds: 90,
+        presenceMeanSeconds: 45,
+      );
+      expect(AreaMetrics.fromJson(metrics.toJson()), metrics);
+    });
+
+    test('presence sum serializes as integer seconds', () {
+      final metrics = _baseAreaMetrics.copyWith(presenceSumSeconds: 1);
+      final json = metrics.toJson();
+
+      expect(json['presenceSumSeconds'], 1);
+      expect(json['presenceSumSeconds'], isA<int>());
+      expect(AreaMetrics.fromJson(json).presenceSumSeconds, 1);
+    });
+
+    test('legacy JSON defaults absent presence and histogram fields', () {
+      final legacyJson = _baseAreaMetrics.toJson()
+        ..remove('presenceTrackCount')
+        ..remove('presenceSumSeconds')
+        ..remove('presenceMeanSeconds')
+        ..remove('dwellHistogram');
+      final legacy = AreaMetrics.fromJson(legacyJson);
+      expect(legacy.presenceTrackCount, 0);
+      expect(legacy.presenceSumSeconds, 0);
+      expect(legacy.presenceMeanSeconds, 0);
+      expect(legacy.dwellHistogram, [0, 0, 0, 0, 0]);
+    });
   });
   group('Observation.id', () {
     test('pads short date and time components', () {
-      final observation = _observation(
-        year: 2026,
-        month: 1,
-        day: 2,
-        hour: 3,
-        minute: 5,
-      );
+      final observation = _observation(year: 2026, month: 1, day: 2, hour: 3, minute: 5);
 
       expect(observation.id, 202601020305);
     });
 
-    test(
-      'encodes components set to -1 as zeroes at each aggregation level',
-      () {
-        expect(
-          _observation(year: 2026, month: 6, day: 24, hour: 23, minute: -1).id,
-          202606242300,
-        );
-        expect(
-          _observation(year: 2026, month: 6, day: 24, hour: -1, minute: -1).id,
-          202606240000,
-        );
-        expect(
-          _observation(year: 2026, month: 6, day: -1, hour: -1, minute: -1).id,
-          202606000000,
-        );
-        expect(
-          _observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1).id,
-          202600000000,
-        );
-      },
-    );
+    test('encodes components set to -1 as zeroes at each aggregation level', () {
+      expect(_observation(year: 2026, month: 6, day: 24, hour: 23, minute: -1).id, 202606242300);
+      expect(_observation(year: 2026, month: 6, day: 24, hour: -1, minute: -1).id, 202606240000);
+      expect(_observation(year: 2026, month: 6, day: -1, hour: -1, minute: -1).id, 202606000000);
+      expect(_observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1).id, 202600000000);
+    });
   });
 
   group('Observation date/time keys', () {
     test('builds date, time, and date-hour keys with padded components', () {
-      final observation = _observation(
-        year: 2026,
-        month: 6,
-        day: 4,
-        hour: 13,
-        minute: 5,
-      );
+      final observation = _observation(year: 2026, month: 6, day: 4, hour: 13, minute: 5);
 
       expect(observation.dateKey, 20260604);
       expect(observation.timeKey, 1305);
@@ -287,10 +322,7 @@ void main() {
 
       expect(observation.granularity, ObservationGranularity.minutes5);
       expect(json['granularity'], 'minutes5');
-      expect(
-        Observation.fromJson({...json}..remove('granularity')).granularity,
-        ObservationGranularity.minutes5,
-      );
+      expect(Observation.fromJson({...json}..remove('granularity')).granularity, ObservationGranularity.minutes5);
     });
 
     test('encodes unavailable components as zeroes', () {
@@ -349,13 +381,7 @@ void main() {
   });
 
   test('dateTime represents the observation local date and time', () {
-    final observation = _observation(
-      year: 2026,
-      month: 6,
-      day: 24,
-      hour: 23,
-      minute: 5,
-    );
+    final observation = _observation(year: 2026, month: 6, day: 24, hour: 23, minute: 5);
 
     expect(observation.dateTime, DateTime(2026, 6, 24, 23, 5));
   });
@@ -368,52 +394,21 @@ void main() {
 
   test('businessDateTime formats each observation granularity', () {
     final observations = [
+      (_observation(year: 2026, month: 1, day: 3, hour: 4, minute: 5), '2026-01-03 04:05'),
       (
-        _observation(year: 2026, month: 1, day: 3, hour: 4, minute: 5),
-        '2026-01-03 04:05',
-      ),
-      (
-        _observation(
-          year: 2026,
-          month: 1,
-          day: 3,
-          hour: 4,
-          minute: -1,
-          granularity: ObservationGranularity.hour,
-        ),
+        _observation(year: 2026, month: 1, day: 3, hour: 4, minute: -1, granularity: ObservationGranularity.hour),
         '2026-01-03 04:00',
       ),
       (
-        _observation(
-          year: 2026,
-          month: 1,
-          day: 3,
-          hour: -1,
-          minute: -1,
-          granularity: ObservationGranularity.day,
-        ),
+        _observation(year: 2026, month: 1, day: 3, hour: -1, minute: -1, granularity: ObservationGranularity.day),
         '2026-01-03 00:00',
       ),
       (
-        _observation(
-          year: 2026,
-          month: 1,
-          day: -1,
-          hour: -1,
-          minute: -1,
-          granularity: ObservationGranularity.month,
-        ),
+        _observation(year: 2026, month: 1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.month),
         '2026-01',
       ),
       (
-        _observation(
-          year: 2026,
-          month: -1,
-          day: -1,
-          hour: -1,
-          minute: -1,
-          granularity: ObservationGranularity.year,
-        ),
+        _observation(year: 2026, month: -1, day: -1, hour: -1, minute: -1, granularity: ObservationGranularity.year),
         '2026',
       ),
     ];

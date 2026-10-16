@@ -21,8 +21,9 @@ void main() {
             windowStarted = true;
             missingAtStart = missing;
           },
-          onWindowEnd: (_, _) {},
+          onWindowEnd: (_) {},
         );
+        addTearDown(scheduler.dispose);
 
         scheduler.start();
         scheduler.ensureWindowActive();
@@ -39,8 +40,6 @@ void main() {
 
         expect(scheduler.windowEndUtc, DateTime.utc(2024, 1, 1, 10, 10, 0));
         expect(missingAtStart, Duration.zero, reason: "Continuous rollover has no missing duration");
-
-        scheduler.dispose();
       });
     });
 
@@ -52,25 +51,66 @@ void main() {
         nowProvider: () => now,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, _) => startCount++,
-        onWindowEnd: (_, _) {},
+        onWindowEnd: (_) {},
       );
+      addTearDown(scheduler.dispose);
 
       scheduler.ensureWindowActive();
       expect(startCount, 1);
 
       scheduler.ensureWindowActive();
       expect(startCount, 1, reason: 'No new window should open while current window is still active');
+    });
 
-      scheduler.dispose();
+    test('scheduler window length equals kWindowDuration', () {
+      final clock = DateTime.utc(2026, 1, 1, 10, 0, 1);
+      final scheduler = ObservationScheduler(
+        nowProvider: () => clock,
+        monotonicNowProvider: () => Duration.zero,
+        onWindowStart: (_, _) {},
+        onWindowEnd: (_) {},
+      );
+      addTearDown(scheduler.dispose);
+
+      scheduler.ensureWindowActive();
+      expect(scheduler.windowEndUtc!.difference(scheduler.windowStartUtc!), kWindowDuration);
     });
   });
 
   group('CountWindowScheduler (Extreme Cases)', () {
+    test('onClockJump fires before the window rolls', () {
+      fakeAsync((async) {
+        var wall = DateTime(2026, 6, 1, 12, 1);
+        var monotonic = Duration.zero;
+        final events = <String>[];
+
+        final scheduler = ObservationScheduler(
+          nowProvider: () => wall,
+          monotonicNowProvider: () => monotonic,
+          onWindowStart: (_, _) => events.add('start'),
+          onWindowEnd: (_) => events.add('end'),
+          onClockJump: (_) => events.add('jump'),
+        );
+        addTearDown(scheduler.dispose);
+        scheduler.start();
+        scheduler.ensureWindowActive();
+        async.elapse(const Duration(seconds: 5));
+        events.clear();
+
+        wall = wall.add(const Duration(minutes: 10));
+        monotonic += const Duration(seconds: 5);
+        async.elapse(const Duration(seconds: 5));
+
+        expect(events, ['jump', 'end', 'start']);
+      });
+    });
+
     test('clock jump rolls window without discarding', () {
       fakeAsync((async) {
         DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
         Duration currentMonotonic = Duration.zero;
         bool started = false;
+        var ended = false;
         Duration? missingAtStart;
 
         final scheduler = ObservationScheduler(
@@ -80,8 +120,9 @@ void main() {
             started = true;
             missingAtStart = missing;
           },
-          onWindowEnd: (_, _) {},
+          onWindowEnd: (_) => ended = true,
         );
+        addTearDown(scheduler.dispose);
 
         scheduler.ensureWindowActive();
         expect(started, true);
@@ -99,8 +140,34 @@ void main() {
 
         expect(started, true, reason: "Should immediately ensure new window");
         expect(missingAtStart, isNotNull);
+        expect(ended, isTrue);
+      });
+    });
 
-        scheduler.dispose();
+    test('backward clock jump rolls the window', () {
+      fakeAsync((async) {
+        var wall = DateTime(2026, 6, 1, 12, 1);
+        var monotonic = Duration.zero;
+        final events = <String>[];
+        final scheduler = ObservationScheduler(
+          nowProvider: () => wall,
+          monotonicNowProvider: () => monotonic,
+          onWindowStart: (_, _) => events.add('start'),
+          onWindowEnd: (_) => events.add('end'),
+          onClockJump: (_) => events.add('jump'),
+        );
+        addTearDown(scheduler.dispose);
+        scheduler.start();
+        scheduler.ensureWindowActive();
+        async.elapse(const Duration(seconds: 5));
+        events.clear();
+
+        wall = wall.subtract(const Duration(hours: 2));
+        monotonic += const Duration(seconds: 5);
+        async.elapse(const Duration(seconds: 5));
+
+        expect(events, ['jump', 'end', 'start']);
+        expect(scheduler.windowStartUtc, DateTime(2026, 6, 1, 10).toUtc());
       });
     });
   });
@@ -114,8 +181,9 @@ void main() {
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, missing) => reportedMissingAtStart = missing,
-        onWindowEnd: (_, _) {},
+        onWindowEnd: (_) {},
       );
+      addTearDown(scheduler.dispose);
 
       // First window starts at 10:00
       scheduler.ensureWindowActive();
@@ -131,6 +199,7 @@ void main() {
         reason: "Coverage loss at window start (nowUtc − windowStartUtc) must be reported",
       );
     });
+
     test('ensureWindowActive reports start-gap after reset', () {
       DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
       Duration? missingAtStart;
@@ -139,8 +208,9 @@ void main() {
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, missing) => missingAtStart = missing,
-        onWindowEnd: (_, _) {},
+        onWindowEnd: (_) {},
       );
+      addTearDown(scheduler.dispose);
 
       scheduler.ensureWindowActive();
 
@@ -154,8 +224,6 @@ void main() {
         const Duration(seconds: 30),
         reason: 'Start-gap must be reported for every freshly opened window after reset',
       );
-
-      scheduler.dispose();
     });
 
     test('reset clears active window so source start can open a new window', () {
@@ -166,8 +234,9 @@ void main() {
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, _) => startCount++,
-        onWindowEnd: (_, _) {},
+        onWindowEnd: (_) {},
       );
+      addTearDown(scheduler.dispose);
 
       scheduler.ensureWindowActive();
       expect(startCount, 1);
@@ -179,8 +248,44 @@ void main() {
       scheduler.ensureWindowActive();
 
       expect(startCount, 2, reason: 'reset() should clear active window state for a new counting session');
+    });
 
-      scheduler.dispose();
+    test('reset discards the open window without calling onWindowEnd', () {
+      final clock = DateTime(2026, 6, 1, 12, 0, 1);
+      var ends = 0;
+      final scheduler = ObservationScheduler(
+        nowProvider: () => clock,
+        monotonicNowProvider: () => Duration.zero,
+        onWindowStart: (_, _) {},
+        onWindowEnd: (_) => ends++,
+      );
+      addTearDown(scheduler.dispose);
+
+      scheduler.ensureWindowActive();
+      scheduler.reset();
+      expect(ends, 0);
+      expect(scheduler.windowEndUtc, isNull);
+    });
+
+    test('window rolls exactly at the boundary, not before', () {
+      var clock = DateTime(2026, 6, 1, 12, 0, 1);
+      var starts = 0;
+      final scheduler = ObservationScheduler(
+        nowProvider: () => clock,
+        monotonicNowProvider: () => Duration.zero,
+        onWindowStart: (_, _) => starts++,
+        onWindowEnd: (_) {},
+      );
+      addTearDown(scheduler.dispose);
+
+      scheduler.ensureWindowActive();
+      clock = DateTime(2026, 6, 1, 12, 4, 59, 999);
+      scheduler.ensureWindowActive();
+      expect(starts, 1);
+
+      clock = DateTime(2026, 6, 1, 12, 5);
+      scheduler.ensureWindowActive();
+      expect(starts, 2);
     });
 
     test('debugForceWindowEnd invokes onWindowEnd and clears active window', () {
@@ -191,8 +296,9 @@ void main() {
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, _) {},
-        onWindowEnd: (_, _) => endCount++,
+        onWindowEnd: (_) => endCount++,
       );
+      addTearDown(scheduler.dispose);
 
       scheduler.ensureWindowActive();
       expect(scheduler.windowEndUtc, DateTime.utc(2024, 1, 1, 10, 5, 0));
@@ -201,8 +307,6 @@ void main() {
 
       expect(endCount, 1, reason: 'debug force-end must call onWindowEnd once for an active window');
       expect(scheduler.windowEndUtc, isNull, reason: 'debug force-end should clear active window state');
-
-      scheduler.dispose();
     });
 
     test('debugForceWindowEnd is a no-op when no window is active', () {
@@ -213,15 +317,14 @@ void main() {
         nowProvider: () => currentNow,
         monotonicNowProvider: () => Duration.zero,
         onWindowStart: (_, _) {},
-        onWindowEnd: (_, _) => endCount++,
+        onWindowEnd: (_) => endCount++,
       );
+      addTearDown(scheduler.dispose);
 
       scheduler.debugForceWindowEnd();
 
       expect(endCount, 0);
       expect(scheduler.windowEndUtc, isNull);
-
-      scheduler.dispose();
     });
   });
 

@@ -1,7 +1,9 @@
 // TOC
 // 1. Event primitives (EventType, MutableEventCounts)
 // 2. ObservationAggregator (window-level event and state aggregation)
-// 3. StateMetrics (running occupancy/dwell aggregations)
+// 3. StateMetrics (running occupancy/presence/dwell aggregations)
+
+import 'dart:math' as math;
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 
@@ -19,7 +21,7 @@ class MutableEventCounts {
 /// Resolves an area ID to its human-readable name.
 typedef AreaNameResolver = String Function(int areaId);
 
-/// Aggregates per-area events, occupancy samples, and finished dwell samples.
+/// Aggregates per-area events, occupancy samples, presence, and dwell samples.
 class ObservationAggregator {
   /// Inclusive start timestamp of the aggregation window in business time.
   final DateTime startBusiness;
@@ -67,10 +69,7 @@ class ObservationAggregator {
   }
 
   /// Adds aggregated confidence values observed in the current frame.
-  void addConfidenceAggregate({
-    required double confidenceRatioSum,
-    required int sampleCount,
-  }) {
+  void addConfidenceAggregate({required double confidenceRatioSum, required int sampleCount}) {
     if (sampleCount <= 0) return;
     _confidenceRatioSum += confidenceRatioSum;
     _confidenceSampleCount += sampleCount;
@@ -78,10 +77,7 @@ class ObservationAggregator {
 
   /// Increments one event counter for [areaId].
   void incrementEvent(int areaId, EventType event) {
-    final metrics = _eventCounts.putIfAbsent(
-      areaId,
-      () => MutableEventCounts(),
-    );
+    final metrics = _eventCounts.putIfAbsent(areaId, () => MutableEventCounts());
     switch (event) {
       case EventType.passBy:
         metrics.passBy++;
@@ -116,6 +112,13 @@ class ObservationAggregator {
     metrics.addDwellSample(seconds);
   }
 
+  /// Adds elapsed presence for tracks inside [areaId] during a valid frame interval.
+  /// Only tracks present for a positive amount of time are included.
+  void addPresenceSample(int areaId, Set<int> insideTrackIds, int elapsedSinceLastFrameMs) {
+    final metrics = _stateMetrics.putIfAbsent(areaId, () => StateMetrics());
+    metrics.addPresenceSample(insideTrackIds, elapsedSinceLastFrameMs);
+  }
+
   /// Ensures empty state metrics exist for [areaId].
   void ensureStateSample(int areaId) {
     _stateMetrics.putIfAbsent(areaId, () => StateMetrics());
@@ -135,12 +138,8 @@ class ObservationAggregator {
         areaId: areaId,
         areaName: areaNameResolver(areaId),
         passBy: events.passBy,
-        entry: areaId == core_domain.kGlobalAreaId
-            ? 0
-            : events.entry, // Force entry to zero for global area
-        exit: areaId == core_domain.kGlobalAreaId
-            ? 0
-            : events.exit, // Force exit to zero for global area
+        entry: areaId == core_domain.kGlobalAreaId ? 0 : events.entry, // Force entry to zero for global area
+        exit: areaId == core_domain.kGlobalAreaId ? 0 : events.exit, // Force exit to zero for global area
         appear: events.appear,
         disappear: events.disappear,
         stagnant: events.stagnant,
@@ -155,6 +154,9 @@ class ObservationAggregator {
         dwellMeanSeconds: metrics.dwellMeanSeconds,
         dwellMaxSeconds: metrics.dwellMaxSeconds,
         dwellHistogram: List<int>.of(metrics.dwellHistogram),
+        presenceTrackCount: metrics.presenceTrackCount,
+        presenceSumSeconds: metrics.presenceSumSeconds,
+        presenceMeanSeconds: metrics.presenceMeanSeconds,
       );
     }
 
@@ -164,10 +166,7 @@ class ObservationAggregator {
 
     final adjustedMissing = _adjustedMissingDuration(_missingDuration);
     final expectedSeconds = core_domain.kWindowDuration.inSeconds;
-    final coveredSeconds = (expectedSeconds - adjustedMissing.inSeconds).clamp(
-      0,
-      expectedSeconds,
-    );
+    final coveredSeconds = (expectedSeconds - adjustedMissing.inSeconds).clamp(0, expectedSeconds);
     final observation = core_domain.Observation(
       granularity: core_domain.ObservationGranularity.minutes5,
       year: startBusiness.year,
@@ -177,14 +176,10 @@ class ObservationAggregator {
       minute: startBusiness.minute,
       confidenceRatioSum: _confidenceRatioSum,
       confidenceSampleCount: _confidenceSampleCount,
-      confidenceRatio: _confidenceSampleCount == 0
-          ? 0
-          : _confidenceRatioSum / _confidenceSampleCount,
+      confidenceRatio: _confidenceSampleCount == 0 ? 0 : _confidenceRatioSum / _confidenceSampleCount,
       coveredSeconds: coveredSeconds,
       expectedSeconds: expectedSeconds,
-      coverageRatio: expectedSeconds == 0
-          ? 0
-          : coveredSeconds / expectedSeconds,
+      coverageRatio: expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds,
       areas: areasList,
       frameCount: _processedFrameCount,
     );
@@ -194,21 +189,22 @@ class ObservationAggregator {
 
   Duration _adjustedMissingDuration(Duration duration) {
     if (duration.isNegative) return Duration.zero;
-    if (duration.inSeconds >= 299)
-      return Duration(
-        seconds: 300,
-      ); // our counting window is capped at 5 minutes
+    final windowDuration = core_domain.kWindowDuration;
+    if (duration >= windowDuration - const Duration(seconds: 1)) return windowDuration;
     return duration;
   }
 }
 
-/// Running aggregation of occupancy and dwell-time samples for one area.
+/// Running aggregation of occupancy, presence, and dwell-time for one area.
 ///
-/// Occupancy exposes three values:
+/// Occupancy exposes four values:
 /// - occupancyLast: last sampled occupancy
 /// - occupancyMean: simple sample mean across frames
 /// - occupancyVariance: population variance across samples
 /// - occupancyMax: maximum sampled occupancy
+///
+/// Presence exposes track count, person-seconds, and mean seconds per
+/// track-observation. Dwell exposes finished-visit count, sum, mean, and max.
 class StateMetrics {
   int occupancySampleCount = 0;
   int occupancySampleSum = 0;
@@ -217,11 +213,10 @@ class StateMetrics {
   int occupancyLast = 0;
   int dwellSumSeconds = 0;
   int dwellSampleCount = 0;
-  int maxDwellSeconds = 0;
-  final List<int> dwellHistogram = List<int>.filled(
-    core_domain.kDwellBucketCount,
-    0,
-  );
+  int _dwellMaxSeconds = 0;
+  int _presenceMs = 0;
+  final Set<int> _presenceTrackIds = {};
+  final List<int> dwellHistogram = List<int>.filled(core_domain.kDwellBucketCount, 0);
 
   /// Adds one frame-level occupancy sample.
   void addOccupancySample(int occupancy) {
@@ -237,26 +232,40 @@ class StateMetrics {
     final nonNegativeSeconds = seconds < 0 ? 0 : seconds;
     dwellSumSeconds += nonNegativeSeconds;
     dwellSampleCount++;
-    if (nonNegativeSeconds > maxDwellSeconds)
-      maxDwellSeconds = nonNegativeSeconds;
+    if (nonNegativeSeconds > _dwellMaxSeconds) _dwellMaxSeconds = nonNegativeSeconds;
     dwellHistogram[core_domain.dwellBucketIndex(nonNegativeSeconds)]++;
   }
 
+  /// Adds person-milliseconds for tracks present for positive time.
+  void addPresenceSample(Set<int> insideTrackIds, int elapsedSinceLastFrameMs) {
+    if (elapsedSinceLastFrameMs <= 0 || insideTrackIds.isEmpty) return;
+
+    _presenceMs += elapsedSinceLastFrameMs * insideTrackIds.length;
+    _presenceTrackIds.addAll(insideTrackIds);
+  }
+
   /// Mean occupancy across discrete frame samples (simple average).
-  double get occupancyMean => occupancySampleCount == 0
-      ? 0.0
-      : occupancySampleSum / occupancySampleCount;
+  double get occupancyMean => occupancySampleCount == 0 ? 0.0 : occupancySampleSum / occupancySampleCount;
 
   /// Population variance across discrete frame samples.
-  double get occupancyVariance => occupancySampleCount == 0
-      ? 0.0
-      : occupancySampleSumSquares / occupancySampleCount -
-            occupancyMean * occupancyMean;
+  double get occupancyVariance {
+    if (occupancySampleCount == 0) return 0.0;
+    final variance = occupancySampleSumSquares / occupancySampleCount - occupancyMean * occupancyMean;
+    return math.max(0.0, variance);
+  }
 
   /// Mean dwell time in seconds across all tracked dwell observations.
-  double get dwellMeanSeconds =>
-      dwellSampleCount == 0 ? 0.0 : dwellSumSeconds / dwellSampleCount;
+  double get dwellMeanSeconds => dwellSampleCount == 0 ? 0.0 : dwellSumSeconds / dwellSampleCount;
+
+  /// Number of distinct track IDs present during this observation.
+  int get presenceTrackCount => _presenceTrackIds.length;
+
+  /// Total person-seconds, rounded once for this observation.
+  int get presenceSumSeconds => (_presenceMs / 1000).round();
+
+  /// Mean presence seconds per track-observation sample.
+  double get presenceMeanSeconds => presenceTrackCount == 0 ? 0.0 : presenceSumSeconds / presenceTrackCount;
 
   /// Max dwell time in rounded seconds.
-  int get dwellMaxSeconds => maxDwellSeconds;
+  int get dwellMaxSeconds => _dwellMaxSeconds;
 }

@@ -91,6 +91,9 @@ core_domain.Observation _payload(int time) => core_domain.Observation(
       dwellSumSeconds: 30,
       dwellMeanSeconds: 30,
       dwellMaxSeconds: 120,
+      presenceTrackCount: 1,
+      presenceSumSeconds: 1,
+      presenceMeanSeconds: 1,
     ),
   ],
   frameCount: 0,
@@ -126,6 +129,18 @@ void main() {
       expect((json['observations'] as List).single['hour'], 10);
       expect((json['observations'] as List).single['minute'], 0);
       expect(json, isNot(contains('payloads')));
+    });
+
+    test('serializes presence seconds as an integer', () {
+      final observation = _payload(1000);
+      final area = observation.areas.single.copyWith(presenceSumSeconds: 1);
+      final json = serializer.toJson([
+        observation.copyWith(areas: [area]),
+      ], deviceId: 'device-1');
+      final serializedArea = ((json['observations'] as List).single as Map<String, dynamic>)['areas'] as List;
+
+      expect((serializedArea.single as Map<String, dynamic>)['presenceSumSeconds'], 1);
+      expect((serializedArea.single as Map<String, dynamic>)['presenceSumSeconds'], isA<int>());
     });
 
     test('toJson omits unset optional metadata', () {

@@ -23,6 +23,8 @@ void main() async {
       if (!kDebugMode) {
         await initializeUsage();
       }
+
+      // if your initialization requires ref, goto app_shell/app_shell.dart.
     },
 
     ProviderScope(

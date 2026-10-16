@@ -1,5 +1,3 @@
-import 'dart:ffi' as ffi;
-
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation.dart';
 import 'package:core_runtime/observation/interest_area_notifier.dart';
@@ -23,23 +21,6 @@ vision.TrackedObject buildTrack({required int trackId, required Offset center, r
     initialCenterX: initialCenter.dx.toInt(),
     initialCenterY: initialCenter.dy.toInt(),
     startTime: DateTime.now().millisecondsSinceEpoch,
-  );
-}
-
-vision.VisionHandle buildSourceInfo() {
-  return vision.VisionHandle(
-    width: 640,
-    height: 480,
-    fps: 30,
-    outputSize: 0,
-    outputPtr: ffi.Pointer.fromAddress(0),
-    ySize: 0,
-    uSize: 0,
-    vSize: 0,
-    yPtr: ffi.Pointer.fromAddress(0),
-    uPtr: ffi.Pointer.fromAddress(0),
-    vPtr: ffi.Pointer.fromAddress(0),
-    cameraImageFormat: null,
   );
 }
 
@@ -167,6 +148,312 @@ void main() {
     });
   });
 
+  test('late window roll charges the gap once', () {
+    fakeAsync((async) {
+      var clock = DateTime(2026, 6, 1, 12, 0, 1);
+      final t0 = clock;
+      final container = ProviderContainer(
+        overrides: [
+          observationProvider.overrideWith(
+            () => ObservationNotifier(nowProvider: () => clock, monotonicNowProvider: () => clock.difference(t0)),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      final notifier = container.read(observationProvider.notifier);
+      final closed = <core_domain.Observation>[];
+      final subscription = notifier.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      notifier.start();
+      notifier.processFrame(<Object>[], 0);
+
+      for (var seconds = 2; seconds <= 288; seconds += 2) {
+        clock = t0.add(Duration(seconds: seconds));
+        notifier.processFrame(<Object>[], 0);
+      }
+      clock = DateTime(2026, 6, 1, 12, 4, 50);
+      notifier.processFrame(<Object>[], 0);
+
+      clock = DateTime(2026, 6, 1, 12, 5, 30);
+      notifier.processFrame(<Object>[], 0);
+      async.flushMicrotasks();
+
+      expect(closed.single.coveredSeconds, 290);
+      expect(container.read(observationProvider).coveredSeconds, 270, reason: 'double count gives 240');
+    });
+  });
+
+  test('stall timer late roll charges the gap once', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12, 0, 1);
+      var clockOffset = Duration.zero;
+      final container = ProviderContainer(
+        overrides: [
+          observationProvider.overrideWith(
+            () => ObservationNotifier(
+              nowProvider: () => base.add(async.elapsed).add(clockOffset),
+              monotonicNowProvider: () => async.elapsed,
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      final n = container.read(observationProvider.notifier);
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      n.start();
+      n.processFrame(const <Object>[], 0);
+      n.pause();
+
+      clockOffset = const Duration(minutes: 5, seconds: 30);
+      async.elapse(const Duration(seconds: 1));
+      async.flushMicrotasks();
+
+      expect(closed.single.coveredSeconds, 0);
+      expect(state(container)!.coveredSeconds, 268, reason: 'late-roll missing time must not be charged twice');
+    });
+  });
+
+  test('presence credits tolerated first-frame delay as valid time', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      async.elapse(const Duration(milliseconds: 2500));
+      processTestFrame(container, n, [track], const [], 0);
+
+      final global = _area(state(container)!, core_domain.kGlobalAreaId);
+      expect(state(container)!.coveredSeconds, 300);
+      expect(global.presenceTrackCount, 1);
+      expect(global.presenceSumSeconds, 3);
+    });
+  });
+
+  test('debug force-end does not charge time after now as missing', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12, 1);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, const [], const [], 0);
+      n.debugForceWindowEnd();
+      async.flushMicrotasks();
+
+      expect(closed.single.coveredSeconds, 240);
+    });
+  });
+
+  test('backward clock jump does not charge time after now as missing', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12, 1);
+      var jumpOffset = Duration.zero;
+      final container = ProviderContainer(
+        overrides: [
+          observationProvider.overrideWith(
+            () => ObservationNotifier(
+              nowProvider: () => base.add(async.elapsed).add(jumpOffset),
+              monotonicNowProvider: () => async.elapsed,
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, const [], const [], 0);
+      async.elapse(const Duration(seconds: 5));
+      jumpOffset = const Duration(hours: -2);
+      async.elapse(const Duration(seconds: 5));
+      async.flushMicrotasks();
+
+      expect(closed, hasLength(1));
+      expect(closed.single.coveredSeconds, 240);
+    });
+  });
+
+  test('source frame gap discards an open visit', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 51,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], [area], 0);
+      pumpFrames(n, async, const Duration(seconds: 20), step: const Duration(seconds: 2), tracks: [track]);
+      async.elapse(const Duration(seconds: 10));
+      processTestFrame(container, n, [track], [area], 0);
+
+      expect(_area(state(container)!, area.id).dwellSampleCount, 0);
+      expect(_area(state(container)!, area.id).dwellSumSeconds, 0);
+    });
+  });
+
+  test('pause discards visits before a long pause and resume', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base, disappearThresholdSeconds: 0);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 52,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], [area], 0);
+      pumpFrames(n, async, const Duration(seconds: 30), step: const Duration(seconds: 2), tracks: [track]);
+      n.pause();
+      expect(_area(state(container)!, area.id).dwellSampleCount, 0);
+      expect(_area(state(container)!, area.id).dwellSumSeconds, 0);
+
+      async.elapse(const Duration(minutes: 10));
+      n.resume();
+      processTestFrame(container, n, [track], [area], 0);
+      async.elapse(const Duration(seconds: 2));
+      processTestFrame(container, n, const [], [area], 0);
+
+      expect(_area(state(container)!, area.id).dwellSumSeconds, 2);
+    });
+  });
+
+  test('a pause across a boundary adds no tail presence', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], const [], 0);
+      pumpFrames(n, async, const Duration(seconds: 10), step: const Duration(seconds: 1), tracks: [track]);
+      n.pause();
+      async.elapse(const Duration(seconds: 295));
+      async.flushMicrotasks();
+
+      expect(closed, hasLength(1));
+      expect(_area(closed.single, core_domain.kGlobalAreaId).presenceSumSeconds, 10);
+    });
+  });
+
+  test('clock jump discards an open visit before the window rolls', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      var jumpOffset = Duration.zero;
+      final container = ProviderContainer(
+        overrides: [
+          observationProvider.overrideWith(
+            () => ObservationNotifier(
+              nowProvider: () => base.add(async.elapsed).add(jumpOffset),
+              monotonicNowProvider: () => async.elapsed,
+            ),
+          ),
+        ],
+      );
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 53,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, [track], [area], 0);
+      pumpFrames(n, async, const Duration(seconds: 30), step: const Duration(seconds: 2), tracks: [track]);
+      jumpOffset = const Duration(minutes: 30);
+      async.elapse(const Duration(seconds: 5));
+      processTestFrame(container, n, [track], [area], 0);
+      expect(
+        state(container)!.coveredSeconds,
+        265,
+        reason: 'the 25 minutes between the old and new window belong to no window',
+      );
+      async.elapse(const Duration(seconds: 2));
+      processTestFrame(container, n, const [], [area], 0);
+
+      expect(closed, isNotEmpty);
+      expect(closed.first.coveredSeconds, 30);
+      final closedArea = _area(closed.first, area.id);
+      expect(closedArea.dwellSampleCount, 0);
+      expect(closedArea.dwellSumSeconds, 0);
+      expect(closedArea.passBy, 1);
+      expect(_area(state(container)!, area.id).dwellSumSeconds, 2);
+    });
+  });
+
+  test('stop discards visits before flushing the final window', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 54,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, [track], [area], 0);
+      pumpFrames(n, async, const Duration(seconds: 30), step: const Duration(seconds: 2), tracks: [track]);
+      n.stop();
+      async.flushMicrotasks();
+
+      expect(closed, hasLength(1));
+      expect(_area(closed.single, area.id).dwellSampleCount, 0);
+      expect(_area(closed.single, area.id).dwellSumSeconds, 0);
+    });
+  });
+
   test('finalized windows identify consecutive window times', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
@@ -189,7 +476,7 @@ void main() {
     });
   });
 
-  test('new source start creates new generic session id', () {
+  test('resume keeps observations aligned to their window', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
       final container = makeContainer(async, base);
@@ -252,11 +539,12 @@ void main() {
       pumpFrames(n, async, const Duration(minutes: 3, seconds: 30));
 
       expect(results.length, 1);
+      expect(_missingSeconds(results.first), 30);
       sub.cancel();
     });
   });
 
-  test('clock jump discards window and starts new partial', () {
+  test('clock jump rolls to a new window', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 2, 0);
       var jumpOffset = Duration.zero;
@@ -325,6 +613,73 @@ void main() {
     });
   });
 
+  test('presence uses valid frame intervals and resets at window boundaries', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 4, 50);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 42,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final otherArea = core_domain.InterestArea(
+        id: 43,
+        name: 'other zone',
+        points: const [
+          core_domain.PointData(dx: 30, dy: 30),
+          core_domain.PointData(dx: 50, dy: 30),
+          core_domain.PointData(dx: 50, dy: 50),
+          core_domain.PointData(dx: 30, dy: 50),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], [area, otherArea], 0.0);
+      async.elapse(const Duration(seconds: 1));
+      processTestFrame(container, n, [track], [area, otherArea], 0.0);
+      expect(_area(state(container)!, area.id).presenceSumSeconds, 1);
+      expect(_area(state(container)!, core_domain.kGlobalAreaId).presenceSumSeconds, 1);
+      expect(_area(state(container)!, otherArea.id).presenceSumSeconds, 0);
+
+      async.elapse(const Duration(seconds: 4));
+      processTestFrame(container, n, [track], [area, otherArea], 0.0);
+      expect(_area(state(container)!, area.id).presenceSumSeconds, 1);
+
+      async.elapse(const Duration(seconds: 5));
+      processTestFrame(container, n, [track], [area, otherArea], 0.0);
+      final nextWindow = state(container)!;
+      expect(_windowStart(nextWindow), _businessTime(DateTime.utc(2026, 1, 1, 10, 5)));
+      expect(_area(nextWindow, area.id).presenceTrackCount, 0);
+      expect(_area(nextWindow, area.id).presenceSumSeconds, 0);
+    });
+  });
+
+  test('missing frame interval reduces coverage and adds no presence', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], const [], 0.0);
+      async.elapse(const Duration(seconds: 4));
+      processTestFrame(container, n, [track], const [], 0.0);
+
+      final observation = state(container)!;
+      expect(observation.coveredSeconds, 296);
+      expect(_area(observation, core_domain.kGlobalAreaId).presenceTrackCount, 0);
+      expect(_area(observation, core_domain.kGlobalAreaId).presenceSumSeconds, 0);
+    });
+  });
+
   test('honors stay/disappear thresholds in area metrics', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
@@ -386,7 +741,7 @@ void main() {
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
 
       processTestFrame(container, n, [track], [area], 0.0);
-      async.elapse(const Duration(seconds: 3));
+      async.elapse(const Duration(seconds: 2));
       processTestFrame(container, n, [track], [area], 0.0);
 
       expect(_area(state(container)!, area.id).stagnant, 0);
@@ -403,28 +758,6 @@ void main() {
       processTestFrame(container, n, const [], [area], 0.0);
 
       expect(_area(state(container)!, area.id).disappear, 1);
-    });
-  });
-
-  test('fatal error does not pause windowing', () {
-    fakeAsync((async) {
-      final base = DateTime.utc(2026, 1, 1, 10, 2, 0);
-      final container = makeContainer(async, base);
-      addTearDown(container.dispose);
-      final n = notifier(container);
-
-      final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
-
-      processTestFrame(container, n, const [], const [], 0.0);
-      n.pause();
-      async.elapse(const Duration(minutes: 3));
-
-      expect(results.length, 1);
-      expect(_windowStart(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 0, 0)));
-      expect(_windowEnd(results.first), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
-
-      sub.cancel();
     });
   });
 
@@ -498,6 +831,80 @@ void main() {
       expect(results.length, 1);
 
       sub.cancel();
+    });
+  });
+
+  test('presence interval spanning boundary contributes to both windows', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 4, 59, 600);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 55,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, [track], [area], 0);
+      async.elapse(const Duration(milliseconds: 400));
+      async.elapse(const Duration(milliseconds: 600));
+      processTestFrame(container, n, [track], [area], 0);
+      async.flushMicrotasks();
+
+      expect(closed, hasLength(1));
+      expect(_area(closed.single, area.id).presenceTrackCount, 1);
+      expect(_area(closed.single, area.id).presenceSumSeconds, 0);
+      expect(_area(state(container)!, area.id).presenceTrackCount, 1);
+      expect(_area(state(container)!, area.id).presenceSumSeconds, 1);
+      expect(
+        _area(closed.single, area.id).presenceSumSeconds + _area(state(container)!, area.id).presenceSumSeconds,
+        1,
+      );
+    });
+  });
+
+  test('boundary presence uses prior inside tracks and advances the frame baseline', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 4, 59, 400);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final area = core_domain.InterestArea(
+        id: 56,
+        name: 'zone',
+        points: const [
+          core_domain.PointData(dx: 0, dy: 0),
+          core_domain.PointData(dx: 20, dy: 0),
+          core_domain.PointData(dx: 20, dy: 20),
+          core_domain.PointData(dx: 0, dy: 20),
+        ],
+      );
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+      final closed = <core_domain.Observation>[];
+      final subscription = n.snapshots.listen(closed.add);
+      addTearDown(subscription.cancel);
+
+      processTestFrame(container, n, [track], [area], 0);
+      async.elapse(const Duration(milliseconds: 600));
+      processTestFrame(container, n, [track], [area], 0);
+      async.flushMicrotasks();
+
+      async.elapse(const Duration(milliseconds: 400));
+      processTestFrame(container, n, [track], [area], 0);
+
+      expect(closed, hasLength(1));
+      expect(_area(closed.single, area.id).presenceSumSeconds, 1);
+      expect(_area(state(container)!, area.id).presenceSumSeconds, 0);
     });
   });
 
@@ -902,6 +1309,37 @@ void main() {
     });
   });
 
+  test('changing interest areas discards the open visit and recounts pass-by', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 6, 1, 12);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      const points = [
+        core_domain.PointData(dx: 0, dy: 0),
+        core_domain.PointData(dx: 20, dy: 0),
+        core_domain.PointData(dx: 20, dy: 20),
+        core_domain.PointData(dx: 0, dy: 20),
+      ];
+      const area = core_domain.InterestArea(id: 61, name: 'zone', points: points);
+      const renamed = core_domain.InterestArea(id: 61, name: 'zone moved', points: points);
+      final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
+
+      processTestFrame(container, n, [track], [area], 0);
+      pumpFrames(n, async, const Duration(seconds: 10), step: const Duration(seconds: 2), tracks: [track]);
+      expect(_area(state(container)!, area.id).passBy, 1);
+
+      async.elapse(const Duration(seconds: 2));
+      processTestFrame(container, n, [track], [renamed], 0);
+
+      final metrics = _area(state(container)!, area.id);
+      expect(metrics.dwellSampleCount, 0, reason: 'the open visit is discarded, not recorded');
+      expect(metrics.passBy, 2, reason: 'the new tracker has no history, so the track counts again');
+      expect(n.getTotalCount(area.id), 1);
+      expect(_area(state(container)!, core_domain.kGlobalAreaId).passBy, 1, reason: 'global is unaffected');
+    });
+  });
+
   group('flushCurrentWindow', () {
     test('emits current window snapshot on snapshots', () {
       fakeAsync((async) {
@@ -977,7 +1415,7 @@ void main() {
       });
     });
 
-    test('is a no-op when neither aggregator nor state is available', () {
+    test('is a no-op when no aligned window is open', () {
       fakeAsync((async) {
         final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
         final container = makeContainer(async, base);
@@ -987,8 +1425,9 @@ void main() {
         final results = <core_domain.Observation>[];
         final sub = n.snapshots.listen(results.add);
 
-        // No processFrame call → _currentAggregator is null AND state is null
+        // No frame has opened an aligned scheduler window.
         n.flushCurrentWindow();
+        async.flushMicrotasks();
 
         expect(results, isEmpty);
 
@@ -996,7 +1435,7 @@ void main() {
       });
     });
 
-    test('falls back to state when no active aggregator exists', () {
+    test('flushes the current window after an area update', () {
       fakeAsync((async) {
         final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
         final container = makeContainer(async, base);
@@ -1009,7 +1448,7 @@ void main() {
         processTestFrame(container, n, const [], const [], 0.0);
         pumpFrames(n, async, const Duration(minutes: 1));
 
-        // Interest-area change discards the active aggregator but keeps last state.
+        // The area update leaves the current aligned window active.
         n.onAreasChanged(const []);
         n.flushCurrentWindow();
         async.flushMicrotasks();

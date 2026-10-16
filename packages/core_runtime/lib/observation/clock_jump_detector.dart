@@ -1,7 +1,8 @@
 import 'dart:async';
 
 /// Detects when the wall clock jumps relative to the monotonic clock,
-/// indicating NTP corrections, host sleep/wake, or DST changes.
+/// indicating NTP corrections or host sleep/wake. DST transitions do not cause
+/// a jump because [DateTime] values represent continuous instants.
 ///
 /// Samples automatically every [_samplingInterval] by comparing the wall-clock
 /// delta against the monotonic delta. If they diverge by more than [threshold],
@@ -24,14 +25,15 @@ class ClockJumpDetector {
     required Duration threshold,
     required void Function(DateTime now) onJumpDetected,
     DateTime Function()? nowProvider,
-  })  : _monotonicNow = monotonicNow ??
-            (() {
-              _monotonicClock ??= Stopwatch()..start();
-              return _monotonicClock!.elapsed;
-            }),
-        _threshold = threshold,
-        _onJumpDetected = onJumpDetected,
-        _now = nowProvider ?? (() => DateTime.now()) {
+  }) : _monotonicNow =
+           monotonicNow ??
+           (() {
+             _monotonicClock ??= Stopwatch()..start();
+             return _monotonicClock!.elapsed;
+           }),
+       _threshold = threshold,
+       _onJumpDetected = onJumpDetected,
+       _now = nowProvider ?? (() => DateTime.now()) {
     _timer = Timer.periodic(_samplingInterval, (_) => checkAndReport(_now()));
   }
 
@@ -58,8 +60,9 @@ class ClockJumpDetector {
     }
 
     final delta = now.difference(_lastObserved!).abs();
-    final monotonicDelta =
-        _lastObservedMonotonic == null ? Duration.zero : (monotonicNow - _lastObservedMonotonic!).abs();
+    final monotonicDelta = _lastObservedMonotonic == null
+        ? Duration.zero
+        : (monotonicNow - _lastObservedMonotonic!).abs();
 
     _lastObserved = now;
     _lastObservedMonotonic = monotonicNow;
@@ -72,7 +75,7 @@ class ClockJumpDetector {
     return true;
   }
 
-  /// Resets the observation state. Called after a jump or when rewinding.
+  /// Resets the observation state. Called by `ObservationScheduler.reset()`.
   void reset() {
     _lastObserved = null;
     _lastObservedMonotonic = null;

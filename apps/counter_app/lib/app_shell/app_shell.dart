@@ -62,14 +62,18 @@ class _AppShellState extends ConsumerState<AppShell> {
     final telemetryService = ref.read(core_domain.telemetryServiceProvider);
     final analyticsService = ref.read(core_domain.analyticsServiceProvider);
 
-    _observationSubscription = observationService.snapshots.listen((snapshot) {
-      unawaited(_processObservation(snapshot, telemetryService, analyticsService));
+    _observationSubscription = observationService.snapshots.listen((observation) {
+      unawaited(_processObservation(observation, telemetryService, analyticsService));
     });
   }
 
-  Future<void> _processObservation(dynamic snapshot, dynamic telemetryService, dynamic analyticsService) async {
+  Future<void> _processObservation(
+    core_domain.Observation observation,
+    core_domain.TelemetryService telemetryService,
+    core_domain.AnalyticsService analyticsService,
+  ) async {
     try {
-      await analyticsService.add(snapshot);
+      await analyticsService.add(observation);
     } catch (error, stackTrace) {
       appkit.logDebug(
         '[app_shell] Failed to add analytics observation: $error, '
@@ -78,7 +82,7 @@ class _AppShellState extends ConsumerState<AppShell> {
     }
 
     try {
-      await telemetryService.enqueue(snapshot);
+      await telemetryService.enqueue(observation);
     } catch (error, stackTrace) {
       appkit.logDebug(
         '[app_shell] Failed to enqueue telemetry payload: $error, '

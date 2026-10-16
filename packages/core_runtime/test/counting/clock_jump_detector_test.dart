@@ -4,164 +4,65 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ClockJumpDetector (Manual checkAndReport)', () {
-    test('returns false on first check', () {
-      final now = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      Duration monotonicTime = Duration.zero;
+    late DateTime wall;
+    late Duration monotonic;
+    late List<DateTime> jumps;
+    late ClockJumpDetector detector;
 
-      bool jumpDetected = false;
-      final detector = ClockJumpDetector(
-        monotonicNow: () => monotonicTime,
+    setUp(() {
+      wall = DateTime.utc(2026, 1, 1, 12);
+      monotonic = Duration.zero;
+      jumps = [];
+      detector = ClockJumpDetector(
+        nowProvider: () => wall,
+        monotonicNow: () => monotonic,
         threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
+        onJumpDetected: jumps.add,
       );
-
-      final result = detector.checkAndReport(now);
-      expect(result, false);
-      expect(jumpDetected, false);
-      detector.dispose();
+      addTearDown(detector.dispose);
     });
 
-    test('returns false for normal drift within threshold', () {
-      final now1 = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      final now2 = now1.add(const Duration(seconds: 30));
-      Duration monotonicTime = Duration.zero;
-
-      bool jumpDetected = false;
-      final detector = ClockJumpDetector(
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
-      );
-
-      detector.checkAndReport(now1);
-      monotonicTime += const Duration(seconds: 30);
-
-      final result = detector.checkAndReport(now2);
-      expect(result, false);
-      expect(jumpDetected, false);
-      detector.dispose();
+    test('the first sample only sets the baseline', () {
+      expect(detector.checkAndReport(wall), isFalse);
+      expect(jumps, isEmpty);
     });
 
-    test('detects forward jump when wall clock diverges beyond threshold', () {
-      final now1 = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      final now2 = now1.add(const Duration(minutes: 5)); // Wall clock jumps 5 minutes
-      Duration monotonicTime = Duration.zero;
-
-      bool jumpDetected = false;
-      DateTime? detectedAt;
-      final detector = ClockJumpDetector(
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (time) {
-          jumpDetected = true;
-          detectedAt = time;
-        },
-      );
-
-      detector.checkAndReport(now1);
-      monotonicTime += const Duration(seconds: 10); // Monotonic only moves 10s
-
-      final result = detector.checkAndReport(now2);
-      expect(result, true, reason: "|5min - 10s| > 1 min threshold");
-      expect(jumpDetected, true);
-      expect(detectedAt, now2);
-      detector.dispose();
+    test('normal drift is ignored', () {
+      detector.checkAndReport(wall);
+      wall = wall.add(const Duration(seconds: 5));
+      monotonic += const Duration(seconds: 5, milliseconds: 200);
+      expect(detector.checkAndReport(wall), isFalse);
     });
 
-    test('detects backward clock jump (e.g. DST fall-back)', () {
-      final now1 = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      final now2 = now1.subtract(const Duration(hours: 1)); // Wall clock goes back 1 hour
-      Duration monotonicTime = Duration.zero;
+    test('divergence just under the threshold is ignored, at the threshold fires', () {
+      detector.checkAndReport(wall);
+      wall = wall.add(const Duration(seconds: 59));
+      expect(detector.checkAndReport(wall), isFalse);
 
-      bool jumpDetected = false;
-      final detector = ClockJumpDetector(
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
-      );
-
-      detector.checkAndReport(now1);
-      monotonicTime += const Duration(seconds: 10); // Monotonic moves forward normally
-
-      final result = detector.checkAndReport(now2);
-      expect(result, true, reason: "|-1h - 10s| >> 1 min threshold");
-      expect(jumpDetected, true);
-      detector.dispose();
+      wall = wall.add(const Duration(seconds: 60));
+      expect(detector.checkAndReport(wall), isTrue);
+      expect(jumps, [wall]);
     });
 
-    test('exact threshold divergence triggers jump', () {
-      final now1 = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      final now2 = now1.add(const Duration(minutes: 1)); // Wall moves exactly 1 min
-      Duration monotonicTime = Duration.zero;
-      // Monotonic stays at zero → divergence = |1min - 0| = 1min, which is NOT < threshold
-
-      bool jumpDetected = false;
-      final detector = ClockJumpDetector(
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
-      );
-
-      detector.checkAndReport(now1);
-      final result = detector.checkAndReport(now2);
-      expect(result, true, reason: "Divergence equal to threshold is not < threshold, so it triggers a jump");
-      expect(jumpDetected, true);
-      detector.dispose();
+    test('a backward jump fires', () {
+      detector.checkAndReport(wall);
+      wall = wall.subtract(const Duration(hours: 2));
+      monotonic += const Duration(seconds: 5);
+      expect(detector.checkAndReport(wall), isTrue);
     });
 
-    test('reset clears observation so next check returns false', () {
-      DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      Duration monotonicTime = Duration.zero;
-      bool jumpDetected = false;
+    test('the baseline moves after a jump so it fires once', () {
+      detector.checkAndReport(wall);
+      wall = wall.add(const Duration(hours: 1));
+      expect(detector.checkAndReport(wall), isTrue);
+      expect(detector.checkAndReport(wall), isFalse);
+    });
 
-      final detector = ClockJumpDetector(
-        nowProvider: () => currentNow,
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
-      );
-
-      // Establish baseline.
-      detector.checkAndReport(currentNow);
-
-      // Advance to a state that would normally trigger a jump.
-      currentNow = currentNow.add(const Duration(hours: 2));
-      monotonicTime += const Duration(seconds: 1);
-
+    test('reset forgets the baseline', () {
+      detector.checkAndReport(wall);
       detector.reset();
-
-      // First check after reset acts as a new first observation — no jump.
-      final result = detector.checkAndReport(currentNow);
-      expect(result, false);
-      expect(jumpDetected, false);
-      detector.dispose();
-    });
-
-    test('resumes normal operation after reset without false positives', () {
-      DateTime currentNow = DateTime.utc(2024, 1, 1, 10, 0, 0);
-      Duration monotonicTime = Duration.zero;
-      bool jumpDetected = false;
-
-      final detector = ClockJumpDetector(
-        nowProvider: () => currentNow,
-        monotonicNow: () => monotonicTime,
-        threshold: const Duration(minutes: 1),
-        onJumpDetected: (_) => jumpDetected = true,
-      );
-
-      // Baseline → jump state → reset → two normal ticks.
-      detector.checkAndReport(currentNow);
-      currentNow = currentNow.add(const Duration(hours: 2));
-      monotonicTime += const Duration(seconds: 1);
-      detector.reset();
-
-      detector.checkAndReport(currentNow); // first check after reset (baseline)
-      currentNow = currentNow.add(const Duration(seconds: 30));
-      monotonicTime += const Duration(seconds: 30);
-      final result = detector.checkAndReport(currentNow); // normal drift
-      expect(result, false);
-      expect(jumpDetected, false);
-      detector.dispose();
+      wall = wall.add(const Duration(hours: 1));
+      expect(detector.checkAndReport(wall), isFalse, reason: 'becomes the new baseline');
     });
   });
 

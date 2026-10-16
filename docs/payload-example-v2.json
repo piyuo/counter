@@ -38,9 +38,9 @@
           "dwellMeanSeconds": 60.7,
           "dwellMaxSeconds": 122,
           "dwellHistogram": [15, 25, 40, 15, 5],
-          "presenceTrackCount": 0,
-          "presenceSumSeconds": 0,
-          "presenceMeanSeconds": 0.0
+          "presenceTrackCount": 1,
+          "presenceSumSeconds": 1,
+          "presenceMeanSeconds": 1.0
         }
       ],
       "frameCount": 2963

@@ -1,22 +1,8 @@
 // TOC
-// 1. Observation model
+// 1. Dwell bucket helpers
 // 2. AreaMetrics model
-// 3. JSON helpers
 //
-// Architecture:
-//   VisionEngine
-//       ↓
-//   Observation (5-minute)
-//       ↓ aggregation
-//   Observation (hour)
-//       ↓ aggregation
-//   Observation (day)
-//       ↓ aggregation
-//   Observation (month)
-//       ↓ aggregation
-//   Observation (year)
-//
-// Time basis and DST
+// Time basis and DST for Observation (defined in observation.dart)
 //
 // Observation's year, month, day, hour, and minute fields are BUSINESS time:
 // the local wall-clock time at the monitored location, not UTC. This lets
@@ -65,9 +51,9 @@ int dwellBucketIndex(int seconds) {
 /// can be calculated by summing the [passBy] values from its twelve
 /// 5-minute observations.
 ///
-/// Note: passBy and stagnant count each track ONCE for its whole lifetime, so
-/// summed values are the number of distinct tracks. The other track-based
-/// metrics (entry, exit, appear, disappear) are described on each field.
+/// passBy, stagnant, entry, exit, appear, and disappear are one-shot events per
+/// track ID while it remains in the bounded tracker history. They are additive
+/// across observations. An ID can be counted again after eviction or reset.
 ///
 /// Tracks are not confirmed distinct people or vehicles: a tracking ID
 /// switch creates a new track and is counted again.
@@ -95,10 +81,9 @@ sealed class AreaMetrics with _$AreaMetrics {
 
     /// Number of unique tracks that touched this area for the first time.
     ///
-    /// Each track is counted ONLY ONCE, in the observation where it first makes
-    /// contact with the area. It is never counted again, even if it stays in the
-    /// area for hours or leaves and re-enters, as long as its track ID does not
-    /// change.
+    /// Each track is counted ONLY ONCE (subject to bounded track history), in
+    /// the observation where it first makes contact. It is not
+    /// counted again if it stays in the area or leaves and re-enters.
     ///
     /// Example: a track first touches the area at 12:03. passBy increases by 1 in
     /// the 12:00-12:05 observation only. If the same track stays there all day,
@@ -113,11 +98,11 @@ sealed class AreaMetrics with _$AreaMetrics {
     required int passBy,
 
     /// Number of unique tracks that stayed inside the area continuously for at
-    /// least the configured stagnant threshold.
+    /// least the configured stagnant threshold. Absences shorter than the
+    /// disappear threshold do not restart the clock.
     ///
-    /// Each track is counted ONLY ONCE, in the observation where it reaches the
-    /// threshold. It is never counted again while it keeps the same track ID,
-    /// even if it stays for the rest of the day.
+    /// Each track is counted ONLY ONCE (subject to bounded track history), in
+    /// the observation where it reaches the threshold.
     ///
     /// Example: the threshold is 30 seconds and a track enters at 12:04:50. It
     /// reaches 30 seconds at 12:05:20, so stagnant increases by 1 in the
@@ -129,40 +114,43 @@ sealed class AreaMetrics with _$AreaMetrics {
     required int stagnant,
 
     /// Number of tracks whose initial position was outside this area and were
-    /// later observed inside it.
+    /// later observed inside it. Applies only to local areas; the global area
+    /// always reports zero.
     ///
-    /// This metric applies only to local interest areas. It is always zero
-    /// for the global area because the global scene has no useful entry
-    /// boundary.
-    ///
-    /// Each track contributes at most one entry event per observation.
+    /// Each track ID is counted once in the observation where it first enters.
+    /// This is additive across observations, subject to bounded history.
     required int entry,
 
     /// Number of tracks whose initial position was inside this area and were
-    /// later observed outside it.
+    /// later observed outside it. Applies only to local areas; the global area
+    /// always reports zero.
     ///
-    /// This metric applies only to local interest areas. It is always zero
-    /// for the global area because the global scene has no useful exit
-    /// boundary.
-    ///
-    /// Each track contributes at most one exit event per observation.
+    /// Each track ID is counted once in the observation where it first exits.
+    /// This is additive across observations, subject to bounded history.
     required int exit,
 
-    /// Number of objects first detected with their center position inside
-    /// this area.
+    /// Number of tracks first detected with their center position inside this
+    /// area.
     ///
     /// Applies to both local areas and the global monitored scene.
-    /// Each track contributes at most one appear event per observation.
+    /// Each track ID is counted once in the observation where it first appears.
+    /// This is additive across observations, subject to bounded history.
     required int appear,
 
-    /// Number of unique tracks that were last seen inside the area and then
-    /// disappeared long enough to satisfy the configured disappear threshold.
+    /// Number of tracks last seen inside the area and then absent long enough
+    /// to satisfy the configured disappear threshold.
     ///
     /// Applies to both local areas and the global monitored scene.
     ///
     /// For the global area, this means that the track was lost from scene
     /// tracking; it does not mean that the object was confirmed to have
     /// exited the camera view.
+    ///
+    /// Each track ID is counted once while retained in tracker history. A
+    /// returning track may add another dwell sample but no second disappear.
+    /// Visits closed by source dropout, pause, clock jump, or stop do not count
+    /// as disappear. For a local area, this also fires when the track leaves
+    /// the area but remains visible elsewhere.
     required int disappear,
 
     /// Number of occupancy samples in this observation.
@@ -218,8 +206,6 @@ sealed class AreaMetrics with _$AreaMetrics {
     required int occupancyLast,
 
     // ===== DWELL: how long visitors stay. One sample per finished visit. =====
-    // ...(section note: use for typical visit length; do NOT use to find the
-    // busiest time, because a visit is recorded when it ends)
 
     /// Number of finished visits recorded in this observation.
     ///
@@ -229,6 +215,12 @@ sealed class AreaMetrics with _$AreaMetrics {
     ///
     /// Example: a visit from 12:03 to 12:13 adds one sample of 600 s to the
     /// 12:10-12:15 observation and nothing to the earlier ones.
+    ///
+    /// A visit that spans midnight is recorded in the day it finishes. Visits
+    /// still open when the source drops out, monitoring pauses, the clock
+    /// jumps, or monitoring stops are closed at that moment (stop closes them
+    /// before its final flush). Resetting or changing interest areas discards
+    /// open visits without recording them.
     ///
     /// Additive across child observations.
     required int dwellSampleCount,
@@ -270,7 +262,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     // Use it to find the busiest or most-lingering time and to compare areas.
     // Do NOT read it as visit length.
 
-    /// Number of tracks that were inside the area at any time during this
+    /// Number of tracks present for a positive amount of time during this
     /// observation. Each present track is one sample.
     ///
     /// A track that stays across several observations is a separate sample in
@@ -281,11 +273,12 @@ sealed class AreaMetrics with _$AreaMetrics {
     @Default(0) int presenceTrackCount,
 
     /// Total seconds that tracks spent inside the area during this observation
-    /// (track-seconds, in whole seconds).
+    /// (track-seconds, rounded to whole seconds per observation).
     ///
     /// Example: a track inside from 12:03 to 12:13 adds 120 s to 12:00-12:05,
     /// 300 s to 12:05-12:10 and 180 s to 12:10-12:15.
     ///
+    /// When `Observation.coveredSeconds` is positive,
     /// presenceSumSeconds / coveredSeconds is the time-weighted average number
     /// of tracks in the area while detection data was valid. Unlike
     /// [occupancyMean], it does not depend on frame rate.
