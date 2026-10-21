@@ -20,7 +20,7 @@ Future<bool> resendQueuedObservations({
   }
 
   try {
-    final resendObservations = observations.map((pending) => pending.observation).toList(growable: false);
+    final resendObservations = observations.map((pending) => pending.payload).toList(growable: false);
     final success = await telemetryService.sendNow(resendObservations);
 
     if (!context.mounted) {
@@ -46,8 +46,8 @@ Future<bool> resendQueuedObservations({
   }
 }
 
-String formatObservationWindow(core_domain.Observation observation, DateFormat formatter) {
-  final start = observation.dateTime;
+String formatObservationWindow(core_domain.ObservationPayload observationPayload, DateFormat formatter) {
+  final start = observationPayload.dateTime;
   final end = start.add(core_domain.kWindowDuration);
   return '${formatter.format(start)} - ${formatter.format(end)}';
 }

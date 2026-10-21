@@ -1,5 +1,4 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/model/observation.dart';
 import 'package:core_runtime/observation/interest_area_notifier.dart';
 import 'package:core_runtime/observation/observation_notifier.dart';
 import 'package:fake_async/fake_async.dart';
@@ -230,7 +229,7 @@ void main() {
 
       final global = _area(state(container)!, core_domain.kGlobalAreaId);
       expect(state(container)!.coveredSeconds, 300);
-      expect(global.presenceTrackCount, 1);
+      expect(global.presenceSampleCount, 1);
       expect(global.presenceSumSeconds, 3);
     });
   });
@@ -606,7 +605,7 @@ void main() {
       expect(areaMetrics.appear, 0);
       expect(areaMetrics.disappear, 0);
 
-      final globalMetrics = _area(activeWindow, kGlobalAreaId);
+      final globalMetrics = _area(activeWindow, core_domain.kGlobalAreaId);
       expect(globalMetrics.passBy, 2);
       expect(globalMetrics.appear, 2);
       expect(globalMetrics.disappear, 0);
@@ -656,7 +655,7 @@ void main() {
       processTestFrame(container, n, [track], [area, otherArea], 0.0);
       final nextWindow = state(container)!;
       expect(_windowStart(nextWindow), _businessTime(DateTime.utc(2026, 1, 1, 10, 5)));
-      expect(_area(nextWindow, area.id).presenceTrackCount, 0);
+      expect(_area(nextWindow, area.id).presenceSampleCount, 0);
       expect(_area(nextWindow, area.id).presenceSumSeconds, 0);
     });
   });
@@ -675,7 +674,7 @@ void main() {
 
       final observation = state(container)!;
       expect(observation.coveredSeconds, 296);
-      expect(_area(observation, core_domain.kGlobalAreaId).presenceTrackCount, 0);
+      expect(_area(observation, core_domain.kGlobalAreaId).presenceSampleCount, 0);
       expect(_area(observation, core_domain.kGlobalAreaId).presenceSumSeconds, 0);
     });
   });
@@ -862,9 +861,9 @@ void main() {
       async.flushMicrotasks();
 
       expect(closed, hasLength(1));
-      expect(_area(closed.single, area.id).presenceTrackCount, 1);
+      expect(_area(closed.single, area.id).presenceSampleCount, 1);
       expect(_area(closed.single, area.id).presenceSumSeconds, 0);
-      expect(_area(state(container)!, area.id).presenceTrackCount, 1);
+      expect(_area(state(container)!, area.id).presenceSampleCount, 1);
       expect(_area(state(container)!, area.id).presenceSumSeconds, 1);
       expect(
         _area(closed.single, area.id).presenceSumSeconds + _area(state(container)!, area.id).presenceSumSeconds,
@@ -1051,8 +1050,8 @@ void main() {
 
       expect(n.getCurrentCount(area.id), 2);
       expect(n.getTotalCount(area.id), 2);
-      expect(n.getCurrentCount(kGlobalAreaId), 2);
-      expect(n.getTotalCount(kGlobalAreaId), 2);
+      expect(n.getCurrentCount(core_domain.kGlobalAreaId), 2);
+      expect(n.getTotalCount(core_domain.kGlobalAreaId), 2);
 
       async.elapse(const Duration(seconds: 1));
       processTestFrame(container, n, [track1], [area], 0.0);
@@ -1253,11 +1252,11 @@ void main() {
 
       expect(n.getCurrentCount(area1.id), 2);
       expect(n.getCurrentCount(area2.id), 1);
-      expect(n.getCurrentCount(kGlobalAreaId), 3);
+      expect(n.getCurrentCount(core_domain.kGlobalAreaId), 3);
 
       expect(n.getTotalCount(area1.id), 2);
       expect(n.getTotalCount(area2.id), 1);
-      expect(n.getTotalCount(kGlobalAreaId), 3);
+      expect(n.getTotalCount(core_domain.kGlobalAreaId), 3);
     });
   });
 

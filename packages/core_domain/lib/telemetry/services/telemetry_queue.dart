@@ -3,6 +3,7 @@
 //  - telemetryQueueRepositoryProvider: Riverpod provider (overridden in core_runtime)
 
 import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../models/queued_observation.dart';
@@ -17,7 +18,7 @@ abstract class TelemetryQueue {
   ///
   /// Idempotent when another row already exists with the same
   /// [Observation.id].
-  Future<void> add(Observation observation);
+  Future<void> add(ObservationPayload payload);
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
   ///

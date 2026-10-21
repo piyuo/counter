@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:core_domain/model/area_metrics.dart';
 import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:core_runtime/observation/area_tracker.dart';
 import 'package:core_runtime/observation/observation_aggregator.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -75,8 +76,8 @@ void main() {
       );
 
       final metrics = _area(aggregator.snapshot(), kGlobalAreaId);
-      expect(metrics.occupancySampleSum, 0);
-      expect(metrics.presenceTrackCount, 0);
+      expect(metrics.occupancySum, 0);
+      expect(metrics.presenceSampleCount, 0);
       expect(metrics.presenceSumSeconds, 0);
       expect(metrics.passBy, 0);
       expect(metrics.appear, 0);
@@ -462,7 +463,7 @@ void main() {
       expect(metrics.dwellSampleCount, 0);
       expect(metrics.dwellSumSeconds, 0);
       expect(metrics.dwellMaxSeconds, 0);
-      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
+      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
 
       processAt(start.add(const Duration(milliseconds: 3600)), const []);
       expect(_area(aggregator.snapshot(), 1).dwellSampleCount, 0);
@@ -475,7 +476,7 @@ void main() {
       expect(metrics.dwellSumSeconds, 4);
       expect(metrics.dwellMeanSeconds, 4);
       expect(metrics.dwellMaxSeconds, 4);
-      expect(metrics.dwellHistogram, [1, 0, 0, 0, 0]);
+      expect(metrics.dwellHistogram, [1, 0, 0, 0, 0, 0, 0, 0]);
     });
 
     test('source gap discards dwell and cleanup is idempotent', () {
@@ -602,7 +603,7 @@ void main() {
       expect(metrics.dwellSampleCount, 0);
       expect(metrics.dwellSumSeconds, 0);
       expect(metrics.dwellMaxSeconds, 0);
-      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
+      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
     });
 
     test('pass-by refresh keeps recently seen track when history trims', () {

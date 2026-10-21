@@ -11,11 +11,11 @@
       "day": 13,
       "hour": 19,
       "minute": 20,
-      "confidenceRatioSum": 2572.21,
-      "confidenceSampleCount": 2963,
+      "id": 202607131920,
+      "businessDate": "2026-07-13",
       "confidenceRatio": 0.87,
-      "coveredSeconds": 123,
       "expectedSeconds": 300,
+      "coveredSeconds": 123,
       "coverageRatio": 0.41,
       "areas": [
         {
@@ -28,19 +28,20 @@
           "appear": 0,
           "disappear": 0,
           "occupancySampleCount": 2963,
-          "occupancySampleSum": 2933,
-          "occupancySampleSumSquares": 2935,
+          "occupancySum": 2933,
           "occupancyMean": 0.99,
+          "occupancySumSquares": 2935,
+          "occupancyVariance": 0.01,
           "occupancyMax": 2,
           "occupancyLast": 1,
           "dwellSumSeconds": 6070,
           "dwellSampleCount": 100,
           "dwellMeanSeconds": 60.7,
           "dwellMaxSeconds": 122,
-          "dwellHistogram": [15, 25, 40, 15, 5],
-          "presenceTrackCount": 1,
+          "dwellHistogram": [15, 25, 40, 10, 5, 3, 1, 1],
+          "presenceSampleCount": 1,
           "presenceSumSeconds": 1,
-          "presenceMeanSeconds": 1.0
+          "presenceMeanSeconds": 1
         }
       ],
       "frameCount": 2963

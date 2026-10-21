@@ -104,7 +104,7 @@ void main() {
       // Mark half as delivered
       final allPayloads = await repository.fetchRecent(daysBack: daysBack);
       final half = (allPayloads.length / 2).ceil();
-      final deliveredIds = allPayloads.take(half).map((p) => p.observation.id).toList();
+      final deliveredIds = allPayloads.take(half).map((p) => p.payload.id).toList();
       await repository.markUploadedBatch(deliveredIds);
 
       // Fetch again
@@ -123,36 +123,38 @@ void main() {
 }
 
 /// Creates a realistic test observation with all required fields.
-core_domain.Observation _createTestObservation({required DateTime startUtc}) {
+core_domain.ObservationPayload _createTestObservation({required DateTime startUtc}) {
   final startBusiness = startUtc.toLocal();
-  return core_domain.Observation(
-    granularity: core_domain.ObservationGranularity.minutes5,
-    year: startBusiness.year,
-    month: startBusiness.month,
-    day: startBusiness.day,
-    hour: startBusiness.hour,
-    minute: startBusiness.minute,
+  final year = startBusiness.year;
+  final month = startBusiness.month;
+  final day = startBusiness.day;
+  final hour = startBusiness.hour;
+  final minute = startBusiness.minute;
+  return core_domain.ObservationPayload(
+    granularity: 'minutes5',
+    year: year,
+    month: month,
+    day: day,
+    hour: hour,
+    minute: minute,
+    id: core_domain.keyFromComponents([year, month, day, hour, minute]),
+    businessDate:
+        '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
     frameCount: 100,
-    confidenceRatioSum: 0.95,
-    confidenceSampleCount: 1,
-    confidenceRatio: 95,
+    confidenceRatio: 0.95,
+    expectedSeconds: 300,
     coveredSeconds: 1,
-    expectedSeconds: 1,
-    coverageRatio: 1,
+    coverageRatio: 1 / 300,
     areas: const [
-      core_domain.AreaMetrics(
+      core_domain.AreaMetricsPayload(
         areaId: 1,
         areaName: 'Area 1',
         passBy: 5,
-        stagnant: 0,
         entry: 3,
         exit: 2,
-        appear: 0,
-        disappear: 0,
-        occupancySampleSum: 1,
-        occupancySampleSumSquares: 1,
+        occupancySum: 1,
+        occupancySumSquares: 1,
         occupancySampleCount: 2,
-        occupancyMean: 0.5,
         occupancyMax: 3,
         occupancyLast: 1,
         dwellSumSeconds: 5,

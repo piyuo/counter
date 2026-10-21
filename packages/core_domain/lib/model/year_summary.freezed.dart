@@ -17,9 +17,11 @@ T _$identity<T>(T value) => value;
 mixin _$YearSummary {
 
 /// for example: year=2026
- int get year;/// 5-minute observations, max 288 per day. a typical day to represent the year
-/// average from fiveMinuteObservations in month summary
-/// useful to compare any day with this year average.
+ int get year;/// Typical 5-minute day profile for this year, with matching time slots
+/// averaged across month profiles weighted by their available daily
+/// observation counts. Missing slots are omitted. Per-slot contributor
+/// counts are not stored, so weighting assumes comparable slot coverage
+/// within each month's profile and support cannot be assessed exactly.
  List<Observation> get fiveMinuteObservations;/// Day observations aggregated from the MonthSummary's daily observations.
 /// there is one observation a day, 365 in a non-leap year.
 /// useful for analyzing trends day by day.
@@ -233,13 +235,17 @@ class _YearSummary extends YearSummary {
 
 /// for example: year=2026
 @override final  int year;
-/// 5-minute observations, max 288 per day. a typical day to represent the year
-/// average from fiveMinuteObservations in month summary
-/// useful to compare any day with this year average.
+/// Typical 5-minute day profile for this year, with matching time slots
+/// averaged across month profiles weighted by their available daily
+/// observation counts. Missing slots are omitted. Per-slot contributor
+/// counts are not stored, so weighting assumes comparable slot coverage
+/// within each month's profile and support cannot be assessed exactly.
  final  List<Observation> _fiveMinuteObservations;
-/// 5-minute observations, max 288 per day. a typical day to represent the year
-/// average from fiveMinuteObservations in month summary
-/// useful to compare any day with this year average.
+/// Typical 5-minute day profile for this year, with matching time slots
+/// averaged across month profiles weighted by their available daily
+/// observation counts. Missing slots are omitted. Per-slot contributor
+/// counts are not stored, so weighting assumes comparable slot coverage
+/// within each month's profile and support cannot be assessed exactly.
 @override List<Observation> get fiveMinuteObservations {
   if (_fiveMinuteObservations is EqualUnmodifiableListView) return _fiveMinuteObservations;
   // ignore: implicit_dynamic_type

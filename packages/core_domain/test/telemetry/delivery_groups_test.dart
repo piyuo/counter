@@ -1,4 +1,4 @@
-import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:core_domain/telemetry/models/delivery_groups.dart';
 import 'package:core_domain/telemetry/models/queued_observation.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,20 +9,20 @@ QueuedObservation _pending(DateTime localEnd, {bool delivered = false}) {
   final startBusiness = localEnd.subtract(const Duration(minutes: 10));
 
   return QueuedObservation(
-    observation: Observation(
-      granularity: ObservationGranularity.minutes5,
+    payload: ObservationPayload(
+      granularity: 'minutes5',
+      id: startBusiness.millisecondsSinceEpoch,
+      businessDate:
+          '${startBusiness.year.toString().padLeft(4, '0')}-${startBusiness.month.toString().padLeft(2, '0')}-${startBusiness.day.toString().padLeft(2, '0')}',
       year: startBusiness.year,
       month: startBusiness.month,
       day: startBusiness.day,
       hour: startBusiness.hour,
       minute: startBusiness.minute,
       frameCount: 100,
-      confidenceRatioSum: 0.9,
-      confidenceSampleCount: 1,
       confidenceRatio: 0.9,
-      coveredSeconds: 300,
       expectedSeconds: 300,
-      coverageRatio: 1,
+      coveredSeconds: 300,
       areas: const [],
     ),
     createdAtUtc: startUtc,
@@ -182,7 +182,7 @@ void main() {
       expect(groups.first.hourKey, (year: 2026, month: 1, day: 2, hour: 10));
       expect((groups.first.year, groups.first.month, groups.first.day), (2026, 1, 2));
       expect(groups.first.hour, 10);
-      expect(groups.first.payloads.map((p) => p.observation.id).toList(), [p1.observation.id, p2.observation.id]);
+      expect(groups.first.payloads.map((p) => p.payload.id).toList(), [p1.payload.id, p2.payload.id]);
       expect(groups.last.hourKey, (year: 2026, month: 1, day: 2, hour: 7));
       expect(groups.last.hour, 7);
     });
@@ -228,7 +228,7 @@ void main() {
       final p1 = _pending(DateTime(2026, 1, 2, 10, 10));
       final p2 = _pending(DateTime(2026, 1, 2, 10, 20));
 
-      expect(findPendingPayloadById([p1, p2], p2.observation.id.toString())?.observation.id, p2.observation.id);
+      expect(findPendingPayloadById([p1, p2], p2.payload.id.toString())?.payload.id, p2.payload.id);
       expect(findPendingPayloadById([p1, p2], 'missing'), isNull);
     });
   });
@@ -246,7 +246,7 @@ void main() {
         isHourSelected: (hour) => hour.year == 2026 && hour.month == 1 && hour.day == 2 && hour.hour == 8,
       );
 
-      expect(selected.map((p) => p.observation.id).toSet(), {p1.observation.id, p2.observation.id, p3.observation.id});
+      expect(selected.map((p) => p.payload.id).toSet(), {p1.payload.id, p2.payload.id, p3.payload.id});
     });
 
     test('collectSelectedPayloads deduplicates payloads by id', () {
@@ -260,7 +260,7 @@ void main() {
       );
 
       expect(selected.length, 1);
-      expect(selected.first.observation.id, p1.observation.id);
+      expect(selected.first.payload.id, p1.payload.id);
     });
   });
 

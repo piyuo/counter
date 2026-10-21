@@ -32,22 +32,21 @@ int _timeFor(String key) => _timesByKey.putIfAbsent(key, () {
   return minuteOfDay ~/ 60 * 100 + minuteOfDay % 60;
 });
 
-core_domain.Observation _observation(String id) {
+core_domain.ObservationPayload _observation(String id) {
   final time = _timeFor(id);
-  return core_domain.Observation(
-    granularity: core_domain.ObservationGranularity.minutes5,
+  return core_domain.ObservationPayload(
+    granularity: 'minutes5',
     year: 2026,
     month: 1,
     day: 1,
     hour: time ~/ 100,
     minute: time % 100,
+    id: _id(id),
+    businessDate: '2026-01-01',
     frameCount: 0,
-    confidenceRatioSum: 0,
-    confidenceSampleCount: 0,
     confidenceRatio: 0,
+    expectedSeconds: 300,
     coveredSeconds: 0,
-    expectedSeconds: 0,
-    coverageRatio: 0,
     areas: const [],
   );
 }
@@ -88,14 +87,14 @@ void main() {
       await repo.add(_observation('p1'));
       final rows = await repo.fetchReady();
       expect(rows.length, 1);
-      expect(rows.first.observation.id, _id('p1'));
+      expect(rows.first.payload.id, _id('p1'));
     });
 
     test('enqueue round-trips the payload JSON correctly', () async {
       final original = _observation('p1');
       await repo.add(original);
       final row = (await repo.fetchReady()).first;
-      expect(row.observation.id, original.id);
+      expect(row.payload.id, original.id);
     });
 
     test('enqueue ignores duplicate payload IDs and preserves the first row', () async {
@@ -107,8 +106,8 @@ void main() {
       expect(await repo.pendingCount(), 1);
       final rows = await repo.fetchReady(limit: 10);
       expect(rows, hasLength(1));
-      expect(rows.single.observation.id, _id('dup-1'));
-      expect(rows.single.observation.frameCount, original.frameCount);
+      expect(rows.single.payload.id, _id('dup-1'));
+      expect(rows.single.payload.frameCount, original.frameCount);
     });
 
     // -----------------------------------------------------------------------
@@ -121,8 +120,8 @@ void main() {
       await repo.markUploadedBatch([_id('delivered')]);
 
       final rows = await repo.fetchReady();
-      expect(rows.any((r) => r.observation.id == _id('pending')), isTrue);
-      expect(rows.any((r) => r.observation.id == _id('delivered')), isFalse);
+      expect(rows.any((r) => r.payload.id == _id('pending')), isTrue);
+      expect(rows.any((r) => r.payload.id == _id('delivered')), isFalse);
     });
 
     test('fetchReady returns at most [limit] items', () async {
@@ -140,8 +139,8 @@ void main() {
       await repo.add(_observation('second'));
 
       final rows = await repo.fetchReady();
-      expect(rows.first.observation.id, _id('first'));
-      expect(rows.last.observation.id, _id('second'));
+      expect(rows.first.payload.id, _id('first'));
+      expect(rows.last.payload.id, _id('second'));
     });
 
     test('TelemetryQueue helper predicates match delivered state', () async {
@@ -211,12 +210,12 @@ void main() {
       await repo.markUploadedBatch([_id('p1'), _id('p3')]);
 
       final ready = await repo.fetchReady(limit: 10);
-      expect(ready.map((r) => r.observation.id), [_id('p2')]);
+      expect(ready.map((r) => r.payload.id), [_id('p2')]);
       expect(await repo.pendingCount(), 1);
 
       final available = await repo.fetchRecent(daysBack: 7);
-      final p1 = available.firstWhere((row) => row.observation.id == _id('p1'));
-      final p3 = available.firstWhere((row) => row.observation.id == _id('p3'));
+      final p1 = available.firstWhere((row) => row.payload.id == _id('p1'));
+      final p3 = available.firstWhere((row) => row.payload.id == _id('p3'));
       expect(p1.isUploaded, isTrue);
       expect(p3.isUploaded, isTrue);
     });
@@ -267,7 +266,7 @@ void main() {
       await repo.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final available = await repo.fetchRecent(daysBack: 30);
-      expect(available.any((r) => r.observation.id == _id('old-delivered')), isFalse);
+      expect(available.any((r) => r.payload.id == _id('old-delivered')), isFalse);
       expect(await repo.pendingCount(), 0);
     });
 
@@ -293,10 +292,10 @@ void main() {
       await repo.markUploadedBatch([_id('delivered')]);
 
       final rows = await repo.fetchRecent(daysBack: 7);
-      expect(rows.map((row) => row.observation.id), containsAll(<int>[_id('delivered'), _id('pending')]));
+      expect(rows.map((row) => row.payload.id), containsAll(<int>[_id('delivered'), _id('pending')]));
 
-      final delivered = rows.firstWhere((row) => row.observation.id == _id('delivered'));
-      final pending = rows.firstWhere((row) => row.observation.id == _id('pending'));
+      final delivered = rows.firstWhere((row) => row.payload.id == _id('delivered'));
+      final pending = rows.firstWhere((row) => row.payload.id == _id('pending'));
       expect(delivered.isUploaded, isTrue);
       expect(delivered.uploadedAtUtc, isNotNull);
       expect(pending.isUploaded, isFalse);
@@ -318,7 +317,7 @@ void main() {
       );
 
       final rows = await repo.fetchRecent(daysBack: 7);
-      final ids = rows.map((row) => row.observation.id).toList();
+      final ids = rows.map((row) => row.payload.id).toList();
 
       expect(ids, contains(_id('recent-pending')));
       expect(ids, isNot(contains(_id('old-pending'))));

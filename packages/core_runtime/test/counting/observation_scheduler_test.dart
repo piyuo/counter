@@ -1,4 +1,4 @@
-import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:core_runtime/observation/observation_scheduler.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';

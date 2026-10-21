@@ -2,6 +2,7 @@
 // 1. Observation derived date/time getters
 
 import 'package:core_domain/model/area_metrics.dart';
+import 'package:core_domain/model/area_metrics_payload.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -20,12 +21,9 @@ Observation _observation({
     day: day,
     hour: hour,
     minute: minute,
-    confidenceRatioSum: 0,
+    confidenceSum: 0,
     confidenceSampleCount: 0,
-    confidenceRatio: 0,
     coveredSeconds: 0,
-    expectedSeconds: 0,
-    coverageRatio: 0,
     areas: const [],
     frameCount: 0,
   );
@@ -34,27 +32,27 @@ Observation _observation({
 const _baseAreaMetrics = AreaMetrics(
   areaId: 1,
   areaName: 'a',
-  passBy: 0,
-  stagnant: 0,
-  entry: 0,
-  exit: 0,
-  appear: 0,
-  disappear: 0,
   occupancySampleCount: 0,
-  occupancySampleSum: 0,
-  occupancySampleSumSquares: 0,
-  occupancyMean: 0,
+  occupancySum: 0,
+  occupancySumSquares: 0,
   occupancyMax: 0,
   occupancyLast: 0,
   dwellSampleCount: 0,
   dwellSumSeconds: 0,
-  dwellMeanSeconds: 0,
   dwellMaxSeconds: 0,
 );
 
 void main() {
   group('Observation derived metrics', () {
-    test('stores confidence and coverage derived from sums and counts', () {
+    test('derives expected seconds from granularity and calendar date', () {
+      expect(_observation(year: 2024, granularity: ObservationGranularity.minutes5).expectedSeconds, 300);
+      expect(_observation(year: 2024, granularity: ObservationGranularity.hour).expectedSeconds, 3600);
+      expect(_observation(year: 2024, granularity: ObservationGranularity.day).expectedSeconds, 86400);
+      expect(_observation(year: 2024, month: 2, granularity: ObservationGranularity.month).expectedSeconds, 29 * 86400);
+      expect(_observation(year: 2024, granularity: ObservationGranularity.year).expectedSeconds, 366 * 86400);
+    });
+
+    test('derives confidence and coverage from sums and counts without serializing them', () {
       const observation = Observation(
         granularity: ObservationGranularity.minutes5,
         year: 2026,
@@ -62,146 +60,113 @@ void main() {
         day: 1,
         hour: 10,
         minute: 0,
-        confidenceRatioSum: 2.25375,
+        confidenceSum: 2.25375,
         confidenceSampleCount: 3,
-        confidenceRatio: 0.75125,
         coveredSeconds: 225,
-        expectedSeconds: 300,
-        coverageRatio: 0.75,
         areas: [],
         frameCount: 12,
       );
 
-      expect(observation.confidenceRatioSum, 2.25375);
-      expect(observation.confidenceRatio, 0.75125);
+      expect(observation.confidenceSum, 2.25375);
+      expect(observation.confidenceRatio, closeTo(0.75125, 1e-12));
       expect(observation.coverageRatio, 0.75);
       expect(observation.id, 202601011000);
       expect(observation.businessDate, '2026-01-01');
+
+      final json = observation.toJson();
+      expect(json.containsKey('confidenceRatio'), isFalse);
+      expect(json.containsKey('coverageRatio'), isFalse);
     });
 
     test('derives occupancy and dwell averages from stored totals', () {
       const metrics = AreaMetrics(
         areaId: 1,
         areaName: 'Area 1',
-        passBy: 0,
-        stagnant: 0,
-        entry: 0,
-        exit: 0,
-        appear: 0,
-        disappear: 0,
         occupancySampleCount: 2,
-        occupancySampleSum: 5,
-        occupancySampleSumSquares: 13,
-        occupancyMean: 2.5,
+        occupancySum: 5,
+        occupancySumSquares: 13,
         occupancyMax: 4,
         occupancyLast: 4,
         dwellSumSeconds: 7,
         dwellSampleCount: 2,
-        dwellMeanSeconds: 3.5,
         dwellMaxSeconds: 4,
       );
 
       expect(metrics.occupancyMean, 2.5);
       expect(metrics.occupancyLast, 4);
       expect(metrics.dwellMeanSeconds, 3.5);
-      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0]);
-      expect(metrics.presenceTrackCount, 0);
+      expect(metrics.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
+      expect(metrics.presenceSampleCount, 0);
       expect(metrics.presenceSumSeconds, 0);
       expect(metrics.presenceMeanSeconds, 0);
     });
 
-    test('toString includes every stored observation and area field', () {
-      const area = AreaMetrics(
+    test('converts area metrics to a payload with derived means', () {
+      const metrics = AreaMetrics(
         areaId: 2,
         areaName: 'Lobby',
-        passBy: 3,
-        stagnant: 4,
-        entry: 5,
-        exit: 6,
-        appear: 7,
-        disappear: 8,
-        occupancySampleCount: 9,
-        occupancySampleSum: 10,
-        occupancySampleSumSquares: 42,
-        occupancyMean: 1.2345,
-        occupancyMax: 11,
-        occupancyLast: 12,
-        dwellSumSeconds: 13,
-        dwellSampleCount: 14,
-        dwellMeanSeconds: 2.3456,
-        dwellMaxSeconds: 15,
-        dwellHistogram: [1, 2, 3, 4, 5],
-        presenceTrackCount: 6,
-        presenceSumSeconds: 7,
-        presenceMeanSeconds: 1.1667,
-      );
-      const observation = Observation(
-        granularity: ObservationGranularity.minutes5,
-        year: 2026,
-        month: 1,
-        day: 2,
-        hour: 3,
-        minute: 4,
-        confidenceRatioSum: 0.123456,
-        confidenceSampleCount: 16,
-        confidenceRatio: 0.234567,
-        coveredSeconds: 17,
-        expectedSeconds: 18,
-        coverageRatio: 0.345678,
-        areas: [area],
-        frameCount: 19,
+        passBy: 1,
+        stagnant: 2,
+        entry: 3,
+        exit: 4,
+        appear: 5,
+        disappear: 6,
+        occupancySampleCount: 2,
+        occupancySum: 5,
+        occupancySumSquares: 13,
+        occupancyMax: 4,
+        occupancyLast: 3,
+        dwellSampleCount: 2,
+        dwellSumSeconds: 7,
+        dwellMaxSeconds: 5,
+        presenceSampleCount: 2,
+        presenceSumSeconds: 9,
       );
 
-      final observationString = observation.toString();
-      for (final field in [
-        'granularity: minutes5',
-        'year: 2026',
-        'month: 1',
-        'day: 2',
-        'hour: 3',
-        'minute: 4',
-        'frameCount: 19',
-        'confidenceRatioSum: 0.12',
-        'confidenceSampleCount: 16',
-        'confidenceRatio: 0.23',
-        'expectedSeconds: 18',
-        'coveredSeconds: 17',
-        'coverageRatio: 0.35',
-      ]) {
-        expect(observationString, contains(field));
-      }
-      expect(observationString, contains('areas: [$area]'));
+      final payload = metrics.toPayload();
 
-      final areaString = area.toString();
-      for (final field in [
-        'areaId: 2',
-        'areaName: Lobby',
-        'passBy: 3',
-        'stagnant: 4',
-        'entry: 5',
-        'exit: 6',
-        'appear: 7',
-        'disappear: 8',
-        'occupancySampleCount: 9',
-        'occupancySampleSum: 10',
-        'occupancySampleSumSquares: 42',
-        'occupancyMean: 1.23',
-        'occupancyMax: 11',
-        'occupancyLast: 12',
-        'dwellSumSeconds: 13',
-        'dwellSampleCount: 14',
-        'dwellMeanSeconds: 2.35',
-        'dwellMaxSeconds: 15',
-        'dwellHistogram: [1, 2, 3, 4, 5]',
-        'presenceTrackCount: 6',
-        'presenceSumSeconds: 7',
-        'presenceMeanSeconds: 1.17',
-      ]) {
-        expect(areaString, contains(field));
-      }
+      expect(payload.areaId, 2);
+      expect(payload.areaName, 'Lobby');
+      expect(payload.passBy, 1);
+      expect(payload.stagnant, 2);
+      expect(payload.entry, 3);
+      expect(payload.exit, 4);
+      expect(payload.appear, 5);
+      expect(payload.disappear, 6);
+      expect(payload.occupancyMean, 2.5);
+      expect(payload.occupancyVariance, 0.25);
+      expect(payload.dwellMeanSeconds, 3.5);
+      expect(payload.presenceMeanSeconds, 4.5);
     });
 
-    test('reads component-based JSON and preserves convenience metrics', () {
+    test('converts observations to payloads with converted area metrics', () {
+      const observation = Observation(
+        granularity: ObservationGranularity.hour,
+        year: 2026,
+        month: 8,
+        day: 26,
+        hour: 11,
+        minute: -1,
+        confidenceSum: 1.5,
+        confidenceSampleCount: 2,
+        coveredSeconds: 1800,
+        areas: [AreaMetrics(areaId: 0, areaName: 'Global', occupancySampleCount: 1, occupancySum: 3)],
+        frameCount: 10,
+      );
+
+      final payload = observation.toPayload();
+
+      expect(payload.granularity, 'hour');
+      expect(payload.businessDate, '2026-08-26');
+      expect(payload.confidenceRatio, 0.75);
+      expect(payload.expectedSeconds, 3600);
+      expect(payload.coverageRatio, 0.5);
+      expect(payload.areas.single, isA<AreaMetricsPayload>());
+      expect(payload.areas.single.occupancyMean, 3);
+      expect(payload.frameCount, 10);
+    });
+
+    test('reads sums and counts from JSON and derives convenience metrics', () {
       final observation = Observation.fromJson({
         'granularity': 'minutes5',
         'year': 2026,
@@ -209,31 +174,22 @@ void main() {
         'day': 1,
         'hour': 10,
         'minute': 0,
-        'confidenceRatioSum': 2.25625,
+        'confidenceSum': 2.25625,
         'confidenceSampleCount': 3,
-        'confidenceRatio': 0.752083333333,
         'coveredSeconds': 225,
         'expectedSeconds': 300,
-        'coverageRatio': 0.75,
         'areas': [
           {
             'areaId': 1,
             'areaName': 'Area 1',
-            'passBy': 0,
             'stagnant': 2,
-            'entry': 0,
-            'exit': 0,
-            'appear': 0,
-            'disappear': 0,
             'occupancySampleCount': 2,
-            'occupancySampleSum': 5,
-            'occupancySampleSumSquares': 13,
-            'occupancyMean': 2.5,
+            'occupancySum': 5,
+            'occupancySumSquares': 13,
             'occupancyMax': 3,
             'occupancyLast': 4,
             'dwellSumSeconds': 7,
             'dwellSampleCount': 2,
-            'dwellMeanSeconds': 3.5,
             'dwellMaxSeconds': 4.5,
           },
         ],
@@ -246,11 +202,11 @@ void main() {
       expect(observation.day, 1);
       expect(observation.hour, 10);
       expect(observation.minute, 0);
-      expect(observation.confidenceRatioSum, 2.25625);
-      expect(observation.confidenceRatio, 0.752083333333);
+      expect(observation.confidenceSum, 2.25625);
+      expect(observation.confidenceRatio, closeTo(0.752083333333, 1e-12));
       expect(observation.coverageRatio, 0.75);
       expect(metrics.stagnant, 2);
-      expect(metrics.occupancySampleSumSquares, 13);
+      expect(metrics.occupancySumSquares, 13);
       expect(metrics.occupancyMean, 2.5);
       expect(metrics.dwellMeanSeconds, 3.5);
       expect(metrics.dwellMaxSeconds, 4);
@@ -262,12 +218,64 @@ void main() {
 
     test('JSON round trip keeps dwell and presence fields', () {
       final metrics = _baseAreaMetrics.copyWith(
-        dwellHistogram: [1, 2, 3, 4, 5],
-        presenceTrackCount: 2,
+        dwellHistogram: [1, 2, 3, 4, 5, 6, 7, 8],
+        presenceSampleCount: 2,
         presenceSumSeconds: 90,
-        presenceMeanSeconds: 45,
       );
       expect(AreaMetrics.fromJson(metrics.toJson()), metrics);
+    });
+
+    test('keeps event counts and derives occupancy, dwell, and presence means', () {
+      const metrics = AreaMetrics(
+        areaId: 1,
+        areaName: 'Area 1',
+        passBy: 3,
+        stagnant: 5,
+        entry: 7,
+        exit: 9,
+        appear: 11,
+        disappear: 13,
+        occupancySampleCount: 2,
+        occupancySum: 5,
+        occupancySumSquares: 13,
+        dwellSampleCount: 2,
+        dwellSumSeconds: 7,
+        presenceSampleCount: 2,
+        presenceSumSeconds: 9,
+        dwellHistogram: [0, 1, 2, 3, 4, 5, 6, 7],
+      );
+
+      expect(metrics.passBy, 3);
+      expect(metrics.stagnant, 5);
+      expect(metrics.entry, 7);
+      expect(metrics.exit, 9);
+      expect(metrics.appear, 11);
+      expect(metrics.disappear, 13);
+      expect(metrics.occupancyMean, 2.5);
+      expect(metrics.dwellMeanSeconds, 3.5);
+      expect(metrics.presenceMeanSeconds, 4.5);
+
+      final json = metrics.toJson();
+      for (final derivedField in ['occupancyMean', 'dwellMeanSeconds', 'presenceMeanSeconds']) {
+        expect(json, isNot(contains(derivedField)));
+      }
+      expect(json['passBy'], 3);
+      expect(json['dwellHistogram'], [0, 1, 2, 3, 4, 5, 6, 7]);
+      expect((json['dwellHistogram'] as List).every((value) => value is int), isTrue);
+    });
+
+    test('JSON round trip preserves the latest occupancy sample', () {
+      final metrics = _baseAreaMetrics.copyWith(occupancyLast: 4);
+
+      expect(metrics.occupancyLast, 4);
+      expect(AreaMetrics.fromJson(metrics.toJson()).occupancyLast, 4);
+    });
+
+    test('legacy nullable occupancy snapshot defaults to zero', () {
+      final legacyJson = _baseAreaMetrics.toJson()..['occupancyLast'] = null;
+
+      expect(AreaMetrics.fromJson(legacyJson).occupancyLast, 0);
+      expect(AreaMetrics.fromJson(legacyJson).occupancySampleCount, 0);
     });
 
     test('presence sum serializes as integer seconds', () {
@@ -286,10 +294,10 @@ void main() {
         ..remove('presenceMeanSeconds')
         ..remove('dwellHistogram');
       final legacy = AreaMetrics.fromJson(legacyJson);
-      expect(legacy.presenceTrackCount, 0);
+      expect(legacy.presenceSampleCount, 0);
       expect(legacy.presenceSumSeconds, 0);
       expect(legacy.presenceMeanSeconds, 0);
-      expect(legacy.dwellHistogram, [0, 0, 0, 0, 0]);
+      expect(legacy.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
     });
   });
   group('Observation.id', () {
@@ -355,27 +363,22 @@ void main() {
     const metrics = AreaMetrics(
       areaId: 0,
       areaName: 'Global',
-      passBy: 0,
       stagnant: 3,
-      entry: 0,
-      exit: 0,
-      appear: 0,
-      disappear: 0,
       occupancySampleCount: 0,
-      occupancySampleSum: 0,
-      occupancySampleSumSquares: 0,
-      occupancyMean: 0,
+      occupancySum: 0,
+      occupancySumSquares: 0,
       occupancyMax: 0,
       occupancyLast: 0,
       dwellSumSeconds: 0,
       dwellSampleCount: 0,
-      dwellMeanSeconds: 0,
       dwellMaxSeconds: 0,
     );
     final json = metrics.toJson();
 
     expect(metrics.stagnant, 3);
     expect(json['stagnant'], 3);
+    expect(json.containsKey('stagnantSampleCount'), isFalse);
+    expect(json.containsKey('stagnantSum'), isFalse);
     expect(json.containsKey('dwell'), isFalse);
     expect(AreaMetrics.fromJson(json).stagnant, 3);
   });

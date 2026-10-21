@@ -117,19 +117,19 @@ List<DeliveryDateGroup> groupByDeliveryDate(List<QueuedObservation> payloads) {
 List<DeliveryHourGroup> groupByStartHour(List<QueuedObservation> payloads) {
   final buckets = <DeliveryHourKey, List<QueuedObservation>>{};
   for (final pendingPayload in payloads) {
-    final observation = pendingPayload.observation;
+    final observation = pendingPayload.payload;
     final hour = (year: observation.year, month: observation.month, day: observation.day, hour: observation.hour);
     buckets.putIfAbsent(hour, () => <QueuedObservation>[]).add(pendingPayload);
   }
 
   return buckets.entries.map((entry) {
-      final observation = entry.value.first.observation;
+      final observation = entry.value.first.payload;
       return DeliveryHourGroup(
         year: observation.year,
         month: observation.month,
         day: observation.day,
         hour: observation.hour,
-        payloads: [...entry.value]..sort((a, b) => a.observation.timeKey.compareTo(b.observation.timeKey)),
+        payloads: [...entry.value]..sort((a, b) => a.payload.timeKey.compareTo(b.payload.timeKey)),
       );
     }).toList()
     ..sort((a, b) => DateTime(b.year, b.month, b.day, b.hour).compareTo(DateTime(a.year, a.month, a.day, a.hour)));
@@ -153,7 +153,7 @@ DeliveryHourGroup? findStartHourGroup(
 /// Finds one pending payload by [payloadId], or null when missing.
 QueuedObservation? findPendingPayloadById(List<QueuedObservation> payloads, String payloadId) {
   for (final pendingPayload in payloads) {
-    if (pendingPayload.observation.id.toString() == payloadId) return pendingPayload;
+    if (pendingPayload.payload.id.toString() == payloadId) return pendingPayload;
   }
   return null;
 }
@@ -173,7 +173,7 @@ List<QueuedObservation> collectSelectedPayloads(
     if (isDaySelected(day)) {
       for (final hour in day.hours) {
         for (final payload in hour.payloads) {
-          byPayloadId[payload.observation.id] = payload;
+          byPayloadId[payload.payload.id] = payload;
         }
       }
       continue;
@@ -182,7 +182,7 @@ List<QueuedObservation> collectSelectedPayloads(
     for (final hour in day.hours) {
       if (!isHourSelected(hour)) continue;
       for (final payload in hour.payloads) {
-        byPayloadId[payload.observation.id] = payload;
+        byPayloadId[payload.payload.id] = payload;
       }
     }
   }

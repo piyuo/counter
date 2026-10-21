@@ -23,15 +23,15 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
 
   final AppDatabaseFun _dbFactory;
 
-  /// Enqueues [payload] for upload.
+  /// Add [Observation] for upload.
   ///
   /// Idempotent on duplicate [core_domain.Observation.id].
   /// Duplicate rows are ignored to preserve existing upload state.
   @override
-  Future<void> add(core_domain.Observation observation) async {
+  Future<void> add(core_domain.ObservationPayload payload) async {
     final nowMs = DateTime.now().toUtc().millisecondsSinceEpoch;
-    final id = observation.id;
-    final encodedJson = jsonEncode(observation.toJson());
+    final id = payload.id;
+    final encodedJson = jsonEncode(payload.toJson());
     final db = _dbFactory();
     if (db == null) {
       return; // db is not available , probably in reset state, ignore operation
@@ -49,7 +49,7 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
           ),
           mode: InsertMode.insertOrIgnore,
         );
-    appkit.logDebug('[TelemetryQueue] add payload: $id');
+    appkit.logDebug('[TelemetryQueue] add observation: $id');
   }
 
   /// Returns all payload rows created within the last [daysBack] days. defaults to 7.
@@ -210,10 +210,10 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
     final storedJson = jsonDecode(row.data) as Map<String, dynamic>;
     final observationJson = storedJson['observation'] as Map<String, dynamic>?;
     final observation = observationJson == null
-        ? core_domain.Observation.fromJson(storedJson)
+        ? core_domain.ObservationPayload.fromJson(storedJson)
         : _decodeLegacyObservation(observationJson, storedJson['occupancies'] as Map<String, dynamic>?);
     return core_domain.QueuedObservation(
-      observation: observation,
+      payload: observation,
       createdAtUtc: DateTime.fromMillisecondsSinceEpoch(row.createdAtMs, isUtc: true),
       uploadedAtUtc: row.uploadedAtMs == null
           ? null
@@ -221,14 +221,17 @@ class DriftTelemetryQueue implements core_domain.TelemetryQueue {
     );
   }
 
-  core_domain.Observation _decodeLegacyObservation(Map<String, dynamic> json, Map<String, dynamic>? occupancies) {
+  core_domain.ObservationPayload _decodeLegacyObservation(
+    Map<String, dynamic> json,
+    Map<String, dynamic>? occupancies,
+  ) {
     final areas = (json['areas'] as List<dynamic>).map((value) {
       final area = Map<String, dynamic>.from(value as Map);
       final areaId = area['areaId'].toString();
       area.putIfAbsent('lastOccupancy', () => (occupancies?[areaId] as num?)?.toInt() ?? 0);
       return area;
     }).toList();
-    return core_domain.Observation.fromJson({...json, 'areas': areas});
+    return core_domain.ObservationPayload.fromJson({...json, 'areas': areas});
   }
 
   core_domain.UploadLog _toUploadLog(TelemetryUploadLogData row) {

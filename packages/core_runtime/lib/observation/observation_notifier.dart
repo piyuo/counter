@@ -121,7 +121,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   // ==========================================================================
 
   /// Emits finalized [Observation] snapshots when 5-minute windows close.
-  final StreamController<core_domain.Observation> _snapshotsController = StreamController.broadcast();
+  final StreamController<core_domain.Observation> _observationsController = StreamController.broadcast();
 
   /// Last time a live state snapshot was broadcast; used to throttle updates to 1/sec.
   DateTime? _lastStateEmittedAtUtc;
@@ -134,7 +134,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
   /// Stream that emits a [Observation] every time a 5-minute window closes.
   @override
-  Stream<core_domain.Observation> get snapshots => _snapshotsController.stream;
+  Stream<core_domain.Observation> get snapshots => _observationsController.stream;
 
   // ============================================================================
   // Riverpod lifecycle (build, disposal, reset)
@@ -152,7 +152,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     ref.onDispose(() {
       _isDisposed = true;
       stop();
-      _snapshotsController.close();
+      _observationsController.close();
       _interestAreaSubscription?.close();
       _interestAreaSubscription = null;
     });
@@ -220,10 +220,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
           _closeOpenVisits();
           _currentAggregator.addMissingDuration(frameInterval.missingDuration);
         }
-        final lastSnapshot = _currentAggregator.snapshot();
-        state = lastSnapshot;
-        _snapshotsController.add(lastSnapshot);
-        appkit.logDebug('[ObservationNotifier] window end: $lastSnapshot');
+        final lastObservation = _currentAggregator.snapshot();
+        state = lastObservation;
+        _observationsController.add(lastObservation);
+        appkit.logDebug('[ObservationNotifier] window end: ${lastObservation.toJson()}');
         _currentAggregator = _buildDefaultAggregator();
       },
     );
@@ -341,7 +341,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   void flushCurrentWindow() {
     if (_scheduler?.windowStartUtc == null) return;
     final snapshot = _currentAggregator.snapshot();
-    _snapshotsController.add(snapshot);
+    _observationsController.add(snapshot);
     appkit.logInfo('[ObservationNotifier] $snapshot');
   }
 

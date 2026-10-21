@@ -39,7 +39,7 @@ List<MetricCardData> mapVisionMetricsToCardData(
         valueColor: valueColor,
 
         hero: HeroMetricData(
-          value: '${metrics.occupancyLast}',
+          value: metrics.occupancySampleCount > 0 && metrics.occupancyLast >= 0 ? '${metrics.occupancyLast}' : '-',
           label: context.l.current_occupancy,
           valueColor: Colors.grey.shade900,
         ),

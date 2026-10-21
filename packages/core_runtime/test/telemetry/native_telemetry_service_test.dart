@@ -19,13 +19,13 @@ class _StubQueue implements core_domain.TelemetryQueue {
   final _rows = <core_domain.QueuedObservation>[];
   int fetchReadyCalls = 0;
 
-  void seed(core_domain.Observation observation) {
-    _rows.add(core_domain.QueuedObservation(observation: observation, createdAtUtc: DateTime.utc(2099, 1, 1)));
+  void seed(core_domain.ObservationPayload payload) {
+    _rows.add(core_domain.QueuedObservation(payload: payload, createdAtUtc: DateTime.utc(2099, 1, 1)));
   }
 
   @override
-  Future<void> add(core_domain.Observation observation) async {
-    seed(observation);
+  Future<void> add(core_domain.ObservationPayload payload) async {
+    seed(payload);
   }
 
   @override
@@ -55,7 +55,7 @@ class _StubQueue implements core_domain.TelemetryQueue {
 
   @override
   Future<void> markUploadedBatch(List<int> observationIds) async {
-    _rows.removeWhere((row) => observationIds.contains(row.observation.id));
+    _rows.removeWhere((row) => observationIds.contains(row.payload.id));
   }
 
   @override
@@ -79,7 +79,7 @@ class _StubSerializer implements core_domain.PayloadSerializer {
 
   @override
   List<int> serialize(
-    List<core_domain.Observation> observations, {
+    List<core_domain.ObservationPayload> observations, {
     required String deviceId,
     String? projectId,
     String? assignId,
@@ -127,21 +127,20 @@ void main() {
   group('NativeTelemetryService', () {
     _StubQueue makeQueue() => _StubQueue();
 
-    core_domain.Observation makeObservation() {
-      return core_domain.Observation(
-        granularity: core_domain.ObservationGranularity.minutes5,
+    core_domain.ObservationPayload makePayload() {
+      return core_domain.ObservationPayload(
+        granularity: 'minutes5',
         year: 2026,
         month: 1,
         day: 1,
         hour: 0,
         minute: 0,
+        id: 202601010000,
+        businessDate: '2026-01-01',
         frameCount: 0,
-        confidenceRatioSum: 0,
-        confidenceSampleCount: 0,
         confidenceRatio: 0,
+        expectedSeconds: 300,
         coveredSeconds: 0,
-        expectedSeconds: 0,
-        coverageRatio: 0,
         areas: const [],
       );
     }
@@ -199,7 +198,7 @@ void main() {
       final queue = makeQueue();
       final svc = makeService(queue: queue);
 
-      await svc.enqueue(makeObservation());
+      await svc.add(makePayload());
 
       expect(await queue.pendingCount(), 1);
     });
@@ -219,7 +218,7 @@ void main() {
     });
 
     test('flush returns false when delivery fails and leaves payload pending', () async {
-      final queue = makeQueue()..seed(makeObservation());
+      final queue = makeQueue()..seed(makePayload());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
       ]);
@@ -357,7 +356,7 @@ void main() {
 
     test('failed run keeps payload pending', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makeObservation());
+      final queue = makeQueue()..seed(makePayload());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
       ]);
@@ -377,7 +376,7 @@ void main() {
 
     test('session unavailable leaves payload pending', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makeObservation());
+      final queue = makeQueue()..seed(makePayload());
       final svc = makeService(config: null, queue: queue, nowProvider: () => fakeNow);
 
       await svc.runScheduledUploadForTest();
@@ -389,7 +388,7 @@ void main() {
 
     test('failed run is retried by next scheduled run', () async {
       DateTime fakeNow = DateTime(2026, 1, 1, 1, 0);
-      final queue = makeQueue()..seed(makeObservation());
+      final queue = makeQueue()..seed(makePayload());
       final transport = _StubTransport([
         const core_domain.TelemetryResponse(v: 1, ok: false, error: 'transport_exception', data: null),
         const core_domain.TelemetryResponse(v: 1, ok: true, data: core_domain.ServerData()),

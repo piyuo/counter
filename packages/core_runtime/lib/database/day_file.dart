@@ -1,35 +1,30 @@
 // day_file.dart: Drift table for persisting DayFile documents.
 import 'package:drift/drift.dart';
 
-/// Current version of the serialized telemetry observation format.
-const int kDayFileSchemaVersion = 1;
-
-/// Persists complete DayFile documents.
-@TableIndex.sql('''
-  CREATE INDEX day_file_pending_ready_idx
-  ON day_file (created_at_ms)
-  WHERE delivered_at_ms IS NULL;
-''')
-// Full index for all-row time-window queries (fetchRecent/pruneExpired).
-// ASC is sufficient because SQLite can scan a single-column index in reverse.
-@TableIndex.sql('''
-  CREATE INDEX day_file_created_at_idx
-  ON day_file (created_at_ms);
-''')
+/// Persists complete daily aggregation documents.
 class DayFile extends Table {
   /// Business date in YYYY-MM-DD format.
   TextColumn get businessDate => text()();
 
-  /// Serialized DaySummary JSON.
-  TextColumn get data => text()();
+  /// Business year, stored separately for date-based queries.
+  IntColumn get year => integer()();
+
+  /// Business month, stored separately for date-based queries.
+  IntColumn get month => integer()();
+
+  /// Business day of month, stored separately for date-based queries.
+  IntColumn get day => integer()();
+
+  /// Gzip-compressed UTF-8 JSON for the serialized DaySummary.
+  BlobColumn get data => blob()();
 
   /// Version of the persisted document format.
   IntColumn get schemaVersion => integer()();
 
-  /// Milliseconds since epoch — when this item was first enqueued.
+  /// Milliseconds since epoch when this summary was first saved.
   IntColumn get createdAtMs => integer()();
 
-  /// Milliseconds since epoch when this document was last saved.
+  /// Milliseconds since epoch when this summary was last saved.
   IntColumn get updatedAtMs => integer()();
 
   @override

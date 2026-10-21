@@ -17,9 +17,9 @@ T _$identity<T>(T value) => value;
 mixin _$MonthSummary {
 
 /// for example: year=2026, month=1
- int get year; int get month;/// 5-minute observations, max 288 per day. a typical day to represent the month
-/// average from fiveMinuteObservations in day summary
-/// useful to compare any day with this month average.
+ int get year; int get month;/// Typical 5-minute day profile for this month, with matching time slots
+/// averaged across available days. Missing slots are omitted. Per-slot
+/// contributor counts are not stored, so support cannot be assessed.
  List<Observation> get fiveMinuteObservations;/// Hourly observations aggregated from the DaySummary's hourly observations.
 /// there are 24 observation a day, multiplied by the number of days in the month.
 /// useful for analyzing monthly trends in hourly observations.
@@ -235,13 +235,13 @@ class _MonthSummary extends MonthSummary {
 /// for example: year=2026, month=1
 @override final  int year;
 @override final  int month;
-/// 5-minute observations, max 288 per day. a typical day to represent the month
-/// average from fiveMinuteObservations in day summary
-/// useful to compare any day with this month average.
+/// Typical 5-minute day profile for this month, with matching time slots
+/// averaged across available days. Missing slots are omitted. Per-slot
+/// contributor counts are not stored, so support cannot be assessed.
  final  List<Observation> _fiveMinuteObservations;
-/// 5-minute observations, max 288 per day. a typical day to represent the month
-/// average from fiveMinuteObservations in day summary
-/// useful to compare any day with this month average.
+/// Typical 5-minute day profile for this month, with matching time slots
+/// averaged across available days. Missing slots are omitted. Per-slot
+/// contributor counts are not stored, so support cannot be assessed.
 @override List<Observation> get fiveMinuteObservations {
   if (_fiveMinuteObservations is EqualUnmodifiableListView) return _fiveMinuteObservations;
   // ignore: implicit_dynamic_type

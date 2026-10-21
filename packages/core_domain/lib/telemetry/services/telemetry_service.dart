@@ -4,7 +4,7 @@
 
 import 'dart:async';
 
-import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -13,20 +13,20 @@ import 'telemetry_transport.dart' as core_domain;
 part 'telemetry_service.g.dart';
 
 abstract class TelemetryService {
-  /// Adds [observation] to the persistent queue.
-  Future<void> enqueue(Observation observation);
+  /// Adds [ObservationPayload] to the persistent queue.
+  Future<void> add(ObservationPayload observationPayload);
 
   /// Current and future next scheduled upload times.
   ///
   /// Null means the service has not resolved an initial value yet.
   ValueListenable<DateTime?> get nextUploadTimeListenable;
 
-  /// Sends [observations] directly to backend in batches without queueing.
+  /// Sends [payloads] directly to backend in batches without queueing.
   ///
   /// Intended for explicit user-triggered resend actions from history views.
   /// This is a one-shot attempt and does not schedule automatic retries.
   /// Returns true when all payloads are uploaded successfully.
-  Future<bool> sendNow(List<Observation> observations);
+  Future<bool> sendNow(List<ObservationPayload> payloads);
 
   /// Runs one full upload pass: drains the queue in [UploadConfig.maxBatchSize]
   /// batches, Call on user press 'upload now' button.

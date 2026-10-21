@@ -864,12 +864,1502 @@ class TelemetryUploadLogCompanion
   }
 }
 
+class $DayFileTable extends DayFile with TableInfo<$DayFileTable, DayFileData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DayFileTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _businessDateMeta = const VerificationMeta(
+    'businessDate',
+  );
+  @override
+  late final GeneratedColumn<String> businessDate = GeneratedColumn<String>(
+    'business_date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _yearMeta = const VerificationMeta('year');
+  @override
+  late final GeneratedColumn<int> year = GeneratedColumn<int>(
+    'year',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _monthMeta = const VerificationMeta('month');
+  @override
+  late final GeneratedColumn<int> month = GeneratedColumn<int>(
+    'month',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dayMeta = const VerificationMeta('day');
+  @override
+  late final GeneratedColumn<int> day = GeneratedColumn<int>(
+    'day',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dataMeta = const VerificationMeta('data');
+  @override
+  late final GeneratedColumn<Uint8List> data = GeneratedColumn<Uint8List>(
+    'data',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _schemaVersionMeta = const VerificationMeta(
+    'schemaVersion',
+  );
+  @override
+  late final GeneratedColumn<int> schemaVersion = GeneratedColumn<int>(
+    'schema_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMsMeta = const VerificationMeta(
+    'createdAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> createdAtMs = GeneratedColumn<int>(
+    'created_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMsMeta = const VerificationMeta(
+    'updatedAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> updatedAtMs = GeneratedColumn<int>(
+    'updated_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    businessDate,
+    year,
+    month,
+    day,
+    data,
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'day_file';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<DayFileData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('business_date')) {
+      context.handle(
+        _businessDateMeta,
+        businessDate.isAcceptableOrUnknown(
+          data['business_date']!,
+          _businessDateMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_businessDateMeta);
+    }
+    if (data.containsKey('year')) {
+      context.handle(
+        _yearMeta,
+        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_yearMeta);
+    }
+    if (data.containsKey('month')) {
+      context.handle(
+        _monthMeta,
+        month.isAcceptableOrUnknown(data['month']!, _monthMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_monthMeta);
+    }
+    if (data.containsKey('day')) {
+      context.handle(
+        _dayMeta,
+        day.isAcceptableOrUnknown(data['day']!, _dayMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dayMeta);
+    }
+    if (data.containsKey('data')) {
+      context.handle(
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dataMeta);
+    }
+    if (data.containsKey('schema_version')) {
+      context.handle(
+        _schemaVersionMeta,
+        schemaVersion.isAcceptableOrUnknown(
+          data['schema_version']!,
+          _schemaVersionMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_schemaVersionMeta);
+    }
+    if (data.containsKey('created_at_ms')) {
+      context.handle(
+        _createdAtMsMeta,
+        createdAtMs.isAcceptableOrUnknown(
+          data['created_at_ms']!,
+          _createdAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMsMeta);
+    }
+    if (data.containsKey('updated_at_ms')) {
+      context.handle(
+        _updatedAtMsMeta,
+        updatedAtMs.isAcceptableOrUnknown(
+          data['updated_at_ms']!,
+          _updatedAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMsMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {businessDate};
+  @override
+  DayFileData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DayFileData(
+      businessDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}business_date'],
+      )!,
+      year: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}year'],
+      )!,
+      month: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}month'],
+      )!,
+      day: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}day'],
+      )!,
+      data: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}data'],
+      )!,
+      schemaVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}schema_version'],
+      )!,
+      createdAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_at_ms'],
+      )!,
+      updatedAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}updated_at_ms'],
+      )!,
+    );
+  }
+
+  @override
+  $DayFileTable createAlias(String alias) {
+    return $DayFileTable(attachedDatabase, alias);
+  }
+}
+
+class DayFileData extends DataClass implements Insertable<DayFileData> {
+  /// Business date in YYYY-MM-DD format.
+  final String businessDate;
+
+  /// Business year, stored separately for date-based queries.
+  final int year;
+
+  /// Business month, stored separately for date-based queries.
+  final int month;
+
+  /// Business day of month, stored separately for date-based queries.
+  final int day;
+
+  /// Gzip-compressed UTF-8 JSON for the serialized DaySummary.
+  final Uint8List data;
+
+  /// Version of the persisted document format.
+  final int schemaVersion;
+
+  /// Milliseconds since epoch when this summary was first saved.
+  final int createdAtMs;
+
+  /// Milliseconds since epoch when this summary was last saved.
+  final int updatedAtMs;
+  const DayFileData({
+    required this.businessDate,
+    required this.year,
+    required this.month,
+    required this.day,
+    required this.data,
+    required this.schemaVersion,
+    required this.createdAtMs,
+    required this.updatedAtMs,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['business_date'] = Variable<String>(businessDate);
+    map['year'] = Variable<int>(year);
+    map['month'] = Variable<int>(month);
+    map['day'] = Variable<int>(day);
+    map['data'] = Variable<Uint8List>(data);
+    map['schema_version'] = Variable<int>(schemaVersion);
+    map['created_at_ms'] = Variable<int>(createdAtMs);
+    map['updated_at_ms'] = Variable<int>(updatedAtMs);
+    return map;
+  }
+
+  DayFileCompanion toCompanion(bool nullToAbsent) {
+    return DayFileCompanion(
+      businessDate: Value(businessDate),
+      year: Value(year),
+      month: Value(month),
+      day: Value(day),
+      data: Value(data),
+      schemaVersion: Value(schemaVersion),
+      createdAtMs: Value(createdAtMs),
+      updatedAtMs: Value(updatedAtMs),
+    );
+  }
+
+  factory DayFileData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DayFileData(
+      businessDate: serializer.fromJson<String>(json['businessDate']),
+      year: serializer.fromJson<int>(json['year']),
+      month: serializer.fromJson<int>(json['month']),
+      day: serializer.fromJson<int>(json['day']),
+      data: serializer.fromJson<Uint8List>(json['data']),
+      schemaVersion: serializer.fromJson<int>(json['schemaVersion']),
+      createdAtMs: serializer.fromJson<int>(json['createdAtMs']),
+      updatedAtMs: serializer.fromJson<int>(json['updatedAtMs']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'businessDate': serializer.toJson<String>(businessDate),
+      'year': serializer.toJson<int>(year),
+      'month': serializer.toJson<int>(month),
+      'day': serializer.toJson<int>(day),
+      'data': serializer.toJson<Uint8List>(data),
+      'schemaVersion': serializer.toJson<int>(schemaVersion),
+      'createdAtMs': serializer.toJson<int>(createdAtMs),
+      'updatedAtMs': serializer.toJson<int>(updatedAtMs),
+    };
+  }
+
+  DayFileData copyWith({
+    String? businessDate,
+    int? year,
+    int? month,
+    int? day,
+    Uint8List? data,
+    int? schemaVersion,
+    int? createdAtMs,
+    int? updatedAtMs,
+  }) => DayFileData(
+    businessDate: businessDate ?? this.businessDate,
+    year: year ?? this.year,
+    month: month ?? this.month,
+    day: day ?? this.day,
+    data: data ?? this.data,
+    schemaVersion: schemaVersion ?? this.schemaVersion,
+    createdAtMs: createdAtMs ?? this.createdAtMs,
+    updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+  );
+  DayFileData copyWithCompanion(DayFileCompanion data) {
+    return DayFileData(
+      businessDate: data.businessDate.present
+          ? data.businessDate.value
+          : this.businessDate,
+      year: data.year.present ? data.year.value : this.year,
+      month: data.month.present ? data.month.value : this.month,
+      day: data.day.present ? data.day.value : this.day,
+      data: data.data.present ? data.data.value : this.data,
+      schemaVersion: data.schemaVersion.present
+          ? data.schemaVersion.value
+          : this.schemaVersion,
+      createdAtMs: data.createdAtMs.present
+          ? data.createdAtMs.value
+          : this.createdAtMs,
+      updatedAtMs: data.updatedAtMs.present
+          ? data.updatedAtMs.value
+          : this.updatedAtMs,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DayFileData(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('month: $month, ')
+          ..write('day: $day, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    businessDate,
+    year,
+    month,
+    day,
+    $driftBlobEquality.hash(data),
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DayFileData &&
+          other.businessDate == this.businessDate &&
+          other.year == this.year &&
+          other.month == this.month &&
+          other.day == this.day &&
+          $driftBlobEquality.equals(other.data, this.data) &&
+          other.schemaVersion == this.schemaVersion &&
+          other.createdAtMs == this.createdAtMs &&
+          other.updatedAtMs == this.updatedAtMs);
+}
+
+class DayFileCompanion extends UpdateCompanion<DayFileData> {
+  final Value<String> businessDate;
+  final Value<int> year;
+  final Value<int> month;
+  final Value<int> day;
+  final Value<Uint8List> data;
+  final Value<int> schemaVersion;
+  final Value<int> createdAtMs;
+  final Value<int> updatedAtMs;
+  final Value<int> rowid;
+  const DayFileCompanion({
+    this.businessDate = const Value.absent(),
+    this.year = const Value.absent(),
+    this.month = const Value.absent(),
+    this.day = const Value.absent(),
+    this.data = const Value.absent(),
+    this.schemaVersion = const Value.absent(),
+    this.createdAtMs = const Value.absent(),
+    this.updatedAtMs = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DayFileCompanion.insert({
+    required String businessDate,
+    required int year,
+    required int month,
+    required int day,
+    required Uint8List data,
+    required int schemaVersion,
+    required int createdAtMs,
+    required int updatedAtMs,
+    this.rowid = const Value.absent(),
+  }) : businessDate = Value(businessDate),
+       year = Value(year),
+       month = Value(month),
+       day = Value(day),
+       data = Value(data),
+       schemaVersion = Value(schemaVersion),
+       createdAtMs = Value(createdAtMs),
+       updatedAtMs = Value(updatedAtMs);
+  static Insertable<DayFileData> custom({
+    Expression<String>? businessDate,
+    Expression<int>? year,
+    Expression<int>? month,
+    Expression<int>? day,
+    Expression<Uint8List>? data,
+    Expression<int>? schemaVersion,
+    Expression<int>? createdAtMs,
+    Expression<int>? updatedAtMs,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (businessDate != null) 'business_date': businessDate,
+      if (year != null) 'year': year,
+      if (month != null) 'month': month,
+      if (day != null) 'day': day,
+      if (data != null) 'data': data,
+      if (schemaVersion != null) 'schema_version': schemaVersion,
+      if (createdAtMs != null) 'created_at_ms': createdAtMs,
+      if (updatedAtMs != null) 'updated_at_ms': updatedAtMs,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DayFileCompanion copyWith({
+    Value<String>? businessDate,
+    Value<int>? year,
+    Value<int>? month,
+    Value<int>? day,
+    Value<Uint8List>? data,
+    Value<int>? schemaVersion,
+    Value<int>? createdAtMs,
+    Value<int>? updatedAtMs,
+    Value<int>? rowid,
+  }) {
+    return DayFileCompanion(
+      businessDate: businessDate ?? this.businessDate,
+      year: year ?? this.year,
+      month: month ?? this.month,
+      day: day ?? this.day,
+      data: data ?? this.data,
+      schemaVersion: schemaVersion ?? this.schemaVersion,
+      createdAtMs: createdAtMs ?? this.createdAtMs,
+      updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (businessDate.present) {
+      map['business_date'] = Variable<String>(businessDate.value);
+    }
+    if (year.present) {
+      map['year'] = Variable<int>(year.value);
+    }
+    if (month.present) {
+      map['month'] = Variable<int>(month.value);
+    }
+    if (day.present) {
+      map['day'] = Variable<int>(day.value);
+    }
+    if (data.present) {
+      map['data'] = Variable<Uint8List>(data.value);
+    }
+    if (schemaVersion.present) {
+      map['schema_version'] = Variable<int>(schemaVersion.value);
+    }
+    if (createdAtMs.present) {
+      map['created_at_ms'] = Variable<int>(createdAtMs.value);
+    }
+    if (updatedAtMs.present) {
+      map['updated_at_ms'] = Variable<int>(updatedAtMs.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DayFileCompanion(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('month: $month, ')
+          ..write('day: $day, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $MonthFileTable extends MonthFile
+    with TableInfo<$MonthFileTable, MonthFileData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $MonthFileTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _businessDateMeta = const VerificationMeta(
+    'businessDate',
+  );
+  @override
+  late final GeneratedColumn<String> businessDate = GeneratedColumn<String>(
+    'business_date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _yearMeta = const VerificationMeta('year');
+  @override
+  late final GeneratedColumn<int> year = GeneratedColumn<int>(
+    'year',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _monthMeta = const VerificationMeta('month');
+  @override
+  late final GeneratedColumn<int> month = GeneratedColumn<int>(
+    'month',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dataMeta = const VerificationMeta('data');
+  @override
+  late final GeneratedColumn<Uint8List> data = GeneratedColumn<Uint8List>(
+    'data',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _schemaVersionMeta = const VerificationMeta(
+    'schemaVersion',
+  );
+  @override
+  late final GeneratedColumn<int> schemaVersion = GeneratedColumn<int>(
+    'schema_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMsMeta = const VerificationMeta(
+    'createdAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> createdAtMs = GeneratedColumn<int>(
+    'created_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMsMeta = const VerificationMeta(
+    'updatedAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> updatedAtMs = GeneratedColumn<int>(
+    'updated_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    businessDate,
+    year,
+    month,
+    data,
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'month_file';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<MonthFileData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('business_date')) {
+      context.handle(
+        _businessDateMeta,
+        businessDate.isAcceptableOrUnknown(
+          data['business_date']!,
+          _businessDateMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_businessDateMeta);
+    }
+    if (data.containsKey('year')) {
+      context.handle(
+        _yearMeta,
+        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_yearMeta);
+    }
+    if (data.containsKey('month')) {
+      context.handle(
+        _monthMeta,
+        month.isAcceptableOrUnknown(data['month']!, _monthMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_monthMeta);
+    }
+    if (data.containsKey('data')) {
+      context.handle(
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dataMeta);
+    }
+    if (data.containsKey('schema_version')) {
+      context.handle(
+        _schemaVersionMeta,
+        schemaVersion.isAcceptableOrUnknown(
+          data['schema_version']!,
+          _schemaVersionMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_schemaVersionMeta);
+    }
+    if (data.containsKey('created_at_ms')) {
+      context.handle(
+        _createdAtMsMeta,
+        createdAtMs.isAcceptableOrUnknown(
+          data['created_at_ms']!,
+          _createdAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMsMeta);
+    }
+    if (data.containsKey('updated_at_ms')) {
+      context.handle(
+        _updatedAtMsMeta,
+        updatedAtMs.isAcceptableOrUnknown(
+          data['updated_at_ms']!,
+          _updatedAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMsMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {businessDate};
+  @override
+  MonthFileData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return MonthFileData(
+      businessDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}business_date'],
+      )!,
+      year: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}year'],
+      )!,
+      month: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}month'],
+      )!,
+      data: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}data'],
+      )!,
+      schemaVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}schema_version'],
+      )!,
+      createdAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_at_ms'],
+      )!,
+      updatedAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}updated_at_ms'],
+      )!,
+    );
+  }
+
+  @override
+  $MonthFileTable createAlias(String alias) {
+    return $MonthFileTable(attachedDatabase, alias);
+  }
+}
+
+class MonthFileData extends DataClass implements Insertable<MonthFileData> {
+  /// Business date in YYYY-MM format.
+  final String businessDate;
+
+  /// Business year, stored separately for date-based queries.
+  final int year;
+
+  /// Business month, stored separately for date-based queries.
+  final int month;
+
+  /// Gzip-compressed UTF-8 JSON for the serialized MonthSummary.
+  final Uint8List data;
+
+  /// Version of the persisted document format.
+  final int schemaVersion;
+
+  /// Milliseconds since epoch when this summary was first saved.
+  final int createdAtMs;
+
+  /// Milliseconds since epoch when this summary was last saved.
+  final int updatedAtMs;
+  const MonthFileData({
+    required this.businessDate,
+    required this.year,
+    required this.month,
+    required this.data,
+    required this.schemaVersion,
+    required this.createdAtMs,
+    required this.updatedAtMs,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['business_date'] = Variable<String>(businessDate);
+    map['year'] = Variable<int>(year);
+    map['month'] = Variable<int>(month);
+    map['data'] = Variable<Uint8List>(data);
+    map['schema_version'] = Variable<int>(schemaVersion);
+    map['created_at_ms'] = Variable<int>(createdAtMs);
+    map['updated_at_ms'] = Variable<int>(updatedAtMs);
+    return map;
+  }
+
+  MonthFileCompanion toCompanion(bool nullToAbsent) {
+    return MonthFileCompanion(
+      businessDate: Value(businessDate),
+      year: Value(year),
+      month: Value(month),
+      data: Value(data),
+      schemaVersion: Value(schemaVersion),
+      createdAtMs: Value(createdAtMs),
+      updatedAtMs: Value(updatedAtMs),
+    );
+  }
+
+  factory MonthFileData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return MonthFileData(
+      businessDate: serializer.fromJson<String>(json['businessDate']),
+      year: serializer.fromJson<int>(json['year']),
+      month: serializer.fromJson<int>(json['month']),
+      data: serializer.fromJson<Uint8List>(json['data']),
+      schemaVersion: serializer.fromJson<int>(json['schemaVersion']),
+      createdAtMs: serializer.fromJson<int>(json['createdAtMs']),
+      updatedAtMs: serializer.fromJson<int>(json['updatedAtMs']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'businessDate': serializer.toJson<String>(businessDate),
+      'year': serializer.toJson<int>(year),
+      'month': serializer.toJson<int>(month),
+      'data': serializer.toJson<Uint8List>(data),
+      'schemaVersion': serializer.toJson<int>(schemaVersion),
+      'createdAtMs': serializer.toJson<int>(createdAtMs),
+      'updatedAtMs': serializer.toJson<int>(updatedAtMs),
+    };
+  }
+
+  MonthFileData copyWith({
+    String? businessDate,
+    int? year,
+    int? month,
+    Uint8List? data,
+    int? schemaVersion,
+    int? createdAtMs,
+    int? updatedAtMs,
+  }) => MonthFileData(
+    businessDate: businessDate ?? this.businessDate,
+    year: year ?? this.year,
+    month: month ?? this.month,
+    data: data ?? this.data,
+    schemaVersion: schemaVersion ?? this.schemaVersion,
+    createdAtMs: createdAtMs ?? this.createdAtMs,
+    updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+  );
+  MonthFileData copyWithCompanion(MonthFileCompanion data) {
+    return MonthFileData(
+      businessDate: data.businessDate.present
+          ? data.businessDate.value
+          : this.businessDate,
+      year: data.year.present ? data.year.value : this.year,
+      month: data.month.present ? data.month.value : this.month,
+      data: data.data.present ? data.data.value : this.data,
+      schemaVersion: data.schemaVersion.present
+          ? data.schemaVersion.value
+          : this.schemaVersion,
+      createdAtMs: data.createdAtMs.present
+          ? data.createdAtMs.value
+          : this.createdAtMs,
+      updatedAtMs: data.updatedAtMs.present
+          ? data.updatedAtMs.value
+          : this.updatedAtMs,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MonthFileData(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('month: $month, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    businessDate,
+    year,
+    month,
+    $driftBlobEquality.hash(data),
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is MonthFileData &&
+          other.businessDate == this.businessDate &&
+          other.year == this.year &&
+          other.month == this.month &&
+          $driftBlobEquality.equals(other.data, this.data) &&
+          other.schemaVersion == this.schemaVersion &&
+          other.createdAtMs == this.createdAtMs &&
+          other.updatedAtMs == this.updatedAtMs);
+}
+
+class MonthFileCompanion extends UpdateCompanion<MonthFileData> {
+  final Value<String> businessDate;
+  final Value<int> year;
+  final Value<int> month;
+  final Value<Uint8List> data;
+  final Value<int> schemaVersion;
+  final Value<int> createdAtMs;
+  final Value<int> updatedAtMs;
+  final Value<int> rowid;
+  const MonthFileCompanion({
+    this.businessDate = const Value.absent(),
+    this.year = const Value.absent(),
+    this.month = const Value.absent(),
+    this.data = const Value.absent(),
+    this.schemaVersion = const Value.absent(),
+    this.createdAtMs = const Value.absent(),
+    this.updatedAtMs = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  MonthFileCompanion.insert({
+    required String businessDate,
+    required int year,
+    required int month,
+    required Uint8List data,
+    required int schemaVersion,
+    required int createdAtMs,
+    required int updatedAtMs,
+    this.rowid = const Value.absent(),
+  }) : businessDate = Value(businessDate),
+       year = Value(year),
+       month = Value(month),
+       data = Value(data),
+       schemaVersion = Value(schemaVersion),
+       createdAtMs = Value(createdAtMs),
+       updatedAtMs = Value(updatedAtMs);
+  static Insertable<MonthFileData> custom({
+    Expression<String>? businessDate,
+    Expression<int>? year,
+    Expression<int>? month,
+    Expression<Uint8List>? data,
+    Expression<int>? schemaVersion,
+    Expression<int>? createdAtMs,
+    Expression<int>? updatedAtMs,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (businessDate != null) 'business_date': businessDate,
+      if (year != null) 'year': year,
+      if (month != null) 'month': month,
+      if (data != null) 'data': data,
+      if (schemaVersion != null) 'schema_version': schemaVersion,
+      if (createdAtMs != null) 'created_at_ms': createdAtMs,
+      if (updatedAtMs != null) 'updated_at_ms': updatedAtMs,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  MonthFileCompanion copyWith({
+    Value<String>? businessDate,
+    Value<int>? year,
+    Value<int>? month,
+    Value<Uint8List>? data,
+    Value<int>? schemaVersion,
+    Value<int>? createdAtMs,
+    Value<int>? updatedAtMs,
+    Value<int>? rowid,
+  }) {
+    return MonthFileCompanion(
+      businessDate: businessDate ?? this.businessDate,
+      year: year ?? this.year,
+      month: month ?? this.month,
+      data: data ?? this.data,
+      schemaVersion: schemaVersion ?? this.schemaVersion,
+      createdAtMs: createdAtMs ?? this.createdAtMs,
+      updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (businessDate.present) {
+      map['business_date'] = Variable<String>(businessDate.value);
+    }
+    if (year.present) {
+      map['year'] = Variable<int>(year.value);
+    }
+    if (month.present) {
+      map['month'] = Variable<int>(month.value);
+    }
+    if (data.present) {
+      map['data'] = Variable<Uint8List>(data.value);
+    }
+    if (schemaVersion.present) {
+      map['schema_version'] = Variable<int>(schemaVersion.value);
+    }
+    if (createdAtMs.present) {
+      map['created_at_ms'] = Variable<int>(createdAtMs.value);
+    }
+    if (updatedAtMs.present) {
+      map['updated_at_ms'] = Variable<int>(updatedAtMs.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('MonthFileCompanion(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('month: $month, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $YearFileTable extends YearFile
+    with TableInfo<$YearFileTable, YearFileData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $YearFileTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _businessDateMeta = const VerificationMeta(
+    'businessDate',
+  );
+  @override
+  late final GeneratedColumn<String> businessDate = GeneratedColumn<String>(
+    'business_date',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _yearMeta = const VerificationMeta('year');
+  @override
+  late final GeneratedColumn<int> year = GeneratedColumn<int>(
+    'year',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _dataMeta = const VerificationMeta('data');
+  @override
+  late final GeneratedColumn<Uint8List> data = GeneratedColumn<Uint8List>(
+    'data',
+    aliasedName,
+    false,
+    type: DriftSqlType.blob,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _schemaVersionMeta = const VerificationMeta(
+    'schemaVersion',
+  );
+  @override
+  late final GeneratedColumn<int> schemaVersion = GeneratedColumn<int>(
+    'schema_version',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMsMeta = const VerificationMeta(
+    'createdAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> createdAtMs = GeneratedColumn<int>(
+    'created_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMsMeta = const VerificationMeta(
+    'updatedAtMs',
+  );
+  @override
+  late final GeneratedColumn<int> updatedAtMs = GeneratedColumn<int>(
+    'updated_at_ms',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    businessDate,
+    year,
+    data,
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'year_file';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<YearFileData> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('business_date')) {
+      context.handle(
+        _businessDateMeta,
+        businessDate.isAcceptableOrUnknown(
+          data['business_date']!,
+          _businessDateMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_businessDateMeta);
+    }
+    if (data.containsKey('year')) {
+      context.handle(
+        _yearMeta,
+        year.isAcceptableOrUnknown(data['year']!, _yearMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_yearMeta);
+    }
+    if (data.containsKey('data')) {
+      context.handle(
+        _dataMeta,
+        this.data.isAcceptableOrUnknown(data['data']!, _dataMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_dataMeta);
+    }
+    if (data.containsKey('schema_version')) {
+      context.handle(
+        _schemaVersionMeta,
+        schemaVersion.isAcceptableOrUnknown(
+          data['schema_version']!,
+          _schemaVersionMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_schemaVersionMeta);
+    }
+    if (data.containsKey('created_at_ms')) {
+      context.handle(
+        _createdAtMsMeta,
+        createdAtMs.isAcceptableOrUnknown(
+          data['created_at_ms']!,
+          _createdAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMsMeta);
+    }
+    if (data.containsKey('updated_at_ms')) {
+      context.handle(
+        _updatedAtMsMeta,
+        updatedAtMs.isAcceptableOrUnknown(
+          data['updated_at_ms']!,
+          _updatedAtMsMeta,
+        ),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMsMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {businessDate};
+  @override
+  YearFileData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return YearFileData(
+      businessDate: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}business_date'],
+      )!,
+      year: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}year'],
+      )!,
+      data: attachedDatabase.typeMapping.read(
+        DriftSqlType.blob,
+        data['${effectivePrefix}data'],
+      )!,
+      schemaVersion: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}schema_version'],
+      )!,
+      createdAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}created_at_ms'],
+      )!,
+      updatedAtMs: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}updated_at_ms'],
+      )!,
+    );
+  }
+
+  @override
+  $YearFileTable createAlias(String alias) {
+    return $YearFileTable(attachedDatabase, alias);
+  }
+}
+
+class YearFileData extends DataClass implements Insertable<YearFileData> {
+  /// Business date in YYYY format.
+  final String businessDate;
+
+  /// Business year, stored separately for date-based queries.
+  final int year;
+
+  /// Gzip-compressed UTF-8 JSON for the serialized YearSummary.
+  final Uint8List data;
+
+  /// Version of the persisted document format.
+  final int schemaVersion;
+
+  /// Milliseconds since epoch when this summary was first saved.
+  final int createdAtMs;
+
+  /// Milliseconds since epoch when this summary was last saved.
+  final int updatedAtMs;
+  const YearFileData({
+    required this.businessDate,
+    required this.year,
+    required this.data,
+    required this.schemaVersion,
+    required this.createdAtMs,
+    required this.updatedAtMs,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['business_date'] = Variable<String>(businessDate);
+    map['year'] = Variable<int>(year);
+    map['data'] = Variable<Uint8List>(data);
+    map['schema_version'] = Variable<int>(schemaVersion);
+    map['created_at_ms'] = Variable<int>(createdAtMs);
+    map['updated_at_ms'] = Variable<int>(updatedAtMs);
+    return map;
+  }
+
+  YearFileCompanion toCompanion(bool nullToAbsent) {
+    return YearFileCompanion(
+      businessDate: Value(businessDate),
+      year: Value(year),
+      data: Value(data),
+      schemaVersion: Value(schemaVersion),
+      createdAtMs: Value(createdAtMs),
+      updatedAtMs: Value(updatedAtMs),
+    );
+  }
+
+  factory YearFileData.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return YearFileData(
+      businessDate: serializer.fromJson<String>(json['businessDate']),
+      year: serializer.fromJson<int>(json['year']),
+      data: serializer.fromJson<Uint8List>(json['data']),
+      schemaVersion: serializer.fromJson<int>(json['schemaVersion']),
+      createdAtMs: serializer.fromJson<int>(json['createdAtMs']),
+      updatedAtMs: serializer.fromJson<int>(json['updatedAtMs']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'businessDate': serializer.toJson<String>(businessDate),
+      'year': serializer.toJson<int>(year),
+      'data': serializer.toJson<Uint8List>(data),
+      'schemaVersion': serializer.toJson<int>(schemaVersion),
+      'createdAtMs': serializer.toJson<int>(createdAtMs),
+      'updatedAtMs': serializer.toJson<int>(updatedAtMs),
+    };
+  }
+
+  YearFileData copyWith({
+    String? businessDate,
+    int? year,
+    Uint8List? data,
+    int? schemaVersion,
+    int? createdAtMs,
+    int? updatedAtMs,
+  }) => YearFileData(
+    businessDate: businessDate ?? this.businessDate,
+    year: year ?? this.year,
+    data: data ?? this.data,
+    schemaVersion: schemaVersion ?? this.schemaVersion,
+    createdAtMs: createdAtMs ?? this.createdAtMs,
+    updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+  );
+  YearFileData copyWithCompanion(YearFileCompanion data) {
+    return YearFileData(
+      businessDate: data.businessDate.present
+          ? data.businessDate.value
+          : this.businessDate,
+      year: data.year.present ? data.year.value : this.year,
+      data: data.data.present ? data.data.value : this.data,
+      schemaVersion: data.schemaVersion.present
+          ? data.schemaVersion.value
+          : this.schemaVersion,
+      createdAtMs: data.createdAtMs.present
+          ? data.createdAtMs.value
+          : this.createdAtMs,
+      updatedAtMs: data.updatedAtMs.present
+          ? data.updatedAtMs.value
+          : this.updatedAtMs,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('YearFileData(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    businessDate,
+    year,
+    $driftBlobEquality.hash(data),
+    schemaVersion,
+    createdAtMs,
+    updatedAtMs,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is YearFileData &&
+          other.businessDate == this.businessDate &&
+          other.year == this.year &&
+          $driftBlobEquality.equals(other.data, this.data) &&
+          other.schemaVersion == this.schemaVersion &&
+          other.createdAtMs == this.createdAtMs &&
+          other.updatedAtMs == this.updatedAtMs);
+}
+
+class YearFileCompanion extends UpdateCompanion<YearFileData> {
+  final Value<String> businessDate;
+  final Value<int> year;
+  final Value<Uint8List> data;
+  final Value<int> schemaVersion;
+  final Value<int> createdAtMs;
+  final Value<int> updatedAtMs;
+  final Value<int> rowid;
+  const YearFileCompanion({
+    this.businessDate = const Value.absent(),
+    this.year = const Value.absent(),
+    this.data = const Value.absent(),
+    this.schemaVersion = const Value.absent(),
+    this.createdAtMs = const Value.absent(),
+    this.updatedAtMs = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  YearFileCompanion.insert({
+    required String businessDate,
+    required int year,
+    required Uint8List data,
+    required int schemaVersion,
+    required int createdAtMs,
+    required int updatedAtMs,
+    this.rowid = const Value.absent(),
+  }) : businessDate = Value(businessDate),
+       year = Value(year),
+       data = Value(data),
+       schemaVersion = Value(schemaVersion),
+       createdAtMs = Value(createdAtMs),
+       updatedAtMs = Value(updatedAtMs);
+  static Insertable<YearFileData> custom({
+    Expression<String>? businessDate,
+    Expression<int>? year,
+    Expression<Uint8List>? data,
+    Expression<int>? schemaVersion,
+    Expression<int>? createdAtMs,
+    Expression<int>? updatedAtMs,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (businessDate != null) 'business_date': businessDate,
+      if (year != null) 'year': year,
+      if (data != null) 'data': data,
+      if (schemaVersion != null) 'schema_version': schemaVersion,
+      if (createdAtMs != null) 'created_at_ms': createdAtMs,
+      if (updatedAtMs != null) 'updated_at_ms': updatedAtMs,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  YearFileCompanion copyWith({
+    Value<String>? businessDate,
+    Value<int>? year,
+    Value<Uint8List>? data,
+    Value<int>? schemaVersion,
+    Value<int>? createdAtMs,
+    Value<int>? updatedAtMs,
+    Value<int>? rowid,
+  }) {
+    return YearFileCompanion(
+      businessDate: businessDate ?? this.businessDate,
+      year: year ?? this.year,
+      data: data ?? this.data,
+      schemaVersion: schemaVersion ?? this.schemaVersion,
+      createdAtMs: createdAtMs ?? this.createdAtMs,
+      updatedAtMs: updatedAtMs ?? this.updatedAtMs,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (businessDate.present) {
+      map['business_date'] = Variable<String>(businessDate.value);
+    }
+    if (year.present) {
+      map['year'] = Variable<int>(year.value);
+    }
+    if (data.present) {
+      map['data'] = Variable<Uint8List>(data.value);
+    }
+    if (schemaVersion.present) {
+      map['schema_version'] = Variable<int>(schemaVersion.value);
+    }
+    if (createdAtMs.present) {
+      map['created_at_ms'] = Variable<int>(createdAtMs.value);
+    }
+    if (updatedAtMs.present) {
+      map['updated_at_ms'] = Variable<int>(updatedAtMs.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('YearFileCompanion(')
+          ..write('businessDate: $businessDate, ')
+          ..write('year: $year, ')
+          ..write('data: $data, ')
+          ..write('schemaVersion: $schemaVersion, ')
+          ..write('createdAtMs: $createdAtMs, ')
+          ..write('updatedAtMs: $updatedAtMs, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $TelemetryQueueTable telemetryQueue = $TelemetryQueueTable(this);
   late final $TelemetryUploadLogTable telemetryUploadLog =
       $TelemetryUploadLogTable(this);
+  late final $DayFileTable dayFile = $DayFileTable(this);
+  late final $MonthFileTable monthFile = $MonthFileTable(this);
+  late final $YearFileTable yearFile = $YearFileTable(this);
   late final Index telemetryQueuePendingReadyIdx = Index(
     'telemetry_queue_pending_ready_idx',
     'CREATE INDEX telemetry_queue_pending_ready_idx ON telemetry_queue (created_at_ms) WHERE delivered_at_ms IS NULL',
@@ -893,6 +2383,9 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [
     telemetryQueue,
     telemetryUploadLog,
+    dayFile,
+    monthFile,
+    yearFile,
     telemetryQueuePendingReadyIdx,
     telemetryQueueCreatedAtIdx,
     telemetryUploadLogsAttemptedAtIdx,
@@ -1379,6 +2872,762 @@ typedef $$TelemetryUploadLogTableProcessedTableManager =
       TelemetryUploadLogData,
       PrefetchHooks Function()
     >;
+typedef $$DayFileTableCreateCompanionBuilder = DayFileCompanion Function({
+  required String businessDate,
+  required int year,
+  required int month,
+  required int day,
+  required Uint8List data,
+  required int schemaVersion,
+  required int createdAtMs,
+  required int updatedAtMs,
+  Value<int> rowid,
+});
+typedef $$DayFileTableUpdateCompanionBuilder = DayFileCompanion Function({
+  Value<String> businessDate,
+  Value<int> year,
+  Value<int> month,
+  Value<int> day,
+  Value<Uint8List> data,
+  Value<int> schemaVersion,
+  Value<int> createdAtMs,
+  Value<int> updatedAtMs,
+  Value<int> rowid,
+});
+
+class $$DayFileTableFilterComposer
+    extends Composer<_$AppDatabase, $DayFileTable> {
+  $$DayFileTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$DayFileTableOrderingComposer
+    extends Composer<_$AppDatabase, $DayFileTable> {
+  $$DayFileTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get day => $composableBuilder(
+    column: $table.day,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$DayFileTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DayFileTable> {
+  $$DayFileTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get year =>
+      $composableBuilder(column: $table.year, builder: (column) => column);
+
+  GeneratedColumn<int> get month =>
+      $composableBuilder(column: $table.month, builder: (column) => column);
+
+  GeneratedColumn<int> get day =>
+      $composableBuilder(column: $table.day, builder: (column) => column);
+
+  GeneratedColumn<Uint8List> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
+
+  GeneratedColumn<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => column,
+  );
+}
+
+class $$DayFileTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $DayFileTable,
+          DayFileData,
+          $$DayFileTableFilterComposer,
+          $$DayFileTableOrderingComposer,
+          $$DayFileTableAnnotationComposer,
+          $$DayFileTableCreateCompanionBuilder,
+          $$DayFileTableUpdateCompanionBuilder,
+          (
+            DayFileData,
+            BaseReferences<_$AppDatabase, $DayFileTable, DayFileData>,
+          ),
+          DayFileData,
+          PrefetchHooks Function()
+        > {
+  $$DayFileTableTableManager(_$AppDatabase db, $DayFileTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$DayFileTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DayFileTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DayFileTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> businessDate = const Value.absent(),
+                Value<int> year = const Value.absent(),
+                Value<int> month = const Value.absent(),
+                Value<int> day = const Value.absent(),
+                Value<Uint8List> data = const Value.absent(),
+                Value<int> schemaVersion = const Value.absent(),
+                Value<int> createdAtMs = const Value.absent(),
+                Value<int> updatedAtMs = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => DayFileCompanion(
+                businessDate: businessDate,
+                year: year,
+                month: month,
+                day: day,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String businessDate,
+                required int year,
+                required int month,
+                required int day,
+                required Uint8List data,
+                required int schemaVersion,
+                required int createdAtMs,
+                required int updatedAtMs,
+                Value<int> rowid = const Value.absent(),
+              }) => DayFileCompanion.insert(
+                businessDate: businessDate,
+                year: year,
+                month: month,
+                day: day,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$DayFileTable, DayFileData>(table),
+                  BaseReferences<_$AppDatabase, $DayFileTable, DayFileData>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$DayFileTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $DayFileTable,
+      DayFileData,
+      $$DayFileTableFilterComposer,
+      $$DayFileTableOrderingComposer,
+      $$DayFileTableAnnotationComposer,
+      $$DayFileTableCreateCompanionBuilder,
+      $$DayFileTableUpdateCompanionBuilder,
+      (DayFileData, BaseReferences<_$AppDatabase, $DayFileTable, DayFileData>),
+      DayFileData,
+      PrefetchHooks Function()
+    >;
+typedef $$MonthFileTableCreateCompanionBuilder = MonthFileCompanion Function({
+  required String businessDate,
+  required int year,
+  required int month,
+  required Uint8List data,
+  required int schemaVersion,
+  required int createdAtMs,
+  required int updatedAtMs,
+  Value<int> rowid,
+});
+typedef $$MonthFileTableUpdateCompanionBuilder = MonthFileCompanion Function({
+  Value<String> businessDate,
+  Value<int> year,
+  Value<int> month,
+  Value<Uint8List> data,
+  Value<int> schemaVersion,
+  Value<int> createdAtMs,
+  Value<int> updatedAtMs,
+  Value<int> rowid,
+});
+
+class $$MonthFileTableFilterComposer
+    extends Composer<_$AppDatabase, $MonthFileTable> {
+  $$MonthFileTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$MonthFileTableOrderingComposer
+    extends Composer<_$AppDatabase, $MonthFileTable> {
+  $$MonthFileTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get month => $composableBuilder(
+    column: $table.month,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$MonthFileTableAnnotationComposer
+    extends Composer<_$AppDatabase, $MonthFileTable> {
+  $$MonthFileTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get year =>
+      $composableBuilder(column: $table.year, builder: (column) => column);
+
+  GeneratedColumn<int> get month =>
+      $composableBuilder(column: $table.month, builder: (column) => column);
+
+  GeneratedColumn<Uint8List> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
+
+  GeneratedColumn<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => column,
+  );
+}
+
+class $$MonthFileTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $MonthFileTable,
+          MonthFileData,
+          $$MonthFileTableFilterComposer,
+          $$MonthFileTableOrderingComposer,
+          $$MonthFileTableAnnotationComposer,
+          $$MonthFileTableCreateCompanionBuilder,
+          $$MonthFileTableUpdateCompanionBuilder,
+          (
+            MonthFileData,
+            BaseReferences<_$AppDatabase, $MonthFileTable, MonthFileData>,
+          ),
+          MonthFileData,
+          PrefetchHooks Function()
+        > {
+  $$MonthFileTableTableManager(_$AppDatabase db, $MonthFileTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$MonthFileTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$MonthFileTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$MonthFileTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> businessDate = const Value.absent(),
+                Value<int> year = const Value.absent(),
+                Value<int> month = const Value.absent(),
+                Value<Uint8List> data = const Value.absent(),
+                Value<int> schemaVersion = const Value.absent(),
+                Value<int> createdAtMs = const Value.absent(),
+                Value<int> updatedAtMs = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => MonthFileCompanion(
+                businessDate: businessDate,
+                year: year,
+                month: month,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String businessDate,
+                required int year,
+                required int month,
+                required Uint8List data,
+                required int schemaVersion,
+                required int createdAtMs,
+                required int updatedAtMs,
+                Value<int> rowid = const Value.absent(),
+              }) => MonthFileCompanion.insert(
+                businessDate: businessDate,
+                year: year,
+                month: month,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$MonthFileTable, MonthFileData>(table),
+                  BaseReferences<_$AppDatabase, $MonthFileTable, MonthFileData>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$MonthFileTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $MonthFileTable,
+      MonthFileData,
+      $$MonthFileTableFilterComposer,
+      $$MonthFileTableOrderingComposer,
+      $$MonthFileTableAnnotationComposer,
+      $$MonthFileTableCreateCompanionBuilder,
+      $$MonthFileTableUpdateCompanionBuilder,
+      (
+        MonthFileData,
+        BaseReferences<_$AppDatabase, $MonthFileTable, MonthFileData>,
+      ),
+      MonthFileData,
+      PrefetchHooks Function()
+    >;
+typedef $$YearFileTableCreateCompanionBuilder = YearFileCompanion Function({
+  required String businessDate,
+  required int year,
+  required Uint8List data,
+  required int schemaVersion,
+  required int createdAtMs,
+  required int updatedAtMs,
+  Value<int> rowid,
+});
+typedef $$YearFileTableUpdateCompanionBuilder = YearFileCompanion Function({
+  Value<String> businessDate,
+  Value<int> year,
+  Value<Uint8List> data,
+  Value<int> schemaVersion,
+  Value<int> createdAtMs,
+  Value<int> updatedAtMs,
+  Value<int> rowid,
+});
+
+class $$YearFileTableFilterComposer
+    extends Composer<_$AppDatabase, $YearFileTable> {
+  $$YearFileTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$YearFileTableOrderingComposer
+    extends Composer<_$AppDatabase, $YearFileTable> {
+  $$YearFileTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get year => $composableBuilder(
+    column: $table.year,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<Uint8List> get data => $composableBuilder(
+    column: $table.data,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$YearFileTableAnnotationComposer
+    extends Composer<_$AppDatabase, $YearFileTable> {
+  $$YearFileTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get businessDate => $composableBuilder(
+    column: $table.businessDate,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get year =>
+      $composableBuilder(column: $table.year, builder: (column) => column);
+
+  GeneratedColumn<Uint8List> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
+
+  GeneratedColumn<int> get schemaVersion => $composableBuilder(
+    column: $table.schemaVersion,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get createdAtMs => $composableBuilder(
+    column: $table.createdAtMs,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get updatedAtMs => $composableBuilder(
+    column: $table.updatedAtMs,
+    builder: (column) => column,
+  );
+}
+
+class $$YearFileTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $YearFileTable,
+          YearFileData,
+          $$YearFileTableFilterComposer,
+          $$YearFileTableOrderingComposer,
+          $$YearFileTableAnnotationComposer,
+          $$YearFileTableCreateCompanionBuilder,
+          $$YearFileTableUpdateCompanionBuilder,
+          (
+            YearFileData,
+            BaseReferences<_$AppDatabase, $YearFileTable, YearFileData>,
+          ),
+          YearFileData,
+          PrefetchHooks Function()
+        > {
+  $$YearFileTableTableManager(_$AppDatabase db, $YearFileTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$YearFileTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$YearFileTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$YearFileTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> businessDate = const Value.absent(),
+                Value<int> year = const Value.absent(),
+                Value<Uint8List> data = const Value.absent(),
+                Value<int> schemaVersion = const Value.absent(),
+                Value<int> createdAtMs = const Value.absent(),
+                Value<int> updatedAtMs = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => YearFileCompanion(
+                businessDate: businessDate,
+                year: year,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String businessDate,
+                required int year,
+                required Uint8List data,
+                required int schemaVersion,
+                required int createdAtMs,
+                required int updatedAtMs,
+                Value<int> rowid = const Value.absent(),
+              }) => YearFileCompanion.insert(
+                businessDate: businessDate,
+                year: year,
+                data: data,
+                schemaVersion: schemaVersion,
+                createdAtMs: createdAtMs,
+                updatedAtMs: updatedAtMs,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$YearFileTable, YearFileData>(table),
+                  BaseReferences<_$AppDatabase, $YearFileTable, YearFileData>(
+                    db,
+                    table,
+                    e,
+                  ),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$YearFileTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $YearFileTable,
+      YearFileData,
+      $$YearFileTableFilterComposer,
+      $$YearFileTableOrderingComposer,
+      $$YearFileTableAnnotationComposer,
+      $$YearFileTableCreateCompanionBuilder,
+      $$YearFileTableUpdateCompanionBuilder,
+      (
+        YearFileData,
+        BaseReferences<_$AppDatabase, $YearFileTable, YearFileData>,
+      ),
+      YearFileData,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -1387,4 +3636,10 @@ class $AppDatabaseManager {
       $$TelemetryQueueTableTableManager(_db, _db.telemetryQueue);
   $$TelemetryUploadLogTableTableManager get telemetryUploadLog =>
       $$TelemetryUploadLogTableTableManager(_db, _db.telemetryUploadLog);
+  $$DayFileTableTableManager get dayFile =>
+      $$DayFileTableTableManager(_db, _db.dayFile);
+  $$MonthFileTableTableManager get monthFile =>
+      $$MonthFileTableTableManager(_db, _db.monthFile);
+  $$YearFileTableTableManager get yearFile =>
+      $$YearFileTableTableManager(_db, _db.yearFile);
 }

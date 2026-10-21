@@ -1,12 +1,12 @@
 // TOC:
 //  - QueuedObservation: queue row wrapping an Observation with upload state
 
-import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 
 class QueuedObservation {
-  const QueuedObservation({required this.observation, required this.createdAtUtc, this.uploadedAtUtc});
+  const QueuedObservation({required this.payload, required this.createdAtUtc, this.uploadedAtUtc});
 
-  final Observation observation;
+  final ObservationPayload payload;
 
   /// UTC time when this observation was first enqueued; used for expiry pruning.
   final DateTime createdAtUtc;

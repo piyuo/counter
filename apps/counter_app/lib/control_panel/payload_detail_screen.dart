@@ -88,7 +88,7 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
             return Center(child: Text(context.l.payloads_screen_payload_not_exists));
           }
 
-          final observation = pendingPayload.observation;
+          final observation = pendingPayload.payload;
           final start = observation.dateTime;
           final locale = Localizations.localeOf(context).toString();
           final dayFmt = DateFormat.yMMMMd(locale);
@@ -245,7 +245,7 @@ class _SummaryTile extends StatelessWidget {
 class _AreaListItem extends StatelessWidget {
   const _AreaListItem({required this.area});
 
-  final core_domain.AreaMetrics area;
+  final core_domain.AreaMetricsPayload area;
 
   @override
   Widget build(BuildContext context) {

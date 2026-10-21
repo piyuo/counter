@@ -73,7 +73,7 @@ class UploadWorker {
   List<List<QueuedObservation>> splitByDate(List<QueuedObservation> items) {
     final Map<int, List<QueuedObservation>> grouped = {};
     for (final item in items) {
-      final date = item.observation.dateKey;
+      final date = item.payload.dateKey;
       (grouped[date] ??= []).add(item);
     }
     final dates = grouped.keys.toList()..sort();
@@ -136,16 +136,16 @@ class UploadWorker {
       final dateGroups = splitByDate(batch);
       for (final group in dateGroups) {
         appkit.logInfo(
-          '[UploadWorker] uploading ${group.length} observation(s) for ${group.first.observation.businessDate}',
+          '[UploadWorker] uploading ${group.length} observation(s) for ${group.first.payload.businessDate}',
         );
         lastError = null;
         lastErrorCode = null;
         lastUrl = null;
         final uploaded = await deliverBatch(
           session: session,
-          observations: group.map((p) => p.observation).toList(growable: false),
+          observations: group.map((p) => p.payload).toList(growable: false),
           onSuccess: () async {
-            await queue.markUploadedBatch(group.map((item) => item.observation.id).toList(growable: false));
+            await queue.markUploadedBatch(group.map((item) => item.payload.id).toList(growable: false));
           },
         );
         if (!uploaded) {
@@ -157,14 +157,14 @@ class UploadWorker {
     return true;
   }
 
-  /// Sends [observation] directly to backend in config-sized batches.
+  /// Sends [payloads] directly to backend in config-sized batches.
   ///
   /// This bypasses queue persistence and is intended for user-triggered resend
   /// flows where payloads are explicitly selected from history.
   ///
   /// Returns true when all batches are uploaded successfully.
-  Future<bool> sendObservationDirect(List<Observation> observation) async {
-    if (observation.isEmpty) return true;
+  Future<bool> sendObservationDirect(List<ObservationPayload> payloads) async {
+    if (payloads.isEmpty) return true;
 
     final session = await _sessionResolver();
     assert(
@@ -172,11 +172,11 @@ class UploadWorker {
       'UploadWorker.sendPayloadsDirect() called but no backend is configured; check sessionResolver',
     );
 
-    final batchSize = kMaxBatchSize <= 0 ? observation.length : kMaxBatchSize;
+    final batchSize = kMaxBatchSize <= 0 ? payloads.length : kMaxBatchSize;
     var cursor = 0;
-    while (cursor < observation.length) {
-      final end = math.min(cursor + batchSize, observation.length);
-      final chunk = observation.sublist(cursor, end);
+    while (cursor < payloads.length) {
+      final end = math.min(cursor + batchSize, payloads.length);
+      final chunk = payloads.sublist(cursor, end);
       final uploaded = await deliverBatch(session: session!, observations: chunk);
       if (!uploaded) return false;
       cursor = end;
@@ -187,7 +187,7 @@ class UploadWorker {
 
   Future<bool> deliverBatch({
     required UploadSession session,
-    required List<Observation> observations,
+    required List<ObservationPayload> observations,
     Future<void> Function()? onSuccess,
   }) async {
     lastUrl = getUrlFromDataServer(session.dataServer);

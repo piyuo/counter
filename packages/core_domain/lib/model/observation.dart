@@ -40,6 +40,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../utils/round_double.dart';
 import 'area_metrics.dart';
+import 'observation_payload.dart';
 
 part 'observation.freezed.dart';
 part 'observation.g.dart';
@@ -50,10 +51,15 @@ part 'observation.g.dart';
 /// 5 minutes → hour → day → month → year.
 enum ObservationGranularity { minutes5, hour, day, month, year }
 
-const int kGlobalAreaId = 0;
-
-/// Default duration of a raw Vision Engine observation.
-const kWindowDuration = Duration(minutes: 5);
+extension ObservationGranularityDuration on ObservationGranularity {
+  int expectedSecondsFor(int year, int month) => switch (this) {
+    ObservationGranularity.minutes5 => 300,
+    ObservationGranularity.hour => 3600,
+    ObservationGranularity.day => 86400,
+    ObservationGranularity.month => DateTime.utc(year, month + 1).difference(DateTime.utc(year, month)).inSeconds,
+    ObservationGranularity.year => DateTime.utc(year + 1).difference(DateTime.utc(year)).inSeconds,
+  };
+}
 
 /// Observation of a period of time.
 ///
@@ -65,7 +71,7 @@ const kWindowDuration = Duration(minutes: 5);
 /// - monthly observation
 /// - yearly observation
 ///
-/// Ratio and average fields are rounded to 2 decimals when written to JSON.
+/// Ratio getters are derived from their source values and are not serialized.
 @freezed
 sealed class Observation with _$Observation {
   const Observation._();
@@ -89,32 +95,22 @@ sealed class Observation with _$Observation {
     /// - day:      year=2026, month=06, day=24, hour=-1, minute=-1
     /// - month:    year=2026, month=06, day=-1, hour=-1, minute=-1
     /// - year:     year=2026, month=-1, day=-1, hour=-1, minute=-1
-    required int year,
-    required int month,
-    required int day,
-    required int hour,
-    required int minute,
-
-    /// Sum of confidence ratios (0.0-1.0), one per tracked-object
-    /// confidence sample contributing to this observation.
+    required int year, // e.g., 2026 for a 5-minute observation
+    required int month, // 1-12 for a 5-minute observation
+    required int day, // 1-31 for a 5-minute observation
+    required int hour, // 0-23 for a 5-minute observation
+    required int minute, // 0-55 for a 5-minute observation, since Observations must align to wall-clock 5-minute intervals, e.g., 0, 5, 10, ..., 55
+    /// Sum of tracked-object confidence ratios, each in the range 0.0-1.0.
     ///
-    /// Additive across child observations. there is no round when summing but will round when written to JSON to avoid 92.99999999 issue
-    @RoundedDouble() required double confidenceRatioSum,
+    /// Additive across child observations. The sum is rounded to two decimal
+    /// places when serialized to JSON.
+    @Default(0) @RoundedDouble() double confidenceSum,
 
     /// Number of tracked-object confidence samples contributing to this
     /// observation.
     ///
     /// Additive across child observations.
-    required int confidenceSampleCount,
-
-    /// Mean confidence as a ratio in the range 0.0-1.0, or 0 when there are
-    /// no samples.
-    ///
-    /// confidenceRatio = confidenceRatioSum / confidenceSampleCount
-    ///
-    /// The sum and count remain the source of truth; this field is included
-    /// for convenience.
-    @RoundedDouble() required double confidenceRatio,
+    @Default(0) int confidenceSampleCount,
 
     /// Number of seconds with valid detection data in this observation.
     ///
@@ -122,24 +118,10 @@ sealed class Observation with _$Observation {
     /// minus any time when detection data was missing.
     ///
     /// Additive across child observations.
-    required int coveredSeconds,
-
-    /// Expected duration, in seconds, of this observation's period.
-    ///
-    /// For example, a 5-minute window has 300 expected seconds.
-    ///
-    /// Additive across child observations.
-    required int expectedSeconds,
-
-    /// Fraction of the observation period that contained valid detection
-    /// data, in the range 0.0-1.0, or 0 when [expectedSeconds] is 0.
-    ///
-    /// coverageRatio = coveredSeconds / expectedSeconds
-    ///
-    /// For aggregated observations, sum the seconds first, then divide.
-    /// Do not average the ratios of child observations. The seconds remain
-    /// the source of truth; this field is included for convenience.
-    @RoundedDouble() required double coverageRatio,
+    /// Slots with few contributors look as strong as well-sampled ones.
+    /// A slot present in 1 of 30 days is averaged over that one day, with no signal that it’s thin.
+    /// You could weight by coveredSeconds to know how well-sampled a slot is.
+    @Default(0) int coveredSeconds,
 
     /// Per-area analytics.
     ///
@@ -153,14 +135,29 @@ sealed class Observation with _$Observation {
     required int frameCount,
   }) = _Observation;
 
+  /// Mean confidence ratio, or zero when there are no confidence samples.
+  ///
+  /// Derived from [confidenceSum] / [confidenceSampleCount].
+  double get confidenceRatio => confidenceSampleCount == 0 ? 0 : confidenceSum / confidenceSampleCount;
+
+  /// Fraction of expected duration with valid detection data, or zero when
+  /// [expectedSeconds] is zero.
+  double get coverageRatio => expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds;
+
   factory Observation.fromJson(Map<String, dynamic> json) => _$ObservationFromJson(json);
+
+  /// Expected duration, in seconds, of this observation's period.
+  ///
+  /// Calendar periods use UTC arithmetic so device time zone and DST do not
+  /// change the business-time duration.
+  int get expectedSeconds => granularity.expectedSecondsFor(year, month);
 
   /// Numeric ID made from the four-digit year and two-digit date/time
   /// components. Components with a value of -1 are encoded as `00` to
   /// preserve their positions.
   ///
   /// IDs are unique only within one [granularity].
-  int get id => _keyFromComponents([year, month, day, hour, minute]);
+  int get id => keyFromComponents([year, month, day, hour, minute]);
 
   /// Local wall-clock date/time represented by this observation.
   ///
@@ -173,15 +170,15 @@ sealed class Observation with _$Observation {
       DateTime(year, month > 0 ? month : 1, day > 0 ? day : 1, hour >= 0 ? hour : 0, minute >= 0 ? minute : 0);
 
   /// Returns year, month, and day; components with a value of -1 are encoded as `00`.
-  int get dateKey => _keyFromComponents([year, month, day]);
+  int get dateKey => keyFromComponents([year, month, day]);
 
   /// Returns hour and minute as an integer; components with a value of -1 are encoded as `00`.
   ///
   /// Only compare time keys between observations of the same [granularity].
-  int get timeKey => _keyFromComponents([hour, minute]);
+  int get timeKey => keyFromComponents([hour, minute]);
 
   /// Returns year, month, day, and hour; components with a value of -1 are encoded as `00`.
-  int get dateHourKey => _keyFromComponents([year, month, day, hour]);
+  int get dateHourKey => keyFromComponents([year, month, day, hour]);
 
   int get missingSeconds => expectedSeconds - coveredSeconds;
 
@@ -218,28 +215,31 @@ sealed class Observation with _$Observation {
     ObservationGranularity.year => year.toString().padLeft(4, '0'),
   };
 
-  @override
-  String toString() {
-    return 'Observation('
-        'granularity: ${granularity.name}, '
-        'year: $year, '
-        'month: $month, '
-        'day: $day, '
-        'hour: $hour, '
-        'minute: $minute, '
-        'frameCount: $frameCount, '
-        'confidenceRatioSum: ${confidenceRatioSum.toStringAsFixed(2)}, '
-        'confidenceSampleCount: $confidenceSampleCount, '
-        'confidenceRatio: ${confidenceRatio.toStringAsFixed(2)}, '
-        'expectedSeconds: $expectedSeconds, '
-        'coveredSeconds: $coveredSeconds, '
-        'coverageRatio: ${coverageRatio.toStringAsFixed(2)}, '
-        'areas: [${areas.join(', ')}]'
-        ')';
-  }
-}
+  ObservationPayload toPayload() => ObservationPayload(
+    granularity: granularity.name,
+    id: id,
+    year: year,
+    month: month,
+    day: day,
+    hour: hour,
+    minute: minute,
+    businessDate: businessDate,
+    confidenceRatio: confidenceRatio,
+    expectedSeconds: expectedSeconds,
+    coveredSeconds: coveredSeconds,
+    coverageRatio: coverageRatio,
+    areas: areas.map((area) => area.toPayload()).toList(),
+    frameCount: frameCount,
+  );
 
-int _keyFromComponents(Iterable<int> components) {
-  final key = components.map((component) => component == -1 ? '00' : component.toString().padLeft(2, '0')).join();
-  return key.isEmpty ? 0 : int.parse(key);
+  int compareTo(Observation other) {
+    if (granularity != other.granularity) {
+      throw ArgumentError.value(
+        other.granularity,
+        'other',
+        'Cannot compare ${granularity.name} with ${other.granularity.name} observations',
+      );
+    }
+    return id.compareTo(other.id);
+  }
 }

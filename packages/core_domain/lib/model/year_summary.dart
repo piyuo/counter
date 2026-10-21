@@ -13,9 +13,11 @@ sealed class YearSummary with _$YearSummary {
     /// for example: year=2026
     required int year,
 
-    /// 5-minute observations, max 288 per day. a typical day to represent the year
-    /// average from fiveMinuteObservations in month summary
-    /// useful to compare any day with this year average.
+    /// Typical 5-minute day profile for this year, with matching time slots
+    /// averaged across month profiles weighted by their available daily
+    /// observation counts. Missing slots are omitted. Per-slot contributor
+    /// counts are not stored, so weighting assumes comparable slot coverage
+    /// within each month's profile and support cannot be assessed exactly.
     required List<Observation> fiveMinuteObservations,
 
     /// Day observations aggregated from the MonthSummary's daily observations.

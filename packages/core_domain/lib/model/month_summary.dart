@@ -14,9 +14,9 @@ sealed class MonthSummary with _$MonthSummary {
     required int year,
     required int month,
 
-    /// 5-minute observations, max 288 per day. a typical day to represent the month
-    /// average from fiveMinuteObservations in day summary
-    /// useful to compare any day with this month average.
+    /// Typical 5-minute day profile for this month, with matching time slots
+    /// averaged across available days. Missing slots are omitted. Per-slot
+    /// contributor counts are not stored, so support cannot be assessed.
     required List<Observation> fiveMinuteObservations,
 
     /// Hourly observations aggregated from the DaySummary's hourly observations.

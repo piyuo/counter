@@ -42,7 +42,7 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
 
   Future<void> _resendSelectedObservations(List<core_domain.QueuedObservation> observations) async {
     final selectedObservations = observations
-        .where((pending) => _isObservationSelected(pending.observation.id))
+        .where((pending) => _isObservationSelected(pending.payload.id))
         .toList(growable: false);
 
     setState(() {
@@ -146,17 +146,14 @@ class _RecentPayloadsHourScreenState extends ConsumerState<PayloadsHourScreen> {
                       for (var i = 0; i < group.payloads.length; i++) ...[
                         ListTile(
                           leading: SelectionCheckbox(
-                            value: _isObservationSelected(group.payloads[i].observation.id),
-                            onChanged: (value) =>
-                                _togglePayloadSelection(group.payloads[i].observation.id, value == true),
+                            value: _isObservationSelected(group.payloads[i].payload.id),
+                            onChanged: (value) => _togglePayloadSelection(group.payloads[i].payload.id, value == true),
                           ),
-                          title: Text(formatObservationWindow(group.payloads[i].observation, payloadTimeFmt)),
+                          title: Text(formatObservationWindow(group.payloads[i].payload, payloadTimeFmt)),
                           subtitle: Text(payloadDeliveryStatusDescription(context, group.payloads[i], payloadTimeFmt)),
                           trailing: const Icon(Icons.arrow_forward_ios),
                           onTap: () {
-                            ref.push(
-                              core_domain.OpenPayloadDetail(payloadId: group.payloads[i].observation.id.toString()),
-                            );
+                            ref.push(core_domain.OpenPayloadDetail(payloadId: group.payloads[i].payload.id.toString()));
                           },
                         ),
                         if (i < group.payloads.length - 1) const Divider(height: 1),

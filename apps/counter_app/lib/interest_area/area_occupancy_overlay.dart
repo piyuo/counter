@@ -36,7 +36,10 @@ class AreaOccupancyOverlay extends StatelessWidget {
 
   Widget _buildOccupancyBlock(BuildContext context, core_domain.InterestArea area) {
     final pill = AreaLabelLayout.backgroundRect(viewport, area, Directionality.of(context));
-    final occupancy = observation?.areas.where((metrics) => metrics.areaId == area.id).firstOrNull?.occupancyLast ?? -1;
+    final metrics = observation?.areas.where((metrics) => metrics.areaId == area.id).firstOrNull;
+    final occupancy = metrics != null && metrics.occupancySampleCount > 0 && metrics.occupancyLast >= 0
+        ? metrics.occupancyLast
+        : -1;
 
     final anchored = Positioned(
       left: pill.center.dx,

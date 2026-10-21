@@ -30,6 +30,7 @@ Schema 2 uploads contain 5-minute observations (`granularity: "minutes5"`).
 
 The same observation model is also used internally for hourly, daily, monthly, and yearly aggregation. Those aggregated observations are not part of the Schema 2 upload contract.
 
+
 ---
 
 ## 2. Privacy
@@ -63,12 +64,13 @@ Counts are based on object tracking, not verified identities. A tracking ID chan
       "day": 13,
       "hour": 19,
       "minute": 20,
-      "confidenceRatioSum": 2572.21,
-      "confidenceSampleCount": 2963,
+      "id": 202607131920,
+      "businessDate": "2026-07-13",
       "confidenceRatio": 0.87,
-      "coveredSeconds": 123,
       "expectedSeconds": 300,
+      "coveredSeconds": 123,
       "coverageRatio": 0.41,
+      "expectedSeconds": 300,
       "areas": [
         {
           "areaId": 0,
@@ -80,19 +82,20 @@ Counts are based on object tracking, not verified identities. A tracking ID chan
           "appear": 0,
           "disappear": 0,
           "occupancySampleCount": 2963,
-          "occupancySampleSum": 2933,
-          "occupancySampleSumSquares": 2935,
+          "occupancySum": 2933,
           "occupancyMean": 0.99,
+          "occupancySumSquares": 2935,
+          "occupancyVariance": 0.01,
           "occupancyMax": 2,
           "occupancyLast": 1,
           "dwellSumSeconds": 6070,
           "dwellSampleCount": 100,
           "dwellMeanSeconds": 60.7,
           "dwellMaxSeconds": 122,
-          "dwellHistogram": [10, 20, 30, 25, 15],
-          "presenceTrackCount": 1,
+          "dwellHistogram": [10, 20, 30, 15, 10, 7, 5, 3],
+          "presenceSampleCount": 1,
           "presenceSumSeconds": 1,
-          "presenceMeanSeconds": 1.0
+          "presenceMeanSeconds": 1
         }
       ],
       "frameCount": 2963
@@ -101,21 +104,19 @@ Counts are based on object tracking, not verified identities. A tracking ID chan
 }
 ```
 
-The numerical values in this example illustrate the payload structure; they are not intended to represent a fully validated, internally consistent observation.
-
-For example, the occupancy samples in the example sum to 2,933, and their squared values sum to 2,935.
+The example includes all fields serialized by the payload models. Numeric values are illustrative; consumers should validate relationships between source statistics and derived values when those relationships matter.
 
 ---
 
 ## 4. Top-Level Object
 
-| Field          | Type                 | Description                                                     |
-| -------------- | -------------------- | --------------------------------------------------------------- |
-| `schema`       | Integer              | Payload schema version. Required.                               |
-| `deviceId`     | String               | Identifier of the device generating the observations. Required. |
-| `projectId`    | String               | Project identifier, present only when configured.               |
-| `assignId`     | String               | Assignment identifier, present only when configured.            |
-| `observations` | Array of Observation | 5-minute observations included in this upload. Required.        |
+| Field          | Type                        | Description                                                     |
+| -------------- | --------------------------- | --------------------------------------------------------------- |
+| `schema`       | Integer                     | Payload schema version. Required.                               |
+| `deviceId`     | String                      | Identifier of the device generating the observations. Required. |
+| `projectId`    | String                      | Project identifier, present only when configured.               |
+| `assignId`     | String                      | Assignment identifier, present only when configured.            |
+| `observations` | Array of ObservationPayload | 5-minute observations included in this upload. Required.        |
 
 Optional fields may be absent when they are not configured. Consumers must not assume that every optional field is present.
 
@@ -123,38 +124,38 @@ The `observations` array is ordered chronologically according to the business wa
 
 ---
 
-## 5. Observation Object
+## 5. ObservationPayload Object
 
 Each observation represents one 5-minute counting window.
 
-| Field                   | Type                 | Description                                                     |
-| ----------------------- | -------------------- | --------------------------------------------------------------- |
-| `granularity`           | String               | Aggregation interval. Schema 2 uploads use `minutes5`.          |
-| `year`                  | Integer              | Four-digit business year.                                       |
-| `month`                 | Integer              | Business month, 1–12.                                           |
-| `day`                   | Integer              | Business day of month.                                          |
-| `hour`                  | Integer              | Business hour, 0–23.                                            |
-| `minute`                | Integer              | Starting minute of the observation, normally 0, 5, 10, ..., 55. |
-| `confidenceRatioSum`    | Number               | Sum of tracked-object confidence ratios.                        |
-| `confidenceSampleCount` | Integer              | Number of confidence samples.                                   |
-| `confidenceRatio`       | Number               | Mean confidence ratio derived from the sum and count.           |
-| `coveredSeconds`        | Integer              | Seconds with valid detection data.                              |
-| `expectedSeconds`       | Integer              | Expected duration of the observation, normally 300 seconds.     |
-| `coverageRatio`         | Number               | Valid-data fraction derived from covered and expected seconds.  |
-| `areas`                 | Array of AreaMetrics | Metrics for the global area and configured interest areas.      |
-| `frameCount`            | Integer              | Total number of frames processed during the observation.        |
+| Field             | Type                        | Description                                                                |
+| ----------------- | --------------------------- | -------------------------------------------------------------------------- |
+| `granularity`     | String                      | Aggregation interval. Schema 2 uploads use `minutes5`.                     |
+| `year`            | Integer                     | Four-digit business year.                                                  |
+| `month`           | Integer                     | Business month, 1–12.                                                      |
+| `day`             | Integer                     | Business day of month.                                                     |
+| `hour`            | Integer                     | Business hour, 0–23.                                                       |
+| `minute`          | Integer                     | Starting minute of the observation: 0, 5, 10, ..., 55.                     |
+| `id`              | Integer                     | Numeric key formed from the date and time components.                      |
+| `businessDate`    | String                      | Business date formatted as `YYYY-MM-DD` for 5-minute observations.         |
+| `confidenceRatio` | Number                      | Mean confidence ratio, rounded to at most two decimal places.              |
+| `expectedSeconds` | Integer                     | Expected duration of the observation; 300 for a 5-minute window.           |
+| `coveredSeconds`  | Integer                     | Seconds with valid detection data.                                         |
+| `coverageRatio`   | Number                      | `coveredSeconds / expectedSeconds`, rounded to at most two decimal places. |
+| `areas`           | Array of AreaMetricsPayload | Metrics for the Global area and configured interest areas.                 |
+| `frameCount`      | Integer                     | Total number of frames processed during the observation.                   |
 
 ### Confidence metrics
 
 Confidence ratios are in the range 0.0–1.0.
 
-The mean confidence ratio is calculated as:
+`confidenceRatio` is the mean confidence ratio calculated internally from confidence sums and sample counts:
 
-`confidenceRatio = confidenceRatioSum / confidenceSampleCount`
+`confidenceRatio = confidenceSum / confidenceSampleCount`
 
 If there are no samples, the mean is zero.
 
-`confidenceRatioSum` and `confidenceSampleCount` are the source values. `confidenceRatio` is a convenience value.
+Only the derived `confidenceRatio` is included in the payload. `confidenceSum` and `confidenceSampleCount` belong to the internal observation model and are not serialized by `ObservationPayload`.
 
 The exact definition of a confidence sample follows the producing application's tracking implementation. Consumers should not interpret the sample count as a count of unique people or vehicles.
 
@@ -164,54 +165,57 @@ Coverage describes the fraction of the expected observation duration during whic
 
 `coverageRatio = coveredSeconds / expectedSeconds`
 
-If `expectedSeconds` is zero, the ratio is zero.
+`expectedSeconds` is included in the payload. If it is zero, `coverageRatio` is zero.
 
 For a normal 5-minute observation, `expectedSeconds` is 300. `coveredSeconds` may be lower because of missing detection data, camera interruptions, or other processing gaps.
 
-Coverage ratio is rounded to at most two decimal places in JSON. Use the seconds fields when calculating aggregate coverage.
+Both seconds fields and the derived `coverageRatio` are included. Use the seconds fields to recalculate coverage after aggregation.
 
 ### Frame count
 
 `frameCount` is the number of processed video frames during the observation.
 
-Frame count alone does not establish data completeness. Interpret it alongside `coveredSeconds`, `expectedSeconds`, and `coverageRatio`.
+Frame count alone does not establish data completeness. Interpret it alongside `coveredSeconds`; `coverageRatio` uses the expected duration derived from granularity.
 
 ---
 
-## 6. AreaMetrics Object
+## 6. AreaMetricsPayload Object
 
 Each observation contains metrics for the Global area and configured interest areas.
 
 Area `0` always represents the Global area covering the monitored camera scene. Additional areas represent configured interest areas.
 
-| Field                       | Type             | Description                                                                                           |
-| --------------------------- | ---------------- | ----------------------------------------------------------------------------------------------------- |
-| `areaId`                    | Integer          | Configured area identifier; `0` represents Global.                                                    |
-| `areaName`                  | String           | Configured area name.                                                                                 |
-| `passBy`                    | Integer          | Tracks counted on first contact with the area.                                                        |
-| `stagnant`                  | Integer          | Tracks reaching the configured stagnant threshold.                                                    |
-| `entry`                     | Integer          | Tracks first observed outside and later inside a local area.                                          |
-| `exit`                      | Integer          | Tracks first observed inside and later outside a local area.                                          |
-| `appear`                    | Integer          | Tracks first detected with their center inside the area.                                              |
-| `disappear`                 | Integer          | Tracks last seen inside the area and subsequently absent long enough to meet the disappear threshold. |
-| `occupancySampleCount`      | Integer          | Number of occupancy samples.                                                                          |
-| `occupancySampleSum`        | Integer          | Sum of occupancy sample values.                                                                       |
-| `occupancySampleSumSquares` | Integer          | Sum of squared occupancy sample values.                                                               |
-| `occupancyMean`             | Number           | Mean occupancy per sample.                                                                            |
-| `occupancyMax`              | Integer          | Maximum occupancy sample.                                                                             |
-| `occupancyLast`             | Integer          | Most recent occupancy sample.                                                                         |
-| `dwellSumSeconds`           | Integer          | Sum of completed visit durations in whole seconds.                                                    |
-| `dwellSampleCount`          | Integer          | Number of completed visits recorded.                                                                  |
-| `dwellMeanSeconds`          | Number           | Mean duration of completed visits.                                                                    |
-| `dwellMaxSeconds`           | Integer          | Longest completed visit in whole seconds.                                                             |
-| `dwellHistogram`            | Array of Integer | Completed visit counts across five duration buckets.                                                  |
-| `presenceTrackCount`        | Integer          | Number of tracks present for a positive duration during this observation.                             |
-| `presenceSumSeconds`        | Integer          | Total track-seconds spent inside the area during this observation.                                    |
-| `presenceMeanSeconds`       | Number           | Mean presence duration per present track during this observation.                                     |
+| Field                  | Type             | Description                                                                                           |
+| ---------------------- | ---------------- | ----------------------------------------------------------------------------------------------------- |
+| `areaId`               | Integer          | Configured area identifier; `0` represents Global.                                                    |
+| `areaName`             | String           | Configured area name.                                                                                 |
+| `passBy`               | Integer          | Tracks counted on first contact with the area.                                                        |
+| `stagnant`             | Integer          | Tracks reaching the configured stagnant threshold.                                                    |
+| `entry`                | Integer          | Tracks first observed outside and later inside a local area.                                          |
+| `exit`                 | Integer          | Tracks first observed inside and later outside a local area.                                          |
+| `appear`               | Integer          | Tracks first detected with their center inside the area.                                              |
+| `disappear`            | Integer          | Tracks last seen inside the area and subsequently absent long enough to meet the disappear threshold. |
+| `occupancySampleCount` | Integer          | Number of occupancy samples.                                                                          |
+| `occupancySum`         | Integer          | Sum of occupancy sample values.                                                                       |
+| `occupancyMean`        | Number           | Mean occupancy per sample, rounded to at most two decimal places.                                     |
+| `occupancySumSquares`  | Integer          | Sum of squared occupancy sample values.                                                               |
+| `occupancyVariance`    | Number           | Population variance of occupancy samples, rounded to at most two decimal places.                      |
+| `occupancyMax`         | Integer          | Maximum occupancy sample.                                                                             |
+| `occupancyLast`        | Integer          | Most recent occupancy sample; may be `-1` when no valid sample exists.                                |
+| `dwellSampleCount`     | Integer          | Number of completed visits recorded.                                                                  |
+| `dwellSumSeconds`      | Integer          | Sum of completed visit durations in whole seconds.                                                    |
+| `dwellMeanSeconds`     | Number           | Mean duration of completed visits, rounded to at most two decimal places.                             |
+| `dwellMaxSeconds`      | Integer          | Longest completed visit in whole seconds.                                                             |
+| `dwellHistogram`       | Array of Integer | Eight completed-visit duration bucket counts.                                                         |
+| `presenceSampleCount`  | Integer          | Number of tracks present for a positive duration during this observation.                             |
+| `presenceSumSeconds`   | Integer          | Total track-seconds spent inside the area during this observation.                                    |
+| `presenceMeanSeconds`  | Number           | Mean presence duration per present track, rounded to at most two decimal places.                      |
 
 ### 6.1 Event metrics
 
 Event metrics count tracking events, not verified unique people or vehicles.
+
+Each field is an integer event count for the observation. These payloads represent actual 5-minute observations, not averaged profile summaries.
 
 The same track is counted at most once for a given event while its tracking history is retained. If a new tracking ID is created after an ID switch, history eviction, tracker reset, or application restart, the same physical object may be counted again.
 
@@ -251,17 +255,17 @@ Occupancy describes the number of tracked objects present in an area at each sam
 
 The number of occupancy samples. In the current implementation, occupancy is sampled once per processed frame, so this count equals `frameCount`.
 
-**`occupancySampleSum` and `occupancySampleSumSquares`**
+**`occupancySum` and `occupancySumSquares`**
 
 These preserve the information needed to calculate the mean and variance without retaining individual samples.
 
 The mean is:
 
-`occupancyMean = occupancySampleSum / occupancySampleCount`
+`occupancyMean = occupancySum / occupancySampleCount`
 
 The population variance can be calculated as:
 
-`variance = occupancySampleSumSquares / occupancySampleCount - mean²`
+`variance = occupancySumSquares / occupancySampleCount - mean²`
 
 If there are no samples, the mean and variance are zero. Small negative variance caused by floating-point rounding should be treated as zero.
 
@@ -303,19 +307,22 @@ The longest completed visit recorded during the observation.
 
 **`dwellHistogram`**
 
-The histogram contains exactly five counts when present:
+The histogram contains exactly eight counts when present:
 
-| Index | Duration range                      |
-| ----- | ----------------------------------- |
-| 0     | Less than 5 seconds                 |
-| 1     | 5 seconds to less than 15 seconds   |
-| 2     | 15 seconds to less than 60 seconds  |
-| 3     | 60 seconds to less than 300 seconds |
-| 4     | 300 seconds or longer               |
+| Index | Duration range                           |
+| ----- | ---------------------------------------- |
+| 0     | Less than 5 seconds                      |
+| 1     | 5 seconds to less than 15 seconds        |
+| 2     | 15 seconds to less than 60 seconds       |
+| 3     | 60 seconds to less than 300 seconds      |
+| 4     | 300 seconds to less than 600 seconds     |
+| 5     | 600 seconds to less than 1,800 seconds   |
+| 6     | 1,800 seconds to less than 3,600 seconds |
+| 7     | 3,600 seconds or longer                  |
 
 Each bucket includes its lower boundary and excludes its upper boundary.
 
-When present, the bucket counts must sum to `dwellSampleCount`.
+The payload always serializes eight buckets. Their counts sum to `dwellSampleCount`.
 
 The histogram is additive: aggregate it by adding corresponding bucket counts.
 
@@ -323,7 +330,7 @@ The histogram is additive: aggregate it by adding corresponding bucket counts.
 
 Presence measures time spent inside an area during each observation. It is different from completed-visit dwell.
 
-**`presenceTrackCount`**
+**`presenceSampleCount`**
 
 Counts tracks present for a positive duration during the observation. A track continuing across several observations contributes separately to each observation.
 
@@ -347,7 +354,7 @@ When `coveredSeconds` is positive, the ratio of `presenceSumSeconds` to `covered
 
 The mean presence duration per present track within the observation:
 
-`presenceMeanSeconds = presenceSumSeconds / presenceTrackCount`
+`presenceMeanSeconds = presenceSumSeconds / presenceSampleCount`
 
 If there are no present tracks, the mean is zero.
 
@@ -357,45 +364,45 @@ This value is not the average length of a completed visit. Use the dwell metrics
 
 ## 7. Aggregation Rules
 
-The same observation model is used internally at multiple aggregation levels. Correct aggregation requires combining the underlying values according to their semantics.
+The internal `Observation` model is used at multiple aggregation levels. Schema 2 uploads contain `ObservationPayload` values at 5-minute granularity. If consumers aggregate uploaded payloads, combine the values according to their semantics.
 
 ### 7.1 Additive fields
 
 Sum the following fields across child observations:
 
-- `confidenceRatioSum`
-- `confidenceSampleCount`
 - `coveredSeconds`
 - `expectedSeconds`
 - `frameCount`
 - Event counts: `passBy`, `stagnant`, `entry`, `exit`, `appear`, and `disappear`
 - `occupancySampleCount`
-- `occupancySampleSum`
-- `occupancySampleSumSquares`
+- `occupancySum`
+- `occupancySumSquares`
 - `dwellSumSeconds`
 - `dwellSampleCount`
-- `presenceTrackCount`
+- `presenceSampleCount`
 - `presenceSumSeconds`
 
 Sum `dwellHistogram` element by element.
+
+`confidenceRatio`, `coverageRatio`, `occupancyMean`, `occupancyVariance`, `dwellMeanSeconds`, and `presenceMeanSeconds` are not additive.
 
 ### 7.2 Derived averages and ratios
 
 Recalculate convenience values from the aggregated source fields.
 
-| Field                 | Aggregation formula                          |
-| --------------------- | -------------------------------------------- |
-| `confidenceRatio`     | `confidenceRatioSum / confidenceSampleCount` |
-| `coverageRatio`       | `coveredSeconds / expectedSeconds`           |
-| `occupancyMean`       | `occupancySampleSum / occupancySampleCount`  |
-| `dwellMeanSeconds`    | `dwellSumSeconds / dwellSampleCount`         |
-| `presenceMeanSeconds` | `presenceSumSeconds / presenceTrackCount`    |
+| Field                 | Aggregation formula                                                                   |
+| --------------------- | ------------------------------------------------------------------------------------- |
+| `coverageRatio`       | `coveredSeconds / expectedSeconds`                                                    |
+| `occupancyMean`       | `occupancySum / occupancySampleCount`                                                 |
+| `occupancyVariance`   | `occupancySumSquares / occupancySampleCount - (occupancySum / occupancySampleCount)²` |
+| `dwellMeanSeconds`    | `dwellSumSeconds / dwellSampleCount`                                                  |
+| `presenceMeanSeconds` | `presenceSumSeconds / presenceSampleCount`                                            |
 
-If the corresponding denominator is zero, the derived value is zero.
+Each derived value is zero when its denominator is zero. `confidenceRatio` is derived inside the application from the internal observation's confidence statistics; those statistics are not in the upload payload, so consumers cannot recompute this ratio from Schema 2 fields.
 
-**Do not average the averages or ratios of child observations.** Aggregate their underlying sums and counts first, then calculate the derived value.
+**Do not average derived means or ratios.** For metrics with transmitted source statistics, aggregate their sums and counts first, then recalculate. `confidenceRatio` cannot be recomputed across payloads because its source statistics are not uploaded.
 
-Convenience averages and ratios are rounded to at most two decimal places when serialized to JSON. The underlying integer sums and counts remain the source of truth.
+Derived values are serialized by the payload classes. Where the matching source sums and counts are present, consumers may recompute them; `confidenceRatio` is the exception because its source statistics are not uploaded.
 
 ### 7.3 Maximum and latest-value fields
 
@@ -462,12 +469,11 @@ The first-saved-wins behavior is enforced by the Analytics Engine when inserting
 
 The following fields help evaluate whether an observation is suitable for analysis.
 
-| Fields                                         | Interpretation                                             |
-| ---------------------------------------------- | ---------------------------------------------------------- |
-| `coveredSeconds` / `expectedSeconds`           | Amount of the expected interval with valid detection data. |
-| `coverageRatio`                                | Convenience ratio describing temporal coverage.            |
-| `frameCount`                                   | Number of processed frames; interpret alongside coverage.  |
-| `confidenceRatioSum` / `confidenceSampleCount` | Source values used to calculate mean detection confidence. |
+| Fields                               | Interpretation                                                 |
+| ------------------------------------ | -------------------------------------------------------------- |
+| `coveredSeconds` / `expectedSeconds` | Source values used to calculate the coverage ratio.            |
+| `frameCount`                         | Number of processed frames; interpret alongside coverage.      |
+| `confidenceRatio`                    | Mean tracked-object confidence ratio calculated on the device. |
 
 A high coverage ratio does not guarantee perfect detection accuracy. Likewise, a high confidence ratio does not establish that all objects were detected.
 
@@ -495,14 +501,16 @@ Upload timing may vary because of connectivity, application lifecycle, or device
 
 The top-level `schema` field identifies the payload format version.
 
-Schema 2 uses:
+Schema 2 uploads serialize `ObservationPayload` and `AreaMetricsPayload`, and use:
 
 - Per-area `stagnant` event counts
 - Explicit second-based duration field names
-- Confidence and coverage ratio fields
+- A confidence ratio and coverage ratio, rather than confidence source sums/counts
+- Observation `id` and `businessDate` fields
+- Derived occupancy, dwell, and presence means, plus occupancy variance
 - Business-local date/time components
 - Whole-second `presenceSumSeconds`
-- Optional convenience averages that can be recomputed from sums and counts
+- Convenience averages that can be recomputed from the transmitted sums and counts
 
 ### 11.1 Schema 2 validation
 
@@ -520,9 +528,9 @@ Unknown schema versions must not be silently interpreted as Schema 2. Consumers 
 
 When reading legacy payloads, `dwellHistogram` may be absent. A consumer supporting those payloads may treat the missing histogram as unavailable rather than assuming that no visits occurred.
 
-For Schema 2 writers, the histogram should be serialized according to the Schema 2 contract. When present, it must contain exactly five non-negative integer counts.
+For Schema 2 writers, `dwellHistogram` is always serialized with exactly eight non-negative integer counts.
 
-Optional convenience averages should not replace the source sums and counts.
+Payload convenience averages are included alongside the source sums and counts available in `AreaMetricsPayload`.
 
 ### 11.3 Future versions
 
@@ -534,11 +542,9 @@ Consumers should not assume that an unknown schema version is compatible simply 
 
 ## 12. Numeric Precision
 
-Integer counters and durations are serialized as integers.
+Sample counts, event metrics, histogram buckets, and duration totals are integers in the 5-minute payload. Derived ratio, mean, and variance values may contain decimal fractions and are rounded to at most two decimal places when written to JSON.
 
-Ratio and average fields may contain decimal fractions and are rounded to at most two decimal places when written to JSON.
-
-Consumers should use source sums and counts to recompute derived averages and ratios when precision matters.
+Consumers can use the transmitted source sums and counts to recompute area means and ratios when precision matters. Confidence source statistics are not part of the payload.
 
 Floating-point JSON values should be interpreted as numeric values, not as strings.
 

@@ -7,8 +7,11 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 
+import 'day_file.dart';
+import 'month_file.dart';
 import 'telemetry_queue.dart';
 import 'telemetry_upload_log.dart';
+import 'year_file.dart';
 
 part 'app_database.g.dart';
 
@@ -17,7 +20,7 @@ typedef AppDatabaseFun = AppDatabase? Function();
 // Set to true to enable verbose Drift logging for debugging.
 const _kEnableDriftLogging = false;
 
-@DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog])
+@DriftDatabase(tables: [TelemetryQueue, TelemetryUploadLog, DayFile, MonthFile, YearFile])
 class AppDatabase extends _$AppDatabase {
   AppDatabase._internal(super.executor, {required this.filePath});
 
@@ -110,6 +113,13 @@ class AppDatabase extends _$AppDatabase {
     await customSelect('VACUUM').get();
   }
 
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    onCreate: (migrator) async {
+      await migrator.createAll();
+    },
+  );
+
   /// Closes and deletes this database.
   ///
   /// After this call, this database instance is permanently unusable.
@@ -146,5 +156,5 @@ class AppDatabase extends _$AppDatabase {
   }
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 5;
 }

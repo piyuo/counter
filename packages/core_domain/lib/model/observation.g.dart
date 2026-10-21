@@ -18,14 +18,11 @@ _Observation _$ObservationFromJson(Map<String, dynamic> json) => _Observation(
   day: (json['day'] as num).toInt(),
   hour: (json['hour'] as num).toInt(),
   minute: (json['minute'] as num).toInt(),
-  confidenceRatioSum: const RoundedDouble().fromJson(
-    json['confidenceRatioSum'],
-  ),
-  confidenceSampleCount: (json['confidenceSampleCount'] as num).toInt(),
-  confidenceRatio: const RoundedDouble().fromJson(json['confidenceRatio']),
-  coveredSeconds: (json['coveredSeconds'] as num).toInt(),
-  expectedSeconds: (json['expectedSeconds'] as num).toInt(),
-  coverageRatio: const RoundedDouble().fromJson(json['coverageRatio']),
+  confidenceSum: json['confidenceSum'] == null
+      ? 0
+      : const RoundedDouble().fromJson(json['confidenceSum']),
+  confidenceSampleCount: (json['confidenceSampleCount'] as num?)?.toInt() ?? 0,
+  coveredSeconds: (json['coveredSeconds'] as num?)?.toInt() ?? 0,
   areas: (json['areas'] as List<dynamic>)
       .map((e) => AreaMetrics.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -40,14 +37,9 @@ Map<String, dynamic> _$ObservationToJson(_Observation instance) =>
       'day': instance.day,
       'hour': instance.hour,
       'minute': instance.minute,
-      'confidenceRatioSum': const RoundedDouble().toJson(
-        instance.confidenceRatioSum,
-      ),
+      'confidenceSum': const RoundedDouble().toJson(instance.confidenceSum),
       'confidenceSampleCount': instance.confidenceSampleCount,
-      'confidenceRatio': const RoundedDouble().toJson(instance.confidenceRatio),
       'coveredSeconds': instance.coveredSeconds,
-      'expectedSeconds': instance.expectedSeconds,
-      'coverageRatio': const RoundedDouble().toJson(instance.coverageRatio),
       'areas': instance.areas,
       'frameCount': instance.frameCount,
     };

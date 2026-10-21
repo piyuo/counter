@@ -45,11 +45,11 @@
         "day",
         "hour",
         "minute",
-        "confidenceRatioSum",
-        "confidenceSampleCount",
+        "id",
+        "businessDate",
         "confidenceRatio",
-        "coveredSeconds",
         "expectedSeconds",
+        "coveredSeconds",
         "coverageRatio",
         "areas",
         "frameCount"
@@ -91,41 +91,41 @@
           "multipleOf": 5,
           "description": "Starting minute of the 5-minute observation window."
         },
-        "confidenceRatioSum": {
-          "type": "number",
-          "minimum": 0,
-          "description": "Sum of tracked-object confidence ratios, each in the range 0 to 1."
-        },
-        "confidenceSampleCount": {
+        "id": {
           "type": "integer",
           "minimum": 0,
-          "description": "Number of confidence samples."
+          "description": "Numeric key formed from the business date and time components."
+        },
+        "businessDate": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "Business-local date formatted as YYYY-MM-DD."
         },
         "confidenceRatio": {
           "type": "number",
           "minimum": 0,
           "maximum": 1,
-          "description": "Mean confidence ratio, rounded to at most two decimal places when serialized."
+          "description": "Mean tracked-object confidence ratio, rounded to at most two decimal places."
+        },
+        "expectedSeconds": {
+          "type": "integer",
+          "const": 300,
+          "description": "Expected duration of a 5-minute observation."
         },
         "coveredSeconds": {
           "type": "integer",
           "minimum": 0,
           "description": "Seconds with valid detection data."
         },
-        "expectedSeconds": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Expected duration of the observation in seconds; normally 300."
-        },
         "coverageRatio": {
           "type": "number",
           "minimum": 0,
           "maximum": 1,
-          "description": "Covered seconds divided by expected seconds, rounded to at most two decimal places."
+          "description": "coveredSeconds divided by expectedSeconds, rounded to at most two decimal places."
         },
         "areas": {
           "type": "array",
-          "description": "Metrics for the Global area and configured interest areas. Area IDs must be unique within an observation.Must contain the Global area with areaId 0.",
+          "description": "Metrics for the Global area and configured interest areas. Area IDs must be unique within an observation. Must contain the Global area with areaId 0.",
           "items": {
             "$ref": "#/$defs/Area"
           },
@@ -160,17 +160,18 @@
         "appear",
         "disappear",
         "occupancySampleCount",
-        "occupancySampleSum",
-        "occupancySampleSumSquares",
+        "occupancySum",
         "occupancyMean",
+        "occupancySumSquares",
+        "occupancyVariance",
         "occupancyMax",
         "occupancyLast",
-        "dwellSumSeconds",
         "dwellSampleCount",
+        "dwellSumSeconds",
         "dwellMeanSeconds",
         "dwellMaxSeconds",
         "dwellHistogram",
-        "presenceTrackCount",
+        "presenceSampleCount",
         "presenceSumSeconds",
         "presenceMeanSeconds"
       ],
@@ -187,52 +188,57 @@
         "passBy": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks counted on first contact with the area."
+          "description": "Pass-by event count."
         },
         "stagnant": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks reaching the configured stagnant threshold."
+          "description": "Stagnant event count."
         },
         "entry": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks first observed outside and later inside a local area. Always zero for Global."
+          "description": "Entry event count."
         },
         "exit": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks first observed inside and later outside a local area. Always zero for Global."
+          "description": "Exit event count."
         },
         "appear": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks first detected with their center inside the area."
+          "description": "Appear event count."
         },
         "disappear": {
           "type": "integer",
           "minimum": 0,
-          "description": "Tracks last seen inside the area and subsequently absent long enough to meet the disappear threshold."
+          "description": "Disappear event count."
         },
         "occupancySampleCount": {
           "type": "integer",
           "minimum": 0,
           "description": "Number of occupancy samples."
         },
-        "occupancySampleSum": {
+        "occupancySum": {
           "type": "integer",
           "minimum": 0,
           "description": "Sum of occupancy samples."
-        },
-        "occupancySampleSumSquares": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Sum of squared occupancy samples."
         },
         "occupancyMean": {
           "type": "number",
           "minimum": 0,
           "description": "Mean occupancy per sample, rounded to at most two decimal places."
+        },
+        "occupancySumSquares": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of squared occupancy samples."
+        },
+        "occupancyVariance": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Population variance of occupancy samples, rounded to at most two decimal places."
         },
         "occupancyMax": {
           "type": "integer",
@@ -241,23 +247,23 @@
         },
         "occupancyLast": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": -1,
           "description": "Most recent occupancy sample."
-        },
-        "dwellSumSeconds": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Sum of completed visit durations in whole seconds."
         },
         "dwellSampleCount": {
           "type": "integer",
           "minimum": 0,
           "description": "Number of completed visits."
         },
+        "dwellSumSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sum of completed visit durations in whole seconds."
+        },
         "dwellMeanSeconds": {
           "type": "number",
           "minimum": 0,
-          "description": "Mean completed visit duration in seconds, rounded to at most two decimal places."
+          "description": "Mean completed-visit duration in seconds, rounded to at most two decimal places."
         },
         "dwellMaxSeconds": {
           "type": "integer",
@@ -266,15 +272,15 @@
         },
         "dwellHistogram": {
           "type": "array",
-          "minItems": 5,
-          "maxItems": 5,
+          "minItems": 8,
+          "maxItems": 8,
           "items": {
             "type": "integer",
             "minimum": 0
           },
-          "description": "Completed visit counts in [0,5), [5,15), [15,60), [60,300), and [300,infinity) second buckets."
+          "description": "Eight completed-visit counts in [0,5), [5,15), [15,60), [60,300), [300,600), [600,1800), [1800,3600), and [3600,infinity) second buckets."
         },
-        "presenceTrackCount": {
+        "presenceSampleCount": {
           "type": "integer",
           "minimum": 0,
           "description": "Number of tracks present for a positive duration during this observation."
@@ -287,7 +293,7 @@
         "presenceMeanSeconds": {
           "type": "number",
           "minimum": 0,
-          "description": "Mean presence duration per present track, rounded to at most two decimal places."
+          "description": "Mean presence duration per track in seconds, rounded to at most two decimal places."
         }
       }
     }

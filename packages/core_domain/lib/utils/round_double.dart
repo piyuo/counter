@@ -5,10 +5,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 /// Rounds [value] to [places] decimal places.
 ///
 /// Returns 0 for NaN or infinity so serialization never throws.
-double _round(double value, int places) {
+num _round(double value, int places) {
   if (!value.isFinite) return 0;
   final factor = pow(10, places).toDouble();
-  return (value * factor).round() / factor;
+  final rounded = (value * factor).round() / factor;
+  final integer = rounded.round();
+  return rounded == integer.toDouble() ? integer : rounded;
 }
 
 /// Writes a double rounded to 2 decimals (for example, 0.92 instead of
@@ -23,5 +25,5 @@ class RoundedDouble implements JsonConverter<double, dynamic> {
   double fromJson(dynamic json) => (json as num).toDouble();
 
   @override
-  double toJson(double value) => _round(value, 2);
+  num toJson(double value) => _round(value, 2);
 }

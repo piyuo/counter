@@ -13,6 +13,14 @@ void main() {
       expect(converter.toJson(2.124), 2.12);
     });
 
+    test('serializes whole rounded values as integers', () {
+      final roundedWhole = converter.toJson(1.004);
+
+      expect(roundedWhole, 1);
+      expect(roundedWhole, isA<int>());
+      expect(converter.toJson(1.25), isA<double>());
+    });
+
     test('reads integers and fractional numbers as doubles without rounding', () {
       expect(converter.fromJson(42), 42.0);
       expect(converter.fromJson(0.123456789), 0.123456789);

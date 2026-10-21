@@ -17,7 +17,7 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
 
   @override
   Uint8List serialize(
-    List<core_domain.Observation> observations, {
+    List<core_domain.ObservationPayload> observations, {
     required String deviceId, // the device ID to include in the payloads, e.g. "041bfec6-8923-4b09-be5f-0fd11d3df7f5"
     String? projectId, // the project ID to include in the payloads, e.g. "my-project-id", this value is from invitation
     String? assignId, // the assign ID to include in the payloads, e.g. "my-assign-id", this value is from invitation
@@ -34,7 +34,7 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
 
   /// Builds the JSON upload envelope before UTF-8 encoding.
   Map<String, dynamic> toJson(
-    List<core_domain.Observation> observations, {
+    List<core_domain.ObservationPayload> observations, {
     required String deviceId,
     String? projectId,
     String? assignId,
@@ -49,7 +49,7 @@ class JsonPayloadSerializer implements core_domain.PayloadSerializer {
     };
   }
 
-  Map<String, dynamic> _toTransportJson(core_domain.Observation observation) {
+  Map<String, dynamic> _toTransportJson(core_domain.ObservationPayload observation) {
     return jsonDecode(jsonEncode(observation.toJson())) as Map<String, dynamic>;
   }
 

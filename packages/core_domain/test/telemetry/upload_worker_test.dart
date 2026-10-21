@@ -12,7 +12,7 @@
 //  - UploadWorker — sendPayloadsDirect(): sends selected payloads immediately
 //  - UploadWorker — status attributes: initial state, success, rejection, exception, discard
 
-import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_payload.dart';
 import 'package:core_domain/state/models/data_server.dart';
 import 'package:core_domain/state/models/upload_config.dart';
 import 'package:core_domain/telemetry/models/queued_observation.dart';
@@ -30,21 +30,24 @@ import 'package:flutter_test/flutter_test.dart';
 // Helpers
 // ---------------------------------------------------------------------------
 
-/// Creates a minimal [Observation] for the given integer business date.
-Observation _observation({int date = 20260101, int time = 0}) {
-  return Observation(
-    granularity: ObservationGranularity.minutes5,
+/// Creates a minimal [ObservationPayload] for the given integer business date.
+ObservationPayload _observation({int date = 20260101, int time = 0}) {
+  final year = date ~/ 10000;
+  final month = date ~/ 100 % 100;
+  final day = date % 100;
+  return ObservationPayload(
+    granularity: 'minutes5',
+    id: date * 10000 + time,
+    businessDate:
+        '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
+    expectedSeconds: 300,
     year: date ~/ 10000,
-    month: date ~/ 100 % 100,
-    day: date % 100,
+    month: month,
+    day: day,
     hour: time ~/ 100,
     minute: time % 100,
-    confidenceRatioSum: 0,
-    confidenceSampleCount: 0,
     confidenceRatio: 0,
     coveredSeconds: 0,
-    expectedSeconds: 0,
-    coverageRatio: 0,
     areas: const [],
     frameCount: 0,
   );
@@ -52,11 +55,11 @@ Observation _observation({int date = 20260101, int time = 0}) {
 
 /// [createdAt] defaults to a far-future date (2099) so it is never pruned by
 /// [TelemetryQueue.pruneExpired] in tests that use [_config] defaults.
-QueuedObservation _pending(String testSeed, {DateTime? createdAt, Observation? observation}) {
+QueuedObservation _pending(String testSeed, {DateTime? createdAt, ObservationPayload? payload}) {
   final seedMinutes = testSeed.codeUnits.fold<int>(0, (total, unit) => total + unit) % 1440;
   final time = (seedMinutes ~/ 60) * 100 + seedMinutes % 60;
   return QueuedObservation(
-    observation: observation ?? _observation(time: time),
+    payload: payload ?? _observation(time: time),
     createdAtUtc: createdAt ?? DateTime.utc(2099, 1, 1),
   );
 }
@@ -85,8 +88,8 @@ class _StubQueue implements TelemetryQueue {
   void seed(QueuedObservation row) => _rows.add(row);
 
   @override
-  Future<void> add(Observation observation) async {
-    _rows.add(_pending(observation.id.toString(), observation: observation));
+  Future<void> add(ObservationPayload payload) async {
+    _rows.add(_pending(payload.id.toString(), payload: payload));
   }
 
   @override
@@ -132,7 +135,7 @@ class _StubQueue implements TelemetryQueue {
   @override
   Future<void> markUploadedBatch(List<int> ids) async {
     _successfulIds.addAll(ids);
-    _rows.removeWhere((p) => ids.contains(p.observation.id));
+    _rows.removeWhere((p) => ids.contains(p.payload.id));
   }
 
   @override
@@ -172,14 +175,19 @@ class _ThrowingTransport implements TelemetryTransport {
 }
 
 class _StubSerializer implements PayloadSerializer {
-  final List<List<Observation>> serializedObservations = [];
+  final List<List<ObservationPayload>> serializedObservations = [];
   String? lastDeviceId;
 
   @override
   String get contentType => 'application/json';
 
   @override
-  List<int> serialize(List<Observation> observations, {required String deviceId, String? projectId, String? assignId}) {
+  List<int> serialize(
+    List<ObservationPayload> observations, {
+    required String deviceId,
+    String? projectId,
+    String? assignId,
+  }) {
     serializedObservations.add(observations);
     lastDeviceId = deviceId;
     return [1, 2, 3];
@@ -241,18 +249,18 @@ void main() {
 
     test('sorts groups chronologically and preserves order within each group', () {
       final items = [
-        _pending('later', observation: _observation(date: 20260103)),
-        _pending('earlier-first', observation: _observation(date: 20260101)),
-        _pending('middle', observation: _observation(date: 20260102)),
-        _pending('earlier-second', observation: _observation(date: 20260101, time: 1)),
+        _pending('later', payload: _observation(date: 20260103)),
+        _pending('earlier-first', payload: _observation(date: 20260101)),
+        _pending('middle', payload: _observation(date: 20260102)),
+        _pending('earlier-second', payload: _observation(date: 20260101, time: 1)),
       ];
 
       final groups = worker.splitByDate(items);
 
-      expect(groups.map((group) => group.map((item) => item.observation.id).toList()).toList(), [
-        [items[1].observation.id, items[3].observation.id],
-        [items[2].observation.id],
-        [items[0].observation.id],
+      expect(groups.map((group) => group.map((item) => item.payload.id).toList()).toList(), [
+        [items[1].payload.id, items[3].payload.id],
+        [items[2].payload.id],
+        [items[0].payload.id],
       ]);
     });
   });
@@ -441,10 +449,10 @@ void main() {
 
     test('run() groups payloads by business date and sends each date group separately', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', observation: _observation(date: 20260101)))
-        ..seed(_pending('p2', observation: _observation(date: 20260101, time: 1)))
-        ..seed(_pending('p3', observation: _observation(date: 20260102)))
-        ..seed(_pending('p4', observation: _observation(date: 20260103)));
+        ..seed(_pending('p1', payload: _observation(date: 20260101)))
+        ..seed(_pending('p2', payload: _observation(date: 20260101, time: 1)))
+        ..seed(_pending('p3', payload: _observation(date: 20260102)))
+        ..seed(_pending('p4', payload: _observation(date: 20260103)));
       final transport = _StubTransport();
       final worker = _worker(queue, _StubSerializer(), transport);
 
@@ -459,10 +467,10 @@ void main() {
     test('run() orders date groups chronologically and preserves order within each date', () async {
       final queue = _StubQueue()
         // Date groups are sorted, while items within each group keep queue order.
-        ..seed(_pending('p3', observation: _observation(date: 20260103, time: 300)))
-        ..seed(_pending('p1a', observation: _observation(date: 20260101, time: 100)))
-        ..seed(_pending('p2', observation: _observation(date: 20260102, time: 200)))
-        ..seed(_pending('p1b', observation: _observation(date: 20260101, time: 105)));
+        ..seed(_pending('p3', payload: _observation(date: 20260103, time: 300)))
+        ..seed(_pending('p1a', payload: _observation(date: 20260101, time: 100)))
+        ..seed(_pending('p2', payload: _observation(date: 20260102, time: 200)))
+        ..seed(_pending('p1b', payload: _observation(date: 20260101, time: 105)));
       final transport = _StubTransport();
       final serializer = _StubSerializer();
       final worker = _worker(queue, serializer, transport);
@@ -488,8 +496,8 @@ void main() {
 
     test('run() keeps all payloads pending when first date group fails', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', observation: _observation(date: 20260101)))
-        ..seed(_pending('p2', observation: _observation(date: 20260102)));
+        ..seed(_pending('p1', payload: _observation(date: 20260101)))
+        ..seed(_pending('p2', payload: _observation(date: 20260102)));
       final transport = _StubTransport()..failOnCallNumber = 1; // Fail on first call
       final worker = _worker(queue, _StubSerializer(), transport);
 
@@ -502,9 +510,9 @@ void main() {
 
     test('run() handles multiple payloads with same date in one batch', () async {
       final queue = _StubQueue()
-        ..seed(_pending('p1', observation: _observation(date: 20260101)))
-        ..seed(_pending('p2', observation: _observation(date: 20260101, time: 1)))
-        ..seed(_pending('p3', observation: _observation(date: 20260101, time: 2)));
+        ..seed(_pending('p1', payload: _observation(date: 20260101)))
+        ..seed(_pending('p2', payload: _observation(date: 20260101, time: 1)))
+        ..seed(_pending('p3', payload: _observation(date: 20260101, time: 2)));
       final transport = _StubTransport();
       final worker = _worker(queue, _StubSerializer(), transport);
 

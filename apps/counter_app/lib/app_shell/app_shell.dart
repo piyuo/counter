@@ -82,7 +82,8 @@ class _AppShellState extends ConsumerState<AppShell> {
     }
 
     try {
-      await telemetryService.enqueue(observation);
+      final payload = observation.toPayload();
+      await telemetryService.add(payload);
     } catch (error, stackTrace) {
       appkit.logDebug(
         '[app_shell] Failed to enqueue telemetry payload: $error, '

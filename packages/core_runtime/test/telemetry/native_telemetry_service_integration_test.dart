@@ -34,22 +34,28 @@ Future<AppDatabaseFun> _openTempTelemetryDb() async {
   return db;
 }
 
-core_domain.Observation _observation({required DateTime startUtc}) {
+core_domain.ObservationPayload _observation({required DateTime startUtc}) {
   final startBusiness = startUtc.toLocal();
-  return core_domain.Observation(
-    granularity: core_domain.ObservationGranularity.minutes5,
-    year: startBusiness.year,
-    month: startBusiness.month,
-    day: startBusiness.day,
-    hour: startBusiness.hour,
-    minute: startBusiness.minute,
+  final year = startBusiness.year;
+  final month = startBusiness.month;
+  final day = startBusiness.day;
+  final hour = startBusiness.hour;
+  final minute = startBusiness.minute;
+  return core_domain.ObservationPayload(
+    granularity: 'minutes5',
+    year: year,
+    month: month,
+    day: day,
+    hour: hour,
+    minute: minute,
+    id: core_domain.keyFromComponents([year, month, day, hour, minute]),
+    businessDate:
+        '${year.toString().padLeft(4, '0')}-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}',
     frameCount: 0,
-    confidenceRatioSum: 0,
-    confidenceSampleCount: 0,
     confidenceRatio: 0,
+    expectedSeconds: 300,
     coveredSeconds: 1,
-    expectedSeconds: 1,
-    coverageRatio: 1,
+    coverageRatio: 1 / 300,
     areas: const [],
   );
 }
@@ -72,7 +78,7 @@ void main() {
       addTearDown(container.dispose);
       final queue = _ReadyOnceQueue(
         core_domain.QueuedObservation(
-          observation: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)),
+          payload: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)),
           createdAtUtc: DateTime.utc(2026, 1, 1, 0, 0),
         ),
       );
@@ -134,7 +140,7 @@ void main() {
 
       final queue = _ReadyOnceQueue(
         core_domain.QueuedObservation(
-          observation: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 5)),
+          payload: _observation(startUtc: DateTime.utc(2026, 1, 1, 0, 5)),
           createdAtUtc: DateTime.utc(2026, 1, 1, 0, 0),
         ),
       );
@@ -190,13 +196,13 @@ void main() {
         transport: const _NoopSuccessTransport(),
       );
 
-      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
+      await service.add(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
 
       await service.uploadNow();
 
       final availableBeforePrune = await queue.fetchRecent(daysBack: 7);
       final payloadId = _payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0));
-      expect(availableBeforePrune.map((p) => p.observation.id), contains(payloadId));
+      expect(availableBeforePrune.map((p) => p.payload.id), contains(payloadId));
       expect(await queue.pendingCount(), 0);
 
       final oldCreatedMs = DateTime.now().toUtc().subtract(const Duration(days: 11)).millisecondsSinceEpoch;
@@ -207,7 +213,7 @@ void main() {
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final availableAfterPrune = await queue.fetchRecent(daysBack: 7);
-      expect(availableAfterPrune.map((p) => p.observation.id), isNot(contains(payloadId)));
+      expect(availableAfterPrune.map((p) => p.payload.id), isNot(contains(payloadId)));
     });
 
     test('repeated flush does not resend already-delivered payload', () async {
@@ -228,7 +234,7 @@ void main() {
         transport: transport,
       );
 
-      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
+      await service.add(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
 
       await service.uploadNow();
       await service.uploadNow();
@@ -236,7 +242,7 @@ void main() {
       expect(transport.sendCount, 1);
       expect(await queue.pendingCount(), 0);
       final available = await queue.fetchRecent(daysBack: 7);
-      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.observation.id);
+      final delivered = available.where((p) => p.uploadedAtUtc != null).map((p) => p.payload.id);
       expect(delivered, contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
     });
 
@@ -257,18 +263,18 @@ void main() {
       );
 
       // First payload is delivered via flush.
-      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
+      await service.add(_observation(startUtc: DateTime.utc(2026, 1, 1, 0, 0)));
       await service.uploadNow();
 
       // Second payload remains pending (not flushed).
-      await service.enqueue(_observation(startUtc: DateTime.utc(2026, 1, 1, 1, 0)));
+      await service.add(_observation(startUtc: DateTime.utc(2026, 1, 1, 1, 0)));
 
       await queue.pruneExpired(DateTime.now().toUtc().subtract(const Duration(days: 10)));
 
       final available = await queue.fetchRecent(daysBack: 7);
       final pending = await queue.fetchReady(limit: 10);
-      expect(available.map((p) => p.observation.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
-      expect(pending.map((p) => p.observation.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 1, 0))));
+      expect(available.map((p) => p.payload.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))));
+      expect(pending.map((p) => p.payload.id), contains(_payloadId(startUtc: DateTime.utc(2026, 1, 1, 1, 0))));
       expect(await queue.pendingCount(), 1);
     });
   });
@@ -367,7 +373,7 @@ class _ReadyOnceQueue implements core_domain.TelemetryQueue {
   final List<int> markedSuccessIds = [];
 
   @override
-  Future<void> add(core_domain.Observation observation) async {}
+  Future<void> add(core_domain.ObservationPayload payload) async {}
 
   @override
   Future<List<core_domain.QueuedObservation>> fetchReady({int limit = 10}) async {
@@ -420,7 +426,7 @@ class _JsonSerializer implements core_domain.PayloadSerializer {
 
   @override
   List<int> serialize(
-    List<core_domain.Observation> observations, {
+    List<core_domain.ObservationPayload> observations, {
     required String deviceId,
     String? projectId,
     String? assignId,
