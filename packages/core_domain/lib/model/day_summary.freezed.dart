@@ -17,10 +17,19 @@ T _$identity<T>(T value) => value;
 mixin _$DaySummary {
 
 /// for example: year=2026, month=1, day=12
- int get year; int get month; int get day;/// 5-minute observations, max 288 per day. Fewer entries if data is missing.
- List<Observation> get fiveMinuteObservations;/// Hourly observations aggregated from the 5-minute ones. Max 24 per day.
- List<Observation> get hourlyObservations;/// Daily observation aggregated from the hourly ones.
- Observation get dailyObservation;
+ int get year; int get month; int get day;/// 5-minute observations, max 288 per day (see [ObservationSeries.maxLength]).
+/// Fewer entries if data is missing.
+@ObservationSeriesConverter() ObservationSeries get fiveMinuteObservations;/// Actual traffic totals for each hour.
+///
+/// Aggregated from available 5-minute observations.
+/// Counts are never adjusted for missing coverage.
+///
+/// Maximum 24 entries under the current business-time
+ List<Observation> get hourlyTotals;/// Actual traffic total for the day.
+///
+/// Aggregated from hourly totals.
+/// Counts are never adjusted for missing coverage.
+ Observation get dailyTotal;
 /// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -34,14 +43,14 @@ $DaySummaryCopyWith<DaySummary> get copyWith => _$DaySummaryCopyWithImpl<DaySumm
 @override
 bool operator ==(Object other) {
   final _this = this as DaySummary;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DaySummary&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&const DeepCollectionEquality().equals(other.fiveMinuteObservations, _this.fiveMinuteObservations)&&const DeepCollectionEquality().equals(other.hourlyObservations, _this.hourlyObservations)&&(identical(other.dailyObservation, _this.dailyObservation) || other.dailyObservation == _this.dailyObservation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DaySummary&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&const DeepCollectionEquality().equals(other.fiveMinuteObservations, _this.fiveMinuteObservations)&&const DeepCollectionEquality().equals(other.hourlyTotals, _this.hourlyTotals)&&(identical(other.dailyTotal, _this.dailyTotal) || other.dailyTotal == _this.dailyTotal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as DaySummary;
-  return Object.hash(runtimeType,_this.year,_this.month,_this.day,const DeepCollectionEquality().hash(_this.fiveMinuteObservations),const DeepCollectionEquality().hash(_this.hourlyObservations),_this.dailyObservation);
+  return Object.hash(runtimeType,_this.year,_this.month,_this.day,const DeepCollectionEquality().hash(_this.fiveMinuteObservations),const DeepCollectionEquality().hash(_this.hourlyTotals),_this.dailyTotal);
 }
 
 
@@ -53,11 +62,11 @@ abstract mixin class $DaySummaryCopyWith<$Res>  {
   factory $DaySummaryCopyWith(DaySummary value, $Res Function(DaySummary) _then) = _$DaySummaryCopyWithImpl;
 @useResult
 $Res call({
- int year, int month, int day, List<Observation> fiveMinuteObservations, List<Observation> hourlyObservations, Observation dailyObservation
+ int year, int month, int day,@ObservationSeriesConverter() ObservationSeries fiveMinuteObservations, List<Observation> hourlyTotals, Observation dailyTotal
 });
 
 
-$ObservationCopyWith<$Res> get dailyObservation;
+$ObservationCopyWith<$Res> get dailyTotal;
 
 }
 /// @nodoc
@@ -70,14 +79,14 @@ class _$DaySummaryCopyWithImpl<$Res>
 
 /// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? year = null,Object? month = null,Object? day = null,Object? fiveMinuteObservations = null,Object? hourlyObservations = null,Object? dailyObservation = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? year = null,Object? month = null,Object? day = null,Object? fiveMinuteObservations = null,Object? hourlyTotals = null,Object? dailyTotal = null,}) {
   return _then(DaySummary(
 year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
 as int,month: null == month ? _self.month : month // ignore: cast_nullable_to_non_nullable
 as int,day: null == day ? _self.day : day // ignore: cast_nullable_to_non_nullable
 as int,fiveMinuteObservations: null == fiveMinuteObservations ? _self.fiveMinuteObservations : fiveMinuteObservations // ignore: cast_nullable_to_non_nullable
-as List<Observation>,hourlyObservations: null == hourlyObservations ? _self.hourlyObservations : hourlyObservations // ignore: cast_nullable_to_non_nullable
-as List<Observation>,dailyObservation: null == dailyObservation ? _self.dailyObservation : dailyObservation // ignore: cast_nullable_to_non_nullable
+as ObservationSeries,hourlyTotals: null == hourlyTotals ? _self.hourlyTotals : hourlyTotals // ignore: cast_nullable_to_non_nullable
+as List<Observation>,dailyTotal: null == dailyTotal ? _self.dailyTotal : dailyTotal // ignore: cast_nullable_to_non_nullable
 as Observation,
   ));
 }
@@ -85,10 +94,10 @@ as Observation,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ObservationCopyWith<$Res> get dailyObservation {
+$ObservationCopyWith<$Res> get dailyTotal {
   
-  return $ObservationCopyWith<$Res>(_self.dailyObservation, (value) {
-    return _then(_self.copyWith(dailyObservation: value));
+  return $ObservationCopyWith<$Res>(_self.dailyTotal, (value) {
+    return _then(_self.copyWith(dailyTotal: value));
   });
 }
 }
@@ -169,10 +178,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int year,  int month,  int day,  List<Observation> fiveMinuteObservations,  List<Observation> hourlyObservations,  Observation dailyObservation)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int year,  int month,  int day, @ObservationSeriesConverter()  ObservationSeries fiveMinuteObservations,  List<Observation> hourlyTotals,  Observation dailyTotal)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DaySummary() when $default != null:
-return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyObservations,_that.dailyObservation);case _:
+return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyTotals,_that.dailyTotal);case _:
   return orElse();
 
 }
@@ -190,10 +199,10 @@ return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int year,  int month,  int day,  List<Observation> fiveMinuteObservations,  List<Observation> hourlyObservations,  Observation dailyObservation)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int year,  int month,  int day, @ObservationSeriesConverter()  ObservationSeries fiveMinuteObservations,  List<Observation> hourlyTotals,  Observation dailyTotal)  $default,) {final _that = this;
 switch (_that) {
 case _DaySummary():
-return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyObservations,_that.dailyObservation);}
+return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyTotals,_that.dailyTotal);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -207,10 +216,10 @@ return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int year,  int month,  int day,  List<Observation> fiveMinuteObservations,  List<Observation> hourlyObservations,  Observation dailyObservation)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int year,  int month,  int day, @ObservationSeriesConverter()  ObservationSeries fiveMinuteObservations,  List<Observation> hourlyTotals,  Observation dailyTotal)?  $default,) {final _that = this;
 switch (_that) {
 case _DaySummary() when $default != null:
-return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyObservations,_that.dailyObservation);case _:
+return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_that.hourlyTotals,_that.dailyTotal);case _:
   return null;
 
 }
@@ -222,33 +231,40 @@ return $default(_that.year,_that.month,_that.day,_that.fiveMinuteObservations,_t
 @JsonSerializable()
 
 class _DaySummary extends DaySummary {
-  const _DaySummary({required this.year, required this.month, required this.day, required  List<Observation> fiveMinuteObservations, required  List<Observation> hourlyObservations, required this.dailyObservation}): _fiveMinuteObservations = fiveMinuteObservations,_hourlyObservations = hourlyObservations,super._();
+  const _DaySummary({required this.year, required this.month, required this.day, @ObservationSeriesConverter() required this.fiveMinuteObservations, required  List<Observation> hourlyTotals, required this.dailyTotal}): _hourlyTotals = hourlyTotals,super._();
   factory _DaySummary.fromJson(Map<String, dynamic> json) => _$DaySummaryFromJson(json);
 
 /// for example: year=2026, month=1, day=12
 @override final  int year;
 @override final  int month;
 @override final  int day;
-/// 5-minute observations, max 288 per day. Fewer entries if data is missing.
- final  List<Observation> _fiveMinuteObservations;
-/// 5-minute observations, max 288 per day. Fewer entries if data is missing.
-@override List<Observation> get fiveMinuteObservations {
-  if (_fiveMinuteObservations is EqualUnmodifiableListView) return _fiveMinuteObservations;
+/// 5-minute observations, max 288 per day (see [ObservationSeries.maxLength]).
+/// Fewer entries if data is missing.
+@override@ObservationSeriesConverter() final  ObservationSeries fiveMinuteObservations;
+/// Actual traffic totals for each hour.
+///
+/// Aggregated from available 5-minute observations.
+/// Counts are never adjusted for missing coverage.
+///
+/// Maximum 24 entries under the current business-time
+ final  List<Observation> _hourlyTotals;
+/// Actual traffic totals for each hour.
+///
+/// Aggregated from available 5-minute observations.
+/// Counts are never adjusted for missing coverage.
+///
+/// Maximum 24 entries under the current business-time
+@override List<Observation> get hourlyTotals {
+  if (_hourlyTotals is EqualUnmodifiableListView) return _hourlyTotals;
   // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_fiveMinuteObservations);
+  return EqualUnmodifiableListView(_hourlyTotals);
 }
 
-/// Hourly observations aggregated from the 5-minute ones. Max 24 per day.
- final  List<Observation> _hourlyObservations;
-/// Hourly observations aggregated from the 5-minute ones. Max 24 per day.
-@override List<Observation> get hourlyObservations {
-  if (_hourlyObservations is EqualUnmodifiableListView) return _hourlyObservations;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableListView(_hourlyObservations);
-}
-
-/// Daily observation aggregated from the hourly ones.
-@override final  Observation dailyObservation;
+/// Actual traffic total for the day.
+///
+/// Aggregated from hourly totals.
+/// Counts are never adjusted for missing coverage.
+@override final  Observation dailyTotal;
 
 /// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
@@ -263,13 +279,13 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DaySummary&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&const DeepCollectionEquality().equals(other.fiveMinuteObservations, _fiveMinuteObservations)&&const DeepCollectionEquality().equals(other.hourlyObservations, _hourlyObservations)&&(identical(other.dailyObservation, dailyObservation) || other.dailyObservation == dailyObservation));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _DaySummary&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&const DeepCollectionEquality().equals(other.fiveMinuteObservations, fiveMinuteObservations)&&const DeepCollectionEquality().equals(other.hourlyTotals, _hourlyTotals)&&(identical(other.dailyTotal, dailyTotal) || other.dailyTotal == dailyTotal));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,year,month,day,const DeepCollectionEquality().hash(_fiveMinuteObservations),const DeepCollectionEquality().hash(_hourlyObservations),dailyObservation);
+    return Object.hash(runtimeType,year,month,day,const DeepCollectionEquality().hash(fiveMinuteObservations),const DeepCollectionEquality().hash(_hourlyTotals),dailyTotal);
 }
 
 
@@ -281,11 +297,11 @@ abstract mixin class _$DaySummaryCopyWith<$Res> implements $DaySummaryCopyWith<$
   factory _$DaySummaryCopyWith(_DaySummary value, $Res Function(_DaySummary) _then) = __$DaySummaryCopyWithImpl;
 @override @useResult
 $Res call({
- int year, int month, int day, List<Observation> fiveMinuteObservations, List<Observation> hourlyObservations, Observation dailyObservation
+ int year, int month, int day,@ObservationSeriesConverter() ObservationSeries fiveMinuteObservations, List<Observation> hourlyTotals, Observation dailyTotal
 });
 
 
-@override $ObservationCopyWith<$Res> get dailyObservation;
+@override $ObservationCopyWith<$Res> get dailyTotal;
 
 }
 /// @nodoc
@@ -298,14 +314,14 @@ class __$DaySummaryCopyWithImpl<$Res>
 
 /// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? year = null,Object? month = null,Object? day = null,Object? fiveMinuteObservations = null,Object? hourlyObservations = null,Object? dailyObservation = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? year = null,Object? month = null,Object? day = null,Object? fiveMinuteObservations = null,Object? hourlyTotals = null,Object? dailyTotal = null,}) {
   return _then(_DaySummary(
 year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
 as int,month: null == month ? _self.month : month // ignore: cast_nullable_to_non_nullable
 as int,day: null == day ? _self.day : day // ignore: cast_nullable_to_non_nullable
-as int,fiveMinuteObservations: null == fiveMinuteObservations ? _self._fiveMinuteObservations : fiveMinuteObservations // ignore: cast_nullable_to_non_nullable
-as List<Observation>,hourlyObservations: null == hourlyObservations ? _self._hourlyObservations : hourlyObservations // ignore: cast_nullable_to_non_nullable
-as List<Observation>,dailyObservation: null == dailyObservation ? _self.dailyObservation : dailyObservation // ignore: cast_nullable_to_non_nullable
+as int,fiveMinuteObservations: null == fiveMinuteObservations ? _self.fiveMinuteObservations : fiveMinuteObservations // ignore: cast_nullable_to_non_nullable
+as ObservationSeries,hourlyTotals: null == hourlyTotals ? _self._hourlyTotals : hourlyTotals // ignore: cast_nullable_to_non_nullable
+as List<Observation>,dailyTotal: null == dailyTotal ? _self.dailyTotal : dailyTotal // ignore: cast_nullable_to_non_nullable
 as Observation,
   ));
 }
@@ -314,10 +330,10 @@ as Observation,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ObservationCopyWith<$Res> get dailyObservation {
+$ObservationCopyWith<$Res> get dailyTotal {
   
-  return $ObservationCopyWith<$Res>(_self.dailyObservation, (value) {
-    return _then(_self.copyWith(dailyObservation: value));
+  return $ObservationCopyWith<$Res>(_self.dailyTotal, (value) {
+    return _then(_self.copyWith(dailyTotal: value));
   });
 }
 }

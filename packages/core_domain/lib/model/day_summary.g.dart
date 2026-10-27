@@ -10,15 +10,13 @@ _DaySummary _$DaySummaryFromJson(Map<String, dynamic> json) => _DaySummary(
   year: (json['year'] as num).toInt(),
   month: (json['month'] as num).toInt(),
   day: (json['day'] as num).toInt(),
-  fiveMinuteObservations: (json['fiveMinuteObservations'] as List<dynamic>)
-      .map((e) => Observation.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  hourlyObservations: (json['hourlyObservations'] as List<dynamic>)
-      .map((e) => Observation.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  dailyObservation: Observation.fromJson(
-    json['dailyObservation'] as Map<String, dynamic>,
+  fiveMinuteObservations: const ObservationSeriesConverter().fromJson(
+    json['fiveMinuteObservations'] as List,
   ),
+  hourlyTotals: (json['hourlyTotals'] as List<dynamic>)
+      .map((e) => Observation.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  dailyTotal: Observation.fromJson(json['dailyTotal'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$DaySummaryToJson(_DaySummary instance) =>
@@ -26,7 +24,9 @@ Map<String, dynamic> _$DaySummaryToJson(_DaySummary instance) =>
       'year': instance.year,
       'month': instance.month,
       'day': instance.day,
-      'fiveMinuteObservations': instance.fiveMinuteObservations,
-      'hourlyObservations': instance.hourlyObservations,
-      'dailyObservation': instance.dailyObservation,
+      'fiveMinuteObservations': const ObservationSeriesConverter().toJson(
+        instance.fiveMinuteObservations,
+      ),
+      'hourlyTotals': instance.hourlyTotals,
+      'dailyTotal': instance.dailyTotal,
     };

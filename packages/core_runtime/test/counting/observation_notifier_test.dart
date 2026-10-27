@@ -52,7 +52,7 @@ ObservationNotifier notifier(ProviderContainer container) {
 
 core_domain.Observation? state(ProviderContainer container) => container.read(observationProvider);
 
-core_domain.AreaMetrics _area(core_domain.Observation payload, int areaId) =>
+core_domain.Activity _area(core_domain.Observation payload, int areaId) =>
     payload.areas.singleWhere((metrics) => metrics.areaId == areaId);
 
 int _windowStart(core_domain.Observation payload) => payload.hour * 100 + payload.minute;

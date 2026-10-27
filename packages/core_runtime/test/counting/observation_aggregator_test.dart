@@ -8,7 +8,7 @@ String _testAreaNameResolver(int areaId) {
   return 'Area $areaId';
 }
 
-core_domain.AreaMetrics _area(Observation observation, int areaId) =>
+core_domain.Activity _area(Observation observation, int areaId) =>
     observation.areas.singleWhere((metrics) => metrics.areaId == areaId);
 
 void main() {

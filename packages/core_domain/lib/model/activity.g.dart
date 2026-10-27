@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'area_metrics.dart';
+part of 'activity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AreaMetrics _$AreaMetricsFromJson(Map<String, dynamic> json) => _AreaMetrics(
+_Activity _$ActivityFromJson(Map<String, dynamic> json) => _Activity(
   areaId: (json['areaId'] as num).toInt(),
   areaName: json['areaName'] as String,
   passBy: json['passBy'] == null
@@ -42,25 +42,24 @@ _AreaMetrics _$AreaMetricsFromJson(Map<String, dynamic> json) => _AreaMetrics(
   presenceSumSeconds: (json['presenceSumSeconds'] as num?)?.toInt() ?? 0,
 );
 
-Map<String, dynamic> _$AreaMetricsToJson(_AreaMetrics instance) =>
-    <String, dynamic>{
-      'areaId': instance.areaId,
-      'areaName': instance.areaName,
-      'passBy': const RoundedDouble().toJson(instance.passBy),
-      'stagnant': const RoundedDouble().toJson(instance.stagnant),
-      'entry': const RoundedDouble().toJson(instance.entry),
-      'exit': const RoundedDouble().toJson(instance.exit),
-      'appear': const RoundedDouble().toJson(instance.appear),
-      'disappear': const RoundedDouble().toJson(instance.disappear),
-      'occupancySampleCount': instance.occupancySampleCount,
-      'occupancySum': instance.occupancySum,
-      'occupancySumSquares': instance.occupancySumSquares,
-      'occupancyMax': instance.occupancyMax,
-      'occupancyLast': instance.occupancyLast,
-      'dwellSampleCount': instance.dwellSampleCount,
-      'dwellSumSeconds': instance.dwellSumSeconds,
-      'dwellMaxSeconds': instance.dwellMaxSeconds,
-      'dwellHistogram': instance.dwellHistogram,
-      'presenceSampleCount': instance.presenceSampleCount,
-      'presenceSumSeconds': instance.presenceSumSeconds,
-    };
+Map<String, dynamic> _$ActivityToJson(_Activity instance) => <String, dynamic>{
+  'areaId': instance.areaId,
+  'areaName': instance.areaName,
+  'passBy': const RoundedDouble().toJson(instance.passBy),
+  'stagnant': const RoundedDouble().toJson(instance.stagnant),
+  'entry': const RoundedDouble().toJson(instance.entry),
+  'exit': const RoundedDouble().toJson(instance.exit),
+  'appear': const RoundedDouble().toJson(instance.appear),
+  'disappear': const RoundedDouble().toJson(instance.disappear),
+  'occupancySampleCount': instance.occupancySampleCount,
+  'occupancySum': instance.occupancySum,
+  'occupancySumSquares': instance.occupancySumSquares,
+  'occupancyMax': instance.occupancyMax,
+  'occupancyLast': instance.occupancyLast,
+  'dwellSampleCount': instance.dwellSampleCount,
+  'dwellSumSeconds': instance.dwellSumSeconds,
+  'dwellMaxSeconds': instance.dwellMaxSeconds,
+  'dwellHistogram': instance.dwellHistogram,
+  'presenceSampleCount': instance.presenceSampleCount,
+  'presenceSumSeconds': instance.presenceSumSeconds,
+};

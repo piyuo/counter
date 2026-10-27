@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'area_metrics.dart';
+part of 'activity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,7 +14,7 @@ part of 'area_metrics.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AreaMetrics {
+mixin _$Activity {
 
 /// Index matching the configured interest-area ID.
 ///
@@ -184,41 +184,41 @@ mixin _$AreaMetrics {
 ///
 /// Additive across child observations.
  int get presenceSumSeconds;
-/// Create a copy of AreaMetrics
+/// Create a copy of Activity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$AreaMetricsCopyWith<AreaMetrics> get copyWith => _$AreaMetricsCopyWithImpl<AreaMetrics>(this as AreaMetrics, _$identity);
+$ActivityCopyWith<Activity> get copyWith => _$ActivityCopyWithImpl<Activity>(this as Activity, _$identity);
 
-  /// Serializes this AreaMetrics to a JSON map.
+  /// Serializes this Activity to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as AreaMetrics;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaMetrics&&(identical(other.areaId, _this.areaId) || other.areaId == _this.areaId)&&(identical(other.areaName, _this.areaName) || other.areaName == _this.areaName)&&(identical(other.passBy, _this.passBy) || other.passBy == _this.passBy)&&(identical(other.stagnant, _this.stagnant) || other.stagnant == _this.stagnant)&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&(identical(other.exit, _this.exit) || other.exit == _this.exit)&&(identical(other.appear, _this.appear) || other.appear == _this.appear)&&(identical(other.disappear, _this.disappear) || other.disappear == _this.disappear)&&(identical(other.occupancySampleCount, _this.occupancySampleCount) || other.occupancySampleCount == _this.occupancySampleCount)&&(identical(other.occupancySum, _this.occupancySum) || other.occupancySum == _this.occupancySum)&&(identical(other.occupancySumSquares, _this.occupancySumSquares) || other.occupancySumSquares == _this.occupancySumSquares)&&(identical(other.occupancyMax, _this.occupancyMax) || other.occupancyMax == _this.occupancyMax)&&(identical(other.occupancyLast, _this.occupancyLast) || other.occupancyLast == _this.occupancyLast)&&(identical(other.dwellSampleCount, _this.dwellSampleCount) || other.dwellSampleCount == _this.dwellSampleCount)&&(identical(other.dwellSumSeconds, _this.dwellSumSeconds) || other.dwellSumSeconds == _this.dwellSumSeconds)&&(identical(other.dwellMaxSeconds, _this.dwellMaxSeconds) || other.dwellMaxSeconds == _this.dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _this.dwellHistogram)&&(identical(other.presenceSampleCount, _this.presenceSampleCount) || other.presenceSampleCount == _this.presenceSampleCount)&&(identical(other.presenceSumSeconds, _this.presenceSumSeconds) || other.presenceSumSeconds == _this.presenceSumSeconds));
+  final _this = this as Activity;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Activity&&(identical(other.areaId, _this.areaId) || other.areaId == _this.areaId)&&(identical(other.areaName, _this.areaName) || other.areaName == _this.areaName)&&(identical(other.passBy, _this.passBy) || other.passBy == _this.passBy)&&(identical(other.stagnant, _this.stagnant) || other.stagnant == _this.stagnant)&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&(identical(other.exit, _this.exit) || other.exit == _this.exit)&&(identical(other.appear, _this.appear) || other.appear == _this.appear)&&(identical(other.disappear, _this.disappear) || other.disappear == _this.disappear)&&(identical(other.occupancySampleCount, _this.occupancySampleCount) || other.occupancySampleCount == _this.occupancySampleCount)&&(identical(other.occupancySum, _this.occupancySum) || other.occupancySum == _this.occupancySum)&&(identical(other.occupancySumSquares, _this.occupancySumSquares) || other.occupancySumSquares == _this.occupancySumSquares)&&(identical(other.occupancyMax, _this.occupancyMax) || other.occupancyMax == _this.occupancyMax)&&(identical(other.occupancyLast, _this.occupancyLast) || other.occupancyLast == _this.occupancyLast)&&(identical(other.dwellSampleCount, _this.dwellSampleCount) || other.dwellSampleCount == _this.dwellSampleCount)&&(identical(other.dwellSumSeconds, _this.dwellSumSeconds) || other.dwellSumSeconds == _this.dwellSumSeconds)&&(identical(other.dwellMaxSeconds, _this.dwellMaxSeconds) || other.dwellMaxSeconds == _this.dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _this.dwellHistogram)&&(identical(other.presenceSampleCount, _this.presenceSampleCount) || other.presenceSampleCount == _this.presenceSampleCount)&&(identical(other.presenceSumSeconds, _this.presenceSumSeconds) || other.presenceSumSeconds == _this.presenceSumSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-  final _this = this as AreaMetrics;
+  final _this = this as Activity;
   return Object.hashAll([runtimeType,_this.areaId,_this.areaName,_this.passBy,_this.stagnant,_this.entry,_this.exit,_this.appear,_this.disappear,_this.occupancySampleCount,_this.occupancySum,_this.occupancySumSquares,_this.occupancyMax,_this.occupancyLast,_this.dwellSampleCount,_this.dwellSumSeconds,_this.dwellMaxSeconds,const DeepCollectionEquality().hash(_this.dwellHistogram),_this.presenceSampleCount,_this.presenceSumSeconds]);
 }
 
 @override
 String toString() {
-  final _this = this as AreaMetrics;
-  return 'AreaMetrics(areaId: ${_this.areaId}, areaName: ${_this.areaName}, passBy: ${_this.passBy}, stagnant: ${_this.stagnant}, entry: ${_this.entry}, exit: ${_this.exit}, appear: ${_this.appear}, disappear: ${_this.disappear}, occupancySampleCount: ${_this.occupancySampleCount}, occupancySum: ${_this.occupancySum}, occupancySumSquares: ${_this.occupancySumSquares}, occupancyMax: ${_this.occupancyMax}, occupancyLast: ${_this.occupancyLast}, dwellSampleCount: ${_this.dwellSampleCount}, dwellSumSeconds: ${_this.dwellSumSeconds}, dwellMaxSeconds: ${_this.dwellMaxSeconds}, dwellHistogram: ${_this.dwellHistogram}, presenceSampleCount: ${_this.presenceSampleCount}, presenceSumSeconds: ${_this.presenceSumSeconds})';
+  final _this = this as Activity;
+  return 'Activity(areaId: ${_this.areaId}, areaName: ${_this.areaName}, passBy: ${_this.passBy}, stagnant: ${_this.stagnant}, entry: ${_this.entry}, exit: ${_this.exit}, appear: ${_this.appear}, disappear: ${_this.disappear}, occupancySampleCount: ${_this.occupancySampleCount}, occupancySum: ${_this.occupancySum}, occupancySumSquares: ${_this.occupancySumSquares}, occupancyMax: ${_this.occupancyMax}, occupancyLast: ${_this.occupancyLast}, dwellSampleCount: ${_this.dwellSampleCount}, dwellSumSeconds: ${_this.dwellSumSeconds}, dwellMaxSeconds: ${_this.dwellMaxSeconds}, dwellHistogram: ${_this.dwellHistogram}, presenceSampleCount: ${_this.presenceSampleCount}, presenceSumSeconds: ${_this.presenceSumSeconds})';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $AreaMetricsCopyWith<$Res>  {
-  factory $AreaMetricsCopyWith(AreaMetrics value, $Res Function(AreaMetrics) _then) = _$AreaMetricsCopyWithImpl;
+abstract mixin class $ActivityCopyWith<$Res>  {
+  factory $ActivityCopyWith(Activity value, $Res Function(Activity) _then) = _$ActivityCopyWithImpl;
 @useResult
 $Res call({
  int areaId, String areaName,@RoundedDouble() double passBy,@RoundedDouble() double stagnant,@RoundedDouble() double entry,@RoundedDouble() double exit,@RoundedDouble() double appear,@RoundedDouble() double disappear, int occupancySampleCount, int occupancySum, int occupancySumSquares, int occupancyMax, int occupancyLast, int dwellSampleCount, int dwellSumSeconds, int dwellMaxSeconds, List<int> dwellHistogram, int presenceSampleCount, int presenceSumSeconds
@@ -229,17 +229,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$AreaMetricsCopyWithImpl<$Res>
-    implements $AreaMetricsCopyWith<$Res> {
-  _$AreaMetricsCopyWithImpl(this._self, this._then);
+class _$ActivityCopyWithImpl<$Res>
+    implements $ActivityCopyWith<$Res> {
+  _$ActivityCopyWithImpl(this._self, this._then);
 
-  final AreaMetrics _self;
-  final $Res Function(AreaMetrics) _then;
+  final Activity _self;
+  final $Res Function(Activity) _then;
 
-/// Create a copy of AreaMetrics
+/// Create a copy of Activity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stagnant = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancySampleCount = null,Object? occupancySum = null,Object? occupancySumSquares = null,Object? occupancyMax = null,Object? occupancyLast = null,Object? dwellSampleCount = null,Object? dwellSumSeconds = null,Object? dwellMaxSeconds = null,Object? dwellHistogram = null,Object? presenceSampleCount = null,Object? presenceSumSeconds = null,}) {
-  return _then(AreaMetrics(
+  return _then(Activity(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
 as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
@@ -266,8 +266,8 @@ as int,
 }
 
 
-/// Adds pattern-matching-related methods to [AreaMetrics].
-extension AreaMetricsPatterns on AreaMetrics {
+/// Adds pattern-matching-related methods to [Activity].
+extension ActivityPatterns on Activity {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -280,10 +280,10 @@ extension AreaMetricsPatterns on AreaMetrics {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AreaMetrics value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Activity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AreaMetrics() when $default != null:
+case _Activity() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -302,10 +302,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AreaMetrics value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Activity value)  $default,){
 final _that = this;
 switch (_that) {
-case _AreaMetrics():
+case _Activity():
 return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -320,10 +320,10 @@ return $default(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AreaMetrics value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Activity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _AreaMetrics() when $default != null:
+case _Activity() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -343,7 +343,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int areaId,  String areaName, @RoundedDouble()  double passBy, @RoundedDouble()  double stagnant, @RoundedDouble()  double entry, @RoundedDouble()  double exit, @RoundedDouble()  double appear, @RoundedDouble()  double disappear,  int occupancySampleCount,  int occupancySum,  int occupancySumSquares,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AreaMetrics() when $default != null:
+case _Activity() when $default != null:
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancySumSquares,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds);case _:
   return orElse();
 
@@ -364,7 +364,7 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int areaId,  String areaName, @RoundedDouble()  double passBy, @RoundedDouble()  double stagnant, @RoundedDouble()  double entry, @RoundedDouble()  double exit, @RoundedDouble()  double appear, @RoundedDouble()  double disappear,  int occupancySampleCount,  int occupancySum,  int occupancySumSquares,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds)  $default,) {final _that = this;
 switch (_that) {
-case _AreaMetrics():
+case _Activity():
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancySumSquares,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -381,7 +381,7 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int areaId,  String areaName, @RoundedDouble()  double passBy, @RoundedDouble()  double stagnant, @RoundedDouble()  double entry, @RoundedDouble()  double exit, @RoundedDouble()  double appear, @RoundedDouble()  double disappear,  int occupancySampleCount,  int occupancySum,  int occupancySumSquares,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds)?  $default,) {final _that = this;
 switch (_that) {
-case _AreaMetrics() when $default != null:
+case _Activity() when $default != null:
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancySumSquares,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds);case _:
   return null;
 
@@ -393,9 +393,9 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 /// @nodoc
 @JsonSerializable()
 
-class _AreaMetrics extends AreaMetrics {
-  const _AreaMetrics({required this.areaId, required this.areaName, @RoundedDouble() this.passBy = 0, @RoundedDouble() this.stagnant = 0, @RoundedDouble() this.entry = 0, @RoundedDouble() this.exit = 0, @RoundedDouble() this.appear = 0, @RoundedDouble() this.disappear = 0, this.occupancySampleCount = 0, this.occupancySum = 0, this.occupancySumSquares = 0, this.occupancyMax = 0, this.occupancyLast = 0, this.dwellSampleCount = 0, this.dwellSumSeconds = 0, this.dwellMaxSeconds = 0,  List<int> dwellHistogram = const [0, 0, 0, 0, 0, 0, 0, 0], this.presenceSampleCount = 0, this.presenceSumSeconds = 0}): _dwellHistogram = dwellHistogram,super._();
-  factory _AreaMetrics.fromJson(Map<String, dynamic> json) => _$AreaMetricsFromJson(json);
+class _Activity extends Activity {
+  const _Activity({required this.areaId, required this.areaName, @RoundedDouble() this.passBy = 0, @RoundedDouble() this.stagnant = 0, @RoundedDouble() this.entry = 0, @RoundedDouble() this.exit = 0, @RoundedDouble() this.appear = 0, @RoundedDouble() this.disappear = 0, this.occupancySampleCount = 0, this.occupancySum = 0, this.occupancySumSquares = 0, this.occupancyMax = 0, this.occupancyLast = 0, this.dwellSampleCount = 0, this.dwellSumSeconds = 0, this.dwellMaxSeconds = 0,  List<int> dwellHistogram = const [0, 0, 0, 0, 0, 0, 0, 0], this.presenceSampleCount = 0, this.presenceSumSeconds = 0}): _dwellHistogram = dwellHistogram,super._();
+  factory _Activity.fromJson(Map<String, dynamic> json) => _$ActivityFromJson(json);
 
 /// Index matching the configured interest-area ID.
 ///
@@ -597,20 +597,20 @@ class _AreaMetrics extends AreaMetrics {
 /// Additive across child observations.
 @override@JsonKey() final  int presenceSumSeconds;
 
-/// Create a copy of AreaMetrics
+/// Create a copy of Activity
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AreaMetricsCopyWith<_AreaMetrics> get copyWith => __$AreaMetricsCopyWithImpl<_AreaMetrics>(this, _$identity);
+_$ActivityCopyWith<_Activity> get copyWith => __$ActivityCopyWithImpl<_Activity>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$AreaMetricsToJson(this, );
+  return _$ActivityToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaMetrics&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stagnant, stagnant) || other.stagnant == stagnant)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancySampleCount, occupancySampleCount) || other.occupancySampleCount == occupancySampleCount)&&(identical(other.occupancySum, occupancySum) || other.occupancySum == occupancySum)&&(identical(other.occupancySumSquares, occupancySumSquares) || other.occupancySumSquares == occupancySumSquares)&&(identical(other.occupancyMax, occupancyMax) || other.occupancyMax == occupancyMax)&&(identical(other.occupancyLast, occupancyLast) || other.occupancyLast == occupancyLast)&&(identical(other.dwellSampleCount, dwellSampleCount) || other.dwellSampleCount == dwellSampleCount)&&(identical(other.dwellSumSeconds, dwellSumSeconds) || other.dwellSumSeconds == dwellSumSeconds)&&(identical(other.dwellMaxSeconds, dwellMaxSeconds) || other.dwellMaxSeconds == dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _dwellHistogram)&&(identical(other.presenceSampleCount, presenceSampleCount) || other.presenceSampleCount == presenceSampleCount)&&(identical(other.presenceSumSeconds, presenceSumSeconds) || other.presenceSumSeconds == presenceSumSeconds));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Activity&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stagnant, stagnant) || other.stagnant == stagnant)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancySampleCount, occupancySampleCount) || other.occupancySampleCount == occupancySampleCount)&&(identical(other.occupancySum, occupancySum) || other.occupancySum == occupancySum)&&(identical(other.occupancySumSquares, occupancySumSquares) || other.occupancySumSquares == occupancySumSquares)&&(identical(other.occupancyMax, occupancyMax) || other.occupancyMax == occupancyMax)&&(identical(other.occupancyLast, occupancyLast) || other.occupancyLast == occupancyLast)&&(identical(other.dwellSampleCount, dwellSampleCount) || other.dwellSampleCount == dwellSampleCount)&&(identical(other.dwellSumSeconds, dwellSumSeconds) || other.dwellSumSeconds == dwellSumSeconds)&&(identical(other.dwellMaxSeconds, dwellMaxSeconds) || other.dwellMaxSeconds == dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _dwellHistogram)&&(identical(other.presenceSampleCount, presenceSampleCount) || other.presenceSampleCount == presenceSampleCount)&&(identical(other.presenceSumSeconds, presenceSumSeconds) || other.presenceSumSeconds == presenceSumSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -621,15 +621,15 @@ int get hashCode {
 
 @override
 String toString() {
-    return 'AreaMetrics(areaId: $areaId, areaName: $areaName, passBy: $passBy, stagnant: $stagnant, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancySampleCount: $occupancySampleCount, occupancySum: $occupancySum, occupancySumSquares: $occupancySumSquares, occupancyMax: $occupancyMax, occupancyLast: $occupancyLast, dwellSampleCount: $dwellSampleCount, dwellSumSeconds: $dwellSumSeconds, dwellMaxSeconds: $dwellMaxSeconds, dwellHistogram: $dwellHistogram, presenceSampleCount: $presenceSampleCount, presenceSumSeconds: $presenceSumSeconds)';
+    return 'Activity(areaId: $areaId, areaName: $areaName, passBy: $passBy, stagnant: $stagnant, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancySampleCount: $occupancySampleCount, occupancySum: $occupancySum, occupancySumSquares: $occupancySumSquares, occupancyMax: $occupancyMax, occupancyLast: $occupancyLast, dwellSampleCount: $dwellSampleCount, dwellSumSeconds: $dwellSumSeconds, dwellMaxSeconds: $dwellMaxSeconds, dwellHistogram: $dwellHistogram, presenceSampleCount: $presenceSampleCount, presenceSumSeconds: $presenceSumSeconds)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$AreaMetricsCopyWith<$Res> implements $AreaMetricsCopyWith<$Res> {
-  factory _$AreaMetricsCopyWith(_AreaMetrics value, $Res Function(_AreaMetrics) _then) = __$AreaMetricsCopyWithImpl;
+abstract mixin class _$ActivityCopyWith<$Res> implements $ActivityCopyWith<$Res> {
+  factory _$ActivityCopyWith(_Activity value, $Res Function(_Activity) _then) = __$ActivityCopyWithImpl;
 @override @useResult
 $Res call({
  int areaId, String areaName,@RoundedDouble() double passBy,@RoundedDouble() double stagnant,@RoundedDouble() double entry,@RoundedDouble() double exit,@RoundedDouble() double appear,@RoundedDouble() double disappear, int occupancySampleCount, int occupancySum, int occupancySumSquares, int occupancyMax, int occupancyLast, int dwellSampleCount, int dwellSumSeconds, int dwellMaxSeconds, List<int> dwellHistogram, int presenceSampleCount, int presenceSumSeconds
@@ -640,17 +640,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$AreaMetricsCopyWithImpl<$Res>
-    implements _$AreaMetricsCopyWith<$Res> {
-  __$AreaMetricsCopyWithImpl(this._self, this._then);
+class __$ActivityCopyWithImpl<$Res>
+    implements _$ActivityCopyWith<$Res> {
+  __$ActivityCopyWithImpl(this._self, this._then);
 
-  final _AreaMetrics _self;
-  final $Res Function(_AreaMetrics) _then;
+  final _Activity _self;
+  final $Res Function(_Activity) _then;
 
-/// Create a copy of AreaMetrics
+/// Create a copy of Activity
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stagnant = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancySampleCount = null,Object? occupancySum = null,Object? occupancySumSquares = null,Object? occupancyMax = null,Object? occupancyLast = null,Object? dwellSampleCount = null,Object? dwellSumSeconds = null,Object? dwellMaxSeconds = null,Object? dwellHistogram = null,Object? presenceSampleCount = null,Object? presenceSumSeconds = null,}) {
-  return _then(_AreaMetrics(
+  return _then(_Activity(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
 as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable

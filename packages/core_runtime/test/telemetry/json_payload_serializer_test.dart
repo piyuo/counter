@@ -22,7 +22,8 @@ core_domain.ObservationPayload _payload({
   double confidenceRatio = 0.0,
   int expectedSeconds = 300,
   int coveredSeconds = 300,
-  List<core_domain.AreaMetricsPayload> areas = const [],
+  bool isWeekend = false,
+  List<core_domain.ActivityPayload> areas = const [],
 }) {
   final year = date ~/ 10000;
   final month = date ~/ 100 % 100;
@@ -43,6 +44,7 @@ core_domain.ObservationPayload _payload({
     expectedSeconds: expectedSeconds,
     coveredSeconds: coveredSeconds,
     coverageRatio: expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds,
+    isWeekend: isWeekend,
     areas: areas,
     frameCount: frameCount,
   );
@@ -53,7 +55,7 @@ core_domain.ObservationPayload _typicalPayload(int time) => _payload(
   time: time,
   coveredSeconds: 285,
   areas: [
-    const core_domain.AreaMetricsPayload(
+    const core_domain.ActivityPayload(
       areaId: 1,
       areaName: '',
       passBy: 10,
@@ -158,6 +160,15 @@ void main() {
       expect(decoded['minute'], 0);
     });
 
+    test('serialize preserves weekend status', () {
+      final bytes = serialize([_payload(date: 20260829, time: 1000, isWeekend: true)]);
+      final decoded =
+          ((jsonDecode(utf8.decode(bytes)) as Map<String, dynamic>)['observations'] as List).first
+              as Map<String, dynamic>;
+
+      expect(decoded['isWeekend'], isTrue);
+    });
+
     test('serialize preserves order with multiple payloads', () {
       final payload1 = _payload(date: 20260101, time: 1000, coveredSeconds: 285);
       final payload2 = _payload(date: 20260101, time: 1005, coveredSeconds: 285);
@@ -188,7 +199,7 @@ void main() {
         confidenceRatio: 0.7924125,
         coveredSeconds: 10,
         areas: const [
-          core_domain.AreaMetricsPayload(
+          core_domain.ActivityPayload(
             areaId: 0,
             areaName: '',
             passBy: 19,
@@ -240,7 +251,7 @@ void main() {
         frameCount: 10,
         confidenceRatio: 0.1,
         areas: const [
-          core_domain.AreaMetricsPayload(
+          core_domain.ActivityPayload(
             areaId: 0,
             areaName: '',
             passBy: 18,

@@ -22,6 +22,7 @@ dependencies:
   uuid: ^4.6.0
   riverpod: ^3.2.1
   intl: ^0.20.3
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:

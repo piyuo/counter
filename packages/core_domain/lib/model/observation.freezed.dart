@@ -53,10 +53,13 @@ mixin _$Observation {
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
- List<AreaMetrics> get areas;/// Total number of frames processed during this observation.
+ List<Activity> get areas;/// Total number of frames processed during this observation.
 ///
 /// Additive across child observations.
- int get frameCount;
+ int get frameCount;/// Optional override for normalized profiles whose calendar date does not
+/// represent their weekday/weekend category. Regular observations derive
+/// this value from their business-local date.
+@JsonKey(name: 'isWeekend', includeIfNull: false) bool? get weekendOverride;
 /// Create a copy of Observation
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -70,20 +73,20 @@ $ObservationCopyWith<Observation> get copyWith => _$ObservationCopyWithImpl<Obse
 @override
 bool operator ==(Object other) {
   final _this = this as Observation;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Observation&&(identical(other.granularity, _this.granularity) || other.granularity == _this.granularity)&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.hour, _this.hour) || other.hour == _this.hour)&&(identical(other.minute, _this.minute) || other.minute == _this.minute)&&(identical(other.confidenceSum, _this.confidenceSum) || other.confidenceSum == _this.confidenceSum)&&(identical(other.confidenceSampleCount, _this.confidenceSampleCount) || other.confidenceSampleCount == _this.confidenceSampleCount)&&(identical(other.coveredSeconds, _this.coveredSeconds) || other.coveredSeconds == _this.coveredSeconds)&&const DeepCollectionEquality().equals(other.areas, _this.areas)&&(identical(other.frameCount, _this.frameCount) || other.frameCount == _this.frameCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Observation&&(identical(other.granularity, _this.granularity) || other.granularity == _this.granularity)&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.hour, _this.hour) || other.hour == _this.hour)&&(identical(other.minute, _this.minute) || other.minute == _this.minute)&&(identical(other.confidenceSum, _this.confidenceSum) || other.confidenceSum == _this.confidenceSum)&&(identical(other.confidenceSampleCount, _this.confidenceSampleCount) || other.confidenceSampleCount == _this.confidenceSampleCount)&&(identical(other.coveredSeconds, _this.coveredSeconds) || other.coveredSeconds == _this.coveredSeconds)&&const DeepCollectionEquality().equals(other.areas, _this.areas)&&(identical(other.frameCount, _this.frameCount) || other.frameCount == _this.frameCount)&&(identical(other.weekendOverride, _this.weekendOverride) || other.weekendOverride == _this.weekendOverride));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as Observation;
-  return Object.hash(runtimeType,_this.granularity,_this.year,_this.month,_this.day,_this.hour,_this.minute,_this.confidenceSum,_this.confidenceSampleCount,_this.coveredSeconds,const DeepCollectionEquality().hash(_this.areas),_this.frameCount);
+  return Object.hash(runtimeType,_this.granularity,_this.year,_this.month,_this.day,_this.hour,_this.minute,_this.confidenceSum,_this.confidenceSampleCount,_this.coveredSeconds,const DeepCollectionEquality().hash(_this.areas),_this.frameCount,_this.weekendOverride);
 }
 
 @override
 String toString() {
   final _this = this as Observation;
-  return 'Observation(granularity: ${_this.granularity}, year: ${_this.year}, month: ${_this.month}, day: ${_this.day}, hour: ${_this.hour}, minute: ${_this.minute}, confidenceSum: ${_this.confidenceSum}, confidenceSampleCount: ${_this.confidenceSampleCount}, coveredSeconds: ${_this.coveredSeconds}, areas: ${_this.areas}, frameCount: ${_this.frameCount})';
+  return 'Observation(granularity: ${_this.granularity}, year: ${_this.year}, month: ${_this.month}, day: ${_this.day}, hour: ${_this.hour}, minute: ${_this.minute}, confidenceSum: ${_this.confidenceSum}, confidenceSampleCount: ${_this.confidenceSampleCount}, coveredSeconds: ${_this.coveredSeconds}, areas: ${_this.areas}, frameCount: ${_this.frameCount}, weekendOverride: ${_this.weekendOverride})';
 }
 
 
@@ -94,7 +97,7 @@ abstract mixin class $ObservationCopyWith<$Res>  {
   factory $ObservationCopyWith(Observation value, $Res Function(Observation) _then) = _$ObservationCopyWithImpl;
 @useResult
 $Res call({
- ObservationGranularity granularity, int year, int month, int day, int hour, int minute,@RoundedDouble() double confidenceSum, int confidenceSampleCount, int coveredSeconds, List<AreaMetrics> areas, int frameCount
+ ObservationGranularity granularity, int year, int month, int day, int hour, int minute,@RoundedDouble() double confidenceSum, int confidenceSampleCount, int coveredSeconds, List<Activity> areas, int frameCount,@JsonKey(name: 'isWeekend', includeIfNull: false) bool? weekendOverride
 });
 
 
@@ -111,7 +114,7 @@ class _$ObservationCopyWithImpl<$Res>
 
 /// Create a copy of Observation
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? confidenceSum = null,Object? confidenceSampleCount = null,Object? coveredSeconds = null,Object? areas = null,Object? frameCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? confidenceSum = null,Object? confidenceSampleCount = null,Object? coveredSeconds = null,Object? areas = null,Object? frameCount = null,Object? weekendOverride = freezed,}) {
   return _then(Observation(
 granularity: null == granularity ? _self.granularity : granularity // ignore: cast_nullable_to_non_nullable
 as ObservationGranularity,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
@@ -123,8 +126,9 @@ as int,confidenceSum: null == confidenceSum ? _self.confidenceSum : confidenceSu
 as double,confidenceSampleCount: null == confidenceSampleCount ? _self.confidenceSampleCount : confidenceSampleCount // ignore: cast_nullable_to_non_nullable
 as int,coveredSeconds: null == coveredSeconds ? _self.coveredSeconds : coveredSeconds // ignore: cast_nullable_to_non_nullable
 as int,areas: null == areas ? _self.areas : areas // ignore: cast_nullable_to_non_nullable
-as List<AreaMetrics>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
-as int,
+as List<Activity>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as int,weekendOverride: freezed == weekendOverride ? _self.weekendOverride : weekendOverride // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 
@@ -206,10 +210,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<AreaMetrics> areas,  int frameCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<Activity> areas,  int frameCount, @JsonKey(name: 'isWeekend', includeIfNull: false)  bool? weekendOverride)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Observation() when $default != null:
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount);case _:
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount,_that.weekendOverride);case _:
   return orElse();
 
 }
@@ -227,10 +231,10 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<AreaMetrics> areas,  int frameCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<Activity> areas,  int frameCount, @JsonKey(name: 'isWeekend', includeIfNull: false)  bool? weekendOverride)  $default,) {final _that = this;
 switch (_that) {
 case _Observation():
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount);}
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount,_that.weekendOverride);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -244,10 +248,10 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<AreaMetrics> areas,  int frameCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ObservationGranularity granularity,  int year,  int month,  int day,  int hour,  int minute, @RoundedDouble()  double confidenceSum,  int confidenceSampleCount,  int coveredSeconds,  List<Activity> areas,  int frameCount, @JsonKey(name: 'isWeekend', includeIfNull: false)  bool? weekendOverride)?  $default,) {final _that = this;
 switch (_that) {
 case _Observation() when $default != null:
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount);case _:
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.confidenceSum,_that.confidenceSampleCount,_that.coveredSeconds,_that.areas,_that.frameCount,_that.weekendOverride);case _:
   return null;
 
 }
@@ -259,7 +263,7 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 @JsonSerializable()
 
 class _Observation extends Observation {
-  const _Observation({this.granularity = ObservationGranularity.minutes5, required this.year, required this.month, required this.day, required this.hour, required this.minute, @RoundedDouble() this.confidenceSum = 0, this.confidenceSampleCount = 0, this.coveredSeconds = 0, required  List<AreaMetrics> areas, required this.frameCount}): _areas = areas,super._();
+  const _Observation({this.granularity = ObservationGranularity.minutes5, required this.year, required this.month, required this.day, required this.hour, required this.minute, @RoundedDouble() this.confidenceSum = 0, this.confidenceSampleCount = 0, this.coveredSeconds = 0, required  List<Activity> areas, required this.frameCount, @JsonKey(name: 'isWeekend', includeIfNull: false) this.weekendOverride}): _areas = areas,super._();
   factory _Observation.fromJson(Map<String, dynamic> json) => _$ObservationFromJson(json);
 
 /// Aggregation interval represented by this observation.
@@ -308,12 +312,12 @@ class _Observation extends Observation {
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
- final  List<AreaMetrics> _areas;
+ final  List<Activity> _areas;
 /// Per-area analytics.
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
-@override List<AreaMetrics> get areas {
+@override List<Activity> get areas {
   if (_areas is EqualUnmodifiableListView) return _areas;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_areas);
@@ -323,6 +327,10 @@ class _Observation extends Observation {
 ///
 /// Additive across child observations.
 @override final  int frameCount;
+/// Optional override for normalized profiles whose calendar date does not
+/// represent their weekday/weekend category. Regular observations derive
+/// this value from their business-local date.
+@override@JsonKey(name: 'isWeekend', includeIfNull: false) final  bool? weekendOverride;
 
 /// Create a copy of Observation
 /// with the given fields replaced by the non-null parameter values.
@@ -337,18 +345,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Observation&&(identical(other.granularity, granularity) || other.granularity == granularity)&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&(identical(other.hour, hour) || other.hour == hour)&&(identical(other.minute, minute) || other.minute == minute)&&(identical(other.confidenceSum, confidenceSum) || other.confidenceSum == confidenceSum)&&(identical(other.confidenceSampleCount, confidenceSampleCount) || other.confidenceSampleCount == confidenceSampleCount)&&(identical(other.coveredSeconds, coveredSeconds) || other.coveredSeconds == coveredSeconds)&&const DeepCollectionEquality().equals(other.areas, _areas)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Observation&&(identical(other.granularity, granularity) || other.granularity == granularity)&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&(identical(other.hour, hour) || other.hour == hour)&&(identical(other.minute, minute) || other.minute == minute)&&(identical(other.confidenceSum, confidenceSum) || other.confidenceSum == confidenceSum)&&(identical(other.confidenceSampleCount, confidenceSampleCount) || other.confidenceSampleCount == confidenceSampleCount)&&(identical(other.coveredSeconds, coveredSeconds) || other.coveredSeconds == coveredSeconds)&&const DeepCollectionEquality().equals(other.areas, _areas)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount)&&(identical(other.weekendOverride, weekendOverride) || other.weekendOverride == weekendOverride));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,granularity,year,month,day,hour,minute,confidenceSum,confidenceSampleCount,coveredSeconds,const DeepCollectionEquality().hash(_areas),frameCount);
+    return Object.hash(runtimeType,granularity,year,month,day,hour,minute,confidenceSum,confidenceSampleCount,coveredSeconds,const DeepCollectionEquality().hash(_areas),frameCount,weekendOverride);
 }
 
 @override
 String toString() {
-    return 'Observation(granularity: $granularity, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, confidenceSum: $confidenceSum, confidenceSampleCount: $confidenceSampleCount, coveredSeconds: $coveredSeconds, areas: $areas, frameCount: $frameCount)';
+    return 'Observation(granularity: $granularity, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, confidenceSum: $confidenceSum, confidenceSampleCount: $confidenceSampleCount, coveredSeconds: $coveredSeconds, areas: $areas, frameCount: $frameCount, weekendOverride: $weekendOverride)';
 }
 
 
@@ -359,7 +367,7 @@ abstract mixin class _$ObservationCopyWith<$Res> implements $ObservationCopyWith
   factory _$ObservationCopyWith(_Observation value, $Res Function(_Observation) _then) = __$ObservationCopyWithImpl;
 @override @useResult
 $Res call({
- ObservationGranularity granularity, int year, int month, int day, int hour, int minute,@RoundedDouble() double confidenceSum, int confidenceSampleCount, int coveredSeconds, List<AreaMetrics> areas, int frameCount
+ ObservationGranularity granularity, int year, int month, int day, int hour, int minute,@RoundedDouble() double confidenceSum, int confidenceSampleCount, int coveredSeconds, List<Activity> areas, int frameCount,@JsonKey(name: 'isWeekend', includeIfNull: false) bool? weekendOverride
 });
 
 
@@ -376,7 +384,7 @@ class __$ObservationCopyWithImpl<$Res>
 
 /// Create a copy of Observation
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? confidenceSum = null,Object? confidenceSampleCount = null,Object? coveredSeconds = null,Object? areas = null,Object? frameCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? confidenceSum = null,Object? confidenceSampleCount = null,Object? coveredSeconds = null,Object? areas = null,Object? frameCount = null,Object? weekendOverride = freezed,}) {
   return _then(_Observation(
 granularity: null == granularity ? _self.granularity : granularity // ignore: cast_nullable_to_non_nullable
 as ObservationGranularity,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
@@ -388,8 +396,9 @@ as int,confidenceSum: null == confidenceSum ? _self.confidenceSum : confidenceSu
 as double,confidenceSampleCount: null == confidenceSampleCount ? _self.confidenceSampleCount : confidenceSampleCount // ignore: cast_nullable_to_non_nullable
 as int,coveredSeconds: null == coveredSeconds ? _self.coveredSeconds : coveredSeconds // ignore: cast_nullable_to_non_nullable
 as int,areas: null == areas ? _self._areas : areas // ignore: cast_nullable_to_non_nullable
-as List<AreaMetrics>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
-as int,
+as List<Activity>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as int,weekendOverride: freezed == weekendOverride ? _self.weekendOverride : weekendOverride // ignore: cast_nullable_to_non_nullable
+as bool?,
   ));
 }
 

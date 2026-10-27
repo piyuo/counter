@@ -16,6 +16,7 @@ _ObservationPayload _$ObservationPayloadFromJson(Map<String, dynamic> json) =>
       minute: (json['minute'] as num).toInt(),
       id: (json['id'] as num).toInt(),
       businessDate: json['businessDate'] as String? ?? '',
+      isWeekend: json['isWeekend'] as bool? ?? false,
       confidenceRatio: json['confidenceRatio'] == null
           ? 0
           : const RoundedDouble().fromJson(json['confidenceRatio']),
@@ -25,7 +26,7 @@ _ObservationPayload _$ObservationPayloadFromJson(Map<String, dynamic> json) =>
           ? 0
           : const RoundedDouble().fromJson(json['coverageRatio']),
       areas: (json['areas'] as List<dynamic>)
-          .map((e) => AreaMetricsPayload.fromJson(e as Map<String, dynamic>))
+          .map((e) => ActivityPayload.fromJson(e as Map<String, dynamic>))
           .toList(),
       frameCount: (json['frameCount'] as num).toInt(),
     );
@@ -40,6 +41,7 @@ Map<String, dynamic> _$ObservationPayloadToJson(_ObservationPayload instance) =>
       'minute': instance.minute,
       'id': instance.id,
       'businessDate': instance.businessDate,
+      'isWeekend': instance.isWeekend,
       'confidenceRatio': const RoundedDouble().toJson(instance.confidenceRatio),
       'expectedSeconds': instance.expectedSeconds,
       'coveredSeconds': instance.coveredSeconds,

@@ -37,7 +37,8 @@ mixin _$ObservationPayload {
 /// - minutes5, hour, day: `2026-08-26`
 /// - month: `2026-08`
 /// - year: `2026`
- String get businessDate;/// Mean confidence as a ratio in the range 0.0-1.0, or 0 when there are
+ String get businessDate;/// Whether the business-local date falls on Saturday or Sunday.
+ bool get isWeekend;/// Mean confidence as a ratio in the range 0.0-1.0, or 0 when there are
 /// no samples.
 ///
 /// confidenceRatio = confidenceRatioSum / confidenceSampleCount
@@ -70,7 +71,7 @@ mixin _$ObservationPayload {
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
- List<AreaMetricsPayload> get areas;/// Total number of frames processed during this observation.
+ List<ActivityPayload> get areas;/// Total number of frames processed during this observation.
 ///
 /// Additive across child observations.
  int get frameCount;
@@ -87,20 +88,20 @@ $ObservationPayloadCopyWith<ObservationPayload> get copyWith => _$ObservationPay
 @override
 bool operator ==(Object other) {
   final _this = this as ObservationPayload;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ObservationPayload&&(identical(other.granularity, _this.granularity) || other.granularity == _this.granularity)&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.hour, _this.hour) || other.hour == _this.hour)&&(identical(other.minute, _this.minute) || other.minute == _this.minute)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.businessDate, _this.businessDate) || other.businessDate == _this.businessDate)&&(identical(other.confidenceRatio, _this.confidenceRatio) || other.confidenceRatio == _this.confidenceRatio)&&(identical(other.expectedSeconds, _this.expectedSeconds) || other.expectedSeconds == _this.expectedSeconds)&&(identical(other.coveredSeconds, _this.coveredSeconds) || other.coveredSeconds == _this.coveredSeconds)&&(identical(other.coverageRatio, _this.coverageRatio) || other.coverageRatio == _this.coverageRatio)&&const DeepCollectionEquality().equals(other.areas, _this.areas)&&(identical(other.frameCount, _this.frameCount) || other.frameCount == _this.frameCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ObservationPayload&&(identical(other.granularity, _this.granularity) || other.granularity == _this.granularity)&&(identical(other.year, _this.year) || other.year == _this.year)&&(identical(other.month, _this.month) || other.month == _this.month)&&(identical(other.day, _this.day) || other.day == _this.day)&&(identical(other.hour, _this.hour) || other.hour == _this.hour)&&(identical(other.minute, _this.minute) || other.minute == _this.minute)&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.businessDate, _this.businessDate) || other.businessDate == _this.businessDate)&&(identical(other.isWeekend, _this.isWeekend) || other.isWeekend == _this.isWeekend)&&(identical(other.confidenceRatio, _this.confidenceRatio) || other.confidenceRatio == _this.confidenceRatio)&&(identical(other.expectedSeconds, _this.expectedSeconds) || other.expectedSeconds == _this.expectedSeconds)&&(identical(other.coveredSeconds, _this.coveredSeconds) || other.coveredSeconds == _this.coveredSeconds)&&(identical(other.coverageRatio, _this.coverageRatio) || other.coverageRatio == _this.coverageRatio)&&const DeepCollectionEquality().equals(other.areas, _this.areas)&&(identical(other.frameCount, _this.frameCount) || other.frameCount == _this.frameCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as ObservationPayload;
-  return Object.hash(runtimeType,_this.granularity,_this.year,_this.month,_this.day,_this.hour,_this.minute,_this.id,_this.businessDate,_this.confidenceRatio,_this.expectedSeconds,_this.coveredSeconds,_this.coverageRatio,const DeepCollectionEquality().hash(_this.areas),_this.frameCount);
+  return Object.hash(runtimeType,_this.granularity,_this.year,_this.month,_this.day,_this.hour,_this.minute,_this.id,_this.businessDate,_this.isWeekend,_this.confidenceRatio,_this.expectedSeconds,_this.coveredSeconds,_this.coverageRatio,const DeepCollectionEquality().hash(_this.areas),_this.frameCount);
 }
 
 @override
 String toString() {
   final _this = this as ObservationPayload;
-  return 'ObservationPayload(granularity: ${_this.granularity}, year: ${_this.year}, month: ${_this.month}, day: ${_this.day}, hour: ${_this.hour}, minute: ${_this.minute}, id: ${_this.id}, businessDate: ${_this.businessDate}, confidenceRatio: ${_this.confidenceRatio}, expectedSeconds: ${_this.expectedSeconds}, coveredSeconds: ${_this.coveredSeconds}, coverageRatio: ${_this.coverageRatio}, areas: ${_this.areas}, frameCount: ${_this.frameCount})';
+  return 'ObservationPayload(granularity: ${_this.granularity}, year: ${_this.year}, month: ${_this.month}, day: ${_this.day}, hour: ${_this.hour}, minute: ${_this.minute}, id: ${_this.id}, businessDate: ${_this.businessDate}, isWeekend: ${_this.isWeekend}, confidenceRatio: ${_this.confidenceRatio}, expectedSeconds: ${_this.expectedSeconds}, coveredSeconds: ${_this.coveredSeconds}, coverageRatio: ${_this.coverageRatio}, areas: ${_this.areas}, frameCount: ${_this.frameCount})';
 }
 
 
@@ -111,7 +112,7 @@ abstract mixin class $ObservationPayloadCopyWith<$Res>  {
   factory $ObservationPayloadCopyWith(ObservationPayload value, $Res Function(ObservationPayload) _then) = _$ObservationPayloadCopyWithImpl;
 @useResult
 $Res call({
- String granularity, int year, int month, int day, int hour, int minute, int id, String businessDate,@RoundedDouble() double confidenceRatio, int expectedSeconds, int coveredSeconds,@RoundedDouble() double coverageRatio, List<AreaMetricsPayload> areas, int frameCount
+ String granularity, int year, int month, int day, int hour, int minute, int id, String businessDate, bool isWeekend,@RoundedDouble() double confidenceRatio, int expectedSeconds, int coveredSeconds,@RoundedDouble() double coverageRatio, List<ActivityPayload> areas, int frameCount
 });
 
 
@@ -128,7 +129,7 @@ class _$ObservationPayloadCopyWithImpl<$Res>
 
 /// Create a copy of ObservationPayload
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? id = null,Object? businessDate = null,Object? confidenceRatio = null,Object? expectedSeconds = null,Object? coveredSeconds = null,Object? coverageRatio = null,Object? areas = null,Object? frameCount = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? id = null,Object? businessDate = null,Object? isWeekend = null,Object? confidenceRatio = null,Object? expectedSeconds = null,Object? coveredSeconds = null,Object? coverageRatio = null,Object? areas = null,Object? frameCount = null,}) {
   return _then(ObservationPayload(
 granularity: null == granularity ? _self.granularity : granularity // ignore: cast_nullable_to_non_nullable
 as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
@@ -138,12 +139,13 @@ as int,hour: null == hour ? _self.hour : hour // ignore: cast_nullable_to_non_nu
 as int,minute: null == minute ? _self.minute : minute // ignore: cast_nullable_to_non_nullable
 as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
-as String,confidenceRatio: null == confidenceRatio ? _self.confidenceRatio : confidenceRatio // ignore: cast_nullable_to_non_nullable
+as String,isWeekend: null == isWeekend ? _self.isWeekend : isWeekend // ignore: cast_nullable_to_non_nullable
+as bool,confidenceRatio: null == confidenceRatio ? _self.confidenceRatio : confidenceRatio // ignore: cast_nullable_to_non_nullable
 as double,expectedSeconds: null == expectedSeconds ? _self.expectedSeconds : expectedSeconds // ignore: cast_nullable_to_non_nullable
 as int,coveredSeconds: null == coveredSeconds ? _self.coveredSeconds : coveredSeconds // ignore: cast_nullable_to_non_nullable
 as int,coverageRatio: null == coverageRatio ? _self.coverageRatio : coverageRatio // ignore: cast_nullable_to_non_nullable
 as double,areas: null == areas ? _self.areas : areas // ignore: cast_nullable_to_non_nullable
-as List<AreaMetricsPayload>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as List<ActivityPayload>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }
@@ -226,10 +228,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<AreaMetricsPayload> areas,  int frameCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate,  bool isWeekend, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<ActivityPayload> areas,  int frameCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ObservationPayload() when $default != null:
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);case _:
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.isWeekend,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);case _:
   return orElse();
 
 }
@@ -247,10 +249,10 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<AreaMetricsPayload> areas,  int frameCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate,  bool isWeekend, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<ActivityPayload> areas,  int frameCount)  $default,) {final _that = this;
 switch (_that) {
 case _ObservationPayload():
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);}
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.isWeekend,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -264,10 +266,10 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<AreaMetricsPayload> areas,  int frameCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String granularity,  int year,  int month,  int day,  int hour,  int minute,  int id,  String businessDate,  bool isWeekend, @RoundedDouble()  double confidenceRatio,  int expectedSeconds,  int coveredSeconds, @RoundedDouble()  double coverageRatio,  List<ActivityPayload> areas,  int frameCount)?  $default,) {final _that = this;
 switch (_that) {
 case _ObservationPayload() when $default != null:
-return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);case _:
+return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_that.minute,_that.id,_that.businessDate,_that.isWeekend,_that.confidenceRatio,_that.expectedSeconds,_that.coveredSeconds,_that.coverageRatio,_that.areas,_that.frameCount);case _:
   return null;
 
 }
@@ -279,7 +281,7 @@ return $default(_that.granularity,_that.year,_that.month,_that.day,_that.hour,_t
 @JsonSerializable()
 
 class _ObservationPayload extends ObservationPayload {
-  const _ObservationPayload({this.granularity = '', required this.year, required this.month, required this.day, required this.hour, required this.minute, required this.id, this.businessDate = '', @RoundedDouble() this.confidenceRatio = 0, this.expectedSeconds = 0, this.coveredSeconds = 0, @RoundedDouble() this.coverageRatio = 0, required  List<AreaMetricsPayload> areas, required this.frameCount}): _areas = areas,super._();
+  const _ObservationPayload({this.granularity = '', required this.year, required this.month, required this.day, required this.hour, required this.minute, required this.id, this.businessDate = '', this.isWeekend = false, @RoundedDouble() this.confidenceRatio = 0, this.expectedSeconds = 0, this.coveredSeconds = 0, @RoundedDouble() this.coverageRatio = 0, required  List<ActivityPayload> areas, required this.frameCount}): _areas = areas,super._();
   factory _ObservationPayload.fromJson(Map<String, dynamic> json) => _$ObservationPayloadFromJson(json);
 
 /// Aggregation interval represented by this observation.
@@ -311,6 +313,8 @@ class _ObservationPayload extends ObservationPayload {
 /// - month: `2026-08`
 /// - year: `2026`
 @override@JsonKey() final  String businessDate;
+/// Whether the business-local date falls on Saturday or Sunday.
+@override@JsonKey() final  bool isWeekend;
 /// Mean confidence as a ratio in the range 0.0-1.0, or 0 when there are
 /// no samples.
 ///
@@ -348,12 +352,12 @@ class _ObservationPayload extends ObservationPayload {
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
- final  List<AreaMetricsPayload> _areas;
+ final  List<ActivityPayload> _areas;
 /// Per-area analytics.
 ///
 /// One entry exists for each configured interest area, including the
 /// global area.
-@override List<AreaMetricsPayload> get areas {
+@override List<ActivityPayload> get areas {
   if (_areas is EqualUnmodifiableListView) return _areas;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_areas);
@@ -377,18 +381,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ObservationPayload&&(identical(other.granularity, granularity) || other.granularity == granularity)&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&(identical(other.hour, hour) || other.hour == hour)&&(identical(other.minute, minute) || other.minute == minute)&&(identical(other.id, id) || other.id == id)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.confidenceRatio, confidenceRatio) || other.confidenceRatio == confidenceRatio)&&(identical(other.expectedSeconds, expectedSeconds) || other.expectedSeconds == expectedSeconds)&&(identical(other.coveredSeconds, coveredSeconds) || other.coveredSeconds == coveredSeconds)&&(identical(other.coverageRatio, coverageRatio) || other.coverageRatio == coverageRatio)&&const DeepCollectionEquality().equals(other.areas, _areas)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ObservationPayload&&(identical(other.granularity, granularity) || other.granularity == granularity)&&(identical(other.year, year) || other.year == year)&&(identical(other.month, month) || other.month == month)&&(identical(other.day, day) || other.day == day)&&(identical(other.hour, hour) || other.hour == hour)&&(identical(other.minute, minute) || other.minute == minute)&&(identical(other.id, id) || other.id == id)&&(identical(other.businessDate, businessDate) || other.businessDate == businessDate)&&(identical(other.isWeekend, isWeekend) || other.isWeekend == isWeekend)&&(identical(other.confidenceRatio, confidenceRatio) || other.confidenceRatio == confidenceRatio)&&(identical(other.expectedSeconds, expectedSeconds) || other.expectedSeconds == expectedSeconds)&&(identical(other.coveredSeconds, coveredSeconds) || other.coveredSeconds == coveredSeconds)&&(identical(other.coverageRatio, coverageRatio) || other.coverageRatio == coverageRatio)&&const DeepCollectionEquality().equals(other.areas, _areas)&&(identical(other.frameCount, frameCount) || other.frameCount == frameCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,granularity,year,month,day,hour,minute,id,businessDate,confidenceRatio,expectedSeconds,coveredSeconds,coverageRatio,const DeepCollectionEquality().hash(_areas),frameCount);
+    return Object.hash(runtimeType,granularity,year,month,day,hour,minute,id,businessDate,isWeekend,confidenceRatio,expectedSeconds,coveredSeconds,coverageRatio,const DeepCollectionEquality().hash(_areas),frameCount);
 }
 
 @override
 String toString() {
-    return 'ObservationPayload(granularity: $granularity, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, id: $id, businessDate: $businessDate, confidenceRatio: $confidenceRatio, expectedSeconds: $expectedSeconds, coveredSeconds: $coveredSeconds, coverageRatio: $coverageRatio, areas: $areas, frameCount: $frameCount)';
+    return 'ObservationPayload(granularity: $granularity, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, id: $id, businessDate: $businessDate, isWeekend: $isWeekend, confidenceRatio: $confidenceRatio, expectedSeconds: $expectedSeconds, coveredSeconds: $coveredSeconds, coverageRatio: $coverageRatio, areas: $areas, frameCount: $frameCount)';
 }
 
 
@@ -399,7 +403,7 @@ abstract mixin class _$ObservationPayloadCopyWith<$Res> implements $ObservationP
   factory _$ObservationPayloadCopyWith(_ObservationPayload value, $Res Function(_ObservationPayload) _then) = __$ObservationPayloadCopyWithImpl;
 @override @useResult
 $Res call({
- String granularity, int year, int month, int day, int hour, int minute, int id, String businessDate,@RoundedDouble() double confidenceRatio, int expectedSeconds, int coveredSeconds,@RoundedDouble() double coverageRatio, List<AreaMetricsPayload> areas, int frameCount
+ String granularity, int year, int month, int day, int hour, int minute, int id, String businessDate, bool isWeekend,@RoundedDouble() double confidenceRatio, int expectedSeconds, int coveredSeconds,@RoundedDouble() double coverageRatio, List<ActivityPayload> areas, int frameCount
 });
 
 
@@ -416,7 +420,7 @@ class __$ObservationPayloadCopyWithImpl<$Res>
 
 /// Create a copy of ObservationPayload
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? id = null,Object? businessDate = null,Object? confidenceRatio = null,Object? expectedSeconds = null,Object? coveredSeconds = null,Object? coverageRatio = null,Object? areas = null,Object? frameCount = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? granularity = null,Object? year = null,Object? month = null,Object? day = null,Object? hour = null,Object? minute = null,Object? id = null,Object? businessDate = null,Object? isWeekend = null,Object? confidenceRatio = null,Object? expectedSeconds = null,Object? coveredSeconds = null,Object? coverageRatio = null,Object? areas = null,Object? frameCount = null,}) {
   return _then(_ObservationPayload(
 granularity: null == granularity ? _self.granularity : granularity // ignore: cast_nullable_to_non_nullable
 as String,year: null == year ? _self.year : year // ignore: cast_nullable_to_non_nullable
@@ -426,12 +430,13 @@ as int,hour: null == hour ? _self.hour : hour // ignore: cast_nullable_to_non_nu
 as int,minute: null == minute ? _self.minute : minute // ignore: cast_nullable_to_non_nullable
 as int,id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
-as String,confidenceRatio: null == confidenceRatio ? _self.confidenceRatio : confidenceRatio // ignore: cast_nullable_to_non_nullable
+as String,isWeekend: null == isWeekend ? _self.isWeekend : isWeekend // ignore: cast_nullable_to_non_nullable
+as bool,confidenceRatio: null == confidenceRatio ? _self.confidenceRatio : confidenceRatio // ignore: cast_nullable_to_non_nullable
 as double,expectedSeconds: null == expectedSeconds ? _self.expectedSeconds : expectedSeconds // ignore: cast_nullable_to_non_nullable
 as int,coveredSeconds: null == coveredSeconds ? _self.coveredSeconds : coveredSeconds // ignore: cast_nullable_to_non_nullable
 as int,coverageRatio: null == coverageRatio ? _self.coverageRatio : coverageRatio // ignore: cast_nullable_to_non_nullable
 as double,areas: null == areas ? _self._areas : areas // ignore: cast_nullable_to_non_nullable
-as List<AreaMetricsPayload>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
+as List<ActivityPayload>,frameCount: null == frameCount ? _self.frameCount : frameCount // ignore: cast_nullable_to_non_nullable
 as int,
   ));
 }

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint, type=warning, deprecated_member_use, deprecated_member_use_from_same_package
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'area_metrics_payload.dart';
+part of 'activity_payload.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,7 +14,7 @@ part of 'area_metrics_payload.dart';
 T _$identity<T>(T value) => value;
 
 /// @nodoc
-mixin _$AreaMetricsPayload {
+mixin _$ActivityPayload {
 
 /// Index matching the configured interest-area ID.
 ///
@@ -211,41 +211,41 @@ mixin _$AreaMetricsPayload {
 /// This is not visit length. The sums and count remain the source of truth;
 /// this field is included for convenience.
 @RoundedDouble() double get presenceMeanSeconds;
-/// Create a copy of AreaMetricsPayload
+/// Create a copy of ActivityPayload
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$AreaMetricsPayloadCopyWith<AreaMetricsPayload> get copyWith => _$AreaMetricsPayloadCopyWithImpl<AreaMetricsPayload>(this as AreaMetricsPayload, _$identity);
+$ActivityPayloadCopyWith<ActivityPayload> get copyWith => _$ActivityPayloadCopyWithImpl<ActivityPayload>(this as ActivityPayload, _$identity);
 
-  /// Serializes this AreaMetricsPayload to a JSON map.
+  /// Serializes this ActivityPayload to a JSON map.
   Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  final _this = this as AreaMetricsPayload;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AreaMetricsPayload&&(identical(other.areaId, _this.areaId) || other.areaId == _this.areaId)&&(identical(other.areaName, _this.areaName) || other.areaName == _this.areaName)&&(identical(other.passBy, _this.passBy) || other.passBy == _this.passBy)&&(identical(other.stagnant, _this.stagnant) || other.stagnant == _this.stagnant)&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&(identical(other.exit, _this.exit) || other.exit == _this.exit)&&(identical(other.appear, _this.appear) || other.appear == _this.appear)&&(identical(other.disappear, _this.disappear) || other.disappear == _this.disappear)&&(identical(other.occupancySampleCount, _this.occupancySampleCount) || other.occupancySampleCount == _this.occupancySampleCount)&&(identical(other.occupancySum, _this.occupancySum) || other.occupancySum == _this.occupancySum)&&(identical(other.occupancyMean, _this.occupancyMean) || other.occupancyMean == _this.occupancyMean)&&(identical(other.occupancySumSquares, _this.occupancySumSquares) || other.occupancySumSquares == _this.occupancySumSquares)&&(identical(other.occupancyVariance, _this.occupancyVariance) || other.occupancyVariance == _this.occupancyVariance)&&(identical(other.occupancyMax, _this.occupancyMax) || other.occupancyMax == _this.occupancyMax)&&(identical(other.occupancyLast, _this.occupancyLast) || other.occupancyLast == _this.occupancyLast)&&(identical(other.dwellSampleCount, _this.dwellSampleCount) || other.dwellSampleCount == _this.dwellSampleCount)&&(identical(other.dwellSumSeconds, _this.dwellSumSeconds) || other.dwellSumSeconds == _this.dwellSumSeconds)&&(identical(other.dwellMeanSeconds, _this.dwellMeanSeconds) || other.dwellMeanSeconds == _this.dwellMeanSeconds)&&(identical(other.dwellMaxSeconds, _this.dwellMaxSeconds) || other.dwellMaxSeconds == _this.dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _this.dwellHistogram)&&(identical(other.presenceSampleCount, _this.presenceSampleCount) || other.presenceSampleCount == _this.presenceSampleCount)&&(identical(other.presenceSumSeconds, _this.presenceSumSeconds) || other.presenceSumSeconds == _this.presenceSumSeconds)&&(identical(other.presenceMeanSeconds, _this.presenceMeanSeconds) || other.presenceMeanSeconds == _this.presenceMeanSeconds));
+  final _this = this as ActivityPayload;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ActivityPayload&&(identical(other.areaId, _this.areaId) || other.areaId == _this.areaId)&&(identical(other.areaName, _this.areaName) || other.areaName == _this.areaName)&&(identical(other.passBy, _this.passBy) || other.passBy == _this.passBy)&&(identical(other.stagnant, _this.stagnant) || other.stagnant == _this.stagnant)&&(identical(other.entry, _this.entry) || other.entry == _this.entry)&&(identical(other.exit, _this.exit) || other.exit == _this.exit)&&(identical(other.appear, _this.appear) || other.appear == _this.appear)&&(identical(other.disappear, _this.disappear) || other.disappear == _this.disappear)&&(identical(other.occupancySampleCount, _this.occupancySampleCount) || other.occupancySampleCount == _this.occupancySampleCount)&&(identical(other.occupancySum, _this.occupancySum) || other.occupancySum == _this.occupancySum)&&(identical(other.occupancyMean, _this.occupancyMean) || other.occupancyMean == _this.occupancyMean)&&(identical(other.occupancySumSquares, _this.occupancySumSquares) || other.occupancySumSquares == _this.occupancySumSquares)&&(identical(other.occupancyVariance, _this.occupancyVariance) || other.occupancyVariance == _this.occupancyVariance)&&(identical(other.occupancyMax, _this.occupancyMax) || other.occupancyMax == _this.occupancyMax)&&(identical(other.occupancyLast, _this.occupancyLast) || other.occupancyLast == _this.occupancyLast)&&(identical(other.dwellSampleCount, _this.dwellSampleCount) || other.dwellSampleCount == _this.dwellSampleCount)&&(identical(other.dwellSumSeconds, _this.dwellSumSeconds) || other.dwellSumSeconds == _this.dwellSumSeconds)&&(identical(other.dwellMeanSeconds, _this.dwellMeanSeconds) || other.dwellMeanSeconds == _this.dwellMeanSeconds)&&(identical(other.dwellMaxSeconds, _this.dwellMaxSeconds) || other.dwellMaxSeconds == _this.dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _this.dwellHistogram)&&(identical(other.presenceSampleCount, _this.presenceSampleCount) || other.presenceSampleCount == _this.presenceSampleCount)&&(identical(other.presenceSumSeconds, _this.presenceSumSeconds) || other.presenceSumSeconds == _this.presenceSumSeconds)&&(identical(other.presenceMeanSeconds, _this.presenceMeanSeconds) || other.presenceMeanSeconds == _this.presenceMeanSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-  final _this = this as AreaMetricsPayload;
+  final _this = this as ActivityPayload;
   return Object.hashAll([runtimeType,_this.areaId,_this.areaName,_this.passBy,_this.stagnant,_this.entry,_this.exit,_this.appear,_this.disappear,_this.occupancySampleCount,_this.occupancySum,_this.occupancyMean,_this.occupancySumSquares,_this.occupancyVariance,_this.occupancyMax,_this.occupancyLast,_this.dwellSampleCount,_this.dwellSumSeconds,_this.dwellMeanSeconds,_this.dwellMaxSeconds,const DeepCollectionEquality().hash(_this.dwellHistogram),_this.presenceSampleCount,_this.presenceSumSeconds,_this.presenceMeanSeconds]);
 }
 
 @override
 String toString() {
-  final _this = this as AreaMetricsPayload;
-  return 'AreaMetricsPayload(areaId: ${_this.areaId}, areaName: ${_this.areaName}, passBy: ${_this.passBy}, stagnant: ${_this.stagnant}, entry: ${_this.entry}, exit: ${_this.exit}, appear: ${_this.appear}, disappear: ${_this.disappear}, occupancySampleCount: ${_this.occupancySampleCount}, occupancySum: ${_this.occupancySum}, occupancyMean: ${_this.occupancyMean}, occupancySumSquares: ${_this.occupancySumSquares}, occupancyVariance: ${_this.occupancyVariance}, occupancyMax: ${_this.occupancyMax}, occupancyLast: ${_this.occupancyLast}, dwellSampleCount: ${_this.dwellSampleCount}, dwellSumSeconds: ${_this.dwellSumSeconds}, dwellMeanSeconds: ${_this.dwellMeanSeconds}, dwellMaxSeconds: ${_this.dwellMaxSeconds}, dwellHistogram: ${_this.dwellHistogram}, presenceSampleCount: ${_this.presenceSampleCount}, presenceSumSeconds: ${_this.presenceSumSeconds}, presenceMeanSeconds: ${_this.presenceMeanSeconds})';
+  final _this = this as ActivityPayload;
+  return 'ActivityPayload(areaId: ${_this.areaId}, areaName: ${_this.areaName}, passBy: ${_this.passBy}, stagnant: ${_this.stagnant}, entry: ${_this.entry}, exit: ${_this.exit}, appear: ${_this.appear}, disappear: ${_this.disappear}, occupancySampleCount: ${_this.occupancySampleCount}, occupancySum: ${_this.occupancySum}, occupancyMean: ${_this.occupancyMean}, occupancySumSquares: ${_this.occupancySumSquares}, occupancyVariance: ${_this.occupancyVariance}, occupancyMax: ${_this.occupancyMax}, occupancyLast: ${_this.occupancyLast}, dwellSampleCount: ${_this.dwellSampleCount}, dwellSumSeconds: ${_this.dwellSumSeconds}, dwellMeanSeconds: ${_this.dwellMeanSeconds}, dwellMaxSeconds: ${_this.dwellMaxSeconds}, dwellHistogram: ${_this.dwellHistogram}, presenceSampleCount: ${_this.presenceSampleCount}, presenceSumSeconds: ${_this.presenceSumSeconds}, presenceMeanSeconds: ${_this.presenceMeanSeconds})';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $AreaMetricsPayloadCopyWith<$Res>  {
-  factory $AreaMetricsPayloadCopyWith(AreaMetricsPayload value, $Res Function(AreaMetricsPayload) _then) = _$AreaMetricsPayloadCopyWithImpl;
+abstract mixin class $ActivityPayloadCopyWith<$Res>  {
+  factory $ActivityPayloadCopyWith(ActivityPayload value, $Res Function(ActivityPayload) _then) = _$ActivityPayloadCopyWithImpl;
 @useResult
 $Res call({
  int areaId, String areaName, int passBy, int stagnant, int entry, int exit, int appear, int disappear, int occupancySampleCount, int occupancySum,@RoundedDouble() double occupancyMean, int occupancySumSquares,@RoundedDouble() double occupancyVariance, int occupancyMax, int occupancyLast, int dwellSampleCount, int dwellSumSeconds,@RoundedDouble() double dwellMeanSeconds, int dwellMaxSeconds, List<int> dwellHistogram, int presenceSampleCount, int presenceSumSeconds,@RoundedDouble() double presenceMeanSeconds
@@ -256,17 +256,17 @@ $Res call({
 
 }
 /// @nodoc
-class _$AreaMetricsPayloadCopyWithImpl<$Res>
-    implements $AreaMetricsPayloadCopyWith<$Res> {
-  _$AreaMetricsPayloadCopyWithImpl(this._self, this._then);
+class _$ActivityPayloadCopyWithImpl<$Res>
+    implements $ActivityPayloadCopyWith<$Res> {
+  _$ActivityPayloadCopyWithImpl(this._self, this._then);
 
-  final AreaMetricsPayload _self;
-  final $Res Function(AreaMetricsPayload) _then;
+  final ActivityPayload _self;
+  final $Res Function(ActivityPayload) _then;
 
-/// Create a copy of AreaMetricsPayload
+/// Create a copy of ActivityPayload
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stagnant = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancySampleCount = null,Object? occupancySum = null,Object? occupancyMean = null,Object? occupancySumSquares = null,Object? occupancyVariance = null,Object? occupancyMax = null,Object? occupancyLast = null,Object? dwellSampleCount = null,Object? dwellSumSeconds = null,Object? dwellMeanSeconds = null,Object? dwellMaxSeconds = null,Object? dwellHistogram = null,Object? presenceSampleCount = null,Object? presenceSumSeconds = null,Object? presenceMeanSeconds = null,}) {
-  return _then(AreaMetricsPayload(
+  return _then(ActivityPayload(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
 as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable
@@ -297,8 +297,8 @@ as double,
 }
 
 
-/// Adds pattern-matching-related methods to [AreaMetricsPayload].
-extension AreaMetricsPayloadPatterns on AreaMetricsPayload {
+/// Adds pattern-matching-related methods to [ActivityPayload].
+extension ActivityPayloadPatterns on ActivityPayload {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -311,10 +311,10 @@ extension AreaMetricsPayloadPatterns on AreaMetricsPayload {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AreaMetricsPayload value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ActivityPayload value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AreaMetricsPayload() when $default != null:
+case _ActivityPayload() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -333,10 +333,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AreaMetricsPayload value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ActivityPayload value)  $default,){
 final _that = this;
 switch (_that) {
-case _AreaMetricsPayload():
+case _ActivityPayload():
 return $default(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
@@ -351,10 +351,10 @@ return $default(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AreaMetricsPayload value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ActivityPayload value)?  $default,){
 final _that = this;
 switch (_that) {
-case _AreaMetricsPayload() when $default != null:
+case _ActivityPayload() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -374,7 +374,7 @@ return $default(_that);case _:
 
 @optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int areaId,  String areaName,  int passBy,  int stagnant,  int entry,  int exit,  int appear,  int disappear,  int occupancySampleCount,  int occupancySum, @RoundedDouble()  double occupancyMean,  int occupancySumSquares, @RoundedDouble()  double occupancyVariance,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds, @RoundedDouble()  double dwellMeanSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds, @RoundedDouble()  double presenceMeanSeconds)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AreaMetricsPayload() when $default != null:
+case _ActivityPayload() when $default != null:
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancyMean,_that.occupancySumSquares,_that.occupancyVariance,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMeanSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds,_that.presenceMeanSeconds);case _:
   return orElse();
 
@@ -395,7 +395,7 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 
 @optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int areaId,  String areaName,  int passBy,  int stagnant,  int entry,  int exit,  int appear,  int disappear,  int occupancySampleCount,  int occupancySum, @RoundedDouble()  double occupancyMean,  int occupancySumSquares, @RoundedDouble()  double occupancyVariance,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds, @RoundedDouble()  double dwellMeanSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds, @RoundedDouble()  double presenceMeanSeconds)  $default,) {final _that = this;
 switch (_that) {
-case _AreaMetricsPayload():
+case _ActivityPayload():
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancyMean,_that.occupancySumSquares,_that.occupancyVariance,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMeanSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds,_that.presenceMeanSeconds);}
 }
 /// A variant of `when` that fallback to returning `null`
@@ -412,7 +412,7 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 
 @optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int areaId,  String areaName,  int passBy,  int stagnant,  int entry,  int exit,  int appear,  int disappear,  int occupancySampleCount,  int occupancySum, @RoundedDouble()  double occupancyMean,  int occupancySumSquares, @RoundedDouble()  double occupancyVariance,  int occupancyMax,  int occupancyLast,  int dwellSampleCount,  int dwellSumSeconds, @RoundedDouble()  double dwellMeanSeconds,  int dwellMaxSeconds,  List<int> dwellHistogram,  int presenceSampleCount,  int presenceSumSeconds, @RoundedDouble()  double presenceMeanSeconds)?  $default,) {final _that = this;
 switch (_that) {
-case _AreaMetricsPayload() when $default != null:
+case _ActivityPayload() when $default != null:
 return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.entry,_that.exit,_that.appear,_that.disappear,_that.occupancySampleCount,_that.occupancySum,_that.occupancyMean,_that.occupancySumSquares,_that.occupancyVariance,_that.occupancyMax,_that.occupancyLast,_that.dwellSampleCount,_that.dwellSumSeconds,_that.dwellMeanSeconds,_that.dwellMaxSeconds,_that.dwellHistogram,_that.presenceSampleCount,_that.presenceSumSeconds,_that.presenceMeanSeconds);case _:
   return null;
 
@@ -424,9 +424,9 @@ return $default(_that.areaId,_that.areaName,_that.passBy,_that.stagnant,_that.en
 /// @nodoc
 @JsonSerializable()
 
-class _AreaMetricsPayload extends AreaMetricsPayload {
-  const _AreaMetricsPayload({required this.areaId, required this.areaName, this.passBy = 0, this.stagnant = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, this.occupancySampleCount = 0, this.occupancySum = 0, @RoundedDouble() this.occupancyMean = 0, this.occupancySumSquares = 0, @RoundedDouble() this.occupancyVariance = 0, this.occupancyMax = 0, this.occupancyLast = 0, this.dwellSampleCount = 0, this.dwellSumSeconds = 0, @RoundedDouble() required this.dwellMeanSeconds, this.dwellMaxSeconds = 0,  List<int> dwellHistogram = const [0, 0, 0, 0, 0, 0, 0, 0], this.presenceSampleCount = 0, this.presenceSumSeconds = 0, @RoundedDouble() this.presenceMeanSeconds = 0}): _dwellHistogram = dwellHistogram,super._();
-  factory _AreaMetricsPayload.fromJson(Map<String, dynamic> json) => _$AreaMetricsPayloadFromJson(json);
+class _ActivityPayload extends ActivityPayload {
+  const _ActivityPayload({required this.areaId, required this.areaName, this.passBy = 0, this.stagnant = 0, this.entry = 0, this.exit = 0, this.appear = 0, this.disappear = 0, this.occupancySampleCount = 0, this.occupancySum = 0, @RoundedDouble() this.occupancyMean = 0, this.occupancySumSquares = 0, @RoundedDouble() this.occupancyVariance = 0, this.occupancyMax = 0, this.occupancyLast = 0, this.dwellSampleCount = 0, this.dwellSumSeconds = 0, @RoundedDouble() required this.dwellMeanSeconds, this.dwellMaxSeconds = 0,  List<int> dwellHistogram = const [0, 0, 0, 0, 0, 0, 0, 0], this.presenceSampleCount = 0, this.presenceSumSeconds = 0, @RoundedDouble() this.presenceMeanSeconds = 0}): _dwellHistogram = dwellHistogram,super._();
+  factory _ActivityPayload.fromJson(Map<String, dynamic> json) => _$ActivityPayloadFromJson(json);
 
 /// Index matching the configured interest-area ID.
 ///
@@ -659,20 +659,20 @@ class _AreaMetricsPayload extends AreaMetricsPayload {
 /// this field is included for convenience.
 @override@JsonKey()@RoundedDouble() final  double presenceMeanSeconds;
 
-/// Create a copy of AreaMetricsPayload
+/// Create a copy of ActivityPayload
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AreaMetricsPayloadCopyWith<_AreaMetricsPayload> get copyWith => __$AreaMetricsPayloadCopyWithImpl<_AreaMetricsPayload>(this, _$identity);
+_$ActivityPayloadCopyWith<_ActivityPayload> get copyWith => __$ActivityPayloadCopyWithImpl<_ActivityPayload>(this, _$identity);
 
 @override
 Map<String, dynamic> toJson() {
-  return _$AreaMetricsPayloadToJson(this, );
+  return _$ActivityPayloadToJson(this, );
 }
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AreaMetricsPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stagnant, stagnant) || other.stagnant == stagnant)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancySampleCount, occupancySampleCount) || other.occupancySampleCount == occupancySampleCount)&&(identical(other.occupancySum, occupancySum) || other.occupancySum == occupancySum)&&(identical(other.occupancyMean, occupancyMean) || other.occupancyMean == occupancyMean)&&(identical(other.occupancySumSquares, occupancySumSquares) || other.occupancySumSquares == occupancySumSquares)&&(identical(other.occupancyVariance, occupancyVariance) || other.occupancyVariance == occupancyVariance)&&(identical(other.occupancyMax, occupancyMax) || other.occupancyMax == occupancyMax)&&(identical(other.occupancyLast, occupancyLast) || other.occupancyLast == occupancyLast)&&(identical(other.dwellSampleCount, dwellSampleCount) || other.dwellSampleCount == dwellSampleCount)&&(identical(other.dwellSumSeconds, dwellSumSeconds) || other.dwellSumSeconds == dwellSumSeconds)&&(identical(other.dwellMeanSeconds, dwellMeanSeconds) || other.dwellMeanSeconds == dwellMeanSeconds)&&(identical(other.dwellMaxSeconds, dwellMaxSeconds) || other.dwellMaxSeconds == dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _dwellHistogram)&&(identical(other.presenceSampleCount, presenceSampleCount) || other.presenceSampleCount == presenceSampleCount)&&(identical(other.presenceSumSeconds, presenceSumSeconds) || other.presenceSumSeconds == presenceSumSeconds)&&(identical(other.presenceMeanSeconds, presenceMeanSeconds) || other.presenceMeanSeconds == presenceMeanSeconds));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ActivityPayload&&(identical(other.areaId, areaId) || other.areaId == areaId)&&(identical(other.areaName, areaName) || other.areaName == areaName)&&(identical(other.passBy, passBy) || other.passBy == passBy)&&(identical(other.stagnant, stagnant) || other.stagnant == stagnant)&&(identical(other.entry, entry) || other.entry == entry)&&(identical(other.exit, exit) || other.exit == exit)&&(identical(other.appear, appear) || other.appear == appear)&&(identical(other.disappear, disappear) || other.disappear == disappear)&&(identical(other.occupancySampleCount, occupancySampleCount) || other.occupancySampleCount == occupancySampleCount)&&(identical(other.occupancySum, occupancySum) || other.occupancySum == occupancySum)&&(identical(other.occupancyMean, occupancyMean) || other.occupancyMean == occupancyMean)&&(identical(other.occupancySumSquares, occupancySumSquares) || other.occupancySumSquares == occupancySumSquares)&&(identical(other.occupancyVariance, occupancyVariance) || other.occupancyVariance == occupancyVariance)&&(identical(other.occupancyMax, occupancyMax) || other.occupancyMax == occupancyMax)&&(identical(other.occupancyLast, occupancyLast) || other.occupancyLast == occupancyLast)&&(identical(other.dwellSampleCount, dwellSampleCount) || other.dwellSampleCount == dwellSampleCount)&&(identical(other.dwellSumSeconds, dwellSumSeconds) || other.dwellSumSeconds == dwellSumSeconds)&&(identical(other.dwellMeanSeconds, dwellMeanSeconds) || other.dwellMeanSeconds == dwellMeanSeconds)&&(identical(other.dwellMaxSeconds, dwellMaxSeconds) || other.dwellMaxSeconds == dwellMaxSeconds)&&const DeepCollectionEquality().equals(other.dwellHistogram, _dwellHistogram)&&(identical(other.presenceSampleCount, presenceSampleCount) || other.presenceSampleCount == presenceSampleCount)&&(identical(other.presenceSumSeconds, presenceSumSeconds) || other.presenceSumSeconds == presenceSumSeconds)&&(identical(other.presenceMeanSeconds, presenceMeanSeconds) || other.presenceMeanSeconds == presenceMeanSeconds));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -683,15 +683,15 @@ int get hashCode {
 
 @override
 String toString() {
-    return 'AreaMetricsPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stagnant: $stagnant, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancySampleCount: $occupancySampleCount, occupancySum: $occupancySum, occupancyMean: $occupancyMean, occupancySumSquares: $occupancySumSquares, occupancyVariance: $occupancyVariance, occupancyMax: $occupancyMax, occupancyLast: $occupancyLast, dwellSampleCount: $dwellSampleCount, dwellSumSeconds: $dwellSumSeconds, dwellMeanSeconds: $dwellMeanSeconds, dwellMaxSeconds: $dwellMaxSeconds, dwellHistogram: $dwellHistogram, presenceSampleCount: $presenceSampleCount, presenceSumSeconds: $presenceSumSeconds, presenceMeanSeconds: $presenceMeanSeconds)';
+    return 'ActivityPayload(areaId: $areaId, areaName: $areaName, passBy: $passBy, stagnant: $stagnant, entry: $entry, exit: $exit, appear: $appear, disappear: $disappear, occupancySampleCount: $occupancySampleCount, occupancySum: $occupancySum, occupancyMean: $occupancyMean, occupancySumSquares: $occupancySumSquares, occupancyVariance: $occupancyVariance, occupancyMax: $occupancyMax, occupancyLast: $occupancyLast, dwellSampleCount: $dwellSampleCount, dwellSumSeconds: $dwellSumSeconds, dwellMeanSeconds: $dwellMeanSeconds, dwellMaxSeconds: $dwellMaxSeconds, dwellHistogram: $dwellHistogram, presenceSampleCount: $presenceSampleCount, presenceSumSeconds: $presenceSumSeconds, presenceMeanSeconds: $presenceMeanSeconds)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$AreaMetricsPayloadCopyWith<$Res> implements $AreaMetricsPayloadCopyWith<$Res> {
-  factory _$AreaMetricsPayloadCopyWith(_AreaMetricsPayload value, $Res Function(_AreaMetricsPayload) _then) = __$AreaMetricsPayloadCopyWithImpl;
+abstract mixin class _$ActivityPayloadCopyWith<$Res> implements $ActivityPayloadCopyWith<$Res> {
+  factory _$ActivityPayloadCopyWith(_ActivityPayload value, $Res Function(_ActivityPayload) _then) = __$ActivityPayloadCopyWithImpl;
 @override @useResult
 $Res call({
  int areaId, String areaName, int passBy, int stagnant, int entry, int exit, int appear, int disappear, int occupancySampleCount, int occupancySum,@RoundedDouble() double occupancyMean, int occupancySumSquares,@RoundedDouble() double occupancyVariance, int occupancyMax, int occupancyLast, int dwellSampleCount, int dwellSumSeconds,@RoundedDouble() double dwellMeanSeconds, int dwellMaxSeconds, List<int> dwellHistogram, int presenceSampleCount, int presenceSumSeconds,@RoundedDouble() double presenceMeanSeconds
@@ -702,17 +702,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$AreaMetricsPayloadCopyWithImpl<$Res>
-    implements _$AreaMetricsPayloadCopyWith<$Res> {
-  __$AreaMetricsPayloadCopyWithImpl(this._self, this._then);
+class __$ActivityPayloadCopyWithImpl<$Res>
+    implements _$ActivityPayloadCopyWith<$Res> {
+  __$ActivityPayloadCopyWithImpl(this._self, this._then);
 
-  final _AreaMetricsPayload _self;
-  final $Res Function(_AreaMetricsPayload) _then;
+  final _ActivityPayload _self;
+  final $Res Function(_ActivityPayload) _then;
 
-/// Create a copy of AreaMetricsPayload
+/// Create a copy of ActivityPayload
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? areaId = null,Object? areaName = null,Object? passBy = null,Object? stagnant = null,Object? entry = null,Object? exit = null,Object? appear = null,Object? disappear = null,Object? occupancySampleCount = null,Object? occupancySum = null,Object? occupancyMean = null,Object? occupancySumSquares = null,Object? occupancyVariance = null,Object? occupancyMax = null,Object? occupancyLast = null,Object? dwellSampleCount = null,Object? dwellSumSeconds = null,Object? dwellMeanSeconds = null,Object? dwellMaxSeconds = null,Object? dwellHistogram = null,Object? presenceSampleCount = null,Object? presenceSumSeconds = null,Object? presenceMeanSeconds = null,}) {
-  return _then(_AreaMetricsPayload(
+  return _then(_ActivityPayload(
 areaId: null == areaId ? _self.areaId : areaId // ignore: cast_nullable_to_non_nullable
 as int,areaName: null == areaName ? _self.areaName : areaName // ignore: cast_nullable_to_non_nullable
 as String,passBy: null == passBy ? _self.passBy : passBy // ignore: cast_nullable_to_non_nullable

@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'area_metrics_payload.dart';
+part of 'activity_payload.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_AreaMetricsPayload _$AreaMetricsPayloadFromJson(
+_ActivityPayload _$ActivityPayloadFromJson(
   Map<String, dynamic> json,
-) => _AreaMetricsPayload(
+) => _ActivityPayload(
   areaId: (json['areaId'] as num).toInt(),
   areaName: json['areaName'] as String,
   passBy: (json['passBy'] as num?)?.toInt() ?? 0,
@@ -44,8 +44,8 @@ _AreaMetricsPayload _$AreaMetricsPayloadFromJson(
       : const RoundedDouble().fromJson(json['presenceMeanSeconds']),
 );
 
-Map<String, dynamic> _$AreaMetricsPayloadToJson(
-  _AreaMetricsPayload instance,
+Map<String, dynamic> _$ActivityPayloadToJson(
+  _ActivityPayload instance,
 ) => <String, dynamic>{
   'areaId': instance.areaId,
   'areaName': instance.areaName,

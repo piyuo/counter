@@ -146,7 +146,7 @@ core_domain.ObservationPayload _createTestObservation({required DateTime startUt
     coveredSeconds: 1,
     coverageRatio: 1 / 300,
     areas: const [
-      core_domain.AreaMetricsPayload(
+      core_domain.ActivityPayload(
         areaId: 1,
         areaName: 'Area 1',
         passBy: 5,

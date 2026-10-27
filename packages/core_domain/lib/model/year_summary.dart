@@ -1,3 +1,4 @@
+import 'package:core_domain/model/observation_series.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'observation.dart';
@@ -13,25 +14,26 @@ sealed class YearSummary with _$YearSummary {
     /// for example: year=2026
     required int year,
 
-    /// Typical 5-minute day profile for this year, with matching time slots
-    /// averaged across month profiles weighted by their available daily
-    /// observation counts. Missing slots are omitted. Per-slot contributor
-    /// counts are not stored, so weighting assumes comparable slot coverage
-    /// within each month's profile and support cannot be assessed exactly.
-    required List<Observation> fiveMinuteObservations,
+    /// Typical weekday 5-minute profile for this year, averaged across the
+    /// available weekday profiles from each month. Missing slots are omitted.
+    @ObservationSeriesConverter() required ObservationSeries weekdayFiveMinuteObservation,
+
+    /// Typical weekend 5-minute profile for this year, averaged across the
+    /// available weekend profiles from each month. Missing slots are omitted.
+    @ObservationSeriesConverter() required ObservationSeries weekendFiveMinuteObservation,
 
     /// Day observations aggregated from the MonthSummary's daily observations.
     /// there is one observation a day, 365 in a non-leap year.
     /// useful for analyzing trends day by day.
-    required List<Observation> dailyObservations,
+    required List<Observation> dailyTotals,
 
     /// Month observations aggregated from the MonthSummary's monthly observations.
     /// there is 1 observation a month, 12 in a year.
     /// useful for analyzing trends month by month.
-    required List<Observation> monthlyObservations,
+    required List<Observation> monthlyTotals,
 
     /// Yearly observation aggregated from the monthly observations.
-    required Observation yearlyObservation,
+    required Observation yearlyTotal,
   }) = _YearSummary;
 
   factory YearSummary.fromJson(Map<String, dynamic> json) => _$YearSummaryFromJson(json);
@@ -42,10 +44,11 @@ sealed class YearSummary with _$YearSummary {
   String toString() {
     return 'YearSummary('
         'businessDate: $businessDate, '
-        'fiveMinuteObservations: ${fiveMinuteObservations.length}, '
-        'dailyObservations: ${dailyObservations.length}, '
-        'monthlyObservations: ${monthlyObservations.length}, '
-        'yearlyObservation: $yearlyObservation'
+        'weekdayFiveMinuteObservation: ${weekdayFiveMinuteObservation.length}, '
+        'weekendFiveMinuteObservation: ${weekendFiveMinuteObservation.length}, '
+        'dailyTotals: ${dailyTotals.length}, '
+        'monthlyTotals: ${monthlyTotals.length}, '
+        'yearlyTotal: $yearlyTotal'
         ')';
   }
 }

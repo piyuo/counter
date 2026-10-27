@@ -101,6 +101,10 @@
           "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
           "description": "Business-local date formatted as YYYY-MM-DD."
         },
+        "isWeekend": {
+          "type": "boolean",
+          "description": "Whether the business-local date is Saturday or Sunday."
+        },
         "confidenceRatio": {
           "type": "number",
           "minimum": 0,

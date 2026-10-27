@@ -245,7 +245,7 @@ class _SummaryTile extends StatelessWidget {
 class _AreaListItem extends StatelessWidget {
   const _AreaListItem({required this.area});
 
-  final core_domain.AreaMetricsPayload area;
+  final core_domain.ActivityPayload area;
 
   @override
   Widget build(BuildContext context) {

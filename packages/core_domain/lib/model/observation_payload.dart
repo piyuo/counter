@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../utils/round_double.dart';
-import 'area_metrics_payload.dart';
+import 'activity_payload.dart';
 
 part 'observation_payload.freezed.dart';
 part 'observation_payload.g.dart';
@@ -51,6 +51,9 @@ sealed class ObservationPayload with _$ObservationPayload {
     /// - year: `2026`
     @Default('') String businessDate,
 
+    /// Whether the business-local date falls on Saturday or Sunday.
+    @Default(false) bool isWeekend,
+
     /// Mean confidence as a ratio in the range 0.0-1.0, or 0 when there are
     /// no samples.
     ///
@@ -92,7 +95,7 @@ sealed class ObservationPayload with _$ObservationPayload {
     ///
     /// One entry exists for each configured interest area, including the
     /// global area.
-    required List<AreaMetricsPayload> areas,
+    required List<ActivityPayload> areas,
 
     /// Total number of frames processed during this observation.
     ///

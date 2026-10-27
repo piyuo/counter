@@ -1,9 +1,10 @@
 // TOC
 // 1. Observation derived date/time getters
 
-import 'package:core_domain/model/area_metrics.dart';
-import 'package:core_domain/model/area_metrics_payload.dart';
+import 'package:core_domain/model/activity.dart';
+import 'package:core_domain/model/activity_payload.dart';
 import 'package:core_domain/model/observation.dart';
+import 'package:core_domain/model/observation_granularity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Observation _observation({
@@ -29,7 +30,7 @@ Observation _observation({
   );
 }
 
-const _baseAreaMetrics = AreaMetrics(
+const _baseAreaMetrics = Activity(
   areaId: 1,
   areaName: 'a',
   occupancySampleCount: 0,
@@ -44,6 +45,18 @@ const _baseAreaMetrics = AreaMetrics(
 
 void main() {
   group('Observation derived metrics', () {
+    test('identifies weekends from the business-local date and payload', () {
+      final friday = _observation(year: 2026, month: 8, day: 28);
+      final saturday = _observation(year: 2026, month: 8, day: 29);
+      final sunday = _observation(year: 2026, month: 8, day: 30);
+
+      expect(friday.isWeekend, isFalse);
+      expect(saturday.isWeekend, isTrue);
+      expect(sunday.isWeekend, isTrue);
+      expect(saturday.toPayload().isWeekend, isTrue);
+      expect(sunday.toPayload().isWeekend, isTrue);
+    });
+
     test('derives expected seconds from granularity and calendar date', () {
       expect(_observation(year: 2024, granularity: ObservationGranularity.minutes5).expectedSeconds, 300);
       expect(_observation(year: 2024, granularity: ObservationGranularity.hour).expectedSeconds, 3600);
@@ -79,7 +92,7 @@ void main() {
     });
 
     test('derives occupancy and dwell averages from stored totals', () {
-      const metrics = AreaMetrics(
+      const metrics = Activity(
         areaId: 1,
         areaName: 'Area 1',
         occupancySampleCount: 2,
@@ -102,7 +115,7 @@ void main() {
     });
 
     test('converts area metrics to a payload with derived means', () {
-      const metrics = AreaMetrics(
+      const metrics = Activity(
         areaId: 2,
         areaName: 'Lobby',
         passBy: 1,
@@ -150,7 +163,7 @@ void main() {
         confidenceSum: 1.5,
         confidenceSampleCount: 2,
         coveredSeconds: 1800,
-        areas: [AreaMetrics(areaId: 0, areaName: 'Global', occupancySampleCount: 1, occupancySum: 3)],
+        areas: [Activity(areaId: 0, areaName: 'Global', occupancySampleCount: 1, occupancySum: 3)],
         frameCount: 10,
       );
 
@@ -161,7 +174,7 @@ void main() {
       expect(payload.confidenceRatio, 0.75);
       expect(payload.expectedSeconds, 3600);
       expect(payload.coverageRatio, 0.5);
-      expect(payload.areas.single, isA<AreaMetricsPayload>());
+      expect(payload.areas.single, isA<ActivityPayload>());
       expect(payload.areas.single.occupancyMean, 3);
       expect(payload.frameCount, 10);
     });
@@ -222,11 +235,11 @@ void main() {
         presenceSampleCount: 2,
         presenceSumSeconds: 90,
       );
-      expect(AreaMetrics.fromJson(metrics.toJson()), metrics);
+      expect(Activity.fromJson(metrics.toJson()), metrics);
     });
 
     test('keeps event counts and derives occupancy, dwell, and presence means', () {
-      const metrics = AreaMetrics(
+      const metrics = Activity(
         areaId: 1,
         areaName: 'Area 1',
         passBy: 3,
@@ -268,14 +281,14 @@ void main() {
       final metrics = _baseAreaMetrics.copyWith(occupancyLast: 4);
 
       expect(metrics.occupancyLast, 4);
-      expect(AreaMetrics.fromJson(metrics.toJson()).occupancyLast, 4);
+      expect(Activity.fromJson(metrics.toJson()).occupancyLast, 4);
     });
 
     test('legacy nullable occupancy snapshot defaults to zero', () {
       final legacyJson = _baseAreaMetrics.toJson()..['occupancyLast'] = null;
 
-      expect(AreaMetrics.fromJson(legacyJson).occupancyLast, 0);
-      expect(AreaMetrics.fromJson(legacyJson).occupancySampleCount, 0);
+      expect(Activity.fromJson(legacyJson).occupancyLast, 0);
+      expect(Activity.fromJson(legacyJson).occupancySampleCount, 0);
     });
 
     test('presence sum serializes as integer seconds', () {
@@ -284,7 +297,7 @@ void main() {
 
       expect(json['presenceSumSeconds'], 1);
       expect(json['presenceSumSeconds'], isA<int>());
-      expect(AreaMetrics.fromJson(json).presenceSumSeconds, 1);
+      expect(Activity.fromJson(json).presenceSumSeconds, 1);
     });
 
     test('legacy JSON defaults absent presence and histogram fields', () {
@@ -293,7 +306,7 @@ void main() {
         ..remove('presenceSumSeconds')
         ..remove('presenceMeanSeconds')
         ..remove('dwellHistogram');
-      final legacy = AreaMetrics.fromJson(legacyJson);
+      final legacy = Activity.fromJson(legacyJson);
       expect(legacy.presenceSampleCount, 0);
       expect(legacy.presenceSumSeconds, 0);
       expect(legacy.presenceMeanSeconds, 0);
@@ -360,7 +373,7 @@ void main() {
   });
 
   test('AreaMetrics serializes its event count as stagnant', () {
-    const metrics = AreaMetrics(
+    const metrics = Activity(
       areaId: 0,
       areaName: 'Global',
       stagnant: 3,
@@ -380,7 +393,7 @@ void main() {
     expect(json.containsKey('stagnantSampleCount'), isFalse);
     expect(json.containsKey('stagnantSum'), isFalse);
     expect(json.containsKey('dwell'), isFalse);
-    expect(AreaMetrics.fromJson(json).stagnant, 3);
+    expect(Activity.fromJson(json).stagnant, 3);
   });
 
   test('dateTime represents the observation local date and time', () {

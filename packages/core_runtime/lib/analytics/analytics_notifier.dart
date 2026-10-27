@@ -20,6 +20,10 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
   final DateTime Function() _nowProvider;
   final core_domain.SummaryBuilder _summaryBuilder = const core_domain.SummaryBuilder();
   Future<void> _writeQueue = Future<void>.value();
+  String? _todaySummaryBusinessDate;
+  core_domain.DaySummary? _todaySummary;
+  bool _hasTodaySummaryCache = false;
+  int _todaySummaryGeneration = 0;
 
   @override
   core_domain.AnalyticsState build() {
@@ -33,9 +37,14 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
       'AnalyticsNotifier accepts only minutes5 observations',
     );
 
+    final now = _nowProvider();
+    final isToday = observation.businessDate == _formatBusinessDate(now.year, now.month, now.day);
+    if (isToday) _invalidateTodaySummary();
+
     final operation = _writeQueue.then((_) => _persistObservation(observation));
     _writeQueue = operation.then<void>((_) {}, onError: (Object _, StackTrace _) {});
     await operation;
+    if (isToday) _invalidateTodaySummary();
   }
 
   Future<void> _persistObservation(core_domain.Observation observation) async {
@@ -131,6 +140,12 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
       throw ArgumentError.value(day, 'day', 'must be valid for the specified month and year');
     }
     final businessDate = _formatBusinessDate(year, month, day);
+    final now = _nowProvider();
+    final isToday = businessDate == _formatBusinessDate(now.year, now.month, now.day);
+    if (isToday && _hasTodaySummaryCache && _todaySummaryBusinessDate == businessDate) {
+      return _todaySummary;
+    }
+    final cacheGeneration = _todaySummaryGeneration;
     final db = _databaseFactory();
     if (db == null) return null;
 
@@ -140,7 +155,12 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
               ..where((dayFile) => dayFile.month.equals(month))
               ..where((dayFile) => dayFile.day.equals(day)))
             .getSingleOrNull();
-    if (row == null) return null;
+    if (row == null) {
+      if (isToday && cacheGeneration == _todaySummaryGeneration) {
+        _cacheTodaySummary(businessDate, null);
+      }
+      return null;
+    }
 
     try {
       final json = utf8.decode(GZipCodec().decode(row.data));
@@ -152,11 +172,30 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
       if (summary.businessDate != businessDate) {
         throw FormatException('DayFile data date ${summary.businessDate} does not match its key');
       }
+      if (isToday && cacheGeneration == _todaySummaryGeneration) {
+        _cacheTodaySummary(businessDate, summary);
+      }
       return summary;
     } catch (error) {
       appkit.logDebug('[AnalyticsNotifier] Unable to read DayFile for $businessDate: $error');
+      if (isToday && cacheGeneration == _todaySummaryGeneration) {
+        _cacheTodaySummary(businessDate, null);
+      }
       return null;
     }
+  }
+
+  void _cacheTodaySummary(String businessDate, core_domain.DaySummary? summary) {
+    _todaySummaryBusinessDate = businessDate;
+    _todaySummary = summary;
+    _hasTodaySummaryCache = true;
+  }
+
+  void _invalidateTodaySummary() {
+    _todaySummaryGeneration++;
+    _todaySummaryBusinessDate = null;
+    _todaySummary = null;
+    _hasTodaySummaryCache = false;
   }
 
   @override

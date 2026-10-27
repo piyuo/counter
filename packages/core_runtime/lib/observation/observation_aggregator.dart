@@ -130,11 +130,11 @@ class ObservationAggregator {
   /// For the global area, entry/exit are forced to zero because they have no
   /// useful scene-wide boundary. Global appear/disappear counts are retained.
   core_domain.Observation snapshot() {
-    core_domain.AreaMetrics buildAreaMetrics(int areaId) {
+    core_domain.Activity buildAreaMetrics(int areaId) {
       final events = _eventCounts[areaId] ?? MutableEventCounts();
       final metrics = _stateMetrics[areaId] ?? StateMetrics();
 
-      return core_domain.AreaMetrics(
+      return core_domain.Activity(
         areaId: areaId,
         areaName: areaNameResolver(areaId),
         passBy: events.passBy.toDouble(),

@@ -1,10 +1,12 @@
 // TOC
 // 1. ObservationRollup — Combine observations across periods
 
-import 'package:core_domain/model/area_metrics_payload.dart';
+import 'package:core_domain/model/activity_payload.dart';
+import 'package:core_domain/model/observation_granularity.dart';
 
-import '../model/area_metrics.dart';
+import '../model/activity.dart';
 import '../model/observation.dart';
+import '../model/observation_series.dart';
 
 /// Combines observations into hour, day, month, or year observations.
 ///
@@ -93,14 +95,13 @@ class ObservationRollup {
   /// counts in profiles are weighted averages across contributing observations.
   /// Occupancy, dwell, and presence statistics are also weighted averages;
   /// integer values are rounded
-  /// to the nearest whole value. [AreaMetrics.occupancyMax] remains the maximum
-  /// across contributors, while [AreaMetrics.occupancyLast] is zero because the
+  /// to the nearest whole value. [Activity.occupancyMax] remains the maximum
+  /// across contributors, while [Activity.occupancyLast] is zero because the
   /// profile does not represent a real final frame. Histogram buckets use
   /// largest-remainder rounding to match the averaged dwell sample count.
-  List<Observation> averageFiveMinuteProfiles(List<List<Observation>> profiles) {
+  ObservationSeries averageFiveMinuteProfiles(Iterable<Iterable<Observation>> profiles) {
     final observationsBySlot = <int, List<Observation>>{};
-    for (var profileIndex = 0; profileIndex < profiles.length; profileIndex++) {
-      final profile = profiles[profileIndex];
+    for (final profile in profiles) {
       final slotsInProfile = <int>{};
       for (final observation in profile) {
         if (observation.granularity != ObservationGranularity.minutes5) {
@@ -114,7 +115,9 @@ class ObservationRollup {
     }
 
     final slots = observationsBySlot.keys.toList()..sort();
-    return [for (final slot in slots) _averageFiveMinuteSlot(observationsBySlot[slot]!)];
+    return ObservationSeries.fromObservations([
+      for (final slot in slots) _averageFiveMinuteSlot(observationsBySlot[slot]!),
+    ]);
   }
 
   Observation _averageFiveMinuteSlot(List<Observation> contributors) {
@@ -134,11 +137,12 @@ class ObservationRollup {
       coveredSeconds: coveredSeconds,
       areas: _averageAreas(contributors),
       frameCount: _averageInt(contributors.map((observation) => observation.frameCount)),
+      weekendOverride: first.isWeekend,
     );
   }
 
-  List<AreaMetrics> _averageAreas(List<Observation> contributors) {
-    final areaMetricsById = <int, List<AreaMetrics>>{};
+  List<Activity> _averageAreas(List<Observation> contributors) {
+    final areaMetricsById = <int, List<Activity>>{};
     for (final observation in contributors) {
       for (final metrics in observation.areas) {
         areaMetricsById.putIfAbsent(metrics.areaId, () => []).add(metrics);
@@ -149,7 +153,7 @@ class ObservationRollup {
     return [for (final areaId in areaIds) _averageAreaMetrics(areaMetricsById[areaId]!)];
   }
 
-  AreaMetrics _averageAreaMetrics(List<AreaMetrics> contributors) {
+  Activity _averageAreaMetrics(List<Activity> contributors) {
     for (final area in contributors) {
       _validateAreaMetrics(area);
     }
@@ -170,7 +174,7 @@ class ObservationRollup {
     final presenceSampleCount = _averageInt(contributors.map((area) => area.presenceSampleCount));
     final presenceSumSeconds = _averageInt(contributors.map((area) => area.presenceSumSeconds));
 
-    return AreaMetrics(
+    return Activity(
       areaId: first.areaId,
       areaName: first.areaName,
       passBy: _averageDouble(contributors.map((area) => area.passBy)),
@@ -195,8 +199,8 @@ class ObservationRollup {
     );
   }
 
-  List<AreaMetrics> _aggregateAreas(List<Observation> observations) {
-    final areasById = <int, AreaMetrics>{};
+  List<Activity> _aggregateAreas(List<Observation> observations) {
+    final areasById = <int, Activity>{};
     for (final observation in observations) {
       for (final area in observation.areas) {
         areasById[area.areaId] = _combineAreaMetrics(areasById[area.areaId], area);
@@ -207,7 +211,7 @@ class ObservationRollup {
     return areas;
   }
 
-  AreaMetrics _combineAreaMetrics(AreaMetrics? previous, AreaMetrics current) {
+  Activity _combineAreaMetrics(Activity? previous, Activity current) {
     _validateAreaMetrics(current);
     if (previous != null) _validateAreaMetrics(previous);
 
@@ -218,7 +222,7 @@ class ObservationRollup {
     final presenceTrackCount = (previous?.presenceSampleCount ?? 0) + current.presenceSampleCount;
     final presenceSumSeconds = (previous?.presenceSumSeconds ?? 0) + current.presenceSumSeconds;
 
-    return AreaMetrics(
+    return Activity(
       areaId: current.areaId,
       areaName: previous?.areaName ?? current.areaName,
       passBy: (previous?.passBy ?? 0) + current.passBy,
@@ -244,7 +248,7 @@ class ObservationRollup {
     );
   }
 
-  void _validateAreaMetrics(AreaMetrics metrics) {
+  void _validateAreaMetrics(Activity metrics) {
     if (metrics.dwellHistogram.length != kDwellBucketCount) {
       throw ArgumentError.value(metrics.dwellHistogram, 'dwellHistogram', 'must contain $kDwellBucketCount buckets');
     }
@@ -258,7 +262,7 @@ class ObservationRollup {
     }
   }
 
-  int _combinedOccupancyMax(AreaMetrics? previous, AreaMetrics current) {
+  int _combinedOccupancyMax(Activity? previous, Activity current) {
     final previousHasSamples = (previous?.occupancySampleCount ?? 0) > 0;
     final currentHasSamples = current.occupancySampleCount > 0;
     if (!currentHasSamples) return previousHasSamples ? previous!.occupancyMax : 0;
@@ -266,7 +270,7 @@ class ObservationRollup {
     return _max(previous!.occupancyMax, current.occupancyMax);
   }
 
-  List<int> _averageDwellHistogram(List<AreaMetrics> contributors, int averagedSampleCount) {
+  List<int> _averageDwellHistogram(List<Activity> contributors, int averagedSampleCount) {
     final exactBucketCounts = List<double>.generate(
       kDwellBucketCount,
       (index) => _averageDouble(contributors.map((area) => area.dwellHistogram[index].toDouble())),

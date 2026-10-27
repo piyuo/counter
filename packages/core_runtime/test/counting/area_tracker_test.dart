@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:core_domain/model/area_metrics.dart';
+import 'package:core_domain/model/activity.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:core_domain/model/observation_payload.dart';
 import 'package:core_runtime/observation/area_tracker.dart';
@@ -8,7 +8,7 @@ import 'package:core_runtime/observation/observation_aggregator.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 
-AreaMetrics _area(Observation observation, int areaId) =>
+Activity _area(Observation observation, int areaId) =>
     observation.areas.singleWhere((metrics) => metrics.areaId == areaId);
 
 void main() {

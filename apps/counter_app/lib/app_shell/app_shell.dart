@@ -61,9 +61,11 @@ class _AppShellState extends ConsumerState<AppShell> {
     final observationService = ref.read(core_domain.observationServiceProvider);
     final telemetryService = ref.read(core_domain.telemetryServiceProvider);
     final analyticsService = ref.read(core_domain.analyticsServiceProvider);
+    final insightService = ref.read(core_domain.insightServiceProvider);
+    unawaited(insightService.refresh());
 
     _observationSubscription = observationService.snapshots.listen((observation) {
-      unawaited(_processObservation(observation, telemetryService, analyticsService));
+      unawaited(_processObservation(observation, telemetryService, analyticsService, insightService));
     });
   }
 
@@ -71,6 +73,7 @@ class _AppShellState extends ConsumerState<AppShell> {
     core_domain.Observation observation,
     core_domain.TelemetryService telemetryService,
     core_domain.AnalyticsService analyticsService,
+    core_domain.InsightService insightService,
   ) async {
     try {
       await analyticsService.add(observation);
@@ -87,6 +90,15 @@ class _AppShellState extends ConsumerState<AppShell> {
     } catch (error, stackTrace) {
       appkit.logDebug(
         '[app_shell] Failed to enqueue telemetry payload: $error, '
+        'stack trace: $stackTrace',
+      );
+    }
+
+    try {
+      await insightService.refresh();
+    } catch (error, stackTrace) {
+      appkit.logDebug(
+        '[app_shell] Failed to refresh insight service: $error, '
         'stack trace: $stackTrace',
       );
     }

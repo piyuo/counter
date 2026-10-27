@@ -66,7 +66,7 @@ List<MetricCardData> mapVisionMetricsToCardData(
   return panels;
 }
 
-List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.AreaMetrics> areas}) {
+List<MetricCardData> mapPayloadMetricsToCardData({required List<core_domain.Activity> areas}) {
   final orderedAreas = [...areas]..sort((a, b) => a.areaId.compareTo(b.areaId));
 
   return [

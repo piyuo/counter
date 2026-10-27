@@ -1,6 +1,6 @@
 // TOC
 // 1. Dwell bucket helpers
-// 2. AreaMetrics model
+// 2. ActivityPayload model
 //
 // Time basis and DST for Observation (defined in observation.dart)
 //
@@ -27,42 +27,20 @@
 import 'package:core_domain/utils/round_double.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'area_metrics_payload.dart';
+part 'activity_payload.freezed.dart';
+part 'activity_payload.g.dart';
 
-part 'area_metrics.freezed.dart';
-part 'area_metrics.g.dart';
+/// Upper-exclusive edges for dwell duration buckets, in seconds.
+const List<int> kDwellBucketEdgesSeconds = [5, 15, 60, 300, 600, 1800, 3600];
 
-/// Returns the histogram bucket index for a finished dwell duration.
-int dwellBucketIndex(int seconds) {
-  for (var index = 0; index < kDwellBucketEdgesSeconds.length; index++) {
-    if (seconds < kDwellBucketEdgesSeconds[index]) return index;
-  }
-  return kDwellBucketEdgesSeconds.length;
-}
+/// Number of dwell duration buckets, including the unbounded final bucket.
+const int kDwellBucketCount = 8;
 
-/// Analytics metrics for one interest area within an [Observation].
-///
-/// Event fields are direct counts for this observation and add across actual
-/// periods. Typical-day profiles average matching event counts across days, so
-/// a profile value may be fractional.
-///
-/// passBy, stagnant, entry, exit, appear, and disappear are one-shot events per
-/// track ID while it remains in the bounded tracker history. An ID can be
-/// counted again after eviction or reset.
-///
-/// Tracks are not confirmed distinct people or vehicles: a tracking ID
-/// switch creates a new track and is counted again.
-///
-/// Time is measured two ways. Dwell is one sample per finished visit; presence
-/// is time spent inside during each observation. See those fields.
-///
-/// Occupancy, dwell, and presence sums and counts are the source of truth for
-/// their derived means. Event counts are stored and serialized directly.
 @freezed
-sealed class AreaMetrics with _$AreaMetrics {
-  const AreaMetrics._();
+sealed class ActivityPayload with _$ActivityPayload {
+  const ActivityPayload._();
 
-  const factory AreaMetrics({
+  const factory ActivityPayload({
     /// Index matching the configured interest-area ID.
     ///
     /// [kGlobalAreaId] represents the global monitored scene.
@@ -87,7 +65,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     ///
     /// Limitation: a new track ID (for example after a tracking ID switch or an
     /// app restart) is a new track and is counted again.
-    @Default(0) @RoundedDouble() double passBy,
+    @Default(0) int passBy,
 
     /// Number of unique tracks that stayed inside the area continuously for at
     /// least the configured stagnant threshold. Absences shorter than the
@@ -103,7 +81,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// This metric is additive across observations.
     ///
     /// Limitation: a new track ID is a new track and is counted again.
-    @Default(0) @RoundedDouble() double stagnant,
+    @Default(0) int stagnant,
 
     /// Number of tracks whose initial position was outside this area and were
     /// later observed inside it. Applies only to local areas; the global area
@@ -111,7 +89,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     ///
     /// Each track ID is counted once in the observation where it first enters.
     /// This is additive across observations, subject to bounded history.
-    @Default(0) @RoundedDouble() double entry,
+    @Default(0) int entry,
 
     /// Number of tracks whose initial position was inside this area and were
     /// later observed outside it. Applies only to local areas; the global area
@@ -119,7 +97,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     ///
     /// Each track ID is counted once in the observation where it first exits.
     /// This is additive across observations, subject to bounded history.
-    @Default(0) @RoundedDouble() double exit,
+    @Default(0) int exit,
 
     /// Number of tracks first detected with their center position inside this
     /// area.
@@ -127,7 +105,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// Applies to both local areas and the global monitored scene.
     /// Each track ID is counted once in the observation where it first appears.
     /// This is additive across observations, subject to bounded history.
-    @Default(0) @RoundedDouble() double appear,
+    @Default(0) int appear,
 
     /// Number of tracks last seen inside the area and then absent long enough
     /// to satisfy the configured disappear threshold.
@@ -143,7 +121,7 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// Visits closed by source dropout, pause, clock jump, or stop do not count
     /// as disappear. For a local area, this also fires when the track leaves
     /// the area but remains visible elsewhere.
-    @Default(0) @RoundedDouble() double disappear,
+    @Default(0) int disappear,
 
     /// Number of occupancy samples in this observation.
     ///
@@ -162,6 +140,16 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// Additive across child observations.
     @Default(0) int occupancySum,
 
+    /// Mean number of objects in the area per sample, or 0 when there are no
+    /// samples.
+    ///
+    /// occupancyMean = occupancySampleSum / occupancySampleCount
+    ///
+    /// This is an average over frames, not over time, so no time-weighting is
+    /// applied. The sum and count remain the source of truth; this field is
+    /// included for convenience.
+    @Default(0) @RoundedDouble() double occupancyMean,
+
     /// Sum of the squared object counts across all occupancy samples.
     ///
     /// Example: samples of 2, 3, and 1 objects give 4 + 9 + 1 = 14.
@@ -174,6 +162,13 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// The sum, sum of squares, and count remain the source of truth; the mean
     /// and variance are derived from them.
     @Default(0) int occupancySumSquares,
+
+    /// Variance of the number of objects in the area per sample, or 0 when there are no samples.
+    ///
+    /// occupancyVariance = occupancySumSquares / occupancySampleCount - occupancyMean * occupancyMean
+    ///
+    /// This is an average over frames, not over time, so no time-weighting is applied. The sum of squares and count remain the source of truth; this field is included for convenience.
+    @Default(0) @RoundedDouble() double occupancyVariance,
 
     /// Mean number of objects in the area per sample, or 0 when there are no
     /// samples.
@@ -189,8 +184,8 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// child observations.
     @Default(0) int occupancyMax,
 
-    /// Most recent occupancy sample observed for this area. When no valid
-    /// occupancy sample exists, this is zero; use [occupancySampleCount] to
+    /// Most recent occupancy sample observed for this area. Aggregates use -1
+    /// when no valid occupancy sample exists; use [occupancySampleCount] to
     /// distinguish this from a measured zero.
     ///
     /// This is state, not an additive metric; an aggregated observation
@@ -223,6 +218,15 @@ sealed class AreaMetrics with _$AreaMetrics {
     ///
     /// Additive across child observations.
     @Default(0) int dwellSumSeconds,
+
+    /// Mean dwell time in seconds across all dwell samples, or 0 when there
+    /// are no samples.
+    ///
+    /// dwellMeanSeconds = dwellSumSeconds / dwellSampleCount
+    ///
+    /// No time-weighting is applied. The sum and count remain the source of
+    /// truth; this field is included for convenience.
+    @RoundedDouble() required double dwellMeanSeconds,
 
     /// Mean dwell time in seconds across all dwell samples, or 0 when there
     /// are no samples.
@@ -277,55 +281,12 @@ sealed class AreaMetrics with _$AreaMetrics {
     /// Mean seconds each present track spent inside during this observation, or
     /// 0 when there are no samples.
     ///
-    /// presenceMeanSeconds = presenceSumSeconds / presenceSampleCount
+    /// presenceMeanSeconds = presenceSumSeconds / presenceTrackCount
     ///
     /// This is not visit length. The sums and count remain the source of truth;
     /// this field is included for convenience.
-  }) = _AreaMetrics;
+    @RoundedDouble() @Default(0) double presenceMeanSeconds,
+  }) = _ActivityPayload;
 
-  /// the mean occupancy during this observation.
-  double get occupancyMean => _mean(occupancySum, occupancySampleCount);
-
-  /// the mean dwell time during this observation.
-  double get dwellMeanSeconds => _mean(dwellSumSeconds, dwellSampleCount);
-
-  /// the mean presence time during this observation.
-  double get presenceMeanSeconds => _mean(presenceSumSeconds, presenceSampleCount);
-
-  double get occupancyVariance {
-    if (occupancySampleCount == 0) return 0;
-    final mean = occupancySum / occupancySampleCount;
-    final v = occupancySumSquares / occupancySampleCount - mean * mean;
-    return v < 0 ? 0 : v; // guard against rounding noise
-  }
-
-  AreaMetricsPayload toPayload() => AreaMetricsPayload(
-    areaId: areaId,
-    areaName: areaName,
-    passBy: passBy.toInt(), // we only send payload on 5 minutes observation,so event must be int no decimals.
-    stagnant: stagnant.toInt(),
-    entry: entry.toInt(),
-    exit: exit.toInt(),
-    appear: appear.toInt(),
-    disappear: disappear.toInt(),
-    occupancySampleCount: occupancySampleCount,
-    occupancySum: occupancySum,
-    occupancySumSquares: occupancySumSquares,
-    occupancyMax: occupancyMax,
-    occupancyLast: occupancyLast,
-    occupancyMean: occupancyMean,
-    occupancyVariance: occupancyVariance,
-    dwellSampleCount: dwellSampleCount,
-    dwellSumSeconds: dwellSumSeconds,
-    dwellMeanSeconds: dwellMeanSeconds,
-    dwellMaxSeconds: dwellMaxSeconds,
-    dwellHistogram: dwellHistogram,
-    presenceSampleCount: presenceSampleCount,
-    presenceSumSeconds: presenceSumSeconds,
-    presenceMeanSeconds: presenceMeanSeconds,
-  );
-
-  double _mean(num sum, int count) => count == 0 ? 0 : sum / count;
-
-  factory AreaMetrics.fromJson(Map<String, dynamic> json) => _$AreaMetricsFromJson(json);
+  factory ActivityPayload.fromJson(Map<String, dynamic> json) => _$ActivityPayloadFromJson(json);
 }

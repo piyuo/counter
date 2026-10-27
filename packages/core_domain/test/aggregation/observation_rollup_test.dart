@@ -12,7 +12,7 @@ Observation _observation({
   required int day,
   required int hour,
   required int minute,
-  List<AreaMetrics> areas = const [],
+  List<Activity> areas = const [],
 }) {
   return Observation(
     granularity: granularity,
@@ -29,7 +29,7 @@ Observation _observation({
   );
 }
 
-AreaMetrics _metrics({
+Activity _metrics({
   int areaId = 1,
   double passBy = 0,
   double stagnant = 0,
@@ -42,12 +42,14 @@ AreaMetrics _metrics({
   int occupancySampleSumSquares = 0,
   int occupancyMax = 0,
   int occupancyLast = 0,
+  int presenceSampleCount = 0,
+  int presenceSumSeconds = 0,
   int dwellSampleCount = 0,
   int dwellSumSeconds = 0,
   int dwellMaxSeconds = 0,
   List<int> dwellHistogram = const [0, 0, 0, 0, 0, 0, 0, 0],
 }) {
-  return AreaMetrics(
+  return Activity(
     areaId: areaId,
     areaName: 'Area $areaId',
     passBy: passBy,
@@ -61,6 +63,8 @@ AreaMetrics _metrics({
     occupancySumSquares: occupancySampleSumSquares,
     occupancyMax: occupancyMax,
     occupancyLast: occupancyLast,
+    presenceSampleCount: presenceSampleCount,
+    presenceSumSeconds: presenceSumSeconds,
     dwellSampleCount: dwellSampleCount,
     dwellSumSeconds: dwellSumSeconds,
     dwellMaxSeconds: dwellMaxSeconds,
@@ -68,7 +72,7 @@ AreaMetrics _metrics({
   );
 }
 
-Observation _minute({required int minute, required AreaMetrics metrics, int day = 1, int month = 1}) {
+Observation _minute({required int minute, required Activity metrics, int day = 1, int month = 1}) {
   return _observation(
     granularity: ObservationGranularity.minutes5,
     year: 2026,
@@ -100,6 +104,49 @@ void main() {
   const rollup = ObservationRollup();
 
   group('ObservationRollup actual-period aggregation', () {
+    test('calculates hourly coverage from only two five-minute observations', () {
+      final combined = rollup.aggregate([
+        _minute(minute: 0, metrics: _metrics()),
+        _minute(minute: 5, metrics: _metrics()),
+      ], granularity: ObservationGranularity.hour);
+
+      expect(combined.coveredSeconds, 600);
+      expect(combined.expectedSeconds, 3600);
+      expect(combined.coverageRatio, closeTo(1 / 6, 1e-12));
+    });
+
+    test('adds partial coverage from two five-minute observations', () {
+      final combined = rollup.aggregate([
+        _partialMinute(minute: 0, coveredSeconds: 100),
+        _partialMinute(minute: 5, coveredSeconds: 200),
+      ], granularity: ObservationGranularity.hour);
+
+      expect(combined.coveredSeconds, 300);
+      expect(combined.expectedSeconds, 3600);
+      expect(combined.coverageRatio, closeTo(1 / 12, 1e-12));
+    });
+
+    test('adds frame counts across source observations', () {
+      final combined = rollup.aggregate([
+        _minute(minute: 0, metrics: _metrics()).copyWith(frameCount: 120),
+        _minute(minute: 5, metrics: _metrics()).copyWith(frameCount: 240),
+      ], granularity: ObservationGranularity.hour);
+
+      expect(combined.frameCount, 360);
+    });
+
+    test('adds presence sample counts and duration across source observations', () {
+      final combined = rollup.aggregate([
+        _minute(minute: 0, metrics: _metrics(presenceSampleCount: 2, presenceSumSeconds: 80)),
+        _minute(minute: 5, metrics: _metrics(presenceSampleCount: 3, presenceSumSeconds: 160)),
+      ], granularity: ObservationGranularity.hour);
+
+      final metrics = combined.areas.single;
+      expect(metrics.presenceSampleCount, 5);
+      expect(metrics.presenceSumSeconds, 240);
+      expect(metrics.presenceMeanSeconds, closeTo(48, 1e-12)); // 240 / 5 = 48
+    });
+
     test('keeps the latest valid occupancy snapshot', () {
       final combined = rollup.aggregate([
         _minute(minute: 0, metrics: _metrics(passBy: 1, occupancySampleCount: 1, occupancyLast: 4)),

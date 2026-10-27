@@ -119,9 +119,9 @@ void main() {
       final updated = (await readDay('2026-10-16'))!;
       final summary = _decodeSummary(updated);
       expect(summary.fiveMinuteObservations, hasLength(2));
-      expect(summary.hourlyObservations, hasLength(1));
-      expect(summary.hourlyObservations.single.frameCount, 5);
-      expect(summary.dailyObservation.frameCount, 5);
+      expect(summary.hourlyTotals, hasLength(1));
+      expect(summary.hourlyTotals.single.frameCount, 5);
+      expect(summary.dailyTotal.frameCount, 5);
       expect(updated.createdAtMs, original.createdAtMs);
       expect(updated.updatedAtMs, nowMs);
       expect(updated.data, isNot(original.data));
@@ -143,7 +143,33 @@ void main() {
 
       expect(summary, isNotNull);
       expect(summary!.businessDate, '2026-10-16');
-      expect(summary.dailyObservation.frameCount, 8);
+      expect(summary.dailyTotal.frameCount, 8);
+    });
+
+    test('caches today and invalidates the cache when a today observation is added', () async {
+      await notifier.add(_observation(hour: 10, minute: 0, frameCount: 3));
+
+      final first = await notifier.getDaySummary(2026, 10, 16);
+      await (database.delete(database.dayFile)..where((row) => row.businessDate.equals('2026-10-16'))).go();
+
+      final cached = await notifier.getDaySummary(2026, 10, 16);
+      expect(identical(cached, first), isTrue);
+
+      await notifier.add(_observation(hour: 10, minute: 5, frameCount: 5));
+      final refreshed = await notifier.getDaySummary(2026, 10, 16);
+
+      expect(refreshed, isNotNull);
+      expect(refreshed!.fiveMinuteObservations, hasLength(1));
+      expect(refreshed.dailyTotal.frameCount, 5);
+    });
+
+    test('does not cache historical day summaries', () async {
+      await notifier.add(_observation(year: 2025, month: 10, day: 16, hour: 10, minute: 0));
+
+      expect(await notifier.getDaySummary(2025, 10, 16), isNotNull);
+      await (database.delete(database.dayFile)..where((row) => row.businessDate.equals('2025-10-16'))).go();
+
+      expect(await notifier.getDaySummary(2025, 10, 16), isNull);
     });
 
     test('returns null when no DaySummary exists for the business date', () async {
@@ -164,8 +190,8 @@ void main() {
 
       expect(summary, isNotNull);
       expect(summary!.businessDate, '2026-10');
-      expect(summary.dailyObservations.map((observation) => observation.day), [16, 17]);
-      expect(summary.monthlyObservation.frameCount, 8);
+      expect(summary.dailyTotals.map((observation) => observation.day), [16, 17]);
+      expect(summary.monthlyTotal.frameCount, 8);
       expect(await database.select(database.monthFile).get(), isEmpty);
     });
 
@@ -175,7 +201,7 @@ void main() {
       final built = await notifier.getMonthSummary(2025, 9);
 
       expect(built, isNotNull);
-      expect(built!.monthlyObservation.frameCount, 3);
+      expect(built!.monthlyTotal.frameCount, 3);
       final saved =
           await (database.select(database.monthFile)
                 ..where((row) => row.year.equals(2025))
@@ -189,7 +215,7 @@ void main() {
       await notifier.add(_observation(year: 2025, month: 9, day: 2, hour: 10, minute: 5, frameCount: 4));
       final cached = await notifier.getMonthSummary(2025, 9);
 
-      expect(cached!.monthlyObservation.frameCount, 3);
+      expect(cached!.monthlyTotal.frameCount, 3);
     });
 
     test('builds and caches a historical year from available months', () async {
@@ -200,8 +226,8 @@ void main() {
 
       expect(summary, isNotNull);
       expect(summary!.businessDate, '2025');
-      expect(summary.monthlyObservations.map((observation) => observation.month), [1, 3]);
-      expect(summary.yearlyObservation.frameCount, 8);
+      expect(summary.monthlyTotals.map((observation) => observation.month), [1, 3]);
+      expect(summary.yearlyTotal.frameCount, 8);
       final saved = await (database.select(database.yearFile)..where((row) => row.year.equals(2025))).getSingle();
       expect(saved.year, 2025);
       expect(saved.schemaVersion, core_domain.kSchemaVersion);
@@ -215,8 +241,8 @@ void main() {
       await notifier.add(_observation(year: 2026, month: 10, day: 17, hour: 10, minute: 0, frameCount: 5));
       final second = await notifier.getYearSummary(2026);
 
-      expect(first!.yearlyObservation.frameCount, 3);
-      expect(second!.yearlyObservation.frameCount, 8);
+      expect(first!.yearlyTotal.frameCount, 3);
+      expect(second!.yearlyTotal.frameCount, 8);
       expect(await database.select(database.yearFile).get(), isEmpty);
     });
 
@@ -257,10 +283,10 @@ void main() {
 
       final unchanged = (await readDay('2026-10-16'))!;
       expect(unchanged, original);
-      expect(_decodeSummary(unchanged).dailyObservation.frameCount, 2);
+      expect(_decodeSummary(unchanged).dailyTotal.frameCount, 2);
     });
 
-    test('asserts on granularities other than five minutes', () async {
+    test('asserts on granulates other than five minutes', () async {
       final hourly = _observation(hour: 10, minute: -1, granularity: core_domain.ObservationGranularity.hour);
 
       await expectLater(notifier.add(hourly), throwsAssertionError);
@@ -290,7 +316,7 @@ void main() {
       expect(row.schemaVersion, core_domain.kSchemaVersion);
       expect(row.createdAtMs, 10);
       expect(row.updatedAtMs, nowMs);
-      expect(_decodeSummary(row).dailyObservation.frameCount, 4);
+      expect(_decodeSummary(row).dailyTotal.frameCount, 4);
     });
 
     test('rebuilds documents containing malformed JSON', () async {
@@ -315,7 +341,7 @@ void main() {
       expect(row.schemaVersion, core_domain.kSchemaVersion);
       expect(row.createdAtMs, 10);
       expect(row.updatedAtMs, nowMs);
-      expect(_decodeSummary(row).dailyObservation.frameCount, 5);
+      expect(_decodeSummary(row).dailyTotal.frameCount, 5);
     });
 
     test('rebuilds documents that decode to an invalid DaySummary', () async {
@@ -339,7 +365,7 @@ void main() {
       final row = (await readDay('2026-10-16'))!;
       expect(row.createdAtMs, 10);
       expect(row.updatedAtMs, nowMs);
-      expect(_decodeSummary(row).dailyObservation.frameCount, 7);
+      expect(_decodeSummary(row).dailyTotal.frameCount, 7);
     });
 
     test('rebuilds documents whose summary date does not match the key', () async {
@@ -367,7 +393,7 @@ void main() {
       expect(row.createdAtMs, 10);
       expect(row.updatedAtMs, nowMs);
       expect(_decodeSummary(row).businessDate, '2026-10-16');
-      expect(_decodeSummary(row).dailyObservation.frameCount, 6);
+      expect(_decodeSummary(row).dailyTotal.frameCount, 6);
     });
 
     test('serializes concurrent additions without losing observations', () async {
@@ -377,7 +403,7 @@ void main() {
 
       final summary = _decodeSummary((await readDay('2026-10-16'))!);
       expect(summary.fiveMinuteObservations, hasLength(10));
-      expect(summary.dailyObservation.frameCount, 10);
+      expect(summary.dailyTotal.frameCount, 10);
     });
 
     test('a failed queued operation does not block the next addition', () async {

@@ -1,9 +1,12 @@
 // TOC
 // 1. SummaryBuilder — Build day, month, and year summaries
 
+import 'package:core_domain/model/observation_granularity.dart';
+
 import '../model/day_summary.dart';
 import '../model/month_summary.dart';
 import '../model/observation.dart';
+import '../model/observation_series.dart';
 import '../model/year_summary.dart';
 import 'observation_rollup.dart';
 
@@ -55,20 +58,36 @@ class SummaryBuilder {
       _validateDaySources(day);
     }
 
-    final dailyObservations = [for (final day in days) day.dailyObservation];
-    final hourlyObservations = [for (final day in days) ...day.hourlyObservations]..sort(_compareBusinessDateTime);
+    final dailyTotals = [for (final day in days) day.dailyTotal];
+    final hourlyTotals = [for (final day in days) ...day.hourlyTotals]..sort(_compareBusinessDateTime);
     return MonthSummary(
       year: first.year,
       month: first.month,
-      fiveMinuteObservations: [
-        for (final observation in _observationRollup.averageFiveMinuteProfiles([
-          for (final day in days) day.fiveMinuteObservations,
-        ]))
-          observation.copyWith(year: first.year, month: first.month, day: 1),
-      ],
-      hourlyObservations: hourlyObservations,
-      dailyObservations: dailyObservations,
-      monthlyObservation: _observationRollup.aggregate(dailyObservations, granularity: ObservationGranularity.month),
+      weekdayFiveMinuteObservation: ObservationSeries.fromObservations(
+        _observationRollup
+            .averageFiveMinuteProfiles([
+              for (final day in days)
+                [
+                  for (final observation in day.fiveMinuteObservations)
+                    if (!observation.isWeekend) observation,
+                ],
+            ])
+            .map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
+      ),
+      weekendFiveMinuteObservation: ObservationSeries.fromObservations(
+        _observationRollup
+            .averageFiveMinuteProfiles([
+              for (final day in days)
+                [
+                  for (final observation in day.fiveMinuteObservations)
+                    if (observation.isWeekend) observation,
+                ],
+            ])
+            .map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
+      ),
+      hourlyTotals: hourlyTotals,
+      dailyTotals: dailyTotals,
+      monthlyTotal: _observationRollup.aggregate(dailyTotals, granularity: ObservationGranularity.month),
     );
   }
 
@@ -94,18 +113,25 @@ class SummaryBuilder {
       _validateMonthSources(month);
     }
 
-    final dailyObservations = [for (final month in months) ...month.dailyObservations]..sort(_compareBusinessDateTime);
-    final monthlyObservations = [for (final month in months) month.monthlyObservation];
-    final monthlyProfiles = [for (final month in months) month.fiveMinuteObservations];
+    final dailyObservations = [for (final month in months) ...month.dailyTotals]..sort(_compareBusinessDateTime);
+    final monthlyObservations = [for (final month in months) month.monthlyTotal];
+    final monthlyWeekdayProfiles = [for (final month in months) month.weekdayFiveMinuteObservation];
+    final monthlyWeekendProfiles = [for (final month in months) month.weekendFiveMinuteObservation];
     return YearSummary(
       year: year,
-      fiveMinuteObservations: [
-        for (final observation in _observationRollup.averageFiveMinuteProfiles(monthlyProfiles))
-          observation.copyWith(year: year, month: 1, day: 1),
-      ],
-      dailyObservations: dailyObservations,
-      monthlyObservations: monthlyObservations,
-      yearlyObservation: _observationRollup.aggregate(monthlyObservations, granularity: ObservationGranularity.year),
+      weekdayFiveMinuteObservation: ObservationSeries.fromObservations(
+        _observationRollup
+            .averageFiveMinuteProfiles(monthlyWeekdayProfiles)
+            .map((observation) => observation.copyWith(year: year, month: 1, day: 1)),
+      ),
+      weekendFiveMinuteObservation: ObservationSeries.fromObservations(
+        _observationRollup
+            .averageFiveMinuteProfiles(monthlyWeekendProfiles)
+            .map((observation) => observation.copyWith(year: year, month: 1, day: 1)),
+      ),
+      dailyTotals: dailyObservations,
+      monthlyTotals: monthlyObservations,
+      yearlyTotal: _observationRollup.aggregate(monthlyObservations, granularity: ObservationGranularity.year),
     );
   }
 
@@ -130,21 +156,21 @@ class SummaryBuilder {
       year: year,
       month: month,
       day: day,
-      fiveMinuteObservations: observations,
-      hourlyObservations: hourlyObservations,
-      dailyObservation: _observationRollup.aggregate(observations, granularity: ObservationGranularity.day),
+      fiveMinuteObservations: ObservationSeries.fromObservations(observations),
+      hourlyTotals: hourlyObservations,
+      dailyTotal: _observationRollup.aggregate(observations, granularity: ObservationGranularity.day),
     );
   }
 
   void _validateDaySources(DaySummary summary) {
-    final daily = summary.dailyObservation;
-    if (daily.granularity != ObservationGranularity.day ||
-        daily.year != summary.year ||
-        daily.month != summary.month ||
-        daily.day != summary.day) {
+    final dailyTotal = summary.dailyTotal;
+    if (dailyTotal.granularity != ObservationGranularity.day ||
+        dailyTotal.year != summary.year ||
+        dailyTotal.month != summary.month ||
+        dailyTotal.day != summary.day) {
       throw ArgumentError.value(summary, 'sourceDays', 'daily observation must match its day summary');
     }
-    for (final observation in summary.hourlyObservations) {
+    for (final observation in summary.hourlyTotals) {
       if (observation.granularity != ObservationGranularity.hour ||
           observation.year != summary.year ||
           observation.month != summary.month ||
@@ -161,30 +187,45 @@ class SummaryBuilder {
   }
 
   void _validateMonthSources(MonthSummary summary) {
-    if (summary.monthlyObservation.granularity != ObservationGranularity.month ||
-        summary.monthlyObservation.year != summary.year ||
-        summary.monthlyObservation.month != summary.month) {
+    if (summary.monthlyTotal.granularity != ObservationGranularity.month ||
+        summary.monthlyTotal.year != summary.year ||
+        summary.monthlyTotal.month != summary.month) {
       throw ArgumentError.value(summary, 'sourceMonths', 'monthly observation must match its month summary');
     }
-    for (final observation in summary.dailyObservations) {
+    for (final observation in summary.dailyTotals) {
       if (observation.granularity != ObservationGranularity.day ||
           observation.year != summary.year ||
           observation.month != summary.month) {
         throw ArgumentError.value(summary, 'sourceMonths', 'daily observations must match their month summary');
       }
     }
-    for (final observation in summary.hourlyObservations) {
+    for (final observation in summary.hourlyTotals) {
       if (observation.granularity != ObservationGranularity.hour ||
           observation.year != summary.year ||
           observation.month != summary.month) {
         throw ArgumentError.value(summary, 'sourceMonths', 'hourly observations must match their month summary');
       }
     }
-    for (final observation in summary.fiveMinuteObservations) {
-      _assertFiveMinute(observation);
-      if (observation.year != summary.year || observation.month != summary.month || observation.day != 1) {
-        throw ArgumentError.value(summary, 'sourceMonths', 'five-minute profile must use the normalized month date');
-      }
+    for (final observation in summary.weekdayFiveMinuteObservation) {
+      _validateMonthProfile(observation, summary, isWeekend: false);
+    }
+    for (final observation in summary.weekendFiveMinuteObservation) {
+      _validateMonthProfile(observation, summary, isWeekend: true);
+    }
+  }
+
+  void _validateMonthProfile(Observation observation, MonthSummary summary, {required bool isWeekend}) {
+    _assertFiveMinute(observation);
+    if (observation.year != summary.year ||
+        observation.month != summary.month ||
+        observation.day != 1 ||
+        observation.isWeekend != isWeekend) {
+      final category = isWeekend ? 'weekend' : 'weekday';
+      throw ArgumentError.value(
+        summary,
+        'sourceMonths',
+        'five-minute $category profile must use the normalized month date',
+      );
     }
   }
 

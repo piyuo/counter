@@ -128,22 +128,23 @@ The `observations` array is ordered chronologically according to the business wa
 
 Each observation represents one 5-minute counting window.
 
-| Field             | Type                        | Description                                                                |
-| ----------------- | --------------------------- | -------------------------------------------------------------------------- |
-| `granularity`     | String                      | Aggregation interval. Schema 2 uploads use `minutes5`.                     |
-| `year`            | Integer                     | Four-digit business year.                                                  |
-| `month`           | Integer                     | Business month, 1–12.                                                      |
-| `day`             | Integer                     | Business day of month.                                                     |
-| `hour`            | Integer                     | Business hour, 0–23.                                                       |
-| `minute`          | Integer                     | Starting minute of the observation: 0, 5, 10, ..., 55.                     |
-| `id`              | Integer                     | Numeric key formed from the date and time components.                      |
-| `businessDate`    | String                      | Business date formatted as `YYYY-MM-DD` for 5-minute observations.         |
-| `confidenceRatio` | Number                      | Mean confidence ratio, rounded to at most two decimal places.              |
-| `expectedSeconds` | Integer                     | Expected duration of the observation; 300 for a 5-minute window.           |
-| `coveredSeconds`  | Integer                     | Seconds with valid detection data.                                         |
-| `coverageRatio`   | Number                      | `coveredSeconds / expectedSeconds`, rounded to at most two decimal places. |
-| `areas`           | Array of AreaMetricsPayload | Metrics for the Global area and configured interest areas.                 |
-| `frameCount`      | Integer                     | Total number of frames processed during the observation.                   |
+| Field             | Type                     | Description                                                                |
+| ----------------- | ------------------------ | -------------------------------------------------------------------------- |
+| `granularity`     | String                   | Aggregation interval. Schema 2 uploads use `minutes5`.                     |
+| `year`            | Integer                  | Four-digit business year.                                                  |
+| `month`           | Integer                  | Business month, 1–12.                                                      |
+| `day`             | Integer                  | Business day of month.                                                     |
+| `hour`            | Integer                  | Business hour, 0–23.                                                       |
+| `minute`          | Integer                  | Starting minute of the observation: 0, 5, 10, ..., 55.                     |
+| `id`              | Integer                  | Numeric key formed from the date and time components.                      |
+| `businessDate`    | String                   | Business date formatted as `YYYY-MM-DD` for 5-minute observations.         |
+| `isWeekend`       | Boolean                  | Whether the business-local date is Saturday or Sunday.                     |
+| `confidenceRatio` | Number                   | Mean confidence ratio, rounded to at most two decimal places.              |
+| `expectedSeconds` | Integer                  | Expected duration of the observation; 300 for a 5-minute window.           |
+| `coveredSeconds`  | Integer                  | Seconds with valid detection data.                                         |
+| `coverageRatio`   | Number                   | `coveredSeconds / expectedSeconds`, rounded to at most two decimal places. |
+| `areas`           | Array of ActivityPayload | Metrics for the Global area and configured interest areas.                 |
+| `frameCount`      | Integer                  | Total number of frames processed during the observation.                   |
 
 ### Confidence metrics
 
@@ -179,7 +180,7 @@ Frame count alone does not establish data completeness. Interpret it alongside `
 
 ---
 
-## 6. AreaMetricsPayload Object
+## 6. ActivityPayload Object
 
 Each observation contains metrics for the Global area and configured interest areas.
 
@@ -501,7 +502,7 @@ Upload timing may vary because of connectivity, application lifecycle, or device
 
 The top-level `schema` field identifies the payload format version.
 
-Schema 2 uploads serialize `ObservationPayload` and `AreaMetricsPayload`, and use:
+Schema 2 uploads serialize `ObservationPayload` and `ActivityPayload`, and use:
 
 - Per-area `stagnant` event counts
 - Explicit second-based duration field names
@@ -530,7 +531,7 @@ When reading legacy payloads, `dwellHistogram` may be absent. A consumer support
 
 For Schema 2 writers, `dwellHistogram` is always serialized with exactly eight non-negative integer counts.
 
-Payload convenience averages are included alongside the source sums and counts available in `AreaMetricsPayload`.
+Payload convenience averages are included alongside the source sums and counts available in `ActivityPayload`.
 
 ### 11.3 Future versions
 

@@ -24,9 +24,10 @@ _Observation _$ObservationFromJson(Map<String, dynamic> json) => _Observation(
   confidenceSampleCount: (json['confidenceSampleCount'] as num?)?.toInt() ?? 0,
   coveredSeconds: (json['coveredSeconds'] as num?)?.toInt() ?? 0,
   areas: (json['areas'] as List<dynamic>)
-      .map((e) => AreaMetrics.fromJson(e as Map<String, dynamic>))
+      .map((e) => Activity.fromJson(e as Map<String, dynamic>))
       .toList(),
   frameCount: (json['frameCount'] as num).toInt(),
+  weekendOverride: json['isWeekend'] as bool?,
 );
 
 Map<String, dynamic> _$ObservationToJson(_Observation instance) =>
@@ -42,6 +43,7 @@ Map<String, dynamic> _$ObservationToJson(_Observation instance) =>
       'coveredSeconds': instance.coveredSeconds,
       'areas': instance.areas,
       'frameCount': instance.frameCount,
+      'isWeekend': ?instance.weekendOverride,
     };
 
 const _$ObservationGranularityEnumMap = {

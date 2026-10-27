@@ -8,25 +8,33 @@ part of 'year_summary.dart';
 
 _YearSummary _$YearSummaryFromJson(Map<String, dynamic> json) => _YearSummary(
   year: (json['year'] as num).toInt(),
-  fiveMinuteObservations: (json['fiveMinuteObservations'] as List<dynamic>)
+  weekdayFiveMinuteObservation: const ObservationSeriesConverter().fromJson(
+    json['weekdayFiveMinuteObservation'] as List,
+  ),
+  weekendFiveMinuteObservation: const ObservationSeriesConverter().fromJson(
+    json['weekendFiveMinuteObservation'] as List,
+  ),
+  dailyTotals: (json['dailyTotals'] as List<dynamic>)
       .map((e) => Observation.fromJson(e as Map<String, dynamic>))
       .toList(),
-  dailyObservations: (json['dailyObservations'] as List<dynamic>)
+  monthlyTotals: (json['monthlyTotals'] as List<dynamic>)
       .map((e) => Observation.fromJson(e as Map<String, dynamic>))
       .toList(),
-  monthlyObservations: (json['monthlyObservations'] as List<dynamic>)
-      .map((e) => Observation.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  yearlyObservation: Observation.fromJson(
-    json['yearlyObservation'] as Map<String, dynamic>,
+  yearlyTotal: Observation.fromJson(
+    json['yearlyTotal'] as Map<String, dynamic>,
   ),
 );
 
 Map<String, dynamic> _$YearSummaryToJson(_YearSummary instance) =>
     <String, dynamic>{
       'year': instance.year,
-      'fiveMinuteObservations': instance.fiveMinuteObservations,
-      'dailyObservations': instance.dailyObservations,
-      'monthlyObservations': instance.monthlyObservations,
-      'yearlyObservation': instance.yearlyObservation,
+      'weekdayFiveMinuteObservation': const ObservationSeriesConverter().toJson(
+        instance.weekdayFiveMinuteObservation,
+      ),
+      'weekendFiveMinuteObservation': const ObservationSeriesConverter().toJson(
+        instance.weekendFiveMinuteObservation,
+      ),
+      'dailyTotals': instance.dailyTotals,
+      'monthlyTotals': instance.monthlyTotals,
+      'yearlyTotal': instance.yearlyTotal,
     };

@@ -1,3 +1,4 @@
+import 'package:core_domain/model/observation_series.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'observation.dart';
@@ -14,23 +15,26 @@ sealed class MonthSummary with _$MonthSummary {
     required int year,
     required int month,
 
-    /// Typical 5-minute day profile for this month, with matching time slots
-    /// averaged across available days. Missing slots are omitted. Per-slot
-    /// contributor counts are not stored, so support cannot be assessed.
-    required List<Observation> fiveMinuteObservations,
+    /// Typical weekday 5-minute profile for this month. Matching time slots
+    /// are averaged across available weekdays. Missing slots are omitted.
+    @ObservationSeriesConverter() required ObservationSeries weekdayFiveMinuteObservation,
+
+    /// Typical weekend 5-minute profile for this month. Matching time slots
+    /// are averaged across available weekend days. Missing slots are omitted.
+    @ObservationSeriesConverter() required ObservationSeries weekendFiveMinuteObservation,
 
     /// Hourly observations aggregated from the DaySummary's hourly observations.
     /// there are 24 observation a day, multiplied by the number of days in the month.
     /// useful for analyzing monthly trends in hourly observations.
-    required List<Observation> hourlyObservations,
+    required List<Observation> hourlyTotals,
 
     /// Day observations aggregated from the DaySummary's daily observations.
     /// there is one observation a day, multiplied by the number of days in the month.
     /// useful for analyzing monthly trends day by day.
-    required List<Observation> dailyObservations,
+    required List<Observation> dailyTotals,
 
     /// Monthly observation aggregated from the daily observations.
-    required Observation monthlyObservation,
+    required Observation monthlyTotal,
   }) = _MonthSummary;
 
   factory MonthSummary.fromJson(Map<String, dynamic> json) => _$MonthSummaryFromJson(json);
@@ -43,10 +47,11 @@ sealed class MonthSummary with _$MonthSummary {
   String toString() {
     return 'MonthSummary('
         'businessDate: $businessDate, '
-        'fiveMinuteObservations: ${fiveMinuteObservations.length}, '
-        'hourlyObservations: ${hourlyObservations.length}, '
-        'dailyObservations: ${dailyObservations.length}, '
-        'monthlyObservation: $monthlyObservation'
+        'weekdayFiveMinuteObservation: ${weekdayFiveMinuteObservation.length}, '
+        'weekendFiveMinuteObservation: ${weekendFiveMinuteObservation.length}, '
+        'hourlyTotals: ${hourlyTotals.length}, '
+        'dailyTotals: ${dailyTotals.length}, '
+        'monthlyTotal: $monthlyTotal'
         ')';
   }
 }

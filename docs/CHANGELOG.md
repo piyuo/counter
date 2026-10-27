@@ -16,6 +16,7 @@ field included in every upload.
 -   Added optional `confidence`, `coverage`, `avgOccupancy`, and `avgDwell` values.
 -   Added the optional five-bucket `dwellHistogram` for completed visits.
 -   Documented presence aggregate fields emitted with area metrics.
+-   Added optional `isWeekend` to identify observations from Saturday or Sunday.
 -   Updated `payload-schema-v2.json` and `payload-example-v2.json`.
 
 ------------------------------------------------------------------------

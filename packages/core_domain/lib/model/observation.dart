@@ -39,27 +39,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../utils/round_double.dart';
-import 'area_metrics.dart';
+import 'activity.dart';
+import 'observation_granularity.dart';
 import 'observation_payload.dart';
 
 part 'observation.freezed.dart';
 part 'observation.g.dart';
-
-/// The granularity of an [Observation].
-///
-/// The same [Observation] model is used at every aggregation level:
-/// 5 minutes → hour → day → month → year.
-enum ObservationGranularity { minutes5, hour, day, month, year }
-
-extension ObservationGranularityDuration on ObservationGranularity {
-  int expectedSecondsFor(int year, int month) => switch (this) {
-    ObservationGranularity.minutes5 => 300,
-    ObservationGranularity.hour => 3600,
-    ObservationGranularity.day => 86400,
-    ObservationGranularity.month => DateTime.utc(year, month + 1).difference(DateTime.utc(year, month)).inSeconds,
-    ObservationGranularity.year => DateTime.utc(year + 1).difference(DateTime.utc(year)).inSeconds,
-  };
-}
 
 /// Observation of a period of time.
 ///
@@ -127,13 +112,19 @@ sealed class Observation with _$Observation {
     ///
     /// One entry exists for each configured interest area, including the
     /// global area.
-    required List<AreaMetrics> areas,
+    required List<Activity> areas,
 
     /// Total number of frames processed during this observation.
     ///
     /// Additive across child observations.
     required int frameCount,
+
+    /// Optional override for normalized profiles whose calendar date does not
+    /// represent their weekday/weekend category. Regular observations derive
+    /// this value from their business-local date.
+    @JsonKey(name: 'isWeekend', includeIfNull: false) bool? weekendOverride,
   }) = _Observation;
+  factory Observation.fromJson(Map<String, dynamic> json) => _$ObservationFromJson(json);
 
   /// Mean confidence ratio, or zero when there are no confidence samples.
   ///
@@ -144,13 +135,21 @@ sealed class Observation with _$Observation {
   /// [expectedSeconds] is zero.
   double get coverageRatio => expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds;
 
-  factory Observation.fromJson(Map<String, dynamic> json) => _$ObservationFromJson(json);
-
   /// Expected duration, in seconds, of this observation's period.
   ///
   /// Calendar periods use UTC arithmetic so device time zone and DST do not
   /// change the business-time duration.
   int get expectedSeconds => granularity.expectedSecondsFor(year, month);
+
+  /// Estimates the total count for the full observation period,
+  /// assuming missing time slots have the same average activity
+  /// as the observed slots.
+  ///
+  /// Returns null if no valid observations are available.
+  double estimateTotal(double recordedCount) {
+    if (coverageRatio <= 0) return 0;
+    return recordedCount / coverageRatio;
+  }
 
   /// Numeric ID made from the four-digit year and two-digit date/time
   /// components. Components with a value of -1 are encoded as `00` to
@@ -168,6 +167,9 @@ sealed class Observation with _$Observation {
   /// monitoring device.
   DateTime get dateTime =>
       DateTime(year, month > 0 ? month : 1, day > 0 ? day : 1, hour >= 0 ? hour : 0, minute >= 0 ? minute : 0);
+
+  /// Whether the business-local date falls on Saturday or Sunday.
+  bool get isWeekend => weekendOverride ?? dateTime.weekday >= DateTime.saturday;
 
   /// Returns year, month, and day; components with a value of -1 are encoded as `00`.
   int get dateKey => keyFromComponents([year, month, day]);
@@ -224,6 +226,7 @@ sealed class Observation with _$Observation {
     hour: hour,
     minute: minute,
     businessDate: businessDate,
+    isWeekend: isWeekend,
     confidenceRatio: confidenceRatio,
     expectedSeconds: expectedSeconds,
     coveredSeconds: coveredSeconds,
