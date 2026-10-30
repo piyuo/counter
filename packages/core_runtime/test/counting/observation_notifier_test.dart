@@ -134,7 +134,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       pumpFrames(n, async, const Duration(minutes: 3));
@@ -161,7 +161,7 @@ void main() {
       addTearDown(container.dispose);
       final notifier = container.read(observationProvider.notifier);
       final closed = <core_domain.Observation>[];
-      final subscription = notifier.snapshots.listen(closed.add);
+      final subscription = notifier.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       notifier.start();
@@ -200,7 +200,7 @@ void main() {
       addTearDown(container.dispose);
       final n = container.read(observationProvider.notifier);
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       n.start();
@@ -241,7 +241,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, const [], const [], 0);
@@ -269,7 +269,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, const [], const [], 0);
@@ -352,7 +352,7 @@ void main() {
       addTearDown(container.dispose);
       final n = notifier(container);
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
 
@@ -395,7 +395,7 @@ void main() {
       );
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, [track], [area], 0);
@@ -439,7 +439,7 @@ void main() {
       );
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, [track], [area], 0);
@@ -461,7 +461,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       pumpFrames(n, async, const Duration(minutes: 5));
@@ -483,7 +483,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       n.resume();
       processTestFrame(container, n, const [], const [], 0.0);
@@ -504,7 +504,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       n.pause();
@@ -527,7 +527,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       pumpFrames(n, async, const Duration(minutes: 1));
@@ -818,7 +818,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       n.reset();
@@ -851,7 +851,7 @@ void main() {
       );
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, [track], [area], 0);
@@ -890,7 +890,7 @@ void main() {
       );
       final track = buildTrack(trackId: 1, center: const Offset(10, 10), initialCenter: const Offset(10, 10));
       final closed = <core_domain.Observation>[];
-      final subscription = n.snapshots.listen(closed.add);
+      final subscription = n.fiveMinuteObservations.listen(closed.add);
       addTearDown(subscription.cancel);
 
       processTestFrame(container, n, [track], [area], 0);
@@ -915,7 +915,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
 
@@ -946,7 +946,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
 
@@ -967,7 +967,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0); // opens window 10:00–10:05
       n.pause();
@@ -994,7 +994,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       processTestFrame(container, n, const [], const [], 0.0);
       pumpFrames(n, async, const Duration(minutes: 5));
@@ -1149,7 +1149,7 @@ void main() {
       final n = notifier(container);
 
       final results = <core_domain.Observation>[];
-      final sub = n.snapshots.listen(results.add);
+      final sub = n.fiveMinuteObservations.listen(results.add);
 
       final area = core_domain.InterestArea(
         id: 1,
@@ -1348,7 +1348,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
         pumpFrames(n, async, const Duration(minutes: 2));
@@ -1371,7 +1371,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
         pumpFrames(n, async, const Duration(minutes: 2));
@@ -1422,7 +1422,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         // No frame has opened an aligned scheduler window.
         n.flushCurrentWindow();
@@ -1442,7 +1442,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
         pumpFrames(n, async, const Duration(minutes: 1));
@@ -1467,7 +1467,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
         pumpFrames(n, async, const Duration(minutes: 1));
@@ -1497,7 +1497,7 @@ void main() {
         final n = notifier(container);
 
         final results = <core_domain.Observation>[];
-        final sub = n.snapshots.listen(results.add);
+        final sub = n.fiveMinuteObservations.listen(results.add);
 
         processTestFrame(container, n, const [], const [], 0.0);
 

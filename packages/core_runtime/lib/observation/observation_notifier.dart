@@ -36,7 +36,7 @@ part 'observation_notifier.g.dart';
 /// - Maintains per-area [AreaTracker] instances for spatial containment and event counting
 /// - Aggregates per-window occupancy/presence/dwell/flow metrics via [ObservationAggregator]
 /// - Emits live [Observation] snapshots (throttled to 1/sec) on every frame
-/// - Emits finalized window snapshots on [snapshots] when windows close
+/// - Emits finalized window snapshots on [fiveMinuteObservations] when windows close
 ///
 /// **Data Flow:**
 /// 1. [processFrame] receives tracked objects
@@ -45,7 +45,7 @@ part 'observation_notifier.g.dart';
 /// 4. Global and per-area [AreaTracker]s process events (enter/exit/passBy)
 /// 5. Occupancy/presence/dwell samples are accumulated in [ObservationAggregator]
 /// 6. Live state is broadcast (throttled to 1/sec)
-/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [snapshots]
+/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [fiveMinuteObservations]
 ///
 /// **Occupancy Averaging:**
 /// - [AreaTracker.processFrame] submits one occupancy sample per processed frame
@@ -116,12 +116,12 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   /// before the scheduler opens its first window.
   late ObservationAggregator _currentAggregator;
 
-  // ==========================================================================
-  // State emission
-  // ==========================================================================
-
   /// Emits finalized [Observation] snapshots when 5-minute windows close.
-  final StreamController<core_domain.Observation> _observationsController = StreamController.broadcast();
+  final StreamController<core_domain.Observation> _fiveMinuteObservationController = StreamController.broadcast();
+
+  /// Stream that emits a [Observation] every time a 5-minute window closes.
+  @override
+  Stream<core_domain.Observation> get fiveMinuteObservations => _fiveMinuteObservationController.stream;
 
   /// Last time a live state snapshot was broadcast; used to throttle updates to 1/sec.
   DateTime? _lastStateEmittedAtUtc;
@@ -131,10 +131,6 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
   /// Periodic timer used to advance missing coverage while the source is stalled.
   Timer? _sourceIssueTimer;
-
-  /// Stream that emits a [Observation] every time a 5-minute window closes.
-  @override
-  Stream<core_domain.Observation> get snapshots => _observationsController.stream;
 
   // ============================================================================
   // Riverpod lifecycle (build, disposal, reset)
@@ -146,13 +142,13 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   ///
   /// Window start/end callbacks are registered here:
   /// - [onWindowStart]: Creates a new [ObservationAggregator]
-  /// - [onWindowEnd]: Finalizes the aggregator and emits on [snapshots]
+  /// - [onWindowEnd]: Finalizes the aggregator and emits on [fiveMinuteObservations]
   @override
   core_domain.Observation build() {
     ref.onDispose(() {
       _isDisposed = true;
       stop();
-      _observationsController.close();
+      _fiveMinuteObservationController.close();
       _interestAreaSubscription?.close();
       _interestAreaSubscription = null;
     });
@@ -222,7 +218,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
         }
         final lastObservation = _currentAggregator.snapshot();
         state = lastObservation;
-        _observationsController.add(lastObservation);
+        _fiveMinuteObservationController.add(lastObservation);
         appkit.logDebug('[ObservationNotifier] window end: ${lastObservation.toJson()}');
         _currentAggregator = _buildDefaultAggregator();
       },
@@ -336,12 +332,12 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     return false;
   }
 
-  /// Snapshots the current aggregator and emits it on [snapshots]. This does
+  /// Snapshots the current aggregator and emits it on [fiveMinuteObservations]. This does
   /// not close the scheduler window or reset its metrics.
   void flushCurrentWindow() {
     if (_scheduler?.windowStartUtc == null) return;
     final snapshot = _currentAggregator.snapshot();
-    _observationsController.add(snapshot);
+    _fiveMinuteObservationController.add(snapshot);
     appkit.logInfo('[ObservationNotifier] $snapshot');
   }
 
@@ -547,7 +543,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     // Only update the state and notify listeners once per second
     if (!checkOneSecondThrottle || (last == null || now.difference(last) >= const Duration(seconds: 1))) {
       _lastStateEmittedAtUtc = now;
-      state = _currentAggregator.snapshot();
+      state = _currentAggregator.snapshot(); // state is live observation update every second
     }
   }
 

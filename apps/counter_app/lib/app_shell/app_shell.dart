@@ -64,7 +64,7 @@ class _AppShellState extends ConsumerState<AppShell> {
     final insightService = ref.read(core_domain.insightServiceProvider);
     unawaited(insightService.refresh());
 
-    _observationSubscription = observationService.snapshots.listen((observation) {
+    _observationSubscription = observationService.fiveMinuteObservations.listen((observation) {
       unawaited(_processObservation(observation, telemetryService, analyticsService, insightService));
     });
   }

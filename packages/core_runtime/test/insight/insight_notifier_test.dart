@@ -130,9 +130,8 @@ void main() {
 
     for (final expectation in periodExpectations) {
       notifier.setComparisonPeriod(expectation.period);
-      final snapshot = notifier.snapshots.first;
       await notifier.refresh();
-      final dashboard = await snapshot;
+      final dashboard = notifier.state;
 
       expect(dashboard, notifier.state);
       expect(dashboard.businessDate, '2026-10-26');
@@ -200,9 +199,6 @@ class _FakeAnalyticsService implements core_domain.AnalyticsService {
   final dayRequests = <String>[];
   final monthRequests = <String>[];
   final yearRequests = <int>[];
-
-  @override
-  core_domain.AnalyticsState get state => const core_domain.AnalyticsState();
 
   @override
   Future<void> add(core_domain.Observation observation) async {}
