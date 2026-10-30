@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:core_domain/core_domain.dart';
+import 'package:core_domain/model/insight_dashboard.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'insight_service.g.dart';
 
 abstract class InsightService {
-  /// snapshots emits when 5-minutes window finalized..
-  Stream<InsightDashboard> get snapshots;
+  /// Selects the historical reference used by the next dashboard refresh.
+  void setComparisonPeriod(TrafficComparisonPeriod period);
 
   /// Refreshes the insight data immediately. this will trigger when new observations are available or loaded.
   Future<void> refresh();
@@ -30,3 +30,7 @@ class InsightValue<T> {
 InsightService insightService(Ref ref) {
   throw UnimplementedError('observationServiceProvider must be overridden');
 }
+
+/// State
+@riverpod
+InsightDashboard insightDashboard(Ref ref) => throw UnimplementedError('insightDashboardProvider must be overridden');

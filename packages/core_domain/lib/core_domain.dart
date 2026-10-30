@@ -1,3 +1,4 @@
+export 'aggregation/insight_data_builder.dart';
 export 'aggregation/observation_rollup.dart';
 export 'aggregation/summary_builder.dart';
 export 'app_flow/models/app_flow.dart';
@@ -7,6 +8,7 @@ export 'flag.dart';
 export 'model/activity.dart';
 export 'model/activity_payload.dart';
 export 'model/analytics_state.dart';
+export 'model/business_period.dart';
 export 'model/daily_dashboard.dart';
 export 'model/day_summary.dart';
 export 'model/insight_dashboard.dart';

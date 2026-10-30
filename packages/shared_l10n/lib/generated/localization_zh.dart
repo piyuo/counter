@@ -288,6 +288,115 @@ class LocalizationZh extends Localization {
       '統計目前計數期間內離開此區域的人員或車輛數量。\\n\\n當人員或車輛從區域內移動到區域外時，會計為一次離開。';
 
   @override
+  String get insight_appear => '出現';
+
+  @override
+  String get insight_area_global => '整個畫面';
+
+  @override
+  String get insight_average_completed_visit => '已結束停留的平均時間';
+
+  @override
+  String get insight_average_short => '平均';
+
+  @override
+  String get insight_chart_dwell_unit => '每 5 分鐘平均時間';
+
+  @override
+  String get insight_chart_event_unit => '每 5 分鐘事件數';
+
+  @override
+  String get insight_chart_occupancy_unit => '每 5 分鐘平均物件數';
+
+  @override
+  String get insight_comparison_last_week => '上週同一天';
+
+  @override
+  String get insight_comparison_monthly => '月平均';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '與$period相比';
+  }
+
+  @override
+  String get insight_comparison_unavailable => '無法比較';
+
+  @override
+  String get insight_comparison_yearly => '年平均';
+
+  @override
+  String get insight_comparison_yesterday => '昨天';
+
+  @override
+  String get insight_dashboard_title => '人流分析';
+
+  @override
+  String get insight_disappear => '消失';
+
+  @override
+  String get insight_dwell_time => '停留時間';
+
+  @override
+  String get insight_entry => '進入次數';
+
+  @override
+  String get insight_error => '無法載入分析資料';
+
+  @override
+  String get insight_estimated => '估算';
+
+  @override
+  String get insight_exit => '離開次數';
+
+  @override
+  String get insight_hourly_rate => '每小時比率';
+
+  @override
+  String get insight_last_60_minutes => '過去 60 分鐘';
+
+  @override
+  String get insight_longest_completed_visit => '最長停留';
+
+  @override
+  String get insight_no_data => '沒有可用資料';
+
+  @override
+  String get insight_objects_unit => '物件';
+
+  @override
+  String get insight_occupancy => '在場數量';
+
+  @override
+  String get insight_pass_by => '經過人流';
+
+  @override
+  String get insight_peak => '最高值';
+
+  @override
+  String get insight_period_breakfast => '早餐';
+
+  @override
+  String get insight_period_dinner => '晚餐';
+
+  @override
+  String get insight_period_in_progress => '進行中';
+
+  @override
+  String get insight_period_lunch => '午餐';
+
+  @override
+  String get insight_stagnant => '停留';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return '今日：$metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/小時';
+
+  @override
   String get interest_areas_screen_add_area => '新增區域';
 
   @override
@@ -1090,6 +1199,115 @@ class LocalizationZhCn extends LocalizationZh {
   @override
   String get exited_help =>
       '统计当前计数窗口期间离开此区域的人员或车辆数量。\\n\\n当人员或车辆从区域内移动到区域外时，计为一次离开。';
+
+  @override
+  String get insight_appear => '出现';
+
+  @override
+  String get insight_area_global => '整个画面';
+
+  @override
+  String get insight_average_completed_visit => '已结束停留的平均时长';
+
+  @override
+  String get insight_average_short => '平均';
+
+  @override
+  String get insight_chart_dwell_unit => '每 5 分钟平均时长';
+
+  @override
+  String get insight_chart_event_unit => '每 5 分钟事件数';
+
+  @override
+  String get insight_chart_occupancy_unit => '每 5 分钟平均物体数';
+
+  @override
+  String get insight_comparison_last_week => '上周同一天';
+
+  @override
+  String get insight_comparison_monthly => '月平均';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '与$period相比';
+  }
+
+  @override
+  String get insight_comparison_unavailable => '暂无对比数据';
+
+  @override
+  String get insight_comparison_yearly => '年平均';
+
+  @override
+  String get insight_comparison_yesterday => '昨天';
+
+  @override
+  String get insight_dashboard_title => '客流分析';
+
+  @override
+  String get insight_disappear => '消失';
+
+  @override
+  String get insight_dwell_time => '停留时长';
+
+  @override
+  String get insight_entry => '进入次数';
+
+  @override
+  String get insight_error => '无法加载分析数据';
+
+  @override
+  String get insight_estimated => '估算';
+
+  @override
+  String get insight_exit => '离开次数';
+
+  @override
+  String get insight_hourly_rate => '每小时比率';
+
+  @override
+  String get insight_last_60_minutes => '过去 60 分钟';
+
+  @override
+  String get insight_longest_completed_visit => '最长停留';
+
+  @override
+  String get insight_no_data => '暂无数据';
+
+  @override
+  String get insight_objects_unit => '物体';
+
+  @override
+  String get insight_occupancy => '在场数量';
+
+  @override
+  String get insight_pass_by => '经过客流';
+
+  @override
+  String get insight_peak => '峰值';
+
+  @override
+  String get insight_period_breakfast => '早餐';
+
+  @override
+  String get insight_period_dinner => '晚餐';
+
+  @override
+  String get insight_period_in_progress => '进行中';
+
+  @override
+  String get insight_period_lunch => '午餐';
+
+  @override
+  String get insight_stagnant => '停留';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return '今日：$metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/小时';
 
   @override
   String get interest_areas_screen_add_area => '新增区域';

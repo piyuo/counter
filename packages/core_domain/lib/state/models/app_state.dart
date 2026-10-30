@@ -18,6 +18,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../model/business_period.dart';
 import 'data_server.dart';
 import 'detection_params.dart';
 import 'detection_type.dart';
@@ -94,6 +95,10 @@ sealed class AppState with _$AppState {
     /// these are converted to flutter_vision's InterestArea instances when
     /// configuring the vision session.
     @Default([]) List<InterestArea> interestAreas,
+
+    /// Business-local reporting periods shown in the insight dashboard.
+    /// Existing saved app state receives the default schedule when absent.
+    @Default(BusinessPeriod.defaultSchedule) List<BusinessPeriod> businessPeriods,
 
     /// Whether track IDs should be visible in the detection output.
     @Default(false) bool isTrackIdVisible,

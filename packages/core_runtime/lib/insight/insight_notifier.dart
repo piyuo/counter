@@ -19,20 +19,15 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
 
   @override
   core_domain.InsightDashboard build() {
-    ref.onDispose(_observationsController.close);
     return const core_domain.InsightDashboard(
       businessDate: '',
       comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
     );
   }
 
-  final StreamController<core_domain.InsightDashboard> _observationsController = StreamController.broadcast();
-
-  @override
-  Stream<core_domain.InsightDashboard> get snapshots => _observationsController.stream;
-
   core_domain.TrafficComparisonPeriod get comparisonPeriod => _comparisonPeriod;
 
+  @override
   void setComparisonPeriod(core_domain.TrafficComparisonPeriod period) {
     if (_comparisonPeriod == period) {
       return;
@@ -107,7 +102,6 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
       comparisonTypicalDay: comparisonTypicalDay,
     );
     state = dashboard;
-    _observationsController.add(dashboard);
   }
 
   Future<T?> _getCachedComparisonSummary<T extends Object>(

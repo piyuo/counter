@@ -56,6 +56,11 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
           ?.map((e) => InterestArea.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const [],
+  businessPeriods:
+      (json['businessPeriods'] as List<dynamic>?)
+          ?.map((e) => BusinessPeriod.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      BusinessPeriod.defaultSchedule,
   isTrackIdVisible: json['isTrackIdVisible'] as bool? ?? false,
 );
 
@@ -74,6 +79,7 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'detectionParams': instance.detectionParams,
   'uploadJitterSec': instance.uploadJitterSec,
   'interestAreas': instance.interestAreas,
+  'businessPeriods': instance.businessPeriods,
   'isTrackIdVisible': instance.isTrackIdVisible,
 };
 

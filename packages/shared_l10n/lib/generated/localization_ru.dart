@@ -303,6 +303,115 @@ class LocalizationRu extends Localization {
       'Подсчитывает людей или транспортные средства, покинувших эту область в течение текущего окна подсчета.\\n\\nВыход учитывается, когда человек или транспортное средство перемещается изнутри области наружу.';
 
   @override
+  String get insight_appear => 'Появились';
+
+  @override
+  String get insight_area_global => 'Вся сцена';
+
+  @override
+  String get insight_average_completed_visit => 'Ср. завершённый визит';
+
+  @override
+  String get insight_average_short => 'ср.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Ср. длительность за 5 мин';
+
+  @override
+  String get insight_chart_event_unit => 'События за 5 мин';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Ср. объектов за 5 мин';
+
+  @override
+  String get insight_comparison_last_week => 'Тот же день на прошлой неделе';
+
+  @override
+  String get insight_comparison_monthly => 'Среднее за месяц';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'по сравнению с $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Сравнение недоступно';
+
+  @override
+  String get insight_comparison_yearly => 'Среднее за год';
+
+  @override
+  String get insight_comparison_yesterday => 'Вчера';
+
+  @override
+  String get insight_dashboard_title => 'Аналитика потока';
+
+  @override
+  String get insight_disappear => 'Исчезли';
+
+  @override
+  String get insight_dwell_time => 'Время пребывания';
+
+  @override
+  String get insight_entry => 'Входы';
+
+  @override
+  String get insight_error => 'Не удалось загрузить данные';
+
+  @override
+  String get insight_estimated => 'Оценка';
+
+  @override
+  String get insight_exit => 'Выходы';
+
+  @override
+  String get insight_hourly_rate => 'Показатель в час';
+
+  @override
+  String get insight_last_60_minutes => 'Последние 60 минут';
+
+  @override
+  String get insight_longest_completed_visit => 'Самый долгий визит';
+
+  @override
+  String get insight_no_data => 'Нет данных';
+
+  @override
+  String get insight_objects_unit => 'объекты';
+
+  @override
+  String get insight_occupancy => 'Заполненность';
+
+  @override
+  String get insight_pass_by => 'Проходящий поток';
+
+  @override
+  String get insight_peak => 'Пик';
+
+  @override
+  String get insight_period_breakfast => 'Завтрак';
+
+  @override
+  String get insight_period_dinner => 'Ужин';
+
+  @override
+  String get insight_period_in_progress => 'Идёт';
+
+  @override
+  String get insight_period_lunch => 'Обед';
+
+  @override
+  String get insight_stagnant => 'Задержка';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Сегодня: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ч';
+
+  @override
   String get interest_areas_screen_add_area => 'Добавить область';
 
   @override

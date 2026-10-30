@@ -4,8 +4,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'analytics_service.g.dart';
 
 abstract class AnalyticsService {
-  AnalyticsState get state;
-
   /// save an observation to the analytics service
   ///
   /// The observation will be processed and aggregated into the appropriate
@@ -35,3 +33,7 @@ abstract class AnalyticsService {
 AnalyticsService analyticsService(Ref ref) {
   throw UnimplementedError('analyticsServiceProvider must be overridden');
 }
+
+/// State (read side)
+@riverpod
+AnalyticsState analyticsState(Ref ref) => throw UnimplementedError('analyticsStateProvider must be overridden');

@@ -305,6 +305,115 @@ class LocalizationEl extends Localization {
       'Μετρά τα άτομα ή τα οχήματα που εξήλθαν από αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΜια έξοδος καταγράφεται όταν ένα άτομο ή όχημα μετακινείται από το εσωτερικό προς το εξωτερικό της περιοχής.';
 
   @override
+  String get insight_appear => 'Εμφανίστηκαν';
+
+  @override
+  String get insight_area_global => 'Ολόκληρη σκηνή';
+
+  @override
+  String get insight_average_completed_visit => 'Μ.ό. ολοκληρωμένης επίσκεψης';
+
+  @override
+  String get insight_average_short => 'μ.ό.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Μ.ό. διάρκειας ανά 5 λεπτά';
+
+  @override
+  String get insight_chart_event_unit => 'Συμβάντα ανά 5 λεπτά';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Μ.ό. αντικειμένων ανά 5 λεπτά';
+
+  @override
+  String get insight_comparison_last_week => 'Ίδια μέρα την περασμένη εβδομάδα';
+
+  @override
+  String get insight_comparison_monthly => 'Μηνιαίος μέσος όρος';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'σε σύγκριση με $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Μη διαθέσιμη σύγκριση';
+
+  @override
+  String get insight_comparison_yearly => 'Ετήσιος μέσος όρος';
+
+  @override
+  String get insight_comparison_yesterday => 'Χθες';
+
+  @override
+  String get insight_dashboard_title => 'Ανάλυση κίνησης';
+
+  @override
+  String get insight_disappear => 'Εξαφανίστηκαν';
+
+  @override
+  String get insight_dwell_time => 'Χρόνος παραμονής';
+
+  @override
+  String get insight_entry => 'Είσοδοι';
+
+  @override
+  String get insight_error => 'Δεν ήταν δυνατή η φόρτωση';
+
+  @override
+  String get insight_estimated => 'Εκτίμηση';
+
+  @override
+  String get insight_exit => 'Έξοδοι';
+
+  @override
+  String get insight_hourly_rate => 'Ωριαίος ρυθμός';
+
+  @override
+  String get insight_last_60_minutes => 'Τελευταία 60 λεπτά';
+
+  @override
+  String get insight_longest_completed_visit => 'Μεγαλύτερη επίσκεψη';
+
+  @override
+  String get insight_no_data => 'Δεν υπάρχουν δεδομένα';
+
+  @override
+  String get insight_objects_unit => 'αντικείμενα';
+
+  @override
+  String get insight_occupancy => 'Πληρότητα';
+
+  @override
+  String get insight_pass_by => 'Διερχόμενη κίνηση';
+
+  @override
+  String get insight_peak => 'Μέγιστο';
+
+  @override
+  String get insight_period_breakfast => 'Πρωινό';
+
+  @override
+  String get insight_period_dinner => 'Βραδινό';
+
+  @override
+  String get insight_period_in_progress => 'Σε εξέλιξη';
+
+  @override
+  String get insight_period_lunch => 'Μεσημεριανό';
+
+  @override
+  String get insight_stagnant => 'Παραμονή';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Σήμερα: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ώρα';
+
+  @override
   String get interest_areas_screen_add_area => 'Προσθήκη περιοχής';
 
   @override

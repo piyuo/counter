@@ -305,6 +305,116 @@ class LocalizationMy extends Localization {
       'လက်ရှိရေတွက်သည့်အချိန်အတွင်း ဤဧရိယာမှ ထွက်သွားသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nလူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီးသည် ဧရိယာအတွင်းမှ အပြင်သို့ ရွှေ့လျားသောအခါ ထွက်ခွာမှုတစ်ကြိမ်အဖြစ် ရေတွက်သည်။';
 
   @override
+  String get insight_appear => 'ပေါ်လာမှု';
+
+  @override
+  String get insight_area_global => 'မြင်ကွင်းတစ်ခုလုံး';
+
+  @override
+  String get insight_average_completed_visit =>
+      'ပြီးဆုံးသည့် လည်ပတ်မှု ပျမ်းမျှ';
+
+  @override
+  String get insight_average_short => 'ပျမ်းမျှ';
+
+  @override
+  String get insight_chart_dwell_unit => '၅ မိနစ်လျှင် ပျမ်းမျှ ကြာချိန်';
+
+  @override
+  String get insight_chart_event_unit => '၅ မိနစ်လျှင် ဖြစ်ရပ်များ';
+
+  @override
+  String get insight_chart_occupancy_unit => '၅ မိနစ်လျှင် ပျမ်းမျှ အရာဝတ္ထု';
+
+  @override
+  String get insight_comparison_last_week => 'ပြီးခဲ့သည့်အပတ် အလားတူနေ့';
+
+  @override
+  String get insight_comparison_monthly => 'လစဉ် ပျမ်းမျှ';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period နှင့် နှိုင်းယှဉ်';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'နှိုင်းယှဉ်၍ မရပါ';
+
+  @override
+  String get insight_comparison_yearly => 'နှစ်စဉ် ပျမ်းမျှ';
+
+  @override
+  String get insight_comparison_yesterday => 'မနေ့က';
+
+  @override
+  String get insight_dashboard_title => 'သွားလာမှု အချက်အလက်';
+
+  @override
+  String get insight_disappear => 'ပျောက်ကွယ်မှု';
+
+  @override
+  String get insight_dwell_time => 'နေထိုင်ကြာချိန်';
+
+  @override
+  String get insight_entry => 'ဝင်ရောက်မှု';
+
+  @override
+  String get insight_error => 'အချက်အလက် ဖွင့်မရပါ';
+
+  @override
+  String get insight_estimated => 'ခန့်မှန်း';
+
+  @override
+  String get insight_exit => 'ထွက်ခွာမှု';
+
+  @override
+  String get insight_hourly_rate => 'တစ်နာရီနှုန်း';
+
+  @override
+  String get insight_last_60_minutes => 'နောက်ဆုံး မိနစ် ၆၀';
+
+  @override
+  String get insight_longest_completed_visit => 'အကြာဆုံး လည်ပတ်မှု';
+
+  @override
+  String get insight_no_data => 'အချက်အလက် မရှိပါ';
+
+  @override
+  String get insight_objects_unit => 'အရာဝတ္ထုများ';
+
+  @override
+  String get insight_occupancy => 'ရှိနေသည့် အရေအတွက်';
+
+  @override
+  String get insight_pass_by => 'ဖြတ်သန်းသွားလာမှု';
+
+  @override
+  String get insight_peak => 'အမြင့်ဆုံး';
+
+  @override
+  String get insight_period_breakfast => 'နံနက်စာ';
+
+  @override
+  String get insight_period_dinner => 'ညစာ';
+
+  @override
+  String get insight_period_in_progress => 'လုပ်ဆောင်နေဆဲ';
+
+  @override
+  String get insight_period_lunch => 'နေ့လယ်စာ';
+
+  @override
+  String get insight_stagnant => 'နေရာတွင် ရှိနေခြင်း';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'ယနေ့: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/နာရီ';
+
+  @override
   String get interest_areas_screen_add_area => 'ဧရိယာထည့်';
 
   @override

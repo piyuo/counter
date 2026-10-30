@@ -49,3 +49,54 @@ final class InsightServiceProvider
 }
 
 String _$insightServiceHash() => r'e4e1fb7af774be2d4dc68aedadc92d3dd9f39189';
+
+/// State
+
+@ProviderFor(insightDashboard)
+final insightDashboardProvider = InsightDashboardProvider._();
+
+/// State
+
+final class InsightDashboardProvider
+    extends
+        $FunctionalProvider<
+          InsightDashboard,
+          InsightDashboard,
+          InsightDashboard
+        >
+    with $Provider<InsightDashboard> {
+  /// State
+  InsightDashboardProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'insightDashboardProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$insightDashboardHash();
+
+  @$internal
+  @override
+  $ProviderElement<InsightDashboard> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  InsightDashboard create(Ref ref) {
+    return insightDashboard(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(InsightDashboard value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<InsightDashboard>(value),
+    );
+  }
+}
+
+String _$insightDashboardHash() => r'73a1cc48fd99b40847a07ef743adfe1e8a72aa99';

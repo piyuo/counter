@@ -304,6 +304,115 @@ class LocalizationSr extends Localization {
       'Broji ljude ili vozila koja su izašla iz ove oblasti tokom trenutnog perioda brojanja.\\n\\nIzlazak se računa kada se osoba ili vozilo kreće iz unutrašnjosti oblasti ka spolja.';
 
   @override
+  String get insight_appear => 'Pojavili se';
+
+  @override
+  String get insight_area_global => 'Cela scena';
+
+  @override
+  String get insight_average_completed_visit => 'Prosek završenih poseta';
+
+  @override
+  String get insight_average_short => 'pros.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Prosek trajanja na 5 min';
+
+  @override
+  String get insight_chart_event_unit => 'Događaji na 5 min';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Prosek objekata na 5 min';
+
+  @override
+  String get insight_comparison_last_week => 'Isti dan prošle nedelje';
+
+  @override
+  String get insight_comparison_monthly => 'Mesečni prosek';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'u poređenju sa $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Poređenje nije dostupno';
+
+  @override
+  String get insight_comparison_yearly => 'Godišnji prosek';
+
+  @override
+  String get insight_comparison_yesterday => 'Juče';
+
+  @override
+  String get insight_dashboard_title => 'Analiza protoka';
+
+  @override
+  String get insight_disappear => 'Nestali';
+
+  @override
+  String get insight_dwell_time => 'Vreme zadržavanja';
+
+  @override
+  String get insight_entry => 'Ulazi';
+
+  @override
+  String get insight_error => 'Nije moguće učitati podatke';
+
+  @override
+  String get insight_estimated => 'Procenjeno';
+
+  @override
+  String get insight_exit => 'Izlazi';
+
+  @override
+  String get insight_hourly_rate => 'Stopa po satu';
+
+  @override
+  String get insight_last_60_minutes => 'Poslednjih 60 minuta';
+
+  @override
+  String get insight_longest_completed_visit => 'Najduža poseta';
+
+  @override
+  String get insight_no_data => 'Nema dostupnih podataka';
+
+  @override
+  String get insight_objects_unit => 'objekti';
+
+  @override
+  String get insight_occupancy => 'Popunjenost';
+
+  @override
+  String get insight_pass_by => 'Prolaznici';
+
+  @override
+  String get insight_peak => 'Maksimum';
+
+  @override
+  String get insight_period_breakfast => 'Doručak';
+
+  @override
+  String get insight_period_dinner => 'Večera';
+
+  @override
+  String get insight_period_in_progress => 'U toku';
+
+  @override
+  String get insight_period_lunch => 'Ručak';
+
+  @override
+  String get insight_stagnant => 'Zadržavanje';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Danas: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/h';
+
+  @override
   String get interest_areas_screen_add_area => 'Dodaj oblast';
 
   @override

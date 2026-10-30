@@ -305,6 +305,115 @@ class LocalizationTr extends Localization {
       'Bu alandan geçerli sayım penceresi sırasında çıkan kişi veya araçları sayar.\\n\\nBir kişi veya araç alanın içinden dışına geçtiğinde bir çıkış sayılır.';
 
   @override
+  String get insight_appear => 'Göründü';
+
+  @override
+  String get insight_area_global => 'Tüm Görüntü';
+
+  @override
+  String get insight_average_completed_visit => 'Ort. tamamlanan ziyaret';
+
+  @override
+  String get insight_average_short => 'ort.';
+
+  @override
+  String get insight_chart_dwell_unit => '5 dk. başına ort. süre';
+
+  @override
+  String get insight_chart_event_unit => '5 dk. başına olay';
+
+  @override
+  String get insight_chart_occupancy_unit => '5 dk. başına ort. nesne';
+
+  @override
+  String get insight_comparison_last_week => 'Geçen haftanın aynı günü';
+
+  @override
+  String get insight_comparison_monthly => 'Aylık ortalama';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period ile karşılaştırıldığında';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Karşılaştırma yok';
+
+  @override
+  String get insight_comparison_yearly => 'Yıllık ortalama';
+
+  @override
+  String get insight_comparison_yesterday => 'Dün';
+
+  @override
+  String get insight_dashboard_title => 'Trafik Analizleri';
+
+  @override
+  String get insight_disappear => 'Kayboldu';
+
+  @override
+  String get insight_dwell_time => 'Kalma süresi';
+
+  @override
+  String get insight_entry => 'Girişler';
+
+  @override
+  String get insight_error => 'Veriler yüklenemedi';
+
+  @override
+  String get insight_estimated => 'Tahmini';
+
+  @override
+  String get insight_exit => 'Çıkışlar';
+
+  @override
+  String get insight_hourly_rate => 'Saatlik oran';
+
+  @override
+  String get insight_last_60_minutes => 'Son 60 dakika';
+
+  @override
+  String get insight_longest_completed_visit => 'En uzun ziyaret';
+
+  @override
+  String get insight_no_data => 'Veri yok';
+
+  @override
+  String get insight_objects_unit => 'nesne';
+
+  @override
+  String get insight_occupancy => 'Doluluk';
+
+  @override
+  String get insight_pass_by => 'Geçiş trafiği';
+
+  @override
+  String get insight_peak => 'En yüksek';
+
+  @override
+  String get insight_period_breakfast => 'Kahvaltı';
+
+  @override
+  String get insight_period_dinner => 'Akşam yemeği';
+
+  @override
+  String get insight_period_in_progress => 'Devam ediyor';
+
+  @override
+  String get insight_period_lunch => 'Öğle yemeği';
+
+  @override
+  String get insight_stagnant => 'Oyalanma';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Bugün: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/sa.';
+
+  @override
   String get interest_areas_screen_add_area => 'Alan ekle';
 
   @override

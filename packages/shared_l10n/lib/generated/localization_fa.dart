@@ -305,6 +305,115 @@ class LocalizationFa extends Localization {
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی از این ناحیه خارج شده‌اند محاسبه می‌کند.\\n\\nخروج زمانی شمارش می‌شود که یک فرد یا وسیله نقلیه از داخل ناحیه به خارج آن حرکت کند.';
 
   @override
+  String get insight_appear => 'ظاهر شدند';
+
+  @override
+  String get insight_area_global => 'کل تصویر';
+
+  @override
+  String get insight_average_completed_visit => 'میانگین بازدیدهای پایان‌یافته';
+
+  @override
+  String get insight_average_short => 'میانگین';
+
+  @override
+  String get insight_chart_dwell_unit => 'میانگین مدت در هر ۵ دقیقه';
+
+  @override
+  String get insight_chart_event_unit => 'رویداد در هر ۵ دقیقه';
+
+  @override
+  String get insight_chart_occupancy_unit => 'میانگین اشیا در هر ۵ دقیقه';
+
+  @override
+  String get insight_comparison_last_week => 'همان روز در هفته گذشته';
+
+  @override
+  String get insight_comparison_monthly => 'میانگین ماهانه';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'در مقایسه با $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'مقایسه در دسترس نیست';
+
+  @override
+  String get insight_comparison_yearly => 'میانگین سالانه';
+
+  @override
+  String get insight_comparison_yesterday => 'دیروز';
+
+  @override
+  String get insight_dashboard_title => 'تحلیل تردد';
+
+  @override
+  String get insight_disappear => 'ناپدید شدند';
+
+  @override
+  String get insight_dwell_time => 'مدت حضور';
+
+  @override
+  String get insight_entry => 'ورودها';
+
+  @override
+  String get insight_error => 'بارگذاری داده‌ها ممکن نیست';
+
+  @override
+  String get insight_estimated => 'تخمینی';
+
+  @override
+  String get insight_exit => 'خروج‌ها';
+
+  @override
+  String get insight_hourly_rate => 'نرخ ساعتی';
+
+  @override
+  String get insight_last_60_minutes => '۶۰ دقیقه گذشته';
+
+  @override
+  String get insight_longest_completed_visit => 'طولانی‌ترین بازدید';
+
+  @override
+  String get insight_no_data => 'داده‌ای موجود نیست';
+
+  @override
+  String get insight_objects_unit => 'اشیا';
+
+  @override
+  String get insight_occupancy => 'تعداد حاضر';
+
+  @override
+  String get insight_pass_by => 'تردد عبوری';
+
+  @override
+  String get insight_peak => 'اوج';
+
+  @override
+  String get insight_period_breakfast => 'صبحانه';
+
+  @override
+  String get insight_period_dinner => 'شام';
+
+  @override
+  String get insight_period_in_progress => 'در حال انجام';
+
+  @override
+  String get insight_period_lunch => 'ناهار';
+
+  @override
+  String get insight_stagnant => 'ماندن در محل';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'امروز: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ساعت';
+
+  @override
   String get interest_areas_screen_add_area => 'افزودن ناحیه';
 
   @override

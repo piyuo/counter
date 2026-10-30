@@ -666,6 +666,216 @@ abstract class Localization {
   /// **'Counts people or vehicles that left this area during the current counting window.\\n\\nAn exit is counted when a person or vehicle moves from inside the area to outside.'**
   String get exited_help;
 
+  /// No description provided for @insight_appear.
+  ///
+  /// In en, this message translates to:
+  /// **'Appeared'**
+  String get insight_appear;
+
+  /// No description provided for @insight_area_global.
+  ///
+  /// In en, this message translates to:
+  /// **'Entire Scene'**
+  String get insight_area_global;
+
+  /// No description provided for @insight_average_completed_visit.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. completed visit'**
+  String get insight_average_completed_visit;
+
+  /// No description provided for @insight_average_short.
+  ///
+  /// In en, this message translates to:
+  /// **'avg.'**
+  String get insight_average_short;
+
+  /// No description provided for @insight_chart_dwell_unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. duration per 5 min'**
+  String get insight_chart_dwell_unit;
+
+  /// No description provided for @insight_chart_event_unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Events per 5 min'**
+  String get insight_chart_event_unit;
+
+  /// No description provided for @insight_chart_occupancy_unit.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. objects per 5 min'**
+  String get insight_chart_occupancy_unit;
+
+  /// No description provided for @insight_comparison_last_week.
+  ///
+  /// In en, this message translates to:
+  /// **'Same day last week'**
+  String get insight_comparison_last_week;
+
+  /// No description provided for @insight_comparison_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly average'**
+  String get insight_comparison_monthly;
+
+  /// No description provided for @insight_comparison_period.
+  ///
+  /// In en, this message translates to:
+  /// **'vs. {period}'**
+  String insight_comparison_period(Object period);
+
+  /// No description provided for @insight_comparison_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Comparison unavailable'**
+  String get insight_comparison_unavailable;
+
+  /// No description provided for @insight_comparison_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly average'**
+  String get insight_comparison_yearly;
+
+  /// No description provided for @insight_comparison_yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get insight_comparison_yesterday;
+
+  /// No description provided for @insight_dashboard_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Traffic Insights'**
+  String get insight_dashboard_title;
+
+  /// No description provided for @insight_disappear.
+  ///
+  /// In en, this message translates to:
+  /// **'Disappeared'**
+  String get insight_disappear;
+
+  /// No description provided for @insight_dwell_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Dwell Time'**
+  String get insight_dwell_time;
+
+  /// No description provided for @insight_entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries'**
+  String get insight_entry;
+
+  /// No description provided for @insight_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load insights'**
+  String get insight_error;
+
+  /// No description provided for @insight_estimated.
+  ///
+  /// In en, this message translates to:
+  /// **'Estimated'**
+  String get insight_estimated;
+
+  /// No description provided for @insight_exit.
+  ///
+  /// In en, this message translates to:
+  /// **'Exits'**
+  String get insight_exit;
+
+  /// No description provided for @insight_hourly_rate.
+  ///
+  /// In en, this message translates to:
+  /// **'Hourly rate'**
+  String get insight_hourly_rate;
+
+  /// No description provided for @insight_last_60_minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 60 minutes'**
+  String get insight_last_60_minutes;
+
+  /// No description provided for @insight_longest_completed_visit.
+  ///
+  /// In en, this message translates to:
+  /// **'Longest visit'**
+  String get insight_longest_completed_visit;
+
+  /// No description provided for @insight_no_data.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get insight_no_data;
+
+  /// No description provided for @insight_objects_unit.
+  ///
+  /// In en, this message translates to:
+  /// **'objects'**
+  String get insight_objects_unit;
+
+  /// No description provided for @insight_occupancy.
+  ///
+  /// In en, this message translates to:
+  /// **'Occupancy'**
+  String get insight_occupancy;
+
+  /// No description provided for @insight_pass_by.
+  ///
+  /// In en, this message translates to:
+  /// **'Pass-by Traffic'**
+  String get insight_pass_by;
+
+  /// No description provided for @insight_peak.
+  ///
+  /// In en, this message translates to:
+  /// **'Peak'**
+  String get insight_peak;
+
+  /// No description provided for @insight_period_breakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get insight_period_breakfast;
+
+  /// No description provided for @insight_period_dinner.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner'**
+  String get insight_period_dinner;
+
+  /// No description provided for @insight_period_in_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'In progress'**
+  String get insight_period_in_progress;
+
+  /// No description provided for @insight_period_lunch.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunch'**
+  String get insight_period_lunch;
+
+  /// No description provided for @insight_stagnant.
+  ///
+  /// In en, this message translates to:
+  /// **'Lingering'**
+  String get insight_stagnant;
+
+  /// No description provided for @insight_today_chart.
+  ///
+  /// In en, this message translates to:
+  /// **'Today: {metric}'**
+  String insight_today_chart(Object metric);
+
+  /// No description provided for @insight_tracks_per_hour.
+  ///
+  /// In en, this message translates to:
+  /// **'/hr'**
+  String get insight_tracks_per_hour;
+
   /// No description provided for @interest_areas_screen_add_area.
   ///
   /// In en, this message translates to:

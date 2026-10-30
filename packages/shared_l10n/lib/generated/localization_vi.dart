@@ -303,6 +303,115 @@ class LocalizationVi extends Localization {
       'Đếm số người hoặc phương tiện rời khỏi khu vực này trong cửa sổ đếm hiện tại.\\n\\nMột lượt ra được tính khi người hoặc phương tiện di chuyển từ trong khu vực ra bên ngoài.';
 
   @override
+  String get insight_appear => 'Xuất hiện';
+
+  @override
+  String get insight_area_global => 'Toàn bộ khung hình';
+
+  @override
+  String get insight_average_completed_visit => 'TB lượt ghé đã kết thúc';
+
+  @override
+  String get insight_average_short => 'TB';
+
+  @override
+  String get insight_chart_dwell_unit => 'TB thời lượng mỗi 5 phút';
+
+  @override
+  String get insight_chart_event_unit => 'Sự kiện mỗi 5 phút';
+
+  @override
+  String get insight_chart_occupancy_unit => 'TB đối tượng mỗi 5 phút';
+
+  @override
+  String get insight_comparison_last_week => 'Cùng ngày tuần trước';
+
+  @override
+  String get insight_comparison_monthly => 'Trung bình tháng';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'so với $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Không có dữ liệu so sánh';
+
+  @override
+  String get insight_comparison_yearly => 'Trung bình năm';
+
+  @override
+  String get insight_comparison_yesterday => 'Hôm qua';
+
+  @override
+  String get insight_dashboard_title => 'Phân tích lưu lượng';
+
+  @override
+  String get insight_disappear => 'Biến mất';
+
+  @override
+  String get insight_dwell_time => 'Thời gian lưu lại';
+
+  @override
+  String get insight_entry => 'Lượt vào';
+
+  @override
+  String get insight_error => 'Không thể tải dữ liệu';
+
+  @override
+  String get insight_estimated => 'Ước tính';
+
+  @override
+  String get insight_exit => 'Lượt ra';
+
+  @override
+  String get insight_hourly_rate => 'Tỷ lệ theo giờ';
+
+  @override
+  String get insight_last_60_minutes => '60 phút qua';
+
+  @override
+  String get insight_longest_completed_visit => 'Lượt ghé dài nhất';
+
+  @override
+  String get insight_no_data => 'Không có dữ liệu';
+
+  @override
+  String get insight_objects_unit => 'đối tượng';
+
+  @override
+  String get insight_occupancy => 'Số lượng hiện diện';
+
+  @override
+  String get insight_pass_by => 'Lưu lượng đi qua';
+
+  @override
+  String get insight_peak => 'Cao nhất';
+
+  @override
+  String get insight_period_breakfast => 'Bữa sáng';
+
+  @override
+  String get insight_period_dinner => 'Bữa tối';
+
+  @override
+  String get insight_period_in_progress => 'Đang diễn ra';
+
+  @override
+  String get insight_period_lunch => 'Bữa trưa';
+
+  @override
+  String get insight_stagnant => 'Lưu lại';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Hôm nay: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/giờ';
+
+  @override
   String get interest_areas_screen_add_area => 'Thêm khu vực';
 
   @override

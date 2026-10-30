@@ -5,9 +5,9 @@
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
+import 'package:counter_app/control_panel/insights/insight_display.dart';
 import 'package:counter_app/control_panel/utils/video_source_name.dart';
 import 'package:counter_app/control_panel/widgets/clickable_url.dart';
-import 'package:counter_app/control_panel/widgets/metrics_dashboard.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,7 +30,7 @@ class MainScreen extends ConsumerWidget {
     final appVersion = ref.watch(appVersionProvider).asData?.value ?? '';
     final telemetry = ref.watch(core_domain.telemetryServiceProvider);
     final areaState = ref.watch(core_runtime.interestAreaProvider);
-    final interestAreaHelpText = areaState.areas.length == 0
+    final interestAreaHelpText = areaState.areas.isEmpty
         ? context.l.main_screen_interest_area_empty
         : areaState.areas.length.toString();
 
@@ -88,9 +88,7 @@ class MainScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-
-              MetricsDashboard(areaState: areaState),
-              const SizedBox(height: 8),
+              InsightDisplay(),
               feature_pip.PipPanel(
                 child: Column(
                   children: [

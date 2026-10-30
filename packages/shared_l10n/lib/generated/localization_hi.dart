@@ -305,6 +305,115 @@ class LocalizationHi extends Localization {
       'वर्तमान गणना अवधि के दौरान इस क्षेत्र से बाहर जाने वाले लोगों या वाहनों की संख्या गिनता है।\\n\\nजब कोई व्यक्ति या वाहन क्षेत्र के अंदर से बाहर जाता है, तो एक निकास गिना जाता है।';
 
   @override
+  String get insight_appear => 'दिखाई दिए';
+
+  @override
+  String get insight_area_global => 'पूरा दृश्य';
+
+  @override
+  String get insight_average_completed_visit => 'पूरी हुई विज़िट का औसत';
+
+  @override
+  String get insight_average_short => 'औसत';
+
+  @override
+  String get insight_chart_dwell_unit => 'हर 5 मिनट में औसत अवधि';
+
+  @override
+  String get insight_chart_event_unit => 'हर 5 मिनट में घटनाएँ';
+
+  @override
+  String get insight_chart_occupancy_unit => 'हर 5 मिनट में औसत वस्तुएँ';
+
+  @override
+  String get insight_comparison_last_week => 'पिछले सप्ताह का यही दिन';
+
+  @override
+  String get insight_comparison_monthly => 'मासिक औसत';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period की तुलना में';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'तुलना उपलब्ध नहीं';
+
+  @override
+  String get insight_comparison_yearly => 'वार्षिक औसत';
+
+  @override
+  String get insight_comparison_yesterday => 'कल';
+
+  @override
+  String get insight_dashboard_title => 'आवागमन विश्लेषण';
+
+  @override
+  String get insight_disappear => 'गायब हुए';
+
+  @override
+  String get insight_dwell_time => 'ठहरने का समय';
+
+  @override
+  String get insight_entry => 'प्रवेश';
+
+  @override
+  String get insight_error => 'डेटा लोड नहीं हो सका';
+
+  @override
+  String get insight_estimated => 'अनुमानित';
+
+  @override
+  String get insight_exit => 'निकास';
+
+  @override
+  String get insight_hourly_rate => 'प्रति घंटे की दर';
+
+  @override
+  String get insight_last_60_minutes => 'पिछले 60 मिनट';
+
+  @override
+  String get insight_longest_completed_visit => 'सबसे लंबी विज़िट';
+
+  @override
+  String get insight_no_data => 'डेटा उपलब्ध नहीं है';
+
+  @override
+  String get insight_objects_unit => 'वस्तुएँ';
+
+  @override
+  String get insight_occupancy => 'मौजूद संख्या';
+
+  @override
+  String get insight_pass_by => 'गुज़रने वाले';
+
+  @override
+  String get insight_peak => 'अधिकतम';
+
+  @override
+  String get insight_period_breakfast => 'नाश्ता';
+
+  @override
+  String get insight_period_dinner => 'रात का खाना';
+
+  @override
+  String get insight_period_in_progress => 'जारी है';
+
+  @override
+  String get insight_period_lunch => 'दोपहर का भोजन';
+
+  @override
+  String get insight_stagnant => 'ठहरना';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'आज: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/घंटा';
+
+  @override
   String get interest_areas_screen_add_area => 'क्षेत्र जोड़ें';
 
   @override

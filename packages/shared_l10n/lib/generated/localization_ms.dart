@@ -304,6 +304,115 @@ class LocalizationMs extends Localization {
       'Mengira bilangan orang atau kenderaan yang keluar dari kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSatu keluar dikira apabila seseorang atau kenderaan bergerak dari dalam kawasan ke luar kawasan.';
 
   @override
+  String get insight_appear => 'Muncul';
+
+  @override
+  String get insight_area_global => 'Seluruh Paparan';
+
+  @override
+  String get insight_average_completed_visit => 'Purata lawatan selesai';
+
+  @override
+  String get insight_average_short => 'purata';
+
+  @override
+  String get insight_chart_dwell_unit => 'Purata tempoh setiap 5 min';
+
+  @override
+  String get insight_chart_event_unit => 'Peristiwa setiap 5 min';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Purata objek setiap 5 min';
+
+  @override
+  String get insight_comparison_last_week => 'Hari sama minggu lepas';
+
+  @override
+  String get insight_comparison_monthly => 'Purata bulanan';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'berbanding $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Perbandingan tiada';
+
+  @override
+  String get insight_comparison_yearly => 'Purata tahunan';
+
+  @override
+  String get insight_comparison_yesterday => 'Semalam';
+
+  @override
+  String get insight_dashboard_title => 'Analisis Trafik';
+
+  @override
+  String get insight_disappear => 'Hilang';
+
+  @override
+  String get insight_dwell_time => 'Tempoh lawatan';
+
+  @override
+  String get insight_entry => 'Masuk';
+
+  @override
+  String get insight_error => 'Gagal memuatkan data';
+
+  @override
+  String get insight_estimated => 'Anggaran';
+
+  @override
+  String get insight_exit => 'Keluar';
+
+  @override
+  String get insight_hourly_rate => 'Kadar sejam';
+
+  @override
+  String get insight_last_60_minutes => '60 minit terakhir';
+
+  @override
+  String get insight_longest_completed_visit => 'Lawatan paling lama';
+
+  @override
+  String get insight_no_data => 'Tiada data tersedia';
+
+  @override
+  String get insight_objects_unit => 'objek';
+
+  @override
+  String get insight_occupancy => 'Bilangan dalam kawasan';
+
+  @override
+  String get insight_pass_by => 'Trafik lalu';
+
+  @override
+  String get insight_peak => 'Puncak';
+
+  @override
+  String get insight_period_breakfast => 'Sarapan';
+
+  @override
+  String get insight_period_dinner => 'Makan malam';
+
+  @override
+  String get insight_period_in_progress => 'Sedang berlangsung';
+
+  @override
+  String get insight_period_lunch => 'Makan tengah hari';
+
+  @override
+  String get insight_stagnant => 'Berada di tempat';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Hari ini: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/jam';
+
+  @override
   String get interest_areas_screen_add_area => 'Tambah kawasan';
 
   @override

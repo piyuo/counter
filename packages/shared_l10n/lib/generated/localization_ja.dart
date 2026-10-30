@@ -297,6 +297,115 @@ class LocalizationJa extends Localization {
       '現在の集計時間内にこのエリアから出た人や車両をカウントします。\\n\\n人や車両がエリア内から外へ移動したときに1回カウントされます。';
 
   @override
+  String get insight_appear => '出現';
+
+  @override
+  String get insight_area_global => '画面全体';
+
+  @override
+  String get insight_average_completed_visit => '終了した滞在の平均';
+
+  @override
+  String get insight_average_short => '平均';
+
+  @override
+  String get insight_chart_dwell_unit => '5分ごとの平均時間';
+
+  @override
+  String get insight_chart_event_unit => '5分ごとのイベント数';
+
+  @override
+  String get insight_chart_occupancy_unit => '5分ごとの平均物体数';
+
+  @override
+  String get insight_comparison_last_week => '先週の同じ曜日';
+
+  @override
+  String get insight_comparison_monthly => '月平均';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$periodとの比較';
+  }
+
+  @override
+  String get insight_comparison_unavailable => '比較データなし';
+
+  @override
+  String get insight_comparison_yearly => '年平均';
+
+  @override
+  String get insight_comparison_yesterday => '昨日';
+
+  @override
+  String get insight_dashboard_title => '通行分析';
+
+  @override
+  String get insight_disappear => '消失';
+
+  @override
+  String get insight_dwell_time => '滞在時間';
+
+  @override
+  String get insight_entry => '入場数';
+
+  @override
+  String get insight_error => '分析データを読み込めません';
+
+  @override
+  String get insight_estimated => '推定値';
+
+  @override
+  String get insight_exit => '退場数';
+
+  @override
+  String get insight_hourly_rate => '1時間あたりの値';
+
+  @override
+  String get insight_last_60_minutes => '過去60分';
+
+  @override
+  String get insight_longest_completed_visit => '最長の滞在';
+
+  @override
+  String get insight_no_data => 'データがありません';
+
+  @override
+  String get insight_objects_unit => '物体';
+
+  @override
+  String get insight_occupancy => '滞在人数';
+
+  @override
+  String get insight_pass_by => '通行量';
+
+  @override
+  String get insight_peak => '最大';
+
+  @override
+  String get insight_period_breakfast => '朝食';
+
+  @override
+  String get insight_period_dinner => '夕食';
+
+  @override
+  String get insight_period_in_progress => '進行中';
+
+  @override
+  String get insight_period_lunch => '昼食';
+
+  @override
+  String get insight_stagnant => '滞留';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return '今日：$metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/時';
+
+  @override
   String get interest_areas_screen_add_area => 'エリア追加';
 
   @override

@@ -54,3 +54,49 @@ final class AnalyticsServiceProvider
 }
 
 String _$analyticsServiceHash() => r'ca22b9fd50072d2d951691b9b024d6da0085b997';
+
+/// State (read side)
+
+@ProviderFor(analyticsState)
+final analyticsStateProvider = AnalyticsStateProvider._();
+
+/// State (read side)
+
+final class AnalyticsStateProvider
+    extends $FunctionalProvider<AnalyticsState, AnalyticsState, AnalyticsState>
+    with $Provider<AnalyticsState> {
+  /// State (read side)
+  AnalyticsStateProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'analyticsStateProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$analyticsStateHash();
+
+  @$internal
+  @override
+  $ProviderElement<AnalyticsState> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  AnalyticsState create(Ref ref) {
+    return analyticsState(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AnalyticsState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AnalyticsState>(value),
+    );
+  }
+}
+
+String _$analyticsStateHash() => r'baed0ef2d5d0a8be1c45e838915b553d1c83d4b7';

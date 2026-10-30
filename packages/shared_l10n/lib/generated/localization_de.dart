@@ -306,6 +306,115 @@ class LocalizationDe extends Localization {
       'Zählt Personen oder Fahrzeuge, die diesen Bereich während des aktuellen Zählfensters verlassen haben.\\n\\nEin Austritt wird gezählt, wenn sich eine Person oder ein Fahrzeug von innerhalb des Bereichs nach außerhalb bewegt.';
 
   @override
+  String get insight_appear => 'Erschienen';
+
+  @override
+  String get insight_area_global => 'Gesamter Bildbereich';
+
+  @override
+  String get insight_average_completed_visit => 'Ø abgeschlossene Aufenthalte';
+
+  @override
+  String get insight_average_short => 'Ø';
+
+  @override
+  String get insight_chart_dwell_unit => 'Ø Dauer pro 5 Min.';
+
+  @override
+  String get insight_chart_event_unit => 'Ereignisse pro 5 Min.';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Ø Objekte pro 5 Min.';
+
+  @override
+  String get insight_comparison_last_week => 'Gleicher Wochentag letzte Woche';
+
+  @override
+  String get insight_comparison_monthly => 'Monatsdurchschnitt';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'im Vergleich zu $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Kein Vergleich verfügbar';
+
+  @override
+  String get insight_comparison_yearly => 'Jahresdurchschnitt';
+
+  @override
+  String get insight_comparison_yesterday => 'Gestern';
+
+  @override
+  String get insight_dashboard_title => 'Verkehrsanalysen';
+
+  @override
+  String get insight_disappear => 'Verschwunden';
+
+  @override
+  String get insight_dwell_time => 'Aufenthaltsdauer';
+
+  @override
+  String get insight_entry => 'Eintritte';
+
+  @override
+  String get insight_error => 'Analysen konnten nicht geladen werden';
+
+  @override
+  String get insight_estimated => 'Geschätzt';
+
+  @override
+  String get insight_exit => 'Austritte';
+
+  @override
+  String get insight_hourly_rate => 'Stündliche Rate';
+
+  @override
+  String get insight_last_60_minutes => 'Letzte 60 Minuten';
+
+  @override
+  String get insight_longest_completed_visit => 'Längster Aufenthalt';
+
+  @override
+  String get insight_no_data => 'Keine Daten verfügbar';
+
+  @override
+  String get insight_objects_unit => 'Objekte';
+
+  @override
+  String get insight_occupancy => 'Belegung';
+
+  @override
+  String get insight_pass_by => 'Vorbeigehende';
+
+  @override
+  String get insight_peak => 'Spitzenwert';
+
+  @override
+  String get insight_period_breakfast => 'Frühstück';
+
+  @override
+  String get insight_period_dinner => 'Abendessen';
+
+  @override
+  String get insight_period_in_progress => 'Läuft';
+
+  @override
+  String get insight_period_lunch => 'Mittagessen';
+
+  @override
+  String get insight_stagnant => 'Verweilen';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Heute: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/Std.';
+
+  @override
   String get interest_areas_screen_add_area => 'Bereich hinzufügen';
 
   @override

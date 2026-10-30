@@ -304,6 +304,115 @@ class LocalizationNl extends Localization {
       'Telt mensen of voertuigen die tijdens het huidige telvenster dit gebied hebben verlaten.\\n\\nEen vertrek wordt geteld wanneer een persoon of voertuig van binnen het gebied naar buiten beweegt.';
 
   @override
+  String get insight_appear => 'Verschenen';
+
+  @override
+  String get insight_area_global => 'Volledig beeld';
+
+  @override
+  String get insight_average_completed_visit => 'Gem. afgerond bezoek';
+
+  @override
+  String get insight_average_short => 'gem.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Gem. duur per 5 min';
+
+  @override
+  String get insight_chart_event_unit => 'Gebeurtenissen per 5 min';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Gem. objecten per 5 min';
+
+  @override
+  String get insight_comparison_last_week => 'Dezelfde dag vorige week';
+
+  @override
+  String get insight_comparison_monthly => 'Maandgemiddelde';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'vergeleken met $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Vergelijking niet beschikbaar';
+
+  @override
+  String get insight_comparison_yearly => 'Jaargemiddelde';
+
+  @override
+  String get insight_comparison_yesterday => 'Gisteren';
+
+  @override
+  String get insight_dashboard_title => 'Verkeersinzichten';
+
+  @override
+  String get insight_disappear => 'Verdwenen';
+
+  @override
+  String get insight_dwell_time => 'Verblijfsduur';
+
+  @override
+  String get insight_entry => 'Binnenkomsten';
+
+  @override
+  String get insight_error => 'Inzichten laden mislukt';
+
+  @override
+  String get insight_estimated => 'Geschat';
+
+  @override
+  String get insight_exit => 'Uitgangen';
+
+  @override
+  String get insight_hourly_rate => 'Uurtarief';
+
+  @override
+  String get insight_last_60_minutes => 'Afgelopen 60 minuten';
+
+  @override
+  String get insight_longest_completed_visit => 'Langste bezoek';
+
+  @override
+  String get insight_no_data => 'Geen gegevens beschikbaar';
+
+  @override
+  String get insight_objects_unit => 'objecten';
+
+  @override
+  String get insight_occupancy => 'Bezetting';
+
+  @override
+  String get insight_pass_by => 'Passanten';
+
+  @override
+  String get insight_peak => 'Piek';
+
+  @override
+  String get insight_period_breakfast => 'Ontbijt';
+
+  @override
+  String get insight_period_dinner => 'Avondeten';
+
+  @override
+  String get insight_period_in_progress => 'Bezig';
+
+  @override
+  String get insight_period_lunch => 'Lunch';
+
+  @override
+  String get insight_stagnant => 'Blijven hangen';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Vandaag: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/uur';
+
+  @override
   String get interest_areas_screen_add_area => 'Gebied toevoegen';
 
   @override

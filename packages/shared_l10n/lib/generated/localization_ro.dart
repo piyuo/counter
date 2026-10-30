@@ -305,6 +305,115 @@ class LocalizationRo extends Localization {
       'Numără persoanele sau vehiculele care au ieșit din această zonă în timpul ferestrei curente de numărare.\\n\\nO ieșire este înregistrată atunci când o persoană sau un vehicul se deplasează din interiorul zonei spre exterior.';
 
   @override
+  String get insight_appear => 'Au apărut';
+
+  @override
+  String get insight_area_global => 'Întreaga scenă';
+
+  @override
+  String get insight_average_completed_visit => 'Medie vizite încheiate';
+
+  @override
+  String get insight_average_short => 'med.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Durată medie la 5 min';
+
+  @override
+  String get insight_chart_event_unit => 'Evenimente la 5 min';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Medie obiecte la 5 min';
+
+  @override
+  String get insight_comparison_last_week => 'Aceeași zi săptămâna trecută';
+
+  @override
+  String get insight_comparison_monthly => 'Media lunară';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'față de $period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Comparație indisponibilă';
+
+  @override
+  String get insight_comparison_yearly => 'Media anuală';
+
+  @override
+  String get insight_comparison_yesterday => 'Ieri';
+
+  @override
+  String get insight_dashboard_title => 'Analiza traficului';
+
+  @override
+  String get insight_disappear => 'Au dispărut';
+
+  @override
+  String get insight_dwell_time => 'Durata șederii';
+
+  @override
+  String get insight_entry => 'Intrări';
+
+  @override
+  String get insight_error => 'Nu se pot încărca datele';
+
+  @override
+  String get insight_estimated => 'Estimat';
+
+  @override
+  String get insight_exit => 'Ieșiri';
+
+  @override
+  String get insight_hourly_rate => 'Rată orară';
+
+  @override
+  String get insight_last_60_minutes => 'Ultimele 60 de minute';
+
+  @override
+  String get insight_longest_completed_visit => 'Cea mai lungă vizită';
+
+  @override
+  String get insight_no_data => 'Nu există date';
+
+  @override
+  String get insight_objects_unit => 'obiecte';
+
+  @override
+  String get insight_occupancy => 'Ocupare';
+
+  @override
+  String get insight_pass_by => 'Trafic de trecere';
+
+  @override
+  String get insight_peak => 'Maxim';
+
+  @override
+  String get insight_period_breakfast => 'Mic dejun';
+
+  @override
+  String get insight_period_dinner => 'Cină';
+
+  @override
+  String get insight_period_in_progress => 'În desfășurare';
+
+  @override
+  String get insight_period_lunch => 'Prânz';
+
+  @override
+  String get insight_stagnant => 'Staționare';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Astăzi: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/oră';
+
+  @override
   String get interest_areas_screen_add_area => 'Adaugă zonă';
 
   @override

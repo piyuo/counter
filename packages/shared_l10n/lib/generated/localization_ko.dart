@@ -295,6 +295,115 @@ class LocalizationKo extends Localization {
       '현재 집계 시간 동안 이 영역을 벗어난 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량이 영역 안에서 밖으로 이동하면 한 번의 이탈로 계산됩니다.';
 
   @override
+  String get insight_appear => '나타남';
+
+  @override
+  String get insight_area_global => '전체 화면';
+
+  @override
+  String get insight_average_completed_visit => '종료된 방문 평균';
+
+  @override
+  String get insight_average_short => '평균';
+
+  @override
+  String get insight_chart_dwell_unit => '5분당 평균 시간';
+
+  @override
+  String get insight_chart_event_unit => '5분당 이벤트';
+
+  @override
+  String get insight_chart_occupancy_unit => '5분당 평균 객체 수';
+
+  @override
+  String get insight_comparison_last_week => '지난주 같은 요일';
+
+  @override
+  String get insight_comparison_monthly => '월평균';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period 대비';
+  }
+
+  @override
+  String get insight_comparison_unavailable => '비교 데이터 없음';
+
+  @override
+  String get insight_comparison_yearly => '연평균';
+
+  @override
+  String get insight_comparison_yesterday => '어제';
+
+  @override
+  String get insight_dashboard_title => '통행 분석';
+
+  @override
+  String get insight_disappear => '사라짐';
+
+  @override
+  String get insight_dwell_time => '체류 시간';
+
+  @override
+  String get insight_entry => '입장';
+
+  @override
+  String get insight_error => '분석 데이터를 불러올 수 없습니다';
+
+  @override
+  String get insight_estimated => '추정치';
+
+  @override
+  String get insight_exit => '퇴장';
+
+  @override
+  String get insight_hourly_rate => '시간당 비율';
+
+  @override
+  String get insight_last_60_minutes => '최근 60분';
+
+  @override
+  String get insight_longest_completed_visit => '최장 방문';
+
+  @override
+  String get insight_no_data => '데이터 없음';
+
+  @override
+  String get insight_objects_unit => '객체';
+
+  @override
+  String get insight_occupancy => '점유 수';
+
+  @override
+  String get insight_pass_by => '통행량';
+
+  @override
+  String get insight_peak => '최대';
+
+  @override
+  String get insight_period_breakfast => '아침';
+
+  @override
+  String get insight_period_dinner => '저녁';
+
+  @override
+  String get insight_period_in_progress => '진행 중';
+
+  @override
+  String get insight_period_lunch => '점심';
+
+  @override
+  String get insight_stagnant => '머무름';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return '오늘: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/시간';
+
+  @override
   String get interest_areas_screen_add_area => '영역 추가';
 
   @override

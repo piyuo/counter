@@ -303,6 +303,115 @@ class LocalizationHe extends Localization {
       'סופר אנשים או כלי רכב שיצאו מאזור זה במהלך חלון הספירה הנוכחי.\\n\\nיציאה נספרת כאשר אדם או כלי רכב עוברים מתוך האזור אל מחוצה לו.';
 
   @override
+  String get insight_appear => 'הופיעו';
+
+  @override
+  String get insight_area_global => 'כל התמונה';
+
+  @override
+  String get insight_average_completed_visit => 'ממוצע ביקורים שהסתיימו';
+
+  @override
+  String get insight_average_short => 'ממוצע';
+
+  @override
+  String get insight_chart_dwell_unit => 'משך ממוצע לכל 5 דקות';
+
+  @override
+  String get insight_chart_event_unit => 'אירועים לכל 5 דקות';
+
+  @override
+  String get insight_chart_occupancy_unit => 'ממוצע עצמים לכל 5 דקות';
+
+  @override
+  String get insight_comparison_last_week => 'אותו יום בשבוע שעבר';
+
+  @override
+  String get insight_comparison_monthly => 'ממוצע חודשי';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'בהשוואה ל$period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'השוואה אינה זמינה';
+
+  @override
+  String get insight_comparison_yearly => 'ממוצע שנתי';
+
+  @override
+  String get insight_comparison_yesterday => 'אתמול';
+
+  @override
+  String get insight_dashboard_title => 'ניתוח תנועה';
+
+  @override
+  String get insight_disappear => 'נעלמו';
+
+  @override
+  String get insight_dwell_time => 'משך שהייה';
+
+  @override
+  String get insight_entry => 'כניסות';
+
+  @override
+  String get insight_error => 'לא ניתן לטעון נתונים';
+
+  @override
+  String get insight_estimated => 'הערכה';
+
+  @override
+  String get insight_exit => 'יציאות';
+
+  @override
+  String get insight_hourly_rate => 'קצב לשעה';
+
+  @override
+  String get insight_last_60_minutes => '60 הדקות האחרונות';
+
+  @override
+  String get insight_longest_completed_visit => 'הביקור הארוך ביותר';
+
+  @override
+  String get insight_no_data => 'אין נתונים זמינים';
+
+  @override
+  String get insight_objects_unit => 'עצמים';
+
+  @override
+  String get insight_occupancy => 'תפוסה';
+
+  @override
+  String get insight_pass_by => 'תנועת עוברים';
+
+  @override
+  String get insight_peak => 'שיא';
+
+  @override
+  String get insight_period_breakfast => 'ארוחת בוקר';
+
+  @override
+  String get insight_period_dinner => 'ארוחת ערב';
+
+  @override
+  String get insight_period_in_progress => 'בתהליך';
+
+  @override
+  String get insight_period_lunch => 'ארוחת צהריים';
+
+  @override
+  String get insight_stagnant => 'שהייה במקום';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'היום: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/שעה';
+
+  @override
   String get interest_areas_screen_add_area => 'הוסף אזור';
 
   @override

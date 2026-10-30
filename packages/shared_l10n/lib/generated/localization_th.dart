@@ -304,6 +304,116 @@ class LocalizationTh extends Localization {
       'นับจำนวนคนหรือยานพาหนะที่ออกจากพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nจะนับ 1 ครั้งเมื่อคนหรือยานพาหนะเคลื่อนที่จากภายในพื้นที่ออกไปภายนอก';
 
   @override
+  String get insight_appear => 'ปรากฏ';
+
+  @override
+  String get insight_area_global => 'ภาพทั้งหมด';
+
+  @override
+  String get insight_average_completed_visit =>
+      'เฉลี่ยการเข้าพื้นที่ที่สิ้นสุดแล้ว';
+
+  @override
+  String get insight_average_short => 'เฉลี่ย';
+
+  @override
+  String get insight_chart_dwell_unit => 'ระยะเวลาเฉลี่ยต่อ 5 นาที';
+
+  @override
+  String get insight_chart_event_unit => 'เหตุการณ์ต่อ 5 นาที';
+
+  @override
+  String get insight_chart_occupancy_unit => 'วัตถุเฉลี่ยต่อ 5 นาที';
+
+  @override
+  String get insight_comparison_last_week => 'วันเดียวกันของสัปดาห์ก่อน';
+
+  @override
+  String get insight_comparison_monthly => 'เฉลี่ยรายเดือน';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return 'เทียบกับ$period';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'ไม่มีข้อมูลเปรียบเทียบ';
+
+  @override
+  String get insight_comparison_yearly => 'เฉลี่ยรายปี';
+
+  @override
+  String get insight_comparison_yesterday => 'เมื่อวาน';
+
+  @override
+  String get insight_dashboard_title => 'ข้อมูลการสัญจร';
+
+  @override
+  String get insight_disappear => 'หายไป';
+
+  @override
+  String get insight_dwell_time => 'ระยะเวลาที่อยู่';
+
+  @override
+  String get insight_entry => 'การเข้า';
+
+  @override
+  String get insight_error => 'โหลดข้อมูลไม่สำเร็จ';
+
+  @override
+  String get insight_estimated => 'ประมาณการ';
+
+  @override
+  String get insight_exit => 'การออก';
+
+  @override
+  String get insight_hourly_rate => 'อัตราต่อชั่วโมง';
+
+  @override
+  String get insight_last_60_minutes => '60 นาทีล่าสุด';
+
+  @override
+  String get insight_longest_completed_visit => 'การเข้าพื้นที่นานที่สุด';
+
+  @override
+  String get insight_no_data => 'ไม่มีข้อมูล';
+
+  @override
+  String get insight_objects_unit => 'วัตถุ';
+
+  @override
+  String get insight_occupancy => 'จำนวนที่อยู่ในพื้นที่';
+
+  @override
+  String get insight_pass_by => 'การสัญจรผ่าน';
+
+  @override
+  String get insight_peak => 'สูงสุด';
+
+  @override
+  String get insight_period_breakfast => 'อาหารเช้า';
+
+  @override
+  String get insight_period_dinner => 'อาหารเย็น';
+
+  @override
+  String get insight_period_in_progress => 'กำลังดำเนินอยู่';
+
+  @override
+  String get insight_period_lunch => 'อาหารกลางวัน';
+
+  @override
+  String get insight_stagnant => 'การหยุดอยู่';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'วันนี้: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ชม.';
+
+  @override
   String get interest_areas_screen_add_area => 'เพิ่มพื้นที่';
 
   @override

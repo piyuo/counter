@@ -303,6 +303,115 @@ class LocalizationBn extends Localization {
       'বর্তমান গণনা সময়সীমায় এই এলাকা থেকে বের হয়ে যাওয়া মানুষ বা যানবাহনের সংখ্যা গণনা করে。\\n\\nকোনো ব্যক্তি বা যানবাহন এলাকার ভেতর থেকে বাইরে গেলে একটি প্রস্থান গণনা করা হয়।';
 
   @override
+  String get insight_appear => 'দৃশ্যমান হয়েছে';
+
+  @override
+  String get insight_area_global => 'সম্পূর্ণ দৃশ্য';
+
+  @override
+  String get insight_average_completed_visit => 'শেষ হওয়া ভিজিটের গড়';
+
+  @override
+  String get insight_average_short => 'গড়';
+
+  @override
+  String get insight_chart_dwell_unit => 'প্রতি ৫ মিনিটে গড় সময়';
+
+  @override
+  String get insight_chart_event_unit => 'প্রতি ৫ মিনিটে ঘটনা';
+
+  @override
+  String get insight_chart_occupancy_unit => 'প্রতি ৫ মিনিটে গড় বস্তু';
+
+  @override
+  String get insight_comparison_last_week => 'গত সপ্তাহের একই দিন';
+
+  @override
+  String get insight_comparison_monthly => 'মাসিক গড়';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period-এর তুলনায়';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'তুলনা পাওয়া যাচ্ছে না';
+
+  @override
+  String get insight_comparison_yearly => 'বার্ষিক গড়';
+
+  @override
+  String get insight_comparison_yesterday => 'গতকাল';
+
+  @override
+  String get insight_dashboard_title => 'চলাচল বিশ্লেষণ';
+
+  @override
+  String get insight_disappear => 'অদৃশ্য হয়েছে';
+
+  @override
+  String get insight_dwell_time => 'অবস্থানের সময়';
+
+  @override
+  String get insight_entry => 'প্রবেশ';
+
+  @override
+  String get insight_error => 'তথ্য লোড করা যায়নি';
+
+  @override
+  String get insight_estimated => 'আনুমানিক';
+
+  @override
+  String get insight_exit => 'প্রস্থান';
+
+  @override
+  String get insight_hourly_rate => 'ঘণ্টাপ্রতি হার';
+
+  @override
+  String get insight_last_60_minutes => 'শেষ ৬০ মিনিট';
+
+  @override
+  String get insight_longest_completed_visit => 'দীর্ঘতম ভিজিট';
+
+  @override
+  String get insight_no_data => 'কোনো তথ্য নেই';
+
+  @override
+  String get insight_objects_unit => 'বস্তু';
+
+  @override
+  String get insight_occupancy => 'উপস্থিতির সংখ্যা';
+
+  @override
+  String get insight_pass_by => 'পাশ দিয়ে যাওয়া';
+
+  @override
+  String get insight_peak => 'সর্বোচ্চ';
+
+  @override
+  String get insight_period_breakfast => 'সকালের নাশতা';
+
+  @override
+  String get insight_period_dinner => 'রাতের খাবার';
+
+  @override
+  String get insight_period_in_progress => 'চলছে';
+
+  @override
+  String get insight_period_lunch => 'দুপুরের খাবার';
+
+  @override
+  String get insight_stagnant => 'অবস্থান করা';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'আজ: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ঘণ্টা';
+
+  @override
   String get interest_areas_screen_add_area => 'এলাকা যোগ করুন';
 
   @override

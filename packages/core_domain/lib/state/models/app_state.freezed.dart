@@ -49,7 +49,9 @@ mixin _$AppState {
 /// Stored as domain models that can be serialized to JSON. At runtime,
 /// these are converted to flutter_vision's InterestArea instances when
 /// configuring the vision session.
- List<InterestArea> get interestAreas;/// Whether track IDs should be visible in the detection output.
+ List<InterestArea> get interestAreas;/// Business-local reporting periods shown in the insight dashboard.
+/// Existing saved app state receives the default schedule when absent.
+ List<BusinessPeriod> get businessPeriods;/// Whether track IDs should be visible in the detection output.
  bool get isTrackIdVisible;
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -64,20 +66,20 @@ $AppStateCopyWith<AppState> get copyWith => _$AppStateCopyWithImpl<AppState>(thi
 @override
 bool operator ==(Object other) {
   final _this = this as AppState;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.deviceId, _this.deviceId) || other.deviceId == _this.deviceId)&&(identical(other.hasCompletedCameraTest, _this.hasCompletedCameraTest) || other.hasCompletedCameraTest == _this.hasCompletedCameraTest)&&(identical(other.dataServerSelection, _this.dataServerSelection) || other.dataServerSelection == _this.dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, _this.personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, _this.personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, _this.businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, _this.businessCustomServer)&&(identical(other.uploadConfig, _this.uploadConfig) || other.uploadConfig == _this.uploadConfig)&&(identical(other.videoSource, _this.videoSource) || other.videoSource == _this.videoSource)&&(identical(other.detectionType, _this.detectionType) || other.detectionType == _this.detectionType)&&(identical(other.detectionParams, _this.detectionParams) || other.detectionParams == _this.detectionParams)&&(identical(other.uploadJitterSec, _this.uploadJitterSec) || other.uploadJitterSec == _this.uploadJitterSec)&&const DeepCollectionEquality().equals(other.interestAreas, _this.interestAreas)&&(identical(other.isTrackIdVisible, _this.isTrackIdVisible) || other.isTrackIdVisible == _this.isTrackIdVisible));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppState&&(identical(other.deviceId, _this.deviceId) || other.deviceId == _this.deviceId)&&(identical(other.hasCompletedCameraTest, _this.hasCompletedCameraTest) || other.hasCompletedCameraTest == _this.hasCompletedCameraTest)&&(identical(other.dataServerSelection, _this.dataServerSelection) || other.dataServerSelection == _this.dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, _this.personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, _this.personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, _this.businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, _this.businessCustomServer)&&(identical(other.uploadConfig, _this.uploadConfig) || other.uploadConfig == _this.uploadConfig)&&(identical(other.videoSource, _this.videoSource) || other.videoSource == _this.videoSource)&&(identical(other.detectionType, _this.detectionType) || other.detectionType == _this.detectionType)&&(identical(other.detectionParams, _this.detectionParams) || other.detectionParams == _this.detectionParams)&&(identical(other.uploadJitterSec, _this.uploadJitterSec) || other.uploadJitterSec == _this.uploadJitterSec)&&const DeepCollectionEquality().equals(other.interestAreas, _this.interestAreas)&&const DeepCollectionEquality().equals(other.businessPeriods, _this.businessPeriods)&&(identical(other.isTrackIdVisible, _this.isTrackIdVisible) || other.isTrackIdVisible == _this.isTrackIdVisible));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as AppState;
-  return Object.hash(runtimeType,_this.deviceId,_this.hasCompletedCameraTest,_this.dataServerSelection,const DeepCollectionEquality().hash(_this.personalPiyuoServer),const DeepCollectionEquality().hash(_this.personalCustomServer),const DeepCollectionEquality().hash(_this.businessPiyuoServer),const DeepCollectionEquality().hash(_this.businessCustomServer),_this.uploadConfig,_this.videoSource,_this.detectionType,_this.detectionParams,_this.uploadJitterSec,const DeepCollectionEquality().hash(_this.interestAreas),_this.isTrackIdVisible);
+  return Object.hash(runtimeType,_this.deviceId,_this.hasCompletedCameraTest,_this.dataServerSelection,const DeepCollectionEquality().hash(_this.personalPiyuoServer),const DeepCollectionEquality().hash(_this.personalCustomServer),const DeepCollectionEquality().hash(_this.businessPiyuoServer),const DeepCollectionEquality().hash(_this.businessCustomServer),_this.uploadConfig,_this.videoSource,_this.detectionType,_this.detectionParams,_this.uploadJitterSec,const DeepCollectionEquality().hash(_this.interestAreas),const DeepCollectionEquality().hash(_this.businessPeriods),_this.isTrackIdVisible);
 }
 
 @override
 String toString() {
   final _this = this as AppState;
-  return 'AppState(deviceId: ${_this.deviceId}, hasCompletedCameraTest: ${_this.hasCompletedCameraTest}, dataServerSelection: ${_this.dataServerSelection}, personalPiyuoServer: ${_this.personalPiyuoServer}, personalCustomServer: ${_this.personalCustomServer}, businessPiyuoServer: ${_this.businessPiyuoServer}, businessCustomServer: ${_this.businessCustomServer}, uploadConfig: ${_this.uploadConfig}, videoSource: ${_this.videoSource}, detectionType: ${_this.detectionType}, detectionParams: ${_this.detectionParams}, uploadJitterSec: ${_this.uploadJitterSec}, interestAreas: ${_this.interestAreas}, isTrackIdVisible: ${_this.isTrackIdVisible})';
+  return 'AppState(deviceId: ${_this.deviceId}, hasCompletedCameraTest: ${_this.hasCompletedCameraTest}, dataServerSelection: ${_this.dataServerSelection}, personalPiyuoServer: ${_this.personalPiyuoServer}, personalCustomServer: ${_this.personalCustomServer}, businessPiyuoServer: ${_this.businessPiyuoServer}, businessCustomServer: ${_this.businessCustomServer}, uploadConfig: ${_this.uploadConfig}, videoSource: ${_this.videoSource}, detectionType: ${_this.detectionType}, detectionParams: ${_this.detectionParams}, uploadJitterSec: ${_this.uploadJitterSec}, interestAreas: ${_this.interestAreas}, businessPeriods: ${_this.businessPeriods}, isTrackIdVisible: ${_this.isTrackIdVisible})';
 }
 
 
@@ -88,7 +90,7 @@ abstract mixin class $AppStateCopyWith<$Res>  {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) _then) = _$AppStateCopyWithImpl;
 @useResult
 $Res call({
- String deviceId, bool hasCompletedCameraTest,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec, List<InterestArea> interestAreas, bool isTrackIdVisible
+ String deviceId, bool hasCompletedCameraTest,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec, List<InterestArea> interestAreas, List<BusinessPeriod> businessPeriods, bool isTrackIdVisible
 });
 
 
@@ -105,7 +107,7 @@ class _$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? deviceId = null,Object? hasCompletedCameraTest = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,Object? interestAreas = null,Object? isTrackIdVisible = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? deviceId = null,Object? hasCompletedCameraTest = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,Object? interestAreas = null,Object? businessPeriods = null,Object? isTrackIdVisible = null,}) {
   return _then(AppState(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,hasCompletedCameraTest: null == hasCompletedCameraTest ? _self.hasCompletedCameraTest : hasCompletedCameraTest // ignore: cast_nullable_to_non_nullable
@@ -120,7 +122,8 @@ as VideoSource,detectionType: null == detectionType ? _self.detectionType : dete
 as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
 as int,interestAreas: null == interestAreas ? _self.interestAreas : interestAreas // ignore: cast_nullable_to_non_nullable
-as List<InterestArea>,isTrackIdVisible: null == isTrackIdVisible ? _self.isTrackIdVisible : isTrackIdVisible // ignore: cast_nullable_to_non_nullable
+as List<InterestArea>,businessPeriods: null == businessPeriods ? _self.businessPeriods : businessPeriods // ignore: cast_nullable_to_non_nullable
+as List<BusinessPeriod>,isTrackIdVisible: null == isTrackIdVisible ? _self.isTrackIdVisible : isTrackIdVisible // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -239,10 +242,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  bool isTrackIdVisible)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  List<BusinessPeriod> businessPeriods,  bool isTrackIdVisible)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.isTrackIdVisible);case _:
+return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.businessPeriods,_that.isTrackIdVisible);case _:
   return orElse();
 
 }
@@ -260,10 +263,10 @@ return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSele
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  bool isTrackIdVisible)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  List<BusinessPeriod> businessPeriods,  bool isTrackIdVisible)  $default,) {final _that = this;
 switch (_that) {
 case _AppState():
-return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.isTrackIdVisible);}
+return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.businessPeriods,_that.isTrackIdVisible);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -277,10 +280,10 @@ return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSele
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  bool isTrackIdVisible)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String deviceId,  bool hasCompletedCameraTest, @JsonKey(unknownEnumValue: DataServerSelection.unspecified)  DataServerSelection dataServerSelection,  PersonalPiyuoServer? personalPiyuoServer,  PersonalCustomServer? personalCustomServer,  BusinessPiyuoServer? businessPiyuoServer,  BusinessCustomServer? businessCustomServer,  UploadConfig uploadConfig, @JsonKey(name: 'videoSource')  VideoSource videoSource,  DetectionType detectionType,  DetectionParams detectionParams,  int uploadJitterSec,  List<InterestArea> interestAreas,  List<BusinessPeriod> businessPeriods,  bool isTrackIdVisible)?  $default,) {final _that = this;
 switch (_that) {
 case _AppState() when $default != null:
-return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.isTrackIdVisible);case _:
+return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSelection,_that.personalPiyuoServer,_that.personalCustomServer,_that.businessPiyuoServer,_that.businessCustomServer,_that.uploadConfig,_that.videoSource,_that.detectionType,_that.detectionParams,_that.uploadJitterSec,_that.interestAreas,_that.businessPeriods,_that.isTrackIdVisible);case _:
   return null;
 
 }
@@ -292,7 +295,7 @@ return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSele
 @JsonSerializable()
 
 class _AppState extends AppState {
-  const _AppState({this.deviceId = '', this.hasCompletedCameraTest = false, @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.personalPiyuoServer = null, this.personalCustomServer = null, this.businessPiyuoServer = null, this.businessCustomServer = null, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detectionType = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0,  List<InterestArea> interestAreas = const [], this.isTrackIdVisible = false}): _interestAreas = interestAreas,super._();
+  const _AppState({this.deviceId = '', this.hasCompletedCameraTest = false, @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.personalPiyuoServer = null, this.personalCustomServer = null, this.businessPiyuoServer = null, this.businessCustomServer = null, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detectionType = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0,  List<InterestArea> interestAreas = const [],  List<BusinessPeriod> businessPeriods = BusinessPeriod.defaultSchedule, this.isTrackIdVisible = false}): _interestAreas = interestAreas,_businessPeriods = businessPeriods,super._();
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
 /// auto-generated unique device ID, sent to backend as a safety identifier
@@ -352,6 +355,17 @@ class _AppState extends AppState {
   return EqualUnmodifiableListView(_interestAreas);
 }
 
+/// Business-local reporting periods shown in the insight dashboard.
+/// Existing saved app state receives the default schedule when absent.
+ final  List<BusinessPeriod> _businessPeriods;
+/// Business-local reporting periods shown in the insight dashboard.
+/// Existing saved app state receives the default schedule when absent.
+@override@JsonKey() List<BusinessPeriod> get businessPeriods {
+  if (_businessPeriods is EqualUnmodifiableListView) return _businessPeriods;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_businessPeriods);
+}
+
 /// Whether track IDs should be visible in the detection output.
 @override@JsonKey() final  bool isTrackIdVisible;
 
@@ -368,18 +382,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.hasCompletedCameraTest, hasCompletedCameraTest) || other.hasCompletedCameraTest == hasCompletedCameraTest)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detectionType, detectionType) || other.detectionType == detectionType)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec)&&const DeepCollectionEquality().equals(other.interestAreas, _interestAreas)&&(identical(other.isTrackIdVisible, isTrackIdVisible) || other.isTrackIdVisible == isTrackIdVisible));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppState&&(identical(other.deviceId, deviceId) || other.deviceId == deviceId)&&(identical(other.hasCompletedCameraTest, hasCompletedCameraTest) || other.hasCompletedCameraTest == hasCompletedCameraTest)&&(identical(other.dataServerSelection, dataServerSelection) || other.dataServerSelection == dataServerSelection)&&const DeepCollectionEquality().equals(other.personalPiyuoServer, personalPiyuoServer)&&const DeepCollectionEquality().equals(other.personalCustomServer, personalCustomServer)&&const DeepCollectionEquality().equals(other.businessPiyuoServer, businessPiyuoServer)&&const DeepCollectionEquality().equals(other.businessCustomServer, businessCustomServer)&&(identical(other.uploadConfig, uploadConfig) || other.uploadConfig == uploadConfig)&&(identical(other.videoSource, videoSource) || other.videoSource == videoSource)&&(identical(other.detectionType, detectionType) || other.detectionType == detectionType)&&(identical(other.detectionParams, detectionParams) || other.detectionParams == detectionParams)&&(identical(other.uploadJitterSec, uploadJitterSec) || other.uploadJitterSec == uploadJitterSec)&&const DeepCollectionEquality().equals(other.interestAreas, _interestAreas)&&const DeepCollectionEquality().equals(other.businessPeriods, _businessPeriods)&&(identical(other.isTrackIdVisible, isTrackIdVisible) || other.isTrackIdVisible == isTrackIdVisible));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,deviceId,hasCompletedCameraTest,dataServerSelection,const DeepCollectionEquality().hash(personalPiyuoServer),const DeepCollectionEquality().hash(personalCustomServer),const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),uploadConfig,videoSource,detectionType,detectionParams,uploadJitterSec,const DeepCollectionEquality().hash(_interestAreas),isTrackIdVisible);
+    return Object.hash(runtimeType,deviceId,hasCompletedCameraTest,dataServerSelection,const DeepCollectionEquality().hash(personalPiyuoServer),const DeepCollectionEquality().hash(personalCustomServer),const DeepCollectionEquality().hash(businessPiyuoServer),const DeepCollectionEquality().hash(businessCustomServer),uploadConfig,videoSource,detectionType,detectionParams,uploadJitterSec,const DeepCollectionEquality().hash(_interestAreas),const DeepCollectionEquality().hash(_businessPeriods),isTrackIdVisible);
 }
 
 @override
 String toString() {
-    return 'AppState(deviceId: $deviceId, hasCompletedCameraTest: $hasCompletedCameraTest, dataServerSelection: $dataServerSelection, personalPiyuoServer: $personalPiyuoServer, personalCustomServer: $personalCustomServer, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detectionType: $detectionType, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec, interestAreas: $interestAreas, isTrackIdVisible: $isTrackIdVisible)';
+    return 'AppState(deviceId: $deviceId, hasCompletedCameraTest: $hasCompletedCameraTest, dataServerSelection: $dataServerSelection, personalPiyuoServer: $personalPiyuoServer, personalCustomServer: $personalCustomServer, businessPiyuoServer: $businessPiyuoServer, businessCustomServer: $businessCustomServer, uploadConfig: $uploadConfig, videoSource: $videoSource, detectionType: $detectionType, detectionParams: $detectionParams, uploadJitterSec: $uploadJitterSec, interestAreas: $interestAreas, businessPeriods: $businessPeriods, isTrackIdVisible: $isTrackIdVisible)';
 }
 
 
@@ -390,7 +404,7 @@ abstract mixin class _$AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res>
   factory _$AppStateCopyWith(_AppState value, $Res Function(_AppState) _then) = __$AppStateCopyWithImpl;
 @override @useResult
 $Res call({
- String deviceId, bool hasCompletedCameraTest,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec, List<InterestArea> interestAreas, bool isTrackIdVisible
+ String deviceId, bool hasCompletedCameraTest,@JsonKey(unknownEnumValue: DataServerSelection.unspecified) DataServerSelection dataServerSelection, PersonalPiyuoServer? personalPiyuoServer, PersonalCustomServer? personalCustomServer, BusinessPiyuoServer? businessPiyuoServer, BusinessCustomServer? businessCustomServer, UploadConfig uploadConfig,@JsonKey(name: 'videoSource') VideoSource videoSource, DetectionType detectionType, DetectionParams detectionParams, int uploadJitterSec, List<InterestArea> interestAreas, List<BusinessPeriod> businessPeriods, bool isTrackIdVisible
 });
 
 
@@ -407,7 +421,7 @@ class __$AppStateCopyWithImpl<$Res>
 
 /// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? deviceId = null,Object? hasCompletedCameraTest = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,Object? interestAreas = null,Object? isTrackIdVisible = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? deviceId = null,Object? hasCompletedCameraTest = null,Object? dataServerSelection = null,Object? personalPiyuoServer = freezed,Object? personalCustomServer = freezed,Object? businessPiyuoServer = freezed,Object? businessCustomServer = freezed,Object? uploadConfig = null,Object? videoSource = null,Object? detectionType = null,Object? detectionParams = null,Object? uploadJitterSec = null,Object? interestAreas = null,Object? businessPeriods = null,Object? isTrackIdVisible = null,}) {
   return _then(_AppState(
 deviceId: null == deviceId ? _self.deviceId : deviceId // ignore: cast_nullable_to_non_nullable
 as String,hasCompletedCameraTest: null == hasCompletedCameraTest ? _self.hasCompletedCameraTest : hasCompletedCameraTest // ignore: cast_nullable_to_non_nullable
@@ -422,7 +436,8 @@ as VideoSource,detectionType: null == detectionType ? _self.detectionType : dete
 as DetectionType,detectionParams: null == detectionParams ? _self.detectionParams : detectionParams // ignore: cast_nullable_to_non_nullable
 as DetectionParams,uploadJitterSec: null == uploadJitterSec ? _self.uploadJitterSec : uploadJitterSec // ignore: cast_nullable_to_non_nullable
 as int,interestAreas: null == interestAreas ? _self._interestAreas : interestAreas // ignore: cast_nullable_to_non_nullable
-as List<InterestArea>,isTrackIdVisible: null == isTrackIdVisible ? _self.isTrackIdVisible : isTrackIdVisible // ignore: cast_nullable_to_non_nullable
+as List<InterestArea>,businessPeriods: null == businessPeriods ? _self._businessPeriods : businessPeriods // ignore: cast_nullable_to_non_nullable
+as List<BusinessPeriod>,isTrackIdVisible: null == isTrackIdVisible ? _self.isTrackIdVisible : isTrackIdVisible // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

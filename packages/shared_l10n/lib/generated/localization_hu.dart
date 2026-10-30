@@ -307,6 +307,115 @@ class LocalizationHu extends Localization {
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt elhagyták ezt a területet.\\n\\nKilépés akkor kerül számításra, amikor egy személy vagy jármű a területen belülről kifelé mozog.';
 
   @override
+  String get insight_appear => 'Megjelentek';
+
+  @override
+  String get insight_area_global => 'Teljes látómező';
+
+  @override
+  String get insight_average_completed_visit => 'Lezárt látogatások átlaga';
+
+  @override
+  String get insight_average_short => 'átl.';
+
+  @override
+  String get insight_chart_dwell_unit => 'Átl. idő / 5 perc';
+
+  @override
+  String get insight_chart_event_unit => 'Esemény / 5 perc';
+
+  @override
+  String get insight_chart_occupancy_unit => 'Átl. objektum / 5 perc';
+
+  @override
+  String get insight_comparison_last_week => 'Múlt hét ugyanezen napja';
+
+  @override
+  String get insight_comparison_monthly => 'Havi átlag';
+
+  @override
+  String insight_comparison_period(Object period) {
+    return '$period értékéhez képest';
+  }
+
+  @override
+  String get insight_comparison_unavailable => 'Nincs összehasonlítás';
+
+  @override
+  String get insight_comparison_yearly => 'Éves átlag';
+
+  @override
+  String get insight_comparison_yesterday => 'Tegnap';
+
+  @override
+  String get insight_dashboard_title => 'Forgalmi elemzések';
+
+  @override
+  String get insight_disappear => ' Eltűntek';
+
+  @override
+  String get insight_dwell_time => 'Tartózkodási idő';
+
+  @override
+  String get insight_entry => 'Belépések';
+
+  @override
+  String get insight_error => 'Az adatok nem tölthetők be';
+
+  @override
+  String get insight_estimated => 'Becsült';
+
+  @override
+  String get insight_exit => 'Kilépések';
+
+  @override
+  String get insight_hourly_rate => 'Óránkénti ráta';
+
+  @override
+  String get insight_last_60_minutes => 'Elmúlt 60 perc';
+
+  @override
+  String get insight_longest_completed_visit => 'Leghosszabb látogatás';
+
+  @override
+  String get insight_no_data => 'Nincs elérhető adat';
+
+  @override
+  String get insight_objects_unit => 'objektum';
+
+  @override
+  String get insight_occupancy => 'Foglaltság';
+
+  @override
+  String get insight_pass_by => 'Áthaladó forgalom';
+
+  @override
+  String get insight_peak => 'Csúcs';
+
+  @override
+  String get insight_period_breakfast => 'Reggeli';
+
+  @override
+  String get insight_period_dinner => 'Vacsora';
+
+  @override
+  String get insight_period_in_progress => 'Folyamatban';
+
+  @override
+  String get insight_period_lunch => 'Ebéd';
+
+  @override
+  String get insight_stagnant => 'Időzés';
+
+  @override
+  String insight_today_chart(Object metric) {
+    return 'Ma: $metric';
+  }
+
+  @override
+  String get insight_tracks_per_hour => '/ó';
+
+  @override
   String get interest_areas_screen_add_area => 'Terület hozzáadása';
 
   @override
