@@ -179,7 +179,7 @@ void main() {
       async.flushMicrotasks();
 
       expect(closed.single.coveredSeconds, 290);
-      expect(container.read(observationProvider).coveredSeconds, 270, reason: 'double count gives 240');
+      expect(container.read(observationProvider).coveredSeconds, 0);
     });
   });
 
@@ -212,7 +212,7 @@ void main() {
       async.flushMicrotasks();
 
       expect(closed.single.coveredSeconds, 0);
-      expect(state(container)!.coveredSeconds, 268, reason: 'late-roll missing time must not be charged twice');
+      expect(state(container)!.coveredSeconds, 0, reason: 'the active window contains only missing time');
     });
   });
 
@@ -228,7 +228,7 @@ void main() {
       processTestFrame(container, n, [track], const [], 0);
 
       final global = _area(state(container)!, core_domain.kGlobalAreaId);
-      expect(state(container)!.coveredSeconds, 300);
+      expect(state(container)!.coveredSeconds, 2);
       expect(global.presenceSampleCount, 1);
       expect(global.presenceSumSeconds, 3);
     });
@@ -403,11 +403,7 @@ void main() {
       jumpOffset = const Duration(minutes: 30);
       async.elapse(const Duration(seconds: 5));
       processTestFrame(container, n, [track], [area], 0);
-      expect(
-        state(container)!.coveredSeconds,
-        265,
-        reason: 'the 25 minutes between the old and new window belong to no window',
-      );
+      expect(state(container)!.coveredSeconds, 0, reason: 'the newly opened window has no elapsed covered time yet');
       async.elapse(const Duration(seconds: 2));
       processTestFrame(container, n, const [], [area], 0);
 
@@ -543,6 +539,22 @@ void main() {
     });
   });
 
+  test('live coverage subtracts a source stall from elapsed window time', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+
+      processTestFrame(container, n, const [], const [], 0.0);
+      pumpFrames(n, async, const Duration(seconds: 90));
+      n.pause();
+      async.elapse(const Duration(seconds: 30));
+
+      expect(state(container)!.coveredSeconds, 90);
+    });
+  });
+
   test('clock jump rolls to a new window', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 2, 0);
@@ -673,7 +685,7 @@ void main() {
       processTestFrame(container, n, [track], const [], 0.0);
 
       final observation = state(container)!;
-      expect(observation.coveredSeconds, 296);
+      expect(observation.coveredSeconds, 0);
       expect(_area(observation, core_domain.kGlobalAreaId).presenceSampleCount, 0);
       expect(_area(observation, core_domain.kGlobalAreaId).presenceSumSeconds, 0);
     });
@@ -769,7 +781,7 @@ void main() {
 
       processTestFrame(container, n, const [], const [], 0.0);
       expect(state(container), isNotNull);
-      expect(_missingSeconds(state(container)!), const Duration(minutes: 2).inSeconds);
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 5).inSeconds);
 
       n.pause();
 
@@ -777,14 +789,14 @@ void main() {
 
       final stalledState = state(container);
       expect(stalledState, isNotNull);
-      expect(_missingSeconds(stalledState!), const Duration(minutes: 2, seconds: 2).inSeconds);
+      expect(_missingSeconds(stalledState!), const Duration(minutes: 5).inSeconds);
 
       n.resume();
       async.elapse(const Duration(seconds: 2));
 
       final recoveredState = state(container);
       expect(recoveredState, isNotNull);
-      expect(_missingSeconds(recoveredState!), const Duration(minutes: 2, seconds: 2).inSeconds);
+      expect(_missingSeconds(recoveredState!), const Duration(minutes: 5).inSeconds);
     });
   });
 
@@ -800,13 +812,13 @@ void main() {
 
       async.elapse(const Duration(seconds: 3));
       expect(state(container), isNotNull);
-      expect(_missingSeconds(state(container)!), const Duration(minutes: 2, seconds: 3).inSeconds);
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 5).inSeconds);
 
       n.resume();
       async.elapse(const Duration(seconds: 2));
 
       expect(state(container), isNotNull);
-      expect(_missingSeconds(state(container)!), const Duration(minutes: 2, seconds: 3).inSeconds);
+      expect(_missingSeconds(state(container)!), const Duration(minutes: 5).inSeconds);
     });
   });
 
@@ -932,7 +944,7 @@ void main() {
       expect(_windowStart(activeWindow!), _businessTime(DateTime.utc(2026, 1, 1, 10, 5, 0)));
       // Boundary timer opens the new window at 10:05:00, so start-gap is zero.
       // Only the 20-second frame gap (10:05:00 -> 10:05:20) is accumulated.
-      expect(_missingSeconds(activeWindow), const Duration(seconds: 20).inSeconds);
+      expect(_missingSeconds(activeWindow), const Duration(minutes: 5).inSeconds);
 
       sub.cancel();
     });

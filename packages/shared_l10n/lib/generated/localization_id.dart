@@ -375,9 +375,6 @@ class LocalizationId extends Localization {
   String get insight_longest_completed_visit => 'Kunjungan terlama';
 
   @override
-  String get insight_no_data => 'Data tidak tersedia';
-
-  @override
   String get insight_objects_unit => 'objek';
 
   @override

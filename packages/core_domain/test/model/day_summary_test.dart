@@ -82,39 +82,4 @@ void main() {
       expect(iterated, [atNine, atTen]);
     });
   });
-
-  group('DaySummary.pastHourObservation', () {
-    test('uses the latest completed five-minute boundary across an hour boundary', () {
-      final now = DateTime(2026, 1, 1, 11, 37);
-      final endTime = DateTime(2026, 1, 1, 11, 35);
-      final windowStart = endTime.subtract(const Duration(hours: 1));
-      final observations = [
-        _observationAt(windowStart.subtract(const Duration(minutes: 5)), frameCount: 100),
-        for (var index = 0; index < 12; index++) _observationAt(windowStart.add(Duration(minutes: index * 5))),
-        _observationAt(endTime, frameCount: 200),
-      ];
-      final summary = DaySummary(
-        year: endTime.year,
-        month: endTime.month,
-        day: now.day,
-        fiveMinuteObservations: ObservationSeries.fromObservations(observations),
-        hourlyTotals: const [],
-        dailyTotal: _observation(-1, -1),
-      );
-
-      final result = summary.pastHourObservationAt(now.hour, now.minute);
-
-      expect(result, isNotNull);
-      expect(result!.granularity, ObservationGranularity.hour);
-      expect(result.hour, endTime.hour);
-      expect(result.frameCount, 12);
-      expect(result.coveredSeconds, 3600);
-    });
-
-    test('returns null when there are no observations in the window', () {
-      final summary = _summary([_observation(10, 30)]);
-
-      expect(summary.pastHourObservationAt(11, 35), isNull);
-    });
-  });
 }

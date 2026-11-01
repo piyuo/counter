@@ -53,9 +53,9 @@ InsightDashboard _dashboard({
 }) => InsightDashboard(
   businessDate: '2026-10-29',
   todaySeries: ObservationSeries.fromObservations(today),
-  pastHourObservation: pastHour,
+  recentHourObservation: pastHour,
   comparisonSeries: ObservationSeries.fromObservations(comparison),
-  comparisonPastHourObservation: comparisonPastHour,
+  comparisonRecentHourObservation: comparisonPastHour,
 );
 
 void main() {

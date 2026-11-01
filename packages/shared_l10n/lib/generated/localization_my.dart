@@ -377,9 +377,6 @@ class LocalizationMy extends Localization {
   String get insight_longest_completed_visit => 'အကြာဆုံး လည်ပတ်မှု';
 
   @override
-  String get insight_no_data => 'အချက်အလက် မရှိပါ';
-
-  @override
   String get insight_objects_unit => 'အရာဝတ္ထုများ';
 
   @override

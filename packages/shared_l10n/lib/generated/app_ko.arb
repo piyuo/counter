@@ -108,7 +108,6 @@
   "insight_hourly_rate": "시간당 비율",
   "insight_last_60_minutes": "최근 60분",
   "insight_longest_completed_visit": "최장 방문",
-  "insight_no_data": "데이터 없음",
   "insight_objects_unit": "객체",
   "insight_occupancy": "점유 수",
   "insight_pass_by": "통행량",

@@ -247,6 +247,18 @@ void main() {
     expect(result.coverageRatio, 0.75);
   });
 
+  test('coverage subtracts missing duration from elapsed time for a live snapshot', () {
+    final accumulator = ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: DateTime(2026, 1, 1, 10),
+      missingDuration: const Duration(seconds: 30),
+    );
+
+    final result = accumulator.snapshot(elapsedSeconds: 120);
+
+    expect(result.coveredSeconds, 90);
+  });
+
   test('coverage clamps at the window length', () {
     ObservationAggregator make(Duration missing) => ObservationAggregator(
       areaNameResolver: _testAreaNameResolver,
@@ -381,5 +393,19 @@ void main() {
     expect(result.day, 1);
     expect(result.hour, 10);
     expect(result.minute, 0);
+  });
+
+  test('live snapshot clamps elapsed seconds to window duration', () {
+    final aggregator = ObservationAggregator(
+      areaNameResolver: _testAreaNameResolver,
+      startBusiness: DateTime(2026, 1, 1, 10),
+      missingDuration: const Duration(seconds: 30),
+    );
+
+    expect(aggregator.snapshot(elapsedSeconds: -10).coveredSeconds, 0);
+
+    expect(aggregator.snapshot(elapsedSeconds: 400).coveredSeconds, 270);
+
+    expect(aggregator.snapshot(elapsedSeconds: 120).coveredSeconds, 90);
   });
 }

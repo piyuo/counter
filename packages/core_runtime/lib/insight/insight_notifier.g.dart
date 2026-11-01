@@ -41,7 +41,7 @@ final class InsightNotifierProvider
   }
 }
 
-String _$insightNotifierHash() => r'b7b4d442ee2e8ac02d364dbff05b15a6dc6fee98';
+String _$insightNotifierHash() => r'695dd9aa8f37166736dac5363ee426239e20d3c9';
 
 abstract class _$InsightNotifier
     extends $Notifier<core_domain.InsightDashboard> {

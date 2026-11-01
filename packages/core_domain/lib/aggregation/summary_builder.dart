@@ -12,9 +12,7 @@ import 'observation_rollup.dart';
 
 /// Creates period summaries from their source observations or child summaries.
 class SummaryBuilder {
-  const SummaryBuilder() : _observationRollup = const ObservationRollup();
-
-  final ObservationRollup _observationRollup;
+  const SummaryBuilder();
 
   /// Creates a day summary from its first five-minute observation.
   DaySummary createDaySummary(Observation observation) {
@@ -64,30 +62,26 @@ class SummaryBuilder {
       year: first.year,
       month: first.month,
       weekdayFiveMinuteObservation: ObservationSeries.fromObservations(
-        _observationRollup
-            .averageFiveMinuteProfiles([
-              for (final day in days)
-                [
-                  for (final observation in day.fiveMinuteObservations)
-                    if (!observation.isWeekend) observation,
-                ],
-            ])
-            .map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
+        averageFiveMinuteProfiles([
+          for (final day in days)
+            [
+              for (final observation in day.fiveMinuteObservations)
+                if (!observation.isWeekend) observation,
+            ],
+        ]).map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
       ),
       weekendFiveMinuteObservation: ObservationSeries.fromObservations(
-        _observationRollup
-            .averageFiveMinuteProfiles([
-              for (final day in days)
-                [
-                  for (final observation in day.fiveMinuteObservations)
-                    if (observation.isWeekend) observation,
-                ],
-            ])
-            .map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
+        averageFiveMinuteProfiles([
+          for (final day in days)
+            [
+              for (final observation in day.fiveMinuteObservations)
+                if (observation.isWeekend) observation,
+            ],
+        ]).map((observation) => observation.copyWith(year: first.year, month: first.month, day: 1)),
       ),
       hourlyTotals: hourlyTotals,
       dailyTotals: dailyTotals,
-      monthlyTotal: _observationRollup.aggregate(dailyTotals, granularity: ObservationGranularity.month),
+      monthlyTotal: aggregateObservations(dailyTotals, granularity: ObservationGranularity.month),
     );
   }
 
@@ -120,18 +114,16 @@ class SummaryBuilder {
     return YearSummary(
       year: year,
       weekdayFiveMinuteObservation: ObservationSeries.fromObservations(
-        _observationRollup
-            .averageFiveMinuteProfiles(monthlyWeekdayProfiles)
+        averageFiveMinuteProfiles(monthlyWeekdayProfiles)
             .map((observation) => observation.copyWith(year: year, month: 1, day: 1)),
       ),
       weekendFiveMinuteObservation: ObservationSeries.fromObservations(
-        _observationRollup
-            .averageFiveMinuteProfiles(monthlyWeekendProfiles)
+        averageFiveMinuteProfiles(monthlyWeekendProfiles)
             .map((observation) => observation.copyWith(year: year, month: 1, day: 1)),
       ),
       dailyTotals: dailyObservations,
       monthlyTotals: monthlyObservations,
-      yearlyTotal: _observationRollup.aggregate(monthlyObservations, granularity: ObservationGranularity.year),
+      yearlyTotal: aggregateObservations(monthlyObservations, granularity: ObservationGranularity.year),
     );
   }
 
@@ -147,10 +139,7 @@ class SummaryBuilder {
     }
 
     final hourlyObservations = observationsByHour.values
-        .map(
-          (hourObservations) =>
-              _observationRollup.aggregate(hourObservations, granularity: ObservationGranularity.hour),
-        )
+        .map((hourObservations) => aggregateObservations(hourObservations, granularity: ObservationGranularity.hour))
         .toList();
     return DaySummary(
       year: year,
@@ -158,7 +147,7 @@ class SummaryBuilder {
       day: day,
       fiveMinuteObservations: ObservationSeries.fromObservations(observations),
       hourlyTotals: hourlyObservations,
-      dailyTotal: _observationRollup.aggregate(observations, granularity: ObservationGranularity.day),
+      dailyTotal: aggregateObservations(observations, granularity: ObservationGranularity.day),
     );
   }
 

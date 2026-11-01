@@ -158,9 +158,9 @@ class InsightDashboardDataBuilder {
     required DateTime now,
     required int currentSlotEnd,
   }) {
-    final primary = _fromAggregate(dashboard.pastHourObservation, areaId, metric, expectedSeconds: 3600);
+    final primary = _fromAggregate(dashboard.recentHourObservation, areaId, metric, expectedSeconds: 3600);
     final comparisonValue = _fromAggregate(
-      dashboard.comparisonPastHourObservation,
+      dashboard.comparisonRecentHourObservation,
       areaId,
       metric,
       expectedSeconds: 3600,

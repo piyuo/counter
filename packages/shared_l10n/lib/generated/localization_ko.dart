@@ -366,9 +366,6 @@ class LocalizationKo extends Localization {
   String get insight_longest_completed_visit => '최장 방문';
 
   @override
-  String get insight_no_data => '데이터 없음';
-
-  @override
   String get insight_objects_unit => '객체';
 
   @override

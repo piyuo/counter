@@ -374,9 +374,6 @@ class LocalizationVi extends Localization {
   String get insight_longest_completed_visit => 'Lượt ghé dài nhất';
 
   @override
-  String get insight_no_data => 'Không có dữ liệu';
-
-  @override
   String get insight_objects_unit => 'đối tượng';
 
   @override

@@ -376,9 +376,6 @@ class LocalizationHi extends Localization {
   String get insight_longest_completed_visit => 'सबसे लंबी विज़िट';
 
   @override
-  String get insight_no_data => 'डेटा उपलब्ध नहीं है';
-
-  @override
   String get insight_objects_unit => 'वस्तुएँ';
 
   @override

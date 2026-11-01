@@ -57,7 +57,8 @@ part 'observation_notifier.g.dart';
 /// - [core_domain.InterestArea]s are defined in *screen* coordinates (un-rotated)
 /// - `areaContains` inverse-rotates points before testing containment
 @Riverpod(keepAlive: true) // do not autoDispose , there are services that depend on, e.g. NativeAppLinkService
-class ObservationNotifier extends _$ObservationNotifier implements core_domain.ObservationService {
+class ObservationNotifier extends _$ObservationNotifier
+    implements core_domain.ObservationService {
   /// Optional constructor overrides used only in tests to inject fake clocks
   /// and thresholds. Application configuration supplies nonzero detection
   /// thresholds before observation starts; zero defaults make stagnant count
@@ -73,13 +74,20 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
          stagnantThreshold: Duration(seconds: stagnantThresholdSeconds),
          disappearThreshold: Duration(seconds: disappearThresholdSeconds),
        ) {
-    assert(stagnantThresholdSeconds >= 0, 'stagnantThresholdSeconds must be non-negative');
-    assert(disappearThresholdSeconds >= 0, 'disappearThresholdSeconds must be non-negative');
+    assert(
+      stagnantThresholdSeconds >= 0,
+      'stagnantThresholdSeconds must be non-negative',
+    );
+    assert(
+      disappearThresholdSeconds >= 0,
+      'disappearThresholdSeconds must be non-negative',
+    );
   }
 
   // Cached provider values used in _processFrame to avoid per-frame lookups.
   List<core_domain.InterestArea> _activeAreasCache = const [];
-  ProviderSubscription<core_domain.InterestAreaState>? _interestAreaSubscription;
+  ProviderSubscription<core_domain.InterestAreaState>?
+  _interestAreaSubscription;
 
   final DateTime Function()? _nowProvider;
   final Duration Function()? _monotonicNowProvider;
@@ -117,11 +125,13 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   late ObservationAggregator _currentAggregator;
 
   /// Emits finalized [Observation] snapshots when 5-minute windows close.
-  final StreamController<core_domain.Observation> _fiveMinuteObservationController = StreamController.broadcast();
+  final StreamController<core_domain.Observation>
+  _fiveMinuteObservationController = StreamController.broadcast();
 
   /// Stream that emits a [Observation] every time a 5-minute window closes.
   @override
-  Stream<core_domain.Observation> get fiveMinuteObservations => _fiveMinuteObservationController.stream;
+  Stream<core_domain.Observation> get fiveMinuteObservations =>
+      _fiveMinuteObservationController.stream;
 
   /// Last time a live state snapshot was broadcast; used to throttle updates to 1/sec.
   DateTime? _lastStateEmittedAtUtc;
@@ -155,13 +165,14 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
     // subscribe to interest area
     _activeAreasCache = ref.read(interestAreaProvider).areas;
-    _interestAreaSubscription ??= ref.container.listen<core_domain.InterestAreaState>(interestAreaProvider, (_, next) {
-      if (!_areasHaveChanged(next.areas)) return;
-      _activeAreasCache = next.areas;
-      onAreasChanged(next.areas);
-    }, fireImmediately: true);
+    _interestAreaSubscription ??= ref.container
+        .listen<core_domain.InterestAreaState>(interestAreaProvider, (_, next) {
+          if (!_areasHaveChanged(next.areas)) return;
+          _activeAreasCache = next.areas;
+          onAreasChanged(next.areas);
+        }, fireImmediately: true);
     _currentAggregator = _buildDefaultAggregator();
-    return _currentAggregator.snapshot();
+    return _snapshotCurrentWindow();
   }
 
   String areaNameResolver(int areaId) {
@@ -188,7 +199,6 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
           missingDuration: missingDuration,
         );
 
-        // Seed zero-value state rows so snapshots always include global and
         // currently configured local areas, even before any frame arrives.
         _currentAggregator.ensureStateSample(core_domain.kGlobalAreaId);
         for (final areaId in _areaTrackers.keys) {
@@ -197,30 +207,48 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
         _frameGapTracker.advanceTo(startBusiness.toUtc().add(missingDuration));
       },
       onWindowEnd: (_) {
-        if (_scheduler == null) {
-          return;
-        }
+        if (_scheduler == null) return;
 
         final end = _scheduler!.windowEndUtc!;
         final nowUtc = _nowProvider?.call().toUtc() ?? DateTime.now().toUtc();
         final effectiveEnd = end.isAfter(nowUtc) ? nowUtc : end;
+
         final frameInterval = _frameGapTracker.consumeFrameTiming(effectiveEnd);
+
         if (frameInterval.validDuration > Duration.zero) {
           final frameDeltaMs = frameInterval.validDuration.inMilliseconds;
-          _globalTracker.addPresenceForLastFrame(_currentAggregator, frameDeltaMs);
+
+          _globalTracker.addPresenceForLastFrame(
+            _currentAggregator,
+            frameDeltaMs,
+          );
+
           for (final tracker in _areaTrackers.values) {
             tracker.addPresenceForLastFrame(_currentAggregator, frameDeltaMs);
           }
         }
+
         if (frameInterval.missingDuration > Duration.zero) {
           _closeOpenVisits();
           _currentAggregator.addMissingDuration(frameInterval.missingDuration);
         }
-        final lastObservation = _currentAggregator.snapshot();
-        state = lastObservation;
-        _fiveMinuteObservationController.add(lastObservation);
-        appkit.logDebug('[ObservationNotifier] window end: ${lastObservation.toJson()}');
+
+        // Finalize the previous window.
+        final completedObservation = _currentAggregator.snapshot();
+
+        // Initialize the new ongoing window.
         _currentAggregator = _buildDefaultAggregator();
+
+        // State always represents the ongoing window.
+        state = _snapshotCurrentWindow();
+
+        // Publish the completed observation separately.
+        _fiveMinuteObservationController.add(completedObservation);
+
+        appkit.logDebug(
+          '[ObservationNotifier] window end: '
+          '${completedObservation.toJson()}',
+        );
       },
     );
     _scheduler!.start();
@@ -249,12 +277,23 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   /// New values are applied to global and local trackers immediately and affect
   /// subsequent [processFrame] calls.
   @override
-  void setThresholdSeconds({int? stagnantThresholdSeconds, int? disappearThresholdSeconds}) {
+  void setThresholdSeconds({
+    int? stagnantThresholdSeconds,
+    int? disappearThresholdSeconds,
+  }) {
     if (stagnantThresholdSeconds != null && stagnantThresholdSeconds < 0) {
-      throw ArgumentError.value(stagnantThresholdSeconds, 'stagnantThresholdSeconds', 'must be non-negative');
+      throw ArgumentError.value(
+        stagnantThresholdSeconds,
+        'stagnantThresholdSeconds',
+        'must be non-negative',
+      );
     }
     if (disappearThresholdSeconds != null && disappearThresholdSeconds < 0) {
-      throw ArgumentError.value(disappearThresholdSeconds, 'disappearThresholdSeconds', 'must be non-negative');
+      throw ArgumentError.value(
+        disappearThresholdSeconds,
+        'disappearThresholdSeconds',
+        'must be non-negative',
+      );
     }
 
     if (stagnantThresholdSeconds != null) {
@@ -264,9 +303,15 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
       _disappearThreshold = Duration(seconds: disappearThresholdSeconds);
     }
 
-    _globalTracker.configureThresholds(stagnantThreshold: _stagnantThreshold, disappearThreshold: _disappearThreshold);
+    _globalTracker.configureThresholds(
+      stagnantThreshold: _stagnantThreshold,
+      disappearThreshold: _disappearThreshold,
+    );
     for (final tracker in _areaTrackers.values) {
-      tracker.configureThresholds(stagnantThreshold: _stagnantThreshold, disappearThreshold: _disappearThreshold);
+      tracker.configureThresholds(
+        stagnantThreshold: _stagnantThreshold,
+        disappearThreshold: _disappearThreshold,
+      );
     }
   }
 
@@ -299,7 +344,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _scheduler?.reset();
     _currentAggregator = _buildDefaultAggregator();
     _lastStateEmittedAtUtc = null;
-    state = _currentAggregator.snapshot();
+    state = _snapshotCurrentWindow();
   }
 
   /// Recreates local trackers when the configured interest areas change.
@@ -318,7 +363,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     }
 
     _scheduler?.ensureWindowActive();
-    final lastSnapshot = _currentAggregator.snapshot();
+    final lastSnapshot = _snapshotCurrentWindow();
     state = lastSnapshot;
   }
 
@@ -336,7 +381,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   /// not close the scheduler window or reset its metrics.
   void flushCurrentWindow() {
     if (_scheduler?.windowStartUtc == null) return;
-    final snapshot = _currentAggregator.snapshot();
+    final snapshot = _snapshotCurrentWindow();
     _fiveMinuteObservationController.add(snapshot);
     appkit.logInfo('[ObservationNotifier] $snapshot');
   }
@@ -405,8 +450,12 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     //   the image center reference for display (see TrackedObjectOverlay /
     //   interest_area_utils) rather than truly rotating points, so tracked
     //   object centers and area points are already directly comparable there.
-    bool areaContains(core_domain.InterestArea area, core_domain.PointData point) {
-      final isSwappedRenderMode = UniversalPlatform.isIOS && _isLandscapeOrientation();
+    bool areaContains(
+      core_domain.InterestArea area,
+      core_domain.PointData point,
+    ) {
+      final isSwappedRenderMode =
+          UniversalPlatform.isIOS && _isLandscapeOrientation();
       if (rotationDegrees == 0.0 || isSwappedRenderMode) {
         final result = area.contains(point);
         return result;
@@ -457,7 +506,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
         confidenceSampleCount++;
       }
     }
-    aggregator.addConfidenceAggregate(confidenceRatioSum: confidenceRatioSum, sampleCount: confidenceSampleCount);
+    aggregator.addConfidenceAggregate(
+      confidenceRatioSum: confidenceRatioSum,
+      sampleCount: confidenceSampleCount,
+    );
 
     // Process global area (all tracks, no spatial filtering).
     _globalTracker.processFrame(
@@ -474,16 +526,23 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     for (final area in areas) {
       final tracker = _areaTrackers.putIfAbsent(
         area.id,
-        () =>
-            AreaTracker.local(area.id, stagnantThreshold: _stagnantThreshold, disappearThreshold: _disappearThreshold),
+        () => AreaTracker.local(
+          area.id,
+          stagnantThreshold: _stagnantThreshold,
+          disappearThreshold: _disappearThreshold,
+        ),
       );
       tracker.processFrame(
         tracks,
         aggregator,
         frameTimestampUtc: now,
         elapsedSinceLastFrameMs: elapsedSinceLastFrameMs,
-        checkContains: (t) => areaContains(area, core_domain.PointData.fromOffset(t.center)),
-        checkInitialContains: (t) => areaContains(area, core_domain.PointData.fromOffset(t.initialCenter)),
+        checkContains: (t) =>
+            areaContains(area, core_domain.PointData.fromOffset(t.center)),
+        checkInitialContains: (t) => areaContains(
+          area,
+          core_domain.PointData.fromOffset(t.initialCenter),
+        ),
       );
     }
 
@@ -512,7 +571,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   void _startSourceIssueTimer() {
     if (_isDisposed) return;
     _advanceMissingWhileSourceStalled();
-    _sourceIssueTimer ??= Timer.periodic(const Duration(seconds: 1), (_) => _advanceMissingWhileSourceStalled());
+    _sourceIssueTimer ??= Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _advanceMissingWhileSourceStalled(),
+    );
   }
 
   void _stopSourceIssueTimer() {
@@ -527,10 +589,6 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     }
   }
 
-  // ============================================================================
-  // Private helpers
-  // ============================================================================
-
   /// Broadcasts a live [ObservationState] snapshot (throttled to 1/sec).
   ///
   /// Called after every frame processing to update listeners with live metrics.
@@ -541,10 +599,20 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     final now = _nowProvider?.call() ?? DateTime.now().toUtc();
     final last = _lastStateEmittedAtUtc;
     // Only update the state and notify listeners once per second
-    if (!checkOneSecondThrottle || (last == null || now.difference(last) >= const Duration(seconds: 1))) {
+    if (!checkOneSecondThrottle ||
+        (last == null || now.difference(last) >= const Duration(seconds: 1))) {
       _lastStateEmittedAtUtc = now;
-      state = _currentAggregator.snapshot(); // state is live observation update every second
+      state = _snapshotCurrentWindow(); // state is live observation update every second
     }
+  }
+
+  core_domain.Observation _snapshotCurrentWindow() {
+    final now = _nowProvider?.call() ?? DateTime.now().toUtc();
+    final elapsedSeconds = now
+        .toUtc()
+        .difference(_currentAggregator.startBusiness.toUtc())
+        .inSeconds;
+    return _currentAggregator.snapshot(elapsedSeconds: elapsedSeconds);
   }
 
   /// Advances missing duration while the source is known to be stalled.
@@ -558,7 +626,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     final aggregator = _currentAggregator;
 
     final now = _nowProvider?.call() ?? DateTime.now().toUtc();
-    final missingGap = _frameGapTracker.consumeGap(now, ignoreJitterThreshold: true);
+    final missingGap = _frameGapTracker.consumeGap(
+      now,
+      ignoreJitterThreshold: true,
+    );
     if (missingGap > Duration.zero) {
       aggregator.addMissingDuration(missingGap);
     }
@@ -580,7 +651,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   ///
   /// Used to inverse-rotate tracked object centers from image coordinates
   /// back to screen coordinates for proper containment testing.
-  core_domain.PointData _rotatePoint(core_domain.PointData point, double degrees) {
+  core_domain.PointData _rotatePoint(
+    core_domain.PointData point,
+    double degrees,
+  ) {
     if (degrees == 0) return point;
     final radians = degrees * (math.pi / 180);
     final cosValue = math.cos(radians);

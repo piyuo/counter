@@ -15,7 +15,7 @@ part of 'observation_notifier.dart';
 /// - Maintains per-area [AreaTracker] instances for spatial containment and event counting
 /// - Aggregates per-window occupancy/presence/dwell/flow metrics via [ObservationAggregator]
 /// - Emits live [Observation] snapshots (throttled to 1/sec) on every frame
-/// - Emits finalized window snapshots on [snapshots] when windows close
+/// - Emits finalized window snapshots on [fiveMinuteObservations] when windows close
 ///
 /// **Data Flow:**
 /// 1. [processFrame] receives tracked objects
@@ -24,7 +24,7 @@ part of 'observation_notifier.dart';
 /// 4. Global and per-area [AreaTracker]s process events (enter/exit/passBy)
 /// 5. Occupancy/presence/dwell samples are accumulated in [ObservationAggregator]
 /// 6. Live state is broadcast (throttled to 1/sec)
-/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [snapshots]
+/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [fiveMinuteObservations]
 ///
 /// **Occupancy Averaging:**
 /// - [AreaTracker.processFrame] submits one occupancy sample per processed frame
@@ -46,7 +46,7 @@ final observationProvider = ObservationNotifierProvider._();
 /// - Maintains per-area [AreaTracker] instances for spatial containment and event counting
 /// - Aggregates per-window occupancy/presence/dwell/flow metrics via [ObservationAggregator]
 /// - Emits live [Observation] snapshots (throttled to 1/sec) on every frame
-/// - Emits finalized window snapshots on [snapshots] when windows close
+/// - Emits finalized window snapshots on [fiveMinuteObservations] when windows close
 ///
 /// **Data Flow:**
 /// 1. [processFrame] receives tracked objects
@@ -55,7 +55,7 @@ final observationProvider = ObservationNotifierProvider._();
 /// 4. Global and per-area [AreaTracker]s process events (enter/exit/passBy)
 /// 5. Occupancy/presence/dwell samples are accumulated in [ObservationAggregator]
 /// 6. Live state is broadcast (throttled to 1/sec)
-/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [snapshots]
+/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [fiveMinuteObservations]
 ///
 /// **Occupancy Averaging:**
 /// - [AreaTracker.processFrame] submits one occupancy sample per processed frame
@@ -75,7 +75,7 @@ final class ObservationNotifierProvider
   /// - Maintains per-area [AreaTracker] instances for spatial containment and event counting
   /// - Aggregates per-window occupancy/presence/dwell/flow metrics via [ObservationAggregator]
   /// - Emits live [Observation] snapshots (throttled to 1/sec) on every frame
-  /// - Emits finalized window snapshots on [snapshots] when windows close
+  /// - Emits finalized window snapshots on [fiveMinuteObservations] when windows close
   ///
   /// **Data Flow:**
   /// 1. [processFrame] receives tracked objects
@@ -84,7 +84,7 @@ final class ObservationNotifierProvider
   /// 4. Global and per-area [AreaTracker]s process events (enter/exit/passBy)
   /// 5. Occupancy/presence/dwell samples are accumulated in [ObservationAggregator]
   /// 6. Live state is broadcast (throttled to 1/sec)
-  /// 7. On window close, [ObservationAggregator.snapshot] is emitted on [snapshots]
+  /// 7. On window close, [ObservationAggregator.snapshot] is emitted on [fiveMinuteObservations]
   ///
   /// **Occupancy Averaging:**
   /// - [AreaTracker.processFrame] submits one occupancy sample per processed frame
@@ -123,7 +123,7 @@ final class ObservationNotifierProvider
 }
 
 String _$observationNotifierHash() =>
-    r'a091dd10c18e07e6f0bf945ef55cfba3fdfeded4';
+    r'd65b7757d15632548cfb11b86e50fcf473a52091';
 
 /// Riverpod notifier that orchestrates all counting and area-metric tracking.
 ///
@@ -132,7 +132,7 @@ String _$observationNotifierHash() =>
 /// - Maintains per-area [AreaTracker] instances for spatial containment and event counting
 /// - Aggregates per-window occupancy/presence/dwell/flow metrics via [ObservationAggregator]
 /// - Emits live [Observation] snapshots (throttled to 1/sec) on every frame
-/// - Emits finalized window snapshots on [snapshots] when windows close
+/// - Emits finalized window snapshots on [fiveMinuteObservations] when windows close
 ///
 /// **Data Flow:**
 /// 1. [processFrame] receives tracked objects
@@ -141,7 +141,7 @@ String _$observationNotifierHash() =>
 /// 4. Global and per-area [AreaTracker]s process events (enter/exit/passBy)
 /// 5. Occupancy/presence/dwell samples are accumulated in [ObservationAggregator]
 /// 6. Live state is broadcast (throttled to 1/sec)
-/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [snapshots]
+/// 7. On window close, [ObservationAggregator.snapshot] is emitted on [fiveMinuteObservations]
 ///
 /// **Occupancy Averaging:**
 /// - [AreaTracker.processFrame] submits one occupancy sample per processed frame

@@ -804,12 +804,6 @@ abstract class Localization {
   /// **'Longest visit'**
   String get insight_longest_completed_visit;
 
-  /// No description provided for @insight_no_data.
-  ///
-  /// In en, this message translates to:
-  /// **'No data available'**
-  String get insight_no_data;
-
   /// No description provided for @insight_objects_unit.
   ///
   /// In en, this message translates to:

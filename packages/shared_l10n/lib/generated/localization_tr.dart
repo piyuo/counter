@@ -376,9 +376,6 @@ class LocalizationTr extends Localization {
   String get insight_longest_completed_visit => 'En uzun ziyaret';
 
   @override
-  String get insight_no_data => 'Veri yok';
-
-  @override
   String get insight_objects_unit => 'nesne';
 
   @override

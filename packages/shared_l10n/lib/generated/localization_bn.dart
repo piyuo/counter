@@ -374,9 +374,6 @@ class LocalizationBn extends Localization {
   String get insight_longest_completed_visit => 'দীর্ঘতম ভিজিট';
 
   @override
-  String get insight_no_data => 'কোনো তথ্য নেই';
-
-  @override
   String get insight_objects_unit => 'বস্তু';
 
   @override

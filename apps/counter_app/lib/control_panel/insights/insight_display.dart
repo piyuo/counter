@@ -39,8 +39,6 @@ class InsightDisplay extends ConsumerWidget {
       );
     }
 
-    final hasObservations = dashboard.todaySeries?.isNotEmpty ?? false;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -52,11 +50,6 @@ class InsightDisplay extends ConsumerWidget {
             unawaited(service.refresh());
           },
         ),
-        if (!hasObservations)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-            child: Text(context.l.insight_no_data, style: Theme.of(context).textTheme.bodySmall),
-          ),
         for (final area in areas)
           AreaInsightSection(key: ValueKey(area.areaId), area: area, comparisonPeriod: dashboard.comparisonPeriod),
       ],

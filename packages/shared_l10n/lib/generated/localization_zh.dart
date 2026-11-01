@@ -359,9 +359,6 @@ class LocalizationZh extends Localization {
   String get insight_longest_completed_visit => '最長停留';
 
   @override
-  String get insight_no_data => '沒有可用資料';
-
-  @override
   String get insight_objects_unit => '物件';
 
   @override
@@ -1270,9 +1267,6 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_longest_completed_visit => '最长停留';
-
-  @override
-  String get insight_no_data => '暂无数据';
 
   @override
   String get insight_objects_unit => '物体';

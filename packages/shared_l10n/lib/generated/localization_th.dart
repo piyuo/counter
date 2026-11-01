@@ -376,9 +376,6 @@ class LocalizationTh extends Localization {
   String get insight_longest_completed_visit => 'การเข้าพื้นที่นานที่สุด';
 
   @override
-  String get insight_no_data => 'ไม่มีข้อมูล';
-
-  @override
   String get insight_objects_unit => 'วัตถุ';
 
   @override

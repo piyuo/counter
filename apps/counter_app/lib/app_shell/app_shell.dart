@@ -25,11 +25,11 @@ class AppShell extends ConsumerStatefulWidget {
 }
 
 class _AppShellState extends ConsumerState<AppShell> {
-  StreamSubscription<dynamic>? _observationSubscription;
+  StreamSubscription<dynamic>? _fiveMinuteObservationSubscription;
 
   @override
   void dispose() {
-    _observationSubscription?.cancel();
+    _fiveMinuteObservationSubscription?.cancel();
     super.dispose();
   }
 
@@ -62,14 +62,14 @@ class _AppShellState extends ConsumerState<AppShell> {
     final telemetryService = ref.read(core_domain.telemetryServiceProvider);
     final analyticsService = ref.read(core_domain.analyticsServiceProvider);
     final insightService = ref.read(core_domain.insightServiceProvider);
-    unawaited(insightService.refresh());
+    unawaited(insightService.refresh()); // generate initial insight dashboard
 
-    _observationSubscription = observationService.fiveMinuteObservations.listen((observation) {
-      unawaited(_processObservation(observation, telemetryService, analyticsService, insightService));
+    _fiveMinuteObservationSubscription = observationService.fiveMinuteObservations.listen((observation) {
+      unawaited(_processFiveMinuteObservation(observation, telemetryService, analyticsService, insightService));
     });
   }
 
-  Future<void> _processObservation(
+  Future<void> _processFiveMinuteObservation(
     core_domain.Observation observation,
     core_domain.TelemetryService telemetryService,
     core_domain.AnalyticsService analyticsService,
@@ -95,7 +95,7 @@ class _AppShellState extends ConsumerState<AppShell> {
     }
 
     try {
-      await insightService.refresh();
+      insightService.onFiveMinuteObservationCompleted(observation);
     } catch (error, stackTrace) {
       appkit.logDebug(
         '[app_shell] Failed to refresh insight service: $error, '
@@ -120,6 +120,10 @@ class _AppShellState extends ConsumerState<AppShell> {
       if (previous is core_domain.OnboardingBegin && next is core_domain.SessionRunning) {
         ref.read(feature_pip.pipProvider.notifier).slideUp(feature_pip.SlidingPanelState.halfOpen);
       }
+    });
+
+    ref.listen<core_domain.Observation>(core_domain.observationProvider, (previous, next) {
+      ref.read(core_domain.insightServiceProvider).onObservationChanged();
     });
 
     ref.listen(core_domain.appProvider, (previous, next) {

@@ -1,5 +1,6 @@
 export 'aggregation/insight_data_builder.dart';
 export 'aggregation/observation_rollup.dart';
+export 'aggregation/recent_hour_total.dart';
 export 'aggregation/summary_builder.dart';
 export 'app_flow/models/app_flow.dart';
 export 'app_flow/models/app_flow_event.dart';

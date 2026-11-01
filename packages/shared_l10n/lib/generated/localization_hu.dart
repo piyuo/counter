@@ -378,9 +378,6 @@ class LocalizationHu extends Localization {
   String get insight_longest_completed_visit => 'Leghosszabb látogatás';
 
   @override
-  String get insight_no_data => 'Nincs elérhető adat';
-
-  @override
   String get insight_objects_unit => 'objektum';
 
   @override

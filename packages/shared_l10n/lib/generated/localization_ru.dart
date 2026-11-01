@@ -374,9 +374,6 @@ class LocalizationRu extends Localization {
   String get insight_longest_completed_visit => 'Самый долгий визит';
 
   @override
-  String get insight_no_data => 'Нет данных';
-
-  @override
   String get insight_objects_unit => 'объекты';
 
   @override

@@ -376,9 +376,6 @@ class LocalizationFa extends Localization {
   String get insight_longest_completed_visit => 'طولانی‌ترین بازدید';
 
   @override
-  String get insight_no_data => 'داده‌ای موجود نیست';
-
-  @override
   String get insight_objects_unit => 'اشیا';
 
   @override

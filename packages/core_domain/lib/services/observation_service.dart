@@ -32,3 +32,7 @@ abstract class ObservationService {
 ObservationService observationService(Ref ref) {
   throw UnimplementedError('observationServiceProvider must be overridden');
 }
+
+/// State
+@riverpod
+core_domain.Observation observation(Ref ref) => throw UnimplementedError('observationProvider must be overridden');

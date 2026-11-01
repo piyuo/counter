@@ -1,6 +1,6 @@
 // TOC
-// 1. ObservationRollup actual-period tests
-// 2. ObservationRollup typical-profile tests
+// 1. observation aggregation actual-period tests
+// 2. observation profile tests
 
 import 'package:core_domain/core_domain.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -101,11 +101,9 @@ Observation _partialMinute({required int minute, required int coveredSeconds, in
 }
 
 void main() {
-  const rollup = ObservationRollup();
-
-  group('ObservationRollup actual-period aggregation', () {
+  group('aggregateObservations actual-period aggregation', () {
     test('calculates hourly coverage from only two five-minute observations', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics()),
         _minute(minute: 5, metrics: _metrics()),
       ], granularity: ObservationGranularity.hour);
@@ -116,7 +114,7 @@ void main() {
     });
 
     test('adds partial coverage from two five-minute observations', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _partialMinute(minute: 0, coveredSeconds: 100),
         _partialMinute(minute: 5, coveredSeconds: 200),
       ], granularity: ObservationGranularity.hour);
@@ -127,7 +125,7 @@ void main() {
     });
 
     test('adds frame counts across source observations', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics()).copyWith(frameCount: 120),
         _minute(minute: 5, metrics: _metrics()).copyWith(frameCount: 240),
       ], granularity: ObservationGranularity.hour);
@@ -136,7 +134,7 @@ void main() {
     });
 
     test('adds presence sample counts and duration across source observations', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(presenceSampleCount: 2, presenceSumSeconds: 80)),
         _minute(minute: 5, metrics: _metrics(presenceSampleCount: 3, presenceSumSeconds: 160)),
       ], granularity: ObservationGranularity.hour);
@@ -148,7 +146,7 @@ void main() {
     });
 
     test('keeps the latest valid occupancy snapshot', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(passBy: 1, occupancySampleCount: 1, occupancyLast: 4)),
         _minute(minute: 5, metrics: _metrics(passBy: 2, occupancySampleCount: 1, occupancyLast: 8)),
       ], granularity: ObservationGranularity.hour);
@@ -158,7 +156,7 @@ void main() {
     });
 
     test('adds event counts across source observations', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(passBy: 2, stagnant: 3, entry: 4, exit: 5, appear: 6, disappear: 7)),
         _minute(minute: 5, metrics: _metrics(passBy: 8, stagnant: 9, entry: 10, exit: 11, appear: 12, disappear: 13)),
       ], granularity: ObservationGranularity.hour);
@@ -169,7 +167,7 @@ void main() {
     });
 
     test('does not let a later observation without samples erase a valid snapshot', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
         _minute(minute: 5, metrics: _metrics()),
       ], granularity: ObservationGranularity.hour);
@@ -178,7 +176,7 @@ void main() {
     });
 
     test('preserves a valid zero as the latest occupancy snapshot', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
         _minute(minute: 5, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0)),
       ], granularity: ObservationGranularity.hour);
@@ -187,7 +185,7 @@ void main() {
     });
 
     test('ignores occupancy maxima from observations with no samples', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyMax: 4, occupancyLast: 4)),
         _minute(minute: 5, metrics: _metrics(occupancyMax: 99)),
       ], granularity: ObservationGranularity.hour);
@@ -196,7 +194,7 @@ void main() {
     });
 
     test('defaults last occupancy to zero when no samples exist', () {
-      final combined = rollup.aggregate([
+      final combined = aggregateObservations([
         _minute(minute: 0, metrics: _metrics()),
         _minute(minute: 5, metrics: _metrics()),
       ], granularity: ObservationGranularity.hour);
@@ -224,10 +222,19 @@ void main() {
         minute: -1,
       );
 
-      expect(() => rollup.aggregate([minute, minute], granularity: ObservationGranularity.hour), throwsArgumentError);
-      expect(() => rollup.aggregate([minute, minute], granularity: ObservationGranularity.day), throwsArgumentError);
-      expect(() => rollup.aggregate([day, day], granularity: ObservationGranularity.month), throwsArgumentError);
-      expect(() => rollup.aggregate([month, month], granularity: ObservationGranularity.year), throwsArgumentError);
+      expect(
+        () => aggregateObservations([minute, minute], granularity: ObservationGranularity.hour),
+        throwsArgumentError,
+      );
+      expect(
+        () => aggregateObservations([minute, minute], granularity: ObservationGranularity.day),
+        throwsArgumentError,
+      );
+      expect(() => aggregateObservations([day, day], granularity: ObservationGranularity.month), throwsArgumentError);
+      expect(
+        () => aggregateObservations([month, month], granularity: ObservationGranularity.year),
+        throwsArgumentError,
+      );
     });
 
     test('rejects an actual aggregate whose dwell histogram disagrees with its count', () {
@@ -236,13 +243,13 @@ void main() {
         metrics: _metrics(dwellSampleCount: 2, dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0]),
       );
 
-      expect(() => rollup.aggregate([observation], granularity: ObservationGranularity.hour), throwsArgumentError);
+      expect(() => aggregateObservations([observation], granularity: ObservationGranularity.hour), throwsArgumentError);
     });
   });
 
-  group('ObservationRollup typical-day profiles', () {
+  group('averageFiveMinuteProfiles typical-day profiles', () {
     test('uses occupancy maximum and leaves the last snapshot unavailable', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [
           _minute(
             minute: 0,
@@ -278,18 +285,18 @@ void main() {
     });
 
     test('can average an existing profile without rejecting its unavailable snapshot', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [_minute(minute: 0, metrics: _metrics(occupancySampleCount: 2, occupancySampleSum: 4, occupancyLast: 3))],
       ]);
 
-      final averagedAgain = rollup.averageFiveMinuteProfiles([profile]);
+      final averagedAgain = averageFiveMinuteProfiles([profile]);
 
       expect(averagedAgain.single.areas.single.occupancyLast, 0);
       expect(averagedAgain.single.areas.single.occupancyMean, 2);
     });
 
     test('derives typical occupancy mean from averaged sufficient statistics', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [
           _minute(
             minute: 0,
@@ -326,7 +333,7 @@ void main() {
     });
 
     test('averages dwellMaxSeconds as the typical daily maximum', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [
           _minute(
             minute: 0,
@@ -346,7 +353,7 @@ void main() {
     });
 
     test('uses only present slots, preserves zero, and omits absent slots', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [
           _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0)),
           _minute(minute: 5, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
@@ -363,7 +370,7 @@ void main() {
     });
 
     test('averages coverage over valid contributors without filling missing slots', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [_partialMinute(minute: 0, coveredSeconds: 150)],
         [_partialMinute(minute: 0, coveredSeconds: 75, day: 2)],
       ]);
@@ -375,7 +382,7 @@ void main() {
     });
 
     test('rounds profile dwell histogram with largest remainders to match count', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [
           _minute(
             minute: 0,
@@ -398,7 +405,7 @@ void main() {
     });
 
     test('averages event counts across profiles', () {
-      final profile = rollup.averageFiveMinuteProfiles([
+      final profile = averageFiveMinuteProfiles([
         [_minute(minute: 0, metrics: _metrics(passBy: 4))],
         [_minute(minute: 0, day: 2, metrics: _metrics(passBy: 8))],
       ]);
@@ -407,13 +414,13 @@ void main() {
     });
 
     test('rejects invalid histogram totals and accepts empty zero-sample histograms', () {
-      final zeroSampleProfile = rollup.averageFiveMinuteProfiles([
+      final zeroSampleProfile = averageFiveMinuteProfiles([
         [_minute(minute: 0, metrics: _metrics())],
       ]);
       expect(zeroSampleProfile.single.areas.single.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
 
       expect(
-        () => rollup.averageFiveMinuteProfiles([
+        () => averageFiveMinuteProfiles([
           [
             _minute(minute: 0, metrics: _metrics(dwellSampleCount: 1, dwellHistogram: const [0, 0, 0, 0, 0, 0, 0, 0])),
           ],
@@ -426,7 +433,7 @@ void main() {
       final observation = _minute(minute: 0, metrics: _metrics());
 
       expect(
-        () => rollup.averageFiveMinuteProfiles([
+        () => averageFiveMinuteProfiles([
           [observation, observation],
         ]),
         throwsArgumentError,
@@ -434,12 +441,12 @@ void main() {
     });
 
     test('omits a slot that is absent from every source profile', () {
-      expect(rollup.averageFiveMinuteProfiles([[], []]), isEmpty);
+      expect(averageFiveMinuteProfiles([[], []]), isEmpty);
     });
 
     test('rejects an empty dwell histogram', () {
       expect(
-        () => rollup.aggregate([
+        () => aggregateObservations([
           _minute(minute: 0, metrics: _metrics(dwellHistogram: const [])),
         ], granularity: ObservationGranularity.hour),
         throwsArgumentError,

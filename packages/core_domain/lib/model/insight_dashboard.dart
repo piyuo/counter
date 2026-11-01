@@ -1,5 +1,8 @@
 import 'package:core_domain/model/observation.dart';
 import 'package:core_domain/model/observation_series.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'insight_dashboard.freezed.dart';
 
 /// Historical period used as a reference for traffic comparisons.
 ///
@@ -30,21 +33,21 @@ enum TrafficComparisonPeriod {
 /// 2. Is traffic higher or lower than usual?
 /// 3. How has traffic changed throughout the day?
 ///
-/// The primary metric is the estimated hourly traffic rate,
-/// calculated from available 5-minute observations within
-/// the past 60 minutes.
+/// The primary metric is the recent-hour traffic total,
+/// calculated from completed 5-minute observations and the
+/// current partial observation when available.
 ///
 /// Example:
-///   Dashboard updated at: 11:35 AM
-///   Traffic window: 10:35 AM - 11:35 AM
+///   Dashboard updated at: 11:37 AM
+///   Traffic window: 10:40 AM - 11:37 AM
 ///   Traffic rate: 30 pass-bys/hour
 ///
 /// Updates:
-///   The dashboard updates whenever a new 5-minute
-///   observation becomes available.
+///   The dashboard updates as live observation snapshots change and when
+///   each 5-minute observation is finalized.
 ///
-///   Updates are aligned to business-local wall-clock time:
-///   11:00, 11:05, 11:10, 11:15, etc.
+///   Five-minute observations are aligned to business-local wall-clock
+///   boundaries: 11:00, 11:05, 11:10, 11:15, etc.
 ///
 /// Comparisons:
 ///   Historical traffic is compared using the same
@@ -55,12 +58,13 @@ enum TrafficComparisonPeriod {
 ///
 /// This is an immutable, derived model used by the UI.
 /// It is not stored as a separate historical record.
-class InsightDashboard {
+@freezed
+class InsightDashboard with _$InsightDashboard {
   const InsightDashboard({
     required this.businessDate,
     this.comparisonPeriod = TrafficComparisonPeriod.yesterday,
-    this.pastHourObservation,
-    this.comparisonPastHourObservation,
+    this.recentHourObservation,
+    this.comparisonRecentHourObservation,
     this.todaySeries,
     this.comparisonSeries,
     this.comparisonTypicalDay,
@@ -76,11 +80,12 @@ class InsightDashboard {
   /// The user can change this selection on the dashboard.
   final TrafficComparisonPeriod comparisonPeriod;
 
-  /// Traffic observed during the most recent 60-minute window from todaySeries.
+  /// Traffic observed during the recent hour, including the current partial
+  /// 5-minute observation when available.
   ///
   /// Example:
-  ///   Updated at: 11:35 AM
-  ///   Window: 10:35 AM - 11:35 AM
+  ///   Updated at: 11:37 AM
+  ///   Window: 10:40 AM - 11:37 AM
   ///
   /// The hourly rate is normalized to 60 minutes.
   ///
@@ -88,21 +93,20 @@ class InsightDashboard {
   /// estimated using the available observation duration.
   ///
   /// Null when no observations are available.
-  final Observation? pastHourObservation;
+  final Observation? recentHourObservation;
 
-  /// Historical traffic used as the comparison baseline. the most recent 60-minute window from comparisonSeries
+  /// Historical traffic for the recent-hour comparison window.
   ///
   /// For yesterday and sameDayLastWeek:
-  ///   Represents traffic from a specific previous day.
+  ///   Uses observations from the corresponding time window on that day.
   ///
   /// For monthlyAverage and yearlyAverage:
-  ///   Represents typical traffic calculated from
-  ///   historical observations.
+  ///   Represents typical traffic for the matching weekday or weekend profile.
   ///
   /// Null when the selected comparison has no data.
-  final Observation? comparisonPastHourObservation;
+  final Observation? comparisonRecentHourObservation;
 
-  /// Traffic 5-minute observations for the current business date.
+  /// Completed 5-minute traffic observations for the current business date.
   ///
   /// Used to display:
   ///   - Breakfast traffic
@@ -113,13 +117,13 @@ class InsightDashboard {
   /// are not hardcoded into this model.
   final ObservationSeries? todaySeries;
 
-  /// use to compare with todaySeries, comparisonSeries is from comparisonPeriod.
+  /// 5-minute observations used to build the selected historical comparison.
   final ObservationSeries? comparisonSeries;
 
-  /// Typical day traffic for the selected comparison period. we use this to predict expected traffic patterns.
+  /// Typical traffic total for the selected comparison period.
   ///
-  /// it is dailyTotal in DaySummary.
-  /// it is monthlyTotal in MonthSummary.
-  /// it is yearlyTotal in YearSummary.
+  /// This is [DaySummary.dailyTotal] for daily comparisons,
+  /// [MonthSummary.monthlyTotal] for monthly comparisons, or
+  /// [YearSummary.yearlyTotal] for yearly comparisons.
   final Observation? comparisonTypicalDay;
 }

@@ -376,9 +376,6 @@ class LocalizationRo extends Localization {
   String get insight_longest_completed_visit => 'Cea mai lungă vizită';
 
   @override
-  String get insight_no_data => 'Nu există date';
-
-  @override
   String get insight_objects_unit => 'obiecte';
 
   @override

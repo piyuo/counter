@@ -374,9 +374,6 @@ class LocalizationUk extends Localization {
   String get insight_longest_completed_visit => 'Найтриваліший візит';
 
   @override
-  String get insight_no_data => 'Немає даних';
-
-  @override
   String get insight_objects_unit => 'об’єкти';
 
   @override

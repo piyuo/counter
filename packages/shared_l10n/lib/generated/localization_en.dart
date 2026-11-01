@@ -374,9 +374,6 @@ class LocalizationEn extends Localization {
   String get insight_longest_completed_visit => 'Longest visit';
 
   @override
-  String get insight_no_data => 'No data available';
-
-  @override
   String get insight_objects_unit => 'objects';
 
   @override

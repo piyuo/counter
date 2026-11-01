@@ -43,10 +43,11 @@ void main() async {
         core_domain.observationServiceProvider.overrideWith(
           (ref) => ref.read(core_runtime.observationProvider.notifier),
         ),
+        core_domain.observationProvider.overrideWith((ref) => ref.watch(core_runtime.observationProvider)),
         core_domain.analyticsServiceProvider.overrideWith((ref) => ref.read(core_runtime.analyticsProvider.notifier)),
-        core_domain.analyticsStateProvider.overrideWith((ref) => ref.read(core_runtime.analyticsProvider)),
+        core_domain.analyticsStateProvider.overrideWith((ref) => ref.watch(core_runtime.analyticsProvider)),
         core_domain.insightServiceProvider.overrideWith((ref) => ref.read(core_runtime.insightProvider.notifier)),
-        core_domain.insightDashboardProvider.overrideWith((ref) => ref.read(core_runtime.insightProvider)),
+        core_domain.insightDashboardProvider.overrideWith((ref) => ref.watch(core_runtime.insightProvider)),
         core_domain.visionRuntimeServiceProvider.overrideWith(
           (ref) => ref.read(core_runtime.flutterVisionServiceProvider.notifier),
         ),

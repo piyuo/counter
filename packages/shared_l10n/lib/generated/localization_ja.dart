@@ -368,9 +368,6 @@ class LocalizationJa extends Localization {
   String get insight_longest_completed_visit => '最長の滞在';
 
   @override
-  String get insight_no_data => 'データがありません';
-
-  @override
   String get insight_objects_unit => '物体';
 
   @override

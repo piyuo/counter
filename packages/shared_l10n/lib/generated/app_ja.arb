@@ -108,7 +108,6 @@
   "insight_hourly_rate": "1時間あたりの値",
   "insight_last_60_minutes": "過去60分",
   "insight_longest_completed_visit": "最長の滞在",
-  "insight_no_data": "データがありません",
   "insight_objects_unit": "物体",
   "insight_occupancy": "滞在人数",
   "insight_pass_by": "通行量",
