@@ -2,11 +2,14 @@
 // - VisionRuntimeService: boundary between app/domain orchestration and runtime engine
 // - visionRuntimeServiceProvider: override point for runtime implementation
 
+import 'package:core_domain/model/vision_state.dart';
 import 'package:core_domain/state/models/detection_params.dart';
 import 'package:core_domain/state/models/detection_type.dart';
 import 'package:core_domain/state/models/interest_area.dart';
 import 'package:core_domain/state/models/video_source.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'vision_service.g.dart';
 
 abstract class VisionService {
   Future<void> stop();
@@ -29,6 +32,11 @@ abstract class VisionService {
   void setTrackIdVisible(bool visible);
 }
 
-final visionRuntimeServiceProvider = Provider<VisionService>((ref) {
+@riverpod
+VisionService visionService(Ref ref) {
   throw UnimplementedError('visionServiceProvider must be overridden');
-});
+}
+
+/// State
+@riverpod
+VisionState visionState(Ref ref) => throw UnimplementedError('visionStateProvider must be overridden');

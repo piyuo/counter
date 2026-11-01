@@ -13,23 +13,23 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'flutter_vision_service.g.dart';
+part 'flutter_vision_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class FlutterVisionService extends _$FlutterVisionService implements core_domain.VisionService {
-  FlutterVisionService();
+class FlutterVisionNotifier extends _$FlutterVisionNotifier implements core_domain.VisionService {
+  FlutterVisionNotifier();
 
   vision.VisionController? _activeController;
   bool _telemetryUploadStarted = false;
 
   List<core_domain.InterestArea> _interestAreas = const [];
-  DateTime? _startTime;
 
   @override
-  void build() {
+  core_domain.VisionState build() {
     ref.onDispose(() {
       stop();
     });
+    return core_domain.VisionState();
   }
 
   @override
@@ -39,12 +39,12 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     ref.read(observationProvider.notifier).stop();
     ref.read(interestAreaProvider.notifier).stop();
     // Calculate and log usage duration
-    if (_startTime != null) {
-      final lastUsageDuration = DateTime.now().difference(_startTime!);
+    if (state.startTime != null) {
+      final lastUsageDuration = DateTime.now().difference(state.startTime!);
       ref
           .read(core_domain.usageServiceProvider)
           .logEvent(core_domain.VisionStopEvent(usageDuration: lastUsageDuration));
-      _startTime = null;
+      state = state.copyWith(startTime: null);
     }
     if (_telemetryUploadStarted) {
       ref.read(core_domain.telemetryServiceProvider).stopPeriodicUpload();
@@ -62,7 +62,7 @@ class FlutterVisionService extends _$FlutterVisionService implements core_domain
     required bool isTrackIdVisible,
   }) async {
     _interestAreas = interestAreaDatas;
-    _startTime = DateTime.now();
+    state = state.copyWith(startTime: DateTime.now());
     appkit.logDebug('[VisionRuntime] Vision service started');
 
     await _restartWithConfig(

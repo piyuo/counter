@@ -28,7 +28,7 @@ class ResetAppNotifier extends _$ResetAppNotifier implements ResetAppController 
     await ref.read(appkit.localeProvider.notifier).set(null);
 
     // turn off vision session first
-    await ref.read(visionRuntimeServiceProvider).stop();
+    await ref.read(visionServiceProvider).stop();
     await ref.read(appRuntimeProvider.notifier).reset();
     await ref.read(telemetryQueueProvider).reset();
     await ref.read(authStorageServiceProvider).reset();

@@ -48,9 +48,8 @@ void main() async {
         core_domain.analyticsStateProvider.overrideWith((ref) => ref.watch(core_runtime.analyticsProvider)),
         core_domain.insightServiceProvider.overrideWith((ref) => ref.read(core_runtime.insightProvider.notifier)),
         core_domain.insightDashboardProvider.overrideWith((ref) => ref.watch(core_runtime.insightProvider)),
-        core_domain.visionRuntimeServiceProvider.overrideWith(
-          (ref) => ref.read(core_runtime.flutterVisionServiceProvider.notifier),
-        ),
+        core_domain.visionServiceProvider.overrideWith((ref) => ref.read(core_runtime.flutterVisionProvider.notifier)),
+        core_domain.visionStateProvider.overrideWith((ref) => ref.watch(core_runtime.flutterVisionProvider)),
         core_domain.invitationServiceProvider.overrideWith((ref) => core_runtime.PiyuoInvitationService()),
         core_domain.tokenGeneratorServiceProvider.overrideWith((ref) => core_runtime.RandomTokenGeneratorService()),
         core_domain.urlValidatorServiceProvider.overrideWith((ref) => core_runtime.HttpUrlValidatorService()),

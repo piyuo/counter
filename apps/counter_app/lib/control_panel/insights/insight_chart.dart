@@ -99,7 +99,7 @@ class InsightChart extends StatelessWidget {
                     ],
                   ),
                 )
-              : Center(child: Text(context.l.insight_no_data, style: theme.textTheme.bodySmall)),
+              : SizedBox.shrink(),
         ),
         const SizedBox(height: 2),
         Wrap(

@@ -91,7 +91,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
   Future<void> _scheduleReconcile() async {
     final appFlow = ref.read(appFlowProvider);
     if (appFlow is! SessionRunning || !state.hasValue) {
-      await ref.read(visionRuntimeServiceProvider).stop();
+      await ref.read(visionServiceProvider).stop();
       ref.read(appRuntimeProvider.notifier).setIsVisionRunning(false);
       return;
     }
@@ -180,7 +180,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
       return;
     }
     ref.read(usageServiceProvider).logEvent(SetSourceEvent(source: getVideoSourceName(videoSource)));
-    final visionRuntimeService = ref.read(visionRuntimeServiceProvider);
+    final visionRuntimeService = ref.read(visionServiceProvider);
     final isVideoTypeChanged = await visionRuntimeService.isVideoTypeChanged(videoSource);
     if (isVideoTypeChanged == false) {
       appkit.logInfo('[AppNotifier] Video source type unchanged, current: ${current.videoSource}, new: $videoSource');
@@ -202,9 +202,9 @@ class AppNotifier extends _$AppNotifier implements AppController {
     }
 
     appkit.logInfo('[AppNotifier] Starting vision runtime with video source: ${currentState.videoSource}');
-    await ref.read(visionRuntimeServiceProvider).stop();
+    await ref.read(visionServiceProvider).stop();
     await ref
-        .read(visionRuntimeServiceProvider)
+        .read(visionServiceProvider)
         .start(
           videoSource: currentState.videoSource,
           detectionType: currentState.detectionType,
@@ -243,7 +243,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     if (!appRuntimeState.isVisionRunning) {
       return;
     }
-    await ref.read(visionRuntimeServiceProvider).setParams(detectionParams);
+    await ref.read(visionServiceProvider).setParams(detectionParams);
   }
 
   @override
@@ -352,7 +352,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final updated = current.copyWith(isTrackIdVisible: isVisible);
     state = AsyncData(updated);
     repo.save(updated);
-    ref.read(visionRuntimeServiceProvider).setTrackIdVisible(isVisible);
+    ref.read(visionServiceProvider).setTrackIdVisible(isVisible);
   }
 
   @override
@@ -364,7 +364,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final hasCompletedCameraTest = currentState.hasCompletedCameraTest;
     final videoSource = currentState.videoSource;
 
-    await ref.read(visionRuntimeServiceProvider).stop();
+    await ref.read(visionServiceProvider).stop();
     final newState = AppState(
       deviceId: deviceId,
       hasCompletedCameraTest: hasCompletedCameraTest,

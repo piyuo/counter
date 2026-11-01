@@ -5,7 +5,7 @@ export 'observation/interest_area_notifier.dart';
 export 'observation/observation_notifier.dart';
 export 'services/detection_params_to_vision_params.dart';
 export 'services/feature_usage_service.dart';
-export 'services/flutter_vision_service.dart';
+export 'services/flutter_vision_notifier.dart';
 export 'services/http_url_validator_service.dart';
 export 'services/native_app_link_service.dart';
 export 'services/native_hardware_capability_service.dart';
