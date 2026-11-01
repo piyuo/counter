@@ -117,12 +117,10 @@ class ObservationScheduler {
     _boundaryTimer.scheduleNext();
   }
 
-  /// Clears all window state without affecting the scheduler timer.
-  ///
-  /// An open window is discarded WITHOUT calling [onWindowEnd], so its data is
-  /// dropped. Use this when the user resets the counting session.
+  /// Discards the open window without calling [onWindowEnd], so its data is
+  /// dropped. Timers keep running, and the next [ensureWindowActive] opens a
+  /// fresh window. Use this when the user resets the counting session.
   void reset() {
-    _clockJumpDetector.reset();
     _windowStartLocal = null;
   }
 

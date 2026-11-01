@@ -1,56 +1,43 @@
 import 'dart:async';
 
-import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
-
-/// Manages a timer that fires at each 5-minute wall-clock boundary (e.g.
-/// 4:00, 4:05, 4:10, …). Automatically reschedules after each boundary.
+/// Fires at each 5-minute wall-clock boundary (4:00, 4:05, 4:10, ...) and
+/// reschedules itself after every tick.
 ///
-/// This timer is used to drive the periodic window rollover and missing-duration
-/// reporting logic in the scheduler.
+/// The scheduler uses it to roll windows on time even when no frames arrive.
+///
+/// Boundaries are computed on UTC instants. This matches local 5-minute marks
+/// because every current timezone offset is a multiple of 15 minutes, and it
+/// stays correct across DST changes because UTC has no gaps or repeats.
 class WindowBoundaryTimer {
   final DateTime Function() _now;
   final void Function() _onBoundaryTick;
 
   Timer? _windowTimer;
 
-  WindowBoundaryTimer({
-    required DateTime Function() now,
-    required void Function() onBoundaryTick,
-  })  : _now = now,
-        _onBoundaryTick = onBoundaryTick;
+  WindowBoundaryTimer({required this._now, required this._onBoundaryTick});
 
-  /// Schedules the next timer to fire at the next 5-minute wall-clock boundary.
-  /// Automatically reschedules after each tick.
+  /// Schedules a one-shot timer for the next 5-minute boundary. The timer
+  /// calls [_onBoundaryTick] and then schedules the following boundary, so
+  /// ticks stay aligned to the wall clock instead of drifting like
+  /// `Timer.periodic`.
   ///
-  /// Optionally accepts [now] to override the current time (useful in testing).
+  /// [now] overrides the current time (for tests).
   void scheduleNext({DateTime? now}) {
-    // 1. Force the baseline time to UTC before doing ANY math
+    // Force the baseline time to UTC before doing ANY math
     final currentTime = (now ?? _now()).toUtc();
     final minute = currentTime.minute - (currentTime.minute % 5);
 
-    // 2. Now these components are safely UTC components
-    var windowStart = DateTime.utc(
-      currentTime.year,
-      currentTime.month,
-      currentTime.day,
-      currentTime.hour,
-      minute,
-    );
+    // Now these components are safely UTC components
+    var windowStart = DateTime.utc(currentTime.year, currentTime.month, currentTime.day, currentTime.hour, minute);
 
     var nextBoundary = windowStart.add(const Duration(minutes: 5));
     if (!nextBoundary.isAfter(currentTime)) {
       nextBoundary = nextBoundary.add(const Duration(minutes: 5));
     }
 
-    Duration delay = nextBoundary.difference(currentTime);
-    if (delay.isNegative) {
-      appkit.logError('Calculated a negative delay! Defaulting to 5 minutes to prevent infinite loop.');
-      delay = const Duration(minutes: 5);
-    }
-
+    final delay = nextBoundary.difference(currentTime);
     _windowTimer?.cancel();
-
-    // 3. Delay will now correctly be between 0 and 300 seconds (positive!)
+    //  Delay will now correctly be between 0 and 300 seconds (positive!)
     _windowTimer = Timer(delay, () {
       _onBoundaryTick();
       scheduleNext();

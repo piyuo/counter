@@ -15,14 +15,14 @@ abstract class ObservationService {
   /// Stops the observation service and releases any resources.
   void stop();
 
-  /// Processes a single frame of tracked objects.
-  void processFrame<T>(List<T> tracks, double rotationDegrees);
-
   /// notifies the source  is paused. no further frames will be processed until resumed.
   void pause();
 
   /// notifies the source is resumed. frames will be processed again.
   void resume();
+
+  /// Processes a single frame of tracked objects.
+  void processFrame<T>(List<T> tracks, double rotationDegrees);
 
   /// Sets the threshold durations for stay and disappear events.
   void setThresholdSeconds({int? stagnantThresholdSeconds, int? disappearThresholdSeconds});

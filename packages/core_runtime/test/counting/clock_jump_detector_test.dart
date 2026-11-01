@@ -57,13 +57,6 @@ void main() {
       expect(detector.checkAndReport(wall), isTrue);
       expect(detector.checkAndReport(wall), isFalse);
     });
-
-    test('reset forgets the baseline', () {
-      detector.checkAndReport(wall);
-      detector.reset();
-      wall = wall.add(const Duration(hours: 1));
-      expect(detector.checkAndReport(wall), isFalse, reason: 'becomes the new baseline');
-    });
   });
 
   group('ClockJumpDetector (Auto-sampling timer)', () {

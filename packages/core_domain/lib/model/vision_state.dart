@@ -8,4 +8,7 @@ class VisionState with _$VisionState {
 
   /// The start time of the vision session. null if the session has not started.
   final DateTime? startTime;
+
+  /// Returns true if the vision session is currently running.
+  bool get isRunning => startTime != null;
 }

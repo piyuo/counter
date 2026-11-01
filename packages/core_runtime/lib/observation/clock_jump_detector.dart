@@ -22,8 +22,8 @@ class ClockJumpDetector {
 
   ClockJumpDetector({
     Duration Function()? monotonicNow,
-    required Duration threshold,
-    required void Function(DateTime now) onJumpDetected,
+    required this._threshold,
+    required this._onJumpDetected,
     DateTime Function()? nowProvider,
   }) : _monotonicNow =
            monotonicNow ??
@@ -31,8 +31,6 @@ class ClockJumpDetector {
              _monotonicClock ??= Stopwatch()..start();
              return _monotonicClock!.elapsed;
            }),
-       _threshold = threshold,
-       _onJumpDetected = onJumpDetected,
        _now = nowProvider ?? (() => DateTime.now()) {
     _timer = Timer.periodic(_samplingInterval, (_) => checkAndReport(_now()));
   }
@@ -73,11 +71,5 @@ class ClockJumpDetector {
 
     _onJumpDetected(now);
     return true;
-  }
-
-  /// Resets the observation state. Called by `ObservationScheduler.reset()`.
-  void reset() {
-    _lastObserved = null;
-    _lastObservedMonotonic = null;
   }
 }
