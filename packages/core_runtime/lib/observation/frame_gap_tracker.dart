@@ -13,21 +13,23 @@ class FrameGapTracker {
 
   DateTime? get lastFrameAt => _lastFrameAt;
 
-  /// Advances the baseline when [at] is later than the last observed frame.
+  /// Advances the baseline to [at] when no baseline exists or [at] is later
+  /// than the last observed frame.
   ///
   /// Use this when elapsed time has already been charged as missing-at-start.
   void advanceTo(DateTime at) {
     final last = _lastFrameAt;
-    if (last != null && at.isAfter(last)) _lastFrameAt = at;
+    if (last == null || at.isAfter(last)) _lastFrameAt = at;
   }
 
   /// Returns frame elapsed time split by the same jitter policy used by coverage.
+  /// Backward and duplicate timestamps do not move the baseline.
   ({DateTime? previousFrameAt, Duration elapsedDuration, Duration validDuration, Duration missingDuration})
   consumeFrameTiming(DateTime now) {
     final previousFrameAt = _lastFrameAt;
-    _lastFrameAt = now;
 
     if (previousFrameAt == null) {
+      _lastFrameAt = now;
       return (
         previousFrameAt: null,
         elapsedDuration: Duration.zero,
@@ -45,6 +47,7 @@ class FrameGapTracker {
         missingDuration: Duration.zero,
       );
     }
+    _lastFrameAt = now;
     if (elapsedDuration >= jitterThreshold) {
       return (
         previousFrameAt: previousFrameAt,

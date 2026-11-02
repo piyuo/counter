@@ -13,6 +13,8 @@ import 'package:flutter_appkit/flutter_appkit.dart' as appkit;
 import 'package:flutter_vision/flutter_vision.dart' as vision;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'vision_observation_event_handler.dart';
+
 part 'flutter_vision_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
@@ -135,16 +137,12 @@ class FlutterVisionNotifier extends _$FlutterVisionNotifier implements core_doma
 
     _activeController = ref.read(vision.visionProvider.notifier);
     final visionInput = await _buildVisionInput(videoSource);
+    final observationEventHandler = VisionObservationEventHandler(observationService);
     _activeController!.setEventCallback((event) {
-      if (event is vision.VisionStarted || event is vision.VisionRecovered || event is vision.VisionAlert) {
-        observationService.resume();
-      }
-      if (event is vision.VisionStopped || event is vision.VisionFailure || event is vision.VisionIssue) {
-        observationService.pause();
-      }
+      observationEventHandler.handleEvent(event);
     });
     _activeController!.setTrackedObjectsCallback((List<vision.TrackedObject> trackedObjects, double rotationDegrees) {
-      observationService.processFrame(trackedObjects, rotationDegrees);
+      observationEventHandler.handleFrame(trackedObjects, rotationDegrees);
     });
 
     await _activeController!.start(

@@ -70,11 +70,15 @@ void main() {
     expect(nextFrame.missingDuration, Duration.zero);
   });
 
-  test('advanceTo is a no-op before the first frame', () {
+  test('advanceTo initializes the baseline before the first frame', () {
     final start = DateTime.utc(2026, 1, 1, 12);
     final tracker = FrameGapTracker()..advanceTo(start);
 
-    expect(tracker.lastFrameAt, isNull);
+    expect(tracker.lastFrameAt, start);
+
+    final interval = tracker.consumeFrameTiming(start.add(kFrameGapJitterThreshold));
+    expect(interval.previousFrameAt, start);
+    expect(interval.missingDuration, kFrameGapJitterThreshold);
   });
 
   test('time before an advanced baseline is not reported as missing', () {
@@ -86,15 +90,6 @@ void main() {
     final interval = tracker.consumeFrameTiming(baseline.add(const Duration(seconds: 1)));
     expect(interval.missingDuration, Duration.zero);
     expect(interval.validDuration, const Duration(seconds: 1));
-  });
-
-  test('an interval at the jitter threshold is missing', () {
-    final start = DateTime.utc(2026, 1, 1, 12);
-    final tracker = FrameGapTracker()..consumeFrameTiming(start);
-
-    final interval = tracker.consumeFrameTiming(start.add(kFrameGapJitterThreshold));
-    expect(interval.missingDuration, kFrameGapJitterThreshold);
-    expect(interval.validDuration, Duration.zero);
   });
 
   test('non-positive frame intervals are neither valid nor missing', () {
@@ -109,6 +104,24 @@ void main() {
     final negative = tracker.consumeFrameTiming(start.subtract(const Duration(seconds: 1)));
     expect(negative.validDuration, Duration.zero);
     expect(negative.missingDuration, Duration.zero);
+  });
+
+  test('backward timestamp does not move the baseline', () {
+    final tracker = FrameGapTracker();
+    final start = DateTime.utc(2026, 1, 1, 12);
+
+    tracker.consumeFrameTiming(start);
+
+    final backward = tracker.consumeFrameTiming(start.subtract(const Duration(seconds: 5)));
+
+    expect(backward.validDuration, Duration.zero);
+    expect(backward.missingDuration, Duration.zero);
+    expect(tracker.lastFrameAt, start);
+
+    final next = tracker.consumeFrameTiming(start.add(const Duration(seconds: 1)));
+
+    expect(next.validDuration, const Duration(seconds: 1));
+    expect(next.missingDuration, Duration.zero);
   });
 
   test('reset clears state so next observation reports no missing time', () {

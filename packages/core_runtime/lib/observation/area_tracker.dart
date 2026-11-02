@@ -21,7 +21,9 @@ const int kMaxTrackHistory = 5000;
 /// `passBy`, `stagnant`, `entry`, `exit`, `appear`, and `disappear` are counted
 /// once while an ID remains in its history. Long-running per-frame events
 /// refresh recency; an inactive ID can be counted again after eviction or reset.
-/// Dwell and presence are the duration measures.
+/// Dwell is sampled for each completed continuous visit, even if the track ID's
+/// disappear event was already counted. Open visits discarded by an interruption
+/// do not produce dwell samples. Presence is the other duration measure.
 class AreaTracker {
   final int areaId;
   Duration stagnantThreshold;

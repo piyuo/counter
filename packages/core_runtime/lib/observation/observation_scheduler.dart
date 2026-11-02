@@ -3,8 +3,8 @@
 // - State & helpers
 // - Callbacks
 // - Constructor
-// - Lifecycle (dispose, getters)
-// - Public API — control (reset, ensureWindowActive)
+// - Lifecycle (start, stop, getters)
+// - Public API — control (ensureWindowActive)
 // - Private — window management
 
 import 'clock_jump_detector.dart';
@@ -31,9 +31,9 @@ typedef WindowEndCallback = void Function(DateTime startBusiness);
 /// notifier via [FrameGapTracker].
 ///
 /// ### 24/7 robustness
-/// [ClockJumpDetector] runs its own periodic timer (every 5 s) to compare the
-/// wall clock against the monotonic clock. Clock corrections and host
-/// sleep/wake are detected autonomously. DST is
+/// While started, [ClockJumpDetector] runs its own periodic timer (every 5 s)
+/// to compare the wall clock against the monotonic clock. Clock corrections
+/// and host sleep/wake are detected autonomously. DST is
 /// handled through instant-based window alignment; repeated local timestamps
 /// remain subject to the storage layer's first-saved-wins behavior.
 ///
@@ -55,9 +55,10 @@ class ObservationScheduler {
   // State & helpers
 
   final DateTime Function() _now;
+  final Duration Function()? _monotonicNowProvider;
 
   /// Detects clock jumps between wall-clock and monotonic-clock.
-  late final ClockJumpDetector _clockJumpDetector;
+  ClockJumpDetector? _clockJumpDetector;
 
   /// Manages the 5-minute boundary timer.
   late final WindowBoundaryTimer _boundaryTimer;
@@ -66,6 +67,10 @@ class ObservationScheduler {
   ///
   /// INVARIANT: This field always stores local time, never UTC.
   DateTime? _windowStartLocal;
+
+  bool _isRunning = false;
+
+  bool get isRunning => _isRunning;
 
   /// End of the currently open window in local time; null when no window is active.
   DateTime? get _windowEndLocal => _windowStartLocal?.add(const Duration(minutes: 5));
@@ -89,48 +94,50 @@ class ObservationScheduler {
   /// Called before a detected clock jump is applied to the active window.
   final void Function(DateTime now)? onClockJump;
 
-  // Constructor & static clock
+  // Constructor
 
   ObservationScheduler({
     required this.onWindowStart,
     required this.onWindowEnd,
     this.onClockJump,
     DateTime Function()? nowProvider,
-    Duration Function()? monotonicNowProvider,
+    this._monotonicNowProvider,
   }) : _now = nowProvider ?? (() => DateTime.now()) {
-    _clockJumpDetector = ClockJumpDetector(
-      nowProvider: _now,
-      monotonicNow: monotonicNowProvider,
-      threshold: _clockJumpThreshold,
-      onJumpDetected: _onClockJumpDetected,
-    );
     _boundaryTimer = WindowBoundaryTimer(now: _now, onBoundaryTick: _onBoundaryTick);
   }
 
-  /// Cancels timers. Must be called when the owning object is disposed.
-  void dispose() {
-    _clockJumpDetector.dispose();
-    _boundaryTimer.dispose();
-  }
+  // Lifecycle
 
+  /// Starts boundary and clock-jump monitoring. Repeated calls are no-ops.
   void start() {
+    if (isRunning) return;
+    _isRunning = true;
+    _clockJumpDetector = ClockJumpDetector(
+      nowProvider: _now,
+      monotonicNow: _monotonicNowProvider,
+      threshold: _clockJumpThreshold,
+      onJumpDetected: _onClockJumpDetected,
+    );
     _boundaryTimer.scheduleNext();
   }
 
-  /// Discards the open window without calling [onWindowEnd], so its data is
-  /// dropped. Timers keep running, and the next [ensureWindowActive] opens a
-  /// fresh window. Use this when the user resets the counting session.
-  void reset() {
+  /// Stops timers and discards the open window without calling [onWindowEnd].
+  /// The caller should flush first if it needs the partial window.
+  void stop() {
+    _isRunning = false;
+    _clockJumpDetector?.dispose();
+    _clockJumpDetector = null;
+    _boundaryTimer.dispose();
     _windowStartLocal = null;
   }
 
   /// Ensures there is an active counting window for the current wall-clock time.
   ///
   /// The notifier uses this from frame processing so windows are opened lazily
-  /// even if the first frame arrives after a reset or other local state change.
+  /// even if the first frame arrives after a stop/start or other local state change.
   /// This complements [WindowBoundaryTimer] rather than replacing it: the timer
   /// proactively rolls windows at 5-minute boundaries, while this method lets
-  /// the first frame after a reset, delayed timer tick, or event-loop stall
+  /// the first frame after a delayed timer tick or event-loop stall
   /// synchronize the active window immediately to the current wall clock.
   /// Coverage loss since this window opened is reported as `missingDuration`
   /// in [onWindowStart].
@@ -155,6 +162,8 @@ class ObservationScheduler {
   /// computes [missingAtStart] as `now − windowStart` (coverage loss at
   /// the start of the new window).
   void _ensureWindow(DateTime now) {
+    if (!_isRunning) return;
+
     if (_windowStartLocal == null ||
         now.isBefore(_windowStartLocal!) ||
         now.isAfter(_windowEndLocal!) ||
@@ -183,6 +192,8 @@ class ObservationScheduler {
   /// exceeds [_clockJumpThreshold]. Rolls the window forward from [now] so
   /// counting can continue without losing the data already in the active window.
   void _onClockJumpDetected(DateTime now) {
+    if (!_isRunning) return;
+
     onClockJump?.call(now);
     _ensureWindow(now);
   }

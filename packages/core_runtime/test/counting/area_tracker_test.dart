@@ -541,7 +541,7 @@ void main() {
       expect(metrics.disappear, 0);
     });
 
-    test('a returning track adds dwell without a second disappear', () {
+    test('a returning track adds dwell per completed visit after interruption', () {
       final aggregator = _dummyAggregator();
       final tracker = AreaTracker.global();
       final start = DateTime.utc(2026, 1, 1, 10);
@@ -560,7 +560,9 @@ void main() {
       processAt(0, [track]);
       processAt(10, const []);
       processAt(20, [track]);
-      processAt(30, const []);
+      tracker.discardOpenVisits();
+      processAt(22, [track]);
+      processAt(32, const []);
 
       final metrics = _area(aggregator.snapshot(), kGlobalAreaId);
       expect(metrics.dwellSampleCount, 2);

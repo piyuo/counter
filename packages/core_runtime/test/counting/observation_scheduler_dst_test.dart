@@ -31,7 +31,8 @@ ObservationScheduler _scheduler({
     },
     onWindowEnd: (_) => onEnd(),
   );
-  addTearDown(scheduler.dispose);
+  addTearDown(scheduler.stop);
+  scheduler.start();
   return scheduler;
 }
 

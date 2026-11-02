@@ -17,9 +17,9 @@ class WindowBoundaryTimer {
   WindowBoundaryTimer({required this._now, required this._onBoundaryTick});
 
   /// Schedules a one-shot timer for the next 5-minute boundary. The timer
-  /// calls [_onBoundaryTick] and then schedules the following boundary, so
-  /// ticks stay aligned to the wall clock instead of drifting like
-  /// `Timer.periodic`.
+  /// calls [_onBoundaryTick] and schedules the following boundary unless it is
+  /// disposed during the callback, so ticks stay aligned to the wall clock
+  /// instead of drifting like `Timer.periodic`.
   ///
   /// [now] overrides the current time (for tests).
   void scheduleNext({DateTime? now}) {
@@ -38,13 +38,15 @@ class WindowBoundaryTimer {
     final delay = nextBoundary.difference(currentTime);
     _windowTimer?.cancel();
     //  Delay will now correctly be between 0 and 300 seconds (positive!)
-    _windowTimer = Timer(delay, () {
+    late final Timer timer;
+    timer = Timer(delay, () {
       _onBoundaryTick();
-      scheduleNext();
+      if (identical(_windowTimer, timer)) scheduleNext();
     });
+    _windowTimer = timer;
   }
 
-  /// Cancels the timer. Called only on dispose.
+  /// Cancels the pending timer.
   void dispose() {
     _windowTimer?.cancel();
     _windowTimer = null;

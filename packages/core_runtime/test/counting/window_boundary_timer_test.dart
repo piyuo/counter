@@ -53,6 +53,28 @@ void main() {
       });
     });
 
+    test('does not reschedule if disposed during a boundary callback', () {
+      fakeAsync((async) {
+        final now = DateTime.utc(2024, 1, 1, 10);
+        var tickCount = 0;
+        late WindowBoundaryTimer timer;
+        timer = WindowBoundaryTimer(
+          now: () => now,
+          onBoundaryTick: () {
+            tickCount++;
+            timer.dispose();
+          },
+        );
+
+        timer.scheduleNext(now: now);
+        async.elapse(const Duration(minutes: 5));
+        expect(tickCount, 1);
+
+        async.elapse(const Duration(minutes: 10));
+        expect(tickCount, 1);
+      });
+    });
+
     test('handles mid-boundary scheduling correctly', () {
       fakeAsync((async) {
         DateTime now = DateTime.utc(2024, 1, 1, 10, 3, 45);
