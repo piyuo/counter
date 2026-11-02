@@ -67,7 +67,8 @@ final observationProvider = ObservationNotifierProvider._();
 /// - [core_domain.InterestArea]s are defined in *screen* coordinates (un-rotated)
 /// - `areaContains` inverse-rotates points before testing containment
 final class ObservationNotifierProvider
-    extends $NotifierProvider<ObservationNotifier, core_domain.Observation> {
+    extends
+        $NotifierProvider<ObservationNotifier, core_domain.ObservationState> {
   /// Riverpod notifier that orchestrates all counting and area-metric tracking.
   ///
   /// **Responsibilities:**
@@ -114,16 +115,16 @@ final class ObservationNotifierProvider
   ObservationNotifier create() => ObservationNotifier();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(core_domain.Observation value) {
+  Override overrideWithValue(core_domain.ObservationState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<core_domain.Observation>(value),
+      providerOverride: $SyncValueProvider<core_domain.ObservationState>(value),
     );
   }
 }
 
 String _$observationNotifierHash() =>
-    r'38ea596b677f7d9edf740b692c05109d7bb22e86';
+    r'a6624e6d6f8c57a2b16d650e9bb0d7beebcbea0b';
 
 /// Riverpod notifier that orchestrates all counting and area-metric tracking.
 ///
@@ -154,18 +155,22 @@ String _$observationNotifierHash() =>
 /// - `areaContains` inverse-rotates points before testing containment
 
 abstract class _$ObservationNotifier
-    extends $Notifier<core_domain.Observation> {
-  core_domain.Observation build();
+    extends $Notifier<core_domain.ObservationState> {
+  core_domain.ObservationState build();
   @$mustCallSuper
   @override
   WhenComplete runBuild() {
     final ref =
-        this.ref as $Ref<core_domain.Observation, core_domain.Observation>;
+        this.ref
+            as $Ref<core_domain.ObservationState, core_domain.ObservationState>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<core_domain.Observation, core_domain.Observation>,
-              core_domain.Observation,
+              AnyNotifier<
+                core_domain.ObservationState,
+                core_domain.ObservationState
+              >,
+              core_domain.ObservationState,
               Object?,
               Object?
             >;

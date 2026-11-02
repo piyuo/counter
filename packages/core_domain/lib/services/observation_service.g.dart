@@ -67,11 +67,11 @@ final observationProvider = ObservationProvider._();
 final class ObservationProvider
     extends
         $FunctionalProvider<
-          core_domain.Observation,
-          core_domain.Observation,
-          core_domain.Observation
+          core_domain.ObservationState,
+          core_domain.ObservationState,
+          core_domain.ObservationState
         >
-    with $Provider<core_domain.Observation> {
+    with $Provider<core_domain.ObservationState> {
   /// State
   ObservationProvider._()
     : super(
@@ -89,22 +89,22 @@ final class ObservationProvider
 
   @$internal
   @override
-  $ProviderElement<core_domain.Observation> $createElement(
+  $ProviderElement<core_domain.ObservationState> $createElement(
     $ProviderPointer pointer,
   ) => $ProviderElement(pointer);
 
   @override
-  core_domain.Observation create(Ref ref) {
+  core_domain.ObservationState create(Ref ref) {
     return observation(ref);
   }
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(core_domain.Observation value) {
+  Override overrideWithValue(core_domain.ObservationState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<core_domain.Observation>(value),
+      providerOverride: $SyncValueProvider<core_domain.ObservationState>(value),
     );
   }
 }
 
-String _$observationHash() => r'10813aaf778ab63cffd8123e1db0875062eae4da';
+String _$observationHash() => r'0b8c172c1d85830d5be48dca013acb67dec4c674';

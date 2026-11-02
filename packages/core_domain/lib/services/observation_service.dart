@@ -35,4 +35,5 @@ ObservationService observationService(Ref ref) {
 
 /// State
 @riverpod
-core_domain.Observation observation(Ref ref) => throw UnimplementedError('observationProvider must be overridden');
+core_domain.ObservationState observation(Ref ref) =>
+    throw UnimplementedError('observationStateProvider must be overridden');

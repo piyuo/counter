@@ -53,7 +53,7 @@ ObservationNotifier notifier(ProviderContainer container) {
   return controller;
 }
 
-core_domain.Observation? state(ProviderContainer container) => container.read(observationProvider);
+core_domain.Observation? state(ProviderContainer container) => container.read(observationProvider).liveObservation;
 
 core_domain.Activity _area(core_domain.Observation payload, int areaId) =>
     payload.areas.singleWhere((metrics) => metrics.areaId == areaId);
@@ -142,6 +142,7 @@ void main() {
 
       processTestFrame(container, n, const [], const [], 0.0);
 
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.inactive);
       expect(state(container)!.frameCount, 0);
       expect(state(container)!.areas, isEmpty);
     });
@@ -153,12 +154,14 @@ void main() {
       final container = makeContainer(async, base);
       addTearDown(container.dispose);
       final n = notifier(container);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.active);
       final emitted = <core_domain.Observation>[];
       final subscription = n.fiveMinuteObservations.listen(emitted.add);
       addTearDown(subscription.cancel);
 
       n.processFrame(const <Object>[], 0.0);
       n.stop();
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.inactive);
       async.elapse(Duration.zero);
       async.flushMicrotasks();
       emitted.clear();
@@ -356,7 +359,7 @@ void main() {
       async.flushMicrotasks();
 
       expect(closed.single.coveredSeconds, 290);
-      expect(container.read(observationProvider).coveredSeconds, 0);
+      expect(container.read(observationProvider).liveObservation!.coveredSeconds, 0);
     });
   });
 

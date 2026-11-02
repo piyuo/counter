@@ -21,7 +21,7 @@ class MetricsDashboard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final observation = ref.watch(core_runtime.observationProvider);
+    final observation = ref.watch(core_runtime.observationProvider).liveObservation!;
     final windowStart = observation.dateTime;
     final windowEnd = windowStart.add(core_domain.kWindowDuration);
 

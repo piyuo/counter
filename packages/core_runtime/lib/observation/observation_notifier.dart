@@ -146,7 +146,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   ///
   /// Called once when the provider is first accessed.
   @override
-  core_domain.Observation build() {
+  core_domain.ObservationState build() {
     _currentAggregator = _buildDefaultAggregator();
     _scheduler = _createScheduler();
 
@@ -165,7 +165,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
       _activeAreasCache = next.areas;
       onAreasChanged(next.areas);
     }, fireImmediately: true);
-    return _snapshotCurrentWindow();
+    return core_domain.ObservationState(liveObservation: _snapshotCurrentWindow());
   }
 
   /// Builds the scheduler and wires its callbacks:
@@ -198,7 +198,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
       final completedObservation = _currentAggregator.snapshot();
       _currentAggregator = _buildDefaultAggregator();
-      state = _snapshotCurrentWindow();
+      state = state.copyWith(liveObservation: _snapshotCurrentWindow());
       _fiveMinuteObservationController.add(completedObservation);
 
       appkit.logDebug('[ObservationNotifier] window end: ${completedObservation.toJson()}');
@@ -224,7 +224,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _forceNextFrameBroadcast = false;
     _currentAggregator = _buildDefaultAggregator();
     _lastStateEmittedAtUtc = null;
-    state = _snapshotCurrentWindow();
+    state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: core_domain.ObservationStatus.active);
 
     _keepAliveLink = ref.keepAlive();
     _scheduler.start();
@@ -238,6 +238,9 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _isPaused = false;
     _forceNextFrameBroadcast = false;
     if (_scheduler.isRunning) _scheduler.stop();
+    if (!_isDisposed) {
+      state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: core_domain.ObservationStatus.inactive);
+    }
     _keepAliveLink?.close();
     _keepAliveLink = null;
   }
@@ -294,8 +297,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     }
 
     _scheduler.ensureWindowActive();
-    final lastSnapshot = _snapshotCurrentWindow();
-    state = lastSnapshot;
+    state = state.copyWith(liveObservation: _snapshotCurrentWindow());
   }
 
   /// Compares two lists of [InterestArea] objects for equality.
@@ -550,7 +552,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     // Only update the state and notify listeners once per second
     if (!checkOneSecondThrottle || (last == null || now.difference(last) >= const Duration(seconds: 1))) {
       _lastStateEmittedAtUtc = now;
-      state = _snapshotCurrentWindow(); // state is live observation update every second
+      state = state.copyWith(liveObservation: _snapshotCurrentWindow());
     }
   }
 

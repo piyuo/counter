@@ -425,9 +425,11 @@ class _FakeObservationNotifier extends observation.ObservationNotifier {
   final core_domain.Observation _observation;
 
   @override
-  core_domain.Observation build() => _observation;
+  core_domain.ObservationState build() =>
+      core_domain.ObservationState(liveObservation: _observation, status: core_domain.ObservationStatus.active);
 
-  void emit(core_domain.Observation next) => state = next;
+  void emit(core_domain.Observation next) =>
+      state = core_domain.ObservationState(liveObservation: next, status: core_domain.ObservationStatus.active);
 }
 
 class _FakeAnalyticsService implements core_domain.AnalyticsService {

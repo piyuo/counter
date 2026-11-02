@@ -136,7 +136,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   /// observation when it belongs to the active business-time slot.
   core_domain.Observation? recentHourTotal() {
     final now = _nowProvider();
-    final live = ref.read(live_observation.observationProvider);
+    final live = ref.read(live_observation.observationProvider).liveObservation;
+    if (live == null) return null;
 
     final currentSlotMinute = (now.minute ~/ 5) * 5;
 

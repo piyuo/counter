@@ -122,7 +122,7 @@ class _AppShellState extends ConsumerState<AppShell> {
       }
     });
 
-    ref.listen<core_domain.Observation>(core_domain.observationProvider, (previous, next) {
+    ref.listen<core_domain.ObservationState>(core_domain.observationProvider, (previous, next) {
       ref.read(core_domain.insightServiceProvider).onObservationChanged();
     });
 
