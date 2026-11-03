@@ -308,7 +308,7 @@ class LocalizationHi extends Localization {
   String get insight_appear => 'दिखाई दिए';
 
   @override
-  String get insight_area_global => 'पूरा दृश्य';
+  String get insight_area_global => 'कैमरा दृश्य';
 
   @override
   String get insight_average_completed_visit => 'पूरी हुई विज़िट का औसत';
@@ -324,6 +324,9 @@ class LocalizationHi extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'हर 5 मिनट में औसत वस्तुएँ';
+
+  @override
+  String get insight_compare_with => 'से तुलना करें';
 
   @override
   String get insight_comparison_last_week => 'पिछले सप्ताह का यही दिन';
@@ -535,6 +538,26 @@ class LocalizationHi extends Localization {
 
   @override
   String get metrics_counting_window => 'हर 5 मिनट की अवधि के आँकड़े';
+
+  @override
+  String get observation_status_interrupted => 'अस्थायी रुकावट';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'कैमरे का वीडियो बाधित है। गिनती अपने आप फिर शुरू हो सकती है।';
+
+  @override
+  String get observation_status_live => 'सक्रिय';
+
+  @override
+  String get observation_status_live_description =>
+      'कैमरा चालू है और गिनती जारी है।';
+
+  @override
+  String get observation_status_stopped => 'बंद';
+
+  @override
+  String get observation_status_stopped_description => 'गिनती बंद हो गई है।';
 
   @override
   String get occupancy => 'वर्तमान संख्या';

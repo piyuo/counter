@@ -308,7 +308,7 @@ class LocalizationTr extends Localization {
   String get insight_appear => 'Göründü';
 
   @override
-  String get insight_area_global => 'Tüm Görüntü';
+  String get insight_area_global => 'Kamera Görünümü';
 
   @override
   String get insight_average_completed_visit => 'Ort. tamamlanan ziyaret';
@@ -324,6 +324,9 @@ class LocalizationTr extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => '5 dk. başına ort. nesne';
+
+  @override
+  String get insight_compare_with => 'Şununla karşılaştır';
 
   @override
   String get insight_comparison_last_week => 'Geçen haftanın aynı günü';
@@ -535,6 +538,26 @@ class LocalizationTr extends Localization {
   @override
   String get metrics_counting_window =>
       'Her 5 dakikalık dönem için istatistikler';
+
+  @override
+  String get observation_status_interrupted => 'Kesintiye uğradı';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Kamera görüntüsü kesildi. Sayım otomatik olarak devam edebilir.';
+
+  @override
+  String get observation_status_live => 'Aktif';
+
+  @override
+  String get observation_status_live_description =>
+      'Kamera etkin ve sayım devam ediyor.';
+
+  @override
+  String get observation_status_stopped => 'Durduruldu';
+
+  @override
+  String get observation_status_stopped_description => 'Sayım durduruldu.';
 
   @override
   String get occupancy => 'Güncel Sayı';

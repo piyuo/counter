@@ -675,7 +675,7 @@ abstract class Localization {
   /// No description provided for @insight_area_global.
   ///
   /// In en, this message translates to:
-  /// **'Entire Scene'**
+  /// **'Camera View'**
   String get insight_area_global;
 
   /// No description provided for @insight_average_completed_visit.
@@ -707,6 +707,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Avg. objects per 5 min'**
   String get insight_chart_occupancy_unit;
+
+  /// No description provided for @insight_compare_with.
+  ///
+  /// In en, this message translates to:
+  /// **'Compare with'**
+  String get insight_compare_with;
 
   /// No description provided for @insight_comparison_last_week.
   ///
@@ -1103,6 +1109,42 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Statistics for Each 5-Minute Period'**
   String get metrics_counting_window;
+
+  /// No description provided for @observation_status_interrupted.
+  ///
+  /// In en, this message translates to:
+  /// **'Interrupted'**
+  String get observation_status_interrupted;
+
+  /// No description provided for @observation_status_interrupted_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera feed interrupted. Counting may resume automatically.'**
+  String get observation_status_interrupted_description;
+
+  /// No description provided for @observation_status_live.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get observation_status_live;
+
+  /// No description provided for @observation_status_live_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera is active and counting is running.'**
+  String get observation_status_live_description;
+
+  /// No description provided for @observation_status_stopped.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped'**
+  String get observation_status_stopped;
+
+  /// No description provided for @observation_status_stopped_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Counting has stopped.'**
+  String get observation_status_stopped_description;
 
   /// No description provided for @occupancy.
   ///

@@ -307,7 +307,7 @@ class LocalizationTh extends Localization {
   String get insight_appear => 'ปรากฏ';
 
   @override
-  String get insight_area_global => 'ภาพทั้งหมด';
+  String get insight_area_global => 'มุมมองกล้อง';
 
   @override
   String get insight_average_completed_visit =>
@@ -324,6 +324,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'วัตถุเฉลี่ยต่อ 5 นาที';
+
+  @override
+  String get insight_compare_with => 'เปรียบเทียบกับ';
 
   @override
   String get insight_comparison_last_week => 'วันเดียวกันของสัปดาห์ก่อน';
@@ -533,6 +536,26 @@ class LocalizationTh extends Localization {
 
   @override
   String get metrics_counting_window => 'สถิติสำหรับทุกช่วงเวลา 5 นาที';
+
+  @override
+  String get observation_status_interrupted => 'ขัดข้องชั่วคราว';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'ภาพจากกล้องขัดข้อง การนับอาจกลับมาทำงานโดยอัตโนมัติ';
+
+  @override
+  String get observation_status_live => 'กำลังทำงาน';
+
+  @override
+  String get observation_status_live_description =>
+      'กล้องกำลังทำงานและกำลังนับอยู่';
+
+  @override
+  String get observation_status_stopped => 'หยุดแล้ว';
+
+  @override
+  String get observation_status_stopped_description => 'หยุดการนับแล้ว';
 
   @override
   String get occupancy => 'จำนวนปัจจุบัน';

@@ -308,7 +308,7 @@ class LocalizationMy extends Localization {
   String get insight_appear => 'ပေါ်လာမှု';
 
   @override
-  String get insight_area_global => 'မြင်ကွင်းတစ်ခုလုံး';
+  String get insight_area_global => 'ကင်မရာမြင်ကွင်း';
 
   @override
   String get insight_average_completed_visit =>
@@ -325,6 +325,9 @@ class LocalizationMy extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => '၅ မိနစ်လျှင် ပျမ်းမျှ အရာဝတ္ထု';
+
+  @override
+  String get insight_compare_with => 'နှင့် နှိုင်းယှဉ်ရန်';
 
   @override
   String get insight_comparison_last_week => 'ပြီးခဲ့သည့်အပတ် အလားတူနေ့';
@@ -537,6 +540,27 @@ class LocalizationMy extends Localization {
   @override
   String get metrics_counting_window =>
       '၅ မိနစ်တစ်ကြိမ် ထုတ်ပေးသော စာရင်းအင်းများ';
+
+  @override
+  String get observation_status_interrupted => 'ယာယီပြတ်တောက်နေသည်';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'ကင်မရာဗီဒီယို ပြတ်တောက်နေသည်။ ရေတွက်မှု အလိုအလျောက် ပြန်လည်စတင်နိုင်သည်။';
+
+  @override
+  String get observation_status_live => 'လုပ်ဆောင်နေသည်';
+
+  @override
+  String get observation_status_live_description =>
+      'ကင်မရာ အလုပ်လုပ်နေပြီး ရေတွက်မှု ဆောင်ရွက်နေသည်။';
+
+  @override
+  String get observation_status_stopped => 'ရပ်တန့်သွားသည်';
+
+  @override
+  String get observation_status_stopped_description =>
+      'ရေတွက်မှု ရပ်တန့်သွားသည်။';
 
   @override
   String get occupancy => 'လက်ရှိ အရေအတွက်';

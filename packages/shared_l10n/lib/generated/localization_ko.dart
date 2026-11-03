@@ -298,7 +298,7 @@ class LocalizationKo extends Localization {
   String get insight_appear => '나타남';
 
   @override
-  String get insight_area_global => '전체 화면';
+  String get insight_area_global => '카메라 화면';
 
   @override
   String get insight_average_completed_visit => '종료된 방문 평균';
@@ -314,6 +314,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => '5분당 평균 객체 수';
+
+  @override
+  String get insight_compare_with => '비교 대상';
 
   @override
   String get insight_comparison_last_week => '지난주 같은 요일';
@@ -521,6 +524,26 @@ class LocalizationKo extends Localization {
 
   @override
   String get metrics_counting_window => '5분마다 생성되는 통계';
+
+  @override
+  String get observation_status_interrupted => '일시 중단';
+
+  @override
+  String get observation_status_interrupted_description =>
+      '카메라 영상이 중단되었습니다. 집계가 자동으로 재개될 수 있습니다.';
+
+  @override
+  String get observation_status_live => '집계 중';
+
+  @override
+  String get observation_status_live_description =>
+      '카메라가 작동 중이며 집계가 진행되고 있습니다.';
+
+  @override
+  String get observation_status_stopped => '중지됨';
+
+  @override
+  String get observation_status_stopped_description => '집계가 중지되었습니다.';
 
   @override
   String get occupancy => '현재 개수';

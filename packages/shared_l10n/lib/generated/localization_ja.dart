@@ -300,7 +300,7 @@ class LocalizationJa extends Localization {
   String get insight_appear => '出現';
 
   @override
-  String get insight_area_global => '画面全体';
+  String get insight_area_global => 'カメラビュー';
 
   @override
   String get insight_average_completed_visit => '終了した滞在の平均';
@@ -316,6 +316,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => '5分ごとの平均物体数';
+
+  @override
+  String get insight_compare_with => '比較対象';
 
   @override
   String get insight_comparison_last_week => '先週の同じ曜日';
@@ -523,6 +526,25 @@ class LocalizationJa extends Localization {
 
   @override
   String get metrics_counting_window => '5分ごとの統計データ';
+
+  @override
+  String get observation_status_interrupted => '一時中断';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'カメラ映像が途切れました。計測は自動的に再開する場合があります。';
+
+  @override
+  String get observation_status_live => '計測中';
+
+  @override
+  String get observation_status_live_description => 'カメラは動作中で、計測を行っています。';
+
+  @override
+  String get observation_status_stopped => '停止';
+
+  @override
+  String get observation_status_stopped_description => '計測が停止しました。';
 
   @override
   String get occupancy => '現在の数';

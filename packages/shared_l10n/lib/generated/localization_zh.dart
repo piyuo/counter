@@ -291,7 +291,7 @@ class LocalizationZh extends Localization {
   String get insight_appear => '出現';
 
   @override
-  String get insight_area_global => '整個畫面';
+  String get insight_area_global => '攝影機畫面';
 
   @override
   String get insight_average_completed_visit => '已結束停留的平均時間';
@@ -307,6 +307,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => '每 5 分鐘平均物件數';
+
+  @override
+  String get insight_compare_with => '比較對象';
 
   @override
   String get insight_comparison_last_week => '上週同一天';
@@ -513,6 +516,24 @@ class LocalizationZh extends Localization {
 
   @override
   String get metrics_counting_window => '每 5 分鐘產生一次的統計資料';
+
+  @override
+  String get observation_status_interrupted => '暫時中斷';
+
+  @override
+  String get observation_status_interrupted_description => '攝影機影像中斷，計數可能會自動恢復';
+
+  @override
+  String get observation_status_live => '計數中';
+
+  @override
+  String get observation_status_live_description => '攝影機運作正常，正在進行計數';
+
+  @override
+  String get observation_status_stopped => '已停止';
+
+  @override
+  String get observation_status_stopped_description => '計數已停止';
 
   @override
   String get occupancy => '目前數量';
@@ -1201,7 +1222,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_appear => '出现';
 
   @override
-  String get insight_area_global => '整个画面';
+  String get insight_area_global => '摄像头画面';
 
   @override
   String get insight_average_completed_visit => '已结束停留的平均时长';
@@ -1217,6 +1238,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_chart_occupancy_unit => '每 5 分钟平均物体数';
+
+  @override
+  String get insight_compare_with => '比较对象';
 
   @override
   String get insight_comparison_last_week => '上周同一天';
@@ -1423,6 +1447,24 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get metrics_counting_window => '每 5 分钟生成一次的统计数据';
+
+  @override
+  String get observation_status_interrupted => '暂时中断';
+
+  @override
+  String get observation_status_interrupted_description => '摄像头画面中断，计数可能会自动恢复';
+
+  @override
+  String get observation_status_live => '计数中';
+
+  @override
+  String get observation_status_live_description => '摄像头运行正常，正在进行计数';
+
+  @override
+  String get observation_status_stopped => '已停止';
+
+  @override
+  String get observation_status_stopped_description => '计数已停止';
 
   @override
   String get occupancy => '当前数量';

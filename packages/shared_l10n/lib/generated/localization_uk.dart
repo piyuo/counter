@@ -306,7 +306,7 @@ class LocalizationUk extends Localization {
   String get insight_appear => 'З\'явилися';
 
   @override
-  String get insight_area_global => 'Уся сцена';
+  String get insight_area_global => 'Зображення з камери';
 
   @override
   String get insight_average_completed_visit => 'Сер. завершений візит';
@@ -322,6 +322,9 @@ class LocalizationUk extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Сер. об’єктів за 5 хв';
+
+  @override
+  String get insight_compare_with => 'Порівняти з';
 
   @override
   String get insight_comparison_last_week => 'Той самий день минулого тижня';
@@ -536,6 +539,26 @@ class LocalizationUk extends Localization {
   @override
   String get metrics_counting_window =>
       'Статистика для кожного 5-хвилинного періоду';
+
+  @override
+  String get observation_status_interrupted => 'Перервано';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Відеопотік із камери перервано. Підрахунок може відновитися автоматично.';
+
+  @override
+  String get observation_status_live => 'Активно';
+
+  @override
+  String get observation_status_live_description =>
+      'Камера працює, підрахунок триває.';
+
+  @override
+  String get observation_status_stopped => 'Зупинено';
+
+  @override
+  String get observation_status_stopped_description => 'Підрахунок зупинено.';
 
   @override
   String get occupancy => 'Поточна кількість';

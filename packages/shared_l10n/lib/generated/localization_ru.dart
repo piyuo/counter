@@ -306,7 +306,7 @@ class LocalizationRu extends Localization {
   String get insight_appear => 'Появились';
 
   @override
-  String get insight_area_global => 'Вся сцена';
+  String get insight_area_global => 'Вид с камеры';
 
   @override
   String get insight_average_completed_visit => 'Ср. завершённый визит';
@@ -322,6 +322,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Ср. объектов за 5 мин';
+
+  @override
+  String get insight_compare_with => 'Сравнить с';
 
   @override
   String get insight_comparison_last_week => 'Тот же день на прошлой неделе';
@@ -537,6 +540,26 @@ class LocalizationRu extends Localization {
   @override
   String get metrics_counting_window =>
       'Статистика для каждого 5-минутного периода';
+
+  @override
+  String get observation_status_interrupted => 'Прервано';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Видеопоток с камеры прерван. Подсчёт может возобновиться автоматически.';
+
+  @override
+  String get observation_status_live => 'Активно';
+
+  @override
+  String get observation_status_live_description =>
+      'Камера работает, подсчёт ведётся.';
+
+  @override
+  String get observation_status_stopped => 'Остановлено';
+
+  @override
+  String get observation_status_stopped_description => 'Подсчёт остановлен.';
 
   @override
   String get occupancy => 'Текущее количество';

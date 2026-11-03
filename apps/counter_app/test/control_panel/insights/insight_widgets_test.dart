@@ -55,7 +55,7 @@ void main() {
 
     await tester.drag(find.byType(SingleChildScrollView), const Offset(0, -900));
     await tester.pumpAndSettle();
-    expect(find.text('Entire Scene'), findsOneWidget);
+    expect(find.text('Camera View'), findsOneWidget);
   });
 
   testWidgets('insight card height follows its business-period content', (tester) async {

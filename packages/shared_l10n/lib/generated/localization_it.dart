@@ -307,7 +307,7 @@ class LocalizationIt extends Localization {
   String get insight_appear => 'Apparsi';
 
   @override
-  String get insight_area_global => 'Intera scena';
+  String get insight_area_global => 'Vista della fotocamera';
 
   @override
   String get insight_average_completed_visit => 'Media visite concluse';
@@ -323,6 +323,9 @@ class LocalizationIt extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Media oggetti ogni 5 min';
+
+  @override
+  String get insight_compare_with => 'Confronta con';
 
   @override
   String get insight_comparison_last_week =>
@@ -539,6 +542,27 @@ class LocalizationIt extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistiche per ogni periodo di 5 minuti';
+
+  @override
+  String get observation_status_interrupted => 'Interrotto';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Il flusso video della fotocamera è interrotto. Il conteggio potrebbe riprendere automaticamente.';
+
+  @override
+  String get observation_status_live => 'Attivo';
+
+  @override
+  String get observation_status_live_description =>
+      'La fotocamera è attiva e il conteggio è in corso.';
+
+  @override
+  String get observation_status_stopped => 'Fermato';
+
+  @override
+  String get observation_status_stopped_description =>
+      'Il conteggio è stato interrotto.';
 
   @override
   String get occupancy => 'Conteggio attuale';

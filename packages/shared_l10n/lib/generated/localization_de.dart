@@ -309,7 +309,7 @@ class LocalizationDe extends Localization {
   String get insight_appear => 'Erschienen';
 
   @override
-  String get insight_area_global => 'Gesamter Bildbereich';
+  String get insight_area_global => 'Kameraansicht';
 
   @override
   String get insight_average_completed_visit => 'Ø abgeschlossene Aufenthalte';
@@ -325,6 +325,9 @@ class LocalizationDe extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Ø Objekte pro 5 Min.';
+
+  @override
+  String get insight_compare_with => 'Vergleichen mit';
 
   @override
   String get insight_comparison_last_week => 'Gleicher Wochentag letzte Woche';
@@ -539,6 +542,27 @@ class LocalizationDe extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistiken für jeden 5-Minuten-Zeitraum';
+
+  @override
+  String get observation_status_interrupted => 'Unterbrochen';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Die Kameraübertragung ist unterbrochen. Die Zählung kann automatisch fortgesetzt werden.';
+
+  @override
+  String get observation_status_live => 'Aktiv';
+
+  @override
+  String get observation_status_live_description =>
+      'Die Kamera ist aktiv und die Zählung läuft.';
+
+  @override
+  String get observation_status_stopped => 'Gestoppt';
+
+  @override
+  String get observation_status_stopped_description =>
+      'Die Zählung wurde beendet.';
 
   @override
   String get occupancy => 'Aktuelle Anzahl';

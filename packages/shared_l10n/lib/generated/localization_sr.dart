@@ -307,7 +307,7 @@ class LocalizationSr extends Localization {
   String get insight_appear => 'Pojavili se';
 
   @override
-  String get insight_area_global => 'Cela scena';
+  String get insight_area_global => 'Prikaz kamere';
 
   @override
   String get insight_average_completed_visit => 'Prosek završenih poseta';
@@ -323,6 +323,9 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Prosek objekata na 5 min';
+
+  @override
+  String get insight_compare_with => 'Uporedi sa';
 
   @override
   String get insight_comparison_last_week => 'Isti dan prošle nedelje';
@@ -535,6 +538,27 @@ class LocalizationSr extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistika za svaki period od 5 minuta';
+
+  @override
+  String get observation_status_interrupted => 'Prekinuto';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Prenos sa kamere je prekinut. Brojanje se može automatski nastaviti.';
+
+  @override
+  String get observation_status_live => 'Aktivno';
+
+  @override
+  String get observation_status_live_description =>
+      'Kamera je aktivna i brojanje je u toku.';
+
+  @override
+  String get observation_status_stopped => 'Zaustavljeno';
+
+  @override
+  String get observation_status_stopped_description =>
+      'Brojanje je zaustavljeno.';
 
   @override
   String get occupancy => 'Тренутни број';

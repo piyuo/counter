@@ -308,7 +308,7 @@ class LocalizationEl extends Localization {
   String get insight_appear => 'Εμφανίστηκαν';
 
   @override
-  String get insight_area_global => 'Ολόκληρη σκηνή';
+  String get insight_area_global => 'Προβολή κάμερας';
 
   @override
   String get insight_average_completed_visit => 'Μ.ό. ολοκληρωμένης επίσκεψης';
@@ -324,6 +324,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Μ.ό. αντικειμένων ανά 5 λεπτά';
+
+  @override
+  String get insight_compare_with => 'Σύγκριση με';
 
   @override
   String get insight_comparison_last_week => 'Ίδια μέρα την περασμένη εβδομάδα';
@@ -538,6 +541,27 @@ class LocalizationEl extends Localization {
 
   @override
   String get metrics_counting_window => 'Στατιστικά για κάθε περίοδο 5 λεπτών';
+
+  @override
+  String get observation_status_interrupted => 'Προσωρινή διακοπή';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Η ροή της κάμερας διακόπηκε. Η καταμέτρηση μπορεί να συνεχιστεί αυτόματα.';
+
+  @override
+  String get observation_status_live => 'Ενεργό';
+
+  @override
+  String get observation_status_live_description =>
+      'Η κάμερα λειτουργεί και η καταμέτρηση είναι σε εξέλιξη.';
+
+  @override
+  String get observation_status_stopped => 'Σταμάτησε';
+
+  @override
+  String get observation_status_stopped_description =>
+      'Η καταμέτρηση σταμάτησε.';
 
   @override
   String get occupancy => 'Τρέχων αριθμός';

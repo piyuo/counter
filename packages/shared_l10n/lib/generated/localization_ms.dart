@@ -307,7 +307,7 @@ class LocalizationMs extends Localization {
   String get insight_appear => 'Muncul';
 
   @override
-  String get insight_area_global => 'Seluruh Paparan';
+  String get insight_area_global => 'Paparan kamera';
 
   @override
   String get insight_average_completed_visit => 'Purata lawatan selesai';
@@ -323,6 +323,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Purata objek setiap 5 min';
+
+  @override
+  String get insight_compare_with => 'Bandingkan dengan';
 
   @override
   String get insight_comparison_last_week => 'Hari sama minggu lepas';
@@ -533,6 +536,27 @@ class LocalizationMs extends Localization {
 
   @override
   String get metrics_counting_window => 'Statistik bagi setiap tempoh 5 minit';
+
+  @override
+  String get observation_status_interrupted => 'Terganggu';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Suapan kamera terganggu. Pengiraan mungkin disambung semula secara automatik.';
+
+  @override
+  String get observation_status_live => 'Aktif';
+
+  @override
+  String get observation_status_live_description =>
+      'Kamera aktif dan pengiraan sedang dijalankan.';
+
+  @override
+  String get observation_status_stopped => 'Dihentikan';
+
+  @override
+  String get observation_status_stopped_description =>
+      'Pengiraan telah dihentikan.';
 
   @override
   String get occupancy => 'Bilangan Semasa';

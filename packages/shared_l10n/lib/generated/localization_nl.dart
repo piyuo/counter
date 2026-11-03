@@ -307,7 +307,7 @@ class LocalizationNl extends Localization {
   String get insight_appear => 'Verschenen';
 
   @override
-  String get insight_area_global => 'Volledig beeld';
+  String get insight_area_global => 'Camerabeeld';
 
   @override
   String get insight_average_completed_visit => 'Gem. afgerond bezoek';
@@ -323,6 +323,9 @@ class LocalizationNl extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Gem. objecten per 5 min';
+
+  @override
+  String get insight_compare_with => 'Vergelijk met';
 
   @override
   String get insight_comparison_last_week => 'Dezelfde dag vorige week';
@@ -538,6 +541,26 @@ class LocalizationNl extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistieken voor elke periode van 5 minuten';
+
+  @override
+  String get observation_status_interrupted => 'Onderbroken';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Het camerabeeld is onderbroken. Het tellen kan automatisch worden hervat.';
+
+  @override
+  String get observation_status_live => 'Actief';
+
+  @override
+  String get observation_status_live_description =>
+      'De camera is actief en het tellen is bezig.';
+
+  @override
+  String get observation_status_stopped => 'Gestopt';
+
+  @override
+  String get observation_status_stopped_description => 'Het tellen is gestopt.';
 
   @override
   String get occupancy => 'Huidig aantal';

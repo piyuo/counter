@@ -27,6 +27,7 @@ class InsightDisplay extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dashboard = ref.watch(core_domain.insightDashboardProvider);
     final appState = ref.watch(core_domain.appProvider);
+    final observationStatus = ref.watch(core_domain.observationProvider).status;
     final areas = ref.watch(insightAreaDataProvider);
 
     if (appState.hasError) {
@@ -44,6 +45,7 @@ class InsightDisplay extends ConsumerWidget {
       children: [
         _DisplayToolbar(
           comparisonPeriod: dashboard.comparisonPeriod,
+          observationStatus: observationStatus,
           onComparisonChanged: (period) {
             final service = ref.read(core_domain.insightServiceProvider);
             service.setComparisonPeriod(period);
@@ -58,9 +60,14 @@ class InsightDisplay extends ConsumerWidget {
 }
 
 class _DisplayToolbar extends StatelessWidget {
-  const _DisplayToolbar({required this.comparisonPeriod, required this.onComparisonChanged});
+  const _DisplayToolbar({
+    required this.comparisonPeriod,
+    required this.observationStatus,
+    required this.onComparisonChanged,
+  });
 
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
+  final core_domain.ObservationStatus observationStatus;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
 
   @override
@@ -68,28 +75,42 @@ class _DisplayToolbar extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 8, 8, 4),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            child: Text(
-              context.l.insight_dashboard_title,
-              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-            ),
+          Row(
+            children: [
+              Text(
+                context.l.insight_dashboard_title,
+                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(width: 8),
+              _ObservationStatusLabel(status: observationStatus),
+            ],
           ),
-          DropdownButtonHideUnderline(
-            child: DropdownButton<core_domain.TrafficComparisonPeriod>(
-              value: comparisonPeriod,
-              isDense: true,
-              borderRadius: BorderRadius.circular(8),
-              style: theme.textTheme.labelLarge,
-              onChanged: (period) {
-                if (period != null) onComparisonChanged(period);
-              },
-              items: [
-                for (final period in core_domain.TrafficComparisonPeriod.values)
-                  DropdownMenuItem(value: period, child: Text(_comparisonLabel(context, period))),
-              ],
-            ),
+          Row(
+            children: [
+              Text(context.l.insight_compare_with, style: theme.textTheme.labelLarge),
+              const SizedBox(width: 8),
+              Expanded(
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<core_domain.TrafficComparisonPeriod>(
+                    value: comparisonPeriod,
+                    isDense: true,
+                    isExpanded: true,
+                    borderRadius: BorderRadius.circular(8),
+                    style: theme.textTheme.labelLarge,
+                    onChanged: (period) {
+                      if (period != null) onComparisonChanged(period);
+                    },
+                    items: [
+                      for (final period in core_domain.TrafficComparisonPeriod.values)
+                        DropdownMenuItem(value: period, child: Text(_comparisonLabel(context, period))),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -102,6 +123,46 @@ class _DisplayToolbar extends StatelessWidget {
     core_domain.TrafficComparisonPeriod.monthlyAverage => context.l.insight_comparison_monthly,
     core_domain.TrafficComparisonPeriod.yearlyAverage => context.l.insight_comparison_yearly,
   };
+}
+
+class _ObservationStatusLabel extends StatelessWidget {
+  const _ObservationStatusLabel({required this.status});
+
+  final core_domain.ObservationStatus status;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final (label, description, color) = switch (status) {
+      core_domain.ObservationStatus.live => (
+        context.l.observation_status_live,
+        context.l.observation_status_live_description,
+        Colors.green,
+      ),
+      core_domain.ObservationStatus.interrupted => (
+        context.l.observation_status_interrupted,
+        context.l.observation_status_interrupted_description,
+        Colors.amber.shade900,
+      ),
+      core_domain.ObservationStatus.stopped => (
+        context.l.observation_status_stopped,
+        context.l.observation_status_stopped_description,
+        theme.colorScheme.error,
+      ),
+    };
+
+    return Tooltip(
+      message: description,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
+        child: Text(
+          label,
+          style: theme.textTheme.labelSmall?.copyWith(color: color, fontWeight: FontWeight.w700),
+        ),
+      ),
+    );
+  }
 }
 
 class _DashboardMessage extends StatelessWidget {

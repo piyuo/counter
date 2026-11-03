@@ -306,7 +306,7 @@ class LocalizationAr extends Localization {
   String get insight_appear => 'ظهور';
 
   @override
-  String get insight_area_global => 'المشهد بالكامل';
+  String get insight_area_global => 'منظر الكاميرا';
 
   @override
   String get insight_average_completed_visit => 'متوسط الزيارات المكتملة';
@@ -322,6 +322,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'متوسط العناصر كل 5 دقائق';
+
+  @override
+  String get insight_compare_with => 'قارن مع';
 
   @override
   String get insight_comparison_last_week => 'نفس اليوم من الأسبوع الماضي';
@@ -531,6 +534,25 @@ class LocalizationAr extends Localization {
 
   @override
   String get metrics_counting_window => 'إحصاءات لكل فترة مدتها 5 دقائق';
+
+  @override
+  String get observation_status_interrupted => 'انقطاع مؤقت';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'انقطع بث الكاميرا. قد يُستأنف العد تلقائيًا.';
+
+  @override
+  String get observation_status_live => 'نشط';
+
+  @override
+  String get observation_status_live_description => 'الكاميرا تعمل والعد جارٍ';
+
+  @override
+  String get observation_status_stopped => 'متوقف';
+
+  @override
+  String get observation_status_stopped_description => 'توقف العد.';
 
   @override
   String get occupancy => 'العدد الحالي';

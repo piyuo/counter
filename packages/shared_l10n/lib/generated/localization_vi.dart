@@ -306,7 +306,7 @@ class LocalizationVi extends Localization {
   String get insight_appear => 'Xuất hiện';
 
   @override
-  String get insight_area_global => 'Toàn bộ khung hình';
+  String get insight_area_global => 'Góc nhìn camera';
 
   @override
   String get insight_average_completed_visit => 'TB lượt ghé đã kết thúc';
@@ -322,6 +322,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'TB đối tượng mỗi 5 phút';
+
+  @override
+  String get insight_compare_with => 'So sánh với';
 
   @override
   String get insight_comparison_last_week => 'Cùng ngày tuần trước';
@@ -533,6 +536,26 @@ class LocalizationVi extends Localization {
 
   @override
   String get metrics_counting_window => 'Thống kê cho mỗi khoảng 5 phút';
+
+  @override
+  String get observation_status_interrupted => 'Gián đoạn';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Luồng hình ảnh từ camera bị gián đoạn. Việc đếm có thể tự động tiếp tục.';
+
+  @override
+  String get observation_status_live => 'Đang hoạt động';
+
+  @override
+  String get observation_status_live_description =>
+      'Camera đang hoạt động và quá trình đếm đang diễn ra.';
+
+  @override
+  String get observation_status_stopped => 'Đã dừng';
+
+  @override
+  String get observation_status_stopped_description => 'Việc đếm đã dừng.';
 
   @override
   String get occupancy => 'Số lượng hiện tại';

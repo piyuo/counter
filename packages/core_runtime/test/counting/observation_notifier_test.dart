@@ -142,9 +142,70 @@ void main() {
 
       processTestFrame(container, n, const [], const [], 0.0);
 
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.inactive);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.stopped);
       expect(state(container)!.frameCount, 0);
       expect(state(container)!.areas, isEmpty);
+    });
+  });
+
+  test('monitoring status follows frame and source lifecycle', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final handler = VisionObservationEventHandler(n);
+
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      n.pause();
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
+      n.resume();
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
+
+      handler.handleFrame(const [], 0.0);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+
+      handler.handleEvent(const vision.VisionIssue(code: 1, message: 'source interrupted'));
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
+      handler.handleFrame(const [], 0.0);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+
+      handler.handleEvent(const vision.VisionFailure(code: 1, message: 'source failed', reportToSentry: false));
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.stopped);
+      final stoppedFrameCount = state(container)!.frameCount;
+      handler.handleFrame(const [], 0.0);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.stopped);
+      expect(state(container)!.frameCount, stoppedFrameCount);
+
+      handler.handleEvent(vision.VisionStarted(_testVisionHandle()));
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      handler.handleFrame(const [], 0.0);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+    });
+  });
+
+  test('observation estimate start resets after a pause longer than five minutes', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+      final initialObservationStart = container.read(observationProvider).observationStartUtc;
+
+      expect(initialObservationStart, base);
+
+      n.pause();
+      async.elapse(const Duration(minutes: 5));
+      n.resume();
+      expect(container.read(observationProvider).observationStartUtc, initialObservationStart);
+
+      n.pause();
+      async.elapse(const Duration(minutes: 5, seconds: 1));
+      n.resume();
+      expect(
+        container.read(observationProvider).observationStartUtc,
+        base.add(const Duration(minutes: 10, seconds: 1)),
+      );
     });
   });
 
@@ -154,14 +215,14 @@ void main() {
       final container = makeContainer(async, base);
       addTearDown(container.dispose);
       final n = notifier(container);
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.active);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
       final emitted = <core_domain.Observation>[];
       final subscription = n.fiveMinuteObservations.listen(emitted.add);
       addTearDown(subscription.cancel);
 
       n.processFrame(const <Object>[], 0.0);
       n.stop();
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.inactive);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.stopped);
       async.elapse(Duration.zero);
       async.flushMicrotasks();
       emitted.clear();

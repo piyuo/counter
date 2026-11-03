@@ -28,6 +28,7 @@ part 'observation_notifier.g.dart';
 /// Maximum frame gap tolerated before an open visit is discarded.
 /// Tune this to match the tracking engine's track-ID persistence.
 const Duration _maxVisitContinuityGap = Duration(seconds: 5);
+const Duration _observationEstimateResetAfter = Duration(minutes: 5);
 
 /// Riverpod notifier that orchestrates all counting and area-metric tracking.
 ///
@@ -131,6 +132,8 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
   bool _isPaused = false;
   bool _forceNextFrameBroadcast = false;
+  DateTime? _pausedAtUtc;
+  Duration? _pausedAtMonotonic;
 
   /// Flag to prevent state updates after disposal.
   bool _isDisposed = false;
@@ -222,9 +225,15 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _lastActualFrameAtUtc = null;
     _isPaused = false;
     _forceNextFrameBroadcast = false;
+    _pausedAtUtc = null;
+    _pausedAtMonotonic = null;
     _currentAggregator = _buildDefaultAggregator();
     _lastStateEmittedAtUtc = null;
-    state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: core_domain.ObservationStatus.active);
+    state = state.copyWith(
+      liveObservation: _snapshotCurrentWindow(),
+      status: core_domain.ObservationStatus.live,
+      observationStart: _nowProvider?.call().toUtc() ?? DateTime.now().toUtc(),
+    );
 
     _keepAliveLink = ref.keepAlive();
     _scheduler.start();
@@ -237,9 +246,15 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _stopSourceIssueTimer();
     _isPaused = false;
     _forceNextFrameBroadcast = false;
+    _pausedAtUtc = null;
+    _pausedAtMonotonic = null;
     if (_scheduler.isRunning) _scheduler.stop();
     if (!_isDisposed) {
-      state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: core_domain.ObservationStatus.inactive);
+      state = state.copyWith(
+        liveObservation: _snapshotCurrentWindow(),
+        status: core_domain.ObservationStatus.stopped,
+        observationStart: null,
+      );
     }
     _keepAliveLink?.close();
     _keepAliveLink = null;
@@ -326,6 +341,9 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   void pause() {
     if (!_scheduler.isRunning || _isPaused) return;
     _isPaused = true;
+    _pausedAtUtc = _nowProvider?.call().toUtc() ?? DateTime.now().toUtc();
+    _pausedAtMonotonic = _monotonicNowProvider?.call();
+    state = state.copyWith(status: core_domain.ObservationStatus.interrupted);
     _startSourceIssueTimer();
   }
 
@@ -335,7 +353,17 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     if (!_scheduler.isRunning || !_isPaused) return;
     _advanceMissingWhileSourceStalled();
     _stopSourceIssueTimer();
+    final resumedAtUtc = _nowProvider?.call().toUtc() ?? DateTime.now().toUtc();
+    final pausedAtMonotonic = _pausedAtMonotonic;
+    final pauseDuration = pausedAtMonotonic != null && _monotonicNowProvider != null
+        ? _monotonicNowProvider.call() - pausedAtMonotonic
+        : resumedAtUtc.difference(_pausedAtUtc!);
+    if (pauseDuration > _observationEstimateResetAfter) {
+      state = state.copyWith(observationStart: resumedAtUtc);
+    }
     _isPaused = false;
+    _pausedAtUtc = null;
+    _pausedAtMonotonic = null;
     _scheduler.ensureWindowActive();
     _forceNextFrameBroadcast = true;
   }
@@ -474,7 +502,11 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
     final forceBroadcast = _forceNextFrameBroadcast;
     _forceNextFrameBroadcast = false;
-    _broadcastLiveSnapshot(checkOneSecondThrottle: !forceBroadcast);
+    final statusChanged = state.status != core_domain.ObservationStatus.live;
+    _broadcastLiveSnapshot(
+      checkOneSecondThrottle: !forceBroadcast && !statusChanged,
+      status: core_domain.ObservationStatus.live,
+    );
   }
 
   /// Returns the current occupancy count for a specific area (global or local).
@@ -544,7 +576,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
   ///
   /// Called after every frame processing to update listeners with live metrics.
   /// Throttling prevents excessive state updates on high-framerate sources.
-  void _broadcastLiveSnapshot({required bool checkOneSecondThrottle}) {
+  void _broadcastLiveSnapshot({required bool checkOneSecondThrottle, core_domain.ObservationStatus? status}) {
     if (_isDisposed) return;
 
     final now = _nowProvider?.call() ?? DateTime.now().toUtc();
@@ -552,7 +584,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     // Only update the state and notify listeners once per second
     if (!checkOneSecondThrottle || (last == null || now.difference(last) >= const Duration(seconds: 1))) {
       _lastStateEmittedAtUtc = now;
-      state = state.copyWith(liveObservation: _snapshotCurrentWindow());
+      state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: status ?? state.status);
     }
   }
 

@@ -306,7 +306,7 @@ class LocalizationHe extends Localization {
   String get insight_appear => 'הופיעו';
 
   @override
-  String get insight_area_global => 'כל התמונה';
+  String get insight_area_global => 'תצוגת מצלמה';
 
   @override
   String get insight_average_completed_visit => 'ממוצע ביקורים שהסתיימו';
@@ -322,6 +322,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'ממוצע עצמים לכל 5 דקות';
+
+  @override
+  String get insight_compare_with => 'השוואה ל־';
 
   @override
   String get insight_comparison_last_week => 'אותו יום בשבוע שעבר';
@@ -531,6 +534,26 @@ class LocalizationHe extends Localization {
 
   @override
   String get metrics_counting_window => 'סטטיסטיקות לכל פרק זמן של 5 דקות';
+
+  @override
+  String get observation_status_interrupted => 'הופסק זמנית';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'שידור המצלמה נקטע. הספירה עשויה להתחדש אוטומטית.';
+
+  @override
+  String get observation_status_live => 'פעיל';
+
+  @override
+  String get observation_status_live_description =>
+      'המצלמה פעילה והספירה מתבצעת.';
+
+  @override
+  String get observation_status_stopped => 'הופסק';
+
+  @override
+  String get observation_status_stopped_description => 'הספירה הופסקה.';
 
   @override
   String get occupancy => 'מספר נוכחי';

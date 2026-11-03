@@ -306,7 +306,7 @@ class LocalizationBn extends Localization {
   String get insight_appear => 'দৃশ্যমান হয়েছে';
 
   @override
-  String get insight_area_global => 'সম্পূর্ণ দৃশ্য';
+  String get insight_area_global => 'ক্যামেরার দৃশ্য';
 
   @override
   String get insight_average_completed_visit => 'শেষ হওয়া ভিজিটের গড়';
@@ -322,6 +322,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'প্রতি ৫ মিনিটে গড় বস্তু';
+
+  @override
+  String get insight_compare_with => 'এর সঙ্গে তুলনা করুন';
 
   @override
   String get insight_comparison_last_week => 'গত সপ্তাহের একই দিন';
@@ -532,6 +535,26 @@ class LocalizationBn extends Localization {
 
   @override
   String get metrics_counting_window => 'প্রতি ৫ মিনিটের পরিসংখ্যান';
+
+  @override
+  String get observation_status_interrupted => 'সাময়িক বিঘ্ন';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'ক্যামেরার ভিডিও বন্ধ হয়েছে। গণনা স্বয়ংক্রিয়ভাবে আবার শুরু হতে পারে।';
+
+  @override
+  String get observation_status_live => 'সক্রিয়';
+
+  @override
+  String get observation_status_live_description =>
+      'ক্যামেরা চালু আছে এবং গণনা চলছে';
+
+  @override
+  String get observation_status_stopped => 'বন্ধ';
+
+  @override
+  String get observation_status_stopped_description => 'গণনা বন্ধ হয়েছে।';
 
   @override
   String get occupancy => 'বর্তমান সংখ্যা';

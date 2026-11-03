@@ -308,7 +308,7 @@ class LocalizationRo extends Localization {
   String get insight_appear => 'Au apărut';
 
   @override
-  String get insight_area_global => 'Întreaga scenă';
+  String get insight_area_global => 'Imaginea camerei';
 
   @override
   String get insight_average_completed_visit => 'Medie vizite încheiate';
@@ -324,6 +324,9 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Medie obiecte la 5 min';
+
+  @override
+  String get insight_compare_with => 'Compară cu';
 
   @override
   String get insight_comparison_last_week => 'Aceeași zi săptămâna trecută';
@@ -538,6 +541,26 @@ class LocalizationRo extends Localization {
   @override
   String get metrics_counting_window =>
       'Statistici pentru fiecare perioadă de 5 minute';
+
+  @override
+  String get observation_status_interrupted => 'Întrerupt';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'Fluxul video al camerei a fost întrerupt. Numărarea se poate relua automat.';
+
+  @override
+  String get observation_status_live => 'Activ';
+
+  @override
+  String get observation_status_live_description =>
+      'Camera este activă și numărarea este în curs.';
+
+  @override
+  String get observation_status_stopped => 'Oprit';
+
+  @override
+  String get observation_status_stopped_description => 'Numărarea s-a oprit.';
 
   @override
   String get occupancy => 'Număr curent';

@@ -308,7 +308,7 @@ class LocalizationFa extends Localization {
   String get insight_appear => 'ظاهر شدند';
 
   @override
-  String get insight_area_global => 'کل تصویر';
+  String get insight_area_global => 'نمای دوربین';
 
   @override
   String get insight_average_completed_visit => 'میانگین بازدیدهای پایان‌یافته';
@@ -324,6 +324,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'میانگین اشیا در هر ۵ دقیقه';
+
+  @override
+  String get insight_compare_with => 'مقایسه با';
 
   @override
   String get insight_comparison_last_week => 'همان روز در هفته گذشته';
@@ -536,6 +539,26 @@ class LocalizationFa extends Localization {
 
   @override
   String get metrics_counting_window => 'آمار برای هر بازه ۵ دقیقه‌ای';
+
+  @override
+  String get observation_status_interrupted => 'مختل شده';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'تصویر دوربین قطع شده است. شمارش ممکن است به‌طور خودکار از سر گرفته شود.';
+
+  @override
+  String get observation_status_live => 'فعال';
+
+  @override
+  String get observation_status_live_description =>
+      'دوربین فعال است و شمارش در حال انجام است.';
+
+  @override
+  String get observation_status_stopped => 'متوقف';
+
+  @override
+  String get observation_status_stopped_description => 'شمارش متوقف شده است.';
 
   @override
   String get occupancy => 'تعداد فعلی';

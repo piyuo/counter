@@ -310,7 +310,7 @@ class LocalizationHu extends Localization {
   String get insight_appear => 'Megjelentek';
 
   @override
-  String get insight_area_global => 'Teljes látómező';
+  String get insight_area_global => 'Kameranézet';
 
   @override
   String get insight_average_completed_visit => 'Lezárt látogatások átlaga';
@@ -326,6 +326,9 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_chart_occupancy_unit => 'Átl. objektum / 5 perc';
+
+  @override
+  String get insight_compare_with => 'Összehasonlítás ezzel';
 
   @override
   String get insight_comparison_last_week => 'Múlt hét ugyanezen napja';
@@ -540,6 +543,26 @@ class LocalizationHu extends Localization {
   @override
   String get metrics_counting_window =>
       'Statisztikák minden 5 perces időszakhoz';
+
+  @override
+  String get observation_status_interrupted => 'Megszakadt';
+
+  @override
+  String get observation_status_interrupted_description =>
+      'A kamerakép megszakadt. A számlálás automatikusan folytatódhat.';
+
+  @override
+  String get observation_status_live => 'Aktív';
+
+  @override
+  String get observation_status_live_description =>
+      'A kamera aktív és a számlálás folyamatban van.';
+
+  @override
+  String get observation_status_stopped => 'Leállítva';
+
+  @override
+  String get observation_status_stopped_description => 'A számlálás leállt.';
 
   @override
   String get occupancy => 'Jelenlegi darabszám';
