@@ -154,12 +154,13 @@ class SettingsScreen extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
+                    final resetNotifier = ref.read(core_domain.resetAppProvider.notifier);
                     final confirmed = await appkit.showConfirm(
                       title: context.l.settings_screen_reset_all_data_title,
                       message: context.l.settings_screen_reset_all_data_body,
                     );
                     if (confirmed != true) return;
-                    await ref.read(core_domain.resetAppProvider.notifier).reset();
+                    await resetNotifier.reset();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red.withValues(alpha: 0.7),
