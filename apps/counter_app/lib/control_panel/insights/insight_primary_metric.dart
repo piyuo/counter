@@ -27,8 +27,15 @@ class PrimaryMetric extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            _ObservationStatusChip(status: observationStatus),
+            const SizedBox(width: 6),
+            if (observationStatus == core_domain.ObservationStatus.live && value != null && value.estimated)
+              InsightMetricChip.yellow(label: context.l.insight_early_estimate),
+            if (observationStatus != core_domain.ObservationStatus.live)
+              InsightMetricChip.yellow(label: context.l.insight_counting_paused),
             Expanded(
               child: Text.rich(
+                textAlign: TextAlign.end,
                 TextSpan(
                   children: [
                     TextSpan(
@@ -50,28 +57,16 @@ class PrimaryMetric extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            _ObservationStatusChip(status: observationStatus),
-            const SizedBox(width: 6),
-            if (observationStatus == core_domain.ObservationStatus.live && value != null && value.estimated)
-              InsightMetricChip.yellow(label: context.l.insight_early_estimate),
-            if (observationStatus != core_domain.ObservationStatus.live)
-              InsightMetricChip.yellow(label: context.l.insight_counting_paused),
-            if (value?.secondaryValue != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 2),
-                child: Text(
-                  formatInsightSecondaryMetric(context, data.metric, value!.secondaryValue!),
-                  style: theme.textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
-                ),
-              ),
           ],
         ),
-        const SizedBox(height: 2),
-        InsightComparisonIndicator(
-          current: value?.value,
-          baseline: data.comparisonValue,
-          comparisonLabel: comparisonLabel,
-          showText: true,
+        Align(
+          alignment: Alignment.centerRight,
+          child: InsightComparisonIndicator(
+            current: value?.value,
+            baseline: data.comparisonValue,
+            comparisonLabel: comparisonLabel,
+            showText: true,
+          ),
         ),
       ],
     );
@@ -79,7 +74,7 @@ class PrimaryMetric extends StatelessWidget {
 }
 
 class InsightMetricChip extends StatelessWidget {
-  const InsightMetricChip({required this.label, this.textColor, this.backgroundColor});
+  const InsightMetricChip({super.key, required this.label, this.textColor, this.backgroundColor});
 
   factory InsightMetricChip.yellow({required String label}) => InsightMetricChip(
     label: label,
@@ -95,7 +90,7 @@ class InsightMetricChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Chip(
-      visualDensity: const VisualDensity(horizontal: -2, vertical: -2),
+      visualDensity: const VisualDensity(horizontal: -2, vertical: -4),
       padding: const EdgeInsets.symmetric(horizontal: 6),
       labelPadding: const EdgeInsets.symmetric(horizontal: 4),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -145,31 +140,19 @@ class _ObservationStatusChip extends StatelessWidget {
 String _formatPrimaryNumber(BuildContext context, core_domain.InsightMetric metric, double value) {
   final locale = Localizations.localeOf(context).toString();
   return switch (metric) {
-    core_domain.InsightMetric.dwellTime => formatCompactDuration(context.l, value.round()),
-    core_domain.InsightMetric.occupancy => NumberFormat('0.#', locale).format(value),
+    core_domain.InsightMetric.dwellTimeMean ||
+    core_domain.InsightMetric.dwellTimeMax => formatCompactDuration(context.l, value.round()),
+    core_domain.InsightMetric.occupancyMean ||
+    core_domain.InsightMetric.occupancyPeak => NumberFormat('0.#', locale).format(value),
     _ => NumberFormat(value >= 10 ? '#,##0' : '0.#', locale).format(value),
   };
 }
 
 String _primaryUnit(BuildContext context, core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.occupancy => context.l.insight_objects_unit,
-  core_domain.InsightMetric.dwellTime => '',
+  core_domain.InsightMetric.occupancyMean || core_domain.InsightMetric.occupancyPeak => context.l.insight_objects_unit,
+  core_domain.InsightMetric.dwellTimeMean || core_domain.InsightMetric.dwellTimeMax => '',
   _ => context.l.insight_tracks_per_hour,
 };
-
-String formatInsightSecondaryMetric(BuildContext context, core_domain.InsightMetric metric, double value) {
-  final label = switch (metric) {
-    core_domain.InsightMetric.occupancy => context.l.insight_peak,
-    core_domain.InsightMetric.dwellTime => context.l.insight_longest_completed_visit,
-    _ => '',
-  };
-  if (label.isEmpty) return '';
-  final formatted = metric == core_domain.InsightMetric.dwellTime
-      ? formatCompactDuration(context.l, value.round())
-      : '${NumberFormat('0.#', Localizations.localeOf(context).toString()).format(value)} '
-            '${context.l.insight_objects_unit}';
-  return '$label: $formatted';
-}
 
 Color insightObservationStatusColor(BuildContext context, core_domain.ObservationStatus status) => switch (status) {
   core_domain.ObservationStatus.live => Colors.green,

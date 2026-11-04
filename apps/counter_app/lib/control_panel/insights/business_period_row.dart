@@ -77,12 +77,6 @@ class BusinessPeriodRow extends StatelessWidget {
                     fontFeatures: const [FontFeature.tabularFigures()],
                   ),
                 ),
-                if (value?.secondaryValue != null)
-                  Text(
-                    formatInsightSecondaryMetric(context, metric, value!.secondaryValue!),
-                    textAlign: TextAlign.end,
-                    style: theme.textTheme.bodySmall?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
-                  ),
                 InsightComparisonIndicator(
                   current: value?.value,
                   baseline: periodData.comparisonValue,
@@ -108,10 +102,12 @@ String _formatPeriodMetric(BuildContext context, core_domain.InsightMetric metri
     core_domain.InsightMetric.exit ||
     core_domain.InsightMetric.appear ||
     core_domain.InsightMetric.disappear => '$rate ${context.l.insight_tracks_per_hour}',
-    core_domain.InsightMetric.occupancy =>
+    core_domain.InsightMetric.occupancyMean =>
       '${_formatNumber(context, value)} ${context.l.insight_objects_unit} ${context.l.insight_average_short}',
-    core_domain.InsightMetric.dwellTime =>
+    core_domain.InsightMetric.occupancyPeak => '${_formatNumber(context, value)} ${context.l.insight_objects_unit}',
+    core_domain.InsightMetric.dwellTimeMean =>
       '${formatCompactDuration(context.l, value.round())} ${context.l.insight_average_short}',
+    core_domain.InsightMetric.dwellTimeMax => formatCompactDuration(context.l, value.round()),
   };
 }
 

@@ -50,7 +50,7 @@ void main() {
           supportedLocales: Localization.supportedLocales,
           home: Scaffold(
             body: AreaInsightSection(
-              area: areaData,
+              areaData: areaData,
               comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
               observationStatus: observationStatus,
             ),
@@ -129,12 +129,12 @@ void main() {
             child: Column(
               children: [
                 AreaInsightSection(
-                  area: areas.first,
+                  areaData: areas.first,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
                 AreaInsightSection(
-                  area: areas.last,
+                  areaData: areas.last,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
@@ -159,7 +159,7 @@ void main() {
     expect(metricChips, hasLength(2));
     expect(metricChips[0].shape, isA<StadiumBorder>());
     expect(metricChips[0].side, BorderSide.none);
-    expect(metricChips[0].visualDensity, const VisualDensity(horizontal: -2, vertical: -2));
+    expect(metricChips[0].visualDensity, const VisualDensity(horizontal: -2, vertical: -4));
     expect(metricChips[0].padding, const EdgeInsets.symmetric(horizontal: 6));
     expect(metricChips[1].shape, metricChips[0].shape);
     expect(metricChips[1].side, metricChips[0].side);
@@ -227,7 +227,7 @@ void main() {
           home: Scaffold(
             body: SingleChildScrollView(
               child: AreaInsightSection(
-                area: area,
+                areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                 observationStatus: core_domain.ObservationStatus.stopped,
               ),
@@ -268,7 +268,7 @@ void main() {
           child: Scaffold(
             body: SingleChildScrollView(
               child: AreaInsightSection(
-                area: area,
+                areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                 observationStatus: core_domain.ObservationStatus.stopped,
               ),

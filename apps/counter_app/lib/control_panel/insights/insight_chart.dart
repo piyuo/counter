@@ -153,8 +153,10 @@ class _LegendItem extends StatelessWidget {
 }
 
 String _chartUnit(BuildContext context, core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.occupancy => context.l.insight_chart_occupancy_unit,
-  core_domain.InsightMetric.dwellTime => context.l.insight_chart_dwell_unit,
+  core_domain.InsightMetric.occupancyMean => context.l.insight_chart_occupancy_unit,
+  core_domain.InsightMetric.occupancyPeak => context.l.insight_objects_unit,
+  core_domain.InsightMetric.dwellTimeMean => context.l.insight_chart_dwell_unit,
+  core_domain.InsightMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
   _ => context.l.insight_chart_event_unit,
 };
 

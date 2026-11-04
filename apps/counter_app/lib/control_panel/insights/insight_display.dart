@@ -28,7 +28,7 @@ class InsightDisplay extends ConsumerWidget {
     final dashboard = ref.watch(core_domain.insightDashboardProvider);
     final appState = ref.watch(core_domain.appProvider);
     final observationStatus = ref.watch(core_domain.observationProvider).status;
-    final areas = ref.watch(insightAreaDataProvider);
+    final areaDatas = ref.watch(insightAreaDataProvider);
 
     if (appState.hasError) {
       return _DashboardMessage(icon: Icons.error_outline, message: context.l.insight_error);
@@ -51,10 +51,10 @@ class InsightDisplay extends ConsumerWidget {
             unawaited(service.refresh());
           },
         ),
-        for (final area in areas)
+        for (final areaData in areaDatas)
           AreaInsightSection(
-            key: ValueKey(area.areaId),
-            area: area,
+            key: ValueKey(areaData.areaId),
+            areaData: areaData,
             comparisonPeriod: dashboard.comparisonPeriod,
             observationStatus: observationStatus,
           ),

@@ -9,13 +9,13 @@ import 'insight_primary_metric.dart';
 
 class AreaInsightSection extends StatefulWidget {
   const AreaInsightSection({
-    required this.area,
+    required this.areaData,
     required this.comparisonPeriod,
     required this.observationStatus,
     super.key,
   });
 
-  final core_domain.InsightAreaData area;
+  final core_domain.InsightAreaData areaData;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final core_domain.ObservationStatus observationStatus;
 
@@ -29,11 +29,11 @@ class _AreaInsightSectionState extends State<AreaInsightSection> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final areaName = widget.area.isGlobal
+    final areaName = widget.areaData.isGlobal
         ? context.l.insight_area_global
-        : (widget.area.name?.trim().isNotEmpty ?? false)
-        ? widget.area.name!.trim()
-        : '${context.l.main_screen_interest_areas} ${widget.area.name}';
+        : (widget.areaData.name?.trim().isNotEmpty ?? false)
+        ? widget.areaData.name!.trim()
+        : '${context.l.main_screen_interest_areas} ${widget.areaData.name}';
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
       child: Column(
@@ -44,7 +44,7 @@ class _AreaInsightSectionState extends State<AreaInsightSection> {
             child: Row(
               children: [
                 Icon(
-                  widget.area.isGlobal ? Icons.public : Icons.crop_square,
+                  widget.areaData.isGlobal ? Icons.public : Icons.crop_square,
                   size: 18,
                   color: theme.colorScheme.primary,
                 ),
@@ -57,15 +57,15 @@ class _AreaInsightSectionState extends State<AreaInsightSection> {
                     style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
                   ),
                 ),
-                _PageIndicator(currentPage: _selectedPage, count: widget.area.cards.length),
+                _PageIndicator(currentPage: _selectedPage, count: widget.areaData.cards.length),
               ],
             ),
           ),
           AnimatedSwipePager(
-            itemCount: widget.area.cards.length,
+            itemCount: widget.areaData.cards.length,
             onPageChanged: (page) => setState(() => _selectedPage = page),
             itemBuilder: (context, index) => _InsightMetricCard(
-              data: widget.area.cards[index],
+              data: widget.areaData.cards[index],
               comparisonPeriod: widget.comparisonPeriod,
               observationStatus: widget.observationStatus,
             ),
@@ -157,13 +157,17 @@ String _metricLabel(BuildContext context, core_domain.InsightMetric metric) => s
   core_domain.InsightMetric.exit => context.l.insight_exit,
   core_domain.InsightMetric.appear => context.l.insight_appear,
   core_domain.InsightMetric.disappear => context.l.insight_disappear,
-  core_domain.InsightMetric.occupancy => context.l.insight_occupancy,
-  core_domain.InsightMetric.dwellTime => context.l.insight_dwell_time,
+  core_domain.InsightMetric.occupancyMean => context.l.average_occupancy,
+  core_domain.InsightMetric.occupancyPeak => context.l.maximum_occupancy,
+  core_domain.InsightMetric.dwellTimeMean => context.l.insight_average_completed_visit,
+  core_domain.InsightMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
 };
 
 String _primaryCaption(BuildContext context, core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.dwellTime =>
-    '${context.l.insight_average_completed_visit} - ${context.l.insight_last_60_minutes}',
+  core_domain.InsightMetric.occupancyMean ||
+  core_domain.InsightMetric.occupancyPeak ||
+  core_domain.InsightMetric.dwellTimeMean ||
+  core_domain.InsightMetric.dwellTimeMax => context.l.insight_last_60_minutes,
   _ => '${context.l.insight_last_60_minutes} · ${context.l.insight_hourly_rate}',
 };
 

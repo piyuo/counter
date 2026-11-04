@@ -122,7 +122,8 @@ void main() {
       final passBy = result.single.card(InsightMetric.passBy).primary!;
       expect(passBy.value, 84);
       expect(passBy.estimated, isTrue);
-      expect(result.single.card(InsightMetric.occupancy).primary, isNull);
+      expect(result.single.card(InsightMetric.occupancyMean).primary, isNull);
+      expect(result.single.card(InsightMetric.occupancyPeak).primary, isNull);
     });
 
     test('applies the coverage tolerance at its boundary', () {
@@ -164,7 +165,7 @@ void main() {
           _observation(11, 30 + index * 5, areas: [_activity(kGlobalAreaId, passBy: 1)]),
       ];
       final result = builder.build(
-        dashboard: _dashboard(today: observations),
+        dashboard: _dashboard(today: observations, pastHour: observations.first),
         customAreas: const [],
         businessPeriods: const [breakfast, lunch],
         now: DateTime(2026, 10, 29, 12),
@@ -213,17 +214,25 @@ void main() {
         ),
       ];
       final result = builder.build(
-        dashboard: _dashboard(today: observations),
+        dashboard: _dashboard(today: observations, pastHour: observations.first),
         customAreas: const [InterestArea(id: 3, name: 'Dining')],
         businessPeriods: const [],
         now: DateTime(2026, 10, 29, 10, 10),
       );
-      final occupancy = result.first.card(InsightMetric.occupancy);
-      final dwell = result.first.card(InsightMetric.dwellTime);
+      final occupancyMean = result.first.card(InsightMetric.occupancyMean);
+      final occupancyPeak = result.first.card(InsightMetric.occupancyPeak);
+      final dwellMean = result.first.card(InsightMetric.dwellTimeMean);
+      final dwellMax = result.first.card(InsightMetric.dwellTimeMax);
 
-      expect(occupancy.periods.isEmpty, isTrue);
-      expect(occupancy.chartPoints.map((point) => point.todayValue), [3, 3]);
-      expect(dwell.chartPoints.map((point) => point.todayValue), [5, 3]);
+      expect(occupancyMean.primary!.value, 3);
+      expect(occupancyPeak.primary!.value, 4);
+      expect(dwellMean.primary!.value, 300);
+      expect(dwellMax.primary!.value, 500);
+      expect(occupancyMean.periods.isEmpty, isTrue);
+      expect(occupancyMean.chartPoints.map((point) => point.todayValue), [3, 3]);
+      expect(occupancyPeak.chartPoints.map((point) => point.todayValue), [4, 7]);
+      expect(dwellMean.chartPoints.map((point) => point.todayValue), [5, 3]);
+      expect(dwellMax.chartPoints.map((point) => point.todayValue), [500 / 60, 3]);
     });
 
     test('aggregates occupancy samples independently for each area', () {
@@ -257,8 +266,8 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 10),
       );
 
-      expect(result[0].card(InsightMetric.occupancy).periods.single.primary!.value, 4);
-      expect(result[1].card(InsightMetric.occupancy).periods.single.primary!.value, 100);
+      expect(result[0].card(InsightMetric.occupancyMean).periods.single.primary!.value, 4);
+      expect(result[1].card(InsightMetric.occupancyMean).periods.single.primary!.value, 100);
     });
 
     test('preserves measured zero occupancy and leaves no-sample dwell unavailable', () {
@@ -276,8 +285,10 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 10),
       );
 
-      expect(result.first.card(InsightMetric.occupancy).primary!.value, 0);
-      expect(result.first.card(InsightMetric.dwellTime).primary, isNull);
+      expect(result.first.card(InsightMetric.occupancyMean).primary!.value, 0);
+      expect(result.first.card(InsightMetric.occupancyPeak).primary!.value, 0);
+      expect(result.first.card(InsightMetric.dwellTimeMean).primary, isNull);
+      expect(result.first.card(InsightMetric.dwellTimeMax).primary, isNull);
     });
   });
 

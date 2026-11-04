@@ -6,13 +6,23 @@ import '../model/observation_payload.dart';
 import '../model/observation_series.dart';
 import '../state/models/interest_area.dart';
 
-enum InsightMetric { passBy, stagnant, entry, exit, appear, disappear, occupancy, dwellTime }
+enum InsightMetric {
+  passBy,
+  stagnant,
+  entry,
+  exit,
+  appear,
+  disappear,
+  occupancyMean,
+  occupancyPeak,
+  dwellTimeMean,
+  dwellTimeMax,
+}
 
 class InsightMetricValue {
-  const InsightMetricValue({required this.value, this.secondaryValue, this.estimated = false});
+  const InsightMetricValue({required this.value, this.estimated = false});
 
   final double value;
-  final double? secondaryValue;
   final bool estimated;
 }
 
@@ -130,8 +140,10 @@ class InsightDashboardDataBuilder {
       if (!isGlobal) InsightMetric.exit,
       InsightMetric.appear,
       InsightMetric.disappear,
-      InsightMetric.occupancy,
-      InsightMetric.dwellTime,
+      InsightMetric.occupancyMean,
+      InsightMetric.occupancyPeak,
+      InsightMetric.dwellTimeMean,
+      InsightMetric.dwellTimeMax,
     ];
     return InsightAreaData(
       areaId: areaId,
@@ -284,20 +296,26 @@ class InsightDashboardDataBuilder {
           value: count / coveredSeconds * 3600,
           estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
         );
-      case InsightMetric.occupancy:
+      case InsightMetric.occupancyMean:
         final sampled = samples.where((sample) => sample.occupancySampleCount > 0).toList();
         if (sampled.isEmpty) return null;
         final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.occupancySampleCount);
         final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.occupancySum);
-        final peak = sampled.map((sample) => sample.occupancyMax).reduce(_max);
-        return InsightMetricValue(value: sampleSum / sampleCount, secondaryValue: peak.toDouble());
-      case InsightMetric.dwellTime:
+        return InsightMetricValue(value: sampleSum / sampleCount);
+      case InsightMetric.occupancyPeak:
+        final sampled = samples.where((sample) => sample.occupancySampleCount > 0).toList();
+        if (sampled.isEmpty) return null;
+        return InsightMetricValue(value: sampled.map((sample) => sample.occupancyMax).reduce(_max).toDouble());
+      case InsightMetric.dwellTimeMean:
         final sampled = samples.where((sample) => sample.dwellSampleCount > 0).toList();
         if (sampled.isEmpty) return null;
         final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.dwellSampleCount);
         final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.dwellSumSeconds);
-        final longest = sampled.map((sample) => sample.dwellMaxSeconds).reduce(_max);
-        return InsightMetricValue(value: sampleSum / sampleCount, secondaryValue: longest.toDouble());
+        return InsightMetricValue(value: sampleSum / sampleCount);
+      case InsightMetric.dwellTimeMax:
+        final sampled = samples.where((sample) => sample.dwellSampleCount > 0).toList();
+        if (sampled.isEmpty) return null;
+        return InsightMetricValue(value: sampled.map((sample) => sample.dwellMaxSeconds).reduce(_max).toDouble());
     }
   }
 
@@ -344,8 +362,10 @@ class InsightDashboardDataBuilder {
       InsightMetric.exit => observation.coveredSeconds > 0 ? area.exit : null,
       InsightMetric.appear => observation.coveredSeconds > 0 ? area.appear : null,
       InsightMetric.disappear => observation.coveredSeconds > 0 ? area.disappear : null,
-      InsightMetric.occupancy => area.occupancySampleCount > 0 ? area.occupancyMean : null,
-      InsightMetric.dwellTime => area.dwellSampleCount > 0 ? area.dwellMeanSeconds / 60 : null,
+      InsightMetric.occupancyMean => area.occupancySampleCount > 0 ? area.occupancyMean : null,
+      InsightMetric.occupancyPeak => area.occupancySampleCount > 0 ? area.occupancyMax.toDouble() : null,
+      InsightMetric.dwellTimeMean => area.dwellSampleCount > 0 ? area.dwellMeanSeconds / 60 : null,
+      InsightMetric.dwellTimeMax => area.dwellSampleCount > 0 ? area.dwellMaxSeconds / 60 : null,
     };
   }
 
@@ -356,7 +376,10 @@ class InsightDashboardDataBuilder {
     InsightMetric.exit => activity.exit,
     InsightMetric.appear => activity.appear,
     InsightMetric.disappear => activity.disappear,
-    InsightMetric.occupancy || InsightMetric.dwellTime => 0,
+    InsightMetric.occupancyMean ||
+    InsightMetric.occupancyPeak ||
+    InsightMetric.dwellTimeMean ||
+    InsightMetric.dwellTimeMax => 0,
   };
 
   Activity? _activity(Observation observation, int areaId) {
