@@ -124,7 +124,7 @@ void main() {
 
 /// Creates a realistic test observation with all required fields.
 core_domain.ObservationPayload _createTestObservation({required DateTime startUtc}) {
-  final startBusiness = startUtc.toLocal();
+  final startBusiness = startUtc.toUtc();
   final year = startBusiness.year;
   final month = startBusiness.month;
   final day = startBusiness.day;

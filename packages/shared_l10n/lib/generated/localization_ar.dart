@@ -347,6 +347,9 @@ class LocalizationAr extends Localization {
   String get insight_comparison_yesterday => 'أمس';
 
   @override
+  String get insight_counting_paused => 'توقف العد مؤقتًا';
+
+  @override
   String get insight_dashboard_title => 'تحليلات الحركة';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_dwell_time => 'مدة البقاء';
+
+  @override
+  String get insight_early_estimate => 'تقدير أولي';
 
   @override
   String get insight_entry => 'الدخول';

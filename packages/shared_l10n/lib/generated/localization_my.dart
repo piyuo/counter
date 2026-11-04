@@ -350,6 +350,9 @@ class LocalizationMy extends Localization {
   String get insight_comparison_yesterday => 'မနေ့က';
 
   @override
+  String get insight_counting_paused => 'ရေတွက်မှု ခေတ္တရပ်ထားသည်';
+
+  @override
   String get insight_dashboard_title => 'သွားလာမှု အချက်အလက်';
 
   @override
@@ -357,6 +360,9 @@ class LocalizationMy extends Localization {
 
   @override
   String get insight_dwell_time => 'နေထိုင်ကြာချိန်';
+
+  @override
+  String get insight_early_estimate => 'ကနဦး ခန့်မှန်းချက်';
 
   @override
   String get insight_entry => 'ဝင်ရောက်မှု';

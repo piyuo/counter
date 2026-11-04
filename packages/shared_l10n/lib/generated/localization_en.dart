@@ -347,6 +347,9 @@ class LocalizationEn extends Localization {
   String get insight_comparison_yesterday => 'Yesterday';
 
   @override
+  String get insight_counting_paused => 'Counting paused';
+
+  @override
   String get insight_dashboard_title => 'Traffic Insights';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationEn extends Localization {
 
   @override
   String get insight_dwell_time => 'Dwell Time';
+
+  @override
+  String get insight_early_estimate => 'Early estimate';
 
   @override
   String get insight_entry => 'Entries';

@@ -348,6 +348,9 @@ class LocalizationSr extends Localization {
   String get insight_comparison_yesterday => 'Juče';
 
   @override
+  String get insight_counting_paused => 'Brojanje pauzirano';
+
+  @override
   String get insight_dashboard_title => 'Analiza protoka';
 
   @override
@@ -355,6 +358,9 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_dwell_time => 'Vreme zadržavanja';
+
+  @override
+  String get insight_early_estimate => 'Početna procena';
 
   @override
   String get insight_entry => 'Ulazi';

@@ -339,6 +339,9 @@ class LocalizationKo extends Localization {
   String get insight_comparison_yesterday => '어제';
 
   @override
+  String get insight_counting_paused => '집계 일시 중지';
+
+  @override
   String get insight_dashboard_title => '통행 분석';
 
   @override
@@ -346,6 +349,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_dwell_time => '체류 시간';
+
+  @override
+  String get insight_early_estimate => '초기 추정치';
 
   @override
   String get insight_entry => '입장';

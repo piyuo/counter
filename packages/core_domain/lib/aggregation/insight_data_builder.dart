@@ -68,6 +68,11 @@ class InsightAreaData {
 class InsightDashboardDataBuilder {
   const InsightDashboardDataBuilder();
 
+  /// A value is only marked as estimated when the observed coverage is more
+  /// than this fraction below the expected coverage. Small interruptions
+  /// (e.g. 5 seconds out of an hour) are not worth flagging.
+  static const double _coverageTolerance = 0.05;
+
   List<InsightAreaData> build({
     required InsightDashboard dashboard,
     required List<InterestArea> customAreas,
@@ -221,12 +226,11 @@ class InsightDashboardDataBuilder {
     if (observation == null) return null;
     final area = _activity(observation, areaId);
     if (area == null) return null;
-    return _valueForActivity(
+    return _valueForSingleSample(
       area,
       metric,
       coveredSeconds: observation.coveredSeconds,
       expectedSeconds: expectedSeconds,
-      forceEstimate: expectedSeconds < 3600,
     );
   }
 
@@ -235,48 +239,38 @@ class InsightDashboardDataBuilder {
     int areaId,
     InsightMetric metric, {
     required int expectedSeconds,
-    bool forceEstimate = false,
   }) {
     if (observations.isEmpty) return null;
-    final matchingAreas = <Activity>[];
+    final samples = <Activity>[];
     var coveredSeconds = 0;
     for (final observation in observations) {
       final area = _activity(observation, areaId);
       if (area == null) continue;
-      matchingAreas.add(area);
+      samples.add(area);
       coveredSeconds += observation.coveredSeconds;
     }
-    if (matchingAreas.isEmpty) return null;
-    return _valueForAreas(
-      matchingAreas,
-      metric,
-      coveredSeconds: coveredSeconds,
-      expectedSeconds: expectedSeconds,
-      forceEstimate: forceEstimate,
-    );
+    if (samples.isEmpty) return null;
+    return _valueForSamples(samples, metric, coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds);
   }
 
-  InsightMetricValue? _valueForActivity(
-    Activity area,
+  InsightMetricValue? _valueForSingleSample(
+    Activity sample,
     InsightMetric metric, {
     required int coveredSeconds,
     required int expectedSeconds,
-    bool forceEstimate = false,
-  }) => _valueForAreas(
-    [area],
-    metric,
-    coveredSeconds: coveredSeconds,
-    expectedSeconds: expectedSeconds,
-    forceEstimate: forceEstimate,
-  );
+  }) => _valueForSamples([sample], metric, coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds);
 
-  InsightMetricValue? _valueForAreas(
-    List<Activity> areas,
+  /// Aggregates [samples] (the same area across different time slots) into one value.
+  InsightMetricValue? _valueForSamples(
+    List<Activity> samples,
     InsightMetric metric, {
     required int coveredSeconds,
     required int expectedSeconds,
-    bool forceEstimate = false,
   }) {
+    assert(
+      samples.isNotEmpty && samples.every((sample) => sample.areaId == samples.first.areaId),
+      'samples must all belong to the same area',
+    );
     switch (metric) {
       case InsightMetric.passBy ||
           InsightMetric.stagnant ||
@@ -285,27 +279,32 @@ class InsightDashboardDataBuilder {
           InsightMetric.appear ||
           InsightMetric.disappear:
         if (coveredSeconds <= 0) return null;
-        final count = areas.fold<double>(0, (total, area) => total + _eventValue(area, metric));
+        final count = samples.fold<double>(0, (total, sample) => total + _eventValue(sample, metric));
         return InsightMetricValue(
           value: count / coveredSeconds * 3600,
-          estimated: forceEstimate || coveredSeconds < expectedSeconds,
+          estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
         );
       case InsightMetric.occupancy:
-        final sampled = areas.where((area) => area.occupancySampleCount > 0).toList();
+        final sampled = samples.where((sample) => sample.occupancySampleCount > 0).toList();
         if (sampled.isEmpty) return null;
-        final sampleCount = sampled.fold<int>(0, (total, area) => total + area.occupancySampleCount);
-        final sampleSum = sampled.fold<int>(0, (total, area) => total + area.occupancySum);
-        final peak = sampled.map((area) => area.occupancyMax).reduce(_max);
+        final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.occupancySampleCount);
+        final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.occupancySum);
+        final peak = sampled.map((sample) => sample.occupancyMax).reduce(_max);
         return InsightMetricValue(value: sampleSum / sampleCount, secondaryValue: peak.toDouble());
       case InsightMetric.dwellTime:
-        final sampled = areas.where((area) => area.dwellSampleCount > 0).toList();
+        final sampled = samples.where((sample) => sample.dwellSampleCount > 0).toList();
         if (sampled.isEmpty) return null;
-        final sampleCount = sampled.fold<int>(0, (total, area) => total + area.dwellSampleCount);
-        final sampleSum = sampled.fold<int>(0, (total, area) => total + area.dwellSumSeconds);
-        final longest = sampled.map((area) => area.dwellMaxSeconds).reduce(_max);
+        final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.dwellSampleCount);
+        final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.dwellSumSeconds);
+        final longest = sampled.map((sample) => sample.dwellMaxSeconds).reduce(_max);
         return InsightMetricValue(value: sampleSum / sampleCount, secondaryValue: longest.toDouble());
     }
   }
+
+  /// True when coverage falls short of the expected duration by more than
+  /// [_coverageTolerance]. For a 3600s window, anything below 3420s is an estimate.
+  bool _isEstimated({required int coveredSeconds, required int expectedSeconds}) =>
+      coveredSeconds < expectedSeconds * (1 - _coverageTolerance);
 
   List<InsightChartPoint> _buildChartPoints(
     InsightMetric metric,

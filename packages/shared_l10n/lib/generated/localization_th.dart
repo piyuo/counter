@@ -349,6 +349,9 @@ class LocalizationTh extends Localization {
   String get insight_comparison_yesterday => 'เมื่อวาน';
 
   @override
+  String get insight_counting_paused => 'หยุดนับชั่วคราว';
+
+  @override
   String get insight_dashboard_title => 'ข้อมูลการสัญจร';
 
   @override
@@ -356,6 +359,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_dwell_time => 'ระยะเวลาที่อยู่';
+
+  @override
+  String get insight_early_estimate => 'ค่าประมาณเบื้องต้น';
 
   @override
   String get insight_entry => 'การเข้า';

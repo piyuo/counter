@@ -349,6 +349,9 @@ class LocalizationHi extends Localization {
   String get insight_comparison_yesterday => 'कल';
 
   @override
+  String get insight_counting_paused => 'गिनती रुकी हुई है';
+
+  @override
   String get insight_dashboard_title => 'आवागमन विश्लेषण';
 
   @override
@@ -356,6 +359,9 @@ class LocalizationHi extends Localization {
 
   @override
   String get insight_dwell_time => 'ठहरने का समय';
+
+  @override
+  String get insight_early_estimate => 'प्रारंभिक अनुमान';
 
   @override
   String get insight_entry => 'प्रवेश';

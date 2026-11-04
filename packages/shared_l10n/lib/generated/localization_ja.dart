@@ -341,6 +341,9 @@ class LocalizationJa extends Localization {
   String get insight_comparison_yesterday => '昨日';
 
   @override
+  String get insight_counting_paused => 'カウント一時停止';
+
+  @override
   String get insight_dashboard_title => '通行分析';
 
   @override
@@ -348,6 +351,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get insight_dwell_time => '滞在時間';
+
+  @override
+  String get insight_early_estimate => '初期推定';
 
   @override
   String get insight_entry => '入場数';

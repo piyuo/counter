@@ -750,6 +750,12 @@ abstract class Localization {
   /// **'Yesterday'**
   String get insight_comparison_yesterday;
 
+  /// No description provided for @insight_counting_paused.
+  ///
+  /// In en, this message translates to:
+  /// **'Counting paused'**
+  String get insight_counting_paused;
+
   /// No description provided for @insight_dashboard_title.
   ///
   /// In en, this message translates to:
@@ -767,6 +773,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Dwell Time'**
   String get insight_dwell_time;
+
+  /// No description provided for @insight_early_estimate.
+  ///
+  /// In en, this message translates to:
+  /// **'Early estimate'**
+  String get insight_early_estimate;
 
   /// No description provided for @insight_entry.
   ///

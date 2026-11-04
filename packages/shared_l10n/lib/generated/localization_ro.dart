@@ -349,6 +349,9 @@ class LocalizationRo extends Localization {
   String get insight_comparison_yesterday => 'Ieri';
 
   @override
+  String get insight_counting_paused => 'Numărare întreruptă temporar';
+
+  @override
   String get insight_dashboard_title => 'Analiza traficului';
 
   @override
@@ -356,6 +359,9 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_dwell_time => 'Durata șederii';
+
+  @override
+  String get insight_early_estimate => 'Estimativa inicial';
 
   @override
   String get insight_entry => 'Intrări';

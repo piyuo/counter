@@ -347,6 +347,9 @@ class LocalizationHe extends Localization {
   String get insight_comparison_yesterday => 'אתמול';
 
   @override
+  String get insight_counting_paused => 'הספירה מושהית';
+
+  @override
   String get insight_dashboard_title => 'ניתוח תנועה';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get insight_dwell_time => 'משך שהייה';
+
+  @override
+  String get insight_early_estimate => 'הערכה ראשונית';
 
   @override
   String get insight_entry => 'כניסות';

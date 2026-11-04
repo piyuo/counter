@@ -351,6 +351,9 @@ class LocalizationHu extends Localization {
   String get insight_comparison_yesterday => 'Tegnap';
 
   @override
+  String get insight_counting_paused => 'Számlálás szünetel';
+
+  @override
   String get insight_dashboard_title => 'Forgalmi elemzések';
 
   @override
@@ -358,6 +361,9 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_dwell_time => 'Tartózkodási idő';
+
+  @override
+  String get insight_early_estimate => 'Előzetes becslés';
 
   @override
   String get insight_entry => 'Belépések';

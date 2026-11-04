@@ -125,6 +125,31 @@ void main() {
       expect(result.single.card(InsightMetric.occupancy).primary, isNull);
     });
 
+    test('applies the coverage tolerance at its boundary', () {
+      bool isEstimated(int coveredSeconds) => builder
+          .build(
+            dashboard: _dashboard(
+              pastHour: _observation(
+                12,
+                0,
+                coveredSeconds: coveredSeconds,
+                areas: [_activity(kGlobalAreaId, passBy: 42)],
+              ),
+            ),
+            customAreas: const [],
+            businessPeriods: const [],
+            now: DateTime(2026, 10, 29, 12),
+          )
+          .single
+          .card(InsightMetric.passBy)
+          .primary!
+          .estimated;
+
+      expect(isEstimated(3595), isFalse);
+      expect(isEstimated(3420), isFalse);
+      expect(isEstimated(3419), isTrue);
+    });
+
     test('normalizes completed periods by their duration and ongoing periods by elapsed time', () {
       const breakfast = BusinessPeriod(id: 'breakfast', name: 'Breakfast', startMinute: 420, endMinute: 540);
       const lunch = BusinessPeriod(id: 'lunch', name: 'Lunch', startMinute: 690, endMinute: 810);
@@ -199,6 +224,41 @@ void main() {
       expect(occupancy.periods.isEmpty, isTrue);
       expect(occupancy.chartPoints.map((point) => point.todayValue), [3, 3]);
       expect(dwell.chartPoints.map((point) => point.todayValue), [5, 3]);
+    });
+
+    test('aggregates occupancy samples independently for each area', () {
+      const period = BusinessPeriod(id: 'morning', name: 'Morning', startMinute: 600, endMinute: 610);
+      final result = builder.build(
+        dashboard: _dashboard(
+          today: [
+            _observation(
+              10,
+              0,
+              areas: [
+                _activity(3, occupancySum: 6, occupancySampleCount: 2),
+                _activity(4, occupancySum: 100, occupancySampleCount: 1),
+              ],
+            ),
+            _observation(
+              10,
+              5,
+              areas: [
+                _activity(3, occupancySum: 10, occupancySampleCount: 2),
+                _activity(4, occupancySum: 100, occupancySampleCount: 1),
+              ],
+            ),
+          ],
+        ),
+        customAreas: const [
+          InterestArea(id: 3, name: 'Dining'),
+          InterestArea(id: 4, name: 'Entrance'),
+        ],
+        businessPeriods: const [period],
+        now: DateTime(2026, 10, 29, 10, 10),
+      );
+
+      expect(result[0].card(InsightMetric.occupancy).periods.single.primary!.value, 4);
+      expect(result[1].card(InsightMetric.occupancy).periods.single.primary!.value, 100);
     });
 
     test('preserves measured zero occupancy and leaves no-sample dwell unavailable', () {

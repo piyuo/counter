@@ -347,6 +347,9 @@ class LocalizationBn extends Localization {
   String get insight_comparison_yesterday => 'গতকাল';
 
   @override
+  String get insight_counting_paused => 'গণনা সাময়িকভাবে বন্ধ';
+
+  @override
   String get insight_dashboard_title => 'চলাচল বিশ্লেষণ';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get insight_dwell_time => 'অবস্থানের সময়';
+
+  @override
+  String get insight_early_estimate => 'প্রাথমিক অনুমান';
 
   @override
   String get insight_entry => 'প্রবেশ';

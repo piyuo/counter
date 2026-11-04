@@ -348,6 +348,9 @@ class LocalizationMs extends Localization {
   String get insight_comparison_yesterday => 'Semalam';
 
   @override
+  String get insight_counting_paused => 'Pengiraan dijeda';
+
+  @override
   String get insight_dashboard_title => 'Analisis Trafik';
 
   @override
@@ -355,6 +358,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get insight_dwell_time => 'Tempoh lawatan';
+
+  @override
+  String get insight_early_estimate => 'Anggaran awal';
 
   @override
   String get insight_entry => 'Masuk';

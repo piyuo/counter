@@ -349,6 +349,9 @@ class LocalizationEl extends Localization {
   String get insight_comparison_yesterday => 'Χθες';
 
   @override
+  String get insight_counting_paused => 'Η καταμέτρηση έχει διακοπεί προσωρινά';
+
+  @override
   String get insight_dashboard_title => 'Ανάλυση κίνησης';
 
   @override
@@ -356,6 +359,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_dwell_time => 'Χρόνος παραμονής';
+
+  @override
+  String get insight_early_estimate => 'Πρώιμη εκτίμηση';
 
   @override
   String get insight_entry => 'Είσοδοι';

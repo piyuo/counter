@@ -349,6 +349,9 @@ class LocalizationFa extends Localization {
   String get insight_comparison_yesterday => 'دیروز';
 
   @override
+  String get insight_counting_paused => 'شمارش موقتاً متوقف شده';
+
+  @override
   String get insight_dashboard_title => 'تحلیل تردد';
 
   @override
@@ -356,6 +359,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_dwell_time => 'مدت حضور';
+
+  @override
+  String get insight_early_estimate => 'برآورد اولیه';
 
   @override
   String get insight_entry => 'ورودها';

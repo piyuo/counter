@@ -332,6 +332,9 @@ class LocalizationZh extends Localization {
   String get insight_comparison_yesterday => '昨天';
 
   @override
+  String get insight_counting_paused => '計數已暫停';
+
+  @override
   String get insight_dashboard_title => '人流分析';
 
   @override
@@ -339,6 +342,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get insight_dwell_time => '停留時間';
+
+  @override
+  String get insight_early_estimate => '初步估算';
 
   @override
   String get insight_entry => '進入次數';
@@ -1263,6 +1269,9 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_comparison_yesterday => '昨天';
 
   @override
+  String get insight_counting_paused => '计数已暂停';
+
+  @override
   String get insight_dashboard_title => '客流分析';
 
   @override
@@ -1270,6 +1279,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_dwell_time => '停留时长';
+
+  @override
+  String get insight_early_estimate => '初步估算';
 
   @override
   String get insight_entry => '进入次数';

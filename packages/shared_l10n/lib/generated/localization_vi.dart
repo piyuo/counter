@@ -347,6 +347,9 @@ class LocalizationVi extends Localization {
   String get insight_comparison_yesterday => 'Hôm qua';
 
   @override
+  String get insight_counting_paused => 'Tạm dừng đếm';
+
+  @override
   String get insight_dashboard_title => 'Phân tích lưu lượng';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_dwell_time => 'Thời gian lưu lại';
+
+  @override
+  String get insight_early_estimate => 'Ước tính ban đầu';
 
   @override
   String get insight_entry => 'Lượt vào';

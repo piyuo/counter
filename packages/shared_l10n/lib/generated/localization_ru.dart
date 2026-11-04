@@ -347,6 +347,9 @@ class LocalizationRu extends Localization {
   String get insight_comparison_yesterday => 'Вчера';
 
   @override
+  String get insight_counting_paused => 'Подсчёт приостановлен';
+
+  @override
   String get insight_dashboard_title => 'Аналитика потока';
 
   @override
@@ -354,6 +357,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get insight_dwell_time => 'Время пребывания';
+
+  @override
+  String get insight_early_estimate => 'Предварительная оценка';
 
   @override
   String get insight_entry => 'Входы';
