@@ -215,7 +215,7 @@ class LocalizationAr extends Localization {
 
   @override
   String get detection_screen_stay_threshold =>
-      'يحدد متى يساهم كائن في عدد \\البقاء\\.\\nقيم أقصر\\n• عد البقاء فورًا\\n• أفضل للتحليل السريع\\nقيم أطول\\n• تجاهل المرور العابر القصير\\n• أفضل لقياس الإشغال';
+      'يحدد متى يساهم كائن في عدد \\البقاء\\\".\\nقيم أقصر\\n• عد البقاء فورًا\\n• أفضل للتحليل السريع\\nقيم أطول\\n• تجاهل المرور العابر القصير\\n• أفضل لقياس الإشغال\"';
 
   @override
   String get detection_screen_subtitle =>
@@ -306,13 +306,13 @@ class LocalizationAr extends Localization {
   String get insight_appear => 'ظهور';
 
   @override
-  String get insight_area_global => 'منظر الكاميرا';
-
-  @override
   String get insight_average_completed_visit => 'متوسط الزيارات المكتملة';
 
   @override
   String get insight_average_short => 'متوسط';
+
+  @override
+  String get insight_based_on_minutes => 'استنادًا إلى %m دقيقة · قد يتغير';
 
   @override
   String get insight_chart_dwell_unit => 'متوسط المدة كل 5 دقائق';
@@ -348,6 +348,10 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_counting_paused => 'توقف العد مؤقتًا';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'العد متوقف مؤقتًا · آخر قيمة مسجلة';
 
   @override
   String get insight_dashboard_title => 'تحليلات الحركة';

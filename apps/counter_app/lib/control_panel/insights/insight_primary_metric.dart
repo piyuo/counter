@@ -5,12 +5,22 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/format_compact_duration.dart';
 import 'insight_comparison_indicator.dart';
+import 'insight_comparison_period_dropdown.dart';
+import 'insight_metric_chip.dart';
+import 'insight_utils.dart';
 
 class PrimaryMetric extends StatelessWidget {
-  const PrimaryMetric({super.key, required this.data, required this.comparisonLabel, required this.observationStatus});
+  const PrimaryMetric({
+    super.key,
+    required this.data,
+    required this.comparisonPeriod,
+    required this.onComparisonChanged,
+    required this.observationStatus,
+  });
 
   final core_domain.InsightCardData data;
-  final String comparisonLabel;
+  final core_domain.TrafficComparisonPeriod comparisonPeriod;
+  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
 
   @override
@@ -21,18 +31,30 @@ class PrimaryMetric extends StatelessWidget {
     final number = value == null ? '—' : _formatPrimaryNumber(context, data.metric, value.value);
     final unit = value == null ? '' : _primaryUnit(context, data.metric);
 
+    String primaryCaption() {
+      if (observationStatus != core_domain.ObservationStatus.live) {
+        return context.l.insight_counting_paused_last_recorded;
+      }
+
+      if (value != null && value.estimated) {
+        final baseOnMinutes = (value.coveredSeconds / 60).round();
+        return context.l.insight_based_on_minutes.replaceAll('%m', baseOnMinutes.toString());
+      }
+
+      return context.l.insight_last_60_minutes;
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(primaryCaption(), maxLines: 2, overflow: TextOverflow.ellipsis, style: theme.textTheme.bodySmall),
+        const SizedBox(height: 8),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _ObservationStatusChip(status: observationStatus),
             const SizedBox(width: 6),
-            if (observationStatus == core_domain.ObservationStatus.live && value != null && value.estimated)
-              InsightMetricChip.yellow(label: context.l.insight_early_estimate),
-            if (observationStatus != core_domain.ObservationStatus.live)
-              InsightMetricChip.yellow(label: context.l.insight_counting_paused),
+            if (value != null && value.estimated) InsightMetricChip.yellow(label: context.l.insight_early_estimate),
             Expanded(
               child: Text.rich(
                 textAlign: TextAlign.end,
@@ -59,46 +81,21 @@ class PrimaryMetric extends StatelessWidget {
             ),
           ],
         ),
-        Align(
-          alignment: Alignment.centerRight,
-          child: InsightComparisonIndicator(
-            current: value?.value,
-            baseline: data.comparisonValue,
-            comparisonLabel: comparisonLabel,
-            showText: true,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Flexible(
+              child: InsightComparisonPeriodDropdown(value: comparisonPeriod, onChanged: onComparisonChanged),
+            ),
+            const SizedBox(width: 6),
+            InsightComparisonIndicator(
+              current: value?.value,
+              baseline: data.comparisonValue,
+              comparisonLabel: insightComparisonPeriodLabel(context, comparisonPeriod),
+            ),
+          ],
         ),
       ],
-    );
-  }
-}
-
-class InsightMetricChip extends StatelessWidget {
-  const InsightMetricChip({super.key, required this.label, this.textColor, this.backgroundColor});
-
-  factory InsightMetricChip.yellow({required String label}) => InsightMetricChip(
-    label: label,
-    textColor: Colors.yellow.shade900.withValues(alpha: 0.9),
-    backgroundColor: Colors.yellow.withValues(alpha: 0.18),
-  );
-
-  final String label;
-  final Color? textColor;
-  final Color? backgroundColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Chip(
-      visualDensity: const VisualDensity(horizontal: -2, vertical: -4),
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      labelPadding: const EdgeInsets.symmetric(horizontal: 4),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      shape: const StadiumBorder(),
-      side: BorderSide.none,
-      backgroundColor: backgroundColor,
-      labelStyle: theme.textTheme.labelSmall?.copyWith(color: textColor),
-      label: Text(label),
     );
   }
 }

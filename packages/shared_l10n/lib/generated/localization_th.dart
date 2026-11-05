@@ -307,14 +307,14 @@ class LocalizationTh extends Localization {
   String get insight_appear => 'ปรากฏ';
 
   @override
-  String get insight_area_global => 'มุมมองกล้อง';
-
-  @override
   String get insight_average_completed_visit =>
       'เฉลี่ยการเข้าพื้นที่ที่สิ้นสุดแล้ว';
 
   @override
   String get insight_average_short => 'เฉลี่ย';
+
+  @override
+  String get insight_based_on_minutes => 'อิงจาก %m นาที · อาจเปลี่ยนแปลงได้';
 
   @override
   String get insight_chart_dwell_unit => 'ระยะเวลาเฉลี่ยต่อ 5 นาที';
@@ -350,6 +350,10 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_counting_paused => 'หยุดนับชั่วคราว';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'หยุดนับชั่วคราว · ค่าล่าสุด';
 
   @override
   String get insight_dashboard_title => 'ข้อมูลการสัญจร';

@@ -67,14 +67,26 @@ class _AnimatedSwipePagerState extends State<AnimatedSwipePager> with SingleTick
     _settleController.duration = widget.animationDuration;
     final oldSelectedPage = _selectedPage;
     if (oldWidget.initialPage != widget.initialPage) {
-      _selectedPage = widget.initialPage.clamp(0, widget.itemCount - 1);
+      final requestedPage = widget.initialPage.clamp(0, widget.itemCount - 1);
+      final pageDelta = requestedPage - _selectedPage;
+      if (pageDelta != 0) {
+        _selectedPage = requestedPage;
+        _dragOffset = 0;
+        _settleController.stop();
+        _isSettling = pageDelta.abs() == 1;
+        if (_isSettling) {
+          _settleStartOffset = pageDelta > 0 ? _pageWidth : -_pageWidth;
+          _settleController.forward(from: 0);
+        }
+      }
     } else if (oldWidget.itemCount != widget.itemCount) {
       _selectedPage = _selectedPage.clamp(0, widget.itemCount - 1);
     }
     if (_selectedPage != oldSelectedPage) {
-      _dragOffset = 0;
-      _isSettling = false;
-      _settleController.stop();
+      if (!_isSettling) {
+        _dragOffset = 0;
+        _settleController.stop();
+      }
       final selectedPage = _selectedPage;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && _selectedPage == selectedPage) widget.onPageChanged?.call(selectedPage);

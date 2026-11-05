@@ -1,4 +1,5 @@
-import 'package:core_domain/aggregation/insight_data_builder.dart';
+import 'package:core_domain/aggregation/insight_dashboard_data_builder.dart';
+import 'package:core_domain/aggregation/insight_data_type.dart';
 import 'package:core_domain/model/activity.dart';
 import 'package:core_domain/model/business_period.dart';
 import 'package:core_domain/model/insight_dashboard.dart';
@@ -124,6 +125,21 @@ void main() {
       expect(passBy.estimated, isTrue);
       expect(result.single.card(InsightMetric.occupancyMean).primary, isNull);
       expect(result.single.card(InsightMetric.occupancyPeak).primary, isNull);
+    });
+
+    test('preserves covered seconds on estimated values', () {
+      final result = builder.build(
+        dashboard: _dashboard(
+          pastHour: _observation(12, 0, coveredSeconds: 1800, areas: [_activity(kGlobalAreaId, passBy: 42)]),
+        ),
+        customAreas: const [],
+        businessPeriods: const [],
+        now: DateTime(2026, 10, 29, 12),
+      );
+
+      final passBy = result.single.card(InsightMetric.passBy).primary!;
+      expect(passBy.estimated, isTrue);
+      expect(passBy.coveredSeconds, 1800);
     });
 
     test('applies the coverage tolerance at its boundary', () {

@@ -308,13 +308,13 @@ class LocalizationRo extends Localization {
   String get insight_appear => 'Au apărut';
 
   @override
-  String get insight_area_global => 'Imaginea camerei';
-
-  @override
   String get insight_average_completed_visit => 'Medie vizite încheiate';
 
   @override
   String get insight_average_short => 'med.';
+
+  @override
+  String get insight_based_on_minutes => 'Bazat pe %m min · Poate varia';
 
   @override
   String get insight_chart_dwell_unit => 'Durată medie la 5 min';
@@ -350,6 +350,10 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_counting_paused => 'Numărare întreruptă temporar';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Numărare întreruptă · Ultima valoare';
 
   @override
   String get insight_dashboard_title => 'Analiza traficului';

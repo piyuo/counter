@@ -310,13 +310,13 @@ class LocalizationHu extends Localization {
   String get insight_appear => 'Megjelentek';
 
   @override
-  String get insight_area_global => 'Kameranézet';
-
-  @override
   String get insight_average_completed_visit => 'Lezárt látogatások átlaga';
 
   @override
   String get insight_average_short => 'átl.';
+
+  @override
+  String get insight_based_on_minutes => '%m perc alapján · Ingadozhat';
 
   @override
   String get insight_chart_dwell_unit => 'Átl. idő / 5 perc';
@@ -352,6 +352,10 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_counting_paused => 'Számlálás szünetel';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Számlálás szünetel · Utolsó rögzített érték';
 
   @override
   String get insight_dashboard_title => 'Forgalmi elemzések';

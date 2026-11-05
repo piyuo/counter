@@ -29,6 +29,11 @@ class InsightDisplay extends ConsumerWidget {
     final appState = ref.watch(core_domain.appProvider);
     final observationStatus = ref.watch(core_domain.observationProvider).status;
     final areaDatas = ref.watch(insightAreaDataProvider);
+    void onComparisonChanged(core_domain.TrafficComparisonPeriod period) {
+      final service = ref.read(core_domain.insightServiceProvider);
+      service.setComparisonPeriod(period);
+      unawaited(service.refresh());
+    }
 
     if (appState.hasError) {
       return _DashboardMessage(icon: Icons.error_outline, message: context.l.insight_error);
@@ -43,83 +48,17 @@ class InsightDisplay extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _DisplayToolbar(
-          comparisonPeriod: dashboard.comparisonPeriod,
-          onComparisonChanged: (period) {
-            final service = ref.read(core_domain.insightServiceProvider);
-            service.setComparisonPeriod(period);
-            unawaited(service.refresh());
-          },
-        ),
         for (final areaData in areaDatas)
           AreaInsightSection(
             key: ValueKey(areaData.areaId),
             areaData: areaData,
             comparisonPeriod: dashboard.comparisonPeriod,
+            onComparisonChanged: onComparisonChanged,
             observationStatus: observationStatus,
           ),
       ],
     );
   }
-}
-
-class _DisplayToolbar extends StatelessWidget {
-  const _DisplayToolbar({required this.comparisonPeriod, required this.onComparisonChanged});
-
-  final core_domain.TrafficComparisonPeriod comparisonPeriod;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 8, 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            children: [
-              Text(
-                context.l.insight_dashboard_title,
-                style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(context.l.insight_compare_with, style: theme.textTheme.labelLarge),
-              const SizedBox(width: 8),
-              Expanded(
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<core_domain.TrafficComparisonPeriod>(
-                    value: comparisonPeriod,
-                    isDense: true,
-                    isExpanded: true,
-                    borderRadius: BorderRadius.circular(8),
-                    style: theme.textTheme.labelLarge,
-                    onChanged: (period) {
-                      if (period != null) onComparisonChanged(period);
-                    },
-                    items: [
-                      for (final period in core_domain.TrafficComparisonPeriod.values)
-                        DropdownMenuItem(value: period, child: Text(_comparisonLabel(context, period))),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _comparisonLabel(BuildContext context, core_domain.TrafficComparisonPeriod period) => switch (period) {
-    core_domain.TrafficComparisonPeriod.yesterday => context.l.insight_comparison_yesterday,
-    core_domain.TrafficComparisonPeriod.sameDayLastWeek => context.l.insight_comparison_last_week,
-    core_domain.TrafficComparisonPeriod.monthlyAverage => context.l.insight_comparison_monthly,
-    core_domain.TrafficComparisonPeriod.yearlyAverage => context.l.insight_comparison_yearly,
-  };
 }
 
 class _DashboardMessage extends StatelessWidget {

@@ -5,75 +5,7 @@ import '../model/observation.dart';
 import '../model/observation_payload.dart';
 import '../model/observation_series.dart';
 import '../state/models/interest_area.dart';
-
-enum InsightMetric {
-  passBy,
-  stagnant,
-  entry,
-  exit,
-  appear,
-  disappear,
-  occupancyMean,
-  occupancyPeak,
-  dwellTimeMean,
-  dwellTimeMax,
-}
-
-class InsightMetricValue {
-  const InsightMetricValue({required this.value, this.estimated = false});
-
-  final double value;
-  final bool estimated;
-}
-
-class InsightPeriodData {
-  const InsightPeriodData({
-    required this.period,
-    required this.status,
-    required this.primary,
-    required this.comparisonValue,
-  });
-
-  final BusinessPeriod period;
-  final BusinessPeriodStatus status;
-  final InsightMetricValue? primary;
-  final double? comparisonValue;
-}
-
-class InsightChartPoint {
-  const InsightChartPoint({required this.minuteOfDay, this.todayValue, this.comparisonValue});
-
-  final int minuteOfDay;
-  final double? todayValue;
-  final double? comparisonValue;
-}
-
-class InsightCardData {
-  const InsightCardData({
-    required this.metric,
-    required this.primary,
-    required this.comparisonValue,
-    required this.periods,
-    required this.chartPoints,
-  });
-
-  final InsightMetric metric;
-  final InsightMetricValue? primary;
-  final double? comparisonValue;
-  final List<InsightPeriodData> periods;
-  final List<InsightChartPoint> chartPoints;
-}
-
-class InsightAreaData {
-  const InsightAreaData({required this.areaId, required this.name, required this.isGlobal, required this.cards});
-
-  final int areaId;
-  final String? name;
-  final bool isGlobal;
-  final List<InsightCardData> cards;
-
-  InsightCardData card(InsightMetric metric) => cards.firstWhere((card) => card.metric == metric);
-}
+import 'insight_data_type.dart';
 
 class InsightDashboardDataBuilder {
   const InsightDashboardDataBuilder();
@@ -295,27 +227,34 @@ class InsightDashboardDataBuilder {
         return InsightMetricValue(
           value: count / coveredSeconds * 3600,
           estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
+          coveredSeconds: coveredSeconds,
         );
       case InsightMetric.occupancyMean:
         final sampled = samples.where((sample) => sample.occupancySampleCount > 0).toList();
         if (sampled.isEmpty) return null;
         final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.occupancySampleCount);
         final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.occupancySum);
-        return InsightMetricValue(value: sampleSum / sampleCount);
+        return InsightMetricValue(value: sampleSum / sampleCount, coveredSeconds: coveredSeconds);
       case InsightMetric.occupancyPeak:
         final sampled = samples.where((sample) => sample.occupancySampleCount > 0).toList();
         if (sampled.isEmpty) return null;
-        return InsightMetricValue(value: sampled.map((sample) => sample.occupancyMax).reduce(_max).toDouble());
+        return InsightMetricValue(
+          value: sampled.map((sample) => sample.occupancyMax).reduce(_max).toDouble(),
+          coveredSeconds: coveredSeconds,
+        );
       case InsightMetric.dwellTimeMean:
         final sampled = samples.where((sample) => sample.dwellSampleCount > 0).toList();
         if (sampled.isEmpty) return null;
         final sampleCount = sampled.fold<int>(0, (total, sample) => total + sample.dwellSampleCount);
         final sampleSum = sampled.fold<int>(0, (total, sample) => total + sample.dwellSumSeconds);
-        return InsightMetricValue(value: sampleSum / sampleCount);
+        return InsightMetricValue(value: sampleSum / sampleCount, coveredSeconds: coveredSeconds);
       case InsightMetric.dwellTimeMax:
         final sampled = samples.where((sample) => sample.dwellSampleCount > 0).toList();
         if (sampled.isEmpty) return null;
-        return InsightMetricValue(value: sampled.map((sample) => sample.dwellMaxSeconds).reduce(_max).toDouble());
+        return InsightMetricValue(
+          value: sampled.map((sample) => sample.dwellMaxSeconds).reduce(_max).toDouble(),
+          coveredSeconds: coveredSeconds,
+        );
     }
   }
 

@@ -308,13 +308,14 @@ class LocalizationEl extends Localization {
   String get insight_appear => 'Εμφανίστηκαν';
 
   @override
-  String get insight_area_global => 'Προβολή κάμερας';
-
-  @override
   String get insight_average_completed_visit => 'Μ.ό. ολοκληρωμένης επίσκεψης';
 
   @override
   String get insight_average_short => 'μ.ό.';
+
+  @override
+  String get insight_based_on_minutes =>
+      'Βάσει %m λεπτών · Ενδέχεται να μεταβληθεί';
 
   @override
   String get insight_chart_dwell_unit => 'Μ.ό. διάρκειας ανά 5 λεπτά';
@@ -350,6 +351,10 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_counting_paused => 'Η καταμέτρηση έχει διακοπεί προσωρινά';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Η καταμέτρηση διακόπηκε · Τελευταία καταγραφή';
 
   @override
   String get insight_dashboard_title => 'Ανάλυση κίνησης';

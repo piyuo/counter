@@ -215,7 +215,7 @@ class LocalizationHe extends Localization {
 
   @override
   String get detection_screen_stay_threshold =>
-      'קובע מתי אובייקט תורם לספירת \\שהייה\\.\\nערכים קצרים יותר\\n• סופרים שהייה מיד\\n• טובים יותר לניתוח מהיר\\nערכים ארוכים יותר\\n• מתעלמים ממעבר קצר\\n• טובים יותר למדידת תפוסה';
+      'קובע מתי אובייקט תורם לספירת \\שהייה\\\".\\nערכים קצרים יותר\\n• סופרים שהייה מיד\\n• טובים יותר לניתוח מהיר\\nערכים ארוכים יותר\\n• מתעלמים ממעבר קצר\\n• טובים יותר למדידת תפוסה\"';
 
   @override
   String get detection_screen_subtitle =>
@@ -306,13 +306,13 @@ class LocalizationHe extends Localization {
   String get insight_appear => 'הופיעו';
 
   @override
-  String get insight_area_global => 'תצוגת מצלמה';
-
-  @override
   String get insight_average_completed_visit => 'ממוצע ביקורים שהסתיימו';
 
   @override
   String get insight_average_short => 'ממוצע';
+
+  @override
+  String get insight_based_on_minutes => 'מבוסס על %m דקות · עשוי להשתנות';
 
   @override
   String get insight_chart_dwell_unit => 'משך ממוצע לכל 5 דקות';
@@ -348,6 +348,10 @@ class LocalizationHe extends Localization {
 
   @override
   String get insight_counting_paused => 'הספירה מושהית';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'הספירה מושהית · ערך אחרון שנרשם';
 
   @override
   String get insight_dashboard_title => 'ניתוח תנועה';

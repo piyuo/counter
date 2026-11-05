@@ -141,7 +141,7 @@ class LocalizationHi extends Localization {
 
   @override
   String get detection_screen_disappear_dialog =>
-      'यह तय करता है कि किसी वस्तु का पता न चलने के बाद AI उसे \\अदृश्य\\ चिह्नित करने से पहले कितनी देर प्रतीक्षा करता है।\\nछोटे मान\\n• वस्तुओं को जल्दी अदृश्य चिह्नित करते हैं\\n• तेज़ यातायात के लिए बेहतर\\n• अस्थायी रूप से छिपी वस्तुओं को गलत तरीके से अदृश्य चिह्नित कर सकते हैं\\nबड़े मान\\n• वस्तुओं को अदृश्य चिह्नित करने से पहले अधिक प्रतीक्षा करते हैं\\n• जब वस्तुएं संक्षेप में अवरुद्ध या छूट जाती हैं तो बेहतर\\n• अदृश्य होने की घटनाओं में देरी करते हैं';
+      'यह तय करता है कि किसी वस्तु का पता न चलने के बाद AI उसे \\अदृश्य\\\" चिह्नित करने से पहले कितनी देर प्रतीक्षा करता है।\\nछोटे मान\\n• वस्तुओं को जल्दी अदृश्य चिह्नित करते हैं\\n• तेज़ यातायात के लिए बेहतर\\n• अस्थायी रूप से छिपी वस्तुओं को गलत तरीके से अदृश्य चिह्नित कर सकते हैं\\nबड़े मान\\n• वस्तुओं को अदृश्य चिह्नित करने से पहले अधिक प्रतीक्षा करते हैं\\n• जब वस्तुएं संक्षेप में अवरुद्ध या छूट जाती हैं तो बेहतर\\n• अदृश्य होने की घटनाओं में देरी करते हैं\"';
 
   @override
   String get detection_screen_disappear_help =>
@@ -216,7 +216,7 @@ class LocalizationHi extends Localization {
 
   @override
   String get detection_screen_stay_threshold =>
-      'यह तय करता है कि कोई वस्तु \\Stay\\ गिनती में कब योगदान देती है।\\nछोटे मान\\n• तुरंत ठहराव गिनते हैं\\n• त्वरित विश्लेषण के लिए बेहतर\\nबड़े मान\\n• संक्षिप्त गुजरने वाले यातायात को अनदेखा करते हैं\\n• अधिभोग मापने के लिए बेहतर';
+      'यह तय करता है कि कोई वस्तु \\Stay\\\" गिनती में कब योगदान देती है।\\nछोटे मान\\n• तुरंत ठहराव गिनते हैं\\n• त्वरित विश्लेषण के लिए बेहतर\\nबड़े मान\\n• संक्षिप्त गुजरने वाले यातायात को अनदेखा करते हैं\\n• अधिभोग मापने के लिए बेहतर\"';
 
   @override
   String get detection_screen_subtitle =>
@@ -308,13 +308,13 @@ class LocalizationHi extends Localization {
   String get insight_appear => 'दिखाई दिए';
 
   @override
-  String get insight_area_global => 'कैमरा दृश्य';
-
-  @override
   String get insight_average_completed_visit => 'पूरी हुई विज़िट का औसत';
 
   @override
   String get insight_average_short => 'औसत';
+
+  @override
+  String get insight_based_on_minutes => '%m मिनट के आधार पर · बदल सकता है';
 
   @override
   String get insight_chart_dwell_unit => 'हर 5 मिनट में औसत अवधि';
@@ -350,6 +350,10 @@ class LocalizationHi extends Localization {
 
   @override
   String get insight_counting_paused => 'गिनती रुकी हुई है';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'गिनती रुकी हुई है · अंतिम दर्ज मान';
 
   @override
   String get insight_dashboard_title => 'आवागमन विश्लेषण';

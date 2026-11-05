@@ -308,14 +308,14 @@ class LocalizationFr extends Localization {
   String get insight_appear => 'Apparus';
 
   @override
-  String get insight_area_global => 'Vue de la caméra';
-
-  @override
   String get insight_average_completed_visit =>
       'Durée moy. des visites terminées';
 
   @override
   String get insight_average_short => 'moy.';
+
+  @override
+  String get insight_based_on_minutes => 'Basé sur %m min · Peut varier';
 
   @override
   String get insight_chart_dwell_unit => 'Durée moy. par 5 min';
@@ -351,6 +351,10 @@ class LocalizationFr extends Localization {
 
   @override
   String get insight_counting_paused => 'Comptage en pause';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Comptage en pause · Dernière valeur enregistrée';
 
   @override
   String get insight_dashboard_title => 'Analyse du trafic';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_l10n/shared_l10n.dart';
 
 class InsightComparisonIndicator extends StatelessWidget {
   const InsightComparisonIndicator({
@@ -8,13 +7,11 @@ class InsightComparisonIndicator extends StatelessWidget {
     required this.current,
     required this.baseline,
     required this.comparisonLabel,
-    required this.showText,
   });
 
   final double? current;
   final double? baseline;
   final String comparisonLabel;
-  final bool showText;
 
   static const double _iconSize = 15;
 
@@ -57,18 +54,6 @@ class InsightComparisonIndicator extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (showText) ...[
-          const SizedBox(width: 6),
-          Flexible(
-            child: Text(
-              context.l.insight_comparison_period(comparisonLabel),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: theme.textTheme.labelSmall?.copyWith(color: neutral),
-            ),
-          ),
-        ],
-        const SizedBox(width: 6),
         icon == null
             ? const SizedBox(width: _iconSize, height: _iconSize)
             : Icon(icon, size: _iconSize, color: trendColor),

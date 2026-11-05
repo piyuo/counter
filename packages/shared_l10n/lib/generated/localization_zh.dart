@@ -291,13 +291,13 @@ class LocalizationZh extends Localization {
   String get insight_appear => '出現';
 
   @override
-  String get insight_area_global => '攝影機畫面';
-
-  @override
   String get insight_average_completed_visit => '已結束停留的平均時間';
 
   @override
   String get insight_average_short => '平均';
+
+  @override
+  String get insight_based_on_minutes => '根據 %m 分鐘資料 · 可能波動';
 
   @override
   String get insight_chart_dwell_unit => '每 5 分鐘平均時間';
@@ -333,6 +333,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get insight_counting_paused => '計數已暫停';
+
+  @override
+  String get insight_counting_paused_last_recorded => '計數已暫停 · 最後記錄值';
 
   @override
   String get insight_dashboard_title => '人流分析';
@@ -1228,13 +1231,13 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_appear => '出现';
 
   @override
-  String get insight_area_global => '摄像头画面';
-
-  @override
   String get insight_average_completed_visit => '已结束停留的平均时长';
 
   @override
   String get insight_average_short => '平均';
+
+  @override
+  String get insight_based_on_minutes => '根据 %m 分钟数据 · 可能波动';
 
   @override
   String get insight_chart_dwell_unit => '每 5 分钟平均时长';
@@ -1270,6 +1273,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_counting_paused => '计数已暂停';
+
+  @override
+  String get insight_counting_paused_last_recorded => '计数已暂停 · 最后记录值';
 
   @override
   String get insight_dashboard_title => '客流分析';

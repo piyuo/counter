@@ -308,13 +308,13 @@ class LocalizationTr extends Localization {
   String get insight_appear => 'Göründü';
 
   @override
-  String get insight_area_global => 'Kamera Görünümü';
-
-  @override
   String get insight_average_completed_visit => 'Ort. tamamlanan ziyaret';
 
   @override
   String get insight_average_short => 'ort.';
+
+  @override
+  String get insight_based_on_minutes => '%m dk. verisine göre · Değişebilir';
 
   @override
   String get insight_chart_dwell_unit => '5 dk. başına ort. süre';
@@ -350,6 +350,10 @@ class LocalizationTr extends Localization {
 
   @override
   String get insight_counting_paused => 'Sayım duraklatıldı';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Sayım duraklatıldı · Son kaydedilen değer';
 
   @override
   String get insight_dashboard_title => 'Trafik Analizleri';

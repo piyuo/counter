@@ -300,13 +300,13 @@ class LocalizationJa extends Localization {
   String get insight_appear => '出現';
 
   @override
-  String get insight_area_global => 'カメラビュー';
-
-  @override
   String get insight_average_completed_visit => '終了した滞在の平均';
 
   @override
   String get insight_average_short => '平均';
+
+  @override
+  String get insight_based_on_minutes => '%m分の計測に基づく · 変動する場合があります';
 
   @override
   String get insight_chart_dwell_unit => '5分ごとの平均時間';
@@ -342,6 +342,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get insight_counting_paused => 'カウント一時停止';
+
+  @override
+  String get insight_counting_paused_last_recorded => 'カウント停止中 · 最後の記録';
 
   @override
   String get insight_dashboard_title => '通行分析';

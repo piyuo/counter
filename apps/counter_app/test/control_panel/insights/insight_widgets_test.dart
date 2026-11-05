@@ -1,6 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
+import 'package:counter_app/control_panel/insights/insight_comparison_period_dropdown.dart';
 import 'package:counter_app/control_panel/insights/insight_primary_metric.dart';
 import 'package:counter_app/control_panel/insights/insight_widgets.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ void main() {
             body: AreaInsightSection(
               areaData: areaData,
               comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+              onComparisonChanged: (_) {},
               observationStatus: observationStatus,
             ),
           ),
@@ -84,7 +86,10 @@ void main() {
       observationStatus: core_domain.ObservationStatus.live,
     );
     expect(find.text('Estimated'), findsOneWidget);
-    final primaryEstimateLabel = tester.element(find.byType(PrimaryMetric).first).l.insight_early_estimate;
+    final primaryContext = tester.element(find.byType(PrimaryMetric).first);
+    final primaryEstimateLabel = primaryContext.l.insight_early_estimate;
+    final basedOnMinutesLabel = primaryContext.l.insight_based_on_minutes.replaceAll('%m', '30');
+    expect(find.text(basedOnMinutesLabel), findsOneWidget);
     final primaryEstimateChip = tester.widget<Chip>(
       find.ancestor(
         of: find.descendant(of: find.byType(PrimaryMetric).first, matching: find.text(primaryEstimateLabel)),
@@ -113,6 +118,72 @@ void main() {
     expect(periodEstimateBounds.center.dy, isNot(closeTo(periodValueBounds.center.dy, 1)));
   });
 
+  testWidgets('comparison dropdown in the primary metric changes its period', (tester) async {
+    final area = const core_domain.InsightDashboardDataBuilder()
+        .build(
+          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          customAreas: const [core_domain.InterestArea(id: 37, name: 'Entrance')],
+          businessPeriods: const [],
+          now: DateTime(2026, 10, 29, 12),
+        )
+        .first;
+    var selectedPeriod = core_domain.TrafficComparisonPeriod.yesterday;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: Localization.localizationsDelegates,
+        supportedLocales: Localization.supportedLocales,
+        home: Scaffold(
+          body: StatefulBuilder(
+            builder: (context, setState) => AreaInsightSection(
+              areaData: area,
+              comparisonPeriod: selectedPeriod,
+              onComparisonChanged: (period) => setState(() => selectedPeriod = period),
+              observationStatus: core_domain.ObservationStatus.stopped,
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>), findsOneWidget);
+    final context = tester.element(find.byType(PrimaryMetric));
+    final lastWeekLabel = context.l.insight_comparison_period(context.l.insight_comparison_last_week);
+    await tester.tap(find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(lastWeekLabel).last);
+    await tester.pumpAndSettle();
+
+    expect(selectedPeriod, core_domain.TrafficComparisonPeriod.sameDayLastWeek);
+    expect(find.text(lastWeekLabel), findsOneWidget);
+  });
+
+  testWidgets('comparison period dropdown accepts a custom font size', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: Localization.localizationsDelegates,
+        supportedLocales: Localization.supportedLocales,
+        home: Scaffold(
+          body: SizedBox(
+            width: 240,
+            child: InsightComparisonPeriodDropdown(
+              value: core_domain.TrafficComparisonPeriod.yesterday,
+              onChanged: (_) {},
+              fontSize: 18,
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final dropdown = tester.widget<DropdownButton<core_domain.TrafficComparisonPeriod>>(
+      find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>),
+    );
+    expect(dropdown.style?.fontSize, 18);
+  });
+
   testWidgets('horizontal paging changes metrics without losing the area section', (tester) async {
     final areas = const core_domain.InsightDashboardDataBuilder().build(
       dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
@@ -131,11 +202,13 @@ void main() {
                 AreaInsightSection(
                   areaData: areas.first,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  onComparisonChanged: (_) {},
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
                 AreaInsightSection(
                   areaData: areas.last,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  onComparisonChanged: (_) {},
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
               ],
@@ -156,23 +229,18 @@ void main() {
     final metricChips = tester
         .widgetList<Chip>(find.descendant(of: find.byType(PrimaryMetric).first, matching: find.byType(Chip)))
         .toList();
-    expect(metricChips, hasLength(2));
+    expect(metricChips, hasLength(1));
     expect(metricChips[0].shape, isA<StadiumBorder>());
     expect(metricChips[0].side, BorderSide.none);
     expect(metricChips[0].visualDensity, const VisualDensity(horizontal: -2, vertical: -4));
     expect(metricChips[0].padding, const EdgeInsets.symmetric(horizontal: 6));
-    expect(metricChips[1].shape, metricChips[0].shape);
-    expect(metricChips[1].side, metricChips[0].side);
-    expect(metricChips[1].visualDensity, metricChips[0].visualDensity);
-    expect(metricChips[1].padding, metricChips[0].padding);
     final statusColor = insightObservationStatusColor(
       tester.element(find.byType(PrimaryMetric).first),
       core_domain.ObservationStatus.stopped,
     );
     expect(metricChips[0].backgroundColor, statusColor.withValues(alpha: 0.18));
     expect(metricChips[0].labelStyle?.color, statusColor.withValues(alpha: 0.9));
-    expect(metricChips[1].backgroundColor, Colors.yellow.withValues(alpha: 0.18));
-    expect(metricChips[1].labelStyle?.color, Colors.yellow.shade900.withValues(alpha: 0.9));
+    expect(find.text(tester.element(find.byType(PrimaryMetric).first).l.insight_counting_paused), findsNothing);
     final titleRow = find.ancestor(of: find.text('Pass-by Traffic').first, matching: find.byType(Row)).first;
     expect(find.descendant(of: titleRow, matching: find.text('Stopped')), findsNothing);
 
@@ -193,7 +261,29 @@ void main() {
     expect(find.text('Lingering'), findsOneWidget);
     expect(find.text('Pass-by Traffic'), findsOneWidget);
     expect(find.text('Entrance'), findsOneWidget);
-    expect(find.byIcon(Icons.swipe), findsNWidgets(2));
+    expect(find.byIcon(Icons.chevron_left), findsNWidgets(2));
+    expect(find.byIcon(Icons.chevron_right), findsNWidgets(2));
+
+    final firstAreaSection = find.byType(AreaInsightSection).first;
+    await tester.tap(find.descendant(of: firstAreaSection, matching: find.byIcon(Icons.chevron_left)));
+    await tester.pump();
+    final incomingPassByTitle = find.descendant(of: firstAreaSection, matching: find.text('Pass-by Traffic'));
+    final passByStartX = tester.getCenter(incomingPassByTitle).dx;
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(tester.getCenter(incomingPassByTitle).dx, greaterThan(passByStartX));
+    await tester.pumpAndSettle();
+    expect(find.descendant(of: firstAreaSection, matching: find.text('1/${areas.first.cards.length}')), findsOneWidget);
+    expect(find.descendant(of: firstAreaSection, matching: find.text('Pass-by Traffic')), findsOneWidget);
+
+    await tester.tap(find.descendant(of: firstAreaSection, matching: find.byIcon(Icons.chevron_right)));
+    await tester.pump();
+    final incomingLingeringTitle = find.descendant(of: firstAreaSection, matching: find.text('Lingering'));
+    final lingeringStartX = tester.getCenter(incomingLingeringTitle).dx;
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(tester.getCenter(incomingLingeringTitle).dx, lessThan(lingeringStartX));
+    await tester.pumpAndSettle();
+    expect(find.descendant(of: firstAreaSection, matching: find.text('2/${areas.first.cards.length}')), findsOneWidget);
+    expect(find.descendant(of: firstAreaSection, matching: find.text('Lingering')), findsOneWidget);
 
     await tester.drag(find.byType(SingleChildScrollView), const Offset(0, -900));
     await tester.pumpAndSettle();
@@ -229,6 +319,7 @@ void main() {
               child: AreaInsightSection(
                 areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                onComparisonChanged: (_) {},
                 observationStatus: core_domain.ObservationStatus.stopped,
               ),
             ),
@@ -270,6 +361,7 @@ void main() {
               child: AreaInsightSection(
                 areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                onComparisonChanged: (_) {},
                 observationStatus: core_domain.ObservationStatus.stopped,
               ),
             ),

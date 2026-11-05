@@ -307,13 +307,13 @@ class LocalizationNl extends Localization {
   String get insight_appear => 'Verschenen';
 
   @override
-  String get insight_area_global => 'Camerabeeld';
-
-  @override
   String get insight_average_completed_visit => 'Gem. afgerond bezoek';
 
   @override
   String get insight_average_short => 'gem.';
+
+  @override
+  String get insight_based_on_minutes => 'Gebaseerd op %m min · Kan schommelen';
 
   @override
   String get insight_chart_dwell_unit => 'Gem. duur per 5 min';
@@ -349,6 +349,10 @@ class LocalizationNl extends Localization {
 
   @override
   String get insight_counting_paused => 'Telling gepauzeerd';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Telling gepauzeerd · Laatste meting';
 
   @override
   String get insight_dashboard_title => 'Verkeersinzichten';

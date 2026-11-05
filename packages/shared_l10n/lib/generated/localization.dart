@@ -672,12 +672,6 @@ abstract class Localization {
   /// **'Appeared'**
   String get insight_appear;
 
-  /// No description provided for @insight_area_global.
-  ///
-  /// In en, this message translates to:
-  /// **'Camera View'**
-  String get insight_area_global;
-
   /// No description provided for @insight_average_completed_visit.
   ///
   /// In en, this message translates to:
@@ -689,6 +683,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'avg.'**
   String get insight_average_short;
+
+  /// No description provided for @insight_based_on_minutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on %m min · May fluctuate'**
+  String get insight_based_on_minutes;
 
   /// No description provided for @insight_chart_dwell_unit.
   ///
@@ -755,6 +755,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Counting paused'**
   String get insight_counting_paused;
+
+  /// No description provided for @insight_counting_paused_last_recorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Counting paused · Last recorded'**
+  String get insight_counting_paused_last_recorded;
 
   /// No description provided for @insight_dashboard_title.
   ///

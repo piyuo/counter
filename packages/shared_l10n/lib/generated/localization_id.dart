@@ -307,13 +307,13 @@ class LocalizationId extends Localization {
   String get insight_appear => 'Muncul';
 
   @override
-  String get insight_area_global => 'Tampilan kamera';
-
-  @override
   String get insight_average_completed_visit => 'Rata-rata kunjungan selesai';
 
   @override
   String get insight_average_short => 'rata-rata';
+
+  @override
+  String get insight_based_on_minutes => '%m menit pengamatan · Dapat berubah';
 
   @override
   String get insight_chart_dwell_unit => 'Rata-rata durasi per 5 menit';
@@ -349,6 +349,10 @@ class LocalizationId extends Localization {
 
   @override
   String get insight_counting_paused => 'Penghitungan dijeda';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Penghitungan dijeda · Nilai terakhir';
 
   @override
   String get insight_dashboard_title => 'Analisis Lalu Lintas';

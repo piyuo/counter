@@ -308,13 +308,14 @@ class LocalizationFa extends Localization {
   String get insight_appear => 'ظاهر شدند';
 
   @override
-  String get insight_area_global => 'نمای دوربین';
-
-  @override
   String get insight_average_completed_visit => 'میانگین بازدیدهای پایان‌یافته';
 
   @override
   String get insight_average_short => 'میانگین';
+
+  @override
+  String get insight_based_on_minutes =>
+      'بر اساس %m دقیقه · ممکن است تغییر کند';
 
   @override
   String get insight_chart_dwell_unit => 'میانگین مدت در هر ۵ دقیقه';
@@ -350,6 +351,10 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_counting_paused => 'شمارش موقتاً متوقف شده';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'شمارش متوقف شده · آخرین مقدار ثبت‌شده';
 
   @override
   String get insight_dashboard_title => 'تحلیل تردد';

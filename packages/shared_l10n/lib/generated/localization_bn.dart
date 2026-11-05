@@ -140,7 +140,7 @@ class LocalizationBn extends Localization {
 
   @override
   String get detection_screen_disappear_dialog =>
-      'একটি বস্তু আর শনাক্ত না হওয়ার পর AI কতক্ষণ অপেক্ষা করে তারপর তা \\অদৃশ্য\\ হিসেবে চিহ্নিত করে তা নির্ধারণ করে।\\nছোট মান\\n• বস্তুগুলোকে দ্রুত অদৃশ্য হিসেবে চিহ্নিত করে\\n• দ্রুত গতির চলাচলের জন্য ভালো\\n• সাময়িকভাবে ঢাকা পড়া বস্তুকে ভুলভাবে অদৃশ্য চিহ্নিত করতে পারে\\nবড় মান\\n• বস্তুকে অদৃশ্য চিহ্নিত করার আগে বেশি সময় অপেক্ষা করে\\n• বস্তু সাময়িকভাবে বাধাপ্রাপ্ত বা মিস হলে ভালো\\n• অদৃশ্য হওয়ার ঘটনা দেরিতে ঘটায়';
+      'একটি বস্তু আর শনাক্ত না হওয়ার পর AI কতক্ষণ অপেক্ষা করে তারপর তা \\অদৃশ্য\\\" হিসেবে চিহ্নিত করে তা নির্ধারণ করে।\\nছোট মান\\n• বস্তুগুলোকে দ্রুত অদৃশ্য হিসেবে চিহ্নিত করে\\n• দ্রুত গতির চলাচলের জন্য ভালো\\n• সাময়িকভাবে ঢাকা পড়া বস্তুকে ভুলভাবে অদৃশ্য চিহ্নিত করতে পারে\\nবড় মান\\n• বস্তুকে অদৃশ্য চিহ্নিত করার আগে বেশি সময় অপেক্ষা করে\\n• বস্তু সাময়িকভাবে বাধাপ্রাপ্ত বা মিস হলে ভালো\\n• অদৃশ্য হওয়ার ঘটনা দেরিতে ঘটায়\"';
 
   @override
   String get detection_screen_disappear_help =>
@@ -215,7 +215,7 @@ class LocalizationBn extends Localization {
 
   @override
   String get detection_screen_stay_threshold =>
-      'একটি বস্তু কখন \\Stay\\ গণনায় অবদান রাখে তা নির্ধারণ করে।\\nছোট মান\\n• সাথে সাথে থাকা গণনা করে\\n• দ্রুত বিশ্লেষণের জন্য ভালো\\nবড় মান\\n• সংক্ষিপ্ত পার হয়ে যাওয়া চলাচল উপেক্ষা করে\\n• দখল পরিমাপের জন্য ভালো';
+      'একটি বস্তু কখন \\Stay\\\" গণনায় অবদান রাখে তা নির্ধারণ করে।\\nছোট মান\\n• সাথে সাথে থাকা গণনা করে\\n• দ্রুত বিশ্লেষণের জন্য ভালো\\nবড় মান\\n• সংক্ষিপ্ত পার হয়ে যাওয়া চলাচল উপেক্ষা করে\\n• দখল পরিমাপের জন্য ভালো\"';
 
   @override
   String get detection_screen_subtitle =>
@@ -306,13 +306,14 @@ class LocalizationBn extends Localization {
   String get insight_appear => 'দৃশ্যমান হয়েছে';
 
   @override
-  String get insight_area_global => 'ক্যামেরার দৃশ্য';
-
-  @override
   String get insight_average_completed_visit => 'শেষ হওয়া ভিজিটের গড়';
 
   @override
   String get insight_average_short => 'গড়';
+
+  @override
+  String get insight_based_on_minutes =>
+      'গত %m মিনিটের তথ্য অনুযায়ী · পরিবর্তন হতে পারে';
 
   @override
   String get insight_chart_dwell_unit => 'প্রতি ৫ মিনিটে গড় সময়';
@@ -348,6 +349,10 @@ class LocalizationBn extends Localization {
 
   @override
   String get insight_counting_paused => 'গণনা সাময়িকভাবে বন্ধ';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'গণনা বন্ধ · সর্বশেষ রেকর্ড করা মান';
 
   @override
   String get insight_dashboard_title => 'চলাচল বিশ্লেষণ';

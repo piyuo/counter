@@ -307,13 +307,14 @@ class LocalizationMs extends Localization {
   String get insight_appear => 'Muncul';
 
   @override
-  String get insight_area_global => 'Paparan kamera';
-
-  @override
   String get insight_average_completed_visit => 'Purata lawatan selesai';
 
   @override
   String get insight_average_short => 'purata';
+
+  @override
+  String get insight_based_on_minutes =>
+      '%m min berdasarkan data · Mungkin berubah';
 
   @override
   String get insight_chart_dwell_unit => 'Purata tempoh setiap 5 min';
@@ -349,6 +350,10 @@ class LocalizationMs extends Localization {
 
   @override
   String get insight_counting_paused => 'Pengiraan dijeda';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Pengiraan dijeda · Bacaan terakhir';
 
   @override
   String get insight_dashboard_title => 'Analisis Trafik';

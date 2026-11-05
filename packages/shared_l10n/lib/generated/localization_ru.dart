@@ -306,13 +306,13 @@ class LocalizationRu extends Localization {
   String get insight_appear => 'Появились';
 
   @override
-  String get insight_area_global => 'Вид с камеры';
-
-  @override
   String get insight_average_completed_visit => 'Ср. завершённый визит';
 
   @override
   String get insight_average_short => 'ср.';
+
+  @override
+  String get insight_based_on_minutes => 'На основе %m мин · Может меняться';
 
   @override
   String get insight_chart_dwell_unit => 'Ср. длительность за 5 мин';
@@ -348,6 +348,10 @@ class LocalizationRu extends Localization {
 
   @override
   String get insight_counting_paused => 'Подсчёт приостановлен';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Подсчёт приостановлен · Последнее значение';
 
   @override
   String get insight_dashboard_title => 'Аналитика потока';

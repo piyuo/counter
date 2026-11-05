@@ -135,7 +135,7 @@ class LocalizationKo extends Localization {
 
   @override
   String get detection_screen_disappear_dialog =>
-      '객체가 더 이상 감지되지 않은 후 AI가 \\소실\\로 표시하기까지 기다리는 시간을 설정합니다.\\n짧은 값\\n• 객체를 더 빨리 소실로 표시\\n• 빠른 이동에 유리\\n• 일시적으로 가려진 객체를 잘못 소실로 표시할 수 있음\\n긴 값\\n• 소실로 표시하기 전에 더 오래 기다림\\n• 객체가 잠시 가려지거나 놓칠 때 유리\\n• 소실 이벤트가 지연됨';
+      '객체가 더 이상 감지되지 않은 후 AI가 \\소실\\\"로 표시하기까지 기다리는 시간을 설정합니다.\\n짧은 값\\n• 객체를 더 빨리 소실로 표시\\n• 빠른 이동에 유리\\n• 일시적으로 가려진 객체를 잘못 소실로 표시할 수 있음\\n긴 값\\n• 소실로 표시하기 전에 더 오래 기다림\\n• 객체가 잠시 가려지거나 놓칠 때 유리\\n• 소실 이벤트가 지연됨\"';
 
   @override
   String get detection_screen_disappear_help =>
@@ -209,7 +209,7 @@ class LocalizationKo extends Localization {
 
   @override
   String get detection_screen_stay_threshold =>
-      '객체가 언제 \\체류\\ 카운트에 반영되는지를 결정합니다.\\n짧은 값\\n• 체류를 즉시 계산\\n• 빠른 분석에 유리\\n긴 값\\n• 짧은 통과 이동은 무시\\n• 점유율 측정에 유리';
+      '객체가 언제 \\체류\\\" 카운트에 반영되는지를 결정합니다.\\n짧은 값\\n• 체류를 즉시 계산\\n• 빠른 분석에 유리\\n긴 값\\n• 짧은 통과 이동은 무시\\n• 점유율 측정에 유리\"';
 
   @override
   String get detection_screen_subtitle => 'AI가 객체를 감지하고 추적하는 방식을 조정합니다.';
@@ -298,13 +298,13 @@ class LocalizationKo extends Localization {
   String get insight_appear => '나타남';
 
   @override
-  String get insight_area_global => '카메라 화면';
-
-  @override
   String get insight_average_completed_visit => '종료된 방문 평균';
 
   @override
   String get insight_average_short => '평균';
+
+  @override
+  String get insight_based_on_minutes => '%m분 기준 · 변동 가능';
 
   @override
   String get insight_chart_dwell_unit => '5분당 평균 시간';
@@ -340,6 +340,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_counting_paused => '집계 일시 중지';
+
+  @override
+  String get insight_counting_paused_last_recorded => '집계 일시 중지 · 마지막 기록';
 
   @override
   String get insight_dashboard_title => '통행 분석';

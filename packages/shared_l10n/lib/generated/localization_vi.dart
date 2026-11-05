@@ -306,13 +306,13 @@ class LocalizationVi extends Localization {
   String get insight_appear => 'Xuất hiện';
 
   @override
-  String get insight_area_global => 'Góc nhìn camera';
-
-  @override
   String get insight_average_completed_visit => 'TB lượt ghé đã kết thúc';
 
   @override
   String get insight_average_short => 'TB';
+
+  @override
+  String get insight_based_on_minutes => 'Dựa trên %m phút · Có thể thay đổi';
 
   @override
   String get insight_chart_dwell_unit => 'TB thời lượng mỗi 5 phút';
@@ -348,6 +348,10 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_counting_paused => 'Tạm dừng đếm';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Đã tạm dừng đếm · Giá trị ghi nhận gần nhất';
 
   @override
   String get insight_dashboard_title => 'Phân tích lưu lượng';

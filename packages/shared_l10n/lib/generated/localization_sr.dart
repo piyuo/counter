@@ -307,13 +307,13 @@ class LocalizationSr extends Localization {
   String get insight_appear => 'Pojavili se';
 
   @override
-  String get insight_area_global => 'Prikaz kamere';
-
-  @override
   String get insight_average_completed_visit => 'Prosek završenih poseta';
 
   @override
   String get insight_average_short => 'pros.';
+
+  @override
+  String get insight_based_on_minutes => 'Na osnovu %m min · Može varirati';
 
   @override
   String get insight_chart_dwell_unit => 'Prosek trajanja na 5 min';
@@ -349,6 +349,10 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_counting_paused => 'Brojanje pauzirano';
+
+  @override
+  String get insight_counting_paused_last_recorded =>
+      'Brojanje pauzirano · Poslednja vrednost';
 
   @override
   String get insight_dashboard_title => 'Analiza protoka';
