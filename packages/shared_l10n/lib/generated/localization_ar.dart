@@ -321,6 +321,27 @@ class LocalizationAr extends Localization {
   String get insight_chart_event_unit => 'الأحداث كل 5 دقائق';
 
   @override
+  String get insight_chart_hourly_breakdown => 'ملخص كل ساعة';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'يعرض القيم المسجلة لكل ساعة. تُخفى الساعة الحالية غير المكتملة.';
+
+  @override
+  String get insight_chart_info_description =>
+      'يوضح كيف يتغير هذا المقياس خلال اليوم باستخدام نظام 24 ساعة. تلخص كل نقطة الساعة السابقة باستخدام البيانات المتاحة من اليوم نفسه فقط.';
+
+  @override
+  String get insight_chart_info_title => 'حول هذا الرسم البياني';
+
+  @override
+  String get insight_chart_info_units =>
+      'بالنسبة لمعدلات الحركة تعني ‎/hr لكل ساعة وتعني k ألفًا. مثلًا 1.5k/hr تعني 1500 في الساعة.';
+
+  @override
+  String get insight_chart_live_rate => 'مباشر';
+
+  @override
   String get insight_chart_occupancy_unit => 'متوسط العناصر كل 5 دقائق';
 
   @override
@@ -412,6 +433,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_stagnant => 'البقاء في المكان';
+
+  @override
+  String get insight_today => 'اليوم';
 
   @override
   String insight_today_chart(Object metric) {

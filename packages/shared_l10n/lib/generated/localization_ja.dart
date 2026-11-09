@@ -315,6 +315,27 @@ class LocalizationJa extends Localization {
   String get insight_chart_event_unit => '5分ごとのイベント数';
 
   @override
+  String get insight_chart_hourly_breakdown => '時間別の内訳';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Menampilkan nilai yang tercatat untuk setiap jam. Jam saat ini yang belum selesai disembunyikan.';
+
+  @override
+  String get insight_chart_info_description =>
+      '24時間表記で一日を通した指標の変化を示します。各点はその日の利用可能なデータから直前1時間の値をまとめたものです。';
+
+  @override
+  String get insight_chart_info_title => 'このグラフについて';
+
+  @override
+  String get insight_chart_info_units =>
+      '通行量の割合では /hr は1時間あたりを表し、k は千を表します。例えば 1.5k/hr は1時間あたり1500を意味します。';
+
+  @override
+  String get insight_chart_live_rate => 'ライブ';
+
+  @override
   String get insight_chart_occupancy_unit => '5分ごとの平均物体数';
 
   @override
@@ -405,6 +426,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get insight_stagnant => '滞留';
+
+  @override
+  String get insight_today => '今日';
 
   @override
   String insight_today_chart(Object metric) {

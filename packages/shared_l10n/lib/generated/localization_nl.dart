@@ -322,6 +322,27 @@ class LocalizationNl extends Localization {
   String get insight_chart_event_unit => 'Gebeurtenissen per 5 min';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Uitsplitsing per uur';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Menunjukkan nilai yang direkodkan bagi setiap jam. Jam semasa yang belum lengkap disembunyikan.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Toont hoe deze waarde gedurende de dag verandert in 24-uursnotatie. Elk punt vat het voorgaande uur samen op basis van beschikbare gegevens van die dag.';
+
+  @override
+  String get insight_chart_info_title => 'Over deze grafiek';
+
+  @override
+  String get insight_chart_info_units =>
+      'Bij verkeerscijfers betekent /hr per uur en k duizend. Bijvoorbeeld 1.5k/hr betekent 1500 per uur.';
+
+  @override
+  String get insight_chart_live_rate => 'Live';
+
+  @override
   String get insight_chart_occupancy_unit => 'Gem. objecten per 5 min';
 
   @override
@@ -413,6 +434,9 @@ class LocalizationNl extends Localization {
 
   @override
   String get insight_stagnant => 'Blijven hangen';
+
+  @override
+  String get insight_today => 'Vandaag';
 
   @override
   String insight_today_chart(Object metric) {

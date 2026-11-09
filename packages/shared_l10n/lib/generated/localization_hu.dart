@@ -325,6 +325,27 @@ class LocalizationHu extends Localization {
   String get insight_chart_event_unit => 'Esemény / 5 perc';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Óránkénti bontás';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'हर घंटे के दर्ज मान दिखाता है। वर्तमान अधूरा घंटा छिपा रहता है।';
+
+  @override
+  String get insight_chart_info_description =>
+      'A mutató napi változását mutatja 24 órás időformátumban. Minden pont az előző órát összegzi az adott nap rendelkezésre álló adatai alapján.';
+
+  @override
+  String get insight_chart_info_title => 'Erről a diagramról';
+
+  @override
+  String get insight_chart_info_units =>
+      'A forgalmi értékeknél a /hr óránkénti értéket jelent a k pedig ezret. Például az 1.5k/hr óránként 1500-at jelent.';
+
+  @override
+  String get insight_chart_live_rate => 'Élő';
+
+  @override
   String get insight_chart_occupancy_unit => 'Átl. objektum / 5 perc';
 
   @override
@@ -416,6 +437,9 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_stagnant => 'Időzés';
+
+  @override
+  String get insight_today => 'Ma';
 
   @override
   String insight_today_chart(Object metric) {

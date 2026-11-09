@@ -321,6 +321,27 @@ class LocalizationHe extends Localization {
   String get insight_chart_event_unit => 'אירועים לכל 5 דקות';
 
   @override
+  String get insight_chart_hourly_breakdown => 'פירוט לפי שעה';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Affiche les valeurs enregistrées pour chaque heure. L’heure actuelle incomplète est masquée.';
+
+  @override
+  String get insight_chart_info_description =>
+      'מציג כיצד המדד משתנה לאורך היום בשעון של 24 שעות. כל נקודה מסכמת את השעה הקודמת לפי הנתונים הזמינים מאותו יום בלבד.';
+
+  @override
+  String get insight_chart_info_title => 'על התרשים הזה';
+
+  @override
+  String get insight_chart_info_units =>
+      'בשיעורי התנועה ‎/hr פירושו לשעה ו-k פירושו אלף. לדוגמה 1.5k/hr פירושו 1500 לשעה.';
+
+  @override
+  String get insight_chart_live_rate => 'חי';
+
+  @override
   String get insight_chart_occupancy_unit => 'ממוצע עצמים לכל 5 דקות';
 
   @override
@@ -412,6 +433,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get insight_stagnant => 'שהייה במקום';
+
+  @override
+  String get insight_today => 'היום';
 
   @override
   String insight_today_chart(Object metric) {

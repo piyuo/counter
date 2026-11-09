@@ -323,6 +323,27 @@ class LocalizationRo extends Localization {
   String get insight_chart_event_unit => 'Evenimente la 5 min';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Defalcare orară';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Pokazuje zarejestrowane wartości dla każdej godziny. Bieżąca niepełna godzina jest ukryta.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Arată cum se schimbă această valoare pe parcursul zilei în format de 24 de ore. Fiecare punct rezumă ora anterioară folosind doar datele disponibile din aceeași zi.';
+
+  @override
+  String get insight_chart_info_title => 'Despre acest grafic';
+
+  @override
+  String get insight_chart_info_units =>
+      'Pentru ratele de trafic /hr înseamnă pe oră iar k înseamnă o mie. De exemplu 1.5k/hr înseamnă 1500 pe oră.';
+
+  @override
+  String get insight_chart_live_rate => 'Live';
+
+  @override
   String get insight_chart_occupancy_unit => 'Medie obiecte la 5 min';
 
   @override
@@ -414,6 +435,9 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_stagnant => 'Staționare';
+
+  @override
+  String get insight_today => 'Astăzi';
 
   @override
   String insight_today_chart(Object metric) {

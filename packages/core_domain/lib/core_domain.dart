@@ -1,4 +1,4 @@
-export 'aggregation/insight_dashboard_data_builder.dart';
+export 'aggregation/insight_dashboard_cache.dart';
 export 'aggregation/insight_data_type.dart';
 export 'aggregation/observation_rollup.dart';
 export 'aggregation/recent_hour_total.dart';

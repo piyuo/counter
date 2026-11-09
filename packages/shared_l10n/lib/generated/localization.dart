@@ -702,6 +702,42 @@ abstract class Localization {
   /// **'Events per 5 min'**
   String get insight_chart_event_unit;
 
+  /// No description provided for @insight_chart_hourly_breakdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Hourly breakdown'**
+  String get insight_chart_hourly_breakdown;
+
+  /// No description provided for @insight_chart_hourly_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows recorded values for each clock hour. Today\'s incomplete current hour is hidden.'**
+  String get insight_chart_hourly_info;
+
+  /// No description provided for @insight_chart_info_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows how this metric changes throughout the day using a 24-hour clock. Each point summarizes the previous hour using available observations from that day only.'**
+  String get insight_chart_info_description;
+
+  /// No description provided for @insight_chart_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'About this chart'**
+  String get insight_chart_info_title;
+
+  /// No description provided for @insight_chart_info_units.
+  ///
+  /// In en, this message translates to:
+  /// **'For traffic rates, /hr means per hour, and k means thousand. For example, 1.5k/hr means 1,500 per hour.'**
+  String get insight_chart_info_units;
+
+  /// No description provided for @insight_chart_live_rate.
+  ///
+  /// In en, this message translates to:
+  /// **'Live'**
+  String get insight_chart_live_rate;
+
   /// No description provided for @insight_chart_occupancy_unit.
   ///
   /// In en, this message translates to:
@@ -881,6 +917,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Lingering'**
   String get insight_stagnant;
+
+  /// No description provided for @insight_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get insight_today;
 
   /// No description provided for @insight_today_chart.
   ///

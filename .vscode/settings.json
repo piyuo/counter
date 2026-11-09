@@ -125,5 +125,6 @@
         "አስቀምጥ"
     ],
     "cmake.sourceDirectory": "C:/dropbox/counter/linux",
-    "cmake.ignoreCMakeListsMissing": true
+    "cmake.ignoreCMakeListsMissing": true,
+    "python.terminal.useEnvFile": true
 }

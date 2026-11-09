@@ -321,6 +321,27 @@ class LocalizationVi extends Localization {
   String get insight_chart_event_unit => 'Sự kiện mỗi 5 phút';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Phân tích theo giờ';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'แสดงค่าที่บันทึกไว้ในแต่ละชั่วโมง โดยซ่อนชั่วโมงปัจจุบันที่ยังไม่ครบ';
+
+  @override
+  String get insight_chart_info_description =>
+      'Cho biết chỉ số thay đổi trong ngày theo định dạng 24 giờ. Mỗi điểm tóm tắt một giờ trước đó dựa trên dữ liệu có sẵn của chính ngày đó.';
+
+  @override
+  String get insight_chart_info_title => 'Về biểu đồ này';
+
+  @override
+  String get insight_chart_info_units =>
+      'Đối với tốc độ lưu lượng /hr nghĩa là mỗi giờ và k nghĩa là nghìn. Ví dụ 1.5k/hr nghĩa là 1500 mỗi giờ.';
+
+  @override
+  String get insight_chart_live_rate => 'Trực tiếp';
+
+  @override
   String get insight_chart_occupancy_unit => 'TB đối tượng mỗi 5 phút';
 
   @override
@@ -412,6 +433,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_stagnant => 'Lưu lại';
+
+  @override
+  String get insight_today => 'Hôm nay';
 
   @override
   String insight_today_chart(Object metric) {

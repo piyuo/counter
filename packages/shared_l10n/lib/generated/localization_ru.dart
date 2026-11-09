@@ -321,6 +321,27 @@ class LocalizationRu extends Localization {
   String get insight_chart_event_unit => 'События за 5 мин';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Почасовая разбивка';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Mostra os valores registrados por hora. A hora atual incompleta fica oculta.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Показывает изменение показателя в течение дня в 24-часовом формате. Каждая точка обобщает предыдущий час по доступным данным только за этот день.';
+
+  @override
+  String get insight_chart_info_title => 'Об этом графике';
+
+  @override
+  String get insight_chart_info_units =>
+      'Для показателей потока /hr означает в час а k означает тысячу. Например 1.5k/hr означает 1500 в час.';
+
+  @override
+  String get insight_chart_live_rate => 'В реальном времени';
+
+  @override
   String get insight_chart_occupancy_unit => 'Ср. объектов за 5 мин';
 
   @override
@@ -412,6 +433,9 @@ class LocalizationRu extends Localization {
 
   @override
   String get insight_stagnant => 'Задержка';
+
+  @override
+  String get insight_today => 'Сегодня';
 
   @override
   String insight_today_chart(Object metric) {

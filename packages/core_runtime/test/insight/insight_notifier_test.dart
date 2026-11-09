@@ -257,12 +257,16 @@ void main() {
     expect(notifier.recentHourTotal()?.frameCount, 13);
     expect(notifier.recentHourTotal()?.coveredSeconds, 3420);
     expect(notifier.state.recentHourObservation?.frameCount, 13);
+    final todaySeries = notifier.state.todaySeries;
+    final comparisonSeries = notifier.state.comparisonSeries;
 
     final updatedObservation = liveObservation.copyWith(frameCount: 3);
     liveNotifier.emit(updatedObservation);
     notifier.onObservationChanged();
 
     expect(notifier.state.recentHourObservation?.frameCount, 14);
+    expect(identical(notifier.state.todaySeries, todaySeries), isTrue);
+    expect(identical(notifier.state.comparisonSeries, comparisonSeries), isTrue);
   });
 
   test('recentHourTotal advances slots at rollover without losing or double counting the finalized slot', () async {

@@ -324,6 +324,27 @@ class LocalizationFa extends Localization {
   String get insight_chart_event_unit => 'رویداد در هر ۵ دقیقه';
 
   @override
+  String get insight_chart_hourly_breakdown => 'نمای کلی ساعتی';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Muestra los valores registrados de cada hora. Se oculta la hora actual incompleta.';
+
+  @override
+  String get insight_chart_info_description =>
+      'تغییرات این شاخص را در طول روز با ساعت ۲۴ ساعته نشان می‌دهد. هر نقطه ساعت گذشته را فقط بر اساس داده‌های موجود همان روز خلاصه می‌کند.';
+
+  @override
+  String get insight_chart_info_title => 'درباره این نمودار';
+
+  @override
+  String get insight_chart_info_units =>
+      'در نرخ‌های تردد ‎/hr یعنی در ساعت و k یعنی هزار. برای مثال 1.5k/hr یعنی ۱۵۰۰ در ساعت.';
+
+  @override
+  String get insight_chart_live_rate => 'زنده';
+
+  @override
   String get insight_chart_occupancy_unit => 'میانگین اشیا در هر ۵ دقیقه';
 
   @override
@@ -415,6 +436,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_stagnant => 'ماندن در محل';
+
+  @override
+  String get insight_today => 'امروز';
 
   @override
   String insight_today_chart(Object metric) {

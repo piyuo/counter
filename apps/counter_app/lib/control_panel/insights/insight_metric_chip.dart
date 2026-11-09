@@ -24,7 +24,7 @@ class InsightMetricChip extends StatelessWidget {
     final theme = Theme.of(context);
     return Chip(
       visualDensity: const VisualDensity(horizontal: -2, vertical: -4),
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       labelPadding: const EdgeInsets.symmetric(horizontal: 4),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       shape: const StadiumBorder(),

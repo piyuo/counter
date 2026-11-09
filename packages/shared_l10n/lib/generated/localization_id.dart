@@ -322,6 +322,27 @@ class LocalizationId extends Localization {
   String get insight_chart_event_unit => 'Kejadian per 5 menit';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Rincian per jam';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Az óránként rögzített értékeket mutatja. Az aktuális';
+
+  @override
+  String get insight_chart_info_description =>
+      'Menampilkan perubahan metrik ini sepanjang hari dalam format 24 jam. Setiap titik merangkum satu jam sebelumnya berdasarkan data yang tersedia pada hari itu saja.';
+
+  @override
+  String get insight_chart_info_title => 'Tentang grafik ini';
+
+  @override
+  String get insight_chart_info_units =>
+      'Untuk laju lalu lintas /hr berarti per jam dan k berarti ribu. Contohnya 1.5k/hr berarti 1500 per jam.';
+
+  @override
+  String get insight_chart_live_rate => 'Langsung';
+
+  @override
   String get insight_chart_occupancy_unit => 'Rata-rata objek per 5 menit';
 
   @override
@@ -413,6 +434,9 @@ class LocalizationId extends Localization {
 
   @override
   String get insight_stagnant => 'Berdiam di tempat';
+
+  @override
+  String get insight_today => 'Hari ini';
 
   @override
   String insight_today_chart(Object metric) {

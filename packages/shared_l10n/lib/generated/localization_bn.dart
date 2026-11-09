@@ -322,6 +322,27 @@ class LocalizationBn extends Localization {
   String get insight_chart_event_unit => 'প্রতি ৫ মিনিটে ঘটনা';
 
   @override
+  String get insight_chart_hourly_breakdown => 'ঘণ্টাভিত্তিক বিবরণ';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'প্রতি ঘন্টার রেকর্ড করা মান দেখায়। বর্তমান অসম্পূর্ণ ঘণ্টাটি লুকানো থাকে。';
+
+  @override
+  String get insight_chart_info_description =>
+      '২৪ ঘণ্টার সময় অনুযায়ী সারাদিনে এই মেট্রিকের পরিবর্তন দেখায়। প্রতিটি বিন্দু শুধু সেই দিনের উপলব্ধ তথ্য দিয়ে আগের এক ঘণ্টার সারাংশ দেখায়.';
+
+  @override
+  String get insight_chart_info_title => 'এই চার্ট সম্পর্কে';
+
+  @override
+  String get insight_chart_info_units =>
+      'ট্রাফিকের হারে /hr মানে প্রতি ঘণ্টায় এবং k মানে হাজার। যেমন 1.5k/hr মানে ঘণ্টায় 1500।';
+
+  @override
+  String get insight_chart_live_rate => 'লাইভ';
+
+  @override
   String get insight_chart_occupancy_unit => 'প্রতি ৫ মিনিটে গড় বস্তু';
 
   @override
@@ -413,6 +434,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get insight_stagnant => 'অবস্থান করা';
+
+  @override
+  String get insight_today => 'আজ';
 
   @override
   String insight_today_chart(Object metric) {

@@ -322,6 +322,27 @@ class LocalizationSr extends Localization {
   String get insight_chart_event_unit => 'Događaji na 5 min';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Satni pregled';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Afișează valorile înregistrate pentru fiecare oră. Ora curentă incompletă este ascunsă.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Prikazuje promene ove vrednosti tokom dana u 24-časovnom formatu. Svaka tačka sažima prethodni sat na osnovu dostupnih podataka samo za taj dan.';
+
+  @override
+  String get insight_chart_info_title => 'O ovom grafikonu';
+
+  @override
+  String get insight_chart_info_units =>
+      'Za stope saobraćaja /hr znači po satu a k znači hiljadu. Na primer 1.5k/hr znači 1500 po satu.';
+
+  @override
+  String get insight_chart_live_rate => 'Uživo';
+
+  @override
   String get insight_chart_occupancy_unit => 'Prosek objekata na 5 min';
 
   @override
@@ -413,6 +434,9 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_stagnant => 'Zadržavanje';
+
+  @override
+  String get insight_today => 'Danas';
 
   @override
   String insight_today_chart(Object metric) {

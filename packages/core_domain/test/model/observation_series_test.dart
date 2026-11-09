@@ -42,6 +42,23 @@ void main() {
 
       expect(iterated, [atNine, atTen]);
     });
+
+    test('exposes immutable contents and returns a new series on mutation', () {
+      final atTen = _observation(hour: 10, minute: 0, frameCount: 1);
+      final atTenFive = _observation(hour: 10, minute: 5, frameCount: 2);
+      final series = ObservationSeries.fromObservations([atTen]);
+
+      expect(() => series.items.add(atTenFive), throwsUnsupportedError);
+
+      final updated = series.add(atTenFive);
+      expect(identical(updated, series), isFalse);
+      expect(series.length, 1);
+      expect(updated.length, 2);
+    });
+
+    test('uses a singleton empty series', () {
+      expect(identical(ObservationSeries.empty, ObservationSeries.empty), isTrue);
+    });
   });
 
   group('ObservationSeries.find', () {

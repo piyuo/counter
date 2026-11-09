@@ -323,6 +323,26 @@ class LocalizationEs extends Localization {
   String get insight_chart_event_unit => 'Eventos cada 5 min';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Desglose por hora';
+
+  @override
+  String get insight_chart_hourly_info => ' μη ολοκληρωμένη ώρα αποκρύπτεται.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Muestra cómo cambia esta métrica durante el día en formato de 24 horas. Cada punto resume la hora anterior con los datos disponibles de ese mismo día.';
+
+  @override
+  String get insight_chart_info_title => 'Acerca de este gráfico';
+
+  @override
+  String get insight_chart_info_units =>
+      'En las tasas de tráfico /hr significa por hora y k significa mil. Por ejemplo 1.5k/hr equivale a 1500 por hora.';
+
+  @override
+  String get insight_chart_live_rate => 'En vivo';
+
+  @override
   String get insight_chart_occupancy_unit => 'Prom. de objetos cada 5 min';
 
   @override
@@ -414,6 +434,9 @@ class LocalizationEs extends Localization {
 
   @override
   String get insight_stagnant => 'Permanencia';
+
+  @override
+  String get insight_today => 'Hoy';
 
   @override
   String insight_today_chart(Object metric) {

@@ -28,8 +28,8 @@ class PrimaryMetric extends StatelessWidget {
     final theme = Theme.of(context);
     final metricColor = insightObservationStatusColor(context, observationStatus);
     final value = data.primary;
-    final number = value == null ? '—' : _formatPrimaryNumber(context, data.metric, value.value);
-    final unit = value == null ? '' : _primaryUnit(context, data.metric);
+    final number = value == null ? '—' : formatInsightPrimaryNumber(context, value.value, value.unit);
+    final unit = value == null ? '' : _primaryUnit(context, value.unit);
 
     String primaryCaption() {
       if (observationStatus != core_domain.ObservationStatus.live) {
@@ -134,21 +134,25 @@ class _ObservationStatusChip extends StatelessWidget {
   }
 }
 
-String _formatPrimaryNumber(BuildContext context, core_domain.InsightMetric metric, double value) {
+String formatInsightPrimaryNumber(BuildContext context, double value, core_domain.InsightMetricValueUnit unit) {
   final locale = Localizations.localeOf(context).toString();
-  return switch (metric) {
-    core_domain.InsightMetric.dwellTimeMean ||
-    core_domain.InsightMetric.dwellTimeMax => formatCompactDuration(context.l, value.round()),
-    core_domain.InsightMetric.occupancyMean ||
-    core_domain.InsightMetric.occupancyPeak => NumberFormat('0.#', locale).format(value),
-    _ => NumberFormat(value >= 10 ? '#,##0' : '0.#', locale).format(value),
+  return switch (unit) {
+    core_domain.InsightMetricValueUnit.seconds => formatCompactDuration(context.l, value.round()),
+    core_domain.InsightMetricValueUnit.minutes => formatCompactDuration(context.l, (value * 60).round()),
+    core_domain.InsightMetricValueUnit.objects => NumberFormat('0.#', locale).format(value),
+    core_domain.InsightMetricValueUnit.count || core_domain.InsightMetricValueUnit.countPerHour => NumberFormat(
+      value >= 10 ? '#,##0' : '0.#',
+      locale,
+    ).format(value),
   };
 }
 
-String _primaryUnit(BuildContext context, core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.occupancyMean || core_domain.InsightMetric.occupancyPeak => context.l.insight_objects_unit,
-  core_domain.InsightMetric.dwellTimeMean || core_domain.InsightMetric.dwellTimeMax => '',
-  _ => context.l.insight_tracks_per_hour,
+String _primaryUnit(BuildContext context, core_domain.InsightMetricValueUnit unit) => switch (unit) {
+  core_domain.InsightMetricValueUnit.objects => context.l.insight_objects_unit,
+  core_domain.InsightMetricValueUnit.countPerHour => context.l.insight_tracks_per_hour,
+  core_domain.InsightMetricValueUnit.count ||
+  core_domain.InsightMetricValueUnit.seconds ||
+  core_domain.InsightMetricValueUnit.minutes => '',
 };
 
 Color insightObservationStatusColor(BuildContext context, core_domain.ObservationStatus status) => switch (status) {

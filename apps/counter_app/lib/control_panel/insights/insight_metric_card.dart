@@ -1,8 +1,8 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:counter_app/control_panel/insights/business_period_row.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import 'business_period_row.dart';
 import 'insight_chart.dart';
 import 'insight_primary_metric.dart';
 import 'insight_utils.dart';
@@ -66,6 +66,7 @@ class InsightMetricCard extends StatelessWidget {
               metricLabel: title,
               comparisonLabel: comparisonLabel,
               height: chartHeight.toDouble(),
+              showLiveMarker: observationStatus == core_domain.ObservationStatus.live,
             ),
           ],
         ),

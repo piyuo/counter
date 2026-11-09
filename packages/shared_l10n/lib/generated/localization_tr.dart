@@ -323,6 +323,27 @@ class LocalizationTr extends Localization {
   String get insight_chart_event_unit => '5 dk. başına olay';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Saatlik döküm';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Prikazuje zabeležene vrednosti za svaki sat. Tekući';
+
+  @override
+  String get insight_chart_info_description =>
+      'Bu ölçümün gün boyunca 24 saatlik biçimde nasıl değiştiğini gösterir. Her nokta yalnızca aynı günün mevcut verileriyle önceki bir saati özetler.';
+
+  @override
+  String get insight_chart_info_title => 'Bu grafik hakkında';
+
+  @override
+  String get insight_chart_info_units =>
+      'Trafik oranlarında /hr saat başına anlamına gelir ve k bin demektir. Örneğin 1.5k/hr saatte 1500 anlamına gelir.';
+
+  @override
+  String get insight_chart_live_rate => 'Canlı';
+
+  @override
   String get insight_chart_occupancy_unit => '5 dk. başına ort. nesne';
 
   @override
@@ -414,6 +435,9 @@ class LocalizationTr extends Localization {
 
   @override
   String get insight_stagnant => 'Oyalanma';
+
+  @override
+  String get insight_today => 'Bugün';
 
   @override
   String insight_today_chart(Object metric) {

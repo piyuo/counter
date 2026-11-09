@@ -324,6 +324,27 @@ class LocalizationFr extends Localization {
   String get insight_chart_event_unit => 'Événements par 5 min';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Répartition horaire';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'مقادیر ثبت‌شده برای هر ساعت را نشان می‌دهد. ساعت جاریِ ناتمام پنهان است.';
+
+  @override
+  String get insight_chart_info_description =>
+      'Montre l’évolution de cette mesure au cours de la journée au format 24 heures. Chaque point résume l’heure précédente à partir des données disponibles du même jour.';
+
+  @override
+  String get insight_chart_info_title => 'À propos de ce graphique';
+
+  @override
+  String get insight_chart_info_units =>
+      'Pour les taux de passage /hr signifie par heure et k signifie mille. Par exemple 1.5k/hr correspond à 1500 par heure.';
+
+  @override
+  String get insight_chart_live_rate => 'En direct';
+
+  @override
   String get insight_chart_occupancy_unit => 'Objets moy. par 5 min';
 
   @override
@@ -415,6 +436,9 @@ class LocalizationFr extends Localization {
 
   @override
   String get insight_stagnant => 'Présence prolongée';
+
+  @override
+  String get insight_today => 'Aujourd’hui';
 
   @override
   String insight_today_chart(Object metric) {

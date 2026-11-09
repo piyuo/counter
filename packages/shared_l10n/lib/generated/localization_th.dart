@@ -323,6 +323,27 @@ class LocalizationTh extends Localization {
   String get insight_chart_event_unit => 'เหตุการณ์ต่อ 5 นาที';
 
   @override
+  String get insight_chart_hourly_breakdown => 'สรุปแยกตามชั่วโมง';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Показывает записанные значения за каждый час. Текущий незавершённый час скрыт.';
+
+  @override
+  String get insight_chart_info_description =>
+      'แสดงการเปลี่ยนแปลงของค่านี้ตลอดวันในรูปแบบเวลา 24 ชั่วโมง แต่ละจุดสรุปข้อมูลย้อนหลังหนึ่งชั่วโมงจากข้อมูลที่มีในวันเดียวกันเท่านั้น';
+
+  @override
+  String get insight_chart_info_title => 'เกี่ยวกับกราฟนี้';
+
+  @override
+  String get insight_chart_info_units =>
+      'สำหรับอัตราการสัญจร /hr หมายถึงต่อชั่วโมง และ k หมายถึงพัน เช่น 1.5k/hr หมายถึง 1500 ต่อชั่วโมง';
+
+  @override
+  String get insight_chart_live_rate => 'สด';
+
+  @override
   String get insight_chart_occupancy_unit => 'วัตถุเฉลี่ยต่อ 5 นาที';
 
   @override
@@ -414,6 +435,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_stagnant => 'การหยุดอยู่';
+
+  @override
+  String get insight_today => 'วันนี้';
 
   @override
   String insight_today_chart(Object metric) {

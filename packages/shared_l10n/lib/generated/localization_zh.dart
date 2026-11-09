@@ -306,6 +306,26 @@ class LocalizationZh extends Localization {
   String get insight_chart_event_unit => '每 5 分鐘事件數';
 
   @override
+  String get insight_chart_hourly_breakdown => '每小時概覽';
+
+  @override
+  String get insight_chart_hourly_info => '顯示每個時鐘小時的已記錄數值。當前尚未完成的小時會隱藏。';
+
+  @override
+  String get insight_chart_info_description =>
+      '以24小時制顯示這項指標全天的變化。每個資料點根據當天可用的觀測資料彙總過去一小時的數值。';
+
+  @override
+  String get insight_chart_info_title => '關於此圖表';
+
+  @override
+  String get insight_chart_info_units =>
+      '對於流量速率，/hr 表示每小時，k 表示千。例如 1.5k/hr 代表每小時 1500。';
+
+  @override
+  String get insight_chart_live_rate => '即時';
+
+  @override
   String get insight_chart_occupancy_unit => '每 5 分鐘平均物件數';
 
   @override
@@ -396,6 +416,9 @@ class LocalizationZh extends Localization {
 
   @override
   String get insight_stagnant => '停留';
+
+  @override
+  String get insight_today => '今日';
 
   @override
   String insight_today_chart(Object metric) {
@@ -1246,6 +1269,27 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_chart_event_unit => '每 5 分钟事件数';
 
   @override
+  String get insight_chart_hourly_breakdown => '每小时明细';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Her saat için kaydedilen değerleri gösterir. İçinde bulunulan tamamlanmamış saat gizlenir.';
+
+  @override
+  String get insight_chart_info_description =>
+      '以24小时制显示这项指标全天的变化。每个数据点根据当天可用的观测数据汇总过去一小时的数值。';
+
+  @override
+  String get insight_chart_info_title => '关于此图表';
+
+  @override
+  String get insight_chart_info_units =>
+      '对于流量速率，/hr 表示每小时，k 表示千。例如 1.5k/hr 代表每小时 1500。';
+
+  @override
+  String get insight_chart_live_rate => '实时';
+
+  @override
   String get insight_chart_occupancy_unit => '每 5 分钟平均物体数';
 
   @override
@@ -1336,6 +1380,9 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_stagnant => '停留';
+
+  @override
+  String get insight_today => '今日';
 
   @override
   String insight_today_chart(Object metric) {

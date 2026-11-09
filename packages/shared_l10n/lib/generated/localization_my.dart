@@ -325,6 +325,26 @@ class LocalizationMy extends Localization {
   String get insight_chart_event_unit => '၅ မိနစ်လျှင် ဖြစ်ရပ်များ';
 
   @override
+  String get insight_chart_hourly_breakdown => 'နာရီအလိုက် အနှစ်ချုပ်';
+
+  @override
+  String get insight_chart_hourly_info => '시간별 기록값을 표시합니다. 현재 진행 중인 시간은 숨겨집니다.';
+
+  @override
+  String get insight_chart_info_description =>
+      '၂၄ နာရီစနစ်ဖြင့် တစ်နေ့တာအတွင်း ဤတိုင်းတာချက်၏ ပြောင်းလဲမှုကို ပြသသည်။ အမှတ်တစ်ခုစီသည် ထိုနေ့၏ ရရှိနိုင်သောဒေတာဖြင့် ပြီးခဲ့သည့် တစ်နာရီကို အကျဉ်းချုပ်ဖော်ပြသည်။';
+
+  @override
+  String get insight_chart_info_title => 'ဤဇယားအကြောင်း';
+
+  @override
+  String get insight_chart_info_units =>
+      'ယာဉ်သွားလာမှုနှုန်းတွင် /hr သည် တစ်နာရီလျှင်ဟု အဓိပ္ပာယ်ရပြီး k သည် တစ်ထောင်ကို ဆိုလိုသည်။ ဥပမာ 1.5k/hr သည် တစ်နာရီလျှင် 1500 ဖြစ်သည်။';
+
+  @override
+  String get insight_chart_live_rate => 'တိုက်ရိုက်';
+
+  @override
   String get insight_chart_occupancy_unit => '၅ မိနစ်လျှင် ပျမ်းမျှ အရာဝတ္ထု';
 
   @override
@@ -416,6 +436,9 @@ class LocalizationMy extends Localization {
 
   @override
   String get insight_stagnant => 'နေရာတွင် ရှိနေခြင်း';
+
+  @override
+  String get insight_today => 'ယနေ့';
 
   @override
   String insight_today_chart(Object metric) {

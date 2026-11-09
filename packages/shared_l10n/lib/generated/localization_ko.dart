@@ -313,6 +313,27 @@ class LocalizationKo extends Localization {
   String get insight_chart_event_unit => '5분당 이벤트';
 
   @override
+  String get insight_chart_hourly_breakdown => '시간별 분석';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Mostra i valori registrati per ogni ora. L\'ora corrente non completata è nascosta.';
+
+  @override
+  String get insight_chart_info_description =>
+      '24시간 형식으로 하루 동안 지표가 어떻게 변하는지 보여줍니다. 각 지점은 해당 날짜의 사용 가능한 데이터만으로 직전 1시간을 요약합니다.';
+
+  @override
+  String get insight_chart_info_title => '이 차트 정보';
+
+  @override
+  String get insight_chart_info_units =>
+      '통행량 비율에서 /hr는 시간당을 뜻하고 k는 천을 뜻합니다. 예를 들어 1.5k/hr는 시간당 1500을 의미합니다.';
+
+  @override
+  String get insight_chart_live_rate => '실시간';
+
+  @override
   String get insight_chart_occupancy_unit => '5분당 평균 객체 수';
 
   @override
@@ -403,6 +424,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_stagnant => '머무름';
+
+  @override
+  String get insight_today => '오늘';
 
   @override
   String insight_today_chart(Object metric) {

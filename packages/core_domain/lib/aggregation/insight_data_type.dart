@@ -13,10 +13,13 @@ enum InsightMetric {
   dwellTimeMax,
 }
 
+enum InsightMetricValueUnit { count, countPerHour, objects, seconds, minutes }
+
 class InsightMetricValue {
-  const InsightMetricValue({required this.value, this.estimated = false, this.coveredSeconds = 0});
+  const InsightMetricValue({required this.value, required this.unit, this.estimated = false, this.coveredSeconds = 0});
 
   final double value;
+  final InsightMetricValueUnit unit;
   final bool estimated;
   final int coveredSeconds;
 }
@@ -36,11 +39,34 @@ class InsightPeriodData {
 }
 
 class InsightChartPoint {
-  const InsightChartPoint({required this.minuteOfDay, this.todayValue, this.comparisonValue});
+  const InsightChartPoint({
+    required this.minuteOfDay,
+    this.todayValue,
+    this.comparisonValue,
+    this.todayCoveredSeconds = 0,
+    this.comparisonCoveredSeconds = 0,
+    this.todayEstimated = false,
+    this.comparisonEstimated = false,
+  });
 
   final int minuteOfDay;
   final double? todayValue;
   final double? comparisonValue;
+  final int todayCoveredSeconds;
+  final int comparisonCoveredSeconds;
+  final bool todayEstimated;
+  final bool comparisonEstimated;
+}
+
+class InsightAreaData {
+  const InsightAreaData({required this.areaId, required this.name, required this.isGlobal, required this.cards});
+
+  final int areaId;
+  final String? name;
+  final bool isGlobal;
+  final List<InsightCardData> cards;
+
+  InsightCardData card(InsightMetric metric) => cards.firstWhere((card) => card.metric == metric);
 }
 
 class InsightCardData {
@@ -57,15 +83,4 @@ class InsightCardData {
   final double? comparisonValue;
   final List<InsightPeriodData> periods;
   final List<InsightChartPoint> chartPoints;
-}
-
-class InsightAreaData {
-  const InsightAreaData({required this.areaId, required this.name, required this.isGlobal, required this.cards});
-
-  final int areaId;
-  final String? name;
-  final bool isGlobal;
-  final List<InsightCardData> cards;
-
-  InsightCardData card(InsightMetric metric) => cards.firstWhere((card) => card.metric == metric);
 }

@@ -37,18 +37,12 @@ class BusinessPeriodRow extends StatelessWidget {
     final hasComparison = periodData.comparisonValue != null;
     final comparisonLabel = insightComparisonPeriodLabel(context, comparisonPeriod);
 
-    Widget comparison;
-    if (!hasComparison) {
-      // no comparison available
-      comparison = Expanded(
-        child: Text('-', textAlign: TextAlign.end, style: theme.textTheme.bodySmall),
-      );
-    } else if (value == null) {
-      final comparisonParts = _formatPeriodMetricParts(context, metric, comparisonValue!);
-      final fontColor = Colors.grey;
-      comparison = Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
+    List<Widget> buildComparison() {
+      if (value == null) {
+        final comparisonParts = _formatPeriodMetricParts(context, metric, comparisonValue!);
+        final fontColor = Colors.grey;
+        return [
+          const Spacer(),
           Text(comparisonLabel, style: TextStyle(color: fontColor, fontSize: 12)),
           const SizedBox(width: 6),
           Flexible(
@@ -75,36 +69,22 @@ class BusinessPeriodRow extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-        ],
-      );
-    } else {
-      // can be compared
-      comparison = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: InsightComparisonPeriodDropdown(
-              value: comparisonPeriod,
-              onChanged: onComparisonChanged,
-              fontSize: 12,
-            ),
-          ),
-          const SizedBox(width: 6),
-          InsightComparisonIndicator(
-            current: value.value,
-            baseline: periodData.comparisonValue,
-            comparisonLabel: comparisonLabel,
-          ),
-        ],
-      );
+        ];
+      }
+      //has value
+      return [
+        Flexible(
+          child: InsightComparisonPeriodDropdown(value: comparisonPeriod, onChanged: onComparisonChanged, fontSize: 12),
+        ),
+        const SizedBox(width: 6),
+        InsightComparisonIndicator(
+          current: value.value,
+          baseline: periodData.comparisonValue,
+          comparisonLabel: comparisonLabel,
+        ),
+      ];
     }
-    comparison = Expanded(
-      child: Text(
-        '-',
-        textAlign: TextAlign.end,
-        style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
-      ),
-    );
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
@@ -140,7 +120,7 @@ class BusinessPeriodRow extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               Text(
-                isUpcoming || value == null ? '—' : _formatPeriodMetric(context, metric, value.value),
+                isUpcoming || value == null ? '—' : _formatPeriodMetricValue(context, metric, value),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.end,
@@ -154,16 +134,20 @@ class BusinessPeriodRow extends StatelessWidget {
           // Row 2: time range (left), comparison (right)
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                timeRange,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+              Expanded(
+                child: Text(
+                  timeRange,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                ),
               ),
 
               const SizedBox(width: 8),
-              Flexible(child: comparison),
+              if (!hasComparison) Text('-', textAlign: TextAlign.end, style: theme.textTheme.bodySmall),
+              if (hasComparison) ...buildComparison(),
             ],
           ),
         ],
@@ -172,8 +156,17 @@ class BusinessPeriodRow extends StatelessWidget {
   }
 }
 
-String _formatPeriodMetric(BuildContext context, core_domain.InsightMetric metric, double value) {
-  final parts = _formatPeriodMetricParts(context, metric, value);
+String _formatPeriodMetricValue(
+  BuildContext context,
+  core_domain.InsightMetric metric,
+  core_domain.InsightMetricValue value,
+) {
+  final normalizedValue = switch (value.unit) {
+    core_domain.InsightMetricValueUnit.seconds => value.value,
+    core_domain.InsightMetricValueUnit.minutes => value.value * 60,
+    _ => value.value,
+  };
+  final parts = _formatPeriodMetricParts(context, metric, normalizedValue);
   return parts.unit.isEmpty ? parts.number : '${parts.number} ${parts.unit}';
 }
 

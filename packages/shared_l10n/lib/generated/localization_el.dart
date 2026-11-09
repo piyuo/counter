@@ -324,6 +324,27 @@ class LocalizationEl extends Localization {
   String get insight_chart_event_unit => 'Συμβάντα ανά 5 λεπτά';
 
   @override
+  String get insight_chart_hourly_breakdown => 'Ωριαία ανάλυση';
+
+  @override
+  String get insight_chart_hourly_info =>
+      'Εμφανίζει τις καταγεγραμμένες τιμές ανά ώρα. Η τρέχουσα';
+
+  @override
+  String get insight_chart_info_description =>
+      'Δείχνει πώς αλλάζει αυτή η μέτρηση μέσα στην ημέρα σε 24ωρη μορφή. Κάθε σημείο συνοψίζει την προηγούμενη ώρα με βάση τα διαθέσιμα δεδομένα της ίδιας ημέρας.';
+
+  @override
+  String get insight_chart_info_title => 'Σχετικά με το γράφημα';
+
+  @override
+  String get insight_chart_info_units =>
+      'Στους ρυθμούς κυκλοφορίας το /hr σημαίνει ανά ώρα και το k σημαίνει χίλια. Για παράδειγμα 1.5k/hr σημαίνει 1500 ανά ώρα.';
+
+  @override
+  String get insight_chart_live_rate => 'Ζωντανά';
+
+  @override
   String get insight_chart_occupancy_unit => 'Μ.ό. αντικειμένων ανά 5 λεπτά';
 
   @override
@@ -415,6 +436,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_stagnant => 'Παραμονή';
+
+  @override
+  String get insight_today => 'Σήμερα';
 
   @override
   String insight_today_chart(Object metric) {
