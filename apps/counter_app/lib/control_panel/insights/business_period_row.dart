@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/format_compact_duration.dart';
+import 'dashboard_chip.dart';
 import 'insight_comparison_period_dropdown.dart';
-import 'insight_metric_chip.dart';
 
 class BusinessPeriodRow extends StatelessWidget {
   const BusinessPeriodRow({
@@ -108,12 +108,12 @@ class BusinessPeriodRow extends StatelessWidget {
                     if (periodData.status == core_domain.BusinessPeriodStatus.inProgress)
                       Padding(
                         padding: const EdgeInsets.only(left: 6),
-                        child: InsightMetricChip.blue(label: context.l.insight_period_in_progress),
+                        child: DashboardChip.blue(label: context.l.insight_period_in_progress),
                       ),
                     if (value != null && value.estimated)
                       Padding(
                         padding: const EdgeInsets.only(left: 6),
-                        child: InsightMetricChip.yellow(label: context.l.insight_estimated),
+                        child: DashboardChip.yellow(label: context.l.insight_estimated),
                       ),
                   ],
                 ),

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class InsightMetricChip extends StatelessWidget {
-  const InsightMetricChip({super.key, required this.label, this.textColor, this.backgroundColor});
+class DashboardChip extends StatelessWidget {
+  const DashboardChip({super.key, required this.label, this.textColor, this.backgroundColor});
 
-  factory InsightMetricChip.yellow({required String label}) => InsightMetricChip(
+  factory DashboardChip.yellow({required String label}) => DashboardChip(
     label: label,
     textColor: Colors.yellow.shade900.withValues(alpha: 0.9),
     backgroundColor: Colors.yellow.withValues(alpha: 0.18),
   );
 
-  factory InsightMetricChip.blue({required String label}) => InsightMetricChip(
+  factory DashboardChip.blue({required String label}) => DashboardChip(
     label: label,
     textColor: Colors.blue.shade100.withValues(alpha: 0.9),
     backgroundColor: Colors.blue.withValues(alpha: 0.3),

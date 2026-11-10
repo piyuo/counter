@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/animated_swipe_pager.dart';
-import 'insight_metric_card.dart';
+import 'dashboard_card.dart';
 
-class AreaInsightSection extends StatefulWidget {
-  const AreaInsightSection({
+class AreaSection extends StatefulWidget {
+  const AreaSection({
     required this.areaData,
     required this.comparisonPeriod,
     required this.onComparisonChanged,
@@ -20,10 +20,10 @@ class AreaInsightSection extends StatefulWidget {
   final core_domain.ObservationStatus observationStatus;
 
   @override
-  State<AreaInsightSection> createState() => _AreaInsightSectionState();
+  State<AreaSection> createState() => _AreaSectionState();
 }
 
-class _AreaInsightSectionState extends State<AreaInsightSection> {
+class _AreaSectionState extends State<AreaSection> {
   int _selectedPage = 0;
 
   @override
@@ -64,7 +64,7 @@ class _AreaInsightSectionState extends State<AreaInsightSection> {
             itemCount: widget.areaData.cards.length,
             initialPage: _selectedPage,
             onPageChanged: (page) => setState(() => _selectedPage = page),
-            itemBuilder: (context, index) => InsightMetricCard(
+            itemBuilder: (context, index) => DashboardCard(
               data: widget.areaData.cards[index],
               comparisonPeriod: widget.comparisonPeriod,
               onComparisonChanged: widget.onComparisonChanged,

@@ -4,9 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/format_compact_duration.dart';
+import 'dashboard_chip.dart';
 import 'insight_comparison_indicator.dart';
 import 'insight_comparison_period_dropdown.dart';
-import 'insight_metric_chip.dart';
 import 'insight_utils.dart';
 
 class PrimaryMetric extends StatelessWidget {
@@ -31,30 +31,15 @@ class PrimaryMetric extends StatelessWidget {
     final number = value == null ? '—' : formatInsightPrimaryNumber(context, value.value, value.unit);
     final unit = value == null ? '' : _primaryUnit(context, value.unit);
 
-    String primaryCaption() {
-      if (observationStatus != core_domain.ObservationStatus.live) {
-        return context.l.insight_counting_paused_last_recorded;
-      }
-
-      if (value != null && value.estimated) {
-        final baseOnMinutes = (value.coveredSeconds / 60).round();
-        return context.l.insight_based_on_minutes.replaceAll('%m', baseOnMinutes.toString());
-      }
-
-      return context.l.insight_last_60_minutes;
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(primaryCaption(), maxLines: 2, overflow: TextOverflow.ellipsis, style: theme.textTheme.bodySmall),
-        const SizedBox(height: 8),
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _ObservationStatusChip(status: observationStatus),
             const SizedBox(width: 6),
-            if (value != null && value.estimated) InsightMetricChip.yellow(label: context.l.insight_early_estimate),
+            if (value != null && value.estimated) DashboardChip.yellow(label: context.l.insight_early_estimate),
             Expanded(
               child: Text.rich(
                 textAlign: TextAlign.end,
@@ -125,7 +110,7 @@ class _ObservationStatusChip extends StatelessWidget {
 
     return Tooltip(
       message: description,
-      child: InsightMetricChip(
+      child: DashboardChip(
         label: label,
         textColor: statusColor.withValues(alpha: 0.9),
         backgroundColor: statusColor.withValues(alpha: 0.18),

@@ -31,7 +31,6 @@ class DashboardCache {
     );
     var cached = _cached;
     if (cached == null || !cached.key.matches(snapshotKey)) {
-      print('Rebuilding snapshot with key: $snapshotKey');
       final chartKey = _ChartKey.fromInputs(dashboard: insightState, customAreas: customAreas, now: now);
       final canReuseChart = cached != null && cached.chartKey.matches(chartKey);
       final cachedChartPoints = canReuseChart ? _chartPointsFromSnapshot(cached.snapshot) : null;

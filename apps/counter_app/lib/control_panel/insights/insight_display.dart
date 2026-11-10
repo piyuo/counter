@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import 'insight_widgets.dart';
+import 'area_section.dart';
 
 class InsightDisplay extends ConsumerWidget {
   const InsightDisplay({super.key});
@@ -30,8 +30,6 @@ class InsightDisplay extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    final areaDatas = ref.watch(core_domain.dashboardStateProvider).areas;
-
     void onComparisonChanged(core_domain.TrafficComparisonPeriod period) {
       final service = ref.read(core_domain.insightServiceProvider);
       service.setComparisonPeriod(period);
@@ -48,11 +46,12 @@ class InsightDisplay extends ConsumerWidget {
       );
     }
 
+    final areaDatas = ref.watch(core_domain.dashboardStateProvider).areas;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final areaData in areaDatas)
-          AreaInsightSection(
+          AreaSection(
             key: ValueKey(areaData.areaId),
             areaData: areaData,
             comparisonPeriod: dashboardView.comparisonPeriod,

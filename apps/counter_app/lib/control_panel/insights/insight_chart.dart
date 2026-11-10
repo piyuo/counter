@@ -12,7 +12,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import '../widgets/info_dialog.dart';
-import 'insight_primary_metric.dart';
+import 'primary_metric.dart';
 
 class _ChartColors {
   static const today = Color(0xFF3B82F6);

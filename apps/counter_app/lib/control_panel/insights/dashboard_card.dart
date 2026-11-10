@@ -1,14 +1,15 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import 'insight_chart.dart';
-import 'insight_primary_metric.dart';
 import 'insight_utils.dart';
+import 'primary_metric.dart';
 
-class InsightMetricCard extends StatelessWidget {
-  const InsightMetricCard({
+class DashboardCard extends ConsumerWidget {
+  const DashboardCard({
     super.key,
     required this.data,
     required this.comparisonPeriod,
@@ -22,12 +23,25 @@ class InsightMetricCard extends StatelessWidget {
   final core_domain.ObservationStatus observationStatus;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final title = _metricLabel(context, data.metric);
     final comparisonLabel = insightComparisonPeriodLabel(context, comparisonPeriod);
     final scale = MediaQuery.textScalerOf(context).scale(1);
     final chartHeight = 150 + (scale - 1).clamp(0, 1.5) * 38;
+
+    String primaryCaption() {
+      if (observationStatus != core_domain.ObservationStatus.live) {
+        return context.l.insight_counting_paused_last_recorded;
+      }
+
+      if (data.primary != null && data.primary!.estimated) {
+        final baseOnMinutes = (data.primary!.coveredSeconds / 60).round();
+        return context.l.insight_based_on_minutes.replaceAll('%m', baseOnMinutes.toString());
+      }
+
+      return context.l.insight_last_60_minutes;
+    }
 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 2),
@@ -37,12 +51,19 @@ class InsightMetricCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(title, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
-                ),
-              ],
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(title, style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+              subtitle: Text(
+                primaryCaption(),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.bodySmall,
+              ),
+              trailing: Padding(padding: const EdgeInsets.only(right: 8.0), child: Icon(Icons.arrow_forward_ios)),
+              onTap: () {
+                ref.push(const core_domain.OpenPayloadsRecent());
+              },
             ),
             PrimaryMetric(
               data: data,

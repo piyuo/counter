@@ -1,10 +1,10 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
+import 'package:counter_app/control_panel/insights/area_section.dart';
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
 import 'package:counter_app/control_panel/insights/insight_chart.dart';
 import 'package:counter_app/control_panel/insights/insight_comparison_period_dropdown.dart';
-import 'package:counter_app/control_panel/insights/insight_primary_metric.dart';
-import 'package:counter_app/control_panel/insights/insight_widgets.dart';
+import 'package:counter_app/control_panel/insights/primary_metric.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -494,7 +494,7 @@ void main() {
           localizationsDelegates: Localization.localizationsDelegates,
           supportedLocales: Localization.supportedLocales,
           home: Scaffold(
-            body: AreaInsightSection(
+            body: AreaSection(
               areaData: areaData,
               comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
               onComparisonChanged: (_) {},
@@ -579,7 +579,7 @@ void main() {
         supportedLocales: Localization.supportedLocales,
         home: Scaffold(
           body: StatefulBuilder(
-            builder: (context, setState) => AreaInsightSection(
+            builder: (context, setState) => AreaSection(
               areaData: area,
               comparisonPeriod: selectedPeriod,
               onComparisonChanged: (period) => setState(() => selectedPeriod = period),
@@ -643,13 +643,13 @@ void main() {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                AreaInsightSection(
+                AreaSection(
                   areaData: areas.first,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                   onComparisonChanged: (_) {},
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
-                AreaInsightSection(
+                AreaSection(
                   areaData: areas.last,
                   comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                   onComparisonChanged: (_) {},
@@ -708,7 +708,7 @@ void main() {
     expect(find.byIcon(Icons.chevron_left), findsNWidgets(2));
     expect(find.byIcon(Icons.chevron_right), findsNWidgets(2));
 
-    final firstAreaSection = find.byType(AreaInsightSection).first;
+    final firstAreaSection = find.byType(AreaSection).first;
     await tester.tap(find.descendant(of: firstAreaSection, matching: find.byIcon(Icons.chevron_left)));
     await tester.pump();
     final incomingPassByTitle = find.descendant(of: firstAreaSection, matching: find.text('Pass-by Traffic'));
@@ -731,7 +731,7 @@ void main() {
 
     await tester.drag(find.byType(SingleChildScrollView), const Offset(0, -900));
     await tester.pumpAndSettle();
-    expect(find.byType(AreaInsightSection), findsNWidgets(2));
+    expect(find.byType(AreaSection), findsNWidgets(2));
   });
 
   testWidgets('insight card height follows its business-period content', (tester) async {
@@ -759,7 +759,7 @@ void main() {
           supportedLocales: Localization.supportedLocales,
           home: Scaffold(
             body: SingleChildScrollView(
-              child: AreaInsightSection(
+              child: AreaSection(
                 areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                 onComparisonChanged: (_) {},
@@ -801,7 +801,7 @@ void main() {
           data: const MediaQueryData(textScaler: TextScaler.linear(1.6)),
           child: Scaffold(
             body: SingleChildScrollView(
-              child: AreaInsightSection(
+              child: AreaSection(
                 areaData: area,
                 comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
                 onComparisonChanged: (_) {},
