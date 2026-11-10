@@ -2,7 +2,7 @@ import 'package:core_domain/model/observation.dart';
 import 'package:core_domain/model/observation_series.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'insight_dashboard.freezed.dart';
+part 'insight_state.freezed.dart';
 
 /// Historical period used as a reference for traffic comparisons.
 ///
@@ -59,8 +59,8 @@ enum TrafficComparisonPeriod {
 /// This is an immutable, derived model used by the UI.
 /// It is not stored as a separate historical record.
 @freezed
-class InsightDashboard with _$InsightDashboard {
-  const InsightDashboard({
+class InsightState with _$InsightState {
+  const InsightState({
     required this.businessDate,
     this.comparisonPeriod = TrafficComparisonPeriod.yesterday,
     this.recentHourObservation,

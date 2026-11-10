@@ -14,7 +14,7 @@ class AreaInsightSection extends StatefulWidget {
     super.key,
   });
 
-  final core_domain.InsightAreaData areaData;
+  final core_domain.DashboardAreaData areaData;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;

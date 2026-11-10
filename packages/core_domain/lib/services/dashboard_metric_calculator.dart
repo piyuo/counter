@@ -1,18 +1,19 @@
 import 'dart:math';
 
+import 'package:core_domain/services/dashboard_service.dart';
+
 import '../model/activity.dart';
 import '../model/observation.dart';
 import '../model/observation_series.dart';
-import 'insight_data_type.dart';
 
 enum _MetricValueMode { hourlyRate, chart }
 
 const double _coverageTolerance = 0.05;
 
-InsightMetricValue? calculateInsightMetricFromAggregate(
+DashboardMetricValue? calculateInsightMetricFromAggregate(
   Observation? observation,
   int areaId,
-  InsightMetric metric, {
+  DashboardMetric metric, {
   required int expectedSeconds,
 }) {
   if (observation == null) return null;
@@ -26,12 +27,12 @@ InsightMetricValue? calculateInsightMetricFromAggregate(
   );
 }
 
-InsightMetricValue? calculateInsightMetricFromObservationsInRange({
+DashboardMetricValue? calculateInsightMetricFromObservationsInRange({
   required ObservationSeries series,
   required int startMinute,
   required int endMinute,
   required int areaId,
-  required InsightMetric metric,
+  required DashboardMetric metric,
   required int expectedSeconds,
 }) => _fromObservations(
   series.where((observation) {
@@ -43,10 +44,10 @@ InsightMetricValue? calculateInsightMetricFromObservationsInRange({
   expectedSeconds: expectedSeconds,
 );
 
-InsightMetricValue? calculateInsightHourlyChartValue({
+DashboardMetricValue? calculateInsightHourlyChartValue({
   required ObservationSeries series,
   required int areaId,
-  required InsightMetric metric,
+  required DashboardMetric metric,
   required int hour,
 }) => _fromObservations(
   series.where((observation) => observation.hour == hour),
@@ -56,10 +57,10 @@ InsightMetricValue? calculateInsightHourlyChartValue({
   mode: _MetricValueMode.chart,
 );
 
-InsightMetricValue? _fromObservations(
+DashboardMetricValue? _fromObservations(
   Iterable<Observation> observations,
   int areaId,
-  InsightMetric metric, {
+  DashboardMetric metric, {
   required int expectedSeconds,
   _MetricValueMode mode = _MetricValueMode.hourlyRate,
 }) {
@@ -81,16 +82,16 @@ InsightMetricValue? _fromObservations(
   );
 }
 
-InsightMetricValue? _valueForSingleSample(
+DashboardMetricValue? _valueForSingleSample(
   Activity sample,
-  InsightMetric metric, {
+  DashboardMetric metric, {
   required int coveredSeconds,
   required int expectedSeconds,
 }) => _valueForSamples([sample], metric, coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds);
 
-InsightMetricValue? _valueForSamples(
+DashboardMetricValue? _valueForSamples(
   List<Activity> samples,
-  InsightMetric metric, {
+  DashboardMetric metric, {
   required int coveredSeconds,
   required int expectedSeconds,
   _MetricValueMode mode = _MetricValueMode.hourlyRate,
@@ -134,8 +135,8 @@ InsightMetricValue? _valueForSamples(
   );
 }
 
-InsightMetricValue? _valueFromTotals(
-  InsightMetric metric, {
+DashboardMetricValue? _valueFromTotals(
+  DashboardMetric metric, {
   required double eventCount,
   required int occupancySampleCount,
   required int occupancySum,
@@ -150,51 +151,51 @@ InsightMetricValue? _valueFromTotals(
   final eventHourlyRate = mode == _MetricValueMode.hourlyRate;
   final dwellInMinutes = mode == _MetricValueMode.chart;
   return switch (metric) {
-    InsightMetric.passBy ||
-    InsightMetric.stagnant ||
-    InsightMetric.entry ||
-    InsightMetric.exit ||
-    InsightMetric.appear ||
-    InsightMetric.disappear =>
+    DashboardMetric.passBy ||
+    DashboardMetric.stagnant ||
+    DashboardMetric.entry ||
+    DashboardMetric.exit ||
+    DashboardMetric.appear ||
+    DashboardMetric.disappear =>
       coveredSeconds <= 0
           ? null
-          : InsightMetricValue(
+          : DashboardMetricValue(
               // Live and period values are estimated hourly rates; charts retain actual counts when coverage is incomplete.
               value: eventHourlyRate ? eventCount / coveredSeconds * 3600 : eventCount,
-              unit: eventHourlyRate ? InsightMetricValueUnit.countPerHour : InsightMetricValueUnit.count,
+              unit: eventHourlyRate ? DashboardMetricValueUnit.countPerHour : DashboardMetricValueUnit.count,
               estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
               coveredSeconds: coveredSeconds,
             ),
-    InsightMetric.occupancyMean =>
+    DashboardMetric.occupancyMean =>
       occupancySampleCount == 0
           ? null
-          : InsightMetricValue(
+          : DashboardMetricValue(
               value: occupancySum / occupancySampleCount,
-              unit: InsightMetricValueUnit.objects,
+              unit: DashboardMetricValueUnit.objects,
               coveredSeconds: coveredSeconds,
             ),
-    InsightMetric.occupancyPeak =>
+    DashboardMetric.occupancyPeak =>
       occupancyMaximum == null
           ? null
-          : InsightMetricValue(
+          : DashboardMetricValue(
               value: occupancyMaximum.toDouble(),
-              unit: InsightMetricValueUnit.objects,
+              unit: DashboardMetricValueUnit.objects,
               coveredSeconds: coveredSeconds,
             ),
-    InsightMetric.dwellTimeMean =>
+    DashboardMetric.dwellTimeMean =>
       dwellSampleCount == 0
           ? null
-          : InsightMetricValue(
+          : DashboardMetricValue(
               value: dwellSumSeconds / dwellSampleCount / (dwellInMinutes ? 60 : 1),
-              unit: dwellInMinutes ? InsightMetricValueUnit.minutes : InsightMetricValueUnit.seconds,
+              unit: dwellInMinutes ? DashboardMetricValueUnit.minutes : DashboardMetricValueUnit.seconds,
               coveredSeconds: coveredSeconds,
             ),
-    InsightMetric.dwellTimeMax =>
+    DashboardMetric.dwellTimeMax =>
       dwellMaximum == null
           ? null
-          : InsightMetricValue(
+          : DashboardMetricValue(
               value: dwellMaximum / (dwellInMinutes ? 60 : 1),
-              unit: dwellInMinutes ? InsightMetricValueUnit.minutes : InsightMetricValueUnit.seconds,
+              unit: dwellInMinutes ? DashboardMetricValueUnit.minutes : DashboardMetricValueUnit.seconds,
               coveredSeconds: coveredSeconds,
             ),
   };
@@ -203,17 +204,17 @@ InsightMetricValue? _valueFromTotals(
 bool _isEstimated({required int coveredSeconds, required int expectedSeconds}) =>
     coveredSeconds < expectedSeconds * (1 - _coverageTolerance);
 
-double _insightEventValue(Activity activity, InsightMetric metric) => switch (metric) {
-  InsightMetric.passBy => activity.passBy,
-  InsightMetric.stagnant => activity.stagnant,
-  InsightMetric.entry => activity.entry,
-  InsightMetric.exit => activity.exit,
-  InsightMetric.appear => activity.appear,
-  InsightMetric.disappear => activity.disappear,
-  InsightMetric.occupancyMean ||
-  InsightMetric.occupancyPeak ||
-  InsightMetric.dwellTimeMean ||
-  InsightMetric.dwellTimeMax => 0,
+double _insightEventValue(Activity activity, DashboardMetric metric) => switch (metric) {
+  DashboardMetric.passBy => activity.passBy,
+  DashboardMetric.stagnant => activity.stagnant,
+  DashboardMetric.entry => activity.entry,
+  DashboardMetric.exit => activity.exit,
+  DashboardMetric.appear => activity.appear,
+  DashboardMetric.disappear => activity.disappear,
+  DashboardMetric.occupancyMean ||
+  DashboardMetric.occupancyPeak ||
+  DashboardMetric.dwellTimeMean ||
+  DashboardMetric.dwellTimeMax => 0,
 };
 
 Activity? _activity(Observation observation, int areaId) {

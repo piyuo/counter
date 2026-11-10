@@ -16,7 +16,7 @@ class InsightMetricCard extends StatelessWidget {
     required this.observationStatus,
   });
 
-  final core_domain.InsightCardData data;
+  final core_domain.DashboardCardData data;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
@@ -75,15 +75,15 @@ class InsightMetricCard extends StatelessWidget {
   }
 }
 
-String _metricLabel(BuildContext context, core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.passBy => context.l.insight_pass_by,
-  core_domain.InsightMetric.stagnant => context.l.insight_stagnant,
-  core_domain.InsightMetric.entry => context.l.insight_entry,
-  core_domain.InsightMetric.exit => context.l.insight_exit,
-  core_domain.InsightMetric.appear => context.l.insight_appear,
-  core_domain.InsightMetric.disappear => context.l.insight_disappear,
-  core_domain.InsightMetric.occupancyMean => context.l.average_occupancy,
-  core_domain.InsightMetric.occupancyPeak => context.l.maximum_occupancy,
-  core_domain.InsightMetric.dwellTimeMean => context.l.insight_average_completed_visit,
-  core_domain.InsightMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
+String _metricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
+  core_domain.DashboardMetric.passBy => context.l.insight_pass_by,
+  core_domain.DashboardMetric.stagnant => context.l.insight_stagnant,
+  core_domain.DashboardMetric.entry => context.l.insight_entry,
+  core_domain.DashboardMetric.exit => context.l.insight_exit,
+  core_domain.DashboardMetric.appear => context.l.insight_appear,
+  core_domain.DashboardMetric.disappear => context.l.insight_disappear,
+  core_domain.DashboardMetric.occupancyMean => context.l.average_occupancy,
+  core_domain.DashboardMetric.occupancyPeak => context.l.maximum_occupancy,
+  core_domain.DashboardMetric.dwellTimeMean => context.l.insight_average_completed_visit,
+  core_domain.DashboardMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
 };

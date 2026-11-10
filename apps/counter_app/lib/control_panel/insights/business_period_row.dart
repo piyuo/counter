@@ -20,8 +20,8 @@ class BusinessPeriodRow extends StatelessWidget {
     required this.onComparisonChanged,
   });
 
-  final core_domain.InsightPeriodData periodData;
-  final core_domain.InsightMetric metric;
+  final core_domain.DashboardPeriodData periodData;
+  final core_domain.DashboardMetric metric;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
 
@@ -158,12 +158,12 @@ class BusinessPeriodRow extends StatelessWidget {
 
 String _formatPeriodMetricValue(
   BuildContext context,
-  core_domain.InsightMetric metric,
-  core_domain.InsightMetricValue value,
+  core_domain.DashboardMetric metric,
+  core_domain.DashboardMetricValue value,
 ) {
   final normalizedValue = switch (value.unit) {
-    core_domain.InsightMetricValueUnit.seconds => value.value,
-    core_domain.InsightMetricValueUnit.minutes => value.value * 60,
+    core_domain.DashboardMetricValueUnit.seconds => value.value,
+    core_domain.DashboardMetricValueUnit.minutes => value.value * 60,
     _ => value.value,
   };
   final parts = _formatPeriodMetricParts(context, metric, normalizedValue);
@@ -172,33 +172,33 @@ String _formatPeriodMetricValue(
 
 ({String number, String unit}) _formatPeriodMetricParts(
   BuildContext context,
-  core_domain.InsightMetric metric,
+  core_domain.DashboardMetric metric,
   double value,
 ) {
   final locale = Localizations.localeOf(context).toString();
   return switch (metric) {
-    core_domain.InsightMetric.passBy ||
-    core_domain.InsightMetric.stagnant ||
-    core_domain.InsightMetric.entry ||
-    core_domain.InsightMetric.exit ||
-    core_domain.InsightMetric.appear ||
-    core_domain.InsightMetric.disappear => (
+    core_domain.DashboardMetric.passBy ||
+    core_domain.DashboardMetric.stagnant ||
+    core_domain.DashboardMetric.entry ||
+    core_domain.DashboardMetric.exit ||
+    core_domain.DashboardMetric.appear ||
+    core_domain.DashboardMetric.disappear => (
       number: NumberFormat(value >= 10 ? '#,##0' : '0.#', locale).format(value),
       unit: context.l.insight_tracks_per_hour,
     ),
-    core_domain.InsightMetric.occupancyMean => (
+    core_domain.DashboardMetric.occupancyMean => (
       number: _formatNumber(context, value),
       unit: '${context.l.insight_objects_unit} ${context.l.insight_average_short}',
     ),
-    core_domain.InsightMetric.occupancyPeak => (
+    core_domain.DashboardMetric.occupancyPeak => (
       number: _formatNumber(context, value),
       unit: context.l.insight_objects_unit,
     ),
-    core_domain.InsightMetric.dwellTimeMean => (
+    core_domain.DashboardMetric.dwellTimeMean => (
       number: formatCompactDuration(context.l, value.round()),
       unit: context.l.insight_average_short,
     ),
-    core_domain.InsightMetric.dwellTimeMax => (number: formatCompactDuration(context.l, value.round()), unit: ''),
+    core_domain.DashboardMetric.dwellTimeMax => (number: formatCompactDuration(context.l, value.round()), unit: ''),
   };
 }
 

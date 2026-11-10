@@ -1,5 +1,6 @@
 export 'analytics/analytics_notifier.dart';
 export 'database/app_database.dart';
+export 'insight/dashboard_notifier.dart';
 export 'insight/insight_notifier.dart';
 export 'observation/interest_area_notifier.dart';
 export 'observation/observation_notifier.dart';

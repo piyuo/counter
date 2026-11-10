@@ -232,7 +232,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     state = state.copyWith(
       liveObservation: _snapshotCurrentWindow(),
       status: core_domain.ObservationStatus.live,
-      observationStart: _nowProvider?.call().toUtc() ?? DateTime.now().toUtc(),
+      observationStartUtc: _nowProvider?.call().toUtc() ?? DateTime.now().toUtc(),
     );
 
     _keepAliveLink = ref.keepAlive();
@@ -253,7 +253,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
       state = state.copyWith(
         liveObservation: _snapshotCurrentWindow(),
         status: core_domain.ObservationStatus.stopped,
-        observationStart: null,
+        observationStartUtc: null,
       );
     }
     _keepAliveLink?.close();
@@ -359,7 +359,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
         ? _monotonicNowProvider.call() - pausedAtMonotonic
         : resumedAtUtc.difference(_pausedAtUtc!);
     if (pauseDuration > _observationEstimateResetAfter) {
-      state = state.copyWith(observationStart: resumedAtUtc);
+      state = state.copyWith(observationStartUtc: resumedAtUtc);
     }
     _isPaused = false;
     _pausedAtUtc = null;

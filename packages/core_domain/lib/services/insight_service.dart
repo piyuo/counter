@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:core_domain/model/insight_dashboard.dart';
+import 'package:core_domain/model/insight_state.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -41,9 +41,9 @@ class InsightValue<T> {
 
 @riverpod
 InsightService insightService(Ref ref) {
-  throw UnimplementedError('observationServiceProvider must be overridden');
+  throw UnimplementedError('insightServiceProvider must be overridden');
 }
 
 /// State
 @riverpod
-InsightDashboard insightDashboard(Ref ref) => throw UnimplementedError('insightDashboardProvider must be overridden');
+InsightState insightState(Ref ref) => throw UnimplementedError('insightStateProvider must be overridden');

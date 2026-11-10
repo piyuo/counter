@@ -1,7 +1,7 @@
-import 'package:core_domain/aggregation/insight_dashboard_snapshot.dart';
-import 'package:core_domain/aggregation/insight_data_type.dart';
-import 'package:core_domain/model/insight_dashboard.dart';
+import 'package:core_domain/model/insight_state.dart';
 import 'package:core_domain/model/observation_payload.dart';
+import 'package:core_domain/services/dashboard_service.dart';
+import 'package:core_domain/services/dashboard_snapshot.dart';
 import 'package:core_domain/state/models/interest_area.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -14,7 +14,7 @@ void main() {
       InterestArea(id: kGlobalAreaId, name: 'Custom global'),
     ];
     final snapshot = buildInsightDashboardSnapshot(
-      dashboard: const InsightDashboard(businessDate: '2026-10-29'),
+      dashboard: const InsightState(businessDate: '2026-10-29'),
       customAreas: areas,
       businessPeriods: const [],
       now: DateTime(2026, 10, 29, 12),
@@ -24,16 +24,16 @@ void main() {
     expect(snapshot.areas.map((area) => area.name), ['Checkout', 'Entrance', null]);
     expect(
       snapshot.areas.first.cards.map((card) => card.metric),
-      containsAll([InsightMetric.entry, InsightMetric.exit]),
+      containsAll([DashboardMetric.entry, DashboardMetric.exit]),
     );
     final globalArea = snapshot.areas.last;
     expect(globalArea.isGlobal, isTrue);
-    expect(globalArea.cards.map((card) => card.metric), isNot(contains(InsightMetric.entry)));
-    expect(globalArea.cards.map((card) => card.metric), isNot(contains(InsightMetric.exit)));
+    expect(globalArea.cards.map((card) => card.metric), isNot(contains(DashboardMetric.entry)));
+    expect(globalArea.cards.map((card) => card.metric), isNot(contains(DashboardMetric.exit)));
   });
 
   test('reuses cached chart points only for matching area and metric', () {
-    const dashboard = InsightDashboard(businessDate: '2026-10-29');
+    const dashboard = InsightState(businessDate: '2026-10-29');
     const areas = [InterestArea(id: 42, name: 'Checkout')];
     final now = DateTime(2026, 10, 29, 12);
     final snapshot = buildInsightDashboardSnapshot(
@@ -43,18 +43,18 @@ void main() {
       now: now,
     );
     final cachedPoints = snapshot.areas.first.cards
-        .firstWhere((card) => card.metric == InsightMetric.passBy)
+        .firstWhere((card) => card.metric == DashboardMetric.passBy)
         .chartPoints;
     final cachedSnapshot = buildInsightDashboardSnapshot(
       dashboard: dashboard,
       customAreas: areas,
       businessPeriods: const [],
       now: now,
-      cachedChartPoints: {(42, InsightMetric.passBy): cachedPoints},
+      cachedChartPoints: {(42, DashboardMetric.passBy): cachedPoints},
     );
     final cards = cachedSnapshot.areas.first.cards;
-    final passByCard = cards.firstWhere((card) => card.metric == InsightMetric.passBy);
-    final stagnantCard = cards.firstWhere((card) => card.metric == InsightMetric.stagnant);
+    final passByCard = cards.firstWhere((card) => card.metric == DashboardMetric.passBy);
+    final stagnantCard = cards.firstWhere((card) => card.metric == DashboardMetric.stagnant);
 
     expect(identical(passByCard.chartPoints, cachedPoints), isTrue);
     expect(identical(stagnantCard.chartPoints, cachedPoints), isFalse);

@@ -1,10 +1,10 @@
 // InsightMetricCalculator tests
 
-import 'package:core_domain/aggregation/insight_data_type.dart';
-import 'package:core_domain/aggregation/insight_metric_calculator.dart';
 import 'package:core_domain/model/activity.dart';
 import 'package:core_domain/model/observation.dart';
 import 'package:core_domain/model/observation_series.dart';
+import 'package:core_domain/services/dashboard_metric_calculator.dart';
+import 'package:core_domain/services/dashboard_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 Observation _observation(int hour, int minute, {required Activity activity, int coveredSeconds = 300}) => Observation(
@@ -45,21 +45,21 @@ void main() {
       final fullCoverage = calculateInsightMetricFromAggregate(
         _observation(10, 0, activity: _activity(7, passBy: 84), coveredSeconds: 3600),
         7,
-        InsightMetric.passBy,
+        DashboardMetric.passBy,
         expectedSeconds: 3600,
       );
       final partialCoverage = calculateInsightMetricFromAggregate(
         _observation(10, 0, activity: _activity(7, passBy: 42), coveredSeconds: 1800),
         7,
-        InsightMetric.passBy,
+        DashboardMetric.passBy,
         expectedSeconds: 3600,
       );
 
       expect(fullCoverage?.value, 84);
-      expect(fullCoverage?.unit, InsightMetricValueUnit.countPerHour);
+      expect(fullCoverage?.unit, DashboardMetricValueUnit.countPerHour);
       expect(fullCoverage?.estimated, isFalse);
       expect(partialCoverage?.value, 84);
-      expect(partialCoverage?.unit, InsightMetricValueUnit.countPerHour);
+      expect(partialCoverage?.unit, DashboardMetricValueUnit.countPerHour);
       expect(partialCoverage?.estimated, isTrue);
       expect(partialCoverage?.coveredSeconds, 1800);
     });
@@ -67,9 +67,15 @@ void main() {
     test('keeps missing area and zero coverage unavailable', () {
       final observation = _observation(10, 0, activity: _activity(8, passBy: 12), coveredSeconds: 0);
 
-      expect(calculateInsightMetricFromAggregate(observation, 7, InsightMetric.passBy, expectedSeconds: 3600), isNull);
-      expect(calculateInsightMetricFromAggregate(observation, 8, InsightMetric.passBy, expectedSeconds: 3600), isNull);
-      expect(calculateInsightMetricFromAggregate(null, 7, InsightMetric.passBy, expectedSeconds: 3600), isNull);
+      expect(
+        calculateInsightMetricFromAggregate(observation, 7, DashboardMetric.passBy, expectedSeconds: 3600),
+        isNull,
+      );
+      expect(
+        calculateInsightMetricFromAggregate(observation, 8, DashboardMetric.passBy, expectedSeconds: 3600),
+        isNull,
+      );
+      expect(calculateInsightMetricFromAggregate(null, 7, DashboardMetric.passBy, expectedSeconds: 3600), isNull);
     });
   });
 
@@ -87,7 +93,7 @@ void main() {
         startMinute: 540,
         endMinute: 600,
         areaId: 7,
-        metric: InsightMetric.passBy,
+        metric: DashboardMetric.passBy,
         expectedSeconds: 3600,
       );
 
@@ -126,7 +132,7 @@ void main() {
         ),
       ]);
 
-      InsightMetricValue? value(InsightMetric metric) => calculateInsightMetricFromObservationsInRange(
+      DashboardMetricValue? value(DashboardMetric metric) => calculateInsightMetricFromObservationsInRange(
         series: series,
         startMinute: 540,
         endMinute: 600,
@@ -135,13 +141,13 @@ void main() {
         expectedSeconds: 3600,
       );
 
-      expect(value(InsightMetric.occupancyMean)?.value, 3);
-      expect(value(InsightMetric.occupancyMean)?.unit, InsightMetricValueUnit.objects);
-      expect(value(InsightMetric.occupancyPeak)?.value, 7);
-      expect(value(InsightMetric.dwellTimeMean)?.value, 260);
-      expect(value(InsightMetric.dwellTimeMean)?.unit, InsightMetricValueUnit.seconds);
-      expect(value(InsightMetric.dwellTimeMax)?.value, 500);
-      expect(value(InsightMetric.dwellTimeMax)?.unit, InsightMetricValueUnit.seconds);
+      expect(value(DashboardMetric.occupancyMean)?.value, 3);
+      expect(value(DashboardMetric.occupancyMean)?.unit, DashboardMetricValueUnit.objects);
+      expect(value(DashboardMetric.occupancyPeak)?.value, 7);
+      expect(value(DashboardMetric.dwellTimeMean)?.value, 260);
+      expect(value(DashboardMetric.dwellTimeMean)?.unit, DashboardMetricValueUnit.seconds);
+      expect(value(DashboardMetric.dwellTimeMax)?.value, 500);
+      expect(value(DashboardMetric.dwellTimeMax)?.unit, DashboardMetricValueUnit.seconds);
     });
   });
 
@@ -153,19 +159,19 @@ void main() {
     final mean = calculateInsightHourlyChartValue(
       series: series,
       areaId: 7,
-      metric: InsightMetric.dwellTimeMean,
+      metric: DashboardMetric.dwellTimeMean,
       hour: 9,
     );
     final maximum = calculateInsightHourlyChartValue(
       series: series,
       areaId: 7,
-      metric: InsightMetric.dwellTimeMax,
+      metric: DashboardMetric.dwellTimeMax,
       hour: 9,
     );
 
     expect(mean?.value, 5);
-    expect(mean?.unit, InsightMetricValueUnit.minutes);
+    expect(mean?.unit, DashboardMetricValueUnit.minutes);
     expect(maximum?.value, 5);
-    expect(maximum?.unit, InsightMetricValueUnit.minutes);
+    expect(maximum?.unit, DashboardMetricValueUnit.minutes);
   });
 }

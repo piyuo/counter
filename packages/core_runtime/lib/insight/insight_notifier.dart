@@ -23,8 +23,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   ObservationSeries? _todaySeries;
 
   @override
-  core_domain.InsightDashboard build() {
-    return const core_domain.InsightDashboard(
+  core_domain.InsightState build() {
+    return const core_domain.InsightState(
       businessDate: '',
       comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
     );
@@ -120,7 +120,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
 
     _todaySeries = todaySummary?.fiveMinuteObservations;
-    final dashboard = core_domain.InsightDashboard(
+    final dashboard = core_domain.InsightState(
       businessDate: _formatBusinessDate(now),
       comparisonPeriod: period,
       todaySeries: todaySummary?.fiveMinuteObservations,
@@ -170,7 +170,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     final dashboard = state;
     if (dashboard.businessDate.isEmpty || dashboard.businessDate != _currentBusinessDate) return;
 
-    state = core_domain.InsightDashboard(
+    state = core_domain.InsightState(
       businessDate: dashboard.businessDate,
       comparisonPeriod: dashboard.comparisonPeriod,
       recentHourObservation: recentHourTotal(),

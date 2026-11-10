@@ -1,18 +1,18 @@
-import 'package:core_domain/aggregation/insight_metric_calculator.dart';
+import 'package:core_domain/services/dashboard_metric_calculator.dart';
+import 'package:core_domain/services/dashboard_service.dart';
 
 import '../model/business_period.dart';
-import '../model/insight_dashboard.dart';
+import '../model/insight_state.dart';
 import '../model/observation_payload.dart';
 import '../model/observation_series.dart';
 import '../state/models/interest_area.dart';
-import 'insight_data_type.dart';
 
 InsightDashboardSnapshot buildInsightDashboardSnapshot({
-  required InsightDashboard dashboard,
+  required InsightState dashboard,
   required List<InterestArea> customAreas,
   required List<BusinessPeriod> businessPeriods,
   required DateTime now,
-  Map<(int, InsightMetric), List<InsightChartPoint>>? cachedChartPoints,
+  Map<(int, DashboardMetric), List<DashboardChartPoint>>? cachedChartPoints,
 }) {
   final today = dashboard.todaySeries ?? ObservationSeries.empty;
   final comparison = dashboard.comparisonSeries ?? ObservationSeries.empty;
@@ -52,19 +52,19 @@ InsightAreaSnapshot _buildAreaSnapshot({
   required ObservationSeries comparison,
   required List<BusinessPeriod> businessPeriods,
   required DateTime now,
-  required Map<(int, InsightMetric), List<InsightChartPoint>>? cachedChartPoints,
+  required Map<(int, DashboardMetric), List<DashboardChartPoint>>? cachedChartPoints,
 }) {
   final metrics = [
-    InsightMetric.passBy,
-    InsightMetric.stagnant,
-    if (!isGlobal) InsightMetric.entry,
-    if (!isGlobal) InsightMetric.exit,
-    InsightMetric.appear,
-    InsightMetric.disappear,
-    InsightMetric.occupancyMean,
-    InsightMetric.occupancyPeak,
-    InsightMetric.dwellTimeMean,
-    InsightMetric.dwellTimeMax,
+    DashboardMetric.passBy,
+    DashboardMetric.stagnant,
+    if (!isGlobal) DashboardMetric.entry,
+    if (!isGlobal) DashboardMetric.exit,
+    DashboardMetric.appear,
+    DashboardMetric.disappear,
+    DashboardMetric.occupancyMean,
+    DashboardMetric.occupancyPeak,
+    DashboardMetric.dwellTimeMean,
+    DashboardMetric.dwellTimeMax,
   ];
   return InsightAreaSnapshot(
     areaId: areaId,
@@ -86,13 +86,13 @@ InsightAreaSnapshot _buildAreaSnapshot({
 }
 
 InsightCardSnapshot _buildCardSnapshot({
-  required InsightMetric metric,
+  required DashboardMetric metric,
   required int areaId,
   required ObservationSeries today,
   required ObservationSeries comparison,
   required List<BusinessPeriod> businessPeriods,
   required DateTime now,
-  required List<InsightChartPoint>? cachedChartPoints,
+  required List<DashboardChartPoint>? cachedChartPoints,
 }) {
   final periods = [
     for (final period in businessPeriods)
@@ -105,10 +105,10 @@ InsightCardSnapshot _buildCardSnapshot({
   );
 }
 
-InsightPeriodData _buildPeriod({
+DashboardPeriodData _buildPeriod({
   required BusinessPeriod period,
   required int areaId,
-  required InsightMetric metric,
+  required DashboardMetric metric,
   required ObservationSeries today,
   required ObservationSeries comparison,
   required DateTime now,
@@ -117,7 +117,7 @@ InsightPeriodData _buildPeriod({
   final status = periodState.status;
   final endMinute = periodState.endMinute;
   if (status == BusinessPeriodStatus.notStarted || endMinute <= period.startMinute) {
-    return InsightPeriodData(period: period, status: status, primary: null, comparisonValue: null);
+    return DashboardPeriodData(period: period, status: status, primary: null, comparisonValue: null);
   }
 
   final expectedSeconds = (endMinute - period.startMinute) * 60;
@@ -137,17 +137,17 @@ InsightPeriodData _buildPeriod({
     metric: metric,
     expectedSeconds: expectedSeconds,
   )?.value;
-  return InsightPeriodData(period: period, status: status, primary: primary, comparisonValue: comparisonValue);
+  return DashboardPeriodData(period: period, status: status, primary: primary, comparisonValue: comparisonValue);
 }
 
-List<InsightChartPoint> _buildChartPoints(
-  InsightMetric metric,
+List<DashboardChartPoint> _buildChartPoints(
+  DashboardMetric metric,
   int areaId,
   ObservationSeries today,
   ObservationSeries comparison,
   int completedHourCount,
 ) {
-  final points = <InsightChartPoint>[];
+  final points = <DashboardChartPoint>[];
   for (var hour = 0; hour < 24; hour++) {
     final todayValue = hour < completedHourCount
         ? calculateInsightHourlyChartValue(series: today, areaId: areaId, metric: metric, hour: hour)
@@ -159,7 +159,7 @@ List<InsightChartPoint> _buildChartPoints(
       hour: hour,
     );
     points.add(
-      InsightChartPoint(
+      DashboardChartPoint(
         minuteOfDay: hour * 60,
         todayValue: todayValue?.value,
         comparisonValue: comparisonValue?.value,
@@ -191,9 +191,9 @@ class InsightAreaSnapshot {
 class InsightCardSnapshot {
   const InsightCardSnapshot({required this.metric, required this.periods, required this.chartPoints});
 
-  final InsightMetric metric;
-  final List<InsightPeriodData> periods;
-  final List<InsightChartPoint> chartPoints;
+  final DashboardMetric metric;
+  final List<DashboardPeriodData> periods;
+  final List<DashboardChartPoint> chartPoints;
 }
 
 ({BusinessPeriodStatus status, int endMinute}) insightPeriodState(BusinessPeriod period, DateTime now) {

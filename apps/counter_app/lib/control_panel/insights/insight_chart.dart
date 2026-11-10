@@ -47,7 +47,7 @@ class InsightChart extends StatefulWidget {
     @visibleForTesting this.onLiveMarkerPaint,
   });
 
-  final core_domain.InsightCardData data;
+  final core_domain.DashboardCardData data;
   final String metricLabel;
   final String comparisonLabel;
   final double height;
@@ -63,8 +63,8 @@ class InsightChart extends StatefulWidget {
 
 class _InsightChartState extends State<InsightChart> {
   int? _selectedHour;
-  List<core_domain.InsightChartPoint>? _cachedPoints;
-  core_domain.InsightMetric? _cachedMetric;
+  List<core_domain.DashboardChartPoint>? _cachedPoints;
+  core_domain.DashboardMetric? _cachedMetric;
   List<_BarExtreme> _extremes = const [];
   List<_PositionedExtremeLabel> _positionedExtremeLabels = const [];
   List<_BarExtreme>? _positionedExtremes;
@@ -79,7 +79,7 @@ class _InsightChartState extends State<InsightChart> {
   bool _hasComparison = false;
   double _maxY = 1;
 
-  void _updateChartSnapshot(core_domain.InsightCardData data) {
+  void _updateChartSnapshot(core_domain.DashboardCardData data) {
     if (identical(_cachedPoints, data.chartPoints) && _cachedMetric == data.metric) return;
 
     _cachedPoints = data.chartPoints;
@@ -141,7 +141,7 @@ class _InsightChartState extends State<InsightChart> {
     return _positionedExtremeLabels;
   }
 
-  _LiveRateMarkerData? _liveMarkerFor(core_domain.InsightCardData data, int hour) {
+  _LiveRateMarkerData? _liveMarkerFor(core_domain.DashboardCardData data, int hour) {
     if (!widget.showLiveMarker || !_supportsLiveRate(data.metric)) return null;
     final primary = data.primary;
     if (primary == null || !primary.value.isFinite || primary.value < 0) return null;
@@ -334,7 +334,7 @@ class _InsightChartState extends State<InsightChart> {
           _HourDetails(
             point: data.chartPoints.firstWhere(
               (point) => point.minuteOfDay == _selectedHour! * 60,
-              orElse: () => core_domain.InsightChartPoint(minuteOfDay: _selectedHour! * 60),
+              orElse: () => core_domain.DashboardChartPoint(minuteOfDay: _selectedHour! * 60),
             ),
             hour: _selectedHour!,
             metric: data.metric,
@@ -397,9 +397,9 @@ class _HourDetails extends StatelessWidget {
     required this.locale,
   });
 
-  final core_domain.InsightChartPoint point;
+  final core_domain.DashboardChartPoint point;
   final int hour;
-  final core_domain.InsightMetric metric;
+  final core_domain.DashboardMetric metric;
   final String comparisonLabel;
   final Locale locale;
 
@@ -451,7 +451,7 @@ class _BarExtreme {
   final bool estimated;
 }
 
-List<_BarExtreme> _findExtremes(List<core_domain.InsightChartPoint> points) {
+List<_BarExtreme> _findExtremes(List<core_domain.DashboardChartPoint> points) {
   final candidates = <_BarExtreme>[];
   for (final point in points) {
     final hour = point.minuteOfDay ~/ 60;
@@ -526,7 +526,7 @@ class _HourlyBarsPainter extends CustomPainter {
     this.onPaint,
   });
 
-  final List<core_domain.InsightChartPoint> points;
+  final List<core_domain.DashboardChartPoint> points;
   final double maxY;
   final int? selectedHour;
   final Color dividerColor;
@@ -616,7 +616,7 @@ List<_PositionedExtremeLabel> _layoutExtremeLabels({
   required List<_BarExtreme> extremes,
   required Size size,
   required double maxY,
-  required core_domain.InsightMetric metric,
+  required core_domain.DashboardMetric metric,
   required String locale,
   required ui.TextDirection textDirection,
   required TextScaler textScaler,
@@ -687,7 +687,7 @@ class _LiveRateMarkerData {
 
   final int hour;
   final double rate;
-  final core_domain.InsightMetricValueUnit unit;
+  final core_domain.DashboardMetricValueUnit unit;
   final bool estimated;
 }
 
@@ -817,10 +817,10 @@ String _coverageLabel(Localization localization, int coveredSeconds, String loca
     .insight_based_on_minutes
     .replaceAll('%m', NumberFormat.decimalPattern(locale).format(coveredSeconds / 60));
 
-String _formatValue(double? value, core_domain.InsightMetric metric, String locale, String unavailable) {
+String _formatValue(double? value, core_domain.DashboardMetric metric, String locale, String unavailable) {
   if (value == null) return unavailable;
   final unit = switch (metric) {
-    core_domain.InsightMetric.dwellTimeMean || core_domain.InsightMetric.dwellTimeMax => ' min',
+    core_domain.DashboardMetric.dwellTimeMean || core_domain.DashboardMetric.dwellTimeMax => ' min',
     _ => '',
   };
   return '${NumberFormat('0.##', locale).format(value)}$unit';
@@ -842,13 +842,13 @@ double _niceChartScale(double value) {
   return (value / magnitude).ceilToDouble() * magnitude;
 }
 
-bool _supportsLiveRate(core_domain.InsightMetric metric) => switch (metric) {
-  core_domain.InsightMetric.passBy ||
-  core_domain.InsightMetric.stagnant ||
-  core_domain.InsightMetric.entry ||
-  core_domain.InsightMetric.exit ||
-  core_domain.InsightMetric.appear ||
-  core_domain.InsightMetric.disappear => true,
+bool _supportsLiveRate(core_domain.DashboardMetric metric) => switch (metric) {
+  core_domain.DashboardMetric.passBy ||
+  core_domain.DashboardMetric.stagnant ||
+  core_domain.DashboardMetric.entry ||
+  core_domain.DashboardMetric.exit ||
+  core_domain.DashboardMetric.appear ||
+  core_domain.DashboardMetric.disappear => true,
   _ => false,
 };
 

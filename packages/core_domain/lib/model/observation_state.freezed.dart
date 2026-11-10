@@ -40,7 +40,7 @@ int get hashCode {
 @override
 String toString() {
   final _this = this as ObservationState;
-  return 'ObservationState(status: ${_this.status}, observationStart: ${_this.observationStartUtc}, liveObservation: ${_this.liveObservation})';
+  return 'ObservationState(status: ${_this.status}, observationStartUtc: ${_this.observationStartUtc}, liveObservation: ${_this.liveObservation})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $ObservationStateCopyWith<$Res>  {
   factory $ObservationStateCopyWith(ObservationState value, $Res Function(ObservationState) _then) = _$ObservationStateCopyWithImpl;
 @useResult
 $Res call({
- core_domain.Observation? liveObservation, ObservationStatus status, DateTime? observationStart
+ core_domain.Observation? liveObservation, ObservationStatus status, DateTime? observationStartUtc
 });
 
 
@@ -68,11 +68,11 @@ class _$ObservationStateCopyWithImpl<$Res>
 
 /// Create a copy of ObservationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? liveObservation = freezed,Object? status = null,Object? observationStart = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? liveObservation = freezed,Object? status = null,Object? observationStartUtc = freezed,}) {
   return _then(ObservationState(
 liveObservation: freezed == liveObservation ? _self.liveObservation : liveObservation // ignore: cast_nullable_to_non_nullable
 as core_domain.Observation?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as ObservationStatus,observationStartUtc: freezed == observationStart ? _self.observationStartUtc : observationStart // ignore: cast_nullable_to_non_nullable
+as ObservationStatus,observationStartUtc: freezed == observationStartUtc ? _self.observationStartUtc : observationStartUtc // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));
 }

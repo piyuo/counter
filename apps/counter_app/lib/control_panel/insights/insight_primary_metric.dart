@@ -18,7 +18,7 @@ class PrimaryMetric extends StatelessWidget {
     required this.observationStatus,
   });
 
-  final core_domain.InsightCardData data;
+  final core_domain.DashboardCardData data;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
@@ -134,25 +134,25 @@ class _ObservationStatusChip extends StatelessWidget {
   }
 }
 
-String formatInsightPrimaryNumber(BuildContext context, double value, core_domain.InsightMetricValueUnit unit) {
+String formatInsightPrimaryNumber(BuildContext context, double value, core_domain.DashboardMetricValueUnit unit) {
   final locale = Localizations.localeOf(context).toString();
   return switch (unit) {
-    core_domain.InsightMetricValueUnit.seconds => formatCompactDuration(context.l, value.round()),
-    core_domain.InsightMetricValueUnit.minutes => formatCompactDuration(context.l, (value * 60).round()),
-    core_domain.InsightMetricValueUnit.objects => NumberFormat('0.#', locale).format(value),
-    core_domain.InsightMetricValueUnit.count || core_domain.InsightMetricValueUnit.countPerHour => NumberFormat(
+    core_domain.DashboardMetricValueUnit.seconds => formatCompactDuration(context.l, value.round()),
+    core_domain.DashboardMetricValueUnit.minutes => formatCompactDuration(context.l, (value * 60).round()),
+    core_domain.DashboardMetricValueUnit.objects => NumberFormat('0.#', locale).format(value),
+    core_domain.DashboardMetricValueUnit.count || core_domain.DashboardMetricValueUnit.countPerHour => NumberFormat(
       value >= 10 ? '#,##0' : '0.#',
       locale,
     ).format(value),
   };
 }
 
-String _primaryUnit(BuildContext context, core_domain.InsightMetricValueUnit unit) => switch (unit) {
-  core_domain.InsightMetricValueUnit.objects => context.l.insight_objects_unit,
-  core_domain.InsightMetricValueUnit.countPerHour => context.l.insight_tracks_per_hour,
-  core_domain.InsightMetricValueUnit.count ||
-  core_domain.InsightMetricValueUnit.seconds ||
-  core_domain.InsightMetricValueUnit.minutes => '',
+String _primaryUnit(BuildContext context, core_domain.DashboardMetricValueUnit unit) => switch (unit) {
+  core_domain.DashboardMetricValueUnit.objects => context.l.insight_objects_unit,
+  core_domain.DashboardMetricValueUnit.countPerHour => context.l.insight_tracks_per_hour,
+  core_domain.DashboardMetricValueUnit.count ||
+  core_domain.DashboardMetricValueUnit.seconds ||
+  core_domain.DashboardMetricValueUnit.minutes => '',
 };
 
 Color insightObservationStatusColor(BuildContext context, core_domain.ObservationStatus status) => switch (status) {

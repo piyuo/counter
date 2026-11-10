@@ -1,41 +1,42 @@
-import 'package:core_domain/aggregation/insight_dashboard_snapshot.dart';
-import 'package:core_domain/aggregation/insight_metric_calculator.dart';
+import 'package:core_domain/services/dashboard_metric_calculator.dart';
+import 'package:core_domain/services/dashboard_service.dart';
+import 'package:core_domain/services/dashboard_snapshot.dart';
 
 import '../model/business_period.dart';
-import '../model/insight_dashboard.dart';
+import '../model/insight_state.dart';
 import '../model/observation.dart';
 import '../model/observation_payload.dart';
 import '../model/observation_series.dart';
 import '../state/models/interest_area.dart';
-import 'insight_data_type.dart';
 
-class InsightDashboardCache {
-  InsightDashboardCache({this.onSnapshotBuilt});
+class DashboardCache {
+  DashboardCache({this.onSnapshotBuilt});
 
   /// Called after snapshot inputs change; intended for diagnostics and tests.
   final void Function()? onSnapshotBuilt;
 
   ({InsightDashboardSnapshot snapshot, _SnapshotKey key, _ChartKey chartKey})? _cached;
 
-  List<InsightAreaData> build({
-    required InsightDashboard dashboard,
+  List<DashboardAreaData> build({
+    required InsightState insightState,
     required List<InterestArea> customAreas,
     required List<BusinessPeriod> businessPeriods,
     required DateTime now,
   }) {
     final snapshotKey = _SnapshotKey.fromInputs(
-      dashboard: dashboard,
+      dashboard: insightState,
       customAreas: customAreas,
       businessPeriods: businessPeriods,
       now: now,
     );
     var cached = _cached;
     if (cached == null || !cached.key.matches(snapshotKey)) {
-      final chartKey = _ChartKey.fromInputs(dashboard: dashboard, customAreas: customAreas, now: now);
+      print('Rebuilding snapshot with key: $snapshotKey');
+      final chartKey = _ChartKey.fromInputs(dashboard: insightState, customAreas: customAreas, now: now);
       final canReuseChart = cached != null && cached.chartKey.matches(chartKey);
       final cachedChartPoints = canReuseChart ? _chartPointsFromSnapshot(cached.snapshot) : null;
       final snapshot = buildInsightDashboardSnapshot(
-        dashboard: dashboard,
+        dashboard: insightState,
         customAreas: customAreas,
         businessPeriods: businessPeriods,
         now: now,
@@ -45,23 +46,22 @@ class InsightDashboardCache {
       _cached = cached;
       onSnapshotBuilt?.call();
     }
-    print('Using cached snapshot: ${cached.snapshot}');
-    return _buildInsightAreas(dashboard, cached.snapshot);
+    return _buildInsightAreas(insightState, cached.snapshot);
   }
 
   void dispose() => _cached = null;
 }
 
-List<InsightAreaData> _buildInsightAreas(InsightDashboard dashboard, InsightDashboardSnapshot snapshot) =>
+List<DashboardAreaData> _buildInsightAreas(InsightState dashboard, InsightDashboardSnapshot snapshot) =>
     List.unmodifiable([
       for (final area in snapshot.areas)
-        InsightAreaData(
+        DashboardAreaData(
           areaId: area.areaId,
           name: area.name,
           isGlobal: area.isGlobal,
           cards: List.unmodifiable([
             for (final card in area.cards)
-              InsightCardData(
+              DashboardCardData(
                 metric: card.metric,
                 primary: calculateInsightMetricFromAggregate(
                   dashboard.recentHourObservation,
@@ -82,7 +82,7 @@ List<InsightAreaData> _buildInsightAreas(InsightDashboard dashboard, InsightDash
         ),
     ]);
 
-Map<(int, InsightMetric), List<InsightChartPoint>> _chartPointsFromSnapshot(InsightDashboardSnapshot snapshot) => {
+Map<(int, DashboardMetric), List<DashboardChartPoint>> _chartPointsFromSnapshot(InsightDashboardSnapshot snapshot) => {
   for (final area in snapshot.areas)
     for (final card in area.cards) (area.areaId, card.metric): card.chartPoints,
 };
@@ -98,7 +98,7 @@ class _ChartKey {
   });
 
   factory _ChartKey.fromInputs({
-    required InsightDashboard dashboard,
+    required InsightState dashboard,
     required List<InterestArea> customAreas,
     required DateTime now,
   }) => _ChartKey(
@@ -150,7 +150,7 @@ class _SnapshotKey {
   });
 
   factory _SnapshotKey.fromInputs({
-    required InsightDashboard dashboard,
+    required InsightState dashboard,
     required List<InterestArea> customAreas,
     required List<BusinessPeriod> businessPeriods,
     required DateTime now,

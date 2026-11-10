@@ -1,36 +1,15 @@
-import 'dart:async';
-
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
-import 'package:core_runtime/core_runtime.dart' as core_runtime;
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
 import 'package:counter_app/control_panel/insights/insight_chart.dart';
 import 'package:counter_app/control_panel/insights/insight_comparison_period_dropdown.dart';
-import 'package:counter_app/control_panel/insights/insight_display.dart';
 import 'package:counter_app/control_panel/insights/insight_primary_metric.dart';
 import 'package:counter_app/control_panel/insights/insight_widgets.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_l10n/generated/localization_de.dart';
 import 'package:shared_l10n/shared_l10n.dart';
-
-final _testInsightDashboardProvider = NotifierProvider<_TestInsightDashboardNotifier, core_domain.InsightDashboard>(
-  _TestInsightDashboardNotifier.new,
-);
-
-class _TestInsightDashboardNotifier extends Notifier<core_domain.InsightDashboard> {
-  @override
-  core_domain.InsightDashboard build() => const core_domain.InsightDashboard(businessDate: '2026-11-05');
-
-  void update(core_domain.InsightDashboard dashboard) => state = dashboard;
-}
-
-class _TestAppNotifier extends core_domain.AppNotifier {
-  @override
-  Future<core_domain.AppState> build() async => const core_domain.AppState();
-}
 
 class _GermanLocalizationDelegate extends LocalizationsDelegate<Localization> {
   const _GermanLocalizationDelegate();
@@ -45,25 +24,25 @@ class _GermanLocalizationDelegate extends LocalizationsDelegate<Localization> {
   bool shouldReload(_GermanLocalizationDelegate old) => false;
 }
 
-core_domain.InsightCardData _chartCard({
-  core_domain.InsightMetric metric = core_domain.InsightMetric.passBy,
+core_domain.DashboardCardData _chartCard({
+  core_domain.DashboardMetric metric = core_domain.DashboardMetric.passBy,
   double? todayValue = 340,
   double? comparisonValue = 310,
   double? liveRate,
   bool liveRateEstimated = false,
-  List<core_domain.InsightChartPoint>? chartPoints,
-}) => core_domain.InsightCardData(
+  List<core_domain.DashboardChartPoint>? chartPoints,
+}) => core_domain.DashboardCardData(
   metric: metric,
   primary: liveRate == null
       ? null
-      : core_domain.InsightMetricValue(
+      : core_domain.DashboardMetricValue(
           value: liveRate,
           unit: switch (metric) {
-            core_domain.InsightMetric.dwellTimeMean ||
-            core_domain.InsightMetric.dwellTimeMax => core_domain.InsightMetricValueUnit.seconds,
-            core_domain.InsightMetric.occupancyMean ||
-            core_domain.InsightMetric.occupancyPeak => core_domain.InsightMetricValueUnit.objects,
-            _ => core_domain.InsightMetricValueUnit.countPerHour,
+            core_domain.DashboardMetric.dwellTimeMean ||
+            core_domain.DashboardMetric.dwellTimeMax => core_domain.DashboardMetricValueUnit.seconds,
+            core_domain.DashboardMetric.occupancyMean ||
+            core_domain.DashboardMetric.occupancyPeak => core_domain.DashboardMetricValueUnit.objects,
+            _ => core_domain.DashboardMetricValueUnit.countPerHour,
           },
           estimated: liveRateEstimated,
           coveredSeconds: 2400,
@@ -74,7 +53,7 @@ core_domain.InsightCardData _chartCard({
       chartPoints ??
       [
         for (var hour = 0; hour < 24; hour++)
-          core_domain.InsightChartPoint(
+          core_domain.DashboardChartPoint(
             minuteOfDay: hour * 60,
             todayValue: hour == 12 ? todayValue : null,
             comparisonValue: hour == 12 ? comparisonValue : null,
@@ -83,7 +62,7 @@ core_domain.InsightCardData _chartCard({
 );
 
 Widget _chartApp(
-  core_domain.InsightCardData card, {
+  core_domain.DashboardCardData card, {
   Locale locale = const Locale('en'),
   ThemeData? theme,
   String comparisonLabel = 'Yesterday',
@@ -117,148 +96,6 @@ Widget _chartApp(
 String _normalizeSemanticText(String value) => value.replaceAll('\u202f', ' ').replaceAll('\u00a0', ' ');
 
 void main() {
-  testWidgets('insight minute clock source emits immediately', (tester) async {
-    final container = ProviderContainer();
-    addTearDown(container.dispose);
-
-    final firstEmission = await tester.runAsync(
-      () => container.read(insightMinuteClockSourceProvider).first.timeout(const Duration(milliseconds: 250)),
-    );
-
-    expect(firstEmission, isA<DateTime>());
-  });
-
-  test('insight minute clock emits slot changes without dashboard updates', () async {
-    final source = StreamController<DateTime>();
-    final container = ProviderContainer(
-      overrides: [insightMinuteClockSourceProvider.overrideWith((ref) => source.stream)],
-    );
-    final emitted = <DateTime>[];
-    final firstMinute = Completer<void>();
-    final nextMinute = Completer<void>();
-    final subscription = container.listen(insightMinuteClockProvider, (previous, next) {
-      next.whenData((value) {
-        emitted.add(value);
-        if (emitted.length == 1) firstMinute.complete();
-        if (emitted.length == 2) nextMinute.complete();
-      });
-    }, fireImmediately: true);
-    addTearDown(() async {
-      subscription.close();
-      container.dispose();
-      await source.close();
-    });
-
-    final beforeBoundary = DateTime(2026, 10, 29, 12, 4, 58);
-    source.add(beforeBoundary);
-    await firstMinute.future;
-    source.add(beforeBoundary.add(const Duration(seconds: 1)));
-    await Future<void>.delayed(Duration.zero);
-    expect(emitted, [beforeBoundary]);
-
-    final atBoundary = DateTime(2026, 10, 29, 12, 5);
-    source.add(atBoundary);
-    await nextMinute.future;
-    expect(emitted, [beforeBoundary, atBoundary]);
-  });
-
-  test('insight area provider reuses snapshots across 60 live dashboard updates', () async {
-    final now = DateTime(2026, 11, 5, 12);
-    final currentMinute = now;
-    ObservationSeries populatedSeries(DateTime date, int passBy) => ObservationSeries.fromObservations([
-      core_domain.Observation(
-        granularity: core_domain.ObservationGranularity.minutes5,
-        year: date.year,
-        month: date.month,
-        day: date.day,
-        hour: 11,
-        minute: 55,
-        coveredSeconds: 300,
-        areas: [core_domain.Activity(areaId: core_domain.kGlobalAreaId, areaName: 'Global', passBy: passBy.toDouble())],
-        frameCount: passBy,
-      ),
-    ]);
-    final todaySeries = populatedSeries(now, 5);
-    final comparisonSeries = populatedSeries(now.subtract(const Duration(days: 1)), 2);
-    final source = StreamController<DateTime>();
-    var snapshotBuilds = 0;
-    final container = ProviderContainer(
-      overrides: [
-        core_domain.insightDashboardProvider.overrideWith((ref) => ref.watch(_testInsightDashboardProvider)),
-        core_domain.appProvider.overrideWith(_TestAppNotifier.new),
-        core_runtime.interestAreaProvider.overrideWithValue(const core_domain.InterestAreaState.initial()),
-        insightMinuteClockSourceProvider.overrideWith((ref) => source.stream),
-        insightSnapshotBuiltCallbackProvider.overrideWith(
-          (ref) =>
-              () => snapshotBuilds++,
-        ),
-      ],
-    );
-    container
-        .read(_testInsightDashboardProvider.notifier)
-        .update(
-          core_domain.InsightDashboard(
-            businessDate: '2026-11-05',
-            todaySeries: todaySeries,
-            comparisonSeries: comparisonSeries,
-          ),
-        );
-    final subscription = container.listen(insightAreaDataProvider, (previous, next) {}, fireImmediately: true);
-    addTearDown(() async {
-      subscription.close();
-      container.dispose();
-      await source.close();
-    });
-
-    source.add(currentMinute);
-    await Future<void>.delayed(Duration.zero);
-    final initialPoints = container
-        .read(insightAreaDataProvider)
-        .single
-        .card(core_domain.InsightMetric.passBy)
-        .chartPoints;
-    expect(initialPoints.singleWhere((point) => point.minuteOfDay == 660).todayValue, 5);
-
-    for (var index = 0; index < 60; index++) {
-      container
-          .read(_testInsightDashboardProvider.notifier)
-          .update(
-            core_domain.InsightDashboard(
-              businessDate: '2026-11-05',
-              recentHourObservation: core_domain.Observation(
-                granularity: core_domain.ObservationGranularity.minutes5,
-                year: now.year,
-                month: now.month,
-                day: now.day,
-                hour: now.hour,
-                minute: now.minute ~/ 5 * 5,
-                coveredSeconds: 300,
-                areas: [
-                  core_domain.Activity(areaId: core_domain.kGlobalAreaId, areaName: 'Global', passBy: index.toDouble()),
-                ],
-                frameCount: index,
-              ),
-              todaySeries: todaySeries,
-              comparisonSeries: comparisonSeries,
-            ),
-          );
-      final updatedPoints = container
-          .read(insightAreaDataProvider)
-          .single
-          .card(core_domain.InsightMetric.passBy)
-          .chartPoints;
-      final updatedPrimary = container
-          .read(insightAreaDataProvider)
-          .single
-          .card(core_domain.InsightMetric.passBy)
-          .primary;
-      expect(identical(initialPoints, updatedPoints), isTrue);
-      expect(updatedPrimary?.value, closeTo(index * 12, 1e-8));
-    }
-
-    expect(snapshotBuilds, 1);
-  });
-
   testWidgets('overlapping hourly series show labels and selectable values', (tester) async {
     await tester.pumpWidget(_chartApp(_chartCard()));
     await tester.pumpAndSettle();
@@ -286,7 +123,7 @@ void main() {
   testWidgets('hourly chart labels overall extrema across both series', (tester) async {
     final points = [
       for (var hour = 0; hour < 24; hour++)
-        core_domain.InsightChartPoint(
+        core_domain.DashboardChartPoint(
           minuteOfDay: hour * 60,
           todayValue: switch (hour) {
             9 => 120,
@@ -319,7 +156,7 @@ void main() {
   testWidgets('all-zero chart selects one observed value and invalid data selects none', (tester) async {
     final zeros = [
       for (var hour = 0; hour < 24; hour++)
-        core_domain.InsightChartPoint(minuteOfDay: hour * 60, todayValue: 0, comparisonValue: 0),
+        core_domain.DashboardChartPoint(minuteOfDay: hour * 60, todayValue: 0, comparisonValue: 0),
     ];
     await tester.pumpWidget(_chartApp(_chartCard(chartPoints: zeros)));
     await tester.pumpAndSettle();
@@ -331,11 +168,11 @@ void main() {
     expect(zeroLabel.split('; '), hasLength(1));
 
     final invalid = [
-      const core_domain.InsightChartPoint(minuteOfDay: 0, todayValue: double.nan),
-      const core_domain.InsightChartPoint(minuteOfDay: 60, comparisonValue: double.infinity),
-      const core_domain.InsightChartPoint(minuteOfDay: 120, todayValue: -1),
-      const core_domain.InsightChartPoint(minuteOfDay: -60, todayValue: 100),
-      const core_domain.InsightChartPoint(minuteOfDay: 24 * 60, comparisonValue: 100),
+      const core_domain.DashboardChartPoint(minuteOfDay: 0, todayValue: double.nan),
+      const core_domain.DashboardChartPoint(minuteOfDay: 60, comparisonValue: double.infinity),
+      const core_domain.DashboardChartPoint(minuteOfDay: 120, todayValue: -1),
+      const core_domain.DashboardChartPoint(minuteOfDay: -60, todayValue: 100),
+      const core_domain.DashboardChartPoint(minuteOfDay: 24 * 60, comparisonValue: 100),
     ];
     await tester.pumpWidget(_chartApp(_chartCard(chartPoints: invalid)));
     await tester.pumpAndSettle();
@@ -345,7 +182,7 @@ void main() {
   testWidgets('equal extrema prefer observed, Today, then the earlier hour', (tester) async {
     final points = [
       for (var hour = 0; hour < 24; hour++)
-        core_domain.InsightChartPoint(
+        core_domain.DashboardChartPoint(
           minuteOfDay: hour * 60,
           todayValue: switch (hour) {
             6 => 0,
@@ -404,8 +241,8 @@ void main() {
       _chartCard(),
       _chartCard(liveRate: double.nan),
       _chartCard(liveRate: -1),
-      _chartCard(metric: core_domain.InsightMetric.occupancyMean, liveRate: 420),
-      _chartCard(metric: core_domain.InsightMetric.dwellTimeMean, liveRate: 420),
+      _chartCard(metric: core_domain.DashboardMetric.occupancyMean, liveRate: 420),
+      _chartCard(metric: core_domain.DashboardMetric.dwellTimeMean, liveRate: 420),
     ]) {
       await tester.pumpWidget(_chartApp(card, currentHour: 12));
       await tester.pumpAndSettle();
@@ -471,15 +308,15 @@ void main() {
   });
 
   testWidgets('empty hourly chart keeps all 24 positions and a fixed timeline', (tester) async {
-    final card = core_domain.InsightDashboardCache()
+    final card = core_domain.DashboardCache()
         .build(
-          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
           customAreas: const [],
           businessPeriods: const [],
           now: DateTime(2026, 10, 29, 12, 7),
         )
         .single
-        .card(core_domain.InsightMetric.passBy);
+        .card(core_domain.DashboardMetric.passBy);
 
     await tester.pumpWidget(
       MaterialApp(
@@ -506,7 +343,7 @@ void main() {
   testWidgets('formats hourly values using the active locale', (tester) async {
     await tester.pumpWidget(
       _chartApp(
-        _chartCard(metric: core_domain.InsightMetric.dwellTimeMean, todayValue: 5.75, comparisonValue: null),
+        _chartCard(metric: core_domain.DashboardMetric.dwellTimeMean, todayValue: 5.75, comparisonValue: null),
         locale: const Locale('de'),
         currentHour: 12,
       ),
@@ -589,14 +426,14 @@ void main() {
   });
 
   testWidgets('shows an unavailable message for a missing hourly value', (tester) async {
-    final card = core_domain.InsightCardData(
-      metric: core_domain.InsightMetric.passBy,
+    final card = core_domain.DashboardCardData(
+      metric: core_domain.DashboardMetric.passBy,
       primary: null,
       comparisonValue: null,
       periods: const [],
       chartPoints: [
         for (var hour = 0; hour < 24; hour++)
-          core_domain.InsightChartPoint(
+          core_domain.DashboardChartPoint(
             minuteOfDay: hour * 60,
             comparisonValue: hour == 13 ? 2 : null,
             todayValue: hour == 9 || hour == 10 || hour == 12 || hour == 13 ? 1 : null,
@@ -637,9 +474,9 @@ void main() {
       required int periodCoverage,
       core_domain.ObservationStatus observationStatus = core_domain.ObservationStatus.stopped,
     }) async {
-      final areaData = core_domain.InsightDashboardCache()
+      final areaData = core_domain.DashboardCache()
           .build(
-            dashboard: core_domain.InsightDashboard(
+            insightState: core_domain.InsightState(
               businessDate: '2026-10-29',
               todaySeries: ObservationSeries.fromObservations([
                 observation(0, 300),
@@ -726,9 +563,9 @@ void main() {
   });
 
   testWidgets('comparison dropdown in the primary metric changes its period', (tester) async {
-    final area = core_domain.InsightDashboardCache()
+    final area = core_domain.DashboardCache()
         .build(
-          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
           customAreas: const [core_domain.InterestArea(id: 37, name: 'Entrance')],
           businessPeriods: const [],
           now: DateTime(2026, 10, 29, 12),
@@ -792,8 +629,8 @@ void main() {
   });
 
   testWidgets('horizontal paging changes metrics without losing the area section', (tester) async {
-    final areas = core_domain.InsightDashboardCache().build(
-      dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+    final areas = core_domain.DashboardCache().build(
+      insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
       customAreas: const [core_domain.InterestArea(id: 37, name: 'Entrance')],
       businessPeriods: const [],
       now: DateTime(2026, 10, 29, 12),
@@ -898,24 +735,24 @@ void main() {
   });
 
   testWidgets('insight card height follows its business-period content', (tester) async {
-    final compactArea = core_domain.InsightDashboardCache()
+    final compactArea = core_domain.DashboardCache()
         .build(
-          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
           customAreas: const [],
           businessPeriods: const [],
           now: DateTime(2026, 10, 29, 12),
         )
         .single;
-    final expandedArea = core_domain.InsightDashboardCache()
+    final expandedArea = core_domain.DashboardCache()
         .build(
-          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
           customAreas: const [],
           businessPeriods: core_domain.BusinessPeriod.defaultSchedule,
           now: DateTime(2026, 10, 29, 12),
         )
         .single;
 
-    Future<double> cardHeight(core_domain.InsightAreaData area) async {
+    Future<double> cardHeight(core_domain.DashboardAreaData area) async {
       await tester.pumpWidget(
         MaterialApp(
           localizationsDelegates: Localization.localizationsDelegates,
@@ -947,9 +784,9 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    final area = core_domain.InsightDashboardCache()
+    final area = core_domain.DashboardCache()
         .build(
-          dashboard: const core_domain.InsightDashboard(businessDate: '2026-10-29'),
+          insightState: const core_domain.InsightState(businessDate: '2026-10-29'),
           customAreas: const [],
           businessPeriods: core_domain.BusinessPeriod.defaultSchedule,
           now: DateTime(2026, 10, 29, 12),
