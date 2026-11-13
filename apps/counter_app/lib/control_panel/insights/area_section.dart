@@ -65,6 +65,7 @@ class _AreaSectionState extends State<AreaSection> {
             initialPage: _selectedPage,
             onPageChanged: (page) => setState(() => _selectedPage = page),
             itemBuilder: (context, index) => DashboardCard(
+              areaId: widget.areaData.areaId,
               data: widget.areaData.cards[index],
               comparisonPeriod: widget.comparisonPeriod,
               onComparisonChanged: widget.onComparisonChanged,

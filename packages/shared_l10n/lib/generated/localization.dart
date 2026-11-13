@@ -1170,6 +1170,36 @@ abstract class Localization {
   /// **'Statistics for Each 5-Minute Period'**
   String get metrics_counting_window;
 
+  /// No description provided for @observation_screen_observed_count.
+  ///
+  /// In en, this message translates to:
+  /// **'Observed count'**
+  String get observation_screen_observed_count;
+
+  /// No description provided for @observation_screen_observed_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Observed time'**
+  String get observation_screen_observed_time;
+
+  /// No description provided for @observation_screen_rate_calculation.
+  ///
+  /// In en, this message translates to:
+  /// **'Count ÷ observed seconds × seconds per hour'**
+  String get observation_screen_rate_calculation;
+
+  /// No description provided for @observation_screen_subtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get observation_screen_subtotal;
+
+  /// No description provided for @observation_screen_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get observation_screen_total;
+
   /// No description provided for @observation_status_interrupted.
   ///
   /// In en, this message translates to:

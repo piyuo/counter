@@ -32,6 +32,7 @@ import 'package:counter_app/control_panel/interest_area_screen.dart';
 import 'package:counter_app/control_panel/language_screen.dart';
 import 'package:counter_app/control_panel/loading_screen.dart';
 import 'package:counter_app/control_panel/main_screen.dart';
+import 'package:counter_app/control_panel/observation_screen.dart';
 import 'package:counter_app/control_panel/payload_detail_screen.dart';
 import 'package:counter_app/control_panel/payloads_hour_screen.dart';
 import 'package:counter_app/control_panel/payloads_recent_screen.dart';
@@ -166,6 +167,21 @@ class RecentPayloadsRouteData extends CupertinoRouteData with $RecentPayloadsRou
 
   @override
   Widget build(BuildContext context, GoRouterState state) => const PayloadsRecentScreen();
+}
+
+@TypedGoRoute<ObservationRouteData>(path: '/observations/:areaId/:metric')
+class ObservationRouteData extends CupertinoRouteData with $ObservationRouteData {
+  const ObservationRouteData({required this.areaId, required this.metric});
+
+  final int areaId;
+  final String metric;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) {
+    final selectedMetric = core_domain.DashboardMetric.values.where((value) => value.name == metric).firstOrNull;
+    if (selectedMetric == null) return const PayloadsRecentScreen();
+    return ObservationScreen(areaId: areaId, metric: selectedMetric);
+  }
 }
 
 @TypedGoRoute<RecentPayloadHourRouteData>(path: '/recent-payloads/hour/:year/:month/:day/:hour')

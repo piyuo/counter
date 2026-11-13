@@ -19,18 +19,18 @@ enum DashboardMetric {
   dwellTimeMax,
 }
 
-enum DashboardMetricValueUnit { count, countPerHour, objects, seconds, minutes }
+enum DashboardMeasurementUnit { count, countPerHour, objects, seconds, minutes }
 
-class DashboardMetricValue {
-  const DashboardMetricValue({
-    required this.value,
+class DashboardMeasurement {
+  const DashboardMeasurement({
+    required this.amount,
     required this.unit,
     this.estimated = false,
     this.coveredSeconds = 0,
   });
 
-  final double value;
-  final DashboardMetricValueUnit unit;
+  final double amount;
+  final DashboardMeasurementUnit unit;
   final bool estimated;
   final int coveredSeconds;
 }
@@ -45,7 +45,7 @@ class DashboardPeriodData {
 
   final BusinessPeriod period;
   final BusinessPeriodStatus status;
-  final DashboardMetricValue? primary;
+  final DashboardMeasurement? primary;
   final double? comparisonValue;
 }
 
@@ -90,7 +90,7 @@ class DashboardCardData {
   });
 
   final DashboardMetric metric;
-  final DashboardMetricValue? primary;
+  final DashboardMeasurement? primary;
   final double? comparisonValue;
   final List<DashboardPeriodData> periods;
   final List<DashboardChartPoint> chartPoints;
@@ -104,7 +104,9 @@ class DashboardState with _$DashboardState {
 }
 
 // generate
-abstract class DashboardService {}
+abstract class DashboardService {
+  DashboardCardData? findCard(int areaId, DashboardMetric metric);
+}
 
 @riverpod
 DashboardService dashboardService(Ref ref) {

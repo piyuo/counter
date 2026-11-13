@@ -65,6 +65,7 @@ GoRouter _buildTestRouter() {
       GoRoute(path: '/delivery-config', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/upload-logs', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/recent-payloads', builder: (_, _) => const SizedBox()),
+      GoRoute(path: '/observations/:areaId/:metric', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/recent-payloads/hour/:year/:month/:day/:hour', builder: (_, _) => const SizedBox()),
       GoRoute(path: '/recent-payloads/payload/:payloadId', builder: (_, _) => const SizedBox()),
       GoRoute(
@@ -117,6 +118,8 @@ StreamSubscription<core_domain.NavigationAction> _subscribeRouter(core_domain.Na
       core_domain.OpenDeliveryConfig() => '/delivery-config',
       core_domain.OpenUploadLogs() => '/upload-logs',
       core_domain.OpenPayloadsRecent() => '/recent-payloads',
+      core_domain.OpenObservationDetails(areaId: final areaId, metric: final metric) =>
+        '/observations/$areaId/${metric.name}',
       core_domain.OpenPayloadsHour(year: final year, month: final month, day: final day, hour: final hour) =>
         '/recent-payloads/hour/$year/$month/$day/$hour',
       core_domain.OpenPayloadDetail(payloadId: final payloadId) => '/recent-payloads/payload/$payloadId',
@@ -412,6 +415,27 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(router.state.uri.path, '/recent-payloads');
+    });
+
+    testWidgets('OpenObservationDetails carries area and metric into the route', (tester) async {
+      final container = ProviderContainer();
+      addTearDown(container.dispose);
+
+      final bus = container.read(core_domain.navigationEventBusProvider);
+      final router = _buildTestRouter();
+      final sub = _subscribeRouter(bus, router);
+      addTearDown(() async {
+        await sub.cancel();
+        router.dispose();
+      });
+
+      await tester.pumpWidget(MaterialApp.router(routerConfig: router));
+      await tester.pump();
+
+      bus.push(const core_domain.OpenObservationDetails(areaId: 0, metric: core_domain.DashboardMetric.passBy));
+      await tester.pumpAndSettle();
+
+      expect(router.state.uri.path, '/observations/0/passBy');
     });
 
     testWidgets('OpenRecentPayloadHour navigates using date and hour components', (tester) async {

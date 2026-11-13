@@ -576,6 +576,22 @@ class LocalizationMy extends Localization {
       '၅ မိနစ်တစ်ကြိမ် ထုတ်ပေးသော စာရင်းအင်းများ';
 
   @override
+  String get observation_screen_observed_count => 'တွေ့ရှိထားသော အရေအတွက်';
+
+  @override
+  String get observation_screen_observed_time => 'စောင့်ကြည့်ထားသည့်အချိန်';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'တွေ့ရှိထားသော အရေအတွက် ÷ စောင့်ကြည့်ထားသော စက္ကန့် × တစ်နာရီလျှင် စက္ကန့်';
+
+  @override
+  String get observation_screen_subtotal => 'စုစုပေါင်းခွဲ';
+
+  @override
+  String get observation_screen_total => 'စုစုပေါင်း';
+
+  @override
   String get observation_status_interrupted => 'ယာယီပြတ်တောက်နေသည်';
 
   @override

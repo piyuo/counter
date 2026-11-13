@@ -38,8 +38,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   }
 
   @override
-  void onFiveMinuteObservationCompleted(core_domain.Observation observation) {
-    unawaited(refresh());
+  Future<void> onFiveMinuteObservationCompleted(core_domain.Observation observation) async {
+    await refresh();
   }
 
   @override

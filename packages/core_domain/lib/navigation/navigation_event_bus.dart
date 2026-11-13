@@ -14,6 +14,7 @@
 import 'dart:async';
 
 import 'package:core_domain/navigation/routes/onboarding_routes.dart';
+import 'package:core_domain/services/dashboard_service.dart';
 import 'package:core_domain/state/models/invitation.dart';
 import 'package:core_domain/telemetry/models/upload_log.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -118,6 +119,17 @@ class OpenPayloadsRecent extends NavigationEvent {
   const OpenPayloadsRecent();
   @override
   String? get path => '/recent-payloads';
+}
+
+/// Request to navigate to five-minute observations for one dashboard metric.
+class OpenObservationDetails extends NavigationEvent {
+  const OpenObservationDetails({required this.areaId, required this.metric});
+
+  final int areaId;
+  final DashboardMetric metric;
+
+  @override
+  String? get path => '/observations/$areaId/${metric.name}';
 }
 
 /// Request to navigate to one recent payload delivery-hour group.

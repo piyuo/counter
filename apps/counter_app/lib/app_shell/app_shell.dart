@@ -85,20 +85,20 @@ class _AppShellState extends ConsumerState<AppShell> {
     }
 
     try {
-      final payload = observation.toPayload();
-      await telemetryService.add(payload);
+      await insightService.onFiveMinuteObservationCompleted(observation);
     } catch (error, stackTrace) {
       appkit.logDebug(
-        '[app_shell] Failed to enqueue telemetry payload: $error, '
+        '[app_shell] Failed to refresh insight service: $error, '
         'stack trace: $stackTrace',
       );
     }
 
     try {
-      insightService.onFiveMinuteObservationCompleted(observation);
+      final payload = observation.toPayload();
+      await telemetryService.add(payload);
     } catch (error, stackTrace) {
       appkit.logDebug(
-        '[app_shell] Failed to refresh insight service: $error, '
+        '[app_shell] Failed to enqueue telemetry payload: $error, '
         'stack trace: $stackTrace',
       );
     }

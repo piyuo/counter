@@ -572,6 +572,22 @@ class LocalizationTh extends Localization {
   String get metrics_counting_window => 'สถิติสำหรับทุกช่วงเวลา 5 นาที';
 
   @override
+  String get observation_screen_observed_count => 'จำนวนที่สังเกตได้';
+
+  @override
+  String get observation_screen_observed_time => 'เวลาที่สังเกต';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'จำนวนที่สังเกตได้ ÷ วินาทีที่สังเกต × วินาทีต่อชั่วโมง';
+
+  @override
+  String get observation_screen_subtotal => 'ยอดรวมย่อย';
+
+  @override
+  String get observation_screen_total => 'รวม';
+
+  @override
   String get observation_status_interrupted => 'ขัดข้องชั่วคราว';
 
   @override

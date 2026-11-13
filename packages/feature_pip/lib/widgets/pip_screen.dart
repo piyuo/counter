@@ -15,7 +15,7 @@ typedef ScrollCallback = void Function(ScrollController scrollController);
 enum SlidingLayout { portrait, landscape, landscape90, landscape270 }
 
 /// the width threshold for sidebar layout
-const double _sidebarLayoutWidthThreshold = 1350;
+const double sidebarLayoutWidthThreshold = 1350;
 
 /// if the width of the screen is more than this value, use fixed sliding layout, if not use expanded
 /// iphone pro max is 440
@@ -24,18 +24,20 @@ const double _slidingLayoutWidthThreshold = 500;
 /// the animation duration for sliding panel change position
 const _animationDuration = Duration(milliseconds: 100);
 
+/// the width for sliding panel in sidebar mode
+const double kSidebarPanelWidth =
+    324; // must not equal to sliding panel width, we use number to detect is sidebar in widgets
+
 /// the width for sliding panel in portrait mode
-double _kSlidingPanelWidth = 380; // 420
+const double _kSlidingPanelWidth = 320;
 
 /// the width for sliding panel in landscape mode
-double _kSlidingPanelWidthInHorizontal = 360;
+const double _kSlidingPanelWidthInHorizontal = 320;
 
 /// the min height for sliding panel
 const double _slidingPanelMinHeightInHorizontal = 120;
 
 const double _slidingPanelMinHeight = 140;
-
-double _kSidebarPanelWidth = 460;
 
 /// Picture in Picture screen
 class PipScreen extends ConsumerWidget {
@@ -45,7 +47,7 @@ class PipScreen extends ConsumerWidget {
   final Widget Function(bool isSideLayout) builder;
 
   /// the sliding builder
-  final Widget Function(bool) slidingBuilder;
+  final PipSlidingBuilder slidingBuilder;
 
   final DeviceOrientation? rotationOrientation;
 
@@ -57,13 +59,13 @@ class PipScreen extends ConsumerWidget {
     return OrientationBuilder(
       builder: (context, orientation) => LayoutBuilder(
         builder: (context, constraints) {
-          final isSidebarLayout = constraints.maxWidth > _sidebarLayoutWidthThreshold;
+          final isSidebarLayout = constraints.maxWidth > sidebarLayoutWidthThreshold;
           // screen is big enough, use sidebar layout
           buildSidebarLayout() {
             return AnimatedPositioned(
               duration: _animationDuration,
               left: 0,
-              width: _kSidebarPanelWidth,
+              width: kSidebarPanelWidth,
               top: 0,
               bottom: 0,
               child: Container(
@@ -117,10 +119,7 @@ class PipScreen extends ConsumerWidget {
                       ),
                     ),
                     // content on top of the blobs
-                    Padding(
-                      padding: const EdgeInsets.only(top: 22),
-                      child: Padding(padding: const EdgeInsets.all(16.0), child: slidingBuilder(false)),
-                    ),
+                    Padding(padding: EdgeInsets.fromLTRB(0, 22 + 8, 0, 0), child: slidingBuilder(true, false)),
                   ],
                 ),
               ),
@@ -223,7 +222,7 @@ class PipScreen extends ConsumerWidget {
             children: [
               AnimatedPositioned(
                 duration: _animationDuration,
-                left: isSidebarLayout ? _kSidebarPanelWidth : 0,
+                left: isSidebarLayout ? kSidebarPanelWidth : 0,
                 right: 0,
                 top: 0,
                 bottom: 0,

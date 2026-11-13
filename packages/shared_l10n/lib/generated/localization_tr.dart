@@ -574,6 +574,22 @@ class LocalizationTr extends Localization {
       'Her 5 dakikalık dönem için istatistikler';
 
   @override
+  String get observation_screen_observed_count => 'Gözlemlenen sayı';
+
+  @override
+  String get observation_screen_observed_time => 'Gözlem süresi';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Gözlemlenen sayı ÷ gözlem saniyesi × saatteki saniye';
+
+  @override
+  String get observation_screen_subtotal => 'Alt toplam';
+
+  @override
+  String get observation_screen_total => 'Toplam';
+
+  @override
   String get observation_status_interrupted => 'Kesintiye uğradı';
 
   @override

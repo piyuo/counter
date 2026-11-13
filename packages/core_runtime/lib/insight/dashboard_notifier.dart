@@ -40,4 +40,16 @@ class DashboardNotifier extends _$DashboardNotifier implements core_domain.Dashb
     );
     return core_domain.DashboardState(areas: areas);
   }
+
+  @override
+  core_domain.DashboardCardData? findCard(int areaId, core_domain.DashboardMetric metric) {
+    for (final area in state.areas) {
+      if (area.areaId != areaId) continue;
+      for (final card in area.cards) {
+        if (card.metric == metric) return card;
+      }
+      return null;
+    }
+    return null;
+  }
 }

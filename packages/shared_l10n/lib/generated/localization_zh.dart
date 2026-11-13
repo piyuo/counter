@@ -550,6 +550,21 @@ class LocalizationZh extends Localization {
   String get metrics_counting_window => '每 5 分鐘產生一次的統計資料';
 
   @override
+  String get observation_screen_observed_count => '觀測數量';
+
+  @override
+  String get observation_screen_observed_time => '觀測時間';
+
+  @override
+  String get observation_screen_rate_calculation => '觀測數量 ÷ 觀測秒數 × 每小時秒數';
+
+  @override
+  String get observation_screen_subtotal => '小計';
+
+  @override
+  String get observation_screen_total => '總計';
+
+  @override
   String get observation_status_interrupted => '暫時中斷';
 
   @override
@@ -1512,6 +1527,21 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get metrics_counting_window => '每 5 分钟生成一次的统计数据';
+
+  @override
+  String get observation_screen_observed_count => '观测数量';
+
+  @override
+  String get observation_screen_observed_time => '观测时间';
+
+  @override
+  String get observation_screen_rate_calculation => '观测数量 ÷ 观测秒数 × 每小时秒数';
+
+  @override
+  String get observation_screen_subtotal => '小计';
+
+  @override
+  String get observation_screen_total => '总计';
 
   @override
   String get observation_status_interrupted => '暂时中断';

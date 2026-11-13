@@ -575,6 +575,22 @@ class LocalizationPl extends Localization {
       'Statystyki dla każdego 5-minutowego okresu';
 
   @override
+  String get observation_screen_observed_count => 'Zaobserwowana liczba';
+
+  @override
+  String get observation_screen_observed_time => 'Czas obserwacji';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Zaobserwowana liczba ÷ zaobserwowane sekundy × sekundy na godzinę';
+
+  @override
+  String get observation_screen_subtotal => 'Suma częściowa';
+
+  @override
+  String get observation_screen_total => 'Suma';
+
+  @override
   String get observation_status_interrupted => 'Przerwano';
 
   @override

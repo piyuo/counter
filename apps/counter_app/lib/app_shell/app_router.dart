@@ -30,7 +30,7 @@ class AppRouter {
           return vision.VisionLifecycle(
             child: feature_pip.PipScreen(
               rotationOrientation: rotationOrientation,
-              slidingBuilder: (isPanelOpened) =>
+              slidingBuilder: (isSideLayout, isPanelOpened) =>
                   ControlPanelShell(key: _controlPanelKey, appLocaleDelegates: appLocaleDelegates),
               builder: (isSideLayout) => MonitorShell(),
             ),

@@ -21,6 +21,7 @@ List<RouteBase> get $appRoutes => [
   $uploadLogsRouteData,
   $uploadLogDetailRouteData,
   $recentPayloadsRouteData,
+  $observationRouteData,
   $recentPayloadHourRouteData,
   $recentPayloadDetailRouteData,
   $languageRouteData,
@@ -399,6 +400,40 @@ mixin $RecentPayloadsRouteData on GoRouteData {
 
   @override
   String get location => GoRouteData.$location('/recent-payloads');
+
+  @override
+  void go(BuildContext context) => context.go(location);
+
+  @override
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  @override
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  @override
+  void replace(BuildContext context) => context.replace(location);
+}
+
+RouteBase get $observationRouteData => GoRouteData.$route(
+  path: '/observations/:areaId/:metric',
+  hasOverriddenOnExit: false,
+  factory: $ObservationRouteData._fromState,
+);
+
+mixin $ObservationRouteData on GoRouteData {
+  static ObservationRouteData _fromState(GoRouterState state) =>
+      ObservationRouteData(
+        areaId: int.parse(state.pathParameters['areaId']!),
+        metric: state.pathParameters['metric']!,
+      );
+
+  ObservationRouteData get _self => this as ObservationRouteData;
+
+  @override
+  String get location => GoRouteData.$location(
+    '/observations/${Uri.encodeComponent(_self.areaId.toString())}/${Uri.encodeComponent(_self.metric)}',
+  );
 
   @override
   void go(BuildContext context) => context.go(location);

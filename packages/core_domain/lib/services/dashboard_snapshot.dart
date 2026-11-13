@@ -136,7 +136,7 @@ DashboardPeriodData _buildPeriod({
     areaId: areaId,
     metric: metric,
     expectedSeconds: expectedSeconds,
-  )?.value;
+  )?.amount;
   return DashboardPeriodData(period: period, status: status, primary: primary, comparisonValue: comparisonValue);
 }
 
@@ -161,8 +161,8 @@ List<DashboardChartPoint> _buildChartPoints(
     points.add(
       DashboardChartPoint(
         minuteOfDay: hour * 60,
-        todayValue: todayValue?.value,
-        comparisonValue: comparisonValue?.value,
+        todayValue: todayValue?.amount,
+        comparisonValue: comparisonValue?.amount,
         todayCoveredSeconds: todayValue?.coveredSeconds ?? 0,
         comparisonCoveredSeconds: comparisonValue?.coveredSeconds ?? 0,
         todayEstimated: todayValue?.estimated ?? false,

@@ -72,7 +72,12 @@ Activity _metrics({
   );
 }
 
-Observation _minute({required int minute, required Activity metrics, int day = 1, int month = 1}) {
+Observation _minute({
+  required int minute,
+  required Activity metrics,
+  int day = 1,
+  int month = 1,
+}) {
   return _observation(
     granularity: ObservationGranularity.minutes5,
     year: 2026,
@@ -84,7 +89,11 @@ Observation _minute({required int minute, required Activity metrics, int day = 1
   );
 }
 
-Observation _partialMinute({required int minute, required int coveredSeconds, int day = 1}) {
+Observation _partialMinute({
+  required int minute,
+  required int coveredSeconds,
+  int day = 1,
+}) {
   return Observation(
     granularity: ObservationGranularity.minutes5,
     year: 2026,
@@ -100,18 +109,130 @@ Observation _partialMinute({required int minute, required int coveredSeconds, in
   );
 }
 
-void main() {
-  group('aggregateObservations actual-period aggregation', () {
-    test('calculates hourly coverage from only two five-minute observations', () {
-      final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics()),
-        _minute(minute: 5, metrics: _metrics()),
-      ], granularity: ObservationGranularity.hour);
+Observation _rollingMinute(DateTime time, {int? day}) => _observation(
+  granularity: ObservationGranularity.minutes5,
+  year: time.year,
+  month: time.month,
+  day: day ?? time.day,
+  hour: time.hour,
+  minute: time.minute,
+);
 
-      expect(combined.coveredSeconds, 600);
-      expect(combined.expectedSeconds, 3600);
-      expect(combined.coverageRatio, closeTo(1 / 6, 1e-12));
+void main() {
+  group('aggregateRecentHourObservations rolling-hour windows', () {
+    test('accepts 12 observations spanning 55 minutes', () {
+      final start = DateTime(2026, 1, 1, 10);
+      final observations = [
+        for (var index = 0; index < 12; index++)
+          _rollingMinute(start.add(Duration(minutes: index * 5))),
+      ];
+
+      final result = aggregateRecentHourObservations(observations);
+
+      expect(result.granularity, ObservationGranularity.hour);
+      expect(result.frameCount, 12);
+      expect(result.coveredSeconds, 3600);
     });
+
+    test('rejects 13 observations', () {
+      final start = DateTime(2026, 1, 1, 10);
+      final observations = [
+        for (var index = 0; index < 13; index++)
+          _rollingMinute(start.add(Duration(minutes: index * 5))),
+      ];
+
+      expect(
+        () => aggregateRecentHourObservations(observations),
+        throwsArgumentError,
+      );
+    });
+
+    test('rejects three observations spanning three hours', () {
+      final observations = [
+        _rollingMinute(DateTime(2026, 1, 1, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 11)),
+        _rollingMinute(DateTime(2026, 1, 1, 13)),
+      ];
+
+      expect(
+        () => aggregateRecentHourObservations(observations),
+        throwsArgumentError,
+      );
+    });
+
+    test('rejects two observations spanning 60 minutes', () {
+      final observations = [
+        _rollingMinute(DateTime(2026, 1, 1, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 11)),
+      ];
+
+      expect(
+        () => aggregateRecentHourObservations(observations),
+        throwsArgumentError,
+      );
+    });
+
+    test('accepts two observations spanning 55 minutes', () {
+      final observations = [
+        _rollingMinute(DateTime(2026, 1, 1, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 10, 55)),
+      ];
+
+      final result = aggregateRecentHourObservations(observations);
+
+      expect(result.frameCount, 2);
+      expect(result.coveredSeconds, 600);
+    });
+
+    test('rejects observations from different business days', () {
+      final observations = [
+        _rollingMinute(DateTime(2026, 1, 1, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 10, 5), day: 2),
+      ];
+
+      expect(
+        () => aggregateRecentHourObservations(observations),
+        throwsArgumentError,
+      );
+    });
+
+    test('rejects duplicate observation IDs', () {
+      final observation = _rollingMinute(DateTime(2026, 1, 1, 10));
+
+      expect(
+        () => aggregateRecentHourObservations([observation, observation]),
+        throwsArgumentError,
+      );
+    });
+
+    test('accepts missing observations within the window', () {
+      final observations = [
+        _rollingMinute(DateTime(2026, 1, 1, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 10, 10)),
+        _rollingMinute(DateTime(2026, 1, 1, 10, 35)),
+      ];
+
+      final result = aggregateRecentHourObservations(observations);
+
+      expect(result.frameCount, 3);
+      expect(result.coveredSeconds, 900);
+    });
+  });
+
+  group('aggregateObservations actual-period aggregation', () {
+    test(
+      'calculates hourly coverage from only two five-minute observations',
+      () {
+        final combined = aggregateObservations([
+          _minute(minute: 0, metrics: _metrics()),
+          _minute(minute: 5, metrics: _metrics()),
+        ], granularity: ObservationGranularity.hour);
+
+        expect(combined.coveredSeconds, 600);
+        expect(combined.expectedSeconds, 3600);
+        expect(combined.coverageRatio, closeTo(1 / 6, 1e-12));
+      },
+    );
 
     test('adds partial coverage from two five-minute observations', () {
       final combined = aggregateObservations([
@@ -133,22 +254,45 @@ void main() {
       expect(combined.frameCount, 360);
     });
 
-    test('adds presence sample counts and duration across source observations', () {
-      final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(presenceSampleCount: 2, presenceSumSeconds: 80)),
-        _minute(minute: 5, metrics: _metrics(presenceSampleCount: 3, presenceSumSeconds: 160)),
-      ], granularity: ObservationGranularity.hour);
+    test(
+      'adds presence sample counts and duration across source observations',
+      () {
+        final combined = aggregateObservations([
+          _minute(
+            minute: 0,
+            metrics: _metrics(presenceSampleCount: 2, presenceSumSeconds: 80),
+          ),
+          _minute(
+            minute: 5,
+            metrics: _metrics(presenceSampleCount: 3, presenceSumSeconds: 160),
+          ),
+        ], granularity: ObservationGranularity.hour);
 
-      final metrics = combined.areas.single;
-      expect(metrics.presenceSampleCount, 5);
-      expect(metrics.presenceSumSeconds, 240);
-      expect(metrics.presenceMeanSeconds, closeTo(48, 1e-12)); // 240 / 5 = 48
-    });
+        final metrics = combined.areas.single;
+        expect(metrics.presenceSampleCount, 5);
+        expect(metrics.presenceSumSeconds, 240);
+        expect(metrics.presenceMeanSeconds, closeTo(48, 1e-12)); // 240 / 5 = 48
+      },
+    );
 
     test('keeps the latest valid occupancy snapshot', () {
       final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(passBy: 1, occupancySampleCount: 1, occupancyLast: 4)),
-        _minute(minute: 5, metrics: _metrics(passBy: 2, occupancySampleCount: 1, occupancyLast: 8)),
+        _minute(
+          minute: 0,
+          metrics: _metrics(
+            passBy: 1,
+            occupancySampleCount: 1,
+            occupancyLast: 4,
+          ),
+        ),
+        _minute(
+          minute: 5,
+          metrics: _metrics(
+            passBy: 2,
+            occupancySampleCount: 1,
+            occupancyLast: 8,
+          ),
+        ),
       ], granularity: ObservationGranularity.hour);
 
       expect(combined.areas.single.occupancyLast, 8);
@@ -157,8 +301,28 @@ void main() {
 
     test('adds event counts across source observations', () {
       final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(passBy: 2, stagnant: 3, entry: 4, exit: 5, appear: 6, disappear: 7)),
-        _minute(minute: 5, metrics: _metrics(passBy: 8, stagnant: 9, entry: 10, exit: 11, appear: 12, disappear: 13)),
+        _minute(
+          minute: 0,
+          metrics: _metrics(
+            passBy: 2,
+            stagnant: 3,
+            entry: 4,
+            exit: 5,
+            appear: 6,
+            disappear: 7,
+          ),
+        ),
+        _minute(
+          minute: 5,
+          metrics: _metrics(
+            passBy: 8,
+            stagnant: 9,
+            entry: 10,
+            exit: 11,
+            appear: 12,
+            disappear: 13,
+          ),
+        ),
       ], granularity: ObservationGranularity.hour);
 
       final metrics = combined.areas.single;
@@ -166,19 +330,31 @@ void main() {
       expect((metrics.exit, metrics.appear, metrics.disappear), (16, 18, 20));
     });
 
-    test('does not let a later observation without samples erase a valid snapshot', () {
-      final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
-        _minute(minute: 5, metrics: _metrics()),
-      ], granularity: ObservationGranularity.hour);
+    test(
+      'does not let a later observation without samples erase a valid snapshot',
+      () {
+        final combined = aggregateObservations([
+          _minute(
+            minute: 0,
+            metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4),
+          ),
+          _minute(minute: 5, metrics: _metrics()),
+        ], granularity: ObservationGranularity.hour);
 
-      expect(combined.areas.single.occupancyLast, 4);
-    });
+        expect(combined.areas.single.occupancyLast, 4);
+      },
+    );
 
     test('preserves a valid zero as the latest occupancy snapshot', () {
       final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
-        _minute(minute: 5, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0)),
+        _minute(
+          minute: 0,
+          metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4),
+        ),
+        _minute(
+          minute: 5,
+          metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0),
+        ),
       ], granularity: ObservationGranularity.hour);
 
       expect(combined.areas.single.occupancyLast, 0);
@@ -186,7 +362,14 @@ void main() {
 
     test('ignores occupancy maxima from observations with no samples', () {
       final combined = aggregateObservations([
-        _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyMax: 4, occupancyLast: 4)),
+        _minute(
+          minute: 0,
+          metrics: _metrics(
+            occupancySampleCount: 1,
+            occupancyMax: 4,
+            occupancyLast: 4,
+          ),
+        ),
         _minute(minute: 5, metrics: _metrics(occupancyMax: 99)),
       ], granularity: ObservationGranularity.hour);
 
@@ -204,7 +387,10 @@ void main() {
     });
 
     test('rejects duplicate sources for each supported target granularity', () {
-      final minute = _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0));
+      final minute = _minute(
+        minute: 0,
+        metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0),
+      );
       final day = _observation(
         granularity: ObservationGranularity.day,
         year: 2026,
@@ -223,16 +409,31 @@ void main() {
       );
 
       expect(
-        () => aggregateObservations([minute, minute], granularity: ObservationGranularity.hour),
+        () => aggregateObservations([
+          minute,
+          minute,
+        ], granularity: ObservationGranularity.hour),
         throwsArgumentError,
       );
       expect(
-        () => aggregateObservations([minute, minute], granularity: ObservationGranularity.day),
+        () => aggregateObservations([
+          minute,
+          minute,
+        ], granularity: ObservationGranularity.day),
         throwsArgumentError,
       );
-      expect(() => aggregateObservations([day, day], granularity: ObservationGranularity.month), throwsArgumentError);
       expect(
-        () => aggregateObservations([month, month], granularity: ObservationGranularity.year),
+        () => aggregateObservations([
+          day,
+          day,
+        ], granularity: ObservationGranularity.month),
+        throwsArgumentError,
+      );
+      expect(
+        () => aggregateObservations([
+          month,
+          month,
+        ], granularity: ObservationGranularity.year),
         throwsArgumentError,
       );
     });
@@ -240,10 +441,18 @@ void main() {
     test('rejects an actual aggregate whose dwell histogram disagrees with its count', () {
       final observation = _minute(
         minute: 0,
-        metrics: _metrics(dwellSampleCount: 2, dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0]),
+        metrics: _metrics(
+          dwellSampleCount: 2,
+          dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0],
+        ),
       );
 
-      expect(() => aggregateObservations([observation], granularity: ObservationGranularity.hour), throwsArgumentError);
+      expect(
+        () => aggregateObservations([
+          observation,
+        ], granularity: ObservationGranularity.hour),
+        throwsArgumentError,
+      );
     });
   });
 
@@ -286,7 +495,16 @@ void main() {
 
     test('can average an existing profile without rejecting its unavailable snapshot', () {
       final profile = averageFiveMinuteProfiles([
-        [_minute(minute: 0, metrics: _metrics(occupancySampleCount: 2, occupancySampleSum: 4, occupancyLast: 3))],
+        [
+          _minute(
+            minute: 0,
+            metrics: _metrics(
+              occupancySampleCount: 2,
+              occupancySampleSum: 4,
+              occupancyLast: 3,
+            ),
+          ),
+        ],
       ]);
 
       final averagedAgain = averageFiveMinuteProfiles([profile]);
@@ -295,56 +513,71 @@ void main() {
       expect(averagedAgain.single.areas.single.occupancyMean, 2);
     });
 
-    test('derives typical occupancy mean from averaged sufficient statistics', () {
-      final profile = averageFiveMinuteProfiles([
-        [
-          _minute(
-            minute: 0,
-            metrics: _metrics(
-              occupancySampleCount: 2,
-              occupancySampleSum: 2,
-              occupancySampleSumSquares: 2,
-              occupancyMax: 1,
-              occupancyLast: 1,
+    test(
+      'derives typical occupancy mean from averaged sufficient statistics',
+      () {
+        final profile = averageFiveMinuteProfiles([
+          [
+            _minute(
+              minute: 0,
+              metrics: _metrics(
+                occupancySampleCount: 2,
+                occupancySampleSum: 2,
+                occupancySampleSumSquares: 2,
+                occupancyMax: 1,
+                occupancyLast: 1,
+              ),
             ),
-          ),
-        ],
-        [
-          _minute(
-            minute: 0,
-            day: 2,
-            metrics: _metrics(
-              occupancySampleCount: 8,
-              occupancySampleSum: 24,
-              occupancySampleSumSquares: 72,
-              occupancyMax: 3,
-              occupancyLast: 3,
+          ],
+          [
+            _minute(
+              minute: 0,
+              day: 2,
+              metrics: _metrics(
+                occupancySampleCount: 8,
+                occupancySampleSum: 24,
+                occupancySampleSumSquares: 72,
+                occupancyMax: 3,
+                occupancyLast: 3,
+              ),
             ),
-          ),
-        ],
-      ]);
+          ],
+        ]);
 
-      final metrics = profile.single.areas.single;
-      expect(metrics.occupancySampleCount, 5);
-      expect(metrics.occupancySum, 13);
-      expect(metrics.occupancySumSquares, 37);
-      expect(metrics.occupancyMean, closeTo(2.6, 1e-12));
-      expect(metrics.occupancyMean, isNot(2.0), reason: '2.0 would be the unweighted average of daily means');
-    });
+        final metrics = profile.single.areas.single;
+        expect(metrics.occupancySampleCount, 5);
+        expect(metrics.occupancySum, 13);
+        expect(metrics.occupancySumSquares, 37);
+        expect(metrics.occupancyMean, closeTo(2.6, 1e-12));
+        expect(
+          metrics.occupancyMean,
+          isNot(2.0),
+          reason: '2.0 would be the unweighted average of daily means',
+        );
+      },
+    );
 
     test('averages dwellMaxSeconds as the typical daily maximum', () {
       final profile = averageFiveMinuteProfiles([
         [
           _minute(
             minute: 0,
-            metrics: _metrics(dwellSampleCount: 1, dwellMaxSeconds: 4, dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0]),
+            metrics: _metrics(
+              dwellSampleCount: 1,
+              dwellMaxSeconds: 4,
+              dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0],
+            ),
           ),
         ],
         [
           _minute(
             minute: 0,
             day: 2,
-            metrics: _metrics(dwellSampleCount: 1, dwellMaxSeconds: 10, dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0]),
+            metrics: _metrics(
+              dwellSampleCount: 1,
+              dwellMaxSeconds: 10,
+              dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0],
+            ),
           ),
         ],
       ]);
@@ -355,10 +588,22 @@ void main() {
     test('uses only present slots, preserves zero, and omits absent slots', () {
       final profile = averageFiveMinuteProfiles([
         [
-          _minute(minute: 0, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0)),
-          _minute(minute: 5, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4)),
+          _minute(
+            minute: 0,
+            metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0),
+          ),
+          _minute(
+            minute: 5,
+            metrics: _metrics(occupancySampleCount: 1, occupancyLast: 4),
+          ),
         ],
-        [_minute(minute: 0, day: 2, metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0))],
+        [
+          _minute(
+            minute: 0,
+            day: 2,
+            metrics: _metrics(occupancySampleCount: 1, occupancyLast: 0),
+          ),
+        ],
       ]);
 
       expect(profile.map((observation) => observation.minute), [0, 5]);
@@ -369,40 +614,57 @@ void main() {
       expect(profile.last.areas.single.occupancyLast, 0);
     });
 
-    test('averages coverage over valid contributors without filling missing slots', () {
-      final profile = averageFiveMinuteProfiles([
-        [_partialMinute(minute: 0, coveredSeconds: 150)],
-        [_partialMinute(minute: 0, coveredSeconds: 75, day: 2)],
-      ]);
+    test(
+      'averages coverage over valid contributors without filling missing slots',
+      () {
+        final profile = averageFiveMinuteProfiles([
+          [_partialMinute(minute: 0, coveredSeconds: 150)],
+          [_partialMinute(minute: 0, coveredSeconds: 75, day: 2)],
+        ]);
 
-      expect(profile, hasLength(1));
-      expect(profile.single.coveredSeconds, 113);
-      expect(profile.single.expectedSeconds, 300);
-      expect(profile.single.coverageRatio, closeTo(113 / 300, 1e-12));
-    });
+        expect(profile, hasLength(1));
+        expect(profile.single.coveredSeconds, 113);
+        expect(profile.single.expectedSeconds, 300);
+        expect(profile.single.coverageRatio, closeTo(113 / 300, 1e-12));
+      },
+    );
 
-    test('rounds profile dwell histogram with largest remainders to match count', () {
-      final profile = averageFiveMinuteProfiles([
-        [
-          _minute(
-            minute: 0,
-            metrics: _metrics(dwellSampleCount: 1, dwellSumSeconds: 3, dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0]),
-          ),
-        ],
-        [
-          _minute(
-            minute: 0,
-            day: 2,
-            metrics: _metrics(dwellSampleCount: 2, dwellSumSeconds: 9, dwellHistogram: const [0, 1, 1, 0, 0, 0, 0, 0]),
-          ),
-        ],
-      ]);
+    test(
+      'rounds profile dwell histogram with largest remainders to match count',
+      () {
+        final profile = averageFiveMinuteProfiles([
+          [
+            _minute(
+              minute: 0,
+              metrics: _metrics(
+                dwellSampleCount: 1,
+                dwellSumSeconds: 3,
+                dwellHistogram: const [1, 0, 0, 0, 0, 0, 0, 0],
+              ),
+            ),
+          ],
+          [
+            _minute(
+              minute: 0,
+              day: 2,
+              metrics: _metrics(
+                dwellSampleCount: 2,
+                dwellSumSeconds: 9,
+                dwellHistogram: const [0, 1, 1, 0, 0, 0, 0, 0],
+              ),
+            ),
+          ],
+        ]);
 
-      final metrics = profile.single.areas.single;
-      expect(metrics.dwellSampleCount, 2);
-      expect(metrics.dwellHistogram, [1, 1, 0, 0, 0, 0, 0, 0]);
-      expect(metrics.dwellHistogram.reduce((sum, count) => sum + count), metrics.dwellSampleCount.toDouble());
-    });
+        final metrics = profile.single.areas.single;
+        expect(metrics.dwellSampleCount, 2);
+        expect(metrics.dwellHistogram, [1, 1, 0, 0, 0, 0, 0, 0]);
+        expect(
+          metrics.dwellHistogram.reduce((sum, count) => sum + count),
+          metrics.dwellSampleCount.toDouble(),
+        );
+      },
+    );
 
     test('averages event counts across profiles', () {
       final profile = averageFiveMinuteProfiles([
@@ -417,12 +679,27 @@ void main() {
       final zeroSampleProfile = averageFiveMinuteProfiles([
         [_minute(minute: 0, metrics: _metrics())],
       ]);
-      expect(zeroSampleProfile.single.areas.single.dwellHistogram, [0, 0, 0, 0, 0, 0, 0, 0]);
+      expect(zeroSampleProfile.single.areas.single.dwellHistogram, [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+      ]);
 
       expect(
         () => averageFiveMinuteProfiles([
           [
-            _minute(minute: 0, metrics: _metrics(dwellSampleCount: 1, dwellHistogram: const [0, 0, 0, 0, 0, 0, 0, 0])),
+            _minute(
+              minute: 0,
+              metrics: _metrics(
+                dwellSampleCount: 1,
+                dwellHistogram: const [0, 0, 0, 0, 0, 0, 0, 0],
+              ),
+            ),
           ],
         ]),
         throwsArgumentError,

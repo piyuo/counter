@@ -578,6 +578,22 @@ class LocalizationEl extends Localization {
   String get metrics_counting_window => 'Στατιστικά για κάθε περίοδο 5 λεπτών';
 
   @override
+  String get observation_screen_observed_count => 'Καταγεγραμμένος αριθμός';
+
+  @override
+  String get observation_screen_observed_time => 'Χρόνος παρατήρησης';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Καταγεγραμμένος αριθμός ÷ δευτερόλεπτα παρατήρησης × δευτερόλεπτα ανά ώρα';
+
+  @override
+  String get observation_screen_subtotal => 'Μερικό σύνολο';
+
+  @override
+  String get observation_screen_total => 'Σύνολο';
+
+  @override
   String get observation_status_interrupted => 'Προσωρινή διακοπή';
 
   @override

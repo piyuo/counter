@@ -21,7 +21,9 @@ class MetricsDashboard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final observation = ref.watch(core_runtime.observationProvider).liveObservation!;
+    final observation = ref
+        .watch(core_runtime.observationProvider)
+        .liveObservation!;
     final windowStart = observation.dateTime;
     final windowEnd = windowStart.add(core_domain.kWindowDuration);
 
@@ -39,7 +41,10 @@ class MetricsDashboard extends ConsumerWidget {
 
     return Column(
       children: [
-        Text(context.l.metrics_counting_window, style: TextStyle(fontSize: 12, color: Colors.grey.shade400)),
+        Text(
+          context.l.metrics_counting_window,
+          style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+        ),
         feature_pip.PipPanel(
           backgroundColor: _kWhiteBoardColor,
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -50,12 +55,16 @@ class MetricsDashboard extends ConsumerWidget {
                 contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 title: Text(
                   '${DateFormat.jm(locale).format(windowStart)} - ${DateFormat.jm(locale).format(windowEnd)}',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade900),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade900,
+                  ),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(context.l.metrics_counting_all, style: TextStyle(fontSize: 14, color: Colors.grey.shade800)),
+                    Text(context.l.metrics_counting_all),
                     const SizedBox(width: 10),
                     Icon(Icons.arrow_forward_ios, color: Colors.grey.shade800),
                   ],

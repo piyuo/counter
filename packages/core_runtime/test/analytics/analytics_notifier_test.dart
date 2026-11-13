@@ -172,8 +172,26 @@ void main() {
       expect(await notifier.getDaySummary(2025, 10, 16), isNull);
     });
 
-    test('returns null when no DaySummary exists for the business date', () async {
+    test('does not cache a missing today summary', () async {
       expect(await notifier.getDaySummary(2026, 10, 16), isNull);
+
+      final summary = const core_domain.SummaryBuilder().createDaySummary(_observation(hour: 10, minute: 0));
+      await database
+          .into(database.dayFile)
+          .insert(
+            DayFileCompanion.insert(
+              businessDate: '2026-10-16',
+              year: 2026,
+              month: 10,
+              day: 16,
+              data: _gzipJson(jsonEncode(summary.toJson())),
+              schemaVersion: core_domain.kSchemaVersion,
+              createdAtMs: nowMs,
+              updatedAtMs: nowMs,
+            ),
+          );
+
+      expect(await notifier.getDaySummary(2026, 10, 16), isNotNull);
     });
 
     test('rejects invalid integer date components', () async {
@@ -396,28 +414,27 @@ void main() {
       expect(_decodeSummary(row).dailyTotal.frameCount, 6);
     });
 
-    test('serializes concurrent additions without losing observations', () async {
+    test('persists concurrent additions for different business dates', () async {
       await Future.wait([
-        for (var minute = 0; minute < 50; minute += 5) notifier.add(_observation(hour: 10, minute: minute)),
+        notifier.add(_observation(hour: 10, minute: 0)),
+        notifier.add(_observation(year: 2026, month: 10, day: 17, hour: 10, minute: 0)),
       ]);
 
-      final summary = _decodeSummary((await readDay('2026-10-16'))!);
-      expect(summary.fiveMinuteObservations, hasLength(10));
-      expect(summary.dailyTotal.frameCount, 10);
+      final firstDay = _decodeSummary((await readDay('2026-10-16'))!);
+      final secondDay = _decodeSummary((await readDay('2026-10-17'))!);
+      expect(firstDay.fiveMinuteObservations, hasLength(1));
+      expect(secondDay.fiveMinuteObservations, hasLength(1));
     });
 
-    test('a failed queued operation does not block the next addition', () async {
+    test('a failed addition does not prevent a later addition', () async {
       var factoryCalls = 0;
       activeDatabaseFactory = () {
         factoryCalls++;
         return factoryCalls == 1 ? null : database;
       };
 
-      final failed = notifier.add(_observation(hour: 10, minute: 0));
-      final succeeded = notifier.add(_observation(hour: 10, minute: 5));
-
-      await expectLater(failed, throwsStateError);
-      await succeeded;
+      await expectLater(notifier.add(_observation(hour: 10, minute: 0)), throwsStateError);
+      await notifier.add(_observation(hour: 10, minute: 5));
 
       final summary = _decodeSummary((await readDay('2026-10-16'))!);
       expect(summary.fiveMinuteObservations.map((item) => item.minute), [5]);

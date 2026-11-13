@@ -6,9 +6,9 @@ PODS:
   - EigenCocoa (3.4.0)
   - Firebase/CoreOnly (12.18.0):
     - FirebaseCore (~> 12.18.0)
-  - firebase_analytics (12.6.0):
+  - firebase_analytics (12.6.1):
     - firebase_core
-    - FirebaseAnalytics (= 12.18.0)
+    - FirebaseAnalytics (~> 12.18.0)
     - Flutter
   - firebase_core (4.14.0):
     - Firebase/CoreOnly (= 12.18.0)
@@ -198,7 +198,7 @@ SPEC CHECKSUMS:
   camera_avfoundation: 769d252259fa21e39ada7399c9dc9c0921af8165
   EigenCocoa: 471ba05bd96f79d61e1c7c53dc08bf0f49611ccf
   Firebase: 5523dd53ebe603451b4e1befcd99fa20a5c015cd
-  firebase_analytics: 3bb05d2ab2b4ba9e4ff0810ac75865e2b15a914d
+  firebase_analytics: 5b031da7223a19d123c01cbdc94b985a6bd9a20a
   firebase_core: 9bb8d013f9b36a31d32e34629e5348dd51d8e35e
   FirebaseAnalytics: 651ecdc96c7dd8df0c15d55b6c6b70f78c2987b9
   FirebaseCore: 96787d19ee32dc2242cc487b301bc616afeb398b
@@ -209,7 +209,7 @@ SPEC CHECKSUMS:
   GoogleAdsOnDeviceConversion: e3b71da24ff4cf01cf520756ac1c2b93c07b86ff
   GoogleAppMeasurement: d70df385587c4175fc0836c11e413d5cbcaa3c7b
   GoogleUtilities: 4e0c2ad9fa0d0d18b5c4df8bf57b461cba35b0bb
-  image_picker_ios: 4f2f91b01abdb52842a8e277617df877e40f905b
+  image_picker_ios: 4839114eaa8338ecff94cde6d0ae6022c30aa6fb
   liquid_glass_widgets: 377199b2f9d270bc0b65d23ddd3d83a1af275534
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
@@ -219,7 +219,7 @@ SPEC CHECKSUMS:
   Sentry: 5321d74bdd28d6f6f8beaa1ca06f1fdc746bff49
   sentry_flutter: 781bc6b289ab7a51ca0707ba9de66ff4693d4e85
   share_plus: 796a4b55a883a34f4f1ff7bbd19436879a5055db
-  shared_preferences_foundation: 5086985c1d43c5ba4d5e69a4e8083a389e2909e6
+  shared_preferences_foundation: 9a36184bb1299692bf7b972bd6c60ab373084504
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
 
 PODFILE CHECKSUM: e2f4e2675615095251d0478af1e556c24035b581

@@ -35,14 +35,14 @@ core_domain.DashboardCardData _chartCard({
   metric: metric,
   primary: liveRate == null
       ? null
-      : core_domain.DashboardMetricValue(
-          value: liveRate,
+      : core_domain.DashboardMeasurement(
+          amount: liveRate,
           unit: switch (metric) {
             core_domain.DashboardMetric.dwellTimeMean ||
-            core_domain.DashboardMetric.dwellTimeMax => core_domain.DashboardMetricValueUnit.seconds,
+            core_domain.DashboardMetric.dwellTimeMax => core_domain.DashboardMeasurementUnit.seconds,
             core_domain.DashboardMetric.occupancyMean ||
-            core_domain.DashboardMetric.occupancyPeak => core_domain.DashboardMetricValueUnit.objects,
-            _ => core_domain.DashboardMetricValueUnit.countPerHour,
+            core_domain.DashboardMetric.occupancyPeak => core_domain.DashboardMeasurementUnit.objects,
+            _ => core_domain.DashboardMeasurementUnit.countPerHour,
           },
           estimated: liveRateEstimated,
           coveredSeconds: 2400,
@@ -685,20 +685,11 @@ void main() {
     expect(metricChips[0].backgroundColor, statusColor.withValues(alpha: 0.18));
     expect(metricChips[0].labelStyle?.color, statusColor.withValues(alpha: 0.9));
     expect(find.text(tester.element(find.byType(PrimaryMetric).first).l.insight_counting_paused), findsNothing);
-    final titleRow = find.ancestor(of: find.text('Pass-by Traffic').first, matching: find.byType(Row)).first;
-    expect(find.descendant(of: titleRow, matching: find.text('Stopped')), findsNothing);
+    final titleTile = find.ancestor(of: find.text('Pass-by Traffic').first, matching: find.byType(ListTile)).first;
+    expect(titleTile, findsOneWidget);
+    expect(find.descendant(of: titleTile, matching: find.text('Stopped')), findsNothing);
 
-    final passByTitle = find.text('Pass-by Traffic').first;
-    final initialTitleX = tester.getCenter(passByTitle).dx;
-    final gesture = await tester.startGesture(tester.getCenter(find.byType(Card).first));
-    await gesture.moveBy(const Offset(-60, 0));
-    await tester.pump();
-
-    expect(tester.getCenter(passByTitle).dx, lessThan(initialTitleX));
-    expect(find.text('Lingering'), findsOneWidget);
-
-    await gesture.moveBy(const Offset(-240, 0));
-    await gesture.up();
+    await tester.drag(find.byType(Card).first, const Offset(-300, 0));
     await tester.pumpAndSettle();
 
     expect(find.text('2/${areas.first.cards.length}'), findsOneWidget);

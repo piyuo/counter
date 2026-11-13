@@ -78,7 +78,7 @@ class BusinessPeriodRow extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         InsightComparisonIndicator(
-          current: value.value,
+          current: value.amount,
           baseline: periodData.comparisonValue,
           comparisonLabel: comparisonLabel,
         ),
@@ -145,7 +145,6 @@ class BusinessPeriodRow extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(width: 8),
               if (!hasComparison) Text('-', textAlign: TextAlign.end, style: theme.textTheme.bodySmall),
               if (hasComparison) ...buildComparison(),
             ],
@@ -159,12 +158,12 @@ class BusinessPeriodRow extends StatelessWidget {
 String _formatPeriodMetricValue(
   BuildContext context,
   core_domain.DashboardMetric metric,
-  core_domain.DashboardMetricValue value,
+  core_domain.DashboardMeasurement value,
 ) {
   final normalizedValue = switch (value.unit) {
-    core_domain.DashboardMetricValueUnit.seconds => value.value,
-    core_domain.DashboardMetricValueUnit.minutes => value.value * 60,
-    _ => value.value,
+    core_domain.DashboardMeasurementUnit.seconds => value.amount,
+    core_domain.DashboardMeasurementUnit.minutes => value.amount * 60,
+    _ => value.amount,
   };
   final parts = _formatPeriodMetricParts(context, metric, normalizedValue);
   return parts.unit.isEmpty ? parts.number : '${parts.number} ${parts.unit}';

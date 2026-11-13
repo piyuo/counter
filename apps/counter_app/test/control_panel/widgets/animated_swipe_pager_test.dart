@@ -9,7 +9,11 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-Widget _pager({int itemCount = 3, int initialPage = 0, ValueChanged<int>? onPageChanged}) {
+Widget _pager({
+  int itemCount = 3,
+  int initialPage = 0,
+  ValueChanged<int>? onPageChanged,
+}) {
   return MaterialApp(
     home: Scaffold(
       body: Center(
@@ -19,7 +23,8 @@ Widget _pager({int itemCount = 3, int initialPage = 0, ValueChanged<int>? onPage
             itemCount: itemCount,
             initialPage: initialPage,
             onPageChanged: onPageChanged,
-            itemBuilder: (context, index) => SizedBox(height: 120, child: Text('Page $index')),
+            itemBuilder: (context, index) =>
+                SizedBox(height: 120, child: Text('Page $index')),
           ),
         ),
       ),
@@ -28,13 +33,18 @@ Widget _pager({int itemCount = 3, int initialPage = 0, ValueChanged<int>? onPage
 }
 
 void main() {
-  testWidgets('mouse drag follows the pointer and settles on the next page', (tester) async {
+  testWidgets('mouse drag follows the pointer and settles on the next page', (
+    tester,
+  ) async {
     final changedPages = <int>[];
     await tester.pumpWidget(_pager(onPageChanged: changedPages.add));
 
     final page = find.text('Page 0');
     final initialX = tester.getCenter(page).dx;
-    final gesture = await tester.startGesture(tester.getCenter(page), kind: PointerDeviceKind.mouse);
+    final gesture = await tester.startGesture(
+      tester.getCenter(page),
+      kind: PointerDeviceKind.mouse,
+    );
     await gesture.moveBy(const Offset(-60, 0));
     await tester.pump();
     expect(tester.getCenter(page).dx, lessThan(initialX));
@@ -45,6 +55,20 @@ void main() {
 
     expect(find.text('Page 1'), findsOneWidget);
     expect(changedPages, [1]);
+  });
+
+  testWidgets('horizontal drag starts in empty pager space', (tester) async {
+    await tester.pumpWidget(_pager());
+    final pagerRect = tester.getRect(find.byType(AnimatedSwipePager));
+    final gesture = await tester.startGesture(
+      Offset(pagerRect.left + 8, pagerRect.center.dy),
+    );
+    await gesture.moveBy(const Offset(-100, 0));
+    await gesture.moveBy(const Offset(-100, 0));
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Page 1'), findsOneWidget);
   });
 
   testWidgets('horizontal mouse scroll changes page', (tester) async {
@@ -61,12 +85,16 @@ void main() {
     expect(find.text('Page 1'), findsOneWidget);
   });
 
-  testWidgets('trackpad pan follows movement and settles on the next page', (tester) async {
+  testWidgets('trackpad pan follows movement and settles on the next page', (
+    tester,
+  ) async {
     await tester.pumpWidget(_pager());
     final page = find.text('Page 0');
     final center = tester.getCenter(page);
     final initialX = center.dx;
-    await tester.sendEventToBinding(PointerPanZoomStartEvent(pointer: 12, position: center));
+    await tester.sendEventToBinding(
+      PointerPanZoomStartEvent(pointer: 12, position: center),
+    );
     await tester.sendEventToBinding(
       PointerPanZoomUpdateEvent(
         pointer: 12,
@@ -76,7 +104,7 @@ void main() {
       ),
     );
     await tester.pump();
-    expect(tester.getCenter(page).dx, lessThan(initialX));
+    expect(tester.getCenter(page).dx, closeTo(initialX - 60, 0.1));
 
     await tester.sendEventToBinding(
       PointerPanZoomUpdateEvent(
@@ -86,13 +114,60 @@ void main() {
         panDelta: const Offset(-240, 0),
       ),
     );
-    await tester.sendEventToBinding(PointerPanZoomEndEvent(pointer: 12, position: center + const Offset(-300, 0)));
+    await tester.sendEventToBinding(
+      PointerPanZoomEndEvent(
+        pointer: 12,
+        position: center + const Offset(-300, 0),
+      ),
+    );
     await tester.pumpAndSettle();
 
     expect(find.text('Page 1'), findsOneWidget);
   });
 
-  testWidgets('clamps the current page when item count shrinks', (tester) async {
+  testWidgets('vertical scrolling over the pager does not change pages', (
+    tester,
+  ) async {
+    final scrollController = ScrollController();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ListView(
+            controller: scrollController,
+            children: [
+              SizedBox(
+                height: 120,
+                child: AnimatedSwipePager(
+                  itemCount: 3,
+                  itemBuilder: (context, index) =>
+                      Center(child: Text('Page $index')),
+                ),
+              ),
+              const SizedBox(height: 800),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    final gesture = await tester.startGesture(
+      tester.getCenter(find.text('Page 0')),
+    );
+    await gesture.moveBy(const Offset(6, -25));
+    await gesture.moveBy(const Offset(7, -25));
+    await gesture.moveBy(const Offset(7, -25));
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    expect(scrollController.offset, greaterThan(0));
+    expect(find.text('Page 0'), findsOneWidget);
+    expect(find.text('Page 1'), findsNothing);
+    scrollController.dispose();
+  });
+
+  testWidgets('clamps the current page when item count shrinks', (
+    tester,
+  ) async {
     final changedPages = <int>[];
     var itemCount = 3;
     late StateSetter updateHarness;

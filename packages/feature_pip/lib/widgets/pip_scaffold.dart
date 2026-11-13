@@ -8,6 +8,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:feature_pip/providers/pip_notifier.dart';
 import 'package:feature_pip/providers/scroll_event_bus.dart';
 import 'package:feature_pip/widgets/pip_app_bar.dart';
+import 'package:feature_pip/widgets/pip_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -108,27 +109,34 @@ class _PipScaffoldState extends ConsumerState<PipScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return GlassContainer(
-      useOwnLayer: false,
-      quality: GlassQuality.standard,
-      child: Scaffold(
-        bottomNavigationBar: widget.bottomNavigationBar,
-        backgroundColor: Colors.transparent,
-        extendBodyBehindAppBar: true,
-        appBar: PipAppBar(
-          leading: widget.leading,
-          automaticallyImplyLeading: widget.automaticallyImplyLeading,
-          title:
-              widget.titleWidget ??
-              (widget.title != null
-                  ? AutoSizeText(widget.title!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
-                  : null),
-          onSearch: widget.onSearch,
-          actions: widget.action != null ? [widget.action!] : null,
-          backgroundColor: widget.appBarBackgroundColor,
-        ),
-        body: widget.builder(scrollController),
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final scaffold = Scaffold(
+          bottomNavigationBar: widget.bottomNavigationBar,
+          backgroundColor: Colors.transparent,
+          extendBodyBehindAppBar: true,
+          appBar: PipAppBar(
+            leading: widget.leading,
+            automaticallyImplyLeading: widget.automaticallyImplyLeading,
+            title:
+                widget.titleWidget ??
+                (widget.title != null
+                    ? AutoSizeText(widget.title!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18))
+                    : null),
+            onSearch: widget.onSearch,
+            actions: widget.action != null ? [widget.action!] : null,
+            backgroundColor: widget.appBarBackgroundColor,
+          ),
+          body: widget.builder(scrollController),
+        );
+
+        final isSidebarLayout = constraints.maxWidth == kSidebarPanelWidth;
+        if (isSidebarLayout) {
+          return scaffold;
+        }
+
+        return GlassContainer(useOwnLayer: false, quality: GlassQuality.standard, child: scaffold);
+      },
     );
   }
 }

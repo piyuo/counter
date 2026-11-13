@@ -197,7 +197,7 @@ void main() {
       );
 
       final passBy = result.single.card(DashboardMetric.passBy).primary!;
-      expect(passBy.value, 84);
+      expect(passBy.amount, 84);
       expect(passBy.estimated, isFalse);
     });
 
@@ -214,7 +214,7 @@ void main() {
       );
 
       final passBy = result.single.card(DashboardMetric.passBy).primary!;
-      expect(passBy.value, 84);
+      expect(passBy.amount, 84);
       expect(passBy.estimated, isTrue);
       expect(passBy.coveredSeconds, 1800);
       expect(result.single.card(DashboardMetric.occupancyMean).primary, isNull);
@@ -235,7 +235,7 @@ void main() {
       expect(chartPoint.todayValue, 300);
       expect(chartPoint.todayCoveredSeconds, 1800);
       expect(chartPoint.todayEstimated, isTrue);
-      expect(passBy.primary!.value, 600);
+      expect(passBy.primary!.amount, 600);
       expect(passBy.primary!.estimated, isTrue);
     });
 
@@ -285,9 +285,9 @@ void main() {
       );
       final passBy = result.single.card(DashboardMetric.passBy);
 
-      expect(passBy.periods[0].primary!.value, closeTo(45.5, 0.001));
+      expect(passBy.periods[0].primary!.amount, closeTo(45.5, 0.001));
       expect(passBy.periods[0].primary!.estimated, isFalse);
-      expect(passBy.periods[1].primary!.value, 12);
+      expect(passBy.periods[1].primary!.amount, 12);
       expect(passBy.periods[1].primary!.estimated, isFalse);
     });
   });
@@ -337,10 +337,10 @@ void main() {
       final dwellMean = result.first.card(DashboardMetric.dwellTimeMean);
       final dwellMax = result.first.card(DashboardMetric.dwellTimeMax);
 
-      expect(occupancyMean.primary!.value, 3);
-      expect(occupancyPeak.primary!.value, 4);
-      expect(dwellMean.primary!.value, 300);
-      expect(dwellMax.primary!.value, 500);
+      expect(occupancyMean.primary!.amount, 3);
+      expect(occupancyPeak.primary!.amount, 4);
+      expect(dwellMean.primary!.amount, 300);
+      expect(dwellMax.primary!.amount, 500);
       expect(occupancyMean.periods.isEmpty, isTrue);
     });
 
@@ -375,8 +375,8 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 10),
       );
 
-      expect(result[0].card(DashboardMetric.occupancyMean).periods.single.primary!.value, 4);
-      expect(result[1].card(DashboardMetric.occupancyMean).periods.single.primary!.value, 100);
+      expect(result[0].card(DashboardMetric.occupancyMean).periods.single.primary!.amount, 4);
+      expect(result[1].card(DashboardMetric.occupancyMean).periods.single.primary!.amount, 100);
     });
 
     test('preserves measured zero occupancy and leaves no-sample dwell unavailable', () {
@@ -394,8 +394,8 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 10),
       );
 
-      expect(result.first.card(DashboardMetric.occupancyMean).primary!.value, 0);
-      expect(result.first.card(DashboardMetric.occupancyPeak).primary!.value, 0);
+      expect(result.first.card(DashboardMetric.occupancyMean).primary!.amount, 0);
+      expect(result.first.card(DashboardMetric.occupancyPeak).primary!.amount, 0);
       expect(result.first.card(DashboardMetric.dwellTimeMean).primary, isNull);
       expect(result.first.card(DashboardMetric.dwellTimeMax).primary, isNull);
     });
@@ -836,8 +836,8 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 15, 1),
       ).first.card(DashboardMetric.passBy);
 
-      expect(first.primary!.value, 1);
-      expect(second.primary!.value, 2);
+      expect(first.primary!.amount, 1);
+      expect(second.primary!.amount, 2);
       expect(second.comparisonValue, 5);
       expect(identical(first.chartPoints, second.chartPoints), isTrue);
       expect(identical(first.periods, second.periods), isTrue);
@@ -851,7 +851,7 @@ void main() {
           businessPeriods: const [period],
           now: DateTime(2026, 10, 29, 10, 15, index + 2),
         ).first.card(DashboardMetric.passBy);
-        expect(updated.primary!.value, (index + 3).toDouble());
+        expect(updated.primary!.amount, (index + 3).toDouble());
         expect(identical(first.chartPoints, updated.chartPoints), isTrue);
       }
       expect(snapshotBuilds, 1);
@@ -894,7 +894,7 @@ void main() {
       expect(before.chartPoints, hasLength(24));
       expect(after.chartPoints, hasLength(24));
       expect(before.periods.single.primary, isNull);
-      expect(after.periods.single.primary!.value, 60);
+      expect(after.periods.single.primary!.amount, 60);
       expect(identical(before.chartPoints, after.chartPoints), isTrue);
       expect(identical(after.chartPoints, atHourBoundary.chartPoints), isFalse);
       expect(snapshotBuilds, 3);
@@ -960,8 +960,8 @@ void main() {
 
       expect(_pointAt(first, 600).todayValue, 1);
       expect(_pointAt(updated, 600).todayValue, 3);
-      expect(first.periods.single.primary!.value, 12);
-      expect(updated.periods.single.primary!.value, 18);
+      expect(first.periods.single.primary!.amount, 12);
+      expect(updated.periods.single.primary!.amount, 18);
       expect(identical(first.chartPoints, updated.chartPoints), isFalse);
       expect(snapshotBuilds, 2);
     });
@@ -1115,8 +1115,8 @@ void main() {
         now: DateTime(2026, 10, 30, 10, 20),
       ).first.card(DashboardMetric.passBy);
 
-      expect(original.periods.single.primary!.value, 18);
-      expect(changedPeriod.periods.single.primary!.value, 24);
+      expect(original.periods.single.primary!.amount, 18);
+      expect(changedPeriod.periods.single.primary!.amount, 24);
       expect(identical(original.periods, changedPeriod.periods), isFalse);
       expect(identical(changedPeriod.chartPoints, nextDate.chartPoints), isFalse);
       expect(snapshotBuilds, 3);
@@ -1216,8 +1216,8 @@ void main() {
       expect(eventCard.primary, isNull);
       expect(eventCard.periods.single.primary, isNull);
       expect(_pointAt(eventCard, 540).todayValue, isNull);
-      expect(occupancyCard.primary!.value, 3);
-      expect(occupancyCard.periods.single.primary!.value, 3);
+      expect(occupancyCard.primary!.amount, 3);
+      expect(occupancyCard.periods.single.primary!.amount, 3);
       expect(_pointAt(occupancyCard, 540).todayValue, 3);
     });
 

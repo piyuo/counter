@@ -58,32 +58,14 @@ Observation aggregateObservations(List<Observation> observations, {required Obse
     }
   }
 
-  var confidenceSum = 0.0;
-  var confidenceSampleCount = 0;
-  var coveredSeconds = 0;
-  var frameCount = 0;
-  final orderedObservations = <Observation>[];
-
-  for (final observation in ordered) {
-    orderedObservations.add(observation);
-    confidenceSum += observation.confidenceSum;
-    confidenceSampleCount += observation.confidenceSampleCount;
-    coveredSeconds += observation.coveredSeconds;
-    frameCount += observation.frameCount;
-  }
-
-  return Observation(
+  return _combineObservations(
+    ordered,
     granularity: granularity,
     year: first.year,
     month: granularity == ObservationGranularity.year ? -1 : first.month,
     day: granularity == ObservationGranularity.hour || granularity == ObservationGranularity.day ? first.day : -1,
     hour: granularity == ObservationGranularity.hour ? first.hour : -1,
     minute: -1,
-    confidenceSum: confidenceSum,
-    confidenceSampleCount: confidenceSampleCount,
-    coveredSeconds: coveredSeconds,
-    frameCount: frameCount,
-    areas: _aggregateAreas(orderedObservations),
   );
 }
 
@@ -319,3 +301,95 @@ int _compareSources(Observation left, Observation right, ObservationGranularity 
 };
 
 int _max(int first, int second) => first > second ? first : second;
+
+/// Aggregates 5-minute observations from a recent-hour window.
+///
+/// Sources may span two calendar hours but must:
+/// - Contain at most 12 observations.
+/// - Belong to the same business day.
+/// - Span no more than 55 minutes between the first and last slots.
+///
+/// Missing observations are allowed.
+/// Source timestamps are never modified.
+Observation aggregateRecentHourObservations(List<Observation> observations) {
+  if (observations.isEmpty || observations.length > 12) {
+    throw ArgumentError.value(observations.length, 'observations', 'must contain between 1 and 12 observations');
+  }
+
+  final ordered = List<Observation>.of(observations)..sort((a, b) => a.timeKey.compareTo(b.timeKey));
+
+  final first = ordered.first;
+  final latest = ordered.last;
+  final sourceIds = <int>{};
+
+  final firstMinute = first.hour * 60 + first.minute;
+  final latestMinute = latest.hour * 60 + latest.minute;
+
+  if (latestMinute - firstMinute > 55) {
+    throw ArgumentError.value(observations, 'observations', 'must span no more than 55 minutes');
+  }
+
+  for (final observation in ordered) {
+    if (observation.granularity != ObservationGranularity.minutes5) {
+      throw ArgumentError.value(observation.granularity, 'observations', 'must contain only minutes5 observations');
+    }
+
+    if (observation.year != first.year || observation.month != first.month || observation.day != first.day) {
+      throw ArgumentError.value(observation, 'observations', 'must belong to the same business day');
+    }
+
+    if (!sourceIds.add(observation.id)) {
+      throw ArgumentError.value(observation.id, 'observations', 'must not contain duplicate source slots');
+    }
+
+    for (final area in observation.areas) {
+      _validateAreaMetrics(area);
+    }
+  }
+
+  return _combineObservations(
+    ordered,
+    granularity: ObservationGranularity.hour,
+    year: latest.year,
+    month: latest.month,
+    day: latest.day,
+    hour: latest.hour,
+    minute: latest.minute,
+  );
+}
+
+Observation _combineObservations(
+  List<Observation> ordered, {
+  required ObservationGranularity granularity,
+  required int year,
+  required int month,
+  required int day,
+  required int hour,
+  required int minute,
+}) {
+  var confidenceSum = 0.0;
+  var confidenceSampleCount = 0;
+  var coveredSeconds = 0;
+  var frameCount = 0;
+
+  for (final observation in ordered) {
+    confidenceSum += observation.confidenceSum;
+    confidenceSampleCount += observation.confidenceSampleCount;
+    coveredSeconds += observation.coveredSeconds;
+    frameCount += observation.frameCount;
+  }
+
+  return Observation(
+    granularity: granularity,
+    year: year,
+    month: month,
+    day: day,
+    hour: hour,
+    minute: minute,
+    confidenceSum: confidenceSum,
+    confidenceSampleCount: confidenceSampleCount,
+    coveredSeconds: coveredSeconds,
+    frameCount: frameCount,
+    areas: _aggregateAreas(ordered),
+  );
+}

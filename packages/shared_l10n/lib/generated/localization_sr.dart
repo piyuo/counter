@@ -574,6 +574,22 @@ class LocalizationSr extends Localization {
       'Statistika za svaki period od 5 minuta';
 
   @override
+  String get observation_screen_observed_count => 'Uočeni broj';
+
+  @override
+  String get observation_screen_observed_time => 'Vreme posmatranja';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Uočeni broj ÷ sekunde posmatranja × sekundi na sat';
+
+  @override
+  String get observation_screen_subtotal => 'Međuzbir';
+
+  @override
+  String get observation_screen_total => 'Ukupno';
+
+  @override
   String get observation_status_interrupted => 'Prekinuto';
 
   @override

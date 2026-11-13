@@ -576,6 +576,22 @@ class LocalizationRu extends Localization {
       'Статистика для каждого 5-минутного периода';
 
   @override
+  String get observation_screen_observed_count => 'Наблюдаемое количество';
+
+  @override
+  String get observation_screen_observed_time => 'Время наблюдения';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Наблюдаемое количество ÷ секунды наблюдения × секунд в час';
+
+  @override
+  String get observation_screen_subtotal => 'Промежуточный итог';
+
+  @override
+  String get observation_screen_total => 'Итого';
+
+  @override
   String get observation_status_interrupted => 'Прервано';
 
   @override

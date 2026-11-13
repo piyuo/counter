@@ -55,11 +55,11 @@ void main() {
         expectedSeconds: 3600,
       );
 
-      expect(fullCoverage?.value, 84);
-      expect(fullCoverage?.unit, DashboardMetricValueUnit.countPerHour);
+      expect(fullCoverage?.amount, 84);
+      expect(fullCoverage?.unit, DashboardMeasurementUnit.countPerHour);
       expect(fullCoverage?.estimated, isFalse);
-      expect(partialCoverage?.value, 84);
-      expect(partialCoverage?.unit, DashboardMetricValueUnit.countPerHour);
+      expect(partialCoverage?.amount, 84);
+      expect(partialCoverage?.unit, DashboardMeasurementUnit.countPerHour);
       expect(partialCoverage?.estimated, isTrue);
       expect(partialCoverage?.coveredSeconds, 1800);
     });
@@ -97,7 +97,7 @@ void main() {
         expectedSeconds: 3600,
       );
 
-      expect(value?.value, 30);
+      expect(value?.amount, 30);
       expect(value?.coveredSeconds, 600);
       expect(value?.estimated, isTrue);
     });
@@ -132,7 +132,7 @@ void main() {
         ),
       ]);
 
-      DashboardMetricValue? value(DashboardMetric metric) => calculateInsightMetricFromObservationsInRange(
+      DashboardMeasurement? value(DashboardMetric metric) => calculateInsightMetricFromObservationsInRange(
         series: series,
         startMinute: 540,
         endMinute: 600,
@@ -141,13 +141,13 @@ void main() {
         expectedSeconds: 3600,
       );
 
-      expect(value(DashboardMetric.occupancyMean)?.value, 3);
-      expect(value(DashboardMetric.occupancyMean)?.unit, DashboardMetricValueUnit.objects);
-      expect(value(DashboardMetric.occupancyPeak)?.value, 7);
-      expect(value(DashboardMetric.dwellTimeMean)?.value, 260);
-      expect(value(DashboardMetric.dwellTimeMean)?.unit, DashboardMetricValueUnit.seconds);
-      expect(value(DashboardMetric.dwellTimeMax)?.value, 500);
-      expect(value(DashboardMetric.dwellTimeMax)?.unit, DashboardMetricValueUnit.seconds);
+      expect(value(DashboardMetric.occupancyMean)?.amount, 3);
+      expect(value(DashboardMetric.occupancyMean)?.unit, DashboardMeasurementUnit.objects);
+      expect(value(DashboardMetric.occupancyPeak)?.amount, 7);
+      expect(value(DashboardMetric.dwellTimeMean)?.amount, 260);
+      expect(value(DashboardMetric.dwellTimeMean)?.unit, DashboardMeasurementUnit.seconds);
+      expect(value(DashboardMetric.dwellTimeMax)?.amount, 500);
+      expect(value(DashboardMetric.dwellTimeMax)?.unit, DashboardMeasurementUnit.seconds);
     });
   });
 
@@ -169,9 +169,9 @@ void main() {
       hour: 9,
     );
 
-    expect(mean?.value, 5);
-    expect(mean?.unit, DashboardMetricValueUnit.minutes);
-    expect(maximum?.value, 5);
-    expect(maximum?.unit, DashboardMetricValueUnit.minutes);
+    expect(mean?.amount, 5);
+    expect(mean?.unit, DashboardMeasurementUnit.minutes);
+    expect(maximum?.amount, 5);
+    expect(maximum?.unit, DashboardMeasurementUnit.minutes);
   });
 }

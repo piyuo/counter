@@ -1,7 +1,6 @@
 // TOC:
 // - StartScreen: control-panel landing screen
 // - detection type tile: shows current selection and opens detection settings
-// - upload logs tile: quick access to recent telemetry upload outcomes
 
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_runtime/core_runtime.dart' as core_runtime;
@@ -28,7 +27,6 @@ class MainScreen extends ConsumerWidget {
     }
 
     final appVersion = ref.watch(appVersionProvider).asData?.value ?? '';
-    final telemetry = ref.watch(core_domain.telemetryServiceProvider);
     final areaState = ref.watch(core_runtime.interestAreaProvider);
     final interestAreaHelpText = areaState.areas.isEmpty
         ? context.l.main_screen_interest_area_empty
@@ -90,38 +88,15 @@ class MainScreen extends ConsumerWidget {
               ),
               InsightDisplay(),
               feature_pip.PipPanel(
+                margin: EdgeInsets.symmetric(horizontal: 10.0),
                 child: Column(
                   children: [
-                    if (appState.hasDataServer)
-                      ListTile(
-                        leading: Icon(Icons.timelapse),
-                        title: Text(context.l.main_screen_upload_logs),
-                        trailing: ValueListenableBuilder<DateTime?>(
-                          valueListenable: telemetry.nextUploadTimeListenable,
-                          builder: (context, nextUpload, child) => Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              _StatusIconWithTime(
-                                icon: Icons.schedule,
-                                color: Colors.blueGrey,
-                                timeLabel: _formatVeryShortLocalTime(context, nextUpload),
-                              ),
-                              const SizedBox(width: 10),
-                              const Icon(Icons.arrow_forward_ios),
-                            ],
-                          ),
-                        ),
-                        onTap: () => ref.push(const core_domain.OpenUploadLogs()),
-                      ),
                     ListTile(
                       leading: Icon(Icons.video_camera_back),
                       title: Text(context.l.main_screen_video_sources),
                       trailing: Wrap(
                         children: [
-                          Text(
-                            buildVideoSourceShortName(context, appState.videoSource),
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
+                          Text(buildVideoSourceShortName(context, appState.videoSource)),
                           SizedBox(width: 10),
                           Icon(Icons.arrow_forward_ios),
                         ],
@@ -135,11 +110,7 @@ class MainScreen extends ConsumerWidget {
                       leading: Icon(Icons.crop_square),
                       title: Text(context.l.main_screen_interest_areas),
                       trailing: Wrap(
-                        children: [
-                          Text(interestAreaHelpText, style: TextStyle(fontSize: 16, color: Colors.grey)),
-                          SizedBox(width: 10),
-                          Icon(Icons.arrow_forward_ios),
-                        ],
+                        children: [Text(interestAreaHelpText), SizedBox(width: 10), Icon(Icons.arrow_forward_ios)],
                       ),
                       onTap: () {
                         final interestAreaController = ref.read(core_runtime.interestAreaProvider.notifier);
@@ -158,10 +129,7 @@ class MainScreen extends ConsumerWidget {
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Text(
-                            isPedestrian ? context.l.target_pedestrian : context.l.target_vehicle,
-                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
-                          ),
+                          Text(isPedestrian ? context.l.target_pedestrian : context.l.target_vehicle),
                           SizedBox(width: 10),
                           Icon(Icons.arrow_forward_ios),
                         ],
@@ -175,11 +143,7 @@ class MainScreen extends ConsumerWidget {
                       title: Text(context.l.main_screen_about),
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Text(appVersion, style: TextStyle(fontSize: 16, color: Colors.grey)),
-                          SizedBox(width: 10),
-                          Icon(Icons.arrow_forward_ios),
-                        ],
+                        children: [Text(appVersion), SizedBox(width: 10), Icon(Icons.arrow_forward_ios)],
                       ),
 
                       onTap: () {
@@ -194,35 +158,6 @@ class MainScreen extends ConsumerWidget {
           ),
         );
       },
-    );
-  }
-
-  String _formatVeryShortLocalTime(BuildContext context, DateTime? value) {
-    if (value == null) return '--';
-    final local = value.toLocal();
-    final alwaysUse24HourFormat = MediaQuery.maybeOf(context)?.alwaysUse24HourFormat ?? false;
-    return MaterialLocalizations.of(
-      context,
-    ).formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: alwaysUse24HourFormat);
-  }
-}
-
-class _StatusIconWithTime extends StatelessWidget {
-  const _StatusIconWithTime({required this.icon, required this.color, required this.timeLabel});
-
-  final IconData icon;
-  final Color color;
-  final String timeLabel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color, size: 14),
-        const SizedBox(width: 4),
-        Text(timeLabel, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey)),
-      ],
     );
   }
 }

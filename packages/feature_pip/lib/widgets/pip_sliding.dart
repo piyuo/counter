@@ -7,6 +7,8 @@ import 'package:universal_platform/universal_platform.dart';
 import '../providers/pip_notifier.dart';
 import 'panel.dart';
 
+typedef PipSlidingBuilder = Widget Function(bool isSideLayout, bool isPanelOpened);
+
 /// the radius of the sliding panel
 const BorderRadiusGeometry _slidingPanelRadius = BorderRadius.only(
   topLeft: Radius.circular(10.0),
@@ -25,7 +27,7 @@ class PipSliding extends ConsumerWidget {
   });
 
   /// the builder function
-  final Widget Function(bool) builder;
+  final PipSlidingBuilder builder;
 
   /// the width of the sliding panel
   final double? width;
@@ -68,8 +70,8 @@ class PipSliding extends ConsumerWidget {
                 child: ClipRRect(
                   borderRadius: _slidingPanelRadius,
                   child: !isLockedOpen && isShowDragHeader
-                      ? _DragHeader(child: builder(pipState.isPanelOpened))
-                      : builder(pipState.isPanelOpened),
+                      ? _DragHeader(child: builder(false, pipState.isPanelOpened))
+                      : builder(false, pipState.isPanelOpened),
                 ),
               ),
             );

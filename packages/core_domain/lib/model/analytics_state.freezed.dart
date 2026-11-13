@@ -27,20 +27,20 @@ $AnalyticsStateCopyWith<AnalyticsState> get copyWith => _$AnalyticsStateCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as AnalyticsState;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnalyticsState&&const DeepCollectionEquality().equals(other.observations, _this.observations));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnalyticsState&&(identical(other.lastUpdatedUtc, _this.lastUpdatedUtc) || other.lastUpdatedUtc == _this.lastUpdatedUtc));
 }
 
 
 @override
 int get hashCode {
   final _this = this as AnalyticsState;
-  return Object.hash(runtimeType,const DeepCollectionEquality().hash(_this.observations));
+  return Object.hash(runtimeType,_this.lastUpdatedUtc);
 }
 
 @override
 String toString() {
   final _this = this as AnalyticsState;
-  return 'AnalyticsState(observations: ${_this.observations})';
+  return 'AnalyticsState(lastUpdatedUtc: ${_this.lastUpdatedUtc})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $AnalyticsStateCopyWith<$Res>  {
   factory $AnalyticsStateCopyWith(AnalyticsState value, $Res Function(AnalyticsState) _then) = _$AnalyticsStateCopyWithImpl;
 @useResult
 $Res call({
- List<core_domain.Observation> observations
+ DateTime? lastUpdatedUtc
 });
 
 
@@ -68,10 +68,10 @@ class _$AnalyticsStateCopyWithImpl<$Res>
 
 /// Create a copy of AnalyticsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? observations = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? lastUpdatedUtc = freezed,}) {
   return _then(AnalyticsState(
-observations: null == observations ? _self.observations : observations // ignore: cast_nullable_to_non_nullable
-as List<core_domain.Observation>,
+lastUpdatedUtc: freezed == lastUpdatedUtc ? _self.lastUpdatedUtc : lastUpdatedUtc // ignore: cast_nullable_to_non_nullable
+as DateTime?,
   ));
 }
 

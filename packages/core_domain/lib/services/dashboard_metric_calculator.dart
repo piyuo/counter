@@ -10,7 +10,7 @@ enum _MetricValueMode { hourlyRate, chart }
 
 const double _coverageTolerance = 0.05;
 
-DashboardMetricValue? calculateInsightMetricFromAggregate(
+DashboardMeasurement? calculateInsightMetricFromAggregate(
   Observation? observation,
   int areaId,
   DashboardMetric metric, {
@@ -27,7 +27,7 @@ DashboardMetricValue? calculateInsightMetricFromAggregate(
   );
 }
 
-DashboardMetricValue? calculateInsightMetricFromObservationsInRange({
+DashboardMeasurement? calculateInsightMetricFromObservationsInRange({
   required ObservationSeries series,
   required int startMinute,
   required int endMinute,
@@ -44,7 +44,7 @@ DashboardMetricValue? calculateInsightMetricFromObservationsInRange({
   expectedSeconds: expectedSeconds,
 );
 
-DashboardMetricValue? calculateInsightHourlyChartValue({
+DashboardMeasurement? calculateInsightHourlyChartValue({
   required ObservationSeries series,
   required int areaId,
   required DashboardMetric metric,
@@ -57,7 +57,7 @@ DashboardMetricValue? calculateInsightHourlyChartValue({
   mode: _MetricValueMode.chart,
 );
 
-DashboardMetricValue? _fromObservations(
+DashboardMeasurement? _fromObservations(
   Iterable<Observation> observations,
   int areaId,
   DashboardMetric metric, {
@@ -82,14 +82,14 @@ DashboardMetricValue? _fromObservations(
   );
 }
 
-DashboardMetricValue? _valueForSingleSample(
+DashboardMeasurement? _valueForSingleSample(
   Activity sample,
   DashboardMetric metric, {
   required int coveredSeconds,
   required int expectedSeconds,
 }) => _valueForSamples([sample], metric, coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds);
 
-DashboardMetricValue? _valueForSamples(
+DashboardMeasurement? _valueForSamples(
   List<Activity> samples,
   DashboardMetric metric, {
   required int coveredSeconds,
@@ -135,7 +135,7 @@ DashboardMetricValue? _valueForSamples(
   );
 }
 
-DashboardMetricValue? _valueFromTotals(
+DashboardMeasurement? _valueFromTotals(
   DashboardMetric metric, {
   required double eventCount,
   required int occupancySampleCount,
@@ -159,43 +159,43 @@ DashboardMetricValue? _valueFromTotals(
     DashboardMetric.disappear =>
       coveredSeconds <= 0
           ? null
-          : DashboardMetricValue(
+          : DashboardMeasurement(
               // Live and period values are estimated hourly rates; charts retain actual counts when coverage is incomplete.
-              value: eventHourlyRate ? eventCount / coveredSeconds * 3600 : eventCount,
-              unit: eventHourlyRate ? DashboardMetricValueUnit.countPerHour : DashboardMetricValueUnit.count,
+              amount: eventHourlyRate ? eventCount / coveredSeconds * 3600 : eventCount,
+              unit: eventHourlyRate ? DashboardMeasurementUnit.countPerHour : DashboardMeasurementUnit.count,
               estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.occupancyMean =>
       occupancySampleCount == 0
           ? null
-          : DashboardMetricValue(
-              value: occupancySum / occupancySampleCount,
-              unit: DashboardMetricValueUnit.objects,
+          : DashboardMeasurement(
+              amount: occupancySum / occupancySampleCount,
+              unit: DashboardMeasurementUnit.objects,
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.occupancyPeak =>
       occupancyMaximum == null
           ? null
-          : DashboardMetricValue(
-              value: occupancyMaximum.toDouble(),
-              unit: DashboardMetricValueUnit.objects,
+          : DashboardMeasurement(
+              amount: occupancyMaximum.toDouble(),
+              unit: DashboardMeasurementUnit.objects,
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.dwellTimeMean =>
       dwellSampleCount == 0
           ? null
-          : DashboardMetricValue(
-              value: dwellSumSeconds / dwellSampleCount / (dwellInMinutes ? 60 : 1),
-              unit: dwellInMinutes ? DashboardMetricValueUnit.minutes : DashboardMetricValueUnit.seconds,
+          : DashboardMeasurement(
+              amount: dwellSumSeconds / dwellSampleCount / (dwellInMinutes ? 60 : 1),
+              unit: dwellInMinutes ? DashboardMeasurementUnit.minutes : DashboardMeasurementUnit.seconds,
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.dwellTimeMax =>
       dwellMaximum == null
           ? null
-          : DashboardMetricValue(
-              value: dwellMaximum / (dwellInMinutes ? 60 : 1),
-              unit: dwellInMinutes ? DashboardMetricValueUnit.minutes : DashboardMetricValueUnit.seconds,
+          : DashboardMeasurement(
+              amount: dwellMaximum / (dwellInMinutes ? 60 : 1),
+              unit: dwellInMinutes ? DashboardMeasurementUnit.minutes : DashboardMeasurementUnit.seconds,
               coveredSeconds: coveredSeconds,
             ),
   };

@@ -17,7 +17,7 @@ abstract class InsightService {
   void onObservationChanged();
 
   /// Called when a 5-minute observation window is completed.
-  void onFiveMinuteObservationCompleted(Observation observation);
+  Future<void> onFiveMinuteObservationCompleted(Observation observation);
 
   /// Loads and publishes the dashboard data for the currently selected period.
   ///

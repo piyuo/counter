@@ -29,7 +29,8 @@ class PayloadDetailScreen extends ConsumerStatefulWidget {
   final String payloadId;
 
   @override
-  ConsumerState<PayloadDetailScreen> createState() => _PayloadDetailScreenState();
+  ConsumerState<PayloadDetailScreen> createState() =>
+      _PayloadDetailScreenState();
 }
 
 class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
@@ -62,30 +63,52 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
               onPressed: _isResending
                   ? null
                   : () async {
-                      final payloads = await ref.read(recentPayloadsProvider.future);
+                      final payloads = await ref.read(
+                        recentPayloadsProvider.future,
+                      );
                       if (!context.mounted) return;
-                      final pendingPayload = core_domain.findPendingPayloadById(payloads, widget.payloadId);
+                      final pendingPayload = core_domain.findPendingPayloadById(
+                        payloads,
+                        widget.payloadId,
+                      );
                       if (pendingPayload == null) {
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(SnackBar(content: Text(context.l.payloads_screen_payload_not_exists)));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              context.l.payloads_screen_payload_not_exists,
+                            ),
+                          ),
+                        );
                         return;
                       }
                       await _resend(pendingPayload);
                     },
             ),
       builder: (scrollController) => payloadsAsync.when(
-        loading: () => const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white)),
+        loading: () => const Center(
+          child: GlassProgressIndicator.circular(
+            strokeWidth: 2.5,
+            color: Colors.white,
+          ),
+        ),
         error: (error, stackTrace) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text('${context.l.payloads_screen_failed_load} $error', textAlign: TextAlign.center),
+            child: Text(
+              '${context.l.payloads_screen_failed_load} $error',
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
         data: (payloads) {
-          final pendingPayload = core_domain.findPendingPayloadById(payloads, widget.payloadId);
+          final pendingPayload = core_domain.findPendingPayloadById(
+            payloads,
+            widget.payloadId,
+          );
           if (pendingPayload == null) {
-            return Center(child: Text(context.l.payloads_screen_payload_not_exists));
+            return Center(
+              child: Text(context.l.payloads_screen_payload_not_exists),
+            );
           }
 
           final observation = pendingPayload.payload;
@@ -93,24 +116,35 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
           final locale = Localizations.localeOf(context).toString();
           final dayFmt = DateFormat.yMMMMd(locale);
           final hourFmt = DateFormat.jm(locale);
-          final coveragePercent = (observation.coverageRatio * 100.0).clamp(0.0, 100.0);
+          final coveragePercent = (observation.coverageRatio * 100.0).clamp(
+            0.0,
+            100.0,
+          );
           final missingSeconds = observation.missingSeconds;
 
           return ListView(
             controller: scrollController,
-            padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
+            padding: const EdgeInsets.symmetric(
+              vertical: feature_pip.kScrollContentAppbarPadding,
+            ),
             children: [
               feature_pip.PipHeader(
                 icon: Icons.bar_chart,
                 title: '${dayFmt.format(start)} ${hourFmt.format(start)}',
-                subtitle: payloadDeliveryStatusDescription(context, pendingPayload, hourFmt),
+                subtitle: payloadDeliveryStatusDescription(
+                  context,
+                  pendingPayload,
+                  hourFmt,
+                ),
               ),
               _SectionHeader('ID ${observation.id}'),
               _SummaryTile(
                 label: context.l.payloads_screen_coverage,
                 value: formatPercent(context, coveragePercent),
                 valueColor: _percentColor(coveragePercent),
-                subtitle: coveragePercent < 100 ? context.l.payloads_screen_partial : null,
+                subtitle: coveragePercent < 100
+                    ? context.l.payloads_screen_partial
+                    : null,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -119,7 +153,9 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
                   child: LinearProgressIndicator(
                     value: coveragePercent / 100.0,
                     minHeight: 6,
-                    backgroundColor: _percentColor(coveragePercent).withValues(alpha: 0.2),
+                    backgroundColor: _percentColor(
+                      coveragePercent,
+                    ).withValues(alpha: 0.2),
                     color: _percentColor(coveragePercent),
                   ),
                 ),
@@ -127,26 +163,40 @@ class _PayloadDetailScreenState extends ConsumerState<PayloadDetailScreen> {
               const SizedBox(height: 8),
               _SummaryTile(
                 label: context.l.payloads_screen_process_fps,
-                value: (observation.frameCount / core_domain.kWindowDuration.inSeconds).toStringAsFixed(2),
+                value:
+                    (observation.frameCount /
+                            core_domain.kWindowDuration.inSeconds)
+                        .toStringAsFixed(2),
               ),
               _SummaryTile(
                 label: context.l.payloads_screen_confidence,
-                value: formatPercent(context, observation.confidenceRatio * 100),
+                value: formatPercent(
+                  context,
+                  observation.confidenceRatio * 100,
+                ),
                 valueColor: _percentColor(observation.confidenceRatio * 100),
               ),
-              _SummaryTile(label: context.l.payloads_screen_frame_processed, value: '${observation.frameCount}'),
+              _SummaryTile(
+                label: context.l.payloads_screen_frame_processed,
+                value: '${observation.frameCount}',
+              ),
               _SummaryTile(
                 label: context.l.payloads_screen_missing_time,
                 value: formatCompactDuration(context.l, missingSeconds),
               ),
-              Divider(height: 32, color: Theme.of(context).dividerColor.withValues(alpha: 0.4)),
+              Divider(
+                height: 32,
+                color: Theme.of(context).dividerColor.withValues(alpha: 0.4),
+              ),
               for (var i = 0; i < observation.areas.length; i++) ...[
                 if (i > 0)
                   Divider(
                     height: 24,
                     indent: 16,
                     endIndent: 16,
-                    color: Theme.of(context).dividerColor.withValues(alpha: 0.4),
+                    color: Theme.of(
+                      context,
+                    ).dividerColor.withValues(alpha: 0.4),
                   ),
                 _AreaListItem(area: observation.areas[i]),
               ],
@@ -172,7 +222,9 @@ class _SectionHeader extends StatelessWidget {
       child: Text(
         text,
         style:
-            Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold) ??
+            Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold) ??
             const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
     );
@@ -183,7 +235,12 @@ class _SectionHeader extends StatelessWidget {
 /// value; the value uses tabular figures so digits line up vertically
 /// across rows regardless of digit count.
 class _MetricRow extends StatelessWidget {
-  const _MetricRow({required this.label, required this.value, this.icon, this.iconColor});
+  const _MetricRow({
+    required this.label,
+    required this.value,
+    this.icon,
+    this.iconColor,
+  });
 
   final String label;
   final String value;
@@ -194,14 +251,18 @@ class _MetricRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final mutedLabel = theme.textTheme.bodyLarge?.color?.withValues(alpha: 0.6);
+    final valueStyle = theme.listTileTheme.leadingAndTrailingTextStyle
+        ?.copyWith(
+          fontWeight: FontWeight.w700,
+          fontFeatures: const [FontFeature.tabularFigures()],
+        );
     return ListTile(
-      leading: icon != null ? Icon(icon, size: 22, color: iconColor ?? theme.colorScheme.primary) : null,
+      leading: icon != null
+          ? Icon(icon, size: 22, color: iconColor ?? theme.colorScheme.primary)
+          : null,
       minLeadingWidth: 0,
       title: Text(label, style: TextStyle(fontSize: 16, color: mutedLabel)),
-      trailing: Text(
-        value,
-        style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700, fontFeatures: const [FontFeature.tabularFigures()]),
-      ),
+      trailing: Text(value, style: valueStyle),
     );
   }
 }
@@ -209,7 +270,12 @@ class _MetricRow extends StatelessWidget {
 /// One label/value row for top-level payload stats, with an optional
 /// subtitle and value color (used for coverage/confidence warnings).
 class _SummaryTile extends StatelessWidget {
-  const _SummaryTile({required this.label, required this.value, this.subtitle, this.valueColor});
+  const _SummaryTile({
+    required this.label,
+    required this.value,
+    this.subtitle,
+    this.valueColor,
+  });
 
   final String label;
   final String value;
@@ -220,20 +286,21 @@ class _SummaryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final mutedLabel = theme.textTheme.bodyLarge?.color?.withValues(alpha: 0.6);
-    return ListTile(
-      title: Text(label, style: TextStyle(fontSize: 16, color: mutedLabel)),
-      subtitle: subtitle != null
-          ? Text(subtitle!, style: TextStyle(fontSize: 13, color: Colors.orange.shade700))
-          : null,
-      trailing: Text(
-        value,
-        style: TextStyle(
-          fontSize: 18,
+    final valueStyle = theme.listTileTheme.leadingAndTrailingTextStyle
+        ?.copyWith(
           fontWeight: FontWeight.w700,
           color: valueColor,
           fontFeatures: const [FontFeature.tabularFigures()],
-        ),
-      ),
+        );
+    return ListTile(
+      title: Text(label, style: TextStyle(fontSize: 16, color: mutedLabel)),
+      subtitle: subtitle != null
+          ? Text(
+              subtitle!,
+              style: TextStyle(fontSize: 13, color: Colors.orange.shade700),
+            )
+          : null,
+      trailing: Text(value, style: valueStyle),
     );
   }
 }
@@ -253,7 +320,12 @@ class _AreaListItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _SectionHeader('${context.l.payloads_screen_area} ${area.areaId}'),
-        _MetricRow(label: context.l.passed_by, value: '${area.passBy}', icon: Icons.moving, iconColor: Colors.blueGrey),
+        _MetricRow(
+          label: context.l.passed_by,
+          value: '${area.passBy}',
+          icon: Icons.moving,
+          iconColor: Colors.blueGrey,
+        ),
         _MetricRow(
           label: context.l.stagnanted,
           value: '${area.stagnant}',
@@ -274,13 +346,25 @@ class _AreaListItem extends StatelessWidget {
         ),
         _MetricRow(label: context.l.appeared, value: '${area.appear}'),
         _MetricRow(label: context.l.disappeared, value: '${area.disappear}'),
-        _MetricRow(label: context.l.average_occupancy, value: area.occupancyMean.toStringAsFixed(2)),
-        _MetricRow(label: context.l.maximum_occupancy, value: '${area.occupancyMax}'),
+        _MetricRow(
+          label: context.l.average_occupancy,
+          value: area.occupancyMean.toStringAsFixed(2),
+        ),
+        _MetricRow(
+          label: context.l.maximum_occupancy,
+          value: '${area.occupancyMax}',
+        ),
         _MetricRow(
           label: context.l.average_stay,
-          value: formatCompactDuration(context.l, area.dwellMeanSeconds.round()),
+          value: formatCompactDuration(
+            context.l,
+            area.dwellMeanSeconds.round(),
+          ),
         ),
-        _MetricRow(label: context.l.maximum_stay, value: formatCompactDuration(context.l, area.dwellMaxSeconds)),
+        _MetricRow(
+          label: context.l.maximum_stay,
+          value: formatCompactDuration(context.l, area.dwellMaxSeconds),
+        ),
       ],
     );
   }

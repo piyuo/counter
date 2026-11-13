@@ -49,28 +49,37 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
     return feature_pip.PipScaffold(
       builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
-        padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
+        padding: const EdgeInsets.symmetric(
+          vertical: feature_pip.kScrollContentAppbarPadding,
+        ),
         child: Column(
           children: [
-            Image(image: AssetImage('assets/icon/icon.png'), width: 145, height: 140),
+            Image(
+              image: AssetImage('assets/icon/icon.png'),
+              width: 145,
+              height: 140,
+            ),
             const SizedBox(height: 8.0),
             Text('Piyuo Counter', style: TextStyle(fontSize: 20.0)),
             const SizedBox(height: 8.0),
 
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Text(context.l.product_desc, style: TextStyle(fontSize: 16.0)),
+              child: Text(
+                context.l.product_desc,
+                style: TextStyle(fontSize: 16.0),
+              ),
             ),
             const SizedBox(height: 28),
             feature_pip.PipPanel(
               child: Column(
                 children: [
                   ListTile(
-                    trailing: Text(platform, style: TextStyle(fontSize: 18)),
+                    trailing: Text(platform),
                     title: Text(context.l.about_screen_platform),
                   ),
                   ListTile(
-                    trailing: Text(appVersion, style: TextStyle(fontSize: 18)),
+                    trailing: Text(appVersion),
                     title: Text(context.l.about_screen_app_version),
                     onTap: _onTapVersion,
                   ),
@@ -85,7 +94,9 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                     title: Text(context.l.personal_custom_screen_help_action),
                     trailing: Icon(Icons.arrow_forward_ios),
                     onTap: () {
-                      appkit.netOpenUrl('https://piyuo.com/en/docs/payload-format');
+                      appkit.netOpenUrl(
+                        'https://piyuo.com/en/docs/payload-format',
+                      );
                     },
                   ),
                 ],
@@ -121,13 +132,17 @@ class _AboutScreenState extends ConsumerState<AboutScreen> {
                     ListTile(
                       title: Text("End Counting Window and Enqueue"),
                       onTap: () {
-                        ref.read(core_runtime.observationProvider.notifier).debugForceWindowEnd();
+                        ref
+                            .read(core_runtime.observationProvider.notifier)
+                            .debugForceWindowEnd();
                       },
                     ),
                     ListTile(
                       title: Text('Run Upload Worker (Debug)'),
                       onTap: () async {
-                        final telemetryService = ref.read(core_domain.telemetryServiceProvider);
+                        final telemetryService = ref.read(
+                          core_domain.telemetryServiceProvider,
+                        );
                         await telemetryService.uploadNow();
                       },
                     ),

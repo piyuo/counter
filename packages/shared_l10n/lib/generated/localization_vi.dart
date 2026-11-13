@@ -572,6 +572,22 @@ class LocalizationVi extends Localization {
   String get metrics_counting_window => 'Thống kê cho mỗi khoảng 5 phút';
 
   @override
+  String get observation_screen_observed_count => 'Số lượng quan sát được';
+
+  @override
+  String get observation_screen_observed_time => 'Thời gian quan sát';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Số lượng quan sát được ÷ số giây quan sát × số giây mỗi giờ';
+
+  @override
+  String get observation_screen_subtotal => 'Tổng phụ';
+
+  @override
+  String get observation_screen_total => 'Tổng';
+
+  @override
   String get observation_status_interrupted => 'Gián đoạn';
 
   @override

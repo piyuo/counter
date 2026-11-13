@@ -73,7 +73,7 @@ List<DashboardAreaData> _buildInsightAreas(InsightState dashboard, InsightDashbo
                   area.areaId,
                   card.metric,
                   expectedSeconds: 3600,
-                )?.value,
+                )?.amount,
                 periods: card.periods,
                 chartPoints: card.chartPoints,
               ),

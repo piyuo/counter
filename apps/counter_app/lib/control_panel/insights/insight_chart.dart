@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
+import '../utils/dashboard_utils.dart';
 import '../widgets/info_dialog.dart';
 import 'primary_metric.dart';
 
@@ -142,10 +143,12 @@ class _InsightChartState extends State<InsightChart> {
   }
 
   _LiveRateMarkerData? _liveMarkerFor(core_domain.DashboardCardData data, int hour) {
-    if (!widget.showLiveMarker || !_supportsLiveRate(data.metric)) return null;
+    if (!widget.showLiveMarker || !dashboardMetricUsesHourlyRate(data.metric)) {
+      return null;
+    }
     final primary = data.primary;
-    if (primary == null || !primary.value.isFinite || primary.value < 0) return null;
-    return _LiveRateMarkerData(hour: hour, rate: primary.value, unit: primary.unit, estimated: primary.estimated);
+    if (primary == null || !primary.amount.isFinite || primary.amount < 0) return null;
+    return _LiveRateMarkerData(hour: hour, rate: primary.amount, unit: primary.unit, estimated: primary.estimated);
   }
 
   @override
@@ -256,7 +259,12 @@ class _InsightChartState extends State<InsightChart> {
                                     key: const ValueKey('insight-hourly-extreme-labels'),
                                     label: _extremes
                                         .map((extreme) {
-                                          final value = _formatValue(extreme.value, data.metric, locale.toString(), '');
+                                          final value = formatDashboardMetricValue(
+                                            extreme.value,
+                                            data.metric,
+                                            NumberFormat('0.##', locale.toString()),
+                                            unavailable: '',
+                                          );
                                           final period = extreme.isToday
                                               ? context.l.insight_today
                                               : widget.comparisonLabel;
@@ -407,17 +415,18 @@ class _HourDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final localization = context.l;
     final style = Theme.of(context).textTheme.bodySmall;
-    final todayValue = _formatValue(
+    final numberFormat = NumberFormat('0.##', locale.toString());
+    final todayValue = formatDashboardMetricValue(
       point.todayValue,
       metric,
-      locale.toString(),
-      localization.insight_comparison_unavailable,
+      numberFormat,
+      unavailable: localization.insight_comparison_unavailable,
     );
-    final comparisonValue = _formatValue(
+    final comparisonValue = formatDashboardMetricValue(
       point.comparisonValue,
       metric,
-      locale.toString(),
-      localization.insight_comparison_unavailable,
+      numberFormat,
+      unavailable: localization.insight_comparison_unavailable,
     );
     final difference = point.todayValue != null && point.comparisonValue != null && point.comparisonValue! > 0
         ? _formatDifference(point.todayValue!, point.comparisonValue!, locale.toString())
@@ -628,11 +637,12 @@ List<_PositionedExtremeLabel> _layoutExtremeLabels({
 
   final plotHeight = math.max(1.0, size.height - 2);
   final slotWidth = size.width / 24;
+  final numberFormat = NumberFormat('0.##', locale);
   final labels = <_PositionedExtremeLabel>[];
   for (final extreme in extremes) {
     final textPainter = TextPainter(
       text: TextSpan(
-        text: _formatValue(extreme.value, metric, locale, ''),
+        text: formatDashboardMetricValue(extreme.value, metric, numberFormat, unavailable: ''),
         style: style.copyWith(
           color: extreme.isToday ? todayColor : comparisonColor,
           fontWeight: FontWeight.w600,
@@ -687,7 +697,7 @@ class _LiveRateMarkerData {
 
   final int hour;
   final double rate;
-  final core_domain.DashboardMetricValueUnit unit;
+  final core_domain.DashboardMeasurementUnit unit;
   final bool estimated;
 }
 
@@ -817,15 +827,6 @@ String _coverageLabel(Localization localization, int coveredSeconds, String loca
     .insight_based_on_minutes
     .replaceAll('%m', NumberFormat.decimalPattern(locale).format(coveredSeconds / 60));
 
-String _formatValue(double? value, core_domain.DashboardMetric metric, String locale, String unavailable) {
-  if (value == null) return unavailable;
-  final unit = switch (metric) {
-    core_domain.DashboardMetric.dwellTimeMean || core_domain.DashboardMetric.dwellTimeMax => ' min',
-    _ => '',
-  };
-  return '${NumberFormat('0.##', locale).format(value)}$unit';
-}
-
 String _formatDifference(double todayValue, double comparisonValue, String locale) {
   final difference = (todayValue - comparisonValue) / comparisonValue;
   final formatted = NumberFormat.decimalPercentPattern(locale: locale, decimalDigits: 1).format(difference.abs());
@@ -841,16 +842,6 @@ double _niceChartScale(double value) {
   final magnitude = math.pow(10, (math.log(value) / math.ln10).floor()).toDouble();
   return (value / magnitude).ceilToDouble() * magnitude;
 }
-
-bool _supportsLiveRate(core_domain.DashboardMetric metric) => switch (metric) {
-  core_domain.DashboardMetric.passBy ||
-  core_domain.DashboardMetric.stagnant ||
-  core_domain.DashboardMetric.entry ||
-  core_domain.DashboardMetric.exit ||
-  core_domain.DashboardMetric.appear ||
-  core_domain.DashboardMetric.disappear => true,
-  _ => false,
-};
 
 String _liveMarkerSemanticsValue(_LiveRateMarkerData marker, String rate, String locale, Localization localization) {
   final estimate = marker.estimated ? ', ${localization.insight_estimated}' : '';

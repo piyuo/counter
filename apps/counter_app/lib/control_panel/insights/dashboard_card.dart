@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
+import '../utils/dashboard_utils.dart';
 import 'insight_chart.dart';
 import 'insight_utils.dart';
 import 'primary_metric.dart';
@@ -11,12 +12,14 @@ import 'primary_metric.dart';
 class DashboardCard extends ConsumerWidget {
   const DashboardCard({
     super.key,
+    required this.areaId,
     required this.data,
     required this.comparisonPeriod,
     required this.onComparisonChanged,
     required this.observationStatus,
   });
 
+  final int areaId;
   final core_domain.DashboardCardData data;
   final core_domain.TrafficComparisonPeriod comparisonPeriod;
   final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
@@ -25,7 +28,7 @@ class DashboardCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final title = _metricLabel(context, data.metric);
+    final title = dashboardMetricLabel(context, data.metric);
     final comparisonLabel = insightComparisonPeriodLabel(context, comparisonPeriod);
     final scale = MediaQuery.textScalerOf(context).scale(1);
     final chartHeight = 150 + (scale - 1).clamp(0, 1.5) * 38;
@@ -44,10 +47,11 @@ class DashboardCard extends ConsumerWidget {
     }
 
     return Card(
+      color: Colors.black12,
       margin: const EdgeInsets.symmetric(horizontal: 2),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.fromLTRB(9, 2, 9, 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -62,7 +66,7 @@ class DashboardCard extends ConsumerWidget {
               ),
               trailing: Padding(padding: const EdgeInsets.only(right: 8.0), child: Icon(Icons.arrow_forward_ios)),
               onTap: () {
-                ref.push(const core_domain.OpenPayloadsRecent());
+                ref.push(core_domain.OpenObservationDetails(areaId: areaId, metric: data.metric));
               },
             ),
             PrimaryMetric(
@@ -95,16 +99,3 @@ class DashboardCard extends ConsumerWidget {
     );
   }
 }
-
-String _metricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
-  core_domain.DashboardMetric.passBy => context.l.insight_pass_by,
-  core_domain.DashboardMetric.stagnant => context.l.insight_stagnant,
-  core_domain.DashboardMetric.entry => context.l.insight_entry,
-  core_domain.DashboardMetric.exit => context.l.insight_exit,
-  core_domain.DashboardMetric.appear => context.l.insight_appear,
-  core_domain.DashboardMetric.disappear => context.l.insight_disappear,
-  core_domain.DashboardMetric.occupancyMean => context.l.average_occupancy,
-  core_domain.DashboardMetric.occupancyPeak => context.l.maximum_occupancy,
-  core_domain.DashboardMetric.dwellTimeMean => context.l.insight_average_completed_visit,
-  core_domain.DashboardMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
-};

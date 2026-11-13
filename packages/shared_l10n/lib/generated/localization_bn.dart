@@ -572,6 +572,22 @@ class LocalizationBn extends Localization {
   String get metrics_counting_window => 'প্রতি ৫ মিনিটের পরিসংখ্যান';
 
   @override
+  String get observation_screen_observed_count => 'পর্যবেক্ষিত গণনা';
+
+  @override
+  String get observation_screen_observed_time => 'পর্যবেক্ষণের সময়';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'পর্যবেক্ষিত গণনা ÷ পর্যবেক্ষণের সেকেন্ড × প্রতি ঘণ্টার সেকেন্ড';
+
+  @override
+  String get observation_screen_subtotal => 'উপমোট';
+
+  @override
+  String get observation_screen_total => 'মোট';
+
+  @override
   String get observation_status_interrupted => 'সাময়িক বিঘ্ন';
 
   @override

@@ -561,6 +561,21 @@ class LocalizationJa extends Localization {
   String get metrics_counting_window => '5分ごとの統計データ';
 
   @override
+  String get observation_screen_observed_count => '観測数';
+
+  @override
+  String get observation_screen_observed_time => '観測時間';
+
+  @override
+  String get observation_screen_rate_calculation => '観測数 ÷ 観測秒数 × 1時間あたりの秒数';
+
+  @override
+  String get observation_screen_subtotal => '小計';
+
+  @override
+  String get observation_screen_total => '合計';
+
+  @override
   String get observation_status_interrupted => '一時中断';
 
   @override

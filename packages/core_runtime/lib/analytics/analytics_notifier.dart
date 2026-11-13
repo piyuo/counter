@@ -11,18 +11,20 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'analytics_notifier.g.dart';
 
 @Riverpod(keepAlive: true)
-class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.AnalyticsService {
-  AnalyticsNotifier({AppDatabaseFun? databaseFactory, DateTime Function()? nowProvider})
-    : _databaseFactory = databaseFactory ?? AppDatabase.dbFactory,
-      _nowProvider = nowProvider ?? DateTime.now;
+class AnalyticsNotifier extends _$AnalyticsNotifier
+    implements core_domain.AnalyticsService {
+  AnalyticsNotifier({
+    AppDatabaseFun? databaseFactory,
+    DateTime Function()? nowProvider,
+  }) : _databaseFactory = databaseFactory ?? AppDatabase.dbFactory,
+       _nowProvider = nowProvider ?? DateTime.now;
 
   final AppDatabaseFun _databaseFactory;
   final DateTime Function() _nowProvider;
-  final core_domain.SummaryBuilder _summaryBuilder = const core_domain.SummaryBuilder();
-  Future<void> _writeQueue = Future<void>.value();
+  final core_domain.SummaryBuilder _summaryBuilder =
+      const core_domain.SummaryBuilder();
   String? _todaySummaryBusinessDate;
   core_domain.DaySummary? _todaySummary;
-  bool _hasTodaySummaryCache = false;
   int _todaySummaryGeneration = 0;
 
   @override
@@ -36,92 +38,77 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
       observation.granularity == core_domain.ObservationGranularity.minutes5,
       'AnalyticsNotifier accepts only minutes5 observations',
     );
+    final db = _databaseFactory();
+    if (db == null) throw StateError('AppDatabase is not available');
 
-    final now = _nowProvider();
-    final isToday = observation.businessDate == _formatBusinessDate(now.year, now.month, now.day);
-    if (isToday) _invalidateTodaySummary();
+    final businessDate = observation.businessDate;
+    final existing = await (db.select(
+      db.dayFile,
+    )..where((row) => row.businessDate.equals(businessDate))).getSingleOrNull();
+    final saved = existing == null
+        ? null
+        : _tryDecodeDay(existing.data, businessDate);
 
-    final operation = _writeQueue.then((_) => _persistObservation(observation));
-    _writeQueue = operation.then<void>((_) {}, onError: (Object _, StackTrace _) {});
-    await operation;
-    if (isToday) _invalidateTodaySummary();
+    final updated = saved == null
+        ? _summaryBuilder.createDaySummary(observation)
+        : _summaryBuilder.addObservationToDay(saved, observation);
+    if (identical(updated, saved)) return; // duplicate, keep the first one
+
+    final nowMs = _nowProvider().toUtc().millisecondsSinceEpoch;
+    final data = Uint8List.fromList(
+      GZipCodec(level: ZLibOption.maxLevel)
+          .encode(utf8.encode(jsonEncode(updated.toJson()))),
+    );
+
+    if (existing == null) {
+      await db
+          .into(db.dayFile)
+          .insert(
+            DayFileCompanion.insert(
+              businessDate: businessDate,
+              year: observation.year,
+              month: observation.month,
+              day: observation.day,
+              data: data,
+              schemaVersion: core_domain.kSchemaVersion,
+              createdAtMs: nowMs,
+              updatedAtMs: nowMs,
+            ),
+          );
+    } else {
+      await (db.update(
+        db.dayFile,
+      )..where((row) => row.businessDate.equals(businessDate))).write(
+        DayFileCompanion(
+          data: Value(data),
+          schemaVersion: const Value(core_domain.kSchemaVersion),
+          updatedAtMs: Value(nowMs),
+        ),
+      );
+    }
+
+    _invalidateTodaySummary();
+    state = state.copyWith(lastUpdatedUtc: _nowProvider().toUtc());
   }
 
-  Future<void> _persistObservation(core_domain.Observation observation) async {
-    final businessDate = observation.businessDate;
+  core_domain.DaySummary? _tryDecodeDay(Uint8List data, String businessDate) {
     try {
-      final db = _databaseFactory();
-      if (db == null) {
-        throw StateError('AppDatabase is not available');
+      final decoded = jsonDecode(utf8.decode(GZipCodec().decode(data)));
+      if (decoded is! Map<String, dynamic>) {
+        throw FormatException('DaySummary data must be a JSON object');
       }
-      final core_domain.DaySummary updated;
-      final existing = await (db.select(
-        db.dayFile,
-      )..where((row) => row.businessDate.equals(businessDate))).getSingleOrNull();
-
-      if (existing == null) {
-        updated = _summaryBuilder.createDaySummary(observation);
-      } else {
-        core_domain.DaySummary? savedSummary;
-        try {
-          final json = utf8.decode(GZipCodec().decode(existing.data));
-          final decoded = jsonDecode(json);
-          if (decoded is! Map<String, dynamic>) {
-            throw FormatException('DayFile data must be a JSON object');
-          }
-          final decodedSummary = core_domain.DaySummary.fromJson(decoded);
-          if (decodedSummary.businessDate != businessDate) {
-            throw FormatException('DayFile data date ${decodedSummary.businessDate} does not match its key');
-          }
-          savedSummary = decodedSummary;
-        } catch (error, stackTrace) {
-          appkit.logError(
-            '[AnalyticsNotifier] Rebuilding invalid DayFile for $businessDate: $error',
-            stackTrace: stackTrace,
-          );
-        }
-
-        if (savedSummary == null) {
-          updated = _summaryBuilder.createDaySummary(observation);
-        } else {
-          updated = _summaryBuilder.addObservationToDay(savedSummary, observation);
-          if (identical(updated, savedSummary)) return;
-        }
-      }
-
-      final nowMs = _nowProvider().toUtc().millisecondsSinceEpoch;
-      final encodedJson = jsonEncode(updated.toJson());
-      final encodedData = Uint8List.fromList(GZipCodec(level: ZLibOption.maxLevel).encode(utf8.encode(encodedJson)));
-      if (existing == null) {
-        await db
-            .into(db.dayFile)
-            .insert(
-              DayFileCompanion.insert(
-                businessDate: businessDate,
-                year: observation.year,
-                month: observation.month,
-                day: observation.day,
-                data: encodedData,
-                schemaVersion: core_domain.kSchemaVersion,
-                createdAtMs: nowMs,
-                updatedAtMs: nowMs,
-              ),
-            );
-      } else {
-        await (db.update(db.dayFile)..where((row) => row.businessDate.equals(businessDate))).write(
-          DayFileCompanion(
-            data: Value(encodedData),
-            schemaVersion: const Value(core_domain.kSchemaVersion),
-            updatedAtMs: Value(nowMs),
-          ),
+      final summary = core_domain.DaySummary.fromJson(decoded);
+      if (summary.businessDate != businessDate) {
+        throw FormatException(
+          'DaySummary data date ${summary.businessDate} does not match its key',
         );
       }
-    } catch (error, stackTrace) {
-      appkit.logError(
-        '[AnalyticsNotifier] Failed to persist observation for $businessDate: $error',
-        stackTrace: stackTrace,
+      return summary;
+    } catch (error) {
+      appkit.logDebug(
+        '[AnalyticsNotifier] Invalid DaySummary for $businessDate: $error',
       );
-      rethrow;
+      return null;
     }
   }
 
@@ -130,19 +117,33 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
   /// Returns the day summary if it exists, or `null` if no summary is available
   /// for the given business date.
   @override
-  Future<core_domain.DaySummary?> getDaySummary(int year, int month, int day) async {
+  Future<core_domain.DaySummary?> getDaySummary(
+    int year,
+    int month,
+    int day,
+  ) async {
     _validateYear(year);
     if (month < 1 || month > 12) {
       throw ArgumentError.value(month, 'month', 'must be between 1 and 12');
     }
     final date = DateTime.utc(year, month, day);
-    if (day < 1 || date.year != year || date.month != month || date.day != day) {
-      throw ArgumentError.value(day, 'day', 'must be valid for the specified month and year');
+    if (day < 1 ||
+        date.year != year ||
+        date.month != month ||
+        date.day != day) {
+      throw ArgumentError.value(
+        day,
+        'day',
+        'must be valid for the specified month and year',
+      );
     }
     final businessDate = _formatBusinessDate(year, month, day);
     final now = _nowProvider();
-    final isToday = businessDate == _formatBusinessDate(now.year, now.month, now.day);
-    if (isToday && _hasTodaySummaryCache && _todaySummaryBusinessDate == businessDate) {
+    final isToday =
+        businessDate == _formatBusinessDate(now.year, now.month, now.day);
+    if (isToday &&
+        _todaySummary != null &&
+        _todaySummaryBusinessDate == businessDate) {
       return _todaySummary;
     }
     final cacheGeneration = _todaySummaryGeneration;
@@ -155,12 +156,7 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
               ..where((dayFile) => dayFile.month.equals(month))
               ..where((dayFile) => dayFile.day.equals(day)))
             .getSingleOrNull();
-    if (row == null) {
-      if (isToday && cacheGeneration == _todaySummaryGeneration) {
-        _cacheTodaySummary(businessDate, null);
-      }
-      return null;
-    }
+    if (row == null) return null;
 
     try {
       final json = utf8.decode(GZipCodec().decode(row.data));
@@ -170,32 +166,31 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
       }
       final summary = core_domain.DaySummary.fromJson(decoded);
       if (summary.businessDate != businessDate) {
-        throw FormatException('DayFile data date ${summary.businessDate} does not match its key');
+        throw FormatException(
+          'DayFile data date ${summary.businessDate} does not match its key',
+        );
       }
       if (isToday && cacheGeneration == _todaySummaryGeneration) {
         _cacheTodaySummary(businessDate, summary);
       }
       return summary;
     } catch (error) {
-      appkit.logDebug('[AnalyticsNotifier] Unable to read DayFile for $businessDate: $error');
-      if (isToday && cacheGeneration == _todaySummaryGeneration) {
-        _cacheTodaySummary(businessDate, null);
-      }
+      appkit.logDebug(
+        '[AnalyticsNotifier] Unable to read DayFile for $businessDate: $error',
+      );
       return null;
     }
   }
 
-  void _cacheTodaySummary(String businessDate, core_domain.DaySummary? summary) {
+  void _cacheTodaySummary(String businessDate, core_domain.DaySummary summary) {
     _todaySummaryBusinessDate = businessDate;
     _todaySummary = summary;
-    _hasTodaySummaryCache = true;
   }
 
   void _invalidateTodaySummary() {
     _todaySummaryGeneration++;
     _todaySummaryBusinessDate = null;
     _todaySummary = null;
-    _hasTodaySummaryCache = false;
   }
 
   @override
@@ -226,11 +221,15 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
           }
           final summary = core_domain.MonthSummary.fromJson(decoded);
           if (summary.businessDate != businessMonth) {
-            throw FormatException('MonthFile data date ${summary.businessDate} does not match its key');
+            throw FormatException(
+              'MonthFile data date ${summary.businessDate} does not match its key',
+            );
           }
           return summary;
         } catch (error) {
-          appkit.logDebug('[AnalyticsNotifier] Unable to read MonthFile for $businessMonth: $error');
+          appkit.logDebug(
+            '[AnalyticsNotifier] Unable to read MonthFile for $businessMonth: $error',
+          );
         }
       }
     }
@@ -251,11 +250,15 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
         }
         final summary = core_domain.DaySummary.fromJson(decoded);
         if (summary.businessDate != row.businessDate) {
-          throw FormatException('DayFile data date ${summary.businessDate} does not match its key');
+          throw FormatException(
+            'DayFile data date ${summary.businessDate} does not match its key',
+          );
         }
         days.add(summary);
       } catch (error) {
-        appkit.logDebug('[AnalyticsNotifier] Unable to read DayFile for ${row.businessDate}: $error');
+        appkit.logDebug(
+          '[AnalyticsNotifier] Unable to read DayFile for ${row.businessDate}: $error',
+        );
       }
     }
     if (days.isEmpty) return null;
@@ -264,7 +267,9 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
     if (!isCurrentMonth) {
       final nowMs = now.toUtc().millisecondsSinceEpoch;
       final encodedJson = jsonEncode(summary.toJson());
-      final encodedData = Uint8List.fromList(GZipCodec(level: ZLibOption.maxLevel).encode(utf8.encode(encodedJson)));
+      final encodedData = Uint8List.fromList(
+        GZipCodec(level: ZLibOption.maxLevel).encode(utf8.encode(encodedJson)),
+      );
       final existing =
           await (db.select(db.monthFile)
                 ..where((row) => row.year.equals(year))
@@ -311,11 +316,15 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
     final isCurrentYear = year == now.year;
 
     if (!isCurrentYear) {
-      final saved = await (db.select(db.yearFile)..where((row) => row.year.equals(year))).getSingleOrNull();
+      final saved = await (db.select(
+        db.yearFile,
+      )..where((row) => row.year.equals(year))).getSingleOrNull();
       if (saved != null) {
         try {
           if (saved.schemaVersion != core_domain.kSchemaVersion) {
-            throw FormatException('Unsupported YearFile schema version ${saved.schemaVersion}');
+            throw FormatException(
+              'Unsupported YearFile schema version ${saved.schemaVersion}',
+            );
           }
           final json = utf8.decode(GZipCodec().decode(saved.data));
           final decoded = jsonDecode(json);
@@ -324,11 +333,15 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
           }
           final summary = core_domain.YearSummary.fromJson(decoded);
           if (summary.businessDate != businessYear) {
-            throw FormatException('YearFile data date ${summary.businessDate} does not match its key');
+            throw FormatException(
+              'YearFile data date ${summary.businessDate} does not match its key',
+            );
           }
           return summary;
         } catch (error) {
-          appkit.logDebug('[AnalyticsNotifier] Unable to read YearFile for $businessYear: $error');
+          appkit.logDebug(
+            '[AnalyticsNotifier] Unable to read YearFile for $businessYear: $error',
+          );
         }
       }
     }
@@ -344,8 +357,12 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
     if (!isCurrentYear) {
       final nowMs = now.toUtc().millisecondsSinceEpoch;
       final encodedJson = jsonEncode(summary.toJson());
-      final encodedData = Uint8List.fromList(GZipCodec(level: ZLibOption.maxLevel).encode(utf8.encode(encodedJson)));
-      final existing = await (db.select(db.yearFile)..where((row) => row.year.equals(year))).getSingleOrNull();
+      final encodedData = Uint8List.fromList(
+        GZipCodec(level: ZLibOption.maxLevel).encode(utf8.encode(encodedJson)),
+      );
+      final existing = await (db.select(
+        db.yearFile,
+      )..where((row) => row.year.equals(year))).getSingleOrNull();
       if (existing == null) {
         await db
             .into(db.yearFile)
@@ -360,7 +377,9 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
               ),
             );
       } else {
-        await (db.update(db.yearFile)..where((row) => row.year.equals(year))).write(
+        await (db.update(
+          db.yearFile,
+        )..where((row) => row.year.equals(year))).write(
           YearFileCompanion(
             data: Value(encodedData),
             schemaVersion: Value(core_domain.kSchemaVersion),
@@ -375,13 +394,18 @@ class AnalyticsNotifier extends _$AnalyticsNotifier implements core_domain.Analy
 
 void _validateYear(int year) {
   if (year < 1000 || year > 9999) {
-    throw ArgumentError.value(year, 'year', 'must be a four-digit business year');
+    throw ArgumentError.value(
+      year,
+      'year',
+      'must be a four-digit business year',
+    );
   }
 }
 
 String _formatBusinessYear(int year) => year.toString().padLeft(4, '0');
 
-String _formatBusinessMonth(int year, int month) => '${_formatBusinessYear(year)}-${month.toString().padLeft(2, '0')}';
+String _formatBusinessMonth(int year, int month) =>
+    '${_formatBusinessYear(year)}-${month.toString().padLeft(2, '0')}';
 
 String _formatBusinessDate(int year, int month, int day) =>
     '${_formatBusinessMonth(year, month)}-${day.toString().padLeft(2, '0')}';

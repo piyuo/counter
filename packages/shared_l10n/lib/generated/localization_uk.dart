@@ -574,6 +574,22 @@ class LocalizationUk extends Localization {
       'Статистика для кожного 5-хвилинного періоду';
 
   @override
+  String get observation_screen_observed_count => 'Зафіксована кількість';
+
+  @override
+  String get observation_screen_observed_time => 'Час спостереження';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Зафіксована кількість ÷ секунди спостереження × секунд на годину';
+
+  @override
+  String get observation_screen_subtotal => 'Проміжний підсумок';
+
+  @override
+  String get observation_screen_total => 'Разом';
+
+  @override
   String get observation_status_interrupted => 'Перервано';
 
   @override

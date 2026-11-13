@@ -577,6 +577,22 @@ class LocalizationNl extends Localization {
       'Statistieken voor elke periode van 5 minuten';
 
   @override
+  String get observation_screen_observed_count => 'Waargenomen aantal';
+
+  @override
+  String get observation_screen_observed_time => 'Waargenomen tijd';
+
+  @override
+  String get observation_screen_rate_calculation =>
+      'Waargenomen aantal ÷ waargenomen seconden × seconden per uur';
+
+  @override
+  String get observation_screen_subtotal => 'Tussentotaal';
+
+  @override
+  String get observation_screen_total => 'Totaal';
+
+  @override
   String get observation_status_interrupted => 'Onderbroken';
 
   @override
