@@ -22,7 +22,7 @@ void main() {
         ),
         instruction: 'Test',
         bearerToken: 'token',
-        detection: core_domain.DetectionType.human(),
+        detection: core_domain.DetectionType.people,
         detectionParams: core_domain.DetectionParams(),
         uploadConfig: core_domain.UploadConfig(),
       );
@@ -48,7 +48,7 @@ void main() {
         'instruction': 'Test',
         'bearerToken': 'token',
         'deviceName': 'device',
-        'detection': {'runtimeType': 'human'},
+        'detection': 'people',
         'detectionParams': <String, dynamic>{},
         'deliveryConfig': <String, dynamic>{},
       });

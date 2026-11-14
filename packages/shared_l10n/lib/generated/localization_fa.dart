@@ -243,6 +243,21 @@ class LocalizationFa extends Localization {
   String get detection_screen_track_memory_min_label => 'کوتاه';
 
   @override
+  String get detection_type_people => 'افراد';
+
+  @override
+  String get detection_type_people_help => 'شمارش افراد با تشخیص عابران پیاده';
+
+  @override
+  String get detection_type_screen_subtitle => 'انتخاب کنید چه چیزی شمارش شود';
+
+  @override
+  String get detection_type_vehicle => 'وسایل نقلیه';
+
+  @override
+  String get detection_type_vehicle_help => 'شمارش خودروها و سایر وسایل نقلیه';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter از دوربین شما برای تشخیص عابران پیاده و وسایل نقلیه به‌صورت لحظه‌ای استفاده می‌کند. این دستگاه دوربین در دسترس ندارد.';
 
@@ -793,7 +808,7 @@ class LocalizationFa extends Localization {
   String get settings_screen_data_server_label => 'سرور داده';
 
   @override
-  String get settings_screen_detection_target => 'هدف تشخیص';
+  String get settings_screen_detection_type => 'هدف تشخیص';
 
   @override
   String get settings_screen_language_title => 'زبان';
@@ -809,7 +824,7 @@ class LocalizationFa extends Localization {
   String get settings_screen_misc_label => 'متفرقه';
 
   @override
-  String get settings_screen_object_detection => 'تشخیص اشیا';
+  String get settings_screen_object_detection => 'چه چیزی شمارش شود؟';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -839,23 +854,6 @@ class LocalizationFa extends Localization {
   @override
   String get stagnanted_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که حداقل به مدت زمان ماندگاری تنظیم‌شده در این ناحیه باقی مانده‌اند محاسبه می‌کند.\\n\\nزمان ماندگاری پیش‌فرض ۱۵ ثانیه است و در تنظیمات قابل تغییر است.';
-
-  @override
-  String get target_pedestrian => 'عابر پیاده';
-
-  @override
-  String get target_pedestrian_help =>
-      'افراد را با مدل تشخیص عابر پیاده شمارش کنید';
-
-  @override
-  String get target_screen_subtitle => 'مدل تشخیص موردنظر را انتخاب کنید';
-
-  @override
-  String get target_vehicle => 'وسیله نقلیه';
-
-  @override
-  String get target_vehicle_help =>
-      'خودروها و سایر وسایل نقلیه را با مدل تشخیص خودرو شمارش کنید';
 
   @override
   String get telemetry_error_connection_refused =>

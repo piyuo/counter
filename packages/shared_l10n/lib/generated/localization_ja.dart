@@ -236,6 +236,21 @@ class LocalizationJa extends Localization {
   String get detection_screen_track_memory_min_label => '短い';
 
   @override
+  String get detection_type_people => '人';
+
+  @override
+  String get detection_type_people_help => '歩行者検出で人数をカウント';
+
+  @override
+  String get detection_type_screen_subtitle => 'カウントする対象を選択';
+
+  @override
+  String get detection_type_vehicle => '車両';
+
+  @override
+  String get detection_type_vehicle_help => '車やその他の車両をカウント';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter はカメラを使用して歩行者や車両をリアルタイムで検出します。このデバイスではカメラを利用できません。';
 
@@ -770,7 +785,7 @@ class LocalizationJa extends Localization {
   String get settings_screen_data_server_label => 'データサーバー';
 
   @override
-  String get settings_screen_detection_target => '検出対象';
+  String get settings_screen_detection_type => '検出対象';
 
   @override
   String get settings_screen_language_title => '言語';
@@ -786,7 +801,7 @@ class LocalizationJa extends Localization {
   String get settings_screen_misc_label => 'その他';
 
   @override
-  String get settings_screen_object_detection => '物体検出';
+  String get settings_screen_object_detection => 'カウント対象';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -814,21 +829,6 @@ class LocalizationJa extends Localization {
   @override
   String get stagnanted_help =>
       '設定された滞在時間以上、このエリア内にとどまった人や車両をカウントします。\\n\\n初期設定の滞在時間は15秒で、設定から変更できます。';
-
-  @override
-  String get target_pedestrian => '歩行者';
-
-  @override
-  String get target_pedestrian_help => '歩行者検出モデルで人数をカウントします';
-
-  @override
-  String get target_screen_subtitle => '使用する検出モデルを選択';
-
-  @override
-  String get target_vehicle => '車両';
-
-  @override
-  String get target_vehicle_help => '車両検出モデルで車やその他の車両をカウントします';
 
   @override
   String get telemetry_error_connection_refused =>

@@ -128,12 +128,12 @@ void main() {
       final notifier = container.read(appProvider.notifier);
 
       await notifier.applyServerConfigOverrides(
-        detectionType: const DetectionType.vehicle(),
+        detectionType: DetectionType.vehicle,
         deliveryConfig: const UploadConfig(wallClockCadenceMin: 15),
       );
       final state = await container.read(appProvider.future);
 
-      expect(state.detectionType, const DetectionType.vehicle());
+      expect(state.detectionType, DetectionType.vehicle);
       expect(state.uploadConfig.wallClockCadenceMin, 15);
       expect(state.detectionParams, const DetectionParams());
       expect(repo.saveCalls, 1);

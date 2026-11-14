@@ -364,7 +364,7 @@ $Res call({
 });
 
 
-$DetectionTypeCopyWith<$Res>? get detection;$DetectionParamsCopyWith<$Res>? get detectionParams;$UploadConfigCopyWith<$Res>? get deliveryConfig;$ServerConfigCopyWith<$Res>? get config;
+$DetectionParamsCopyWith<$Res>? get detectionParams;$UploadConfigCopyWith<$Res>? get deliveryConfig;$ServerConfigCopyWith<$Res>? get config;
 
 }
 /// @nodoc
@@ -387,18 +387,6 @@ as ServerConfig?,
   ));
 }
 /// Create a copy of ServerData
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res>? get detection {
-    if (_self.detection == null) {
-    return null;
-  }
-
-  return $DetectionTypeCopyWith<$Res>(_self.detection!, (value) {
-    return _then(_self.copyWith(detection: value));
-  });
-}/// Create a copy of ServerData
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -619,7 +607,7 @@ $Res call({
 });
 
 
-@override $DetectionTypeCopyWith<$Res>? get detection;@override $DetectionParamsCopyWith<$Res>? get detectionParams;@override $UploadConfigCopyWith<$Res>? get deliveryConfig;@override $ServerConfigCopyWith<$Res>? get config;
+@override $DetectionParamsCopyWith<$Res>? get detectionParams;@override $UploadConfigCopyWith<$Res>? get deliveryConfig;@override $ServerConfigCopyWith<$Res>? get config;
 
 }
 /// @nodoc
@@ -643,18 +631,6 @@ as ServerConfig?,
 }
 
 /// Create a copy of ServerData
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res>? get detection {
-    if (_self.detection == null) {
-    return null;
-  }
-
-  return $DetectionTypeCopyWith<$Res>(_self.detection!, (value) {
-    return _then(_self.copyWith(detection: value));
-  });
-}/// Create a copy of ServerData
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

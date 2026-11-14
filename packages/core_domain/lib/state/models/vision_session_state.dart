@@ -3,7 +3,6 @@
 // - VisionSessionState: state exposed to app and UI layers
 
 import 'package:core_domain/state/models/detection_params.dart';
-import 'package:core_domain/state/models/detection_type.dart';
 import 'package:core_domain/state/models/video_source.dart';
 
 enum VisionSessionStatus { idle, initializing, running, error }

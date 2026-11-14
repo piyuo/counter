@@ -242,6 +242,23 @@ class LocalizationRu extends Localization {
   String get detection_screen_track_memory_min_label => 'Короткая';
 
   @override
+  String get detection_type_people => 'Люди';
+
+  @override
+  String get detection_type_people_help =>
+      'Подсчёт людей с помощью обнаружения пешеходов';
+
+  @override
+  String get detection_type_screen_subtitle => 'Выберите, что нужно считать';
+
+  @override
+  String get detection_type_vehicle => 'Транспорт';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Подсчёт автомобилей и другого транспорта';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter использует камеру для обнаружения пешеходов и транспортных средств в реальном времени. На этом устройстве нет доступной камеры.';
 
@@ -796,7 +813,7 @@ class LocalizationRu extends Localization {
   String get settings_screen_data_server_label => 'Сервер данных';
 
   @override
-  String get settings_screen_detection_target => 'Цель обнаружения';
+  String get settings_screen_detection_type => 'Цель обнаружения';
 
   @override
   String get settings_screen_language_title => 'Язык';
@@ -812,7 +829,7 @@ class LocalizationRu extends Localization {
   String get settings_screen_misc_label => 'Разное';
 
   @override
-  String get settings_screen_object_detection => 'Обнаружение объектов';
+  String get settings_screen_object_detection => 'Что считать';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -841,23 +858,6 @@ class LocalizationRu extends Localization {
   @override
   String get stagnanted_help =>
       'Подсчитывает людей или транспортные средства, которые находились в этой области не менее заданного времени пребывания.\\n\\nПо умолчанию время пребывания составляет 15 секунд и может быть изменено в настройках.';
-
-  @override
-  String get target_pedestrian => 'Пешеход';
-
-  @override
-  String get target_pedestrian_help =>
-      'Подсчитывайте людей с помощью модели обнаружения пешеходов';
-
-  @override
-  String get target_screen_subtitle => 'Выберите модель обнаружения';
-
-  @override
-  String get target_vehicle => 'Транспорт';
-
-  @override
-  String get target_vehicle_help =>
-      'Подсчитывайте автомобили и другой транспорт с помощью модели обнаружения транспорта';
 
   @override
   String get telemetry_error_connection_refused =>

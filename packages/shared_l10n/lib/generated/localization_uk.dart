@@ -242,6 +242,23 @@ class LocalizationUk extends Localization {
   String get detection_screen_track_memory_min_label => 'Коротка';
 
   @override
+  String get detection_type_people => 'Люди';
+
+  @override
+  String get detection_type_people_help =>
+      'Підрахунок людей за допомогою виявлення пішоходів';
+
+  @override
+  String get detection_type_screen_subtitle => 'Виберіть, що потрібно рахувати';
+
+  @override
+  String get detection_type_vehicle => 'Транспорт';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Підрахунок автомобілів та іншого транспорту';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter використовує камеру для виявлення пішоходів і транспортних засобів у реальному часі. На цьому пристрої немає доступної камери.';
 
@@ -793,7 +810,7 @@ class LocalizationUk extends Localization {
   String get settings_screen_data_server_label => 'Сервер даних';
 
   @override
-  String get settings_screen_detection_target => 'Ціль виявлення';
+  String get settings_screen_detection_type => 'Ціль виявлення';
 
   @override
   String get settings_screen_language_title => 'Мова';
@@ -809,7 +826,7 @@ class LocalizationUk extends Localization {
   String get settings_screen_misc_label => 'Інше';
 
   @override
-  String get settings_screen_object_detection => 'Виявлення об\'єктів';
+  String get settings_screen_object_detection => 'Що рахувати';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -838,23 +855,6 @@ class LocalizationUk extends Localization {
   @override
   String get stagnanted_help =>
       'Підраховує людей або транспортні засоби, які перебували в цій зоні щонайменше протягом заданого часу перебування.\\n\\nТиповий час перебування становить 15 секунд і може бути змінений в Налаштуваннях.';
-
-  @override
-  String get target_pedestrian => 'Пішохід';
-
-  @override
-  String get target_pedestrian_help =>
-      'Підраховуйте людей за допомогою моделі виявлення пішоходів';
-
-  @override
-  String get target_screen_subtitle => 'Виберіть модель виявлення';
-
-  @override
-  String get target_vehicle => 'Транспорт';
-
-  @override
-  String get target_vehicle_help =>
-      'Підраховуйте автомобілі та інші транспортні засоби за допомогою моделі виявлення транспорту';
 
   @override
   String get telemetry_error_connection_refused =>

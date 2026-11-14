@@ -94,7 +94,7 @@ $Res call({
 });
 
 
-$UploadConfigCopyWith<$Res> get uploadConfig;$VideoSourceCopyWith<$Res> get videoSource;$DetectionTypeCopyWith<$Res> get detectionType;$DetectionParamsCopyWith<$Res> get detectionParams;
+$UploadConfigCopyWith<$Res> get uploadConfig;$VideoSourceCopyWith<$Res> get videoSource;$DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -144,15 +144,6 @@ $VideoSourceCopyWith<$Res> get videoSource {
   
   return $VideoSourceCopyWith<$Res>(_self.videoSource, (value) {
     return _then(_self.copyWith(videoSource: value));
-  });
-}/// Create a copy of AppState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detectionType {
-  
-  return $DetectionTypeCopyWith<$Res>(_self.detectionType, (value) {
-    return _then(_self.copyWith(detectionType: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.
@@ -295,7 +286,7 @@ return $default(_that.deviceId,_that.hasCompletedCameraTest,_that.dataServerSele
 @JsonSerializable()
 
 class _AppState extends AppState {
-  const _AppState({this.deviceId = '', this.hasCompletedCameraTest = false, @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.personalPiyuoServer = null, this.personalCustomServer = null, this.businessPiyuoServer = null, this.businessCustomServer = null, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detectionType = const DetectionType.human(), this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0,  List<InterestArea> interestAreas = const [],  List<BusinessPeriod> businessPeriods = BusinessPeriod.defaultSchedule, this.isTrackIdVisible = false}): _interestAreas = interestAreas,_businessPeriods = businessPeriods,super._();
+  const _AppState({this.deviceId = '', this.hasCompletedCameraTest = false, @JsonKey(unknownEnumValue: DataServerSelection.unspecified) this.dataServerSelection = DataServerSelection.unspecified, this.personalPiyuoServer = null, this.personalCustomServer = null, this.businessPiyuoServer = null, this.businessCustomServer = null, this.uploadConfig = const UploadConfig(), @JsonKey(name: 'videoSource') this.videoSource = const VideoSource.unspecified(), this.detectionType = DetectionType.people, this.detectionParams = const DetectionParams(), this.uploadJitterSec = 0,  List<InterestArea> interestAreas = const [],  List<BusinessPeriod> businessPeriods = BusinessPeriod.defaultSchedule, this.isTrackIdVisible = false}): _interestAreas = interestAreas,_businessPeriods = businessPeriods,super._();
   factory _AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
 
 /// auto-generated unique device ID, sent to backend as a safety identifier
@@ -408,7 +399,7 @@ $Res call({
 });
 
 
-@override $UploadConfigCopyWith<$Res> get uploadConfig;@override $VideoSourceCopyWith<$Res> get videoSource;@override $DetectionTypeCopyWith<$Res> get detectionType;@override $DetectionParamsCopyWith<$Res> get detectionParams;
+@override $UploadConfigCopyWith<$Res> get uploadConfig;@override $VideoSourceCopyWith<$Res> get videoSource;@override $DetectionParamsCopyWith<$Res> get detectionParams;
 
 }
 /// @nodoc
@@ -459,15 +450,6 @@ $VideoSourceCopyWith<$Res> get videoSource {
   
   return $VideoSourceCopyWith<$Res>(_self.videoSource, (value) {
     return _then(_self.copyWith(videoSource: value));
-  });
-}/// Create a copy of AppState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$DetectionTypeCopyWith<$Res> get detectionType {
-  
-  return $DetectionTypeCopyWith<$Res>(_self.detectionType, (value) {
-    return _then(_self.copyWith(detectionType: value));
   });
 }/// Create a copy of AppState
 /// with the given fields replaced by the non-null parameter values.

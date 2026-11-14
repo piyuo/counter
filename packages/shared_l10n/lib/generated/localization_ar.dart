@@ -242,6 +242,21 @@ class LocalizationAr extends Localization {
   String get detection_screen_track_memory_min_label => 'قصير';
 
   @override
+  String get detection_type_people => 'الأشخاص';
+
+  @override
+  String get detection_type_people_help => 'عدّ الأشخاص باستخدام كشف المشاة';
+
+  @override
+  String get detection_type_screen_subtitle => 'اختر ما تريد عده';
+
+  @override
+  String get detection_type_vehicle => 'المركبات';
+
+  @override
+  String get detection_type_vehicle_help => 'عدّ السيارات والمركبات الأخرى';
+
+  @override
   String get device_not_supported_screen_body =>
       'يستخدم Piyuo Counter الكاميرا لاكتشاف المشاة والمركبات في الوقت الفعلي. لا تتوفر كاميرا على هذا الجهاز.';
 
@@ -784,7 +799,7 @@ class LocalizationAr extends Localization {
   String get settings_screen_data_server_label => 'خادم البيانات';
 
   @override
-  String get settings_screen_detection_target => 'هدف الكشف';
+  String get settings_screen_detection_type => 'هدف الكشف';
 
   @override
   String get settings_screen_language_title => 'اللغة';
@@ -800,7 +815,7 @@ class LocalizationAr extends Localization {
   String get settings_screen_misc_label => '其他';
 
   @override
-  String get settings_screen_object_detection => 'كشف الكائنات';
+  String get settings_screen_object_detection => 'ما الذي تريد عده؟';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -830,22 +845,6 @@ class LocalizationAr extends Localization {
   @override
   String get stagnanted_help =>
       'يحسب عدد الأشخاص أو المركبات التي بقيت داخل هذه المنطقة لمدة لا تقل عن مدة البقاء المحددة.\\n\\nمدة البقاء الافتراضية هي 15 ثانية ويمكن تغييرها في الإعدادات.';
-
-  @override
-  String get target_pedestrian => 'المشاة';
-
-  @override
-  String get target_pedestrian_help => 'عدّ الأشخاص باستخدام نموذج كشف المشاة';
-
-  @override
-  String get target_screen_subtitle => 'اختر نموذج الكشف الذي تريد استخدامه';
-
-  @override
-  String get target_vehicle => 'المركبات';
-
-  @override
-  String get target_vehicle_help =>
-      'عدّ السيارات والمركبات الأخرى باستخدام نموذج المركبات';
 
   @override
   String get telemetry_error_connection_refused =>

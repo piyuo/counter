@@ -242,6 +242,21 @@ class LocalizationNl extends Localization {
   String get detection_screen_track_memory_min_label => 'Kort';
 
   @override
+  String get detection_type_people => 'Mensen';
+
+  @override
+  String get detection_type_people_help => 'Tel mensen met voetgangersdetectie';
+
+  @override
+  String get detection_type_screen_subtitle => 'Kies wat u wilt tellen';
+
+  @override
+  String get detection_type_vehicle => 'Voertuigen';
+
+  @override
+  String get detection_type_vehicle_help => 'Tel auto’s en andere voertuigen';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter gebruikt de camera om voetgangers en voertuigen in realtime te detecteren. Op dit apparaat is geen camera beschikbaar.';
 
@@ -796,7 +811,7 @@ class LocalizationNl extends Localization {
   String get settings_screen_data_server_label => 'Gegevensserver';
 
   @override
-  String get settings_screen_detection_target => 'Detectiedoel';
+  String get settings_screen_detection_type => 'Detectiedoel';
 
   @override
   String get settings_screen_language_title => 'Taal';
@@ -812,7 +827,7 @@ class LocalizationNl extends Localization {
   String get settings_screen_misc_label => 'Overig';
 
   @override
-  String get settings_screen_object_detection => 'Objectdetectie';
+  String get settings_screen_object_detection => 'Wat tellen?';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -841,24 +856,6 @@ class LocalizationNl extends Localization {
   @override
   String get stagnanted_help =>
       'Telt mensen of voertuigen die ten minste de ingestelde verblijftijd in dit gebied zijn gebleven.\\n\\nDe standaard verblijftijd is 15 seconden en kan worden gewijzigd in Instellingen.';
-
-  @override
-  String get target_pedestrian => 'Voetganger';
-
-  @override
-  String get target_pedestrian_help =>
-      'Tel mensen met het voetgangersdetectiemodel';
-
-  @override
-  String get target_screen_subtitle =>
-      'Kies welk detectiemodel u wilt gebruiken';
-
-  @override
-  String get target_vehicle => 'Voertuig';
-
-  @override
-  String get target_vehicle_help =>
-      'Tel auto\'s en andere voertuigen met het voertuigdetectiemodel';
 
   @override
   String get telemetry_error_connection_refused =>

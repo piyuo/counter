@@ -13,7 +13,7 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/dashboard_utils.dart';
 import '../widgets/info_dialog.dart';
-import 'primary_metric.dart';
+import 'dashboard_formatter.dart';
 
 class _ChartColors {
   static const today = Color(0xFF3B82F6);
@@ -80,7 +80,7 @@ class _InsightChartState extends State<InsightChart> {
   bool _hasComparison = false;
   double _maxY = 1;
 
-  void _updateChartSnapshot(core_domain.DashboardCardData data) {
+  void _updateChartSnapshot(BuildContext context, core_domain.DashboardCardData data) {
     if (identical(_cachedPoints, data.chartPoints) && _cachedMetric == data.metric) return;
 
     _cachedPoints = data.chartPoints;
@@ -128,6 +128,7 @@ class _InsightChartState extends State<InsightChart> {
     _positionedStyle = style;
     _positionedBrightness = brightness;
     _positionedExtremeLabels = _layoutExtremeLabels(
+      context,
       extremes: _extremes,
       size: size,
       maxY: _maxY,
@@ -156,7 +157,7 @@ class _InsightChartState extends State<InsightChart> {
     final data = widget.data;
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context);
-    _updateChartSnapshot(data);
+    _updateChartSnapshot(context, data);
     final hour = (widget.currentHour ?? DateTime.now().hour).clamp(0, 23);
     final markerData = _liveMarkerFor(data, hour);
     if (markerData != null && markerData.rate >= _maxY) {
@@ -196,7 +197,10 @@ class _InsightChartState extends State<InsightChart> {
                         );
                         final liveLabel = markerData == null
                             ? null
-                            : formatInsightPrimaryNumber(context, markerData.rate, markerData.unit);
+                            : formatDashboardMeasurement(
+                                context,
+                                core_domain.DashboardMeasurement(amount: markerData.rate, unit: markerData.unit),
+                              );
                         return Semantics(
                           label: context.l.insight_chart_hourly_breakdown,
                           value: _selectedHour == null ? null : _hourRange(_selectedHour!, locale.toString()),
@@ -259,12 +263,7 @@ class _InsightChartState extends State<InsightChart> {
                                     key: const ValueKey('insight-hourly-extreme-labels'),
                                     label: _extremes
                                         .map((extreme) {
-                                          final value = formatDashboardMetricValue(
-                                            extreme.value,
-                                            data.metric,
-                                            NumberFormat('0.##', locale.toString()),
-                                            unavailable: '',
-                                          );
+                                          final value = formatDashboardMetricValue(context, data.metric, extreme.value);
                                           final period = extreme.isToday
                                               ? context.l.insight_today
                                               : widget.comparisonLabel;
@@ -415,19 +414,8 @@ class _HourDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final localization = context.l;
     final style = Theme.of(context).textTheme.bodySmall;
-    final numberFormat = NumberFormat('0.##', locale.toString());
-    final todayValue = formatDashboardMetricValue(
-      point.todayValue,
-      metric,
-      numberFormat,
-      unavailable: localization.insight_comparison_unavailable,
-    );
-    final comparisonValue = formatDashboardMetricValue(
-      point.comparisonValue,
-      metric,
-      numberFormat,
-      unavailable: localization.insight_comparison_unavailable,
-    );
+    final todayValue = formatDashboardMetricValue(context, metric, point.todayValue);
+    final comparisonValue = formatDashboardMetricValue(context, metric, point.comparisonValue);
     final difference = point.todayValue != null && point.comparisonValue != null && point.comparisonValue! > 0
         ? _formatDifference(point.todayValue!, point.comparisonValue!, locale.toString())
         : null;
@@ -621,7 +609,8 @@ class _HourlyBarsPainter extends CustomPainter {
       dividerColor != oldDelegate.dividerColor;
 }
 
-List<_PositionedExtremeLabel> _layoutExtremeLabels({
+List<_PositionedExtremeLabel> _layoutExtremeLabels(
+  BuildContext context, {
   required List<_BarExtreme> extremes,
   required Size size,
   required double maxY,
@@ -637,12 +626,11 @@ List<_PositionedExtremeLabel> _layoutExtremeLabels({
 
   final plotHeight = math.max(1.0, size.height - 2);
   final slotWidth = size.width / 24;
-  final numberFormat = NumberFormat('0.##', locale);
   final labels = <_PositionedExtremeLabel>[];
   for (final extreme in extremes) {
     final textPainter = TextPainter(
       text: TextSpan(
-        text: formatDashboardMetricValue(extreme.value, metric, numberFormat, unavailable: ''),
+        text: formatDashboardMetricValue(context, metric, extreme.value),
         style: style.copyWith(
           color: extreme.isToday ? todayColor : comparisonColor,
           fontWeight: FontWeight.w600,

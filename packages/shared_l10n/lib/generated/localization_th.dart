@@ -242,6 +242,21 @@ class LocalizationTh extends Localization {
   String get detection_screen_track_memory_min_label => 'สั้น';
 
   @override
+  String get detection_type_people => 'คน';
+
+  @override
+  String get detection_type_people_help => 'นับคนด้วยการตรวจจับคนเดินเท้า';
+
+  @override
+  String get detection_type_screen_subtitle => 'เลือกสิ่งที่คุณต้องการนับ';
+
+  @override
+  String get detection_type_vehicle => 'ยานพาหนะ';
+
+  @override
+  String get detection_type_vehicle_help => 'นับรถยนต์และยานพาหนะอื่น ๆ';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter ใช้กล้องเพื่อตรวจจับคนเดินเท้าและยานพาหนะแบบเรียลไทม์ อุปกรณ์นี้ไม่มีกล้องให้ใช้งาน.';
 
@@ -791,7 +806,7 @@ class LocalizationTh extends Localization {
   String get settings_screen_data_server_label => 'เซิร์ฟเวอร์ข้อมูล';
 
   @override
-  String get settings_screen_detection_target => 'เป้าหมายการตรวจจับ';
+  String get settings_screen_detection_type => 'เป้าหมายการตรวจจับ';
 
   @override
   String get settings_screen_language_title => 'ภาษา';
@@ -807,7 +822,7 @@ class LocalizationTh extends Localization {
   String get settings_screen_misc_label => 'อื่นๆ';
 
   @override
-  String get settings_screen_object_detection => 'การตรวจจับวัตถุ';
+  String get settings_screen_object_detection => 'สิ่งที่ต้องการนับ';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -836,22 +851,6 @@ class LocalizationTh extends Localization {
   @override
   String get stagnanted_help =>
       'นับจำนวนคนหรือยานพาหนะที่อยู่ในพื้นที่นี้อย่างน้อยตามเวลาพักที่กำหนด\\n\\nค่าเริ่มต้นของเวลาพักคือ 15 วินาที และสามารถเปลี่ยนได้ใน Settings';
-
-  @override
-  String get target_pedestrian => 'คนเดินเท้า';
-
-  @override
-  String get target_pedestrian_help => 'นับคนด้วยโมเดลตรวจจับคนเดินเท้า';
-
-  @override
-  String get target_screen_subtitle => 'เลือกรุ่นการตรวจจับที่จะใช้';
-
-  @override
-  String get target_vehicle => 'ยานพาหนะ';
-
-  @override
-  String get target_vehicle_help =>
-      'นับรถยนต์และยานพาหนะอื่นด้วยโมเดลตรวจจับยานพาหนะ';
 
   @override
   String get telemetry_error_connection_refused =>

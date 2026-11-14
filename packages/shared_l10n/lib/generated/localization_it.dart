@@ -243,6 +243,22 @@ class LocalizationIt extends Localization {
   String get detection_screen_track_memory_min_label => 'Breve';
 
   @override
+  String get detection_type_people => 'Persone';
+
+  @override
+  String get detection_type_people_help =>
+      'Conta le persone con il rilevamento pedoni';
+
+  @override
+  String get detection_type_screen_subtitle => 'Scegli cosa vuoi contare';
+
+  @override
+  String get detection_type_vehicle => 'Veicoli';
+
+  @override
+  String get detection_type_vehicle_help => 'Conta auto e altri veicoli';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter utilizza la fotocamera per rilevare pedoni e veicoli in tempo reale. Questo dispositivo non dispone di una fotocamera.';
 
@@ -797,7 +813,7 @@ class LocalizationIt extends Localization {
   String get settings_screen_data_server_label => 'Server dati';
 
   @override
-  String get settings_screen_detection_target => 'Obiettivo di rilevamento';
+  String get settings_screen_detection_type => 'Obiettivo di rilevamento';
 
   @override
   String get settings_screen_language_title => 'Lingua';
@@ -813,7 +829,7 @@ class LocalizationIt extends Localization {
   String get settings_screen_misc_label => 'Varie';
 
   @override
-  String get settings_screen_object_detection => 'Rilevamento oggetti';
+  String get settings_screen_object_detection => 'Cosa contare';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -843,24 +859,6 @@ class LocalizationIt extends Localization {
   @override
   String get stagnanted_help =>
       'Conta le persone o i veicoli rimasti in quest\'area per almeno il Tempo di Permanenza configurato.\\n\\nIl Tempo di Permanenza predefinito è di 15 secondi e può essere modificato nelle Impostazioni.';
-
-  @override
-  String get target_pedestrian => 'Pedone';
-
-  @override
-  String get target_pedestrian_help =>
-      'Conta le persone con il modello di rilevamento pedoni';
-
-  @override
-  String get target_screen_subtitle =>
-      'Scegli il modello di rilevamento da usare';
-
-  @override
-  String get target_vehicle => 'Veicolo';
-
-  @override
-  String get target_vehicle_help =>
-      'Conta auto e altri veicoli con il modello di rilevamento veicoli';
 
   @override
   String get telemetry_error_connection_refused =>

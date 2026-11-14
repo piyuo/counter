@@ -156,19 +156,19 @@ void main() {
       final n = notifier(container);
       final handler = VisionObservationEventHandler(n);
 
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
       n.pause();
       expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
       n.resume();
       expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
 
       handler.handleFrame(const [], 0.0);
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
 
       handler.handleEvent(const vision.VisionIssue(code: 1, message: 'source interrupted'));
       expect(container.read(observationProvider).status, core_domain.ObservationStatus.interrupted);
       handler.handleFrame(const [], 0.0);
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
 
       handler.handleEvent(const vision.VisionFailure(code: 1, message: 'source failed', reportToSentry: false));
       expect(container.read(observationProvider).status, core_domain.ObservationStatus.stopped);
@@ -178,9 +178,9 @@ void main() {
       expect(state(container)!.frameCount, stoppedFrameCount);
 
       handler.handleEvent(vision.VisionStarted(_testVisionHandle()));
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
       handler.handleFrame(const [], 0.0);
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
     });
   });
 
@@ -215,7 +215,7 @@ void main() {
       final container = makeContainer(async, base);
       addTearDown(container.dispose);
       final n = notifier(container);
-      expect(container.read(observationProvider).status, core_domain.ObservationStatus.live);
+      expect(container.read(observationProvider).status, core_domain.ObservationStatus.started);
       final emitted = <core_domain.Observation>[];
       final subscription = n.fiveMinuteObservations.listen(emitted.add);
       addTearDown(subscription.cancel);

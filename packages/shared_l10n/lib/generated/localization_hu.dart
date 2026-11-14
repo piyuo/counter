@@ -245,6 +245,23 @@ class LocalizationHu extends Localization {
   String get detection_screen_track_memory_min_label => 'Rövid';
 
   @override
+  String get detection_type_people => 'Emberek';
+
+  @override
+  String get detection_type_people_help =>
+      'Emberek számlálása gyalogosfelismeréssel';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'Válassza ki, mit szeretne számolni';
+
+  @override
+  String get detection_type_vehicle => 'Járművek';
+
+  @override
+  String get detection_type_vehicle_help => 'Autók és más járművek számlálása';
+
+  @override
   String get device_not_supported_screen_body =>
       'A Piyuo Counter a kameráját használja a gyalogosok és járművek valós idejű észlelésére. Ezen az eszközön nincs elérhető kamera.';
 
@@ -799,7 +816,7 @@ class LocalizationHu extends Localization {
   String get settings_screen_data_server_label => 'Adatszerver';
 
   @override
-  String get settings_screen_detection_target => 'Észlelési cél';
+  String get settings_screen_detection_type => 'Észlelési cél';
 
   @override
   String get settings_screen_language_title => 'Nyelv';
@@ -815,7 +832,7 @@ class LocalizationHu extends Localization {
   String get settings_screen_misc_label => 'Egyéb';
 
   @override
-  String get settings_screen_object_detection => 'Objektumészlelés';
+  String get settings_screen_object_detection => 'Mit számoljon?';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -845,24 +862,6 @@ class LocalizationHu extends Localization {
   @override
   String get stagnanted_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek legalább a beállított tartózkodási ideig ezen a területen maradtak.\\n\\nAz alapértelmezett tartózkodási idő 15 másodperc, amely a Beállításokban módosítható.';
-
-  @override
-  String get target_pedestrian => 'Gyalogos';
-
-  @override
-  String get target_pedestrian_help =>
-      'Emberek számlálása a gyalogosfelismerő modellel';
-
-  @override
-  String get target_screen_subtitle =>
-      'Válassza ki a használni kívánt felismerési modellt';
-
-  @override
-  String get target_vehicle => 'Jármű';
-
-  @override
-  String get target_vehicle_help =>
-      'Autók és más járművek számlálása a járműfelismerő modellel';
 
   @override
   String get telemetry_error_connection_refused =>

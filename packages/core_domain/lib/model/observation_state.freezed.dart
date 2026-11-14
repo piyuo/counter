@@ -27,20 +27,20 @@ $ObservationStateCopyWith<ObservationState> get copyWith => _$ObservationStateCo
 @override
 bool operator ==(Object other) {
   final _this = this as ObservationState;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ObservationState&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.observationStartUtc, _this.observationStartUtc) || other.observationStartUtc == _this.observationStartUtc)&&(identical(other.liveObservation, _this.liveObservation) || other.liveObservation == _this.liveObservation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ObservationState&&(identical(other.liveObservation, _this.liveObservation) || other.liveObservation == _this.liveObservation)&&(identical(other.status, _this.status) || other.status == _this.status)&&(identical(other.observationStartUtc, _this.observationStartUtc) || other.observationStartUtc == _this.observationStartUtc));
 }
 
 
 @override
 int get hashCode {
   final _this = this as ObservationState;
-  return Object.hash(runtimeType,_this.status,_this.observationStartUtc,_this.liveObservation);
+  return Object.hash(runtimeType,_this.liveObservation,_this.status,_this.observationStartUtc);
 }
 
 @override
 String toString() {
   final _this = this as ObservationState;
-  return 'ObservationState(status: ${_this.status}, observationStartUtc: ${_this.observationStartUtc}, liveObservation: ${_this.liveObservation})';
+  return 'ObservationState(liveObservation: ${_this.liveObservation}, status: ${_this.status}, observationStartUtc: ${_this.observationStartUtc})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $ObservationStateCopyWith<$Res>  {
   factory $ObservationStateCopyWith(ObservationState value, $Res Function(ObservationState) _then) = _$ObservationStateCopyWithImpl;
 @useResult
 $Res call({
- core_domain.Observation? liveObservation, ObservationStatus status, DateTime? observationStartUtc
+ core_domain.Observation liveObservation, ObservationStatus status, DateTime? observationStartUtc
 });
 
 
@@ -68,10 +68,10 @@ class _$ObservationStateCopyWithImpl<$Res>
 
 /// Create a copy of ObservationState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? liveObservation = freezed,Object? status = null,Object? observationStartUtc = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? liveObservation = null,Object? status = null,Object? observationStartUtc = freezed,}) {
   return _then(ObservationState(
-liveObservation: freezed == liveObservation ? _self.liveObservation : liveObservation // ignore: cast_nullable_to_non_nullable
-as core_domain.Observation?,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+liveObservation: null == liveObservation ? _self.liveObservation : liveObservation // ignore: cast_nullable_to_non_nullable
+as core_domain.Observation,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
 as ObservationStatus,observationStartUtc: freezed == observationStartUtc ? _self.observationStartUtc : observationStartUtc // ignore: cast_nullable_to_non_nullable
 as DateTime?,
   ));

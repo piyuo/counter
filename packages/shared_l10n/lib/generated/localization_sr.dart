@@ -242,6 +242,23 @@ class LocalizationSr extends Localization {
   String get detection_screen_track_memory_min_label => 'Kratko';
 
   @override
+  String get detection_type_people => 'Ljudi';
+
+  @override
+  String get detection_type_people_help =>
+      'Brojite ljude pomoću detekcije pešaka';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'Izaberite šta želite da brojite';
+
+  @override
+  String get detection_type_vehicle => 'Vozila';
+
+  @override
+  String get detection_type_vehicle_help => 'Brojite automobile i druga vozila';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter koristi kameru za otkrivanje pešaka i vozila u realnom vremenu. Ovaj uređaj nema dostupnu kameru.';
 
@@ -794,7 +811,7 @@ class LocalizationSr extends Localization {
   String get settings_screen_data_server_label => 'Server podataka';
 
   @override
-  String get settings_screen_detection_target => 'Cilj detekcije';
+  String get settings_screen_detection_type => 'Cilj detekcije';
 
   @override
   String get settings_screen_language_title => 'Jezik';
@@ -810,7 +827,7 @@ class LocalizationSr extends Localization {
   String get settings_screen_misc_label => 'Razno';
 
   @override
-  String get settings_screen_object_detection => 'Detekcija objekata';
+  String get settings_screen_object_detection => 'Šta brojati';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -839,24 +856,6 @@ class LocalizationSr extends Localization {
   @override
   String get stagnanted_help =>
       'Broji ljude ili vozila koja su ostala u ovoj oblasti najmanje tokom podešenog vremena zadržavanja.\\n\\nPodrazumevano vreme zadržavanja je 15 sekundi i može se promeniti u Podešavanjima.';
-
-  @override
-  String get target_pedestrian => 'Pešak';
-
-  @override
-  String get target_pedestrian_help =>
-      'Brojite ljude pomoću modela za detekciju pešaka';
-
-  @override
-  String get target_screen_subtitle =>
-      'Izaberite model detekcije koji želite da koristite';
-
-  @override
-  String get target_vehicle => 'Vozilo';
-
-  @override
-  String get target_vehicle_help =>
-      'Brojite automobile i druga vozila pomoću modela za detekciju vozila';
 
   @override
   String get telemetry_error_connection_refused =>

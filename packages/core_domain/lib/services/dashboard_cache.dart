@@ -63,13 +63,13 @@ List<DashboardAreaData> _buildInsightAreas(InsightState dashboard, InsightDashbo
               DashboardCardData(
                 metric: card.metric,
                 primary: calculateInsightMetricFromAggregate(
-                  dashboard.recentHourObservation,
+                  dashboard.recentHourTotal,
                   area.areaId,
                   card.metric,
                   expectedSeconds: 3600,
                 ),
                 comparisonValue: calculateInsightMetricFromAggregate(
-                  dashboard.comparisonRecentHourObservation,
+                  dashboard.comparisonRecentHourTotal,
                   area.areaId,
                   card.metric,
                   expectedSeconds: 3600,

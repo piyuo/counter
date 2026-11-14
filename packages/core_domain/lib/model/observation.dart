@@ -151,6 +151,9 @@ sealed class Observation with _$Observation {
     return recordedCount / coverageRatio;
   }
 
+  /// Unique key for the time slot of this observation, in minutes since midnight.
+  int get slotKey => hour * 60 + minute;
+
   /// Numeric ID made from the four-digit year and two-digit date/time
   /// components. Components with a value of -1 are encoded as `00` to
   /// preserve their positions.

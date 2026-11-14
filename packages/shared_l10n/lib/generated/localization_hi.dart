@@ -243,6 +243,24 @@ class LocalizationHi extends Localization {
   String get detection_screen_track_memory_min_label => 'छोटा';
 
   @override
+  String get detection_type_people => 'लोग';
+
+  @override
+  String get detection_type_people_help =>
+      'पैदल यात्री पहचान से लोगों की गिनती करें';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'चुनें कि आप क्या गिनना चाहते हैं';
+
+  @override
+  String get detection_type_vehicle => 'वाहन';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'कारों और अन्य वाहनों की गिनती करें';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter आपके कैमरे का उपयोग करके पैदल यात्रियों और वाहनों का रीयल-टाइम में पता लगाता है। इस डिवाइस में कैमरा उपलब्ध नहीं है.';
 
@@ -789,7 +807,7 @@ class LocalizationHi extends Localization {
   String get settings_screen_data_server_label => 'डेटा सर्वर';
 
   @override
-  String get settings_screen_detection_target => 'पहचान लक्ष्य';
+  String get settings_screen_detection_type => 'पहचान लक्ष्य';
 
   @override
   String get settings_screen_language_title => 'भाषा';
@@ -805,7 +823,7 @@ class LocalizationHi extends Localization {
   String get settings_screen_misc_label => 'विविध';
 
   @override
-  String get settings_screen_object_detection => 'ऑब्जेक्ट पहचान';
+  String get settings_screen_object_detection => 'क्या गिनें';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -834,23 +852,6 @@ class LocalizationHi extends Localization {
   @override
   String get stagnanted_help =>
       'इस क्षेत्र में कम से कम निर्धारित ठहराव समय तक रुके लोगों या वाहनों की संख्या गिनता है।\\n\\nडिफ़ॉल्ट Stay Time 15 सेकंड है और इसे Settings में बदला जा सकता है।';
-
-  @override
-  String get target_pedestrian => 'पैदल यात्री';
-
-  @override
-  String get target_pedestrian_help =>
-      'पैदल यात्री पहचान मॉडल से लोगों की गिनती करें';
-
-  @override
-  String get target_screen_subtitle => 'कौन सा पहचान मॉडल उपयोग करना है, चुनें';
-
-  @override
-  String get target_vehicle => 'वाहन';
-
-  @override
-  String get target_vehicle_help =>
-      'वाहन मॉडल से कारों और अन्य वाहनों की गिनती करें';
 
   @override
   String get telemetry_error_connection_refused =>

@@ -1,20 +1,4 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:shared_l10n/shared_l10n.dart';
-
-String dashboardMetricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
-  core_domain.DashboardMetric.passBy => context.l.insight_pass_by,
-  core_domain.DashboardMetric.stagnant => context.l.insight_stagnant,
-  core_domain.DashboardMetric.entry => context.l.insight_entry,
-  core_domain.DashboardMetric.exit => context.l.insight_exit,
-  core_domain.DashboardMetric.appear => context.l.insight_appear,
-  core_domain.DashboardMetric.disappear => context.l.insight_disappear,
-  core_domain.DashboardMetric.occupancyMean => context.l.average_occupancy,
-  core_domain.DashboardMetric.occupancyPeak => context.l.maximum_occupancy,
-  core_domain.DashboardMetric.dwellTimeMean => context.l.insight_average_completed_visit,
-  core_domain.DashboardMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
-};
 
 bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) => switch (metric) {
   core_domain.DashboardMetric.passBy ||
@@ -25,20 +9,6 @@ bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) => switch
   core_domain.DashboardMetric.disappear => true,
   _ => false,
 };
-
-String formatDashboardMetricValue(
-  double? value,
-  core_domain.DashboardMetric metric,
-  NumberFormat numberFormat, {
-  String unavailable = '—',
-}) {
-  if (value == null) return unavailable;
-  final formatted = numberFormat.format(value);
-  return switch (metric) {
-    core_domain.DashboardMetric.dwellTimeMean || core_domain.DashboardMetric.dwellTimeMax => '$formatted min',
-    _ => formatted,
-  };
-}
 
 double? getDashboardMetricValue(core_domain.Observation observation, int areaId, core_domain.DashboardMetric metric) {
   final activity = observation.areas.where((area) => area.areaId == areaId).firstOrNull;

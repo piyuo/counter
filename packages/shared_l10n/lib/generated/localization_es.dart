@@ -243,6 +243,22 @@ class LocalizationEs extends Localization {
   String get detection_screen_track_memory_min_label => 'Corto';
 
   @override
+  String get detection_type_people => 'Personas';
+
+  @override
+  String get detection_type_people_help =>
+      'Cuenta personas mediante detección de peatones';
+
+  @override
+  String get detection_type_screen_subtitle => 'Elige qué quieres contar';
+
+  @override
+  String get detection_type_vehicle => 'Vehículos';
+
+  @override
+  String get detection_type_vehicle_help => 'Cuenta coches y otros vehículos';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter usa la cámara para detectar peatones y vehículos en tiempo real. Este dispositivo no tiene una cámara disponible.';
 
@@ -795,7 +811,7 @@ class LocalizationEs extends Localization {
   String get settings_screen_data_server_label => 'Servidor de datos';
 
   @override
-  String get settings_screen_detection_target => 'Objetivo de detección';
+  String get settings_screen_detection_type => 'Objetivo de detección';
 
   @override
   String get settings_screen_language_title => 'Idioma';
@@ -811,7 +827,7 @@ class LocalizationEs extends Localization {
   String get settings_screen_misc_label => 'Varios';
 
   @override
-  String get settings_screen_object_detection => 'Detección de objetos';
+  String get settings_screen_object_detection => 'Qué contar';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -841,24 +857,6 @@ class LocalizationEs extends Localization {
   @override
   String get stagnanted_help =>
       'Cuenta las personas o vehículos que permanecieron en esta área durante al menos el Tiempo de Permanencia configurado.\\n\\nEl Tiempo de Permanencia predeterminado es de 15 segundos y puede cambiarse en Configuración.';
-
-  @override
-  String get target_pedestrian => 'Peatón';
-
-  @override
-  String get target_pedestrian_help =>
-      'Cuenta personas con el modelo de detección de peatones';
-
-  @override
-  String get target_screen_subtitle =>
-      'Elige el modelo de detección que deseas usar';
-
-  @override
-  String get target_vehicle => 'Vehículo';
-
-  @override
-  String get target_vehicle_help =>
-      'Cuenta coches y otros vehículos con el modelo de vehículos';
 
   @override
   String get telemetry_error_connection_refused =>

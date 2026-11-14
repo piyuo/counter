@@ -50,11 +50,6 @@ class MainScreen extends ConsumerWidget {
       core_domain.DataServerSelection.businessCustom => appState.businessCustomServer?.assignedName ?? '',
     };
 
-    final isPedestrian = switch (appState.detectionType) {
-      core_domain.DetectionVehicle() => false,
-      _ => true,
-    };
-
     return feature_pip.PipScaffold(
       builder: (scrollController) {
         return SingleChildScrollView(
@@ -129,7 +124,11 @@ class MainScreen extends ConsumerWidget {
                       trailing: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.center,
                         children: [
-                          Text(isPedestrian ? context.l.target_pedestrian : context.l.target_vehicle),
+                          Text(
+                            appState.detectionType == core_domain.DetectionType.people
+                                ? context.l.detection_type_people
+                                : context.l.detection_type_vehicle,
+                          ),
                           SizedBox(width: 10),
                           Icon(Icons.arrow_forward_ios),
                         ],

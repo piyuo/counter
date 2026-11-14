@@ -27,6 +27,7 @@ import 'package:counter_app/control_panel/about_screen.dart';
 import 'package:counter_app/control_panel/build_info_screen.dart';
 import 'package:counter_app/control_panel/custom_server_screen.dart';
 import 'package:counter_app/control_panel/detection_screen.dart';
+import 'package:counter_app/control_panel/detection_type_screen.dart';
 import 'package:counter_app/control_panel/device_not_supported_screen.dart';
 import 'package:counter_app/control_panel/interest_area_screen.dart';
 import 'package:counter_app/control_panel/language_screen.dart';
@@ -38,7 +39,6 @@ import 'package:counter_app/control_panel/payloads_hour_screen.dart';
 import 'package:counter_app/control_panel/payloads_recent_screen.dart';
 import 'package:counter_app/control_panel/piyuo_server_screen.dart';
 import 'package:counter_app/control_panel/settings_screen.dart';
-import 'package:counter_app/control_panel/target_screen.dart';
 import 'package:counter_app/control_panel/upload_detail_screen.dart';
 import 'package:counter_app/control_panel/upload_logs_screen.dart';
 import 'package:counter_app/control_panel/url_screen.dart';
@@ -136,7 +136,7 @@ class TargetRouteData extends CupertinoRouteData with $TargetRouteData {
   const TargetRouteData();
 
   @override
-  Widget build(BuildContext context, GoRouterState state) => const TargetScreen();
+  Widget build(BuildContext context, GoRouterState state) => const DetectionTypeScreen();
 }
 
 @TypedGoRoute<UploadLogsRouteData>(path: '/upload-logs')

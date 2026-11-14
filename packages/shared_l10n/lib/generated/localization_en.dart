@@ -242,6 +242,22 @@ class LocalizationEn extends Localization {
   String get detection_screen_track_memory_min_label => 'Short';
 
   @override
+  String get detection_type_people => 'People';
+
+  @override
+  String get detection_type_people_help =>
+      'Count people using pedestrian detection';
+
+  @override
+  String get detection_type_screen_subtitle => 'Choose what you want to count';
+
+  @override
+  String get detection_type_vehicle => 'Vehicles';
+
+  @override
+  String get detection_type_vehicle_help => 'Count cars and other vehicles';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter uses your camera to detect pedestrians and vehicles in real time. This device doesn\\\'t have one available.';
 
@@ -786,7 +802,7 @@ class LocalizationEn extends Localization {
   String get settings_screen_data_server_label => 'Data Server';
 
   @override
-  String get settings_screen_detection_target => 'Detection Target';
+  String get settings_screen_detection_type => 'Detection Target';
 
   @override
   String get settings_screen_language_title => 'Language';
@@ -802,7 +818,7 @@ class LocalizationEn extends Localization {
   String get settings_screen_misc_label => 'Misc';
 
   @override
-  String get settings_screen_object_detection => 'Object Detection';
+  String get settings_screen_object_detection => 'What to Count';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -831,23 +847,6 @@ class LocalizationEn extends Localization {
   @override
   String get stagnanted_help =>
       'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.';
-
-  @override
-  String get target_pedestrian => 'Pedestrian';
-
-  @override
-  String get target_pedestrian_help =>
-      'Count people using the pedestrian detection model';
-
-  @override
-  String get target_screen_subtitle => 'Choose which detection model to use';
-
-  @override
-  String get target_vehicle => 'Vehicle';
-
-  @override
-  String get target_vehicle_help =>
-      'Count cars and other vehicles using the vehicle model';
 
   @override
   String get telemetry_error_connection_refused =>

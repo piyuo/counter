@@ -19,23 +19,13 @@ class SettingsScreen extends ConsumerWidget {
     final localization = appkit.Localization.of(context);
     final currentLocalDisplayLabel = localization.language;
 
-    final isPedestrian = switch (appState.detectionType) {
-      core_domain.DetectionVehicle() => false,
-      _ => true,
-    };
-
     return feature_pip.PipScaffold(
       builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
-        padding: const EdgeInsets.symmetric(
-          vertical: feature_pip.kScrollContentAppbarPadding,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
         child: Column(
           children: [
-            feature_pip.PipHeader(
-              icon: Icons.settings,
-              title: context.l.main_screen_settings,
-            ),
+            feature_pip.PipHeader(icon: Icons.settings, title: context.l.main_screen_settings),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Align(
@@ -50,18 +40,11 @@ class SettingsScreen extends ConsumerWidget {
                     ListTile(
                       leading: _selectionCheckbox(
                         context,
-                        selected:
-                            appState.dataServerSelection ==
-                            core_domain.DataServerSelection.personalPiyuo,
+                        selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
                       ),
                       title: Text(context.l.settings_screen_piyuo_title),
-                      subtitle: Text(
-                        context.l.settings_screen_piyuo_subtitle,
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      selected:
-                          appState.dataServerSelection ==
-                          core_domain.DataServerSelection.personalPiyuo,
+                      subtitle: Text(context.l.settings_screen_piyuo_subtitle, style: TextStyle(fontSize: 12)),
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalPiyuo,
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {
                         ref.push(const core_domain.OpenSettingsPiyuo());
@@ -70,33 +53,20 @@ class SettingsScreen extends ConsumerWidget {
                   ListTile(
                     leading: _selectionCheckbox(
                       context,
-                      selected:
-                          appState.dataServerSelection ==
-                          core_domain.DataServerSelection.personalCustom,
+                      selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     ),
                     title: Text(context.l.settings_screen_custom_title),
-                    subtitle: Text(
-                      context.l.settings_screen_custom_subtitle,
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    selected:
-                        appState.dataServerSelection ==
-                        core_domain.DataServerSelection.personalCustom,
+                    subtitle: Text(context.l.settings_screen_custom_subtitle, style: TextStyle(fontSize: 12)),
+                    selected: appState.dataServerSelection == core_domain.DataServerSelection.personalCustom,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       ref.push(const core_domain.OpenSettingsServer());
                     },
                   ),
                   ListTile(
-                    leading: _selectionCheckbox(
-                      context,
-                      selected: appState.isLocalDeviceOnly,
-                    ),
+                    leading: _selectionCheckbox(context, selected: appState.isLocalDeviceOnly),
                     title: Text(context.l.settings_screen_local_title),
-                    subtitle: Text(
-                      context.l.settings_screen_local_subtitle,
-                      style: TextStyle(fontSize: 12),
-                    ),
+                    subtitle: Text(context.l.settings_screen_local_subtitle, style: TextStyle(fontSize: 12)),
                     selected: appState.isLocalDeviceOnly,
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () async {
@@ -115,10 +85,7 @@ class SettingsScreen extends ConsumerWidget {
                             _StatusIconWithTime(
                               icon: Icons.schedule,
                               color: Colors.blueGrey,
-                              timeLabel: _formatVeryShortLocalTime(
-                                context,
-                                nextUpload,
-                              ),
+                              timeLabel: _formatVeryShortLocalTime(context, nextUpload),
                             ),
                             const SizedBox(width: 10),
                             const Icon(Icons.arrow_forward_ios),
@@ -143,26 +110,20 @@ class SettingsScreen extends ConsumerWidget {
                 children: [
                   ListTile(
                     leading: Icon(
-                      isPedestrian
+                      appState.detectionType == core_domain.DetectionType.people
                           ? Icons.directions_walk
                           : Icons.directions_car,
                     ),
-                    title: Text(context.l.settings_screen_detection_target),
+                    title: Text(context.l.settings_screen_detection_type),
                     subtitle: Text(
-                      isPedestrian
-                          ? context.l.target_pedestrian
-                          : context.l.target_vehicle,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey.shade300,
-                      ),
+                      appState.detectionType == core_domain.DetectionType.people
+                          ? context.l.detection_type_people
+                          : context.l.detection_type_vehicle,
+                      style: TextStyle(fontSize: 12, color: Colors.grey.shade300),
                     ),
                     trailing: Wrap(
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        SizedBox(width: 10),
-                        Icon(Icons.arrow_forward_ios),
-                      ],
+                      children: [SizedBox(width: 10), Icon(Icons.arrow_forward_ios)],
                     ),
                     onTap: () {
                       ref.push(const core_domain.OpenTarget());
@@ -194,9 +155,7 @@ class SettingsScreen extends ConsumerWidget {
                     ListTile(
                       leading: const Icon(Icons.subscriptions_rounded),
                       title: Text(context.l.settings_screen_subscription_title),
-                      subtitle: Text(
-                        context.l.settings_screen_subscription_body,
-                      ),
+                      subtitle: Text(context.l.settings_screen_subscription_body),
                       trailing: const Icon(Icons.arrow_forward_ios),
                       onTap: () {},
                     ),
@@ -218,9 +177,7 @@ class SettingsScreen extends ConsumerWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () async {
-                    final resetNotifier = ref.read(
-                      core_domain.resetAppProvider.notifier,
-                    );
+                    final resetNotifier = ref.read(core_domain.resetAppProvider.notifier);
                     final confirmed = await appkit.showConfirm(
                       title: context.l.settings_screen_reset_all_data_title,
                       message: context.l.settings_screen_reset_all_data_body,
@@ -232,10 +189,7 @@ class SettingsScreen extends ConsumerWidget {
                     backgroundColor: Colors.red.withValues(alpha: 0.7),
                     minimumSize: const Size.fromHeight(56),
                   ),
-                  child: Text(
-                    context.l.detection_screen_reset,
-                    style: const TextStyle(color: Colors.white),
-                  ),
+                  child: Text(context.l.detection_screen_reset, style: const TextStyle(color: Colors.white)),
                 ),
               ),
             ),
@@ -254,21 +208,15 @@ class SettingsScreen extends ConsumerWidget {
   String _formatVeryShortLocalTime(BuildContext context, DateTime? value) {
     if (value == null) return '--';
     final local = value.toLocal();
-    final alwaysUse24HourFormat =
-        MediaQuery.maybeOf(context)?.alwaysUse24HourFormat ?? false;
-    return MaterialLocalizations.of(context).formatTimeOfDay(
-      TimeOfDay.fromDateTime(local),
-      alwaysUse24HourFormat: alwaysUse24HourFormat,
-    );
+    final alwaysUse24HourFormat = MediaQuery.maybeOf(context)?.alwaysUse24HourFormat ?? false;
+    return MaterialLocalizations.of(
+      context,
+    ).formatTimeOfDay(TimeOfDay.fromDateTime(local), alwaysUse24HourFormat: alwaysUse24HourFormat);
   }
 }
 
 class _StatusIconWithTime extends StatelessWidget {
-  const _StatusIconWithTime({
-    required this.icon,
-    required this.color,
-    required this.timeLabel,
-  });
+  const _StatusIconWithTime({required this.icon, required this.color, required this.timeLabel});
 
   final IconData icon;
   final Color color;

@@ -11,6 +11,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'detection_params.freezed.dart';
 part 'detection_params.g.dart';
 
+enum DetectionType { people, vehicle }
+
 @freezed
 abstract class DetectionParams with _$DetectionParams {
   const DetectionParams._();

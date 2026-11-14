@@ -1,12 +1,11 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
+import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import '../utils/dashboard_utils.dart';
 import 'insight_chart.dart';
-import 'insight_utils.dart';
 import 'primary_metric.dart';
 
 class DashboardCard extends ConsumerWidget {
@@ -28,13 +27,13 @@ class DashboardCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final title = dashboardMetricLabel(context, data.metric);
-    final comparisonLabel = insightComparisonPeriodLabel(context, comparisonPeriod);
+    final title = formatMetricLabel(context, data.metric);
+    final comparisonLabel = formatTrafficComparisonPeriodLabel(context, comparisonPeriod);
     final scale = MediaQuery.textScalerOf(context).scale(1);
     final chartHeight = 150 + (scale - 1).clamp(0, 1.5) * 38;
 
     String primaryCaption() {
-      if (observationStatus != core_domain.ObservationStatus.live) {
+      if (observationStatus != core_domain.ObservationStatus.started) {
         return context.l.insight_counting_paused_last_recorded;
       }
 
@@ -91,7 +90,7 @@ class DashboardCard extends ConsumerWidget {
               metricLabel: title,
               comparisonLabel: comparisonLabel,
               height: chartHeight.toDouble(),
-              showLiveMarker: observationStatus == core_domain.ObservationStatus.live,
+              showLiveMarker: observationStatus == core_domain.ObservationStatus.started,
             ),
           ],
         ),

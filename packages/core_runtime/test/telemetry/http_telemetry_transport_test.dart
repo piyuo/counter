@@ -101,12 +101,12 @@ void main() {
     test('returns normalized success response on 200 OK', () async {
       when(
         mockClient.post(any, headers: anyNamed('headers'), body: anyNamed('body')),
-      ).thenAnswer((_) async => http.Response('{"detection":{"runtimeType":"vehicle"}}', 200));
+      ).thenAnswer((_) async => http.Response('{"detection":"vehicle"}', 200));
 
       final response = await transport.send(url: url, bearerToken: bearerToken, body: body, contentType: contentType);
       expect(response.ok, isTrue);
       expect(response.v, 1);
-      expect(response.data?.detection, const core_domain.DetectionType.vehicle());
+      expect(response.data?.detection, core_domain.DetectionType.vehicle);
     });
 
     test('returns wrapped JSON error on 400 Bad Request', () async {

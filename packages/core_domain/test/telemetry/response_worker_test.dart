@@ -48,14 +48,14 @@ void main() {
           v: 1,
           ok: true,
           data: ServerData(
-            detection: core_domain.DetectionType.human(),
+            detection: core_domain.DetectionType.people,
             detectionParams: core_domain.DetectionParams(trackHighThresh: 0.81),
             deliveryConfig: core_domain.UploadConfig(wallClockCadenceMin: 12),
           ),
         ),
       );
 
-      expect(appliedDetection, const core_domain.DetectionType.human());
+      expect(appliedDetection, core_domain.DetectionType.people);
       expect(appliedDetectionParams?.trackHighThresh, 0.81);
       expect(appliedDeliveryConfig?.wallClockCadenceMin, 12);
     });

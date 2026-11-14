@@ -219,8 +219,8 @@ class FlutterVisionNotifier extends _$FlutterVisionNotifier implements core_doma
 
   Future<vision.ModelDefine> _buildDetectionModel(core_domain.DetectionType detection) {
     return switch (detection) {
-      core_domain.DetectionHuman() => vision.ModelDefine.human(),
-      core_domain.DetectionVehicle() => vision.ModelDefine.vehicle(),
+      core_domain.DetectionType.people => vision.ModelDefine.human(),
+      core_domain.DetectionType.vehicle => vision.ModelDefine.vehicle(),
     };
   }
 

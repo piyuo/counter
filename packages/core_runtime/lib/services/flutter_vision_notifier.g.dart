@@ -42,7 +42,7 @@ final class FlutterVisionNotifierProvider
 }
 
 String _$flutterVisionNotifierHash() =>
-    r'f71749d5e568ff22e03c309501282a696179770f';
+    r'a032b7cec1238a48824fc8acb2caec3927487a15';
 
 abstract class _$FlutterVisionNotifier
     extends $Notifier<core_domain.VisionState> {

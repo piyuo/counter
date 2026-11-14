@@ -69,9 +69,9 @@ InsightState _dashboard({
   businessDate: businessDate,
   comparisonPeriod: comparisonPeriod,
   todaySeries: todaySeries ?? ObservationSeries.fromObservations(today),
-  recentHourObservation: pastHour,
+  recentHourTotal: pastHour,
   comparisonSeries: comparisonSeries ?? ObservationSeries.fromObservations(comparison),
-  comparisonRecentHourObservation: comparisonPastHour,
+  comparisonRecentHourTotal: comparisonPastHour,
 );
 
 List<DashboardAreaData> _cacheBuild(
@@ -481,7 +481,7 @@ void main() {
   });
 
   test('aggregates monthly and yearly typical profiles by clock hour', () {
-    for (final period in [TrafficComparisonPeriod.monthlyAverage, TrafficComparisonPeriod.yearlyAverage]) {
+    for (final period in [TrafficComparisonPeriod.lastMonthAverage, TrafficComparisonPeriod.lastYearAverage]) {
       final result = DashboardCache().build(
         insightState: _dashboard(
           comparisonPeriod: period,

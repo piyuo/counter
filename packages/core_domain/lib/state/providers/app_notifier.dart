@@ -11,7 +11,6 @@ import 'package:core_domain/services/vision_service.dart';
 import 'package:core_domain/state/models/app_state.dart';
 import 'package:core_domain/state/models/data_server.dart';
 import 'package:core_domain/state/models/detection_params.dart';
-import 'package:core_domain/state/models/detection_type.dart';
 import 'package:core_domain/state/models/interest_area.dart';
 import 'package:core_domain/state/models/upload_config.dart';
 import 'package:core_domain/state/models/video_source.dart';
@@ -219,7 +218,7 @@ class AppNotifier extends _$AppNotifier implements AppController {
     final current = await future;
     final updated = current.copyWith(
       detectionType: detectionType,
-      detectionParams: detectionType is DetectionHuman ? DetectionParams() : DetectionParams.vehicle(),
+      detectionParams: detectionType == DetectionType.people ? DetectionParams() : DetectionParams.vehicle(),
     ); // reset detection params when changing type
     state = AsyncData(updated);
     await repo.save(updated);

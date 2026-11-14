@@ -21,7 +21,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../model/business_period.dart';
 import 'data_server.dart';
 import 'detection_params.dart';
-import 'detection_type.dart';
 import 'interest_area.dart';
 import 'upload_config.dart';
 import 'video_source.dart';
@@ -71,7 +70,7 @@ sealed class AppState with _$AppState {
 
     /// Vision model selection paired with [videoSource] and [detectionParams]
     /// to define the desired runtime session.
-    @Default(DetectionType.human()) DetectionType detectionType,
+    @Default(DetectionType.people) DetectionType detectionType,
 
     /// Runtime tuning paired with [videoSource] and [detection].
     ///

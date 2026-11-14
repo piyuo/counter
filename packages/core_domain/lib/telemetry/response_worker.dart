@@ -2,16 +2,14 @@
 //  - ResponseWorker: interprets transport response envelopes and applies server config overrides
 
 import '../state/models/detection_params.dart';
-import '../state/models/detection_type.dart';
 import '../state/models/upload_config.dart';
 import 'models/telemetry_response.dart';
 
-typedef ServerConfigOverrideApplier =
-    Future<void> Function({
-      DetectionType? detectionType,
-      DetectionParams? detectionParams,
-      UploadConfig? deliveryConfig,
-    });
+typedef ServerConfigOverrideApplier = Future<void> Function({
+  DetectionType? detectionType,
+  DetectionParams? detectionParams,
+  UploadConfig? deliveryConfig,
+});
 
 /// Parses transport response objects and decides whether delivery succeeded.
 ///

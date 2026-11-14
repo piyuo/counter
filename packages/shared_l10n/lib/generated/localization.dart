@@ -558,6 +558,36 @@ abstract class Localization {
   /// **'Short'**
   String get detection_screen_track_memory_min_label;
 
+  /// No description provided for @detection_type_people.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get detection_type_people;
+
+  /// No description provided for @detection_type_people_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Count people using pedestrian detection'**
+  String get detection_type_people_help;
+
+  /// No description provided for @detection_type_screen_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what you want to count'**
+  String get detection_type_screen_subtitle;
+
+  /// No description provided for @detection_type_vehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles'**
+  String get detection_type_vehicle;
+
+  /// No description provided for @detection_type_vehicle_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Count cars and other vehicles'**
+  String get detection_type_vehicle_help;
+
   /// No description provided for @device_not_supported_screen_body.
   ///
   /// In en, this message translates to:
@@ -1566,11 +1596,11 @@ abstract class Localization {
   /// **'Data Server'**
   String get settings_screen_data_server_label;
 
-  /// No description provided for @settings_screen_detection_target.
+  /// No description provided for @settings_screen_detection_type.
   ///
   /// In en, this message translates to:
   /// **'Detection Target'**
-  String get settings_screen_detection_target;
+  String get settings_screen_detection_type;
 
   /// No description provided for @settings_screen_language_title.
   ///
@@ -1599,7 +1629,7 @@ abstract class Localization {
   /// No description provided for @settings_screen_object_detection.
   ///
   /// In en, this message translates to:
-  /// **'Object Detection'**
+  /// **'What to Count'**
   String get settings_screen_object_detection;
 
   /// No description provided for @settings_screen_piyuo_subtitle.
@@ -1649,36 +1679,6 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.'**
   String get stagnanted_help;
-
-  /// No description provided for @target_pedestrian.
-  ///
-  /// In en, this message translates to:
-  /// **'Pedestrian'**
-  String get target_pedestrian;
-
-  /// No description provided for @target_pedestrian_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Count people using the pedestrian detection model'**
-  String get target_pedestrian_help;
-
-  /// No description provided for @target_screen_subtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose which detection model to use'**
-  String get target_screen_subtitle;
-
-  /// No description provided for @target_vehicle.
-  ///
-  /// In en, this message translates to:
-  /// **'Vehicle'**
-  String get target_vehicle;
-
-  /// No description provided for @target_vehicle_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Count cars and other vehicles using the vehicle model'**
-  String get target_vehicle_help;
 
   /// No description provided for @telemetry_error_connection_refused.
   ///

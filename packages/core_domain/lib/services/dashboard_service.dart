@@ -21,6 +21,8 @@ enum DashboardMetric {
 
 enum DashboardMeasurementUnit { count, countPerHour, objects, seconds, minutes }
 
+bool isHourlyRate(DashboardMeasurementUnit unit) => unit == DashboardMeasurementUnit.countPerHour;
+
 class DashboardMeasurement {
   const DashboardMeasurement({
     required this.amount,

@@ -27,20 +27,20 @@ $InsightStateCopyWith<InsightState> get copyWith => _$InsightStateCopyWithImpl<I
 @override
 bool operator ==(Object other) {
   final _this = this as InsightState;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is InsightState&&(identical(other.businessDate, _this.businessDate) || other.businessDate == _this.businessDate)&&(identical(other.comparisonPeriod, _this.comparisonPeriod) || other.comparisonPeriod == _this.comparisonPeriod)&&(identical(other.recentHourObservation, _this.recentHourObservation) || other.recentHourObservation == _this.recentHourObservation)&&(identical(other.comparisonRecentHourObservation, _this.comparisonRecentHourObservation) || other.comparisonRecentHourObservation == _this.comparisonRecentHourObservation)&&const DeepCollectionEquality().equals(other.todaySeries, _this.todaySeries)&&const DeepCollectionEquality().equals(other.comparisonSeries, _this.comparisonSeries)&&(identical(other.comparisonTypicalDay, _this.comparisonTypicalDay) || other.comparisonTypicalDay == _this.comparisonTypicalDay));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InsightState&&(identical(other.businessDate, _this.businessDate) || other.businessDate == _this.businessDate)&&(identical(other.comparisonPeriod, _this.comparisonPeriod) || other.comparisonPeriod == _this.comparisonPeriod)&&(identical(other.recentHourTotal, _this.recentHourTotal) || other.recentHourTotal == _this.recentHourTotal)&&(identical(other.comparisonRecentHourTotal, _this.comparisonRecentHourTotal) || other.comparisonRecentHourTotal == _this.comparisonRecentHourTotal)&&const DeepCollectionEquality().equals(other.todaySeries, _this.todaySeries)&&const DeepCollectionEquality().equals(other.comparisonSeries, _this.comparisonSeries)&&(identical(other.comparisonTotal, _this.comparisonTotal) || other.comparisonTotal == _this.comparisonTotal));
 }
 
 
 @override
 int get hashCode {
   final _this = this as InsightState;
-  return Object.hash(runtimeType,_this.businessDate,_this.comparisonPeriod,_this.recentHourObservation,_this.comparisonRecentHourObservation,const DeepCollectionEquality().hash(_this.todaySeries),const DeepCollectionEquality().hash(_this.comparisonSeries),_this.comparisonTypicalDay);
+  return Object.hash(runtimeType,_this.businessDate,_this.comparisonPeriod,_this.recentHourTotal,_this.comparisonRecentHourTotal,const DeepCollectionEquality().hash(_this.todaySeries),const DeepCollectionEquality().hash(_this.comparisonSeries),_this.comparisonTotal);
 }
 
 @override
 String toString() {
   final _this = this as InsightState;
-  return 'InsightState(businessDate: ${_this.businessDate}, comparisonPeriod: ${_this.comparisonPeriod}, recentHourObservation: ${_this.recentHourObservation}, comparisonRecentHourObservation: ${_this.comparisonRecentHourObservation}, todaySeries: ${_this.todaySeries}, comparisonSeries: ${_this.comparisonSeries}, comparisonTypicalDay: ${_this.comparisonTypicalDay})';
+  return 'InsightState(businessDate: ${_this.businessDate}, comparisonPeriod: ${_this.comparisonPeriod}, recentHourTotal: ${_this.recentHourTotal}, comparisonRecentHourTotal: ${_this.comparisonRecentHourTotal}, todaySeries: ${_this.todaySeries}, comparisonSeries: ${_this.comparisonSeries}, comparisonTotal: ${_this.comparisonTotal})';
 }
 
 
@@ -51,7 +51,7 @@ abstract mixin class $InsightStateCopyWith<$Res>  {
   factory $InsightStateCopyWith(InsightState value, $Res Function(InsightState) _then) = _$InsightStateCopyWithImpl;
 @useResult
 $Res call({
- String businessDate, TrafficComparisonPeriod comparisonPeriod, Observation? recentHourObservation, Observation? comparisonRecentHourObservation, ObservationSeries? todaySeries, ObservationSeries? comparisonSeries, Observation? comparisonTypicalDay
+ String businessDate, TrafficComparisonPeriod comparisonPeriod, Observation? recentHourTotal, Observation? comparisonRecentHourTotal, ObservationSeries? todaySeries, ObservationSeries? comparisonSeries, Observation? comparisonTotal
 });
 
 
@@ -68,15 +68,15 @@ class _$InsightStateCopyWithImpl<$Res>
 
 /// Create a copy of InsightState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? businessDate = null,Object? comparisonPeriod = null,Object? recentHourObservation = freezed,Object? comparisonRecentHourObservation = freezed,Object? todaySeries = freezed,Object? comparisonSeries = freezed,Object? comparisonTypicalDay = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? businessDate = null,Object? comparisonPeriod = null,Object? recentHourTotal = freezed,Object? comparisonRecentHourTotal = freezed,Object? todaySeries = freezed,Object? comparisonSeries = freezed,Object? comparisonTotal = freezed,}) {
   return _then(InsightState(
 businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
 as String,comparisonPeriod: null == comparisonPeriod ? _self.comparisonPeriod : comparisonPeriod // ignore: cast_nullable_to_non_nullable
-as TrafficComparisonPeriod,recentHourObservation: freezed == recentHourObservation ? _self.recentHourObservation : recentHourObservation // ignore: cast_nullable_to_non_nullable
-as Observation?,comparisonRecentHourObservation: freezed == comparisonRecentHourObservation ? _self.comparisonRecentHourObservation : comparisonRecentHourObservation // ignore: cast_nullable_to_non_nullable
+as TrafficComparisonPeriod,recentHourTotal: freezed == recentHourTotal ? _self.recentHourTotal : recentHourTotal // ignore: cast_nullable_to_non_nullable
+as Observation?,comparisonRecentHourTotal: freezed == comparisonRecentHourTotal ? _self.comparisonRecentHourTotal : comparisonRecentHourTotal // ignore: cast_nullable_to_non_nullable
 as Observation?,todaySeries: freezed == todaySeries ? _self.todaySeries : todaySeries // ignore: cast_nullable_to_non_nullable
 as ObservationSeries?,comparisonSeries: freezed == comparisonSeries ? _self.comparisonSeries : comparisonSeries // ignore: cast_nullable_to_non_nullable
-as ObservationSeries?,comparisonTypicalDay: freezed == comparisonTypicalDay ? _self.comparisonTypicalDay : comparisonTypicalDay // ignore: cast_nullable_to_non_nullable
+as ObservationSeries?,comparisonTotal: freezed == comparisonTotal ? _self.comparisonTotal : comparisonTotal // ignore: cast_nullable_to_non_nullable
 as Observation?,
   ));
 }

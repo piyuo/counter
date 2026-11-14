@@ -242,6 +242,23 @@ class LocalizationId extends Localization {
   String get detection_screen_track_memory_min_label => 'Pendek';
 
   @override
+  String get detection_type_people => 'Orang';
+
+  @override
+  String get detection_type_people_help =>
+      'Hitung orang dengan deteksi pejalan kaki';
+
+  @override
+  String get detection_type_screen_subtitle => 'Pilih apa yang ingin dihitung';
+
+  @override
+  String get detection_type_vehicle => 'Kendaraan';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Hitung mobil dan kendaraan lainnya';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter menggunakan kamera Anda untuk mendeteksi pejalan kaki dan kendaraan secara real time. Perangkat ini tidak memiliki kamera yang tersedia.';
 
@@ -793,7 +810,7 @@ class LocalizationId extends Localization {
   String get settings_screen_data_server_label => 'Server Data';
 
   @override
-  String get settings_screen_detection_target => 'Target Deteksi';
+  String get settings_screen_detection_type => 'Target Deteksi';
 
   @override
   String get settings_screen_language_title => 'Bahasa';
@@ -809,7 +826,7 @@ class LocalizationId extends Localization {
   String get settings_screen_misc_label => 'Lainnya';
 
   @override
-  String get settings_screen_object_detection => 'Deteksi Objek';
+  String get settings_screen_object_detection => 'Apa yang dihitung';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -838,24 +855,6 @@ class LocalizationId extends Localization {
   @override
   String get stagnanted_help =>
       'Menghitung orang atau kendaraan yang tetap berada di area ini setidaknya selama Waktu Tinggal yang ditentukan.\\n\\nWaktu Tinggal bawaan adalah 15 detik dan dapat diubah di Pengaturan.';
-
-  @override
-  String get target_pedestrian => 'Pejalan kaki';
-
-  @override
-  String get target_pedestrian_help =>
-      'Hitung orang menggunakan model deteksi pejalan kaki';
-
-  @override
-  String get target_screen_subtitle =>
-      'Pilih model deteksi yang akan digunakan';
-
-  @override
-  String get target_vehicle => 'Kendaraan';
-
-  @override
-  String get target_vehicle_help =>
-      'Hitung mobil dan kendaraan lain menggunakan model kendaraan';
 
   @override
   String get telemetry_error_connection_refused =>

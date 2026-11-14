@@ -1,13 +1,11 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import '../utils/format_compact_duration.dart';
 import 'dashboard_chip.dart';
+import 'dashboard_formatter.dart';
 import 'insight_comparison_indicator.dart';
 import 'insight_comparison_period_dropdown.dart';
-import 'insight_utils.dart';
 
 class PrimaryMetric extends StatelessWidget {
   const PrimaryMetric({
@@ -26,10 +24,10 @@ class PrimaryMetric extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final metricColor = insightObservationStatusColor(context, observationStatus);
-    final value = data.primary;
-    final number = value == null ? '—' : formatInsightPrimaryNumber(context, value.amount, value.unit);
-    final unit = value == null ? '' : _primaryUnit(context, value.unit);
+    final metricColor = formatObservationStatusColor(context, observationStatus);
+    final primaryMeasure = data.primary;
+    final unit = formatDashboardMeasurementUnit(context, primaryMeasure);
+    final statusColor = formatObservationStatusColor(context, observationStatus);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,16 +35,22 @@ class PrimaryMetric extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _ObservationStatusChip(status: observationStatus),
+            DashboardChip(
+              label: formatObservationStatusLabel(context, observationStatus),
+              tooltip: formatObservationStatusTooltip(context, observationStatus),
+              textColor: statusColor.withValues(alpha: 0.9),
+              backgroundColor: statusColor.withValues(alpha: 0.18),
+            ),
             const SizedBox(width: 6),
-            if (value != null && value.estimated) DashboardChip.yellow(label: context.l.insight_early_estimate),
+            if (primaryMeasure != null && primaryMeasure.estimated)
+              DashboardChip.yellow(label: context.l.insight_early_estimate),
             Expanded(
               child: Text.rich(
                 textAlign: TextAlign.end,
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: number,
+                      text: formatDashboardMeasurement(context, primaryMeasure),
                       style: theme.textTheme.headlineMedium?.copyWith(
                         color: metricColor,
                         fontWeight: FontWeight.w700,
@@ -74,9 +78,9 @@ class PrimaryMetric extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             InsightComparisonIndicator(
-              current: value?.amount,
+              current: primaryMeasure?.amount,
               baseline: data.comparisonValue,
-              comparisonLabel: insightComparisonPeriodLabel(context, comparisonPeriod),
+              comparisonLabel: formatTrafficComparisonPeriodLabel(context, comparisonPeriod),
             ),
           ],
         ),
@@ -84,64 +88,3 @@ class PrimaryMetric extends StatelessWidget {
     );
   }
 }
-
-class _ObservationStatusChip extends StatelessWidget {
-  const _ObservationStatusChip({required this.status});
-
-  final core_domain.ObservationStatus status;
-
-  @override
-  Widget build(BuildContext context) {
-    final statusColor = insightObservationStatusColor(context, status);
-    final (label, description) = switch (status) {
-      core_domain.ObservationStatus.live => (
-        context.l.observation_status_live,
-        context.l.observation_status_live_description,
-      ),
-      core_domain.ObservationStatus.interrupted => (
-        context.l.observation_status_interrupted,
-        context.l.observation_status_interrupted_description,
-      ),
-      core_domain.ObservationStatus.stopped => (
-        context.l.observation_status_stopped,
-        context.l.observation_status_stopped_description,
-      ),
-    };
-
-    return Tooltip(
-      message: description,
-      child: DashboardChip(
-        label: label,
-        textColor: statusColor.withValues(alpha: 0.9),
-        backgroundColor: statusColor.withValues(alpha: 0.18),
-      ),
-    );
-  }
-}
-
-String formatInsightPrimaryNumber(BuildContext context, double value, core_domain.DashboardMeasurementUnit unit) {
-  final locale = Localizations.localeOf(context).toString();
-  return switch (unit) {
-    core_domain.DashboardMeasurementUnit.seconds => formatCompactDuration(context.l, value.round()),
-    core_domain.DashboardMeasurementUnit.minutes => formatCompactDuration(context.l, (value * 60).round()),
-    core_domain.DashboardMeasurementUnit.objects => NumberFormat('0.#', locale).format(value),
-    core_domain.DashboardMeasurementUnit.count || core_domain.DashboardMeasurementUnit.countPerHour => NumberFormat(
-      value >= 10 ? '#,##0' : '0.#',
-      locale,
-    ).format(value),
-  };
-}
-
-String _primaryUnit(BuildContext context, core_domain.DashboardMeasurementUnit unit) => switch (unit) {
-  core_domain.DashboardMeasurementUnit.objects => context.l.insight_objects_unit,
-  core_domain.DashboardMeasurementUnit.countPerHour => context.l.insight_tracks_per_hour,
-  core_domain.DashboardMeasurementUnit.count ||
-  core_domain.DashboardMeasurementUnit.seconds ||
-  core_domain.DashboardMeasurementUnit.minutes => '',
-};
-
-Color insightObservationStatusColor(BuildContext context, core_domain.ObservationStatus status) => switch (status) {
-  core_domain.ObservationStatus.live => Colors.green,
-  core_domain.ObservationStatus.interrupted => Colors.amber.shade900,
-  core_domain.ObservationStatus.stopped => Theme.of(context).colorScheme.error,
-};

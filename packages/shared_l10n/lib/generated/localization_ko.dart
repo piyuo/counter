@@ -235,6 +235,21 @@ class LocalizationKo extends Localization {
   String get detection_screen_track_memory_min_label => '짧음';
 
   @override
+  String get detection_type_people => '사람';
+
+  @override
+  String get detection_type_people_help => '보행자 감지로 사람 수 세기';
+
+  @override
+  String get detection_type_screen_subtitle => '집계할 대상을 선택하세요';
+
+  @override
+  String get detection_type_vehicle => '차량';
+
+  @override
+  String get detection_type_vehicle_help => '자동차 및 기타 차량 수 세기';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter는 카메라를 사용하여 보행자와 차량을 실시간으로 감지합니다. 이 기기에서는 카메라를 사용할 수 없습니다.';
 
@@ -769,7 +784,7 @@ class LocalizationKo extends Localization {
   String get settings_screen_data_server_label => '데이터 서버';
 
   @override
-  String get settings_screen_detection_target => '감지 대상';
+  String get settings_screen_detection_type => '감지 대상';
 
   @override
   String get settings_screen_language_title => '언어';
@@ -785,7 +800,7 @@ class LocalizationKo extends Localization {
   String get settings_screen_misc_label => '기타';
 
   @override
-  String get settings_screen_object_detection => '객체 감지';
+  String get settings_screen_object_detection => '집계 대상';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -813,21 +828,6 @@ class LocalizationKo extends Localization {
   @override
   String get stagnanted_help =>
       '설정된 체류 시간 이상 이 영역에 머문 사람이나 차량의 수를 계산합니다.\\n\\n기본 체류 시간은 15초이며 설정에서 변경할 수 있습니다.';
-
-  @override
-  String get target_pedestrian => '보행자';
-
-  @override
-  String get target_pedestrian_help => '보행자 감지 모델로 사람 수를 계산합니다';
-
-  @override
-  String get target_screen_subtitle => '사용할 감지 모델을 선택하세요';
-
-  @override
-  String get target_vehicle => '차량';
-
-  @override
-  String get target_vehicle_help => '차량 감지 모델로 자동차와 기타 차량을 계산합니다';
 
   @override
   String get telemetry_error_connection_refused =>

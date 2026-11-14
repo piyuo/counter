@@ -242,6 +242,22 @@ class LocalizationMs extends Localization {
   String get detection_screen_track_memory_min_label => 'Pendek';
 
   @override
+  String get detection_type_people => 'Orang';
+
+  @override
+  String get detection_type_people_help =>
+      'Kira orang dengan pengesanan pejalan kaki';
+
+  @override
+  String get detection_type_screen_subtitle => 'Pilih apa yang ingin dikira';
+
+  @override
+  String get detection_type_vehicle => 'Kenderaan';
+
+  @override
+  String get detection_type_vehicle_help => 'Kira kereta dan kenderaan lain';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter menggunakan kamera anda untuk mengesan pejalan kaki dan kenderaan dalam masa nyata. Peranti ini tidak mempunyai kamera yang tersedia.';
 
@@ -791,7 +807,7 @@ class LocalizationMs extends Localization {
   String get settings_screen_data_server_label => 'Pelayan Data';
 
   @override
-  String get settings_screen_detection_target => 'Sasaran Pengesanan';
+  String get settings_screen_detection_type => 'Sasaran Pengesanan';
 
   @override
   String get settings_screen_language_title => 'Bahasa';
@@ -807,7 +823,7 @@ class LocalizationMs extends Localization {
   String get settings_screen_misc_label => 'Lain-lain';
 
   @override
-  String get settings_screen_object_detection => 'Pengesanan Objek';
+  String get settings_screen_object_detection => 'Apa yang hendak dikira';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -837,23 +853,6 @@ class LocalizationMs extends Localization {
   @override
   String get stagnanted_help =>
       'Mengira bilangan orang atau kenderaan yang berada di kawasan ini sekurang-kurangnya selama Tempoh Tinggal yang ditetapkan.\\n\\nTempoh Tinggal lalai ialah 15 saat dan boleh diubah dalam Tetapan.';
-
-  @override
-  String get target_pedestrian => 'Pejalan kaki';
-
-  @override
-  String get target_pedestrian_help =>
-      'Kira orang menggunakan model pengesanan pejalan kaki';
-
-  @override
-  String get target_screen_subtitle => 'Pilih model pengesanan untuk digunakan';
-
-  @override
-  String get target_vehicle => 'Kenderaan';
-
-  @override
-  String get target_vehicle_help =>
-      'Kira kereta dan kenderaan lain menggunakan model kenderaan';
 
   @override
   String get telemetry_error_connection_refused =>

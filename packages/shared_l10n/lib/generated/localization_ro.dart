@@ -243,6 +243,23 @@ class LocalizationRo extends Localization {
   String get detection_screen_track_memory_min_label => 'Scurt';
 
   @override
+  String get detection_type_people => 'Persoane';
+
+  @override
+  String get detection_type_people_help =>
+      'Numărați persoanele prin detectarea pietonilor';
+
+  @override
+  String get detection_type_screen_subtitle => 'Alegeți ce doriți să numărați';
+
+  @override
+  String get detection_type_vehicle => 'Vehicule';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Numărați mașinile și alte vehicule';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter folosește camera pentru a detecta pietoni și vehicule în timp real. Acest dispozitiv nu are o cameră disponibilă.';
 
@@ -798,7 +815,7 @@ class LocalizationRo extends Localization {
   String get settings_screen_data_server_label => 'Server de date';
 
   @override
-  String get settings_screen_detection_target => 'Țintă detectare';
+  String get settings_screen_detection_type => 'Țintă detectare';
 
   @override
   String get settings_screen_language_title => 'Limbă';
@@ -814,7 +831,7 @@ class LocalizationRo extends Localization {
   String get settings_screen_misc_label => 'Diverse';
 
   @override
-  String get settings_screen_object_detection => 'Detectarea obiectelor';
+  String get settings_screen_object_detection => 'Ce să numărați';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -843,24 +860,6 @@ class LocalizationRo extends Localization {
   @override
   String get stagnanted_help =>
       'Numără persoanele sau vehiculele care au rămas în această zonă cel puțin timpul de staționare configurat.\\n\\nTimpul implicit de staționare este de 15 secunde și poate fi modificat din Setări.';
-
-  @override
-  String get target_pedestrian => 'Pieton';
-
-  @override
-  String get target_pedestrian_help =>
-      'Numărați persoanele folosind modelul de detectare a pietonilor';
-
-  @override
-  String get target_screen_subtitle =>
-      'Alegeți modelul de detectare pe care doriți să îl utilizați';
-
-  @override
-  String get target_vehicle => 'Vehicul';
-
-  @override
-  String get target_vehicle_help =>
-      'Numărați mașinile și alte vehicule folosind modelul de detectare a vehiculelor';
 
   @override
   String get telemetry_error_connection_refused =>

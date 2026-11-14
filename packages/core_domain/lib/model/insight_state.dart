@@ -15,11 +15,11 @@ enum TrafficComparisonPeriod {
   /// Same time window seven days ago.
   sameDayLastWeek,
 
-  /// Typical traffic for the same time window this month.
-  monthlyAverage,
+  /// Typical traffic for the same time window in the last completed month.
+  lastMonthAverage,
 
-  /// Typical traffic for the same time window this year.
-  yearlyAverage,
+  /// Typical traffic for the same time window in the last completed year.
+  lastYearAverage,
 }
 
 /// Traffic dashboard data for the Piyuo Counter main screen.
@@ -37,10 +37,10 @@ enum TrafficComparisonPeriod {
 /// calculated from completed 5-minute observations and the
 /// current partial observation when available.
 ///
-/// Example:
-///   Dashboard updated at: 11:37 AM
-///   Traffic window: 10:40 AM - 11:37 AM
-///   Traffic rate: 30 pass-bys/hour
+///  Example:
+///   Updated at: 11:37 AM
+///   Selected slots: 10:40 AM - 11:40 AM
+///   Current live slot: 11:35 AM - 11:40 AM (partial)
 ///
 /// Updates:
 ///   The dashboard updates as live observation snapshots change and when
@@ -63,12 +63,16 @@ class InsightState with _$InsightState {
   const InsightState({
     required this.businessDate,
     this.comparisonPeriod = TrafficComparisonPeriod.yesterday,
-    this.recentHourObservation,
-    this.comparisonRecentHourObservation,
+    this.recentHourTotal,
+    this.comparisonRecentHourTotal,
     this.todaySeries,
     this.comparisonSeries,
-    this.comparisonTypicalDay,
+    this.comparisonTotal,
   });
+
+  /// Creates an initial state for [businessDate] with no observations.
+  static InsightState empty({required String businessDate}) =>
+      InsightState(businessDate: businessDate, comparisonPeriod: TrafficComparisonPeriod.yesterday);
 
   /// Business-local date in YYYY-MM-DD format.
   ///
@@ -87,13 +91,17 @@ class InsightState with _$InsightState {
   ///   Updated at: 11:37 AM
   ///   Window: 10:40 AM - 11:37 AM
   ///
+  /// The window is limited to the current business date and never crosses
+  /// midnight. For example, at 00:20 it includes observations from 00:00
+  /// through 00:20, never observations from the previous day.
+  ///
   /// The hourly rate is normalized to 60 minutes.
   ///
   /// If some observations are missing, the rate is
   /// estimated using the available observation duration.
   ///
   /// Null when no observations are available.
-  final Observation? recentHourObservation;
+  final Observation? recentHourTotal;
 
   /// Historical traffic for the recent-hour comparison window.
   ///
@@ -104,7 +112,7 @@ class InsightState with _$InsightState {
   ///   Represents typical traffic for the matching weekday or weekend profile.
   ///
   /// Null when the selected comparison has no data.
-  final Observation? comparisonRecentHourObservation;
+  final Observation? comparisonRecentHourTotal;
 
   /// Completed 5-minute traffic observations for the current business date.
   ///
@@ -125,5 +133,5 @@ class InsightState with _$InsightState {
   /// This is [DaySummary.dailyTotal] for daily comparisons,
   /// [MonthSummary.monthlyTotal] for monthly comparisons, or
   /// [YearSummary.yearlyTotal] for yearly comparisons.
-  final Observation? comparisonTypicalDay;
+  final Observation? comparisonTotal;
 }

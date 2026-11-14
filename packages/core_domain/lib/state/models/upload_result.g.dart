@@ -10,9 +10,7 @@ _UploadResult _$UploadResultFromJson(Map<String, dynamic> json) =>
     _UploadResult(
       isSuccess: json['isSuccess'] as bool,
       message: json['message'] as String?,
-      detection: json['detection'] == null
-          ? null
-          : DetectionType.fromJson(json['detection'] as Map<String, dynamic>),
+      detection: $enumDecodeNullable(_$DetectionTypeEnumMap, json['detection']),
       detectionParams: json['detectionParams'] == null
           ? null
           : DetectionParams.fromJson(
@@ -29,7 +27,12 @@ Map<String, dynamic> _$UploadResultToJson(_UploadResult instance) =>
     <String, dynamic>{
       'isSuccess': instance.isSuccess,
       'message': instance.message,
-      'detection': instance.detection,
+      'detection': _$DetectionTypeEnumMap[instance.detection],
       'detectionParams': instance.detectionParams,
       'deliveryConfig': instance.deliveryConfig,
     };
+
+const _$DetectionTypeEnumMap = {
+  DetectionType.people: 'people',
+  DetectionType.vehicle: 'vehicle',
+};

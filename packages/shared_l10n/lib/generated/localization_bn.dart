@@ -242,6 +242,23 @@ class LocalizationBn extends Localization {
   String get detection_screen_track_memory_min_label => 'ছোট';
 
   @override
+  String get detection_type_people => 'মানুষ';
+
+  @override
+  String get detection_type_people_help => 'পথচারী শনাক্ত করে মানুষ গণনা করুন';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'আপনি কী গণনা করতে চান তা বেছে নিন';
+
+  @override
+  String get detection_type_vehicle => 'যানবাহন';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'গাড়ি ও অন্যান্য যানবাহন গণনা করুন';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter আপনার ক্যামেরা ব্যবহার করে পথচারী ও যানবাহনকে রিয়েল টাইমে শনাক্ত করে। এই ডিভাইসে ক্যামেরা উপলব্ধ নেই.';
 
@@ -790,7 +807,7 @@ class LocalizationBn extends Localization {
   String get settings_screen_data_server_label => 'ডেটা সার্ভার';
 
   @override
-  String get settings_screen_detection_target => 'শনাক্তকরণের লক্ষ্য';
+  String get settings_screen_detection_type => 'শনাক্তকরণের লক্ষ্য';
 
   @override
   String get settings_screen_language_title => 'ভাষা';
@@ -806,7 +823,7 @@ class LocalizationBn extends Localization {
   String get settings_screen_misc_label => 'বিবিধ';
 
   @override
-  String get settings_screen_object_detection => 'বস্তু শনাক্তকরণ';
+  String get settings_screen_object_detection => 'কী গণনা করবেন';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -835,24 +852,6 @@ class LocalizationBn extends Localization {
   @override
   String get stagnanted_help =>
       'গণনা করে কতজন মানুষ বা কতটি যানবাহন এই এলাকায় নির্ধারিত ন্যূনতম অবস্থান সময় পর্যন্ত ছিল।\\n\\nডিফল্ট Stay Time হলো ১৫ সেকেন্ড, যা Settings থেকে পরিবর্তন করা যায়।';
-
-  @override
-  String get target_pedestrian => 'পথচারী';
-
-  @override
-  String get target_pedestrian_help =>
-      'পথচারী শনাক্তকরণ মডেল ব্যবহার করে মানুষ গণনা করুন';
-
-  @override
-  String get target_screen_subtitle =>
-      'কোন শনাক্তকরণ মডেল ব্যবহার করবেন তা নির্বাচন করুন';
-
-  @override
-  String get target_vehicle => 'যানবাহন';
-
-  @override
-  String get target_vehicle_help =>
-      'গাড়ি ও অন্যান্য যানবাহন যানবাহন শনাক্তকরণ মডেল দিয়ে গণনা করুন';
 
   @override
   String get telemetry_error_connection_refused =>

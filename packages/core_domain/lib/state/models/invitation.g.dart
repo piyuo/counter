@@ -19,9 +19,7 @@ _Invitation _$InvitationFromJson(Map<String, dynamic> json) => _Invitation(
       : BusinessCustomServer.fromJson(
           json['businessCustomServer'] as Map<String, dynamic>,
         ),
-  detection: json['detection'] == null
-      ? null
-      : DetectionType.fromJson(json['detection'] as Map<String, dynamic>),
+  detection: $enumDecodeNullable(_$DetectionTypeEnumMap, json['detection']),
   detectionParams: json['detectionParams'] == null
       ? null
       : DetectionParams.fromJson(
@@ -38,7 +36,12 @@ Map<String, dynamic> _$InvitationToJson(_Invitation instance) =>
       'bearerToken': instance.bearerToken,
       'businessPiyuoServer': instance.businessPiyuoServer,
       'businessCustomServer': instance.businessCustomServer,
-      'detection': instance.detection,
+      'detection': _$DetectionTypeEnumMap[instance.detection],
       'detectionParams': instance.detectionParams,
       'uploadConfig': instance.uploadConfig,
     };
+
+const _$DetectionTypeEnumMap = {
+  DetectionType.people: 'people',
+  DetectionType.vehicle: 'vehicle',
+};

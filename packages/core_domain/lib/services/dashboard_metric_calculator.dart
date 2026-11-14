@@ -135,6 +135,9 @@ DashboardMeasurement? _valueForSamples(
   );
 }
 
+double hourlyRate(double eventCount, int coveredSeconds) =>
+    coveredSeconds <= 0 ? 0 : eventCount / coveredSeconds * 3600;
+
 DashboardMeasurement? _valueFromTotals(
   DashboardMetric metric, {
   required double eventCount,

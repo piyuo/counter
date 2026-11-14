@@ -42,9 +42,9 @@ _AppState _$AppStateFromJson(Map<String, dynamic> json) => _AppState(
   videoSource: json['videoSource'] == null
       ? const VideoSource.unspecified()
       : VideoSource.fromJson(json['videoSource'] as Map<String, dynamic>),
-  detectionType: json['detectionType'] == null
-      ? const DetectionType.human()
-      : DetectionType.fromJson(json['detectionType'] as Map<String, dynamic>),
+  detectionType:
+      $enumDecodeNullable(_$DetectionTypeEnumMap, json['detectionType']) ??
+      DetectionType.people,
   detectionParams: json['detectionParams'] == null
       ? const DetectionParams()
       : DetectionParams.fromJson(
@@ -75,7 +75,7 @@ Map<String, dynamic> _$AppStateToJson(_AppState instance) => <String, dynamic>{
   'businessCustomServer': instance.businessCustomServer,
   'uploadConfig': instance.uploadConfig,
   'videoSource': instance.videoSource,
-  'detectionType': instance.detectionType,
+  'detectionType': _$DetectionTypeEnumMap[instance.detectionType]!,
   'detectionParams': instance.detectionParams,
   'uploadJitterSec': instance.uploadJitterSec,
   'interestAreas': instance.interestAreas,
@@ -90,4 +90,9 @@ const _$DataServerSelectionEnumMap = {
   DataServerSelection.businessPiyuo: 'businessPiyuo',
   DataServerSelection.personalCustom: 'personalCustom',
   DataServerSelection.businessCustom: 'businessCustom',
+};
+
+const _$DetectionTypeEnumMap = {
+  DetectionType.people: 'people',
+  DetectionType.vehicle: 'vehicle',
 };

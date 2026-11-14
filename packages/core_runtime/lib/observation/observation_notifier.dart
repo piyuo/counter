@@ -231,7 +231,7 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
     _lastStateEmittedAtUtc = null;
     state = state.copyWith(
       liveObservation: _snapshotCurrentWindow(),
-      status: core_domain.ObservationStatus.live,
+      status: core_domain.ObservationStatus.started,
       observationStartUtc: _nowProvider?.call().toUtc() ?? DateTime.now().toUtc(),
     );
 
@@ -502,10 +502,10 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
     final forceBroadcast = _forceNextFrameBroadcast;
     _forceNextFrameBroadcast = false;
-    final statusChanged = state.status != core_domain.ObservationStatus.live;
+    final statusChanged = state.status != core_domain.ObservationStatus.started;
     _broadcastLiveSnapshot(
       checkOneSecondThrottle: !forceBroadcast && !statusChanged,
-      status: core_domain.ObservationStatus.live,
+      status: core_domain.ObservationStatus.started,
     );
   }
 

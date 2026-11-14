@@ -243,6 +243,22 @@ class LocalizationTr extends Localization {
   String get detection_screen_track_memory_min_label => 'Kısa';
 
   @override
+  String get detection_type_people => 'İnsanlar';
+
+  @override
+  String get detection_type_people_help => 'Yaya algılamayla insanları sayın';
+
+  @override
+  String get detection_type_screen_subtitle => 'Neyi saymak istediğinizi seçin';
+
+  @override
+  String get detection_type_vehicle => 'Araçlar';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Otomobilleri ve diğer araçları sayın';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter, yayaları ve araçları gerçek zamanlı algılamak için kameranızı kullanır. Bu cihazda kullanılabilir bir kamera yok.';
 
@@ -791,7 +807,7 @@ class LocalizationTr extends Localization {
   String get settings_screen_data_server_label => 'Veri Sunucusu';
 
   @override
-  String get settings_screen_detection_target => 'Algılama Hedefi';
+  String get settings_screen_detection_type => 'Algılama Hedefi';
 
   @override
   String get settings_screen_language_title => 'Dil';
@@ -807,7 +823,7 @@ class LocalizationTr extends Localization {
   String get settings_screen_misc_label => 'Diğer';
 
   @override
-  String get settings_screen_object_detection => 'Nesne Algılama';
+  String get settings_screen_object_detection => 'Ne sayılacak?';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -837,23 +853,6 @@ class LocalizationTr extends Localization {
   @override
   String get stagnanted_help =>
       'Bu alanda en az ayarlanan Bekleme Süresi kadar kalan kişi veya araçları sayar.\\n\\nVarsayılan Bekleme Süresi 15 saniyedir ve Ayarlar\'dan değiştirilebilir.';
-
-  @override
-  String get target_pedestrian => 'Yaya';
-
-  @override
-  String get target_pedestrian_help =>
-      'Yaya algılama modeliyle insanları sayın';
-
-  @override
-  String get target_screen_subtitle => 'Kullanılacak algılama modelini seçin';
-
-  @override
-  String get target_vehicle => 'Araç';
-
-  @override
-  String get target_vehicle_help =>
-      'Araç modeliyle otomobil ve diğer araçları sayın';
 
   @override
   String get telemetry_error_connection_refused =>

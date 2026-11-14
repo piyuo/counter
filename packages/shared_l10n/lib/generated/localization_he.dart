@@ -242,6 +242,22 @@ class LocalizationHe extends Localization {
   String get detection_screen_track_memory_min_label => 'קצר';
 
   @override
+  String get detection_type_people => 'אנשים';
+
+  @override
+  String get detection_type_people_help =>
+      'ספירת אנשים באמצעות זיהוי הולכי רגל';
+
+  @override
+  String get detection_type_screen_subtitle => 'בחרו מה לספור';
+
+  @override
+  String get detection_type_vehicle => 'כלי רכב';
+
+  @override
+  String get detection_type_vehicle_help => 'ספירת מכוניות וכלי רכב אחרים';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter משתמש במצלמה שלך כדי לזהות הולכי רגל וכלי רכב בזמן אמת. למכשיר זה אין מצלמה זמינה.';
 
@@ -784,7 +800,7 @@ class LocalizationHe extends Localization {
   String get settings_screen_data_server_label => 'שרת נתונים';
 
   @override
-  String get settings_screen_detection_target => 'יעד הזיהוי';
+  String get settings_screen_detection_type => 'יעד הזיהוי';
 
   @override
   String get settings_screen_language_title => 'שפה';
@@ -800,7 +816,7 @@ class LocalizationHe extends Localization {
   String get settings_screen_misc_label => 'שונות';
 
   @override
-  String get settings_screen_object_detection => 'זיהוי אובייקטים';
+  String get settings_screen_object_detection => 'מה לספור';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -829,23 +845,6 @@ class LocalizationHe extends Localization {
   @override
   String get stagnanted_help =>
       'סופר אנשים או כלי רכב שנשארו באזור זה לפחות למשך זמן השהייה שהוגדר.\\n\\nברירת המחדל של זמן השהייה היא 15 שניות וניתן לשנות אותה בהגדרות.';
-
-  @override
-  String get target_pedestrian => 'הולך רגל';
-
-  @override
-  String get target_pedestrian_help =>
-      'ספור אנשים באמצעות מודל זיהוי הולכי רגל';
-
-  @override
-  String get target_screen_subtitle => 'בחר את מודל הזיהוי שבו ברצונך להשתמש';
-
-  @override
-  String get target_vehicle => 'רכב';
-
-  @override
-  String get target_vehicle_help =>
-      'ספור מכוניות וכלי רכב אחרים באמצעות מודל זיהוי כלי רכב';
 
   @override
   String get telemetry_error_connection_refused =>

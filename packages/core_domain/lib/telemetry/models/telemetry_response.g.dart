@@ -45,9 +45,7 @@ const _$TelemetryErrorCodeEnumMap = {
 };
 
 _ServerData _$ServerDataFromJson(Map<String, dynamic> json) => _ServerData(
-  detection: json['detection'] == null
-      ? null
-      : DetectionType.fromJson(json['detection'] as Map<String, dynamic>),
+  detection: $enumDecodeNullable(_$DetectionTypeEnumMap, json['detection']),
   detectionParams: json['detectionParams'] == null
       ? null
       : DetectionParams.fromJson(
@@ -63,11 +61,16 @@ _ServerData _$ServerDataFromJson(Map<String, dynamic> json) => _ServerData(
 
 Map<String, dynamic> _$ServerDataToJson(_ServerData instance) =>
     <String, dynamic>{
-      'detection': instance.detection,
+      'detection': _$DetectionTypeEnumMap[instance.detection],
       'detectionParams': instance.detectionParams,
       'deliveryConfig': instance.deliveryConfig,
       'config': instance.config,
     };
+
+const _$DetectionTypeEnumMap = {
+  DetectionType.people: 'people',
+  DetectionType.vehicle: 'vehicle',
+};
 
 _ServerConfig _$ServerConfigFromJson(Map<String, dynamic> json) =>
     _ServerConfig(

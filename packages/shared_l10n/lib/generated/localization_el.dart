@@ -244,6 +244,23 @@ class LocalizationEl extends Localization {
   String get detection_screen_track_memory_min_label => 'Σύντομο';
 
   @override
+  String get detection_type_people => 'Άτομα';
+
+  @override
+  String get detection_type_people_help => 'Μετρήστε άτομα με ανίχνευση πεζών';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'Επιλέξτε τι θέλετε να μετρήσετε';
+
+  @override
+  String get detection_type_vehicle => 'Οχήματα';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Μετρήστε αυτοκίνητα και άλλα οχήματα';
+
+  @override
   String get device_not_supported_screen_body =>
       'Το Piyuo Counter χρησιμοποιεί την κάμερά σας για να εντοπίζει πεζούς και οχήματα σε πραγματικό χρόνο. Δεν υπάρχει διαθέσιμη κάμερα σε αυτήν τη συσκευή.';
 
@@ -800,7 +817,7 @@ class LocalizationEl extends Localization {
   String get settings_screen_data_server_label => 'Διακομιστής δεδομένων';
 
   @override
-  String get settings_screen_detection_target => 'Στόχος ανίχνευσης';
+  String get settings_screen_detection_type => 'Στόχος ανίχνευσης';
 
   @override
   String get settings_screen_language_title => 'Γλώσσα';
@@ -816,7 +833,7 @@ class LocalizationEl extends Localization {
   String get settings_screen_misc_label => 'Διάφορα';
 
   @override
-  String get settings_screen_object_detection => 'Ανίχνευση αντικειμένων';
+  String get settings_screen_object_detection => 'Τι να μετρήσετε';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -846,24 +863,6 @@ class LocalizationEl extends Localization {
   @override
   String get stagnanted_help =>
       'Μετρά άτομα ή οχήματα που παρέμειναν σε αυτή την περιοχή για τουλάχιστον τον καθορισμένο χρόνο παραμονής.\\n\\nΟ προεπιλεγμένος χρόνος παραμονής είναι 15 δευτερόλεπτα και μπορεί να αλλάξει από τις Ρυθμίσεις.';
-
-  @override
-  String get target_pedestrian => 'Πεζοί';
-
-  @override
-  String get target_pedestrian_help =>
-      'Μετρήστε άτομα με το μοντέλο ανίχνευσης πεζών';
-
-  @override
-  String get target_screen_subtitle =>
-      'Επιλέξτε ποιο μοντέλο ανίχνευσης θα χρησιμοποιηθεί';
-
-  @override
-  String get target_vehicle => 'Οχήματα';
-
-  @override
-  String get target_vehicle_help =>
-      'Μετρήστε αυτοκίνητα και άλλα οχήματα με το μοντέλο ανίχνευσης οχημάτων';
 
   @override
   String get telemetry_error_connection_refused =>

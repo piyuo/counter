@@ -4,7 +4,6 @@
 
 import 'package:core_domain/model/vision_state.dart';
 import 'package:core_domain/state/models/detection_params.dart';
-import 'package:core_domain/state/models/detection_type.dart';
 import 'package:core_domain/state/models/interest_area.dart';
 import 'package:core_domain/state/models/video_source.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

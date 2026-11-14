@@ -85,7 +85,7 @@ void main() {
 
       final responseBody = jsonEncode({
         'error': '',
-        'detection': {'runtimeType': 'vehicle'},
+        'detection': 'vehicle',
         'detectionParams': {'trackHighThresh': 0.77},
         'deliveryConfig': {'intervalMin': 15},
       });
@@ -120,7 +120,7 @@ void main() {
       await service.uploadNow();
 
       final state = await container.read(core_domain.appProvider.future);
-      expect(state.detectionType, const core_domain.DetectionType.vehicle());
+      expect(state.detectionType, core_domain.DetectionType.vehicle);
       expect(state.detectionParams.trackHighThresh, 0.77);
       expect(state.uploadConfig.wallClockCadenceMin, 15);
       expect(queue.markedSuccessIds, [_observationId(startUtc: DateTime.utc(2026, 1, 1, 0, 0))]);

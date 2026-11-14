@@ -1,7 +1,3 @@
-// TOC:
-// - DetectionTypeSelectionScreen: dedicated picker for detection target type
-// - _DetectionTypeOption: a selectable detection type row definition
-
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:counter_app/control_panel/widgets/selection_checkbox.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
@@ -9,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-class TargetScreen extends ConsumerWidget {
-  const TargetScreen({super.key});
+class DetectionTypeScreen extends ConsumerWidget {
+  const DetectionTypeScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,18 +30,18 @@ class TargetScreen extends ConsumerWidget {
             final currentDetection = appState.detectionType;
             final options = <_DetectionTypeOption>[
               _DetectionTypeOption(
-                title: context.l.target_pedestrian,
-                subtitle: context.l.target_pedestrian_help,
+                title: context.l.detection_type_people,
+                subtitle: context.l.detection_type_people_help,
                 icon: Icons.directions_walk,
-                matches: (detection) => detection is core_domain.DetectionHuman,
-                detection: const core_domain.DetectionType.human(),
+                matches: (detection) => detection == core_domain.DetectionType.people,
+                detection: core_domain.DetectionType.people,
               ),
               _DetectionTypeOption(
-                title: context.l.target_vehicle,
-                subtitle: context.l.target_vehicle_help,
+                title: context.l.detection_type_vehicle,
+                subtitle: context.l.detection_type_vehicle_help,
                 icon: Icons.directions_car,
-                matches: (detection) => detection is core_domain.DetectionVehicle,
-                detection: const core_domain.DetectionType.vehicle(),
+                matches: (detection) => detection == core_domain.DetectionType.vehicle,
+                detection: core_domain.DetectionType.vehicle,
               ),
             ];
 
@@ -56,8 +52,8 @@ class TargetScreen extends ConsumerWidget {
                 children: [
                   feature_pip.PipHeader(
                     icon: Icons.gps_fixed,
-                    title: context.l.settings_screen_detection_target,
-                    subtitle: context.l.target_screen_subtitle,
+                    title: context.l.settings_screen_detection_type,
+                    subtitle: context.l.detection_type_screen_subtitle,
                   ),
                   feature_pip.PipPanel(
                     child: Column(

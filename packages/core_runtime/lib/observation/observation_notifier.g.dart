@@ -124,7 +124,7 @@ final class ObservationNotifierProvider
 }
 
 String _$observationNotifierHash() =>
-    r'e7ad328e28bf2c481a2eda555b417a657ae5515d';
+    r'5d5b5b6a0783188502b08ce104a90b42f9561d71';
 
 /// Riverpod notifier that orchestrates all counting and area-metric tracking.
 ///

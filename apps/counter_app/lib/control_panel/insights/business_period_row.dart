@@ -1,8 +1,8 @@
 // Contents: BusinessPeriodRow and private business-period formatting helpers.
 
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:counter_app/control_panel/insights/insight_comparison_indicator.dart';
-import 'package:counter_app/control_panel/insights/insight_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
@@ -35,7 +35,7 @@ class BusinessPeriodRow extends StatelessWidget {
     final title = _periodLabel(context, period.id, period.name);
     final comparisonValue = periodData.comparisonValue;
     final hasComparison = periodData.comparisonValue != null;
-    final comparisonLabel = insightComparisonPeriodLabel(context, comparisonPeriod);
+    final comparisonLabel = formatTrafficComparisonPeriodLabel(context, comparisonPeriod);
 
     List<Widget> buildComparison() {
       if (value == null) {

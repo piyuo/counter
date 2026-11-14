@@ -1,7 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart' as observation_model;
-import 'package:core_domain/services/dashboard_metric_calculator.dart'
-    as metric_calculator;
+import 'package:core_domain/services/dashboard_metric_calculator.dart' as metric_calculator;
+import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,25 +9,14 @@ import 'package:intl/intl.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import 'insights/hourly_metric_summary.dart';
-import 'insights/live_primary_panel.dart';
+import 'insights/primary_metric_detail.dart';
+import 'observation_tile.dart';
 import 'utils/dashboard_utils.dart';
 
-enum _ObservationPeriod {
-  today,
-  yesterday,
-  lastWeek,
-  monthlyAverage,
-  yearlyAverage,
-  custom,
-}
+enum _ObservationPeriod { liveToday, yesterday, sameDayLastWeek, lastMonthAverage, lastYearAverage, custom }
 
 class ObservationScreen extends ConsumerStatefulWidget {
-  const ObservationScreen({
-    required this.areaId,
-    required this.metric,
-    super.key,
-  });
+  const ObservationScreen({required this.areaId, required this.metric, super.key});
 
   final int areaId;
   final core_domain.DashboardMetric metric;
@@ -37,7 +26,7 @@ class ObservationScreen extends ConsumerStatefulWidget {
 }
 
 class _ObservationScreenState extends ConsumerState<ObservationScreen> {
-  _ObservationPeriod _period = _ObservationPeriod.today;
+  _ObservationPeriod _period = _ObservationPeriod.liveToday;
   DateTime _customDate = DateUtils.dateOnly(DateTime.now());
   final Map<int, bool> _expandedHours = {};
   late Future<observation_model.ObservationSeries?> _observationsFuture;
@@ -48,54 +37,27 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     _observationsFuture = _loadObservations(_period, _customDate);
   }
 
-  Future<observation_model.ObservationSeries?> _loadObservations(
-    _ObservationPeriod period,
-    DateTime customDate,
-  ) {
-    final analytics = ref.read(core_domain.analyticsServiceProvider);
+  Future<observation_model.ObservationSeries?> _loadObservations(_ObservationPeriod period, DateTime customDate) {
+    final insight = ref.read(core_domain.insightServiceProvider);
     final now = DateTime.now();
     switch (period) {
-      case _ObservationPeriod.today:
-        return _loadDay(analytics, now);
+      case _ObservationPeriod.liveToday:
+        return insight.getObservationsFromLiveToday();
       case _ObservationPeriod.yesterday:
-        return _loadDay(analytics, DateTime(now.year, now.month, now.day - 1));
-      case _ObservationPeriod.lastWeek:
-        return _loadDay(analytics, DateTime(now.year, now.month, now.day - 7));
+        return insight.getObservationsFromYesterday();
+      case _ObservationPeriod.sameDayLastWeek:
+        return insight.getObservationsFromSameDayLastWeek();
       case _ObservationPeriod.custom:
-        return _loadDay(analytics, customDate);
-      case _ObservationPeriod.monthlyAverage:
-        return analytics.getMonthSummary(now.year, now.month).then((summary) {
-          if (summary == null) return null;
-          final isWeekend =
-              now.weekday == DateTime.saturday ||
-              now.weekday == DateTime.sunday;
-          return isWeekend
-              ? summary.weekendFiveMinuteObservation
-              : summary.weekdayFiveMinuteObservation;
-        });
-      case _ObservationPeriod.yearlyAverage:
-        return analytics.getYearSummary(now.year).then((summary) {
-          if (summary == null) return null;
-          final isWeekend =
-              now.weekday == DateTime.saturday ||
-              now.weekday == DateTime.sunday;
-          return isWeekend
-              ? summary.weekendFiveMinuteObservation
-              : summary.weekdayFiveMinuteObservation;
-        });
+        final date = DateUtils.dateOnly(customDate);
+        if (date == DateUtils.dateOnly(now)) {
+          return insight.getObservationsFromLiveToday();
+        }
+        return insight.getObservationsByDate(date);
+      case _ObservationPeriod.lastMonthAverage:
+        return insight.getObservationsFromLastMonth();
+      case _ObservationPeriod.lastYearAverage:
+        return insight.getObservationsFromLastYear();
     }
-  }
-
-  Future<observation_model.ObservationSeries?> _loadDay(
-    core_domain.AnalyticsService analytics,
-    DateTime date,
-  ) async {
-    final summary = await analytics.getDaySummary(
-      date.year,
-      date.month,
-      date.day,
-    );
-    return summary?.fiveMinuteObservations;
   }
 
   Future<void> _selectPeriod(_ObservationPeriod? period) async {
@@ -120,16 +82,12 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     });
   }
 
-  String _periodLabel(
-    BuildContext context,
-    _ObservationPeriod period,
-    DateFormat dateFormat,
-  ) => switch (period) {
-    _ObservationPeriod.today => context.l.insight_today,
+  String _periodLabel(BuildContext context, _ObservationPeriod period, DateFormat dateFormat) => switch (period) {
+    _ObservationPeriod.liveToday => context.l.insight_today,
     _ObservationPeriod.yesterday => context.l.insight_comparison_yesterday,
-    _ObservationPeriod.lastWeek => context.l.insight_comparison_last_week,
-    _ObservationPeriod.monthlyAverage => context.l.insight_comparison_monthly,
-    _ObservationPeriod.yearlyAverage => context.l.insight_comparison_yearly,
+    _ObservationPeriod.sameDayLastWeek => context.l.insight_comparison_last_week,
+    _ObservationPeriod.lastMonthAverage => context.l.insight_comparison_monthly,
+    _ObservationPeriod.lastYearAverage => context.l.insight_comparison_yearly,
     _ObservationPeriod.custom => dateFormat.format(_customDate),
   };
 
@@ -138,9 +96,13 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     final appState = ref.watch(core_domain.appProvider).asData?.value;
     if (appState == null) return const SizedBox.shrink();
 
-    ref.listen(core_domain.analyticsStateProvider, (previous, next) {
-      if (_period != _ObservationPeriod.today) return;
-      if (previous?.lastUpdatedUtc == next.lastUpdatedUtc) return;
+    ref.listen(core_domain.insightStateProvider, (previous, next) {
+      if (_period != _ObservationPeriod.liveToday) return;
+      if (previous?.businessDate == next.businessDate &&
+          previous?.todaySeries == next.todaySeries &&
+          previous?.recentHourTotal == next.recentHourTotal) {
+        return;
+      }
       setState(() {
         _observationsFuture = _loadObservations(_period, _customDate);
       });
@@ -149,250 +111,116 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     final locale = Localizations.localeOf(context).toString();
     final dateFormat = DateFormat.yMMMd(locale);
     final timeFormat = DateFormat.Hm(locale);
-    final numberFormat = NumberFormat.decimalPattern(locale)
-      ..maximumFractionDigits = 0;
-    final metricLabel = dashboardMetricLabel(context, widget.metric);
+    final metricLabel = formatMetricLabel(context, widget.metric);
 
     return feature_pip.PipScaffold(
       title: metricLabel,
-      builder: (scrollController) =>
-          FutureBuilder<observation_model.ObservationSeries?>(
-            key: ValueKey((_period, _customDate)),
-            future: _observationsFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting &&
-                  !snapshot.hasData) {
-                return const Center(
-                  child: GlassProgressIndicator.circular(
-                    strokeWidth: 2.5,
-                    color: Colors.white,
-                  ),
-                );
-              }
-              if (snapshot.hasError) {
-                return Center(child: Text(context.l.insight_error));
-              }
-              final observations = snapshot.data;
-              if (observations == null || observations.isEmpty) {
-                return Center(
-                  child: Text(context.l.insight_comparison_unavailable),
-                );
-              }
+      builder: (scrollController) => FutureBuilder<observation_model.ObservationSeries?>(
+        key: ValueKey((_period, _customDate)),
+        future: _observationsFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting && !snapshot.hasData) {
+            return const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white));
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text(context.l.insight_error));
+          }
+          final observations = snapshot.data;
+          if (observations == null || observations.isEmpty) {
+            return Center(child: Text(context.l.insight_comparison_unavailable));
+          }
 
-              final byHour = <int, List<core_domain.Observation>>{};
-              for (final observation in observations) {
-                byHour.putIfAbsent(observation.hour, () => []).add(observation);
-              }
-              final sortedHours = byHour.keys.toList()..sort();
-              final total = getDashboardMetricAggregateValue(
-                observations.items,
-                widget.areaId,
-                widget.metric,
-              );
-              final hourlySummaries = {
+          final byHour = <int, List<core_domain.Observation>>{};
+          for (final observation in observations) {
+            byHour.putIfAbsent(observation.hour, () => []).add(observation);
+          }
+          final sortedHours = byHour.keys.toList()..sort();
+          final total = getDashboardMetricAggregateValue(observations.items, widget.areaId, widget.metric);
+          final hourlySummaries = {
+            for (final hour in sortedHours)
+              hour: (
+                subtotal: getDashboardMetricAggregateValue(byHour[hour]!, widget.areaId, widget.metric),
+                coveredSeconds: getDashboardCoveredSeconds(byHour[hour]!, widget.areaId),
+                measurement: metric_calculator.calculateInsightMetricFromObservationsInRange(
+                  series: observations,
+                  startMinute: hour * 60,
+                  endMinute: (hour + 1) * 60,
+                  areaId: widget.areaId,
+                  metric: widget.metric,
+                  expectedSeconds: 3600,
+                ),
+              ),
+          };
+
+          return SingleChildScrollView(
+            controller: scrollController,
+            padding: const EdgeInsets.symmetric(vertical: feature_pip.kScrollContentAppbarPadding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                PrimaryMetricDetail(areaId: widget.areaId, metric: widget.metric),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  child: DropdownButtonFormField<_ObservationPeriod>(
+                    initialValue: _period,
+                    isExpanded: true,
+                    items: [
+                      for (final period in _ObservationPeriod.values)
+                        DropdownMenuItem(
+                          value: period,
+                          child: Text(
+                            period == _ObservationPeriod.custom
+                                ? (_period == period
+                                      ? _periodLabel(context, period, dateFormat)
+                                      : MaterialLocalizations.of(context).datePickerHelpText)
+                                : _periodLabel(context, period, dateFormat),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    ],
+                    onChanged: _selectPeriod,
+                  ),
+                ),
                 for (final hour in sortedHours)
-                  hour: (
-                    subtotal: getDashboardMetricAggregateValue(
-                      byHour[hour]!,
-                      widget.areaId,
-                      widget.metric,
-                    ),
-                    coveredSeconds: getDashboardCoveredSeconds(
-                      byHour[hour]!,
-                      widget.areaId,
-                    ),
-                    measurement: metric_calculator
-                        .calculateInsightMetricFromObservationsInRange(
-                          series: observations,
-                          startMinute: hour * 60,
-                          endMinute: (hour + 1) * 60,
-                          areaId: widget.areaId,
-                          metric: widget.metric,
-                          expectedSeconds: 3600,
-                        ),
+                  ObservationTile(
+                    hourLabel: timeFormat.format(DateTime(2000, 1, 1, hour)),
+                    initiallyExpanded: hour == sortedHours.last,
+                    isExpanded: _expandedHours[hour],
+                    onExpansionChanged: (expanded) {
+                      setState(() => _expandedHours[hour] = expanded);
+                    },
+                    observations: byHour[hour]!,
+                    areaId: widget.areaId,
+                    metric: widget.metric,
+                    subtotal: hourlySummaries[hour]!.subtotal,
+                    coveredSeconds: hourlySummaries[hour]!.coveredSeconds,
+                    measurement: hourlySummaries[hour]!.measurement,
+                    timeFormat: timeFormat,
                   ),
-              };
-
-              return SingleChildScrollView(
-                controller: scrollController,
-                padding: const EdgeInsets.symmetric(
-                  vertical: feature_pip.kScrollContentAppbarPadding,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22),
-                      child: DropdownButtonFormField<_ObservationPeriod>(
-                        initialValue: _period,
-                        isExpanded: true,
-                        items: [
-                          for (final period in _ObservationPeriod.values)
-                            DropdownMenuItem(
-                              value: period,
-                              child: Text(
-                                period == _ObservationPeriod.custom
-                                    ? (_period == period
-                                          ? _periodLabel(
-                                              context,
-                                              period,
-                                              dateFormat,
-                                            )
-                                          : MaterialLocalizations.of(
-                                              context,
-                                            ).datePickerHelpText)
-                                    : _periodLabel(context, period, dateFormat),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                        ],
-                        onChanged: _selectPeriod,
-                      ),
+                feature_pip.PipPanel(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            context.l.observation_screen_total,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ),
+                        Text(
+                          formatDashboardMetricValueUnit(context, widget.metric, total, appState.detectionType),
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                      ],
                     ),
-                    if (_period == _ObservationPeriod.today)
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
-                        child: LivePrimaryPanel(
-                          areaId: widget.areaId,
-                          metric: widget.metric,
-                        ),
-                      ),
-                    for (final hour in sortedHours)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
-                          vertical: 2,
-                        ),
-                        child: ExpansionTile(
-                          initiallyExpanded: hour == sortedHours.last,
-                          onExpansionChanged: (expanded) {
-                            setState(() => _expandedHours[hour] = expanded);
-                          },
-                          dense: true,
-                          minTileHeight: 10,
-                          tilePadding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                          ),
-                          leading: Icon(
-                            (_expandedHours[hour] ?? hour == sortedHours.last)
-                                ? Icons.expand_less
-                                : Icons.expand_more,
-                          ),
-                          title: Text(
-                            timeFormat.format(DateTime(2000, 1, 1, hour)),
-                            style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontFeatures: const [
-                                FontFeature.tabularFigures(),
-                              ],
-                            ),
-                          ),
-                          trailing: Text(
-                            _formatHourlyMeasurement(
-                              context,
-                              hourlySummaries[hour]!.measurement,
-                              hourlySummaries[hour]!.subtotal,
-                              widget.metric,
-                              numberFormat,
-                            ),
-                          ),
-                          children: [
-                            for (final observation in byHour[hour]!)
-                              Padding(
-                                padding: EdgeInsets.fromLTRB(72, 0, 16, 4),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        '${timeFormat.format(observation.dateTime)} - ${timeFormat.format(observation.dateTime.add(const Duration(minutes: 5)))}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                              fontFeatures: const [
-                                                FontFeature.tabularFigures(),
-                                              ],
-                                            ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 12),
-                                    Text(
-                                      formatDashboardMetricValue(
-                                        getDashboardMetricValue(
-                                          observation,
-                                          widget.areaId,
-                                          widget.metric,
-                                        ),
-                                        widget.metric,
-                                        numberFormat,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            HourlyMetricSummary(
-                              metric: widget.metric,
-                              subtotal: hourlySummaries[hour]!.subtotal,
-                              coveredSeconds:
-                                  hourlySummaries[hour]!.coveredSeconds,
-                              hourlyRate: _hourlyRate(
-                                hourlySummaries[hour]!.measurement,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    feature_pip.PipPanel(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                context.l.observation_screen_total,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ),
-                            Text(
-                              formatDashboardMetricValue(
-                                total,
-                                widget.metric,
-                                numberFormat,
-                              ),
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(fontWeight: FontWeight.w700),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              );
-            },
-          ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
-}
-
-double? _hourlyRate(core_domain.DashboardMeasurement? measurement) =>
-    measurement?.unit == core_domain.DashboardMeasurementUnit.countPerHour
-    ? measurement!.amount
-    : null;
-
-String _formatHourlyMeasurement(
-  BuildContext context,
-  core_domain.DashboardMeasurement? measurement,
-  double? subtotal,
-  core_domain.DashboardMetric metric,
-  NumberFormat numberFormat,
-) {
-  if (!dashboardMetricUsesHourlyRate(metric)) {
-    return formatDashboardMetricValue(subtotal, metric, numberFormat);
-  }
-  if (measurement?.unit != core_domain.DashboardMeasurementUnit.countPerHour) {
-    return '—';
-  }
-  final rate = numberFormat.format(measurement!.amount);
-  return '$rate ${context.l.insight_tracks_per_hour}';
 }

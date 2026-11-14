@@ -242,6 +242,22 @@ class LocalizationVi extends Localization {
   String get detection_screen_track_memory_min_label => 'Ngắn';
 
   @override
+  String get detection_type_people => 'Người';
+
+  @override
+  String get detection_type_people_help =>
+      'Đếm người bằng tính năng phát hiện người đi bộ';
+
+  @override
+  String get detection_type_screen_subtitle => 'Chọn đối tượng bạn muốn đếm';
+
+  @override
+  String get detection_type_vehicle => 'Phương tiện';
+
+  @override
+  String get detection_type_vehicle_help => 'Đếm ô tô và các phương tiện khác';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter sử dụng camera để phát hiện người đi bộ và phương tiện theo thời gian thực. Thiết bị này không có camera khả dụng.';
 
@@ -791,7 +807,7 @@ class LocalizationVi extends Localization {
   String get settings_screen_data_server_label => 'Máy chủ dữ liệu';
 
   @override
-  String get settings_screen_detection_target => 'Mục tiêu phát hiện';
+  String get settings_screen_detection_type => 'Mục tiêu phát hiện';
 
   @override
   String get settings_screen_language_title => 'Ngôn ngữ';
@@ -807,7 +823,7 @@ class LocalizationVi extends Localization {
   String get settings_screen_misc_label => 'Khác';
 
   @override
-  String get settings_screen_object_detection => 'Phát hiện đối tượng';
+  String get settings_screen_object_detection => 'Đếm gì';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -836,23 +852,6 @@ class LocalizationVi extends Localization {
   @override
   String get stagnanted_help =>
       'Đếm số người hoặc phương tiện ở trong khu vực này ít nhất bằng Thời gian lưu được thiết lập.\\n\\nThời gian lưu mặc định là 15 giây và có thể thay đổi trong Cài đặt.';
-
-  @override
-  String get target_pedestrian => 'Người đi bộ';
-
-  @override
-  String get target_pedestrian_help =>
-      'Đếm người bằng mô hình phát hiện người đi bộ';
-
-  @override
-  String get target_screen_subtitle => 'Chọn mô hình phát hiện sẽ sử dụng';
-
-  @override
-  String get target_vehicle => 'Phương tiện';
-
-  @override
-  String get target_vehicle_help =>
-      'Đếm ô tô và các phương tiện khác bằng mô hình phát hiện phương tiện';
 
   @override
   String get telemetry_error_connection_refused =>

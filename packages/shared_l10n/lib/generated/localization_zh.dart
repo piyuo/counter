@@ -229,6 +229,21 @@ class LocalizationZh extends Localization {
   String get detection_screen_track_memory_min_label => '短';
 
   @override
+  String get detection_type_people => '人員';
+
+  @override
+  String get detection_type_people_help => '使用行人偵測統計人數';
+
+  @override
+  String get detection_type_screen_subtitle => '選擇要統計的對象';
+
+  @override
+  String get detection_type_vehicle => '車輛';
+
+  @override
+  String get detection_type_vehicle_help => '統計汽車和其他車輛';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter 使用您的相機即時偵測行人與車輛。此裝置沒有可用的相機。';
 
@@ -755,7 +770,7 @@ class LocalizationZh extends Localization {
   String get settings_screen_data_server_label => '資料伺服器';
 
   @override
-  String get settings_screen_detection_target => '偵測目標';
+  String get settings_screen_detection_type => '偵測目標';
 
   @override
   String get settings_screen_language_title => '語言';
@@ -770,7 +785,7 @@ class LocalizationZh extends Localization {
   String get settings_screen_misc_label => '其他';
 
   @override
-  String get settings_screen_object_detection => '物件偵測';
+  String get settings_screen_object_detection => '統計對象';
 
   @override
   String get settings_screen_piyuo_subtitle => '將流量資料儲存在 Piyuo 雲端，並使用儀表板與商業洞察。';
@@ -796,21 +811,6 @@ class LocalizationZh extends Localization {
   @override
   String get stagnanted_help =>
       '統計在此區域內停留時間達到設定值的人員或車輛數量。\\n\\n預設停留時間為 15 秒，可在設定中修改。';
-
-  @override
-  String get target_pedestrian => '行人';
-
-  @override
-  String get target_pedestrian_help => '使用行人偵測模型統計人數';
-
-  @override
-  String get target_screen_subtitle => '選擇要使用的偵測模型';
-
-  @override
-  String get target_vehicle => '車輛';
-
-  @override
-  String get target_vehicle_help => '使用車輛偵測模型統計汽車和其他車輛';
 
   @override
   String get telemetry_error_connection_refused => '無法連線至伺服器，目前可能處於離線狀態。';
@@ -1205,6 +1205,21 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get detection_screen_track_memory_min_label => '短';
+
+  @override
+  String get detection_type_people => '人员';
+
+  @override
+  String get detection_type_people_help => '使用行人检测统计人数';
+
+  @override
+  String get detection_type_screen_subtitle => '选择要统计的对象';
+
+  @override
+  String get detection_type_vehicle => '车辆';
+
+  @override
+  String get detection_type_vehicle_help => '统计汽车和其他车辆';
 
   @override
   String get device_not_supported_screen_body =>
@@ -1734,7 +1749,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get settings_screen_data_server_label => '数据服务器';
 
   @override
-  String get settings_screen_detection_target => '检测目标';
+  String get settings_screen_detection_type => '检测目标';
 
   @override
   String get settings_screen_language_title => '语言';
@@ -1749,7 +1764,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get settings_screen_misc_label => '其他';
 
   @override
-  String get settings_screen_object_detection => '对象检测';
+  String get settings_screen_object_detection => '统计对象';
 
   @override
   String get settings_screen_piyuo_subtitle => '将流量数据存储到 Piyuo 云端，并使用仪表板和商业洞察。';
@@ -1775,21 +1790,6 @@ class LocalizationZhCn extends LocalizationZh {
   @override
   String get stagnanted_help =>
       '统计在此区域内停留时间达到设定停留时间的人员或车辆数量。\\n\\n默认停留时间为15秒，可在设置中修改。';
-
-  @override
-  String get target_pedestrian => '行人';
-
-  @override
-  String get target_pedestrian_help => '使用行人检测模型统计人数';
-
-  @override
-  String get target_screen_subtitle => '选择要使用的检测模型';
-
-  @override
-  String get target_vehicle => '车辆';
-
-  @override
-  String get target_vehicle_help => '使用车辆检测模型统计汽车和其他车辆';
 
   @override
   String get telemetry_error_connection_refused => '无法连接到服务器，目前可能处于离线状态。';

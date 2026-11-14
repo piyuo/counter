@@ -243,6 +243,22 @@ class LocalizationPl extends Localization {
   String get detection_screen_track_memory_min_label => 'Krótki';
 
   @override
+  String get detection_type_people => 'Osoby';
+
+  @override
+  String get detection_type_people_help =>
+      'Licz osoby dzięki wykrywaniu pieszych';
+
+  @override
+  String get detection_type_screen_subtitle => 'Wybierz, co chcesz liczyć';
+
+  @override
+  String get detection_type_vehicle => 'Pojazdy';
+
+  @override
+  String get detection_type_vehicle_help => 'Licz samochody i inne pojazdy';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter używa aparatu do wykrywania pieszych i pojazdów w czasie rzeczywistym. To urządzenie nie ma dostępnego aparatu.';
 
@@ -796,7 +812,7 @@ class LocalizationPl extends Localization {
   String get settings_screen_data_server_label => 'Serwer danych';
 
   @override
-  String get settings_screen_detection_target => 'Cel wykrywania';
+  String get settings_screen_detection_type => 'Cel wykrywania';
 
   @override
   String get settings_screen_language_title => 'Język';
@@ -812,7 +828,7 @@ class LocalizationPl extends Localization {
   String get settings_screen_misc_label => 'Różne';
 
   @override
-  String get settings_screen_object_detection => 'Wykrywanie obiektów';
+  String get settings_screen_object_detection => 'Co liczyć';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -842,24 +858,6 @@ class LocalizationPl extends Localization {
   @override
   String get stagnanted_help =>
       'Zlicza osoby lub pojazdy, które pozostały w tym obszarze przez co najmniej ustawiony czas przebywania.\\n\\nDomyślny czas przebywania wynosi 15 sekund i można go zmienić w Ustawieniach.';
-
-  @override
-  String get target_pedestrian => 'Pieszy';
-
-  @override
-  String get target_pedestrian_help =>
-      'Licz osoby za pomocą modelu wykrywania pieszych';
-
-  @override
-  String get target_screen_subtitle =>
-      'Wybierz model wykrywania, którego chcesz użyć';
-
-  @override
-  String get target_vehicle => 'Pojazd';
-
-  @override
-  String get target_vehicle_help =>
-      'Licz samochody i inne pojazdy za pomocą modelu wykrywania pojazdów';
 
   @override
   String get telemetry_error_connection_refused =>

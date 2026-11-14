@@ -2,6 +2,7 @@ import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
 import 'package:counter_app/control_panel/insights/area_section.dart';
 import 'package:counter_app/control_panel/insights/business_period_row.dart';
+import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:counter_app/control_panel/insights/insight_chart.dart';
 import 'package:counter_app/control_panel/insights/insight_comparison_period_dropdown.dart';
 import 'package:counter_app/control_panel/insights/primary_metric.dart';
@@ -482,7 +483,7 @@ void main() {
                 observation(0, 300),
                 observation(5, periodCoverage - 300),
               ]),
-              recentHourObservation: observation(0, recentHourCoverage),
+              recentHourTotal: observation(0, recentHourCoverage),
             ),
             customAreas: const [area],
             businessPeriods: const [period],
@@ -508,7 +509,7 @@ void main() {
 
     await pumpArea(recentHourCoverage: 3600, periodCoverage: 600);
     expect(find.text('Estimated'), findsNothing);
-    final statusColor = insightObservationStatusColor(
+    final statusColor = formatObservationStatusColor(
       tester.element(find.byType(PrimaryMetric).first),
       core_domain.ObservationStatus.stopped,
     );
@@ -527,7 +528,7 @@ void main() {
     await pumpArea(
       recentHourCoverage: 1800,
       periodCoverage: 569,
-      observationStatus: core_domain.ObservationStatus.live,
+      observationStatus: core_domain.ObservationStatus.started,
     );
     expect(find.text('Estimated'), findsOneWidget);
     final primaryContext = tester.element(find.byType(PrimaryMetric).first);
@@ -678,7 +679,7 @@ void main() {
     expect(metricChips[0].side, BorderSide.none);
     expect(metricChips[0].visualDensity, const VisualDensity(horizontal: -2, vertical: -4));
     expect(metricChips[0].padding, const EdgeInsets.symmetric(horizontal: 6));
-    final statusColor = insightObservationStatusColor(
+    final statusColor = formatObservationStatusColor(
       tester.element(find.byType(PrimaryMetric).first),
       core_domain.ObservationStatus.stopped,
     );

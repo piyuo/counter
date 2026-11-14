@@ -244,6 +244,23 @@ class LocalizationDe extends Localization {
   String get detection_screen_track_memory_min_label => 'Kurz';
 
   @override
+  String get detection_type_people => 'Personen';
+
+  @override
+  String get detection_type_people_help =>
+      'Personen per Fußgängererkennung zählen';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'Wählen Sie aus, was gezählt werden soll';
+
+  @override
+  String get detection_type_vehicle => 'Fahrzeuge';
+
+  @override
+  String get detection_type_vehicle_help => 'Autos und andere Fahrzeuge zählen';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter verwendet Ihre Kamera, um Fußgänger und Fahrzeuge in Echtzeit zu erkennen. Auf diesem Gerät ist keine Kamera verfügbar.';
 
@@ -799,7 +816,7 @@ class LocalizationDe extends Localization {
   String get settings_screen_data_server_label => 'Datenserver';
 
   @override
-  String get settings_screen_detection_target => 'Erkennungsziel';
+  String get settings_screen_detection_type => 'Erkennungsziel';
 
   @override
   String get settings_screen_language_title => 'Sprache';
@@ -815,7 +832,7 @@ class LocalizationDe extends Localization {
   String get settings_screen_misc_label => 'Verschiedenes';
 
   @override
-  String get settings_screen_object_detection => 'Objekterkennung';
+  String get settings_screen_object_detection => 'Was zählen?';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -844,24 +861,6 @@ class LocalizationDe extends Localization {
   @override
   String get stagnanted_help =>
       'Zählt Personen oder Fahrzeuge, die mindestens die eingestellte Verweildauer in diesem Bereich geblieben sind.\\n\\nDie Standard-Verweildauer beträgt 15 Sekunden und kann in den Einstellungen geändert werden.';
-
-  @override
-  String get target_pedestrian => 'Fußgänger';
-
-  @override
-  String get target_pedestrian_help =>
-      'Personen mit dem Fußgänger-Erkennungsmodell zählen';
-
-  @override
-  String get target_screen_subtitle =>
-      'Wählen Sie das gewünschte Erkennungsmodell aus';
-
-  @override
-  String get target_vehicle => 'Fahrzeuge';
-
-  @override
-  String get target_vehicle_help =>
-      'Autos und andere Fahrzeuge mit dem Fahrzeug-Erkennungsmodell zählen';
 
   @override
   String get telemetry_error_connection_refused =>

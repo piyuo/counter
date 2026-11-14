@@ -1,9 +1,9 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
+import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-import '../utils/dashboard_utils.dart';
 import '../utils/format_compact_duration.dart';
 
 class HourlyMetricSummary extends StatelessWidget {
@@ -24,7 +24,7 @@ class HourlyMetricSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = Localizations.localeOf(context).toString();
     final numberFormat = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
-    final subtotalText = formatDashboardMetricValue(subtotal, metric, numberFormat);
+    final subtotalText = formatDashboardMetricValue(context, metric, subtotal);
     final secondsText = numberFormat.format(coveredSeconds);
     final secondsPerHourText = numberFormat.format(3600);
 

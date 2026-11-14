@@ -243,6 +243,23 @@ class LocalizationMy extends Localization {
   String get detection_screen_track_memory_min_label => 'တို';
 
   @override
+  String get detection_type_people => 'လူများ';
+
+  @override
+  String get detection_type_people_help =>
+      'လမ်းသွားလမ်းလာများကို ရှာဖွေ၍ လူဦးရေတွက်ပါ';
+
+  @override
+  String get detection_type_screen_subtitle => 'ရေတွက်လိုသည့်အရာကို ရွေးပါ';
+
+  @override
+  String get detection_type_vehicle => 'ယာဉ်များ';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'ကားနှင့် အခြားယာဉ်များကို ရေတွက်ပါ';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter သည် လူသွားလူလာနှင့် ယာဉ်များကို အချိန်နှင့်တပြေးညီ သိရှိရန် ကင်မရာကို အသုံးပြုပါသည်။ ဤစက်တွင် ကင်မရာ မရှိပါ။';
 
@@ -795,7 +812,7 @@ class LocalizationMy extends Localization {
   String get settings_screen_data_server_label => 'ဒေတာဆာဗာ';
 
   @override
-  String get settings_screen_detection_target => 'စစ်ဆေးမည့်အရာ';
+  String get settings_screen_detection_type => 'စစ်ဆေးမည့်အရာ';
 
   @override
   String get settings_screen_language_title => 'ဘာသာစကား';
@@ -811,7 +828,7 @@ class LocalizationMy extends Localization {
   String get settings_screen_misc_label => 'အခြား';
 
   @override
-  String get settings_screen_object_detection => 'အရာဝတ္ထုရှာဖွေခြင်း';
+  String get settings_screen_object_detection => 'ရေတွက်မည့်အရာ';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -841,24 +858,6 @@ class LocalizationMy extends Localization {
   @override
   String get stagnanted_help =>
       'သတ်မှတ်ထားသော နေထိုင်ချိန်အနည်းဆုံးအထိ ဤဧရိယာတွင် ရှိနေသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nမူလ Stay Time သည် ၁၅ စက္ကန့်ဖြစ်ပြီး Settings တွင် ပြောင်းလဲနိုင်သည်။';
-
-  @override
-  String get target_pedestrian => 'လမ်းသွားလမ်းလာ';
-
-  @override
-  String get target_pedestrian_help =>
-      'လမ်းသွားလမ်းလာ စစ်ဆေးမှုမော်ဒယ်ဖြင့် လူအရေအတွက်ကို ရေတွက်ပါ';
-
-  @override
-  String get target_screen_subtitle =>
-      'အသုံးပြုမည့် စစ်ဆေးမှုမော်ဒယ်ကို ရွေးချယ်ပါ';
-
-  @override
-  String get target_vehicle => 'ယာဉ်';
-
-  @override
-  String get target_vehicle_help =>
-      'ယာဉ်စစ်ဆေးမှုမော်ဒယ်ဖြင့် ကားနှင့် အခြားယာဉ်များကို ရေတွက်ပါ';
 
   @override
   String get telemetry_error_connection_refused =>

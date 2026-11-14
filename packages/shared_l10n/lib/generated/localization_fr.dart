@@ -243,6 +243,24 @@ class LocalizationFr extends Localization {
   String get detection_screen_track_memory_min_label => 'Court';
 
   @override
+  String get detection_type_people => 'Personnes';
+
+  @override
+  String get detection_type_people_help =>
+      'Comptez les personnes grâce à la détection des piétons';
+
+  @override
+  String get detection_type_screen_subtitle =>
+      'Choisissez ce que vous souhaitez compter';
+
+  @override
+  String get detection_type_vehicle => 'Véhicules';
+
+  @override
+  String get detection_type_vehicle_help =>
+      'Comptez les voitures et autres véhicules';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter utilise votre appareil photo pour détecter les piétons et les véhicules en temps réel. Aucun appareil photo n\\\'est disponible sur cet appareil.';
 
@@ -803,7 +821,7 @@ class LocalizationFr extends Localization {
   String get settings_screen_data_server_label => 'Serveur de données';
 
   @override
-  String get settings_screen_detection_target => 'Cible de détection';
+  String get settings_screen_detection_type => 'Cible de détection';
 
   @override
   String get settings_screen_language_title => 'Langue';
@@ -819,7 +837,7 @@ class LocalizationFr extends Localization {
   String get settings_screen_misc_label => 'Divers';
 
   @override
-  String get settings_screen_object_detection => 'Détection d\'objets';
+  String get settings_screen_object_detection => 'Que compter ?';
 
   @override
   String get settings_screen_piyuo_subtitle =>
@@ -849,24 +867,6 @@ class LocalizationFr extends Localization {
   @override
   String get stagnanted_help =>
       'Compte les personnes ou les véhicules restés dans cette zone pendant au moins la durée de présence configurée.\\n\\nLa durée de présence par défaut est de 15 secondes et peut être modifiée dans les paramètres.';
-
-  @override
-  String get target_pedestrian => 'Piéton';
-
-  @override
-  String get target_pedestrian_help =>
-      'Comptez les personnes avec le modèle de détection des piétons';
-
-  @override
-  String get target_screen_subtitle =>
-      'Choisissez le modèle de détection à utiliser';
-
-  @override
-  String get target_vehicle => 'Véhicule';
-
-  @override
-  String get target_vehicle_help =>
-      'Comptez les voitures et autres véhicules avec le modèle de détection des véhicules';
 
   @override
   String get telemetry_error_connection_refused =>

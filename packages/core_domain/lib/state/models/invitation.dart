@@ -10,7 +10,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'data_server.dart';
 import 'detection_params.dart';
-import 'detection_type.dart';
 import 'upload_config.dart';
 
 part 'invitation.freezed.dart';
