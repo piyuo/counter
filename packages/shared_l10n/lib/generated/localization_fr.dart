@@ -254,11 +254,14 @@ class LocalizationFr extends Localization {
       'Choisissez ce que vous souhaitez compter';
 
   @override
-  String get detection_type_vehicle => 'Véhicules';
+  String get detection_type_vehicle => 'Véhicule';
 
   @override
   String get detection_type_vehicle_help =>
       'Comptez les voitures et autres véhicules';
+
+  @override
+  String get detection_type_vehicles => 'Véhicules';
 
   @override
   String get device_not_supported_screen_body =>
@@ -441,6 +444,9 @@ class LocalizationFr extends Localization {
   String get insight_peak => 'Maximum';
 
   @override
+  String get insight_per_hour => '/h';
+
+  @override
   String get insight_period_breakfast => 'Petit-déjeuner';
 
   @override
@@ -462,9 +468,6 @@ class LocalizationFr extends Localization {
   String insight_today_chart(Object metric) {
     return 'Aujourd’hui : $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/h';
 
   @override
   String get interest_areas_screen_add_area => 'Ajouter une zone';

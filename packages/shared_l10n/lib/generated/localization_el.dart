@@ -254,11 +254,14 @@ class LocalizationEl extends Localization {
       'Επιλέξτε τι θέλετε να μετρήσετε';
 
   @override
-  String get detection_type_vehicle => 'Οχήματα';
+  String get detection_type_vehicle => 'Όχημα';
 
   @override
   String get detection_type_vehicle_help =>
       'Μετρήστε αυτοκίνητα και άλλα οχήματα';
+
+  @override
+  String get detection_type_vehicles => 'Οχήματα';
 
   @override
   String get device_not_supported_screen_body =>
@@ -440,6 +443,9 @@ class LocalizationEl extends Localization {
   String get insight_peak => 'Μέγιστο';
 
   @override
+  String get insight_per_hour => '/ώρα';
+
+  @override
   String get insight_period_breakfast => 'Πρωινό';
 
   @override
@@ -461,9 +467,6 @@ class LocalizationEl extends Localization {
   String insight_today_chart(Object metric) {
     return 'Σήμερα: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ώρα';
 
   @override
   String get interest_areas_screen_add_area => 'Προσθήκη περιοχής';

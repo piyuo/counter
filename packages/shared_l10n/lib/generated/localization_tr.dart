@@ -252,11 +252,14 @@ class LocalizationTr extends Localization {
   String get detection_type_screen_subtitle => 'Neyi saymak istediğinizi seçin';
 
   @override
-  String get detection_type_vehicle => 'Araçlar';
+  String get detection_type_vehicle => 'Araç';
 
   @override
   String get detection_type_vehicle_help =>
       'Otomobilleri ve diğer araçları sayın';
+
+  @override
+  String get detection_type_vehicles => 'Araçlar';
 
   @override
   String get device_not_supported_screen_body =>
@@ -438,6 +441,9 @@ class LocalizationTr extends Localization {
   String get insight_peak => 'En yüksek';
 
   @override
+  String get insight_per_hour => '/sa.';
+
+  @override
   String get insight_period_breakfast => 'Kahvaltı';
 
   @override
@@ -459,9 +465,6 @@ class LocalizationTr extends Localization {
   String insight_today_chart(Object metric) {
     return 'Bugün: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/sa.';
 
   @override
   String get interest_areas_screen_add_area => 'Alan ekle';

@@ -65,7 +65,7 @@ $Res call({
 });
 
 
-$ObservationCopyWith<$Res> get monthlyTotal;
+$ObservationSeriesCopyWith<$Res> get weekdayFiveMinuteObservation;$ObservationSeriesCopyWith<$Res> get weekendFiveMinuteObservation;$ObservationCopyWith<$Res> get monthlyTotal;
 
 }
 /// @nodoc
@@ -91,6 +91,24 @@ as Observation,
   ));
 }
 /// Create a copy of MonthSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get weekdayFiveMinuteObservation {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.weekdayFiveMinuteObservation, (value) {
+    return _then(_self.copyWith(weekdayFiveMinuteObservation: value));
+  });
+}/// Create a copy of MonthSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get weekendFiveMinuteObservation {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.weekendFiveMinuteObservation, (value) {
+    return _then(_self.copyWith(weekendFiveMinuteObservation: value));
+  });
+}/// Create a copy of MonthSummary
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -307,7 +325,7 @@ $Res call({
 });
 
 
-@override $ObservationCopyWith<$Res> get monthlyTotal;
+@override $ObservationSeriesCopyWith<$Res> get weekdayFiveMinuteObservation;@override $ObservationSeriesCopyWith<$Res> get weekendFiveMinuteObservation;@override $ObservationCopyWith<$Res> get monthlyTotal;
 
 }
 /// @nodoc
@@ -334,6 +352,24 @@ as Observation,
 }
 
 /// Create a copy of MonthSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get weekdayFiveMinuteObservation {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.weekdayFiveMinuteObservation, (value) {
+    return _then(_self.copyWith(weekdayFiveMinuteObservation: value));
+  });
+}/// Create a copy of MonthSummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get weekendFiveMinuteObservation {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.weekendFiveMinuteObservation, (value) {
+    return _then(_self.copyWith(weekendFiveMinuteObservation: value));
+  });
+}/// Create a copy of MonthSummary
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

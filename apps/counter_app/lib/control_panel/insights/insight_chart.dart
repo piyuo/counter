@@ -149,7 +149,7 @@ class _InsightChartState extends State<InsightChart> {
     }
     final primary = data.primary;
     if (primary == null || !primary.amount.isFinite || primary.amount < 0) return null;
-    return _LiveRateMarkerData(hour: hour, rate: primary.amount, unit: primary.unit, estimated: primary.estimated);
+    return _LiveRateMarkerData(hour: hour, rate: primary.amount, metric: primary.metric, estimated: primary.estimated);
   }
 
   @override
@@ -199,7 +199,7 @@ class _InsightChartState extends State<InsightChart> {
                             ? null
                             : formatDashboardMeasurement(
                                 context,
-                                core_domain.DashboardMeasurement(amount: markerData.rate, unit: markerData.unit),
+                                core_domain.DashboardMeasurement(amount: markerData.rate, metric: markerData.metric),
                               );
                         return Semantics(
                           label: context.l.insight_chart_hourly_breakdown,
@@ -681,11 +681,11 @@ List<_PositionedExtremeLabel> _layoutExtremeLabels(
 }
 
 class _LiveRateMarkerData {
-  const _LiveRateMarkerData({required this.hour, required this.rate, required this.unit, required this.estimated});
+  const _LiveRateMarkerData({required this.hour, required this.rate, required this.metric, required this.estimated});
 
   final int hour;
   final double rate;
-  final core_domain.DashboardMeasurementUnit unit;
+  final core_domain.DashboardMetric metric;
   final bool estimated;
 }
 
@@ -771,7 +771,7 @@ class _LiveRateMarkerPainter extends CustomPainter {
   bool shouldRepaint(_LiveRateMarkerPainter oldDelegate) =>
       marker.hour != oldDelegate.marker.hour ||
       marker.rate != oldDelegate.marker.rate ||
-      marker.unit != oldDelegate.marker.unit ||
+      marker.metric != oldDelegate.marker.metric ||
       marker.estimated != oldDelegate.marker.estimated ||
       maxY != oldDelegate.maxY ||
       color != oldDelegate.color ||
@@ -833,7 +833,7 @@ double _niceChartScale(double value) {
 
 String _liveMarkerSemanticsValue(_LiveRateMarkerData marker, String rate, String locale, Localization localization) {
   final estimate = marker.estimated ? ', ${localization.insight_estimated}' : '';
-  return '${_hourRange(marker.hour, locale)}, $rate ${localization.insight_tracks_per_hour}$estimate';
+  return '${_hourRange(marker.hour, locale)}, $rate ${localization.insight_per_hour}$estimate';
 }
 
 class _LegendItem extends StatelessWidget {

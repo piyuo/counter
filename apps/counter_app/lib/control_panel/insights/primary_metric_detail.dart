@@ -18,6 +18,8 @@ class PrimaryMetricDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(core_domain.dashboardStateProvider);
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    final detectionType = appState?.detectionType;
     final card = ref.read(core_domain.dashboardServiceProvider).findCard(areaId, metric);
     final primaryMeasure = card?.primary;
     if (primaryMeasure == null) return const SizedBox.shrink();
@@ -25,9 +27,10 @@ class PrimaryMetricDetail extends ConsumerWidget {
     final theme = Theme.of(context);
     final locale = Localizations.localeOf(context).toString();
     final wholeNumberFormat = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
-    final isHourlyRate = core_domain.isHourlyRate(primaryMeasure.unit);
-    final unit = formatDashboardMeasurementUnit(context, primaryMeasure);
+    final isHourlyRate = core_domain.isHourlyRate(primaryMeasure.metric);
+    final unit = formatDashboardMeasurementUnit(context, primaryMeasure, detectionType);
 
+    final recentHourObservations = card?.recentHourObservations;
     final observedCount = primaryMeasure.amount * primaryMeasure.coveredSeconds / 3600;
     final countText = wholeNumberFormat.format(observedCount);
     final secondsText = wholeNumberFormat.format(primaryMeasure.coveredSeconds);
@@ -85,7 +88,7 @@ class PrimaryMetricDetail extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              '$countText ÷ $secondsText × $secondsPerHourText = $rateText ${context.l.insight_tracks_per_hour}',
+              '$countText ÷ $secondsText × $secondsPerHourText = $rateText ${context.l.insight_per_hour}',
               style: theme.textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
             ),
             const SizedBox(height: 4),

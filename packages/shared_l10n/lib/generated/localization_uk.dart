@@ -252,11 +252,14 @@ class LocalizationUk extends Localization {
   String get detection_type_screen_subtitle => 'Виберіть, що потрібно рахувати';
 
   @override
-  String get detection_type_vehicle => 'Транспорт';
+  String get detection_type_vehicle => 'Транспортний засіб';
 
   @override
   String get detection_type_vehicle_help =>
       'Підрахунок автомобілів та іншого транспорту';
+
+  @override
+  String get detection_type_vehicles => 'Транспортні засоби';
 
   @override
   String get device_not_supported_screen_body =>
@@ -436,6 +439,9 @@ class LocalizationUk extends Localization {
   String get insight_peak => 'Пік';
 
   @override
+  String get insight_per_hour => '/год';
+
+  @override
   String get insight_period_breakfast => 'Сніданок';
 
   @override
@@ -457,9 +463,6 @@ class LocalizationUk extends Localization {
   String insight_today_chart(Object metric) {
     return 'Сьогодні: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/год';
 
   @override
   String get interest_areas_screen_add_area => 'Додати область';

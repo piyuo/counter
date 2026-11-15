@@ -64,6 +64,7 @@ class InsightState with _$InsightState {
     required this.businessDate,
     this.comparisonPeriod = TrafficComparisonPeriod.yesterday,
     this.recentHourTotal,
+    this.recentHourObservations,
     this.comparisonRecentHourTotal,
     this.todaySeries,
     this.comparisonSeries,
@@ -102,6 +103,9 @@ class InsightState with _$InsightState {
   ///
   /// Null when no observations are available.
   final Observation? recentHourTotal;
+
+  /// let user double check the recent hour observations.
+  final ObservationSeries? recentHourObservations;
 
   /// Historical traffic for the recent-hour comparison window.
   ///

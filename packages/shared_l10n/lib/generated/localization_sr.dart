@@ -253,10 +253,13 @@ class LocalizationSr extends Localization {
       'Izaberite šta želite da brojite';
 
   @override
-  String get detection_type_vehicle => 'Vozila';
+  String get detection_type_vehicle => 'Vozilo';
 
   @override
   String get detection_type_vehicle_help => 'Brojite automobile i druga vozila';
+
+  @override
+  String get detection_type_vehicles => 'Vozila';
 
   @override
   String get device_not_supported_screen_body =>
@@ -438,6 +441,9 @@ class LocalizationSr extends Localization {
   String get insight_peak => 'Maksimum';
 
   @override
+  String get insight_per_hour => '/h';
+
+  @override
   String get insight_period_breakfast => 'Doručak';
 
   @override
@@ -459,9 +465,6 @@ class LocalizationSr extends Localization {
   String insight_today_chart(Object metric) {
     return 'Danas: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/h';
 
   @override
   String get interest_areas_screen_add_area => 'Dodaj oblast';

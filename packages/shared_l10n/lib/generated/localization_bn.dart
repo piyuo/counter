@@ -259,6 +259,9 @@ class LocalizationBn extends Localization {
       'গাড়ি ও অন্যান্য যানবাহন গণনা করুন';
 
   @override
+  String get detection_type_vehicles => 'যানবাহন';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter আপনার ক্যামেরা ব্যবহার করে পথচারী ও যানবাহনকে রিয়েল টাইমে শনাক্ত করে। এই ডিভাইসে ক্যামেরা উপলব্ধ নেই.';
 
@@ -438,6 +441,9 @@ class LocalizationBn extends Localization {
   String get insight_peak => 'সর্বোচ্চ';
 
   @override
+  String get insight_per_hour => '/ঘণ্টা';
+
+  @override
   String get insight_period_breakfast => 'সকালের নাশতা';
 
   @override
@@ -459,9 +465,6 @@ class LocalizationBn extends Localization {
   String insight_today_chart(Object metric) {
     return 'আজ: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ঘণ্টা';
 
   @override
   String get interest_areas_screen_add_area => 'এলাকা যোগ করুন';

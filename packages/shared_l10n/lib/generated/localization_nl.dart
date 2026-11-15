@@ -251,10 +251,13 @@ class LocalizationNl extends Localization {
   String get detection_type_screen_subtitle => 'Kies wat u wilt tellen';
 
   @override
-  String get detection_type_vehicle => 'Voertuigen';
+  String get detection_type_vehicle => 'Voertuig';
 
   @override
   String get detection_type_vehicle_help => 'Tel auto’s en andere voertuigen';
+
+  @override
+  String get detection_type_vehicles => 'Voertuigen';
 
   @override
   String get device_not_supported_screen_body =>
@@ -436,6 +439,9 @@ class LocalizationNl extends Localization {
   String get insight_peak => 'Piek';
 
   @override
+  String get insight_per_hour => '/uur';
+
+  @override
   String get insight_period_breakfast => 'Ontbijt';
 
   @override
@@ -457,9 +463,6 @@ class LocalizationNl extends Localization {
   String insight_today_chart(Object metric) {
     return 'Vandaag: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/uur';
 
   @override
   String get interest_areas_screen_add_area => 'Gebied toevoegen';

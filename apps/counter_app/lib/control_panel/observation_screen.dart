@@ -111,7 +111,7 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     final locale = Localizations.localeOf(context).toString();
     final dateFormat = DateFormat.yMMMd(locale);
     final timeFormat = DateFormat.Hm(locale);
-    final metricLabel = formatMetricLabel(context, widget.metric);
+    final metricLabel = formatDashboardMetricLabel(context, widget.metric);
 
     return feature_pip.PipScaffold(
       title: metricLabel,

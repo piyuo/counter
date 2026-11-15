@@ -1,14 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 
-bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) => switch (metric) {
-  core_domain.DashboardMetric.passBy ||
-  core_domain.DashboardMetric.stagnant ||
-  core_domain.DashboardMetric.entry ||
-  core_domain.DashboardMetric.exit ||
-  core_domain.DashboardMetric.appear ||
-  core_domain.DashboardMetric.disappear => true,
-  _ => false,
-};
+bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) => core_domain.isHourlyRate(metric);
 
 double? getDashboardMetricValue(core_domain.Observation observation, int areaId, core_domain.DashboardMetric metric) {
   final activity = observation.areas.where((area) => area.areaId == areaId).firstOrNull;

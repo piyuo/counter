@@ -1,3 +1,4 @@
+import 'package:core_domain/model/observation_series.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -19,20 +20,29 @@ enum DashboardMetric {
   dwellTimeMax,
 }
 
-enum DashboardMeasurementUnit { count, countPerHour, objects, seconds, minutes }
-
-bool isHourlyRate(DashboardMeasurementUnit unit) => unit == DashboardMeasurementUnit.countPerHour;
+bool isHourlyRate(DashboardMetric metric) => switch (metric) {
+  DashboardMetric.passBy ||
+  DashboardMetric.stagnant ||
+  DashboardMetric.entry ||
+  DashboardMetric.exit ||
+  DashboardMetric.appear ||
+  DashboardMetric.disappear => true,
+  DashboardMetric.occupancyMean ||
+  DashboardMetric.occupancyPeak ||
+  DashboardMetric.dwellTimeMean ||
+  DashboardMetric.dwellTimeMax => false,
+};
 
 class DashboardMeasurement {
   const DashboardMeasurement({
     required this.amount,
-    required this.unit,
+    required this.metric,
     this.estimated = false,
     this.coveredSeconds = 0,
   });
 
   final double amount;
-  final DashboardMeasurementUnit unit;
+  final DashboardMetric metric;
   final bool estimated;
   final int coveredSeconds;
 }
@@ -89,10 +99,15 @@ class DashboardCardData {
     required this.comparisonValue,
     required this.periods,
     required this.chartPoints,
+    required this.recentHourObservations,
   });
 
   final DashboardMetric metric;
   final DashboardMeasurement? primary;
+
+  /// let user double check the recent hour observations.
+  final ObservationSeries? recentHourObservations;
+
   final double? comparisonValue;
   final List<DashboardPeriodData> periods;
   final List<DashboardChartPoint> chartPoints;

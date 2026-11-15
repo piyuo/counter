@@ -51,7 +51,7 @@ class DashboardCache {
   void dispose() => _cached = null;
 }
 
-List<DashboardAreaData> _buildInsightAreas(InsightState dashboard, InsightDashboardSnapshot snapshot) =>
+List<DashboardAreaData> _buildInsightAreas(InsightState insightState, InsightDashboardSnapshot snapshot) =>
     List.unmodifiable([
       for (final area in snapshot.areas)
         DashboardAreaData(
@@ -62,14 +62,15 @@ List<DashboardAreaData> _buildInsightAreas(InsightState dashboard, InsightDashbo
             for (final card in area.cards)
               DashboardCardData(
                 metric: card.metric,
-                primary: calculateInsightMetricFromAggregate(
-                  dashboard.recentHourTotal,
+                primary: calculateInsightPrimaryMetric(
+                  insightState.recentHourTotal,
                   area.areaId,
                   card.metric,
                   expectedSeconds: 3600,
                 ),
-                comparisonValue: calculateInsightMetricFromAggregate(
-                  dashboard.comparisonRecentHourTotal,
+                recentHourObservations: insightState.recentHourObservations,
+                comparisonValue: calculateInsightPrimaryMetric(
+                  insightState.comparisonRecentHourTotal,
                   area.areaId,
                   card.metric,
                   expectedSeconds: 3600,

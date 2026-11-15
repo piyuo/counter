@@ -252,11 +252,14 @@ class LocalizationRu extends Localization {
   String get detection_type_screen_subtitle => 'Выберите, что нужно считать';
 
   @override
-  String get detection_type_vehicle => 'Транспорт';
+  String get detection_type_vehicle => 'Транспортное средство';
 
   @override
   String get detection_type_vehicle_help =>
       'Подсчёт автомобилей и другого транспорта';
+
+  @override
+  String get detection_type_vehicles => 'Транспортные средства';
 
   @override
   String get device_not_supported_screen_body =>
@@ -437,6 +440,9 @@ class LocalizationRu extends Localization {
   String get insight_peak => 'Пик';
 
   @override
+  String get insight_per_hour => '/ч';
+
+  @override
   String get insight_period_breakfast => 'Завтрак';
 
   @override
@@ -458,9 +464,6 @@ class LocalizationRu extends Localization {
   String insight_today_chart(Object metric) {
     return 'Сегодня: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ч';
 
   @override
   String get interest_areas_screen_add_area => 'Добавить область';

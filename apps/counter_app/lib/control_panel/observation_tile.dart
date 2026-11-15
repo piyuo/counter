@@ -83,5 +83,5 @@ class ObservationTile extends StatelessWidget {
   }
 
   double? _hourlyRate(core_domain.DashboardMeasurement? value) =>
-      value?.unit == core_domain.DashboardMeasurementUnit.countPerHour ? value!.amount : null;
+      value != null && core_domain.isHourlyRate(value.metric) ? value.amount : null;
 }

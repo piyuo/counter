@@ -160,12 +160,7 @@ String _formatPeriodMetricValue(
   core_domain.DashboardMetric metric,
   core_domain.DashboardMeasurement value,
 ) {
-  final normalizedValue = switch (value.unit) {
-    core_domain.DashboardMeasurementUnit.seconds => value.amount,
-    core_domain.DashboardMeasurementUnit.minutes => value.amount * 60,
-    _ => value.amount,
-  };
-  final parts = _formatPeriodMetricParts(context, metric, normalizedValue);
+  final parts = _formatPeriodMetricParts(context, metric, value.amount);
   return parts.unit.isEmpty ? parts.number : '${parts.number} ${parts.unit}';
 }
 
@@ -183,7 +178,7 @@ String _formatPeriodMetricValue(
     core_domain.DashboardMetric.appear ||
     core_domain.DashboardMetric.disappear => (
       number: NumberFormat(value >= 10 ? '#,##0' : '0.#', locale).format(value),
-      unit: context.l.insight_tracks_per_hour,
+      unit: context.l.insight_per_hour,
     ),
     core_domain.DashboardMetric.occupancyMean => (
       number: _formatNumber(context, value),

@@ -1,5 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 import 'dashboard_chip.dart';
@@ -7,7 +8,7 @@ import 'dashboard_formatter.dart';
 import 'insight_comparison_indicator.dart';
 import 'insight_comparison_period_dropdown.dart';
 
-class PrimaryMetric extends StatelessWidget {
+class PrimaryMetric extends ConsumerWidget {
   const PrimaryMetric({
     super.key,
     required this.data,
@@ -22,11 +23,13 @@ class PrimaryMetric extends StatelessWidget {
   final core_domain.ObservationStatus observationStatus;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final metricColor = formatObservationStatusColor(context, observationStatus);
     final primaryMeasure = data.primary;
-    final unit = formatDashboardMeasurementUnit(context, primaryMeasure);
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    final detectionType = appState?.detectionType;
+    final unit = formatDashboardMeasurementUnit(context, primaryMeasure, detectionType);
     final statusColor = formatObservationStatusColor(context, observationStatus);
 
     return Column(

@@ -259,6 +259,9 @@ class LocalizationId extends Localization {
       'Hitung mobil dan kendaraan lainnya';
 
   @override
+  String get detection_type_vehicles => 'Kendaraan';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter menggunakan kamera Anda untuk mendeteksi pejalan kaki dan kendaraan secara real time. Perangkat ini tidak memiliki kamera yang tersedia.';
 
@@ -438,6 +441,9 @@ class LocalizationId extends Localization {
   String get insight_peak => 'Puncak';
 
   @override
+  String get insight_per_hour => '/jam';
+
+  @override
   String get insight_period_breakfast => 'Sarapan';
 
   @override
@@ -459,9 +465,6 @@ class LocalizationId extends Localization {
   String insight_today_chart(Object metric) {
     return 'Hari ini: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/jam';
 
   @override
   String get interest_areas_screen_add_area => 'Tambah area';

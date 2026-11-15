@@ -70,7 +70,9 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     if (generation != _liveUpdateGeneration) return;
     if (state.businessDate != businessDate) return;
 
-    state = state.copyWith(recentHourTotal: recentHourTotal());
+    final recentHourObservations = _recentHourSeries(_nowProvider());
+    final recentHourTotal = _totalOf(recentHourObservations);
+    state = state.copyWith(recentHourTotal: recentHourTotal, recentHourObservations: recentHourObservations);
   }
 
   @override
@@ -101,7 +103,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
 
     ObservationSeries? comparisonSeries;
     core_domain.Observation? comparisonTotal;
-    core_domain.Observation? comparisonRecentHourObservation;
+    ObservationSeries? comparisonRecentHourObservations;
+    core_domain.Observation? comparisonRecentHourTotal;
 
     switch (period) {
       case core_domain.TrafficComparisonPeriod.yesterday:
@@ -111,7 +114,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
         final summary = await getCachedDaySummary(comparisonDate);
         if (summary != null) {
           comparisonSeries = summary.fiveMinuteObservations;
-          comparisonRecentHourObservation = core_domain.getRecentHourTotalAt(now.hour, now.minute, comparisonSeries);
+          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
           comparisonTotal = summary.dailyTotal;
         }
         break;
@@ -122,7 +126,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
           final isWeekend = now.weekday == DateTime.saturday || now.weekday == DateTime.sunday;
           comparisonSeries = isWeekend ? summary.weekendFiveMinuteObservation : summary.weekdayFiveMinuteObservation;
           comparisonTotal = summary.monthlyTotal;
-          comparisonRecentHourObservation = core_domain.getRecentHourTotalAt(now.hour, now.minute, comparisonSeries);
+          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
         }
         break;
       case core_domain.TrafficComparisonPeriod.lastYearAverage:
@@ -132,21 +137,25 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
           final isWeekend = now.weekday == DateTime.saturday || now.weekday == DateTime.sunday;
           comparisonSeries = isWeekend ? summary.weekendFiveMinuteObservation : summary.weekdayFiveMinuteObservation;
           comparisonTotal = summary.yearlyTotal;
-          comparisonRecentHourObservation = core_domain.getRecentHourTotalAt(now.hour, now.minute, comparisonSeries);
+          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
         }
         break;
     }
 
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
 
+    final recentHourObservations = _recentHourSeries(_nowProvider());
+    final recentHourTotal = _totalOf(recentHourObservations);
     _todaySeries = todaySummary?.fiveMinuteObservations;
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
     final dashboard = core_domain.InsightState(
       businessDate: _formatBusinessDate(now),
       comparisonPeriod: period,
       todaySeries: todaySummary?.fiveMinuteObservations,
-      recentHourTotal: recentHourTotal(),
-      comparisonRecentHourTotal: comparisonRecentHourObservation,
+      recentHourTotal: recentHourTotal,
+      recentHourObservations: recentHourObservations,
+      comparisonRecentHourTotal: comparisonRecentHourTotal,
       comparisonSeries: comparisonSeries,
       comparisonTotal: comparisonTotal,
     );
@@ -188,41 +197,99 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
       '${date.month.toString().padLeft(2, '0')}-'
       '${date.day.toString().padLeft(2, '0')}';
 
-  /// Returns saved observations in today's recent-hour window with the live
-  /// observation replacing the saved one for the same slot when available.
-  ///
-  @override
-  ObservationSeries getObservationsFromRecentHour() {
-    final now = _nowProvider();
-    final live = _getCurrentLiveObservation(now);
-    final saved = _currentBusinessDate == _formatBusinessDate(now) ? _todaySeries : null;
-    return _selectRecentHourSeries(now, saved, live);
+  // ---------------------------------------------------------------------------
+  // Recent-hour helpers
+  //
+  // Pipeline: _savedToday -> _overlayLive -> _sliceRecentHour -> _totalOf
+  // Each step does one thing, and the window is defined in exactly one place.
+  // ---------------------------------------------------------------------------
+
+  /// Today's saved observations, or null if the cached series belongs to
+  /// another business date.
+  ObservationSeries? _savedToday(DateTime now) =>
+      _currentBusinessDate == _formatBusinessDate(now) ? _todaySeries : null;
+
+  /// Saved observations with the live observation replacing the saved one for
+  /// the same slot. Returns an empty series when both are null.
+  ObservationSeries _overlayLive(ObservationSeries? saved, core_domain.Observation? live) {
+    final observationsBySlot = <int, core_domain.Observation>{
+      for (final observation in saved ?? ObservationSeries.empty) observation.slotKey: observation,
+    };
+    if (live != null) {
+      observationsBySlot[live.slotKey] = live;
+    }
+    return ObservationSeries.fromObservations(observationsBySlot.values);
   }
 
-  /// Returns today's saved observations with the current live slot overlaid.
+  /// The only place the recent-hour window is defined.
   ///
+  /// The window is [end - 60, end) in minutes of the day, where `end` is the
+  /// boundary after the current 5-minute slot. It is limited to the current
+  /// business day and never crosses midnight. Missing observations are not
+  /// estimated or filled, and source observations keep their original
+  /// timestamps.
+  ObservationSeries _sliceRecentHour(ObservationSeries series, int hour, int minute) {
+    assert(hour >= 0 && hour < 24);
+    assert(minute >= 0 && minute < 60);
+
+    final windowEnd = hour * 60 + (minute ~/ 5 + 1) * 5;
+    final windowStart = (windowEnd - 60).clamp(0, 1440);
+
+    return ObservationSeries.fromObservations(
+      series.where((observation) {
+        final minuteOfDay = observation.hour * 60 + observation.minute;
+        return minuteOfDay >= windowStart && minuteOfDay < windowEnd;
+      }),
+    );
+  }
+
+  /// Aggregates a series into a single observation, or null if it is empty.
+  core_domain.Observation? _totalOf(ObservationSeries series) =>
+      series.isEmpty ? null : core_domain.aggregateRecentHourObservations(series.toList());
+
+  /// Today's saved observations with the live slot overlaid, limited to the
+  /// recent-hour window ending after the current 5-minute slot.
+  ObservationSeries _recentHourSeries(DateTime now) {
+    final merged = _overlayLive(_savedToday(now), _getCurrentLiveObservation(now));
+    return _sliceRecentHour(merged, now.hour, now.minute);
+  }
+
+  /// Returns saved observations in today's recent-hour window with the live
+  /// observation replacing the saved one for the same slot when available.
+  @override
+  ObservationSeries getObservationsFromRecentHour() => _recentHourSeries(_nowProvider());
+
+  /// Aggregates the current day's saved observations and, when available, the
+  /// live observation for the active 5-minute slot, over the recent-hour window.
+  ///
+  /// The window stops at midnight and never includes observations from the
+  /// previous day. If no valid live observation is available, saved
+  /// observations from the current day are still used.
+  core_domain.Observation? recentHourTotal() => _totalOf(_recentHourSeries(_nowProvider()));
+
+  /// Aggregates an arbitrary series (e.g. a comparison series) over the
+  /// recent-hour window for the given time of day. No live overlay is applied.
+  core_domain.Observation? getRecentHourTotalAt(int hour, int minute, ObservationSeries series) =>
+      _totalOf(_sliceRecentHour(series, hour, minute));
+
+  // ---------------------------------------------------------------------------
+  // Observation queries
+  // ---------------------------------------------------------------------------
+
+  /// Returns today's saved observations with the current live slot overlaid.
   @override
   Future<ObservationSeries?> getObservationsFromLiveToday() async {
     final now = _nowProvider();
     final today = await ref.read(core_domain.analyticsServiceProvider).getDaySummary(now.year, now.month, now.day);
-    final todaySeries = today?.fiveMinuteObservations;
 
     if (_formatBusinessDate(_nowProvider()) != _formatBusinessDate(now)) {
       return null;
     }
 
     final live = _getCurrentLiveObservation(now);
-    final observationsBySlot = <int, core_domain.Observation>{
-      for (final observation in todaySeries ?? ObservationSeries.empty) observation.slotKey: observation,
-    };
-
-    if (live != null) {
-      observationsBySlot[live.slotKey] = live;
-    }
-
     if (today == null && live == null) return null;
 
-    return ObservationSeries.fromObservations(observationsBySlot.values);
+    return _overlayLive(today?.fiveMinuteObservations, live);
   }
 
   /// Returns today's saved observations without adding the live observation.
@@ -292,39 +359,9 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     return summary?.fiveMinuteObservations;
   }
 
-  /// Aggregates the current day's saved observations and, when available, the
-  /// live observation for the active 5-minute slot.
-  ///
-  /// The recent-hour window stops at midnight and never includes observations
-  /// from the previous day. If no valid live observation is available, saved
-  /// observations from the current day are still used.
-  core_domain.Observation? recentHourTotal() {
-    final now = _nowProvider();
-    final live = _getCurrentLiveObservation(now);
-
-    final saved = _currentBusinessDate == _formatBusinessDate(now) ? _todaySeries : null;
-
-    final series = _selectRecentHourSeries(now, saved, live);
-
-    return core_domain.getRecentHourTotalAt(now.hour, now.minute, series);
-  }
-
-  ObservationSeries _selectRecentHourSeries(DateTime now, ObservationSeries? saved, core_domain.Observation? live) {
-    final observationsBySlot = <int, core_domain.Observation>{
-      for (final observation in saved ?? ObservationSeries.empty) observation.slotKey: observation,
-    };
-    if (live != null) observationsBySlot[live.slotKey] = live;
-
-    final windowEnd = now.hour * 60 + (now.minute ~/ 5 + 1) * 5;
-    final windowStart = (windowEnd - 60).clamp(0, 1440);
-
-    return ObservationSeries.fromObservations(
-      observationsBySlot.values.where((observation) {
-        final minuteOfDay = observation.slotKey;
-        return minuteOfDay >= windowStart && minuteOfDay < windowEnd;
-      }),
-    );
-  }
+  // ---------------------------------------------------------------------------
+  // Live observation
+  // ---------------------------------------------------------------------------
 
   core_domain.Observation? _getCurrentLiveObservation(DateTime now) {
     final live = ref.read(live_observation.observationProvider).liveObservation;

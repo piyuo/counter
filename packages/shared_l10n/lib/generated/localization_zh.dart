@@ -244,6 +244,9 @@ class LocalizationZh extends Localization {
   String get detection_type_vehicle_help => '統計汽車和其他車輛';
 
   @override
+  String get detection_type_vehicles => '車輛';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter 使用您的相機即時偵測行人與車輛。此裝置沒有可用的相機。';
 
@@ -418,6 +421,9 @@ class LocalizationZh extends Localization {
   String get insight_peak => '最高值';
 
   @override
+  String get insight_per_hour => '/小時';
+
+  @override
   String get insight_period_breakfast => '早餐';
 
   @override
@@ -439,9 +445,6 @@ class LocalizationZh extends Localization {
   String insight_today_chart(Object metric) {
     return '今日：$metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/小時';
 
   @override
   String get interest_areas_screen_add_area => '新增區域';
@@ -1222,6 +1225,9 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_type_vehicle_help => '统计汽车和其他车辆';
 
   @override
+  String get detection_type_vehicles => '车辆';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter 使用您的摄像头实时检测行人和车辆。此设备没有可用的摄像头。';
 
@@ -1397,6 +1403,9 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_peak => '峰值';
 
   @override
+  String get insight_per_hour => '/小时';
+
+  @override
   String get insight_period_breakfast => '早餐';
 
   @override
@@ -1418,9 +1427,6 @@ class LocalizationZhCn extends LocalizationZh {
   String insight_today_chart(Object metric) {
     return '今日：$metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/小时';
 
   @override
   String get interest_areas_screen_add_area => '新增区域';

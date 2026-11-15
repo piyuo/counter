@@ -66,7 +66,7 @@ $Res call({
 });
 
 
-$ObservationCopyWith<$Res> get dailyTotal;
+$ObservationSeriesCopyWith<$Res> get fiveMinuteObservations;$ObservationCopyWith<$Res> get dailyTotal;
 
 }
 /// @nodoc
@@ -91,6 +91,15 @@ as Observation,
   ));
 }
 /// Create a copy of DaySummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get fiveMinuteObservations {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.fiveMinuteObservations, (value) {
+    return _then(_self.copyWith(fiveMinuteObservations: value));
+  });
+}/// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -301,7 +310,7 @@ $Res call({
 });
 
 
-@override $ObservationCopyWith<$Res> get dailyTotal;
+@override $ObservationSeriesCopyWith<$Res> get fiveMinuteObservations;@override $ObservationCopyWith<$Res> get dailyTotal;
 
 }
 /// @nodoc
@@ -327,6 +336,15 @@ as Observation,
 }
 
 /// Create a copy of DaySummary
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ObservationSeriesCopyWith<$Res> get fiveMinuteObservations {
+  
+  return $ObservationSeriesCopyWith<$Res>(_self.fiveMinuteObservations, (value) {
+    return _then(_self.copyWith(fiveMinuteObservations: value));
+  });
+}/// Create a copy of DaySummary
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

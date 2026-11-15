@@ -257,6 +257,9 @@ class LocalizationTh extends Localization {
   String get detection_type_vehicle_help => 'นับรถยนต์และยานพาหนะอื่น ๆ';
 
   @override
+  String get detection_type_vehicles => 'ยานพาหนะ';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter ใช้กล้องเพื่อตรวจจับคนเดินเท้าและยานพาหนะแบบเรียลไทม์ อุปกรณ์นี้ไม่มีกล้องให้ใช้งาน.';
 
@@ -437,6 +440,9 @@ class LocalizationTh extends Localization {
   String get insight_peak => 'สูงสุด';
 
   @override
+  String get insight_per_hour => '/ชม.';
+
+  @override
   String get insight_period_breakfast => 'อาหารเช้า';
 
   @override
@@ -458,9 +464,6 @@ class LocalizationTh extends Localization {
   String insight_today_chart(Object metric) {
     return 'วันนี้: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ชม.';
 
   @override
   String get interest_areas_screen_add_area => 'เพิ่มพื้นที่';

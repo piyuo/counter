@@ -252,10 +252,13 @@ class LocalizationEn extends Localization {
   String get detection_type_screen_subtitle => 'Choose what you want to count';
 
   @override
-  String get detection_type_vehicle => 'Vehicles';
+  String get detection_type_vehicle => 'Vehicle';
 
   @override
   String get detection_type_vehicle_help => 'Count cars and other vehicles';
+
+  @override
+  String get detection_type_vehicles => 'Vehicles';
 
   @override
   String get device_not_supported_screen_body =>
@@ -436,6 +439,9 @@ class LocalizationEn extends Localization {
   String get insight_peak => 'Peak';
 
   @override
+  String get insight_per_hour => '/hr';
+
+  @override
   String get insight_period_breakfast => 'Breakfast';
 
   @override
@@ -457,9 +463,6 @@ class LocalizationEn extends Localization {
   String insight_today_chart(Object metric) {
     return 'Today: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/hr';
 
   @override
   String get interest_areas_screen_add_area => 'Add area';

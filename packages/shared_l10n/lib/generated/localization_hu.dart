@@ -256,10 +256,13 @@ class LocalizationHu extends Localization {
       'Válassza ki, mit szeretne számolni';
 
   @override
-  String get detection_type_vehicle => 'Járművek';
+  String get detection_type_vehicle => 'Jármű';
 
   @override
   String get detection_type_vehicle_help => 'Autók és más járművek számlálása';
+
+  @override
+  String get detection_type_vehicles => 'Járművek';
 
   @override
   String get device_not_supported_screen_body =>
@@ -441,6 +444,9 @@ class LocalizationHu extends Localization {
   String get insight_peak => 'Csúcs';
 
   @override
+  String get insight_per_hour => '/ó';
+
+  @override
   String get insight_period_breakfast => 'Reggeli';
 
   @override
@@ -462,9 +468,6 @@ class LocalizationHu extends Localization {
   String insight_today_chart(Object metric) {
     return 'Ma: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ó';
 
   @override
   String get interest_areas_screen_add_area => 'Terület hozzáadása';

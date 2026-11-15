@@ -258,6 +258,9 @@ class LocalizationMs extends Localization {
   String get detection_type_vehicle_help => 'Kira kereta dan kenderaan lain';
 
   @override
+  String get detection_type_vehicles => 'Kenderaan';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter menggunakan kamera anda untuk mengesan pejalan kaki dan kenderaan dalam masa nyata. Peranti ini tidak mempunyai kamera yang tersedia.';
 
@@ -437,6 +440,9 @@ class LocalizationMs extends Localization {
   String get insight_peak => 'Puncak';
 
   @override
+  String get insight_per_hour => '/jam';
+
+  @override
   String get insight_period_breakfast => 'Sarapan';
 
   @override
@@ -458,9 +464,6 @@ class LocalizationMs extends Localization {
   String insight_today_chart(Object metric) {
     return 'Hari ini: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/jam';
 
   @override
   String get interest_areas_screen_add_area => 'Tambah kawasan';

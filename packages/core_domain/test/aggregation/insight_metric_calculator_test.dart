@@ -42,13 +42,13 @@ Activity _activity(
 void main() {
   group('fromAggregate', () {
     test('normalizes event counts and reports incomplete coverage', () {
-      final fullCoverage = calculateInsightMetricFromAggregate(
+      final fullCoverage = calculateInsightPrimaryMetric(
         _observation(10, 0, activity: _activity(7, passBy: 84), coveredSeconds: 3600),
         7,
         DashboardMetric.passBy,
         expectedSeconds: 3600,
       );
-      final partialCoverage = calculateInsightMetricFromAggregate(
+      final partialCoverage = calculateInsightPrimaryMetric(
         _observation(10, 0, activity: _activity(7, passBy: 42), coveredSeconds: 1800),
         7,
         DashboardMetric.passBy,
@@ -56,10 +56,10 @@ void main() {
       );
 
       expect(fullCoverage?.amount, 84);
-      expect(fullCoverage?.unit, DashboardMeasurementUnit.countPerHour);
+      expect(fullCoverage?.metric, DashboardMetric.passBy);
       expect(fullCoverage?.estimated, isFalse);
       expect(partialCoverage?.amount, 84);
-      expect(partialCoverage?.unit, DashboardMeasurementUnit.countPerHour);
+      expect(partialCoverage?.metric, DashboardMetric.passBy);
       expect(partialCoverage?.estimated, isTrue);
       expect(partialCoverage?.coveredSeconds, 1800);
     });
@@ -67,15 +67,9 @@ void main() {
     test('keeps missing area and zero coverage unavailable', () {
       final observation = _observation(10, 0, activity: _activity(8, passBy: 12), coveredSeconds: 0);
 
-      expect(
-        calculateInsightMetricFromAggregate(observation, 7, DashboardMetric.passBy, expectedSeconds: 3600),
-        isNull,
-      );
-      expect(
-        calculateInsightMetricFromAggregate(observation, 8, DashboardMetric.passBy, expectedSeconds: 3600),
-        isNull,
-      );
-      expect(calculateInsightMetricFromAggregate(null, 7, DashboardMetric.passBy, expectedSeconds: 3600), isNull);
+      expect(calculateInsightPrimaryMetric(observation, 7, DashboardMetric.passBy, expectedSeconds: 3600), isNull);
+      expect(calculateInsightPrimaryMetric(observation, 8, DashboardMetric.passBy, expectedSeconds: 3600), isNull);
+      expect(calculateInsightPrimaryMetric(null, 7, DashboardMetric.passBy, expectedSeconds: 3600), isNull);
     });
   });
 
@@ -142,12 +136,12 @@ void main() {
       );
 
       expect(value(DashboardMetric.occupancyMean)?.amount, 3);
-      expect(value(DashboardMetric.occupancyMean)?.unit, DashboardMeasurementUnit.objects);
+      expect(value(DashboardMetric.occupancyMean)?.metric, DashboardMetric.occupancyMean);
       expect(value(DashboardMetric.occupancyPeak)?.amount, 7);
       expect(value(DashboardMetric.dwellTimeMean)?.amount, 260);
-      expect(value(DashboardMetric.dwellTimeMean)?.unit, DashboardMeasurementUnit.seconds);
+      expect(value(DashboardMetric.dwellTimeMean)?.metric, DashboardMetric.dwellTimeMean);
       expect(value(DashboardMetric.dwellTimeMax)?.amount, 500);
-      expect(value(DashboardMetric.dwellTimeMax)?.unit, DashboardMeasurementUnit.seconds);
+      expect(value(DashboardMetric.dwellTimeMax)?.metric, DashboardMetric.dwellTimeMax);
     });
   });
 
@@ -170,8 +164,8 @@ void main() {
     );
 
     expect(mean?.amount, 5);
-    expect(mean?.unit, DashboardMeasurementUnit.minutes);
+    expect(mean?.metric, DashboardMetric.dwellTimeMean);
     expect(maximum?.amount, 5);
-    expect(maximum?.unit, DashboardMeasurementUnit.minutes);
+    expect(maximum?.metric, DashboardMetric.dwellTimeMax);
   });
 }

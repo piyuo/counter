@@ -258,6 +258,9 @@ class LocalizationVi extends Localization {
   String get detection_type_vehicle_help => 'Đếm ô tô và các phương tiện khác';
 
   @override
+  String get detection_type_vehicles => 'Các phương tiện';
+
+  @override
   String get device_not_supported_screen_body =>
       'Piyuo Counter sử dụng camera để phát hiện người đi bộ và phương tiện theo thời gian thực. Thiết bị này không có camera khả dụng.';
 
@@ -436,6 +439,9 @@ class LocalizationVi extends Localization {
   String get insight_peak => 'Cao nhất';
 
   @override
+  String get insight_per_hour => '/giờ';
+
+  @override
   String get insight_period_breakfast => 'Bữa sáng';
 
   @override
@@ -457,9 +463,6 @@ class LocalizationVi extends Localization {
   String insight_today_chart(Object metric) {
     return 'Hôm nay: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/giờ';
 
   @override
   String get interest_areas_screen_add_area => 'Thêm khu vực';

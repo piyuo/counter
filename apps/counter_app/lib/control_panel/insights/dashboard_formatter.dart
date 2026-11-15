@@ -5,12 +5,12 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/format_compact_duration.dart';
 
-String formatMetricHourlyRate(
+String formatDashboardMetricHourlyTotal(
   BuildContext context,
   core_domain.DashboardMetric metric,
-  double count,
+  double amount,
   int coveredSeconds,
-  core_domain.DetectionType detectionType,
+  core_domain.DetectionType? detectionType,
 ) {
   switch (metric) {
     case core_domain.DashboardMetric.passBy:
@@ -19,18 +19,18 @@ String formatMetricHourlyRate(
     case core_domain.DashboardMetric.exit:
     case core_domain.DashboardMetric.appear:
     case core_domain.DashboardMetric.disappear:
-      final rate = core_domain.hourlyRate(count, coveredSeconds);
+      final rate = core_domain.hourlyRate(amount, coveredSeconds);
       return formatDashboardMetricValueUnit(context, metric, rate, detectionType);
     case core_domain.DashboardMetric.occupancyMean:
     case core_domain.DashboardMetric.occupancyPeak:
-      return formatDashboardMetricValueUnit(context, metric, count, detectionType);
+      return formatDashboardMetricValueUnit(context, metric, amount, detectionType);
     case core_domain.DashboardMetric.dwellTimeMean:
     case core_domain.DashboardMetric.dwellTimeMax:
-      return formatDashboardMetricValueUnit(context, metric, count, detectionType);
+      return formatDashboardMetricValueUnit(context, metric, amount, detectionType);
   }
 }
 
-String formatMetricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
+String formatDashboardMetricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
   core_domain.DashboardMetric.passBy => context.l.insight_pass_by,
   core_domain.DashboardMetric.stagnant => context.l.insight_stagnant,
   core_domain.DashboardMetric.entry => context.l.insight_entry,
@@ -43,7 +43,11 @@ String formatMetricLabel(BuildContext context, core_domain.DashboardMetric metri
   core_domain.DashboardMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
 };
 
-NumberFormat getNumberFormatForMetric(BuildContext context, core_domain.DashboardMetric metric, double? value) {
+NumberFormat getNumberFormatForDashboardMetric(
+  BuildContext context,
+  core_domain.DashboardMetric metric,
+  double? value,
+) {
   final locale = Localizations.localeOf(context).toString();
 
   final pattern = switch (metric) {
@@ -57,14 +61,14 @@ NumberFormat getNumberFormatForMetric(BuildContext context, core_domain.Dashboar
 String formatDashboardMetricValueUnit(
   BuildContext context,
   core_domain.DashboardMetric metric,
-  double? value,
-  core_domain.DetectionType detectionType,
+  double? amount,
+  core_domain.DetectionType? detectionType,
 ) {
-  if (value == null) return '-';
+  if (amount == null) return '-';
 
-  final formattedValue = formatDashboardMetricValue(context, metric, value);
+  final formattedValue = formatDashboardMetricValue(context, metric, amount);
 
-  final unit = formatDashboardMetricUnit(context, metric, detectionType);
+  final unit = formatDashboardMetricUnit(context, metric, detectionType, amount);
 
   return unit.isEmpty ? formattedValue : '$formattedValue $unit';
 }
@@ -77,7 +81,7 @@ String formatDashboardMetricValue(BuildContext context, core_domain.DashboardMet
     return formatCompactDuration(context.l, value.round());
   }
 
-  final numberFormat = getNumberFormatForMetric(context, metric, value);
+  final numberFormat = getNumberFormatForDashboardMetric(context, metric, value);
   final formatted = numberFormat.format(value);
   return formatted;
 }
@@ -85,23 +89,29 @@ String formatDashboardMetricValue(BuildContext context, core_domain.DashboardMet
 String formatDashboardMetricUnit(
   BuildContext context,
   core_domain.DashboardMetric metric,
-  core_domain.DetectionType detectionType,
+  core_domain.DetectionType? detectionType,
+  double value,
 ) {
   if (metric == core_domain.DashboardMetric.dwellTimeMean || metric == core_domain.DashboardMetric.dwellTimeMax) {
     return ''; // value already use formatCompactDuration to show time (like 3m 2s)
   }
 
   if (metric == core_domain.DashboardMetric.occupancyMean || metric == core_domain.DashboardMetric.occupancyPeak) {
-    return formatDetectionType(context, detectionType);
+    return formatDetectionType(context, detectionType, value);
   }
 
-  return context.l.insight_tracks_per_hour;
+  return context.l.insight_per_hour;
 }
 
-String formatDetectionType(BuildContext context, core_domain.DetectionType detectionType) {
+String formatDetectionType(BuildContext context, core_domain.DetectionType? detectionType, double value) {
+  if (detectionType == null) {
+    return '';
+  }
+
   return switch (detectionType) {
     core_domain.DetectionType.people => context.l.detection_type_people,
-    core_domain.DetectionType.vehicle => context.l.detection_type_vehicle,
+    core_domain.DetectionType.vehicle =>
+      value > 1 ? context.l.detection_type_vehicles : context.l.detection_type_vehicle,
   };
 }
 
@@ -109,30 +119,18 @@ String formatDashboardMeasurement(BuildContext context, core_domain.DashboardMea
   if (measurement == null) {
     return '—';
   }
-
-  final locale = Localizations.localeOf(context).toString();
-  final value = measurement.amount;
-  if (measurement.unit == core_domain.DashboardMeasurementUnit.seconds) {
-    return formatCompactDuration(context.l, value.round());
-  } else if (measurement.unit == core_domain.DashboardMeasurementUnit.minutes) {
-    return formatCompactDuration(context.l, (value * 60).round());
-  } else if (measurement.unit == core_domain.DashboardMeasurementUnit.objects) {
-    return NumberFormat('0.##', locale).format(value);
-  } // count per hour
-  return NumberFormat(value >= 10 ? '#,##0' : '0.##', locale).format(value);
+  return formatDashboardMetricValue(context, measurement.metric, measurement.amount);
 }
 
-String formatDashboardMeasurementUnit(BuildContext context, core_domain.DashboardMeasurement? measurement) {
+String formatDashboardMeasurementUnit(
+  BuildContext context,
+  core_domain.DashboardMeasurement? measurement,
+  core_domain.DetectionType? detectionType,
+) {
   if (measurement == null) {
     return '';
   }
-  return switch (measurement.unit) {
-    core_domain.DashboardMeasurementUnit.objects => context.l.insight_objects_unit,
-    core_domain.DashboardMeasurementUnit.countPerHour => context.l.insight_tracks_per_hour,
-    core_domain.DashboardMeasurementUnit.count ||
-    core_domain.DashboardMeasurementUnit.seconds ||
-    core_domain.DashboardMeasurementUnit.minutes => '',
-  };
+  return formatDashboardMetricUnit(context, measurement.metric, detectionType, measurement.amount);
 }
 
 Color formatObservationStatusColor(BuildContext context, core_domain.ObservationStatus status) => switch (status) {

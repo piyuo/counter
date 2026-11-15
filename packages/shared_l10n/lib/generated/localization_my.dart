@@ -253,11 +253,14 @@ class LocalizationMy extends Localization {
   String get detection_type_screen_subtitle => 'ရေတွက်လိုသည့်အရာကို ရွေးပါ';
 
   @override
-  String get detection_type_vehicle => 'ယာဉ်များ';
+  String get detection_type_vehicle => 'ယာဉ်';
 
   @override
   String get detection_type_vehicle_help =>
       'ကားနှင့် အခြားယာဉ်များကို ရေတွက်ပါ';
+
+  @override
+  String get detection_type_vehicles => 'ယာဉ်များ';
 
   @override
   String get device_not_supported_screen_body =>
@@ -440,6 +443,9 @@ class LocalizationMy extends Localization {
   String get insight_peak => 'အမြင့်ဆုံး';
 
   @override
+  String get insight_per_hour => '/နာရီ';
+
+  @override
   String get insight_period_breakfast => 'နံနက်စာ';
 
   @override
@@ -461,9 +467,6 @@ class LocalizationMy extends Localization {
   String insight_today_chart(Object metric) {
     return 'ယနေ့: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/နာရီ';
 
   @override
   String get interest_areas_screen_add_area => 'ဧရိယာထည့်';

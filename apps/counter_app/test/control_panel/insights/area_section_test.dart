@@ -8,6 +8,7 @@ import 'package:counter_app/control_panel/insights/insight_comparison_period_dro
 import 'package:counter_app/control_panel/insights/primary_metric.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_l10n/generated/localization_de.dart';
 import 'package:shared_l10n/shared_l10n.dart';
@@ -25,6 +26,14 @@ class _GermanLocalizationDelegate extends LocalizationsDelegate<Localization> {
   bool shouldReload(_GermanLocalizationDelegate old) => false;
 }
 
+class _TestAppNotifier extends core_domain.AppNotifier {
+  @override
+  Future<core_domain.AppState> build() async => const core_domain.AppState();
+}
+
+Widget _withAppState(Widget child) =>
+    ProviderScope(overrides: [core_domain.appProvider.overrideWith(_TestAppNotifier.new)], child: child);
+
 core_domain.DashboardCardData _chartCard({
   core_domain.DashboardMetric metric = core_domain.DashboardMetric.passBy,
   double? todayValue = 340,
@@ -38,16 +47,11 @@ core_domain.DashboardCardData _chartCard({
       ? null
       : core_domain.DashboardMeasurement(
           amount: liveRate,
-          unit: switch (metric) {
-            core_domain.DashboardMetric.dwellTimeMean ||
-            core_domain.DashboardMetric.dwellTimeMax => core_domain.DashboardMeasurementUnit.seconds,
-            core_domain.DashboardMetric.occupancyMean ||
-            core_domain.DashboardMetric.occupancyPeak => core_domain.DashboardMeasurementUnit.objects,
-            _ => core_domain.DashboardMeasurementUnit.countPerHour,
-          },
+          metric: metric,
           estimated: liveRateEstimated,
           coveredSeconds: 2400,
         ),
+  recentHourObservations: null,
   comparisonValue: null,
   periods: const [],
   chartPoints:
@@ -430,6 +434,7 @@ void main() {
     final card = core_domain.DashboardCardData(
       metric: core_domain.DashboardMetric.passBy,
       primary: null,
+      recentHourObservations: null,
       comparisonValue: null,
       periods: const [],
       chartPoints: [
@@ -495,11 +500,13 @@ void main() {
           localizationsDelegates: Localization.localizationsDelegates,
           supportedLocales: Localization.supportedLocales,
           home: Scaffold(
-            body: AreaSection(
-              areaData: areaData,
-              comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
-              onComparisonChanged: (_) {},
-              observationStatus: observationStatus,
+            body: _withAppState(
+              AreaSection(
+                areaData: areaData,
+                comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                onComparisonChanged: (_) {},
+                observationStatus: observationStatus,
+              ),
             ),
           ),
         ),
@@ -580,11 +587,13 @@ void main() {
         supportedLocales: Localization.supportedLocales,
         home: Scaffold(
           body: StatefulBuilder(
-            builder: (context, setState) => AreaSection(
-              areaData: area,
-              comparisonPeriod: selectedPeriod,
-              onComparisonChanged: (period) => setState(() => selectedPeriod = period),
-              observationStatus: core_domain.ObservationStatus.stopped,
+            builder: (context, setState) => _withAppState(
+              AreaSection(
+                areaData: area,
+                comparisonPeriod: selectedPeriod,
+                onComparisonChanged: (period) => setState(() => selectedPeriod = period),
+                observationStatus: core_domain.ObservationStatus.stopped,
+              ),
             ),
           ),
         ),
@@ -641,22 +650,24 @@ void main() {
         localizationsDelegates: Localization.localizationsDelegates,
         supportedLocales: Localization.supportedLocales,
         home: Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                AreaSection(
-                  areaData: areas.first,
-                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
-                  onComparisonChanged: (_) {},
-                  observationStatus: core_domain.ObservationStatus.stopped,
-                ),
-                AreaSection(
-                  areaData: areas.last,
-                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
-                  onComparisonChanged: (_) {},
-                  observationStatus: core_domain.ObservationStatus.stopped,
-                ),
-              ],
+          body: _withAppState(
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  AreaSection(
+                    areaData: areas.first,
+                    comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                    onComparisonChanged: (_) {},
+                    observationStatus: core_domain.ObservationStatus.stopped,
+                  ),
+                  AreaSection(
+                    areaData: areas.last,
+                    comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                    onComparisonChanged: (_) {},
+                    observationStatus: core_domain.ObservationStatus.stopped,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -750,12 +761,14 @@ void main() {
           localizationsDelegates: Localization.localizationsDelegates,
           supportedLocales: Localization.supportedLocales,
           home: Scaffold(
-            body: SingleChildScrollView(
-              child: AreaSection(
-                areaData: area,
-                comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
-                onComparisonChanged: (_) {},
-                observationStatus: core_domain.ObservationStatus.stopped,
+            body: _withAppState(
+              SingleChildScrollView(
+                child: AreaSection(
+                  areaData: area,
+                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  onComparisonChanged: (_) {},
+                  observationStatus: core_domain.ObservationStatus.stopped,
+                ),
               ),
             ),
           ),
@@ -789,15 +802,17 @@ void main() {
       MaterialApp(
         localizationsDelegates: Localization.localizationsDelegates,
         supportedLocales: Localization.supportedLocales,
-        home: MediaQuery(
-          data: const MediaQueryData(textScaler: TextScaler.linear(1.6)),
-          child: Scaffold(
-            body: SingleChildScrollView(
-              child: AreaSection(
-                areaData: area,
-                comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
-                onComparisonChanged: (_) {},
-                observationStatus: core_domain.ObservationStatus.stopped,
+        home: _withAppState(
+          MediaQuery(
+            data: const MediaQueryData(textScaler: TextScaler.linear(1.6)),
+            child: Scaffold(
+              body: SingleChildScrollView(
+                child: AreaSection(
+                  areaData: area,
+                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  onComparisonChanged: (_) {},
+                  observationStatus: core_domain.ObservationStatus.stopped,
+                ),
               ),
             ),
           ),

@@ -27,7 +27,7 @@ class DashboardCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final title = formatMetricLabel(context, data.metric);
+    final title = formatDashboardMetricLabel(context, data.metric);
     final comparisonLabel = formatTrafficComparisonPeriodLabel(context, comparisonPeriod);
     final scale = MediaQuery.textScalerOf(context).scale(1);
     final chartHeight = 150 + (scale - 1).clamp(0, 1.5) * 38;

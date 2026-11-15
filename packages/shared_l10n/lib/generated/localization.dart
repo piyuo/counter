@@ -579,7 +579,7 @@ abstract class Localization {
   /// No description provided for @detection_type_vehicle.
   ///
   /// In en, this message translates to:
-  /// **'Vehicles'**
+  /// **'Vehicle'**
   String get detection_type_vehicle;
 
   /// No description provided for @detection_type_vehicle_help.
@@ -587,6 +587,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Count cars and other vehicles'**
   String get detection_type_vehicle_help;
+
+  /// No description provided for @detection_type_vehicles.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles'**
+  String get detection_type_vehicles;
 
   /// No description provided for @device_not_supported_screen_body.
   ///
@@ -918,6 +924,12 @@ abstract class Localization {
   /// **'Peak'**
   String get insight_peak;
 
+  /// No description provided for @insight_per_hour.
+  ///
+  /// In en, this message translates to:
+  /// **'/hr'**
+  String get insight_per_hour;
+
   /// No description provided for @insight_period_breakfast.
   ///
   /// In en, this message translates to:
@@ -959,12 +971,6 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Today: {metric}'**
   String insight_today_chart(Object metric);
-
-  /// No description provided for @insight_tracks_per_hour.
-  ///
-  /// In en, this message translates to:
-  /// **'/hr'**
-  String get insight_tracks_per_hour;
 
   /// No description provided for @interest_areas_screen_add_area.
   ///

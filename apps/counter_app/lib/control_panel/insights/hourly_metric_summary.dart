@@ -44,7 +44,7 @@ class HourlyMetricSummary extends StatelessWidget {
           if (hourlyRate != null) ...[
             const SizedBox(height: 4),
             Text(
-              '$subtotalText ÷ $secondsText × $secondsPerHourText = ${numberFormat.format(hourlyRate)} ${context.l.insight_tracks_per_hour}',
+              '$subtotalText ÷ $secondsText × $secondsPerHourText = ${numberFormat.format(hourlyRate)} ${context.l.insight_per_hour}',
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),

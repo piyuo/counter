@@ -251,10 +251,13 @@ class LocalizationAr extends Localization {
   String get detection_type_screen_subtitle => 'اختر ما تريد عده';
 
   @override
-  String get detection_type_vehicle => 'المركبات';
+  String get detection_type_vehicle => 'مركبة';
 
   @override
   String get detection_type_vehicle_help => 'عدّ السيارات والمركبات الأخرى';
+
+  @override
+  String get detection_type_vehicles => 'مركبات';
 
   @override
   String get device_not_supported_screen_body =>
@@ -435,6 +438,9 @@ class LocalizationAr extends Localization {
   String get insight_peak => 'الذروة';
 
   @override
+  String get insight_per_hour => '/ساعة';
+
+  @override
   String get insight_period_breakfast => 'الإفطار';
 
   @override
@@ -456,9 +462,6 @@ class LocalizationAr extends Localization {
   String insight_today_chart(Object metric) {
     return 'اليوم: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ساعة';
 
   @override
   String get interest_areas_screen_add_area => 'إضافة منطقة';

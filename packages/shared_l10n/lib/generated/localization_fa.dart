@@ -252,10 +252,13 @@ class LocalizationFa extends Localization {
   String get detection_type_screen_subtitle => 'انتخاب کنید چه چیزی شمارش شود';
 
   @override
-  String get detection_type_vehicle => 'وسایل نقلیه';
+  String get detection_type_vehicle => 'وسیله نقلیه';
 
   @override
   String get detection_type_vehicle_help => 'شمارش خودروها و سایر وسایل نقلیه';
+
+  @override
+  String get detection_type_vehicles => 'وسایل نقلیه';
 
   @override
   String get device_not_supported_screen_body =>
@@ -438,6 +441,9 @@ class LocalizationFa extends Localization {
   String get insight_peak => 'اوج';
 
   @override
+  String get insight_per_hour => '/ساعت';
+
+  @override
   String get insight_period_breakfast => 'صبحانه';
 
   @override
@@ -459,9 +465,6 @@ class LocalizationFa extends Localization {
   String insight_today_chart(Object metric) {
     return 'امروز: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/ساعت';
 
   @override
   String get interest_areas_screen_add_area => 'افزودن ناحیه';

@@ -253,11 +253,14 @@ class LocalizationRo extends Localization {
   String get detection_type_screen_subtitle => 'Alegeți ce doriți să numărați';
 
   @override
-  String get detection_type_vehicle => 'Vehicule';
+  String get detection_type_vehicle => 'Vehicul';
 
   @override
   String get detection_type_vehicle_help =>
       'Numărați mașinile și alte vehicule';
+
+  @override
+  String get detection_type_vehicles => 'Vehicule';
 
   @override
   String get device_not_supported_screen_body =>
@@ -439,6 +442,9 @@ class LocalizationRo extends Localization {
   String get insight_peak => 'Maxim';
 
   @override
+  String get insight_per_hour => '/oră';
+
+  @override
   String get insight_period_breakfast => 'Mic dejun';
 
   @override
@@ -460,9 +466,6 @@ class LocalizationRo extends Localization {
   String insight_today_chart(Object metric) {
     return 'Astăzi: $metric';
   }
-
-  @override
-  String get insight_tracks_per_hour => '/oră';
 
   @override
   String get interest_areas_screen_add_area => 'Adaugă zonă';
