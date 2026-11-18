@@ -19,25 +19,11 @@ class LocalizationSr extends Localization {
   String get about_screen_platform => 'Platforma';
 
   @override
-  String get appeared => 'Pojavili se';
+  String get appear => 'Pojavljivanja';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Broji ljude ili vozila čija je prva otkrivena pozicija bila unutar ove oblasti.\\n\\nPomaže da se razume gde praćenje počinje.\\n\\n(Uglavnom namenjeno naprednim korisnicima)';
-
-  @override
-  String get average_occupancy => 'Prosečna popunjenost';
-
-  @override
-  String get average_occupancy_help =>
-      'Prikazuje prosečan broj ljudi ili vozila u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nPomaže da se proceni koliko je oblast bila prometna tokom celog perioda brojanja.';
-
-  @override
-  String get average_stay => 'Prosečno vreme zadržavanja';
-
-  @override
-  String get average_stay_help =>
-      'Prikazuje prosečno vreme koje su ljudi ili vozila proveli u ovoj oblasti.\\n\\nDuže prosečno zadržavanje može značiti da posetioci provode više vremena u ovoj oblasti.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationSr extends Localization {
       'Omogućite ovu opciju da prikazuje jedinstvene ID-je praćenja za svaki praćeni objekat.';
 
   @override
-  String get detection_screen_stagnant => 'Vreme zadržavanja';
+  String get detection_screen_stagnant => 'Prag zadržavanja';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Koliko dugo objekat mora ostati u području da bi se računao kao zadržavanje.';
+      'Minimalno vreme koje objekat mora provesti u oblasti da bi se računao kao zadržavanje.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Odloženo';
@@ -214,7 +200,7 @@ class LocalizationSr extends Localization {
   String get detection_screen_stagnant_min_label => 'Odmah';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Одређује када објекат доприноси броју „Задржавања“.\\nКраће вредности\\n• Одмах броје задржавање\\n• Боље за брзу анализу\\nДуже вредности\\n• Занемарују кратак пролазни саобраћај\\n• Боље за мерење попуњености';
 
   @override
@@ -285,55 +271,80 @@ class LocalizationSr extends Localization {
   String get device_not_supported_screen_title => 'Kamera nije pronađena';
 
   @override
-  String get disappeared => 'Nestali';
+  String get disappear => 'Nestajanja';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Broji ljude ili vozila čija je poslednja otkrivena pozicija bila unutar ove oblasti.\\n\\nPraćenje se završava nakon podešenog vremena nestanka ako osoba ili vozilo više nisu otkriveni.\\n\\n(Uglavnom namenjeno naprednim korisnicima)';
 
   @override
   String get dpa => 'Sporazum o obradi podataka';
 
   @override
-  String get durationDaysShort => '%sd';
+  String durationDaysShort(Object value) {
+    return '${value}d';
+  }
 
   @override
-  String get durationHoursShort => '%sh';
+  String durationHoursShort(Object value) {
+    return '${value}h';
+  }
 
   @override
-  String get durationMinutesShort => '%smin';
+  String durationMinutesShort(Object value) {
+    return '${value}min';
+  }
 
   @override
-  String get durationSecondsShort => '%ssek';
+  String durationSecondsShort(Object value) {
+    return '${value}sek';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Ušli';
+  String get dwell_time_max => 'Najduže završeno zadržavanje';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Prikazuje najduže vreme koje su osoba ili vozilo proveli u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nKorisno za prepoznavanje neuobičajeno dugih poseta ili zaustavljanja.\\n\\nRačunaju se samo završena zadržavanja; ona koja još traju se ne računaju.';
+
+  @override
+  String get dwell_time_mean => 'Prosečno trajanje završenih zadržavanja';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Prikazuje prosečno vreme koje su ljudi ili vozila proveli u ovoj oblasti.\\n\\nDuže prosečno zadržavanje može značiti da posetioci provode više vremena u ovoj oblasti.\\n\\nRačunaju se samo završena zadržavanja; ona koja još traju se ne računaju.';
+
+  @override
+  String get entry => 'Ulazi';
+
+  @override
+  String get entry_help =>
       'Broji ljude ili vozila koja su ušla u ovu oblast tokom trenutnog perioda brojanja.\\n\\nUlazak se računa kada se osoba ili vozilo kreće izvan oblasti ka unutra.';
 
   @override
-  String get exited => 'Izašli';
+  String get exit => 'Izlazi';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Broji ljude ili vozila koja su izašla iz ove oblasti tokom trenutnog perioda brojanja.\\n\\nIzlazak se računa kada se osoba ili vozilo kreće iz unutrašnjosti oblasti ka spolja.';
-
-  @override
-  String get insight_appear => 'Pojavili se';
-
-  @override
-  String get insight_average_completed_visit => 'Prosek završenih poseta';
 
   @override
   String get insight_average_short => 'pros.';
 
   @override
-  String get insight_based_on_minutes => 'Na osnovu %m min · Može varirati';
+  String insight_based_on_min(Object min) {
+    return 'На основу $min мин · Може да варира';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'На основу $sec сек · Може да варира';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Prosek trajanja na 5 min';
@@ -346,7 +357,7 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Afișează valorile înregistrate pentru fiecare oră. Ora curentă incompletă este ascunsă.';
+      'Prikazuje zabeležene vrednosti za svaki završeni sat. Tekući nezavršeni sat se ne prikazuje.';
 
   @override
   String get insight_chart_info_description =>
@@ -369,24 +380,12 @@ class LocalizationSr extends Localization {
   String get insight_compare_with => 'Uporedi sa';
 
   @override
-  String get insight_comparison_last_week => 'Isti dan prošle nedelje';
-
-  @override
-  String get insight_comparison_monthly => 'Mesečni prosek';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'u poređenju sa $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Poređenje nije dostupno';
-
-  @override
-  String get insight_comparison_yearly => 'Godišnji prosek';
-
-  @override
-  String get insight_comparison_yesterday => 'Juče';
 
   @override
   String get insight_counting_paused => 'Brojanje pauzirano';
@@ -396,46 +395,16 @@ class LocalizationSr extends Localization {
       'Brojanje pauzirano · Poslednja vrednost';
 
   @override
-  String get insight_dashboard_title => 'Analiza protoka';
-
-  @override
-  String get insight_disappear => 'Nestali';
-
-  @override
-  String get insight_dwell_time => 'Vreme zadržavanja';
-
-  @override
-  String get insight_early_estimate => 'Početna procena';
-
-  @override
-  String get insight_entry => 'Ulazi';
+  String get insight_dashboard_title => 'Analiza kretanja';
 
   @override
   String get insight_error => 'Nije moguće učitati podatke';
 
   @override
-  String get insight_estimated => 'Procenjeno';
-
-  @override
-  String get insight_exit => 'Izlazi';
-
-  @override
   String get insight_hourly_rate => 'Stopa po satu';
 
   @override
-  String get insight_last_60_minutes => 'Poslednjih 60 minuta';
-
-  @override
-  String get insight_longest_completed_visit => 'Najduža poseta';
-
-  @override
   String get insight_objects_unit => 'objekti';
-
-  @override
-  String get insight_occupancy => 'Popunjenost';
-
-  @override
-  String get insight_pass_by => 'Prolaznici';
 
   @override
   String get insight_peak => 'Maksimum';
@@ -454,12 +423,6 @@ class LocalizationSr extends Localization {
 
   @override
   String get insight_period_lunch => 'Ručak';
-
-  @override
-  String get insight_stagnant => 'Zadržavanje';
-
-  @override
-  String get insight_today => 'Danas';
 
   @override
   String insight_today_chart(Object metric) {
@@ -549,20 +512,6 @@ class LocalizationSr extends Localization {
   String get main_screen_video_sources => 'Izvori videa';
 
   @override
-  String get maximum_occupancy => 'Maksimalna popunjenost';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Prikazuje najveći broj ljudi ili vozila koji su se istovremeno nalazili u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nKorisno za utvrđivanje perioda najveće gužve ili saobraćaja.';
-
-  @override
-  String get maximum_stay => 'Maksimalno vreme zadržavanja';
-
-  @override
-  String get maximum_stay_help =>
-      'Prikazuje najduže vreme koje su osoba ili vozilo proveli u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nKorisno za prepoznavanje neuobičajeno dugih poseta ili zaustavljanja.';
-
-  @override
   String get metric_events => 'Događaji';
 
   @override
@@ -634,6 +583,20 @@ class LocalizationSr extends Localization {
   String get occupancy => 'Тренутни број';
 
   @override
+  String get occupancy_max => 'Maksimalan broj';
+
+  @override
+  String get occupancy_max_help =>
+      'Prikazuje najveći broj ljudi ili vozila koji su se istovremeno nalazili u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nKorisno za utvrđivanje perioda najveće gužve ili saobraćaja.';
+
+  @override
+  String get occupancy_mean => 'Prosečan broj';
+
+  @override
+  String get occupancy_mean_help =>
+      'Prikazuje prosečan broj ljudi ili vozila u ovoj oblasti tokom trenutnog perioda brojanja.\\n\\nPomaže da se proceni koliko je oblast bila prometna tokom celog perioda brojanja.';
+
+  @override
   String get onboarding_back_action => 'Nazad';
 
   @override
@@ -673,10 +636,10 @@ class LocalizationSr extends Localization {
   String get onboarding_start_action => 'Pokreni';
 
   @override
-  String get passed_by => 'Prošli';
+  String get pass_by => 'Prolazni saobraćaj';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Broji ljude ili vozila koja su prošla kroz ovu oblast tokom trenutnog perioda brojanja.\\n\\nSvaka osoba ili vozilo broji se samo jednom za svaki prolazak kroz oblast.';
 
   @override
@@ -854,10 +817,10 @@ class LocalizationSr extends Localization {
   String get settings_screen_subscription_title => 'Pretplata';
 
   @override
-  String get stagnanted => 'Ostali';
+  String get stagnant => 'Zadržavanje';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Broji ljude ili vozila koja su ostala u ovoj oblasti najmanje tokom podešenog vremena zadržavanja.\\n\\nPodrazumevano vreme zadržavanja je 15 sekundi i može se promeniti u Podešavanjima.';
 
   @override
@@ -909,6 +872,27 @@ class LocalizationSr extends Localization {
 
   @override
   String get terms => 'Uslovi korišćenja';
+
+  @override
+  String get traffic_period_custom_day => 'Izabrani dan';
+
+  @override
+  String get traffic_period_last_month => 'Prosek prošlog meseca';
+
+  @override
+  String get traffic_period_last_week => 'Isti dan prošle nedelje';
+
+  @override
+  String get traffic_period_last_year => 'Prosek prošle godine';
+
+  @override
+  String get traffic_period_live_today => 'Danas uživo';
+
+  @override
+  String get traffic_period_today => 'Danas';
+
+  @override
+  String get traffic_period_yesterday => 'Juče';
 
   @override
   String get upload_screen_attempt_time => 'Vreme pokušaja:';

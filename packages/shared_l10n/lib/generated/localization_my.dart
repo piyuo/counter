@@ -19,25 +19,11 @@ class LocalizationMy extends Localization {
   String get about_screen_platform => 'ပလက်ဖောင်း';
 
   @override
-  String get appeared => 'ပေါ်လာသည်';
+  String get appear => 'ပေါ်လာမှု';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'ပထမဆုံးတွေ့ရှိသော တည်နေရာသည် ဤဧရိယာအတွင်းရှိ လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nTracking စတင်သည့်နေရာကို နားလည်ရန် အသုံးဝင်သည်။\\n\\n(အဆင့်မြင့်အသုံးပြုသူများအတွက်)';
-
-  @override
-  String get average_occupancy => 'ပျမ်းမျှရှိနေသူ数';
-
-  @override
-  String get average_occupancy_help =>
-      'ဤရေတွက်ချိန်အတွင်း ဤဧရိယာရှိ လူများ သို့မဟုတ် ယာဉ်များ၏ ပျမ်းမျှအရေအတွက်ကို ပြသသည်။\\n\\nဤဧရိယာသည် ရေတွက်ချိန်တစ်လျှောက်လုံး မည်မျှစည်ကားခဲ့သည်ကို သိနိုင်သည်။';
-
-  @override
-  String get average_stay => 'ပျမ်းမျှနေထိုင်ချိန်';
-
-  @override
-  String get average_stay_help =>
-      'ဤဧရိယာတွင် လူများ သို့မဟုတ် ယာဉ်များ နေခဲ့သည့် ပျမ်းမျှအချိန်ကို ပြသသည်။\\n\\nပျမ်းမျှနေချိန် ပိုရှည်ပါက ဖောက်သည်များသည် ဤဧရိယာတွင် အချိန်ပိုကုန်ဆုံးနေကြောင်း ဖော်ပြနိုင်သည်။';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationMy extends Localization {
       'ခြေရာခံထားသော အရာတစ်ခုစီအတွက် အနုကျ ခြေရာခံ အည်ဝယ်များကို ပြရန် ဤရွေးချယ်မှုကို အစုံအလင်ဖြင့် အသုံးပြုပါ။';
 
   @override
-  String get detection_screen_stagnant => 'နေချိန်';
+  String get detection_screen_stagnant => 'နေထိုင်ချိန် သတ်မှတ်ချက်';
 
   @override
   String get detection_screen_stagnant_help =>
-      'အရာဝတ္ထုကို နေထိုင်မှုအဖြစ် ရေတွက်ရန် ဧရိယာအတွင်း ဘယ်လောက်ကြာကြာ ရှိနေရမည်ကို သတ်မှတ်ပါ။';
+      'အရာဝတ္ထုတစ်ခုကို နေထိုင်မှုအဖြစ် ရေတွက်မီ ဤဧရိယာတွင် အနည်းဆုံး ရှိနေရမည့်အချိန်။';
 
   @override
   String get detection_screen_stagnant_max_label => 'နှောင့်နှေး';
@@ -215,7 +201,7 @@ class LocalizationMy extends Localization {
   String get detection_screen_stagnant_min_label => 'ချက်ချင်း';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'အရာဝတ္ထုတစ်ခုသည် \\နေထိုင်မှု\\\" ရေတွက်ချက်တွင် မည်သည့်အခါ ပါဝင်သည်ကို ဆုံးဖြတ်သည်။\\nတန်ဖိုးတိုလျှင်\\n• နေထိုင်မှုကို ချက်ချင်းရေတွက်\\n• မြန်ဆန်သောခွဲခြမ်းစိတ်ဖြာမှုအတွက် ပိုကောင်း\\nတန်ဖိုးရှည်လျှင်\\n• တိုတောင်းသော ဖြတ်သန်းမှုကို လျစ်လျူရှု\\n• နေရာယူမှု တိုင်းတာရန် ပိုကောင်း\"';
 
   @override
@@ -286,57 +272,80 @@ class LocalizationMy extends Localization {
   String get device_not_supported_screen_title => 'ကင်မရာ မတွေ့ပါ';
 
   @override
-  String get disappeared => 'ပျောက်သွားသည်';
+  String get disappear => 'ပျောက်ကွယ်မှု';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'နောက်ဆုံးတွေ့ရှိသော တည်နေရာသည် ဤဧရိယာအတွင်းရှိ လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nသတ်မှတ်ထားသော Disappear Time အတွင်း မတွေ့ရှိတော့ပါက Tracking ပြီးဆုံးသည်။\\n\\n(အဆင့်မြင့်အသုံးပြုသူများအတွက်)';
 
   @override
   String get dpa => 'ဒေတာလုပ်ဆောင်မှု သဘောတူညီချက်';
 
   @override
-  String get durationDaysShort => '%sရက်';
+  String durationDaysShort(Object value) {
+    return '$valueရက်';
+  }
 
   @override
-  String get durationHoursShort => '%sနာရီ';
+  String durationHoursShort(Object value) {
+    return '$valueနာရီ';
+  }
 
   @override
-  String get durationMinutesShort => '%sမိနစ်';
+  String durationMinutesShort(Object value) {
+    return '$valueမိနစ်';
+  }
 
   @override
-  String get durationSecondsShort => '%sစက္ကန့်';
+  String durationSecondsShort(Object value) {
+    return '$valueစက္ကန့်';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'ဝင်လာသည်';
+  String get dwell_time_max => 'ပြီးဆုံးသည့် နေထိုင်မှုအကြာဆုံး';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'ဤရေတွက်ချိန်အတွင်း လူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီး ဤဧရိယာတွင် အကြာဆုံးနေခဲ့သည့်အချိန်ကို ပြသသည်။\\n\\nပုံမှန်ထက် ကြာမြင့်သော လည်ပတ်မှုများ သို့မဟုတ် ရပ်နားမှုများကို သိရှိရန် အသုံးဝင်သည်။\\n\\nပြီးဆုံးသွားသော နေထိုင်မှုများကိုသာ ထည့်သွင်းတွက်ချက်ပြီး ဆက်လက်ရှိနေသော နေထိုင်မှုများကို မထည့်သွင်းပါ။';
+
+  @override
+  String get dwell_time_mean => 'ပြီးဆုံးသည့် နေထိုင်ချိန် ပျမ်းမျှ';
+
+  @override
+  String get dwell_time_mean_help =>
+      'ဤဧရိယာတွင် လူများ သို့မဟုတ် ယာဉ်များ နေခဲ့သည့် ပျမ်းမျှအချိန်ကို ပြသသည်။\\n\\nပျမ်းမျှနေချိန် ပိုရှည်ပါက ဖောက်သည်များသည် ဤဧရိယာတွင် အချိန်ပိုကုန်ဆုံးနေကြောင်း ဖော်ပြနိုင်သည်။\\n\\nပြီးဆုံးသွားသော နေထိုင်မှုများကိုသာ ထည့်သွင်းတွက်ချက်ပြီး ဆက်လက်ရှိနေသော နေထိုင်မှုများကို မထည့်သွင်းပါ။';
+
+  @override
+  String get entry => 'ဝင်ရောက်မှု';
+
+  @override
+  String get entry_help =>
       'လက်ရှိရေတွက်သည့်အချိန်အတွင်း ဤဧရိယာအတွင်းသို့ ဝင်လာသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nလူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီးသည် ဧရိယာပြင်ပမှ အတွင်းသို့ ရွှေ့လျားသောအခါ ဝင်ရောက်မှုတစ်ကြိမ်အဖြစ် ရေတွက်သည်။';
 
   @override
-  String get exited => 'ထွက်သွားသည်';
+  String get exit => 'ထွက်ခွာမှု';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'လက်ရှိရေတွက်သည့်အချိန်အတွင်း ဤဧရိယာမှ ထွက်သွားသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nလူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီးသည် ဧရိယာအတွင်းမှ အပြင်သို့ ရွှေ့လျားသောအခါ ထွက်ခွာမှုတစ်ကြိမ်အဖြစ် ရေတွက်သည်။';
-
-  @override
-  String get insight_appear => 'ပေါ်လာမှု';
-
-  @override
-  String get insight_average_completed_visit =>
-      'ပြီးဆုံးသည့် လည်ပတ်မှု ပျမ်းမျှ';
 
   @override
   String get insight_average_short => 'ပျမ်းမျှ';
 
   @override
-  String get insight_based_on_minutes =>
-      'အချိန် %m မိနစ်အပေါ် အခြေခံသည် · ပြောင်းလဲနိုင်သည်';
+  String insight_based_on_min(Object min) {
+    return '$min မိနစ် စောင့်ကြည့်မှုအပေါ် အခြေခံသည် · ပြောင်းလဲနိုင်သည်';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '$sec စက္ကန့် စောင့်ကြည့်မှုအပေါ် အခြေခံသည် · ပြောင်းလဲနိုင်သည်';
+  }
 
   @override
   String get insight_chart_dwell_unit => '၅ မိနစ်လျှင် ပျမ်းမျှ ကြာချိန်';
@@ -348,7 +357,8 @@ class LocalizationMy extends Localization {
   String get insight_chart_hourly_breakdown => 'နာရီအလိုက် အနှစ်ချုပ်';
 
   @override
-  String get insight_chart_hourly_info => '시간별 기록값을 표시합니다. 현재 진행 중인 시간은 숨겨집니다.';
+  String get insight_chart_hourly_info =>
+      'ပြီးဆုံးပြီးသော နာရီတိုင်းအတွက် မှတ်တမ်းတင်ထားသည့် တန်ဖိုးများကို ပြသသည်။ မပြီးဆုံးသေးသော လက်ရှိနာရီကို မပြသပါ။';
 
   @override
   String get insight_chart_info_description =>
@@ -371,24 +381,12 @@ class LocalizationMy extends Localization {
   String get insight_compare_with => 'နှင့် နှိုင်းယှဉ်ရန်';
 
   @override
-  String get insight_comparison_last_week => 'ပြီးခဲ့သည့်အပတ် အလားတူနေ့';
-
-  @override
-  String get insight_comparison_monthly => 'လစဉ် ပျမ်းမျှ';
-
-  @override
   String insight_comparison_period(Object period) {
     return '$period နှင့် နှိုင်းယှဉ်';
   }
 
   @override
   String get insight_comparison_unavailable => 'နှိုင်းယှဉ်၍ မရပါ';
-
-  @override
-  String get insight_comparison_yearly => 'နှစ်စဉ် ပျမ်းမျှ';
-
-  @override
-  String get insight_comparison_yesterday => 'မနေ့က';
 
   @override
   String get insight_counting_paused => 'ရေတွက်မှု ခေတ္တရပ်ထားသည်';
@@ -401,43 +399,13 @@ class LocalizationMy extends Localization {
   String get insight_dashboard_title => 'သွားလာမှု အချက်အလက်';
 
   @override
-  String get insight_disappear => 'ပျောက်ကွယ်မှု';
-
-  @override
-  String get insight_dwell_time => 'နေထိုင်ကြာချိန်';
-
-  @override
-  String get insight_early_estimate => 'ကနဦး ခန့်မှန်းချက်';
-
-  @override
-  String get insight_entry => 'ဝင်ရောက်မှု';
-
-  @override
   String get insight_error => 'အချက်အလက် ဖွင့်မရပါ';
-
-  @override
-  String get insight_estimated => 'ခန့်မှန်း';
-
-  @override
-  String get insight_exit => 'ထွက်ခွာမှု';
 
   @override
   String get insight_hourly_rate => 'တစ်နာရီနှုန်း';
 
   @override
-  String get insight_last_60_minutes => 'နောက်ဆုံး မိနစ် ၆၀';
-
-  @override
-  String get insight_longest_completed_visit => 'အကြာဆုံး လည်ပတ်မှု';
-
-  @override
   String get insight_objects_unit => 'အရာဝတ္ထုများ';
-
-  @override
-  String get insight_occupancy => 'ရှိနေသည့် အရေအတွက်';
-
-  @override
-  String get insight_pass_by => 'ဖြတ်သန်းသွားလာမှု';
 
   @override
   String get insight_peak => 'အမြင့်ဆုံး';
@@ -456,12 +424,6 @@ class LocalizationMy extends Localization {
 
   @override
   String get insight_period_lunch => 'နေ့လယ်စာ';
-
-  @override
-  String get insight_stagnant => 'နေရာတွင် ရှိနေခြင်း';
-
-  @override
-  String get insight_today => 'ယနေ့';
 
   @override
   String insight_today_chart(Object metric) {
@@ -551,20 +513,6 @@ class LocalizationMy extends Localization {
   String get main_screen_video_sources => 'ဗီဒီယိုရင်းမြစ်များ';
 
   @override
-  String get maximum_occupancy => 'အများဆုံးရှိနေသူ数';
-
-  @override
-  String get maximum_occupancy_help =>
-      'ဤရေတွက်ချိန်အတွင်း တစ်ချိန်တည်းတွင် ဤဧရိယာရှိ လူများ သို့မဟုတ် ယာဉ်များ၏ အများဆုံးအရေအတွက်ကို ပြသသည်။\\n\\nလူအများဆုံး သို့မဟုတ် ယာဉ်အသွားအလာအများဆုံးအချိန်ကို သိနိုင်သည်။';
-
-  @override
-  String get maximum_stay => 'အများဆုံးနေထိုင်ချိန်';
-
-  @override
-  String get maximum_stay_help =>
-      'ဤရေတွက်ချိန်အတွင်း လူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီး ဤဧရိယာတွင် အကြာဆုံးနေခဲ့သည့်အချိန်ကို ပြသသည်။\\n\\nပုံမှန်ထက် ကြာမြင့်သော လည်ပတ်မှုများ သို့မဟုတ် ရပ်နားမှုများကို သိရှိရန် အသုံးဝင်သည်။';
-
-  @override
   String get metric_events => 'ဖြစ်ရပ်များ';
 
   @override
@@ -636,6 +584,20 @@ class LocalizationMy extends Localization {
   String get occupancy => 'လက်ရှိ အရေအတွက်';
 
   @override
+  String get occupancy_max => 'အများဆုံးအရေအတွက်';
+
+  @override
+  String get occupancy_max_help =>
+      'ဤရေတွက်ချိန်အတွင်း တစ်ချိန်တည်းတွင် ဤဧရိယာရှိ လူများ သို့မဟုတ် ယာဉ်များ၏ အများဆုံးအရေအတွက်ကို ပြသသည်။\\n\\nလူအများဆုံး သို့မဟုတ် ယာဉ်အသွားအလာအများဆုံးအချိန်ကို သိနိုင်သည်။';
+
+  @override
+  String get occupancy_mean => 'ပျမ်းမျှအရေအတွက်';
+
+  @override
+  String get occupancy_mean_help =>
+      'ဤရေတွက်ချိန်အတွင်း ဤဧရိယာရှိ လူများ သို့မဟုတ် ယာဉ်များ၏ ပျမ်းမျှအရေအတွက်ကို ပြသသည်။\\n\\nဤဧရိယာသည် ရေတွက်ချိန်တစ်လျှောက်လုံး မည်မျှစည်ကားခဲ့သည်ကို သိနိုင်သည်။';
+
+  @override
   String get onboarding_back_action => 'နောက်သို့';
 
   @override
@@ -675,10 +637,10 @@ class LocalizationMy extends Localization {
   String get onboarding_start_action => 'စတင်';
 
   @override
-  String get passed_by => 'ဖြတ်သွား';
+  String get pass_by => 'ဖြတ်သန်းသွားလာမှု';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'လက်ရှိရေတွက်သည့်အချိန်အတွင်း ဤဧရိယာကို ဖြတ်သွားသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nလူတစ်ဦး သို့မဟုတ် ယာဉ်တစ်စီးသည် ဧရိယာကို ဖြတ်သွားတိုင်း တစ်ကြိမ်သာ ရေတွက်သည်။';
 
   @override
@@ -856,10 +818,10 @@ class LocalizationMy extends Localization {
   String get settings_screen_subscription_title => 'စာရင်းသွင်းမှု';
 
   @override
-  String get stagnanted => 'နေခဲ့သည်';
+  String get stagnant => 'တည်ရှိနေမှု';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'သတ်မှတ်ထားသော နေထိုင်ချိန်အနည်းဆုံးအထိ ဤဧရိယာတွင် ရှိနေသော လူများ သို့မဟုတ် ယာဉ်များကို ရေတွက်သည်။\\n\\nမူလ Stay Time သည် ၁၅ စက္ကန့်ဖြစ်ပြီး Settings တွင် ပြောင်းလဲနိုင်သည်။';
 
   @override
@@ -912,6 +874,27 @@ class LocalizationMy extends Localization {
 
   @override
   String get terms => 'ဝန်ဆောင်မှု စည်းမျဉ်းများ';
+
+  @override
+  String get traffic_period_custom_day => 'စိတ်ကြိုက်နေ့';
+
+  @override
+  String get traffic_period_last_month => 'ပြီးခဲ့သည့်လ ပျမ်းမျှ';
+
+  @override
+  String get traffic_period_last_week => 'ပြီးခဲ့သည့်အပတ် အလားတူနေ့';
+
+  @override
+  String get traffic_period_last_year => 'ပြီးခဲ့သည့်နှစ် ပျမ်းမျှ';
+
+  @override
+  String get traffic_period_live_today => 'ယနေ့ တိုက်ရိုက်';
+
+  @override
+  String get traffic_period_today => 'ယနေ့';
+
+  @override
+  String get traffic_period_yesterday => 'မနေ့က';
 
   @override
   String get upload_screen_attempt_time => 'ကြိုးစားသည့် အချိန်:';

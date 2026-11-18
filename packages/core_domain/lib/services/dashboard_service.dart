@@ -15,7 +15,7 @@ enum DashboardMetric {
   appear,
   disappear,
   occupancyMean,
-  occupancyPeak,
+  occupancyMax,
   dwellTimeMean,
   dwellTimeMax,
 }
@@ -28,7 +28,7 @@ bool isHourlyRate(DashboardMetric metric) => switch (metric) {
   DashboardMetric.appear ||
   DashboardMetric.disappear => true,
   DashboardMetric.occupancyMean ||
-  DashboardMetric.occupancyPeak ||
+  DashboardMetric.occupancyMax ||
   DashboardMetric.dwellTimeMean ||
   DashboardMetric.dwellTimeMax => false,
 };
@@ -37,14 +37,15 @@ class DashboardMeasurement {
   const DashboardMeasurement({
     required this.amount,
     required this.metric,
-    this.estimated = false,
-    this.coveredSeconds = 0,
+    required this.expectedSeconds,
+    required this.coveredSeconds,
   });
 
   final double amount;
   final DashboardMetric metric;
-  final bool estimated;
+  final int expectedSeconds;
   final int coveredSeconds;
+  double get coverage => expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds;
 }
 
 class DashboardPeriodData {
@@ -68,8 +69,8 @@ class DashboardChartPoint {
     this.comparisonValue,
     this.todayCoveredSeconds = 0,
     this.comparisonCoveredSeconds = 0,
-    this.todayEstimated = false,
-    this.comparisonEstimated = false,
+    this.todayCoverage = 0,
+    this.comparisonCoverage = 0,
   });
 
   final int minuteOfDay;
@@ -77,8 +78,8 @@ class DashboardChartPoint {
   final double? comparisonValue;
   final int todayCoveredSeconds;
   final int comparisonCoveredSeconds;
-  final bool todayEstimated;
-  final bool comparisonEstimated;
+  final double todayCoverage;
+  final double comparisonCoverage;
 }
 
 class DashboardAreaData {

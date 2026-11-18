@@ -19,25 +19,11 @@ class LocalizationEl extends Localization {
   String get about_screen_platform => 'Πλατφόρμα';
 
   @override
-  String get appeared => 'Εμφανίστηκαν';
+  String get appear => 'Εμφανίσεις';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Μετρά άτομα ή οχήματα των οποίων η πρώτη ανιχνευμένη θέση ήταν μέσα σε αυτή την περιοχή.\\n\\nΧρήσιμο για την κατανόηση του σημείου όπου ξεκινά η παρακολούθηση.\\n\\n(Κυρίως για προχωρημένους χρήστες)';
-
-  @override
-  String get average_occupancy => 'Μέση πληρότητα';
-
-  @override
-  String get average_occupancy_help =>
-      'Εμφανίζει τον μέσο αριθμό ατόμων ή οχημάτων σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΒοηθά να εκτιμήσετε πόσο πολυσύχναστη ήταν η περιοχή σε όλη τη διάρκεια του παραθύρου καταμέτρησης.';
-
-  @override
-  String get average_stay => 'Μέση διάρκεια παραμονής';
-
-  @override
-  String get average_stay_help =>
-      'Εμφανίζει τον μέσο χρόνο παραμονής ατόμων ή οχημάτων σε αυτή την περιοχή.\\n\\nΜεγαλύτερη μέση διάρκεια παραμονής μπορεί να σημαίνει ότι οι πελάτες περνούν περισσότερο χρόνο σε αυτή την περιοχή.';
 
   @override
   String get camera_test_screen_help =>
@@ -203,11 +189,11 @@ class LocalizationEl extends Localization {
       'Ενεργοποιήστε αυτήν την επιλογή για να εμfανίσετε μοναδικά ID παρακολούθησης για κάθε παρακολουθούμενο αντικείμενο.';
 
   @override
-  String get detection_screen_stagnant => 'Χρόνος παραμονής';
+  String get detection_screen_stagnant => 'Όριο παραμονής';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Πόση ώρα πρέπει να μείνει ένα αντικείμενο στην περιοχή για να μετρηθεί ως παραμονή.';
+      'Ο ελάχιστος χρόνος που πρέπει να παραμείνει ένα αντικείμενο στην περιοχή για να καταμετρηθεί ως παραμονή.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Καθυστερημένο';
@@ -216,7 +202,7 @@ class LocalizationEl extends Localization {
   String get detection_screen_stagnant_min_label => 'Άμεσο';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Καθορίζει πότε ένα αντικείμενο συμβάλλει στην καταμέτρηση παραμονής.\\nΣυντομότερες τιμές\\n• Μετρούν την παραμονή αμέσως\\n• Καλύτερες για γρήγορη ανάλυση\\nΜεγαλύτερες τιμές\\n• Αγνοούν τη σύντομη διερχόμενη κίνηση\\n• Καλύτερες για μέτρηση πληρότητας';
 
   @override
@@ -286,56 +272,80 @@ class LocalizationEl extends Localization {
   String get device_not_supported_screen_title => 'Δεν βρέθηκε κάμερα';
 
   @override
-  String get disappeared => 'Εξαφανίστηκαν';
+  String get disappear => 'Εξαφανίσεις';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Μετρά άτομα ή οχήματα των οποίων η τελευταία ανιχνευμένη θέση ήταν μέσα σε αυτή την περιοχή.\\n\\nΗ παρακολούθηση τερματίζεται μετά τον καθορισμένο χρόνο εξαφάνισης, εάν το άτομο ή το όχημα δεν ανιχνεύεται πλέον.\\n\\n(Κυρίως για προχωρημένους χρήστες)';
 
   @override
   String get dpa => 'Συμφωνία Επεξεργασίας Δεδομένων';
 
   @override
-  String get durationDaysShort => '%sημ';
+  String durationDaysShort(Object value) {
+    return '$valueημ';
+  }
 
   @override
-  String get durationHoursShort => '%sώ';
+  String durationHoursShort(Object value) {
+    return '$valueώ';
+  }
 
   @override
-  String get durationMinutesShort => '%sλ';
+  String durationMinutesShort(Object value) {
+    return '$valueλ';
+  }
 
   @override
-  String get durationSecondsShort => '%sδ';
+  String durationSecondsShort(Object value) {
+    return '$valueδ';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Εισήλθαν';
+  String get dwell_time_max => 'Μεγαλύτερη διάρκεια ολοκληρωμένης παραμονής';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Εμφανίζει τη μεγαλύτερη διάρκεια παραμονής ατόμου ή οχήματος σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΧρήσιμο για τον εντοπισμό ασυνήθιστα μεγάλων επισκέψεων ή στάσεων.\\n\\nΥπολογίζονται μόνο οι ολοκληρωμένες παραμονές· οι συνεχιζόμενες εξαιρούνται.';
+
+  @override
+  String get dwell_time_mean => 'Μέση διάρκεια ολοκληρωμένης παραμονής';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Εμφανίζει τον μέσο χρόνο παραμονής ατόμων ή οχημάτων σε αυτή την περιοχή.\\n\\nΜεγαλύτερη μέση διάρκεια παραμονής μπορεί να σημαίνει ότι οι πελάτες περνούν περισσότερο χρόνο σε αυτή την περιοχή.\\n\\nΥπολογίζονται μόνο οι ολοκληρωμένες παραμονές· οι συνεχιζόμενες εξαιρούνται.';
+
+  @override
+  String get entry => 'Είσοδοι';
+
+  @override
+  String get entry_help =>
       'Μετρά τα άτομα ή τα οχήματα που εισήλθαν σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΜια είσοδος καταγράφεται όταν ένα άτομο ή όχημα μετακινείται από έξω προς το εσωτερικό της περιοχής.';
 
   @override
-  String get exited => 'Εξήλθαν';
+  String get exit => 'Έξοδοι';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Μετρά τα άτομα ή τα οχήματα που εξήλθαν από αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΜια έξοδος καταγράφεται όταν ένα άτομο ή όχημα μετακινείται από το εσωτερικό προς το εξωτερικό της περιοχής.';
-
-  @override
-  String get insight_appear => 'Εμφανίστηκαν';
-
-  @override
-  String get insight_average_completed_visit => 'Μ.ό. ολοκληρωμένης επίσκεψης';
 
   @override
   String get insight_average_short => 'μ.ό.';
 
   @override
-  String get insight_based_on_minutes =>
-      'Βάσει %m λεπτών · Ενδέχεται να μεταβληθεί';
+  String insight_based_on_min(Object min) {
+    return 'Βάσει $min λεπτών · Μπορεί να μεταβληθεί';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Βάσει $sec δευτ. · Μπορεί να μεταβληθεί';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Μ.ό. διάρκειας ανά 5 λεπτά';
@@ -348,7 +358,7 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Εμφανίζει τις καταγεγραμμένες τιμές ανά ώρα. Η τρέχουσα';
+      'Εμφανίζει τις καταγεγραμμένες τιμές για κάθε ολοκληρωμένη ώρα. Η τρέχουσα μη ολοκληρωμένη ώρα δεν εμφανίζεται.';
 
   @override
   String get insight_chart_info_description =>
@@ -371,24 +381,12 @@ class LocalizationEl extends Localization {
   String get insight_compare_with => 'Σύγκριση με';
 
   @override
-  String get insight_comparison_last_week => 'Ίδια μέρα την περασμένη εβδομάδα';
-
-  @override
-  String get insight_comparison_monthly => 'Μηνιαίος μέσος όρος';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'σε σύγκριση με $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Μη διαθέσιμη σύγκριση';
-
-  @override
-  String get insight_comparison_yearly => 'Ετήσιος μέσος όρος';
-
-  @override
-  String get insight_comparison_yesterday => 'Χθες';
 
   @override
   String get insight_counting_paused => 'Η καταμέτρηση έχει διακοπεί προσωρινά';
@@ -401,43 +399,13 @@ class LocalizationEl extends Localization {
   String get insight_dashboard_title => 'Ανάλυση κίνησης';
 
   @override
-  String get insight_disappear => 'Εξαφανίστηκαν';
-
-  @override
-  String get insight_dwell_time => 'Χρόνος παραμονής';
-
-  @override
-  String get insight_early_estimate => 'Πρώιμη εκτίμηση';
-
-  @override
-  String get insight_entry => 'Είσοδοι';
-
-  @override
   String get insight_error => 'Δεν ήταν δυνατή η φόρτωση';
-
-  @override
-  String get insight_estimated => 'Εκτίμηση';
-
-  @override
-  String get insight_exit => 'Έξοδοι';
 
   @override
   String get insight_hourly_rate => 'Ωριαίος ρυθμός';
 
   @override
-  String get insight_last_60_minutes => 'Τελευταία 60 λεπτά';
-
-  @override
-  String get insight_longest_completed_visit => 'Μεγαλύτερη επίσκεψη';
-
-  @override
   String get insight_objects_unit => 'αντικείμενα';
-
-  @override
-  String get insight_occupancy => 'Πληρότητα';
-
-  @override
-  String get insight_pass_by => 'Διερχόμενη κίνηση';
 
   @override
   String get insight_peak => 'Μέγιστο';
@@ -456,12 +424,6 @@ class LocalizationEl extends Localization {
 
   @override
   String get insight_period_lunch => 'Μεσημεριανό';
-
-  @override
-  String get insight_stagnant => 'Παραμονή';
-
-  @override
-  String get insight_today => 'Σήμερα';
 
   @override
   String insight_today_chart(Object metric) {
@@ -554,20 +516,6 @@ class LocalizationEl extends Localization {
   String get main_screen_video_sources => 'Πηγές βίντεο';
 
   @override
-  String get maximum_occupancy => 'Μέγιστη πληρότητα';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Εμφανίζει τον μεγαλύτερο αριθμό ατόμων ή οχημάτων που βρέθηκαν ταυτόχρονα σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΧρήσιμο για τον εντοπισμό των περιόδων με τη μεγαλύτερη κίνηση ή συμφόρηση.';
-
-  @override
-  String get maximum_stay => 'Μέγιστη διάρκεια παραμονής';
-
-  @override
-  String get maximum_stay_help =>
-      'Εμφανίζει τη μεγαλύτερη διάρκεια παραμονής ατόμου ή οχήματος σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΧρήσιμο για τον εντοπισμό ασυνήθιστα μεγάλων επισκέψεων ή στάσεων.';
-
-  @override
   String get metric_events => 'Συμβάντα';
 
   @override
@@ -638,6 +586,20 @@ class LocalizationEl extends Localization {
   String get occupancy => 'Τρέχων αριθμός';
 
   @override
+  String get occupancy_max => 'Μέγιστος αριθμός';
+
+  @override
+  String get occupancy_max_help =>
+      'Εμφανίζει τον μεγαλύτερο αριθμό ατόμων ή οχημάτων που βρέθηκαν ταυτόχρονα σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΧρήσιμο για τον εντοπισμό των περιόδων με τη μεγαλύτερη κίνηση ή συμφόρηση.';
+
+  @override
+  String get occupancy_mean => 'Μέσος αριθμός';
+
+  @override
+  String get occupancy_mean_help =>
+      'Εμφανίζει τον μέσο αριθμό ατόμων ή οχημάτων σε αυτή την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΒοηθά να εκτιμήσετε πόσο πολυσύχναστη ήταν η περιοχή σε όλη τη διάρκεια του παραθύρου καταμέτρησης.';
+
+  @override
   String get onboarding_back_action => 'Πίσω';
 
   @override
@@ -677,10 +639,10 @@ class LocalizationEl extends Localization {
   String get onboarding_start_action => 'Έναρξη';
 
   @override
-  String get passed_by => 'Πέρασαν';
+  String get pass_by => 'Διερχόμενη κίνηση';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Μετρά τα άτομα ή τα οχήματα που πέρασαν από αυτήν την περιοχή κατά τη διάρκεια του τρέχοντος παραθύρου καταμέτρησης.\\n\\nΚάθε άτομο ή όχημα μετριέται μόνο μία φορά για κάθε διέλευση από την περιοχή.';
 
   @override
@@ -861,10 +823,10 @@ class LocalizationEl extends Localization {
   String get settings_screen_subscription_title => 'Συνδρομή';
 
   @override
-  String get stagnanted => 'Παρέμειναν';
+  String get stagnant => 'Παραμονή';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Μετρά άτομα ή οχήματα που παρέμειναν σε αυτή την περιοχή για τουλάχιστον τον καθορισμένο χρόνο παραμονής.\\n\\nΟ προεπιλεγμένος χρόνος παραμονής είναι 15 δευτερόλεπτα και μπορεί να αλλάξει από τις Ρυθμίσεις.';
 
   @override
@@ -917,6 +879,27 @@ class LocalizationEl extends Localization {
 
   @override
   String get terms => 'Όροι Παροχής Υπηρεσιών';
+
+  @override
+  String get traffic_period_custom_day => 'Προσαρμοσμένη ημέρα';
+
+  @override
+  String get traffic_period_last_month => 'Μέσος όρος προηγούμενου μήνα';
+
+  @override
+  String get traffic_period_last_week => 'Ίδια μέρα την περασμένη εβδομάδα';
+
+  @override
+  String get traffic_period_last_year => 'Μέσος όρος προηγούμενου έτους';
+
+  @override
+  String get traffic_period_live_today => 'Σήμερα ζωντανά';
+
+  @override
+  String get traffic_period_today => 'Σήμερα';
+
+  @override
+  String get traffic_period_yesterday => 'Χθες';
 
   @override
   String get upload_screen_attempt_time => 'Ώρα προσπάθειας:';

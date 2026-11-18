@@ -22,8 +22,8 @@ class BusinessPeriodRow extends StatelessWidget {
 
   final core_domain.DashboardPeriodData periodData;
   final core_domain.DashboardMetric metric;
-  final core_domain.TrafficComparisonPeriod comparisonPeriod;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
+  final core_domain.TrafficPeriod comparisonPeriod;
+  final ValueChanged<core_domain.TrafficPeriod> onComparisonChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class BusinessPeriodRow extends StatelessWidget {
     final title = _periodLabel(context, period.id, period.name);
     final comparisonValue = periodData.comparisonValue;
     final hasComparison = periodData.comparisonValue != null;
-    final comparisonLabel = formatTrafficComparisonPeriodLabel(context, comparisonPeriod);
+    final comparisonLabel = formatTrafficPeriodLabel(context, comparisonPeriod);
 
     List<Widget> buildComparison() {
       if (value == null) {
@@ -110,11 +110,6 @@ class BusinessPeriodRow extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 6),
                         child: DashboardChip.blue(label: context.l.insight_period_in_progress),
                       ),
-                    if (value != null && value.estimated)
-                      Padding(
-                        padding: const EdgeInsets.only(left: 6),
-                        child: DashboardChip.yellow(label: context.l.insight_estimated),
-                      ),
                   ],
                 ),
               ),
@@ -184,15 +179,15 @@ String _formatPeriodMetricValue(
       number: _formatNumber(context, value),
       unit: '${context.l.insight_objects_unit} ${context.l.insight_average_short}',
     ),
-    core_domain.DashboardMetric.occupancyPeak => (
+    core_domain.DashboardMetric.occupancyMax => (
       number: _formatNumber(context, value),
       unit: context.l.insight_objects_unit,
     ),
     core_domain.DashboardMetric.dwellTimeMean => (
-      number: formatCompactDuration(context.l, value.round()),
+      number: formatCompactDuration(context, value.round()),
       unit: context.l.insight_average_short,
     ),
-    core_domain.DashboardMetric.dwellTimeMax => (number: formatCompactDuration(context.l, value.round()), unit: ''),
+    core_domain.DashboardMetric.dwellTimeMax => (number: formatCompactDuration(context, value.round()), unit: ''),
   };
 }
 

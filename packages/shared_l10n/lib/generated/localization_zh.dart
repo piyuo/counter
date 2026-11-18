@@ -19,25 +19,11 @@ class LocalizationZh extends Localization {
   String get about_screen_platform => '平台';
 
   @override
-  String get appeared => '出现';
+  String get appear => '出現';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       '統計首次偵測位置位於此區域內的人員或車輛數量。\\n\\n可協助了解追蹤目標最初出現的位置。\\n\\n（主要提供進階使用者使用）';
-
-  @override
-  String get average_occupancy => '平均人数';
-
-  @override
-  String get average_occupancy_help =>
-      '顯示目前計數期間內，此區域中的人員或車輛平均數量。\\n\\n可協助了解此區域在整個計數期間內的繁忙程度。';
-
-  @override
-  String get average_stay => '平均停留时间';
-
-  @override
-  String get average_stay_help =>
-      '顯示人員或車輛在此區域內的平均停留時間。\\n\\n較長的平均停留時間，可能表示顧客在此區域停留較久。';
 
   @override
   String get camera_test_screen_help =>
@@ -190,10 +176,10 @@ class LocalizationZh extends Localization {
   String get detection_screen_show_track_id_help => '啟用此選項可顯示每個追蹤物體的唯一追蹤 ID。';
 
   @override
-  String get detection_screen_stagnant => '停留時間';
+  String get detection_screen_stagnant => '停留門檻';
 
   @override
-  String get detection_screen_stagnant_help => '物件必須在區域內停留多久，才會被計為一次停留。';
+  String get detection_screen_stagnant_help => '物體必須在區域內停留的最短時間，達到後才會計入「停留」次數。';
 
   @override
   String get detection_screen_stagnant_max_label => '延後';
@@ -202,7 +188,7 @@ class LocalizationZh extends Localization {
   String get detection_screen_stagnant_min_label => '立即';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       '決定物體何時計入「停留」計數。\\n數值較短\\n• 立即計入停留\\n• 較適合快速分析\\n數值較長\\n• 忽略短暫經過的流量\\n• 較適合佔用率測量';
 
   @override
@@ -267,55 +253,80 @@ class LocalizationZh extends Localization {
   String get device_not_supported_screen_title => '找不到相機';
 
   @override
-  String get disappeared => '消失';
+  String get disappear => '消失';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       '統計最後一次偵測位置仍在此區域內的人員或車輛數量。\\n\\n如果人員或車輛在設定的消失時間內沒有再次被偵測到，追蹤將結束。\\n\\n（主要提供進階使用者使用）';
 
   @override
   String get dpa => '資料處理協議';
 
   @override
-  String get durationDaysShort => '%s天';
+  String durationDaysShort(Object value) {
+    return '$value天';
+  }
 
   @override
-  String get durationHoursShort => '%s時';
+  String durationHoursShort(Object value) {
+    return '$value時';
+  }
 
   @override
-  String get durationMinutesShort => '%s分';
+  String durationMinutesShort(Object value) {
+    return '$value分';
+  }
 
   @override
-  String get durationSecondsShort => '%s秒';
+  String durationSecondsShort(Object value) {
+    return '$value秒';
+  }
 
   @override
-  String get durationTwoUnit => '%first%second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first$second';
+  }
 
   @override
-  String get entered => '進入';
+  String get dwell_time_max => '已結束停留的最長時間';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      '顯示目前計數期間內，人員或車輛在此區域停留的最長時間。\\n\\n可用來發現異常長時間停留或停車的情況。\\n\\n僅計入已結束的停留，不包含仍在進行中的停留。';
+
+  @override
+  String get dwell_time_mean => '已結束停留的平均時間';
+
+  @override
+  String get dwell_time_mean_help =>
+      '顯示人員或車輛在此區域內的平均停留時間。\\n\\n較長的平均停留時間，可能表示顧客在此區域停留較久。\\n\\n僅計入已結束的停留，不包含仍在進行中的停留。';
+
+  @override
+  String get entry => '進入次數';
+
+  @override
+  String get entry_help =>
       '統計目前計數期間內進入此區域的人員或車輛數量。\\n\\n當人員或車輛從區域外移動到區域內時，會計為一次進入。';
 
   @override
-  String get exited => '離開';
+  String get exit => '離開次數';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       '統計目前計數期間內離開此區域的人員或車輛數量。\\n\\n當人員或車輛從區域內移動到區域外時，會計為一次離開。';
-
-  @override
-  String get insight_appear => '出現';
-
-  @override
-  String get insight_average_completed_visit => '已結束停留的平均時間';
 
   @override
   String get insight_average_short => '平均';
 
   @override
-  String get insight_based_on_minutes => '根據 %m 分鐘資料 · 可能波動';
+  String insight_based_on_min(Object min) {
+    return '基于 $min 分钟 · 可能波动';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '基于 $sec 秒 · 可能波动';
+  }
 
   @override
   String get insight_chart_dwell_unit => '每 5 分鐘平均時間';
@@ -327,7 +338,7 @@ class LocalizationZh extends Localization {
   String get insight_chart_hourly_breakdown => '每小時概覽';
 
   @override
-  String get insight_chart_hourly_info => '顯示每個時鐘小時的已記錄數值。當前尚未完成的小時會隱藏。';
+  String get insight_chart_hourly_info => '顯示每個完整時段的已記錄數值。目前尚未完成的時段不會顯示。';
 
   @override
   String get insight_chart_info_description =>
@@ -350,12 +361,6 @@ class LocalizationZh extends Localization {
   String get insight_compare_with => '比較對象';
 
   @override
-  String get insight_comparison_last_week => '上週同一天';
-
-  @override
-  String get insight_comparison_monthly => '月平均';
-
-  @override
   String insight_comparison_period(Object period) {
     return '與$period相比';
   }
@@ -364,58 +369,22 @@ class LocalizationZh extends Localization {
   String get insight_comparison_unavailable => '無法比較';
 
   @override
-  String get insight_comparison_yearly => '年平均';
-
-  @override
-  String get insight_comparison_yesterday => '昨天';
-
-  @override
   String get insight_counting_paused => '計數已暫停';
 
   @override
   String get insight_counting_paused_last_recorded => '計數已暫停 · 最後記錄值';
 
   @override
-  String get insight_dashboard_title => '人流分析';
-
-  @override
-  String get insight_disappear => '消失';
-
-  @override
-  String get insight_dwell_time => '停留時間';
-
-  @override
-  String get insight_early_estimate => '初步估算';
-
-  @override
-  String get insight_entry => '進入次數';
+  String get insight_dashboard_title => '流量分析';
 
   @override
   String get insight_error => '無法載入分析資料';
 
   @override
-  String get insight_estimated => '估算';
-
-  @override
-  String get insight_exit => '離開次數';
-
-  @override
   String get insight_hourly_rate => '每小時比率';
 
   @override
-  String get insight_last_60_minutes => '過去 60 分鐘';
-
-  @override
-  String get insight_longest_completed_visit => '最長停留';
-
-  @override
   String get insight_objects_unit => '物件';
-
-  @override
-  String get insight_occupancy => '在場數量';
-
-  @override
-  String get insight_pass_by => '經過人流';
 
   @override
   String get insight_peak => '最高值';
@@ -434,12 +403,6 @@ class LocalizationZh extends Localization {
 
   @override
   String get insight_period_lunch => '午餐';
-
-  @override
-  String get insight_stagnant => '停留';
-
-  @override
-  String get insight_today => '今日';
 
   @override
   String insight_today_chart(Object metric) {
@@ -524,20 +487,6 @@ class LocalizationZh extends Localization {
   String get main_screen_video_sources => '視訊來源';
 
   @override
-  String get maximum_occupancy => '最大人数';
-
-  @override
-  String get maximum_occupancy_help =>
-      '顯示目前計數期間內，此區域同時存在的人員或車輛最高數量。\\n\\n可協助了解人流或車流的高峰時段。';
-
-  @override
-  String get maximum_stay => '最長停留时间';
-
-  @override
-  String get maximum_stay_help =>
-      '顯示目前計數期間內，人員或車輛在此區域停留的最長時間。\\n\\n可用來發現異常長時間停留或停車的情況。';
-
-  @override
   String get metric_events => '事件';
 
   @override
@@ -604,6 +553,20 @@ class LocalizationZh extends Localization {
   String get occupancy => '目前數量';
 
   @override
+  String get occupancy_max => '最大數量';
+
+  @override
+  String get occupancy_max_help =>
+      '顯示目前計數期間內，此區域同時存在的人員或車輛最高數量。\\n\\n可協助了解人流或車流的高峰時段。';
+
+  @override
+  String get occupancy_mean => '平均數量';
+
+  @override
+  String get occupancy_mean_help =>
+      '顯示目前計數期間內，此區域中的人員或車輛平均數量。\\n\\n可協助了解此區域在整個計數期間內的繁忙程度。';
+
+  @override
   String get onboarding_back_action => '返回';
 
   @override
@@ -643,10 +606,10 @@ class LocalizationZh extends Localization {
   String get onboarding_start_action => '開始';
 
   @override
-  String get passed_by => '經過';
+  String get pass_by => '經過流量';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       '統計目前計數期間內經過此區域的人員或車輛數量。\\n\\n每位人員或每輛車每次經過此區域時，只會計數一次。';
 
   @override
@@ -809,10 +772,10 @@ class LocalizationZh extends Localization {
   String get settings_screen_subscription_title => '訂閱';
 
   @override
-  String get stagnanted => '停留';
+  String get stagnant => '停留';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       '統計在此區域內停留時間達到設定值的人員或車輛數量。\\n\\n預設停留時間為 15 秒，可在設定中修改。';
 
   @override
@@ -853,6 +816,27 @@ class LocalizationZh extends Localization {
 
   @override
   String get terms => '服務條款';
+
+  @override
+  String get traffic_period_custom_day => '自訂日期';
+
+  @override
+  String get traffic_period_last_month => '上月平均';
+
+  @override
+  String get traffic_period_last_week => '上週同一天';
+
+  @override
+  String get traffic_period_last_year => '去年平均';
+
+  @override
+  String get traffic_period_live_today => '今日即時';
+
+  @override
+  String get traffic_period_today => '今日';
+
+  @override
+  String get traffic_period_yesterday => '昨天';
 
   @override
   String get upload_screen_attempt_time => '嘗試時間:';
@@ -1000,25 +984,11 @@ class LocalizationZhCn extends LocalizationZh {
   String get about_screen_platform => '平台';
 
   @override
-  String get appeared => '出现';
+  String get appear => '出现';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       '统计首次检测位置位于此区域内的人员或车辆数量。\\n\\n有助于了解跟踪从何处开始。\\n\\n（主要供高级用户使用）';
-
-  @override
-  String get average_occupancy => '平均人数';
-
-  @override
-  String get average_occupancy_help =>
-      '显示当前计数窗口期间此区域内人员或车辆的平均数量。\\n\\n有助于了解该区域在整个计数窗口内的繁忙程度。';
-
-  @override
-  String get average_stay => '平均停留时间';
-
-  @override
-  String get average_stay_help =>
-      '显示人员或车辆在此区域内的平均停留时间。\\n\\n较长的平均停留时间可能表示顾客在该区域停留更久。';
 
   @override
   String get camera_test_screen_help =>
@@ -1171,10 +1141,10 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_show_track_id_help => '启用此选项以显示每个被跟踪对象的唯一跟踪 ID。';
 
   @override
-  String get detection_screen_stagnant => '停留时间';
+  String get detection_screen_stagnant => '停留门槛';
 
   @override
-  String get detection_screen_stagnant_help => '对象必须在区域内停留多久，才会被计为一次停留。';
+  String get detection_screen_stagnant_help => '对象必须在区域内停留的最短时间，达到后才计入“停留”次数。';
 
   @override
   String get detection_screen_stagnant_max_label => '延迟';
@@ -1183,7 +1153,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get detection_screen_stagnant_min_label => '立即';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       '决定物体何时计入“停留”计数。\\n数值较短\\n• 立即计入停留\\n• 更适合快速分析\\n数值较长\\n• 忽略短暂经过的流量\\n• 更适合占用率测量';
 
   @override
@@ -1248,55 +1218,80 @@ class LocalizationZhCn extends LocalizationZh {
   String get device_not_supported_screen_title => '找不到摄像头';
 
   @override
-  String get disappeared => '消失';
+  String get disappear => '消失';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       '统计最后一次检测位置位于此区域内的人员或车辆数量。\\n\\n如果人员或车辆在设定的消失时间内未再次被检测到，则跟踪结束。\\n\\n（主要供高级用户使用）';
 
   @override
   String get dpa => '数据处理协议';
 
   @override
-  String get durationDaysShort => '%s天';
+  String durationDaysShort(Object value) {
+    return '$value天';
+  }
 
   @override
-  String get durationHoursShort => '%s时';
+  String durationHoursShort(Object value) {
+    return '$value时';
+  }
 
   @override
-  String get durationMinutesShort => '%s分';
+  String durationMinutesShort(Object value) {
+    return '$value分';
+  }
 
   @override
-  String get durationSecondsShort => '%s秒';
+  String durationSecondsShort(Object value) {
+    return '$value秒';
+  }
 
   @override
-  String get durationTwoUnit => '%first%second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first$second';
+  }
 
   @override
-  String get entered => '进入';
+  String get dwell_time_max => '已结束停留的最长时长';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      '显示当前计数窗口期间人员或车辆在此区域内停留的最长时间。\\n\\n有助于识别异常长时间的停留或停车。\\n\\n仅计入已结束的停留，不包含仍在进行中的停留。';
+
+  @override
+  String get dwell_time_mean => '已结束停留的平均时长';
+
+  @override
+  String get dwell_time_mean_help =>
+      '显示人员或车辆在此区域内的平均停留时间。\\n\\n较长的平均停留时间可能表示顾客在该区域停留更久。\\n\\n仅计入已结束的停留，不包含仍在进行中的停留。';
+
+  @override
+  String get entry => '进入次数';
+
+  @override
+  String get entry_help =>
       '统计当前计数窗口期间进入此区域的人员或车辆数量。\\n\\n当人员或车辆从区域外移动到区域内时，计为一次进入。';
 
   @override
-  String get exited => '离开';
+  String get exit => '离开次数';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       '统计当前计数窗口期间离开此区域的人员或车辆数量。\\n\\n当人员或车辆从区域内移动到区域外时，计为一次离开。';
-
-  @override
-  String get insight_appear => '出现';
-
-  @override
-  String get insight_average_completed_visit => '已结束停留的平均时长';
 
   @override
   String get insight_average_short => '平均';
 
   @override
-  String get insight_based_on_minutes => '根据 %m 分钟数据 · 可能波动';
+  String insight_based_on_min(Object min) {
+    return '基于 $min 分钟 · 可能波动';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '基于 $sec 秒 · 可能波动';
+  }
 
   @override
   String get insight_chart_dwell_unit => '每 5 分钟平均时长';
@@ -1308,8 +1303,7 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_chart_hourly_breakdown => '每小时明细';
 
   @override
-  String get insight_chart_hourly_info =>
-      'Her saat için kaydedilen değerleri gösterir. İçinde bulunulan tamamlanmamış saat gizlenir.';
+  String get insight_chart_hourly_info => '显示每个完整小时的记录值。当前尚未结束的小时不会显示。';
 
   @override
   String get insight_chart_info_description =>
@@ -1332,12 +1326,6 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_compare_with => '比较对象';
 
   @override
-  String get insight_comparison_last_week => '上周同一天';
-
-  @override
-  String get insight_comparison_monthly => '月平均';
-
-  @override
   String insight_comparison_period(Object period) {
     return '与$period相比';
   }
@@ -1346,58 +1334,22 @@ class LocalizationZhCn extends LocalizationZh {
   String get insight_comparison_unavailable => '暂无对比数据';
 
   @override
-  String get insight_comparison_yearly => '年平均';
-
-  @override
-  String get insight_comparison_yesterday => '昨天';
-
-  @override
   String get insight_counting_paused => '计数已暂停';
 
   @override
   String get insight_counting_paused_last_recorded => '计数已暂停 · 最后记录值';
 
   @override
-  String get insight_dashboard_title => '客流分析';
-
-  @override
-  String get insight_disappear => '消失';
-
-  @override
-  String get insight_dwell_time => '停留时长';
-
-  @override
-  String get insight_early_estimate => '初步估算';
-
-  @override
-  String get insight_entry => '进入次数';
+  String get insight_dashboard_title => '流量分析';
 
   @override
   String get insight_error => '无法加载分析数据';
 
   @override
-  String get insight_estimated => '估算';
-
-  @override
-  String get insight_exit => '离开次数';
-
-  @override
   String get insight_hourly_rate => '每小时比率';
 
   @override
-  String get insight_last_60_minutes => '过去 60 分钟';
-
-  @override
-  String get insight_longest_completed_visit => '最长停留';
-
-  @override
   String get insight_objects_unit => '物体';
-
-  @override
-  String get insight_occupancy => '在场数量';
-
-  @override
-  String get insight_pass_by => '经过客流';
 
   @override
   String get insight_peak => '峰值';
@@ -1416,12 +1368,6 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get insight_period_lunch => '午餐';
-
-  @override
-  String get insight_stagnant => '停留';
-
-  @override
-  String get insight_today => '今日';
 
   @override
   String insight_today_chart(Object metric) {
@@ -1506,20 +1452,6 @@ class LocalizationZhCn extends LocalizationZh {
   String get main_screen_video_sources => '视频来源';
 
   @override
-  String get maximum_occupancy => '最大人数';
-
-  @override
-  String get maximum_occupancy_help =>
-      '显示当前计数窗口期间此区域内同时存在的最高人员或车辆数量。\\n\\n有助于识别人流或车流高峰。';
-
-  @override
-  String get maximum_stay => '最长停留时间';
-
-  @override
-  String get maximum_stay_help =>
-      '显示当前计数窗口期间人员或车辆在此区域内停留的最长时间。\\n\\n有助于识别异常长时间的停留或停车。';
-
-  @override
   String get metric_events => '事件';
 
   @override
@@ -1586,6 +1518,20 @@ class LocalizationZhCn extends LocalizationZh {
   String get occupancy => '当前数量';
 
   @override
+  String get occupancy_max => '最大数量';
+
+  @override
+  String get occupancy_max_help =>
+      '显示当前计数窗口期间此区域内同时存在的最高人员或车辆数量。\\n\\n有助于识别人流或车流高峰。';
+
+  @override
+  String get occupancy_mean => '平均数量';
+
+  @override
+  String get occupancy_mean_help =>
+      '显示当前计数窗口期间此区域内人员或车辆的平均数量。\\n\\n有助于了解该区域在整个计数窗口内的繁忙程度。';
+
+  @override
   String get onboarding_back_action => '返回';
 
   @override
@@ -1625,10 +1571,10 @@ class LocalizationZhCn extends LocalizationZh {
   String get onboarding_start_action => '开始';
 
   @override
-  String get passed_by => '经过';
+  String get pass_by => '经过流量';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       '统计当前计数窗口期间经过此区域的人员或车辆数量。\\n\\n每位人员或每辆车辆每次经过该区域时只会计数一次。';
 
   @override
@@ -1791,10 +1737,10 @@ class LocalizationZhCn extends LocalizationZh {
   String get settings_screen_subscription_title => '订阅';
 
   @override
-  String get stagnanted => '停留';
+  String get stagnant => '停留';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       '统计在此区域内停留时间达到设定停留时间的人员或车辆数量。\\n\\n默认停留时间为15秒，可在设置中修改。';
 
   @override
@@ -1835,6 +1781,27 @@ class LocalizationZhCn extends LocalizationZh {
 
   @override
   String get terms => '服务条款';
+
+  @override
+  String get traffic_period_custom_day => '自定义日期';
+
+  @override
+  String get traffic_period_last_month => '上月平均';
+
+  @override
+  String get traffic_period_last_week => '上周同一天';
+
+  @override
+  String get traffic_period_last_year => '去年平均';
+
+  @override
+  String get traffic_period_live_today => '今日实时';
+
+  @override
+  String get traffic_period_today => '今日';
+
+  @override
+  String get traffic_period_yesterday => '昨天';
 
   @override
   String get upload_screen_attempt_time => '尝试时间:';

@@ -149,7 +149,13 @@ class _InsightChartState extends State<InsightChart> {
     }
     final primary = data.primary;
     if (primary == null || !primary.amount.isFinite || primary.amount < 0) return null;
-    return _LiveRateMarkerData(hour: hour, rate: primary.amount, metric: primary.metric, estimated: primary.estimated);
+    return _LiveRateMarkerData(
+      hour: hour,
+      rate: primary.amount,
+      metric: primary.metric,
+      expectedSeconds: primary.expectedSeconds,
+      coveredSeconds: primary.coveredSeconds,
+    );
   }
 
   @override
@@ -199,7 +205,12 @@ class _InsightChartState extends State<InsightChart> {
                             ? null
                             : formatDashboardMeasurement(
                                 context,
-                                core_domain.DashboardMeasurement(amount: markerData.rate, metric: markerData.metric),
+                                core_domain.DashboardMeasurement(
+                                  amount: markerData.rate,
+                                  metric: markerData.metric,
+                                  expectedSeconds: markerData.expectedSeconds,
+                                  coveredSeconds: markerData.coveredSeconds,
+                                ),
                               );
                         return Semantics(
                           label: context.l.insight_chart_hourly_breakdown,
@@ -265,10 +276,9 @@ class _InsightChartState extends State<InsightChart> {
                                         .map((extreme) {
                                           final value = formatDashboardMetricValue(context, data.metric, extreme.value);
                                           final period = extreme.isToday
-                                              ? context.l.insight_today
+                                              ? context.l.traffic_period_today
                                               : widget.comparisonLabel;
-                                          final estimate = extreme.estimated ? ', ${context.l.insight_estimated}' : '';
-                                          return '$value, ${_hourRange(extreme.hour, locale.toString())}, $period$estimate';
+                                          return '$value, ${_hourRange(extreme.hour, locale.toString())}, $period';
                                         })
                                         .join('; '),
                                     child: IgnorePointer(
@@ -359,7 +369,7 @@ class _InsightChartState extends State<InsightChart> {
                 spacing: 15,
                 runSpacing: 2,
                 children: [
-                  if (_hasToday) _LegendItem(color: _ChartColors.today, label: context.l.insight_today),
+                  if (_hasToday) _LegendItem(color: _ChartColors.today, label: context.l.traffic_period_today),
                   if (_hasComparison)
                     _LegendItem(
                       color: _ChartColors.comparisonColor.withValues(alpha: _ChartColors.comparisonOpacity),
@@ -427,11 +437,9 @@ class _HourDetails extends StatelessWidget {
         children: [
           Text(_hourRange(hour, locale.toString()), style: Theme.of(context).textTheme.labelMedium),
           Text(localization.insight_today_chart(todayValue), style: style),
-          if (point.todayEstimated)
-            Text(_coverageLabel(localization, point.todayCoveredSeconds, locale.toString()), style: style),
+          Text(formatCoverSeconds(context, point.todayCoveredSeconds), style: style),
           Text('$comparisonLabel: $comparisonValue', style: style),
-          if (point.comparisonEstimated)
-            Text(_coverageLabel(localization, point.comparisonCoveredSeconds, locale.toString()), style: style),
+          Text(formatCoverSeconds(context, point.comparisonCoveredSeconds), style: style),
           if (difference != null) Text(difference, style: style),
         ],
       ),
@@ -440,12 +448,12 @@ class _HourDetails extends StatelessWidget {
 }
 
 class _BarExtreme {
-  const _BarExtreme({required this.hour, required this.value, required this.isToday, required this.estimated});
+  const _BarExtreme({required this.hour, required this.value, required this.isToday, required this.coverage});
 
   final int hour;
   final double value;
   final bool isToday;
-  final bool estimated;
+  final double coverage;
 }
 
 List<_BarExtreme> _findExtremes(List<core_domain.DashboardChartPoint> points) {
@@ -454,12 +462,12 @@ List<_BarExtreme> _findExtremes(List<core_domain.DashboardChartPoint> points) {
     final hour = point.minuteOfDay ~/ 60;
     if (hour < 0 || hour >= 24) continue;
     for (final candidate in [
-      (value: point.todayValue, isToday: true, estimated: point.todayEstimated),
-      (value: point.comparisonValue, isToday: false, estimated: point.comparisonEstimated),
+      (value: point.todayValue, isToday: true, coverage: point.todayCoverage),
+      (value: point.comparisonValue, isToday: false, coverage: point.comparisonCoverage),
     ]) {
       final value = candidate.value;
       if (value == null || !value.isFinite || value < 0) continue;
-      candidates.add(_BarExtreme(hour: hour, value: value, isToday: candidate.isToday, estimated: candidate.estimated));
+      candidates.add(_BarExtreme(hour: hour, value: value, isToday: candidate.isToday, coverage: candidate.coverage));
     }
   }
   if (candidates.isEmpty) return const [];
@@ -481,7 +489,6 @@ List<_BarExtreme> _findExtremes(List<core_domain.DashboardChartPoint> points) {
 }
 
 int _compareExtremeTie(_BarExtreme left, _BarExtreme right) {
-  if (left.estimated != right.estimated) return left.estimated ? -1 : 1;
   if (left.isToday != right.isToday) return left.isToday ? 1 : -1;
   if (left.hour != right.hour) return left.hour < right.hour ? 1 : -1;
   return 0;
@@ -566,9 +573,7 @@ class _HourlyBarsPainter extends CustomPainter {
         maxY: safeMaxY,
         value: point.comparisonValue,
         widthFactor: 0.82,
-        color: _ChartColors.comparisonColor.withValues(
-          alpha: point.comparisonEstimated ? 0.28 : _ChartColors.comparisonOpacity,
-        ),
+        color: _ChartColors.comparisonColor.withValues(alpha: point.comparisonCoverage),
       );
       _drawBar(
         canvas,
@@ -578,7 +583,7 @@ class _HourlyBarsPainter extends CustomPainter {
         maxY: safeMaxY,
         value: point.todayValue,
         widthFactor: 0.52,
-        color: _ChartColors.today.withValues(alpha: point.todayEstimated ? 0.58 : 1),
+        color: _ChartColors.today.withValues(alpha: point.todayCoverage),
       );
     }
     onPaint?.call();
@@ -681,12 +686,20 @@ List<_PositionedExtremeLabel> _layoutExtremeLabels(
 }
 
 class _LiveRateMarkerData {
-  const _LiveRateMarkerData({required this.hour, required this.rate, required this.metric, required this.estimated});
+  const _LiveRateMarkerData({
+    required this.hour,
+    required this.rate,
+    required this.metric,
+    required this.expectedSeconds,
+    required this.coveredSeconds,
+  });
 
   final int hour;
   final double rate;
   final core_domain.DashboardMetric metric;
-  final bool estimated;
+  final int expectedSeconds;
+  final int coveredSeconds;
+  double get coverage => expectedSeconds == 0 ? 0 : coveredSeconds / expectedSeconds;
 }
 
 class _LiveRateMarkerPainter extends CustomPainter {
@@ -724,7 +737,7 @@ class _LiveRateMarkerPainter extends CustomPainter {
     final centerX = slotWidth * (marker.hour + 0.5);
     final y = (plotHeight * (1 - marker.rate / maxY)).clamp(0.0, plotHeight).toDouble();
     final linePaint = Paint()
-      ..color = color.withValues(alpha: marker.estimated ? 0.82 : 1)
+      ..color = color.withValues(alpha: marker.coverage)
       ..strokeWidth = 3
       ..strokeCap = StrokeCap.round;
     final halfWidth = slotWidth * 0.4;
@@ -772,7 +785,7 @@ class _LiveRateMarkerPainter extends CustomPainter {
       marker.hour != oldDelegate.marker.hour ||
       marker.rate != oldDelegate.marker.rate ||
       marker.metric != oldDelegate.marker.metric ||
-      marker.estimated != oldDelegate.marker.estimated ||
+      marker.coverage != oldDelegate.marker.coverage ||
       maxY != oldDelegate.maxY ||
       color != oldDelegate.color ||
       label != oldDelegate.label ||
@@ -811,10 +824,6 @@ String _hourRange(int hour, String locale) {
   return '$start - $end';
 }
 
-String _coverageLabel(Localization localization, int coveredSeconds, String locale) => localization
-    .insight_based_on_minutes
-    .replaceAll('%m', NumberFormat.decimalPattern(locale).format(coveredSeconds / 60));
-
 String _formatDifference(double todayValue, double comparisonValue, String locale) {
   final difference = (todayValue - comparisonValue) / comparisonValue;
   final formatted = NumberFormat.decimalPercentPattern(locale: locale, decimalDigits: 1).format(difference.abs());
@@ -832,8 +841,7 @@ double _niceChartScale(double value) {
 }
 
 String _liveMarkerSemanticsValue(_LiveRateMarkerData marker, String rate, String locale, Localization localization) {
-  final estimate = marker.estimated ? ', ${localization.insight_estimated}' : '';
-  return '${_hourRange(marker.hour, locale)}, $rate ${localization.insight_per_hour}$estimate';
+  return '${_hourRange(marker.hour, locale)}, $rate ${localization.insight_per_hour}';
 }
 
 class _LegendItem extends StatelessWidget {

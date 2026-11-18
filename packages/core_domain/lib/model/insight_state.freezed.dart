@@ -51,7 +51,7 @@ abstract mixin class $InsightStateCopyWith<$Res>  {
   factory $InsightStateCopyWith(InsightState value, $Res Function(InsightState) _then) = _$InsightStateCopyWithImpl;
 @useResult
 $Res call({
- String businessDate, TrafficComparisonPeriod comparisonPeriod, Observation? recentHourTotal, ObservationSeries? recentHourObservations, Observation? comparisonRecentHourTotal, ObservationSeries? todaySeries, ObservationSeries? comparisonSeries, Observation? comparisonTotal
+ String businessDate, TrafficPeriod comparisonPeriod, Observation? recentHourTotal, ObservationSeries? recentHourObservations, Observation? comparisonRecentHourTotal, ObservationSeries? todaySeries, ObservationSeries? comparisonSeries, Observation? comparisonTotal
 });
 
 
@@ -72,7 +72,7 @@ class _$InsightStateCopyWithImpl<$Res>
   return _then(InsightState(
 businessDate: null == businessDate ? _self.businessDate : businessDate // ignore: cast_nullable_to_non_nullable
 as String,comparisonPeriod: null == comparisonPeriod ? _self.comparisonPeriod : comparisonPeriod // ignore: cast_nullable_to_non_nullable
-as TrafficComparisonPeriod,recentHourTotal: freezed == recentHourTotal ? _self.recentHourTotal : recentHourTotal // ignore: cast_nullable_to_non_nullable
+as TrafficPeriod,recentHourTotal: freezed == recentHourTotal ? _self.recentHourTotal : recentHourTotal // ignore: cast_nullable_to_non_nullable
 as Observation?,recentHourObservations: freezed == recentHourObservations ? _self.recentHourObservations : recentHourObservations // ignore: cast_nullable_to_non_nullable
 as ObservationSeries?,comparisonRecentHourTotal: freezed == comparisonRecentHourTotal ? _self.comparisonRecentHourTotal : comparisonRecentHourTotal // ignore: cast_nullable_to_non_nullable
 as Observation?,todaySeries: freezed == todaySeries ? _self.todaySeries : todaySeries // ignore: cast_nullable_to_non_nullable

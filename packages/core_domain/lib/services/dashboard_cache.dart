@@ -118,7 +118,7 @@ class _ChartKey {
   );
 
   final String businessDate;
-  final TrafficComparisonPeriod comparisonPeriod;
+  final TrafficPeriod comparisonPeriod;
   final List<Observation> completedTodayObservations;
   final ObservationSeries comparisonSeries;
   final int completedHourCount;
@@ -181,7 +181,7 @@ class _SnapshotKey {
   }
 
   final String businessDate;
-  final TrafficComparisonPeriod comparisonPeriod;
+  final TrafficPeriod comparisonPeriod;
   final ObservationSeries todaySeries;
   final ObservationSeries comparisonSeries;
   final int currentSlotEnd;

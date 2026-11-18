@@ -61,6 +61,43 @@ part 'observation.g.dart';
 sealed class Observation with _$Observation {
   const Observation._();
 
+  /// Placeholder for a 5-minute slot in which nothing was observed.
+  ///
+  /// Keeps the slot's identity (year, month, day, hour, minute) but has
+  /// [coveredSeconds] == 0, so [isMissing] is true, [coverageRatio] is 0 and
+  /// [missingSeconds] equals [expectedSeconds].
+  ///
+  /// [areas] defaults to empty because no per-area data exists for the slot.
+  factory Observation.missing({
+    required int year,
+    required int month,
+    required int day,
+    required int hour,
+    required int minute,
+    List<Activity> areas = const [],
+  }) {
+    assert(minute >= 0 && minute <= 55 && minute % 5 == 0, 'minute must be 0, 5, ..., 55 but was $minute');
+    return Observation(
+      granularity: ObservationGranularity.minutes5,
+      year: year,
+      month: month,
+      day: day,
+      hour: hour,
+      minute: minute,
+      coveredSeconds: 0,
+      areas: areas,
+      frameCount: 0,
+    );
+  }
+
+  /// Whether this observation has no valid detection data at all, i.e. it is
+  /// a placeholder (see [Observation.missing]) or a window where detection
+  /// data was entirely absent.
+  ///
+  /// Derived from [coveredSeconds], so it needs no extra serialized field and
+  /// survives a JSON round trip.
+  bool get isMissing => coveredSeconds == 0;
+
   const factory Observation({
     /// Aggregation interval represented by this observation.
     ///

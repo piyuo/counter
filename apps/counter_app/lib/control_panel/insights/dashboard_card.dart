@@ -20,15 +20,15 @@ class DashboardCard extends ConsumerWidget {
 
   final int areaId;
   final core_domain.DashboardCardData data;
-  final core_domain.TrafficComparisonPeriod comparisonPeriod;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
+  final core_domain.TrafficPeriod comparisonPeriod;
+  final ValueChanged<core_domain.TrafficPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
-    final title = formatDashboardMetricLabel(context, data.metric);
-    final comparisonLabel = formatTrafficComparisonPeriodLabel(context, comparisonPeriod);
+    final title = formatMetricLabel(context, data.metric);
+    final comparisonLabel = formatTrafficPeriodLabel(context, comparisonPeriod);
     final scale = MediaQuery.textScalerOf(context).scale(1);
     final chartHeight = 150 + (scale - 1).clamp(0, 1.5) * 38;
 
@@ -36,13 +36,10 @@ class DashboardCard extends ConsumerWidget {
       if (observationStatus != core_domain.ObservationStatus.started) {
         return context.l.insight_counting_paused_last_recorded;
       }
-
-      if (data.primary != null && data.primary!.estimated) {
-        final baseOnMinutes = (data.primary!.coveredSeconds / 60).round();
-        return context.l.insight_based_on_minutes.replaceAll('%m', baseOnMinutes.toString());
+      if (data.primary == null) {
+        return '';
       }
-
-      return context.l.insight_last_60_minutes;
+      return formatCoverSeconds(context, data.primary!.coveredSeconds);
     }
 
     return Card(
@@ -61,11 +58,11 @@ class DashboardCard extends ConsumerWidget {
                 primaryCaption(),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: theme.textTheme.bodySmall,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
               ),
               trailing: Padding(padding: const EdgeInsets.only(right: 8.0), child: Icon(Icons.arrow_forward_ios)),
               onTap: () {
-                ref.push(core_domain.OpenObservationDetails(areaId: areaId, metric: data.metric));
+                ref.push(core_domain.OpenMetricDetail(areaId: areaId, metric: data.metric));
               },
             ),
             PrimaryMetric(

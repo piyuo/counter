@@ -21,30 +21,17 @@ class MetricsDashboard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final observation = ref
-        .watch(core_runtime.observationProvider)
-        .liveObservation!;
+    final observation = ref.watch(core_runtime.observationProvider).liveObservation;
     final windowStart = observation.dateTime;
     final windowEnd = windowStart.add(core_domain.kWindowDuration);
 
     final locale = Localizations.localeOf(context).toString();
 
-    final panels = mapVisionMetricsToCardData(
-      context,
-      observation: observation,
-      areaState: areaState,
-      countAvgOccLabel: context.l.average_occupancy,
-      countMaxOccLabel: context.l.maximum_occupancy,
-      countAvgDwellLabel: context.l.average_stay,
-      countMaxDwellLabel: context.l.maximum_stay,
-    );
+    final panels = mapVisionMetricsToCardData(context, observation: observation, areaState: areaState);
 
     return Column(
       children: [
-        Text(
-          context.l.metrics_counting_window,
-          style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
-        ),
+        Text(context.l.metrics_counting_window, style: TextStyle(fontSize: 12, color: Colors.grey.shade400)),
         feature_pip.PipPanel(
           backgroundColor: _kWhiteBoardColor,
           margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -55,11 +42,7 @@ class MetricsDashboard extends ConsumerWidget {
                 contentPadding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
                 title: Text(
                   '${DateFormat.jm(locale).format(windowStart)} - ${DateFormat.jm(locale).format(windowEnd)}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade900,
-                  ),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey.shade900),
                 ),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,

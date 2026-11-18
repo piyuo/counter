@@ -19,25 +19,11 @@ class LocalizationTh extends Localization {
   String get about_screen_platform => 'แพลตฟอร์ม';
 
   @override
-  String get appeared => 'ปรากฏ';
+  String get appear => 'การปรากฏ';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'นับจำนวนคนหรือยานพาหนะที่ตรวจพบตำแหน่งแรกอยู่ภายในพื้นที่นี้\\n\\nช่วยให้เข้าใจว่าการติดตามเริ่มต้นจากจุดใด\\n\\n(เหมาะสำหรับผู้ใช้ขั้นสูง)';
-
-  @override
-  String get average_occupancy => 'จำนวนเฉลี่ย';
-
-  @override
-  String get average_occupancy_help =>
-      'แสดงจำนวนเฉลี่ยของคนหรือยานพาหนะในพื้นที่นี้ตลอดช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยให้ทราบว่าพื้นที่นี้มีความหนาแน่นเพียงใดตลอดช่วงเวลาการนับ';
-
-  @override
-  String get average_stay => 'เวลาพักเฉลี่ย';
-
-  @override
-  String get average_stay_help =>
-      'แสดงระยะเวลาเฉลี่ยที่คนหรือยานพาหนะอยู่ในพื้นที่นี้\\n\\nเวลาพักเฉลี่ยที่นานขึ้นอาจหมายถึงลูกค้าใช้เวลาอยู่ในพื้นที่นี้มากขึ้น';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationTh extends Localization {
       'เปิดใช้งานตัวเลือกนี้เพื่อแสดง Track ID ที่ไม่ซ้ำกันสำหรับแต่ละวัตถุที่ติดตาม';
 
   @override
-  String get detection_screen_stagnant => 'เวลาพักอยู่';
+  String get detection_screen_stagnant => 'เกณฑ์เวลาหยุดอยู่';
 
   @override
   String get detection_screen_stagnant_help =>
-      'วัตถุต้องอยู่ในพื้นที่นานเท่าใดก่อนที่จะนับเป็นการหยุดอยู่';
+      'เวลาขั้นต่ำที่วัตถุต้องอยู่ในพื้นที่ก่อนจะถูกนับเป็นการหยุดอยู่';
 
   @override
   String get detection_screen_stagnant_max_label => 'หน่วงเวลา';
@@ -214,7 +200,7 @@ class LocalizationTh extends Localization {
   String get detection_screen_stagnant_min_label => 'ทันที';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'กำหนดว่าเมื่อใดวัตถุจะถูกนับรวมในจำนวนการอยู่ประจำ\\nค่าสั้น\\n• นับการอยู่ประจำทันที\\n• เหมาะกับการวิเคราะห์อย่างรวดเร็ว\\nค่ายาว\\n• ละเว้นการผ่านช่วงสั้นๆ\\n• เหมาะกับการวัดอัตราการใช้พื้นที่';
 
   @override
@@ -283,56 +269,82 @@ class LocalizationTh extends Localization {
   String get device_not_supported_screen_title => 'ไม่พบกล้อง';
 
   @override
-  String get disappeared => 'หายไป';
+  String get disappear => 'การหายไป';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'นับจำนวนคนหรือยานพาหนะที่ตรวจพบตำแหน่งสุดท้ายอยู่ภายในพื้นที่นี้\\n\\nการติดตามจะสิ้นสุดเมื่อพ้นเวลาการหายไปที่กำหนด หากไม่ตรวจพบคนหรือยานพาหนะอีกต่อไป\\n\\n(เหมาะสำหรับผู้ใช้ขั้นสูง)';
 
   @override
   String get dpa => 'ข้อตกลงการประมวลผลข้อมูล';
 
   @override
-  String get durationDaysShort => '%sวัน';
+  String durationDaysShort(Object value) {
+    return '$valueวัน';
+  }
 
   @override
-  String get durationHoursShort => '%sชม.';
+  String durationHoursShort(Object value) {
+    return '$valueชม.';
+  }
 
   @override
-  String get durationMinutesShort => '%sนาที';
+  String durationMinutesShort(Object value) {
+    return '$valueนาที';
+  }
 
   @override
-  String get durationSecondsShort => '%sวิ';
+  String durationSecondsShort(Object value) {
+    return '$valueวิ';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'เข้า';
+  String get dwell_time_max =>
+      'ระยะเวลาการอยู่ในพื้นที่ที่สิ้นสุดแล้วนานที่สุด';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'แสดงระยะเวลานานที่สุดที่คนหรือยานพาหนะอยู่ในพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยระบุการหยุดหรือการอยู่ในพื้นที่ที่นานผิดปกติ\\n\\nนับเฉพาะการอยู่ในพื้นที่ที่สิ้นสุดแล้ว ไม่รวมการอยู่ที่ยังดำเนินอยู่';
+
+  @override
+  String get dwell_time_mean =>
+      'ระยะเวลาเฉลี่ยของการอยู่ในพื้นที่ที่สิ้นสุดแล้ว';
+
+  @override
+  String get dwell_time_mean_help =>
+      'แสดงระยะเวลาเฉลี่ยที่คนหรือยานพาหนะอยู่ในพื้นที่นี้\\n\\nเวลาพักเฉลี่ยที่นานขึ้นอาจหมายถึงลูกค้าใช้เวลาอยู่ในพื้นที่นี้มากขึ้น\\n\\nนับเฉพาะการอยู่ในพื้นที่ที่สิ้นสุดแล้ว ไม่รวมการอยู่ที่ยังดำเนินอยู่';
+
+  @override
+  String get entry => 'จำนวนการเข้า';
+
+  @override
+  String get entry_help =>
       'นับจำนวนคนหรือยานพาหนะที่เข้าสู่พื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nจะนับ 1 ครั้งเมื่อคนหรือยานพาหนะเคลื่อนที่จากนอกพื้นที่เข้าสู่ภายในพื้นที่';
 
   @override
-  String get exited => 'ออก';
+  String get exit => 'จำนวนการออก';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'นับจำนวนคนหรือยานพาหนะที่ออกจากพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nจะนับ 1 ครั้งเมื่อคนหรือยานพาหนะเคลื่อนที่จากภายในพื้นที่ออกไปภายนอก';
-
-  @override
-  String get insight_appear => 'ปรากฏ';
-
-  @override
-  String get insight_average_completed_visit =>
-      'เฉลี่ยการเข้าพื้นที่ที่สิ้นสุดแล้ว';
 
   @override
   String get insight_average_short => 'เฉลี่ย';
 
   @override
-  String get insight_based_on_minutes => 'อิงจาก %m นาที · อาจเปลี่ยนแปลงได้';
+  String insight_based_on_min(Object min) {
+    return 'อิงจาก $min นาที · อาจเปลี่ยนแปลง';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'อิงจาก $sec วินาที · อาจเปลี่ยนแปลง';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'ระยะเวลาเฉลี่ยต่อ 5 นาที';
@@ -345,7 +357,7 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Показывает записанные значения за каждый час. Текущий незавершённый час скрыт.';
+      'แสดงค่าที่บันทึกไว้สำหรับแต่ละชั่วโมงที่ครบแล้ว โดยไม่แสดงชั่วโมงปัจจุบันที่ยังไม่ครบ';
 
   @override
   String get insight_chart_info_description =>
@@ -368,24 +380,12 @@ class LocalizationTh extends Localization {
   String get insight_compare_with => 'เปรียบเทียบกับ';
 
   @override
-  String get insight_comparison_last_week => 'วันเดียวกันของสัปดาห์ก่อน';
-
-  @override
-  String get insight_comparison_monthly => 'เฉลี่ยรายเดือน';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'เทียบกับ$period';
   }
 
   @override
   String get insight_comparison_unavailable => 'ไม่มีข้อมูลเปรียบเทียบ';
-
-  @override
-  String get insight_comparison_yearly => 'เฉลี่ยรายปี';
-
-  @override
-  String get insight_comparison_yesterday => 'เมื่อวาน';
 
   @override
   String get insight_counting_paused => 'หยุดนับชั่วคราว';
@@ -395,46 +395,16 @@ class LocalizationTh extends Localization {
       'หยุดนับชั่วคราว · ค่าล่าสุด';
 
   @override
-  String get insight_dashboard_title => 'ข้อมูลการสัญจร';
-
-  @override
-  String get insight_disappear => 'หายไป';
-
-  @override
-  String get insight_dwell_time => 'ระยะเวลาที่อยู่';
-
-  @override
-  String get insight_early_estimate => 'ค่าประมาณเบื้องต้น';
-
-  @override
-  String get insight_entry => 'การเข้า';
+  String get insight_dashboard_title => 'การวิเคราะห์การสัญจร';
 
   @override
   String get insight_error => 'โหลดข้อมูลไม่สำเร็จ';
 
   @override
-  String get insight_estimated => 'ประมาณการ';
-
-  @override
-  String get insight_exit => 'การออก';
-
-  @override
   String get insight_hourly_rate => 'อัตราต่อชั่วโมง';
 
   @override
-  String get insight_last_60_minutes => '60 นาทีล่าสุด';
-
-  @override
-  String get insight_longest_completed_visit => 'การเข้าพื้นที่นานที่สุด';
-
-  @override
   String get insight_objects_unit => 'วัตถุ';
-
-  @override
-  String get insight_occupancy => 'จำนวนที่อยู่ในพื้นที่';
-
-  @override
-  String get insight_pass_by => 'การสัญจรผ่าน';
 
   @override
   String get insight_peak => 'สูงสุด';
@@ -453,12 +423,6 @@ class LocalizationTh extends Localization {
 
   @override
   String get insight_period_lunch => 'อาหารกลางวัน';
-
-  @override
-  String get insight_stagnant => 'การหยุดอยู่';
-
-  @override
-  String get insight_today => 'วันนี้';
 
   @override
   String insight_today_chart(Object metric) {
@@ -546,20 +510,6 @@ class LocalizationTh extends Localization {
   String get main_screen_video_sources => 'แหล่งวิดีโอ';
 
   @override
-  String get maximum_occupancy => 'จำนวนสูงสุด';
-
-  @override
-  String get maximum_occupancy_help =>
-      'แสดงจำนวนคนหรือยานพาหนะสูงสุดที่อยู่ในพื้นที่นี้พร้อมกันในช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยระบุช่วงเวลาที่มีผู้คนหรือการจราจรหนาแน่นที่สุด';
-
-  @override
-  String get maximum_stay => 'เวลาพักสูงสุด';
-
-  @override
-  String get maximum_stay_help =>
-      'แสดงระยะเวลานานที่สุดที่คนหรือยานพาหนะอยู่ในพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยระบุการหยุดหรือการอยู่ในพื้นที่ที่นานผิดปกติ';
-
-  @override
   String get metric_events => 'เหตุการณ์';
 
   @override
@@ -629,6 +579,20 @@ class LocalizationTh extends Localization {
   String get occupancy => 'จำนวนปัจจุบัน';
 
   @override
+  String get occupancy_max => 'จำนวนสูงสุด';
+
+  @override
+  String get occupancy_max_help =>
+      'แสดงจำนวนคนหรือยานพาหนะสูงสุดที่อยู่ในพื้นที่นี้พร้อมกันในช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยระบุช่วงเวลาที่มีผู้คนหรือการจราจรหนาแน่นที่สุด';
+
+  @override
+  String get occupancy_mean => 'จำนวนเฉลี่ย';
+
+  @override
+  String get occupancy_mean_help =>
+      'แสดงจำนวนเฉลี่ยของคนหรือยานพาหนะในพื้นที่นี้ตลอดช่วงหน้าต่างการนับปัจจุบัน\\n\\nช่วยให้ทราบว่าพื้นที่นี้มีความหนาแน่นเพียงใดตลอดช่วงเวลาการนับ';
+
+  @override
   String get onboarding_back_action => 'ย้อนกลับ';
 
   @override
@@ -669,10 +633,10 @@ class LocalizationTh extends Localization {
   String get onboarding_start_action => 'เริ่มต้น';
 
   @override
-  String get passed_by => 'ผ่าน';
+  String get pass_by => 'การสัญจรผ่าน';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'นับจำนวนคนหรือยานพาหนะที่ผ่านพื้นที่นี้ในช่วงหน้าต่างการนับปัจจุบัน\\n\\nแต่ละคนหรือยานพาหนะจะถูกนับเพียงหนึ่งครั้งต่อการผ่านพื้นที่หนึ่งครั้ง';
 
   @override
@@ -849,10 +813,10 @@ class LocalizationTh extends Localization {
   String get settings_screen_subscription_title => 'การสมัครสมาชิก';
 
   @override
-  String get stagnanted => 'อยู่ต่อ';
+  String get stagnant => 'การหยุดอยู่';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'นับจำนวนคนหรือยานพาหนะที่อยู่ในพื้นที่นี้อย่างน้อยตามเวลาพักที่กำหนด\\n\\nค่าเริ่มต้นของเวลาพักคือ 15 วินาที และสามารถเปลี่ยนได้ใน Settings';
 
   @override
@@ -904,6 +868,27 @@ class LocalizationTh extends Localization {
 
   @override
   String get terms => 'ข้อกำหนดการให้บริการ';
+
+  @override
+  String get traffic_period_custom_day => 'วันที่เลือก';
+
+  @override
+  String get traffic_period_last_month => 'ค่าเฉลี่ยเดือนที่แล้ว';
+
+  @override
+  String get traffic_period_last_week => 'วันเดียวกันของสัปดาห์ก่อน';
+
+  @override
+  String get traffic_period_last_year => 'ค่าเฉลี่ยปีที่แล้ว';
+
+  @override
+  String get traffic_period_live_today => 'วันนี้แบบเรียลไทม์';
+
+  @override
+  String get traffic_period_today => 'วันนี้';
+
+  @override
+  String get traffic_period_yesterday => 'เมื่อวาน';
 
   @override
   String get upload_screen_attempt_time => 'เวลาที่พยายาม:';

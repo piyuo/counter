@@ -19,25 +19,11 @@ class LocalizationPl extends Localization {
   String get about_screen_platform => 'Platforma';
 
   @override
-  String get appeared => 'Pojawili się';
+  String get appear => 'Pojawienia';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Zlicza osoby lub pojazdy, których pierwsza wykryta pozycja znajdowała się w tym obszarze.\\n\\nPomaga zrozumieć, gdzie rozpoczyna się śledzenie.\\n\\n(Głównie dla zaawansowanych użytkowników)';
-
-  @override
-  String get average_occupancy => 'Średnia liczba osób';
-
-  @override
-  String get average_occupancy_help =>
-      'Pokazuje średnią liczbę osób lub pojazdów w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga ocenić, jak ruchliwy był ten obszar przez cały okres zliczania.';
-
-  @override
-  String get average_stay => 'Średni czas pobytu';
-
-  @override
-  String get average_stay_help =>
-      'Pokazuje średni czas przebywania osób lub pojazdów w tym obszarze.\\n\\nDłuższy średni czas pobytu może oznaczać, że klienci spędzają więcej czasu w tym miejscu.';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationPl extends Localization {
       'Włącz tę opcję, aby wyświetlić unikalne identyfikatory śledzenia dla każdego śledzonego obiektu.';
 
   @override
-  String get detection_screen_stagnant => 'Czas pobytu';
+  String get detection_screen_stagnant => 'Próg czasu przebywania';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Jak długo obiekt musi pozostać w obszarze, aby zostać uznany za pobyt.';
+      'Minimalny czas, przez jaki obiekt musi pozostać w obszarze, aby został zaliczony do zliczenia przebywania.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Opóźnione';
@@ -215,7 +201,7 @@ class LocalizationPl extends Localization {
   String get detection_screen_stagnant_min_label => 'Natychmiast';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Określa, kiedy obiekt wpływa na liczbę Pobytu.\\nKrótsze wartości\\n• Liczą pobyt natychmiast\\n• Lepsze do szybkiej analizy\\nDłuższe wartości\\n• Ignorują krótki ruch przelotowy\\n• Lepsze do pomiaru obłożenia';
 
   @override
@@ -285,56 +271,80 @@ class LocalizationPl extends Localization {
   String get device_not_supported_screen_title => 'Nie znaleziono aparatu';
 
   @override
-  String get disappeared => 'Zniknęli';
+  String get disappear => 'Zniknięcia';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Zlicza osoby lub pojazdy, których ostatnia wykryta pozycja znajdowała się w tym obszarze.\\n\\nŚledzenie kończy się po ustawionym czasie zniknięcia, jeśli osoba lub pojazd nie jest już wykrywany.\\n\\n(Głównie dla zaawansowanych użytkowników)';
 
   @override
   String get dpa => 'Umowa przetwarzania danych';
 
   @override
-  String get durationDaysShort => '%sd';
+  String durationDaysShort(Object value) {
+    return '${value}d';
+  }
 
   @override
-  String get durationHoursShort => '%sgodz.';
+  String durationHoursShort(Object value) {
+    return '${value}godz.';
+  }
 
   @override
-  String get durationMinutesShort => '%smin';
+  String durationMinutesShort(Object value) {
+    return '${value}min';
+  }
 
   @override
-  String get durationSecondsShort => '%ssek';
+  String durationSecondsShort(Object value) {
+    return '${value}sek';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Weszli';
+  String get dwell_time_max => 'Najdłuższy zakończony pobyt';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Pokazuje najdłuższy czas przebywania osoby lub pojazdu w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga wykryć wyjątkowo długie wizyty lub postoje.\\n\\nUwzględniane są tylko zakończone pobyty; trwające pobyty są pomijane.';
+
+  @override
+  String get dwell_time_mean => 'Średni czas zakończonych pobytów';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Pokazuje średni czas przebywania osób lub pojazdów w tym obszarze.\\n\\nDłuższy średni czas pobytu może oznaczać, że klienci spędzają więcej czasu w tym miejscu.\\n\\nUwzględniane są tylko zakończone pobyty; trwające pobyty są pomijane.';
+
+  @override
+  String get entry => 'Wejścia';
+
+  @override
+  String get entry_help =>
       'Zlicza osoby lub pojazdy, które weszły do tego obszaru podczas bieżącego okna zliczania.\\n\\nWejście jest liczone, gdy osoba lub pojazd przemieszcza się z zewnątrz do wnętrza obszaru.';
 
   @override
-  String get exited => 'Wyszli';
+  String get exit => 'Wyjścia';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Zlicza osoby lub pojazdy, które opuściły ten obszar podczas bieżącego okna zliczania.\\n\\nWyjście jest liczone, gdy osoba lub pojazd przemieszcza się z wnętrza obszaru na zewnątrz.';
-
-  @override
-  String get insight_appear => 'Pojawiły się';
-
-  @override
-  String get insight_average_completed_visit => 'Śr. zakończona wizyta';
 
   @override
   String get insight_average_short => 'śr.';
 
   @override
-  String get insight_based_on_minutes =>
-      'Na podstawie %m min · Może się zmieniać';
+  String insight_based_on_min(Object min) {
+    return 'Na podstawie $min min · Może się zmieniać';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Na podstawie $sec s · Może się zmieniać';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Śr. czas na 5 min';
@@ -347,7 +357,7 @@ class LocalizationPl extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'နာရီတိုင်းအတွက် မှတ်တမ်းတင်ထားသော တန်ဖိုးများကို ပြသသည်။ လက်ရှိမပြီးသေးသော နာရီကို ဖျောက်ထားသည်။';
+      'Pokazuje zarejestrowane wartości dla każdej pełnej godziny. Bieżąca niepełna godzina nie jest wyświetlana.';
 
   @override
   String get insight_chart_info_description =>
@@ -370,24 +380,12 @@ class LocalizationPl extends Localization {
   String get insight_compare_with => 'Porównaj z';
 
   @override
-  String get insight_comparison_last_week => 'Ten sam dzień w zeszłym tygodniu';
-
-  @override
-  String get insight_comparison_monthly => 'Średnia miesięczna';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'w porównaniu z $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Porównanie niedostępne';
-
-  @override
-  String get insight_comparison_yearly => 'Średnia roczna';
-
-  @override
-  String get insight_comparison_yesterday => 'Wczoraj';
 
   @override
   String get insight_counting_paused => 'Zliczanie wstrzymane';
@@ -397,46 +395,16 @@ class LocalizationPl extends Localization {
       'Zliczanie wstrzymane · Ostatni odczyt';
 
   @override
-  String get insight_dashboard_title => 'Analiza ruchu';
-
-  @override
-  String get insight_disappear => 'Zniknęły';
-
-  @override
-  String get insight_dwell_time => 'Czas pobytu';
-
-  @override
-  String get insight_early_estimate => 'Wstępne oszacowanie';
-
-  @override
-  String get insight_entry => 'Wejścia';
+  String get insight_dashboard_title => 'Analiza przepływu';
 
   @override
   String get insight_error => 'Nie udało się wczytać danych';
 
   @override
-  String get insight_estimated => 'Szacunkowo';
-
-  @override
-  String get insight_exit => 'Wyjścia';
-
-  @override
   String get insight_hourly_rate => 'Stawka godzinowa';
 
   @override
-  String get insight_last_60_minutes => 'Ostatnie 60 minut';
-
-  @override
-  String get insight_longest_completed_visit => 'Najdłuższa wizyta';
-
-  @override
   String get insight_objects_unit => 'obiekty';
-
-  @override
-  String get insight_occupancy => 'Obłożenie';
-
-  @override
-  String get insight_pass_by => 'Ruch przechodzących';
 
   @override
   String get insight_peak => 'Szczyt';
@@ -455,12 +423,6 @@ class LocalizationPl extends Localization {
 
   @override
   String get insight_period_lunch => 'Obiad';
-
-  @override
-  String get insight_stagnant => 'Przebywanie w miejscu';
-
-  @override
-  String get insight_today => 'Dzisiaj';
 
   @override
   String insight_today_chart(Object metric) {
@@ -549,20 +511,6 @@ class LocalizationPl extends Localization {
   String get main_screen_video_sources => 'Źródła wideo';
 
   @override
-  String get maximum_occupancy => 'Maksymalna liczba osób';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Pokazuje największą liczbę osób lub pojazdów znajdujących się jednocześnie w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga określić okresy największego ruchu.';
-
-  @override
-  String get maximum_stay => 'Maksymalny czas pobytu';
-
-  @override
-  String get maximum_stay_help =>
-      'Pokazuje najdłuższy czas przebywania osoby lub pojazdu w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga wykryć wyjątkowo długie wizyty lub postoje.';
-
-  @override
   String get metric_events => 'Zdarzenia';
 
   @override
@@ -634,6 +582,20 @@ class LocalizationPl extends Localization {
   String get occupancy => 'Aktualna liczba';
 
   @override
+  String get occupancy_max => 'Maksymalna liczba';
+
+  @override
+  String get occupancy_max_help =>
+      'Pokazuje największą liczbę osób lub pojazdów znajdujących się jednocześnie w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga określić okresy największego ruchu.';
+
+  @override
+  String get occupancy_mean => 'Średnia liczba';
+
+  @override
+  String get occupancy_mean_help =>
+      'Pokazuje średnią liczbę osób lub pojazdów w tym obszarze podczas bieżącego okna zliczania.\\n\\nPomaga ocenić, jak ruchliwy był ten obszar przez cały okres zliczania.';
+
+  @override
   String get onboarding_back_action => 'Wstecz';
 
   @override
@@ -673,10 +635,10 @@ class LocalizationPl extends Localization {
   String get onboarding_start_action => 'Rozpocznij';
 
   @override
-  String get passed_by => 'Przeszli';
+  String get pass_by => 'Ruch tranzytowy';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Zlicza osoby lub pojazdy, które przeszły przez ten obszar podczas bieżącego okna zliczania.\\n\\nKażda osoba lub pojazd jest liczona tylko raz przy każdym przejściu przez obszar.';
 
   @override
@@ -856,10 +818,10 @@ class LocalizationPl extends Localization {
   String get settings_screen_subscription_title => 'Subskrypcja';
 
   @override
-  String get stagnanted => 'Pozostali';
+  String get stagnant => 'Pozostawanie';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Zlicza osoby lub pojazdy, które pozostały w tym obszarze przez co najmniej ustawiony czas przebywania.\\n\\nDomyślny czas przebywania wynosi 15 sekund i można go zmienić w Ustawieniach.';
 
   @override
@@ -911,6 +873,27 @@ class LocalizationPl extends Localization {
 
   @override
   String get terms => 'Warunki korzystania z usługi';
+
+  @override
+  String get traffic_period_custom_day => 'Wybrany dzień';
+
+  @override
+  String get traffic_period_last_month => 'Średnia z poprzedniego miesiąca';
+
+  @override
+  String get traffic_period_last_week => 'Ten sam dzień w zeszłym tygodniu';
+
+  @override
+  String get traffic_period_last_year => 'Średnia z poprzedniego roku';
+
+  @override
+  String get traffic_period_live_today => 'Dzisiaj na żywo';
+
+  @override
+  String get traffic_period_today => 'Dzisiaj';
+
+  @override
+  String get traffic_period_yesterday => 'Wczoraj';
 
   @override
   String get upload_screen_attempt_time => 'Czas próby:';

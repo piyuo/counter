@@ -3,6 +3,7 @@ import 'package:core_domain/model/observation_series.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../observation/observation_notifier.dart' as live_observation;
+import 'observation_series_helpers.dart';
 import 'single_entry_future_cache.dart';
 
 part 'insight_notifier.g.dart';
@@ -17,7 +18,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   ObservationSeries? _todaySeries;
 
   /// current comparison period
-  core_domain.TrafficComparisonPeriod _comparisonPeriod = core_domain.TrafficComparisonPeriod.yesterday;
+  core_domain.TrafficPeriod _comparisonPeriod = core_domain.TrafficPeriod.yesterday;
   String? _currentBusinessDate;
 
   /// Summary caches (one entry each, see [SingleEntryFutureCache]).
@@ -37,7 +38,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   static const _cacheResetOffset = Duration(minutes: 15);
   DateTime? _cacheEpoch;
 
-  core_domain.TrafficComparisonPeriod get comparisonPeriod => _comparisonPeriod;
+  core_domain.TrafficPeriod get comparisonPeriod => _comparisonPeriod;
 
   /// invalidates the summary caches one time per day, to avoid if payload comes late and we have a stale cache.
   void _resetCachesIfNewEpoch() {
@@ -81,7 +82,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   }
 
   @override
-  Future<void> setComparisonPeriod(core_domain.TrafficComparisonPeriod period) async {
+  Future<void> setComparisonPeriod(core_domain.TrafficPeriod period) async {
     _comparisonPeriod = period;
     await refresh();
   }
@@ -107,47 +108,53 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     core_domain.Observation? comparisonRecentHourTotal;
 
     switch (period) {
-      case core_domain.TrafficComparisonPeriod.yesterday:
-      case core_domain.TrafficComparisonPeriod.sameDayLastWeek:
-        final daysAgo = period == core_domain.TrafficComparisonPeriod.yesterday ? 1 : 7;
+      case core_domain.TrafficPeriod.yesterday:
+      case core_domain.TrafficPeriod.sameDayLastWeek:
+        final daysAgo = period == core_domain.TrafficPeriod.yesterday ? 1 : 7;
         final comparisonDate = DateTime(now.year, now.month, now.day - daysAgo);
         final summary = await getCachedDaySummary(comparisonDate);
         if (summary != null) {
           comparisonSeries = summary.fiveMinuteObservations;
-          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourObservations = sliceRecentHour(comparisonSeries, now.hour, now.minute);
           comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
           comparisonTotal = summary.dailyTotal;
         }
         break;
-      case core_domain.TrafficComparisonPeriod.lastMonthAverage:
+      case core_domain.TrafficPeriod.lastMonthAverage:
         final previousMonth = DateTime(now.year, now.month - 1);
         final summary = await getCachedMonthSummary(previousMonth);
         if (summary != null) {
           final isWeekend = now.weekday == DateTime.saturday || now.weekday == DateTime.sunday;
           comparisonSeries = isWeekend ? summary.weekendFiveMinuteObservation : summary.weekdayFiveMinuteObservation;
           comparisonTotal = summary.monthlyTotal;
-          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourObservations = sliceRecentHour(comparisonSeries, now.hour, now.minute);
           comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
         }
         break;
-      case core_domain.TrafficComparisonPeriod.lastYearAverage:
+      case core_domain.TrafficPeriod.lastYearAverage:
         final previousYear = DateTime(now.year - 1);
         final summary = await getCachedYearSummary(previousYear);
         if (summary != null) {
           final isWeekend = now.weekday == DateTime.saturday || now.weekday == DateTime.sunday;
           comparisonSeries = isWeekend ? summary.weekendFiveMinuteObservation : summary.weekdayFiveMinuteObservation;
           comparisonTotal = summary.yearlyTotal;
-          comparisonRecentHourObservations = _sliceRecentHour(comparisonSeries, now.hour, now.minute);
+          comparisonRecentHourObservations = sliceRecentHour(comparisonSeries, now.hour, now.minute);
           comparisonRecentHourTotal = _totalOf(comparisonRecentHourObservations);
         }
         break;
+      case core_domain.TrafficPeriod.liveToday:
+      case core_domain.TrafficPeriod.today:
+      case core_domain.TrafficPeriod.customDay:
+
+        /// these don't have meaning in refresh , it only use for search and filter
+        throw UnsupportedError('TrafficPeriod $period is not supported in refresh.');
     }
 
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
 
+    _todaySeries = todaySummary?.fiveMinuteObservations;
     final recentHourObservations = _recentHourSeries(_nowProvider());
     final recentHourTotal = _totalOf(recentHourObservations);
-    _todaySeries = todaySummary?.fiveMinuteObservations;
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
     final dashboard = core_domain.InsightState(
       businessDate: _formatBusinessDate(now),
@@ -186,7 +193,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     return await _yearSummaryCache.get('${date.year}', () => analytics.getYearSummary(date.year));
   }
 
-  bool _isCurrentRefresh(int generation, core_domain.TrafficComparisonPeriod period, String businessDate) =>
+  bool _isCurrentRefresh(int generation, core_domain.TrafficPeriod period, String businessDate) =>
       generation == _refreshGeneration &&
       _comparisonPeriod == period &&
       _currentBusinessDate == businessDate &&
@@ -221,28 +228,6 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     return ObservationSeries.fromObservations(observationsBySlot.values);
   }
 
-  /// The only place the recent-hour window is defined.
-  ///
-  /// The window is [end - 60, end) in minutes of the day, where `end` is the
-  /// boundary after the current 5-minute slot. It is limited to the current
-  /// business day and never crosses midnight. Missing observations are not
-  /// estimated or filled, and source observations keep their original
-  /// timestamps.
-  ObservationSeries _sliceRecentHour(ObservationSeries series, int hour, int minute) {
-    assert(hour >= 0 && hour < 24);
-    assert(minute >= 0 && minute < 60);
-
-    final windowEnd = hour * 60 + (minute ~/ 5 + 1) * 5;
-    final windowStart = (windowEnd - 60).clamp(0, 1440);
-
-    return ObservationSeries.fromObservations(
-      series.where((observation) {
-        final minuteOfDay = observation.hour * 60 + observation.minute;
-        return minuteOfDay >= windowStart && minuteOfDay < windowEnd;
-      }),
-    );
-  }
-
   /// Aggregates a series into a single observation, or null if it is empty.
   core_domain.Observation? _totalOf(ObservationSeries series) =>
       series.isEmpty ? null : core_domain.aggregateRecentHourObservations(series.toList());
@@ -251,7 +236,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   /// recent-hour window ending after the current 5-minute slot.
   ObservationSeries _recentHourSeries(DateTime now) {
     final merged = _overlayLive(_savedToday(now), _getCurrentLiveObservation(now));
-    return _sliceRecentHour(merged, now.hour, now.minute);
+    final sliced = sliceRecentHour(merged, now.hour, now.minute);
+    return sliced;
   }
 
   /// Returns saved observations in today's recent-hour window with the live
@@ -270,7 +256,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   /// Aggregates an arbitrary series (e.g. a comparison series) over the
   /// recent-hour window for the given time of day. No live overlay is applied.
   core_domain.Observation? getRecentHourTotalAt(int hour, int minute, ObservationSeries series) =>
-      _totalOf(_sliceRecentHour(series, hour, minute));
+      _totalOf(sliceRecentHour(series, hour, minute));
 
   // ---------------------------------------------------------------------------
   // Observation queries

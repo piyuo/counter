@@ -9,24 +9,22 @@ import 'package:intl/intl.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
+import 'insights/observation_tile.dart';
 import 'insights/primary_metric_detail.dart';
-import 'observation_tile.dart';
 import 'utils/dashboard_utils.dart';
 
-enum _ObservationPeriod { liveToday, yesterday, sameDayLastWeek, lastMonthAverage, lastYearAverage, custom }
-
-class ObservationScreen extends ConsumerStatefulWidget {
-  const ObservationScreen({required this.areaId, required this.metric, super.key});
+class MetricDetailScreen extends ConsumerStatefulWidget {
+  const MetricDetailScreen({required this.areaId, required this.metric, super.key});
 
   final int areaId;
   final core_domain.DashboardMetric metric;
 
   @override
-  ConsumerState<ObservationScreen> createState() => _ObservationScreenState();
+  ConsumerState<MetricDetailScreen> createState() => _ObservationScreenState();
 }
 
-class _ObservationScreenState extends ConsumerState<ObservationScreen> {
-  _ObservationPeriod _period = _ObservationPeriod.liveToday;
+class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
+  core_domain.TrafficPeriod _period = core_domain.TrafficPeriod.liveToday;
   DateTime _customDate = DateUtils.dateOnly(DateTime.now());
   final Map<int, bool> _expandedHours = {};
   late Future<observation_model.ObservationSeries?> _observationsFuture;
@@ -37,33 +35,38 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     _observationsFuture = _loadObservations(_period, _customDate);
   }
 
-  Future<observation_model.ObservationSeries?> _loadObservations(_ObservationPeriod period, DateTime customDate) {
+  Future<observation_model.ObservationSeries?> _loadObservations(
+    core_domain.TrafficPeriod period,
+    DateTime customDate,
+  ) {
     final insight = ref.read(core_domain.insightServiceProvider);
     final now = DateTime.now();
     switch (period) {
-      case _ObservationPeriod.liveToday:
+      case core_domain.TrafficPeriod.liveToday:
         return insight.getObservationsFromLiveToday();
-      case _ObservationPeriod.yesterday:
+      case core_domain.TrafficPeriod.yesterday:
         return insight.getObservationsFromYesterday();
-      case _ObservationPeriod.sameDayLastWeek:
+      case core_domain.TrafficPeriod.sameDayLastWeek:
         return insight.getObservationsFromSameDayLastWeek();
-      case _ObservationPeriod.custom:
+      case core_domain.TrafficPeriod.customDay:
         final date = DateUtils.dateOnly(customDate);
         if (date == DateUtils.dateOnly(now)) {
           return insight.getObservationsFromLiveToday();
         }
         return insight.getObservationsByDate(date);
-      case _ObservationPeriod.lastMonthAverage:
+      case core_domain.TrafficPeriod.lastMonthAverage:
         return insight.getObservationsFromLastMonth();
-      case _ObservationPeriod.lastYearAverage:
+      case core_domain.TrafficPeriod.lastYearAverage:
         return insight.getObservationsFromLastYear();
+      case core_domain.TrafficPeriod.today:
+        throw UnimplementedError();
     }
   }
 
-  Future<void> _selectPeriod(_ObservationPeriod? period) async {
+  Future<void> _selectPeriod(core_domain.TrafficPeriod? period) async {
     if (period == null) return;
     var customDate = _customDate;
-    if (period == _ObservationPeriod.custom) {
+    if (period == core_domain.TrafficPeriod.customDay) {
       final today = DateUtils.dateOnly(DateTime.now());
       final selectedDate = await showDatePicker(
         context: context,
@@ -82,14 +85,12 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     });
   }
 
-  String _periodLabel(BuildContext context, _ObservationPeriod period, DateFormat dateFormat) => switch (period) {
-    _ObservationPeriod.liveToday => context.l.insight_today,
-    _ObservationPeriod.yesterday => context.l.insight_comparison_yesterday,
-    _ObservationPeriod.sameDayLastWeek => context.l.insight_comparison_last_week,
-    _ObservationPeriod.lastMonthAverage => context.l.insight_comparison_monthly,
-    _ObservationPeriod.lastYearAverage => context.l.insight_comparison_yearly,
-    _ObservationPeriod.custom => dateFormat.format(_customDate),
-  };
+  String _periodLabel(BuildContext context, core_domain.TrafficPeriod period, DateFormat dateFormat) {
+    if (period == core_domain.TrafficPeriod.customDay) {
+      return dateFormat.format(_customDate);
+    }
+    return formatTrafficPeriodLabel(context, period);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +98,7 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     if (appState == null) return const SizedBox.shrink();
 
     ref.listen(core_domain.insightStateProvider, (previous, next) {
-      if (_period != _ObservationPeriod.liveToday) return;
+      if (_period != core_domain.TrafficPeriod.liveToday) return;
       if (previous?.businessDate == next.businessDate &&
           previous?.todaySeries == next.todaySeries &&
           previous?.recentHourTotal == next.recentHourTotal) {
@@ -111,7 +112,7 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
     final locale = Localizations.localeOf(context).toString();
     final dateFormat = DateFormat.yMMMd(locale);
     final timeFormat = DateFormat.Hm(locale);
-    final metricLabel = formatDashboardMetricLabel(context, widget.metric);
+    final metricLabel = formatMetricLabel(context, widget.metric);
 
     return feature_pip.PipScaffold(
       title: metricLabel,
@@ -140,7 +141,7 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
             for (final hour in sortedHours)
               hour: (
                 subtotal: getDashboardMetricAggregateValue(byHour[hour]!, widget.areaId, widget.metric),
-                coveredSeconds: getDashboardCoveredSeconds(byHour[hour]!, widget.areaId),
+                coveredSeconds: getDashboardCoveredSeconds(byHour[hour]!),
                 measurement: metric_calculator.calculateInsightMetricFromObservationsInRange(
                   series: observations,
                   startMinute: hour * 60,
@@ -161,15 +162,15 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
                 PrimaryMetricDetail(areaId: widget.areaId, metric: widget.metric),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: DropdownButtonFormField<_ObservationPeriod>(
+                  child: DropdownButtonFormField<core_domain.TrafficPeriod>(
                     initialValue: _period,
                     isExpanded: true,
                     items: [
-                      for (final period in _ObservationPeriod.values)
+                      for (final period in core_domain.TrafficPeriod.values)
                         DropdownMenuItem(
                           value: period,
                           child: Text(
-                            period == _ObservationPeriod.custom
+                            period == core_domain.TrafficPeriod.customDay
                                 ? (_period == period
                                       ? _periodLabel(context, period, dateFormat)
                                       : MaterialLocalizations.of(context).datePickerHelpText)
@@ -183,19 +184,18 @@ class _ObservationScreenState extends ConsumerState<ObservationScreen> {
                 ),
                 for (final hour in sortedHours)
                   ObservationTile(
-                    hourLabel: timeFormat.format(DateTime(2000, 1, 1, hour)),
                     initiallyExpanded: hour == sortedHours.last,
                     isExpanded: _expandedHours[hour],
                     onExpansionChanged: (expanded) {
                       setState(() => _expandedHours[hour] = expanded);
                     },
                     observations: byHour[hour]!,
+                    expectedSeconds: 3600, // observations only hour data
                     areaId: widget.areaId,
                     metric: widget.metric,
-                    subtotal: hourlySummaries[hour]!.subtotal,
-                    coveredSeconds: hourlySummaries[hour]!.coveredSeconds,
                     measurement: hourlySummaries[hour]!.measurement,
                     timeFormat: timeFormat,
+                    detectionType: appState.detectionType,
                   ),
                 feature_pip.PipPanel(
                   child: Padding(

@@ -19,25 +19,11 @@ class LocalizationNl extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
-  String get appeared => 'Verschenen';
+  String get appear => 'Verschenen';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Telt mensen of voertuigen waarvan de eerste gedetecteerde positie zich binnen dit gebied bevond.\\n\\nHandig om te begrijpen waar de tracking begint.\\n\\n(Voornamelijk bedoeld voor gevorderde gebruikers)';
-
-  @override
-  String get average_occupancy => 'Gemiddelde bezetting';
-
-  @override
-  String get average_occupancy_help =>
-      'Toont het gemiddelde aantal mensen of voertuigen in dit gebied tijdens het huidige telvenster.\\n\\nHiermee zie je hoe druk het gebied was gedurende het hele telvenster.';
-
-  @override
-  String get average_stay => 'Gemiddelde verblijftijd';
-
-  @override
-  String get average_stay_help =>
-      'Toont de gemiddelde tijd dat mensen of voertuigen in dit gebied verbleven.\\n\\nEen langere gemiddelde verblijftijd kan erop wijzen dat klanten meer tijd in dit gebied doorbrengen.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationNl extends Localization {
       'Schakel deze optie in om unieke track-ID\'s weer te geven voor elk gevolgd object.';
 
   @override
-  String get detection_screen_stagnant => 'Verblijftijd';
+  String get detection_screen_stagnant => 'Drempel voor langdurig verblijf';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Hoe lang een object in het gebied moet blijven om als verblijf te tellen.';
+      'De minimale tijd dat een object in het gebied moet blijven voordat het als langdurig verblijf wordt geteld.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Vertraagd';
@@ -214,7 +200,7 @@ class LocalizationNl extends Localization {
   String get detection_screen_stagnant_min_label => 'Direct';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Bepaalt wanneer een object bijdraagt aan de Verblijf-telling.\\nKortere waarden\\n• Tellen verblijf onmiddellijk\\n• Beter voor snelle analyse\\nLangere waarden\\n• Negeren kort doorgaand verkeer\\n• Beter voor bezettingsmeting';
 
   @override
@@ -283,55 +269,80 @@ class LocalizationNl extends Localization {
   String get device_not_supported_screen_title => 'Camera niet gevonden';
 
   @override
-  String get disappeared => 'Verdwenen';
+  String get disappear => 'Verdwenen';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Telt mensen of voertuigen waarvan de laatste gedetecteerde positie zich binnen dit gebied bevond.\\n\\nDe tracking eindigt na de ingestelde verdwijntijd als de persoon of het voertuig niet meer wordt gedetecteerd.\\n\\n(Voornamelijk bedoeld voor gevorderde gebruikers)';
 
   @override
   String get dpa => 'Verwerkersovereenkomst';
 
   @override
-  String get durationDaysShort => '%sd';
+  String durationDaysShort(Object value) {
+    return '${value}d';
+  }
 
   @override
-  String get durationHoursShort => '%su';
+  String durationHoursShort(Object value) {
+    return '${value}u';
+  }
 
   @override
-  String get durationMinutesShort => '%smin';
+  String durationMinutesShort(Object value) {
+    return '${value}min';
+  }
 
   @override
-  String get durationSecondsShort => '%ssec';
+  String durationSecondsShort(Object value) {
+    return '${value}sec';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Binnengekomen';
+  String get dwell_time_max => 'Langste afgeronde verblijf';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Toont de langste tijd dat een persoon of voertuig tijdens het huidige telvenster in dit gebied verbleef.\\n\\nHandig om ongewoon lange bezoeken of stops te herkennen.\\n\\nAlleen afgeronde verblijven tellen mee; lopende verblijven worden uitgesloten.';
+
+  @override
+  String get dwell_time_mean => 'Gemiddelde duur van afgeronde verblijven';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Toont de gemiddelde tijd dat mensen of voertuigen in dit gebied verbleven.\\n\\nEen langere gemiddelde verblijftijd kan erop wijzen dat klanten meer tijd in dit gebied doorbrengen.\\n\\nAlleen afgeronde verblijven tellen mee; lopende verblijven worden uitgesloten.';
+
+  @override
+  String get entry => 'Binnenkomsten';
+
+  @override
+  String get entry_help =>
       'Telt mensen of voertuigen die tijdens het huidige telvenster dit gebied zijn binnengekomen.\\n\\nEen binnenkomst wordt geteld wanneer een persoon of voertuig van buiten het gebied naar binnen beweegt.';
 
   @override
-  String get exited => 'Verlaten';
+  String get exit => 'Vertrekken';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Telt mensen of voertuigen die tijdens het huidige telvenster dit gebied hebben verlaten.\\n\\nEen vertrek wordt geteld wanneer een persoon of voertuig van binnen het gebied naar buiten beweegt.';
-
-  @override
-  String get insight_appear => 'Verschenen';
-
-  @override
-  String get insight_average_completed_visit => 'Gem. afgerond bezoek';
 
   @override
   String get insight_average_short => 'gem.';
 
   @override
-  String get insight_based_on_minutes => 'Gebaseerd op %m min · Kan schommelen';
+  String insight_based_on_min(Object min) {
+    return 'Gebaseerd op $min min · Kan schommelen';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Gebaseerd op $sec sec · Kan schommelen';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Gem. duur per 5 min';
@@ -344,7 +355,7 @@ class LocalizationNl extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Menunjukkan nilai yang direkodkan bagi setiap jam. Jam semasa yang belum lengkap disembunyikan.';
+      'Toont geregistreerde waarden voor elk volledig klokuur. Het huidige onvolledige uur wordt niet weergegeven.';
 
   @override
   String get insight_chart_info_description =>
@@ -367,24 +378,12 @@ class LocalizationNl extends Localization {
   String get insight_compare_with => 'Vergelijk met';
 
   @override
-  String get insight_comparison_last_week => 'Dezelfde dag vorige week';
-
-  @override
-  String get insight_comparison_monthly => 'Maandgemiddelde';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'vergeleken met $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Vergelijking niet beschikbaar';
-
-  @override
-  String get insight_comparison_yearly => 'Jaargemiddelde';
-
-  @override
-  String get insight_comparison_yesterday => 'Gisteren';
 
   @override
   String get insight_counting_paused => 'Telling gepauzeerd';
@@ -394,46 +393,16 @@ class LocalizationNl extends Localization {
       'Telling gepauzeerd · Laatste meting';
 
   @override
-  String get insight_dashboard_title => 'Verkeersinzichten';
-
-  @override
-  String get insight_disappear => 'Verdwenen';
-
-  @override
-  String get insight_dwell_time => 'Verblijfsduur';
-
-  @override
-  String get insight_early_estimate => 'Eerste schatting';
-
-  @override
-  String get insight_entry => 'Binnenkomsten';
+  String get insight_dashboard_title => 'Bewegingsanalyse';
 
   @override
   String get insight_error => 'Inzichten laden mislukt';
 
   @override
-  String get insight_estimated => 'Geschat';
-
-  @override
-  String get insight_exit => 'Uitgangen';
-
-  @override
   String get insight_hourly_rate => 'Uurtarief';
 
   @override
-  String get insight_last_60_minutes => 'Afgelopen 60 minuten';
-
-  @override
-  String get insight_longest_completed_visit => 'Langste bezoek';
-
-  @override
   String get insight_objects_unit => 'objecten';
-
-  @override
-  String get insight_occupancy => 'Bezetting';
-
-  @override
-  String get insight_pass_by => 'Passanten';
 
   @override
   String get insight_peak => 'Piek';
@@ -452,12 +421,6 @@ class LocalizationNl extends Localization {
 
   @override
   String get insight_period_lunch => 'Lunch';
-
-  @override
-  String get insight_stagnant => 'Blijven hangen';
-
-  @override
-  String get insight_today => 'Vandaag';
 
   @override
   String insight_today_chart(Object metric) {
@@ -550,20 +513,6 @@ class LocalizationNl extends Localization {
   String get main_screen_video_sources => 'Videobronnen';
 
   @override
-  String get maximum_occupancy => 'Maximale bezetting';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Toont het hoogste aantal mensen of voertuigen dat zich tegelijkertijd in dit gebied bevond tijdens het huidige telvenster.\\n\\nHandig om piekmomenten van drukte of verkeer te bepalen.';
-
-  @override
-  String get maximum_stay => 'Maximale verblijftijd';
-
-  @override
-  String get maximum_stay_help =>
-      'Toont de langste tijd dat een persoon of voertuig tijdens het huidige telvenster in dit gebied verbleef.\\n\\nHandig om ongewoon lange bezoeken of stops te herkennen.';
-
-  @override
   String get metric_events => 'Gebeurtenissen';
 
   @override
@@ -634,6 +583,20 @@ class LocalizationNl extends Localization {
   String get occupancy => 'Huidig aantal';
 
   @override
+  String get occupancy_max => 'Maximumaantal';
+
+  @override
+  String get occupancy_max_help =>
+      'Toont het hoogste aantal mensen of voertuigen dat zich tegelijkertijd in dit gebied bevond tijdens het huidige telvenster.\\n\\nHandig om piekmomenten van drukte of verkeer te bepalen.';
+
+  @override
+  String get occupancy_mean => 'Gemiddeld aantal';
+
+  @override
+  String get occupancy_mean_help =>
+      'Toont het gemiddelde aantal mensen of voertuigen in dit gebied tijdens het huidige telvenster.\\n\\nHiermee zie je hoe druk het gebied was gedurende het hele telvenster.';
+
+  @override
   String get onboarding_back_action => 'Terug';
 
   @override
@@ -673,10 +636,10 @@ class LocalizationNl extends Localization {
   String get onboarding_start_action => 'Start';
 
   @override
-  String get passed_by => 'Voorbijgegaan';
+  String get pass_by => 'Passerend verkeer';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Telt het aantal mensen of voertuigen dat tijdens het huidige telvenster door dit gebied is gegaan.\\n\\nIedere persoon of ieder voertuig wordt per passage slechts één keer geteld.';
 
   @override
@@ -854,10 +817,10 @@ class LocalizationNl extends Localization {
   String get settings_screen_subscription_title => 'Abonnement';
 
   @override
-  String get stagnanted => 'Verbleven';
+  String get stagnant => 'Langdurig verblijf';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Telt mensen of voertuigen die ten minste de ingestelde verblijftijd in dit gebied zijn gebleven.\\n\\nDe standaard verblijftijd is 15 seconden en kan worden gewijzigd in Instellingen.';
 
   @override
@@ -910,6 +873,27 @@ class LocalizationNl extends Localization {
 
   @override
   String get terms => 'Servicevoorwaarden';
+
+  @override
+  String get traffic_period_custom_day => 'Aangepaste dag';
+
+  @override
+  String get traffic_period_last_month => 'Gemiddelde vorige maand';
+
+  @override
+  String get traffic_period_last_week => 'Dezelfde dag vorige week';
+
+  @override
+  String get traffic_period_last_year => 'Gemiddelde vorig jaar';
+
+  @override
+  String get traffic_period_live_today => 'Vandaag live';
+
+  @override
+  String get traffic_period_today => 'Vandaag';
+
+  @override
+  String get traffic_period_yesterday => 'Gisteren';
 
   @override
   String get upload_screen_attempt_time => 'Tijd van poging:';

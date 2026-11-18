@@ -4,11 +4,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'insight_state.freezed.dart';
 
-/// Historical period used as a reference for traffic comparisons.
-///
-/// Comparisons are aligned to the same business-local
+/// Historical period used as a reference for traffic comparisons or filter.
 /// wall-clock time window as the current traffic.
-enum TrafficComparisonPeriod {
+enum TrafficPeriod {
+  /// it has all today observations plus ongoing live observations (update every second).
+  liveToday,
+
+  /// Today up to latest observation
+  today,
+
   /// Same time window yesterday.
   yesterday,
 
@@ -20,6 +24,9 @@ enum TrafficComparisonPeriod {
 
   /// Typical traffic for the same time window in the last completed year.
   lastYearAverage,
+
+  /// Custom day selected by the user.
+  customDay,
 }
 
 /// Traffic dashboard data for the Piyuo Counter main screen.
@@ -62,7 +69,7 @@ enum TrafficComparisonPeriod {
 class InsightState with _$InsightState {
   const InsightState({
     required this.businessDate,
-    this.comparisonPeriod = TrafficComparisonPeriod.yesterday,
+    this.comparisonPeriod = TrafficPeriod.yesterday,
     this.recentHourTotal,
     this.recentHourObservations,
     this.comparisonRecentHourTotal,
@@ -73,7 +80,7 @@ class InsightState with _$InsightState {
 
   /// Creates an initial state for [businessDate] with no observations.
   static InsightState empty({required String businessDate}) =>
-      InsightState(businessDate: businessDate, comparisonPeriod: TrafficComparisonPeriod.yesterday);
+      InsightState(businessDate: businessDate, comparisonPeriod: TrafficPeriod.yesterday);
 
   /// Business-local date in YYYY-MM-DD format.
   ///
@@ -83,7 +90,7 @@ class InsightState with _$InsightState {
   /// Selected historical comparison period.
   ///
   /// The user can change this selection on the dashboard.
-  final TrafficComparisonPeriod comparisonPeriod;
+  final TrafficPeriod comparisonPeriod;
 
   /// Traffic observed during the recent hour, including the current partial
   /// 5-minute observation when available.

@@ -7,8 +7,6 @@ import 'observation.dart';
 import 'observation_granularity.dart';
 import 'observation_time_query.dart';
 
-part 'observation_series.freezed.dart';
-
 /// 5-minute observations of ONE business day.
 ///
 /// Invariants (enforced by every constructor and mutator):
@@ -23,9 +21,8 @@ part 'observation_series.freezed.dart';
 /// The series does not know its date; the owning DaySummary is responsible
 /// for only adding observations from that date.
 @immutable
-@freezed
-final class ObservationSeries with IterableMixin<Observation>, _$ObservationSeries {
-  const ObservationSeries._(this.items);
+final class ObservationSeries with IterableMixin<Observation> {
+  const ObservationSeries._(this._items);
 
   /// 24 hours * 12 five-minute slots.
   static const int maxLength = 288;
@@ -45,26 +42,28 @@ final class ObservationSeries with IterableMixin<Observation>, _$ObservationSeri
     return ObservationSeries._(List.unmodifiable(items));
   }
 
-  final List<Observation> items;
+  final List<Observation> _items;
+
+  List<Observation> get items => UnmodifiableListView(_items);
 
   // ---- read ----
 
   @override
-  Iterator<Observation> get iterator => items.iterator;
+  Iterator<Observation> get iterator => _items.iterator;
 
   @override
-  int get length => items.length;
+  int get length => _items.length;
 
   @override
-  bool get isEmpty => items.isEmpty;
+  bool get isEmpty => _items.isEmpty;
 
   @override
-  bool get isNotEmpty => items.isNotEmpty;
+  bool get isNotEmpty => _items.isNotEmpty;
 
   /// The observation at exactly [hour]:[minute], or null.
   Observation? at(int hour, int minute) {
     final slot = hour * 60 + minute;
-    return items.firstWhereOrNull((o) => _slot(o) == slot);
+    return _items.firstWhereOrNull((o) => _slot(o) == slot);
   }
 
   /// Observations within [query], inclusive on both ends, in clock order.
@@ -74,7 +73,7 @@ final class ObservationSeries with IterableMixin<Observation>, _$ObservationSeri
     final from = query.from.hour * 60 + query.from.minute;
     final to = query.to.hour * 60 + query.to.minute;
 
-    return items.where((o) {
+    return _items.where((o) {
       final m = _slot(o);
       return from <= to ? (m >= from && m <= to) : (m >= from || m <= to);
     }).toList();
@@ -88,15 +87,15 @@ final class ObservationSeries with IterableMixin<Observation>, _$ObservationSeri
   ObservationSeries add(Observation observation) {
     _validate(observation);
     if (at(observation.hour, observation.minute) != null) return this;
-    return ObservationSeries.fromObservations([...items, observation]);
+    return ObservationSeries.fromObservations([..._items, observation]);
   }
 
   /// Returns a series without the observation at [hour]:[minute]
   /// (`this` if there is none).
   ObservationSeries remove(int hour, int minute) {
     final slot = hour * 60 + minute;
-    if (!items.any((o) => _slot(o) == slot)) return this;
-    return ObservationSeries._(List.unmodifiable(items.where((o) => _slot(o) != slot)));
+    if (!_items.any((o) => _slot(o) == slot)) return this;
+    return ObservationSeries._(List.unmodifiable(_items.where((o) => _slot(o) != slot)));
   }
 
   // ---- internals ----
@@ -120,13 +119,13 @@ final class ObservationSeries with IterableMixin<Observation>, _$ObservationSeri
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ObservationSeries && const ListEquality<Observation>().equals(items, other.items);
+      other is ObservationSeries && const ListEquality<Observation>().equals(_items, other._items);
 
   @override
-  int get hashCode => const ListEquality<Observation>().hash(items);
+  int get hashCode => const ListEquality<Observation>().hash(_items);
 
   @override
-  String toString() => 'ObservationSeries(${items.length})';
+  String toString() => 'ObservationSeries(${_items.length})';
 }
 
 /// Lets json_serializable keep reading/writing a plain JSON array.
@@ -138,5 +137,5 @@ class ObservationSeriesConverter implements JsonConverter<ObservationSeries, Lis
       ObservationSeries.fromObservations(json.map((e) => Observation.fromJson(e as Map<String, dynamic>)));
 
   @override
-  List<dynamic> toJson(ObservationSeries series) => series.items.map((o) => o.toJson()).toList();
+  List<dynamic> toJson(ObservationSeries series) => series._items.map((o) => o.toJson()).toList();
 }

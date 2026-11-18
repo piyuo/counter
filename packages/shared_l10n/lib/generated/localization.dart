@@ -168,41 +168,17 @@ abstract class Localization {
   /// **'Platform'**
   String get about_screen_platform;
 
-  /// No description provided for @appeared.
+  /// No description provided for @appear.
   ///
   /// In en, this message translates to:
   /// **'Appeared'**
-  String get appeared;
+  String get appear;
 
-  /// No description provided for @appeared_help.
+  /// No description provided for @appear_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles whose first detected position was inside this area.\\n\\nUseful for understanding where tracking begins.\\n\\n(Primarily intended for advanced users.)'**
-  String get appeared_help;
-
-  /// No description provided for @average_occupancy.
-  ///
-  /// In en, this message translates to:
-  /// **'Average Occupancy'**
-  String get average_occupancy;
-
-  /// No description provided for @average_occupancy_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Shows the average number of people or vehicles in this area during the current counting window.\\n\\nThis helps measure how busy the area was over the entire counting window.'**
-  String get average_occupancy_help;
-
-  /// No description provided for @average_stay.
-  ///
-  /// In en, this message translates to:
-  /// **'Average Stay'**
-  String get average_stay;
-
-  /// No description provided for @average_stay_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Shows the average time people or vehicles stayed in this area.\\n\\nA longer average stay may indicate customers are spending more time in this area.'**
-  String get average_stay_help;
+  String get appear_help;
 
   /// No description provided for @camera_test_screen_help.
   ///
@@ -489,13 +465,13 @@ abstract class Localization {
   /// No description provided for @detection_screen_stagnant.
   ///
   /// In en, this message translates to:
-  /// **'Dwell Time'**
+  /// **'Lingering Threshold'**
   String get detection_screen_stagnant;
 
   /// No description provided for @detection_screen_stagnant_help.
   ///
   /// In en, this message translates to:
-  /// **'How long an object must stay in the area to count as dwelling.'**
+  /// **'Minimum time an object must remain in the area before it is counted as Lingering.'**
   String get detection_screen_stagnant_help;
 
   /// No description provided for @detection_screen_stagnant_max_label.
@@ -510,11 +486,11 @@ abstract class Localization {
   /// **'Instant'**
   String get detection_screen_stagnant_min_label;
 
-  /// No description provided for @detection_screen_stay_threshold.
+  /// No description provided for @detection_screen_stagnant_threshold.
   ///
   /// In en, this message translates to:
   /// **'Determines when an object contributes to the Stay count.\\nShorter values\\n• Count stays immediately\\n• Better for quick analysis\\nLonger values\\n• Ignore brief pass-through traffic\\n• Better for occupancy measurement'**
-  String get detection_screen_stay_threshold;
+  String get detection_screen_stagnant_threshold;
 
   /// No description provided for @detection_screen_subtitle.
   ///
@@ -630,17 +606,17 @@ abstract class Localization {
   /// **'Camera not found'**
   String get device_not_supported_screen_title;
 
-  /// No description provided for @disappeared.
+  /// No description provided for @disappear.
   ///
   /// In en, this message translates to:
   /// **'Disappeared'**
-  String get disappeared;
+  String get disappear;
 
-  /// No description provided for @disappeared_help.
+  /// No description provided for @disappear_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles whose last detected position was inside this area.\\n\\nTracking ends after the configured Disappear Time if the person or vehicle is no longer detected.\\n\\n(Primarily intended for advanced users.)'**
-  String get disappeared_help;
+  String get disappear_help;
 
   /// No description provided for @dpa.
   ///
@@ -651,68 +627,80 @@ abstract class Localization {
   /// No description provided for @durationDaysShort.
   ///
   /// In en, this message translates to:
-  /// **'%sd'**
-  String get durationDaysShort;
+  /// **'{value}d'**
+  String durationDaysShort(Object value);
 
   /// No description provided for @durationHoursShort.
   ///
   /// In en, this message translates to:
-  /// **'%sh'**
-  String get durationHoursShort;
+  /// **'{value}h'**
+  String durationHoursShort(Object value);
 
   /// No description provided for @durationMinutesShort.
   ///
   /// In en, this message translates to:
-  /// **'%sm'**
-  String get durationMinutesShort;
+  /// **'{value}m'**
+  String durationMinutesShort(Object value);
 
   /// No description provided for @durationSecondsShort.
   ///
   /// In en, this message translates to:
-  /// **'%ss'**
-  String get durationSecondsShort;
+  /// **'{value}s'**
+  String durationSecondsShort(Object value);
 
   /// No description provided for @durationTwoUnit.
   ///
   /// In en, this message translates to:
-  /// **'%first %second'**
-  String get durationTwoUnit;
+  /// **'{first} {second}'**
+  String durationTwoUnit(Object first, Object second);
 
-  /// No description provided for @entered.
+  /// No description provided for @dwell_time_max.
   ///
   /// In en, this message translates to:
-  /// **'Entered'**
-  String get entered;
+  /// **'Longest Completed Stay'**
+  String get dwell_time_max;
 
-  /// No description provided for @entered_help.
+  /// No description provided for @dwell_time_max_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the longest time a person or vehicle stayed in this area during the current counting window.\\n\\nUseful for identifying unusually long visits or stops.\\n\\nOnly completed stays are included; ongoing stays are excluded.'**
+  String get dwell_time_max_help;
+
+  /// No description provided for @dwell_time_mean.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. Completed Stay'**
+  String get dwell_time_mean;
+
+  /// No description provided for @dwell_time_mean_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the average time people or vehicles stayed in this area.\\n\\nA longer average stay may indicate customers are spending more time in this area.\\n\\nOnly completed stays are included; ongoing stays are excluded.'**
+  String get dwell_time_mean_help;
+
+  /// No description provided for @entry.
+  ///
+  /// In en, this message translates to:
+  /// **'Entries'**
+  String get entry;
+
+  /// No description provided for @entry_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles that entered this area during the current counting window.\\n\\nAn entry is counted when a person or vehicle moves from outside the area to inside.'**
-  String get entered_help;
+  String get entry_help;
 
-  /// No description provided for @exited.
+  /// No description provided for @exit.
   ///
   /// In en, this message translates to:
-  /// **'Exited'**
-  String get exited;
+  /// **'Exits'**
+  String get exit;
 
-  /// No description provided for @exited_help.
+  /// No description provided for @exit_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles that left this area during the current counting window.\\n\\nAn exit is counted when a person or vehicle moves from inside the area to outside.'**
-  String get exited_help;
-
-  /// No description provided for @insight_appear.
-  ///
-  /// In en, this message translates to:
-  /// **'Appeared'**
-  String get insight_appear;
-
-  /// No description provided for @insight_average_completed_visit.
-  ///
-  /// In en, this message translates to:
-  /// **'Avg. completed visit'**
-  String get insight_average_completed_visit;
+  String get exit_help;
 
   /// No description provided for @insight_average_short.
   ///
@@ -720,11 +708,17 @@ abstract class Localization {
   /// **'avg.'**
   String get insight_average_short;
 
-  /// No description provided for @insight_based_on_minutes.
+  /// No description provided for @insight_based_on_min.
   ///
   /// In en, this message translates to:
-  /// **'Based on %m min · May fluctuate'**
-  String get insight_based_on_minutes;
+  /// **'Based on {min} min · May fluctuate'**
+  String insight_based_on_min(Object min);
+
+  /// No description provided for @insight_based_on_sec.
+  ///
+  /// In en, this message translates to:
+  /// **'Based on {sec} sec · May fluctuate'**
+  String insight_based_on_sec(Object sec);
 
   /// No description provided for @insight_chart_dwell_unit.
   ///
@@ -747,7 +741,7 @@ abstract class Localization {
   /// No description provided for @insight_chart_hourly_info.
   ///
   /// In en, this message translates to:
-  /// **'Shows recorded values for each clock hour. Today\'s incomplete current hour is hidden.'**
+  /// **'Shows recorded values for each complete clock hour. The current incomplete hour is hidden.'**
   String get insight_chart_hourly_info;
 
   /// No description provided for @insight_chart_info_description.
@@ -786,18 +780,6 @@ abstract class Localization {
   /// **'Compare with'**
   String get insight_compare_with;
 
-  /// No description provided for @insight_comparison_last_week.
-  ///
-  /// In en, this message translates to:
-  /// **'Same day last week'**
-  String get insight_comparison_last_week;
-
-  /// No description provided for @insight_comparison_monthly.
-  ///
-  /// In en, this message translates to:
-  /// **'Monthly average'**
-  String get insight_comparison_monthly;
-
   /// No description provided for @insight_comparison_period.
   ///
   /// In en, this message translates to:
@@ -809,18 +791,6 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Comparison unavailable'**
   String get insight_comparison_unavailable;
-
-  /// No description provided for @insight_comparison_yearly.
-  ///
-  /// In en, this message translates to:
-  /// **'Yearly average'**
-  String get insight_comparison_yearly;
-
-  /// No description provided for @insight_comparison_yesterday.
-  ///
-  /// In en, this message translates to:
-  /// **'Yesterday'**
-  String get insight_comparison_yesterday;
 
   /// No description provided for @insight_counting_paused.
   ///
@@ -840,47 +810,11 @@ abstract class Localization {
   /// **'Traffic Insights'**
   String get insight_dashboard_title;
 
-  /// No description provided for @insight_disappear.
-  ///
-  /// In en, this message translates to:
-  /// **'Disappeared'**
-  String get insight_disappear;
-
-  /// No description provided for @insight_dwell_time.
-  ///
-  /// In en, this message translates to:
-  /// **'Dwell Time'**
-  String get insight_dwell_time;
-
-  /// No description provided for @insight_early_estimate.
-  ///
-  /// In en, this message translates to:
-  /// **'Early estimate'**
-  String get insight_early_estimate;
-
-  /// No description provided for @insight_entry.
-  ///
-  /// In en, this message translates to:
-  /// **'Entries'**
-  String get insight_entry;
-
   /// No description provided for @insight_error.
   ///
   /// In en, this message translates to:
   /// **'Unable to load insights'**
   String get insight_error;
-
-  /// No description provided for @insight_estimated.
-  ///
-  /// In en, this message translates to:
-  /// **'Estimated'**
-  String get insight_estimated;
-
-  /// No description provided for @insight_exit.
-  ///
-  /// In en, this message translates to:
-  /// **'Exits'**
-  String get insight_exit;
 
   /// No description provided for @insight_hourly_rate.
   ///
@@ -888,35 +822,11 @@ abstract class Localization {
   /// **'Hourly rate'**
   String get insight_hourly_rate;
 
-  /// No description provided for @insight_last_60_minutes.
-  ///
-  /// In en, this message translates to:
-  /// **'Last 60 minutes'**
-  String get insight_last_60_minutes;
-
-  /// No description provided for @insight_longest_completed_visit.
-  ///
-  /// In en, this message translates to:
-  /// **'Longest visit'**
-  String get insight_longest_completed_visit;
-
   /// No description provided for @insight_objects_unit.
   ///
   /// In en, this message translates to:
   /// **'objects'**
   String get insight_objects_unit;
-
-  /// No description provided for @insight_occupancy.
-  ///
-  /// In en, this message translates to:
-  /// **'Occupancy'**
-  String get insight_occupancy;
-
-  /// No description provided for @insight_pass_by.
-  ///
-  /// In en, this message translates to:
-  /// **'Pass-by Traffic'**
-  String get insight_pass_by;
 
   /// No description provided for @insight_peak.
   ///
@@ -953,18 +863,6 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Lunch'**
   String get insight_period_lunch;
-
-  /// No description provided for @insight_stagnant.
-  ///
-  /// In en, this message translates to:
-  /// **'Lingering'**
-  String get insight_stagnant;
-
-  /// No description provided for @insight_today.
-  ///
-  /// In en, this message translates to:
-  /// **'Today'**
-  String get insight_today;
 
   /// No description provided for @insight_today_chart.
   ///
@@ -1122,30 +1020,6 @@ abstract class Localization {
   /// **'Video Sources'**
   String get main_screen_video_sources;
 
-  /// No description provided for @maximum_occupancy.
-  ///
-  /// In en, this message translates to:
-  /// **'Maximum Occupancy'**
-  String get maximum_occupancy;
-
-  /// No description provided for @maximum_occupancy_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Shows the highest number of people or vehicles in this area at the same time during the current counting window.\\n\\nUseful for identifying peak crowd or traffic levels.'**
-  String get maximum_occupancy_help;
-
-  /// No description provided for @maximum_stay.
-  ///
-  /// In en, this message translates to:
-  /// **'Maximum Stay'**
-  String get maximum_stay;
-
-  /// No description provided for @maximum_stay_help.
-  ///
-  /// In en, this message translates to:
-  /// **'Shows the longest time a person or vehicle stayed in this area during the current counting window.\\n\\nUseful for identifying unusually long visits or stops.'**
-  String get maximum_stay_help;
-
   /// No description provided for @metric_events.
   ///
   /// In en, this message translates to:
@@ -1278,6 +1152,30 @@ abstract class Localization {
   /// **'Current Count'**
   String get occupancy;
 
+  /// No description provided for @occupancy_max.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum Occupancy'**
+  String get occupancy_max;
+
+  /// No description provided for @occupancy_max_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the highest number of people or vehicles in this area at the same time during the current counting window.\\n\\nUseful for identifying peak crowd or traffic levels.'**
+  String get occupancy_max_help;
+
+  /// No description provided for @occupancy_mean.
+  ///
+  /// In en, this message translates to:
+  /// **'Average Occupancy'**
+  String get occupancy_mean;
+
+  /// No description provided for @occupancy_mean_help.
+  ///
+  /// In en, this message translates to:
+  /// **'Shows the average number of people or vehicles in this area during the current counting window.\\n\\nThis helps measure how busy the area was over the entire counting window.'**
+  String get occupancy_mean_help;
+
   /// No description provided for @onboarding_back_action.
   ///
   /// In en, this message translates to:
@@ -1350,17 +1248,17 @@ abstract class Localization {
   /// **'Start'**
   String get onboarding_start_action;
 
-  /// No description provided for @passed_by.
+  /// No description provided for @pass_by.
   ///
   /// In en, this message translates to:
-  /// **'Passed By'**
-  String get passed_by;
+  /// **'Pass-by Traffic'**
+  String get pass_by;
 
-  /// No description provided for @passed_by_help.
+  /// No description provided for @pass_by_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles that passed through this area during the current counting window.\\n\\nEach person or vehicle is counted only once for each pass through the area.'**
-  String get passed_by_help;
+  String get pass_by_help;
 
   /// No description provided for @payloads_screen_area.
   ///
@@ -1674,17 +1572,17 @@ abstract class Localization {
   /// **'Subscription'**
   String get settings_screen_subscription_title;
 
-  /// No description provided for @stagnanted.
+  /// No description provided for @stagnant.
   ///
   /// In en, this message translates to:
-  /// **'Stayed'**
-  String get stagnanted;
+  /// **'Lingering'**
+  String get stagnant;
 
-  /// No description provided for @stagnanted_help.
+  /// No description provided for @stagnant_help.
   ///
   /// In en, this message translates to:
   /// **'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.'**
-  String get stagnanted_help;
+  String get stagnant_help;
 
   /// No description provided for @telemetry_error_connection_refused.
   ///
@@ -1763,6 +1661,48 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Terms of Service'**
   String get terms;
+
+  /// No description provided for @traffic_period_custom_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom Day'**
+  String get traffic_period_custom_day;
+
+  /// No description provided for @traffic_period_last_month.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Month Average'**
+  String get traffic_period_last_month;
+
+  /// No description provided for @traffic_period_last_week.
+  ///
+  /// In en, this message translates to:
+  /// **'Same day last week'**
+  String get traffic_period_last_week;
+
+  /// No description provided for @traffic_period_last_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Year Average'**
+  String get traffic_period_last_year;
+
+  /// No description provided for @traffic_period_live_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Live Today'**
+  String get traffic_period_live_today;
+
+  /// No description provided for @traffic_period_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get traffic_period_today;
+
+  /// No description provided for @traffic_period_yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get traffic_period_yesterday;
 
   /// No description provided for @upload_screen_attempt_time.
   ///

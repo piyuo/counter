@@ -19,25 +19,11 @@ class LocalizationFa extends Localization {
   String get about_screen_platform => 'پلتفرم';
 
   @override
-  String get appeared => 'ظاهر شد';
+  String get appear => 'ظهور';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که اولین موقعیت شناسایی‌شده آن‌ها داخل این ناحیه بوده است محاسبه می‌کند.\\n\\nبرای درک محل شروع ردیابی مفید است.\\n\\n(عمدتاً برای کاربران پیشرفته)';
-
-  @override
-  String get average_occupancy => 'میانگین تعداد';
-
-  @override
-  String get average_occupancy_help =>
-      'میانگین تعداد افراد یا وسایل نقلیه در این ناحیه را در طول پنجره شمارش فعلی نشان می‌دهد.\\n\\nاین مقدار نشان می‌دهد که این ناحیه در طول کل پنجره شمارش چقدر شلوغ بوده است.';
-
-  @override
-  String get average_stay => 'میانگین زمان ماندگاری';
-
-  @override
-  String get average_stay_help =>
-      'میانگین مدت زمانی را که افراد یا وسایل نقلیه در این ناحیه مانده‌اند نشان می‌دهد.\\n\\nمیانگین زمان بیشتر ممکن است نشان دهد که مشتریان زمان بیشتری را در این ناحیه سپری می‌کنند.';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationFa extends Localization {
       'برای نمایش شناسه‌های تتبع منحصر به‌فرد برای هر کائنی که تتبع می‌شود، این گزینه را فعال کنید.';
 
   @override
-  String get detection_screen_stagnant => 'زمان ماندن';
+  String get detection_screen_stagnant => 'آستانه ماندگاری';
 
   @override
   String get detection_screen_stagnant_help =>
-      'مدت زمانی که یک شیء باید در محدوده بماند تا ماندن به حساب بیاید.';
+      'حداقل زمانی که یک شیء باید در ناحیه بماند تا در شمارش ماندگاری لحاظ شود.';
 
   @override
   String get detection_screen_stagnant_max_label => 'با تأخیر';
@@ -215,7 +201,7 @@ class LocalizationFa extends Localization {
   String get detection_screen_stagnant_min_label => 'فوری';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'مشخص می‌کند یک شیء چه زمانی در شمارش «توقف» مؤثر است.\\nمقادیر کوتاه‌تر\\n• توقف را فوراً می‌شمارد\\n• برای تحلیل سریع بهتر است\\nمقادیر طولانی‌تر\\n• عبور کوتاه‌مدت را نادیده می‌گیرد\\n• برای اندازه‌گیری اشغال بهتر است';
 
   @override
@@ -284,56 +270,80 @@ class LocalizationFa extends Localization {
   String get device_not_supported_screen_title => 'دوربین یافت نشد';
 
   @override
-  String get disappeared => 'ناپدید شد';
+  String get disappear => 'ناپدید شدن';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که آخرین موقعیت شناسایی‌شده آن‌ها داخل این ناحیه بوده است محاسبه می‌کند.\\n\\nاگر فرد یا وسیله نقلیه تا پایان زمان ناپدید شدن تنظیم‌شده دیگر شناسایی نشود، ردیابی پایان می‌یابد.\\n\\n(عمدتاً برای کاربران پیشرفته)';
 
   @override
   String get dpa => 'توافق‌نامه پردازش داده‌ها';
 
   @override
-  String get durationDaysShort => '%sر';
+  String durationDaysShort(Object value) {
+    return '$valueر';
+  }
 
   @override
-  String get durationHoursShort => '%sس';
+  String durationHoursShort(Object value) {
+    return '$valueس';
+  }
 
   @override
-  String get durationMinutesShort => '%sد';
+  String durationMinutesShort(Object value) {
+    return '$valueد';
+  }
 
   @override
-  String get durationSecondsShort => '%sث';
+  String durationSecondsShort(Object value) {
+    return '$valueث';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'وارد شد';
+  String get dwell_time_max => 'طولانی‌ترین اقامت پایان‌یافته';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'بیشترین مدت زمانی را که یک فرد یا وسیله نقلیه در این ناحیه طی پنجره شمارش فعلی مانده است نشان می‌دهد.\\n\\nبرای شناسایی توقف‌ها یا بازدیدهای غیرعادی طولانی مفید است.\\n\\nفقط مدت‌های ماندن پایان‌یافته محاسبه می‌شوند؛ موارد در حال انجام لحاظ نمی‌شوند.';
+
+  @override
+  String get dwell_time_mean => 'میانگین مدت اقامت‌های پایان‌یافته';
+
+  @override
+  String get dwell_time_mean_help =>
+      'میانگین مدت زمانی را که افراد یا وسایل نقلیه در این ناحیه مانده‌اند نشان می‌دهد.\\n\\nمیانگین زمان بیشتر ممکن است نشان دهد که مشتریان زمان بیشتری را در این ناحیه سپری می‌کنند.\\n\\nفقط مدت‌های ماندن پایان‌یافته محاسبه می‌شوند؛ موارد در حال انجام لحاظ نمی‌شوند.';
+
+  @override
+  String get entry => 'ورودها';
+
+  @override
+  String get entry_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی وارد این ناحیه شده‌اند محاسبه می‌کند.\\n\\nورود زمانی شمارش می‌شود که یک فرد یا وسیله نقلیه از خارج ناحیه به داخل آن حرکت کند.';
 
   @override
-  String get exited => 'خارج شد';
+  String get exit => 'خروج‌ها';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی از این ناحیه خارج شده‌اند محاسبه می‌کند.\\n\\nخروج زمانی شمارش می‌شود که یک فرد یا وسیله نقلیه از داخل ناحیه به خارج آن حرکت کند.';
-
-  @override
-  String get insight_appear => 'ظاهر شدند';
-
-  @override
-  String get insight_average_completed_visit => 'میانگین بازدیدهای پایان‌یافته';
 
   @override
   String get insight_average_short => 'میانگین';
 
   @override
-  String get insight_based_on_minutes =>
-      'بر اساس %m دقیقه · ممکن است تغییر کند';
+  String insight_based_on_min(Object min) {
+    return 'بر اساس $min دقیقه · ممکن است تغییر کند';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'بر اساس $sec ثانیه · ممکن است تغییر کند';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'میانگین مدت در هر ۵ دقیقه';
@@ -346,7 +356,7 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Muestra los valores registrados de cada hora. Se oculta la hora actual incompleta.';
+      'مقادیر ثبت‌شده برای هر ساعت کامل را نشان می‌دهد. ساعت جاری که هنوز کامل نشده نمایش داده نمی‌شود.';
 
   @override
   String get insight_chart_info_description =>
@@ -369,24 +379,12 @@ class LocalizationFa extends Localization {
   String get insight_compare_with => 'مقایسه با';
 
   @override
-  String get insight_comparison_last_week => 'همان روز در هفته گذشته';
-
-  @override
-  String get insight_comparison_monthly => 'میانگین ماهانه';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'در مقایسه با $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'مقایسه در دسترس نیست';
-
-  @override
-  String get insight_comparison_yearly => 'میانگین سالانه';
-
-  @override
-  String get insight_comparison_yesterday => 'دیروز';
 
   @override
   String get insight_counting_paused => 'شمارش موقتاً متوقف شده';
@@ -399,43 +397,13 @@ class LocalizationFa extends Localization {
   String get insight_dashboard_title => 'تحلیل تردد';
 
   @override
-  String get insight_disappear => 'ناپدید شدند';
-
-  @override
-  String get insight_dwell_time => 'مدت حضور';
-
-  @override
-  String get insight_early_estimate => 'برآورد اولیه';
-
-  @override
-  String get insight_entry => 'ورودها';
-
-  @override
   String get insight_error => 'بارگذاری داده‌ها ممکن نیست';
-
-  @override
-  String get insight_estimated => 'تخمینی';
-
-  @override
-  String get insight_exit => 'خروج‌ها';
 
   @override
   String get insight_hourly_rate => 'نرخ ساعتی';
 
   @override
-  String get insight_last_60_minutes => '۶۰ دقیقه گذشته';
-
-  @override
-  String get insight_longest_completed_visit => 'طولانی‌ترین بازدید';
-
-  @override
   String get insight_objects_unit => 'اشیا';
-
-  @override
-  String get insight_occupancy => 'تعداد حاضر';
-
-  @override
-  String get insight_pass_by => 'تردد عبوری';
 
   @override
   String get insight_peak => 'اوج';
@@ -454,12 +422,6 @@ class LocalizationFa extends Localization {
 
   @override
   String get insight_period_lunch => 'ناهار';
-
-  @override
-  String get insight_stagnant => 'ماندن در محل';
-
-  @override
-  String get insight_today => 'امروز';
 
   @override
   String insight_today_chart(Object metric) {
@@ -550,20 +512,6 @@ class LocalizationFa extends Localization {
   String get main_screen_video_sources => 'منابع ویدیو';
 
   @override
-  String get maximum_occupancy => 'حداکثر تعداد';
-
-  @override
-  String get maximum_occupancy_help =>
-      'بیشترین تعداد افراد یا وسایل نقلیه موجود در این ناحیه را به‌طور هم‌زمان در طول پنجره شمارش فعلی نشان می‌دهد.\\n\\nبرای شناسایی اوج شلوغی یا ترافیک مفید است.';
-
-  @override
-  String get maximum_stay => 'حداکثر زمان ماندگاری';
-
-  @override
-  String get maximum_stay_help =>
-      'بیشترین مدت زمانی را که یک فرد یا وسیله نقلیه در این ناحیه طی پنجره شمارش فعلی مانده است نشان می‌دهد.\\n\\nبرای شناسایی توقف‌ها یا بازدیدهای غیرعادی طولانی مفید است.';
-
-  @override
   String get metric_events => 'رویدادها';
 
   @override
@@ -633,6 +581,20 @@ class LocalizationFa extends Localization {
   String get occupancy => 'تعداد فعلی';
 
   @override
+  String get occupancy_max => 'حداکثر تعداد';
+
+  @override
+  String get occupancy_max_help =>
+      'بیشترین تعداد افراد یا وسایل نقلیه موجود در این ناحیه را به‌طور هم‌زمان در طول پنجره شمارش فعلی نشان می‌دهد.\\n\\nبرای شناسایی اوج شلوغی یا ترافیک مفید است.';
+
+  @override
+  String get occupancy_mean => 'میانگین تعداد';
+
+  @override
+  String get occupancy_mean_help =>
+      'میانگین تعداد افراد یا وسایل نقلیه در این ناحیه را در طول پنجره شمارش فعلی نشان می‌دهد.\\n\\nاین مقدار نشان می‌دهد که این ناحیه در طول کل پنجره شمارش چقدر شلوغ بوده است.';
+
+  @override
   String get onboarding_back_action => 'بازگشت';
 
   @override
@@ -673,10 +635,10 @@ class LocalizationFa extends Localization {
   String get onboarding_start_action => 'شروع';
 
   @override
-  String get passed_by => 'عبور کرده';
+  String get pass_by => 'جریان عبوری';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که در طول پنجره شمارش فعلی از این ناحیه عبور کرده‌اند محاسبه می‌کند.\\n\\nهر فرد یا وسیله نقلیه برای هر بار عبور از ناحیه فقط یک بار شمارش می‌شود.';
 
   @override
@@ -852,10 +814,10 @@ class LocalizationFa extends Localization {
   String get settings_screen_subscription_title => 'اشتراک';
 
   @override
-  String get stagnanted => 'ماندند';
+  String get stagnant => 'ماندن';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'تعداد افراد یا وسایل نقلیه‌ای را که حداقل به مدت زمان ماندگاری تنظیم‌شده در این ناحیه باقی مانده‌اند محاسبه می‌کند.\\n\\nزمان ماندگاری پیش‌فرض ۱۵ ثانیه است و در تنظیمات قابل تغییر است.';
 
   @override
@@ -907,6 +869,27 @@ class LocalizationFa extends Localization {
 
   @override
   String get terms => 'شرایط استفاده از خدمات';
+
+  @override
+  String get traffic_period_custom_day => 'روز دلخواه';
+
+  @override
+  String get traffic_period_last_month => 'میانگین ماه گذشته';
+
+  @override
+  String get traffic_period_last_week => 'همان روز در هفته گذشته';
+
+  @override
+  String get traffic_period_last_year => 'میانگین سال گذشته';
+
+  @override
+  String get traffic_period_live_today => 'امروز زنده';
+
+  @override
+  String get traffic_period_today => 'امروز';
+
+  @override
+  String get traffic_period_yesterday => 'دیروز';
 
   @override
   String get upload_screen_attempt_time => 'زمان تلاش:';

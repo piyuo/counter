@@ -5,6 +5,69 @@ import 'package:shared_l10n/shared_l10n.dart';
 
 import '../utils/format_compact_duration.dart';
 
+NumberFormat getNumberFormatForDashboardMetric(
+  BuildContext context,
+  core_domain.DashboardMetric metric,
+  double? value,
+) {
+  final locale = Localizations.localeOf(context).toString();
+
+  final pattern = switch (metric) {
+    core_domain.DashboardMetric.occupancyMean => '#,##0.##',
+    _ => '#,##0',
+  };
+
+  return NumberFormat(pattern, locale);
+}
+
+String formatDashboardValue(BuildContext context, double value) {
+  final locale = Localizations.localeOf(context).toString();
+  final wholeNumberFormat = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
+  return wholeNumberFormat.format(value);
+}
+
+String formatSeconds(BuildContext context, int seconds) {
+  final locale = Localizations.localeOf(context).toString();
+  final wholeNumberFormat = NumberFormat.decimalPattern(locale)..maximumFractionDigits = 0;
+  return wholeNumberFormat.format(seconds);
+}
+
+String formatCoverSeconds(BuildContext context, int seconds) {
+  if (seconds < 60) {
+    return context.l.insight_based_on_sec(seconds);
+  }
+  final baseOnMinutes = (seconds / 60).round();
+  return context.l.insight_based_on_min(baseOnMinutes.toString());
+}
+
+String formatPercentString(BuildContext context, double value) {
+  final locale = Localizations.localeOf(context).toString();
+  return NumberFormat.percentPattern(locale).format(value);
+}
+
+String formatDashboardMetricSum(
+  BuildContext context,
+  core_domain.DashboardMetric metric,
+  double amount,
+  core_domain.DetectionType? detectionType,
+) {
+  switch (metric) {
+    case core_domain.DashboardMetric.passBy:
+    case core_domain.DashboardMetric.stagnant:
+    case core_domain.DashboardMetric.entry:
+    case core_domain.DashboardMetric.exit:
+    case core_domain.DashboardMetric.appear:
+    case core_domain.DashboardMetric.disappear:
+      return formatDashboardMetricValue(context, metric, amount);
+    case core_domain.DashboardMetric.occupancyMean:
+    case core_domain.DashboardMetric.occupancyMax:
+      return formatDashboardMetricValueUnit(context, metric, amount, detectionType);
+    case core_domain.DashboardMetric.dwellTimeMean:
+    case core_domain.DashboardMetric.dwellTimeMax:
+      return formatDashboardMetricValueUnit(context, metric, amount, detectionType);
+  }
+}
+
 String formatDashboardMetricHourlyTotal(
   BuildContext context,
   core_domain.DashboardMetric metric,
@@ -22,7 +85,7 @@ String formatDashboardMetricHourlyTotal(
       final rate = core_domain.hourlyRate(amount, coveredSeconds);
       return formatDashboardMetricValueUnit(context, metric, rate, detectionType);
     case core_domain.DashboardMetric.occupancyMean:
-    case core_domain.DashboardMetric.occupancyPeak:
+    case core_domain.DashboardMetric.occupancyMax:
       return formatDashboardMetricValueUnit(context, metric, amount, detectionType);
     case core_domain.DashboardMetric.dwellTimeMean:
     case core_domain.DashboardMetric.dwellTimeMax:
@@ -30,32 +93,33 @@ String formatDashboardMetricHourlyTotal(
   }
 }
 
-String formatDashboardMetricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
-  core_domain.DashboardMetric.passBy => context.l.insight_pass_by,
-  core_domain.DashboardMetric.stagnant => context.l.insight_stagnant,
-  core_domain.DashboardMetric.entry => context.l.insight_entry,
-  core_domain.DashboardMetric.exit => context.l.insight_exit,
-  core_domain.DashboardMetric.appear => context.l.insight_appear,
-  core_domain.DashboardMetric.disappear => context.l.insight_disappear,
-  core_domain.DashboardMetric.occupancyMean => context.l.average_occupancy,
-  core_domain.DashboardMetric.occupancyPeak => context.l.maximum_occupancy,
-  core_domain.DashboardMetric.dwellTimeMean => context.l.insight_average_completed_visit,
-  core_domain.DashboardMetric.dwellTimeMax => context.l.insight_longest_completed_visit,
+String formatMetricLabel(BuildContext context, core_domain.DashboardMetric metric) => switch (metric) {
+  core_domain.DashboardMetric.passBy => context.l.pass_by,
+  core_domain.DashboardMetric.stagnant => context.l.stagnant,
+  core_domain.DashboardMetric.entry => context.l.entry,
+  core_domain.DashboardMetric.exit => context.l.exit,
+  core_domain.DashboardMetric.appear => context.l.appear,
+  core_domain.DashboardMetric.disappear => context.l.disappear,
+  core_domain.DashboardMetric.occupancyMean => context.l.occupancy_mean,
+  core_domain.DashboardMetric.occupancyMax => context.l.occupancy_max,
+  core_domain.DashboardMetric.dwellTimeMean => context.l.dwell_time_mean,
+  core_domain.DashboardMetric.dwellTimeMax => context.l.dwell_time_max,
 };
 
-NumberFormat getNumberFormatForDashboardMetric(
-  BuildContext context,
-  core_domain.DashboardMetric metric,
-  double? value,
-) {
-  final locale = Localizations.localeOf(context).toString();
-
-  final pattern = switch (metric) {
-    core_domain.DashboardMetric.occupancyMean => '#,##0.##',
-    _ => '#,##0',
+String formatMetricHelp(BuildContext context, core_domain.DashboardMetric metric) {
+  final help = switch (metric) {
+    core_domain.DashboardMetric.passBy => context.l.pass_by_help,
+    core_domain.DashboardMetric.stagnant => context.l.stagnant_help,
+    core_domain.DashboardMetric.entry => context.l.entry_help,
+    core_domain.DashboardMetric.exit => context.l.exit_help,
+    core_domain.DashboardMetric.appear => context.l.appear_help,
+    core_domain.DashboardMetric.disappear => context.l.disappear_help,
+    core_domain.DashboardMetric.occupancyMean => context.l.occupancy_mean_help,
+    core_domain.DashboardMetric.occupancyMax => context.l.occupancy_max_help,
+    core_domain.DashboardMetric.dwellTimeMean => context.l.dwell_time_mean_help,
+    core_domain.DashboardMetric.dwellTimeMax => context.l.dwell_time_max_help,
   };
-
-  return NumberFormat(pattern, locale);
+  return help.replaceAll(r'\n', '\n');
 }
 
 String formatDashboardMetricValueUnit(
@@ -78,7 +142,7 @@ String formatDashboardMetricValue(BuildContext context, core_domain.DashboardMet
     return '-';
   }
   if (metric == core_domain.DashboardMetric.dwellTimeMean || metric == core_domain.DashboardMetric.dwellTimeMax) {
-    return formatCompactDuration(context.l, value.round());
+    return formatCompactDuration(context, value.round());
   }
 
   final numberFormat = getNumberFormatForDashboardMetric(context, metric, value);
@@ -96,7 +160,7 @@ String formatDashboardMetricUnit(
     return ''; // value already use formatCompactDuration to show time (like 3m 2s)
   }
 
-  if (metric == core_domain.DashboardMetric.occupancyMean || metric == core_domain.DashboardMetric.occupancyPeak) {
+  if (metric == core_domain.DashboardMetric.occupancyMean || metric == core_domain.DashboardMetric.occupancyMax) {
     return formatDetectionType(context, detectionType, value);
   }
 
@@ -151,10 +215,12 @@ String formatObservationStatusTooltip(BuildContext context, core_domain.Observat
   core_domain.ObservationStatus.stopped => context.l.observation_status_stopped_description,
 };
 
-String formatTrafficComparisonPeriodLabel(BuildContext context, core_domain.TrafficComparisonPeriod period) =>
-    switch (period) {
-      core_domain.TrafficComparisonPeriod.yesterday => context.l.insight_comparison_yesterday,
-      core_domain.TrafficComparisonPeriod.sameDayLastWeek => context.l.insight_comparison_last_week,
-      core_domain.TrafficComparisonPeriod.lastMonthAverage => context.l.insight_comparison_monthly,
-      core_domain.TrafficComparisonPeriod.lastYearAverage => context.l.insight_comparison_yearly,
-    };
+String formatTrafficPeriodLabel(BuildContext context, core_domain.TrafficPeriod period) => switch (period) {
+  core_domain.TrafficPeriod.liveToday => context.l.traffic_period_live_today,
+  core_domain.TrafficPeriod.today => context.l.traffic_period_today,
+  core_domain.TrafficPeriod.yesterday => context.l.traffic_period_yesterday,
+  core_domain.TrafficPeriod.sameDayLastWeek => context.l.traffic_period_last_week,
+  core_domain.TrafficPeriod.lastMonthAverage => context.l.traffic_period_last_month,
+  core_domain.TrafficPeriod.lastYearAverage => context.l.traffic_period_last_year,
+  core_domain.TrafficPeriod.customDay => context.l.traffic_period_custom_day,
+};

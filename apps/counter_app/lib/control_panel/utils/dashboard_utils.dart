@@ -14,7 +14,7 @@ double? getDashboardMetricValue(core_domain.Observation observation, int areaId,
     core_domain.DashboardMetric.disappear => activity.disappear,
     core_domain.DashboardMetric.occupancyMean =>
       activity.occupancySampleCount == 0 ? null : activity.occupancySum / activity.occupancySampleCount,
-    core_domain.DashboardMetric.occupancyPeak =>
+    core_domain.DashboardMetric.occupancyMax =>
       activity.occupancySampleCount == 0 ? null : activity.occupancyMax.toDouble(),
     core_domain.DashboardMetric.dwellTimeMean =>
       activity.dwellSampleCount == 0 ? null : activity.dwellSumSeconds / activity.dwellSampleCount / 60,
@@ -50,7 +50,7 @@ double? getDashboardMetricAggregateValue(
       activities.fold(0, (total, activity) => total + activity.occupancySum),
       activities.fold(0, (total, activity) => total + activity.occupancySampleCount),
     ),
-    core_domain.DashboardMetric.occupancyPeak =>
+    core_domain.DashboardMetric.occupancyMax =>
       activities
           .where((activity) => activity.occupancySampleCount > 0)
           .map((activity) => activity.occupancyMax.toDouble())
@@ -64,9 +64,8 @@ double? getDashboardMetricAggregateValue(
   };
 }
 
-int getDashboardCoveredSeconds(Iterable<core_domain.Observation> observations, int areaId) => observations
-    .where((observation) => observation.areas.any((area) => area.areaId == areaId))
-    .fold(0, (total, observation) => total + observation.coveredSeconds);
+int getDashboardCoveredSeconds(Iterable<core_domain.Observation> observations) =>
+    observations.fold(0, (total, observation) => total + observation.coveredSeconds);
 
 double? _mean(num sum, int count) => count == 0 ? null : sum / count;
 

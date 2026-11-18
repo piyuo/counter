@@ -21,7 +21,7 @@ List<RouteBase> get $appRoutes => [
   $uploadLogsRouteData,
   $uploadLogDetailRouteData,
   $recentPayloadsRouteData,
-  $observationRouteData,
+  $metricDetailRouteData,
   $recentPayloadHourRouteData,
   $recentPayloadDetailRouteData,
   $languageRouteData,
@@ -415,24 +415,24 @@ mixin $RecentPayloadsRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-RouteBase get $observationRouteData => GoRouteData.$route(
-  path: '/observations/:areaId/:metric',
+RouteBase get $metricDetailRouteData => GoRouteData.$route(
+  path: '/metric-detail/:areaId/:metric',
   hasOverriddenOnExit: false,
-  factory: $ObservationRouteData._fromState,
+  factory: $MetricDetailRouteData._fromState,
 );
 
-mixin $ObservationRouteData on GoRouteData {
-  static ObservationRouteData _fromState(GoRouterState state) =>
-      ObservationRouteData(
+mixin $MetricDetailRouteData on GoRouteData {
+  static MetricDetailRouteData _fromState(GoRouterState state) =>
+      MetricDetailRouteData(
         areaId: int.parse(state.pathParameters['areaId']!),
         metric: state.pathParameters['metric']!,
       );
 
-  ObservationRouteData get _self => this as ObservationRouteData;
+  MetricDetailRouteData get _self => this as MetricDetailRouteData;
 
   @override
   String get location => GoRouteData.$location(
-    '/observations/${Uri.encodeComponent(_self.areaId.toString())}/${Uri.encodeComponent(_self.metric)}',
+    '/metric-detail/${Uri.encodeComponent(_self.areaId.toString())}/${Uri.encodeComponent(_self.metric)}',
   );
 
   @override

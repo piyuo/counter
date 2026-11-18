@@ -19,25 +19,11 @@ class LocalizationEn extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
-  String get appeared => 'Appeared';
+  String get appear => 'Appeared';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Counts people or vehicles whose first detected position was inside this area.\\n\\nUseful for understanding where tracking begins.\\n\\n(Primarily intended for advanced users.)';
-
-  @override
-  String get average_occupancy => 'Average Occupancy';
-
-  @override
-  String get average_occupancy_help =>
-      'Shows the average number of people or vehicles in this area during the current counting window.\\n\\nThis helps measure how busy the area was over the entire counting window.';
-
-  @override
-  String get average_stay => 'Average Stay';
-
-  @override
-  String get average_stay_help =>
-      'Shows the average time people or vehicles stayed in this area.\\n\\nA longer average stay may indicate customers are spending more time in this area.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationEn extends Localization {
       'Enable this option to show unique track IDs for each tracked object.';
 
   @override
-  String get detection_screen_stagnant => 'Dwell Time';
+  String get detection_screen_stagnant => 'Lingering Threshold';
 
   @override
   String get detection_screen_stagnant_help =>
-      'How long an object must stay in the area to count as dwelling.';
+      'Minimum time an object must remain in the area before it is counted as Lingering.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Delayed';
@@ -214,7 +200,7 @@ class LocalizationEn extends Localization {
   String get detection_screen_stagnant_min_label => 'Instant';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Determines when an object contributes to the Stay count.\\nShorter values\\n• Count stays immediately\\n• Better for quick analysis\\nLonger values\\n• Ignore brief pass-through traffic\\n• Better for occupancy measurement';
 
   @override
@@ -283,55 +269,80 @@ class LocalizationEn extends Localization {
   String get device_not_supported_screen_title => 'Camera not found';
 
   @override
-  String get disappeared => 'Disappeared';
+  String get disappear => 'Disappeared';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Counts people or vehicles whose last detected position was inside this area.\\n\\nTracking ends after the configured Disappear Time if the person or vehicle is no longer detected.\\n\\n(Primarily intended for advanced users.)';
 
   @override
   String get dpa => 'Data Processing Agreement';
 
   @override
-  String get durationDaysShort => '%sd';
+  String durationDaysShort(Object value) {
+    return '${value}d';
+  }
 
   @override
-  String get durationHoursShort => '%sh';
+  String durationHoursShort(Object value) {
+    return '${value}h';
+  }
 
   @override
-  String get durationMinutesShort => '%sm';
+  String durationMinutesShort(Object value) {
+    return '${value}m';
+  }
 
   @override
-  String get durationSecondsShort => '%ss';
+  String durationSecondsShort(Object value) {
+    return '${value}s';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Entered';
+  String get dwell_time_max => 'Longest Completed Stay';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Shows the longest time a person or vehicle stayed in this area during the current counting window.\\n\\nUseful for identifying unusually long visits or stops.\\n\\nOnly completed stays are included; ongoing stays are excluded.';
+
+  @override
+  String get dwell_time_mean => 'Avg. Completed Stay';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Shows the average time people or vehicles stayed in this area.\\n\\nA longer average stay may indicate customers are spending more time in this area.\\n\\nOnly completed stays are included; ongoing stays are excluded.';
+
+  @override
+  String get entry => 'Entries';
+
+  @override
+  String get entry_help =>
       'Counts people or vehicles that entered this area during the current counting window.\\n\\nAn entry is counted when a person or vehicle moves from outside the area to inside.';
 
   @override
-  String get exited => 'Exited';
+  String get exit => 'Exits';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Counts people or vehicles that left this area during the current counting window.\\n\\nAn exit is counted when a person or vehicle moves from inside the area to outside.';
-
-  @override
-  String get insight_appear => 'Appeared';
-
-  @override
-  String get insight_average_completed_visit => 'Avg. completed visit';
 
   @override
   String get insight_average_short => 'avg.';
 
   @override
-  String get insight_based_on_minutes => 'Based on %m min · May fluctuate';
+  String insight_based_on_min(Object min) {
+    return 'Based on $min min · May fluctuate';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Based on $sec sec · May fluctuate';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Avg. duration per 5 min';
@@ -344,7 +355,7 @@ class LocalizationEn extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Shows recorded values for each clock hour. Today\'s incomplete current hour is hidden.';
+      'Shows recorded values for each complete clock hour. The current incomplete hour is hidden.';
 
   @override
   String get insight_chart_info_description =>
@@ -367,24 +378,12 @@ class LocalizationEn extends Localization {
   String get insight_compare_with => 'Compare with';
 
   @override
-  String get insight_comparison_last_week => 'Same day last week';
-
-  @override
-  String get insight_comparison_monthly => 'Monthly average';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'vs. $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Comparison unavailable';
-
-  @override
-  String get insight_comparison_yearly => 'Yearly average';
-
-  @override
-  String get insight_comparison_yesterday => 'Yesterday';
 
   @override
   String get insight_counting_paused => 'Counting paused';
@@ -397,43 +396,13 @@ class LocalizationEn extends Localization {
   String get insight_dashboard_title => 'Traffic Insights';
 
   @override
-  String get insight_disappear => 'Disappeared';
-
-  @override
-  String get insight_dwell_time => 'Dwell Time';
-
-  @override
-  String get insight_early_estimate => 'Early estimate';
-
-  @override
-  String get insight_entry => 'Entries';
-
-  @override
   String get insight_error => 'Unable to load insights';
-
-  @override
-  String get insight_estimated => 'Estimated';
-
-  @override
-  String get insight_exit => 'Exits';
 
   @override
   String get insight_hourly_rate => 'Hourly rate';
 
   @override
-  String get insight_last_60_minutes => 'Last 60 minutes';
-
-  @override
-  String get insight_longest_completed_visit => 'Longest visit';
-
-  @override
   String get insight_objects_unit => 'objects';
-
-  @override
-  String get insight_occupancy => 'Occupancy';
-
-  @override
-  String get insight_pass_by => 'Pass-by Traffic';
 
   @override
   String get insight_peak => 'Peak';
@@ -452,12 +421,6 @@ class LocalizationEn extends Localization {
 
   @override
   String get insight_period_lunch => 'Lunch';
-
-  @override
-  String get insight_stagnant => 'Lingering';
-
-  @override
-  String get insight_today => 'Today';
 
   @override
   String insight_today_chart(Object metric) {
@@ -545,20 +508,6 @@ class LocalizationEn extends Localization {
   String get main_screen_video_sources => 'Video Sources';
 
   @override
-  String get maximum_occupancy => 'Maximum Occupancy';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Shows the highest number of people or vehicles in this area at the same time during the current counting window.\\n\\nUseful for identifying peak crowd or traffic levels.';
-
-  @override
-  String get maximum_stay => 'Maximum Stay';
-
-  @override
-  String get maximum_stay_help =>
-      'Shows the longest time a person or vehicle stayed in this area during the current counting window.\\n\\nUseful for identifying unusually long visits or stops.';
-
-  @override
   String get metric_events => 'Events';
 
   @override
@@ -628,6 +577,20 @@ class LocalizationEn extends Localization {
   String get occupancy => 'Current Count';
 
   @override
+  String get occupancy_max => 'Maximum Occupancy';
+
+  @override
+  String get occupancy_max_help =>
+      'Shows the highest number of people or vehicles in this area at the same time during the current counting window.\\n\\nUseful for identifying peak crowd or traffic levels.';
+
+  @override
+  String get occupancy_mean => 'Average Occupancy';
+
+  @override
+  String get occupancy_mean_help =>
+      'Shows the average number of people or vehicles in this area during the current counting window.\\n\\nThis helps measure how busy the area was over the entire counting window.';
+
+  @override
   String get onboarding_back_action => 'Back';
 
   @override
@@ -667,10 +630,10 @@ class LocalizationEn extends Localization {
   String get onboarding_start_action => 'Start';
 
   @override
-  String get passed_by => 'Passed By';
+  String get pass_by => 'Pass-by Traffic';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Counts people or vehicles that passed through this area during the current counting window.\\n\\nEach person or vehicle is counted only once for each pass through the area.';
 
   @override
@@ -845,10 +808,10 @@ class LocalizationEn extends Localization {
   String get settings_screen_subscription_title => 'Subscription';
 
   @override
-  String get stagnanted => 'Stayed';
+  String get stagnant => 'Lingering';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Counts people or vehicles that remained in this area for at least the configured Stay Time.\\n\\nThe default Stay Time is 15 seconds and can be changed in Settings.';
 
   @override
@@ -900,6 +863,27 @@ class LocalizationEn extends Localization {
 
   @override
   String get terms => 'Terms of Service';
+
+  @override
+  String get traffic_period_custom_day => 'Custom Day';
+
+  @override
+  String get traffic_period_last_month => 'Last Month Average';
+
+  @override
+  String get traffic_period_last_week => 'Same day last week';
+
+  @override
+  String get traffic_period_last_year => 'Last Year Average';
+
+  @override
+  String get traffic_period_live_today => 'Live Today';
+
+  @override
+  String get traffic_period_today => 'Today';
+
+  @override
+  String get traffic_period_yesterday => 'Yesterday';
 
   @override
   String get upload_screen_attempt_time => 'Attempt Time:';

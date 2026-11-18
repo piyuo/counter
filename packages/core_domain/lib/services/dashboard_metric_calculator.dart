@@ -8,8 +8,6 @@ import '../model/observation_series.dart';
 
 enum _MetricValueMode { hourlyRate, chart }
 
-const double _coverageTolerance = 0.05;
-
 DashboardMeasurement? calculateInsightPrimaryMetric(
   Observation? observation,
   int areaId,
@@ -163,10 +161,10 @@ DashboardMeasurement? _valueFromTotals(
       coveredSeconds <= 0
           ? null
           : DashboardMeasurement(
-              // Live and period values are estimated hourly rates; charts retain actual counts when coverage is incomplete.
+              // Live and period values are normalized to an hourly rate; charts retain actual counts when coverage is incomplete.
               amount: eventHourlyRate ? eventCount / coveredSeconds * 3600 : eventCount,
               metric: metric,
-              estimated: _isEstimated(coveredSeconds: coveredSeconds, expectedSeconds: expectedSeconds),
+              expectedSeconds: expectedSeconds,
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.occupancyMean =>
@@ -175,18 +173,25 @@ DashboardMeasurement? _valueFromTotals(
           : DashboardMeasurement(
               amount: occupancySum / occupancySampleCount,
               metric: metric,
+              expectedSeconds: expectedSeconds,
               coveredSeconds: coveredSeconds,
             ),
-    DashboardMetric.occupancyPeak =>
+    DashboardMetric.occupancyMax =>
       occupancyMaximum == null
           ? null
-          : DashboardMeasurement(amount: occupancyMaximum.toDouble(), metric: metric, coveredSeconds: coveredSeconds),
+          : DashboardMeasurement(
+              amount: occupancyMaximum.toDouble(),
+              metric: metric,
+              coveredSeconds: coveredSeconds,
+              expectedSeconds: expectedSeconds,
+            ),
     DashboardMetric.dwellTimeMean =>
       dwellSampleCount == 0
           ? null
           : DashboardMeasurement(
               amount: dwellSumSeconds / dwellSampleCount / (dwellInMinutes ? 60 : 1),
               metric: metric,
+              expectedSeconds: expectedSeconds,
               coveredSeconds: coveredSeconds,
             ),
     DashboardMetric.dwellTimeMax =>
@@ -195,13 +200,11 @@ DashboardMeasurement? _valueFromTotals(
           : DashboardMeasurement(
               amount: dwellMaximum / (dwellInMinutes ? 60 : 1),
               metric: metric,
+              expectedSeconds: expectedSeconds,
               coveredSeconds: coveredSeconds,
             ),
   };
 }
-
-bool _isEstimated({required int coveredSeconds, required int expectedSeconds}) =>
-    coveredSeconds < expectedSeconds * (1 - _coverageTolerance);
 
 double _insightEventValue(Activity activity, DashboardMetric metric) => switch (metric) {
   DashboardMetric.passBy => activity.passBy,
@@ -211,7 +214,7 @@ double _insightEventValue(Activity activity, DashboardMetric metric) => switch (
   DashboardMetric.appear => activity.appear,
   DashboardMetric.disappear => activity.disappear,
   DashboardMetric.occupancyMean ||
-  DashboardMetric.occupancyPeak ||
+  DashboardMetric.occupancyMax ||
   DashboardMetric.dwellTimeMean ||
   DashboardMetric.dwellTimeMax => 0,
 };
@@ -222,3 +225,41 @@ Activity? _activity(Observation observation, int areaId) {
   }
   return null;
 }
+
+/// Value of [metric] for [areaId] in a single observation.
+///
+/// Returns 0 when the observation has no entry for [areaId]. Dwell values
+/// are in seconds.
+double getMetricValue(int areaId, DashboardMetric metric, Observation o) {
+  final activity = _activity(o, areaId);
+  if (activity == null) return 0;
+
+  return switch (metric) {
+    DashboardMetric.passBy => activity.passBy,
+    DashboardMetric.stagnant => activity.stagnant,
+    DashboardMetric.entry => activity.entry,
+    DashboardMetric.exit => activity.exit,
+    DashboardMetric.appear => activity.appear,
+    DashboardMetric.disappear => activity.disappear,
+    DashboardMetric.occupancyMean => activity.occupancyMean,
+    DashboardMetric.occupancyMax => activity.occupancyMax.toDouble(),
+    DashboardMetric.dwellTimeMean => activity.dwellMeanSeconds.toDouble(),
+    DashboardMetric.dwellTimeMax => activity.dwellMaxSeconds.toDouble(),
+  };
+}
+
+/// Plain sum of [getMetricValue] over every observation in [o].
+///
+/// This is only a meaningful total for event counts (passBy, stagnant, entry,
+/// exit, appear, disappear). For occupancy and dwell metrics it sums per-slot
+/// means or maxes, which is not a real mean or maximum. Use
+/// [calculateInsightMetricFromObservationsInRange] when you need those
+/// aggregated correctly.
+///
+/// Observations without an entry for [areaId] contribute 0.
+double getMetricSum(int areaId, DashboardMetric metric, List<Observation> o) =>
+    o.fold<double>(0, (sum, observation) => sum + getMetricValue(areaId, metric, observation));
+
+/// Sums observation-level coverage, which is not specific to an area or metric.
+int getCoveredSeconds(List<Observation> observations) =>
+    observations.fold(0, (total, observation) => total + observation.coveredSeconds);

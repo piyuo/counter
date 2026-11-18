@@ -19,25 +19,11 @@ class LocalizationMs extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
-  String get appeared => 'Muncul';
+  String get appear => 'Kemunculan';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Mengira bilangan orang atau kenderaan yang kedudukan pertama dikesan berada di dalam kawasan ini.\\n\\nMembantu memahami di mana penjejakan bermula.\\n\\n(Untuk pengguna lanjutan)';
-
-  @override
-  String get average_occupancy => 'Purata Bilangan';
-
-  @override
-  String get average_occupancy_help =>
-      'Menunjukkan purata bilangan orang atau kenderaan di kawasan ini sepanjang tetingkap pengiraan semasa.\\n\\nIni membantu menunjukkan tahap kesibukan kawasan sepanjang tempoh pengiraan.';
-
-  @override
-  String get average_stay => 'Purata Tempoh Tinggal';
-
-  @override
-  String get average_stay_help =>
-      'Menunjukkan purata tempoh orang atau kenderaan berada di kawasan ini.\\n\\nPurata tempoh yang lebih lama mungkin menunjukkan pelanggan meluangkan lebih banyak masa di kawasan ini.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationMs extends Localization {
       'Aktifkan pilihan ini untuk menampilkan ID penjejakan unik untuk setiap objek yang dijejaki.';
 
   @override
-  String get detection_screen_stagnant => 'Tempoh Tinggal';
+  String get detection_screen_stagnant => 'Ambang Tempoh Tinggal';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Berapa lama objek mesti berada dalam kawasan untuk dikira sebagai tinggal.';
+      'Tempoh minimum objek mesti berada di kawasan sebelum dikira sebagai tinggal.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Ditunda';
@@ -214,7 +200,7 @@ class LocalizationMs extends Localization {
   String get detection_screen_stagnant_min_label => 'Serta-merta';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Menentukan bila objek menyumbang kepada kiraan Stay (Tinggal).\\nNilai lebih pendek\\n• Mengira tinggal serta-merta\\n• Lebih baik untuk analisis pantas\\nNilai lebih panjang\\n• Mengabaikan lalu lintas laluan sekilas\\n• Lebih baik untuk pengukuran penghunian';
 
   @override
@@ -284,56 +270,80 @@ class LocalizationMs extends Localization {
   String get device_not_supported_screen_title => 'Kamera tidak ditemui';
 
   @override
-  String get disappeared => 'Hilang';
+  String get disappear => 'Kehilangan jejak';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Mengira bilangan orang atau kenderaan yang kedudukan terakhir dikesan berada di dalam kawasan ini.\\n\\nPenjejakan berakhir selepas Tempoh Hilang yang ditetapkan jika orang atau kenderaan tidak lagi dikesan.\\n\\n(Untuk pengguna lanjutan)';
 
   @override
   String get dpa => 'Perjanjian Pemprosesan Data';
 
   @override
-  String get durationDaysShort => '%sh';
+  String durationDaysShort(Object value) {
+    return '${value}h';
+  }
 
   @override
-  String get durationHoursShort => '%sj';
+  String durationHoursShort(Object value) {
+    return '${value}j';
+  }
 
   @override
-  String get durationMinutesShort => '%sm';
+  String durationMinutesShort(Object value) {
+    return '${value}m';
+  }
 
   @override
-  String get durationSecondsShort => '%ss';
+  String durationSecondsShort(Object value) {
+    return '${value}s';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Masuk';
+  String get dwell_time_max => 'Tempoh Tinggal Selesai Paling Lama';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Menunjukkan tempoh paling lama seseorang atau kenderaan berada di kawasan ini sepanjang tetingkap pengiraan semasa.\\n\\nBerguna untuk mengenal pasti lawatan atau hentian yang luar biasa lama.\\n\\nHanya tempoh tinggal yang telah selesai diambil kira; yang masih berlangsung tidak termasuk.';
+
+  @override
+  String get dwell_time_mean => 'Purata Tempoh Tinggal Selesai';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Menunjukkan purata tempoh orang atau kenderaan berada di kawasan ini.\\n\\nPurata tempoh yang lebih lama mungkin menunjukkan pelanggan meluangkan lebih banyak masa di kawasan ini.\\n\\nHanya tempoh tinggal yang telah selesai diambil kira; yang masih berlangsung tidak termasuk.';
+
+  @override
+  String get entry => 'Bilangan masuk';
+
+  @override
+  String get entry_help =>
       'Mengira bilangan orang atau kenderaan yang memasuki kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSatu kemasukan dikira apabila seseorang atau kenderaan bergerak dari luar kawasan ke dalam kawasan.';
 
   @override
-  String get exited => 'Keluar';
+  String get exit => 'Bilangan keluar';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Mengira bilangan orang atau kenderaan yang keluar dari kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSatu keluar dikira apabila seseorang atau kenderaan bergerak dari dalam kawasan ke luar kawasan.';
-
-  @override
-  String get insight_appear => 'Muncul';
-
-  @override
-  String get insight_average_completed_visit => 'Purata lawatan selesai';
 
   @override
   String get insight_average_short => 'purata';
 
   @override
-  String get insight_based_on_minutes =>
-      '%m min berdasarkan data · Mungkin berubah';
+  String insight_based_on_min(Object min) {
+    return 'Berdasarkan $min min · Mungkin berubah';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Berdasarkan $sec saat · Mungkin berubah';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Purata tempoh setiap 5 min';
@@ -345,7 +355,8 @@ class LocalizationMs extends Localization {
   String get insight_chart_hourly_breakdown => 'Pecahan mengikut jam';
 
   @override
-  String get insight_chart_hourly_info => '各時間の記録値を表示します。現在の未完了時間は表示されません。';
+  String get insight_chart_hourly_info =>
+      'Menunjukkan nilai yang direkodkan bagi setiap jam yang lengkap. Jam semasa yang belum lengkap tidak dipaparkan.';
 
   @override
   String get insight_chart_info_description =>
@@ -368,24 +379,12 @@ class LocalizationMs extends Localization {
   String get insight_compare_with => 'Bandingkan dengan';
 
   @override
-  String get insight_comparison_last_week => 'Hari sama minggu lepas';
-
-  @override
-  String get insight_comparison_monthly => 'Purata bulanan';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'berbanding $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Perbandingan tiada';
-
-  @override
-  String get insight_comparison_yearly => 'Purata tahunan';
-
-  @override
-  String get insight_comparison_yesterday => 'Semalam';
 
   @override
   String get insight_counting_paused => 'Pengiraan dijeda';
@@ -395,46 +394,16 @@ class LocalizationMs extends Localization {
       'Pengiraan dijeda · Bacaan terakhir';
 
   @override
-  String get insight_dashboard_title => 'Analisis Trafik';
-
-  @override
-  String get insight_disappear => 'Hilang';
-
-  @override
-  String get insight_dwell_time => 'Tempoh lawatan';
-
-  @override
-  String get insight_early_estimate => 'Anggaran awal';
-
-  @override
-  String get insight_entry => 'Masuk';
+  String get insight_dashboard_title => 'Analisis Pergerakan';
 
   @override
   String get insight_error => 'Gagal memuatkan data';
 
   @override
-  String get insight_estimated => 'Anggaran';
-
-  @override
-  String get insight_exit => 'Keluar';
-
-  @override
   String get insight_hourly_rate => 'Kadar sejam';
 
   @override
-  String get insight_last_60_minutes => '60 minit terakhir';
-
-  @override
-  String get insight_longest_completed_visit => 'Lawatan paling lama';
-
-  @override
   String get insight_objects_unit => 'objek';
-
-  @override
-  String get insight_occupancy => 'Bilangan dalam kawasan';
-
-  @override
-  String get insight_pass_by => 'Trafik lalu';
 
   @override
   String get insight_peak => 'Puncak';
@@ -453,12 +422,6 @@ class LocalizationMs extends Localization {
 
   @override
   String get insight_period_lunch => 'Makan tengah hari';
-
-  @override
-  String get insight_stagnant => 'Berada di tempat';
-
-  @override
-  String get insight_today => 'Hari ini';
 
   @override
   String insight_today_chart(Object metric) {
@@ -547,20 +510,6 @@ class LocalizationMs extends Localization {
   String get main_screen_video_sources => 'Sumber video';
 
   @override
-  String get maximum_occupancy => 'Bilangan Maksimum';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Menunjukkan bilangan tertinggi orang atau kenderaan yang berada di kawasan ini pada masa yang sama sepanjang tetingkap pengiraan semasa.\\n\\nBerguna untuk mengenal pasti waktu paling sibuk.';
-
-  @override
-  String get maximum_stay => 'Tempoh Tinggal Maksimum';
-
-  @override
-  String get maximum_stay_help =>
-      'Menunjukkan tempoh paling lama seseorang atau kenderaan berada di kawasan ini sepanjang tetingkap pengiraan semasa.\\n\\nBerguna untuk mengenal pasti lawatan atau hentian yang luar biasa lama.';
-
-  @override
   String get metric_events => 'Peristiwa';
 
   @override
@@ -631,6 +580,20 @@ class LocalizationMs extends Localization {
   String get occupancy => 'Bilangan Semasa';
 
   @override
+  String get occupancy_max => 'Bilangan maksimum';
+
+  @override
+  String get occupancy_max_help =>
+      'Menunjukkan bilangan tertinggi orang atau kenderaan yang berada di kawasan ini pada masa yang sama sepanjang tetingkap pengiraan semasa.\\n\\nBerguna untuk mengenal pasti waktu paling sibuk.';
+
+  @override
+  String get occupancy_mean => 'Bilangan purata';
+
+  @override
+  String get occupancy_mean_help =>
+      'Menunjukkan purata bilangan orang atau kenderaan di kawasan ini sepanjang tetingkap pengiraan semasa.\\n\\nIni membantu menunjukkan tahap kesibukan kawasan sepanjang tempoh pengiraan.';
+
+  @override
   String get onboarding_back_action => 'Kembali';
 
   @override
@@ -670,10 +633,10 @@ class LocalizationMs extends Localization {
   String get onboarding_start_action => 'Mula';
 
   @override
-  String get passed_by => 'Melepasi';
+  String get pass_by => 'Aliran lalu lintas';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Mengira bilangan orang atau kenderaan yang melalui kawasan ini semasa tetingkap pengiraan semasa.\\n\\nSetiap orang atau kenderaan dikira sekali sahaja bagi setiap kali melalui kawasan ini.';
 
   @override
@@ -851,10 +814,10 @@ class LocalizationMs extends Localization {
   String get settings_screen_subscription_title => 'Langganan';
 
   @override
-  String get stagnanted => 'Kekal';
+  String get stagnant => 'Berhenti lama';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Mengira bilangan orang atau kenderaan yang berada di kawasan ini sekurang-kurangnya selama Tempoh Tinggal yang ditetapkan.\\n\\nTempoh Tinggal lalai ialah 15 saat dan boleh diubah dalam Tetapan.';
 
   @override
@@ -906,6 +869,27 @@ class LocalizationMs extends Localization {
 
   @override
   String get terms => 'Terma Perkhidmatan';
+
+  @override
+  String get traffic_period_custom_day => 'Hari Pilihan';
+
+  @override
+  String get traffic_period_last_month => 'Purata bulan lepas';
+
+  @override
+  String get traffic_period_last_week => 'Hari sama minggu lepas';
+
+  @override
+  String get traffic_period_last_year => 'Purata tahun lepas';
+
+  @override
+  String get traffic_period_live_today => 'Hari Ini Langsung';
+
+  @override
+  String get traffic_period_today => 'Hari ini';
+
+  @override
+  String get traffic_period_yesterday => 'Semalam';
 
   @override
   String get upload_screen_attempt_time => 'Masa percubaan:';

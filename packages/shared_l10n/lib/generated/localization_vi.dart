@@ -19,25 +19,11 @@ class LocalizationVi extends Localization {
   String get about_screen_platform => 'Nền tảng';
 
   @override
-  String get appeared => 'Xuất hiện';
+  String get appear => 'Xuất hiện';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Đếm số người hoặc phương tiện có vị trí được phát hiện đầu tiên nằm trong khu vực này.\\n\\nGiúp hiểu nơi việc theo dõi bắt đầu.\\n\\n(Chủ yếu dành cho người dùng nâng cao)';
-
-  @override
-  String get average_occupancy => 'Số lượng trung bình';
-
-  @override
-  String get average_occupancy_help =>
-      'Hiển thị số người hoặc phương tiện trung bình trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nGiúp đánh giá khu vực này bận rộn như thế nào trong suốt thời gian đếm.';
-
-  @override
-  String get average_stay => 'Thời gian lưu trung bình';
-
-  @override
-  String get average_stay_help =>
-      'Hiển thị thời gian trung bình mà người hoặc phương tiện ở trong khu vực này.\\n\\nThời gian lưu trung bình dài hơn có thể cho thấy khách dành nhiều thời gian hơn trong khu vực này.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationVi extends Localization {
       'Bật tùy chọn này để hiển thị ID theo dõi duy nhất cho từng đối tượng được theo dõi.';
 
   @override
-  String get detection_screen_stagnant => 'Thời gian lưu lại';
+  String get detection_screen_stagnant => 'Ngưỡng thời gian lưu lại';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Đối tượng phải ở trong khu vực bao lâu thì được tính là lưu lại.';
+      'Thời gian tối thiểu một đối tượng phải ở trong khu vực trước khi được tính là lưu lại.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Trì hoãn';
@@ -214,7 +200,7 @@ class LocalizationVi extends Localization {
   String get detection_screen_stagnant_min_label => 'Ngay lập tức';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Xác định khi nào một đối tượng đóng góp vào số lượng Lưu lại.\\nGiá trị ngắn hơn\\n• Đếm lưu lại ngay lập tức\\n• Tốt hơn cho phân tích nhanh\\nGiá trị dài hơn\\n• Bỏ qua lưu lượng đi ngang qua ngắn\\n• Tốt hơn cho đo lường mức độ chiếm dụng';
 
   @override
@@ -283,55 +269,80 @@ class LocalizationVi extends Localization {
   String get device_not_supported_screen_title => 'Không tìm thấy camera';
 
   @override
-  String get disappeared => 'Biến mất';
+  String get disappear => 'Biến mất';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Đếm số người hoặc phương tiện có vị trí được phát hiện cuối cùng nằm trong khu vực này.\\n\\nViệc theo dõi kết thúc sau Thời gian biến mất đã cấu hình nếu người hoặc phương tiện không còn được phát hiện.\\n\\n(Chủ yếu dành cho người dùng nâng cao)';
 
   @override
   String get dpa => 'Thỏa thuận xử lý dữ liệu';
 
   @override
-  String get durationDaysShort => '%sn';
+  String durationDaysShort(Object value) {
+    return '${value}n';
+  }
 
   @override
-  String get durationHoursShort => '%sg';
+  String durationHoursShort(Object value) {
+    return '${value}g';
+  }
 
   @override
-  String get durationMinutesShort => '%sp';
+  String durationMinutesShort(Object value) {
+    return '${value}p';
+  }
 
   @override
-  String get durationSecondsShort => '%ss';
+  String durationSecondsShort(Object value) {
+    return '${value}s';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Đi vào';
+  String get dwell_time_max => 'Lần lưu lại đã kết thúc dài nhất';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Hiển thị thời gian dài nhất mà một người hoặc phương tiện ở trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nHữu ích để xác định các lần dừng hoặc lưu lại lâu bất thường.\\n\\nChỉ tính những lần lưu lại đã kết thúc; không tính những lần vẫn đang diễn ra.';
+
+  @override
+  String get dwell_time_mean => 'Thời gian lưu lại trung bình đã kết thúc';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Hiển thị thời gian trung bình mà người hoặc phương tiện ở trong khu vực này.\\n\\nThời gian lưu trung bình dài hơn có thể cho thấy khách dành nhiều thời gian hơn trong khu vực này.\\n\\nChỉ tính những lần lưu lại đã kết thúc; không tính những lần vẫn đang diễn ra.';
+
+  @override
+  String get entry => 'Lượt vào';
+
+  @override
+  String get entry_help =>
       'Đếm số người hoặc phương tiện đi vào khu vực này trong cửa sổ đếm hiện tại.\\n\\nMột lượt vào được tính khi người hoặc phương tiện di chuyển từ ngoài khu vực vào bên trong.';
 
   @override
-  String get exited => 'Đi ra';
+  String get exit => 'Lượt ra';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Đếm số người hoặc phương tiện rời khỏi khu vực này trong cửa sổ đếm hiện tại.\\n\\nMột lượt ra được tính khi người hoặc phương tiện di chuyển từ trong khu vực ra bên ngoài.';
-
-  @override
-  String get insight_appear => 'Xuất hiện';
-
-  @override
-  String get insight_average_completed_visit => 'TB lượt ghé đã kết thúc';
 
   @override
   String get insight_average_short => 'TB';
 
   @override
-  String get insight_based_on_minutes => 'Dựa trên %m phút · Có thể thay đổi';
+  String insight_based_on_min(Object min) {
+    return 'Dựa trên $min phút · Có thể thay đổi';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Dựa trên $sec giây · Có thể thay đổi';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'TB thời lượng mỗi 5 phút';
@@ -344,7 +355,7 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'แสดงค่าที่บันทึกไว้ในแต่ละชั่วโมง โดยซ่อนชั่วโมงปัจจุบันที่ยังไม่ครบ';
+      'Hiển thị giá trị đã ghi nhận cho từng giờ đã hoàn tất. Giờ hiện tại chưa hoàn tất sẽ không được hiển thị.';
 
   @override
   String get insight_chart_info_description =>
@@ -367,24 +378,12 @@ class LocalizationVi extends Localization {
   String get insight_compare_with => 'So sánh với';
 
   @override
-  String get insight_comparison_last_week => 'Cùng ngày tuần trước';
-
-  @override
-  String get insight_comparison_monthly => 'Trung bình tháng';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'so với $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Không có dữ liệu so sánh';
-
-  @override
-  String get insight_comparison_yearly => 'Trung bình năm';
-
-  @override
-  String get insight_comparison_yesterday => 'Hôm qua';
 
   @override
   String get insight_counting_paused => 'Tạm dừng đếm';
@@ -397,43 +396,13 @@ class LocalizationVi extends Localization {
   String get insight_dashboard_title => 'Phân tích lưu lượng';
 
   @override
-  String get insight_disappear => 'Biến mất';
-
-  @override
-  String get insight_dwell_time => 'Thời gian lưu lại';
-
-  @override
-  String get insight_early_estimate => 'Ước tính ban đầu';
-
-  @override
-  String get insight_entry => 'Lượt vào';
-
-  @override
   String get insight_error => 'Không thể tải dữ liệu';
-
-  @override
-  String get insight_estimated => 'Ước tính';
-
-  @override
-  String get insight_exit => 'Lượt ra';
 
   @override
   String get insight_hourly_rate => 'Tỷ lệ theo giờ';
 
   @override
-  String get insight_last_60_minutes => '60 phút qua';
-
-  @override
-  String get insight_longest_completed_visit => 'Lượt ghé dài nhất';
-
-  @override
   String get insight_objects_unit => 'đối tượng';
-
-  @override
-  String get insight_occupancy => 'Số lượng hiện diện';
-
-  @override
-  String get insight_pass_by => 'Lưu lượng đi qua';
 
   @override
   String get insight_peak => 'Cao nhất';
@@ -452,12 +421,6 @@ class LocalizationVi extends Localization {
 
   @override
   String get insight_period_lunch => 'Bữa trưa';
-
-  @override
-  String get insight_stagnant => 'Lưu lại';
-
-  @override
-  String get insight_today => 'Hôm nay';
 
   @override
   String insight_today_chart(Object metric) {
@@ -547,20 +510,6 @@ class LocalizationVi extends Localization {
   String get main_screen_video_sources => 'Nguồn video';
 
   @override
-  String get maximum_occupancy => 'Số lượng tối đa';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Hiển thị số người hoặc phương tiện nhiều nhất có mặt cùng lúc trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nHữu ích để xác định thời điểm đông người hoặc lưu lượng giao thông cao nhất.';
-
-  @override
-  String get maximum_stay => 'Thời gian lưu tối đa';
-
-  @override
-  String get maximum_stay_help =>
-      'Hiển thị thời gian dài nhất mà một người hoặc phương tiện ở trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nHữu ích để xác định các lần dừng hoặc lưu lại lâu bất thường.';
-
-  @override
   String get metric_events => 'Sự kiện';
 
   @override
@@ -630,6 +579,20 @@ class LocalizationVi extends Localization {
   String get occupancy => 'Số lượng hiện tại';
 
   @override
+  String get occupancy_max => 'Số lượng tối đa';
+
+  @override
+  String get occupancy_max_help =>
+      'Hiển thị số người hoặc phương tiện nhiều nhất có mặt cùng lúc trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nHữu ích để xác định thời điểm đông người hoặc lưu lượng giao thông cao nhất.';
+
+  @override
+  String get occupancy_mean => 'Số lượng trung bình';
+
+  @override
+  String get occupancy_mean_help =>
+      'Hiển thị số người hoặc phương tiện trung bình trong khu vực này trong cửa sổ đếm hiện tại.\\n\\nGiúp đánh giá khu vực này bận rộn như thế nào trong suốt thời gian đếm.';
+
+  @override
   String get onboarding_back_action => 'Quay lại';
 
   @override
@@ -669,10 +632,10 @@ class LocalizationVi extends Localization {
   String get onboarding_start_action => 'Bắt đầu';
 
   @override
-  String get passed_by => 'Đã đi qua';
+  String get pass_by => 'Lưu lượng đi qua';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Đếm số người hoặc phương tiện đi qua khu vực này trong cửa sổ đếm hiện tại.\\n\\nMỗi người hoặc phương tiện chỉ được tính một lần cho mỗi lần đi qua khu vực.';
 
   @override
@@ -850,10 +813,10 @@ class LocalizationVi extends Localization {
   String get settings_screen_subscription_title => 'Gói đăng ký';
 
   @override
-  String get stagnanted => 'Ở lại';
+  String get stagnant => 'Lưu lại';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Đếm số người hoặc phương tiện ở trong khu vực này ít nhất bằng Thời gian lưu được thiết lập.\\n\\nThời gian lưu mặc định là 15 giây và có thể thay đổi trong Cài đặt.';
 
   @override
@@ -905,6 +868,27 @@ class LocalizationVi extends Localization {
 
   @override
   String get terms => 'Điều khoản dịch vụ';
+
+  @override
+  String get traffic_period_custom_day => 'Ngày tùy chọn';
+
+  @override
+  String get traffic_period_last_month => 'Trung bình tháng trước';
+
+  @override
+  String get traffic_period_last_week => 'Cùng ngày tuần trước';
+
+  @override
+  String get traffic_period_last_year => 'Trung bình năm trước';
+
+  @override
+  String get traffic_period_live_today => 'Hôm nay trực tiếp';
+
+  @override
+  String get traffic_period_today => 'Hôm nay';
+
+  @override
+  String get traffic_period_yesterday => 'Hôm qua';
 
   @override
   String get upload_screen_attempt_time => 'Thời gian thử:';

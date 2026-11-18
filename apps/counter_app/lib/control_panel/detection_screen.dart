@@ -175,7 +175,7 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                           min: 0.1,
                           max: 30,
                           divisions: 30,
-                          valueLabel: formatCompactDuration(context.l, params.maxTimeLostSeconds.round()),
+                          valueLabel: formatCompactDuration(context, params.maxTimeLostSeconds.round()),
                           minLabel: context.l.detection_screen_track_memory_min_label,
                           maxLabel: context.l.detection_screen_track_memory_max_label,
                           onChanged: (value) => _updateDraft((current) => current.copyWith(maxTimeLostSeconds: value)),
@@ -190,7 +190,7 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                           min: 0.01,
                           max: 5,
                           divisions: 100,
-                          valueLabel: formatCompactDuration(context.l, params.trackletMinPresenceTimeSeconds.round()),
+                          valueLabel: formatCompactDuration(context, params.trackletMinPresenceTimeSeconds.round()),
                           minLabel: context.l.detection_screen_min_presence_min_label,
                           maxLabel: context.l.detection_screen_min_presence_max_label,
                           onChanged: (value) =>
@@ -201,12 +201,12 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                         _DetectionSliderTile(
                           title: context.l.detection_screen_stagnant,
                           description: context.l.detection_screen_stagnant_help,
-                          infoContent: context.l.detection_screen_stay_threshold,
+                          infoContent: context.l.detection_screen_stagnant_threshold,
                           value: params.stagnantThresholdSeconds.toDouble(),
                           min: 1,
                           max: 1500,
                           divisions: 60,
-                          valueLabel: formatCompactDuration(context.l, params.stagnantThresholdSeconds),
+                          valueLabel: formatCompactDuration(context, params.stagnantThresholdSeconds),
                           minLabel: context.l.detection_screen_stagnant_min_label,
                           maxLabel: context.l.detection_screen_stagnant_max_label,
                           onChanged: (value) =>
@@ -222,7 +222,7 @@ class _DetectionParamsScreenState extends ConsumerState<DetectionParamsScreen> {
                           min: 1,
                           max: 30,
                           divisions: 30,
-                          valueLabel: formatCompactDuration(context.l, params.disappearThresholdSeconds),
+                          valueLabel: formatCompactDuration(context, params.disappearThresholdSeconds),
                           minLabel: context.l.detection_screen_disappear_min_label,
                           maxLabel: context.l.detection_screen_disappear_max_label,
                           onChanged: (value) =>

@@ -19,25 +19,11 @@ class LocalizationKo extends Localization {
   String get about_screen_platform => '플랫폼';
 
   @override
-  String get appeared => '나타남';
+  String get appear => '나타남';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       '처음 감지된 위치가 이 영역 안이었던 사람이나 차량의 수를 계산합니다.\\n\\n추적이 어디에서 시작되었는지 이해하는 데 도움이 됩니다.\\n\\n(고급 사용자를 위한 기능입니다.)';
-
-  @override
-  String get average_occupancy => '평균 인원';
-
-  @override
-  String get average_occupancy_help =>
-      '현재 집계 시간 동안 이 영역에 있었던 사람 또는 차량의 평균 수를 표시합니다.\\n\\n집계 시간 전체에 걸쳐 이 영역이 얼마나 혼잡했는지 확인하는 데 도움이 됩니다.';
-
-  @override
-  String get average_stay => '평균 체류 시간';
-
-  @override
-  String get average_stay_help =>
-      '이 영역에서 사람이나 차량이 머문 평균 시간을 표시합니다.\\n\\n평균 체류 시간이 길수록 고객이 이 영역에서 더 오래 머무는 것을 의미할 수 있습니다.';
 
   @override
   String get camera_test_screen_help =>
@@ -195,11 +181,11 @@ class LocalizationKo extends Localization {
       '이 옵션을 활성화하여 추적된 각 객체에 대한 고유한 추적 ID를 표시합니다.';
 
   @override
-  String get detection_screen_stagnant => '체류 시간';
+  String get detection_screen_stagnant => '머무름 기준 시간';
 
   @override
   String get detection_screen_stagnant_help =>
-      '객체가 체류로 계산되려면 영역 안에 머물러야 하는 시간입니다.';
+      '객체가 머무름으로 집계되기 위해 영역 안에 있어야 하는 최소 시간입니다.';
 
   @override
   String get detection_screen_stagnant_max_label => '지연';
@@ -208,7 +194,7 @@ class LocalizationKo extends Localization {
   String get detection_screen_stagnant_min_label => '즉시';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       '객체가 언제 \\체류\\\" 카운트에 반영되는지를 결정합니다.\\n짧은 값\\n• 체류를 즉시 계산\\n• 빠른 분석에 유리\\n긴 값\\n• 짧은 통과 이동은 무시\\n• 점유율 측정에 유리\"';
 
   @override
@@ -274,55 +260,80 @@ class LocalizationKo extends Localization {
   String get device_not_supported_screen_title => '카메라를 찾을 수 없습니다';
 
   @override
-  String get disappeared => '사라짐';
+  String get disappear => '사라짐';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       '마지막으로 감지된 위치가 이 영역 안이었던 사람이나 차량의 수를 계산합니다.\\n\\n설정된 사라짐 시간이 지나도록 더 이상 감지되지 않으면 추적이 종료됩니다.\\n\\n(고급 사용자를 위한 기능입니다.)';
 
   @override
   String get dpa => '데이터 처리 계약';
 
   @override
-  String get durationDaysShort => '%s일';
+  String durationDaysShort(Object value) {
+    return '$value일';
+  }
 
   @override
-  String get durationHoursShort => '%s시';
+  String durationHoursShort(Object value) {
+    return '$value시';
+  }
 
   @override
-  String get durationMinutesShort => '%s분';
+  String durationMinutesShort(Object value) {
+    return '$value분';
+  }
 
   @override
-  String get durationSecondsShort => '%s초';
+  String durationSecondsShort(Object value) {
+    return '$value초';
+  }
 
   @override
-  String get durationTwoUnit => '%first%second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first$second';
+  }
 
   @override
-  String get entered => '진입';
+  String get dwell_time_max => '종료된 체류 중 최장 시간';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      '현재 집계 시간 동안 사람이나 차량이 이 영역에 머문 가장 긴 시간을 표시합니다.\\n\\n비정상적으로 긴 체류나 정차를 확인하는 데 도움이 됩니다.\\n\\n종료된 체류만 집계하며, 진행 중인 체류는 제외합니다.';
+
+  @override
+  String get dwell_time_mean => '종료된 체류의 평균 시간';
+
+  @override
+  String get dwell_time_mean_help =>
+      '이 영역에서 사람이나 차량이 머문 평균 시간을 표시합니다.\\n\\n평균 체류 시간이 길수록 고객이 이 영역에서 더 오래 머무는 것을 의미할 수 있습니다.\\n\\n종료된 체류만 집계하며, 진행 중인 체류는 제외합니다.';
+
+  @override
+  String get entry => '진입 횟수';
+
+  @override
+  String get entry_help =>
       '현재 집계 시간 동안 이 영역으로 들어온 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량이 영역 밖에서 안으로 이동하면 한 번의 진입으로 계산됩니다.';
 
   @override
-  String get exited => '이탈';
+  String get exit => '이탈 횟수';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       '현재 집계 시간 동안 이 영역을 벗어난 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량이 영역 안에서 밖으로 이동하면 한 번의 이탈로 계산됩니다.';
-
-  @override
-  String get insight_appear => '나타남';
-
-  @override
-  String get insight_average_completed_visit => '종료된 방문 평균';
 
   @override
   String get insight_average_short => '평균';
 
   @override
-  String get insight_based_on_minutes => '%m분 기준 · 변동 가능';
+  String insight_based_on_min(Object min) {
+    return '$min분 관측 기준 · 변동될 수 있음';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '$sec초 관측 기준 · 변동될 수 있음';
+  }
 
   @override
   String get insight_chart_dwell_unit => '5분당 평균 시간';
@@ -335,7 +346,7 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Mostra i valori registrati per ogni ora. L\'ora corrente non completata è nascosta.';
+      '완료된 각 시간대의 기록값을 표시합니다. 아직 끝나지 않은 현재 시간대는 표시하지 않습니다.';
 
   @override
   String get insight_chart_info_description =>
@@ -358,12 +369,6 @@ class LocalizationKo extends Localization {
   String get insight_compare_with => '비교 대상';
 
   @override
-  String get insight_comparison_last_week => '지난주 같은 요일';
-
-  @override
-  String get insight_comparison_monthly => '월평균';
-
-  @override
   String insight_comparison_period(Object period) {
     return '$period 대비';
   }
@@ -372,58 +377,22 @@ class LocalizationKo extends Localization {
   String get insight_comparison_unavailable => '비교 데이터 없음';
 
   @override
-  String get insight_comparison_yearly => '연평균';
-
-  @override
-  String get insight_comparison_yesterday => '어제';
-
-  @override
   String get insight_counting_paused => '집계 일시 중지';
 
   @override
   String get insight_counting_paused_last_recorded => '집계 일시 중지 · 마지막 기록';
 
   @override
-  String get insight_dashboard_title => '통행 분석';
-
-  @override
-  String get insight_disappear => '사라짐';
-
-  @override
-  String get insight_dwell_time => '체류 시간';
-
-  @override
-  String get insight_early_estimate => '초기 추정치';
-
-  @override
-  String get insight_entry => '입장';
+  String get insight_dashboard_title => '이동 흐름 분석';
 
   @override
   String get insight_error => '분석 데이터를 불러올 수 없습니다';
 
   @override
-  String get insight_estimated => '추정치';
-
-  @override
-  String get insight_exit => '퇴장';
-
-  @override
   String get insight_hourly_rate => '시간당 비율';
 
   @override
-  String get insight_last_60_minutes => '최근 60분';
-
-  @override
-  String get insight_longest_completed_visit => '최장 방문';
-
-  @override
   String get insight_objects_unit => '객체';
-
-  @override
-  String get insight_occupancy => '점유 수';
-
-  @override
-  String get insight_pass_by => '통행량';
 
   @override
   String get insight_peak => '최대';
@@ -442,12 +411,6 @@ class LocalizationKo extends Localization {
 
   @override
   String get insight_period_lunch => '점심';
-
-  @override
-  String get insight_stagnant => '머무름';
-
-  @override
-  String get insight_today => '오늘';
 
   @override
   String insight_today_chart(Object metric) {
@@ -533,20 +496,6 @@ class LocalizationKo extends Localization {
   String get main_screen_video_sources => '비디오 소스';
 
   @override
-  String get maximum_occupancy => '최대 인원';
-
-  @override
-  String get maximum_occupancy_help =>
-      '현재 집계 시간 동안 이 영역에 동시에 있었던 사람 또는 차량의 최대 수를 표시합니다.\\n\\n가장 혼잡했던 시간대를 확인하는 데 도움이 됩니다.';
-
-  @override
-  String get maximum_stay => '최대 체류 시간';
-
-  @override
-  String get maximum_stay_help =>
-      '현재 집계 시간 동안 사람이나 차량이 이 영역에 머문 가장 긴 시간을 표시합니다.\\n\\n비정상적으로 긴 체류나 정차를 확인하는 데 도움이 됩니다.';
-
-  @override
   String get metric_events => '이벤트';
 
   @override
@@ -615,6 +564,20 @@ class LocalizationKo extends Localization {
   String get occupancy => '현재 개수';
 
   @override
+  String get occupancy_max => '최대 수';
+
+  @override
+  String get occupancy_max_help =>
+      '현재 집계 시간 동안 이 영역에 동시에 있었던 사람 또는 차량의 최대 수를 표시합니다.\\n\\n가장 혼잡했던 시간대를 확인하는 데 도움이 됩니다.';
+
+  @override
+  String get occupancy_mean => '평균 수';
+
+  @override
+  String get occupancy_mean_help =>
+      '현재 집계 시간 동안 이 영역에 있었던 사람 또는 차량의 평균 수를 표시합니다.\\n\\n집계 시간 전체에 걸쳐 이 영역이 얼마나 혼잡했는지 확인하는 데 도움이 됩니다.';
+
+  @override
   String get onboarding_back_action => '뒤로';
 
   @override
@@ -654,10 +617,10 @@ class LocalizationKo extends Localization {
   String get onboarding_start_action => '시작';
 
   @override
-  String get passed_by => '통과';
+  String get pass_by => '통과량';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       '현재 집계 시간 동안 이 영역을 통과한 사람이나 차량의 수를 계산합니다.\\n\\n사람이나 차량은 이 영역을 통과할 때마다 한 번만 계산됩니다.';
 
   @override
@@ -826,10 +789,10 @@ class LocalizationKo extends Localization {
   String get settings_screen_subscription_title => '구독';
 
   @override
-  String get stagnanted => '머무름';
+  String get stagnant => '머무름';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       '설정된 체류 시간 이상 이 영역에 머문 사람이나 차량의 수를 계산합니다.\\n\\n기본 체류 시간은 15초이며 설정에서 변경할 수 있습니다.';
 
   @override
@@ -879,6 +842,27 @@ class LocalizationKo extends Localization {
 
   @override
   String get terms => '서비스 이용약관';
+
+  @override
+  String get traffic_period_custom_day => '선택한 날짜';
+
+  @override
+  String get traffic_period_last_month => '지난달 평균';
+
+  @override
+  String get traffic_period_last_week => '지난주 같은 요일';
+
+  @override
+  String get traffic_period_last_year => '작년 평균';
+
+  @override
+  String get traffic_period_live_today => '오늘 실시간';
+
+  @override
+  String get traffic_period_today => '오늘';
+
+  @override
+  String get traffic_period_yesterday => '어제';
 
   @override
   String get upload_screen_attempt_time => '시도 시간:';

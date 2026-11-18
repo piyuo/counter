@@ -1,7 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
 import 'package:counter_app/control_panel/insights/area_section.dart';
-import 'package:counter_app/control_panel/insights/business_period_row.dart';
 import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:counter_app/control_panel/insights/insight_chart.dart';
 import 'package:counter_app/control_panel/insights/insight_comparison_period_dropdown.dart';
@@ -39,18 +38,12 @@ core_domain.DashboardCardData _chartCard({
   double? todayValue = 340,
   double? comparisonValue = 310,
   double? liveRate,
-  bool liveRateEstimated = false,
   List<core_domain.DashboardChartPoint>? chartPoints,
 }) => core_domain.DashboardCardData(
   metric: metric,
   primary: liveRate == null
       ? null
-      : core_domain.DashboardMeasurement(
-          amount: liveRate,
-          metric: metric,
-          estimated: liveRateEstimated,
-          coveredSeconds: 2400,
-        ),
+      : core_domain.DashboardMeasurement(amount: liveRate, metric: metric, expectedSeconds: 3600, coveredSeconds: 2400),
   recentHourObservations: null,
   comparisonValue: null,
   periods: const [],
@@ -184,7 +177,7 @@ void main() {
     expect(find.byKey(const ValueKey('insight-hourly-extreme-labels')), findsNothing);
   });
 
-  testWidgets('equal extrema prefer observed, Today, then the earlier hour', (tester) async {
+  testWidgets('equal extrema prefer Today, then the earlier hour', (tester) async {
     final points = [
       for (var hour = 0; hour < 24; hour++)
         core_domain.DashboardChartPoint(
@@ -204,8 +197,6 @@ void main() {
             14 => 10,
             _ => null,
           },
-          todayEstimated: hour == 6 || hour == 12,
-          comparisonEstimated: hour == 8 || hour == 14,
         ),
     ];
 
@@ -215,12 +206,12 @@ void main() {
     final label = _normalizeSemanticText(
       tester.getSemantics(find.byKey(const ValueKey('insight-hourly-extreme-labels'))).label,
     );
-    expect(label, contains('10, 1:00 PM - 2:00 PM, Today'));
-    expect(label, contains('0, 7:00 AM - 8:00 AM, Today'));
+    expect(label, contains('10, 12:00 PM - 1:00 PM, Today'));
+    expect(label, contains('0, 6:00 AM - 7:00 AM, Today'));
   });
 
   testWidgets('live rate marker uses the KPI value in the current hour', (tester) async {
-    await tester.pumpWidget(_chartApp(_chartCard(liveRate: 343.4, liveRateEstimated: true), currentHour: 12));
+    await tester.pumpWidget(_chartApp(_chartCard(liveRate: 343.4), currentHour: 12));
     await tester.pumpAndSettle();
 
     final marker = find.byKey(const ValueKey('insight-live-rate-marker'));
@@ -231,7 +222,6 @@ void main() {
     expect(markerSemantics.value, contains('12:00'));
     expect(markerSemantics.value, contains('343'));
     expect(markerSemantics.value, isNot(contains('343.4')));
-    expect(markerSemantics.value, contains('Estimated'));
 
     await tester.pumpWidget(_chartApp(_chartCard(liveRate: 344.6), currentHour: 13));
     await tester.pumpAndSettle();
@@ -348,7 +338,7 @@ void main() {
   testWidgets('formats hourly values using the active locale', (tester) async {
     await tester.pumpWidget(
       _chartApp(
-        _chartCard(metric: core_domain.DashboardMetric.dwellTimeMean, todayValue: 5.75, comparisonValue: null),
+        _chartCard(metric: core_domain.DashboardMetric.occupancyMean, todayValue: 5.75, comparisonValue: null),
         locale: const Locale('de'),
         currentHour: 12,
       ),
@@ -359,7 +349,7 @@ void main() {
     final size = tester.getSize(plot);
     await tester.tapAt(origin + Offset(size.width * 12.5 / 24, size.height / 2));
     await tester.pumpAndSettle();
-    expect(find.text('Heute: 5,75 min'), findsOneWidget);
+    expect(find.text('Heute: 5,75'), findsOneWidget);
     expect(find.textContaining('/hr'), findsNothing);
   });
 
@@ -411,7 +401,7 @@ void main() {
       find.ancestor(of: find.byIcon(Icons.info_outline), matching: find.byType(IconButton)),
     );
     final infoButtonFinder = find.ancestor(of: find.byIcon(Icons.info_outline), matching: find.byType(IconButton));
-    final todayLegendFinder = find.text(localization.insight_today);
+    final todayLegendFinder = find.text(localization.traffic_period_today);
     expect(infoButton.icon, isA<Icon>());
     expect((infoButton.icon as Icon).icon, Icons.info_outline);
     expect(tester.getTopRight(infoButtonFinder).dx, tester.getTopRight(find.byType(InsightChart)).dx);
@@ -430,7 +420,7 @@ void main() {
     expect(find.text(title), findsNothing);
   });
 
-  testWidgets('shows an unavailable message for a missing hourly value', (tester) async {
+  testWidgets('shows placeholders for missing hourly values', (tester) async {
     final card = core_domain.DashboardCardData(
       metric: core_domain.DashboardMetric.passBy,
       primary: null,
@@ -456,11 +446,11 @@ void main() {
     await tester.tapAt(origin + Offset(size.width * 11.5 / 24, size.height / 2));
     await tester.pumpAndSettle();
 
-    expect(find.text('Today: Comparison unavailable'), findsOneWidget);
-    expect(find.text('Yesterday: Comparison unavailable'), findsOneWidget);
+    expect(find.text('Today: -'), findsOneWidget);
+    expect(find.text('Yesterday: -'), findsOneWidget);
   });
 
-  testWidgets('shows estimated labels for incomplete primary and period values', (tester) async {
+  testWidgets('shows observed coverage for incomplete period values', (tester) async {
     const area = core_domain.InterestArea(id: 37, name: 'Entrance');
     const period = core_domain.BusinessPeriod(id: 'morning', name: 'Morning', startMinute: 600, endMinute: 610);
 
@@ -503,7 +493,7 @@ void main() {
             body: _withAppState(
               AreaSection(
                 areaData: areaData,
-                comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                comparisonPeriod: core_domain.TrafficPeriod.yesterday,
                 onComparisonChanged: (_) {},
                 observationStatus: observationStatus,
               ),
@@ -515,7 +505,6 @@ void main() {
     }
 
     await pumpArea(recentHourCoverage: 3600, periodCoverage: 600);
-    expect(find.text('Estimated'), findsNothing);
     final statusColor = formatObservationStatusColor(
       tester.element(find.byType(PrimaryMetric).first),
       core_domain.ObservationStatus.stopped,
@@ -537,37 +526,9 @@ void main() {
       periodCoverage: 569,
       observationStatus: core_domain.ObservationStatus.started,
     );
-    expect(find.text('Estimated'), findsOneWidget);
     final primaryContext = tester.element(find.byType(PrimaryMetric).first);
-    final primaryEstimateLabel = primaryContext.l.insight_early_estimate;
-    final basedOnMinutesLabel = primaryContext.l.insight_based_on_minutes.replaceAll('%m', '30');
+    final basedOnMinutesLabel = primaryContext.l.insight_based_on_min('30');
     expect(find.text(basedOnMinutesLabel), findsOneWidget);
-    final primaryEstimateChip = tester.widget<Chip>(
-      find.ancestor(
-        of: find.descendant(of: find.byType(PrimaryMetric).first, matching: find.text(primaryEstimateLabel)),
-        matching: find.byType(Chip),
-      ),
-    );
-    final periodEstimateChip = tester.widget<Chip>(
-      find.ancestor(of: find.text('Estimated'), matching: find.byType(Chip)),
-    );
-    for (final chip in [primaryEstimateChip, periodEstimateChip]) {
-      expect(chip.backgroundColor, Colors.yellow.withValues(alpha: 0.18));
-      expect(chip.labelStyle?.color, Colors.yellow.shade900.withValues(alpha: 0.9));
-    }
-    final periodTitle = find.descendant(of: find.byType(BusinessPeriodRow), matching: find.text('Morning'));
-    final periodTitleBounds = tester.getRect(periodTitle);
-    final periodValue = find.descendant(
-      of: find.byType(BusinessPeriodRow),
-      matching: find.byWidgetPredicate(
-        (widget) => widget is Text && widget.textAlign == TextAlign.end && widget.style?.fontWeight == FontWeight.w600,
-      ),
-    );
-    final periodEstimateBounds = tester.getRect(find.ancestor(of: find.text('Estimated'), matching: find.byType(Chip)));
-    final periodValueBounds = tester.getRect(periodValue);
-    expect(periodEstimateBounds.center.dy, closeTo(periodTitleBounds.center.dy, 1));
-    expect(periodEstimateBounds.left, greaterThanOrEqualTo(periodTitleBounds.right - 1));
-    expect(periodEstimateBounds.center.dy, closeTo(periodValueBounds.center.dy, 1));
   });
 
   testWidgets('comparison dropdown in the primary metric changes its period', (tester) async {
@@ -579,7 +540,7 @@ void main() {
           now: DateTime(2026, 10, 29, 12),
         )
         .first;
-    var selectedPeriod = core_domain.TrafficComparisonPeriod.yesterday;
+    var selectedPeriod = core_domain.TrafficPeriod.yesterday;
 
     await tester.pumpWidget(
       MaterialApp(
@@ -601,15 +562,15 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>), findsOneWidget);
+    expect(find.byType(DropdownButton<core_domain.TrafficPeriod>), findsOneWidget);
     final context = tester.element(find.byType(PrimaryMetric));
-    final lastWeekLabel = context.l.insight_comparison_period(context.l.insight_comparison_last_week);
-    await tester.tap(find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>));
+    final lastWeekLabel = context.l.insight_comparison_period(context.l.traffic_period_last_week);
+    await tester.tap(find.byType(DropdownButton<core_domain.TrafficPeriod>));
     await tester.pumpAndSettle();
     await tester.tap(find.text(lastWeekLabel).last);
     await tester.pumpAndSettle();
 
-    expect(selectedPeriod, core_domain.TrafficComparisonPeriod.sameDayLastWeek);
+    expect(selectedPeriod, core_domain.TrafficPeriod.sameDayLastWeek);
     expect(find.text(lastWeekLabel), findsOneWidget);
   });
 
@@ -622,7 +583,7 @@ void main() {
           body: SizedBox(
             width: 240,
             child: InsightComparisonPeriodDropdown(
-              value: core_domain.TrafficComparisonPeriod.yesterday,
+              value: core_domain.TrafficPeriod.yesterday,
               onChanged: (_) {},
               fontSize: 18,
             ),
@@ -632,8 +593,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final dropdown = tester.widget<DropdownButton<core_domain.TrafficComparisonPeriod>>(
-      find.byType(DropdownButton<core_domain.TrafficComparisonPeriod>),
+    final dropdown = tester.widget<DropdownButton<core_domain.TrafficPeriod>>(
+      find.byType(DropdownButton<core_domain.TrafficPeriod>),
     );
     expect(dropdown.style?.fontSize, 18);
   });
@@ -656,13 +617,13 @@ void main() {
                 children: [
                   AreaSection(
                     areaData: areas.first,
-                    comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                    comparisonPeriod: core_domain.TrafficPeriod.yesterday,
                     onComparisonChanged: (_) {},
                     observationStatus: core_domain.ObservationStatus.stopped,
                   ),
                   AreaSection(
                     areaData: areas.last,
-                    comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                    comparisonPeriod: core_domain.TrafficPeriod.yesterday,
                     onComparisonChanged: (_) {},
                     observationStatus: core_domain.ObservationStatus.stopped,
                   ),
@@ -765,7 +726,7 @@ void main() {
               SingleChildScrollView(
                 child: AreaSection(
                   areaData: area,
-                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  comparisonPeriod: core_domain.TrafficPeriod.yesterday,
                   onComparisonChanged: (_) {},
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),
@@ -809,7 +770,7 @@ void main() {
               body: SingleChildScrollView(
                 child: AreaSection(
                   areaData: area,
-                  comparisonPeriod: core_domain.TrafficComparisonPeriod.yesterday,
+                  comparisonPeriod: core_domain.TrafficPeriod.yesterday,
                   onComparisonChanged: (_) {},
                   observationStatus: core_domain.ObservationStatus.stopped,
                 ),

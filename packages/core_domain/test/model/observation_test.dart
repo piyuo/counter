@@ -44,6 +44,31 @@ const _baseAreaMetrics = Activity(
 );
 
 void main() {
+  group('Observation missing state', () {
+    test('creates a missing five-minute observation', () {
+      final observation = Observation.missing(year: 2026, month: 8, day: 26, hour: 11, minute: 15);
+
+      expect(observation.granularity, ObservationGranularity.minutes5);
+      expect(observation.year, 2026);
+      expect(observation.month, 8);
+      expect(observation.day, 26);
+      expect(observation.hour, 11);
+      expect(observation.minute, 15);
+      expect(observation.coveredSeconds, 0);
+      expect(observation.frameCount, 0);
+      expect(observation.areas, isEmpty);
+      expect(observation.isMissing, isTrue);
+    });
+
+    test('isMissing reflects whether any seconds are covered', () {
+      final missing = _observation(year: 2026);
+      final covered = missing.copyWith(coveredSeconds: 300);
+
+      expect(missing.isMissing, isTrue);
+      expect(covered.isMissing, isFalse);
+    });
+  });
+
   group('Observation derived metrics', () {
     test('identifies weekends from the business-local date and payload', () {
       final friday = _observation(year: 2026, month: 8, day: 28);

@@ -19,25 +19,11 @@ class LocalizationHu extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
-  String get appeared => 'Megjelent';
+  String get appear => 'Megjelenések';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek első észlelt pozíciója ezen a területen belül volt.\\n\\nSegít megérteni, hol kezdődik a követés.\\n\\n(Elsősorban haladó felhasználóknak)';
-
-  @override
-  String get average_occupancy => 'Átlagos létszám';
-
-  @override
-  String get average_occupancy_help =>
-      'Megmutatja az emberek vagy járművek átlagos számát ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít megmutatni, mennyire volt forgalmas a terület a teljes időszak során.';
-
-  @override
-  String get average_stay => 'Átlagos tartózkodási idő';
-
-  @override
-  String get average_stay_help =>
-      'Megmutatja, hogy az emberek vagy járművek átlagosan mennyi ideig maradtak ezen a területen.\\n\\nA hosszabb átlagos tartózkodási idő arra utalhat, hogy az ügyfelek több időt töltenek ezen a területen.';
 
   @override
   String get camera_test_screen_help =>
@@ -204,11 +190,11 @@ class LocalizationHu extends Localization {
       'Engedélyezze ezt az opciót az egyes követett objektumok egyedi nyomon követési azonosítóinak megjelenítéséhez.';
 
   @override
-  String get detection_screen_stagnant => 'Tartózkodási idő';
+  String get detection_screen_stagnant => 'Tartózkodási küszöb';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Mennyi ideig kell egy objektumnak a területen maradnia, hogy tartózkodásnak számítson.';
+      'Az a minimális idő, ameddig egy objektumnak a területen kell maradnia, hogy tartózkodásként számolják.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Késleltetett';
@@ -217,7 +203,7 @@ class LocalizationHu extends Localization {
   String get detection_screen_stagnant_min_label => 'Azonnali';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Meghatározza, mikor járul hozzá egy objektum a Tartózkodás számlálásához.\\nRövidebb értékek\\n• Azonnal számolják a tartózkodást\\n• Jobb gyors elemzéshez\\nHosszabb értékek\\n• Figyelmen kívül hagyják a rövid átmenő forgalmat\\n• Jobb a foglaltság méréséhez';
 
   @override
@@ -288,55 +274,80 @@ class LocalizationHu extends Localization {
   String get device_not_supported_screen_title => 'Kamera nem található';
 
   @override
-  String get disappeared => 'Eltűnt';
+  String get disappear => 'Eltűnések';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek utolsó észlelt pozíciója ezen a területen belül volt.\\n\\nA követés a beállított eltűnési idő után ér véget, ha a személy vagy jármű már nem észlelhető.\\n\\n(Elsősorban haladó felhasználóknak)';
 
   @override
   String get dpa => 'Adatfeldolgozási megállapodás';
 
   @override
-  String get durationDaysShort => '%sn';
+  String durationDaysShort(Object value) {
+    return '${value}n';
+  }
 
   @override
-  String get durationHoursShort => '%só';
+  String durationHoursShort(Object value) {
+    return '$valueó';
+  }
 
   @override
-  String get durationMinutesShort => '%sp';
+  String durationMinutesShort(Object value) {
+    return '${value}p';
+  }
 
   @override
-  String get durationSecondsShort => '%smp';
+  String durationSecondsShort(Object value) {
+    return '${value}mp';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Belépett';
+  String get dwell_time_max => 'Leghosszabb lezárt tartózkodás';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Megmutatja, hogy egy személy vagy jármű mennyi ideig tartózkodott a leghosszabb ideig ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít azonosítani a szokatlanul hosszú tartózkodásokat vagy megállásokat.\\n\\nCsak a lezárt tartózkodások számítanak bele; a folyamatban lévők nem.';
+
+  @override
+  String get dwell_time_mean => 'Lezárt tartózkodások átlagos ideje';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Megmutatja, hogy az emberek vagy járművek átlagosan mennyi ideig maradtak ezen a területen.\\n\\nA hosszabb átlagos tartózkodási idő arra utalhat, hogy az ügyfelek több időt töltenek ezen a területen.\\n\\nCsak a lezárt tartózkodások számítanak bele; a folyamatban lévők nem.';
+
+  @override
+  String get entry => 'Belépések';
+
+  @override
+  String get entry_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt beléptek erre a területre.\\n\\nBelépés akkor kerül számításra, amikor egy személy vagy jármű a területen kívülről belülre mozog.';
 
   @override
-  String get exited => 'Kilépett';
+  String get exit => 'Kilépések';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt elhagyták ezt a területet.\\n\\nKilépés akkor kerül számításra, amikor egy személy vagy jármű a területen belülről kifelé mozog.';
-
-  @override
-  String get insight_appear => 'Megjelentek';
-
-  @override
-  String get insight_average_completed_visit => 'Lezárt látogatások átlaga';
 
   @override
   String get insight_average_short => 'átl.';
 
   @override
-  String get insight_based_on_minutes => '%m perc alapján · Ingadozhat';
+  String insight_based_on_min(Object min) {
+    return '$min perc alapján · Ingadozhat';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '$sec mp alapján · Ingadozhat';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Átl. idő / 5 perc';
@@ -349,7 +360,7 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'हर घंटे के दर्ज मान दिखाता है। वर्तमान अधूरा घंटा छिपा रहता है।';
+      'Az egyes teljes órákban rögzített értékeket mutatja. Az aktuális befejezetlen óra nem jelenik meg.';
 
   @override
   String get insight_chart_info_description =>
@@ -372,24 +383,12 @@ class LocalizationHu extends Localization {
   String get insight_compare_with => 'Összehasonlítás ezzel';
 
   @override
-  String get insight_comparison_last_week => 'Múlt hét ugyanezen napja';
-
-  @override
-  String get insight_comparison_monthly => 'Havi átlag';
-
-  @override
   String insight_comparison_period(Object period) {
     return '$period értékéhez képest';
   }
 
   @override
   String get insight_comparison_unavailable => 'Nincs összehasonlítás';
-
-  @override
-  String get insight_comparison_yearly => 'Éves átlag';
-
-  @override
-  String get insight_comparison_yesterday => 'Tegnap';
 
   @override
   String get insight_counting_paused => 'Számlálás szünetel';
@@ -402,43 +401,13 @@ class LocalizationHu extends Localization {
   String get insight_dashboard_title => 'Forgalmi elemzések';
 
   @override
-  String get insight_disappear => ' Eltűntek';
-
-  @override
-  String get insight_dwell_time => 'Tartózkodási idő';
-
-  @override
-  String get insight_early_estimate => 'Előzetes becslés';
-
-  @override
-  String get insight_entry => 'Belépések';
-
-  @override
   String get insight_error => 'Az adatok nem tölthetők be';
-
-  @override
-  String get insight_estimated => 'Becsült';
-
-  @override
-  String get insight_exit => 'Kilépések';
 
   @override
   String get insight_hourly_rate => 'Óránkénti ráta';
 
   @override
-  String get insight_last_60_minutes => 'Elmúlt 60 perc';
-
-  @override
-  String get insight_longest_completed_visit => 'Leghosszabb látogatás';
-
-  @override
   String get insight_objects_unit => 'objektum';
-
-  @override
-  String get insight_occupancy => 'Foglaltság';
-
-  @override
-  String get insight_pass_by => 'Áthaladó forgalom';
 
   @override
   String get insight_peak => 'Csúcs';
@@ -457,12 +426,6 @@ class LocalizationHu extends Localization {
 
   @override
   String get insight_period_lunch => 'Ebéd';
-
-  @override
-  String get insight_stagnant => 'Időzés';
-
-  @override
-  String get insight_today => 'Ma';
 
   @override
   String insight_today_chart(Object metric) {
@@ -554,20 +517,6 @@ class LocalizationHu extends Localization {
   String get main_screen_video_sources => 'Videóforrások';
 
   @override
-  String get maximum_occupancy => 'Maximális létszám';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Megmutatja az emberek vagy járművek legnagyobb egyidejű számát ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít azonosítani a csúcsforgalmi időszakokat.';
-
-  @override
-  String get maximum_stay => 'Maximális tartózkodási idő';
-
-  @override
-  String get maximum_stay_help =>
-      'Megmutatja, hogy egy személy vagy jármű mennyi ideig tartózkodott a leghosszabb ideig ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít azonosítani a szokatlanul hosszú tartózkodásokat vagy megállásokat.';
-
-  @override
   String get metric_events => 'Események';
 
   @override
@@ -638,6 +587,20 @@ class LocalizationHu extends Localization {
   String get occupancy => 'Jelenlegi darabszám';
 
   @override
+  String get occupancy_max => 'Maximális szám';
+
+  @override
+  String get occupancy_max_help =>
+      'Megmutatja az emberek vagy járművek legnagyobb egyidejű számát ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít azonosítani a csúcsforgalmi időszakokat.';
+
+  @override
+  String get occupancy_mean => 'Átlagos szám';
+
+  @override
+  String get occupancy_mean_help =>
+      'Megmutatja az emberek vagy járművek átlagos számát ezen a területen az aktuális számlálási időszak alatt.\\n\\nSegít megmutatni, mennyire volt forgalmas a terület a teljes időszak során.';
+
+  @override
   String get onboarding_back_action => 'Vissza';
 
   @override
@@ -677,10 +640,10 @@ class LocalizationHu extends Localization {
   String get onboarding_start_action => 'Indítás';
 
   @override
-  String get passed_by => 'Áthaladt';
+  String get pass_by => 'Áthaladó forgalom';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek az aktuális számlálási időszak alatt áthaladtak ezen a területen.\\n\\nMinden személy vagy jármű áthaladásonként csak egyszer kerül megszámolásra.';
 
   @override
@@ -860,10 +823,10 @@ class LocalizationHu extends Localization {
   String get settings_screen_subscription_title => 'Előfizetés';
 
   @override
-  String get stagnanted => 'Tartózkodott';
+  String get stagnant => 'Időzés';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Megszámolja azokat az embereket vagy járműveket, amelyek legalább a beállított tartózkodási ideig ezen a területen maradtak.\\n\\nAz alapértelmezett tartózkodási idő 15 másodperc, amely a Beállításokban módosítható.';
 
   @override
@@ -915,6 +878,27 @@ class LocalizationHu extends Localization {
 
   @override
   String get terms => 'Szolgáltatási feltételek';
+
+  @override
+  String get traffic_period_custom_day => 'Egyéni nap';
+
+  @override
+  String get traffic_period_last_month => 'Előző hónap átlaga';
+
+  @override
+  String get traffic_period_last_week => 'Múlt hét ugyanezen napja';
+
+  @override
+  String get traffic_period_last_year => 'Előző év átlaga';
+
+  @override
+  String get traffic_period_live_today => 'Mai nap élőben';
+
+  @override
+  String get traffic_period_today => 'Ma';
+
+  @override
+  String get traffic_period_yesterday => 'Tegnap';
 
   @override
   String get upload_screen_attempt_time => 'Próbálkozás ideje:';

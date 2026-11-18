@@ -19,25 +19,11 @@ class LocalizationTr extends Localization {
   String get about_screen_platform => 'Platform';
 
   @override
-  String get appeared => 'Göründü';
+  String get appear => 'Görünmeler';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'İlk algılanan konumu bu alanın içinde olan kişi veya araçları sayar.\\n\\nTakibin nerede başladığını anlamaya yardımcı olur.\\n\\n(Temel olarak ileri düzey kullanıcılar içindir)';
-
-  @override
-  String get average_occupancy => 'Ortalama Kişi Sayısı';
-
-  @override
-  String get average_occupancy_help =>
-      'Geçerli sayım penceresi boyunca bu alandaki ortalama kişi veya araç sayısını gösterir.\\n\\nBu, alanın tüm sayım süresi boyunca ne kadar yoğun olduğunu anlamanıza yardımcı olur.';
-
-  @override
-  String get average_stay => 'Ortalama Kalış Süresi';
-
-  @override
-  String get average_stay_help =>
-      'Bu alanda kişi veya araçların ortalama kalış süresini gösterir.\\n\\nDaha uzun ortalama kalış süresi, müşterilerin bu alanda daha fazla zaman geçirdiğini gösterebilir.';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationTr extends Localization {
       'Bu seçeneği etkinleştirerek, izlenen her nesne için benzersiz track ID\'lerini görüntüleyin.';
 
   @override
-  String get detection_screen_stagnant => 'Kalma Süresi';
+  String get detection_screen_stagnant => 'Oyalanma Eşiği';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Bir nesnenin kalma olarak sayılması için alanda ne kadar süre kalması gerektiğini belirler.';
+      'Bir nesnenin oyalanma olarak sayılması için alanda kalması gereken en kısa süre.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Gecikmeli';
@@ -215,7 +201,7 @@ class LocalizationTr extends Localization {
   String get detection_screen_stagnant_min_label => 'Anında';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Bir nesnenin ne zaman Kalış sayımına katkıda bulunduğunu belirler.\\nDaha kısa değerler\\n• Kalışı hemen sayar\\n• Hızlı analiz için daha iyidir\\nDaha uzun değerler\\n• Kısa geçiş trafiğini yok sayar\\n• Doluluk ölçümü için daha iyidir';
 
   @override
@@ -285,55 +271,80 @@ class LocalizationTr extends Localization {
   String get device_not_supported_screen_title => 'Kamera bulunamadı';
 
   @override
-  String get disappeared => 'Kayboldu';
+  String get disappear => 'Kaybolmalar';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Son algılanan konumu bu alanın içinde olan kişi veya araçları sayar.\\n\\nKişi veya araç artık algılanmazsa, izleme ayarlanan Kaybolma Süresi sonunda sona erer.\\n\\n(Temel olarak ileri düzey kullanıcılar içindir)';
 
   @override
   String get dpa => 'Veri İşleme Sözleşmesi';
 
   @override
-  String get durationDaysShort => '%sg';
+  String durationDaysShort(Object value) {
+    return '${value}g';
+  }
 
   @override
-  String get durationHoursShort => '%ssa';
+  String durationHoursShort(Object value) {
+    return '${value}sa';
+  }
 
   @override
-  String get durationMinutesShort => '%sdk';
+  String durationMinutesShort(Object value) {
+    return '${value}dk';
+  }
 
   @override
-  String get durationSecondsShort => '%ssn';
+  String durationSecondsShort(Object value) {
+    return '${value}sn';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Girdi';
+  String get dwell_time_max => 'En Uzun Tamamlanan Kalış';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Geçerli sayım penceresi sırasında bir kişi veya aracın bu alanda kaldığı en uzun süreyi gösterir.\\n\\nOlağan dışı uzun ziyaretleri veya duraklamaları belirlemek için kullanışlıdır.\\n\\nYalnızca tamamlanan kalışlar hesaba katılır; devam edenler hariç tutulur.';
+
+  @override
+  String get dwell_time_mean => 'Tamamlanan Kalışların Ortalama Süresi';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Bu alanda kişi veya araçların ortalama kalış süresini gösterir.\\n\\nDaha uzun ortalama kalış süresi, müşterilerin bu alanda daha fazla zaman geçirdiğini gösterebilir.\\n\\nYalnızca tamamlanan kalışlar hesaba katılır; devam edenler hariç tutulur.';
+
+  @override
+  String get entry => 'Girişler';
+
+  @override
+  String get entry_help =>
       'Geçerli sayım penceresi sırasında bu alana giren kişi veya araçları sayar.\\n\\nBir kişi veya araç alanın dışından içine geçtiğinde bir giriş sayılır.';
 
   @override
-  String get exited => 'Çıktı';
+  String get exit => 'Çıkışlar';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Bu alandan geçerli sayım penceresi sırasında çıkan kişi veya araçları sayar.\\n\\nBir kişi veya araç alanın içinden dışına geçtiğinde bir çıkış sayılır.';
-
-  @override
-  String get insight_appear => 'Göründü';
-
-  @override
-  String get insight_average_completed_visit => 'Ort. tamamlanan ziyaret';
 
   @override
   String get insight_average_short => 'ort.';
 
   @override
-  String get insight_based_on_minutes => '%m dk. verisine göre · Değişebilir';
+  String insight_based_on_min(Object min) {
+    return '$min dk veriye dayanır · Değişebilir';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '$sec sn veriye dayanır · Değişebilir';
+  }
 
   @override
   String get insight_chart_dwell_unit => '5 dk. başına ort. süre';
@@ -346,7 +357,7 @@ class LocalizationTr extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Prikazuje zabeležene vrednosti za svaki sat. Tekući';
+      'Tamamlanan her saat için kaydedilen değerleri gösterir. Henüz tamamlanmamış olan mevcut saat gösterilmez.';
 
   @override
   String get insight_chart_info_description =>
@@ -369,24 +380,12 @@ class LocalizationTr extends Localization {
   String get insight_compare_with => 'Şununla karşılaştır';
 
   @override
-  String get insight_comparison_last_week => 'Geçen haftanın aynı günü';
-
-  @override
-  String get insight_comparison_monthly => 'Aylık ortalama';
-
-  @override
   String insight_comparison_period(Object period) {
     return '$period ile karşılaştırıldığında';
   }
 
   @override
   String get insight_comparison_unavailable => 'Karşılaştırma yok';
-
-  @override
-  String get insight_comparison_yearly => 'Yıllık ortalama';
-
-  @override
-  String get insight_comparison_yesterday => 'Dün';
 
   @override
   String get insight_counting_paused => 'Sayım duraklatıldı';
@@ -396,46 +395,16 @@ class LocalizationTr extends Localization {
       'Sayım duraklatıldı · Son kaydedilen değer';
 
   @override
-  String get insight_dashboard_title => 'Trafik Analizleri';
-
-  @override
-  String get insight_disappear => 'Kayboldu';
-
-  @override
-  String get insight_dwell_time => 'Kalma süresi';
-
-  @override
-  String get insight_early_estimate => 'İlk tahmin';
-
-  @override
-  String get insight_entry => 'Girişler';
+  String get insight_dashboard_title => 'Hareket Analizi';
 
   @override
   String get insight_error => 'Veriler yüklenemedi';
 
   @override
-  String get insight_estimated => 'Tahmini';
-
-  @override
-  String get insight_exit => 'Çıkışlar';
-
-  @override
   String get insight_hourly_rate => 'Saatlik oran';
 
   @override
-  String get insight_last_60_minutes => 'Son 60 dakika';
-
-  @override
-  String get insight_longest_completed_visit => 'En uzun ziyaret';
-
-  @override
   String get insight_objects_unit => 'nesne';
-
-  @override
-  String get insight_occupancy => 'Doluluk';
-
-  @override
-  String get insight_pass_by => 'Geçiş trafiği';
 
   @override
   String get insight_peak => 'En yüksek';
@@ -454,12 +423,6 @@ class LocalizationTr extends Localization {
 
   @override
   String get insight_period_lunch => 'Öğle yemeği';
-
-  @override
-  String get insight_stagnant => 'Oyalanma';
-
-  @override
-  String get insight_today => 'Bugün';
 
   @override
   String insight_today_chart(Object metric) {
@@ -548,20 +511,6 @@ class LocalizationTr extends Localization {
   String get main_screen_video_sources => 'Video kaynakları';
 
   @override
-  String get maximum_occupancy => 'Maksimum Kişi Sayısı';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Geçerli sayım penceresi sırasında aynı anda bu alanda bulunan en yüksek kişi veya araç sayısını gösterir.\\n\\nEn yoğun kalabalık veya trafik seviyelerini belirlemek için kullanışlıdır.';
-
-  @override
-  String get maximum_stay => 'Maksimum Kalış Süresi';
-
-  @override
-  String get maximum_stay_help =>
-      'Geçerli sayım penceresi sırasında bir kişi veya aracın bu alanda kaldığı en uzun süreyi gösterir.\\n\\nOlağan dışı uzun ziyaretleri veya duraklamaları belirlemek için kullanışlıdır.';
-
-  @override
   String get metric_events => 'Olaylar';
 
   @override
@@ -632,6 +581,20 @@ class LocalizationTr extends Localization {
   String get occupancy => 'Güncel Sayı';
 
   @override
+  String get occupancy_max => 'Maksimum sayı';
+
+  @override
+  String get occupancy_max_help =>
+      'Geçerli sayım penceresi sırasında aynı anda bu alanda bulunan en yüksek kişi veya araç sayısını gösterir.\\n\\nEn yoğun kalabalık veya trafik seviyelerini belirlemek için kullanışlıdır.';
+
+  @override
+  String get occupancy_mean => 'Ortalama sayı';
+
+  @override
+  String get occupancy_mean_help =>
+      'Geçerli sayım penceresi boyunca bu alandaki ortalama kişi veya araç sayısını gösterir.\\n\\nBu, alanın tüm sayım süresi boyunca ne kadar yoğun olduğunu anlamanıza yardımcı olur.';
+
+  @override
   String get onboarding_back_action => 'Geri';
 
   @override
@@ -671,10 +634,10 @@ class LocalizationTr extends Localization {
   String get onboarding_start_action => 'Başlat';
 
   @override
-  String get passed_by => 'Geçenler';
+  String get pass_by => 'Geçiş trafiği';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Geçerli sayım penceresi sırasında bu alandan geçen kişi veya araçları sayar.\\n\\nHer kişi veya araç, alandan her geçişinde yalnızca bir kez sayılır.';
 
   @override
@@ -851,10 +814,10 @@ class LocalizationTr extends Localization {
   String get settings_screen_subscription_title => 'Abonelik';
 
   @override
-  String get stagnanted => 'Kaldı';
+  String get stagnant => 'Oyalanma';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Bu alanda en az ayarlanan Bekleme Süresi kadar kalan kişi veya araçları sayar.\\n\\nVarsayılan Bekleme Süresi 15 saniyedir ve Ayarlar\'dan değiştirilebilir.';
 
   @override
@@ -906,6 +869,27 @@ class LocalizationTr extends Localization {
 
   @override
   String get terms => 'Hizmet Koşulları';
+
+  @override
+  String get traffic_period_custom_day => 'Özel gün';
+
+  @override
+  String get traffic_period_last_month => 'Geçen ayın ortalaması';
+
+  @override
+  String get traffic_period_last_week => 'Geçen haftanın aynı günü';
+
+  @override
+  String get traffic_period_last_year => 'Geçen yılın ortalaması';
+
+  @override
+  String get traffic_period_live_today => 'Bugün canlı';
+
+  @override
+  String get traffic_period_today => 'Bugün';
+
+  @override
+  String get traffic_period_yesterday => 'Dün';
 
   @override
   String get upload_screen_attempt_time => 'Deneme zamanı:';

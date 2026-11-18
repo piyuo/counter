@@ -62,7 +62,7 @@ InsightAreaSnapshot _buildAreaSnapshot({
     DashboardMetric.appear,
     DashboardMetric.disappear,
     DashboardMetric.occupancyMean,
-    DashboardMetric.occupancyPeak,
+    DashboardMetric.occupancyMax,
     DashboardMetric.dwellTimeMean,
     DashboardMetric.dwellTimeMax,
   ];
@@ -165,8 +165,8 @@ List<DashboardChartPoint> _buildChartPoints(
         comparisonValue: comparisonValue?.amount,
         todayCoveredSeconds: todayValue?.coveredSeconds ?? 0,
         comparisonCoveredSeconds: comparisonValue?.coveredSeconds ?? 0,
-        todayEstimated: todayValue?.estimated ?? false,
-        comparisonEstimated: comparisonValue?.estimated ?? false,
+        todayCoverage: todayValue?.coverage ?? 0,
+        comparisonCoverage: comparisonValue?.coverage ?? 0,
       ),
     );
   }

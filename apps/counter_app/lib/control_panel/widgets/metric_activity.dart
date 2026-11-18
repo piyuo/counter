@@ -35,16 +35,16 @@ class MetricEvents extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _MetricItem(value: data.passBy, label: context.l.passed_by, valueColor: valueColor),
+              child: _MetricItem(value: data.passBy, label: context.l.pass_by, valueColor: valueColor),
             ),
             Expanded(
-              child: _MetricItem(value: data.stayed, label: context.l.stagnanted, valueColor: valueColor),
+              child: _MetricItem(value: data.stayed, label: context.l.stagnant, valueColor: valueColor),
             ),
             Expanded(
-              child: _MetricItem(value: data.entered, label: context.l.entered, valueColor: valueColor),
+              child: _MetricItem(value: data.entered, label: context.l.entry, valueColor: valueColor),
             ),
             Expanded(
-              child: _MetricItem(value: data.exited, label: context.l.exited, valueColor: valueColor),
+              child: _MetricItem(value: data.exited, label: context.l.exit, valueColor: valueColor),
             ),
           ],
         ),
@@ -67,17 +67,12 @@ class MetricDetailActivity extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: _MetricItem(
-                value: data.appeared,
-                label: context.l.appeared,
-                valueColor: valueColor,
-                compact: true,
-              ),
+              child: _MetricItem(value: data.appeared, label: context.l.appear, valueColor: valueColor, compact: true),
             ),
             Expanded(
               child: _MetricItem(
                 value: data.disappeared,
-                label: context.l.disappeared,
+                label: context.l.disappear,
                 valueColor: valueColor,
                 compact: true,
               ),
@@ -100,12 +95,12 @@ class _MetricItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, String> infoContent = {
-      context.l.passed_by: context.l.passed_by_help,
-      context.l.stagnanted: context.l.stagnanted_help,
-      context.l.entered: context.l.entered_help,
-      context.l.exited: context.l.exited_help,
-      context.l.appeared: context.l.appeared_help,
-      context.l.disappeared: context.l.disappeared_help,
+      context.l.pass_by: context.l.pass_by_help,
+      context.l.stagnant: context.l.stagnant_help,
+      context.l.entry: context.l.entry_help,
+      context.l.exit: context.l.exit_help,
+      context.l.appear: context.l.appear_help,
+      context.l.disappear: context.l.disappear_help,
     };
 
     void showInfo() {

@@ -30,7 +30,7 @@ class InsightDisplay extends ConsumerWidget {
       return const Center(child: CircularProgressIndicator());
     }
 
-    void onComparisonChanged(core_domain.TrafficComparisonPeriod period) {
+    void onComparisonChanged(core_domain.TrafficPeriod period) {
       final service = ref.read(core_domain.insightServiceProvider);
       service.setComparisonPeriod(period);
       unawaited(service.refresh());

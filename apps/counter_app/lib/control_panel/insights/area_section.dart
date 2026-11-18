@@ -15,8 +15,8 @@ class AreaSection extends StatefulWidget {
   });
 
   final core_domain.DashboardAreaData areaData;
-  final core_domain.TrafficComparisonPeriod comparisonPeriod;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
+  final core_domain.TrafficPeriod comparisonPeriod;
+  final ValueChanged<core_domain.TrafficPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
 
   @override

@@ -10,10 +10,6 @@ List<MetricCardData> mapVisionMetricsToCardData(
   BuildContext context, {
   required core_domain.Observation observation,
   required core_domain.InterestAreaState areaState,
-  required String countAvgOccLabel,
-  required String countMaxOccLabel,
-  required String countAvgDwellLabel,
-  required String countMaxDwellLabel,
 }) {
   final orderedAreas = [
     (id: core_domain.kGlobalAreaId, name: ''),

@@ -19,25 +19,11 @@ class LocalizationUk extends Localization {
   String get about_screen_platform => 'Платформа';
 
   @override
-  String get appeared => 'З\'явилися';
+  String get appear => 'Появи';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Підраховує людей або транспортні засоби, перша виявлена позиція яких була всередині цієї зони.\\n\\nДопомагає зрозуміти, де починається відстеження.\\n\\n(Переважно для досвідчених користувачів)';
-
-  @override
-  String get average_occupancy => 'Середня кількість';
-
-  @override
-  String get average_occupancy_help =>
-      'Показує середню кількість людей або транспортних засобів у цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає оцінити, наскільки завантаженою була ця зона протягом усього періоду підрахунку.';
-
-  @override
-  String get average_stay => 'Середній час перебування';
-
-  @override
-  String get average_stay_help =>
-      'Показує середній час, який люди або транспортні засоби перебували в цій зоні.\\n\\nДовший середній час перебування може свідчити, що відвідувачі проводять у цій зоні більше часу.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationUk extends Localization {
       'Увімкніть цей параметр, щоб відобразити унікальні ID відстеження для кожного об\'єкта, який відслідковується.';
 
   @override
-  String get detection_screen_stagnant => 'Час перебування';
+  String get detection_screen_stagnant => 'Поріг затримки';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Скільки часу об\'єкт має перебувати в зоні, щоб його зарахували як перебування.';
+      'Мінімальний час, протягом якого об’єкт має залишатися в зоні, щоб його зарахували як затримку.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Із затримкою';
@@ -214,7 +200,7 @@ class LocalizationUk extends Localization {
   String get detection_screen_stagnant_min_label => 'Миттєво';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Визначає, коли об\'єкт враховується в підрахунку перебування.\\nКоротші значення\\n• Одразу рахують перебування\\n• Краще для швидкого аналізу\\nДовші значення\\n• Ігнорують короткочасний прохідний трафік\\n• Краще для вимірювання заповненості';
 
   @override
@@ -284,55 +270,80 @@ class LocalizationUk extends Localization {
   String get device_not_supported_screen_title => 'Камеру не знайдено';
 
   @override
-  String get disappeared => 'Зникли';
+  String get disappear => 'Зникнення';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Підраховує людей або транспортні засоби, остання виявлена позиція яких була всередині цієї зони.\\n\\nВідстеження завершується після закінчення налаштованого часу зникнення, якщо людину або транспортний засіб більше не виявлено.\\n\\n(Переважно для досвідчених користувачів)';
 
   @override
   String get dpa => 'Угода про обробку даних';
 
   @override
-  String get durationDaysShort => '%sд';
+  String durationDaysShort(Object value) {
+    return '$valueд';
+  }
 
   @override
-  String get durationHoursShort => '%sгод';
+  String durationHoursShort(Object value) {
+    return '$valueгод';
+  }
 
   @override
-  String get durationMinutesShort => '%sхв';
+  String durationMinutesShort(Object value) {
+    return '$valueхв';
+  }
 
   @override
-  String get durationSecondsShort => '%sсек';
+  String durationSecondsShort(Object value) {
+    return '$valueсек';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Увійшли';
+  String get dwell_time_max => 'Найтриваліше завершене перебування';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Показує найдовший час, протягом якого людина або транспортний засіб перебували в цій зоні під час поточного вікна підрахунку.\\n\\nДопомагає виявляти незвично довгі відвідування або зупинки.\\n\\nВраховуються лише завершені перебування; поточні не враховуються.';
+
+  @override
+  String get dwell_time_mean => 'Середній час завершених перебувань';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Показує середній час, який люди або транспортні засоби перебували в цій зоні.\\n\\nДовший середній час перебування може свідчити, що відвідувачі проводять у цій зоні більше часу.\\n\\nВраховуються лише завершені перебування; поточні не враховуються.';
+
+  @override
+  String get entry => 'Входи';
+
+  @override
+  String get entry_help =>
       'Підраховує людей або транспортні засоби, які увійшли до цієї зони під час поточного вікна підрахунку.\\n\\nВхід враховується, коли людина або транспортний засіб переміщується ззовні всередину зони.';
 
   @override
-  String get exited => 'Вийшли';
+  String get exit => 'Виходи';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Підраховує людей або транспортні засоби, які вийшли з цієї зони під час поточного вікна підрахунку.\\n\\nВихід враховується, коли людина або транспортний засіб переміщується зсередини зони назовні.';
-
-  @override
-  String get insight_appear => 'З\'явилися';
-
-  @override
-  String get insight_average_completed_visit => 'Сер. завершений візит';
 
   @override
   String get insight_average_short => 'сер.';
 
   @override
-  String get insight_based_on_minutes => 'На основі %m хв · Може змінюватися';
+  String insight_based_on_min(Object min) {
+    return 'На основі $min хв · Може змінюватися';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'На основі $sec с · Може змінюватися';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Сер. тривалість за 5 хв';
@@ -344,7 +355,8 @@ class LocalizationUk extends Localization {
   String get insight_chart_hourly_breakdown => 'Погодинний розподіл';
 
   @override
-  String get insight_chart_hourly_info => ' nezavršeni sat je sakriven.';
+  String get insight_chart_hourly_info =>
+      'Показує записані значення за кожну завершену годину. Поточна незавершена година не відображається.';
 
   @override
   String get insight_chart_info_description =>
@@ -367,24 +379,12 @@ class LocalizationUk extends Localization {
   String get insight_compare_with => 'Порівняти з';
 
   @override
-  String get insight_comparison_last_week => 'Той самий день минулого тижня';
-
-  @override
-  String get insight_comparison_monthly => 'Середнє за місяць';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'порівняно з $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Порівняння недоступне';
-
-  @override
-  String get insight_comparison_yearly => 'Середнє за рік';
-
-  @override
-  String get insight_comparison_yesterday => 'Учора';
 
   @override
   String get insight_counting_paused => 'Підрахунок призупинено';
@@ -394,46 +394,16 @@ class LocalizationUk extends Localization {
       'Підрахунок призупинено · Останнє значення';
 
   @override
-  String get insight_dashboard_title => 'Аналітика потоку';
-
-  @override
-  String get insight_disappear => 'Зникли';
-
-  @override
-  String get insight_dwell_time => 'Час перебування';
-
-  @override
-  String get insight_early_estimate => 'Попередня оцінка';
-
-  @override
-  String get insight_entry => 'Входи';
+  String get insight_dashboard_title => 'Аналітика потоків';
 
   @override
   String get insight_error => 'Не вдалося завантажити дані';
 
   @override
-  String get insight_estimated => 'Оцінка';
-
-  @override
-  String get insight_exit => 'Виходи';
-
-  @override
   String get insight_hourly_rate => 'Показник за годину';
 
   @override
-  String get insight_last_60_minutes => 'Останні 60 хвилин';
-
-  @override
-  String get insight_longest_completed_visit => 'Найтриваліший візит';
-
-  @override
   String get insight_objects_unit => 'об’єкти';
-
-  @override
-  String get insight_occupancy => 'Заповненість';
-
-  @override
-  String get insight_pass_by => 'Потік перехожих';
 
   @override
   String get insight_peak => 'Пік';
@@ -452,12 +422,6 @@ class LocalizationUk extends Localization {
 
   @override
   String get insight_period_lunch => 'Обід';
-
-  @override
-  String get insight_stagnant => 'Затримка';
-
-  @override
-  String get insight_today => 'Сьогодні';
 
   @override
   String insight_today_chart(Object metric) {
@@ -549,20 +513,6 @@ class LocalizationUk extends Localization {
   String get main_screen_video_sources => 'Джерела відео';
 
   @override
-  String get maximum_occupancy => 'Максимальна кількість';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Показує найбільшу кількість людей або транспортних засобів, що одночасно перебували в цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає визначити пікові рівні відвідуваності або трафіку.';
-
-  @override
-  String get maximum_stay => 'Максимальний час перебування';
-
-  @override
-  String get maximum_stay_help =>
-      'Показує найдовший час, протягом якого людина або транспортний засіб перебували в цій зоні під час поточного вікна підрахунку.\\n\\nДопомагає виявляти незвично довгі відвідування або зупинки.';
-
-  @override
   String get metric_events => 'Події';
 
   @override
@@ -633,6 +583,20 @@ class LocalizationUk extends Localization {
   String get occupancy => 'Поточна кількість';
 
   @override
+  String get occupancy_max => 'Максимальна кількість';
+
+  @override
+  String get occupancy_max_help =>
+      'Показує найбільшу кількість людей або транспортних засобів, що одночасно перебували в цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає визначити пікові рівні відвідуваності або трафіку.';
+
+  @override
+  String get occupancy_mean => 'Середня кількість';
+
+  @override
+  String get occupancy_mean_help =>
+      'Показує середню кількість людей або транспортних засобів у цій зоні протягом поточного вікна підрахунку.\\n\\nДопомагає оцінити, наскільки завантаженою була ця зона протягом усього періоду підрахунку.';
+
+  @override
   String get onboarding_back_action => 'Назад';
 
   @override
@@ -672,10 +636,10 @@ class LocalizationUk extends Localization {
   String get onboarding_start_action => 'Почати';
 
   @override
-  String get passed_by => 'Пройшли';
+  String get pass_by => 'Потік руху';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Підраховує людей або транспортні засоби, які пройшли через цю зону під час поточного вікна підрахунку.\\n\\nКожна людина або транспортний засіб враховується лише один раз за кожне проходження через зону.';
 
   @override
@@ -853,10 +817,10 @@ class LocalizationUk extends Localization {
   String get settings_screen_subscription_title => 'Підписка';
 
   @override
-  String get stagnanted => 'Залишилися';
+  String get stagnant => 'Затримка';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Підраховує людей або транспортні засоби, які перебували в цій зоні щонайменше протягом заданого часу перебування.\\n\\nТиповий час перебування становить 15 секунд і може бути змінений в Налаштуваннях.';
 
   @override
@@ -908,6 +872,27 @@ class LocalizationUk extends Localization {
 
   @override
   String get terms => 'Умови користування сервісом';
+
+  @override
+  String get traffic_period_custom_day => 'Вибраний день';
+
+  @override
+  String get traffic_period_last_month => 'Середнє за минулий місяць';
+
+  @override
+  String get traffic_period_last_week => 'Той самий день минулого тижня';
+
+  @override
+  String get traffic_period_last_year => 'Середнє за минулий рік';
+
+  @override
+  String get traffic_period_live_today => 'Сьогодні наживо';
+
+  @override
+  String get traffic_period_today => 'Сьогодні';
+
+  @override
+  String get traffic_period_yesterday => 'Учора';
 
   @override
   String get upload_screen_attempt_time => 'Час спроби:';

@@ -18,7 +18,7 @@ abstract class InsightService {
   ///
   /// This does not load or publish dashboard data by itself. Call [refresh]
   /// after changing the comparison period.
-  Future<void> setComparisonPeriod(TrafficComparisonPeriod period);
+  Future<void> setComparisonPeriod(TrafficPeriod period);
 
   /// Loads and publishes the dashboard data for the currently selected period.
   Future<void> refresh();

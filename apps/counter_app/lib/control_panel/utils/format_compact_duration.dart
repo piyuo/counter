@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
 class DurationParts {
@@ -49,30 +51,37 @@ DurationParts breakdownDuration(int totalSeconds) => DurationParts(
 /// a pure function: no widget tree dependency, trivially unit-testable, and
 /// usable outside of build methods (isolates, background formatting, etc).
 /// At call sites, pass `context.l` — e.g. `formatCompactDuration(context.l, seconds)`.
-String formatCompactDuration(Localization l10n, int totalSeconds, {bool fixedWidth = false}) {
+String formatCompactDuration(BuildContext context, int totalSeconds, {bool fixedWidth = false}) {
   final total = totalSeconds;
   final p = breakdownDuration(totalSeconds);
 
   String num(int value, {bool pad = false}) => pad ? value.toString().padLeft(2, '0') : value.toString();
 
-  String unit(String pattern, int value, {bool pad = false}) => pattern.replaceAll('%s', num(value, pad: pad));
-
-  String twoUnit(String first, String second) =>
-      l10n.durationTwoUnit.replaceFirst('%first', first).replaceFirst('%second', second);
-
   if (total < 60) {
-    return unit(l10n.durationSecondsShort, total, pad: fixedWidth);
+    return context.l.durationSecondsShort(num(total, pad: fixedWidth));
   } else if (total < 3600) {
-    if (p.seconds == 0 && !fixedWidth) return unit(l10n.durationMinutesShort, p.minutes);
-    return twoUnit(
-      unit(l10n.durationMinutesShort, p.minutes),
-      unit(l10n.durationSecondsShort, p.seconds, pad: fixedWidth),
+    if (p.seconds == 0 && !fixedWidth) return context.l.durationMinutesShort(p.minutes);
+    return context.l.durationTwoUnit(
+      context.l.durationMinutesShort(p.minutes),
+      context.l.durationSecondsShort(num(p.seconds, pad: fixedWidth)),
     );
   } else if (total < 86400) {
-    if (p.minutes == 0 && !fixedWidth) return unit(l10n.durationHoursShort, p.hours);
-    return twoUnit(unit(l10n.durationHoursShort, p.hours), unit(l10n.durationMinutesShort, p.minutes, pad: fixedWidth));
+    if (p.minutes == 0 && !fixedWidth) return context.l.durationHoursShort(p.hours);
+    return context.l.durationTwoUnit(
+      context.l.durationHoursShort(p.hours),
+      context.l.durationMinutesShort(num(p.minutes, pad: fixedWidth)),
+    );
   } else {
-    if (p.hours == 0 && !fixedWidth) return unit(l10n.durationDaysShort, p.days);
-    return twoUnit(unit(l10n.durationDaysShort, p.days), unit(l10n.durationHoursShort, p.hours, pad: fixedWidth));
+    if (p.hours == 0 && !fixedWidth) return context.l.durationDaysShort(p.days);
+    return context.l.durationTwoUnit(
+      context.l.durationDaysShort(p.days),
+      context.l.durationHoursShort(num(p.hours, pad: fixedWidth)),
+    );
   }
+}
+
+/// Formats [totalSeconds] into just seconds (e.g. "5s", "12s", "1,234s").
+String formatCompactSeconds(BuildContext context, int totalSeconds) {
+  final formattedSeconds = NumberFormat.decimalPattern(context.l.localeName).format(totalSeconds);
+  return context.l.durationSecondsShort(formattedSeconds);
 }

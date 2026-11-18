@@ -43,17 +43,17 @@ class MetricStatistics extends StatelessWidget {
             ),
           ),
 
-          _SummaryRow(label: context.l.average_occupancy, value: data.avgOccupancy, valueColor: valueColor),
-          _SummaryRow(label: context.l.maximum_occupancy, value: data.maxOccupancy, valueColor: valueColor),
+          _SummaryRow(label: context.l.occupancy_mean, value: data.avgOccupancy, valueColor: valueColor),
+          _SummaryRow(label: context.l.occupancy_max, value: data.maxOccupancy, valueColor: valueColor),
           const Divider(height: 12, color: Colors.black26, thickness: 0.5),
           _SummaryRow(
-            label: context.l.average_stay,
-            value: formatCompactDuration(context.l, data.avgDwellSeconds.round()),
+            label: context.l.dwell_time_mean,
+            value: formatCompactDuration(context, data.avgDwellSeconds.round()),
             valueColor: valueColor,
           ),
           _SummaryRow(
-            label: context.l.maximum_stay,
-            value: formatCompactDuration(context.l, data.maxDwellSeconds),
+            label: context.l.dwell_time_max,
+            value: formatCompactDuration(context, data.maxDwellSeconds),
             valueColor: valueColor,
           ),
         ],
@@ -72,10 +72,10 @@ class _SummaryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Map<String, String> infoContent = {
-      context.l.average_occupancy: context.l.average_occupancy_help,
-      context.l.maximum_occupancy: context.l.maximum_occupancy_help,
-      context.l.average_stay: context.l.average_stay_help,
-      context.l.maximum_stay: context.l.maximum_stay_help,
+      context.l.occupancy_mean: context.l.occupancy_mean_help,
+      context.l.occupancy_max: context.l.occupancy_max_help,
+      context.l.dwell_time_mean: context.l.dwell_time_mean_help,
+      context.l.dwell_time_max: context.l.dwell_time_max_help,
     };
 
     void showInfo(BuildContext context) {

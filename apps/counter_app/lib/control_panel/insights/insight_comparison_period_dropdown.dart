@@ -6,8 +6,8 @@ import 'package:shared_l10n/shared_l10n.dart';
 class InsightComparisonPeriodDropdown extends StatelessWidget {
   const InsightComparisonPeriodDropdown({super.key, required this.value, required this.onChanged, this.fontSize});
 
-  final core_domain.TrafficComparisonPeriod value;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onChanged;
+  final core_domain.TrafficPeriod value;
+  final ValueChanged<core_domain.TrafficPeriod> onChanged;
   final double? fontSize;
 
   @override
@@ -15,7 +15,7 @@ class InsightComparisonPeriodDropdown extends StatelessWidget {
     final theme = Theme.of(context);
 
     return DropdownButtonHideUnderline(
-      child: DropdownButton<core_domain.TrafficComparisonPeriod>(
+      child: DropdownButton<core_domain.TrafficPeriod>(
         value: value,
         isDense: true,
         isExpanded: true,
@@ -26,12 +26,12 @@ class InsightComparisonPeriodDropdown extends StatelessWidget {
           if (period != null) onChanged(period);
         },
         items: [
-          for (final period in core_domain.TrafficComparisonPeriod.values)
+          for (final period in core_domain.TrafficPeriod.values)
             DropdownMenuItem(
               value: period,
               alignment: AlignmentDirectional.centerEnd,
               child: Text(
-                context.l.insight_comparison_period(formatTrafficComparisonPeriodLabel(context, period)),
+                context.l.insight_comparison_period(formatTrafficPeriodLabel(context, period)),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.end,

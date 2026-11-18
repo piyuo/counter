@@ -19,25 +19,11 @@ class LocalizationAr extends Localization {
   String get about_screen_platform => 'المنصة';
 
   @override
-  String get appeared => 'ظهر';
+  String get appear => 'ظهور';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'يحسب عدد الأشخاص أو المركبات التي كان أول موضع تم اكتشافه لها داخل هذه المنطقة.\\n\\nيفيد في فهم مكان بدء التتبع.\\n\\n(مخصص بشكل أساسي للمستخدمين المتقدمين)';
-
-  @override
-  String get average_occupancy => 'متوسط الإشغال';
-
-  @override
-  String get average_occupancy_help =>
-      'يعرض متوسط عدد الأشخاص أو المركبات داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nيساعد ذلك على قياس مدى ازدحام المنطقة طوال نافذة العد.';
-
-  @override
-  String get average_stay => 'متوسط مدة البقاء';
-
-  @override
-  String get average_stay_help =>
-      'يعرض متوسط مدة بقاء الأشخاص أو المركبات في هذه المنطقة.\\n\\nقد يشير متوسط مدة البقاء الأطول إلى أن العملاء يقضون وقتًا أطول في هذه المنطقة.';
 
   @override
   String get camera_test_screen_help =>
@@ -201,11 +187,11 @@ class LocalizationAr extends Localization {
       'تفعيل هذا الخيار لإظهار معرّفات التتبع الفريدة لكل كائن يتم تتبعه.';
 
   @override
-  String get detection_screen_stagnant => 'مدة البقاء';
+  String get detection_screen_stagnant => 'حدّ البقاء';
 
   @override
   String get detection_screen_stagnant_help =>
-      'المدة التي يجب أن يبقى فيها الكائن في المنطقة حتى يُحتسب كبقاء.';
+      'الحد الأدنى للوقت الذي يجب أن يبقى فيه جسم داخل المنطقة حتى يُحتسب ضمن عدد حالات البقاء.';
 
   @override
   String get detection_screen_stagnant_max_label => 'متأخر';
@@ -214,7 +200,7 @@ class LocalizationAr extends Localization {
   String get detection_screen_stagnant_min_label => 'فوري';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'يحدد متى يساهم كائن في عدد \\البقاء\\\".\\nقيم أقصر\\n• عد البقاء فورًا\\n• أفضل للتحليل السريع\\nقيم أطول\\n• تجاهل المرور العابر القصير\\n• أفضل لقياس الإشغال\"';
 
   @override
@@ -282,55 +268,80 @@ class LocalizationAr extends Localization {
   String get device_not_supported_screen_title => 'لم يتم العثور على كاميرا';
 
   @override
-  String get disappeared => 'اختفى';
+  String get disappear => 'اختفاء';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'يحسب عدد الأشخاص أو المركبات التي كان آخر موضع تم اكتشافه لها داخل هذه المنطقة.\\n\\nينتهي التتبع بعد انتهاء مدة الاختفاء المحددة إذا لم يعد يتم اكتشاف الشخص أو المركبة.\\n\\n(مخصص بشكل أساسي للمستخدمين المتقدمين)';
 
   @override
   String get dpa => 'اتفاقية معالجة البيانات';
 
   @override
-  String get durationDaysShort => '%sي';
+  String durationDaysShort(Object value) {
+    return '$valueي';
+  }
 
   @override
-  String get durationHoursShort => '%sس';
+  String durationHoursShort(Object value) {
+    return '$valueس';
+  }
 
   @override
-  String get durationMinutesShort => '%sد';
+  String durationMinutesShort(Object value) {
+    return '$valueد';
+  }
 
   @override
-  String get durationSecondsShort => '%sث';
+  String durationSecondsShort(Object value) {
+    return '$valueث';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'دخل';
+  String get dwell_time_max => 'أطول مدة إقامة مكتملة';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'يعرض أطول مدة بقي فيها شخص أو مركبة داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nمفيد لتحديد الزيارات أو التوقفات الطويلة بشكل غير معتاد.\\n\\nتُحتسب فترات البقاء المكتملة فقط، ولا تُحتسب الفترات المستمرة.';
+
+  @override
+  String get dwell_time_mean => 'متوسط مدة الإقامة المكتملة';
+
+  @override
+  String get dwell_time_mean_help =>
+      'يعرض متوسط مدة بقاء الأشخاص أو المركبات في هذه المنطقة.\\n\\nقد يشير متوسط مدة البقاء الأطول إلى أن العملاء يقضون وقتًا أطول في هذه المنطقة.\\n\\nتُحتسب فترات البقاء المكتملة فقط، ولا تُحتسب الفترات المستمرة.';
+
+  @override
+  String get entry => 'مرات الدخول';
+
+  @override
+  String get entry_help =>
       'يحسب عدد الأشخاص أو المركبات التي دخلت هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب الدخول عندما ينتقل شخص أو مركبة من خارج المنطقة إلى داخلها.';
 
   @override
-  String get exited => 'غادر';
+  String get exit => 'مرات الخروج';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'يحسب عدد الأشخاص أو المركبات التي غادرت هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب الخروج عندما ينتقل شخص أو مركبة من داخل المنطقة إلى خارجها.';
-
-  @override
-  String get insight_appear => 'ظهور';
-
-  @override
-  String get insight_average_completed_visit => 'متوسط الزيارات المكتملة';
 
   @override
   String get insight_average_short => 'متوسط';
 
   @override
-  String get insight_based_on_minutes => 'استنادًا إلى %m دقيقة · قد يتغير';
+  String insight_based_on_min(Object min) {
+    return 'بناءً على $min دقيقة · قد يتغير';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'بناءً على $sec ثانية · قد يتغير';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'متوسط المدة كل 5 دقائق';
@@ -343,7 +354,7 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'يعرض القيم المسجلة لكل ساعة. تُخفى الساعة الحالية غير المكتملة.';
+      'يعرض القيم المسجلة لكل ساعة مكتملة. لا تُعرض الساعة الحالية غير المكتملة.';
 
   @override
   String get insight_chart_info_description =>
@@ -366,24 +377,12 @@ class LocalizationAr extends Localization {
   String get insight_compare_with => 'قارن مع';
 
   @override
-  String get insight_comparison_last_week => 'نفس اليوم من الأسبوع الماضي';
-
-  @override
-  String get insight_comparison_monthly => 'المتوسط الشهري';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'مقارنةً بـ $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'المقارنة غير متاحة';
-
-  @override
-  String get insight_comparison_yearly => 'المتوسط السنوي';
-
-  @override
-  String get insight_comparison_yesterday => 'أمس';
 
   @override
   String get insight_counting_paused => 'توقف العد مؤقتًا';
@@ -396,43 +395,13 @@ class LocalizationAr extends Localization {
   String get insight_dashboard_title => 'تحليلات الحركة';
 
   @override
-  String get insight_disappear => 'اختفاء';
-
-  @override
-  String get insight_dwell_time => 'مدة البقاء';
-
-  @override
-  String get insight_early_estimate => 'تقدير أولي';
-
-  @override
-  String get insight_entry => 'الدخول';
-
-  @override
   String get insight_error => 'تعذّر تحميل البيانات';
-
-  @override
-  String get insight_estimated => 'تقديري';
-
-  @override
-  String get insight_exit => 'الخروج';
 
   @override
   String get insight_hourly_rate => 'المعدل بالساعة';
 
   @override
-  String get insight_last_60_minutes => 'آخر 60 دقيقة';
-
-  @override
-  String get insight_longest_completed_visit => 'أطول زيارة';
-
-  @override
   String get insight_objects_unit => 'عناصر';
-
-  @override
-  String get insight_occupancy => 'الإشغال';
-
-  @override
-  String get insight_pass_by => 'حركة المرور';
 
   @override
   String get insight_peak => 'الذروة';
@@ -451,12 +420,6 @@ class LocalizationAr extends Localization {
 
   @override
   String get insight_period_lunch => 'الغداء';
-
-  @override
-  String get insight_stagnant => 'البقاء في المكان';
-
-  @override
-  String get insight_today => 'اليوم';
 
   @override
   String insight_today_chart(Object metric) {
@@ -544,20 +507,6 @@ class LocalizationAr extends Localization {
   String get main_screen_video_sources => 'مصادر الفيديو';
 
   @override
-  String get maximum_occupancy => 'أقصى إشغال';
-
-  @override
-  String get maximum_occupancy_help =>
-      'يعرض أكبر عدد من الأشخاص أو المركبات الموجودين في هذه المنطقة في الوقت نفسه خلال نافذة العد الحالية.\\n\\nمفيد لتحديد أوقات الذروة أو أعلى كثافة لحركة المرور.';
-
-  @override
-  String get maximum_stay => 'أقصى مدة بقاء';
-
-  @override
-  String get maximum_stay_help =>
-      'يعرض أطول مدة بقي فيها شخص أو مركبة داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nمفيد لتحديد الزيارات أو التوقفات الطويلة بشكل غير معتاد.';
-
-  @override
   String get metric_events => 'أحداث';
 
   @override
@@ -626,6 +575,20 @@ class LocalizationAr extends Localization {
   String get occupancy => 'العدد الحالي';
 
   @override
+  String get occupancy_max => 'العدد الأقصى';
+
+  @override
+  String get occupancy_max_help =>
+      'يعرض أكبر عدد من الأشخاص أو المركبات الموجودين في هذه المنطقة في الوقت نفسه خلال نافذة العد الحالية.\\n\\nمفيد لتحديد أوقات الذروة أو أعلى كثافة لحركة المرور.';
+
+  @override
+  String get occupancy_mean => 'متوسط العدد';
+
+  @override
+  String get occupancy_mean_help =>
+      'يعرض متوسط عدد الأشخاص أو المركبات داخل هذه المنطقة خلال نافذة العد الحالية.\\n\\nيساعد ذلك على قياس مدى ازدحام المنطقة طوال نافذة العد.';
+
+  @override
   String get onboarding_back_action => 'رجوع';
 
   @override
@@ -665,10 +628,10 @@ class LocalizationAr extends Localization {
   String get onboarding_start_action => 'ابدأ';
 
   @override
-  String get passed_by => 'مرّ عبر';
+  String get pass_by => 'حركة المرور العابرة';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'يحسب عدد الأشخاص أو المركبات التي مرت عبر هذه المنطقة خلال نافذة العد الحالية.\\n\\nيتم احتساب كل شخص أو مركبة مرة واحدة فقط في كل مرة يمر فيها عبر المنطقة.';
 
   @override
@@ -843,10 +806,10 @@ class LocalizationAr extends Localization {
   String get settings_screen_subscription_title => 'الاشتراك';
 
   @override
-  String get stagnanted => 'بقي';
+  String get stagnant => 'البقاء';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'يحسب عدد الأشخاص أو المركبات التي بقيت داخل هذه المنطقة لمدة لا تقل عن مدة البقاء المحددة.\\n\\nمدة البقاء الافتراضية هي 15 ثانية ويمكن تغييرها في الإعدادات.';
 
   @override
@@ -898,6 +861,27 @@ class LocalizationAr extends Localization {
 
   @override
   String get terms => 'شروط الخدمة';
+
+  @override
+  String get traffic_period_custom_day => 'يوم مخصص';
+
+  @override
+  String get traffic_period_last_month => 'متوسط الشهر الماضي';
+
+  @override
+  String get traffic_period_last_week => 'نفس اليوم من الأسبوع الماضي';
+
+  @override
+  String get traffic_period_last_year => 'متوسط العام الماضي';
+
+  @override
+  String get traffic_period_live_today => 'اليوم مباشر';
+
+  @override
+  String get traffic_period_today => 'اليوم';
+
+  @override
+  String get traffic_period_yesterday => 'أمس';
 
   @override
   String get upload_screen_attempt_time => 'وقت المحاولة:';

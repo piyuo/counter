@@ -19,25 +19,11 @@ class LocalizationHi extends Localization {
   String get about_screen_platform => 'प्लेटफॉर्म';
 
   @override
-  String get appeared => 'दिखाई दिए';
+  String get appear => 'प्रकट हुए';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'उन लोगों या वाहनों की संख्या गिनता है जिनकी पहली पहचान की गई स्थिति इस क्षेत्र के भीतर थी।\\n\\nयह समझने में मदद करता है कि ट्रैकिंग कहाँ से शुरू होती है।\\n\\n(मुख्य रूप से उन्नत उपयोगकर्ताओं के लिए)';
-
-  @override
-  String get average_occupancy => 'औसत उपस्थिति';
-
-  @override
-  String get average_occupancy_help =>
-      'वर्तमान गणना अवधि के दौरान इस क्षेत्र में लोगों या वाहनों की औसत संख्या दिखाता है।\\n\\nयह पूरे गणना समय के दौरान क्षेत्र की व्यस्तता को समझने में मदद करता है।';
-
-  @override
-  String get average_stay => 'औसत ठहराव समय';
-
-  @override
-  String get average_stay_help =>
-      'इस क्षेत्र में लोगों या वाहनों के औसत ठहराव समय को दिखाता है।\\n\\nअधिक औसत ठहराव समय यह दिखा सकता है कि ग्राहक इस क्षेत्र में अधिक समय बिता रहे हैं।';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationHi extends Localization {
       'इस विकल्प को सक्षम करें ताकि प्रत्येक ट्रैक की गई वस्तु के लिए अद्वितीय ट्रैक आईडी दिखाई दे।';
 
   @override
-  String get detection_screen_stagnant => 'रुकने का समय';
+  String get detection_screen_stagnant => 'ठहराव की समय-सीमा';
 
   @override
   String get detection_screen_stagnant_help =>
-      'किसी वस्तु को क्षेत्र में कितनी देर रुकना होगा ताकि उसे रुकना गिना जाए।';
+      'किसी वस्तु को ठहराव के रूप में गिने जाने से पहले क्षेत्र में रहने का न्यूनतम समय।';
 
   @override
   String get detection_screen_stagnant_max_label => 'विलंबित';
@@ -215,7 +201,7 @@ class LocalizationHi extends Localization {
   String get detection_screen_stagnant_min_label => 'तुरंत';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'यह तय करता है कि कोई वस्तु \\Stay\\\" गिनती में कब योगदान देती है।\\nछोटे मान\\n• तुरंत ठहराव गिनते हैं\\n• त्वरित विश्लेषण के लिए बेहतर\\nबड़े मान\\n• संक्षिप्त गुजरने वाले यातायात को अनदेखा करते हैं\\n• अधिभोग मापने के लिए बेहतर\"';
 
   @override
@@ -287,55 +273,80 @@ class LocalizationHi extends Localization {
   String get device_not_supported_screen_title => 'कैमरा नहीं मिला';
 
   @override
-  String get disappeared => 'गायब हुए';
+  String get disappear => 'गायब हुए';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'उन लोगों या वाहनों की संख्या गिनता है जिनकी अंतिम पहचानी गई स्थिति इस क्षेत्र के भीतर थी।\\n\\nयदि निर्धारित Disappear Time तक व्यक्ति या वाहन का पता नहीं चलता, तो ट्रैकिंग समाप्त हो जाती है।\\n\\n(मुख्य रूप से उन्नत उपयोगकर्ताओं के लिए)';
 
   @override
   String get dpa => 'डेटा प्रोसेसिंग एग्रीमेंट';
 
   @override
-  String get durationDaysShort => '%sदि';
+  String durationDaysShort(Object value) {
+    return '$valueदि';
+  }
 
   @override
-  String get durationHoursShort => '%sघं';
+  String durationHoursShort(Object value) {
+    return '$valueघं';
+  }
 
   @override
-  String get durationMinutesShort => '%sमि';
+  String durationMinutesShort(Object value) {
+    return '$valueमि';
+  }
 
   @override
-  String get durationSecondsShort => '%sसे';
+  String durationSecondsShort(Object value) {
+    return '$valueसे';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'प्रवेश किया';
+  String get dwell_time_max => 'सबसे लंबा समाप्त ठहराव';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'वर्तमान गणना अवधि के दौरान किसी व्यक्ति या वाहन के इस क्षेत्र में सबसे लंबे समय तक ठहरने की अवधि दिखाता है।\\n\\nअसामान्य रूप से लंबे ठहराव या रुकने की पहचान करने में उपयोगी।\\n\\nकेवल समाप्त हो चुके ठहराव शामिल हैं; जारी ठहराव शामिल नहीं हैं।';
+
+  @override
+  String get dwell_time_mean => 'समाप्त ठहराव का औसत समय';
+
+  @override
+  String get dwell_time_mean_help =>
+      'इस क्षेत्र में लोगों या वाहनों के औसत ठहराव समय को दिखाता है।\\n\\nअधिक औसत ठहराव समय यह दिखा सकता है कि ग्राहक इस क्षेत्र में अधिक समय बिता रहे हैं।\\n\\nकेवल समाप्त हो चुके ठहराव शामिल हैं; जारी ठहराव शामिल नहीं हैं।';
+
+  @override
+  String get entry => 'प्रवेश';
+
+  @override
+  String get entry_help =>
       'वर्तमान गणना अवधि के दौरान इस क्षेत्र में प्रवेश करने वाले लोगों या वाहनों की संख्या गिनता है।\\n\\nजब कोई व्यक्ति या वाहन क्षेत्र के बाहर से अंदर आता है, तो एक प्रवेश गिना जाता है।';
 
   @override
-  String get exited => 'बाहर निकले';
+  String get exit => 'निकास';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'वर्तमान गणना अवधि के दौरान इस क्षेत्र से बाहर जाने वाले लोगों या वाहनों की संख्या गिनता है।\\n\\nजब कोई व्यक्ति या वाहन क्षेत्र के अंदर से बाहर जाता है, तो एक निकास गिना जाता है।';
-
-  @override
-  String get insight_appear => 'दिखाई दिए';
-
-  @override
-  String get insight_average_completed_visit => 'पूरी हुई विज़िट का औसत';
 
   @override
   String get insight_average_short => 'औसत';
 
   @override
-  String get insight_based_on_minutes => '%m मिनट के आधार पर · बदल सकता है';
+  String insight_based_on_min(Object min) {
+    return '$min मिनट के आधार पर · बदल सकता है';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return '$sec सेकंड के आधार पर · बदल सकता है';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'हर 5 मिनट में औसत अवधि';
@@ -348,7 +359,7 @@ class LocalizationHi extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'מציג ערכים שנרשמו בכל שעה. השעה הנוכחית שטרם הושלמה מוסתרת.';
+      'हर पूरे घंटे के दर्ज मान दिखाता है। वर्तमान अधूरा घंटा नहीं दिखाया जाता।';
 
   @override
   String get insight_chart_info_description =>
@@ -371,24 +382,12 @@ class LocalizationHi extends Localization {
   String get insight_compare_with => 'से तुलना करें';
 
   @override
-  String get insight_comparison_last_week => 'पिछले सप्ताह का यही दिन';
-
-  @override
-  String get insight_comparison_monthly => 'मासिक औसत';
-
-  @override
   String insight_comparison_period(Object period) {
     return '$period की तुलना में';
   }
 
   @override
   String get insight_comparison_unavailable => 'तुलना उपलब्ध नहीं';
-
-  @override
-  String get insight_comparison_yearly => 'वार्षिक औसत';
-
-  @override
-  String get insight_comparison_yesterday => 'कल';
 
   @override
   String get insight_counting_paused => 'गिनती रुकी हुई है';
@@ -401,43 +400,13 @@ class LocalizationHi extends Localization {
   String get insight_dashboard_title => 'आवागमन विश्लेषण';
 
   @override
-  String get insight_disappear => 'गायब हुए';
-
-  @override
-  String get insight_dwell_time => 'ठहरने का समय';
-
-  @override
-  String get insight_early_estimate => 'प्रारंभिक अनुमान';
-
-  @override
-  String get insight_entry => 'प्रवेश';
-
-  @override
   String get insight_error => 'डेटा लोड नहीं हो सका';
-
-  @override
-  String get insight_estimated => 'अनुमानित';
-
-  @override
-  String get insight_exit => 'निकास';
 
   @override
   String get insight_hourly_rate => 'प्रति घंटे की दर';
 
   @override
-  String get insight_last_60_minutes => 'पिछले 60 मिनट';
-
-  @override
-  String get insight_longest_completed_visit => 'सबसे लंबी विज़िट';
-
-  @override
   String get insight_objects_unit => 'वस्तुएँ';
-
-  @override
-  String get insight_occupancy => 'मौजूद संख्या';
-
-  @override
-  String get insight_pass_by => 'गुज़रने वाले';
 
   @override
   String get insight_peak => 'अधिकतम';
@@ -456,12 +425,6 @@ class LocalizationHi extends Localization {
 
   @override
   String get insight_period_lunch => 'दोपहर का भोजन';
-
-  @override
-  String get insight_stagnant => 'ठहरना';
-
-  @override
-  String get insight_today => 'आज';
 
   @override
   String insight_today_chart(Object metric) {
@@ -551,20 +514,6 @@ class LocalizationHi extends Localization {
   String get main_screen_video_sources => 'वीडियो स्रोत';
 
   @override
-  String get maximum_occupancy => 'अधिकतम उपस्थिति';
-
-  @override
-  String get maximum_occupancy_help =>
-      'वर्तमान गणना अवधि के दौरान किसी भी समय इस क्षेत्र में मौजूद लोगों या वाहनों की अधिकतम संख्या दिखाता है।\\n\\nभीड़ या यातायात के सबसे व्यस्त समय की पहचान करने में उपयोगी।';
-
-  @override
-  String get maximum_stay => 'अधिकतम ठहराव समय';
-
-  @override
-  String get maximum_stay_help =>
-      'वर्तमान गणना अवधि के दौरान किसी व्यक्ति या वाहन के इस क्षेत्र में सबसे लंबे समय तक ठहरने की अवधि दिखाता है।\\n\\nअसामान्य रूप से लंबे ठहराव या रुकने की पहचान करने में उपयोगी।';
-
-  @override
   String get metric_events => 'इवेंट';
 
   @override
@@ -634,6 +583,20 @@ class LocalizationHi extends Localization {
   String get occupancy => 'वर्तमान संख्या';
 
   @override
+  String get occupancy_max => 'अधिकतम संख्या';
+
+  @override
+  String get occupancy_max_help =>
+      'वर्तमान गणना अवधि के दौरान किसी भी समय इस क्षेत्र में मौजूद लोगों या वाहनों की अधिकतम संख्या दिखाता है।\\n\\nभीड़ या यातायात के सबसे व्यस्त समय की पहचान करने में उपयोगी।';
+
+  @override
+  String get occupancy_mean => 'औसत संख्या';
+
+  @override
+  String get occupancy_mean_help =>
+      'वर्तमान गणना अवधि के दौरान इस क्षेत्र में लोगों या वाहनों की औसत संख्या दिखाता है।\\n\\nयह पूरे गणना समय के दौरान क्षेत्र की व्यस्तता को समझने में मदद करता है।';
+
+  @override
   String get onboarding_back_action => 'वापस';
 
   @override
@@ -673,10 +636,10 @@ class LocalizationHi extends Localization {
   String get onboarding_start_action => 'शुरू करें';
 
   @override
-  String get passed_by => 'गुज़रे';
+  String get pass_by => 'गुज़रने वाला यातायात';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'वर्तमान गणना अवधि के दौरान इस क्षेत्र से गुजरने वाले लोगों या वाहनों की संख्या गिनता है।\\n\\nप्रत्येक व्यक्ति या वाहन को क्षेत्र से प्रत्येक बार गुजरने पर केवल एक बार गिना जाता है।';
 
   @override
@@ -850,10 +813,10 @@ class LocalizationHi extends Localization {
   String get settings_screen_subscription_title => 'सदस्यता';
 
   @override
-  String get stagnanted => 'रुके';
+  String get stagnant => 'ठहराव';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'इस क्षेत्र में कम से कम निर्धारित ठहराव समय तक रुके लोगों या वाहनों की संख्या गिनता है।\\n\\nडिफ़ॉल्ट Stay Time 15 सेकंड है और इसे Settings में बदला जा सकता है।';
 
   @override
@@ -905,6 +868,27 @@ class LocalizationHi extends Localization {
 
   @override
   String get terms => 'सेवा की शर्तें';
+
+  @override
+  String get traffic_period_custom_day => 'चुना हुआ दिन';
+
+  @override
+  String get traffic_period_last_month => 'पिछले महीने का औसत';
+
+  @override
+  String get traffic_period_last_week => 'पिछले सप्ताह का यही दिन';
+
+  @override
+  String get traffic_period_last_year => 'पिछले साल का औसत';
+
+  @override
+  String get traffic_period_live_today => 'आज लाइव';
+
+  @override
+  String get traffic_period_today => 'आज';
+
+  @override
+  String get traffic_period_yesterday => 'कल';
 
   @override
   String get upload_screen_attempt_time => 'प्रयास का समय:';

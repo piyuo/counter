@@ -1,7 +1,6 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shared_l10n/shared_l10n.dart';
 
 import 'dashboard_chip.dart';
 import 'dashboard_formatter.dart';
@@ -18,8 +17,8 @@ class PrimaryMetric extends ConsumerWidget {
   });
 
   final core_domain.DashboardCardData data;
-  final core_domain.TrafficComparisonPeriod comparisonPeriod;
-  final ValueChanged<core_domain.TrafficComparisonPeriod> onComparisonChanged;
+  final core_domain.TrafficPeriod comparisonPeriod;
+  final ValueChanged<core_domain.TrafficPeriod> onComparisonChanged;
   final core_domain.ObservationStatus observationStatus;
 
   @override
@@ -44,9 +43,6 @@ class PrimaryMetric extends ConsumerWidget {
               textColor: statusColor.withValues(alpha: 0.9),
               backgroundColor: statusColor.withValues(alpha: 0.18),
             ),
-            const SizedBox(width: 6),
-            if (primaryMeasure != null && primaryMeasure.estimated)
-              DashboardChip.yellow(label: context.l.insight_early_estimate),
             Expanded(
               child: Text.rich(
                 textAlign: TextAlign.end,
@@ -83,7 +79,7 @@ class PrimaryMetric extends ConsumerWidget {
             InsightComparisonIndicator(
               current: primaryMeasure?.amount,
               baseline: data.comparisonValue,
-              comparisonLabel: formatTrafficComparisonPeriodLabel(context, comparisonPeriod),
+              comparisonLabel: formatTrafficPeriodLabel(context, comparisonPeriod),
             ),
           ],
         ),

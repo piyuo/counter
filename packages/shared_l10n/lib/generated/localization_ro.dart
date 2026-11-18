@@ -19,25 +19,11 @@ class LocalizationRo extends Localization {
   String get about_screen_platform => 'Platformă';
 
   @override
-  String get appeared => 'Au apărut';
+  String get appear => 'Apariții';
 
   @override
-  String get appeared_help =>
+  String get appear_help =>
       'Numără persoanele sau vehiculele a căror primă poziție detectată a fost în această zonă.\\n\\nUtil pentru a înțelege unde începe urmărirea.\\n\\n(În principal pentru utilizatori avansați)';
-
-  @override
-  String get average_occupancy => 'Număr mediu de persoane';
-
-  @override
-  String get average_occupancy_help =>
-      'Afișează numărul mediu de persoane sau vehicule din această zonă în timpul ferestrei curente de numărare.\\n\\nAjută la evaluarea cât de aglomerată a fost zona pe întreaga perioadă de numărare.';
-
-  @override
-  String get average_stay => 'Durata medie de staționare';
-
-  @override
-  String get average_stay_help =>
-      'Afișează timpul mediu petrecut de persoane sau vehicule în această zonă.\\n\\nO durată medie mai mare poate indica faptul că vizitatorii petrec mai mult timp în această zonă.';
 
   @override
   String get camera_test_screen_help =>
@@ -202,11 +188,11 @@ class LocalizationRo extends Localization {
       'Activați această opțiune pentru a afișa ID-uri de urmărire unice pentru fiecare obiect urmărit.';
 
   @override
-  String get detection_screen_stagnant => 'Timp de staționare';
+  String get detection_screen_stagnant => 'Prag de staționare';
 
   @override
   String get detection_screen_stagnant_help =>
-      'Cât timp trebuie să rămână un obiect în zonă pentru a fi considerat staționare.';
+      'Timpul minim în care un obiect trebuie să rămână în zonă înainte de a fi numărat ca staționare.';
 
   @override
   String get detection_screen_stagnant_max_label => 'Întârziat';
@@ -215,7 +201,7 @@ class LocalizationRo extends Localization {
   String get detection_screen_stagnant_min_label => 'Imediat';
 
   @override
-  String get detection_screen_stay_threshold =>
+  String get detection_screen_stagnant_threshold =>
       'Determină când un obiect contribuie la numărătoarea de Ședere.\\nValori mai scurte\\n• Numără șederea imediat\\n• Mai bune pentru analiză rapidă\\nValori mai lungi\\n• Ignoră traficul scurt de trecere\\n• Mai bune pentru măsurarea ocupării';
 
   @override
@@ -286,55 +272,80 @@ class LocalizationRo extends Localization {
   String get device_not_supported_screen_title => 'Camera nu a fost găsită';
 
   @override
-  String get disappeared => 'Dispăruți';
+  String get disappear => 'Dispariții';
 
   @override
-  String get disappeared_help =>
+  String get disappear_help =>
       'Numără persoanele sau vehiculele a căror ultimă poziție detectată a fost în această zonă.\\n\\nUrmărirea se încheie după timpul de dispariție configurat dacă persoana sau vehiculul nu mai este detectat.\\n\\n(În principal pentru utilizatori avansați)';
 
   @override
   String get dpa => 'Acord privind prelucrarea datelor';
 
   @override
-  String get durationDaysShort => '%sz';
+  String durationDaysShort(Object value) {
+    return '${value}z';
+  }
 
   @override
-  String get durationHoursShort => '%sh';
+  String durationHoursShort(Object value) {
+    return '${value}h';
+  }
 
   @override
-  String get durationMinutesShort => '%smin';
+  String durationMinutesShort(Object value) {
+    return '${value}min';
+  }
 
   @override
-  String get durationSecondsShort => '%ssec';
+  String durationSecondsShort(Object value) {
+    return '${value}sec';
+  }
 
   @override
-  String get durationTwoUnit => '%first %second';
+  String durationTwoUnit(Object first, Object second) {
+    return '$first $second';
+  }
 
   @override
-  String get entered => 'Au intrat';
+  String get dwell_time_max => 'Cea mai lungă ședere încheiată';
 
   @override
-  String get entered_help =>
+  String get dwell_time_max_help =>
+      'Afișează cea mai lungă perioadă în care o persoană sau un vehicul a rămas în această zonă în timpul ferestrei curente de numărare.\\n\\nUtil pentru identificarea vizitelor sau opririlor neobișnuit de lungi.\\n\\nSunt incluse doar șederile încheiate; cele în desfășurare sunt excluse.';
+
+  @override
+  String get dwell_time_mean => 'Durata medie a șederilor încheiate';
+
+  @override
+  String get dwell_time_mean_help =>
+      'Afișează timpul mediu petrecut de persoane sau vehicule în această zonă.\\n\\nO durată medie mai mare poate indica faptul că vizitatorii petrec mai mult timp în această zonă.\\n\\nSunt incluse doar șederile încheiate; cele în desfășurare sunt excluse.';
+
+  @override
+  String get entry => 'Intrări';
+
+  @override
+  String get entry_help =>
       'Numără persoanele sau vehiculele care au intrat în această zonă în timpul ferestrei curente de numărare.\\n\\nO intrare este înregistrată atunci când o persoană sau un vehicul se deplasează din exterior în interiorul zonei.';
 
   @override
-  String get exited => 'Au ieșit';
+  String get exit => 'Ieșiri';
 
   @override
-  String get exited_help =>
+  String get exit_help =>
       'Numără persoanele sau vehiculele care au ieșit din această zonă în timpul ferestrei curente de numărare.\\n\\nO ieșire este înregistrată atunci când o persoană sau un vehicul se deplasează din interiorul zonei spre exterior.';
-
-  @override
-  String get insight_appear => 'Au apărut';
-
-  @override
-  String get insight_average_completed_visit => 'Medie vizite încheiate';
 
   @override
   String get insight_average_short => 'med.';
 
   @override
-  String get insight_based_on_minutes => 'Bazat pe %m min · Poate varia';
+  String insight_based_on_min(Object min) {
+    return 'Pe baza a $min min · Poate varia';
+  }
+
+  @override
+  String insight_based_on_sec(Object sec) {
+    return 'Pe baza a $sec sec · Poate varia';
+  }
 
   @override
   String get insight_chart_dwell_unit => 'Durată medie la 5 min';
@@ -347,7 +358,7 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_chart_hourly_info =>
-      'Pokazuje zarejestrowane wartości dla każdej godziny. Bieżąca niepełna godzina jest ukryta.';
+      'Afișează valorile înregistrate pentru fiecare oră completă. Ora curentă incompletă nu este afișată.';
 
   @override
   String get insight_chart_info_description =>
@@ -370,24 +381,12 @@ class LocalizationRo extends Localization {
   String get insight_compare_with => 'Compară cu';
 
   @override
-  String get insight_comparison_last_week => 'Aceeași zi săptămâna trecută';
-
-  @override
-  String get insight_comparison_monthly => 'Media lunară';
-
-  @override
   String insight_comparison_period(Object period) {
     return 'față de $period';
   }
 
   @override
   String get insight_comparison_unavailable => 'Comparație indisponibilă';
-
-  @override
-  String get insight_comparison_yearly => 'Media anuală';
-
-  @override
-  String get insight_comparison_yesterday => 'Ieri';
 
   @override
   String get insight_counting_paused => 'Numărare întreruptă temporar';
@@ -397,46 +396,16 @@ class LocalizationRo extends Localization {
       'Numărare întreruptă · Ultima valoare';
 
   @override
-  String get insight_dashboard_title => 'Analiza traficului';
-
-  @override
-  String get insight_disappear => 'Au dispărut';
-
-  @override
-  String get insight_dwell_time => 'Durata șederii';
-
-  @override
-  String get insight_early_estimate => 'Estimativa inicial';
-
-  @override
-  String get insight_entry => 'Intrări';
+  String get insight_dashboard_title => 'Analiza fluxului';
 
   @override
   String get insight_error => 'Nu se pot încărca datele';
 
   @override
-  String get insight_estimated => 'Estimat';
-
-  @override
-  String get insight_exit => 'Ieșiri';
-
-  @override
   String get insight_hourly_rate => 'Rată orară';
 
   @override
-  String get insight_last_60_minutes => 'Ultimele 60 de minute';
-
-  @override
-  String get insight_longest_completed_visit => 'Cea mai lungă vizită';
-
-  @override
   String get insight_objects_unit => 'obiecte';
-
-  @override
-  String get insight_occupancy => 'Ocupare';
-
-  @override
-  String get insight_pass_by => 'Trafic de trecere';
 
   @override
   String get insight_peak => 'Maxim';
@@ -455,12 +424,6 @@ class LocalizationRo extends Localization {
 
   @override
   String get insight_period_lunch => 'Prânz';
-
-  @override
-  String get insight_stagnant => 'Staționare';
-
-  @override
-  String get insight_today => 'Astăzi';
 
   @override
   String insight_today_chart(Object metric) {
@@ -552,20 +515,6 @@ class LocalizationRo extends Localization {
   String get main_screen_video_sources => 'Surse video';
 
   @override
-  String get maximum_occupancy => 'Număr maxim de persoane';
-
-  @override
-  String get maximum_occupancy_help =>
-      'Afișează cel mai mare număr de persoane sau vehicule aflate simultan în această zonă în timpul ferestrei curente de numărare.\\n\\nUtil pentru identificarea perioadelor de vârf ale aglomerației sau traficului.';
-
-  @override
-  String get maximum_stay => 'Durata maximă de staționare';
-
-  @override
-  String get maximum_stay_help =>
-      'Afișează cea mai lungă perioadă în care o persoană sau un vehicul a rămas în această zonă în timpul ferestrei curente de numărare.\\n\\nUtil pentru identificarea vizitelor sau opririlor neobișnuit de lungi.';
-
-  @override
   String get metric_events => 'Evenimente';
 
   @override
@@ -636,6 +585,20 @@ class LocalizationRo extends Localization {
   String get occupancy => 'Număr curent';
 
   @override
+  String get occupancy_max => 'Număr maxim';
+
+  @override
+  String get occupancy_max_help =>
+      'Afișează cel mai mare număr de persoane sau vehicule aflate simultan în această zonă în timpul ferestrei curente de numărare.\\n\\nUtil pentru identificarea perioadelor de vârf ale aglomerației sau traficului.';
+
+  @override
+  String get occupancy_mean => 'Număr mediu';
+
+  @override
+  String get occupancy_mean_help =>
+      'Afișează numărul mediu de persoane sau vehicule din această zonă în timpul ferestrei curente de numărare.\\n\\nAjută la evaluarea cât de aglomerată a fost zona pe întreaga perioadă de numărare.';
+
+  @override
   String get onboarding_back_action => 'Înapoi';
 
   @override
@@ -675,10 +638,10 @@ class LocalizationRo extends Localization {
   String get onboarding_start_action => 'Pornește';
 
   @override
-  String get passed_by => 'Trecuți';
+  String get pass_by => 'Trafic de trecere';
 
   @override
-  String get passed_by_help =>
+  String get pass_by_help =>
       'Numără persoanele sau vehiculele care au trecut prin această zonă în timpul ferestrei curente de numărare.\\n\\nFiecare persoană sau vehicul este numărat o singură dată pentru fiecare trecere prin zonă.';
 
   @override
@@ -858,10 +821,10 @@ class LocalizationRo extends Localization {
   String get settings_screen_subscription_title => 'Abonament';
 
   @override
-  String get stagnanted => 'Rămași';
+  String get stagnant => 'Staționare';
 
   @override
-  String get stagnanted_help =>
+  String get stagnant_help =>
       'Numără persoanele sau vehiculele care au rămas în această zonă cel puțin timpul de staționare configurat.\\n\\nTimpul implicit de staționare este de 15 secunde și poate fi modificat din Setări.';
 
   @override
@@ -913,6 +876,27 @@ class LocalizationRo extends Localization {
 
   @override
   String get terms => 'Termeni de utilizare';
+
+  @override
+  String get traffic_period_custom_day => 'Zi personalizată';
+
+  @override
+  String get traffic_period_last_month => 'Media lunii trecute';
+
+  @override
+  String get traffic_period_last_week => 'Aceeași zi săptămâna trecută';
+
+  @override
+  String get traffic_period_last_year => 'Media anului trecut';
+
+  @override
+  String get traffic_period_live_today => 'Astăzi în timp real';
+
+  @override
+  String get traffic_period_today => 'Astăzi';
+
+  @override
+  String get traffic_period_yesterday => 'Ieri';
 
   @override
   String get upload_screen_attempt_time => 'Ora încercării:';

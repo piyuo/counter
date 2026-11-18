@@ -64,7 +64,7 @@ InsightState _dashboard({
   ObservationSeries? comparisonSeries,
   Observation? comparisonPastHour,
   String businessDate = '2026-10-29',
-  TrafficComparisonPeriod comparisonPeriod = TrafficComparisonPeriod.yesterday,
+  TrafficPeriod comparisonPeriod = TrafficPeriod.yesterday,
 }) => InsightState(
   businessDate: businessDate,
   comparisonPeriod: comparisonPeriod,
@@ -133,7 +133,7 @@ double? _referenceChartValue(List<Observation> observations, int startMinute, in
       final sum = sampled.fold<int>(0, (total, activity) => total + activity.occupancySum);
       return sum / count;
     }(),
-    DashboardMetric.occupancyPeak => () {
+    DashboardMetric.occupancyMax => () {
       final sampled = activities.where((activity) => activity.occupancySampleCount > 0).toList();
       if (sampled.isEmpty) return null;
       return sampled.map((activity) => activity.occupancyMax).reduce(max).toDouble();
@@ -184,7 +184,7 @@ void main() {
   });
 
   group('event rates', () {
-    test('uses the full hour count as an actual hourly rate', () {
+    test('uses the full hour count as the hourly rate', () {
       final dashboard = _dashboard(
         pastHour: _observation(12, 0, coveredSeconds: 3600, areas: [_activity(kGlobalAreaId, passBy: 84)]),
       );
@@ -198,10 +198,10 @@ void main() {
 
       final passBy = result.single.card(DashboardMetric.passBy).primary!;
       expect(passBy.amount, 84);
-      expect(passBy.estimated, isFalse);
+      expect(passBy.coverage, 1);
     });
 
-    test('estimates partial hourly coverage and keeps missing data unavailable', () {
+    test('normalizes partial hourly coverage and keeps missing data unavailable', () {
       final dashboard = _dashboard(
         pastHour: _observation(12, 0, coveredSeconds: 1800, areas: [_activity(kGlobalAreaId, passBy: 42)]),
       );
@@ -215,10 +215,10 @@ void main() {
 
       final passBy = result.single.card(DashboardMetric.passBy).primary!;
       expect(passBy.amount, 84);
-      expect(passBy.estimated, isTrue);
+      expect(passBy.coverage, 0.5);
       expect(passBy.coveredSeconds, 1800);
       expect(result.single.card(DashboardMetric.occupancyMean).primary, isNull);
-      expect(result.single.card(DashboardMetric.occupancyPeak).primary, isNull);
+      expect(result.single.card(DashboardMetric.occupancyMax).primary, isNull);
     });
 
     test('keeps partial-hour chart counts separate from normalized live rates', () {
@@ -234,34 +234,28 @@ void main() {
 
       expect(chartPoint.todayValue, 300);
       expect(chartPoint.todayCoveredSeconds, 1800);
-      expect(chartPoint.todayEstimated, isTrue);
+      expect(chartPoint.todayCoverage, 0.5);
       expect(passBy.primary!.amount, 600);
-      expect(passBy.primary!.estimated, isTrue);
+      expect(passBy.primary!.coverage, 0.5);
     });
 
-    test('applies the coverage tolerance at its boundary', () {
-      bool isEstimated(int coveredSeconds) => DashboardCache()
-          .build(
-            insightState: _dashboard(
-              pastHour: _observation(
-                12,
-                0,
-                coveredSeconds: coveredSeconds,
-                areas: [_activity(kGlobalAreaId, passBy: 42)],
-              ),
+    test('reports precise coverage near a full hour', () {
+      for (final coveredSeconds in [3595, 3420, 3419]) {
+        final result = DashboardCache().build(
+          insightState: _dashboard(
+            pastHour: _observation(
+              12,
+              0,
+              coveredSeconds: coveredSeconds,
+              areas: [_activity(kGlobalAreaId, passBy: 42)],
             ),
-            customAreas: const [],
-            businessPeriods: const [],
-            now: DateTime(2026, 10, 29, 12),
-          )
-          .single
-          .card(DashboardMetric.passBy)
-          .primary!
-          .estimated;
-
-      expect(isEstimated(3595), isFalse);
-      expect(isEstimated(3420), isFalse);
-      expect(isEstimated(3419), isTrue);
+          ),
+          customAreas: const [],
+          businessPeriods: const [],
+          now: DateTime(2026, 10, 29, 12),
+        );
+        expect(result.single.card(DashboardMetric.passBy).primary!.coverage, coveredSeconds / 3600);
+      }
     });
 
     test('normalizes completed periods by their duration and ongoing periods by elapsed time', () {
@@ -286,9 +280,9 @@ void main() {
       final passBy = result.single.card(DashboardMetric.passBy);
 
       expect(passBy.periods[0].primary!.amount, closeTo(45.5, 0.001));
-      expect(passBy.periods[0].primary!.estimated, isFalse);
+      expect(passBy.periods[0].primary!.coverage, 1);
       expect(passBy.periods[1].primary!.amount, 12);
-      expect(passBy.periods[1].primary!.estimated, isFalse);
+      expect(passBy.periods[1].primary!.coverage, 1);
     });
   });
 
@@ -333,7 +327,7 @@ void main() {
         now: DateTime(2026, 10, 29, 10, 10),
       );
       final occupancyMean = result.first.card(DashboardMetric.occupancyMean);
-      final occupancyPeak = result.first.card(DashboardMetric.occupancyPeak);
+      final occupancyPeak = result.first.card(DashboardMetric.occupancyMax);
       final dwellMean = result.first.card(DashboardMetric.dwellTimeMean);
       final dwellMax = result.first.card(DashboardMetric.dwellTimeMax);
 
@@ -395,7 +389,7 @@ void main() {
       );
 
       expect(result.first.card(DashboardMetric.occupancyMean).primary!.amount, 0);
-      expect(result.first.card(DashboardMetric.occupancyPeak).primary!.amount, 0);
+      expect(result.first.card(DashboardMetric.occupancyMax).primary!.amount, 0);
       expect(result.first.card(DashboardMetric.dwellTimeMean).primary, isNull);
       expect(result.first.card(DashboardMetric.dwellTimeMax).primary, isNull);
     });
@@ -417,7 +411,7 @@ void main() {
     expect(card.chartPoints, hasLength(24));
     expect(_pointAt(card, 540).todayValue, 60);
     expect(_pointAt(card, 540).todayCoveredSeconds, 3600);
-    expect(_pointAt(card, 540).todayEstimated, isFalse);
+    expect(_pointAt(card, 540).todayCoverage, 1);
     expect(_pointAt(card, 600).todayValue, isNull);
   });
 
@@ -436,7 +430,7 @@ void main() {
 
     expect(_pointAt(card, 540).todayValue, 7);
     expect(_pointAt(card, 540).todayCoveredSeconds, 300);
-    expect(_pointAt(card, 540).todayEstimated, isTrue);
+    expect(_pointAt(card, 540).todayCoverage, 300 / 3600);
   });
 
   test('distinguishes observed zero from unavailable hours', () {
@@ -481,7 +475,7 @@ void main() {
   });
 
   test('aggregates monthly and yearly typical profiles by clock hour', () {
-    for (final period in [TrafficComparisonPeriod.lastMonthAverage, TrafficComparisonPeriod.lastYearAverage]) {
+    for (final period in [TrafficPeriod.lastMonthAverage, TrafficPeriod.lastYearAverage]) {
       final result = DashboardCache().build(
         insightState: _dashboard(
           comparisonPeriod: period,
@@ -611,12 +605,12 @@ void main() {
     );
 
     expect(_pointAt(result.first.card(DashboardMetric.occupancyMean), 540).todayValue, 4);
-    expect(_pointAt(result.first.card(DashboardMetric.occupancyPeak), 540).todayValue, 7);
+    expect(_pointAt(result.first.card(DashboardMetric.occupancyMax), 540).todayValue, 7);
     expect(_pointAt(result.first.card(DashboardMetric.dwellTimeMean), 540).todayValue, closeTo(130 / 60, 1e-9));
     expect(_pointAt(result.first.card(DashboardMetric.dwellTimeMax), 540).todayValue, 500 / 60);
   });
 
-  test('hourly chart coverage excludes other areas and preserves the estimation boundary', () {
+  test('hourly chart coverage excludes observations from other areas', () {
     for (final coveredSeconds in [0, 3419, 3420, 3600]) {
       final result = DashboardCache().build(
         insightState: _dashboard(
@@ -633,7 +627,7 @@ void main() {
 
       expect(point.todayValue, coveredSeconds == 0 ? isNull : 7);
       expect(point.todayCoveredSeconds, coveredSeconds);
-      expect(point.todayEstimated, coveredSeconds > 0 && coveredSeconds < 3420);
+      expect(point.todayCoverage, coveredSeconds / 3600);
     }
   });
 
@@ -685,14 +679,14 @@ void main() {
 
     for (final (metric, expected) in [
       (DashboardMetric.occupancyMean, 36 / 5),
-      (DashboardMetric.occupancyPeak, 12.0),
+      (DashboardMetric.occupancyMax, 12.0),
       (DashboardMetric.dwellTimeMean, 260 / 60),
       (DashboardMetric.dwellTimeMax, 500 / 60),
     ]) {
       final point = _pointAt(result.first.card(metric), 540);
       expect(point.todayValue, closeTo(expected, 1e-9));
       expect(point.todayCoveredSeconds, 900);
-      expect(point.todayEstimated, isFalse);
+      expect(point.todayCoverage, 900 / 3600);
     }
   });
 
@@ -1026,7 +1020,7 @@ void main() {
           todaySeries: todaySeries,
           comparisonSeries: nextComparison,
           comparisonPastHour: _observation(10, 0, coveredSeconds: 3600, areas: [_activity(9, passBy: 2)]),
-          comparisonPeriod: TrafficComparisonPeriod.sameDayLastWeek,
+          comparisonPeriod: TrafficPeriod.sameDayLastWeek,
         ),
         customAreas: const [InterestArea(id: 9, name: 'Shop')],
         now: DateTime(2026, 10, 29, 10),
@@ -1037,7 +1031,7 @@ void main() {
           todaySeries: todaySeries,
           comparisonSeries: nextComparison,
           comparisonPastHour: _observation(10, 0, coveredSeconds: 3600, areas: [_activity(9, passBy: 3)]),
-          comparisonPeriod: TrafficComparisonPeriod.sameDayLastWeek,
+          comparisonPeriod: TrafficPeriod.sameDayLastWeek,
         ),
         customAreas: const [InterestArea(id: 9, name: 'Shop')],
         now: DateTime(2026, 10, 29, 10),

@@ -122,14 +122,14 @@ class OpenPayloadsRecent extends NavigationEvent {
 }
 
 /// Request to navigate to five-minute observations for one dashboard metric.
-class OpenObservationDetails extends NavigationEvent {
-  const OpenObservationDetails({required this.areaId, required this.metric});
+class OpenMetricDetail extends NavigationEvent {
+  const OpenMetricDetail({required this.areaId, required this.metric});
 
   final int areaId;
   final DashboardMetric metric;
 
   @override
-  String? get path => '/observations/$areaId/${metric.name}';
+  String? get path => '/metric-detail/$areaId/${metric.name}';
 }
 
 /// Request to navigate to one recent payload delivery-hour group.

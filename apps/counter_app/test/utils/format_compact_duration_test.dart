@@ -1,33 +1,23 @@
 import 'package:counter_app/control_panel/utils/format_compact_duration.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
-// Fake implementation of Localization for testing.
-// Uses Fake instead of Mock to avoid noSuchMethod complications with getters.
-class _FakeLocalization extends Fake implements Localization {
-  @override
-  String durationSecondsShort = '%ss';
-
-  @override
-  String durationMinutesShort = '%sm';
-
-  @override
-  String durationHoursShort = '%sh';
-
-  @override
-  String durationDaysShort = '%sd';
-
-  @override
-  String durationTwoUnit = '%first %second';
+void testWithLocalization(String description, void Function(BuildContext context) body) {
+  testWidgets(description, (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        localizationsDelegates: Localization.localizationsDelegates,
+        supportedLocales: Localization.supportedLocales,
+        home: const SizedBox(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    body(tester.element(find.byType(SizedBox)));
+  });
 }
 
 void main() {
-  late _FakeLocalization l10n;
-
-  setUp(() {
-    l10n = _FakeLocalization();
-  });
-
   group('breakdownDuration', () {
     test('splits into days/hours/minutes/seconds', () {
       expect(breakdownDuration(90061), const DurationParts(1, 1, 1, 1));
@@ -39,75 +29,79 @@ void main() {
   });
 
   group('formatCompactDuration - seconds only (<60s)', () {
-    test('accepts whole seconds only', () {
-      final String Function(Localization, int) format = formatCompactDuration;
-      expect(format(l10n, 45), '45s');
+    testWithLocalization('accepts whole seconds only', (context) {
+      expect(formatCompactDuration(context, 45), '45s');
     });
 
-    test('0 seconds', () => expect(formatCompactDuration(l10n, 0), '0s'));
-    test('30 seconds', () => expect(formatCompactDuration(l10n, 30), '30s'));
-    test('59 seconds', () => expect(formatCompactDuration(l10n, 59), '59s'));
+    testWithLocalization('0 seconds', (context) => expect(formatCompactDuration(context, 0), '0s'));
+    testWithLocalization('30 seconds', (context) => expect(formatCompactDuration(context, 30), '30s'));
+    testWithLocalization('59 seconds', (context) => expect(formatCompactDuration(context, 59), '59s'));
 
-    test('whole seconds do not show decimal places', () {
-      expect(formatCompactDuration(l10n, 5), '5s');
+    testWithLocalization('whole seconds do not show decimal places', (context) {
+      expect(formatCompactDuration(context, 5), '5s');
+    });
+  });
+
+  group('formatCompactSeconds', () {
+    testWithLocalization('formats seconds only with localized digit grouping and unit text', (context) {
+      expect(formatCompactSeconds(context, 5), '5s');
+      expect(formatCompactSeconds(context, 1234), '1,234s');
     });
   });
 
   group('formatCompactDuration - minutes/seconds (<1h)', () {
-    test('exactly 1 minute collapses to single unit', () {
-      expect(formatCompactDuration(l10n, 60), '1m');
+    testWithLocalization('exactly 1 minute collapses to single unit', (context) {
+      expect(formatCompactDuration(context, 60), '1m');
     });
-    test('1 minute 30 seconds', () => expect(formatCompactDuration(l10n, 90), '1m 30s'));
-    test('5 minutes 45 seconds', () => expect(formatCompactDuration(l10n, 345), '5m 45s'));
-    test('59 minutes 59 seconds', () => expect(formatCompactDuration(l10n, 3599), '59m 59s'));
-    test('2 minutes 0 seconds collapses', () => expect(formatCompactDuration(l10n, 120), '2m'));
+    testWithLocalization('1 minute 30 seconds', (context) => expect(formatCompactDuration(context, 90), '1m 30s'));
+    testWithLocalization('5 minutes 45 seconds', (context) => expect(formatCompactDuration(context, 345), '5m 45s'));
+    testWithLocalization('59 minutes 59 seconds', (context) => expect(formatCompactDuration(context, 3599), '59m 59s'));
+    testWithLocalization(
+      '2 minutes 0 seconds collapses',
+      (context) => expect(formatCompactDuration(context, 120), '2m'),
+    );
   });
 
   group('formatCompactDuration - hours/minutes (<24h)', () {
-    test('exactly 1 hour collapses to single unit', () {
-      expect(formatCompactDuration(l10n, 3600), '1h');
+    testWithLocalization('exactly 1 hour collapses to single unit', (context) {
+      expect(formatCompactDuration(context, 3600), '1h');
     });
-    test('1 hour 30 minutes', () => expect(formatCompactDuration(l10n, 5400), '1h 30m'));
-    test('2 hours 15 minutes', () => expect(formatCompactDuration(l10n, 8100), '2h 15m'));
-    test('2 hours 0 minutes collapses', () => expect(formatCompactDuration(l10n, 7200), '2h'));
-    test('23 hours 59 minutes', () => expect(formatCompactDuration(l10n, 86340), '23h 59m'));
+    testWithLocalization('1 hour 30 minutes', (context) => expect(formatCompactDuration(context, 5400), '1h 30m'));
+    testWithLocalization('2 hours 15 minutes', (context) => expect(formatCompactDuration(context, 8100), '2h 15m'));
+    testWithLocalization(
+      '2 hours 0 minutes collapses',
+      (context) => expect(formatCompactDuration(context, 7200), '2h'),
+    );
+    testWithLocalization('23 hours 59 minutes', (context) => expect(formatCompactDuration(context, 86340), '23h 59m'));
   });
 
   group('formatCompactDuration - days/hours (>=24h)', () {
-    test('exactly 1 day collapses to single unit', () {
-      expect(formatCompactDuration(l10n, 86400), '1d');
+    testWithLocalization('exactly 1 day collapses to single unit', (context) {
+      expect(formatCompactDuration(context, 86400), '1d');
     });
-    test('1 day 12 hours', () => expect(formatCompactDuration(l10n, 129600), '1d 12h'));
-    test('5 days 3 hours', () => expect(formatCompactDuration(l10n, 442800), '5d 3h'));
-    test('10 days 0 hours collapses', () => expect(formatCompactDuration(l10n, 864000), '10d'));
-    test('365 days exactly', () => expect(formatCompactDuration(l10n, 31536000), '365d'));
+    testWithLocalization('1 day 12 hours', (context) => expect(formatCompactDuration(context, 129600), '1d 12h'));
+    testWithLocalization('5 days 3 hours', (context) => expect(formatCompactDuration(context, 442800), '5d 3h'));
+    testWithLocalization(
+      '10 days 0 hours collapses',
+      (context) => expect(formatCompactDuration(context, 864000), '10d'),
+    );
+    testWithLocalization('365 days exactly', (context) => expect(formatCompactDuration(context, 31536000), '365d'));
 
-    test('a value that lands mid-tier with a sub-hour remainder still collapses', () {
+    testWithLocalization('a value that lands mid-tier with a sub-hour remainder still collapses', (context) {
       // 5 days + 3 minutes -- remainder is under an hour, so hours == 0.
-      expect(formatCompactDuration(l10n, 432180), '5d');
+      expect(formatCompactDuration(context, 432180), '5d');
     });
   });
 
   group('formatCompactDuration - large duration sanity check', () {
-    test('11 days 13 hours 46 minutes 40 seconds -> shows days/hours', () {
-      expect(formatCompactDuration(l10n, 1000000), '11d 13h');
+    testWithLocalization('11 days 13 hours 46 minutes 40 seconds -> shows days/hours', (context) {
+      expect(formatCompactDuration(context, 1000000), '11d 13h');
     });
   });
 
-  group('formatCompactDuration - localization drives formatting, not Dart code', () {
-    test('only substitutes the %s token, leaves surrounding text untouched', () {
-      l10n.durationSecondsShort = 'sec:%s!';
-      expect(formatCompactDuration(l10n, 45), 'sec:45!');
-    });
-
-    test('durationTwoUnit template controls both spacing and ordering', () {
-      l10n.durationTwoUnit = '%second-%first';
-      expect(formatCompactDuration(l10n, 90), '30s-1m');
-    });
-
-    test('durationTwoUnit with no separator (e.g. CJK-style concatenation)', () {
-      l10n.durationTwoUnit = '%first%second';
-      expect(formatCompactDuration(l10n, 5400), '1h30m');
+  group('formatCompactDuration - localized interpolation', () {
+    testWithLocalization('passes units through localization methods', (context) {
+      expect(formatCompactDuration(context, 90), '1m 30s');
     });
   });
 }
