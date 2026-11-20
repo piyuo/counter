@@ -79,16 +79,33 @@ class ObservationTile extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(52, 0, 16, 0),
             child: Row(
               children: [
+                Text(
+                  '${timeFormat.format(observation.dateTime)} - ${timeFormat.format(observation.dateTime.add(const Duration(minutes: 5)))}',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+                ),
+
+                const SizedBox(width: 12),
+                if (!observation.isMissing) ...[
+                  SizedBox(
+                    width: 58,
+                    child: Text(
+                      '${formatCompactSeconds(context, observation.coveredSeconds)}',
+                      textAlign: TextAlign.right,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                ],
                 Expanded(
                   child: Text(
-                    '${timeFormat.format(observation.dateTime)} - ${timeFormat.format(observation.dateTime.add(const Duration(minutes: 5)))}',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyMedium?.copyWith(fontFeatures: const [FontFeature.tabularFigures()]),
+                    textAlign: TextAlign.right,
+                    formatDashboardMetricValue(context, metric, getDashboardMetricValue(observation, areaId, metric)),
                   ),
                 ),
-                const SizedBox(width: 12),
-                Text(formatDashboardMetricValue(context, metric, getDashboardMetricValue(observation, areaId, metric))),
               ],
             ),
           ),

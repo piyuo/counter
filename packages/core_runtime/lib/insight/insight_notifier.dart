@@ -73,7 +73,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
 
     final recentHourObservations = _recentHourSeries(_nowProvider());
     final recentHourTotal = _totalOf(recentHourObservations);
-    state = state.copyWith(recentHourTotal: recentHourTotal, recentHourObservations: recentHourObservations);
+    final filledRecentHour = fillRecentHour(recentHourObservations, now);
+    state = state.copyWith(recentHourTotal: recentHourTotal, recentHourObservations: filledRecentHour);
   }
 
   @override
@@ -151,7 +152,6 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     }
 
     if (!_isCurrentRefresh(refreshGeneration, period, businessDate)) return;
-
     _todaySeries = todaySummary?.fiveMinuteObservations;
     final recentHourObservations = _recentHourSeries(_nowProvider());
     final recentHourTotal = _totalOf(recentHourObservations);
@@ -159,7 +159,7 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     final dashboard = core_domain.InsightState(
       businessDate: _formatBusinessDate(now),
       comparisonPeriod: period,
-      todaySeries: todaySummary?.fiveMinuteObservations,
+      todaySeries: _todaySeries,
       recentHourTotal: recentHourTotal,
       recentHourObservations: recentHourObservations,
       comparisonRecentHourTotal: comparisonRecentHourTotal,
@@ -275,7 +275,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     final live = _getCurrentLiveObservation(now);
     if (today == null && live == null) return null;
 
-    return _overlayLive(today?.fiveMinuteObservations, live);
+    final overlaid = _overlayLive(today?.fiveMinuteObservations, live);
+    return overlaid;
   }
 
   /// Returns today's saved observations without adding the live observation.

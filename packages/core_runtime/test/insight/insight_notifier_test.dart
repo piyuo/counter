@@ -6,6 +6,7 @@ import 'dart:async';
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart';
 import 'package:core_runtime/insight/insight_notifier.dart';
+import 'package:core_runtime/insight/observation_series_helpers.dart';
 import 'package:core_runtime/observation/observation_notifier.dart'
     as observation;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -206,7 +207,10 @@ void main() {
         expect(dashboard, notifier.state);
         expect(dashboard.businessDate, '2026-10-26');
         expect(dashboard.comparisonPeriod, expectation.period);
-        expect(dashboard.todaySeries, todaySummary.fiveMinuteObservations);
+        expect(
+          dashboard.todaySeries,
+          fillSeriesHours(todaySummary.fiveMinuteObservations, now),
+        );
         expect(dashboard.recentHourTotal?.frameCount, 11);
         expect(dashboard.comparisonSeries, expectation.expectedSeries);
         expect(dashboard.comparisonTotal, expectation.expectedTotal);
@@ -1191,7 +1195,10 @@ void main() {
       analytics.pendingDaySummaries.remove(dateKey);
       pendingToday.complete(initialSummary);
       await refreshDuringSave;
-      expect(notifier.state.todaySeries, initialSummary.fiveMinuteObservations);
+      expect(
+        notifier.state.todaySeries,
+        fillSeriesHours(initialSummary.fiveMinuteObservations, now),
+      );
 
       await notifier.refresh();
 

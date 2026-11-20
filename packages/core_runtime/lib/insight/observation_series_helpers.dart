@@ -71,29 +71,8 @@ ObservationSeries fillSlots(ObservationSeries series, DateTime date, int startSl
     throw ArgumentError('startSlot must not be after endSlot');
   }
 
-  final observationsBySlot = <int, core_domain.Observation>{};
-  for (final observation in series) {
-    if (observation.year != date.year || observation.month != date.month || observation.day != date.day) {
-      throw ArgumentError.value(
-        '${observation.year}-${observation.month}-${observation.day}',
-        'series',
-        'Observation date must match requested business date ${date.year}-${date.month}-${date.day}',
-      );
-    }
-    observationsBySlot.putIfAbsent(observation.slotKey, () => observation);
-  }
-
-  return ObservationSeries.fromObservations([
-    for (var slot = startSlot; slot < endSlot; slot += 5)
-      observationsBySlot[slot] ??
-          core_domain.Observation.missing(
-            year: date.year,
-            month: date.month,
-            day: date.day,
-            hour: slot ~/ 60,
-            minute: slot % 60,
-          ),
-  ]);
+  final observationsBySlot = _observationsBySlot(series, date);
+  return ObservationSeries.fromObservations(_fillSlotObservations(observationsBySlot, date, startSlot, endSlot));
 }
 
 /// Returns one observation for every completed 5-minute slot of [now]'s day,
@@ -115,26 +94,41 @@ ObservationSeries fillToday(ObservationSeries series, DateTime now) {
   return fillSlots(series, now, 0, endSlot);
 }
 
-/// Returns the completed five-minute observations in the clock hour containing
-/// [now], in time order. Slots with no observation are filled with
-/// [core_domain.Observation.missing].
+/// Returns the completed five-minute observations in [hour] on [now]'s day,
+/// in time order. Slots with no observation are filled with
+/// [core_domain.Observation.missing]. If [hour] is omitted, [now]'s hour is
+/// used.
 ///
-/// Only [now]'s year, month, day and hour are used to identify the hour.
-/// The current and future slots are not returned.
+/// A past hour contains all 12 slots. The current hour ends before [now]'s
+/// current slot, and future hours are empty.
 ///
 /// [series] should contain observations from a single day, because slots
 /// are matched by time of day only.
-ObservationSeries fillHour(ObservationSeries series, DateTime now) {
-  final startSlot = now.hour * 60;
-  return fillSlots(series, now, startSlot, _currentSlotStart(now));
+ObservationSeries fillHour(ObservationSeries series, DateTime now, {int? hour}) {
+  final targetHour = hour ?? now.hour;
+  if (targetHour < 0 || targetHour >= 24) {
+    throw RangeError.range(targetHour, 0, 23, 'hour');
+  }
+
+  final startSlot = targetHour * 60;
+  final endSlot = targetHour < now.hour
+      ? startSlot + 60
+      : targetHour == now.hour
+      ? _currentSlotStart(now)
+      : startSlot;
+  final filled = fillSlots(series, now, startSlot, endSlot);
+  return filled;
 }
 
-/// Returns up to 60 minutes of completed observations ending before [now]'s
-/// current 5-minute slot. The range is limited to the current business day.
-ObservationSeries fillRecentHour(ObservationSeries series, DateTime now) {
-  final windowEnd = _currentSlotStart(now);
-  final windowStart = windowEnd > 60 ? windowEnd - 60 : 0;
-  return fillSlots(series, now, windowStart, windowEnd);
+/// Fills the completed slots of each past or current hour that has at least
+/// one observation in [series]. Hours with no observations are left out.
+///
+/// The current and future slots are not returned, even if they exist in
+/// [series].
+ObservationSeries fillSeriesHours(ObservationSeries series, DateTime now) {
+  final hours = series.map((observation) => observation.hour).toSet().where((hour) => hour <= now.hour).toList()
+    ..sort();
+  return ObservationSeries.fromObservations([for (final hour in hours) ...fillHour(series, now, hour: hour)]);
 }
 
 int _currentSlotStart(DateTime now) => now.hour * 60 + (now.minute ~/ 5) * 5;
@@ -147,6 +141,58 @@ void _validateFiveMinuteBoundary(int minute, String name) {
     throw ArgumentError.value(minute, name, 'must be a multiple of 5');
   }
 }
+
+/// Returns up to 12 observations from the current business day: completed
+/// slots ending before [now]'s current 5-minute slot, plus that slot if it
+/// exists in [series]. Missing completed slots are filled; the current and
+/// future slots are never filled.
+ObservationSeries fillRecentHour(ObservationSeries series, DateTime now) {
+  final windowEnd = _currentSlotStart(now);
+  final observationsBySlot = _observationsBySlot(series, now);
+  var windowStart = windowEnd > 60 ? windowEnd - 60 : 0;
+  final currentObservation = observationsBySlot[windowEnd];
+  if (currentObservation != null && windowEnd - windowStart > 55) {
+    windowStart += 5;
+  }
+
+  final observations = _fillSlotObservations(observationsBySlot, now, windowStart, windowEnd);
+  if (currentObservation != null) {
+    observations.add(currentObservation);
+  }
+  return ObservationSeries.fromObservations(observations);
+}
+
+Map<int, core_domain.Observation> _observationsBySlot(ObservationSeries series, DateTime date) {
+  final observationsBySlot = <int, core_domain.Observation>{};
+  for (final observation in series) {
+    if (observation.year != date.year || observation.month != date.month || observation.day != date.day) {
+      throw ArgumentError.value(
+        '${observation.year}-${observation.month}-${observation.day}',
+        'series',
+        'Observation date must match requested business date ${date.year}-${date.month}-${date.day}',
+      );
+    }
+    observationsBySlot.putIfAbsent(observation.slotKey, () => observation);
+  }
+  return observationsBySlot;
+}
+
+List<core_domain.Observation> _fillSlotObservations(
+  Map<int, core_domain.Observation> observationsBySlot,
+  DateTime date,
+  int startSlot,
+  int endSlot,
+) => [
+  for (var slot = startSlot; slot < endSlot; slot += 5)
+    observationsBySlot[slot] ??
+        core_domain.Observation.missing(
+          year: date.year,
+          month: date.month,
+          day: date.day,
+          hour: slot ~/ 60,
+          minute: slot % 60,
+        ),
+];
 
 void _validateSlotBoundary(int slot, String name) {
   if (slot < 0 || slot > 1440) {

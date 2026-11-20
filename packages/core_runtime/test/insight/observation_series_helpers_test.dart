@@ -3,21 +3,25 @@ import 'package:core_domain/model/observation_series.dart';
 import 'package:core_runtime/insight/observation_series_helpers.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-core_domain.Observation _observation(DateTime date, int hour, int minute) => core_domain.Observation(
-  year: date.year,
-  month: date.month,
-  day: date.day,
-  hour: hour,
-  minute: minute,
-  areas: const [],
-  frameCount: 1,
-  coveredSeconds: 300,
-);
+core_domain.Observation _observation(DateTime date, int hour, int minute) =>
+    core_domain.Observation(
+      year: date.year,
+      month: date.month,
+      day: date.day,
+      hour: hour,
+      minute: minute,
+      areas: const [],
+      frameCount: 1,
+      coveredSeconds: 300,
+    );
 
 ObservationSeries _series(DateTime date, List<(int, int)> times) =>
-    ObservationSeries.fromObservations([for (final (hour, minute) in times) _observation(date, hour, minute)]);
+    ObservationSeries.fromObservations([
+      for (final (hour, minute) in times) _observation(date, hour, minute),
+    ]);
 
-List<int> _slotKeys(ObservationSeries series) => series.map((observation) => observation.slotKey).toList();
+List<int> _slotKeys(ObservationSeries series) =>
+    series.map((observation) => observation.slotKey).toList();
 
 void main() {
   final date = DateTime(2026, 10, 26);
@@ -39,7 +43,10 @@ void main() {
   });
 
   test('sliceRange rejects 24:xx end times', () {
-    expect(() => sliceRange(ObservationSeries.empty, 0, 0, 24, 5), throwsArgumentError);
+    expect(
+      () => sliceRange(ObservationSeries.empty, 0, 0, 24, 5),
+      throwsArgumentError,
+    );
   });
 
   test('sliceRecentHour uses inclusive and exclusive slot boundaries', () {
@@ -51,8 +58,14 @@ void main() {
   });
 
   test('sliceRecentHour rejects invalid times', () {
-    expect(() => sliceRecentHour(ObservationSeries.empty, 24, 0), throwsRangeError);
-    expect(() => sliceRecentHour(ObservationSeries.empty, 13, 60), throwsRangeError);
+    expect(
+      () => sliceRecentHour(ObservationSeries.empty, 24, 0),
+      throwsRangeError,
+    );
+    expect(
+      () => sliceRecentHour(ObservationSeries.empty, 13, 60),
+      throwsRangeError,
+    );
   });
 
   test('fillSlots inserts date-stamped missing placeholders', () {
@@ -96,40 +109,69 @@ void main() {
     expect(result.every((observation) => observation.isMissing), isTrue);
   });
 
-  test('fillSlots accepts 24:00 as an exclusive end without creating hour 24', () {
-    final result = fillSlots(ObservationSeries.empty, date, 23 * 60 + 55, 1440);
+  test(
+    'fillSlots accepts 24:00 as an exclusive end without creating hour 24',
+    () {
+      final result = fillSlots(
+        ObservationSeries.empty,
+        date,
+        23 * 60 + 55,
+        1440,
+      );
 
-    expect(_slotKeys(result), [23 * 60 + 55]);
-    expect(result.single.hour, 23);
-    expect(result.single.minute, 55);
-  });
+      expect(_slotKeys(result), [23 * 60 + 55]);
+      expect(result.single.hour, 23);
+      expect(result.single.minute, 55);
+    },
+  );
 
   test('fillSlots rejects invalid ranges', () {
-    expect(() => fillSlots(ObservationSeries.empty, date, -5, 0), throwsRangeError);
-    expect(() => fillSlots(ObservationSeries.empty, date, 0, 1445), throwsRangeError);
-    expect(() => fillSlots(ObservationSeries.empty, date, 1, 5), throwsArgumentError);
-    expect(() => fillSlots(ObservationSeries.empty, date, 10, 5), throwsArgumentError);
+    expect(
+      () => fillSlots(ObservationSeries.empty, date, -5, 0),
+      throwsRangeError,
+    );
+    expect(
+      () => fillSlots(ObservationSeries.empty, date, 0, 1445),
+      throwsRangeError,
+    );
+    expect(
+      () => fillSlots(ObservationSeries.empty, date, 1, 5),
+      throwsArgumentError,
+    );
+    expect(
+      () => fillSlots(ObservationSeries.empty, date, 10, 5),
+      throwsArgumentError,
+    );
   });
 
   test('fillSlots rejects observations from another business date', () {
     final yesterday = DateTime(2026, 10, 25);
     final series = _series(yesterday, [(13, 5)]);
 
-    expect(() => fillSlots(series, date, 13 * 60, 13 * 60 + 10), throwsArgumentError);
+    expect(
+      () => fillSlots(series, date, 13 * 60, 13 * 60 + 10),
+      throwsArgumentError,
+    );
   });
 
-  test('fillToday fills completed slots but excludes the current and future slots', () {
-    final series = _series(date, [(0, 0), (0, 10), (0, 15), (0, 20)]);
+  test(
+    'fillToday fills completed slots but excludes the current and future slots',
+    () {
+      final series = _series(date, [(0, 0), (0, 10), (0, 15), (0, 20)]);
 
-    final result = fillToday(series, DateTime(2026, 10, 26, 0, 17));
+      final result = fillToday(series, DateTime(2026, 10, 26, 0, 17));
 
-    expect(_slotKeys(result), [0, 5, 10]);
-    expect(result.at(0, 5)?.isMissing, isTrue);
-    expect(result.at(0, 15), isNull);
-  });
+      expect(_slotKeys(result), [0, 5, 10]);
+      expect(result.at(0, 5)?.isMissing, isTrue);
+      expect(result.at(0, 15), isNull);
+    },
+  );
 
   test('fillToday contains only completed slots at the end of the day', () {
-    final result = fillToday(ObservationSeries.empty, DateTime(2026, 10, 26, 23, 59));
+    final result = fillToday(
+      ObservationSeries.empty,
+      DateTime(2026, 10, 26, 23, 59),
+    );
 
     expect(result, hasLength(287));
     expect(_slotKeys(result).last, 23 * 60 + 50);
@@ -141,41 +183,86 @@ void main() {
     final result = fillHour(series, DateTime(2026, 10, 26, 13, 50));
 
     expect(result, hasLength(10));
-    expect(_slotKeys(result), [for (var minute = 0; minute < 50; minute += 5) 13 * 60 + minute]);
+    expect(_slotKeys(result), [
+      for (var minute = 0; minute < 50; minute += 5) 13 * 60 + minute,
+    ]);
     expect(result.at(13, 15)?.isMissing, isFalse);
     expect(result.at(13, 50), isNull);
     expect(result.at(14, 0), isNull);
   });
 
-  test('fillRecentHour excludes the current slot', () {
-    final series = _series(date, [(12, 5), (13, 0), (13, 5)]);
+  test('fillHour fills all 12 slots for a past hour', () {
+    final series = _series(date, [(9, 5)]);
 
-    final result = fillRecentHour(series, DateTime(2026, 10, 26, 13, 7));
+    final result = fillHour(series, DateTime(2026, 10, 26, 20), hour: 9);
 
     expect(result, hasLength(12));
-    expect(_slotKeys(result).last, 13 * 60);
-    expect(result.at(13, 5), isNull);
+    expect(_slotKeys(result), [
+      for (var minute = 0; minute < 60; minute += 5) 9 * 60 + minute,
+    ]);
+    expect(result.at(9, 5)?.isMissing, isFalse);
+    expect(result.at(9, 55)?.isMissing, isTrue);
   });
 
-  test('fillRecentHour includes a slot immediately after completion', () {
+  test('fillSeriesHours fills all 12 slots in each past hour present in the series', () {
+    final series = _series(date, [(9, 5), (13, 0), (20, 0), (20, 5), (21, 0)]);
+
+    final result = fillSeriesHours(series, DateTime(2026, 10, 26, 20));
+
+    expect(result, hasLength(24));
+    expect(_slotKeys(result).take(12), [
+      for (var minute = 0; minute < 60; minute += 5) 9 * 60 + minute,
+    ]);
+    expect(_slotKeys(result).skip(12), [
+      for (var minute = 0; minute < 60; minute += 5) 13 * 60 + minute,
+    ]);
+    expect(result.at(9, 0)?.isMissing, isTrue);
+    expect(result.at(13, 0)?.isMissing, isFalse);
+    expect(result.at(13, 55)?.isMissing, isTrue);
+    expect(result.at(20, 0), isNull);
+    expect(result.at(20, 5), isNull);
+    expect(result.at(21, 0), isNull);
+  });
+
+  test(
+    'fillRecentHour retains the current slot without filling future slots',
+    () {
+      final series = _series(date, [(12, 5), (13, 0), (13, 5), (13, 10)]);
+
+      final result = fillRecentHour(series, DateTime(2026, 10, 26, 13, 7));
+
+      expect(result, hasLength(12));
+      expect(_slotKeys(result).first, 12 * 60 + 10);
+      expect(_slotKeys(result).last, 13 * 60 + 5);
+      expect(result.at(13, 5), same(series.at(13, 5)));
+      expect(result.at(13, 10), isNull);
+    },
+  );
+
+  test('fillRecentHour retains the current slot at a slot boundary', () {
     final series = _series(date, [(13, 0), (13, 5)]);
 
     final result = fillRecentHour(series, DateTime(2026, 10, 26, 13, 5));
 
     expect(result.at(13, 0)?.isMissing, isFalse);
-    expect(result.at(13, 5), isNull);
+    expect(result.at(13, 5), same(series.at(13, 5)));
   });
 
-  test('fillRecentHour includes only completed slots at midnight', () {
+  test('fillRecentHour retains the current slot at midnight', () {
     final series = _series(date, [(0, 0), (0, 5)]);
 
     final result = fillRecentHour(series, DateTime(2026, 10, 26, 0, 0));
 
-    expect(result, isEmpty);
+    expect(result, hasLength(1));
+    expect(result.at(0, 0), same(series.at(0, 0)));
+    expect(result.at(0, 5), isNull);
   });
 
   test('fillRecentHour at 13:59 includes the last 12 completed slots', () {
-    final result = fillRecentHour(ObservationSeries.empty, DateTime(2026, 10, 26, 13, 59));
+    final result = fillRecentHour(
+      ObservationSeries.empty,
+      DateTime(2026, 10, 26, 13, 59),
+    );
 
     expect(result, hasLength(12));
     expect(_slotKeys(result).first, 12 * 60 + 55);

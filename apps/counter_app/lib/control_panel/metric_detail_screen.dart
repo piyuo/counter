@@ -1,6 +1,7 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 import 'package:core_domain/model/observation_series.dart' as observation_model;
 import 'package:core_domain/services/dashboard_metric_calculator.dart' as metric_calculator;
+import 'package:core_runtime/insight/observation_series_helpers.dart';
 import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.d
 import 'package:shared_l10n/shared_l10n.dart';
 
 import 'insights/observation_tile.dart';
-import 'insights/primary_metric_detail.dart';
 import 'utils/dashboard_utils.dart';
 
 class MetricDetailScreen extends ConsumerStatefulWidget {
@@ -24,7 +24,7 @@ class MetricDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
-  core_domain.TrafficPeriod _period = core_domain.TrafficPeriod.liveToday;
+  core_domain.TrafficPeriod _period = core_domain.TrafficPeriod.today;
   DateTime _customDate = DateUtils.dateOnly(DateTime.now());
   final Map<int, bool> _expandedHours = {};
   late Future<observation_model.ObservationSeries?> _observationsFuture;
@@ -38,29 +38,39 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
   Future<observation_model.ObservationSeries?> _loadObservations(
     core_domain.TrafficPeriod period,
     DateTime customDate,
-  ) {
+  ) async {
     final insight = ref.read(core_domain.insightServiceProvider);
     final now = DateTime.now();
+    observation_model.ObservationSeries? observations;
     switch (period) {
       case core_domain.TrafficPeriod.liveToday:
-        return insight.getObservationsFromLiveToday();
+      case core_domain.TrafficPeriod.today:
+        // don't include real-time observations here
+        observations = await insight.getObservationsFromToday();
+        break;
       case core_domain.TrafficPeriod.yesterday:
-        return insight.getObservationsFromYesterday();
+        observations = await insight.getObservationsFromYesterday();
+        break;
       case core_domain.TrafficPeriod.sameDayLastWeek:
-        return insight.getObservationsFromSameDayLastWeek();
+        observations = await insight.getObservationsFromSameDayLastWeek();
+        break;
       case core_domain.TrafficPeriod.customDay:
         final date = DateUtils.dateOnly(customDate);
-        if (date == DateUtils.dateOnly(now)) {
-          return insight.getObservationsFromLiveToday();
-        }
-        return insight.getObservationsByDate(date);
+        observations = date == DateUtils.dateOnly(now)
+            ? await insight.getObservationsFromLiveToday()
+            : await insight.getObservationsByDate(date);
+        break;
       case core_domain.TrafficPeriod.lastMonthAverage:
-        return insight.getObservationsFromLastMonth();
+        observations = await insight.getObservationsFromLastMonth();
+        break;
       case core_domain.TrafficPeriod.lastYearAverage:
-        return insight.getObservationsFromLastYear();
-      case core_domain.TrafficPeriod.today:
-        throw UnimplementedError();
+        observations = await insight.getObservationsFromLastYear();
+        break;
     }
+    if (observations == null) {
+      return null;
+    }
+    return fillSeriesHours(observations, now);
   }
 
   Future<void> _selectPeriod(core_domain.TrafficPeriod? period) async {
@@ -98,7 +108,7 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
     if (appState == null) return const SizedBox.shrink();
 
     ref.listen(core_domain.insightStateProvider, (previous, next) {
-      if (_period != core_domain.TrafficPeriod.liveToday) return;
+      if (_period != core_domain.TrafficPeriod.today) return;
       if (previous?.businessDate == next.businessDate &&
           previous?.todaySeries == next.todaySeries &&
           previous?.recentHourTotal == next.recentHourTotal) {
@@ -159,7 +169,7 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                PrimaryMetricDetail(areaId: widget.areaId, metric: widget.metric),
+                _PrimaryMetricDetail(areaId: widget.areaId, metric: widget.metric),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 22),
                   child: DropdownButtonFormField<core_domain.TrafficPeriod>(
@@ -221,6 +231,66 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
           );
         },
       ),
+    );
+  }
+}
+
+class _PrimaryMetricDetail extends ConsumerStatefulWidget {
+  const _PrimaryMetricDetail({required this.areaId, required this.metric});
+
+  final int areaId;
+  final core_domain.DashboardMetric metric;
+
+  @override
+  ConsumerState<_PrimaryMetricDetail> createState() => _PrimaryMetricDetailState();
+}
+
+class _PrimaryMetricDetailState extends ConsumerState<_PrimaryMetricDetail> {
+  bool _isRecentHourExpanded = true;
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(core_domain.dashboardStateProvider);
+    final appState = ref.watch(core_domain.appProvider).asData?.value;
+    final detectionType = appState?.detectionType;
+    final card = ref.read(core_domain.dashboardServiceProvider).findCard(widget.areaId, widget.metric);
+    final primaryMeasure = card?.primary;
+    if (primaryMeasure == null || card == null) return const SizedBox.shrink();
+
+    final theme = Theme.of(context);
+    final recentHourObservations = card.recentHourObservations;
+    final metricHelp = formatMetricHelp(context, primaryMeasure.metric);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+          child: Text(metricHelp, style: theme.textTheme.bodySmall),
+        ),
+        if (recentHourObservations != null && recentHourObservations.isNotEmpty)
+          ObservationTile(
+            initiallyExpanded: true,
+            isExpanded: _isRecentHourExpanded,
+            onExpansionChanged: (expanded) => setState(() => _isRecentHourExpanded = expanded),
+            observations: recentHourObservations.items,
+            expectedSeconds: 3600, // observations only content recent hour
+            areaId: widget.areaId,
+            metric: widget.metric,
+            measurement: primaryMeasure,
+            timeFormat: DateFormat.Hm(Localizations.localeOf(context).toString()),
+            detectionType: detectionType,
+            minTileHeight: 32,
+            titleBuilder: (_) => const SizedBox.shrink(),
+            trailingBuilder: (timeText) => Text(
+              timeText,
+              style: const TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 32,
+                fontFeatures: [FontFeature.tabularFigures()],
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
