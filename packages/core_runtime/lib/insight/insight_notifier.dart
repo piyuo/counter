@@ -273,8 +273,6 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
     }
 
     final live = _getCurrentLiveObservation(now);
-    if (today == null && live == null) return null;
-
     final overlaid = _overlayLive(today?.fiveMinuteObservations, live);
     return overlaid;
   }
@@ -350,18 +348,8 @@ class InsightNotifier extends _$InsightNotifier implements core_domain.InsightSe
   // Live observation
   // ---------------------------------------------------------------------------
 
-  core_domain.Observation? _getCurrentLiveObservation(DateTime now) {
-    final live = ref.read(live_observation.observationProvider).liveObservation;
-    return _isCurrentLiveObservation(live, now) ? live : null;
-  }
-
-  bool _isCurrentLiveObservation(core_domain.Observation live, DateTime now) {
-    final currentSlotMinute = (now.minute ~/ 5) * 5;
-    return live.granularity == core_domain.ObservationGranularity.minutes5 &&
-        live.year == now.year &&
-        live.month == now.month &&
-        live.day == now.day &&
-        live.hour == now.hour &&
-        live.minute == currentSlotMinute;
+  core_domain.Observation _getCurrentLiveObservation(DateTime now) {
+    final live = ref.read(live_observation.observationProvider.notifier).liveObservation();
+    return live;
   }
 }

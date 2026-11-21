@@ -94,41 +94,50 @@ ObservationSeries fillToday(ObservationSeries series, DateTime now) {
   return fillSlots(series, now, 0, endSlot);
 }
 
-/// Returns the completed five-minute observations in [hour] on [now]'s day,
-/// in time order. Slots with no observation are filled with
-/// [core_domain.Observation.missing]. If [hour] is omitted, [now]'s hour is
-/// used.
-///
-/// A past hour contains all 12 slots. The current hour ends before [now]'s
-/// current slot, and future hours are empty.
-///
-/// [series] should contain observations from a single day, because slots
-/// are matched by time of day only.
-ObservationSeries fillHour(ObservationSeries series, DateTime now, {int? hour}) {
-  final targetHour = hour ?? now.hour;
-  if (targetHour < 0 || targetHour >= 24) {
-    throw RangeError.range(targetHour, 0, 23, 'hour');
+/// Fills all 12 five-minute slots in [hour] for the business date carried by
+/// [series], in time order. Slots with no observation are filled with
+/// [core_domain.Observation.missing]. An empty [series] returns empty because
+/// it does not identify a business date.
+ObservationSeries fillHour(ObservationSeries series, int hour) {
+  if (hour < 0 || hour >= 24) {
+    throw RangeError.range(hour, 0, 23, 'hour');
   }
+  if (series.isEmpty) return series;
 
-  final startSlot = targetHour * 60;
-  final endSlot = targetHour < now.hour
-      ? startSlot + 60
-      : targetHour == now.hour
-      ? _currentSlotStart(now)
-      : startSlot;
-  final filled = fillSlots(series, now, startSlot, endSlot);
-  return filled;
+  final firstObservation = series.first;
+  final date = DateTime(firstObservation.year, firstObservation.month, firstObservation.day);
+  final startSlot = hour * 60;
+  return fillSlots(series, date, startSlot, startSlot + 60);
 }
 
-/// Fills the completed slots of each past or current hour that has at least
-/// one observation in [series]. Hours with no observations are left out.
-///
-/// The current and future slots are not returned, even if they exist in
-/// [series].
-ObservationSeries fillSeriesHours(ObservationSeries series, DateTime now) {
-  final hours = series.map((observation) => observation.hour).toSet().where((hour) => hour <= now.hour).toList()
-    ..sort();
-  return ObservationSeries.fromObservations([for (final hour in hours) ...fillHour(series, now, hour: hour)]);
+/// Fills each represented hour in [series]. The business date is taken from
+/// the observations; hours with no observations are left out. Only slots
+/// before the current 5-minute slot are filled; existing current and future
+/// observations are retained. An empty [series] returns empty because it does
+/// not identify a business date.
+ObservationSeries fillSeriesHours(ObservationSeries series, {required DateTime now}) {
+  if (series.isEmpty) return series;
+
+  final firstObservation = series.first;
+  final date = DateTime(firstObservation.year, firstObservation.month, firstObservation.day);
+  final observationsBySlot = _observationsBySlot(series, date);
+  final hours = series.map((observation) => observation.hour).toSet().toList()..sort();
+  final currentSlot = _currentSlotStart(now);
+  final observations = <core_domain.Observation>[];
+
+  for (final hour in hours) {
+    final startSlot = hour * 60;
+    final endSlot = startSlot + 60;
+    final fillEndSlot = currentSlot.clamp(startSlot, endSlot).toInt();
+    observations.addAll(_fillSlotObservations(observationsBySlot, date, startSlot, fillEndSlot));
+    observations.addAll(
+      observationsBySlot.values.where(
+        (observation) => observation.slotKey >= fillEndSlot && observation.slotKey < endSlot,
+      ),
+    );
+  }
+
+  return ObservationSeries.fromObservations(observations);
 }
 
 int _currentSlotStart(DateTime now) => now.hour * 60 + (now.minute ~/ 5) * 5;

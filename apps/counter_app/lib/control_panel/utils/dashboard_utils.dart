@@ -1,9 +1,21 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
 
-bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) => core_domain.isHourlyRate(metric);
+typedef DashboardBusinessPeriodGroup = ({
+  core_domain.BusinessPeriod period,
+  List<core_domain.Observation> observations,
+});
 
-double? getDashboardMetricValue(core_domain.Observation observation, int areaId, core_domain.DashboardMetric metric) {
-  final activity = observation.areas.where((area) => area.areaId == areaId).firstOrNull;
+bool dashboardMetricUsesHourlyRate(core_domain.DashboardMetric metric) =>
+    core_domain.isHourlyRate(metric);
+
+double? getDashboardMetricValue(
+  core_domain.Observation observation,
+  int areaId,
+  core_domain.DashboardMetric metric,
+) {
+  final activity = observation.areas
+      .where((area) => area.areaId == areaId)
+      .firstOrNull;
   if (activity == null) return null;
   return switch (metric) {
     core_domain.DashboardMetric.passBy => activity.passBy,
@@ -13,12 +25,19 @@ double? getDashboardMetricValue(core_domain.Observation observation, int areaId,
     core_domain.DashboardMetric.appear => activity.appear,
     core_domain.DashboardMetric.disappear => activity.disappear,
     core_domain.DashboardMetric.occupancyMean =>
-      activity.occupancySampleCount == 0 ? null : activity.occupancySum / activity.occupancySampleCount,
+      activity.occupancySampleCount == 0
+          ? null
+          : activity.occupancySum / activity.occupancySampleCount,
     core_domain.DashboardMetric.occupancyMax =>
-      activity.occupancySampleCount == 0 ? null : activity.occupancyMax.toDouble(),
+      activity.occupancySampleCount == 0
+          ? null
+          : activity.occupancyMax.toDouble(),
     core_domain.DashboardMetric.dwellTimeMean =>
-      activity.dwellSampleCount == 0 ? null : activity.dwellSumSeconds / activity.dwellSampleCount / 60,
-    core_domain.DashboardMetric.dwellTimeMax => activity.dwellSampleCount == 0 ? null : activity.dwellMaxSeconds / 60,
+      activity.dwellSampleCount == 0
+          ? null
+          : activity.dwellSumSeconds / activity.dwellSampleCount / 60,
+    core_domain.DashboardMetric.dwellTimeMax =>
+      activity.dwellSampleCount == 0 ? null : activity.dwellMaxSeconds / 60,
   };
 }
 
@@ -34,38 +53,85 @@ double? getDashboardMetricAggregateValue(
   ];
   if (activities.isEmpty) return null;
   return switch (metric) {
-    core_domain.DashboardMetric.passBy => activities.fold<double>(0.0, (total, activity) => total + activity.passBy),
+    core_domain.DashboardMetric.passBy => activities.fold<double>(
+      0.0,
+      (total, activity) => total + activity.passBy,
+    ),
     core_domain.DashboardMetric.stagnant => activities.fold<double>(
       0.0,
       (total, activity) => total + activity.stagnant,
     ),
-    core_domain.DashboardMetric.entry => activities.fold<double>(0.0, (total, activity) => total + activity.entry),
-    core_domain.DashboardMetric.exit => activities.fold<double>(0.0, (total, activity) => total + activity.exit),
-    core_domain.DashboardMetric.appear => activities.fold<double>(0.0, (total, activity) => total + activity.appear),
+    core_domain.DashboardMetric.entry => activities.fold<double>(
+      0.0,
+      (total, activity) => total + activity.entry,
+    ),
+    core_domain.DashboardMetric.exit => activities.fold<double>(
+      0.0,
+      (total, activity) => total + activity.exit,
+    ),
+    core_domain.DashboardMetric.appear => activities.fold<double>(
+      0.0,
+      (total, activity) => total + activity.appear,
+    ),
     core_domain.DashboardMetric.disappear => activities.fold<double>(
       0.0,
       (total, activity) => total + activity.disappear,
     ),
     core_domain.DashboardMetric.occupancyMean => _mean(
       activities.fold(0, (total, activity) => total + activity.occupancySum),
-      activities.fold(0, (total, activity) => total + activity.occupancySampleCount),
+      activities.fold(
+        0,
+        (total, activity) => total + activity.occupancySampleCount,
+      ),
     ),
     core_domain.DashboardMetric.occupancyMax =>
       activities
           .where((activity) => activity.occupancySampleCount > 0)
           .map((activity) => activity.occupancyMax.toDouble())
-          .fold<double?>(null, (maximum, value) => maximum == null || value > maximum ? value : maximum),
+          .fold<double?>(
+            null,
+            (maximum, value) =>
+                maximum == null || value > maximum ? value : maximum,
+          ),
     core_domain.DashboardMetric.dwellTimeMean => _meanDwellMinutes(activities),
     core_domain.DashboardMetric.dwellTimeMax =>
       activities
           .where((activity) => activity.dwellSampleCount > 0)
           .map((activity) => activity.dwellMaxSeconds.toDouble() / 60)
-          .fold<double?>(null, (maximum, value) => maximum == null || value > maximum ? value : maximum),
+          .fold<double?>(
+            null,
+            (maximum, value) =>
+                maximum == null || value > maximum ? value : maximum,
+          ),
   };
 }
 
-int getDashboardCoveredSeconds(Iterable<core_domain.Observation> observations) =>
-    observations.fold(0, (total, observation) => total + observation.coveredSeconds);
+int getDashboardCoveredSeconds(
+  Iterable<core_domain.Observation> observations,
+) => observations.fold(
+  0,
+  (total, observation) => total + observation.coveredSeconds,
+);
+
+List<DashboardBusinessPeriodGroup> groupDashboardObservationsByBusinessPeriod(
+  Iterable<core_domain.Observation> observations,
+  Iterable<core_domain.BusinessPeriod> businessPeriods,
+) {
+  final groups = <DashboardBusinessPeriodGroup>[];
+  for (final period in businessPeriods) {
+    final periodObservations = observations
+        .where((observation) {
+          final minuteOfDay = observation.hour * 60 + observation.minute;
+          return minuteOfDay >= period.startMinute &&
+              minuteOfDay < period.endMinute;
+        })
+        .toList(growable: false);
+    if (periodObservations.isNotEmpty) {
+      groups.add((period: period, observations: periodObservations));
+    }
+  }
+  return groups;
+}
 
 double? _mean(num sum, int count) => count == 0 ? null : sum / count;
 

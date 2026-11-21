@@ -177,24 +177,63 @@ void main() {
     expect(_slotKeys(result).last, 23 * 60 + 50);
   });
 
-  test('fillHour excludes the current and future slots', () {
-    final series = _series(date, [(13, 15), (13, 50), (13, 55), (14, 0)]);
+  test('fillSeriesHours fills every hour represented in the series', () {
+    final yesterday = DateTime(2026, 10, 25);
+    final series = _series(yesterday, [(13, 15), (13, 50), (13, 55), (14, 0)]);
 
-    final result = fillHour(series, DateTime(2026, 10, 26, 13, 50));
+    final result = fillSeriesHours(series, now: DateTime(2026, 10, 26, 23, 59));
 
-    expect(result, hasLength(10));
+    expect(result, hasLength(24));
     expect(_slotKeys(result), [
-      for (var minute = 0; minute < 50; minute += 5) 13 * 60 + minute,
+      for (var minute = 0; minute < 60; minute += 5) 13 * 60 + minute,
+      for (var minute = 0; minute < 60; minute += 5) 14 * 60 + minute,
     ]);
     expect(result.at(13, 15)?.isMissing, isFalse);
-    expect(result.at(13, 50), isNull);
-    expect(result.at(14, 0), isNull);
+    expect(result.at(13, 50)?.isMissing, isFalse);
+    expect(result.at(14, 0)?.isMissing, isFalse);
+    expect(result.at(14, 55)?.isMissing, isTrue);
+    expect(result.at(14, 55)?.day, yesterday.day);
   });
 
-  test('fillHour fills all 12 slots for a past hour', () {
-    final series = _series(date, [(9, 5)]);
+  test('fillSeriesHours returns empty when no business date is available', () {
+    expect(
+      fillSeriesHours(ObservationSeries.empty, now: DateTime(2026, 10, 26)),
+      isEmpty,
+    );
+  });
 
-    final result = fillHour(series, DateTime(2026, 10, 26, 20), hour: 9);
+  test('fillSeriesHours does not fill current or future slots', () {
+    final series = _series(date, [(12, 5), (13, 10), (14, 0)]);
+
+    final result = fillSeriesHours(series, now: DateTime(2026, 10, 27, 13, 7));
+
+    expect(_slotKeys(result), [
+      for (var minute = 0; minute < 60; minute += 5) 12 * 60 + minute,
+      13 * 60,
+      13 * 60 + 10,
+      14 * 60,
+    ]);
+    expect(result.at(13, 0)?.isMissing, isTrue);
+    expect(result.at(13, 5), isNull);
+    expect(result.at(13, 10)?.isMissing, isFalse);
+    expect(result.at(14, 5), isNull);
+  });
+
+  test('fillSeriesHours retains an existing current slot', () {
+    final series = _series(date, [(13, 5)]);
+
+    final result = fillSeriesHours(series, now: DateTime(2026, 10, 27, 13, 7));
+
+    expect(_slotKeys(result), [13 * 60, 13 * 60 + 5]);
+    expect(result.at(13, 0)?.isMissing, isTrue);
+    expect(result.at(13, 5), same(series.at(13, 5)));
+  });
+
+  test('fillHour fills a full hour using the series business date', () {
+    final yesterday = DateTime(2026, 10, 25);
+    final series = _series(yesterday, [(9, 5)]);
+
+    final result = fillHour(series, 9);
 
     expect(result, hasLength(12));
     expect(_slotKeys(result), [
@@ -202,27 +241,54 @@ void main() {
     ]);
     expect(result.at(9, 5)?.isMissing, isFalse);
     expect(result.at(9, 55)?.isMissing, isTrue);
+    expect(result.at(9, 0)?.day, yesterday.day);
   });
 
-  test('fillSeriesHours fills all 12 slots in each past hour present in the series', () {
-    final series = _series(date, [(9, 5), (13, 0), (20, 0), (20, 5), (21, 0)]);
+  test(
+    'fillHour returns an empty series when no business date is available',
+    () {
+      expect(fillHour(ObservationSeries.empty, 9), isEmpty);
+    },
+  );
 
-    final result = fillSeriesHours(series, DateTime(2026, 10, 26, 20));
+  test(
+    'fillSeriesHours fills all 12 slots in each hour present in the series',
+    () {
+      final series = _series(date, [
+        (9, 5),
+        (13, 0),
+        (20, 0),
+        (20, 5),
+        (21, 0),
+      ]);
 
-    expect(result, hasLength(24));
-    expect(_slotKeys(result).take(12), [
-      for (var minute = 0; minute < 60; minute += 5) 9 * 60 + minute,
-    ]);
-    expect(_slotKeys(result).skip(12), [
-      for (var minute = 0; minute < 60; minute += 5) 13 * 60 + minute,
-    ]);
-    expect(result.at(9, 0)?.isMissing, isTrue);
-    expect(result.at(13, 0)?.isMissing, isFalse);
-    expect(result.at(13, 55)?.isMissing, isTrue);
-    expect(result.at(20, 0), isNull);
-    expect(result.at(20, 5), isNull);
-    expect(result.at(21, 0), isNull);
-  });
+      final result = fillSeriesHours(
+        series,
+        now: DateTime(2026, 10, 26, 23, 59),
+      );
+
+      expect(result, hasLength(48));
+      expect(_slotKeys(result).take(12), [
+        for (var minute = 0; minute < 60; minute += 5) 9 * 60 + minute,
+      ]);
+      expect(_slotKeys(result).skip(12).take(12), [
+        for (var minute = 0; minute < 60; minute += 5) 13 * 60 + minute,
+      ]);
+      expect(_slotKeys(result).skip(24).take(12), [
+        for (var minute = 0; minute < 60; minute += 5) 20 * 60 + minute,
+      ]);
+      expect(_slotKeys(result).skip(36), [
+        for (var minute = 0; minute < 60; minute += 5) 21 * 60 + minute,
+      ]);
+      expect(result.at(9, 0)?.isMissing, isTrue);
+      expect(result.at(13, 0)?.isMissing, isFalse);
+      expect(result.at(13, 55)?.isMissing, isTrue);
+      expect(result.at(20, 0)?.isMissing, isFalse);
+      expect(result.at(20, 55)?.isMissing, isTrue);
+      expect(result.at(21, 0)?.isMissing, isFalse);
+      expect(result.at(21, 55)?.isMissing, isTrue);
+    },
+  );
 
   test(
     'fillRecentHour retains the current slot without filling future slots',

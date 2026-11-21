@@ -526,6 +526,12 @@ class LocalizationKo extends Localization {
   String get metrics_counting_window => '5분마다 생성되는 통계';
 
   @override
+  String get observation_screen_count => '수';
+
+  @override
+  String get observation_screen_observed => '관측';
+
+  @override
   String get observation_screen_observed_count => '관측 수';
 
   @override
@@ -536,6 +542,9 @@ class LocalizationKo extends Localization {
 
   @override
   String get observation_screen_subtotal => '소계';
+
+  @override
+  String get observation_screen_time => '시간';
 
   @override
   String get observation_screen_total => '합계';

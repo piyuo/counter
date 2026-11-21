@@ -542,6 +542,12 @@ class LocalizationFa extends Localization {
   String get metrics_counting_window => 'آمار برای هر بازه ۵ دقیقه‌ای';
 
   @override
+  String get observation_screen_count => 'تعداد';
+
+  @override
+  String get observation_screen_observed => 'مشاهده‌شده';
+
+  @override
   String get observation_screen_observed_count => 'تعداد مشاهده‌شده';
 
   @override
@@ -553,6 +559,9 @@ class LocalizationFa extends Localization {
 
   @override
   String get observation_screen_subtotal => 'جمع فرعی';
+
+  @override
+  String get observation_screen_time => 'زمان';
 
   @override
   String get observation_screen_total => 'مجموع';

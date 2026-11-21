@@ -538,6 +538,12 @@ class LocalizationHe extends Localization {
   String get metrics_counting_window => 'סטטיסטיקות לכל פרק זמן של 5 דקות';
 
   @override
+  String get observation_screen_count => 'ספירה';
+
+  @override
+  String get observation_screen_observed => 'נצפה';
+
+  @override
   String get observation_screen_observed_count => 'המספר שנצפה';
 
   @override
@@ -549,6 +555,9 @@ class LocalizationHe extends Localization {
 
   @override
   String get observation_screen_subtotal => 'סכום ביניים';
+
+  @override
+  String get observation_screen_time => 'זמן';
 
   @override
   String get observation_screen_total => 'סך הכול';

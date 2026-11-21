@@ -546,6 +546,12 @@ class LocalizationEl extends Localization {
   String get metrics_counting_window => 'Στατιστικά για κάθε περίοδο 5 λεπτών';
 
   @override
+  String get observation_screen_count => 'Αριθμός';
+
+  @override
+  String get observation_screen_observed => 'Παρατηρούμενο';
+
+  @override
   String get observation_screen_observed_count => 'Καταγεγραμμένος αριθμός';
 
   @override
@@ -557,6 +563,9 @@ class LocalizationEl extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Μερικό σύνολο';
+
+  @override
+  String get observation_screen_time => 'Ώρα';
 
   @override
   String get observation_screen_total => 'Σύνολο';

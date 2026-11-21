@@ -543,6 +543,12 @@ class LocalizationSr extends Localization {
       'Statistika za svaki period od 5 minuta';
 
   @override
+  String get observation_screen_count => 'Broj';
+
+  @override
+  String get observation_screen_observed => 'Uočeno';
+
+  @override
   String get observation_screen_observed_count => 'Uočeni broj';
 
   @override
@@ -554,6 +560,9 @@ class LocalizationSr extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Međuzbir';
+
+  @override
+  String get observation_screen_time => 'Vreme';
 
   @override
   String get observation_screen_total => 'Ukupno';

@@ -148,6 +148,25 @@ void main() {
     });
   });
 
+  test('live observation after stop uses an empty current window when stale', () {
+    fakeAsync((async) {
+      final base = DateTime.utc(2026, 1, 1, 10, 0, 0);
+      final container = makeContainer(async, base);
+      addTearDown(container.dispose);
+      final n = notifier(container);
+
+      n.processFrame(const <Object>[], 0.0);
+      n.stop();
+      async.elapse(const Duration(minutes: 5));
+
+      final observation = n.liveObservation();
+
+      expect(observation.minute, 5);
+      expect(observation.frameCount, 0);
+      expect(observation.coveredSeconds, 0);
+    });
+  });
+
   test('monitoring status follows frame and source lifecycle', () {
     fakeAsync((async) {
       final base = DateTime.utc(2026, 1, 1, 10, 0, 0);

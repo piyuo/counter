@@ -540,6 +540,12 @@ class LocalizationVi extends Localization {
   String get metrics_counting_window => 'Thống kê cho mỗi khoảng 5 phút';
 
   @override
+  String get observation_screen_count => 'Số lượng';
+
+  @override
+  String get observation_screen_observed => 'Được quan sát';
+
+  @override
   String get observation_screen_observed_count => 'Số lượng quan sát được';
 
   @override
@@ -551,6 +557,9 @@ class LocalizationVi extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Tổng phụ';
+
+  @override
+  String get observation_screen_time => 'Thời gian';
 
   @override
   String get observation_screen_total => 'Tổng';

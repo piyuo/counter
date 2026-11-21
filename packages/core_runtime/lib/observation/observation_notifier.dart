@@ -544,7 +544,9 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
 
   bool _closeOpenVisitsIfActualFrameGapExceeded(DateTime atUtc) {
     final lastActualFrameAtUtc = _lastActualFrameAtUtc;
-    if (lastActualFrameAtUtc == null || atUtc.difference(lastActualFrameAtUtc) <= _maxVisitContinuityGap) return false;
+    if (lastActualFrameAtUtc == null || atUtc.difference(lastActualFrameAtUtc) <= _maxVisitContinuityGap) {
+      return false;
+    }
 
     _closeOpenVisits();
     return true;
@@ -586,6 +588,30 @@ class ObservationNotifier extends _$ObservationNotifier implements core_domain.O
       _lastStateEmittedAtUtc = now;
       state = state.copyWith(liveObservation: _snapshotCurrentWindow(), status: status ?? state.status);
     }
+  }
+
+  /// return current live observation. if service is stop or paused, it will still return empty observation of current window
+  @override
+  core_domain.Observation liveObservation() {
+    final now = _nowProvider?.call() ?? DateTime.now();
+    final currentWindowStart = ObservationScheduler.createStartLocal(now);
+    if (!_currentAggregator.startBusiness.toUtc().isAtSameMomentAs(currentWindowStart.toUtc())) {
+      if (_scheduler.isRunning) {
+        _scheduler.ensureWindowActive();
+      } else {
+        _currentAggregator = ObservationAggregator(
+          areaNameResolver: areaNameResolver,
+          startBusiness: currentWindowStart,
+          missingDuration: now.toUtc().difference(currentWindowStart.toUtc()),
+        );
+        _currentAggregator.ensureStateSample(core_domain.kGlobalAreaId);
+        for (final areaId in _areaTrackers.keys) {
+          _currentAggregator.ensureStateSample(areaId);
+        }
+      }
+    }
+
+    return _snapshotCurrentWindow();
   }
 
   core_domain.Observation _snapshotCurrentWindow() {

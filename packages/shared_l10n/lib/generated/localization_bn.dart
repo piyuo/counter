@@ -540,6 +540,12 @@ class LocalizationBn extends Localization {
   String get metrics_counting_window => 'প্রতি ৫ মিনিটের পরিসংখ্যান';
 
   @override
+  String get observation_screen_count => 'গণনা';
+
+  @override
+  String get observation_screen_observed => 'পর্যবেক্ষিত';
+
+  @override
   String get observation_screen_observed_count => 'পর্যবেক্ষিত গণনা';
 
   @override
@@ -551,6 +557,9 @@ class LocalizationBn extends Localization {
 
   @override
   String get observation_screen_subtotal => 'উপমোট';
+
+  @override
+  String get observation_screen_time => 'সময়';
 
   @override
   String get observation_screen_total => 'মোট';

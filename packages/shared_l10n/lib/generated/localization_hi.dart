@@ -544,6 +544,12 @@ class LocalizationHi extends Localization {
   String get metrics_counting_window => 'हर 5 मिनट की अवधि के आँकड़े';
 
   @override
+  String get observation_screen_count => 'गणना';
+
+  @override
+  String get observation_screen_observed => 'अवलोकित';
+
+  @override
   String get observation_screen_observed_count => 'अवलोकित संख्या';
 
   @override
@@ -555,6 +561,9 @@ class LocalizationHi extends Localization {
 
   @override
   String get observation_screen_subtotal => 'उप-योग';
+
+  @override
+  String get observation_screen_time => 'समय';
 
   @override
   String get observation_screen_total => 'कुल';

@@ -207,10 +207,7 @@ void main() {
         expect(dashboard, notifier.state);
         expect(dashboard.businessDate, '2026-10-26');
         expect(dashboard.comparisonPeriod, expectation.period);
-        expect(
-          dashboard.todaySeries,
-          fillSeriesHours(todaySummary.fiveMinuteObservations, now),
-        );
+        expect(dashboard.todaySeries, todaySummary.fiveMinuteObservations);
         expect(dashboard.recentHourTotal?.frameCount, 11);
         expect(dashboard.comparisonSeries, expectation.expectedSeries);
         expect(dashboard.comparisonTotal, expectation.expectedTotal);
@@ -1197,7 +1194,7 @@ void main() {
       await refreshDuringSave;
       expect(
         notifier.state.todaySeries,
-        fillSeriesHours(initialSummary.fiveMinuteObservations, now),
+        fillSeriesHours(initialSummary.fiveMinuteObservations, now: now),
       );
 
       await notifier.refresh();
@@ -1282,6 +1279,9 @@ class _FakeObservationNotifier extends observation.ObservationNotifier {
     liveObservation: _observation,
     status: core_domain.ObservationStatus.started,
   );
+
+  @override
+  core_domain.Observation liveObservation() => state.liveObservation!;
 
   void emit(core_domain.Observation next) =>
       state = core_domain.ObservationState(

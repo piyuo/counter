@@ -537,6 +537,12 @@ class LocalizationAr extends Localization {
   String get metrics_counting_window => 'إحصاءات لكل فترة مدتها 5 دقائق';
 
   @override
+  String get observation_screen_count => 'العدد';
+
+  @override
+  String get observation_screen_observed => 'مرصود';
+
+  @override
   String get observation_screen_observed_count => 'العدد المرصود';
 
   @override
@@ -548,6 +554,9 @@ class LocalizationAr extends Localization {
 
   @override
   String get observation_screen_subtotal => 'المجموع الفرعي';
+
+  @override
+  String get observation_screen_time => 'الوقت';
 
   @override
   String get observation_screen_total => 'الإجمالي';

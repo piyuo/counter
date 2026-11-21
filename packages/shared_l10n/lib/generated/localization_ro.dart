@@ -546,6 +546,12 @@ class LocalizationRo extends Localization {
       'Statistici pentru fiecare perioadă de 5 minute';
 
   @override
+  String get observation_screen_count => 'Număr';
+
+  @override
+  String get observation_screen_observed => 'Observat';
+
+  @override
   String get observation_screen_observed_count => 'Număr observat';
 
   @override
@@ -557,6 +563,9 @@ class LocalizationRo extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Subtotal';
+
+  @override
+  String get observation_screen_time => 'Timp';
 
   @override
   String get observation_screen_total => 'Total';

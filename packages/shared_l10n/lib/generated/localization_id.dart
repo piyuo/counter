@@ -543,6 +543,12 @@ class LocalizationId extends Localization {
       'Statistik untuk setiap periode 5 menit';
 
   @override
+  String get observation_screen_count => 'Jumlah';
+
+  @override
+  String get observation_screen_observed => 'Teramati';
+
+  @override
   String get observation_screen_observed_count => 'Jumlah teramati';
 
   @override
@@ -554,6 +560,9 @@ class LocalizationId extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Subtotal';
+
+  @override
+  String get observation_screen_time => 'Waktu';
 
   @override
   String get observation_screen_total => 'Total';

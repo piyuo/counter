@@ -540,6 +540,12 @@ class LocalizationMs extends Localization {
   String get metrics_counting_window => 'Statistik bagi setiap tempoh 5 minit';
 
   @override
+  String get observation_screen_count => 'Bilangan';
+
+  @override
+  String get observation_screen_observed => 'Diperhatikan';
+
+  @override
   String get observation_screen_observed_count => 'Bilangan diperhatikan';
 
   @override
@@ -551,6 +557,9 @@ class LocalizationMs extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Subjumlah';
+
+  @override
+  String get observation_screen_time => 'Masa';
 
   @override
   String get observation_screen_total => 'Jumlah';

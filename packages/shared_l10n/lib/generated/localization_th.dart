@@ -540,6 +540,12 @@ class LocalizationTh extends Localization {
   String get metrics_counting_window => 'สถิติสำหรับทุกช่วงเวลา 5 นาที';
 
   @override
+  String get observation_screen_count => 'จำนวน';
+
+  @override
+  String get observation_screen_observed => 'ที่สังเกต';
+
+  @override
   String get observation_screen_observed_count => 'จำนวนที่สังเกตได้';
 
   @override
@@ -551,6 +557,9 @@ class LocalizationTh extends Localization {
 
   @override
   String get observation_screen_subtotal => 'ยอดรวมย่อย';
+
+  @override
+  String get observation_screen_time => 'เวลา';
 
   @override
   String get observation_screen_total => 'รวม';

@@ -545,6 +545,12 @@ class LocalizationEs extends Localization {
       'Estadísticas de cada período de 5 minutos';
 
   @override
+  String get observation_screen_count => 'Conteo';
+
+  @override
+  String get observation_screen_observed => 'Observado';
+
+  @override
   String get observation_screen_observed_count => 'Conteo observado';
 
   @override
@@ -556,6 +562,9 @@ class LocalizationEs extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Subtotal';
+
+  @override
+  String get observation_screen_time => 'Hora';
 
   @override
   String get observation_screen_total => 'Total';

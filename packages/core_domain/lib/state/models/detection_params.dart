@@ -106,10 +106,11 @@ abstract class DetectionParams with _$DetectionParams {
   /// characteristics compared to pedestrians.
   factory DetectionParams.vehicle() {
     return const DetectionParams(
-      trackHighThresh: 0.75,
+      // vehicle run fast, and we notice it switch id frequently, so we adjust thresholds accordingly
+      trackHighThresh: 0.50,
       trackLowThresh: 0.20,
-      newTrackThresh: 0.70,
-      maxTimeLostSeconds: 5,
+      newTrackThresh: 0.85,
+      maxTimeLostSeconds: 2,
       maxMatchDistance: 0.9,
       proximityThresh: 0.95,
       appearanceThresh: 0.25,

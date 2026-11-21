@@ -548,6 +548,12 @@ class LocalizationHu extends Localization {
       'Statisztikák minden 5 perces időszakhoz';
 
   @override
+  String get observation_screen_count => 'Darabszám';
+
+  @override
+  String get observation_screen_observed => 'Megfigyelt';
+
+  @override
   String get observation_screen_observed_count => 'Megfigyelt darabszám';
 
   @override
@@ -559,6 +565,9 @@ class LocalizationHu extends Localization {
 
   @override
   String get observation_screen_subtotal => 'Részösszeg';
+
+  @override
+  String get observation_screen_time => 'Idő';
 
   @override
   String get observation_screen_total => 'Összesen';

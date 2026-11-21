@@ -9,7 +9,6 @@ class Equation extends StatelessWidget {
   const Equation({
     required this.amount,
     required this.coveredSeconds,
-    required this.expectedSeconds,
     required this.metric,
     required this.detectionType,
     super.key,
@@ -17,15 +16,14 @@ class Equation extends StatelessWidget {
 
   final double amount;
   final int coveredSeconds;
-  final int expectedSeconds;
   final core_domain.DashboardMetric metric;
   final core_domain.DetectionType? detectionType;
 
   @override
   Widget build(BuildContext context) {
-    final result = amount / coveredSeconds * 3600;
+    final result = coveredSeconds <= 0 ? 0.0 : amount / coveredSeconds * 3600;
     final coveredSecondsText = formatCompactSeconds(context, coveredSeconds);
-    final expectedSecondsText = formatCompactSeconds(context, expectedSeconds);
+    final expectedSecondsText = formatCompactSeconds(context, 3600);
 
     final amountText = formatDashboardValue(context, amount);
     return Container(

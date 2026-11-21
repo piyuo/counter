@@ -1080,6 +1080,18 @@ abstract class Localization {
   /// **'Statistics for Each 5-Minute Period'**
   String get metrics_counting_window;
 
+  /// No description provided for @observation_screen_count.
+  ///
+  /// In en, this message translates to:
+  /// **'Count'**
+  String get observation_screen_count;
+
+  /// No description provided for @observation_screen_observed.
+  ///
+  /// In en, this message translates to:
+  /// **'Observed'**
+  String get observation_screen_observed;
+
   /// No description provided for @observation_screen_observed_count.
   ///
   /// In en, this message translates to:
@@ -1103,6 +1115,12 @@ abstract class Localization {
   /// In en, this message translates to:
   /// **'Subtotal'**
   String get observation_screen_subtotal;
+
+  /// No description provided for @observation_screen_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get observation_screen_time;
 
   /// No description provided for @observation_screen_total.
   ///

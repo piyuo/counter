@@ -17,6 +17,7 @@ export 'model/month_summary.dart';
 export 'model/observation.dart';
 export 'model/observation_granularity.dart';
 export 'model/observation_payload.dart';
+export 'model/observation_series.dart';
 export 'model/observation_state.dart';
 export 'model/vision_state.dart';
 export 'model/year_summary.dart';

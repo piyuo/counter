@@ -1,6 +1,4 @@
 import 'package:core_domain/core_domain.dart' as core_domain;
-import 'package:core_domain/model/observation_series.dart' as observation_model;
-import 'package:core_domain/services/dashboard_metric_calculator.dart' as metric_calculator;
 import 'package:core_runtime/insight/observation_series_helpers.dart';
 import 'package:counter_app/control_panel/insights/dashboard_formatter.dart';
 import 'package:feature_pip/feature_pip.dart' as feature_pip;
@@ -10,8 +8,12 @@ import 'package:intl/intl.dart';
 import 'package:liquid_glass_widgets/widgets/feedback/glass_progress_indicator.dart';
 import 'package:shared_l10n/shared_l10n.dart';
 
+import 'insights/breakdown_row.dart';
+import 'insights/equation.dart';
+import 'insights/metric_detail_period_dropdown.dart';
 import 'insights/observation_tile.dart';
 import 'utils/dashboard_utils.dart';
+import 'utils/format_compact_duration.dart';
 
 class MetricDetailScreen extends ConsumerStatefulWidget {
   const MetricDetailScreen({required this.areaId, required this.metric, super.key});
@@ -24,24 +26,25 @@ class MetricDetailScreen extends ConsumerStatefulWidget {
 }
 
 class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
-  core_domain.TrafficPeriod _period = core_domain.TrafficPeriod.today;
+  core_domain.TrafficPeriod _trafficPeriod = core_domain.TrafficPeriod.today;
   DateTime _customDate = DateUtils.dateOnly(DateTime.now());
   final Map<int, bool> _expandedHours = {};
-  late Future<observation_model.ObservationSeries?> _observationsFuture;
+  final Map<String, bool> _expandedBusinessPeriods = {};
+  late Future<core_domain.ObservationSeries?> _observationsFuture;
+  (core_domain.TrafficPeriod, DateTime)? _loadedKey;
 
   @override
   void initState() {
     super.initState();
-    _observationsFuture = _loadObservations(_period, _customDate);
+    _observationsFuture = _loadObservations(_trafficPeriod, _customDate);
   }
 
-  Future<observation_model.ObservationSeries?> _loadObservations(
+  Future<core_domain.ObservationSeries?> _loadObservations(
     core_domain.TrafficPeriod period,
     DateTime customDate,
   ) async {
     final insight = ref.read(core_domain.insightServiceProvider);
-    final now = DateTime.now();
-    observation_model.ObservationSeries? observations;
+    core_domain.ObservationSeries? observations;
     switch (period) {
       case core_domain.TrafficPeriod.liveToday:
       case core_domain.TrafficPeriod.today:
@@ -56,9 +59,7 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
         break;
       case core_domain.TrafficPeriod.customDay:
         final date = DateUtils.dateOnly(customDate);
-        observations = date == DateUtils.dateOnly(now)
-            ? await insight.getObservationsFromLiveToday()
-            : await insight.getObservationsByDate(date);
+        observations = await insight.getObservationsByDate(date);
         break;
       case core_domain.TrafficPeriod.lastMonthAverage:
         observations = await insight.getObservationsFromLastMonth();
@@ -70,11 +71,10 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
     if (observations == null) {
       return null;
     }
-    return fillSeriesHours(observations, now);
+    return fillSeriesHours(observations, now: DateTime.now());
   }
 
-  Future<void> _selectPeriod(core_domain.TrafficPeriod? period) async {
-    if (period == null) return;
+  Future<void> _selectPeriod(core_domain.TrafficPeriod period) async {
     var customDate = _customDate;
     if (period == core_domain.TrafficPeriod.customDay) {
       final today = DateUtils.dateOnly(DateTime.now());
@@ -88,18 +88,147 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
       customDate = DateUtils.dateOnly(selectedDate);
     }
     setState(() {
-      _period = period;
+      _trafficPeriod = period;
       _customDate = customDate;
       _expandedHours.clear();
+      _expandedBusinessPeriods.clear();
       _observationsFuture = _loadObservations(period, customDate);
     });
   }
 
-  String _periodLabel(BuildContext context, core_domain.TrafficPeriod period, DateFormat dateFormat) {
-    if (period == core_domain.TrafficPeriod.customDay) {
-      return dateFormat.format(_customDate);
+  List<ObservationTile> buildObservationTiles(
+    core_domain.ObservationSeries? observations,
+    core_domain.DetectionType detectionType,
+    DateFormat timeFormat,
+  ) {
+    if (observations == null || observations.isEmpty) return [];
+
+    final byHour = <int, List<core_domain.Observation>>{};
+    for (final observation in observations) {
+      byHour.putIfAbsent(observation.hour, () => []).add(observation);
     }
-    return formatTrafficPeriodLabel(context, period);
+    final sortedHours = byHour.keys.toList()..sort();
+    final hourlySummaries = {
+      for (final hour in sortedHours)
+        hour: (
+          subtotal: getDashboardMetricAggregateValue(byHour[hour]!, widget.areaId, widget.metric),
+          coveredSeconds: getDashboardCoveredSeconds(byHour[hour]!),
+          measurement: core_domain.calculateInsightMetricFromObservationsInRange(
+            series: observations,
+            startMinute: hour * 60,
+            endMinute: (hour + 1) * 60,
+            areaId: widget.areaId,
+            metric: widget.metric,
+            expectedSeconds: 3600,
+          ),
+        ),
+    };
+    final result = <ObservationTile>[];
+    for (final hour in sortedHours) {
+      result.add(
+        ObservationTile(
+          initiallyExpanded: hour == sortedHours.last,
+          isExpanded: _expandedHours[hour],
+          onExpansionChanged: (expanded) {
+            setState(() => _expandedHours[hour] = expanded);
+          },
+          observations: byHour[hour]!,
+          expectedSeconds: 3600, // observations only hour data
+          areaId: widget.areaId,
+          metric: widget.metric,
+          measurement: hourlySummaries[hour]!.measurement,
+          timeFormat: timeFormat,
+          detectionType: detectionType,
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  List<ObservationTile> buildBusinessPeriodTiles(
+    core_domain.ObservationSeries? observations,
+    List<core_domain.BusinessPeriod> businessPeriods,
+    core_domain.DetectionType detectionType,
+    DateFormat timeFormat,
+  ) {
+    if (observations == null || observations.isEmpty) return [];
+
+    final groups = groupDashboardObservationsByBusinessPeriod(observations, businessPeriods);
+    final now = DateTime.now();
+    final isCurrentDateSelection =
+        _trafficPeriod == core_domain.TrafficPeriod.today ||
+        (_trafficPeriod == core_domain.TrafficPeriod.customDay && DateUtils.isSameDay(_customDate, now));
+
+    return [
+      for (var index = 0; index < groups.length; index++)
+        _buildBusinessPeriodTile(
+          groups[index],
+          observations,
+          detectionType,
+          timeFormat,
+          isCurrentDateSelection && groups[index].period.statusAt(now) == core_domain.BusinessPeriodStatus.inProgress,
+        ),
+    ];
+  }
+
+  ObservationTile _buildBusinessPeriodTile(
+    DashboardBusinessPeriodGroup group,
+    core_domain.ObservationSeries series,
+    core_domain.DetectionType detectionType,
+    DateFormat timeFormat,
+    bool isInProgress,
+  ) {
+    final period = group.period;
+    final expectedSeconds = (period.endMinute - period.startMinute) * 60;
+    return ObservationTile(
+      isExpanded: _expandedBusinessPeriods[period.id],
+      onExpansionChanged: (expanded) => setState(() => _expandedBusinessPeriods[period.id] = expanded),
+      observations: group.observations,
+      expectedSeconds: expectedSeconds,
+      areaId: widget.areaId,
+      metric: widget.metric,
+      measurement: core_domain.calculateInsightMetricFromObservationsInRange(
+        series: series,
+        startMinute: period.startMinute,
+        endMinute: period.endMinute,
+        areaId: widget.areaId,
+        metric: widget.metric,
+        expectedSeconds: expectedSeconds,
+      ),
+      timeFormat: timeFormat,
+      detectionType: detectionType,
+      showInProgressLabel: isInProgress,
+      titleBuilder: (_) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(_businessPeriodLabel(context, period)),
+          Text(
+            _businessPeriodTimeRange(period, timeFormat),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _businessPeriodLabel(BuildContext context, core_domain.BusinessPeriod period) => switch (period.id) {
+    'breakfast' => context.l.insight_period_breakfast,
+    'lunch' => context.l.insight_period_lunch,
+    'dinner' => context.l.insight_period_dinner,
+    _ => period.name,
+  };
+
+  String _businessPeriodTimeRange(core_domain.BusinessPeriod period, DateFormat timeFormat) {
+    String formatMinute(int minute) {
+      if (minute == 1440) return '24:00';
+      return timeFormat.format(DateTime(2000, 1, 1, minute ~/ 60, minute % 60));
+    }
+
+    return '${formatMinute(period.startMinute)} – ${formatMinute(period.endMinute)}';
   }
 
   @override
@@ -108,60 +237,47 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
     if (appState == null) return const SizedBox.shrink();
 
     ref.listen(core_domain.insightStateProvider, (previous, next) {
-      if (_period != core_domain.TrafficPeriod.today) return;
-      if (previous?.businessDate == next.businessDate &&
-          previous?.todaySeries == next.todaySeries &&
-          previous?.recentHourTotal == next.recentHourTotal) {
+      if (_trafficPeriod != core_domain.TrafficPeriod.today) return;
+      if (previous?.businessDate == next.businessDate && previous?.todaySeries == next.todaySeries) {
         return;
       }
       setState(() {
-        _observationsFuture = _loadObservations(_period, _customDate);
+        _observationsFuture = _loadObservations(_trafficPeriod, _customDate);
       });
     });
 
     final locale = Localizations.localeOf(context).toString();
-    final dateFormat = DateFormat.yMMMd(locale);
     final timeFormat = DateFormat.Hm(locale);
     final metricLabel = formatMetricLabel(context, widget.metric);
 
     return feature_pip.PipScaffold(
       title: metricLabel,
-      builder: (scrollController) => FutureBuilder<observation_model.ObservationSeries?>(
-        key: ValueKey((_period, _customDate)),
+      builder: (scrollController) => FutureBuilder<core_domain.ObservationSeries?>(
+        key: ValueKey((_trafficPeriod, _customDate)),
         future: _observationsFuture,
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting && !snapshot.hasData) {
+          final loadKey = (_trafficPeriod, _customDate);
+          if (snapshot.connectionState == ConnectionState.done) {
+            _loadedKey = loadKey;
+          }
+          // Null results are valid, so `hasData` can't tell a refresh from the first load.
+          if (snapshot.connectionState == ConnectionState.waiting && _loadedKey != loadKey) {
             return const Center(child: GlassProgressIndicator.circular(strokeWidth: 2.5, color: Colors.white));
           }
           if (snapshot.hasError) {
             return Center(child: Text(context.l.insight_error));
           }
           final observations = snapshot.data;
-          if (observations == null || observations.isEmpty) {
-            return Center(child: Text(context.l.insight_comparison_unavailable));
-          }
 
-          final byHour = <int, List<core_domain.Observation>>{};
-          for (final observation in observations) {
-            byHour.putIfAbsent(observation.hour, () => []).add(observation);
-          }
-          final sortedHours = byHour.keys.toList()..sort();
-          final total = getDashboardMetricAggregateValue(observations.items, widget.areaId, widget.metric);
-          final hourlySummaries = {
-            for (final hour in sortedHours)
-              hour: (
-                subtotal: getDashboardMetricAggregateValue(byHour[hour]!, widget.areaId, widget.metric),
-                coveredSeconds: getDashboardCoveredSeconds(byHour[hour]!),
-                measurement: metric_calculator.calculateInsightMetricFromObservationsInRange(
-                  series: observations,
-                  startMinute: hour * 60,
-                  endMinute: (hour + 1) * 60,
-                  areaId: widget.areaId,
-                  metric: widget.metric,
-                  expectedSeconds: 3600,
-                ),
-              ),
-          };
+          final items = observations?.items ?? const <core_domain.Observation>[];
+          final total = getDashboardMetricAggregateValue(items, widget.areaId, widget.metric) ?? 0;
+          final totalCoveredSeconds = getDashboardCoveredSeconds(items);
+          final businessPeriodTiles = buildBusinessPeriodTiles(
+            observations,
+            appState.businessPeriods,
+            appState.detectionType,
+            timeFormat,
+          );
 
           return SingleChildScrollView(
             controller: scrollController,
@@ -169,63 +285,39 @@ class _ObservationScreenState extends ConsumerState<MetricDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // explain realtime recent hour observation
                 _PrimaryMetricDetail(areaId: widget.areaId, metric: widget.metric),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
-                  child: DropdownButtonFormField<core_domain.TrafficPeriod>(
-                    initialValue: _period,
-                    isExpanded: true,
-                    items: [
-                      for (final period in core_domain.TrafficPeriod.values)
-                        DropdownMenuItem(
-                          value: period,
-                          child: Text(
-                            period == core_domain.TrafficPeriod.customDay
-                                ? (_period == period
-                                      ? _periodLabel(context, period, dateFormat)
-                                      : MaterialLocalizations.of(context).datePickerHelpText)
-                                : _periodLabel(context, period, dateFormat),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                    ],
-                    onChanged: _selectPeriod,
-                  ),
-                ),
-                for (final hour in sortedHours)
-                  ObservationTile(
-                    initiallyExpanded: hour == sortedHours.last,
-                    isExpanded: _expandedHours[hour],
-                    onExpansionChanged: (expanded) {
-                      setState(() => _expandedHours[hour] = expanded);
-                    },
-                    observations: byHour[hour]!,
-                    expectedSeconds: 3600, // observations only hour data
-                    areaId: widget.areaId,
-                    metric: widget.metric,
-                    measurement: hourlySummaries[hour]!.measurement,
-                    timeFormat: timeFormat,
-                    detectionType: appState.detectionType,
-                  ),
-                feature_pip.PipPanel(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
+                // select the period for the observations
+                MetricDetailPeriodDropdown(value: _trafficPeriod, customDate: _customDate, onChanged: _selectPeriod),
+                ...businessPeriodTiles,
+                if (businessPeriodTiles.isNotEmpty)
+                  const Padding(padding: EdgeInsets.symmetric(horizontal: 16), child: Divider(height: 1)),
+                ...buildObservationTiles(observations, appState.detectionType, timeFormat),
+                if (observations != null && observations.isNotEmpty)
+                  feature_pip.PipPanel(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: Text(
-                            context.l.observation_screen_total,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
+                        BreakdownRow(
+                          label: context.l.observation_screen_total,
+                          value: formatDashboardMetricValue(context, widget.metric, total),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                         ),
-                        Text(
-                          formatDashboardMetricValueUnit(context, widget.metric, total, appState.detectionType),
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+                        BreakdownRow(
+                          label: context.l.observation_screen_observed_time,
+                          value: formatCompactSeconds(context, totalCoveredSeconds),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
                         ),
                       ],
                     ),
                   ),
-                ),
+                if (observations != null && observations.isNotEmpty)
+                  Equation(
+                    amount: total,
+                    coveredSeconds: totalCoveredSeconds,
+                    metric: widget.metric,
+                    detectionType: appState.detectionType,
+                  ),
               ],
             ),
           );

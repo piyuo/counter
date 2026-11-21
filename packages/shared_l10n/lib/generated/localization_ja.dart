@@ -528,6 +528,12 @@ class LocalizationJa extends Localization {
   String get metrics_counting_window => '5分ごとの統計データ';
 
   @override
+  String get observation_screen_count => '数';
+
+  @override
+  String get observation_screen_observed => '観測';
+
+  @override
   String get observation_screen_observed_count => '観測数';
 
   @override
@@ -538,6 +544,9 @@ class LocalizationJa extends Localization {
 
   @override
   String get observation_screen_subtotal => '小計';
+
+  @override
+  String get observation_screen_time => '時間';
 
   @override
   String get observation_screen_total => '合計';

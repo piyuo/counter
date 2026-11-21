@@ -24,6 +24,9 @@ abstract class ObservationService {
   /// Processes a single frame of tracked objects.
   void processFrame<T>(List<T> tracks, double rotationDegrees);
 
+  /// return current live observation. if service is stop or paused, it will still return empty observation of current window
+  core_domain.Observation liveObservation();
+
   /// Sets the threshold durations for stay and disappear events.
   void setThresholdSeconds({int? stagnantThresholdSeconds, int? disappearThresholdSeconds});
 }
